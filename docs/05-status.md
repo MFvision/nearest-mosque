@@ -89,6 +89,12 @@ Issues found only by looking at the simulator screenshots and fixed: the disc's 
 disc so it covered the prayer name; GeoNames romanized mixtures ("kېp ټawn") shown as the Arabic city
 name; the Ask header scrolling under the status bar.
 
+### TestFlight
+
+Run 37221509202 of `testflight.yml` (2026-10-04): archived (Release), signed with automatic signing via
+the App Store Connect API key, and uploaded **version 0.2.0 build 102** of `sa.zood.nearmosque`
+("Uploaded NearMosque", "EXPORT SUCCEEDED"). Device testing on TestFlight is the next step.
+
 ## 5.5 Known limitations and next increments
 
 1. Offline street-map packs (self-built vector tiles) and regional pack downloads with resume;
