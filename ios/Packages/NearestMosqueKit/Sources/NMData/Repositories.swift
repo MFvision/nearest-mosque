@@ -121,7 +121,7 @@ public final class GRDBChunkStore: ChunkStore, @unchecked Sendable {
     public func documentFrequency(_ term: String) -> Int {
         let args = StatementArguments([Self.quote(term) as DatabaseValueConvertible?] + scope.args)
         return (try? db.writer.read { db in
-            try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND \(scope.sql)", arguments: args)
+            try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM source_chunk_fts f CROSS JOIN source_chunk c ON c.rowid = f.rowid WHERE source_chunk_fts MATCH ? AND \(scope.sql)", arguments: args)
         }) ?? 0
     }
 
@@ -131,8 +131,8 @@ public final class GRDBChunkStore: ChunkStore, @unchecked Sendable {
         let args = StatementArguments([match as DatabaseValueConvertible?] + scope.args)
         return (try? db.writer.read { db in
             try Row.fetchAll(db, sql: """
-                SELECT c.id, c.seq, c.searchText FROM source_chunk c
-                JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND \(scope.sql)
+                SELECT c.id, c.seq, c.searchText FROM source_chunk_fts f
+                CROSS JOIN source_chunk c ON c.rowid = f.rowid WHERE source_chunk_fts MATCH ? AND \(scope.sql)
                 """, arguments: args).map { r in
                 let text: String = r["searchText"]
                 return CandidateChunk(id: r["id"], seq: r["seq"], tokens: text.isEmpty ? [] : text.split(separator: " ").map(String.init))
@@ -168,7 +168,7 @@ public final class GRDBLibraryStore: LibraryStore, @unchecked Sendable {
     public func ids(_ variants: [String]) -> Set<String> {
         guard !variants.isEmpty else { return [] }
         return Set((try? db.writer.read { db in
-            try String.fetchAll(db, sql: "SELECT c.id FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?",
+            try String.fetchAll(db, sql: "SELECT c.id FROM source_chunk_fts f CROSS JOIN source_chunk c ON c.rowid = f.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?",
                                 arguments: [Self.match(variants), packId])
         }) ?? [])
     }

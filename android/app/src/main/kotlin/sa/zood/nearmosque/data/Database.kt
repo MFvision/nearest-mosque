@@ -209,15 +209,18 @@ fun countQuery(scope: ChunkScope) = SimpleSQLiteQuery("SELECT COUNT(*) FROM sour
 fun averageQuery(scope: ChunkScope) = SimpleSQLiteQuery("SELECT COALESCE(AVG(c.tokenCount), 0) FROM source_chunk c WHERE ${scope.where}", scope.args)
 
 fun ftsCountQuery(term: String, scope: ChunkScope) = SimpleSQLiteQuery(
-    "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    "SELECT COUNT(*) FROM source_chunk_fts f CROSS JOIN source_chunk c ON c.rowid = f.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
     arrayOf<Any>(ftsTerm(term), *scope.args),
 )
 
 fun candidatesQuery(terms: Collection<String>, scope: ChunkScope = ChunkScope.Books): SupportSQLiteQuery = SimpleSQLiteQuery(
-    "SELECT c.id AS id, c.seq AS seq, c.searchText AS searchText FROM source_chunk c " +
-        "JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    "SELECT c.id AS id, c.seq AS seq, c.searchText AS searchText FROM source_chunk_fts f " +
+        "CROSS JOIN source_chunk c ON c.rowid = f.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
     arrayOf<Any>(terms.joinToString(" OR ") { ftsTerm(it) }, *scope.args),
 )
+
+// Full-text joins drive from the FTS table (CROSS JOIN fixes the order): with the packId index on the
+// left, SQLite would re-run the full-text match once per row of a large pack.
 
 /** FTS4 match for library variants: prefix query for 3+ letters (FTS4 puts the * inside the quotes). */
 fun libraryMatch(variants: Collection<String>) = variants.joinToString(" OR ") {
@@ -225,7 +228,7 @@ fun libraryMatch(variants: Collection<String>) = variants.joinToString(" OR ") {
 }
 
 fun libraryIdsQuery(variants: Collection<String>, scope: ChunkScope) = SimpleSQLiteQuery(
-    "SELECT c.id FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    "SELECT c.id FROM source_chunk_fts f CROSS JOIN source_chunk c ON c.rowid = f.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
     arrayOf<Any>(libraryMatch(variants), *scope.args),
 )
 
