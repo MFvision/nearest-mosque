@@ -56,20 +56,21 @@ public final class PackManager: @unchecked Sendable {
 
     /// Installs missing or older bundled packs unless the user removed them. Returns failed ids.
     @discardableResult
-    public func ensureBuiltins() -> [String] {
+    public func ensureBuiltins(include: (PackManifest) -> Bool = { _ in true }) -> [String] {
         let removed = Set(defaults.stringArray(forKey: Self.removedKey) ?? [])
         let current = Dictionary(uniqueKeysWithValues: ((try? installed()) ?? []).map { ($0.id, $0.version) })
         var failed: [String] = []
-        for (dir, m) in bundledManifests() where !removed.contains(m.id) {
+        for (dir, m) in bundledManifests() where !removed.contains(m.id) && include(m) {
             if let v = current[m.id], v >= m.version { continue }
-            do { try install(m, builtin: true) { try? Data(contentsOf: dir.appendingPathComponent($0)) } } catch { failed.append(m.id) }
+            // Memory-mapped: bundled packs can be tens of MB.
+            do { try install(m, builtin: true) { try? Data(contentsOf: dir.appendingPathComponent($0), options: .mappedIfSafe) } } catch { failed.append(m.id) }
         }
         return failed
     }
 
-    public func restoreBuiltins() {
+    public func restoreBuiltins(include: (PackManifest) -> Bool = { _ in true }) {
         defaults.removeObject(forKey: Self.removedKey)
-        ensureBuiltins()
+        ensureBuiltins(include: include)
     }
 
     public func remove(_ id: String) throws {
@@ -117,36 +118,37 @@ public final class PackManager: @unchecked Sendable {
             }
         case "sources":
             guard let data = read("chunks.jsonl") else { throw PackError.format("no chunks") }
-            let lines = String(decoding: data, as: UTF8.self).split(separator: "\n")
-            let chunks = try lines.map { line -> (SourceChunk, String, String) in
-                let c = try dec.decode(SourceChunk.self, from: Data(line.utf8))
-                // Library packs are indexed with stems and variants for library search; the Quran keeps the
-                // shared normalizer only (fixtures in shared/fixtures/retrieval.json).
-                let text = ChunkScope.isLibrary(m.id)
-                    ? LibraryText.indexTokens(c.original.text + " " + c.allTranslations.map(\.text).joined(separator: " ")).joined(separator: " ")
-                    : c.searchText()
-                return (c, String(line), text)
-            }
             let docs = (read("documents.json").flatMap { try? dec.decode([SourceDocument].self, from: $0) }) ?? []
             let qs = (read("common-questions.json").flatMap { try? dec.decode(CommonQuestionsFile.self, from: $0) })?.questions ?? []
-            let ids = Set(chunks.map(\.0.id))
-            let valid = qs.filter { $0.citations.allSatisfy(ids.contains) }
+            let library = ChunkScope.isLibrary(m.id)
             let enc = JSONEncoder()
+            // Rows are decoded and inserted one line at a time inside one transaction: large packs (tens of MB)
+            // never sit in memory as decoded objects, and a failure still leaves the previous version installed.
             try db.writer.write { db in
                 for table in ["source_chunk", "source_document", "common_question"] {
                     try db.execute(sql: "DELETE FROM \(table) WHERE packId = ?", arguments: [m.id])
                 }
                 let stmt = try db.makeStatement(sql: "INSERT OR REPLACE INTO source_chunk (id, packId, seq, anchor, json, searchText, tokenCount) VALUES (?,?,?,?,?,?,?)")
-                for (c, line, text) in chunks {
-                    try stmt.execute(arguments: [c.id, m.id, c.seq, c.anchor, line, text, text.isEmpty ? 0 : text.split(separator: " ").count])
+                var ids = Set<String>()
+                var count = 0
+                for line in data.split(separator: UInt8(ascii: "\n")) where !line.isEmpty {
+                    let c = try dec.decode(SourceChunk.self, from: line)
+                    // Library packs are indexed with stems and variants for library search; the Quran keeps the
+                    // shared normalizer only (fixtures in shared/fixtures/retrieval.json).
+                    let text = library
+                        ? LibraryText.indexTokens(c.original.text + " " + c.allTranslations.map(\.text).joined(separator: " ")).joined(separator: " ")
+                        : c.searchText()
+                    try stmt.execute(arguments: [c.id, m.id, c.seq, c.anchor, String(decoding: line, as: UTF8.self), text, text.isEmpty ? 0 : text.split(separator: " ").count])
+                    ids.insert(c.id)
+                    count += 1
                 }
                 for d in docs {
                     try db.execute(sql: "INSERT OR REPLACE INTO source_document VALUES (?,?,?)", arguments: [d.id, m.id, String(decoding: try enc.encode(d), as: UTF8.self)])
                 }
-                for (i, q) in valid.enumerated() {
+                for (i, q) in qs.filter({ $0.citations.allSatisfy(ids.contains) }).enumerated() {
                     try db.execute(sql: "INSERT OR REPLACE INTO common_question VALUES (?,?,?,?)", arguments: [q.id, m.id, i, String(decoding: try enc.encode(q), as: UTF8.self)])
                 }
-                try Self.upsert(db, m, manifestJson, chunks.count, bytes, now, builtin)
+                try Self.upsert(db, m, manifestJson, count, bytes, now, builtin)
             }
         default:
             throw PackError.format("kind \(m.kind)")

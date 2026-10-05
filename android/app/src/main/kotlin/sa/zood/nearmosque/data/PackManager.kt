@@ -60,12 +60,12 @@ class PackManager(
      * First launch and app updates: install bundled packs that are missing or older, unless the user
      * removed them. Returns the ids that failed (the previous version, if any, stays installed).
      */
-    suspend fun ensureBuiltins(): List<String> = withContext(Dispatchers.IO) {
+    suspend fun ensureBuiltins(include: (PackManifest) -> Boolean = { true }): List<String> = withContext(Dispatchers.IO) {
         val removed = prefs.getStringSet(KEY_REMOVED, emptySet()).orEmpty()
         val current = db.packs().all().associateBy { it.id }
         val failed = ArrayList<String>()
         for ((dir, manifest) in bundledManifests()) {
-            if (manifest.id in removed) continue
+            if (manifest.id in removed || !include(manifest)) continue
             val have = current[manifest.id]
             if (have != null && have.version >= manifest.version) continue
             try {
@@ -78,9 +78,9 @@ class PackManager(
         failed
     }
 
-    suspend fun restoreBuiltins() {
+    suspend fun restoreBuiltins(include: (PackManifest) -> Boolean = { true }) {
         prefs.edit().remove(KEY_REMOVED).apply()
-        ensureBuiltins()
+        ensureBuiltins(include)
     }
 
     suspend fun remove(id: String) = withContext(Dispatchers.IO) {
@@ -158,14 +158,15 @@ class PackManager(
                     }
                 }
                 "sources" -> {
-                    val chunks = readLines(open("chunks.jsonl") ?: throw PackError.Format("no chunks")).map { line ->
+                    val library = ChunkScope.isLibrary(manifest.id)
+                    fun chunkEntity(line: String): SourceChunkEntity {
                         val c = PackJson.decodeFromString(SourceChunk.serializer(), line)
                         // Library packs are indexed with stems and variants for library search; the Quran keeps
                         // the shared normalizer only (fixtures in shared/fixtures/retrieval.json).
-                        val text = if (ChunkScope.isLibrary(manifest.id)) {
+                        val text = if (library) {
                             sa.zood.nearmosque.core.LibraryText.indexTokens(c.original.text + " " + c.translations.joinToString(" ") { it.text }).joinToString(" ")
                         } else c.searchText()
-                        SourceChunkEntity(c.id, manifest.id, c.seq, c.anchor, line, text, if (text.isEmpty()) 0 else text.count { it == ' ' } + 1)
+                        return SourceChunkEntity(c.id, manifest.id, c.seq, c.anchor, line, text, if (text.isEmpty()) 0 else text.count { it == ' ' } + 1)
                     }
                     val docs = open("documents.json")?.use { s ->
                         PackJson.decodeFromString(ListSerializer(SourceDocument.serializer()), s.readBytes().decodeToString())
@@ -173,19 +174,35 @@ class PackManager(
                     val questions = open("common-questions.json")?.use { s ->
                         PackJson.decodeFromString(CommonQuestionsFile.serializer(), s.readBytes().decodeToString()).questions
                     }.orEmpty()
-                    val ids = chunks.map { it.id }.toSet()
-                    val validQuestions = questions.filter { q -> q.citations.all { it in ids } }
+                    // Streamed in batches inside one transaction: large packs (tens of MB) never sit in memory
+                    // at once, and a failure still leaves the previous version installed.
                     db.withTransaction {
                         db.sources().deleteChunks(manifest.id)
                         db.sources().deleteDocuments(manifest.id)
                         db.sources().deleteQuestions(manifest.id)
-                        chunks.chunked(500).forEach { db.sources().insertChunks(it) }
+                        val ids = HashSet<String>()
+                        var count = 0
+                        var tokens = 0L
+                        val batch = ArrayList<SourceChunkEntity>(BATCH)
+                        (open("chunks.jsonl") ?: throw PackError.Format("no chunks")).bufferedReader().useLines { lines ->
+                            for (line in lines) {
+                                if (line.isBlank()) continue
+                                val e = chunkEntity(line)
+                                ids += e.id
+                                count++
+                                tokens += e.tokenCount
+                                batch += e
+                                if (batch.size == BATCH) { db.sources().insertChunks(batch); batch.clear() }
+                            }
+                        }
+                        if (batch.isNotEmpty()) db.sources().insertChunks(batch)
                         db.sources().insertDocuments(docs.map { SourceDocumentEntity(it.id, manifest.id, PackJson.encodeToString(SourceDocument.serializer(), it)) })
+                        val validQuestions = questions.filter { q -> q.citations.all { it in ids } }
                         db.sources().insertQuestions(validQuestions.mapIndexed { i, q ->
                             CommonQuestionEntity(q.id, manifest.id, i, PackJson.encodeToString(sa.zood.nearmosque.core.CommonQuestion.serializer(), q))
                         })
-                        val avg = if (chunks.isEmpty()) 0.0 else chunks.sumOf { it.tokenCount }.toDouble() / chunks.size
-                        db.packs().upsert(entity(manifest, chunks.size, bytes, now, builtin, avg))
+                        val avg = if (count == 0) 0.0 else tokens.toDouble() / count
+                        db.packs().upsert(entity(manifest, count, bytes, now, builtin, avg))
                     }
                 }
                 else -> throw PackError.Format("unsupported kind ${manifest.kind}")
@@ -207,6 +224,7 @@ class PackManager(
 
     companion object {
         private const val KEY_REMOVED = "removed_builtins"
+        private const val BATCH = 500
         private const val MAX_IMPORT_BYTES = 512L * 1024 * 1024
         val namesSerializer = MapSerializer(String.serializer(), String.serializer())
     }

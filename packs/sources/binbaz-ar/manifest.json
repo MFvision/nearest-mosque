@@ -1,0 +1,54 @@
+{
+  "id": "sources.binbaz-ar",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "ar": "فتاوى ابن باز",
+    "en": "Ibn Baz fatwas"
+  },
+  "languages": [
+    "ar"
+  ],
+  "recordCount": 24138,
+  "categories": {
+    "مجموع الفتاوى": 4734,
+    "نور على الدرب": 12271,
+    "فتاوى الدروس": 5669,
+    "فتاوى الجامع الكبير": 1464
+  },
+  "source": {
+    "name": "binbaz.org.sa",
+    "url": "https://binbaz.org.sa/",
+    "snapshot": "2026-10-05",
+    "builtAt": "2026-10-05T11:49:13Z"
+  },
+  "license": {
+    "id": "binbaz-attribution",
+    "name": "binbaz.org.sa: «جميع الحقوق محفوظة والنقل متاح لكل مسلم بشرط ذكر المصدر» (copying permitted with the source cited)",
+    "url": "https://binbaz.org.sa/",
+    "attribution": "الموقع الرسمي لسماحة الشيخ ابن باز رحمه الله — binbaz.org.sa"
+  },
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 55508894,
+      "sha256": "04c33f242a0b257c7a65ed19e5dfb33afe81039ff88fb008ecafe6bd442d1752"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 806,
+      "sha256": "4b9d1eb462339231d5bafd7c4fdf5bc7b4216e54d88c2f67e5e49697ea2e9f6f"
+    },
+    {
+      "path": "NOTICE-binbaz.txt",
+      "bytes": 460,
+      "sha256": "cf7d9f2611a3ea495b4ed08cd44330d541e126a6a53563d8d35c9dee61bf8cee"
+    },
+    {
+      "path": "inventory.json",
+      "bytes": 276,
+      "sha256": "692222cc1a4922e2d62dae30304aafadbe1a8dbb667b9a73806478a3e8689303"
+    }
+  ]
+}

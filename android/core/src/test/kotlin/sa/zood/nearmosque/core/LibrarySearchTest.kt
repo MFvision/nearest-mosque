@@ -43,3 +43,18 @@ class LibrarySearchTest {
         }
     }
 }
+
+class LibraryPartsTest {
+    @Test
+    fun partsSplitStoredText() {
+        val line = """{"id":"bb:6","seq":1,"anchor":"T","section":{"publisher":"binbaz","parts":[{"kind":"title","lang":"ar"},{"kind":"question","lang":"ar"},{"kind":"answer","lang":"ar"}]},"original":{"docId":"binbaz-ar","lang":"ar","text":"T⁣Q?⁣A."}}"""
+        val c = PackJson.decodeFromString(SourceChunk.serializer(), line)
+        assertEquals(listOf("title", "question", "answer"), LibraryParts.parts(c).map { it.kind })
+        assertEquals("Q?", LibraryParts.summary(c))
+        // The separator is not part of any search token.
+        assertEquals(listOf("t", "q", "a"), TextNormalizer.tokens(c.original.text))
+        val plain = PackJson.decodeFromString(SourceChunk.serializer(), """{"id":"ih:en:1","seq":1,"anchor":"Title","original":{"docId":"d","lang":"en","text":"Title\nBody"}}""")
+        assertEquals(emptyList<LibraryParts.Part>(), LibraryParts.parts(plain))
+        assertEquals("Body", LibraryParts.summary(plain))
+    }
+}

@@ -1,0 +1,24 @@
+[
+ {
+  "id": "quranenc-id",
+  "kind": "library",
+  "title": {
+   "en": "Indonesian Translation - Ministry of Religious Affairs",
+   "id": "Indonesian Translation - Ministry of Religious Affairs"
+  },
+  "edition": "QuranEnc.com indonesian_affairs v1.0.1",
+  "publisher": "QuranEnc.com",
+  "language": "id",
+  "url": "https://quranenc.com/id/browse/indonesian_affairs",
+  "license": {
+   "id": "QuranEnc-terms",
+   "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://quranenc.com/",
+   "attribution": "QuranEnc.com — Indonesian Translation - Ministry of Religious Affairs (v1.0.1)"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable",
+  "translationOf": "quran-ar-tanzil"
+ }
+]

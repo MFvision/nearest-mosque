@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+ <stop offset="0" stop-color="#E9B96A"/><stop offset="0.45" stop-color="#F6DDAE"/><stop offset="1" stop-color="#FFF8EC"/>
+</linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2C35B"/><stop offset="1" stop-color="#D9A33B"/></linearGradient>
+</defs>
+<rect width="1024" height="1024" fill="url(#bg)"/><circle cx="512" cy="540" r="360" fill="none" stroke="#14181F" stroke-width="14" stroke-opacity="0.85"/><path d="M512 330 L702.0 409.8 L512 489.6 L322.0 409.8 Z" fill="none" stroke="#14181F" stroke-width="20" stroke-linejoin="round"/>
+<path d="M322.0 435.8 L512 515.6 L702.0 435.8" fill="none" stroke="#14181F" stroke-width="38.0" stroke-linejoin="round"/>
+<path d="M322.0 519.8 C342.0 379.8, 452 389.8, 512 395.8 C572 389.8, 682.0 379.8, 702.0 519.8" fill="none" stroke="#14181F" stroke-width="16.0" stroke-linecap="round"/>
+<path d="M322.0 561.88 C342.0 433.88, 452 443.88, 512 449.88 C572 443.88, 682.0 433.88, 702.0 561.88" fill="none" stroke="#14181F" stroke-width="16.0" stroke-linecap="round"/>
+<path d="M322.0 603.96 C342.0 487.96000000000004, 452 497.96000000000004, 512 503.96000000000004 C572 497.96000000000004, 682.0 487.96000000000004, 702.0 603.96" fill="none" stroke="#14181F" stroke-width="16.0" stroke-linecap="round"/>
+<path d="M322.0 646.04 C342.0 542.04, 452 552.04, 512 558.04 C572 552.04, 682.0 542.04, 702.0 646.04" fill="none" stroke="#14181F" stroke-width="16.0" stroke-linecap="round"/>
+<path d="M322.0 688.12 C342.0 596.12, 452 606.12, 512 612.12 C572 606.12, 682.0 596.12, 702.0 688.12" fill="none" stroke="#14181F" stroke-width="16.0" stroke-linecap="round"/>
+<path d="M322.0 435.8 L322.0 680.2" stroke="#14181F" stroke-width="20" stroke-linecap="round"/>
+<path d="M702.0 435.8 L702.0 680.2" stroke="#14181F" stroke-width="20" stroke-linecap="round"/>
+<path d="M322.0 680.2 L512 760 L702.0 680.2" fill="none" stroke="#14181F" stroke-width="20" stroke-linejoin="round"/><g transform="translate(766.5584412271571 285.4415587728429) rotate(45) scale(2.3)"><path d="M0 -60 L44 52 L0 30 L-44 52 Z" fill="#1F4E79" stroke="#FFF8EC" stroke-width="9" stroke-linejoin="round"/><path d="M0 -30 L20 26 L0 16 Z" fill="#F2C35B"/></g></svg>

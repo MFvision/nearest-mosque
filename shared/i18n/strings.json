@@ -2555,14 +2555,248 @@
       "fr": "Site officiel du cheikh Ibn Baz (binbaz.org.sa)",
       "es": "Sitio oficial del jeque Ibn Baz (binbaz.org.sa)"
     },
-    "library_web_binbaz": {
-      "en": "On binbaz.org.sa",
-      "ar": "على موقع ابن باز",
-      "ur": "binbaz.org.sa پر",
-      "tr": "binbaz.org.sa’da",
-      "id": "Di binbaz.org.sa",
-      "fr": "Sur binbaz.org.sa",
-      "es": "En binbaz.org.sa"
+    "library_type_hadith": {
+      "en": "Hadith",
+      "ar": "حديث",
+      "ur": "حدیث",
+      "tr": "Hadis",
+      "id": "Hadis",
+      "fr": "Hadith",
+      "es": "Hadiz"
+    },
+    "library_type_quran": {
+      "en": "Qur’an translation",
+      "ar": "ترجمة معاني القرآن",
+      "ur": "قرآن کا ترجمہ",
+      "tr": "Kur’an meali",
+      "id": "Terjemahan Al-Qur’an",
+      "fr": "Traduction du Coran",
+      "es": "Traducción del Corán"
+    },
+    "library_part_hadith": {
+      "en": "Hadith",
+      "ar": "الحديث",
+      "ur": "حدیث",
+      "tr": "Hadis",
+      "id": "Hadis",
+      "fr": "Hadith",
+      "es": "Hadiz"
+    },
+    "library_part_explanation": {
+      "en": "Explanation",
+      "ar": "الشرح",
+      "ur": "تشریح",
+      "tr": "Açıklama",
+      "id": "Penjelasan",
+      "fr": "Explication",
+      "es": "Explicación"
+    },
+    "library_part_benefits": {
+      "en": "Lessons",
+      "ar": "من فوائد الحديث",
+      "ur": "فوائد",
+      "tr": "Faydaları",
+      "id": "Pelajaran",
+      "fr": "Enseignements",
+      "es": "Enseñanzas"
+    },
+    "library_part_words": {
+      "en": "Word meanings",
+      "ar": "معاني الكلمات",
+      "ur": "الفاظ کے معانی",
+      "tr": "Kelime anlamları",
+      "id": "Makna kata",
+      "fr": "Sens des mots",
+      "es": "Significado de las palabras"
+    },
+    "library_part_verse": {
+      "en": "Verse",
+      "ar": "الآية",
+      "ur": "آیت",
+      "tr": "Ayet",
+      "id": "Ayat",
+      "fr": "Verset",
+      "es": "Aleya"
+    },
+    "library_part_translation": {
+      "en": "Translation of the meaning",
+      "ar": "ترجمة المعنى",
+      "ur": "ترجمہ",
+      "tr": "Meal",
+      "id": "Terjemahan",
+      "fr": "Traduction du sens",
+      "es": "Traducción del significado"
+    },
+    "library_part_footnotes": {
+      "en": "Notes",
+      "ar": "الحواشي",
+      "ur": "حواشی",
+      "tr": "Dipnotlar",
+      "id": "Catatan kaki",
+      "fr": "Notes",
+      "es": "Notas"
+    },
+    "library_grade": {
+      "en": "Grade: %1$s",
+      "ar": "الدرجة: %1$s",
+      "ur": "درجہ: %1$s",
+      "tr": "Derece: %1$s",
+      "id": "Derajat: %1$s",
+      "fr": "Authenticité : %1$s",
+      "es": "Grado: %1$s"
+    },
+    "publisher_hadeethenc": {
+      "en": "HadeethEnc.com, version %1$s",
+      "ar": "موسوعة الأحاديث النبوية المترجمة HadeethEnc.com، الإصدار %1$s",
+      "ur": "HadeethEnc.com، ورژن %1$s",
+      "tr": "HadeethEnc.com, sürüm %1$s",
+      "id": "HadeethEnc.com, versi %1$s",
+      "fr": "HadeethEnc.com, version %1$s",
+      "es": "HadeethEnc.com, versión %1$s"
+    },
+    "publisher_quranenc": {
+      "en": "QuranEnc.com: %1$s, version %2$s",
+      "ar": "موسوعة القرآن الكريم QuranEnc.com: %1$s، الإصدار %2$s",
+      "ur": "QuranEnc.com: %1$s، ورژن %2$s",
+      "tr": "QuranEnc.com: %1$s, sürüm %2$s",
+      "id": "QuranEnc.com: %1$s, versi %2$s",
+      "fr": "QuranEnc.com : %1$s, version %2$s",
+      "es": "QuranEnc.com: %1$s, versión %2$s"
+    },
+    "library_web_site": {
+      "en": "Open %1$s",
+      "ar": "افتح %1$s",
+      "ur": "%1$s کھولیں",
+      "tr": "Sitede aç: %1$s",
+      "id": "Buka %1$s",
+      "fr": "Ouvrir %1$s",
+      "es": "Abrir %1$s"
+    },
+    "library_title": {
+      "en": "Library",
+      "ar": "المكتبة",
+      "ur": "لائبریری",
+      "tr": "Kütüphane",
+      "id": "Perpustakaan",
+      "fr": "Bibliothèque",
+      "es": "Biblioteca"
+    },
+    "library_saved": {
+      "en": "Saved",
+      "ar": "المحفوظات",
+      "ur": "محفوظ",
+      "tr": "Kaydedilenler",
+      "id": "Tersimpan",
+      "fr": "Enregistrés",
+      "es": "Guardados"
+    },
+    "library_browse": {
+      "en": "Browse",
+      "ar": "تصفّح",
+      "ur": "براؤز",
+      "tr": "Göz at",
+      "id": "Jelajahi",
+      "fr": "Parcourir",
+      "es": "Explorar"
+    },
+    "library_downloads": {
+      "en": "Downloads",
+      "ar": "التنزيلات",
+      "ur": "ڈاؤن لوڈز",
+      "tr": "İndirilenler",
+      "id": "Unduhan",
+      "fr": "Téléchargements",
+      "es": "Descargas"
+    },
+    "library_saved_empty": {
+      "en": "Tap the bookmark on any item to keep it here.",
+      "ar": "اضغط على علامة الحفظ في أي مادة لتجدها هنا.",
+      "ur": "کسی بھی مواد پر بک مارک دبائیں تاکہ وہ یہاں محفوظ رہے۔",
+      "tr": "Bir öğeyi burada tutmak için yer işaretine dokunun.",
+      "id": "Ketuk penanda pada materi apa pun untuk menyimpannya di sini.",
+      "fr": "Touchez le signet d’un contenu pour le garder ici.",
+      "es": "Toca el marcador de cualquier contenido para guardarlo aquí."
+    },
+    "library_downloads_empty": {
+      "en": "Books you open are kept here for reading offline.",
+      "ar": "الكتب التي تفتحها تُحفظ هنا لقراءتها دون إنترنت.",
+      "ur": "جو کتابیں آپ کھولتے ہیں وہ آف لائن پڑھنے کے لیے یہاں رہتی ہیں۔",
+      "tr": "Açtığınız kitaplar çevrimdışı okumak için burada tutulur.",
+      "id": "Buku yang Anda buka disimpan di sini untuk dibaca offline.",
+      "fr": "Les livres ouverts sont gardés ici pour une lecture hors ligne.",
+      "es": "Los libros que abres se guardan aquí para leer sin conexión."
+    },
+    "library_delete": {
+      "en": "Delete",
+      "ar": "حذف",
+      "ur": "حذف کریں",
+      "tr": "Sil",
+      "id": "Hapus",
+      "fr": "Supprimer",
+      "es": "Eliminar"
+    },
+    "library_delete_all": {
+      "en": "Delete all",
+      "ar": "حذف الكل",
+      "ur": "سب حذف کریں",
+      "tr": "Tümünü sil",
+      "id": "Hapus semua",
+      "fr": "Tout supprimer",
+      "es": "Eliminar todo"
+    },
+    "library_search_in": {
+      "en": "Search in %1$s",
+      "ar": "ابحث في %1$s",
+      "ur": "%1$s میں تلاش کریں",
+      "tr": "%1$s içinde ara",
+      "id": "Cari di %1$s",
+      "fr": "Rechercher dans %1$s",
+      "es": "Buscar en %1$s"
+    },
+    "library_items_count": {
+      "en": "%1$d items",
+      "ar": "%1$d مادة",
+      "ur": "%1$d مواد",
+      "tr": "%1$d öğe",
+      "id": "%1$d materi",
+      "fr": "%1$d éléments",
+      "es": "%1$d elementos"
+    },
+    "library_bookmark": {
+      "en": "Save",
+      "ar": "حفظ",
+      "ur": "محفوظ کریں",
+      "tr": "Kaydet",
+      "id": "Simpan",
+      "fr": "Enregistrer",
+      "es": "Guardar"
+    },
+    "library_unbookmark": {
+      "en": "Remove from saved",
+      "ar": "إزالة من المحفوظات",
+      "ur": "محفوظ سے ہٹائیں",
+      "tr": "Kaydedilenlerden kaldır",
+      "id": "Hapus dari tersimpan",
+      "fr": "Retirer des enregistrés",
+      "es": "Quitar de guardados"
+    },
+    "library_load_more": {
+      "en": "Show more",
+      "ar": "عرض المزيد",
+      "ur": "مزید دکھائیں",
+      "tr": "Daha fazla göster",
+      "id": "Tampilkan lebih banyak",
+      "fr": "Afficher plus",
+      "es": "Mostrar más"
+    },
+    "library_installing": {
+      "en": "Preparing the library for your language…",
+      "ar": "جارٍ تجهيز المكتبة للغتك…",
+      "ur": "آپ کی زبان کے لیے لائبریری تیار ہو رہی ہے…",
+      "tr": "Kütüphane diliniz için hazırlanıyor…",
+      "id": "Menyiapkan perpustakaan untuk bahasa Anda…",
+      "fr": "Préparation de la bibliothèque pour votre langue…",
+      "es": "Preparando la biblioteca para tu idioma…"
     }
   }
 }

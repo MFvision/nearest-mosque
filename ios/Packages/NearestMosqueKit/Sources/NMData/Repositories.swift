@@ -71,11 +71,19 @@ public enum ChunkScope: Sendable {
     /// Library collections, searched separately from the Quran: IslamHouse per language, Ibn Baz fatwas.
     public static let libraryPrefix = "sources.islamhouse-"
     public static let binbazPack = "sources.binbaz-ar"
-    public static let libraryPrefixes = [libraryPrefix, "sources.binbaz-"]
+    public static let libraryPrefixes = [libraryPrefix, "sources.binbaz-", "sources.hadeethenc-", "sources.quranenc-"]
     public static func libraryPack(_ lang: String) -> String { libraryPrefix + lang }
     public static func isLibrary(_ packId: String) -> Bool { libraryPrefixes.contains { packId.hasPrefix($0) } }
     /// Language of a library pack: the suffix after the last "-" (sources.binbaz-ar → ar).
     public static func libraryLanguage(_ packId: String) -> String { packId.split(separator: "-").last.map(String.init) ?? "" }
+    /// Library languages installed for an interface language: that language and Arabic (the Ibn Baz fatwas
+    /// and the Arabic library), plus English as a fallback for the other languages.
+    public static func libraryLanguages(_ ui: String) -> Set<String> { ui == "ar" ? ["ar"] : [ui, "ar", "en"] }
+    /// Built-in packs for an interface language: Quran, mosques, cities, and that language's libraries.
+    public static func builtins(for ui: String) -> (PackManifest) -> Bool {
+        let wanted = libraryLanguages(ui)
+        return { m in !isLibrary(m.id) || wanted.contains(libraryLanguage(m.id)) }
+    }
 
     var sql: String {
         switch self {
@@ -290,6 +298,36 @@ public final class AskRepository: @unchecked Sendable {
                 return ResolvedCitation(chunk: c, packId: r["packId"], documents: docs)
             }
         }
+    }
+
+    /// An installed library collection, for browsing.
+    public struct LibraryPack: Identifiable, Sendable {
+        public let id: String
+        public let title: [String: String]
+        public let language: String
+        public let count: Int
+    }
+
+    public func libraryPacks() throws -> [LibraryPack] {
+        try PackManager(db: db, bundledRoot: nil).installed().filter { ChunkScope.isLibrary($0.id) }
+            .map { LibraryPack(id: $0.id, title: $0.manifest.title, language: ChunkScope.libraryLanguage($0.id), count: $0.recordCount) }
+            .sorted { ($0.language, $0.id) < ($1.language, $1.id) }
+    }
+
+    /// Items of one collection in its own order, a page at a time.
+    public func browse(_ packId: String, offset: Int, limit: Int) throws -> [ResolvedCitation] {
+        let ids = try db.writer.read { db in
+            try String.fetchAll(db, sql: "SELECT id FROM source_chunk WHERE packId = ? ORDER BY seq LIMIT ? OFFSET ?", arguments: [packId, limit, offset])
+        }
+        return try resolve(ids)
+    }
+
+    public static let searchInResults = 30
+
+    /// Search inside one collection with library search.
+    public func searchIn(_ packId: String, _ query: String) throws -> [ResolvedCitation] {
+        guard let r = try cached().libraries[packId] else { return [] }
+        return try resolve(r.retrieve(query, limit: Self.searchInResults).passages.map(\.chunkId))
     }
 
     public func context(_ c: ResolvedCitation, around: Int = 3) throws -> [SourceChunk] {

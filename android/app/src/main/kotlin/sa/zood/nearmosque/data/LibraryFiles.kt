@@ -19,6 +19,16 @@ class LibraryFiles(private val context: Context) {
 
     fun local(itemKey: String, url: String): File = File(dir, fileName(itemKey, url))
 
+    /** Downloaded files with the library item each belongs to (ih_en_123.pdf -> ih:en:123), newest first. */
+    fun downloaded(): List<Pair<String, File>> = (dir.listFiles() ?: emptyArray())
+        .filter { it.isFile && !it.name.endsWith(".part") }
+        .sortedByDescending { it.lastModified() }
+        .map { itemKey(it.name) to it }
+
+    fun delete(file: File) { if (file.parentFile == dir) file.delete() }
+
+    fun deleteAll() { dir.listFiles()?.forEach { it.delete() } }
+
     suspend fun fetch(url: String, itemKey: String, onProgress: (Float) -> Unit = {}): File = withContext(Dispatchers.IO) {
         require(isAllowed(url)) { "Not an IslamHouse file" }
         val target = local(itemKey, url)
@@ -54,12 +64,15 @@ class LibraryFiles(private val context: Context) {
     }
 
     companion object {
-        private val HOSTS = setOf("islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "www.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa")
+        private val HOSTS = setOf("islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "www.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa", "hadeethenc.com", "quranenc.com")
 
         fun isAllowed(url: String): Boolean = runCatching {
             val u = URI(url)
             u.scheme == "https" && (u.host in HOSTS || u.host.endsWith(".islamhouse.com"))
         }.getOrDefault(false)
+
+        /** Inverse of [fileName] for library ids ("ih:en:123" is stored as "ih_en_123.pdf"). */
+        fun itemKey(fileName: String): String = fileName.substringBeforeLast('.').split('_', limit = 3).joinToString(":")
 
         /** Stable, filesystem-safe name: the item id plus the file's extension. */
         fun fileName(itemKey: String, url: String): String {

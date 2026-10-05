@@ -1,0 +1,23 @@
+[
+ {
+  "id": "hadeethenc-es",
+  "kind": "library",
+  "title": {
+   "en": "Encyclopedia of Translated Prophetic Hadiths",
+   "ar": "موسوعة الأحاديث النبوية المترجمة"
+  },
+  "edition": "HadeethEnc.com v1.23.0",
+  "publisher": "HadeethEnc.com",
+  "language": "es",
+  "url": "https://hadeethenc.com/es",
+  "license": {
+   "id": "HadeethEnc-terms",
+   "name": "HadeethEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://hadeethenc.com/",
+   "attribution": "HadeethEnc.com (v1.23.0)"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable"
+ }
+]

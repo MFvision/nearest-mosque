@@ -8,6 +8,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.withLock
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.data.AppDatabase
 import sa.zood.nearmosque.data.AskRepository
@@ -57,6 +58,7 @@ class AppContainer(
     val heading = HeadingService(app)
     val calculator = PrayerCalculator()
 
+    private val libraryMutex = kotlinx.coroutines.sync.Mutex()
     private val _ready = MutableStateFlow(false)
     /** True once built-in packs are installed (first launch takes a few seconds for the book index). */
     val ready: StateFlow<Boolean> = _ready
@@ -64,12 +66,34 @@ class AppContainer(
     /** Last device fix ("you are here"); never replaced by a map selection or a chosen city. */
     val devicePosition = MutableStateFlow<DevicePosition?>(null)
 
-    fun start() {
+    /** [installLibraries] = false in tests that do not need the library packs (they take minutes to index). */
+    fun start(installLibraries: Boolean = true) {
         scope.launch {
-            runCatching { packs.ensureBuiltins() }
+            // Quran, mosques and cities first (the app is usable then); the libraries for the reader's
+            // languages follow in the background (the large Arabic fatwa pack takes a while to index).
+            runCatching { packs.ensureBuiltins { !sa.zood.nearmosque.data.ChunkScope.isLibrary(it.id) } }
             _ready.value = true
+            if (installLibraries) ensureLibraries(sa.zood.nearmosque.ui.Format.languageCode(app))
         }
         devicePosition.value = location.lastKnown()
+    }
+
+    /** Built-in packs for the interface language [lang]: Quran, mosques, cities, and that language's libraries. */
+    fun builtinsFor(lang: String): (sa.zood.nearmosque.core.PackManifest) -> Boolean {
+        val wanted = sa.zood.nearmosque.data.ChunkScope.libraryLanguages(lang)
+        return { m -> !sa.zood.nearmosque.data.ChunkScope.isLibrary(m.id) || sa.zood.nearmosque.data.ChunkScope.libraryLanguage(m.id) in wanted }
+    }
+
+    /** Installs the bundled library packs for [lang] (see ChunkScope.libraryLanguages) if missing. */
+    fun ensureLibraries(lang: String) {
+        val wanted = sa.zood.nearmosque.data.ChunkScope.libraryLanguages(lang)
+        scope.launch {
+            libraryMutex.withLock {
+                runCatching {
+                    packs.ensureBuiltins { sa.zood.nearmosque.data.ChunkScope.isLibrary(it.id) && sa.zood.nearmosque.data.ChunkScope.libraryLanguage(it.id) in wanted }
+                }
+            }
+        }
     }
 }
 

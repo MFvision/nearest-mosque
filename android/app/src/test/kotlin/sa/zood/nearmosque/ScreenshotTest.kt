@@ -46,8 +46,8 @@ class ScreenshotTest {
             settingsFile = java.io.File.createTempFile("settings", ".preferences_pb").also { it.delete() },
             online = sa.zood.nearmosque.data.OnlineMosqueSource { _, _ -> emptyList() },
         )
-        c.packs.ensureBuiltins()
-        c.start()
+        c.packs.ensureBuiltins { !sa.zood.nearmosque.data.ChunkScope.isLibrary(it.id) }
+        c.start(installLibraries = false)
         if (location != null) {
             c.settings.setPrayerLocation(location, follow = false)
             c.settings.setMethod(Method.MUSLIM_WORLD_LEAGUE, byUser = false)

@@ -1,0 +1,23 @@
+[
+ {
+  "id": "binbaz-ar",
+  "kind": "library",
+  "title": {
+   "ar": "فتاوى الشيخ ابن باز (الموقع الرسمي)",
+   "en": "Fatwas of Shaykh Ibn Baz (official site)"
+  },
+  "edition": "binbaz.org.sa, retrieved 2026-10-05",
+  "publisher": "binbaz.org.sa",
+  "language": "ar",
+  "url": "https://binbaz.org.sa/fatwas",
+  "license": {
+   "id": "binbaz-attribution",
+   "name": "binbaz.org.sa: «جميع الحقوق محفوظة والنقل متاح لكل مسلم بشرط ذكر المصدر» (copying permitted with the source cited)",
+   "url": "https://binbaz.org.sa/",
+   "attribution": "الموقع الرسمي لسماحة الشيخ ابن باز رحمه الله — binbaz.org.sa"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable"
+ }
+]

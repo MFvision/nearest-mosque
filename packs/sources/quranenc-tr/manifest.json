@@ -1,0 +1,45 @@
+{
+  "id": "sources.quranenc-tr",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Turkish Translation - Rowwad Translation Center",
+    "tr": "Turkish Translation - Rowwad Translation Center"
+  },
+  "languages": [
+    "tr"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/tr/browse/turkish_rwwad",
+    "snapshot": "2026-10-05",
+    "translationKey": "turkish_rwwad",
+    "version": "1.0.4",
+    "lastUpdate": 1759071052
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Turkish Translation - Rowwad Translation Center (v1.0.4)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 3508193,
+      "sha256": "a22190b5e0e02b42977fe8faa2eed397c71d96190fb0ea81992b7b6d2719de3a"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 746,
+      "sha256": "327eff7fa2250794563cb0794795adf64d1d775c46350a253de894ef82409195"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 536,
+      "sha256": "8a66af6d35a581ef1f1f62de0f14b8bd31e7e23275ebc147551ad7c49eb78872"
+    }
+  ]
+}

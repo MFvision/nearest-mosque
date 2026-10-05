@@ -154,15 +154,19 @@ def build(records, failed, discovered, out_root, text_cap):
             if truncated:
                 cut = answer.rfind(" ", 0, text_cap)
                 answer = answer[: cut if cut > text_cap * 0.8 else text_cap].rstrip() + " …"
-            section = {"type": "fatwa", "publisher": "binbaz", "itemId": r["id"], "title": r["title"],
-                       "collection": KINDS[r["kind"]], "question": r["question"]}
+            # Parts stored once in original.text, separated by U+2063, kinds listed in section.parts (as in
+            # tools/build_enc_packs.py): title, question, answer.
+            parts = [("title", r["title"]), ("question", r["question"]), ("answer", answer)]
+            parts = [(k, t) for k, t in parts if t]
+            section = {"type": "fatwa", "publisher": "binbaz", "itemId": r["id"], "collection": KINDS[r["kind"]],
+                       "parts": [{"kind": k, "lang": "ar"} for k, _ in parts]}
             if r.get("source"):
                 section["source"] = r["source"]
             if r.get("categories"):
                 section["categories"] = r["categories"]
             if truncated:
                 section["truncated"] = True
-            text = "\n".join(p for p in [r["title"], r["question"], answer] if p)
+            text = "\u2063".join(t for _, t in parts)
             f.write(json.dumps({"id": f"bb:{r['id']}", "seq": seq, "anchor": r["title"], "section": section,
                                 "original": {"docId": doc_id, "lang": "ar", "text": text}, "url": r["url"]},
                                ensure_ascii=False, separators=(",", ":")) + "\n")

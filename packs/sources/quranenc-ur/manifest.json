@@ -1,0 +1,45 @@
+{
+  "id": "sources.quranenc-ur",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Urdu Translation - Muhammad Junagarhi",
+    "ur": "Urdu Translation - Muhammad Junagarhi"
+  },
+  "languages": [
+    "ur"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/ur/browse/urdu_junagarhi",
+    "snapshot": "2026-10-05",
+    "translationKey": "urdu_junagarhi",
+    "version": "1.1.3",
+    "lastUpdate": 1755085049
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Urdu Translation - Muhammad Junagarhi (v1.1.3)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 8548320,
+      "sha256": "2c0ea095d1d6fb3ffa18650ab62d084a6eafac1b2fad7343a8bb96d9729ddec2"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 718,
+      "sha256": "de6a3e13a32bc8a2ca65c6222fa0108b2e09c2d3887786d85897aedb7826396b"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 527,
+      "sha256": "ca7fc5e3acc15048228669fb22f5215f99bc0ff04fd9a7f0f8b98426e9e1e977"
+    }
+  ]
+}

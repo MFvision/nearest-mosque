@@ -1,0 +1,45 @@
+{
+  "id": "sources.quranenc-es",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Spanish Translation - Isa Garcia",
+    "es": "Spanish Translation - Isa Garcia"
+  },
+  "languages": [
+    "es"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/es/browse/spanish_garcia",
+    "snapshot": "2026-10-05",
+    "translationKey": "spanish_garcia",
+    "version": "1.0.2",
+    "lastUpdate": 1772054067
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Spanish Translation - Isa Garcia (v1.0.2)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 3730042,
+      "sha256": "3b20f74a257d5664eae836108be03885d1e11ae2cdaf7a7d2e1c6e4df2b20abb"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 703,
+      "sha256": "07e0135278f56cf9be869a19b2ae7bd0511d3b8a728bcb59e68f02b2f024a2a4"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 522,
+      "sha256": "7784a33fa5dcd7751b4895d75f47d073472defc508622d9e4a2a182923e12542"
+    }
+  ]
+}

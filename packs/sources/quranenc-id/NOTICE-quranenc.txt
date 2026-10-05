@@ -1,0 +1,8 @@
+# Indonesian Translation - Ministry of Religious Affairs
+# Source: https://quranenc.com/id/browse/indonesian_affairs
+# Version: 1.0.1
+
+Translation of the meanings of the Noble Quran from QuranEnc.com, published unaltered under its terms: no
+modification, addition or deletion; the publisher and source (QuranEnc.com) credited; the version number
+stated; the version information kept; notes sent to the source; new versions followed; no inappropriate
+advertisements. The Arabic verse text shown with it is from Tanzil (see the Quran pack's notice).

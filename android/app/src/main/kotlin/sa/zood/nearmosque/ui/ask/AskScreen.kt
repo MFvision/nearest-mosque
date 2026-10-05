@@ -55,6 +55,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sa.zood.nearmosque.R
+import sa.zood.nearmosque.container
 import sa.zood.nearmosque.core.AnswerKind
 import sa.zood.nearmosque.core.CommonQuestion
 import sa.zood.nearmosque.data.ResolvedCitation
@@ -81,6 +82,10 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
     val ui by vm.ui.collectAsStateWithLifecycle()
     var input by rememberSaveable { mutableStateOf("") }
     var reading by remember { mutableStateOf<ResolvedCitation?>(null) }
+    var library by remember { mutableStateOf(false) }
+    // The library packs follow the interface language (installed in the background when it changes).
+    LaunchedEffect(lang) { context.container.ensureLibraries(lang) }
+    if (library) LibraryScreen(onDismiss = { library = false })
     val list = rememberLazyListState()
     LaunchedEffect(ui.turns.size, ui.turns.lastOrNull()?.answer) { if (ui.turns.isNotEmpty()) list.animateScrollToItem(list.layoutInfo.totalItemsCount.coerceAtLeast(1) - 1) }
     val white = androidx.compose.ui.graphics.Color.White
@@ -96,6 +101,8 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
                 stringResource(R.string.ask_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = white,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center, maxLines = 1,
             )
+            GlassIconButton(androidx.compose.ui.res.painterResource(R.drawable.ic_book), stringResource(R.string.library_title), { library = true })
+            Spacer(Modifier.size(8.dp))
             GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onOpenSettings)
         }
         LazyColumn(Modifier.weight(1f), state = list, contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {

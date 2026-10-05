@@ -105,7 +105,8 @@ class InMemoryLibraryStore(docs: List<Triple<String, Long, String>>) : LibrarySt
 class LibraryRetriever(private val store: LibraryStore, private val stop: Set<String>, private val lexicon: Lexicon) {
     private class Term(val word: String, val variants: List<String>, val weight: Double, val owner: Int?) { var idf = 0.0 }
 
-    fun retrieve(question: String, context: List<String> = emptyList()): RetrievalResult {
+    /** [limit]: results returned (Ask uses [MAX_PASSAGES]; search inside a collection asks for more). */
+    fun retrieve(question: String, context: List<String> = emptyList(), limit: Int = MAX_PASSAGES): RetrievalResult {
         val content = ArrayList<String>()
         for (t in TextNormalizer.tokens(question)) if (t !in stop && t !in content) content += t
         val terms = ArrayList<Term>()
@@ -137,7 +138,7 @@ class LibraryRetriever(private val store: LibraryStore, private val stop: Set<St
             s *= coverage
             if (s >= MIN_SCORE && coverage >= MIN_COVERAGE) S(c.id, c.seq, s, coverage) else null
         }.sortedWith(compareByDescending<S> { it.score }.thenBy { it.seq })
-        val passages = scored.take(MAX_PASSAGES).map { ScoredPassage(it.id, it.score, it.coverage) }
+        val passages = scored.take(limit).map { ScoredPassage(it.id, it.score, it.coverage) }
         return RetrievalResult(if (passages.isEmpty()) AnswerKind.INSUFFICIENT else AnswerKind.PASSAGES, null, passages, content)
     }
 
@@ -150,4 +151,34 @@ class LibraryRetriever(private val store: LibraryStore, private val stop: Set<St
         const val MIN_SCORE = 0.5
         const val MIN_COVERAGE = 0.6
     }
+}
+
+/**
+ * Text parts of a library record (Ibn Baz fatwas, HadeethEnc hadiths, QuranEnc translations): stored
+ * once in original.text, separated by U+2063, with kinds and languages in section.parts (see
+ * tools/build_enc_packs.py). IslamHouse records have no parts.
+ */
+object LibraryParts {
+    const val SEP = '⁣'
+
+    data class Part(val kind: String, val lang: String, val text: String)
+
+    fun parts(c: SourceChunk): List<Part> {
+        val kinds = (c.section["parts"] as? JsonArray) ?: return emptyList()
+        val texts = c.original.text.split(SEP)
+        return kinds.mapIndexedNotNull { i, k ->
+            val o = k as? JsonObject ?: return@mapIndexedNotNull null
+            val text = texts.getOrNull(i)?.trim().orEmpty()
+            if (text.isEmpty()) null else Part(o["kind"]?.jsonPrimitive?.content.orEmpty(), o["lang"]?.jsonPrimitive?.content ?: c.original.lang, text)
+        }
+    }
+
+    /** One-paragraph preview: the question, hadith or translation; otherwise the text after the title. */
+    fun summary(c: SourceChunk): String {
+        val p = parts(c)
+        if (p.isNotEmpty()) return (p.firstOrNull { it.kind != "title" } ?: p.first()).text
+        return c.original.text.removePrefix(c.anchor).trim()
+    }
+
+    fun publisher(c: SourceChunk): String? = c.sectionName("publisher")
 }

@@ -1,0 +1,45 @@
+{
+  "id": "sources.quranenc-id",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Indonesian Translation - Ministry of Religious Affairs",
+    "id": "Indonesian Translation - Ministry of Religious Affairs"
+  },
+  "languages": [
+    "id"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/id/browse/indonesian_affairs",
+    "snapshot": "2026-10-05",
+    "translationKey": "indonesian_affairs",
+    "version": "1.0.1",
+    "lastUpdate": 1750665512
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Indonesian Translation - Ministry of Religious Affairs (v1.0.1)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 3994962,
+      "sha256": "dc88c64666a180f726b12d8a8289696ef1c500f134908e92f4e28ccfce1d3a83"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 777,
+      "sha256": "65c04fdbd45cc17117881b506be17a1dd29d04c19577085c3b72d7c197420c01"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 548,
+      "sha256": "98bcad6fc410d63f32078d86043f62ea71a55a0833cc334c09835a9f1d1be153"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[
+ {
+  "id": "quranenc-fr",
+  "kind": "library",
+  "title": {
+   "en": "French Translation - Rachid Maach",
+   "fr": "French Translation - Rachid Maach"
+  },
+  "edition": "QuranEnc.com french_rashid v1.0.3",
+  "publisher": "QuranEnc.com",
+  "language": "fr",
+  "url": "https://quranenc.com/fr/browse/french_rashid",
+  "license": {
+   "id": "QuranEnc-terms",
+   "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://quranenc.com/",
+   "attribution": "QuranEnc.com — French Translation - Rachid Maach (v1.0.3)"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable",
+  "translationOf": "quran-ar-tanzil"
+ }
+]

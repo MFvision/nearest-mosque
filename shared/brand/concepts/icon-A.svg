@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+ <stop offset="0" stop-color="#E9B96A"/><stop offset="0.45" stop-color="#F6DDAE"/><stop offset="1" stop-color="#FFF8EC"/>
+</linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2C35B"/><stop offset="1" stop-color="#D9A33B"/></linearGradient>
+</defs>
+<rect width="1024" height="1024" fill="url(#bg)"/><path d="M470 330 L680.0 418.2 L470 506.4 L260.0 418.2 Z" fill="none" stroke="#14181F" stroke-width="22" stroke-linejoin="round"/>
+<path d="M260.0 444.2 L470 532.4 L680.0 444.2" fill="none" stroke="#14181F" stroke-width="41.8" stroke-linejoin="round"/>
+<path d="M260.0 528.2 C280.0 388.2, 410 398.2, 470 404.2 C530 398.2, 660.0 388.2, 680.0 528.2" fill="none" stroke="#14181F" stroke-width="17.6" stroke-linecap="round"/>
+<path d="M260.0 572.92 C280.0 444.91999999999996, 410 454.91999999999996, 470 460.91999999999996 C530 454.91999999999996, 660.0 444.91999999999996, 680.0 572.92" fill="none" stroke="#14181F" stroke-width="17.6" stroke-linecap="round"/>
+<path d="M260.0 617.64 C280.0 501.64, 410 511.64, 470 517.64 C530 511.64, 660.0 501.64, 680.0 617.64" fill="none" stroke="#14181F" stroke-width="17.6" stroke-linecap="round"/>
+<path d="M260.0 662.36 C280.0 558.36, 410 568.36, 470 574.36 C530 568.36, 660.0 558.36, 680.0 662.36" fill="none" stroke="#14181F" stroke-width="17.6" stroke-linecap="round"/>
+<path d="M260.0 707.08 C280.0 615.08, 410 625.08, 470 631.08 C530 625.08, 660.0 615.08, 680.0 707.08" fill="none" stroke="#14181F" stroke-width="17.6" stroke-linecap="round"/>
+<path d="M260.0 444.2 L260.0 701.8" stroke="#14181F" stroke-width="22" stroke-linecap="round"/>
+<path d="M680.0 444.2 L680.0 701.8" stroke="#14181F" stroke-width="22" stroke-linecap="round"/>
+<path d="M260.0 701.8 L470 790 L680.0 701.8" fill="none" stroke="#14181F" stroke-width="22" stroke-linejoin="round"/><g transform="translate(735 270) rotate(45) scale(2.9)"><path d="M0 -60 L44 52 L0 30 L-44 52 Z" fill="#1F4E79" stroke="#FFF8EC" stroke-width="9" stroke-linejoin="round"/><path d="M0 -30 L20 26 L0 16 Z" fill="#F2C35B"/></g></svg>

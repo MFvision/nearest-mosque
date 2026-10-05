@@ -68,5 +68,7 @@ API key without the Admin role.
 | Offline | Airplane mode with GPS on; reopen each tab | Prayer, Qibla, compass and Ask work; Mosques shows downloaded areas (Cape Town, Cairo, London) and says you're offline elsewhere |
 | Ask | Common questions; your own question; follow-up; Read in context | Quoted verses with references; "couldn't find" instead of guessing. On iOS 26 devices with Apple Intelligence, an on-device written answer above the quotes |
 | Ask library | Ask "What is Islam?" (and in Arabic "ما هو الإسلام؟"); tap "Read in the app" on a book, "Watch" on a video | IslamHouse items in your language; the book downloads once and opens at the first page mentioning your question; it opens again in airplane mode |
+| Fatwas, hadiths, translations | In Arabic ask «ما حكم تارك الصلاة؟» and «صلاته»; in English "Islam is built on five"; in Urdu «نماز» | Ibn Baz fatwas (question, answer, printed source; "Read the full fatwa" for long ones), HadeethEnc hadiths with grade and version, QuranEnc translation with the Arabic verse above it |
+| Library languages | Switch the language in Settings, then ask again | That language's library installs in the background (the first Arabic install takes a little while); Ask keeps working meanwhile |
 | Languages | Settings → Language: Arabic, Urdu, Turkish, Indonesian, French, Spanish | Text and layout switch immediately; Arabic and Urdu right-to-left |
 | Accessibility | VoiceOver, larger text, Reduce Motion, Reduce Transparency | Everything readable and operable; animations stop; glass turns solid |

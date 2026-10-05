@@ -59,7 +59,7 @@ struct SettingsView: View {
                             .contextMenu { Button(l10n.t("remove"), role: .destructive) { confirmRemove = p } }
                     }
                     Button(l10n.t("import_pack")) { importing = true }
-                    Button(l10n.t("restore_builtin")) { app.packs?.restoreBuiltins(); reload() }
+                    Button(l10n.t("restore_builtin")) { app.packs?.restoreBuiltins(include: ChunkScope.builtins(for: l10n.language)); reload() }
                     if let message { Text(message).font(.footnote) }
                 } header: { Text(l10n.t("downloads")) } footer: { Text(l10n.t("downloads_body")) }
 

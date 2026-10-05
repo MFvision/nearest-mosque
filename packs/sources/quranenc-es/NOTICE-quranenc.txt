@@ -1,0 +1,8 @@
+# Spanish Translation - Isa Garcia
+# Source: https://quranenc.com/es/browse/spanish_garcia
+# Version: 1.0.2
+
+Translation of the meanings of the Noble Quran from QuranEnc.com, published unaltered under its terms: no
+modification, addition or deletion; the publisher and source (QuranEnc.com) credited; the version number
+stated; the version information kept; notes sent to the source; new versions followed; no inappropriate
+advertisements. The Arabic verse text shown with it is from Tanzil (see the Quran pack's notice).

@@ -1,0 +1,45 @@
+{
+  "id": "sources.quranenc-fr",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "French Translation - Rachid Maach",
+    "fr": "French Translation - Rachid Maach"
+  },
+  "languages": [
+    "fr"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/fr/browse/french_rashid",
+    "snapshot": "2026-10-05",
+    "translationKey": "french_rashid",
+    "version": "1.0.3",
+    "lastUpdate": 1782043143
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — French Translation - Rachid Maach (v1.0.3)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 3771520,
+      "sha256": "f1ec03546e1eb1ccd655299f618b296af895d668d971c1abe7673be3620f21d4"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 704,
+      "sha256": "bd6293ade526ae3a588d7ef2aa07c4cfed54990d0eafc4b39c5f386faaa092d2"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 522,
+      "sha256": "7d99e7739b3c58d0f42459d6f15432aa6a783ab95ad613cceb4c948c261e002b"
+    }
+  ]
+}

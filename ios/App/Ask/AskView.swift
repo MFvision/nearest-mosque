@@ -9,6 +9,9 @@ struct Turn: Identifiable {
     var citations: [ResolvedCitation] = []
     var related: [ResolvedCitation] = []
     var library: [ResolvedCitation] = []
+    /// When an on-device answer cites library records, [n] for library item i is libraryCiteOffset + i + 1.
+    var libraryCiteOffset: Int?
+    var libraryCited = 0
 }
 
 /// Conversation is kept in memory only: not persisted and never sent anywhere.
@@ -45,14 +48,25 @@ final class AskModel {
             let cites = (try? repo.resolve(answer.citations)) ?? []
             let related = (try? repo.resolve(answer.related)) ?? []
             let library = (try? repo.resolve(answer.library)) ?? []
-            if answer.kind == .passages, let written = await LocalAnswerer.write(question: question, passages: cites, language: lang) {
+            // On-device answer from the verses found and from fatwas, hadiths and translations in the library.
+            let quran = answer.kind == .passages ? cites.map(LocalAnswerer.evidence(quran:)) : []
+            let fromLibrary = Array(library.compactMap { l in LocalAnswerer.evidence(library: l).map { (l, $0) } }.prefix(3))
+            var offset: Int?
+            if answer.kind != .common, !(quran.isEmpty && fromLibrary.isEmpty),
+               let written = await LocalAnswerer.write(question: question, evidence: quran + fromLibrary.map(\.1), language: lang) {
                 answer.generated = written
+                offset = quran.count
             }
+            // Cited library records first, so the numbers in the answer match the cards' order.
+            let citedIds = Set(fromLibrary.map(\.0.id))
+            let orderedLibrary = offset == nil ? library : fromLibrary.map(\.0) + library.filter { !citedIds.contains($0.id) }
             guard !Task.isCancelled, let i = turns.firstIndex(where: { $0.id == turn.id }) else { return }
             turns[i].answer = answer
             turns[i].citations = cites
             turns[i].related = related
-            turns[i].library = library
+            turns[i].library = orderedLibrary
+            turns[i].libraryCiteOffset = offset
+            turns[i].libraryCited = offset == nil ? 0 : fromLibrary.count
         }
     }
 
@@ -72,6 +86,7 @@ struct AskView: View {
     @State private var vm = AskModel()
     @State private var input = ""
     @State private var reading: ResolvedCitation?
+    @State private var showLibrary = false
     @FocusState private var focused: Bool
 
     var body: some View {
@@ -124,7 +139,10 @@ struct AskView: View {
         .skyBackground(horizon: 0.3, skyline: true)
         .toolbar(.hidden, for: .navigationBar)
         .sheet(item: $reading) { ReaderView(citation: $0) }
+        .fullScreenCover(isPresented: $showLibrary) { LibraryView() }
         #if DEBUG
+        // The library packs follow the interface language (installed in the background when it changes).
+        .task(id: l10n.language) { if app.ready { app.ensureLibraries(for: l10n.language) } }
         .task(id: app.ready) {
             // CI screenshots: `-demoAsk YES` asks the first common question.
             guard app.ready, vm.turns.isEmpty, UserDefaults.standard.bool(forKey: "demoAsk"),
@@ -144,6 +162,7 @@ struct AskView: View {
             Spacer()
             Text(l10n.t("ask_title")).font(.headline).lineLimit(1).minimumScaleFactor(0.8)
             Spacer()
+            GlassIconButton(systemImage: "books.vertical", label: l10n.t("library_title")) { showLibrary = true }
             SettingsButton(show: $showSettings)
         }
         .padding(.top, 4)
@@ -230,7 +249,10 @@ struct AnswerCard: View {
                     Text(l10n.t("answer_from_passages_body")).font(.subheadline)
                 }
             case .insufficient:
-                if turn.library.isEmpty {
+                if let g = answer.generated {
+                    Text(l10n.t("answer_generated_on_device")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold)
+                    Text(g)
+                } else if turn.library.isEmpty {
                     Text(l10n.t("answer_insufficient_title")).font(.headline)
                     Text(l10n.t("answer_insufficient_body")).font(.subheadline)
                 } else {
@@ -251,7 +273,10 @@ struct AnswerCard: View {
             }
             if !turn.library.isEmpty {
                 Text(l10n.t("library_section")).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
-                ForEach(turn.library) { LibraryCard(item: $0, question: turn.question) }
+                ForEach(Array(turn.library.enumerated()), id: \.element.id) { i, item in
+                    let n = turn.libraryCiteOffset.flatMap { i < turn.libraryCited ? $0 + i + 1 : nil }
+                    LibraryCard(item: item, question: turn.question, index: n)
+                }
                 Text(l10n.t("library_note") + " " + l10n.t("library_offline_note")).font(.caption).foregroundStyle(.white.opacity(0.7))
             }
             if !["ar", "en"].contains(l10n.language), answer.kind != .insufficient {

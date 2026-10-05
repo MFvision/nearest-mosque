@@ -143,7 +143,7 @@ fun SettingsScreen(
                     TextButton(onClick = { importer.launch(arrayOf("application/zip", "application/octet-stream")) }, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text(stringResource(R.string.import_pack))
                     }
-                    TextButton(onClick = { scope.launch { container.packs.restoreBuiltins() } }, modifier = Modifier.heightIn(min = 48.dp)) {
+                    TextButton(onClick = { scope.launch { container.packs.restoreBuiltins(container.builtinsFor(sa.zood.nearmosque.ui.Format.languageCode(context))) } }, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text(stringResource(R.string.restore_builtin))
                     }
                 }

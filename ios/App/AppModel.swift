@@ -87,7 +87,8 @@ final class AppModel {
             let opened: (AppDatabase, PackManager, CityIndex?) = try await Task.detached(priority: .userInitiated) {
                 let db = try AppDatabase.onDisk()
                 let packs = PackManager(db: db, bundledRoot: root)
-                packs.ensureBuiltins()
+                // Quran, mosques and cities first; the libraries follow in the background (ensureLibraries).
+                packs.ensureBuiltins { !ChunkScope.isLibrary($0.id) }
                 let tsv = root.flatMap { try? String(contentsOf: $0.appendingPathComponent("cities/cities.tsv"), encoding: .utf8) }
                 return (db, packs, tsv.map(CityIndex.parse))
             }.value
@@ -100,11 +101,40 @@ final class AppModel {
             storageError = error.localizedDescription
         }
         ready = true
+        ensureLibraries(for: l10n.language)
         #if DEBUG
         applyDemoLaunchArguments()
         #endif
         if settings.followDevice, location.isAuthorized { await useDeviceLocation(silent: true) }
         await rescheduleReminders()
+    }
+
+    /// Saved library items (chunk ids), kept on this device only.
+    var bookmarks: Set<String> = Set(UserDefaults.standard.stringArray(forKey: "libraryBookmarks") ?? []) {
+        didSet { UserDefaults.standard.set(Array(bookmarks).sorted(), forKey: "libraryBookmarks") }
+    }
+
+    func setBookmark(_ id: String, _ on: Bool) {
+        if on { bookmarks.insert(id) } else { bookmarks.remove(id) }
+    }
+
+    private var librariesTask: Task<Void, Never>?
+    private(set) var installingLibraries = false
+
+    /// Installs the bundled library packs for an interface language (ChunkScope.libraryLanguages) in the
+    /// background. The large Arabic fatwa pack takes a while to index; Ask works meanwhile.
+    func ensureLibraries(for lang: String) {
+        guard let packs else { return }
+        let previous = librariesTask
+        installingLibraries = true
+        librariesTask = Task {
+            await previous?.value
+            let wanted = ChunkScope.libraryLanguages(lang)
+            await Task.detached(priority: .utility) {
+                packs.ensureBuiltins { ChunkScope.isLibrary($0.id) && wanted.contains(ChunkScope.libraryLanguage($0.id)) }
+            }.value
+            installingLibraries = false
+        }
     }
 
     #if DEBUG

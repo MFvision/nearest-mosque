@@ -14,7 +14,7 @@ enum LibraryMode: Equatable {
     case text
 
     init?(_ c: SourceChunk) {
-        if c.section?.publisher == "binbaz" { self = .text; return }
+        if !LibraryParts.parts(c).isEmpty { self = .text; return }
         let file = c.section?.attachment.flatMap(URL.init(string:)).flatMap { LibraryFiles.isAllowed($0) ? $0 : nil }
         switch (c.section?.attachmentType?.uppercased(), file) {
         case ("PDF", let f?): self = .pdf(f)
@@ -30,12 +30,28 @@ enum LibraryMode: Equatable {
 /// Books opened from the library: downloaded once (only when the user taps "Read in the app") into
 /// Application Support, excluded from backup, so they open again offline. Only HTTPS IslamHouse files.
 enum LibraryFiles {
-    static let hosts: Set<String> = ["islamhouse.com", "www.islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa"]
+    static let hosts: Set<String> = ["islamhouse.com", "www.islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa", "hadeethenc.com", "quranenc.com"]
 
     static func isAllowed(_ u: URL) -> Bool {
         guard u.scheme == "https", let h = u.host?.lowercased() else { return false }
         return hosts.contains(h) || h.hasSuffix(".islamhouse.com")
     }
+
+    /// Downloaded files with the library item each belongs to (ih_en_123.pdf -> ih:en:123), newest first.
+    static func downloaded() -> [(id: String, url: URL, bytes: Int)] {
+        guard let dir = try? local("x", URL(fileURLWithPath: "/x")).deletingLastPathComponent(),
+              let urls = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: [.fileSizeKey, .contentModificationDateKey]) else { return [] }
+        return urls.compactMap { u -> (String, URL, Int, Date)? in
+            let v = try? u.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey])
+            let name = u.deletingPathExtension().lastPathComponent
+            let parts = name.split(separator: "_", maxSplits: 2).map(String.init)
+            return (parts.joined(separator: ":"), u, v?.fileSize ?? 0, v?.contentModificationDate ?? .distantPast)
+        }
+        .sorted { $0.3 > $1.3 }
+        .map { (id: $0.0, url: $0.1, bytes: $0.2) }
+    }
+
+    static func delete(_ url: URL) { try? FileManager.default.removeItem(at: url) }
 
     static func fileName(_ itemKey: String, _ url: URL) -> String {
         let ext = url.pathExtension.lowercased().filter { $0.isLetter || $0.isNumber }.prefix(5)
@@ -82,46 +98,36 @@ enum LibraryFiles {
     }
 }
 
-private func libraryTypeKey(_ type: String?) -> String? {
-    switch type {
-    case "books": return "library_type_books"
-    case "articles": return "library_type_articles"
-    case "fatwa": return "library_type_fatwa"
-    case "videos": return "library_type_videos"
-    case "audios": return "library_type_audios"
-    default: return nil
-    }
-}
-
 /// An IslamHouse library item: type, title, authors, excerpt, and the item itself opened inside the app.
 struct LibraryCard: View {
     @Environment(Localization.self) private var l10n
     @Environment(\.openURL) private var openURL
     let item: ResolvedCitation
     let question: String
+    /// The [n] an on-device answer uses for this record, if it cites it.
+    var index: Int? = nil
+    @Environment(AppModel.self) private var app
     @State private var reading = false
 
     var body: some View {
         let c = item.chunk
         let mode = LibraryMode(c)
         let rtl = c.original.lang == "ar" || c.original.lang == "ur"
-        let binbaz = c.section?.publisher == "binbaz"
-        let summary = binbaz ? (c.section?.question ?? "") : String(c.original.text.dropFirst(c.original.text.hasPrefix(c.anchor) ? c.anchor.count : 0))
-        let excerpt = String(summary.trimmingCharacters(in: .whitespacesAndNewlines).prefix(260))
+        let summary = LibraryParts.summary(c)
+        let excerpt = String(summary.prefix(260))
         VStack(alignment: .leading, spacing: 6) {
-            if let k = libraryTypeKey(c.section?.type) {
-                Text(([l10n.t(k)] + (binbaz ? [c.section?.collection].compactMap { $0 } : [])).joined(separator: " · "))
-                    .font(.caption2.weight(.semibold)).foregroundStyle(Theme.gold)
+            if let t = libraryTypeLabel(c, l10n) {
+                Text(t).font(.caption2.weight(.semibold)).foregroundStyle(Theme.gold)
             }
-            if binbaz { Text(l10n.t("publisher_binbaz")).font(.caption2).foregroundStyle(.white.opacity(0.6)) }
+            if let pub = libraryPublisherLine(c, l10n) { Text(pub).font(.caption2).foregroundStyle(.white.opacity(0.6)) }
             VStack(alignment: .leading, spacing: 4) {
-                Text(c.anchor).font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity, alignment: .leading)
+                Text((index.map { "[\($0)] " } ?? "") + libraryTitle(c, l10n)).font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity, alignment: .leading)
                 if let authors = c.section?.authors, !authors.isEmpty {
                     Text(l10n.t("library_by", authors.joined(separator: ", "))).font(.caption).foregroundStyle(.white.opacity(0.7))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 if !excerpt.isEmpty {
-                    Text(excerpt + (c.original.text.count > excerpt.count + c.anchor.count + 1 ? "…" : ""))
+                    Text(excerpt + (summary.count > excerpt.count ? "…" : ""))
                         .font(.subheadline).foregroundStyle(.white.opacity(0.9)).lineLimit(5)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -134,9 +140,14 @@ struct LibraryCard: View {
                         .foregroundStyle(Theme.gold)
                 }
                 if let u = c.url.flatMap(URL.init(string:)) {
-                    Button { openURL(u) } label: { Label(l10n.t(binbaz ? "library_web_binbaz" : "library_web"), systemImage: "safari") }
+                    Button { openURL(u) } label: { Label(libraryWebLabel(c, l10n), systemImage: "safari") }
                         .foregroundStyle(Color(hex: 0x8CC0DE))
                 }
+                Spacer(minLength: 0)
+                let saved = app.bookmarks.contains(c.id)
+                Button { app.setBookmark(c.id, !saved) } label: { Image(systemName: saved ? "bookmark.fill" : "bookmark") }
+                    .foregroundStyle(saved ? Theme.gold : .white.opacity(0.8))
+                    .accessibilityLabel(l10n.t(saved ? "library_unbookmark" : "library_bookmark"))
             }
             .font(.subheadline.weight(.medium))
             .padding(.top, 2)
@@ -185,66 +196,18 @@ struct LibraryReaderView: View {
                 case .pdf(let url): PDFReader(url: url, itemKey: chunk.id, question: question)
                 case .media(let url, _): MediaReader(url: url)
                 case .web(let url): SafariView(url: url).ignoresSafeArea(edges: .bottom)
-                case .text: FatwaReader(chunk: chunk)
+                case .text: PartsReader(chunk: chunk)
                 }
             }
-            .navigationTitle(chunk.anchor)
+            .navigationTitle(libraryTitle(chunk, l10n))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() } }
                 if let u = chunk.url.flatMap(URL.init(string:)) {
                     ToolbarItem(placement: .primaryAction) {
-                        Button { openURL(u) } label: { Label(l10n.t(mode == .text ? "library_web_binbaz" : "library_web"), systemImage: "safari") }
+                        Button { openURL(u) } label: { Label(libraryWebLabel(chunk, l10n), systemImage: "safari") }
                     }
                 }
-            }
-        }
-    }
-}
-
-/// Question, answer and source of a stored fatwa; "Read the full fatwa" loads its page when shortened.
-private struct FatwaReader: View {
-    @Environment(Localization.self) private var l10n
-    let chunk: SourceChunk
-    @State private var full = false
-
-    var body: some View {
-        let s = chunk.section
-        let question = s?.question ?? ""
-        var answer = chunk.original.text
-        if answer.hasPrefix(chunk.anchor) { answer.removeFirst(chunk.anchor.count) }
-        answer = answer.trimmingCharacters(in: .newlines)
-        if !question.isEmpty, answer.hasPrefix(question) { answer.removeFirst(question.count) }
-        answer = answer.trimmingCharacters(in: .whitespacesAndNewlines)
-        let url = chunk.url.flatMap(URL.init(string:)).flatMap { LibraryFiles.isAllowed($0) ? $0 : nil }
-        return Group {
-            if full, let url {
-                SafariView(url: url).ignoresSafeArea(edges: .bottom)
-            } else {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        if let c = s?.collection { Text(c).font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold) }
-                        Text(chunk.anchor).font(.title2.bold())
-                        if !question.isEmpty {
-                            Text(l10n.t("library_question")).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.gold).padding(.top, 6)
-                            Text(question).font(.body).foregroundStyle(.white.opacity(0.92))
-                        }
-                        Text(l10n.t("library_answer")).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.gold).padding(.top, 6)
-                        Text(answer).font(.system(size: 19)).lineSpacing(8).textSelection(.enabled)
-                        if s?.truncated == true, url != nil {
-                            Button(l10n.t("library_full_text")) { full = true }
-                                .font(.subheadline.weight(.semibold)).foregroundStyle(Color(hex: 0x8CC0DE)).padding(.top, 4)
-                        }
-                        if let src = s?.source { Text(l10n.t("library_source", src)).font(.caption).foregroundStyle(.white.opacity(0.75)).padding(.top, 10) }
-                        Text(l10n.t("publisher_binbaz")).font(.caption).foregroundStyle(.white.opacity(0.75))
-                    }
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(20)
-                }
-                .foregroundStyle(.white)
-                .background(Color(hex: 0x0B1220).ignoresSafeArea())
-                .environment(\.layoutDirection, .rightToLeft)
             }
         }
     }
@@ -390,7 +353,7 @@ private struct MediaReader: View {
     }
 }
 
-private struct SafariView: UIViewControllerRepresentable {
+struct SafariView: UIViewControllerRepresentable {
     let url: URL
     func makeUIViewController(context: Context) -> SFSafariViewController { SFSafariViewController(url: url) }
     func updateUIViewController(_ vc: SFSafariViewController, context: Context) {}

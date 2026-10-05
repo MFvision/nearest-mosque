@@ -37,41 +37,92 @@ class DataLayerTest {
     @Before
     fun setUp() {
         c = AppContainer(ApplicationProvider.getApplicationContext(), inMemoryDb = true, settingsFile = java.io.File.createTempFile("settings", ".preferences_pb").also { it.delete() })
-        runBlocking { assertTrue(c.packs.ensureBuiltins().isEmpty()) }
+        // Quran, mosques and cities only: the library packs (tens of MB) are installed once, in libraryCollections.
+        runBlocking { assertTrue(c.packs.ensureBuiltins(core).isEmpty()) }
     }
+
+    private val core: (sa.zood.nearmosque.core.PackManifest) -> Boolean = { !ChunkScope.isLibrary(it.id) }
 
     @Test
     fun builtinPacksInstallWithManifestCounts() = runBlocking {
         val installed = c.db.packs().all().associateBy { it.id }
-        val library = listOf("en", "ar", "ur", "tr", "id", "fr", "es").map { "sources.islamhouse-$it" }
-        assertEquals(setOf("mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall") + library, installed.keys)
+        assertEquals(setOf("mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall"), installed.keys)
         for (p in installed.values) {
             val m = PackVerifier.parseManifest(p.manifestJson)
             assertEquals(p.id, m.recordCount, p.recordCount)
         }
         assertEquals(6236, books())
-        assertTrue(c.db.sources().rawInt(countQuery(ChunkScope.Library("sources.islamhouse-en"))) > 1000)
         assertTrue(c.db.sources().questions().size >= 8)
+        // Every bundled library pack: manifest count = records in its file (installation is checked below).
+        val langs = listOf("en", "ar", "ur", "tr", "id", "fr", "es")
+        val library = langs.map { "islamhouse-$it" } + "binbaz-ar" + langs.map { "hadeethenc-$it" } + listOf("ur", "tr", "id", "fr", "es").map { "quranenc-$it" }
+        for (dir in library) {
+            val folder = File(root, "packs/sources/$dir")
+            val m = PackVerifier.parseManifest(File(folder, "manifest.json").readText())
+            assertEquals(dir, m.recordCount, File(folder, "chunks.jsonl").useLines { l -> l.count { it.isNotBlank() } })
+            assertTrue(dir, ChunkScope.isLibrary(m.id))
+        }
     }
 
     private fun books() = c.db.sources().rawInt(countQuery(ChunkScope.Books))
 
-    /** The library is a separate collection: questions the Quran pack cannot answer still find IslamHouse items. */
+    /**
+     * The library collections, installed once (English, Arabic and Urdu): IslamHouse, the Ibn Baz fatwas,
+     * HadeethEnc hadiths and QuranEnc translations, each a separate collection searched in the reader's
+     * language first.
+     */
     @Test
-    fun libraryAnswersInTheInterfaceLanguage() = runBlocking {
+    fun libraryCollections() = runBlocking {
+        val wanted = setOf("en", "ar", "ur")
+        assertTrue(c.packs.ensureBuiltins { ChunkScope.isLibrary(it.id) && ChunkScope.libraryLanguage(it.id) in wanted }.isEmpty())
+        for (p in c.db.packs().all().filter { ChunkScope.isLibrary(it.id) }) {
+            assertEquals(p.id, PackVerifier.parseManifest(p.manifestJson).recordCount, p.recordCount)
+        }
+        assertEquals(6236, books()) // library packs never change the Quran collection
+
+        // IslamHouse in the interface language, with fallback.
         val en = c.ask.ask("What is Islam?", emptyList(), "en")
         assertTrue(en.library.isNotEmpty())
-        assertTrue(en.library.all { it.startsWith("ih:en:") })
-        val items = c.ask.resolve(en.library)
+        assertTrue(en.library.none { it.startsWith("bb:") }) // answered well in English: no Arabic fatwas
+        val items = c.ask.resolve(en.library.filter { it.startsWith("ih:en:") })
         assertTrue(items.any { it.chunk.anchor.contains("Islam", ignoreCase = true) })
         assertTrue(items.all { it.chunk.url!!.startsWith("https://islamhouse.com/en/") })
-        val ar = c.ask.ask("ما هو الإسلام؟", emptyList(), "ar")
-        assertTrue(ar.library.isNotEmpty() && ar.library.all { it.startsWith("ih:ar:") })
-        // No match in the Urdu library for an English-only question: falls back to English.
-        val fallback = c.ask.ask("What is Islam?", emptyList(), "ur")
-        assertTrue(fallback.library.isNotEmpty())
-        // Off-topic questions still get nothing from the library.
+        assertTrue(c.ask.ask("ما هو الإسلام؟", emptyList(), "ar").library.all { it.startsWith("ih:ar:") || it.startsWith("bb:") || it.startsWith("he:ar:") })
         assertTrue(c.ask.ask("What is the capital of France?", emptyList(), "en").library.isEmpty())
+
+        // Ibn Baz fatwas for Arabic questions; stems reach other word forms.
+        val fatwas = c.ask.resolve(c.ask.ask("ما حكم تارك الصلاة؟", emptyList(), "ar").library.filter { it.startsWith("bb:") })
+        assertTrue(fatwas.isNotEmpty())
+        val f = fatwas.first().chunk
+        assertEquals("binbaz", sa.zood.nearmosque.core.LibraryParts.publisher(f))
+        assertTrue(f.url!!.startsWith("https://binbaz.org.sa/fatwas/"))
+        assertEquals(listOf("title", "question", "answer"), sa.zood.nearmosque.core.LibraryParts.parts(f).map { it.kind })
+        assertTrue(c.ask.ask("صلاته", emptyList(), "ar").library.isNotEmpty())
+
+        // HadeethEnc and QuranEnc: parts stored once, version kept for the attribution.
+        val hadiths = c.ask.resolve(c.ask.ask("Islam is built on five", emptyList(), "en").library.filter { it.startsWith("he:en:") })
+        assertTrue(hadiths.isNotEmpty())
+        val h = hadiths.first().chunk
+        assertEquals("hadeethenc", sa.zood.nearmosque.core.LibraryParts.publisher(h))
+        assertTrue(h.sectionName("version")!!.isNotBlank())
+        assertTrue(sa.zood.nearmosque.core.LibraryParts.parts(h).any { it.kind == "hadith" && it.lang == "en" })
+        val ur = c.ask.ask("نماز کی پابندی", emptyList(), "ur")
+        assertTrue(ur.library.isNotEmpty())
+        assertTrue(ur.library.all { it.startsWith("ih:ur:") || it.startsWith("he:ur:") || it.startsWith("qe:ur:") })
+        val verse = c.ask.resolve(listOf("qe:ur:2:255")).single().chunk
+        assertEquals("quran:2:255", verse.sectionName("verse"))
+        assertEquals("translation", sa.zood.nearmosque.core.LibraryParts.parts(verse).first().kind)
+
+        // Cross-language: an English question with few English hits is filled from Arabic via the lexicon.
+        val cross = c.ask.ask("ruling on smoking", emptyList(), "en")
+        assertTrue(cross.library.isNotEmpty())
+    }
+
+    @Test
+    fun libraryLanguagesForTheInterface() {
+        assertEquals(setOf("ar"), ChunkScope.libraryLanguages("ar"))
+        assertEquals(setOf("ur", "ar", "en"), ChunkScope.libraryLanguages("ur"))
+        assertEquals(setOf("en", "ar"), ChunkScope.libraryLanguages("en"))
     }
 
     /** The Room FTS4 store must give exactly the reference results (shared/fixtures/retrieval.json). */
@@ -118,9 +169,9 @@ class DataLayerTest {
         assertEquals(0, books())
         assertEquals(0, c.db.sources().rawInt(ftsCountQuery("wash", ChunkScope.Books)))
         assertEquals(AnswerKind.INSUFFICIENT, c.ask.ask("neither slumber nor sleep", emptyList()).kind)
-        c.packs.ensureBuiltins() // removed by the user: not reinstalled automatically
+        c.packs.ensureBuiltins(core) // removed by the user: not reinstalled automatically
         assertEquals(0, books())
-        c.packs.restoreBuiltins()
+        c.packs.restoreBuiltins(core)
         assertEquals(6236, books())
     }
 
@@ -156,7 +207,7 @@ class DataLayerTest {
         val id = found.items.first().mosque.sourceId
         c.mosques.setFavorite(id, true)
         c.packs.remove("mosques.eg-cairo")
-        c.packs.restoreBuiltins()
+        c.packs.restoreBuiltins(core)
         assertEquals(listOf(id), c.mosques.byIds(listOf(id)).map { it.sourceId })
     }
 }

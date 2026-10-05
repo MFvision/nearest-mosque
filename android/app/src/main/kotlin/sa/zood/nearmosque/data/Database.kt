@@ -155,6 +155,9 @@ interface SourceDao {
     @Query("SELECT * FROM source_chunk WHERE packId = :packId AND seq BETWEEN :from AND :to ORDER BY seq")
     suspend fun range(packId: String, from: Long, to: Long): List<SourceChunkEntity>
 
+    @Query("SELECT id FROM source_chunk WHERE packId = :packId ORDER BY seq LIMIT :limit OFFSET :offset")
+    suspend fun pageIds(packId: String, limit: Int, offset: Int): List<String>
+
     @Query("SELECT * FROM source_document")
     suspend fun documents(): List<SourceDocumentEntity>
 
@@ -177,11 +180,18 @@ sealed class ChunkScope(val where: String, val args: Array<Any>) {
         /** Library collections (searched separately from the Quran): IslamHouse per language, Ibn Baz fatwas. */
         const val LIBRARY_PREFIX = "sources.islamhouse-"
         const val BINBAZ_PACK = "sources.binbaz-ar"
-        val LIBRARY_PREFIXES = listOf(LIBRARY_PREFIX, "sources.binbaz-")
+        val LIBRARY_PREFIXES = listOf(LIBRARY_PREFIX, "sources.binbaz-", "sources.hadeethenc-", "sources.quranenc-")
         fun libraryPack(lang: String) = LIBRARY_PREFIX + lang
         fun isLibrary(packId: String) = LIBRARY_PREFIXES.any { packId.startsWith(it) }
         /** Language of a library pack: the suffix after the last "-" (e.g. sources.binbaz-ar → ar). */
         fun libraryLanguage(packId: String) = packId.substringAfterLast('-')
+
+        /**
+         * Library languages installed for an interface language: that language and Arabic (the Ibn Baz
+         * fatwas and the Arabic library), plus English as a fallback for the other languages. The other
+         * languages stay bundled and install when the interface language changes.
+         */
+        fun libraryLanguages(ui: String): Set<String> = setOf(ui, "ar") + if (ui != "ar") setOf("en") else emptySet()
     }
 }
 

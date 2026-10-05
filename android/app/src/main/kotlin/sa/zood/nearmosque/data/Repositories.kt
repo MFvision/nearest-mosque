@@ -181,6 +181,29 @@ class AskRepository(
         ids.mapNotNull { id -> rows[id]?.let { ResolvedCitation(PackJson.decodeFromString(SourceChunk.serializer(), it.json), it.packId, docs) } }
     }
 
+    /** An installed library collection, for browsing. */
+    data class LibraryPack(val id: String, val title: Map<String, String>, val language: String, val count: Int)
+
+    suspend fun libraryPacks(): List<LibraryPack> = withContext(Dispatchers.IO) {
+        db.packs().all().filter { ChunkScope.isLibrary(it.id) }.map { p ->
+            val m = sa.zood.nearmosque.core.PackVerifier.parseManifest(p.manifestJson)
+            LibraryPack(p.id, m.title, ChunkScope.libraryLanguage(p.id), p.recordCount)
+        }.sortedWith(compareBy({ it.language }, { it.id }))
+    }
+
+    /** Items of one collection in its own order, a page at a time. */
+    suspend fun browse(packId: String, offset: Int, limit: Int): List<ResolvedCitation> = withContext(Dispatchers.IO) {
+        val ids = db.sources().pageIds(packId, limit, offset)
+        resolve(ids)
+    }
+
+    /** Search inside one collection with library search. */
+    suspend fun searchIn(packId: String, query: String): List<ResolvedCitation> = withContext(Dispatchers.IO) {
+        retriever()
+        val r = libraries[packId] ?: return@withContext emptyList()
+        resolve(r.retrieve(query, limit = SEARCH_IN_RESULTS).passages.map { it.chunkId })
+    }
+
     suspend fun context(c: ResolvedCitation, around: Int = 3): List<SourceChunk> = withContext(Dispatchers.IO) {
         db.sources().range(c.packId, c.chunk.seq - around, c.chunk.seq + around).map { PackJson.decodeFromString(SourceChunk.serializer(), it.json) }
     }
@@ -188,6 +211,7 @@ class AskRepository(
     companion object {
         const val LIBRARY_RESULTS = 6
         const val LIBRARY_ENOUGH = 3
+        const val SEARCH_IN_RESULTS = 30
 
         /** Round-robin over ranked lists, starting with the list whose best passage scores highest. */
         fun interleave(lists: List<List<sa.zood.nearmosque.core.ScoredPassage>>): List<String> {

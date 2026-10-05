@@ -21,13 +21,15 @@ final class DataLayerTests: XCTestCase {
         db = try AppDatabase.inMemory()
         defaults = UserDefaults(suiteName: "nm-test-\(UUID().uuidString)")!
         packs = PackManager(db: db, bundledRoot: Self.root.appendingPathComponent("packs"), defaults: defaults)
-        XCTAssertEqual(packs.ensureBuiltins(), [])
+        // Quran, mosques and cities only: the library packs are installed once, in testLibraryCollections.
+        XCTAssertEqual(packs.ensureBuiltins(include: Self.core), [])
     }
+
+    static let core: (PackManifest) -> Bool = { !ChunkScope.isLibrary($0.id) }
 
     func testBuiltinsInstallWithManifestCounts() throws {
         let installed = try packs.installed()
-        let library = Set(["en", "ar", "ur", "tr", "id", "fr", "es"].map(ChunkScope.libraryPack))
-        XCTAssertEqual(Set(installed.map(\.id)), Set(["mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall"]).union(library))
+        XCTAssertEqual(Set(installed.map(\.id)), ["mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall"])
         for p in installed { XCTAssertEqual(p.recordCount, p.manifest.recordCount, p.id) }
     }
 
@@ -51,20 +53,40 @@ final class DataLayerTests: XCTestCase {
         XCTAssertEqual(try ask.context(resolved[0]).map(\.id), ["quran:5:3", "quran:5:4", "quran:5:5", "quran:5:6", "quran:5:7", "quran:5:8", "quran:5:9"])
     }
 
-    /// The library is a separate collection: questions the Quran pack cannot answer still find IslamHouse items.
-    func testLibraryAnswersInTheInterfaceLanguage() throws {
+    /// The library collections, installed once (English, Arabic, Urdu): IslamHouse, the Ibn Baz fatwas,
+    /// HadeethEnc hadiths and QuranEnc translations, searched in the reader's language first.
+    func testLibraryCollections() throws {
+        let wanted: Set<String> = ["en", "ar", "ur"]
+        XCTAssertEqual(packs.ensureBuiltins { ChunkScope.isLibrary($0.id) && wanted.contains(ChunkScope.libraryLanguage($0.id)) }, [])
+        for p in try packs.installed() where ChunkScope.isLibrary(p.id) { XCTAssertEqual(p.recordCount, p.manifest.recordCount, p.id) }
         let stop = AskRepository.parseStopwords(try Data(contentsOf: Self.root.appendingPathComponent("shared/content/stopwords.json")))
-        let ask = AskRepository(db: db, stopwords: stop)
+        let lexicon = Lexicon(json: try Data(contentsOf: Self.root.appendingPathComponent("shared/content/lexicon.json")))
+        let ask = AskRepository(db: db, stopwords: stop, lexicon: lexicon)
+
         let en = try ask.ask("What is Islam?", lang: "en")
         XCTAssertFalse(en.library.isEmpty)
-        XCTAssertTrue(en.library.allSatisfy { $0.hasPrefix("ih:en:") })
-        let items = try ask.resolve(en.library)
+        XCTAssertFalse(en.library.contains { $0.hasPrefix("bb:") })
+        let items = try ask.resolve(en.library.filter { $0.hasPrefix("ih:en:") })
         XCTAssertTrue(items.contains { $0.chunk.anchor.localizedCaseInsensitiveContains("Islam") })
-        XCTAssertTrue(items.allSatisfy { $0.chunk.url?.hasPrefix("https://islamhouse.com/en/") == true })
-        let ar = try ask.ask("ما هو الإسلام؟", lang: "ar")
-        XCTAssertTrue(!ar.library.isEmpty && ar.library.allSatisfy { $0.hasPrefix("ih:ar:") })
-        XCTAssertFalse(try ask.ask("What is Islam?", lang: "ur").library.isEmpty)
         XCTAssertTrue(try ask.ask("What is the capital of France?", lang: "en").library.isEmpty)
+
+        let fatwas = try ask.resolve(try ask.ask("ما حكم تارك الصلاة؟", lang: "ar").library.filter { $0.hasPrefix("bb:") })
+        XCTAssertFalse(fatwas.isEmpty)
+        XCTAssertEqual(fatwas.first?.chunk.section?.publisher, "binbaz")
+        XCTAssertEqual(fatwas.first.map { LibraryParts.parts($0.chunk).map(\.kind) }, ["title", "question", "answer"])
+        XCTAssertFalse(try ask.ask("صلاته", lang: "ar").library.isEmpty)
+
+        let hadiths = try ask.resolve(try ask.ask("Islam is built on five", lang: "en").library.filter { $0.hasPrefix("he:en:") })
+        XCTAssertFalse(hadiths.isEmpty)
+        XCTAssertEqual(hadiths.first?.chunk.section?.publisher, "hadeethenc")
+        XCTAssertFalse(hadiths.first?.chunk.section?.version?.isEmpty ?? true)
+        let ur = try ask.ask("نماز کی پابندی", lang: "ur")
+        XCTAssertFalse(ur.library.isEmpty)
+        XCTAssertTrue(ur.library.allSatisfy { $0.hasPrefix("ih:ur:") || $0.hasPrefix("he:ur:") || $0.hasPrefix("qe:ur:") })
+        let verse = try ask.resolve(["qe:ur:2:255"]).first?.chunk
+        XCTAssertEqual(verse?.section?.verse, "quran:2:255")
+        XCTAssertEqual(verse.map { LibraryParts.parts($0).first?.kind }, "translation")
+        XCTAssertEqual(try ask.context(try ask.resolve(["quran:2:255"])[0]).count, 7) // Quran collection unchanged
     }
 
     func testRemoveAndRestoreBookPack() throws {
@@ -72,9 +94,9 @@ final class DataLayerTests: XCTestCase {
         let ask = AskRepository(db: db, stopwords: stop)
         try packs.remove("sources.quran-tanzil-pickthall")
         XCTAssertEqual(try ask.ask("neither slumber nor sleep").kind, .insufficient)
-        packs.ensureBuiltins()
+        packs.ensureBuiltins(include: Self.core)
         XCTAssertFalse(try packs.installed().contains { $0.id == "sources.quran-tanzil-pickthall" })
-        packs.restoreBuiltins()
+        packs.restoreBuiltins(include: Self.core)
         XCTAssertEqual(try ask.ask("neither slumber nor sleep").citations.first, "quran:2:255")
     }
 
@@ -97,7 +119,7 @@ final class DataLayerTests: XCTestCase {
         let id = items[0].mosque.sourceId
         try repo.setFavorite(id, true)
         try packs.remove("mosques.za-cape-town")
-        packs.restoreBuiltins()
+        packs.restoreBuiltins(include: Self.core)
         XCTAssertEqual(try repo.favorites(), [id])
         XCTAssertEqual(try repo.byIds([id]).map(\.sourceId), [id])
     }

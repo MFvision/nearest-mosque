@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App icon background: warm gold to cream, as in shared/brand/near-mosque-icon.svg. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:angle="315" android:startColor="#E9B96A" android:centerColor="#F6DDAE" android:endColor="#FFF8EC" />
+</shape>

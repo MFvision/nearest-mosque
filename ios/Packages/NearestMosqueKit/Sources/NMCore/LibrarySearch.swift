@@ -149,7 +149,8 @@ public final class LibraryRetriever: @unchecked Sendable {
         self.store = store; self.stop = stopwords; self.lexicon = lexicon
     }
 
-    public func retrieve(_ question: String, context: [String] = []) -> RetrievalResult {
+    /// `limit`: results returned (Ask uses `maxPassages`; search inside a collection asks for more).
+    public func retrieve(_ question: String, context: [String] = [], limit: Int = LibraryRetriever.maxPassages) -> RetrievalResult {
         var content: [String] = []
         for t in TextNormalizer.tokens(question) where !stop.contains(t) && !content.contains(t) { content.append(t) }
         var terms: [Term] = [], seen = Set<String>()
@@ -184,7 +185,33 @@ public final class LibraryRetriever: @unchecked Sendable {
             s *= coverage
             return s >= Self.minScore && coverage >= Self.minCoverage ? S(id: c.id, seq: c.seq, score: s, coverage: coverage) : nil
         }.sorted { ($0.score, -$0.seq) > ($1.score, -$1.seq) }
-        let passages = scored.prefix(Self.maxPassages).map { ScoredPassage(chunkId: $0.id, score: $0.score, coverage: $0.coverage) }
+        let passages = scored.prefix(limit).map { ScoredPassage(chunkId: $0.id, score: $0.score, coverage: $0.coverage) }
         return RetrievalResult(kind: passages.isEmpty ? .insufficient : .passages, commonQuestion: nil, passages: Array(passages), contentTerms: content)
+    }
+}
+
+/// Text parts of a library record (Ibn Baz fatwas, HadeethEnc hadiths, QuranEnc translations): stored once
+/// in original.text, separated by U+2063, with kinds and languages in section.parts (see
+/// tools/build_enc_packs.py). IslamHouse records have no parts.
+public enum LibraryParts {
+    public static let separator: Character = "\u{2063}"
+
+    public struct Part: Hashable, Sendable { public let kind: String; public let lang: String; public let text: String }
+
+    public static func parts(_ c: SourceChunk) -> [Part] {
+        guard let kinds = c.section?.parts else { return [] }
+        let texts = c.original.text.split(separator: separator, omittingEmptySubsequences: false)
+        return kinds.enumerated().compactMap { i, k in
+            let text = i < texts.count ? texts[i].trimmingCharacters(in: .whitespacesAndNewlines) : ""
+            return text.isEmpty ? nil : Part(kind: k.kind, lang: k.lang ?? c.original.lang, text: text)
+        }
+    }
+
+    /// One-paragraph preview: the question, hadith or translation; otherwise the text after the title.
+    public static func summary(_ c: SourceChunk) -> String {
+        let p = parts(c)
+        if let first = p.first(where: { $0.kind != "title" }) ?? p.first { return first.text }
+        let t = c.original.text
+        return (t.hasPrefix(c.anchor) ? String(t.dropFirst(c.anchor.count)) : t).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import sa.zood.nearmosque.container
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -111,36 +114,33 @@ fun LibraryCard(r: ResolvedCitation) {
     val context = LocalContext.current
     val c = r.chunk
     val white = androidx.compose.ui.graphics.Color.White
-    val typeLabel = when (c.sectionName("type")) {
-        "books" -> stringResource(R.string.library_type_books)
-        "articles" -> stringResource(R.string.library_type_articles)
-        "fatwa" -> stringResource(R.string.library_type_fatwa)
-        "videos" -> stringResource(R.string.library_type_videos)
-        "audios" -> stringResource(R.string.library_type_audios)
-        else -> null
-    }
+    val typeLabel = libraryTypeLabel(c)
+    val publisherLine = libraryPublisherLine(c)
     val mode = remember(c.id) { LibraryMode.of(c) }
     var reading by remember { mutableStateOf(false) }
+    val bookmarks by context.container.settings.bookmarks.collectAsState(initial = emptySet())
+    val saved = c.id in bookmarks
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
     if (reading && mode != null) LibraryReader(c, mode, onDismiss = { reading = false })
     val authors = (c.section["authors"] as? kotlinx.serialization.json.JsonArray)?.mapNotNull { (it as? kotlinx.serialization.json.JsonPrimitive)?.content }.orEmpty()
-    val binbaz = c.sectionName("publisher") == "binbaz"
-    val excerpt = (if (binbaz) c.sectionName("question").orEmpty() else c.original.text.removePrefix(c.anchor).trim()).take(260)
+    val summary = sa.zood.nearmosque.core.LibraryParts.summary(c)
+    val excerpt = summary.take(260)
     val rtl = c.original.lang == "ar" || c.original.lang == "ur"
     Column(
         Modifier.fillMaxWidth().padding(top = 8.dp)
             .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
     ) {
-        typeLabel?.let { Text(if (binbaz) listOfNotNull(it, c.sectionName("collection")).joinToString(" · ") else it, style = MaterialTheme.typography.labelSmall, color = Tokens.gold) }
-        if (binbaz) Text(stringResource(R.string.publisher_binbaz), style = MaterialTheme.typography.labelSmall, color = white.copy(alpha = 0.6f))
+        typeLabel?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = Tokens.gold) }
+        publisherLine?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = white.copy(alpha = 0.6f)) }
         CompositionLocalProvider(LocalLayoutDirection provides if (rtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
             Column {
-                Text(c.anchor, style = MaterialTheme.typography.titleSmall, color = white, modifier = Modifier.fillMaxWidth())
+                Text(libraryTitle(c), style = MaterialTheme.typography.titleSmall, color = white, modifier = Modifier.fillMaxWidth())
                 if (authors.isNotEmpty()) {
                     Text(stringResource(R.string.library_by, authors.joinToString(", ")), style = MaterialTheme.typography.bodySmall, color = white.copy(alpha = 0.7f), modifier = Modifier.fillMaxWidth())
                 }
                 if (excerpt.isNotEmpty()) {
                     Spacer(Modifier.height(4.dp))
-                    Text(excerpt + if (c.original.text.length > excerpt.length + c.anchor.length + 1) "…" else "", style = MaterialTheme.typography.bodyMedium, color = white.copy(alpha = 0.9f), maxLines = 5, modifier = Modifier.fillMaxWidth())
+                    Text(excerpt + if (summary.length > excerpt.length) "…" else "", style = MaterialTheme.typography.bodyMedium, color = white.copy(alpha = 0.9f), maxLines = 5, modifier = Modifier.fillMaxWidth())
                 }
             }
         }
@@ -156,7 +156,17 @@ fun LibraryCard(r: ResolvedCitation) {
                     Text(if (size != null) stringResource(R.string.library_file, label, size) else label, color = Tokens.gold)
                 }
             }
-            c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(if (binbaz) R.string.library_web_binbaz else R.string.library_web), color = link) } }
+            c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(libraryWebLabel(c), color = link) } }
+            Spacer(Modifier.weight(1f))
+            androidx.compose.material3.IconButton(
+                onClick = { scope.launch { context.container.settings.setBookmark(c.id, !saved) } },
+            ) {
+                androidx.compose.material3.Icon(
+                    androidx.compose.ui.res.painterResource(if (saved) R.drawable.ic_star_filled else R.drawable.ic_star_outline),
+                    contentDescription = stringResource(if (saved) R.string.library_unbookmark else R.string.library_bookmark),
+                    tint = if (saved) Tokens.gold else white.copy(alpha = 0.8f),
+                )
+            }
         }
     }
 }

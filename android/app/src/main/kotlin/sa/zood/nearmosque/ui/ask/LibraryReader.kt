@@ -72,12 +72,12 @@ sealed class LibraryMode {
     data class Pdf(val url: String) : LibraryMode()
     data class Media(val url: String, val video: Boolean) : LibraryMode()
     data class Web(val url: String) : LibraryMode()
-    /** A fatwa stored in the pack: read natively, with the page for the full text if it was shortened. */
+    /** A record stored in parts (fatwa, hadith, Qur'an translation): read natively ([PartsText]). */
     data object Text : LibraryMode()
 
     companion object {
         fun of(c: SourceChunk): LibraryMode? {
-            if (c.sectionName("publisher") == "binbaz") return Text
+            if (sa.zood.nearmosque.core.LibraryParts.parts(c).isNotEmpty()) return Text
             val file = c.sectionName("attachment")?.takeIf { LibraryFiles.isAllowed(it) }
             return when (c.sectionName("attachmentType")?.uppercase()) {
                 "PDF" -> file?.let { Pdf(it) }
@@ -97,10 +97,10 @@ fun LibraryReader(c: SourceChunk, mode: LibraryMode, onDismiss: () -> Unit) {
         Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
                 TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Color.White) }
-                Text(c.anchor, Modifier.weight(1f), style = MaterialTheme.typography.titleSmall, color = Color.White, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(libraryTitle(c), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall, color = Color.White, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 c.url?.let { url ->
                     TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) {
-                        Text(stringResource(if (mode == LibraryMode.Text) R.string.library_web_binbaz else R.string.library_web), color = Color(0xFF8CC0DE))
+                        Text(libraryWebLabel(c), color = Color(0xFF8CC0DE))
                     }
                 }
             }
@@ -108,7 +108,7 @@ fun LibraryReader(c: SourceChunk, mode: LibraryMode, onDismiss: () -> Unit) {
                 is LibraryMode.Pdf -> PdfReader(c, mode.url)
                 is LibraryMode.Media -> MediaPlayer(mode.url)
                 is LibraryMode.Web -> WebPage(mode.url)
-                LibraryMode.Text -> FatwaText(c)
+                LibraryMode.Text -> PartsText(c)
             }
         }
     }
@@ -192,36 +192,6 @@ private fun PdfPages(file: File) {
     }
 }
 
-/** Question, answer and source of a stored fatwa; "Read the full fatwa" loads its page when shortened. */
-@Composable
-private fun FatwaText(c: SourceChunk) {
-    var full by remember { mutableStateOf(false) }
-    val url = c.url?.takeIf { LibraryFiles.isAllowed(it) }
-    if (full && url != null) { WebPage(url); return }
-    val question = c.sectionName("question").orEmpty()
-    val answer = c.original.text.removePrefix(c.anchor).trimStart('\n').removePrefix(question).trim()
-    val white = Color.White
-    androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalLayoutDirection provides androidx.compose.ui.unit.LayoutDirection.Rtl) {
-        Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp)) {
-            c.sectionName("collection")?.let { Text(it, color = sa.zood.nearmosque.ui.theme.Tokens.gold, style = MaterialTheme.typography.labelLarge) }
-            Text(c.anchor, color = white, style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(top = 4.dp))
-            if (question.isNotEmpty()) {
-                Text(stringResource(R.string.library_question), color = sa.zood.nearmosque.ui.theme.Tokens.gold, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 16.dp))
-                Text(question, color = white.copy(alpha = 0.92f), style = MaterialTheme.typography.bodyLarge)
-            }
-            Text(stringResource(R.string.library_answer), color = sa.zood.nearmosque.ui.theme.Tokens.gold, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 16.dp))
-            androidx.compose.foundation.text.selection.SelectionContainer {
-                Text(answer, color = white, style = MaterialTheme.typography.bodyLarge.copy(lineHeight = MaterialTheme.typography.bodyLarge.lineHeight * 1.35f))
-            }
-            if (c.section["truncated"] != null && url != null) {
-                TextButton(onClick = { full = true }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_full_text), color = Color(0xFF8CC0DE)) }
-            }
-            c.sectionName("source")?.let { Text(stringResource(R.string.library_source, it), color = white.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 16.dp)) }
-            Text(stringResource(R.string.publisher_binbaz), color = white.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 4.dp, bottom = 24.dp))
-        }
-    }
-}
-
 @Composable
 private fun MediaPlayer(url: String) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -242,7 +212,7 @@ private fun MediaPlayer(url: String) {
 }
 
 @Composable
-private fun WebPage(url: String) {
+internal fun WebPage(url: String) {
     AndroidView(
         factory = { ctx ->
             WebView(ctx).apply {

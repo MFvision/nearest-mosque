@@ -1,0 +1,43 @@
+{
+  "id": "sources.hadeethenc-ur",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "HadeethEnc hadiths (ur)",
+    "ar": "موسوعة الأحاديث النبوية المترجمة"
+  },
+  "languages": [
+    "ur"
+  ],
+  "source": {
+    "name": "HadeethEnc.com",
+    "url": "https://hadeethenc.com/ur",
+    "snapshot": "2026-10-05",
+    "version": "1.36.0"
+  },
+  "license": {
+    "id": "HadeethEnc-terms",
+    "name": "HadeethEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://hadeethenc.com/",
+    "attribution": "HadeethEnc.com (v1.36.0)"
+  },
+  "recordCount": 2220,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 9520261,
+      "sha256": "d30574e4956166ef2d08394a33dae1ba25b286fb9f24a90bfb55be248d312ee4"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 650,
+      "sha256": "4b19dcd24d94c0c8660c00061e83e31592f1271ce9ef450c6385f0fcda9dd278"
+    },
+    {
+      "path": "NOTICE-hadeethenc.txt",
+      "bytes": 623,
+      "sha256": "c38667ac682cd9fd2c64b7422362f6aee7a107e80ebcf8b2d25e68c00c91f322"
+    }
+  ]
+}

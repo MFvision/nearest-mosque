@@ -24,6 +24,14 @@ public struct ChunkSection: Codable, Hashable, Sendable {
     public var source: String?
     public var categories: [String]?
     public var truncated: Bool?
+    // Records stored in parts (Ibn Baz fatwas, HadeethEnc, QuranEnc): see LibraryParts.
+    public var parts: [PartKind]?
+    public var grade: String?
+    public var version: String?
+    public var translationTitle: String?
+    public var verse: String?
+
+    public struct PartKind: Codable, Hashable, Sendable { public let kind: String; public let lang: String? }
 }
 
 /// One JSON line of a book pack (tools/build_quran_pack.py). Anchors are stable across versions.

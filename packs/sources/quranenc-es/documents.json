@@ -1,0 +1,24 @@
+[
+ {
+  "id": "quranenc-es",
+  "kind": "library",
+  "title": {
+   "en": "Spanish Translation - Isa Garcia",
+   "es": "Spanish Translation - Isa Garcia"
+  },
+  "edition": "QuranEnc.com spanish_garcia v1.0.2",
+  "publisher": "QuranEnc.com",
+  "language": "es",
+  "url": "https://quranenc.com/es/browse/spanish_garcia",
+  "license": {
+   "id": "QuranEnc-terms",
+   "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://quranenc.com/",
+   "attribution": "QuranEnc.com — Spanish Translation - Isa Garcia (v1.0.2)"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable",
+  "translationOf": "quran-ar-tanzil"
+ }
+]

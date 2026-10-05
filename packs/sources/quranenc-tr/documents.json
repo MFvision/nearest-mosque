@@ -1,0 +1,24 @@
+[
+ {
+  "id": "quranenc-tr",
+  "kind": "library",
+  "title": {
+   "en": "Turkish Translation - Rowwad Translation Center",
+   "tr": "Turkish Translation - Rowwad Translation Center"
+  },
+  "edition": "QuranEnc.com turkish_rwwad v1.0.4",
+  "publisher": "QuranEnc.com",
+  "language": "tr",
+  "url": "https://quranenc.com/tr/browse/turkish_rwwad",
+  "license": {
+   "id": "QuranEnc-terms",
+   "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://quranenc.com/",
+   "attribution": "QuranEnc.com — Turkish Translation - Rowwad Translation Center (v1.0.4)"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable",
+  "translationOf": "quran-ar-tanzil"
+ }
+]

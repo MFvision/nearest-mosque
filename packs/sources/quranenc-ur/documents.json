@@ -1,0 +1,24 @@
+[
+ {
+  "id": "quranenc-ur",
+  "kind": "library",
+  "title": {
+   "en": "Urdu Translation - Muhammad Junagarhi",
+   "ur": "Urdu Translation - Muhammad Junagarhi"
+  },
+  "edition": "QuranEnc.com urdu_junagarhi v1.1.3",
+  "publisher": "QuranEnc.com",
+  "language": "ur",
+  "url": "https://quranenc.com/ur/browse/urdu_junagarhi",
+  "license": {
+   "id": "QuranEnc-terms",
+   "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://quranenc.com/",
+   "attribution": "QuranEnc.com — Urdu Translation - Muhammad Junagarhi (v1.1.3)"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable",
+  "translationOf": "quran-ar-tanzil"
+ }
+]

@@ -68,6 +68,7 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val ramadan = booleanPreferencesKey("ramadan_isha")
         val hijriAdj = intPreferencesKey("hijri_adj")
         val reminders = stringSetPreferencesKey("reminders")
+        val bookmarks = stringSetPreferencesKey("library_bookmarks")
         val mosqueView = stringPreferencesKey("mosque_view")
         val onboarded = booleanPreferencesKey("onboarded")
         val onlineSearch = booleanPreferencesKey("online_search")
@@ -131,6 +132,13 @@ class SettingsStore(private val store: DataStore<Preferences>) {
     suspend fun setHijriAdjustment(days: Int) = store.edit { it[K.hijriAdj] = days.coerceIn(-2, 2) }
     suspend fun setOffset(e: PrayerEvent, minutes: Int) = store.edit { it[K.offset(e)] = minutes.coerceIn(-30, 30) }
     suspend fun setMosqueView(v: String) = store.edit { it[K.mosqueView] = v }
+
+    /** Saved library items (chunk ids), kept on this device only. */
+    val bookmarks: Flow<Set<String>> = store.data.map { it[K.bookmarks].orEmpty() }
+    suspend fun setBookmark(id: String, on: Boolean) = store.edit { p ->
+        val cur = p[K.bookmarks].orEmpty()
+        p[K.bookmarks] = if (on) cur + id else cur - id
+    }
     suspend fun setOnboarded(on: Boolean) = store.edit { it[K.onboarded] = on }
     suspend fun setOnlineSearch(on: Boolean) = store.edit { it[K.onlineSearch] = on }
     suspend fun setReminder(e: PrayerEvent, on: Boolean) = store.edit { p ->
