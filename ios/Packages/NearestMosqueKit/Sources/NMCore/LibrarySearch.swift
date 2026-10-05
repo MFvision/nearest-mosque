@@ -107,12 +107,15 @@ public struct Lexicon: Sendable {
     }
 }
 
-/// Candidates for library search: a word matches a token by prefix (3+ letters) or exactly.
+/// Library search storage: a word matches a token by prefix (3+ letters) or exactly. The retriever first
+/// asks for ids per word (cheap), keeps the chunks that can pass the coverage gate, and only loads those.
 public protocol LibraryStore: Sendable {
     var totalChunks: Int { get }
     var averageLength: Double { get }
-    func documentFrequency(_ variants: [String]) -> Int
-    func candidates(_ variants: [String]) -> [CandidateChunk]
+    /// Ids of the chunks with a token matching any of `variants`.
+    func ids(_ variants: [String]) -> Set<String>
+    /// Id, order and tokens of the given chunks.
+    func rows(_ ids: [String]) -> [CandidateChunk]
 }
 
 public struct InMemoryLibraryStore: LibraryStore {
@@ -127,8 +130,8 @@ public struct InMemoryLibraryStore: LibraryStore {
     }
 
     func hit(_ c: CandidateChunk, _ vs: [String]) -> Bool { c.tokens.contains { t in vs.contains { LibraryText.matches(t, $0) } } }
-    public func documentFrequency(_ variants: [String]) -> Int { items.filter { hit($0, variants) }.count }
-    public func candidates(_ variants: [String]) -> [CandidateChunk] { items.filter { hit($0, variants) } }
+    public func ids(_ variants: [String]) -> Set<String> { Set(items.filter { hit($0, variants) }.map(\.id)) }
+    public func rows(_ ids: [String]) -> [CandidateChunk] { let set = Set(ids); return items.filter { set.contains($0.id) } }
 }
 
 public final class LibraryRetriever: @unchecked Sendable {
@@ -138,6 +141,7 @@ public final class LibraryRetriever: @unchecked Sendable {
     final class Term {
         let word: String, variants: [String], weight: Double, owner: Int?
         var idf = 0.0
+        var ids = Set<String>()
         init(_ word: String, _ weight: Double, _ owner: Int?) { self.word = word; variants = LibraryText.variants(word); self.weight = weight; self.owner = owner }
     }
 
@@ -165,13 +169,17 @@ public final class LibraryRetriever: @unchecked Sendable {
         }
         let n = Double(store.totalChunks), avgdl = store.averageLength
         for t in terms {
-            let df = Double(store.documentFrequency(t.variants))
+            t.ids = store.ids(t.variants)
+            let df = Double(t.ids.count)
             t.idf = log(1 + (n - df + 0.5) / (df + 0.5))
         }
-        var all: [String] = []
-        for t in terms { for v in t.variants where !all.contains(v) { all.append(v) } }
+        // Only chunks covering enough of the question's words can pass the coverage gate: load just those.
+        var owners: [String: Set<Int>] = [:]
+        for t in terms { if let o = t.owner { for id in t.ids { owners[id, default: []].insert(o) } } }
+        let need = max(1, Int((Self.minCoverage * Double(content.count) - 1e-9).rounded(.up)))
+        let candidateIds = owners.filter { $0.value.count >= need }.map(\.key)
         struct S { let id: String; let seq: Int; let score: Double; let coverage: Double }
-        let scored: [S] = store.candidates(all).compactMap { c in
+        let scored: [S] = store.rows(candidateIds).compactMap { c in
             let dl = Double(c.tokens.count)
             var s = 0.0
             var covered = Set<Int>()

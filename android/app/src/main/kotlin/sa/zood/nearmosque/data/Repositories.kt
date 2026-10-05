@@ -107,11 +107,10 @@ class RoomLibraryStore(private val dao: SourceDao, packId: String) : sa.zood.nea
     private val scope = ChunkScope.Library(packId)
     override val totalChunks: Int by lazy { dao.rawInt(countQuery(scope)) }
     override val averageLength: Double by lazy { dao.rawDouble(averageQuery(scope)) }
-    override fun documentFrequency(variants: List<String>): Int = if (variants.isEmpty()) 0 else dao.rawInt(libraryCountQuery(variants, scope))
-    override fun candidates(variants: List<String>): List<CandidateChunk> =
-        if (variants.isEmpty()) emptyList() else dao.candidates(libraryCandidatesQuery(variants, scope)).map {
-            CandidateChunk(it.id, it.seq, if (it.searchText.isEmpty()) emptyList() else it.searchText.split(' '))
-        }
+    override fun ids(variants: List<String>): Set<String> = if (variants.isEmpty()) emptySet() else dao.rawStrings(libraryIdsQuery(variants, scope)).toSet()
+    override fun rows(ids: Collection<String>): List<CandidateChunk> = ids.chunked(500).flatMap { part ->
+        dao.candidates(chunkRowsQuery(part)).map { CandidateChunk(it.id, it.seq, if (it.searchText.isEmpty()) emptyList() else it.searchText.split(' ')) }
+    }
 }
 
 data class ResolvedCitation(val chunk: SourceChunk, val packId: String, val documents: Map<String, SourceDocument>)

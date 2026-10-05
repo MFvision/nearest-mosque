@@ -165,23 +165,24 @@ public final class GRDBLibraryStore: LibraryStore, @unchecked Sendable {
         }.joined(separator: " OR ")
     }
 
-    public func documentFrequency(_ variants: [String]) -> Int {
-        guard !variants.isEmpty else { return 0 }
-        return (try? db.writer.read { db in
-            try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?",
-                             arguments: [Self.match(variants), packId])
-        }) ?? 0
+    public func ids(_ variants: [String]) -> Set<String> {
+        guard !variants.isEmpty else { return [] }
+        return Set((try? db.writer.read { db in
+            try String.fetchAll(db, sql: "SELECT c.id FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?",
+                                arguments: [Self.match(variants), packId])
+        }) ?? [])
     }
 
-    public func candidates(_ variants: [String]) -> [CandidateChunk] {
-        guard !variants.isEmpty else { return [] }
+    public func rows(_ ids: [String]) -> [CandidateChunk] {
+        guard !ids.isEmpty else { return [] }
         return (try? db.writer.read { db in
-            try Row.fetchAll(db, sql: """
-                SELECT c.id, c.seq, c.searchText FROM source_chunk c
-                JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?
-                """, arguments: [Self.match(variants), packId]).map { r in
-                let text: String = r["searchText"]
-                return CandidateChunk(id: r["id"], seq: r["seq"], tokens: text.isEmpty ? [] : text.split(separator: " ").map(String.init))
+            try stride(from: 0, to: ids.count, by: 500).flatMap { start -> [CandidateChunk] in
+                let part = Array(ids[start..<min(start + 500, ids.count)])
+                return try Row.fetchAll(db, sql: "SELECT id, seq, searchText FROM source_chunk WHERE id IN (\(part.map { _ in "?" }.joined(separator: ",")))",
+                                        arguments: StatementArguments(part)).map { r in
+                    let text: String = r["searchText"]
+                    return CandidateChunk(id: r["id"], seq: r["seq"], tokens: text.isEmpty ? [] : text.split(separator: " ").map(String.init))
+                }
             }
         }) ?? []
     }

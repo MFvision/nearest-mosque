@@ -144,6 +144,9 @@ interface SourceDao {
     fun rawDouble(query: SupportSQLiteQuery): Double
 
     @RawQuery
+    fun rawStrings(query: SupportSQLiteQuery): List<String>
+
+    @RawQuery
     fun candidates(query: SupportSQLiteQuery): List<CandidateRow>
 
     @Query("SELECT DISTINCT packId FROM source_chunk")
@@ -218,15 +221,14 @@ fun libraryMatch(variants: Collection<String>) = variants.joinToString(" OR ") {
     if (it.length >= sa.zood.nearmosque.core.LibraryText.PREFIX_MIN) "\"" + it.replace("\"", "") + "*\"" else ftsTerm(it)
 }
 
-fun libraryCountQuery(variants: Collection<String>, scope: ChunkScope) = SimpleSQLiteQuery(
-    "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+fun libraryIdsQuery(variants: Collection<String>, scope: ChunkScope) = SimpleSQLiteQuery(
+    "SELECT c.id FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
     arrayOf<Any>(libraryMatch(variants), *scope.args),
 )
 
-fun libraryCandidatesQuery(variants: Collection<String>, scope: ChunkScope): SupportSQLiteQuery = SimpleSQLiteQuery(
-    "SELECT c.id AS id, c.seq AS seq, c.searchText AS searchText FROM source_chunk c " +
-        "JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
-    arrayOf<Any>(libraryMatch(variants), *scope.args),
+fun chunkRowsQuery(ids: List<String>): SupportSQLiteQuery = SimpleSQLiteQuery(
+    "SELECT id AS id, seq AS seq, searchText AS searchText FROM source_chunk WHERE id IN (${ids.joinToString(",") { "?" }})",
+    ids.toTypedArray<Any>(),
 )
 
 @Database(

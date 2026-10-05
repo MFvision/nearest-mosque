@@ -84,26 +84,30 @@ class Lexicon(groups: List<List<String>>) {
     }
 }
 
-/** Candidates for library search: a word matches a token by prefix (3+ letters) or exactly. */
+/**
+ * Library search storage: a word matches a token by prefix (3+ letters) or exactly. The retriever first
+ * asks for ids per word (cheap), keeps the chunks that can pass the coverage gate, and only loads those.
+ */
 interface LibraryStore {
     val totalChunks: Int
     val averageLength: Double
-    /** Number of chunks with a token matching any of [variants]. */
-    fun documentFrequency(variants: List<String>): Int
-    /** Every chunk with a token matching any of [variants]. */
-    fun candidates(variants: List<String>): List<CandidateChunk>
+    /** Ids of the chunks with a token matching any of [variants]. */
+    fun ids(variants: List<String>): Set<String>
+    /** Id, order and tokens of the given chunks. */
+    fun rows(ids: Collection<String>): List<CandidateChunk>
 }
 
 class InMemoryLibraryStore(docs: List<Triple<String, Long, String>>) : LibraryStore {
     private val items = docs.map { (id, seq, text) -> CandidateChunk(id, seq, LibraryText.indexTokens(text)) }
+    private val byId = items.associateBy { it.id }
     override val totalChunks = items.size
     override val averageLength = if (items.isEmpty()) 0.0 else items.sumOf { it.tokens.size }.toDouble() / items.size
-    override fun documentFrequency(variants: List<String>) = items.count { c -> c.tokens.any { t -> variants.any { LibraryText.matches(t, it) } } }
-    override fun candidates(variants: List<String>) = items.filter { c -> c.tokens.any { t -> variants.any { LibraryText.matches(t, it) } } }
+    override fun ids(variants: List<String>) = items.filter { c -> c.tokens.any { t -> variants.any { LibraryText.matches(t, it) } } }.map { it.id }.toSet()
+    override fun rows(ids: Collection<String>) = ids.mapNotNull { byId[it] }
 }
 
 class LibraryRetriever(private val store: LibraryStore, private val stop: Set<String>, private val lexicon: Lexicon) {
-    private class Term(val word: String, val variants: List<String>, val weight: Double, val owner: Int?) { var idf = 0.0 }
+    private class Term(val word: String, val variants: List<String>, val weight: Double, val owner: Int?) { var idf = 0.0; var ids: Set<String> = emptySet() }
 
     /** [limit]: results returned (Ask uses [MAX_PASSAGES]; search inside a collection asks for more). */
     fun retrieve(question: String, context: List<String> = emptyList(), limit: Int = MAX_PASSAGES): RetrievalResult {
@@ -119,12 +123,17 @@ class LibraryRetriever(private val store: LibraryStore, private val stop: Set<St
         val n = store.totalChunks
         val avgdl = store.averageLength
         for (t in terms) {
-            val df = store.documentFrequency(t.variants)
+            t.ids = store.ids(t.variants)
+            val df = t.ids.size
             t.idf = ln(1 + (n - df + 0.5) / (df + 0.5))
         }
-        val all = LinkedHashSet<String>().apply { terms.forEach { addAll(it.variants) } }.toList()
+        // Only chunks covering enough of the question's words can pass the coverage gate: load just those.
+        val owners = HashMap<String, MutableSet<Int>>()
+        for (t in terms) { val o = t.owner ?: continue; for (id in t.ids) owners.getOrPut(id) { HashSet() }.add(o) }
+        val need = kotlin.math.ceil(MIN_COVERAGE * content.size - 1e-9).toInt().coerceAtLeast(1)
+        val candidateIds = owners.filterValues { it.size >= need }.keys
         data class S(val id: String, val seq: Long, val score: Double, val coverage: Double)
-        val scored = store.candidates(all).mapNotNull { c ->
+        val scored = store.rows(candidateIds).mapNotNull { c ->
             val dl = c.tokens.size
             var s = 0.0
             val covered = HashSet<Int>()
