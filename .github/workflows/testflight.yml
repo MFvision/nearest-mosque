@@ -24,6 +24,8 @@ jobs:
     name: Archive and upload to TestFlight
     runs-on: macos-15
     timeout-minutes: 60
+    outputs:
+      build: ${{ steps.number.outputs.build }}
     defaults:
       run:
         working-directory: ios
@@ -57,6 +59,7 @@ jobs:
           xcodegen generate
 
       - name: Install the API key
+        id: number
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
           KEY=~/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8
@@ -65,6 +68,7 @@ jobs:
           echo "ASC_KEY_PATH=$KEY" >> "$GITHUB_ENV"
           # Monotonic build number: one per workflow run (TestFlight rejects duplicates).
           echo "BUILD_NUMBER=$(( 100 + ${{ github.run_number }} ))" >> "$GITHUB_ENV"
+          echo "build=$(( 100 + ${{ github.run_number }} ))" >> "$GITHUB_OUTPUT"
 
       - name: Archive (Release, automatic signing)
         run: |
@@ -102,11 +106,6 @@ jobs:
           grep -q "EXPORT SUCCEEDED" export.log
           echo "Uploaded build $BUILD_NUMBER of $BUNDLE_ID. It appears in TestFlight after Apple finishes processing (usually 5-30 minutes)."
 
-      - name: Wait for Apple processing, answer export compliance, give internal testers access
-        run: |
-          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
-          WAIT_MINUTES=45 /tmp/asc/bin/python ../tools/asc_testflight.py
-
       - name: Remove the API key
         if: always()
         run: rm -rf ~/.appstoreconnect/private_keys
@@ -118,3 +117,23 @@ jobs:
           path: |
             ios/archive.log
             ios/export.log
+
+  # Waiting for Apple's processing runs on Linux: the repository is private, and macOS minutes count
+  # several times against the Actions allowance.
+  testers:
+    name: Wait for Apple processing and give internal testers access
+    needs: testflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      BUNDLE_ID: sa.zood.nearmosque
+      BUILD_NUMBER: ${{ needs.testflight.outputs.build }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Wait, answer export compliance, add the build to internal groups
+        run: |
+          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
+          WAIT_MINUTES=60 /tmp/asc/bin/python tools/asc_testflight.py

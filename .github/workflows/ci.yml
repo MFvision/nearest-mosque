@@ -2,7 +2,9 @@ name: Nearest Mosque apps
 
 on:
   push:
+    paths-ignore: ["docs/**", "**/*.md"]
   pull_request:
+    paths-ignore: ["docs/**", "**/*.md"]
   workflow_dispatch:
 
 permissions:
@@ -13,6 +15,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # The repository is private: macOS minutes count several times against the Actions allowance, so the
+  # iOS job runs only when iOS code, shared assets or packs change (always on manual runs and PRs).
+  changes:
+    name: Decide which platform jobs run
+    runs-on: ubuntu-24.04
+    outputs:
+      ios: ${{ steps.c.outputs.ios }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - id: c
+        run: |
+          before="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" != "push" ] || [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$before" 2>/dev/null; then
+            echo "ios=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          if git diff --name-only "$before" "${{ github.sha }}" | grep -qE '^(ios/|shared/|packs/|\.github/workflows/ci\.yml)'; then
+            echo "ios=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ios=false" >> "$GITHUB_OUTPUT"
+          fi
+
   shared:
     name: Shared strings and fixtures are current
     runs-on: ubuntu-24.04
@@ -68,6 +93,8 @@ jobs:
 
   ios:
     name: iOS app (Xcode, simulator build) and package tests
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
     runs-on: macos-15
     timeout-minutes: 60
     steps:

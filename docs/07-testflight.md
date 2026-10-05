@@ -38,6 +38,11 @@ GitHub → Actions → "Nearest Mosque TestFlight" → **Run workflow**, or push
 (e.g. `ios-v1`). Each run gets a
 new build number (100 + run number); the version is `MARKETING_VERSION` in `ios/project.yml`.
 After upload, Apple processes the build (usually 5–30 minutes); TestFlight then offers it to the group.
+A second job on Linux waits for that processing (up to 60 minutes), answers export compliance and gives
+the internal group the build. The repository is private, so macOS runner minutes count several times
+against the GitHub Actions allowance: only the archive and upload run on macOS, and the CI iOS job runs
+only when `ios/`, `shared/` or `packs/` change (docs-only pushes skip CI). Check usage under the
+account's Settings → Billing and plans.
 Export compliance is pre-answered (`ITSAppUsesNonExemptEncryption = NO`: the app only uses HTTPS).
 
 After the upload the workflow waits for Apple's processing and runs `tools/asc_testflight.py`: it
