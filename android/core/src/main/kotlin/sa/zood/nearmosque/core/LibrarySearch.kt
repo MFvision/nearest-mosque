@@ -95,6 +95,8 @@ interface LibraryStore {
     fun ids(variants: List<String>): Set<String>
     /** Id, order and tokens of the given chunks. */
     fun rows(ids: Collection<String>): List<CandidateChunk>
+    /** Token count (document length) of the given chunks, without loading their text. */
+    fun lengths(ids: Collection<String>): Map<String, Int>
 }
 
 class InMemoryLibraryStore(docs: List<Triple<String, Long, String>>) : LibraryStore {
@@ -104,6 +106,7 @@ class InMemoryLibraryStore(docs: List<Triple<String, Long, String>>) : LibrarySt
     override val averageLength = if (items.isEmpty()) 0.0 else items.sumOf { it.tokens.size }.toDouble() / items.size
     override fun ids(variants: List<String>) = items.filter { c -> c.tokens.any { t -> variants.any { LibraryText.matches(t, it) } } }.map { it.id }.toSet()
     override fun rows(ids: Collection<String>) = ids.mapNotNull { byId[it] }
+    override fun lengths(ids: Collection<String>) = ids.mapNotNull { id -> byId[id]?.let { id to it.tokens.size } }.toMap()
 }
 
 class LibraryRetriever(private val store: LibraryStore, private val stop: Set<String>, private val lexicon: Lexicon) {
@@ -131,7 +134,19 @@ class LibraryRetriever(private val store: LibraryStore, private val stop: Set<St
         val owners = HashMap<String, MutableSet<Int>>()
         for (t in terms) { val o = t.owner ?: continue; for (id in t.ids) owners.getOrPut(id) { HashSet() }.add(o) }
         val need = kotlin.math.ceil(MIN_COVERAGE * content.size - 1e-9).toInt().coerceAtLeast(1)
-        val candidateIds = owners.filterValues { it.size >= need }.keys
+        var candidateIds: Collection<String> = owners.filterValues { it.size >= need }.keys
+        // Very common words (e.g. «صلاة» in 24,000 fatwas) can leave thousands of candidates: score them first
+        // with an estimate from what the index already knows (which words they contain, their length,
+        // term frequency taken as 1), then load and score exactly only the best [MAX_ROWS].
+        if (candidateIds.size > MAX_ROWS) {
+            val lengths = store.lengths(candidateIds)
+            val weight = HashMap<String, Double>()
+            for (t in terms) for (id in t.ids) if (id in lengths) weight.merge(id, t.weight * t.idf, Double::plus)
+            candidateIds = lengths.entries.map { (id, dl) ->
+                val cover = owners.getValue(id).size.toDouble() / content.size
+                id to weight.getOrDefault(id, 0.0) * (K1 + 1) / (1 + K1 * (1 - B + B * dl / avgdl)) * cover
+            }.sortedByDescending { it.second }.take(MAX_ROWS).map { it.first }
+        }
         data class S(val id: String, val seq: Long, val score: Double, val coverage: Double)
         val scored = store.rows(candidateIds).mapNotNull { c ->
             val dl = c.tokens.size
@@ -159,6 +174,8 @@ class LibraryRetriever(private val store: LibraryStore, private val stop: Set<St
         const val MAX_PASSAGES = 5
         const val MIN_SCORE = 0.5
         const val MIN_COVERAGE = 0.6
+        /** Candidates scored exactly per library and question (see retrieve). */
+        const val MAX_ROWS = 400
     }
 }
 

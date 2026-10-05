@@ -116,6 +116,8 @@ public protocol LibraryStore: Sendable {
     func ids(_ variants: [String]) -> Set<String>
     /// Id, order and tokens of the given chunks.
     func rows(_ ids: [String]) -> [CandidateChunk]
+    /// Token count (document length) of the given chunks, without loading their text.
+    func lengths(_ ids: [String]) -> [String: Int]
 }
 
 public struct InMemoryLibraryStore: LibraryStore {
@@ -132,11 +134,17 @@ public struct InMemoryLibraryStore: LibraryStore {
     func hit(_ c: CandidateChunk, _ vs: [String]) -> Bool { c.tokens.contains { t in vs.contains { LibraryText.matches(t, $0) } } }
     public func ids(_ variants: [String]) -> Set<String> { Set(items.filter { hit($0, variants) }.map(\.id)) }
     public func rows(_ ids: [String]) -> [CandidateChunk] { let set = Set(ids); return items.filter { set.contains($0.id) } }
+    public func lengths(_ ids: [String]) -> [String: Int] {
+        let set = Set(ids)
+        return Dictionary(uniqueKeysWithValues: items.filter { set.contains($0.id) }.map { ($0.id, $0.tokens.count) })
+    }
 }
 
 public final class LibraryRetriever: @unchecked Sendable {
     public static let k1 = 1.2, b = 0.75, expansionWeight = 0.5, contextWeight = 0.3
     public static let maxPassages = 5, minScore = 0.5, minCoverage = 0.6
+    /// Candidates scored exactly per library and question (see retrieve).
+    public static let maxRows = 400
 
     final class Term {
         let word: String, variants: [String], weight: Double, owner: Int?
@@ -177,7 +185,20 @@ public final class LibraryRetriever: @unchecked Sendable {
         var owners: [String: Set<Int>] = [:]
         for t in terms { if let o = t.owner { for id in t.ids { owners[id, default: []].insert(o) } } }
         let need = max(1, Int((Self.minCoverage * Double(content.count) - 1e-9).rounded(.up)))
-        let candidateIds = owners.filter { $0.value.count >= need }.map(\.key)
+        var candidateIds = owners.filter { $0.value.count >= need }.map(\.key)
+        // Very common words can leave thousands of candidates: rank them first by an estimate from what the
+        // index knows (which words they contain, their length, term frequency taken as 1), then load and
+        // score exactly only the best `maxRows`.
+        if candidateIds.count > Self.maxRows {
+            let lengths = store.lengths(candidateIds)
+            var weight: [String: Double] = [:]
+            for t in terms { for id in t.ids where lengths[id] != nil { weight[id, default: 0] += t.weight * t.idf } }
+            let est: [(String, Double)] = lengths.map { id, dl in
+                let cover = Double(owners[id]?.count ?? 0) / Double(content.count)
+                return (id, (weight[id] ?? 0) * (Self.k1 + 1) / (1 + Self.k1 * (1 - Self.b + Self.b * Double(dl) / avgdl)) * cover)
+            }
+            candidateIds = est.sorted { $0.1 > $1.1 }.prefix(Self.maxRows).map(\.0)
+        }
         struct S { let id: String; let seq: Int; let score: Double; let coverage: Double }
         let scored: [S] = store.rows(candidateIds).compactMap { c in
             let dl = Double(c.tokens.count)

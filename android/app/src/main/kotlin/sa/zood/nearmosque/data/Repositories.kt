@@ -111,6 +111,9 @@ class RoomLibraryStore(private val dao: SourceDao, packId: String) : sa.zood.nea
     override fun rows(ids: Collection<String>): List<CandidateChunk> = ids.chunked(500).flatMap { part ->
         dao.candidates(chunkRowsQuery(part)).map { CandidateChunk(it.id, it.seq, if (it.searchText.isEmpty()) emptyList() else it.searchText.split(' ')) }
     }
+    override fun lengths(ids: Collection<String>): Map<String, Int> = ids.chunked(500).flatMap { part ->
+        dao.tokenCounts(part).map { it.id to it.tokenCount }
+    }.toMap()
 }
 
 data class ResolvedCitation(val chunk: SourceChunk, val packId: String, val documents: Map<String, SourceDocument>)

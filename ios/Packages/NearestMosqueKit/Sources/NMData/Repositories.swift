@@ -173,6 +173,21 @@ public final class GRDBLibraryStore: LibraryStore, @unchecked Sendable {
         }) ?? [])
     }
 
+    public func lengths(_ ids: [String]) -> [String: Int] {
+        guard !ids.isEmpty else { return [:] }
+        return (try? db.writer.read { db in
+            var out: [String: Int] = [:]
+            for start in stride(from: 0, to: ids.count, by: 500) {
+                let part = Array(ids[start..<min(start + 500, ids.count)])
+                for r in try Row.fetchAll(db, sql: "SELECT id, tokenCount FROM source_chunk WHERE id IN (\(part.map { _ in "?" }.joined(separator: ",")))",
+                                          arguments: StatementArguments(part)) {
+                    out[r["id"]] = r["tokenCount"]
+                }
+            }
+            return out
+        }) ?? [:]
+    }
+
     public func rows(_ ids: [String]) -> [CandidateChunk] {
         guard !ids.isEmpty else { return [] }
         return (try? db.writer.read { db in

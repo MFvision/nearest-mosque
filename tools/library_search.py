@@ -30,6 +30,7 @@ MAX_PASSAGES = 5
 MIN_SCORE = 0.5
 MIN_COVERAGE = 0.6
 PREFIX_MIN = 3
+MAX_ROWS = 400  # candidates scored exactly; more are first ranked by an estimate (see retrieve)
 AR_SUFFIXES = ["ها", "ان", "ات", "ون", "ين", "يه", "ه", "ي"]
 LATIN_SUFFIXES = ["ing", "ers", "er", "ed"]
 
@@ -124,11 +125,16 @@ class MemoryStore:
         self.total = len(self.docs)
         self.avg = sum(len(t) for _, _, t in self.docs) / self.total if self.docs else 0.0
 
-    def df(self, vs):
-        return sum(1 for _, _, toks in self.docs if any(matches(t, v) for t in toks for v in vs))
+    def ids(self, vs):
+        return {d[0] for d in self.docs if any(matches(t, v) for t in d[2] for v in vs)}
 
-    def candidates(self, vs):
-        return [d for d in self.docs if any(matches(t, v) for t in d[2] for v in vs)]
+    def rows(self, ids):
+        ids = set(ids)
+        return [d for d in self.docs if d[0] in ids]
+
+    def lengths(self, ids):
+        ids = set(ids)
+        return {d[0]: len(d[2]) for d in self.docs if d[0] in ids}
 
 
 def retrieve(store, stop, lexicon, question, context=()):
@@ -158,15 +164,28 @@ def retrieve(store, stop, lexicon, question, context=()):
         return []
     n = store.total
     for term in terms:
-        df = store.df(term["variants"])
+        df = len(store.ids(term["variants"]))
         term["idf"] = math.log(1 + (n - df + 0.5) / (df + 0.5))
-    all_variants = []
+    # Chunks covering fewer than ceil(0.6 x words) of the question's words cannot pass the gate.
+    owners = {}
     for term in terms:
-        for v in term["variants"]:
-            if v not in all_variants:
-                all_variants.append(v)
+        term["ids"] = store.ids(term["variants"])
+        if term["owner"] is not None:
+            for i in term["ids"]:
+                owners.setdefault(i, set()).add(term["owner"])
+    need = max(1, math.ceil(MIN_COVERAGE * len(content) - 1e-9))
+    cand = [i for i, o in owners.items() if len(o) >= need]
+    if len(cand) > MAX_ROWS:
+        # Estimate with term frequency 1 from what the index knows, keep the best MAX_ROWS.
+        lengths = store.lengths(cand)
+        est = []
+        for i in cand:
+            w = sum(t["weight"] * t["idf"] for t in terms if i in t["ids"])
+            dl = lengths[i]
+            est.append((-(w * (K1 + 1) / (1 + K1 * (1 - B + B * dl / store.avg)) * len(owners[i]) / len(content)), i))
+        cand = [i for _, i in sorted(est)[:MAX_ROWS]]
     scored = []
-    for cid, seq, toks in store.candidates(all_variants):
+    for cid, seq, toks in store.rows(cand):
         dl = len(toks)
         s, covered = 0.0, set()
         for term in terms:

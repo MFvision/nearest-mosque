@@ -158,6 +158,9 @@ interface SourceDao {
     @Query("SELECT * FROM source_chunk WHERE packId = :packId AND seq BETWEEN :from AND :to ORDER BY seq")
     suspend fun range(packId: String, from: Long, to: Long): List<SourceChunkEntity>
 
+    @Query("SELECT id, tokenCount FROM source_chunk WHERE id IN (:ids)")
+    fun tokenCounts(ids: List<String>): List<ChunkLength>
+
     @Query("SELECT id FROM source_chunk WHERE packId = :packId ORDER BY seq LIMIT :limit OFFSET :offset")
     suspend fun pageIds(packId: String, limit: Int, offset: Int): List<String>
 
@@ -230,6 +233,8 @@ fun chunkRowsQuery(ids: List<String>): SupportSQLiteQuery = SimpleSQLiteQuery(
     "SELECT id AS id, seq AS seq, searchText AS searchText FROM source_chunk WHERE id IN (${ids.joinToString(",") { "?" }})",
     ids.toTypedArray<Any>(),
 )
+
+data class ChunkLength(val id: String, val tokenCount: Int)
 
 @Database(
     entities = [
