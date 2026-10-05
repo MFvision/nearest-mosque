@@ -40,6 +40,12 @@ new build number (100 + run number); the version is `MARKETING_VERSION` in `ios/
 After upload, Apple processes the build (usually 5–30 minutes); TestFlight then offers it to the group.
 Export compliance is pre-answered (`ITSAppUsesNonExemptEncryption = NO`: the app only uses HTTPS).
 
+After the upload the workflow waits for Apple's processing and runs `tools/asc_testflight.py`: it
+answers export compliance, and gives the internal group **Near Mosque Team** (created automatically
+with the App Store Connect team as testers, "access to all builds") the new build, so it reaches
+TestFlight without manual steps. **Actions → TestFlight status → Run workflow** reports the latest
+builds at any time. Internal testers install without Beta App Review; external groups need review.
+
 If the run fails, the job log and the `testflight-logs` artifact show the archive and export output.
 Typical causes: a missing secret (the first step names it), no app record for the bundle ID, or an
 API key without the Admin role.
