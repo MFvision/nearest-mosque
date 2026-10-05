@@ -102,6 +102,11 @@ jobs:
           grep -q "EXPORT SUCCEEDED" export.log
           echo "Uploaded build $BUILD_NUMBER of $BUNDLE_ID. It appears in TestFlight after Apple finishes processing (usually 5-30 minutes)."
 
+      - name: Wait for Apple processing, answer export compliance, give internal testers access
+        run: |
+          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
+          WAIT_MINUTES=45 /tmp/asc/bin/python ../tools/asc_testflight.py
+
       - name: Remove the API key
         if: always()
         run: rm -rf ~/.appstoreconnect/private_keys
