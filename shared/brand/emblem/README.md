@@ -13,3 +13,9 @@ full size, `option2-large.png` and `option3-large.png`):
   the cube's own colour, navy, and green like the dome.
 
     python3 emblem.py && python3 options.py
+
+**Installed: option 2.** `python3 install.py` writes `../near-mosque-icon.svg`, `../near-mosque-icon-dark.svg`
+and `../near-mosque-mark.svg`, and renders the iOS app icon (light, dark and tinted, in
+`AppIcon.appiconset`), the logo mark (iOS `LogoMark`, Android `logo_mark`) and the Android adaptive icon
+foreground and monochrome layers (inside the 66 dp safe circle). `python3 preview.py` writes
+`installed-preview.png` from the installed files.

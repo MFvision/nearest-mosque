@@ -38,13 +38,18 @@ def arrow_tf(x, y, h, angle):
     return f"translate({x} {y}) rotate({angle}) scale({h / 112:.4f})"
 
 
-def behind(key, dark=False):
-    """The arrow behind the cube: drawn first, so the cube's lines (same colour throughout) run over its tip."""
+def behind_inner(ink=INK, body=NAVY, facet=GOLD):
+    """Option 2 in trace space: the arrow first, so the cube's lines (one colour throughout) run over its tip."""
     tf = arrow_tf(**ARROW2)
-    body, facet = (CREAM, GOLD) if dark else (NAVY, GOLD)
-    ink = GOLD if dark else INK
-    inner = (f'<g transform="{tf}"><path d="{ARROW}" fill="{body}" stroke="{body}" stroke-width="3" stroke-linejoin="round"/>'
-             f'<path d="{FACET}" fill="{facet}"/></g>{emblem(**WEIGHT, ink=ink)}')
+    return (f'<g transform="{tf}"><path d="{ARROW}" fill="{body}" stroke="{body}" stroke-width="3" stroke-linejoin="round"/>'
+            f'<path d="{FACET}" fill="{facet}"/></g>{emblem(**WEIGHT, ink=ink)}')
+
+
+BEHIND_EXTENT = (40, 1016)       # trace-space top and bottom of option 2 (roof point to the arrow's lowest wing)
+
+
+def behind(key, dark=False):
+    inner = behind_inner(GOLD, CREAM, GOLD) if dark else behind_inner()
     return icon(key, inner, dark, scale=0.72, cy=528)
 
 
