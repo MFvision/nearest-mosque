@@ -51,6 +51,7 @@ def create_internal_group(app_id: str) -> dict:
     }})["data"]
     print("Created internal TestFlight group 'Near Mosque Team' (gets every build automatically).")
     users = api("GET", "/users", {"limit": "50", "fields[users]": "username,firstName,lastName"})["data"]
+    added = 0
     for u in users:
         a = u["attributes"]
         try:
@@ -59,9 +60,11 @@ def create_internal_group(app_id: str) -> dict:
                 "attributes": {"email": a["username"], "firstName": a.get("firstName") or "", "lastName": a.get("lastName") or ""},
                 "relationships": {"betaGroups": {"data": [{"type": "betaGroups", "id": g["id"]}]}},
             }})
-            print(f"Added team member {a.get('firstName') or ''} {a.get('lastName') or ''} as an internal tester.")
+            added += 1
         except urllib.error.HTTPError:
             print("::warning::Could not add a team member as a tester; add yourself in App Store Connect → TestFlight → Near Mosque Team.")
+    # Logs are public for this repository: report a count, never names or emails.
+    print(f"Added {added} of {len(users)} App Store Connect team member(s) as internal testers.")
     return g
 
 
