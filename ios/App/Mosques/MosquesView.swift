@@ -318,7 +318,7 @@ struct MosqueCard: View {
             .buttonStyle(.plain)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(l10n.t("mosque_detail_a11y", name, Format.distance(ranked.distanceMeters, l10n: l10n)))
-            Button { ExternalMaps.directions(to: m.location, name: name) } label: {
+            DirectionsMenu(to: m.location, name: name) {
                 Label(l10n.t("get_directions"), systemImage: "location.north.line.fill").frame(maxWidth: .infinity, minHeight: 28)
             }
             .modifier(DirectionsStyle(prominent: nearest))
@@ -363,11 +363,43 @@ struct GlassSegmented: View {
 }
 
 enum ExternalMaps {
-    /// Opens Apple Maps for directions (outside this app's offline guarantee).
-    static func directions(to p: LatLng, name: String?) {
-        var c = URLComponents(string: "https://maps.apple.com/")!
-        c.queryItems = [URLQueryItem(name: "daddr", value: "\(p.latitude),\(p.longitude)"), URLQueryItem(name: "dirflg", value: "w"),
-                        URLQueryItem(name: "q", value: name ?? "")]
-        if let url = c.url { UIApplication.shared.open(url) }
+    enum App: CaseIterable { case apple, google, waze }
+
+    /// Opens directions in the chosen maps app (outside this app's offline guarantee). Google Maps and Waze
+    /// open in their app when installed, otherwise on their website.
+    static func directions(to p: LatLng, name: String?, app: App = .apple) {
+        let ll = "\(p.latitude),\(p.longitude)"
+        var urls: [URL?] = []
+        switch app {
+        case .apple:
+            var c = URLComponents(string: "https://maps.apple.com/")!
+            c.queryItems = [URLQueryItem(name: "daddr", value: ll), URLQueryItem(name: "dirflg", value: "w"), URLQueryItem(name: "q", value: name ?? "")]
+            urls = [c.url]
+        case .google:
+            urls = [URL(string: "comgooglemaps://?daddr=\(ll)&directionsmode=walking"),
+                    URL(string: "https://www.google.com/maps/dir/?api=1&destination=\(ll)&travelmode=walking")]
+        case .waze:
+            urls = [URL(string: "waze://?ll=\(ll)&navigate=yes"), URL(string: "https://waze.com/ul?ll=\(ll)&navigate=yes")]
+        }
+        let candidates = urls.compactMap { $0 }
+        if let url = candidates.first(where: { $0.scheme == "https" || UIApplication.shared.canOpenURL($0) }) { UIApplication.shared.open(url) }
+    }
+}
+
+/// "Get directions": a menu to choose Apple Maps, Google Maps or Waze.
+struct DirectionsMenu<MenuLabel: View>: View {
+    @Environment(Localization.self) private var l10n
+    let to: LatLng
+    let name: String?
+    @ViewBuilder var label: () -> MenuLabel
+
+    var body: some View {
+        Menu {
+            Section(l10n.t("directions_choose")) {
+                Button(l10n.t("maps_apple")) { ExternalMaps.directions(to: to, name: name, app: .apple) }
+                Button(l10n.t("maps_google")) { ExternalMaps.directions(to: to, name: name, app: .google) }
+                Button(l10n.t("maps_waze")) { ExternalMaps.directions(to: to, name: name, app: .waze) }
+            }
+        } label: { label() }
     }
 }

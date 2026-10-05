@@ -47,6 +47,8 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: Near Mosque
+        # Directions can open Google Maps or Waze when installed (canOpenURL needs the schemes listed).
+        LSApplicationQueriesSchemes: [comgooglemaps, waze]
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleLocalizations: [en, ar, ur, tr, id, fr, es]

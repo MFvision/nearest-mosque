@@ -94,10 +94,14 @@ struct SkyBackdrop: View {
                     .scaleEffect(x: 1, y: 0.42)
                     .position(x: w / 2, y: y0)
 
-                CloudBand(tint: Color.white.mix(with: sky.glow, by: 0.35))
-                    .frame(width: w * 1.7, height: y0 * 0.55)
-                    .offset(x: drift ? -w * 0.55 : -w * 0.1, y: y0 * 0.38)
-                    .opacity(sky.period.hasStars ? 0.35 : 0.8)
+                // The cloud band is wider than the screen: as an overlay it never changes the stack's size
+                // (an oversized child shifted every layer sideways and cut the ridges and lake with a hard edge).
+                Color.clear.frame(width: w, height: h).overlay(alignment: .topLeading) {
+                    CloudBand(tint: Color.white.mix(with: sky.glow, by: 0.35))
+                        .frame(width: w * 1.7, height: y0 * 0.55)
+                        .offset(x: drift ? -w * 0.55 : -w * 0.1, y: y0 * 0.38)
+                        .opacity(sky.period.hasStars ? 0.35 : 0.8)
+                }
 
                 Ridge(points: Ridge.far)
                     .fill(LinearGradient(colors: [sky.mid.mix(with: sky.glow, by: 0.22).opacity(0.85), sky.low], startPoint: .top, endPoint: .bottom))
@@ -125,9 +129,11 @@ struct SkyBackdrop: View {
                     .position(x: w / 2, y: y0 + h * 0.16)
                     .opacity(twinkle ? 1 : 0.75)
             }
-            .frame(width: w, height: h)
+            .frame(width: w, height: h, alignment: .topLeading)
             .clipped()
         }
+        // Landscape art is the same in every language; right-to-left layout must not mirror its offsets.
+        .environment(\.layoutDirection, .leftToRight)
         .drawingGroup()
         .accessibilityHidden(true)
         .allowsHitTesting(false)

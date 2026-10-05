@@ -53,7 +53,7 @@ struct MosqueDetailView: View {
                 Text(l10n.t("hours_unknown")).font(.subheadline).foregroundStyle(Theme.accentText(scheme))
                 if let h = m.openingHoursRaw { Text(l10n.t("hours_listed", h)).font(.subheadline) }
                 Text(l10n.t("hours_unverified_note")).font(.caption).foregroundStyle(.secondary)
-                Button { ExternalMaps.directions(to: m.location, name: name) } label: {
+                DirectionsMenu(to: m.location, name: name) {
                     Label(l10n.t("directions"), systemImage: "location.north.line.fill").frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .prominentButton().padding(.top, 8)

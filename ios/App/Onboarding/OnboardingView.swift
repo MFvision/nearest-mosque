@@ -2,7 +2,7 @@ import NMCore
 import SwiftUI
 
 /// First-launch tour on the sky: five animated pages that show how each part works, then a setup page
-/// for language and prayer location. Swipe or use the glass buttons; Skip finishes at any time.
+/// for language and prayer location. Swipe or use the glass buttons; the language menu is on every page and Skip goes to setup.
 /// Under Reduce Motion every illustration shows its final, still frame.
 struct OnboardingView: View {
     @Environment(AppModel.self) private var model
@@ -14,9 +14,11 @@ struct OnboardingView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
+                LanguageMenu()
                 Spacer()
+                // Skip jumps to the setup page (language and location) instead of leaving the tour unset.
                 if page < count - 1 {
-                    Button(l10n.t("onb_skip")) { finish() }.glassButton()
+                    Button(l10n.t("onb_skip")) { withAnimation(Theme.spring) { page = count - 1 } }.glassButton()
                 }
             }
             .frame(height: 48)
@@ -272,6 +274,33 @@ private struct AskArt: View {
             .frame(width: 300)
         }
         .accessibilityHidden(true)
+    }
+}
+
+/// Language choice on every page of the tour: the device language or any supported language.
+struct LanguageMenu: View {
+    @Environment(Localization.self) private var l10n
+
+    var body: some View {
+        @Bindable var l10n = l10n
+        Menu {
+            Button { l10n.override = nil } label: {
+                if l10n.override == nil { Label(l10n.t("use_device_language"), systemImage: "checkmark") } else { Text(l10n.t("use_device_language")) }
+            }
+            ForEach(Localization.supported, id: \.self) { code in
+                Button { l10n.override = code } label: {
+                    let name = Localization.nativeNames[code] ?? code
+                    if l10n.override == code { Label(name, systemImage: "checkmark") } else { Text(name) }
+                }
+            }
+        } label: {
+            Label(Localization.nativeNames[l10n.language] ?? l10n.language, systemImage: "globe")
+                .font(.subheadline.weight(.medium))
+                .frame(minHeight: 30)
+        }
+        .glassButton()
+        .accessibilityLabel(l10n.t("language"))
+        .accessibilityValue(Localization.nativeNames[l10n.language] ?? l10n.language)
     }
 }
 

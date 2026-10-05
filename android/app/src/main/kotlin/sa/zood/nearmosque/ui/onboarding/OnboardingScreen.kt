@@ -45,6 +45,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -110,7 +115,7 @@ private val LANGUAGES = listOf("en" to "English", "ar" to "العربية", "ur"
 
 /**
  * First-launch tour on the sky: five animated pages that show how each part works, then a setup page
- * for language and prayer location. Swipe or use the glass buttons; Skip finishes at any time. With
+ * for language and prayer location. Swipe or use the glass buttons; the language menu is on every page and Skip goes to setup. With
  * animations turned off every illustration shows its final, still frame.
  */
 @OptIn(ExperimentalFoundationApi::class)
@@ -123,8 +128,12 @@ fun OnboardingScreen(container: AppContainer, vm: PrayerViewModel, ui: PrayerUi,
         SkyBackdrop(LocalSky.current, Modifier.fillMaxSize(), horizon = 0.8f)
         Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
             Row(Modifier.fillMaxWidth().height(56.dp).padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
+                LanguageMenu()
                 Spacer(Modifier.weight(1f))
-                if (pager.currentPage < PAGES - 1) GlassButton(onClick = onFinish) { GlassButtonText(stringResource(R.string.onb_skip)) }
+                // Skip jumps to the setup page (language and location) instead of leaving the tour unset.
+                if (pager.currentPage < PAGES - 1) {
+                    GlassButton(onClick = { scope.launch { pager.animateScrollToPage(PAGES - 1) } }) { GlassButtonText(stringResource(R.string.onb_skip)) }
+                }
             }
             HorizontalPager(pager, Modifier.weight(1f)) { page ->
                 when (page) {
@@ -294,6 +303,35 @@ private fun AskArt() {
                 "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", color = Color.White, style = MaterialTheme.typography.titleLarge.copy(textDirection = androidx.compose.ui.text.style.TextDirection.Rtl),
                 modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.End,
             )
+        }
+    }
+}
+
+/** Language choice on every page of the tour: the device language or any supported language. */
+@Composable
+private fun LanguageMenu() {
+    val context = LocalContext.current
+    var open by remember { mutableStateOf(false) }
+    val current = Format.languageCode(context)
+    val followsDevice = AppCompatDelegate.getApplicationLocales().isEmpty
+    val label = stringResource(R.string.language)
+    Box {
+        GlassButton(onClick = { open = true }, modifier = Modifier.semantics { contentDescription = label }) {
+            GlassButtonText(LANGUAGES.firstOrNull { it.first == current }?.second ?: current, painterResource(R.drawable.ic_globe))
+        }
+        DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.use_device_language)) },
+                trailingIcon = { if (followsDevice) Text("✓") },
+                onClick = { open = false; AppCompatDelegate.setApplicationLocales(LocaleListCompat.getEmptyLocaleList()) },
+            )
+            LANGUAGES.forEach { (code, name) ->
+                DropdownMenuItem(
+                    text = { Text(name) },
+                    trailingIcon = { if (!followsDevice && code == current) Text("✓") },
+                    onClick = { open = false; AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(code)) },
+                )
+            }
         }
     }
 }
