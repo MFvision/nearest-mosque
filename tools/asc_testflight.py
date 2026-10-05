@@ -41,6 +41,30 @@ def api(method: str, path: str, params: dict | None = None, body: dict | None = 
         raise
 
 
+def create_internal_group(app_id: str) -> dict:
+    """Internal group that receives every build, with the App Store Connect team's users as testers
+    (internal testers install without Beta App Review)."""
+    g = api("POST", "/betaGroups", body={"data": {
+        "type": "betaGroups",
+        "attributes": {"name": "Near Mosque Team", "isInternalGroup": True, "hasAccessToAllBuilds": True},
+        "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
+    }})["data"]
+    print("Created internal TestFlight group 'Near Mosque Team' (gets every build automatically).")
+    users = api("GET", "/users", {"limit": "50", "fields[users]": "username,firstName,lastName"})["data"]
+    for u in users:
+        a = u["attributes"]
+        try:
+            api("POST", "/betaTesters", body={"data": {
+                "type": "betaTesters",
+                "attributes": {"email": a["username"], "firstName": a.get("firstName") or "", "lastName": a.get("lastName") or ""},
+                "relationships": {"betaGroups": {"data": [{"type": "betaGroups", "id": g["id"]}]}},
+            }})
+            print(f"Added team member {a.get('firstName') or ''} {a.get('lastName') or ''} as an internal tester.")
+        except urllib.error.HTTPError:
+            print("::warning::Could not add a team member as a tester; add yourself in App Store Connect → TestFlight → Near Mosque Team.")
+    return g
+
+
 def main() -> int:
     bundle = os.environ["BUNDLE_ID"]
     want = os.environ.get("BUILD_NUMBER") or None
@@ -88,7 +112,7 @@ def main() -> int:
     groups = api("GET", f"/apps/{app_id}/betaGroups", {"fields[betaGroups]": "name,isInternalGroup,hasAccessToAllBuilds", "limit": "50"})["data"]
     internal = [g for g in groups if g["attributes"].get("isInternalGroup")]
     if not internal:
-        print("::warning::No internal TestFlight group yet. In App Store Connect → TestFlight → Internal Testing, create a group and add yourself.")
+        internal = [create_internal_group(app_id)]
     for g in internal:
         name = g["attributes"]["name"]
         if g["attributes"].get("hasAccessToAllBuilds"):
