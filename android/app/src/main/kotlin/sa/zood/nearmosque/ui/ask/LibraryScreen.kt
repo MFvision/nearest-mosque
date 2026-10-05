@@ -39,7 +39,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.delay
 import sa.zood.nearmosque.R
-import sa.zood.nearmosque.container
+import sa.zood.nearmosque.appContainer
 import sa.zood.nearmosque.data.AskRepository
 import sa.zood.nearmosque.data.LibraryFiles
 import sa.zood.nearmosque.data.ResolvedCitation
@@ -78,7 +78,7 @@ private fun Empty(text: String) {
 
 @Composable
 private fun SavedTab() {
-    val c = LocalContext.current.container
+    val c = appContainer()
     val ids by c.settings.bookmarks.collectAsState(initial = emptySet())
     var items by remember { mutableStateOf<List<ResolvedCitation>>(emptyList()) }
     LaunchedEffect(ids) { items = c.ask.resolve(ids.sorted()) }
@@ -89,7 +89,8 @@ private fun SavedTab() {
 @Composable
 private fun BrowseTab() {
     val context = LocalContext.current
-    val c = context.container
+    val container = appContainer()
+    val c = container
     val lang = Format.languageCode(context)
     var packs by remember { mutableStateOf<List<AskRepository.LibraryPack>>(emptyList()) }
     var open by remember { mutableStateOf<AskRepository.LibraryPack?>(null) }
@@ -111,7 +112,7 @@ private fun BrowseTab() {
 
 @Composable
 private fun CollectionView(p: AskRepository.LibraryPack, lang: String, onBack: () -> Unit) {
-    val c = LocalContext.current.container
+    val c = appContainer()
     val title = p.title[lang] ?: p.title["en"] ?: p.id
     var query by remember { mutableStateOf("") }
     var page by remember { mutableIntStateOf(1) }
@@ -144,12 +145,13 @@ private const val PAGE = 40
 @Composable
 private fun DownloadsTab() {
     val context = LocalContext.current
+    val container = appContainer()
     val files = remember { LibraryFiles(context) }
     var version by remember { mutableIntStateOf(0) }
     var items by remember { mutableStateOf<List<Pair<ResolvedCitation?, java.io.File>>>(emptyList()) }
     LaunchedEffect(version) {
         val list = files.downloaded()
-        val resolved = context.container.ask.resolve(list.map { it.first }).associateBy { it.chunk.id }
+        val resolved = container.ask.resolve(list.map { it.first }).associateBy { it.chunk.id }
         items = list.map { (id, f) -> resolved[id] to f }
     }
     if (items.isEmpty()) { Empty(stringResource(R.string.library_downloads_empty)); return }

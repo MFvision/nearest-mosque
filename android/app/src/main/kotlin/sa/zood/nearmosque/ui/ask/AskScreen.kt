@@ -55,7 +55,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sa.zood.nearmosque.R
-import sa.zood.nearmosque.container
+import sa.zood.nearmosque.appContainer
 import sa.zood.nearmosque.core.AnswerKind
 import sa.zood.nearmosque.core.CommonQuestion
 import sa.zood.nearmosque.data.ResolvedCitation
@@ -78,13 +78,14 @@ import sa.zood.nearmosque.ui.theme.Tokens
 @Composable
 fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
     val context = LocalContext.current
+    val container = appContainer()
     val lang = Format.languageCode(context)
     val ui by vm.ui.collectAsStateWithLifecycle()
     var input by rememberSaveable { mutableStateOf("") }
     var reading by remember { mutableStateOf<ResolvedCitation?>(null) }
     var library by remember { mutableStateOf(false) }
     // The library packs follow the interface language (installed in the background when it changes).
-    LaunchedEffect(lang) { context.container.ensureLibraries(lang) }
+    LaunchedEffect(lang) { container.ensureLibraries(lang) }
     if (library) LibraryScreen(onDismiss = { library = false })
     val list = rememberLazyListState()
     LaunchedEffect(ui.turns.size, ui.turns.lastOrNull()?.answer) { if (ui.turns.isNotEmpty()) list.animateScrollToItem(list.layoutInfo.totalItemsCount.coerceAtLeast(1) - 1) }

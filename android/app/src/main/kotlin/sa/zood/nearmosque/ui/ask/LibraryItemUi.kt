@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.json.jsonPrimitive
 import sa.zood.nearmosque.R
-import sa.zood.nearmosque.container
+import sa.zood.nearmosque.appContainer
 import sa.zood.nearmosque.core.LibraryParts
 import sa.zood.nearmosque.core.SourceChunk
 import sa.zood.nearmosque.data.LibraryFiles
@@ -99,10 +99,11 @@ fun PartsText(c: SourceChunk) {
     val url = c.url?.takeIf { LibraryFiles.isAllowed(it) }
     if (full && url != null) { WebPage(url); return }
     val context = LocalContext.current
+    val container = appContainer()
     var verse by remember { mutableStateOf<LibraryParts.Part?>(null) }
     val verseId = c.sectionName("verse")
     LaunchedEffect(verseId) {
-        if (verseId != null) verse = context.container.ask.resolve(listOf(verseId)).firstOrNull()?.let { LibraryParts.Part("verse", "ar", it.chunk.original.text) }
+        if (verseId != null) verse = container.ask.resolve(listOf(verseId)).firstOrNull()?.let { LibraryParts.Part("verse", "ar", it.chunk.original.text) }
     }
     val parts = listOfNotNull(verse) + LibraryParts.parts(c).filter { it.kind != "title" }
     val white = Color.White

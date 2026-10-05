@@ -36,7 +36,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import sa.zood.nearmosque.R
-import sa.zood.nearmosque.container
+import sa.zood.nearmosque.appContainer
 import sa.zood.nearmosque.core.MosqueCategory
 import sa.zood.nearmosque.core.PackManifest
 import sa.zood.nearmosque.core.RankedMosque
@@ -50,11 +50,12 @@ import sa.zood.nearmosque.ui.theme.Tokens
 @Composable
 fun MosqueDetailSheet(r: RankedMosque, favorite: Boolean, onToggleFavorite: () -> Unit, onDismiss: () -> Unit) {
     val context = LocalContext.current
+    val container = appContainer()
     val lang = Format.languageCode(context)
     val m = r.mosque
     val name = m.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
     var manifest by remember { mutableStateOf<PackManifest?>(null) }
-    LaunchedEffect(m.packId) { manifest = context.container.mosques.packManifest(m.packId) }
+    LaunchedEffect(m.packId) { manifest = container.mosques.packManifest(m.packId) }
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).navigationBarsPadding()) {
             Row(verticalAlignment = Alignment.CenterVertically) {

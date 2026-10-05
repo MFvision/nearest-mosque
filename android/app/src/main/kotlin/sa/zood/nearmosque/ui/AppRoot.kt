@@ -87,6 +87,13 @@ enum class Tab(val label: Int, val icon: Int, val horizon: Float) {
  */
 @Composable
 fun AppRoot(container: AppContainer, initialTab: Tab = Tab.PRAYER, showOnboarding: Boolean? = null, onboardingPage: Int = 0) {
+    androidx.compose.runtime.CompositionLocalProvider(sa.zood.nearmosque.LocalAppContainer provides container) {
+        AppRootContent(container, initialTab, showOnboarding, onboardingPage)
+    }
+}
+
+@Composable
+private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboarding: Boolean?, onboardingPage: Int) {
     val factory = remember(container) {
         viewModelFactory {
             initializer { PrayerViewModel(container) }

@@ -67,7 +67,12 @@ class AppContainer(
     val devicePosition = MutableStateFlow<DevicePosition?>(null)
 
     /** [installLibraries] = false in tests that do not need the library packs (they take minutes to index). */
+    /** False in tests: library packs are installed explicitly there. */
+    var autoInstallLibraries = true
+        private set
+
     fun start(installLibraries: Boolean = true) {
+        autoInstallLibraries = installLibraries
         scope.launch {
             // Quran, mosques and cities first (the app is usable then); the libraries for the reader's
             // languages follow in the background (the large Arabic fatwa pack takes a while to index).
@@ -86,6 +91,7 @@ class AppContainer(
 
     /** Installs the bundled library packs for [lang] (see ChunkScope.libraryLanguages) if missing. */
     fun ensureLibraries(lang: String) {
+        if (!autoInstallLibraries) return
         val wanted = sa.zood.nearmosque.data.ChunkScope.libraryLanguages(lang)
         scope.launch {
             libraryMutex.withLock {
@@ -98,3 +104,9 @@ class AppContainer(
 }
 
 val Context.container: AppContainer get() = (applicationContext as NearMosqueApp).container
+
+/** The container of the running UI (AppRoot provides it; tests pass their own). */
+val LocalAppContainer = androidx.compose.runtime.staticCompositionLocalOf<AppContainer?> { null }
+
+@androidx.compose.runtime.Composable
+fun appContainer(): AppContainer = LocalAppContainer.current ?: androidx.compose.ui.platform.LocalContext.current.container

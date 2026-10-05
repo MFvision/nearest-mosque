@@ -74,7 +74,10 @@ class DataLayerTest {
     @Test
     fun libraryCollections() = runBlocking {
         val wanted = setOf("en", "ar", "ur")
+        var t0 = System.nanoTime()
+        fun lap(what: String) { println("TIMING $what: ${(System.nanoTime() - t0) / 1_000_000} ms"); t0 = System.nanoTime() }
         assertTrue(c.packs.ensureBuiltins { ChunkScope.isLibrary(it.id) && ChunkScope.libraryLanguage(it.id) in wanted }.isEmpty())
+        lap("install")
         for (p in c.db.packs().all().filter { ChunkScope.isLibrary(it.id) }) {
             assertEquals(p.id, PackVerifier.parseManifest(p.manifestJson).recordCount, p.recordCount)
         }
@@ -82,6 +85,7 @@ class DataLayerTest {
 
         // IslamHouse in the interface language, with fallback.
         val en = c.ask.ask("What is Islam?", emptyList(), "en")
+        lap("first question (builds retrievers)")
         assertTrue(en.library.isNotEmpty())
         assertTrue(en.library.none { it.startsWith("bb:") }) // answered well in English: no Arabic fatwas
         val items = c.ask.resolve(en.library.filter { it.startsWith("ih:en:") })
@@ -90,6 +94,7 @@ class DataLayerTest {
         assertTrue(c.ask.ask("ما هو الإسلام؟", emptyList(), "ar").library.all { it.startsWith("ih:ar:") || it.startsWith("bb:") || it.startsWith("he:ar:") })
         assertTrue(c.ask.ask("What is the capital of France?", emptyList(), "en").library.isEmpty())
 
+        lap("english/arabic checks")
         // Ibn Baz fatwas for Arabic questions; stems reach other word forms.
         val fatwas = c.ask.resolve(c.ask.ask("ما حكم تارك الصلاة؟", emptyList(), "ar").library.filter { it.startsWith("bb:") })
         assertTrue(fatwas.isNotEmpty())
@@ -99,6 +104,7 @@ class DataLayerTest {
         assertEquals(listOf("title", "question", "answer"), sa.zood.nearmosque.core.LibraryParts.parts(f).map { it.kind })
         assertTrue(c.ask.ask("صلاته", emptyList(), "ar").library.isNotEmpty())
 
+        lap("fatwa checks")
         // HadeethEnc and QuranEnc: parts stored once, version kept for the attribution.
         val hadiths = c.ask.resolve(c.ask.ask("Islam is built on five", emptyList(), "en").library.filter { it.startsWith("he:en:") })
         assertTrue(hadiths.isNotEmpty())

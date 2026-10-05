@@ -19,7 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import sa.zood.nearmosque.container
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.CompositionLocalProvider
@@ -41,6 +40,7 @@ import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import sa.zood.nearmosque.R
+import sa.zood.nearmosque.appContainer
 import sa.zood.nearmosque.core.SourceChunk
 import sa.zood.nearmosque.data.ResolvedCitation
 import sa.zood.nearmosque.platform.ExternalActions
@@ -112,13 +112,14 @@ fun SourceCard(r: ResolvedCitation, lang: String, onRead: (ResolvedCitation) -> 
 @Composable
 fun LibraryCard(r: ResolvedCitation) {
     val context = LocalContext.current
+    val container = appContainer()
     val c = r.chunk
     val white = androidx.compose.ui.graphics.Color.White
     val typeLabel = libraryTypeLabel(c)
     val publisherLine = libraryPublisherLine(c)
     val mode = remember(c.id) { LibraryMode.of(c) }
     var reading by remember { mutableStateOf(false) }
-    val bookmarks by context.container.settings.bookmarks.collectAsState(initial = emptySet())
+    val bookmarks by container.settings.bookmarks.collectAsState(initial = emptySet())
     val saved = c.id in bookmarks
     val scope = androidx.compose.runtime.rememberCoroutineScope()
     if (reading && mode != null) LibraryReader(c, mode, onDismiss = { reading = false })
@@ -159,7 +160,7 @@ fun LibraryCard(r: ResolvedCitation) {
             c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(libraryWebLabel(c), color = link) } }
             Spacer(Modifier.weight(1f))
             androidx.compose.material3.IconButton(
-                onClick = { scope.launch { context.container.settings.setBookmark(c.id, !saved) } },
+                onClick = { scope.launch { container.settings.setBookmark(c.id, !saved) } },
             ) {
                 androidx.compose.material3.Icon(
                     androidx.compose.ui.res.painterResource(if (saved) R.drawable.ic_star_filled else R.drawable.ic_star_outline),
