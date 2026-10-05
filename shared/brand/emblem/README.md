@@ -6,9 +6,10 @@ cubics fitted to the reference's centre lines (within 2 to 4 trace units).
 
 `options.py` combines the navigation arrow with the emblem, in light and dark, and writes
 `option-*.svg` and `options.html` (each at 340, 120, 60 and 40 px; screenshots in `options.png` and,
-full size, `options-large.png`):
+full size, `option2-large.png` and `option3-large.png`):
 
-- 2: the angled arrow behind the cube, low inside its walls; the cube's lines run over it.
-- 3: the dome's crown is the arrow; its base is the roof's top edges.
+- 2: the angled arrow behind the cube, low: only its tip is inside, under the cube's lines.
+- 3: the dome's crown is the arrow; its base is the roof's top edges. Colours a to d: navy and gold,
+  the cube's own colour, navy, and green like the dome.
 
     python3 emblem.py && python3 options.py
