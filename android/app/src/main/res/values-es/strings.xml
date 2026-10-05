@@ -88,6 +88,7 @@
     <string name="import_failed">No se pudo añadir el archivo: %1$s</string>
     <string name="import_pack">Importar desde archivo</string>
     <string name="language">Idioma</string>
+    <string name="library_answer">Respuesta</string>
     <string name="library_by">Por %1$s</string>
     <string name="library_download_failed">No se pudo cargar. Revisa la conexión e inténtalo de nuevo.</string>
     <string name="library_downloading">Descargando…</string>
@@ -95,14 +96,17 @@
     <string name="library_found_body">Ningún versículo de tu teléfono coincide claramente, pero estos materiales de IslamHouse tratan el tema. Abre uno para leerlo.</string>
     <string name="library_found_page">Abierto en la primera página que menciona tu pregunta</string>
     <string name="library_found_title">Libros y artículos sobre esto</string>
+    <string name="library_full_text">Leer la fatua completa</string>
     <string name="library_listen">Escuchar</string>
-    <string name="library_note">De la biblioteca IslamHouse.com. Los libros se abren en la app; la primera descarga necesita internet.</string>
+    <string name="library_note">De IslamHouse.com y del sitio oficial del jeque Ibn Baz. El contenido se abre en la app; la primera descarga de un libro necesita internet.</string>
     <string name="library_offline_note">Los libros que abres se guardan en este teléfono y se vuelven a abrir sin internet.</string>
     <string name="library_open">Abrir</string>
     <string name="library_page">Página %1$d de %2$d</string>
+    <string name="library_question">Pregunta</string>
     <string name="library_read">Leer en la app</string>
     <string name="library_retry">Reintentar</string>
     <string name="library_section">De la biblioteca IslamHouse</string>
+    <string name="library_source">Fuente: %1$s</string>
     <string name="library_type_articles">Artículo</string>
     <string name="library_type_audios">Audio</string>
     <string name="library_type_books">Libro</string>
@@ -110,6 +114,7 @@
     <string name="library_type_videos">Vídeo</string>
     <string name="library_watch">Ver</string>
     <string name="library_web">En IslamHouse</string>
+    <string name="library_web_binbaz">En binbaz.org.sa</string>
     <string name="locating">Buscando tu ubicación…</string>
     <string name="location_age">Ubicación de hace %1$s, ±%2$s m</string>
     <string name="location_current">Ubicación actual</string>
@@ -203,6 +208,7 @@
     <string name="prayer_sunrise">Amanecer</string>
     <string name="privacy">Privacidad</string>
     <string name="privacy_body">Sin cuenta. Los horarios, la alquibla y tus preguntas se resuelven en este teléfono. Con la búsqueda en línea activada se envía una ubicación aproximada (unos 1 km) para encontrar mezquitas, y el mapa en vivo carga imágenes de la zona que ves. Nada más sale del teléfono.</string>
+    <string name="publisher_binbaz">Sitio oficial del jeque Ibn Baz (binbaz.org.sa)</string>
     <string name="qibla">Alquibla</string>
     <string name="qibla_aligned">Estás orientado a la alquibla</string>
     <string name="qibla_approximate">Las brújulas del teléfono son aproximadas. Compruébalo con una referencia conocida.</string>

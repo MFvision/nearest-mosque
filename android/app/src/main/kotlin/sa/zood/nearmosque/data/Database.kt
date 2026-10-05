@@ -170,12 +170,18 @@ data class CandidateRow(val id: String, val seq: Long, val searchText: String)
  * changes how verses rank.
  */
 sealed class ChunkScope(val where: String, val args: Array<Any>) {
-    data object Books : ChunkScope("c.packId NOT LIKE '$LIBRARY_PREFIX%'", emptyArray())
+    data object Books : ChunkScope(LIBRARY_PREFIXES.joinToString(" AND ") { "c.packId NOT LIKE '$it%'" }, emptyArray())
     class Library(packId: String) : ChunkScope("c.packId = ?", arrayOf(packId))
 
     companion object {
+        /** Library collections (searched separately from the Quran): IslamHouse per language, Ibn Baz fatwas. */
         const val LIBRARY_PREFIX = "sources.islamhouse-"
+        const val BINBAZ_PACK = "sources.binbaz-ar"
+        val LIBRARY_PREFIXES = listOf(LIBRARY_PREFIX, "sources.binbaz-")
         fun libraryPack(lang: String) = LIBRARY_PREFIX + lang
+        fun isLibrary(packId: String) = LIBRARY_PREFIXES.any { packId.startsWith(it) }
+        /** Language of a library pack: the suffix after the last "-" (e.g. sources.binbaz-ar → ar). */
+        fun libraryLanguage(packId: String) = packId.substringAfterLast('-')
     }
 }
 

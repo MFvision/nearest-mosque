@@ -88,6 +88,7 @@
     <string name="import_failed">تعذّرت إضافة الملف: %1$s</string>
     <string name="import_pack">استيراد من ملف</string>
     <string name="language">اللغة</string>
+    <string name="library_answer">الجواب</string>
     <string name="library_by">تأليف: %1$s</string>
     <string name="library_download_failed">تعذّر التحميل. تحقّق من الاتصال وحاول مرة أخرى.</string>
     <string name="library_downloading">جارٍ التنزيل…</string>
@@ -95,14 +96,17 @@
     <string name="library_found_body">لم نجد آية تطابق السؤال بوضوح، لكن هذه المواد من دار الإسلام تتناوله. افتح أحدها لقراءته.</string>
     <string name="library_found_page">فُتح على أول صفحة تذكر سؤالك</string>
     <string name="library_found_title">كتب ومقالات عن هذا الموضوع</string>
+    <string name="library_full_text">اقرأ الفتوى كاملة</string>
     <string name="library_listen">استمع</string>
-    <string name="library_note">من مكتبة دار الإسلام IslamHouse.com. تُفتح الكتب داخل التطبيق، ويحتاج تنزيل الكتاب أول مرة إلى إنترنت.</string>
+    <string name="library_note">من مكتبة دار الإسلام IslamHouse.com والموقع الرسمي لسماحة الشيخ ابن باز. تُفتح المواد داخل التطبيق، ويحتاج تنزيل الكتاب أول مرة إلى إنترنت.</string>
     <string name="library_offline_note">الكتب التي تفتحها تُحفظ على هذا الجهاز وتُفتح لاحقًا دون إنترنت.</string>
     <string name="library_open">فتح</string>
     <string name="library_page">صفحة %1$d من %2$d</string>
+    <string name="library_question">السؤال</string>
     <string name="library_read">اقرأ داخل التطبيق</string>
     <string name="library_retry">أعد المحاولة</string>
     <string name="library_section">من مكتبة دار الإسلام</string>
+    <string name="library_source">المصدر: %1$s</string>
     <string name="library_type_articles">مقال</string>
     <string name="library_type_audios">صوتيات</string>
     <string name="library_type_books">كتاب</string>
@@ -110,6 +114,7 @@
     <string name="library_type_videos">فيديو</string>
     <string name="library_watch">شاهد</string>
     <string name="library_web">على موقع دار الإسلام</string>
+    <string name="library_web_binbaz">على موقع ابن باز</string>
     <string name="locating">جارٍ تحديد موقعك…</string>
     <string name="location_age">الموقع منذ %1$s، ±%2$s م</string>
     <string name="location_current">الموقع الحالي</string>
@@ -207,6 +212,7 @@
     <string name="prayer_sunrise">الشروق</string>
     <string name="privacy">الخصوصية</string>
     <string name="privacy_body">بلا حساب. تُحسب المواقيت والقبلة وإجابات أسئلتك على هذا الهاتف. عند تفعيل البحث عبر الإنترنت يُرسل موقع تقريبي (نحو 1 كم) للعثور على المساجد، وتحمّل الخريطة الحية صور المنطقة التي تشاهدها. لا يُرسل شيء آخر.</string>
+    <string name="publisher_binbaz">الموقع الرسمي لسماحة الشيخ ابن باز (binbaz.org.sa)</string>
     <string name="qibla">القبلة</string>
     <string name="qibla_aligned">أنت متجه إلى القبلة</string>
     <string name="qibla_approximate">بوصلات الهواتف تقريبية. تحقّق بمعلم معروف متى أمكن.</string>

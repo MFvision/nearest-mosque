@@ -123,13 +123,15 @@ fun LibraryCard(r: ResolvedCitation) {
     var reading by remember { mutableStateOf(false) }
     if (reading && mode != null) LibraryReader(c, mode, onDismiss = { reading = false })
     val authors = (c.section["authors"] as? kotlinx.serialization.json.JsonArray)?.mapNotNull { (it as? kotlinx.serialization.json.JsonPrimitive)?.content }.orEmpty()
-    val excerpt = c.original.text.removePrefix(c.anchor).trim().take(260)
+    val binbaz = c.sectionName("publisher") == "binbaz"
+    val excerpt = (if (binbaz) c.sectionName("question").orEmpty() else c.original.text.removePrefix(c.anchor).trim()).take(260)
     val rtl = c.original.lang == "ar" || c.original.lang == "ur"
     Column(
         Modifier.fillMaxWidth().padding(top = 8.dp)
             .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
     ) {
-        typeLabel?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = Tokens.gold) }
+        typeLabel?.let { Text(if (binbaz) listOfNotNull(it, c.sectionName("collection")).joinToString(" · ") else it, style = MaterialTheme.typography.labelSmall, color = Tokens.gold) }
+        if (binbaz) Text(stringResource(R.string.publisher_binbaz), style = MaterialTheme.typography.labelSmall, color = white.copy(alpha = 0.6f))
         CompositionLocalProvider(LocalLayoutDirection provides if (rtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
             Column {
                 Text(c.anchor, style = MaterialTheme.typography.titleSmall, color = white, modifier = Modifier.fillMaxWidth())
@@ -154,7 +156,7 @@ fun LibraryCard(r: ResolvedCitation) {
                     Text(if (size != null) stringResource(R.string.library_file, label, size) else label, color = Tokens.gold)
                 }
             }
-            c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_web), color = link) } }
+            c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(if (binbaz) R.string.library_web_binbaz else R.string.library_web), color = link) } }
         }
     }
 }

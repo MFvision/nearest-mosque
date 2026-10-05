@@ -68,12 +68,18 @@ public enum ChunkScope: Sendable {
     case books
     case library(String)
 
+    /// Library collections, searched separately from the Quran: IslamHouse per language, Ibn Baz fatwas.
     public static let libraryPrefix = "sources.islamhouse-"
+    public static let binbazPack = "sources.binbaz-ar"
+    public static let libraryPrefixes = [libraryPrefix, "sources.binbaz-"]
     public static func libraryPack(_ lang: String) -> String { libraryPrefix + lang }
+    public static func isLibrary(_ packId: String) -> Bool { libraryPrefixes.contains { packId.hasPrefix($0) } }
+    /// Language of a library pack: the suffix after the last "-" (sources.binbaz-ar → ar).
+    public static func libraryLanguage(_ packId: String) -> String { packId.split(separator: "-").last.map(String.init) ?? "" }
 
     var sql: String {
         switch self {
-        case .books: return "c.packId NOT LIKE '\(ChunkScope.libraryPrefix)%'"
+        case .books: return ChunkScope.libraryPrefixes.map { "c.packId NOT LIKE '\($0)%'" }.joined(separator: " AND ")
         case .library: return "c.packId = ?"
         }
     }
@@ -140,7 +146,7 @@ public final class AskRepository: @unchecked Sendable {
     let libraryStopwords: [String: [String]]
     private var cache: (key: String, retriever: Retriever, questions: [CommonQuestion], libraries: [String: Retriever])?
     private let lock = NSLock()
-    public static let libraryResults = 5
+    public static let libraryResults = 6
 
     public init(db: AppDatabase, stopwords: [String: [String]]) {
         self.db = db
@@ -164,28 +170,40 @@ public final class AskRepository: @unchecked Sendable {
         }.compactMap { try? JSONDecoder().decode(CommonQuestion.self, from: Data($0.utf8)) }
         let r = Retriever(store: try GRDBChunkStore(db: db), commonQuestions: qs, stopwords: stopwords)
         let packs = try db.writer.read { db in
-            try String.fetchAll(db, sql: "SELECT DISTINCT packId FROM source_chunk WHERE packId LIKE ?", arguments: [ChunkScope.libraryPrefix + "%"])
-        }
+            try String.fetchAll(db, sql: "SELECT DISTINCT packId FROM source_chunk")
+        }.filter(ChunkScope.isLibrary).sorted()
         var libraries: [String: Retriever] = [:]
         for p in packs {
-            libraries[String(p.dropFirst(ChunkScope.libraryPrefix.count))] =
-                Retriever(store: try GRDBChunkStore(db: db, scope: .library(p)), commonQuestions: [], stopwords: libraryStopwords, gates: .library)
+            libraries[p] = Retriever(store: try GRDBChunkStore(db: db, scope: .library(p)), commonQuestions: [], stopwords: libraryStopwords, gates: .library)
         }
         let c = (key, r, qs, libraries)
         cache = c
         return c
     }
 
-    /// Library items (IslamHouse) for the question: the interface language's library first, then English
-    /// and Arabic; the first library with evidence wins.
+    /// Library items for the question: the libraries in the interface language first, then English and
+    /// Arabic; the first language with evidence wins. With several libraries in that language (IslamHouse
+    /// and the Ibn Baz fatwas in Arabic), their results are interleaved, strongest library first.
     public func library(_ q: String, context: [String] = [], lang: String) throws -> [String] {
         let libs = try cached().libraries
         var seen = Set<String>()
         for l in [lang, "en", "ar"] where seen.insert(l).inserted {
-            guard let r = libs[l]?.retrieve(q, context: context), r.kind != .insufficient else { continue }
-            return Array(r.passages.map(\.chunkId).prefix(Self.libraryResults))
+            let hits = libs.filter { ChunkScope.libraryLanguage($0.key) == l }.sorted { $0.key < $1.key }
+                .map { $0.value.retrieve(q, context: context) }
+                .filter { $0.kind != .insufficient && !$0.passages.isEmpty }
+            if !hits.isEmpty { return Array(Self.interleave(hits.map(\.passages)).prefix(Self.libraryResults)) }
         }
         return []
+    }
+
+    /// Round-robin over ranked lists, starting with the list whose best passage scores highest.
+    static func interleave(_ lists: [[ScoredPassage]]) -> [String] {
+        let ordered = lists.sorted { ($0.first?.score ?? 0) > ($1.first?.score ?? 0) }
+        var out: [String] = [], seen = Set<String>()
+        for i in 0..<(ordered.map(\.count).max() ?? 0) {
+            for l in ordered where i < l.count && seen.insert(l[i].chunkId).inserted { out.append(l[i].chunkId) }
+        }
+        return out
     }
 
     public func commonQuestions() throws -> [CommonQuestion] { try retriever().1 }

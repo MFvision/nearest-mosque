@@ -88,6 +88,7 @@
     <string name="import_failed">یہ فائل شامل نہیں ہو سکی: %1$s</string>
     <string name="import_pack">فائل سے درآمد کریں</string>
     <string name="language">زبان</string>
+    <string name="library_answer">جواب</string>
     <string name="library_by">از %1$s</string>
     <string name="library_download_failed">لوڈ نہیں ہو سکا۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔</string>
     <string name="library_downloading">ڈاؤن لوڈ ہو رہا ہے…</string>
@@ -95,14 +96,17 @@
     <string name="library_found_body">آپ کے فون پر کوئی آیت واضح طور پر مطابقت نہیں رکھتی، لیکن یہ IslamHouse مواد اس موضوع پر ہیں۔ پڑھنے کے لیے کوئی ایک کھولیں۔</string>
     <string name="library_found_page">آپ کے سوال کا ذکر کرنے والے پہلے صفحے پر کھولا گیا</string>
     <string name="library_found_title">اس موضوع پر کتابیں اور مضامین</string>
+    <string name="library_full_text">مکمل فتویٰ پڑھیں</string>
     <string name="library_listen">سنیں</string>
-    <string name="library_note">IslamHouse.com کی لائبریری سے۔ کتابیں ایپ کے اندر کھلتی ہیں؛ پہلی بار ڈاؤن لوڈ کے لیے انٹرنیٹ درکار ہے۔</string>
+    <string name="library_note">IslamHouse.com اور شیخ ابن باز کی آفیشل ویب سائٹ سے۔ مواد ایپ کے اندر کھلتا ہے؛ کتاب پہلی بار ڈاؤن لوڈ کرنے کے لیے انٹرنیٹ درکار ہے۔</string>
     <string name="library_offline_note">جو کتابیں آپ کھولتے ہیں وہ اسی فون پر محفوظ رہتی ہیں اور بعد میں انٹرنیٹ کے بغیر کھلتی ہیں۔</string>
     <string name="library_open">کھولیں</string>
     <string name="library_page">صفحہ %1$d از %2$d</string>
+    <string name="library_question">سوال</string>
     <string name="library_read">ایپ میں پڑھیں</string>
     <string name="library_retry">دوبارہ کوشش کریں</string>
     <string name="library_section">IslamHouse لائبریری سے</string>
+    <string name="library_source">ماخذ: %1$s</string>
     <string name="library_type_articles">مضمون</string>
     <string name="library_type_audios">آڈیو</string>
     <string name="library_type_books">کتاب</string>
@@ -110,6 +114,7 @@
     <string name="library_type_videos">ویڈیو</string>
     <string name="library_watch">دیکھیں</string>
     <string name="library_web">IslamHouse پر</string>
+    <string name="library_web_binbaz">binbaz.org.sa پر</string>
     <string name="locating">آپ کا مقام معلوم کیا جا رہا ہے…</string>
     <string name="location_age">%1$s پہلے کا مقام، ±%2$s میٹر</string>
     <string name="location_current">موجودہ مقام</string>
@@ -203,6 +208,7 @@
     <string name="prayer_sunrise">طلوعِ آفتاب</string>
     <string name="privacy">رازداری</string>
     <string name="privacy_body">کوئی اکاؤنٹ نہیں۔ نماز کے اوقات، قبلہ اور آپ کے سوالات اسی فون پر حل ہوتے ہیں۔ آن لائن تلاش آن ہو تو مساجد ڈھونڈنے کے لیے تقریبی مقام (تقریباً 1 کلومیٹر) بھیجا جاتا ہے، اور لائیو نقشہ دیکھے جانے والے علاقے کی تصاویر لوڈ کرتا ہے۔ اس کے علاوہ کچھ نہیں بھیجا جاتا۔</string>
+    <string name="publisher_binbaz">شیخ ابن باز کی آفیشل ویب سائٹ (binbaz.org.sa)</string>
     <string name="qibla">قبلہ</string>
     <string name="qibla_aligned">آپ کا رخ قبلہ کی طرف ہے</string>
     <string name="qibla_approximate">فون کے قطب نما تخمینی ہوتے ہیں۔ جب ممکن ہو کسی معلوم نشان سے تصدیق کریں۔</string>

@@ -116,21 +116,24 @@ class AskRepository(private val db: AppDatabase, private val stopwords: Map<Stri
         val key = db.packs().all().filter { it.kind == "sources" }.sumOf { it.installedAt xor it.recordCount.toLong() }
         cached?.takeIf { it.first == key }?.second ?: run {
             questionsCache = db.sources().questions().map { PackJson.decodeFromString(CommonQuestion.serializer(), it.json) }
-            libraries = db.sources().chunkPackIds().filter { it.startsWith(ChunkScope.LIBRARY_PREFIX) }
-                .associate { it.removePrefix(ChunkScope.LIBRARY_PREFIX) to Retriever(RoomChunkStore(db.sources(), ChunkScope.Library(it)), emptyList(), libraryStopwords, sa.zood.nearmosque.core.Retriever.Gates.LIBRARY) }
+            libraries = db.sources().chunkPackIds().filter { ChunkScope.isLibrary(it) }.sorted()
+                .associateWith { Retriever(RoomChunkStore(db.sources(), ChunkScope.Library(it)), emptyList(), libraryStopwords, sa.zood.nearmosque.core.Retriever.Gates.LIBRARY) }
             Retriever(RoomChunkStore(db.sources()), questionsCache, stopwords).also { cached = key to it }
         }
     }
 
     /**
-     * Library items (IslamHouse) for the question: the interface language's library first, then
-     * English and Arabic; the first library with evidence wins.
+     * Library items for the question: the libraries in the interface language first, then English and
+     * Arabic; the first language with evidence wins. With several libraries in that language (IslamHouse
+     * and the Ibn Baz fatwas in Arabic), their results are interleaved, strongest library first.
      */
     private suspend fun library(question: String, context: List<String>, lang: String): List<String> {
         retriever()
         for (l in listOf(lang, "en", "ar").distinct()) {
-            val r = libraries[l]?.retrieve(question, context) ?: continue
-            if (r.kind != sa.zood.nearmosque.core.AnswerKind.INSUFFICIENT) return r.passages.map { it.chunkId }.take(LIBRARY_RESULTS)
+            val hits = libraries.filterKeys { ChunkScope.libraryLanguage(it) == l }.values
+                .map { it.retrieve(question, context) }
+                .filter { it.kind != sa.zood.nearmosque.core.AnswerKind.INSUFFICIENT && it.passages.isNotEmpty() }
+            if (hits.isNotEmpty()) return interleave(hits.map { it.passages }).take(LIBRARY_RESULTS)
         }
         return emptyList()
     }
@@ -163,7 +166,15 @@ class AskRepository(private val db: AppDatabase, private val stopwords: Map<Stri
     }
 
     companion object {
-        const val LIBRARY_RESULTS = 5
+        const val LIBRARY_RESULTS = 6
+
+        /** Round-robin over ranked lists, starting with the list whose best passage scores highest. */
+        fun interleave(lists: List<List<sa.zood.nearmosque.core.ScoredPassage>>): List<String> {
+            val ordered = lists.sortedByDescending { it.first().score }
+            val out = LinkedHashSet<String>()
+            for (i in 0 until (ordered.maxOfOrNull { it.size } ?: 0)) ordered.forEach { l -> l.getOrNull(i)?.let { out.add(it.chunkId) } }
+            return out.toList()
+        }
 
         fun parseStopwords(json: String): Map<String, List<String>> {
             val obj = Json.parseToJsonElement(json) as kotlinx.serialization.json.JsonObject

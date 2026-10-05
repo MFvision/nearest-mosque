@@ -4091,6 +4091,53 @@
         }
       }
     },
+    "library_answer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Answer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الجواب"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جواب"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cevap"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jawaban"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réponse"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta"
+          }
+        }
+      }
+    },
     "library_by": {
       "extractionState": "manual",
       "localizations": {
@@ -4420,6 +4467,53 @@
         }
       }
     },
+    "library_full_text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read the full fatwa"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اقرأ الفتوى كاملة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مکمل فتویٰ پڑھیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetvanın tamamını oku"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baca fatwa lengkap"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lire la fatwa complète"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leer la fatua completa"
+          }
+        }
+      }
+    },
     "library_listen": {
       "extractionState": "manual",
       "localizations": {
@@ -4473,43 +4567,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "From the IslamHouse.com library. Books open inside the app; downloading one needs internet the first time."
+            "value": "From IslamHouse.com and Shaykh Ibn Baz’s official website. Items open inside the app; downloading a book needs internet the first time."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "من مكتبة دار الإسلام IslamHouse.com. تُفتح الكتب داخل التطبيق، ويحتاج تنزيل الكتاب أول مرة إلى إنترنت."
+            "value": "من مكتبة دار الإسلام IslamHouse.com والموقع الرسمي لسماحة الشيخ ابن باز. تُفتح المواد داخل التطبيق، ويحتاج تنزيل الكتاب أول مرة إلى إنترنت."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "IslamHouse.com کی لائبریری سے۔ کتابیں ایپ کے اندر کھلتی ہیں؛ پہلی بار ڈاؤن لوڈ کے لیے انٹرنیٹ درکار ہے۔"
+            "value": "IslamHouse.com اور شیخ ابن باز کی آفیشل ویب سائٹ سے۔ مواد ایپ کے اندر کھلتا ہے؛ کتاب پہلی بار ڈاؤن لوڈ کرنے کے لیے انٹرنیٹ درکار ہے۔"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "IslamHouse.com kütüphanesinden. Kitaplar uygulamanın içinde açılır; ilk indirme için internet gerekir."
+            "value": "IslamHouse.com ve Şeyh İbn Baz’ın resmî sitesinden. İçerikler uygulamada açılır; bir kitabı ilk kez indirmek için internet gerekir."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dari perpustakaan IslamHouse.com. Buku dibuka di dalam aplikasi; unduhan pertama memerlukan internet."
+            "value": "Dari IslamHouse.com dan situs resmi Syekh Ibnu Baz. Materi dibuka di dalam aplikasi; unduhan buku pertama memerlukan internet."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bibliothèque IslamHouse.com. Les livres s’ouvrent dans l’app ; le premier téléchargement nécessite internet."
+            "value": "D’IslamHouse.com et du site officiel du cheikh Ibn Baz. Les contenus s’ouvrent dans l’app ; le premier téléchargement d’un livre nécessite internet."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "De la biblioteca IslamHouse.com. Los libros se abren en la app; la primera descarga necesita internet."
+            "value": "De IslamHouse.com y del sitio oficial del jeque Ibn Baz. El contenido se abre en la app; la primera descarga de un libro necesita internet."
           }
         }
       }
@@ -4655,6 +4749,53 @@
         }
       }
     },
+    "library_question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Question"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "السؤال"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوال"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soru"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pertanyaan"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Question"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta"
+          }
+        }
+      }
+    },
     "library_read": {
       "extractionState": "manual",
       "localizations": {
@@ -4792,6 +4933,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "De la biblioteca IslamHouse"
+          }
+        }
+      }
+    },
+    "library_source": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source: %1$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المصدر: %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ماخذ: %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaynak: %1$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sumber: %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source : %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente: %1$@"
           }
         }
       }
@@ -5121,6 +5309,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "En IslamHouse"
+          }
+        }
+      }
+    },
+    "library_web_binbaz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On binbaz.org.sa"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "على موقع ابن باز"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "binbaz.org.sa پر"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "binbaz.org.sa’da"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Di binbaz.org.sa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur binbaz.org.sa"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En binbaz.org.sa"
           }
         }
       }
@@ -9453,6 +9688,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sin cuenta. Los horarios, la alquibla y tus preguntas se resuelven en este teléfono. Con la búsqueda en línea activada se envía una ubicación aproximada (unos 1 km) para encontrar mezquitas, y el mapa en vivo carga imágenes de la zona que ves. Nada más sale del teléfono."
+          }
+        }
+      }
+    },
+    "publisher_binbaz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shaykh Ibn Baz’s official website (binbaz.org.sa)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الموقع الرسمي لسماحة الشيخ ابن باز (binbaz.org.sa)"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شیخ ابن باز کی آفیشل ویب سائٹ (binbaz.org.sa)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şeyh İbn Baz’ın resmî sitesi (binbaz.org.sa)"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Situs resmi Syekh Ibnu Baz (binbaz.org.sa)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Site officiel du cheikh Ibn Baz (binbaz.org.sa)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sitio oficial del jeque Ibn Baz (binbaz.org.sa)"
           }
         }
       }

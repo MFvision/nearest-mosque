@@ -17,6 +17,13 @@ public struct ChunkSection: Codable, Hashable, Sendable {
     public var attachmentType: String?
     public var attachmentSize: String?
     public var hasText: Bool?
+    // Ibn Baz fatwas (binbaz.org.sa).
+    public var publisher: String?
+    public var collection: String?
+    public var question: String?
+    public var source: String?
+    public var categories: [String]?
+    public var truncated: Bool?
 }
 
 /// One JSON line of a book pack (tools/build_quran_pack.py). Anchors are stable across versions.

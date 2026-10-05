@@ -11,7 +11,8 @@ import java.net.URL
 
 /**
  * Books opened from the library, downloaded once (only when the user taps "Read in the app") and kept
- * in app storage so they open again offline. Only HTTPS files from IslamHouse hosts are fetched.
+ * in app storage so they open again offline. Only HTTPS files from IslamHouse (and pages from
+ * binbaz.org.sa) are opened.
  */
 class LibraryFiles(private val context: Context) {
     private val dir get() = File(context.filesDir, "library").apply { mkdirs() }
@@ -53,7 +54,7 @@ class LibraryFiles(private val context: Context) {
     }
 
     companion object {
-        private val HOSTS = setOf("islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "www.islamhouse.com")
+        private val HOSTS = setOf("islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "www.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa")
 
         fun isAllowed(url: String): Boolean = runCatching {
             val u = URI(url)

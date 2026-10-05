@@ -88,6 +88,7 @@
     <string name="import_failed">Dosya eklenemedi: %1$s</string>
     <string name="import_pack">Dosyadan içe aktar</string>
     <string name="language">Dil</string>
+    <string name="library_answer">Cevap</string>
     <string name="library_by">Yazar: %1$s</string>
     <string name="library_download_failed">Yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.</string>
     <string name="library_downloading">İndiriliyor…</string>
@@ -95,14 +96,17 @@
     <string name="library_found_body">Telefonunuzda açıkça eşleşen bir ayet yok, ancak bu IslamHouse içerikleri konuyu ele alıyor. Okumak için birini açın.</string>
     <string name="library_found_page">Sorunuzun geçtiği ilk sayfada açıldı</string>
     <string name="library_found_title">Bu konuda kitaplar ve makaleler</string>
+    <string name="library_full_text">Fetvanın tamamını oku</string>
     <string name="library_listen">Dinle</string>
-    <string name="library_note">IslamHouse.com kütüphanesinden. Kitaplar uygulamanın içinde açılır; ilk indirme için internet gerekir.</string>
+    <string name="library_note">IslamHouse.com ve Şeyh İbn Baz’ın resmî sitesinden. İçerikler uygulamada açılır; bir kitabı ilk kez indirmek için internet gerekir.</string>
     <string name="library_offline_note">Açtığınız kitaplar bu telefona kaydedilir ve sonra internetsiz açılır.</string>
     <string name="library_open">Aç</string>
     <string name="library_page">Sayfa %1$d / %2$d</string>
+    <string name="library_question">Soru</string>
     <string name="library_read">Uygulamada oku</string>
     <string name="library_retry">Tekrar dene</string>
     <string name="library_section">IslamHouse kütüphanesinden</string>
+    <string name="library_source">Kaynak: %1$s</string>
     <string name="library_type_articles">Makale</string>
     <string name="library_type_audios">Ses</string>
     <string name="library_type_books">Kitap</string>
@@ -110,6 +114,7 @@
     <string name="library_type_videos">Video</string>
     <string name="library_watch">İzle</string>
     <string name="library_web">IslamHouse’ta</string>
+    <string name="library_web_binbaz">binbaz.org.sa’da</string>
     <string name="locating">Konumunuz bulunuyor…</string>
     <string name="location_age">%1$s önceki konum, ±%2$s m</string>
     <string name="location_current">Mevcut konum</string>
@@ -203,6 +208,7 @@
     <string name="prayer_sunrise">Güneş</string>
     <string name="privacy">Gizlilik</string>
     <string name="privacy_body">Hesap yok. Namaz vakitleri, kıble ve sorularınız bu telefonda işlenir. Çevrimiçi arama açıkken camileri bulmak için yaklaşık konum (yaklaşık 1 km) gönderilir ve canlı harita baktığınız bölgenin görüntülerini yükler. Başka hiçbir şey telefondan çıkmaz.</string>
+    <string name="publisher_binbaz">Şeyh İbn Baz’ın resmî sitesi (binbaz.org.sa)</string>
     <string name="qibla">Kıble</string>
     <string name="qibla_aligned">Kıbleye dönüksünüz</string>
     <string name="qibla_approximate">Telefon pusulaları yaklaşıktır. Mümkünse bilinen bir işaretle kontrol edin.</string>
