@@ -196,7 +196,12 @@ public final class LibraryRetriever: @unchecked Sendable {
 public enum LibraryParts {
     public static let separator: Character = "\u{2063}"
 
-    public struct Part: Hashable, Sendable { public let kind: String; public let lang: String; public let text: String }
+    public struct Part: Hashable, Sendable {
+        public let kind: String
+        public let lang: String
+        public let text: String
+        public init(kind: String, lang: String, text: String) { self.kind = kind; self.lang = lang; self.text = text }
+    }
 
     public static func parts(_ c: SourceChunk) -> [Part] {
         guard let kinds = c.section?.parts else { return [] }

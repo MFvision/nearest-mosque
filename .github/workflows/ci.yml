@@ -90,7 +90,8 @@ jobs:
           swift-version: "6.1"
       - name: swift test
         working-directory: ios/Packages/NearestMosqueKit
-        run: swift test
+        # NMCore here; the data-layer tests (which install the large library packs) run in the Linux job.
+        run: swift test --filter NMCoreTests
 
   ios:
     name: iOS app (Xcode, simulator build) and package tests
