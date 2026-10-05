@@ -120,7 +120,12 @@ public final class PackManager: @unchecked Sendable {
             let lines = String(decoding: data, as: UTF8.self).split(separator: "\n")
             let chunks = try lines.map { line -> (SourceChunk, String, String) in
                 let c = try dec.decode(SourceChunk.self, from: Data(line.utf8))
-                return (c, String(line), c.searchText())
+                // Library packs are indexed with stems and variants for library search; the Quran keeps the
+                // shared normalizer only (fixtures in shared/fixtures/retrieval.json).
+                let text = ChunkScope.isLibrary(m.id)
+                    ? LibraryText.indexTokens(c.original.text + " " + c.allTranslations.map(\.text).joined(separator: " ")).joined(separator: " ")
+                    : c.searchText()
+                return (c, String(line), text)
             }
             let docs = (read("documents.json").flatMap { try? dec.decode([SourceDocument].self, from: $0) }) ?? []
             let qs = (read("common-questions.json").flatMap { try? dec.decode(CommonQuestionsFile.self, from: $0) })?.questions ?? []

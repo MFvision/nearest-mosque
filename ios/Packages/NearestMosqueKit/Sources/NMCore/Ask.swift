@@ -119,13 +119,10 @@ public final class Retriever: @unchecked Sendable {
     public static let k1 = 1.2, b = 0.75, expansionWeight = 0.5, contextWeight = 0.3
     public static let maxPassages = 5, minScore = 3.0, minCoverage = 0.5, coordBase = 0.0
 
-    /// Evidence gates. `books` is fixed by shared/fixtures/retrieval.json. `library` (catalogue records, where a
-    /// word like "Islam" occurs in hundreds of titles and so carries little IDF) accepts lower scores but
-    /// requires most of the question's own words.
+    /// Evidence gates, fixed by shared/fixtures/retrieval.json. Library search has its own (`LibraryRetriever`).
     public struct Gates: Sendable {
         public let minScore: Double, minCoverage: Double, orMatchedAtLeast: Int?
         public static let books = Gates(minScore: Retriever.minScore, minCoverage: Retriever.minCoverage, orMatchedAtLeast: 2)
-        public static let library = Gates(minScore: 0.5, minCoverage: 0.6, orMatchedAtLeast: nil)
     }
 
     struct Prepared { let q: CommonQuestion; let triggers: [[String]]; let questions: [Set<String>]; let expansion: [String] }
@@ -226,16 +223,6 @@ public final class Retriever: @unchecked Sendable {
         for i in 0...(tokens.count - phrase.count) where Array(tokens[i..<(i + phrase.count)]) == phrase { return true }
         return false
     }
-}
-
-/// Stopwords for library retrieval: the query stopwords without the `_domain` words ("Islam", "Quran"...).
-public func libraryStopwords(_ stopwords: [String: [String]]) -> [String: [String]] {
-    let domain = Set((stopwords["_domain"] ?? []).flatMap(TextNormalizer.tokens))
-    var out: [String: [String]] = [:]
-    for (k, words) in stopwords where !k.hasPrefix("_") {
-        out[k] = words.filter { w in !TextNormalizer.tokens(w).contains { domain.contains($0) } }
-    }
-    return out
 }
 
 /// A composed answer: references to stored passages plus an optional editorial or on-device text.

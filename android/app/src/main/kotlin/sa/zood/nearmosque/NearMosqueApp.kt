@@ -49,7 +49,10 @@ class AppContainer(
     val packs = PackManager(app, db)
     val cities = CityRepository(packs)
     val mosques = MosqueRepository(db)
-    val ask = AskRepository(db, AskRepository.parseStopwords(packs.readAsset("stopwords.json")))
+    val ask = AskRepository(
+        db, AskRepository.parseStopwords(packs.readAsset("stopwords.json")),
+        sa.zood.nearmosque.core.Lexicon.parse(packs.readAsset("lexicon.json")),
+    )
     val location = LocationService(app)
     val heading = HeadingService(app)
     val calculator = PrayerCalculator()

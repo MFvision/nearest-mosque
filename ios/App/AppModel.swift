@@ -82,6 +82,7 @@ final class AppModel {
         guard !ready else { return }
         let root = packsRoot
         let stopData = Bundle.main.url(forResource: "stopwords", withExtension: "json").flatMap { try? Data(contentsOf: $0) } ?? Data()
+        let lexiconData = Bundle.main.url(forResource: "lexicon", withExtension: "json").flatMap { try? Data(contentsOf: $0) } ?? Data()
         do {
             let opened: (AppDatabase, PackManager, CityIndex?) = try await Task.detached(priority: .userInitiated) {
                 let db = try AppDatabase.onDisk()
@@ -94,7 +95,7 @@ final class AppModel {
             packs = opened.1
             cities = opened.2
             mosques = MosqueRepository(db: opened.0)
-            ask = AskRepository(db: opened.0, stopwords: AskRepository.parseStopwords(stopData))
+            ask = AskRepository(db: opened.0, stopwords: AskRepository.parseStopwords(stopData), lexicon: Lexicon(json: lexiconData))
         } catch {
             storageError = error.localizedDescription
         }

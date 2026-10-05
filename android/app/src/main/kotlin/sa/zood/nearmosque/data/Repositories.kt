@@ -102,14 +102,30 @@ class RoomChunkStore(private val dao: SourceDao, private val scope: ChunkScope =
         }
 }
 
+/** One library pack in Room; tokens were indexed with [sa.zood.nearmosque.core.LibraryText.indexTokens]. */
+class RoomLibraryStore(private val dao: SourceDao, packId: String) : sa.zood.nearmosque.core.LibraryStore {
+    private val scope = ChunkScope.Library(packId)
+    override val totalChunks: Int by lazy { dao.rawInt(countQuery(scope)) }
+    override val averageLength: Double by lazy { dao.rawDouble(averageQuery(scope)) }
+    override fun documentFrequency(variants: List<String>): Int = if (variants.isEmpty()) 0 else dao.rawInt(libraryCountQuery(variants, scope))
+    override fun candidates(variants: List<String>): List<CandidateChunk> =
+        if (variants.isEmpty()) emptyList() else dao.candidates(libraryCandidatesQuery(variants, scope)).map {
+            CandidateChunk(it.id, it.seq, if (it.searchText.isEmpty()) emptyList() else it.searchText.split(' '))
+        }
+}
+
 data class ResolvedCitation(val chunk: SourceChunk, val packId: String, val documents: Map<String, SourceDocument>)
 
-class AskRepository(private val db: AppDatabase, private val stopwords: Map<String, List<String>>) {
+class AskRepository(
+    private val db: AppDatabase,
+    private val stopwords: Map<String, List<String>>,
+    private val lexicon: sa.zood.nearmosque.core.Lexicon = sa.zood.nearmosque.core.Lexicon.EMPTY,
+) {
     private val mutex = Mutex()
     private var cached: Pair<Long, Retriever>? = null
-    private var libraries: Map<String, Retriever> = emptyMap()
+    private var libraries: Map<String, sa.zood.nearmosque.core.LibraryRetriever> = emptyMap()
     private var questionsCache: List<CommonQuestion> = emptyList()
-    private val libraryStopwords = sa.zood.nearmosque.core.libraryStopwords(stopwords)
+    private val libraryStopwords = sa.zood.nearmosque.core.LibraryText.stopwords(stopwords)
 
     /** Rebuilt whenever the installed packs change (keyed by install timestamps). */
     private suspend fun retriever(): Retriever = mutex.withLock {
@@ -117,25 +133,29 @@ class AskRepository(private val db: AppDatabase, private val stopwords: Map<Stri
         cached?.takeIf { it.first == key }?.second ?: run {
             questionsCache = db.sources().questions().map { PackJson.decodeFromString(CommonQuestion.serializer(), it.json) }
             libraries = db.sources().chunkPackIds().filter { ChunkScope.isLibrary(it) }.sorted()
-                .associateWith { Retriever(RoomChunkStore(db.sources(), ChunkScope.Library(it)), emptyList(), libraryStopwords, sa.zood.nearmosque.core.Retriever.Gates.LIBRARY) }
+                .associateWith { sa.zood.nearmosque.core.LibraryRetriever(RoomLibraryStore(db.sources(), it), libraryStopwords, lexicon) }
             Retriever(RoomChunkStore(db.sources()), questionsCache, stopwords).also { cached = key to it }
         }
     }
 
     /**
-     * Library items for the question: the libraries in the interface language first, then English and
-     * Arabic; the first language with evidence wins. With several libraries in that language (IslamHouse
-     * and the Ibn Baz fatwas in Arabic), their results are interleaved, strongest library first.
+     * Library items for the question, by language: the interface language first, then English, then
+     * Arabic. Results from several libraries in one language (IslamHouse and the Ibn Baz fatwas in
+     * Arabic) are interleaved, strongest library first. The next language only fills in while fewer than
+     * [LIBRARY_ENOUGH] items were found, so the reader's own language dominates; the lexicon lets a
+     * question in one language find items in another.
      */
     private suspend fun library(question: String, context: List<String>, lang: String): List<String> {
         retriever()
+        val out = LinkedHashSet<String>()
         for (l in listOf(lang, "en", "ar").distinct()) {
+            if (out.size >= LIBRARY_ENOUGH) break
             val hits = libraries.filterKeys { ChunkScope.libraryLanguage(it) == l }.values
                 .map { it.retrieve(question, context) }
-                .filter { it.kind != sa.zood.nearmosque.core.AnswerKind.INSUFFICIENT && it.passages.isNotEmpty() }
-            if (hits.isNotEmpty()) return interleave(hits.map { it.passages }).take(LIBRARY_RESULTS)
+                .filter { it.passages.isNotEmpty() }
+            out += interleave(hits.map { it.passages })
         }
-        return emptyList()
+        return out.take(LIBRARY_RESULTS)
     }
 
     suspend fun commonQuestions(): List<CommonQuestion> = withContext(Dispatchers.IO) {
@@ -167,6 +187,7 @@ class AskRepository(private val db: AppDatabase, private val stopwords: Map<Stri
 
     companion object {
         const val LIBRARY_RESULTS = 6
+        const val LIBRARY_ENOUGH = 3
 
         /** Round-robin over ranked lists, starting with the list whose best passage scores highest. */
         fun interleave(lists: List<List<sa.zood.nearmosque.core.ScoredPassage>>): List<String> {

@@ -203,6 +203,22 @@ fun candidatesQuery(terms: Collection<String>, scope: ChunkScope = ChunkScope.Bo
     arrayOf<Any>(terms.joinToString(" OR ") { ftsTerm(it) }, *scope.args),
 )
 
+/** FTS4 match for library variants: prefix query for 3+ letters (FTS4 puts the * inside the quotes). */
+fun libraryMatch(variants: Collection<String>) = variants.joinToString(" OR ") {
+    if (it.length >= sa.zood.nearmosque.core.LibraryText.PREFIX_MIN) "\"" + it.replace("\"", "") + "*\"" else ftsTerm(it)
+}
+
+fun libraryCountQuery(variants: Collection<String>, scope: ChunkScope) = SimpleSQLiteQuery(
+    "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    arrayOf<Any>(libraryMatch(variants), *scope.args),
+)
+
+fun libraryCandidatesQuery(variants: Collection<String>, scope: ChunkScope): SupportSQLiteQuery = SimpleSQLiteQuery(
+    "SELECT c.id AS id, c.seq AS seq, c.searchText AS searchText FROM source_chunk c " +
+        "JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    arrayOf<Any>(libraryMatch(variants), *scope.args),
+)
+
 @Database(
     entities = [
         InstalledPackEntity::class, MosqueEntity::class, FavoriteEntity::class,

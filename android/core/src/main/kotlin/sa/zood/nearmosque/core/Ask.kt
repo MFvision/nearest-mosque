@@ -109,15 +109,10 @@ class Retriever(
     stopwords: Map<String, List<String>>,
     private val gates: Gates = Gates.BOOKS,
 ) {
-    /**
-     * Evidence gates. BOOKS is fixed by shared/fixtures/retrieval.json. LIBRARY (catalogue records,
-     * where a word like "Islam" occurs in hundreds of titles and so carries little IDF) accepts lower
-     * scores but requires most of the question's own words.
-     */
+    /** Evidence gates, fixed by shared/fixtures/retrieval.json. Library search has its own ([LibraryRetriever]). */
     data class Gates(val minScore: Double, val minCoverage: Double, val orMatchedAtLeast: Int?) {
         companion object {
             val BOOKS = Gates(MIN_SCORE, MIN_COVERAGE, 2)
-            val LIBRARY = Gates(0.5, 0.6, null)
         }
     }
 
@@ -220,12 +215,6 @@ class Retriever(
         const val MIN_COVERAGE = 0.5
         const val COORD_BASE = 0.0
     }
-}
-
-/** Stopwords for library retrieval: the query stopwords without the `_domain` words ("Islam", "Quran"...). */
-fun libraryStopwords(stopwords: Map<String, List<String>>): Map<String, List<String>> {
-    val domain = stopwords["_domain"].orEmpty().flatMap { TextNormalizer.tokens(it) }.toSet()
-    return stopwords.filterKeys { !it.startsWith("_") }.mapValues { (_, words) -> words.filter { w -> TextNormalizer.tokens(w).none { it in domain } } }
 }
 
 /** A composed answer: only references to stored passages, plus an optional editorial summary. */

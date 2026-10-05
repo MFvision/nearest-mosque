@@ -24,6 +24,8 @@ import urllib.request
 API = "https://api3.islamhouse.com/v3/paV29H2gm56kvLPy"
 TYPES = ["books", "articles", "fatwa", "videos", "audios"]
 TEXT_CAP = 1800
+# Bump when installed copies must be re-indexed (2: library stemming and variants).
+PACK_VERSION = 2
 NAMES = {
     "en": "IslamHouse library (English)", "ar": "مكتبة دار الإسلام (العربية)", "ur": "IslamHouse library (اردو)",
     "tr": "IslamHouse kütüphanesi (Türkçe)", "id": "Perpustakaan IslamHouse (Indonesia)",
@@ -144,7 +146,7 @@ def build(lang, items, out_root):
         p = os.path.join(out, name)
         files.append({"path": name, "bytes": os.path.getsize(p), "sha256": sha256_file(p)})
     manifest = {
-        "id": f"sources.islamhouse-{lang}", "kind": "sources", "schemaVersion": 1, "version": 1,
+        "id": f"sources.islamhouse-{lang}", "kind": "sources", "schemaVersion": 1, "version": PACK_VERSION,
         "title": {"en": f"IslamHouse library ({lang})", lang: NAMES[lang]},
         "languages": [lang], "recordCount": len(rows),
         "categories": {t: sum(1 for r in rows if r["section"]["type"] == t) for t in TYPES},

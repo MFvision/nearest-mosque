@@ -1,0 +1,3660 @@
+{
+ "_comment": "Equivalent single words for core Islamic topics across the app's languages. Library search (tools/library_search.py and its Kotlin/Swift ports) expands a question word with the other words of its group at reduced weight, so a question in one language also finds items in another (e.g. 'prayer' -> 'صلاة', 'نماز'). Words are matched after normalization and light stemming. Keep entries single words; spelling variants are fine. Members that normalize to more than one word or to fewer than 3 letters are ignored.",
+ "groups": [
+  {
+   "en": [
+    "prayer",
+    "salah",
+    "salat",
+    "pray"
+   ],
+   "ar": [
+    "صلاة",
+    "صلوات"
+   ],
+   "ur": [
+    "نماز"
+   ],
+   "tr": [
+    "namaz",
+    "salat"
+   ],
+   "id": [
+    "shalat",
+    "salat",
+    "sholat",
+    "sembahyang"
+   ],
+   "fr": [
+    "prière",
+    "salat"
+   ],
+   "es": [
+    "oración",
+    "rezo",
+    "salat"
+   ]
+  },
+  {
+   "en": [
+    "ablution",
+    "wudu",
+    "wudhu"
+   ],
+   "ar": [
+    "وضوء"
+   ],
+   "ur": [
+    "وضو"
+   ],
+   "tr": [
+    "abdest"
+   ],
+   "id": [
+    "wudhu",
+    "wudu"
+   ],
+   "fr": [
+    "ablutions",
+    "ablution"
+   ],
+   "es": [
+    "ablución",
+    "abluciones"
+   ]
+  },
+  {
+   "en": [
+    "ghusl",
+    "bath"
+   ],
+   "ar": [
+    "غسل",
+    "اغتسال"
+   ],
+   "ur": [
+    "غسل"
+   ],
+   "tr": [
+    "gusül",
+    "gusul"
+   ],
+   "id": [
+    "mandi"
+   ],
+   "fr": [
+    "ghusl"
+   ],
+   "es": [
+    "gusl"
+   ]
+  },
+  {
+   "en": [
+    "tayammum"
+   ],
+   "ar": [
+    "تيمم"
+   ],
+   "ur": [
+    "تیمم"
+   ],
+   "tr": [
+    "teyemmüm"
+   ],
+   "id": [
+    "tayamum",
+    "tayammum"
+   ],
+   "fr": [
+    "tayammum"
+   ],
+   "es": [
+    "tayammum"
+   ]
+  },
+  {
+   "en": [
+    "fasting",
+    "fast",
+    "sawm",
+    "siyam"
+   ],
+   "ar": [
+    "صوم",
+    "صيام"
+   ],
+   "ur": [
+    "روزہ",
+    "روزے"
+   ],
+   "tr": [
+    "oruç"
+   ],
+   "id": [
+    "puasa",
+    "shaum"
+   ],
+   "fr": [
+    "jeûne"
+   ],
+   "es": [
+    "ayuno"
+   ]
+  },
+  {
+   "en": [
+    "ramadan"
+   ],
+   "ar": [
+    "رمضان"
+   ],
+   "ur": [
+    "رمضان"
+   ],
+   "tr": [
+    "ramazan"
+   ],
+   "id": [
+    "ramadhan",
+    "ramadan"
+   ],
+   "fr": [
+    "ramadan"
+   ],
+   "es": [
+    "ramadán",
+    "ramadan"
+   ]
+  },
+  {
+   "en": [
+    "zakat",
+    "zakah",
+    "alms"
+   ],
+   "ar": [
+    "زكاة"
+   ],
+   "ur": [
+    "زکوٰۃ",
+    "زکاۃ",
+    "زکات"
+   ],
+   "tr": [
+    "zekât",
+    "zekat"
+   ],
+   "id": [
+    "zakat"
+   ],
+   "fr": [
+    "zakat",
+    "aumône"
+   ],
+   "es": [
+    "zakat",
+    "azaque",
+    "limosna"
+   ]
+  },
+  {
+   "en": [
+    "charity",
+    "sadaqah"
+   ],
+   "ar": [
+    "صدقة",
+    "صدقات"
+   ],
+   "ur": [
+    "صدقہ",
+    "خیرات"
+   ],
+   "tr": [
+    "sadaka"
+   ],
+   "id": [
+    "sedekah",
+    "shadaqah"
+   ],
+   "fr": [
+    "charité",
+    "sadaqa"
+   ],
+   "es": [
+    "caridad",
+    "sadaqa"
+   ]
+  },
+  {
+   "en": [
+    "hajj",
+    "pilgrimage"
+   ],
+   "ar": [
+    "حج"
+   ],
+   "ur": [
+    "حج"
+   ],
+   "tr": [
+    "hac"
+   ],
+   "id": [
+    "haji"
+   ],
+   "fr": [
+    "hajj",
+    "pèlerinage"
+   ],
+   "es": [
+    "hajj",
+    "peregrinación"
+   ]
+  },
+  {
+   "en": [
+    "umrah"
+   ],
+   "ar": [
+    "عمرة"
+   ],
+   "ur": [
+    "عمرہ"
+   ],
+   "tr": [
+    "umre"
+   ],
+   "id": [
+    "umrah"
+   ],
+   "fr": [
+    "omra",
+    "umra"
+   ],
+   "es": [
+    "umra"
+   ]
+  },
+  {
+   "en": [
+    "mosque",
+    "masjid"
+   ],
+   "ar": [
+    "مسجد",
+    "مساجد",
+    "جامع"
+   ],
+   "ur": [
+    "مسجد"
+   ],
+   "tr": [
+    "cami",
+    "mescit"
+   ],
+   "id": [
+    "masjid"
+   ],
+   "fr": [
+    "mosquée"
+   ],
+   "es": [
+    "mezquita"
+   ]
+  },
+  {
+   "en": [
+    "friday",
+    "jumuah",
+    "jumah"
+   ],
+   "ar": [
+    "جمعة"
+   ],
+   "ur": [
+    "جمعہ"
+   ],
+   "tr": [
+    "cuma"
+   ],
+   "id": [
+    "jumat"
+   ],
+   "fr": [
+    "vendredi"
+   ],
+   "es": [
+    "viernes"
+   ]
+  },
+  {
+   "en": [
+    "quran",
+    "koran"
+   ],
+   "ar": [
+    "قرآن",
+    "مصحف"
+   ],
+   "ur": [
+    "قرآن"
+   ],
+   "tr": [
+    "kuran"
+   ],
+   "id": [
+    "quran",
+    "alquran"
+   ],
+   "fr": [
+    "coran"
+   ],
+   "es": [
+    "corán",
+    "coran"
+   ]
+  },
+  {
+   "en": [
+    "hadith",
+    "sunnah"
+   ],
+   "ar": [
+    "حديث",
+    "أحاديث",
+    "سنة"
+   ],
+   "ur": [
+    "حدیث",
+    "سنت"
+   ],
+   "tr": [
+    "hadis",
+    "sünnet"
+   ],
+   "id": [
+    "hadis",
+    "hadits",
+    "sunnah"
+   ],
+   "fr": [
+    "hadith",
+    "sunna"
+   ],
+   "es": [
+    "hadiz",
+    "hadith",
+    "sunna"
+   ]
+  },
+  {
+   "en": [
+    "prophet",
+    "messenger"
+   ],
+   "ar": [
+    "نبي",
+    "رسول"
+   ],
+   "ur": [
+    "نبی",
+    "رسول",
+    "پیغمبر"
+   ],
+   "tr": [
+    "peygamber",
+    "nebi",
+    "resul"
+   ],
+   "id": [
+    "nabi",
+    "rasul"
+   ],
+   "fr": [
+    "prophète",
+    "messager"
+   ],
+   "es": [
+    "profeta",
+    "mensajero"
+   ]
+  },
+  {
+   "en": [
+    "muhammad",
+    "mohammed"
+   ],
+   "ar": [
+    "محمد"
+   ],
+   "ur": [
+    "محمد"
+   ],
+   "tr": [
+    "muhammed"
+   ],
+   "id": [
+    "muhammad"
+   ],
+   "fr": [
+    "mohammed",
+    "muhammad"
+   ],
+   "es": [
+    "mahoma",
+    "muhammad"
+   ]
+  },
+  {
+   "en": [
+    "allah",
+    "god"
+   ],
+   "ar": [
+    "الله"
+   ],
+   "ur": [
+    "اللہ",
+    "خدا"
+   ],
+   "tr": [
+    "allah"
+   ],
+   "id": [
+    "allah"
+   ],
+   "fr": [
+    "allah",
+    "dieu"
+   ],
+   "es": [
+    "alá",
+    "allah",
+    "dios"
+   ]
+  },
+  {
+   "en": [
+    "islam"
+   ],
+   "ar": [
+    "إسلام"
+   ],
+   "ur": [
+    "اسلام"
+   ],
+   "tr": [
+    "islam",
+    "islâm"
+   ],
+   "id": [
+    "islam"
+   ],
+   "fr": [
+    "islam"
+   ],
+   "es": [
+    "islam",
+    "islám"
+   ]
+  },
+  {
+   "en": [
+    "muslim",
+    "muslims"
+   ],
+   "ar": [
+    "مسلم",
+    "مسلمون",
+    "مسلمين"
+   ],
+   "ur": [
+    "مسلمان"
+   ],
+   "tr": [
+    "müslüman"
+   ],
+   "id": [
+    "muslim",
+    "muslimah"
+   ],
+   "fr": [
+    "musulman",
+    "musulmans"
+   ],
+   "es": [
+    "musulmán",
+    "musulmanes"
+   ]
+  },
+  {
+   "en": [
+    "faith",
+    "belief",
+    "iman"
+   ],
+   "ar": [
+    "إيمان",
+    "عقيدة"
+   ],
+   "ur": [
+    "ایمان",
+    "عقیدہ"
+   ],
+   "tr": [
+    "iman",
+    "inanç",
+    "akide"
+   ],
+   "id": [
+    "iman",
+    "akidah",
+    "aqidah"
+   ],
+   "fr": [
+    "foi",
+    "croyance"
+   ],
+   "es": [
+    "fe",
+    "creencia"
+   ]
+  },
+  {
+   "en": [
+    "monotheism",
+    "tawhid",
+    "tawheed"
+   ],
+   "ar": [
+    "توحيد"
+   ],
+   "ur": [
+    "توحید"
+   ],
+   "tr": [
+    "tevhid"
+   ],
+   "id": [
+    "tauhid"
+   ],
+   "fr": [
+    "monothéisme",
+    "tawhid"
+   ],
+   "es": [
+    "monoteísmo",
+    "tawhid"
+   ]
+  },
+  {
+   "en": [
+    "shirk",
+    "polytheism"
+   ],
+   "ar": [
+    "شرك"
+   ],
+   "ur": [
+    "شرک"
+   ],
+   "tr": [
+    "şirk"
+   ],
+   "id": [
+    "syirik"
+   ],
+   "fr": [
+    "polythéisme",
+    "associationnisme"
+   ],
+   "es": [
+    "politeísmo",
+    "idolatría"
+   ]
+  },
+  {
+   "en": [
+    "angels",
+    "angel"
+   ],
+   "ar": [
+    "ملائكة",
+    "ملك"
+   ],
+   "ur": [
+    "فرشتے",
+    "فرشتہ"
+   ],
+   "tr": [
+    "melek",
+    "melekler"
+   ],
+   "id": [
+    "malaikat"
+   ],
+   "fr": [
+    "anges",
+    "ange"
+   ],
+   "es": [
+    "ángeles",
+    "ángel"
+   ]
+  },
+  {
+   "en": [
+    "paradise",
+    "jannah",
+    "heaven"
+   ],
+   "ar": [
+    "جنة"
+   ],
+   "ur": [
+    "جنت"
+   ],
+   "tr": [
+    "cennet"
+   ],
+   "id": [
+    "surga",
+    "jannah"
+   ],
+   "fr": [
+    "paradis"
+   ],
+   "es": [
+    "paraíso"
+   ]
+  },
+  {
+   "en": [
+    "hell",
+    "hellfire",
+    "jahannam"
+   ],
+   "ar": [
+    "جهنم",
+    "نار"
+   ],
+   "ur": [
+    "جہنم",
+    "دوزخ"
+   ],
+   "tr": [
+    "cehennem"
+   ],
+   "id": [
+    "neraka"
+   ],
+   "fr": [
+    "enfer"
+   ],
+   "es": [
+    "infierno"
+   ]
+  },
+  {
+   "en": [
+    "resurrection",
+    "judgment",
+    "hereafter",
+    "afterlife"
+   ],
+   "ar": [
+    "قيامة",
+    "آخرة",
+    "بعث"
+   ],
+   "ur": [
+    "قیامت",
+    "آخرت"
+   ],
+   "tr": [
+    "kıyamet",
+    "ahiret"
+   ],
+   "id": [
+    "kiamat",
+    "akhirat"
+   ],
+   "fr": [
+    "résurrection",
+    "jugement",
+    "au-delà"
+   ],
+   "es": [
+    "resurrección",
+    "juicio",
+    "más allá"
+   ]
+  },
+  {
+   "en": [
+    "destiny",
+    "predestination",
+    "qadar"
+   ],
+   "ar": [
+    "قدر",
+    "قضاء"
+   ],
+   "ur": [
+    "تقدیر"
+   ],
+   "tr": [
+    "kader"
+   ],
+   "id": [
+    "takdir",
+    "qadar"
+   ],
+   "fr": [
+    "destin",
+    "prédestination"
+   ],
+   "es": [
+    "destino",
+    "predestinación"
+   ]
+  },
+  {
+   "en": [
+    "repentance",
+    "tawbah",
+    "repent"
+   ],
+   "ar": [
+    "توبة"
+   ],
+   "ur": [
+    "توبہ"
+   ],
+   "tr": [
+    "tövbe"
+   ],
+   "id": [
+    "taubat"
+   ],
+   "fr": [
+    "repentir"
+   ],
+   "es": [
+    "arrepentimiento"
+   ]
+  },
+  {
+   "en": [
+    "forgiveness",
+    "istighfar"
+   ],
+   "ar": [
+    "مغفرة",
+    "استغفار"
+   ],
+   "ur": [
+    "مغفرت",
+    "استغفار",
+    "معافی"
+   ],
+   "tr": [
+    "bağışlanma",
+    "istiğfar",
+    "af"
+   ],
+   "id": [
+    "ampunan",
+    "istighfar"
+   ],
+   "fr": [
+    "pardon"
+   ],
+   "es": [
+    "perdón"
+   ]
+  },
+  {
+   "en": [
+    "sin",
+    "sins"
+   ],
+   "ar": [
+    "ذنب",
+    "ذنوب",
+    "معصية",
+    "معاصي"
+   ],
+   "ur": [
+    "گناہ"
+   ],
+   "tr": [
+    "günah"
+   ],
+   "id": [
+    "dosa"
+   ],
+   "fr": [
+    "péché",
+    "péchés"
+   ],
+   "es": [
+    "pecado",
+    "pecados"
+   ]
+  },
+  {
+   "en": [
+    "supplication",
+    "dua"
+   ],
+   "ar": [
+    "دعاء"
+   ],
+   "ur": [
+    "دعا"
+   ],
+   "tr": [
+    "dua"
+   ],
+   "id": [
+    "doa"
+   ],
+   "fr": [
+    "invocation",
+    "douaa"
+   ],
+   "es": [
+    "súplica",
+    "dua"
+   ]
+  },
+  {
+   "en": [
+    "remembrance",
+    "dhikr",
+    "zikr"
+   ],
+   "ar": [
+    "ذكر",
+    "أذكار"
+   ],
+   "ur": [
+    "ذکر"
+   ],
+   "tr": [
+    "zikir"
+   ],
+   "id": [
+    "dzikir",
+    "zikir"
+   ],
+   "fr": [
+    "rappel",
+    "dhikr"
+   ],
+   "es": [
+    "recuerdo",
+    "dhikr"
+   ]
+  },
+  {
+   "en": [
+    "marriage",
+    "wedding",
+    "nikah"
+   ],
+   "ar": [
+    "زواج",
+    "نكاح"
+   ],
+   "ur": [
+    "نکاح",
+    "شادی"
+   ],
+   "tr": [
+    "evlilik",
+    "nikah"
+   ],
+   "id": [
+    "nikah",
+    "pernikahan"
+   ],
+   "fr": [
+    "mariage"
+   ],
+   "es": [
+    "matrimonio",
+    "boda"
+   ]
+  },
+  {
+   "en": [
+    "divorce",
+    "talaq"
+   ],
+   "ar": [
+    "طلاق"
+   ],
+   "ur": [
+    "طلاق"
+   ],
+   "tr": [
+    "boşanma",
+    "talak"
+   ],
+   "id": [
+    "talak",
+    "cerai",
+    "perceraian"
+   ],
+   "fr": [
+    "divorce"
+   ],
+   "es": [
+    "divorcio"
+   ]
+  },
+  {
+   "en": [
+    "wife",
+    "wives"
+   ],
+   "ar": [
+    "زوجة",
+    "زوجات"
+   ],
+   "ur": [
+    "بیوی"
+   ],
+   "tr": [
+    "eş",
+    "hanım"
+   ],
+   "id": [
+    "istri"
+   ],
+   "fr": [
+    "épouse",
+    "épouses"
+   ],
+   "es": [
+    "esposa",
+    "esposas"
+   ]
+  },
+  {
+   "en": [
+    "husband"
+   ],
+   "ar": [
+    "زوج"
+   ],
+   "ur": [
+    "شوہر"
+   ],
+   "tr": [
+    "koca"
+   ],
+   "id": [
+    "suami"
+   ],
+   "fr": [
+    "mari",
+    "époux"
+   ],
+   "es": [
+    "esposo",
+    "marido"
+   ]
+  },
+  {
+   "en": [
+    "polygamy",
+    "polygyny"
+   ],
+   "ar": [
+    "تعدد"
+   ],
+   "ur": [
+    "تعدد"
+   ],
+   "tr": [
+    "çokeşlilik"
+   ],
+   "id": [
+    "poligami"
+   ],
+   "fr": [
+    "polygamie"
+   ],
+   "es": [
+    "poligamia"
+   ]
+  },
+  {
+   "en": [
+    "parents",
+    "mother",
+    "father"
+   ],
+   "ar": [
+    "والدين",
+    "والدان",
+    "أم",
+    "أب"
+   ],
+   "ur": [
+    "والدین",
+    "ماں",
+    "باپ"
+   ],
+   "tr": [
+    "anne",
+    "baba",
+    "ebeveyn"
+   ],
+   "id": [
+    "orang tua",
+    "ibu",
+    "ayah"
+   ],
+   "fr": [
+    "parents",
+    "mère",
+    "père"
+   ],
+   "es": [
+    "padres",
+    "madre",
+    "padre"
+   ]
+  },
+  {
+   "en": [
+    "children",
+    "child",
+    "son",
+    "daughter"
+   ],
+   "ar": [
+    "أولاد",
+    "ولد",
+    "ابن",
+    "بنت",
+    "أطفال"
+   ],
+   "ur": [
+    "بچے",
+    "اولاد",
+    "بیٹا",
+    "بیٹی"
+   ],
+   "tr": [
+    "çocuk",
+    "çocuklar",
+    "oğul",
+    "kız"
+   ],
+   "id": [
+    "anak"
+   ],
+   "fr": [
+    "enfants",
+    "enfant",
+    "fils",
+    "fille"
+   ],
+   "es": [
+    "hijos",
+    "hijo",
+    "hija",
+    "niños"
+   ]
+  },
+  {
+   "en": [
+    "inheritance",
+    "inherit"
+   ],
+   "ar": [
+    "ميراث",
+    "إرث",
+    "مواريث"
+   ],
+   "ur": [
+    "وراثت",
+    "میراث"
+   ],
+   "tr": [
+    "miras"
+   ],
+   "id": [
+    "warisan",
+    "waris"
+   ],
+   "fr": [
+    "héritage"
+   ],
+   "es": [
+    "herencia"
+   ]
+  },
+  {
+   "en": [
+    "interest",
+    "usury",
+    "riba"
+   ],
+   "ar": [
+    "ربا"
+   ],
+   "ur": [
+    "سود"
+   ],
+   "tr": [
+    "faiz"
+   ],
+   "id": [
+    "riba",
+    "bunga"
+   ],
+   "fr": [
+    "intérêt",
+    "usure"
+   ],
+   "es": [
+    "interés",
+    "usura"
+   ]
+  },
+  {
+   "en": [
+    "halal",
+    "permissible",
+    "lawful"
+   ],
+   "ar": [
+    "حلال",
+    "مباح",
+    "جائز"
+   ],
+   "ur": [
+    "حلال",
+    "جائز"
+   ],
+   "tr": [
+    "helal",
+    "caiz"
+   ],
+   "id": [
+    "halal",
+    "boleh"
+   ],
+   "fr": [
+    "halal",
+    "licite",
+    "permis"
+   ],
+   "es": [
+    "halal",
+    "lícito",
+    "permitido"
+   ]
+  },
+  {
+   "en": [
+    "haram",
+    "forbidden",
+    "prohibited",
+    "unlawful"
+   ],
+   "ar": [
+    "حرام",
+    "محرم",
+    "تحريم"
+   ],
+   "ur": [
+    "حرام"
+   ],
+   "tr": [
+    "haram"
+   ],
+   "id": [
+    "haram"
+   ],
+   "fr": [
+    "haram",
+    "illicite",
+    "interdit"
+   ],
+   "es": [
+    "haram",
+    "ilícito",
+    "prohibido"
+   ]
+  },
+  {
+   "en": [
+    "ruling",
+    "hukm",
+    "judgement"
+   ],
+   "ar": [
+    "حكم",
+    "أحكام"
+   ],
+   "ur": [
+    "حکم",
+    "احکام"
+   ],
+   "tr": [
+    "hüküm"
+   ],
+   "id": [
+    "hukum"
+   ],
+   "fr": [
+    "statut",
+    "jugement"
+   ],
+   "es": [
+    "dictamen",
+    "juicio",
+    "regla"
+   ]
+  },
+  {
+   "en": [
+    "fatwa",
+    "fatwas"
+   ],
+   "ar": [
+    "فتوى",
+    "فتاوى"
+   ],
+   "ur": [
+    "فتویٰ",
+    "فتوی"
+   ],
+   "tr": [
+    "fetva"
+   ],
+   "id": [
+    "fatwa"
+   ],
+   "fr": [
+    "fatwa"
+   ],
+   "es": [
+    "fatua",
+    "fatwa"
+   ]
+  },
+  {
+   "en": [
+    "obligatory",
+    "compulsory",
+    "fard",
+    "wajib"
+   ],
+   "ar": [
+    "واجب",
+    "فرض",
+    "وجوب"
+   ],
+   "ur": [
+    "فرض",
+    "واجب"
+   ],
+   "tr": [
+    "farz",
+    "vacip"
+   ],
+   "id": [
+    "wajib",
+    "fardhu"
+   ],
+   "fr": [
+    "obligatoire"
+   ],
+   "es": [
+    "obligatorio"
+   ]
+  },
+  {
+   "en": [
+    "recommended",
+    "sunnah",
+    "mustahabb"
+   ],
+   "ar": [
+    "مستحب",
+    "سنة",
+    "مندوب"
+   ],
+   "ur": [
+    "مستحب",
+    "سنت"
+   ],
+   "tr": [
+    "müstehap",
+    "sünnet"
+   ],
+   "id": [
+    "sunah",
+    "dianjurkan"
+   ],
+   "fr": [
+    "recommandé"
+   ],
+   "es": [
+    "recomendado"
+   ]
+  },
+  {
+   "en": [
+    "disliked",
+    "makruh"
+   ],
+   "ar": [
+    "مكروه",
+    "كراهة"
+   ],
+   "ur": [
+    "مکروہ"
+   ],
+   "tr": [
+    "mekruh"
+   ],
+   "id": [
+    "makruh"
+   ],
+   "fr": [
+    "déconseillé",
+    "réprouvé"
+   ],
+   "es": [
+    "desaconsejado",
+    "makruh"
+   ]
+  },
+  {
+   "en": [
+    "innovation",
+    "bidah"
+   ],
+   "ar": [
+    "بدعة",
+    "بدع"
+   ],
+   "ur": [
+    "بدعت"
+   ],
+   "tr": [
+    "bidat",
+    "bid'at"
+   ],
+   "id": [
+    "bidah",
+    "bid'ah"
+   ],
+   "fr": [
+    "innovation",
+    "bid'a"
+   ],
+   "es": [
+    "innovación",
+    "bida"
+   ]
+  },
+  {
+   "en": [
+    "qibla",
+    "qiblah"
+   ],
+   "ar": [
+    "قبلة"
+   ],
+   "ur": [
+    "قبلہ"
+   ],
+   "tr": [
+    "kıble"
+   ],
+   "id": [
+    "kiblat"
+   ],
+   "fr": [
+    "qibla"
+   ],
+   "es": [
+    "alquibla",
+    "qibla"
+   ]
+  },
+  {
+   "en": [
+    "kaaba"
+   ],
+   "ar": [
+    "كعبة"
+   ],
+   "ur": [
+    "کعبہ"
+   ],
+   "tr": [
+    "kabe"
+   ],
+   "id": [
+    "kabah",
+    "ka'bah"
+   ],
+   "fr": [
+    "kaaba"
+   ],
+   "es": [
+    "kaaba"
+   ]
+  },
+  {
+   "en": [
+    "mecca",
+    "makkah"
+   ],
+   "ar": [
+    "مكة"
+   ],
+   "ur": [
+    "مکہ"
+   ],
+   "tr": [
+    "mekke"
+   ],
+   "id": [
+    "mekkah",
+    "makkah"
+   ],
+   "fr": [
+    "mecque"
+   ],
+   "es": [
+    "meca"
+   ]
+  },
+  {
+   "en": [
+    "medina",
+    "madinah"
+   ],
+   "ar": [
+    "مدينة"
+   ],
+   "ur": [
+    "مدینہ"
+   ],
+   "tr": [
+    "medine"
+   ],
+   "id": [
+    "madinah"
+   ],
+   "fr": [
+    "médine"
+   ],
+   "es": [
+    "medina"
+   ]
+  },
+  {
+   "en": [
+    "adhan",
+    "azan"
+   ],
+   "ar": [
+    "أذان",
+    "إقامة"
+   ],
+   "ur": [
+    "اذان",
+    "اقامت"
+   ],
+   "tr": [
+    "ezan",
+    "kamet"
+   ],
+   "id": [
+    "azan",
+    "adzan",
+    "iqamah"
+   ],
+   "fr": [
+    "adhan",
+    "appel"
+   ],
+   "es": [
+    "adhan",
+    "llamada"
+   ]
+  },
+  {
+   "en": [
+    "imam"
+   ],
+   "ar": [
+    "إمام"
+   ],
+   "ur": [
+    "امام"
+   ],
+   "tr": [
+    "imam"
+   ],
+   "id": [
+    "imam"
+   ],
+   "fr": [
+    "imam"
+   ],
+   "es": [
+    "imán",
+    "imam"
+   ]
+  },
+  {
+   "en": [
+    "congregation",
+    "congregational",
+    "jamaah"
+   ],
+   "ar": [
+    "جماعة"
+   ],
+   "ur": [
+    "جماعت"
+   ],
+   "tr": [
+    "cemaat"
+   ],
+   "id": [
+    "berjamaah",
+    "jamaah"
+   ],
+   "fr": [
+    "groupe",
+    "assemblée"
+   ],
+   "es": [
+    "congregación",
+    "grupo"
+   ]
+  },
+  {
+   "en": [
+    "prostration",
+    "sujud"
+   ],
+   "ar": [
+    "سجود",
+    "سجدة"
+   ],
+   "ur": [
+    "سجدہ"
+   ],
+   "tr": [
+    "secde"
+   ],
+   "id": [
+    "sujud"
+   ],
+   "fr": [
+    "prosternation"
+   ],
+   "es": [
+    "postración"
+   ]
+  },
+  {
+   "en": [
+    "bowing",
+    "ruku"
+   ],
+   "ar": [
+    "ركوع"
+   ],
+   "ur": [
+    "رکوع"
+   ],
+   "tr": [
+    "rükû",
+    "ruku"
+   ],
+   "id": [
+    "rukuk"
+   ],
+   "fr": [
+    "inclinaison"
+   ],
+   "es": [
+    "inclinación"
+   ]
+  },
+  {
+   "en": [
+    "rakah",
+    "rakat"
+   ],
+   "ar": [
+    "ركعة",
+    "ركعات"
+   ],
+   "ur": [
+    "رکعت",
+    "رکعات"
+   ],
+   "tr": [
+    "rekat",
+    "rekât"
+   ],
+   "id": [
+    "rakaat"
+   ],
+   "fr": [
+    "rak'a",
+    "unité"
+   ],
+   "es": [
+    "rakaa",
+    "unidad"
+   ]
+  },
+  {
+   "en": [
+    "fajr",
+    "dawn"
+   ],
+   "ar": [
+    "فجر"
+   ],
+   "ur": [
+    "فجر"
+   ],
+   "tr": [
+    "sabah",
+    "fecir"
+   ],
+   "id": [
+    "subuh",
+    "fajar"
+   ],
+   "fr": [
+    "fajr",
+    "aube"
+   ],
+   "es": [
+    "fajr",
+    "alba"
+   ]
+  },
+  {
+   "en": [
+    "dhuhr",
+    "zuhr",
+    "noon"
+   ],
+   "ar": [
+    "ظهر"
+   ],
+   "ur": [
+    "ظہر"
+   ],
+   "tr": [
+    "öğle"
+   ],
+   "id": [
+    "zuhur",
+    "dzuhur"
+   ],
+   "fr": [
+    "dhuhr"
+   ],
+   "es": [
+    "dhuhr",
+    "mediodía"
+   ]
+  },
+  {
+   "en": [
+    "asr",
+    "afternoon"
+   ],
+   "ar": [
+    "عصر"
+   ],
+   "ur": [
+    "عصر"
+   ],
+   "tr": [
+    "ikindi"
+   ],
+   "id": [
+    "ashar",
+    "asar"
+   ],
+   "fr": [
+    "asr"
+   ],
+   "es": [
+    "asr",
+    "tarde"
+   ]
+  },
+  {
+   "en": [
+    "maghrib",
+    "sunset"
+   ],
+   "ar": [
+    "مغرب"
+   ],
+   "ur": [
+    "مغرب"
+   ],
+   "tr": [
+    "akşam"
+   ],
+   "id": [
+    "magrib",
+    "maghrib"
+   ],
+   "fr": [
+    "maghrib"
+   ],
+   "es": [
+    "magrib",
+    "ocaso"
+   ]
+  },
+  {
+   "en": [
+    "isha",
+    "night"
+   ],
+   "ar": [
+    "عشاء"
+   ],
+   "ur": [
+    "عشاء"
+   ],
+   "tr": [
+    "yatsı"
+   ],
+   "id": [
+    "isya"
+   ],
+   "fr": [
+    "icha"
+   ],
+   "es": [
+    "isha",
+    "noche"
+   ]
+  },
+  {
+   "en": [
+    "witr"
+   ],
+   "ar": [
+    "وتر"
+   ],
+   "ur": [
+    "وتر"
+   ],
+   "tr": [
+    "vitir"
+   ],
+   "id": [
+    "witir"
+   ],
+   "fr": [
+    "witr"
+   ],
+   "es": [
+    "witr"
+   ]
+  },
+  {
+   "en": [
+    "tarawih",
+    "taraweeh"
+   ],
+   "ar": [
+    "تراويح"
+   ],
+   "ur": [
+    "تراویح"
+   ],
+   "tr": [
+    "teravih"
+   ],
+   "id": [
+    "tarawih"
+   ],
+   "fr": [
+    "tarawih"
+   ],
+   "es": [
+    "tarawih"
+   ]
+  },
+  {
+   "en": [
+    "eid"
+   ],
+   "ar": [
+    "عيد"
+   ],
+   "ur": [
+    "عید"
+   ],
+   "tr": [
+    "bayram"
+   ],
+   "id": [
+    "idul",
+    "lebaran"
+   ],
+   "fr": [
+    "aïd"
+   ],
+   "es": [
+    "eid"
+   ]
+  },
+  {
+   "en": [
+    "sacrifice",
+    "udhiyah",
+    "qurbani"
+   ],
+   "ar": [
+    "أضحية",
+    "أضاحي",
+    "ذبح"
+   ],
+   "ur": [
+    "قربانی"
+   ],
+   "tr": [
+    "kurban"
+   ],
+   "id": [
+    "kurban",
+    "qurban"
+   ],
+   "fr": [
+    "sacrifice"
+   ],
+   "es": [
+    "sacrificio"
+   ]
+  },
+  {
+   "en": [
+    "funeral",
+    "janazah"
+   ],
+   "ar": [
+    "جنازة",
+    "جنائز"
+   ],
+   "ur": [
+    "جنازہ"
+   ],
+   "tr": [
+    "cenaze"
+   ],
+   "id": [
+    "jenazah"
+   ],
+   "fr": [
+    "funérailles",
+    "funéraire"
+   ],
+   "es": [
+    "funeral"
+   ]
+  },
+  {
+   "en": [
+    "death",
+    "dead",
+    "died"
+   ],
+   "ar": [
+    "موت",
+    "ميت",
+    "وفاة"
+   ],
+   "ur": [
+    "موت",
+    "میت"
+   ],
+   "tr": [
+    "ölüm",
+    "ölü"
+   ],
+   "id": [
+    "kematian",
+    "mayat",
+    "meninggal"
+   ],
+   "fr": [
+    "mort",
+    "décès"
+   ],
+   "es": [
+    "muerte",
+    "muerto"
+   ]
+  },
+  {
+   "en": [
+    "grave",
+    "graves",
+    "cemetery"
+   ],
+   "ar": [
+    "قبر",
+    "قبور",
+    "مقابر"
+   ],
+   "ur": [
+    "قبر"
+   ],
+   "tr": [
+    "kabir",
+    "mezar"
+   ],
+   "id": [
+    "kubur",
+    "kuburan",
+    "makam"
+   ],
+   "fr": [
+    "tombe",
+    "tombes",
+    "cimetière"
+   ],
+   "es": [
+    "tumba",
+    "tumbas",
+    "cementerio"
+   ]
+  },
+  {
+   "en": [
+    "menstruation",
+    "menses"
+   ],
+   "ar": [
+    "حيض",
+    "حائض"
+   ],
+   "ur": [
+    "حیض"
+   ],
+   "tr": [
+    "hayız",
+    "adet"
+   ],
+   "id": [
+    "haid"
+   ],
+   "fr": [
+    "menstrues",
+    "règles"
+   ],
+   "es": [
+    "menstruación"
+   ]
+  },
+  {
+   "en": [
+    "purity",
+    "purification",
+    "taharah"
+   ],
+   "ar": [
+    "طهارة"
+   ],
+   "ur": [
+    "طہارت",
+    "پاکی"
+   ],
+   "tr": [
+    "taharet",
+    "temizlik"
+   ],
+   "id": [
+    "thaharah",
+    "bersuci"
+   ],
+   "fr": [
+    "purification",
+    "pureté"
+   ],
+   "es": [
+    "purificación",
+    "pureza"
+   ]
+  },
+  {
+   "en": [
+    "impurity",
+    "najasah",
+    "filth"
+   ],
+   "ar": [
+    "نجاسة",
+    "نجس"
+   ],
+   "ur": [
+    "نجاست"
+   ],
+   "tr": [
+    "necaset"
+   ],
+   "id": [
+    "najis"
+   ],
+   "fr": [
+    "impureté"
+   ],
+   "es": [
+    "impureza"
+   ]
+  },
+  {
+   "en": [
+    "hijab",
+    "veil",
+    "headscarf"
+   ],
+   "ar": [
+    "حجاب",
+    "نقاب"
+   ],
+   "ur": [
+    "حجاب",
+    "پردہ",
+    "نقاب"
+   ],
+   "tr": [
+    "tesettür",
+    "başörtüsü",
+    "örtünme"
+   ],
+   "id": [
+    "jilbab",
+    "hijab",
+    "cadar"
+   ],
+   "fr": [
+    "voile",
+    "hijab"
+   ],
+   "es": [
+    "velo",
+    "hiyab"
+   ]
+  },
+  {
+   "en": [
+    "women",
+    "woman"
+   ],
+   "ar": [
+    "نساء",
+    "مرأة",
+    "امرأة"
+   ],
+   "ur": [
+    "عورت",
+    "خواتین"
+   ],
+   "tr": [
+    "kadın",
+    "kadınlar"
+   ],
+   "id": [
+    "wanita",
+    "perempuan"
+   ],
+   "fr": [
+    "femme",
+    "femmes"
+   ],
+   "es": [
+    "mujer",
+    "mujeres"
+   ]
+  },
+  {
+   "en": [
+    "music",
+    "singing"
+   ],
+   "ar": [
+    "موسيقى",
+    "غناء",
+    "أغاني"
+   ],
+   "ur": [
+    "موسیقی",
+    "گانا"
+   ],
+   "tr": [
+    "müzik",
+    "şarkı"
+   ],
+   "id": [
+    "musik",
+    "nyanyian"
+   ],
+   "fr": [
+    "musique",
+    "chant"
+   ],
+   "es": [
+    "música",
+    "canto"
+   ]
+  },
+  {
+   "en": [
+    "smoking",
+    "cigarettes",
+    "tobacco"
+   ],
+   "ar": [
+    "تدخين",
+    "دخان",
+    "سجائر"
+   ],
+   "ur": [
+    "سگریٹ",
+    "تمباکو"
+   ],
+   "tr": [
+    "sigara",
+    "tütün"
+   ],
+   "id": [
+    "rokok",
+    "merokok"
+   ],
+   "fr": [
+    "tabac",
+    "cigarette"
+   ],
+   "es": [
+    "tabaco",
+    "fumar"
+   ]
+  },
+  {
+   "en": [
+    "alcohol",
+    "wine",
+    "intoxicants"
+   ],
+   "ar": [
+    "خمر",
+    "مسكر"
+   ],
+   "ur": [
+    "شراب"
+   ],
+   "tr": [
+    "içki",
+    "alkol"
+   ],
+   "id": [
+    "khamr",
+    "alkohol"
+   ],
+   "fr": [
+    "alcool",
+    "vin"
+   ],
+   "es": [
+    "alcohol",
+    "vino"
+   ]
+  },
+  {
+   "en": [
+    "pork",
+    "pig",
+    "swine"
+   ],
+   "ar": [
+    "خنزير"
+   ],
+   "ur": [
+    "سور",
+    "خنزیر"
+   ],
+   "tr": [
+    "domuz"
+   ],
+   "id": [
+    "babi"
+   ],
+   "fr": [
+    "porc"
+   ],
+   "es": [
+    "cerdo"
+   ]
+  },
+  {
+   "en": [
+    "slaughter",
+    "slaughtering"
+   ],
+   "ar": [
+    "ذبح",
+    "ذبيحة",
+    "ذكاة"
+   ],
+   "ur": [
+    "ذبح",
+    "ذبیحہ"
+   ],
+   "tr": [
+    "kesim"
+   ],
+   "id": [
+    "sembelihan",
+    "menyembelih"
+   ],
+   "fr": [
+    "abattage"
+   ],
+   "es": [
+    "sacrificio",
+    "degüello"
+   ]
+  },
+  {
+   "en": [
+    "travel",
+    "traveller",
+    "journey"
+   ],
+   "ar": [
+    "سفر",
+    "مسافر"
+   ],
+   "ur": [
+    "سفر",
+    "مسافر"
+   ],
+   "tr": [
+    "yolculuk",
+    "sefer",
+    "yolcu"
+   ],
+   "id": [
+    "safar",
+    "musafir",
+    "perjalanan"
+   ],
+   "fr": [
+    "voyage",
+    "voyageur"
+   ],
+   "es": [
+    "viaje",
+    "viajero"
+   ]
+  },
+  {
+   "en": [
+    "sick",
+    "illness",
+    "sickness",
+    "patient"
+   ],
+   "ar": [
+    "مرض",
+    "مريض"
+   ],
+   "ur": [
+    "بیمار",
+    "بیماری",
+    "مریض"
+   ],
+   "tr": [
+    "hasta",
+    "hastalık"
+   ],
+   "id": [
+    "sakit",
+    "penyakit"
+   ],
+   "fr": [
+    "malade",
+    "maladie"
+   ],
+   "es": [
+    "enfermo",
+    "enfermedad"
+   ]
+  },
+  {
+   "en": [
+    "oath",
+    "vow",
+    "swear"
+   ],
+   "ar": [
+    "يمين",
+    "حلف",
+    "نذر"
+   ],
+   "ur": [
+    "قسم",
+    "نذر"
+   ],
+   "tr": [
+    "yemin",
+    "adak"
+   ],
+   "id": [
+    "sumpah",
+    "nazar"
+   ],
+   "fr": [
+    "serment",
+    "vœu"
+   ],
+   "es": [
+    "juramento",
+    "voto"
+   ]
+  },
+  {
+   "en": [
+    "expiation",
+    "kaffarah"
+   ],
+   "ar": [
+    "كفارة"
+   ],
+   "ur": [
+    "کفارہ"
+   ],
+   "tr": [
+    "kefaret"
+   ],
+   "id": [
+    "kafarat"
+   ],
+   "fr": [
+    "expiation"
+   ],
+   "es": [
+    "expiación"
+   ]
+  },
+  {
+   "en": [
+    "trade",
+    "business",
+    "selling",
+    "buying",
+    "sale"
+   ],
+   "ar": [
+    "بيع",
+    "تجارة",
+    "شراء"
+   ],
+   "ur": [
+    "تجارت",
+    "خرید",
+    "فروخت"
+   ],
+   "tr": [
+    "ticaret",
+    "alışveriş",
+    "satış"
+   ],
+   "id": [
+    "jual",
+    "beli",
+    "perdagangan"
+   ],
+   "fr": [
+    "commerce",
+    "vente",
+    "achat"
+   ],
+   "es": [
+    "comercio",
+    "venta",
+    "compra"
+   ]
+  },
+  {
+   "en": [
+    "loan",
+    "debt"
+   ],
+   "ar": [
+    "قرض",
+    "دين"
+   ],
+   "ur": [
+    "قرض"
+   ],
+   "tr": [
+    "borç"
+   ],
+   "id": [
+    "utang",
+    "hutang",
+    "pinjaman"
+   ],
+   "fr": [
+    "prêt",
+    "dette"
+   ],
+   "es": [
+    "préstamo",
+    "deuda"
+   ]
+  },
+  {
+   "en": [
+    "insurance"
+   ],
+   "ar": [
+    "تأمين"
+   ],
+   "ur": [
+    "انشورنس",
+    "بیمہ"
+   ],
+   "tr": [
+    "sigorta"
+   ],
+   "id": [
+    "asuransi"
+   ],
+   "fr": [
+    "assurance"
+   ],
+   "es": [
+    "seguro"
+   ]
+  },
+  {
+   "en": [
+    "bank",
+    "banks"
+   ],
+   "ar": [
+    "بنك",
+    "بنوك",
+    "مصرف"
+   ],
+   "ur": [
+    "بینک"
+   ],
+   "tr": [
+    "banka"
+   ],
+   "id": [
+    "bank"
+   ],
+   "fr": [
+    "banque"
+   ],
+   "es": [
+    "banco"
+   ]
+  },
+  {
+   "en": [
+    "jihad"
+   ],
+   "ar": [
+    "جهاد"
+   ],
+   "ur": [
+    "جہاد"
+   ],
+   "tr": [
+    "cihad",
+    "cihat"
+   ],
+   "id": [
+    "jihad"
+   ],
+   "fr": [
+    "jihad",
+    "djihad"
+   ],
+   "es": [
+    "yihad"
+   ]
+  },
+  {
+   "en": [
+    "patience",
+    "sabr"
+   ],
+   "ar": [
+    "صبر"
+   ],
+   "ur": [
+    "صبر"
+   ],
+   "tr": [
+    "sabır"
+   ],
+   "id": [
+    "sabar"
+   ],
+   "fr": [
+    "patience"
+   ],
+   "es": [
+    "paciencia"
+   ]
+  },
+  {
+   "en": [
+    "gratitude",
+    "thankfulness",
+    "shukr"
+   ],
+   "ar": [
+    "شكر"
+   ],
+   "ur": [
+    "شکر"
+   ],
+   "tr": [
+    "şükür"
+   ],
+   "id": [
+    "syukur"
+   ],
+   "fr": [
+    "gratitude",
+    "reconnaissance"
+   ],
+   "es": [
+    "gratitud",
+    "agradecimiento"
+   ]
+  },
+  {
+   "en": [
+    "knowledge",
+    "learning",
+    "scholar",
+    "scholars"
+   ],
+   "ar": [
+    "علم",
+    "علماء",
+    "عالم"
+   ],
+   "ur": [
+    "علم",
+    "علماء",
+    "عالم"
+   ],
+   "tr": [
+    "ilim",
+    "âlim",
+    "alim"
+   ],
+   "id": [
+    "ilmu",
+    "ulama"
+   ],
+   "fr": [
+    "savoir",
+    "science",
+    "savant",
+    "savants"
+   ],
+   "es": [
+    "conocimiento",
+    "sabio",
+    "sabios"
+   ]
+  },
+  {
+   "en": [
+    "dawah",
+    "calling",
+    "invitation"
+   ],
+   "ar": [
+    "دعوة"
+   ],
+   "ur": [
+    "دعوت"
+   ],
+   "tr": [
+    "davet",
+    "tebliğ"
+   ],
+   "id": [
+    "dakwah"
+   ],
+   "fr": [
+    "prédication",
+    "da'wa"
+   ],
+   "es": [
+    "predicación",
+    "dawa"
+   ]
+  },
+  {
+   "en": [
+    "convert",
+    "conversion",
+    "revert",
+    "shahada",
+    "shahadah"
+   ],
+   "ar": [
+    "شهادة",
+    "شهادتين",
+    "أسلم"
+   ],
+   "ur": [
+    "کلمہ",
+    "شہادت"
+   ],
+   "tr": [
+    "kelime-i şehadet",
+    "şehadet"
+   ],
+   "id": [
+    "syahadat",
+    "mualaf"
+   ],
+   "fr": [
+    "conversion",
+    "chahada",
+    "converti"
+   ],
+   "es": [
+    "conversión",
+    "shahada",
+    "converso"
+   ]
+  },
+  {
+   "en": [
+    "christians",
+    "christian",
+    "jews",
+    "jew"
+   ],
+   "ar": [
+    "نصارى",
+    "مسيحي",
+    "يهود",
+    "يهودي"
+   ],
+   "ur": [
+    "عیسائی",
+    "یہودی"
+   ],
+   "tr": [
+    "hristiyan",
+    "yahudi"
+   ],
+   "id": [
+    "nasrani",
+    "kristen",
+    "yahudi"
+   ],
+   "fr": [
+    "chrétiens",
+    "chrétien",
+    "juifs",
+    "juif"
+   ],
+   "es": [
+    "cristianos",
+    "cristiano",
+    "judíos",
+    "judío"
+   ]
+  },
+  {
+   "en": [
+    "jesus",
+    "isa"
+   ],
+   "ar": [
+    "عيسى",
+    "المسيح"
+   ],
+   "ur": [
+    "عیسیٰ",
+    "عیسی"
+   ],
+   "tr": [
+    "isa"
+   ],
+   "id": [
+    "isa"
+   ],
+   "fr": [
+    "jésus"
+   ],
+   "es": [
+    "jesús"
+   ]
+  },
+  {
+   "en": [
+    "moses",
+    "musa"
+   ],
+   "ar": [
+    "موسى"
+   ],
+   "ur": [
+    "موسیٰ",
+    "موسی"
+   ],
+   "tr": [
+    "musa"
+   ],
+   "id": [
+    "musa"
+   ],
+   "fr": [
+    "moïse"
+   ],
+   "es": [
+    "moisés"
+   ]
+  },
+  {
+   "en": [
+    "abraham",
+    "ibrahim"
+   ],
+   "ar": [
+    "إبراهيم"
+   ],
+   "ur": [
+    "ابراہیم"
+   ],
+   "tr": [
+    "ibrahim"
+   ],
+   "id": [
+    "ibrahim"
+   ],
+   "fr": [
+    "abraham"
+   ],
+   "es": [
+    "abraham"
+   ]
+  },
+  {
+   "en": [
+    "companions",
+    "sahabah",
+    "companion"
+   ],
+   "ar": [
+    "صحابة",
+    "صحابي"
+   ],
+   "ur": [
+    "صحابہ",
+    "صحابی"
+   ],
+   "tr": [
+    "sahabe",
+    "sahabi"
+   ],
+   "id": [
+    "sahabat"
+   ],
+   "fr": [
+    "compagnons",
+    "compagnon"
+   ],
+   "es": [
+    "compañeros",
+    "compañero"
+   ]
+  },
+  {
+   "en": [
+    "recitation",
+    "recite",
+    "reading",
+    "tajweed"
+   ],
+   "ar": [
+    "تلاوة",
+    "قراءة",
+    "تجويد"
+   ],
+   "ur": [
+    "تلاوت",
+    "قراءت",
+    "تجوید"
+   ],
+   "tr": [
+    "tilavet",
+    "okuma",
+    "tecvid"
+   ],
+   "id": [
+    "tilawah",
+    "membaca",
+    "tajwid"
+   ],
+   "fr": [
+    "récitation",
+    "lecture",
+    "tajwid"
+   ],
+   "es": [
+    "recitación",
+    "lectura",
+    "tajwid"
+   ]
+  },
+  {
+   "en": [
+    "tafsir",
+    "exegesis",
+    "interpretation"
+   ],
+   "ar": [
+    "تفسير"
+   ],
+   "ur": [
+    "تفسیر"
+   ],
+   "tr": [
+    "tefsir"
+   ],
+   "id": [
+    "tafsir"
+   ],
+   "fr": [
+    "exégèse",
+    "tafsir"
+   ],
+   "es": [
+    "exégesis",
+    "tafsir"
+   ]
+  },
+  {
+   "en": [
+    "morals",
+    "manners",
+    "ethics",
+    "character"
+   ],
+   "ar": [
+    "أخلاق",
+    "آداب",
+    "خلق"
+   ],
+   "ur": [
+    "اخلاق",
+    "آداب"
+   ],
+   "tr": [
+    "ahlak",
+    "edep",
+    "adab"
+   ],
+   "id": [
+    "akhlak",
+    "adab"
+   ],
+   "fr": [
+    "morale",
+    "éthique",
+    "comportement"
+   ],
+   "es": [
+    "moral",
+    "modales",
+    "ética"
+   ]
+  },
+  {
+   "en": [
+    "neighbour",
+    "neighbor",
+    "neighbours",
+    "neighbors"
+   ],
+   "ar": [
+    "جار",
+    "جيران"
+   ],
+   "ur": [
+    "پڑوسی",
+    "ہمسایہ"
+   ],
+   "tr": [
+    "komşu"
+   ],
+   "id": [
+    "tetangga"
+   ],
+   "fr": [
+    "voisin",
+    "voisins"
+   ],
+   "es": [
+    "vecino",
+    "vecinos"
+   ]
+  },
+  {
+   "en": [
+    "orphan",
+    "orphans"
+   ],
+   "ar": [
+    "يتيم",
+    "أيتام"
+   ],
+   "ur": [
+    "یتیم"
+   ],
+   "tr": [
+    "yetim"
+   ],
+   "id": [
+    "yatim"
+   ],
+   "fr": [
+    "orphelin",
+    "orphelins"
+   ],
+   "es": [
+    "huérfano",
+    "huérfanos"
+   ]
+  },
+  {
+   "en": [
+    "magic",
+    "sorcery",
+    "witchcraft"
+   ],
+   "ar": [
+    "سحر"
+   ],
+   "ur": [
+    "جادو",
+    "سحر"
+   ],
+   "tr": [
+    "büyü",
+    "sihir"
+   ],
+   "id": [
+    "sihir"
+   ],
+   "fr": [
+    "magie",
+    "sorcellerie"
+   ],
+   "es": [
+    "magia",
+    "brujería"
+   ]
+  },
+  {
+   "en": [
+    "ruqyah",
+    "evil eye"
+   ],
+   "ar": [
+    "رقية",
+    "عين",
+    "حسد"
+   ],
+   "ur": [
+    "رقیہ",
+    "نظر"
+   ],
+   "tr": [
+    "rukye",
+    "nazar"
+   ],
+   "id": [
+    "ruqyah",
+    "ain"
+   ],
+   "fr": [
+    "roqya",
+    "mauvais œil"
+   ],
+   "es": [
+    "ruqya",
+    "mal de ojo"
+   ]
+  },
+  {
+   "en": [
+    "jinn"
+   ],
+   "ar": [
+    "جن"
+   ],
+   "ur": [
+    "جن",
+    "جنات"
+   ],
+   "tr": [
+    "cin"
+   ],
+   "id": [
+    "jin"
+   ],
+   "fr": [
+    "djinn",
+    "djinns"
+   ],
+   "es": [
+    "genio",
+    "yinn"
+   ]
+  },
+  {
+   "en": [
+    "dreams",
+    "dream"
+   ],
+   "ar": [
+    "رؤيا",
+    "أحلام",
+    "منام"
+   ],
+   "ur": [
+    "خواب"
+   ],
+   "tr": [
+    "rüya"
+   ],
+   "id": [
+    "mimpi"
+   ],
+   "fr": [
+    "rêve",
+    "rêves",
+    "songe"
+   ],
+   "es": [
+    "sueño",
+    "sueños"
+   ]
+  },
+  {
+   "en": [
+    "photos",
+    "pictures",
+    "images",
+    "photography"
+   ],
+   "ar": [
+    "صور",
+    "تصوير"
+   ],
+   "ur": [
+    "تصویر",
+    "تصاویر"
+   ],
+   "tr": [
+    "resim",
+    "fotoğraf"
+   ],
+   "id": [
+    "gambar",
+    "foto"
+   ],
+   "fr": [
+    "photos",
+    "images"
+   ],
+   "es": [
+    "fotos",
+    "imágenes"
+   ]
+  },
+  {
+   "en": [
+    "beard"
+   ],
+   "ar": [
+    "لحية"
+   ],
+   "ur": [
+    "داڑھی"
+   ],
+   "tr": [
+    "sakal"
+   ],
+   "id": [
+    "jenggot"
+   ],
+   "fr": [
+    "barbe"
+   ],
+   "es": [
+    "barba"
+   ]
+  },
+  {
+   "en": [
+    "gold",
+    "silver"
+   ],
+   "ar": [
+    "ذهب",
+    "فضة"
+   ],
+   "ur": [
+    "سونا",
+    "چاندی"
+   ],
+   "tr": [
+    "altın",
+    "gümüş"
+   ],
+   "id": [
+    "emas",
+    "perak"
+   ],
+   "fr": [],
+   "es": [
+    "oro",
+    "plata"
+   ]
+  },
+  {
+   "en": [
+    "clothes",
+    "clothing",
+    "dress"
+   ],
+   "ar": [
+    "لباس",
+    "ملابس",
+    "ثوب"
+   ],
+   "ur": [
+    "لباس",
+    "کپڑے"
+   ],
+   "tr": [
+    "elbise",
+    "kıyafet",
+    "giyim"
+   ],
+   "id": [
+    "pakaian",
+    "baju"
+   ],
+   "fr": [
+    "vêtements",
+    "habillement"
+   ],
+   "es": [
+    "ropa",
+    "vestimenta"
+   ]
+  },
+  {
+   "en": [
+    "food",
+    "eating",
+    "meat"
+   ],
+   "ar": [
+    "طعام",
+    "أكل",
+    "لحم"
+   ],
+   "ur": [
+    "کھانا",
+    "گوشت"
+   ],
+   "tr": [
+    "yemek"
+   ],
+   "id": [
+    "makanan",
+    "makan",
+    "daging"
+   ],
+   "fr": [
+    "nourriture",
+    "manger",
+    "viande"
+   ],
+   "es": [
+    "comida",
+    "comer",
+    "carne"
+   ]
+  },
+  {
+   "en": [
+    "sleep",
+    "sleeping"
+   ],
+   "ar": [
+    "نوم"
+   ],
+   "ur": [
+    "نیند",
+    "سونا"
+   ],
+   "tr": [
+    "uyku"
+   ],
+   "id": [
+    "tidur"
+   ],
+   "fr": [
+    "sommeil",
+    "dormir"
+   ],
+   "es": [
+    "dormir",
+    "sueño"
+   ]
+  },
+  {
+   "en": [
+    "work",
+    "job",
+    "employment",
+    "salary"
+   ],
+   "ar": [
+    "عمل",
+    "وظيفة",
+    "راتب"
+   ],
+   "ur": [
+    "کام",
+    "نوکری",
+    "تنخواہ"
+   ],
+   "tr": [
+    "iş",
+    "çalışma",
+    "maaş"
+   ],
+   "id": [
+    "kerja",
+    "pekerjaan",
+    "gaji"
+   ],
+   "fr": [
+    "travail",
+    "emploi",
+    "salaire"
+   ],
+   "es": [
+    "trabajo",
+    "empleo",
+    "salario"
+   ]
+  },
+  {
+   "en": [
+    "night",
+    "qiyam",
+    "tahajjud"
+   ],
+   "ar": [
+    "قيام",
+    "تهجد",
+    "ليل"
+   ],
+   "ur": [
+    "تہجد",
+    "قیام"
+   ],
+   "tr": [
+    "teheccüd",
+    "gece"
+   ],
+   "id": [
+    "tahajud",
+    "qiyamul"
+   ],
+   "fr": [
+    "tahajjud",
+    "nuit"
+   ],
+   "es": [
+    "tahajjud",
+    "noche"
+   ]
+  },
+  {
+   "en": [
+    "laylat",
+    "qadr"
+   ],
+   "ar": [
+    "ليلة",
+    "القدر"
+   ],
+   "ur": [
+    "شب",
+    "قدر"
+   ],
+   "tr": [
+    "kadir"
+   ],
+   "id": [
+    "lailatul",
+    "qadar"
+   ],
+   "fr": [
+    "qadr"
+   ],
+   "es": [
+    "decreto",
+    "qadr"
+   ]
+  },
+  {
+   "en": [
+    "iftar",
+    "suhoor",
+    "suhur"
+   ],
+   "ar": [
+    "إفطار",
+    "فطور",
+    "سحور"
+   ],
+   "ur": [
+    "افطار",
+    "سحری"
+   ],
+   "tr": [
+    "iftar",
+    "sahur"
+   ],
+   "id": [
+    "berbuka",
+    "sahur"
+   ],
+   "fr": [
+    "iftar",
+    "suhur"
+   ],
+   "es": [
+    "iftar",
+    "suhur"
+   ]
+  },
+  {
+   "en": [
+    "istikhara",
+    "guidance"
+   ],
+   "ar": [
+    "استخارة",
+    "هداية"
+   ],
+   "ur": [
+    "استخارہ",
+    "ہدایت"
+   ],
+   "tr": [
+    "istihare",
+    "hidayet"
+   ],
+   "id": [
+    "istikharah",
+    "hidayah"
+   ],
+   "fr": [
+    "istikhara",
+    "guidée"
+   ],
+   "es": [
+    "istijara",
+    "guía"
+   ]
+  },
+  {
+   "en": [
+    "mercy",
+    "merciful"
+   ],
+   "ar": [
+    "رحمة",
+    "رحيم",
+    "رحمن"
+   ],
+   "ur": [
+    "رحمت",
+    "رحیم"
+   ],
+   "tr": [
+    "rahmet",
+    "merhamet"
+   ],
+   "id": [
+    "rahmat",
+    "kasih"
+   ],
+   "fr": [
+    "miséricorde",
+    "miséricordieux"
+   ],
+   "es": [
+    "misericordia",
+    "misericordioso"
+   ]
+  },
+  {
+   "en": [
+    "peace",
+    "salam"
+   ],
+   "ar": [
+    "سلام"
+   ],
+   "ur": [
+    "سلام",
+    "امن"
+   ],
+   "tr": [
+    "selam",
+    "barış"
+   ],
+   "id": [
+    "salam",
+    "damai"
+   ],
+   "fr": [
+    "paix",
+    "salam"
+   ],
+   "es": [
+    "paz",
+    "salam"
+   ]
+  },
+  {
+   "en": [
+    "hypocrisy",
+    "hypocrite",
+    "showing off",
+    "riya"
+   ],
+   "ar": [
+    "نفاق",
+    "منافق",
+    "رياء"
+   ],
+   "ur": [
+    "نفاق",
+    "منافق",
+    "ریا"
+   ],
+   "tr": [
+    "nifak",
+    "münafık",
+    "riya"
+   ],
+   "id": [
+    "nifak",
+    "munafik",
+    "riya"
+   ],
+   "fr": [
+    "hypocrisie",
+    "hypocrite",
+    "ostentation"
+   ],
+   "es": [
+    "hipocresía",
+    "hipócrita",
+    "ostentación"
+   ]
+  },
+  {
+   "en": [
+    "backbiting",
+    "gossip",
+    "lying",
+    "lie"
+   ],
+   "ar": [
+    "غيبة",
+    "نميمة",
+    "كذب"
+   ],
+   "ur": [
+    "غیبت",
+    "چغلی",
+    "جھوٹ"
+   ],
+   "tr": [
+    "gıybet",
+    "yalan"
+   ],
+   "id": [
+    "ghibah",
+    "gosip",
+    "bohong",
+    "dusta"
+   ],
+   "fr": [
+    "médisance",
+    "mensonge"
+   ],
+   "es": [
+    "calumnia",
+    "chisme",
+    "mentira"
+   ]
+  },
+  {
+   "en": [
+    "wills",
+    "will",
+    "bequest"
+   ],
+   "ar": [
+    "وصية",
+    "وصايا"
+   ],
+   "ur": [
+    "وصیت"
+   ],
+   "tr": [
+    "vasiyet"
+   ],
+   "id": [
+    "wasiat"
+   ],
+   "fr": [
+    "testament",
+    "legs"
+   ],
+   "es": [
+    "testamento",
+    "legado"
+   ]
+  },
+  {
+   "en": [
+    "birth",
+    "newborn",
+    "aqiqah"
+   ],
+   "ar": [
+    "ولادة",
+    "مولود",
+    "عقيقة"
+   ],
+   "ur": [
+    "ولادت",
+    "عقیقہ"
+   ],
+   "tr": [
+    "doğum",
+    "akika"
+   ],
+   "id": [
+    "kelahiran",
+    "aqiqah"
+   ],
+   "fr": [
+    "naissance",
+    "nouveau-né"
+   ],
+   "es": [
+    "nacimiento",
+    "recién nacido"
+   ]
+  }
+ ]
+}

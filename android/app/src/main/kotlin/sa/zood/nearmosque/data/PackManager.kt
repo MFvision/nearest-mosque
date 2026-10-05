@@ -160,7 +160,11 @@ class PackManager(
                 "sources" -> {
                     val chunks = readLines(open("chunks.jsonl") ?: throw PackError.Format("no chunks")).map { line ->
                         val c = PackJson.decodeFromString(SourceChunk.serializer(), line)
-                        val text = c.searchText()
+                        // Library packs are indexed with stems and variants for library search; the Quran keeps
+                        // the shared normalizer only (fixtures in shared/fixtures/retrieval.json).
+                        val text = if (ChunkScope.isLibrary(manifest.id)) {
+                            sa.zood.nearmosque.core.LibraryText.indexTokens(c.original.text + " " + c.translations.joinToString(" ") { it.text }).joinToString(" ")
+                        } else c.searchText()
                         SourceChunkEntity(c.id, manifest.id, c.seq, c.anchor, line, text, if (text.isEmpty()) 0 else text.count { it == ' ' } + 1)
                     }
                     val docs = open("documents.json")?.use { s ->

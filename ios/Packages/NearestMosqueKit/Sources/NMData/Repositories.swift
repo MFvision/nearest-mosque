@@ -133,6 +133,52 @@ public final class GRDBChunkStore: ChunkStore, @unchecked Sendable {
     }
 }
 
+/// One library pack in SQLite; tokens were indexed with `LibraryText.indexTokens`.
+public final class GRDBLibraryStore: LibraryStore, @unchecked Sendable {
+    let db: AppDatabase
+    let packId: String
+    public let totalChunks: Int
+    public let averageLength: Double
+
+    public init(db: AppDatabase, packId: String) throws {
+        self.db = db
+        self.packId = packId
+        (totalChunks, averageLength) = try db.writer.read { db in
+            (try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM source_chunk WHERE packId = ?", arguments: [packId]) ?? 0,
+             try Double.fetchOne(db, sql: "SELECT COALESCE(AVG(tokenCount), 0) FROM source_chunk WHERE packId = ?", arguments: [packId]) ?? 0)
+        }
+    }
+
+    /// FTS5 match: prefix query (`"term"*`) for 3+ letters, exact otherwise.
+    static func match(_ variants: [String]) -> String {
+        variants.map { v in
+            let q = "\"" + v.replacingOccurrences(of: "\"", with: "") + "\""
+            return LibraryText.len(v) >= LibraryText.prefixMin ? q + "*" : q
+        }.joined(separator: " OR ")
+    }
+
+    public func documentFrequency(_ variants: [String]) -> Int {
+        guard !variants.isEmpty else { return 0 }
+        return (try? db.writer.read { db in
+            try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?",
+                             arguments: [Self.match(variants), packId])
+        }) ?? 0
+    }
+
+    public func candidates(_ variants: [String]) -> [CandidateChunk] {
+        guard !variants.isEmpty else { return [] }
+        return (try? db.writer.read { db in
+            try Row.fetchAll(db, sql: """
+                SELECT c.id, c.seq, c.searchText FROM source_chunk c
+                JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND c.packId = ?
+                """, arguments: [Self.match(variants), packId]).map { r in
+                let text: String = r["searchText"]
+                return CandidateChunk(id: r["id"], seq: r["seq"], tokens: text.isEmpty ? [] : text.split(separator: " ").map(String.init))
+            }
+        }) ?? []
+    }
+}
+
 public struct ResolvedCitation: Identifiable, Sendable {
     public var id: String { chunk.id }
     public let chunk: SourceChunk
@@ -143,15 +189,18 @@ public struct ResolvedCitation: Identifiable, Sendable {
 public final class AskRepository: @unchecked Sendable {
     let db: AppDatabase
     let stopwords: [String: [String]]
-    let libraryStopwords: [String: [String]]
-    private var cache: (key: String, retriever: Retriever, questions: [CommonQuestion], libraries: [String: Retriever])?
+    let libraryStopwords: Set<String>
+    let lexicon: Lexicon
+    private var cache: (key: String, retriever: Retriever, questions: [CommonQuestion], libraries: [String: LibraryRetriever])?
     private let lock = NSLock()
     public static let libraryResults = 6
+    public static let libraryEnough = 3
 
-    public init(db: AppDatabase, stopwords: [String: [String]]) {
+    public init(db: AppDatabase, stopwords: [String: [String]], lexicon: Lexicon = .empty) {
         self.db = db
         self.stopwords = stopwords
-        self.libraryStopwords = NMCore.libraryStopwords(stopwords)
+        self.libraryStopwords = LibraryText.stopwords(stopwords)
+        self.lexicon = lexicon
     }
 
     private func retriever() throws -> (Retriever, [CommonQuestion]) {
@@ -159,7 +208,7 @@ public final class AskRepository: @unchecked Sendable {
         return (c.retriever, c.questions)
     }
 
-    private func cached() throws -> (key: String, retriever: Retriever, questions: [CommonQuestion], libraries: [String: Retriever]) {
+    private func cached() throws -> (key: String, retriever: Retriever, questions: [CommonQuestion], libraries: [String: LibraryRetriever]) {
         lock.lock(); defer { lock.unlock() }
         let key = try db.writer.read { db in
             try String.fetchOne(db, sql: "SELECT group_concat(id || ':' || installedAt) FROM installed_pack WHERE kind = 'sources'") ?? ""
@@ -172,28 +221,31 @@ public final class AskRepository: @unchecked Sendable {
         let packs = try db.writer.read { db in
             try String.fetchAll(db, sql: "SELECT DISTINCT packId FROM source_chunk")
         }.filter(ChunkScope.isLibrary).sorted()
-        var libraries: [String: Retriever] = [:]
+        var libraries: [String: LibraryRetriever] = [:]
         for p in packs {
-            libraries[p] = Retriever(store: try GRDBChunkStore(db: db, scope: .library(p)), commonQuestions: [], stopwords: libraryStopwords, gates: .library)
+            libraries[p] = LibraryRetriever(store: try GRDBLibraryStore(db: db, packId: p), stopwords: libraryStopwords, lexicon: lexicon)
         }
         let c = (key, r, qs, libraries)
         cache = c
         return c
     }
 
-    /// Library items for the question: the libraries in the interface language first, then English and
-    /// Arabic; the first language with evidence wins. With several libraries in that language (IslamHouse
-    /// and the Ibn Baz fatwas in Arabic), their results are interleaved, strongest library first.
+    /// Library items for the question, by language: the interface language first, then English, then
+    /// Arabic. Results from several libraries in one language (IslamHouse and the Ibn Baz fatwas in Arabic)
+    /// are interleaved, strongest library first. The next language only fills in while fewer than
+    /// `libraryEnough` items were found, so the reader's own language dominates; the lexicon lets a
+    /// question in one language find items in another.
     public func library(_ q: String, context: [String] = [], lang: String) throws -> [String] {
         let libs = try cached().libraries
-        var seen = Set<String>()
+        var seen = Set<String>(), out: [String] = []
         for l in [lang, "en", "ar"] where seen.insert(l).inserted {
+            if out.count >= Self.libraryEnough { break }
             let hits = libs.filter { ChunkScope.libraryLanguage($0.key) == l }.sorted { $0.key < $1.key }
                 .map { $0.value.retrieve(q, context: context) }
-                .filter { $0.kind != .insufficient && !$0.passages.isEmpty }
-            if !hits.isEmpty { return Array(Self.interleave(hits.map(\.passages)).prefix(Self.libraryResults)) }
+                .filter { !$0.passages.isEmpty }
+            for id in Self.interleave(hits.map(\.passages)) where !out.contains(id) { out.append(id) }
         }
-        return []
+        return Array(out.prefix(Self.libraryResults))
     }
 
     /// Round-robin over ranked lists, starting with the list whose best passage scores highest.

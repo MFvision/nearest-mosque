@@ -29,6 +29,8 @@ targets:
         buildPhase: resources
       - path: ../shared/content/stopwords.json
         buildPhase: resources
+      - path: ../shared/content/lexicon.json
+        buildPhase: resources
     dependencies:
       - package: NearestMosqueKit
         product: NMCore

@@ -2,7 +2,7 @@
   "id": "sources.islamhouse-es",
   "kind": "sources",
   "schemaVersion": 1,
-  "version": 1,
+  "version": 2,
   "title": {
     "en": "IslamHouse library (es)",
     "es": "Biblioteca IslamHouse (español)"
@@ -22,7 +22,7 @@
     "name": "IslamHouse.com API v3",
     "url": "https://islamhouse.com/",
     "snapshot": "2026-10-05",
-    "builtAt": "2026-10-05T09:06:25Z"
+    "builtAt": "2026-10-05T11:37:44Z"
   },
   "license": {
     "id": "IslamHouse-free-distribution-unconfirmed",
