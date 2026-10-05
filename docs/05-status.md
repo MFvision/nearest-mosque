@@ -112,7 +112,11 @@ the App Store Connect API key, and uploaded **version 0.2.0 build 102** of `sa.z
 3. Book ingestion pipeline (PDF/EPUB/HTML, OCR review), licensed hadith and translations, embeddings,
    IslamHouse inventory once permissions exist.
 4. On-device model for Android (LiteRT-LM or llama.cpp) after benchmarking memory, latency and
-   Arabic grounding on real devices.
+   Arabic grounding on real devices. Gemini Nano (ML Kit GenAI) is ruled out: its terms prohibit apps
+   likely to be used by people under 18, and a prayer app is used by families. Until a model ships,
+   Android answers with the quoted, cited passages.
+8. "Search these sites too" links (IslamQA, Dorar, Ibn Uthaymeen, alifta) stay while the permission
+   requests in docs/08-permission-requests.md are pending; their content is added once permission is given.
 5. City names are stored in the language active when chosen; re-localize by city id.
 6. Scholar review of the eight common answers and native review of translations.
 7. Pickthall translation source for any commercial release (licensing gate).
