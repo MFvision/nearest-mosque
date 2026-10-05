@@ -54,13 +54,14 @@ API key without the Admin role.
 
 | Area | Steps | Expected |
 |---|---|---|
-| Welcome tour | Fresh install; swipe or use Next; Skip; replay from Settings → "Show welcome tour" | Six animated pages; setup page changes language and sets location |
+| Welcome tour | Fresh install; swipe or use Next; change language from the globe button on any page; Skip; replay from Settings → "Show welcome tour" | Six animated pages; language changes immediately; Skip goes to the setup page (language and location) |
 | Prayer times | Use my location, then compare with your mosque's timetable; switch method in Calculation | Times match the chosen method within a minute; countdown runs; Hijri date shown |
 | Time zone | With the phone on automatic time, use your location | Times in the phone's zone; no prompt. Set a manual wrong zone near a city to see the confirmation |
 | Qibla | Hold the phone flat on the Prayer tab and turn slowly; open the full compass | Gold dot moves; at the Qibla the disc glows and you feel one haptic. Check against a known Qibla direction |
 | Reminders | Tap a bell; wait for the prayer time (or set a near offset) | Notification at the prayer time |
-| Nearest Mosque | Compass view (turn the phone), Map view (pan, "Search this area"), cards, Get directions | Live Apple Maps results with walking time; Directions opens Apple Maps |
+| Nearest Mosque | Compass view (turn the phone), Map view (pan, "Search this area"), cards, Get directions | Live Apple Maps results with walking time; Directions offers Apple Maps, Google Maps and Waze |
 | Offline | Airplane mode with GPS on; reopen each tab | Prayer, Qibla, compass and Ask work; Mosques shows downloaded areas (Cape Town, Cairo, London) and says you're offline elsewhere |
 | Ask | Common questions; your own question; follow-up; Read in context | Quoted verses with references; "couldn't find" instead of guessing. On iOS 26 devices with Apple Intelligence, an on-device written answer above the quotes |
+| Ask library | Ask "What is Islam?" (and in Arabic "ما هو الإسلام؟"); tap "Read in the app" on a book, "Watch" on a video | IslamHouse items in your language; the book downloads once and opens at the first page mentioning your question; it opens again in airplane mode |
 | Languages | Settings → Language: Arabic, Urdu, Turkish, Indonesian, French, Spanish | Text and layout switch immediately; Arabic and Urdu right-to-left |
 | Accessibility | VoiceOver, larger text, Reduce Motion, Reduce Transparency | Everything readable and operable; animations stop; glass turns solid |

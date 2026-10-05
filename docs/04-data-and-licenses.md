@@ -12,6 +12,7 @@ must be resolved before a store release.
 | `mosques.eg-cairo` | 519 records | same | ODbL 1.0 | OK |
 | `mosques.gb-london` | 255 records (254 mosques, 1 prayer space) | same | ODbL 1.0 | OK |
 | `sources.quran-tanzil-pickthall` | 6,236 verses, one chunk per verse, anchor `surah:ayah` | Tanzil Quran Text (Simple) v1.1 + `en.pickthall`, retrieved 2026-10-03; SHA-256 of both inputs recorded in `documents.json` | Arabic: Tanzil terms (CC BY 3.0, verbatim only, notice + link required). Translation: public-domain work (M. M. Pickthall, 1930; d. 1936) **digitized by Tanzil, whose translation terms say non-commercial use only** | Arabic OK. **Release gate:** for any commercial distribution, re-source Pickthall from a public-domain digitization or get Tanzil's permission. |
+| `sources.islamhouse-{en,ar,ur,tr,id,fr,es}` | Library catalogue: en 3,337 · ar 11,931 · ur 2,870 · tr 1,194 · id 2,015 · fr 1,993 · es 1,447 records (books, articles, fatwas, videos, audio): title, description, authors, the start of the text where the API provides it, and links | IslamHouse public API v3 (`api3.islamhouse.com`), retrieved 2026-10-05 with `tools/build_islamhouse_pack.py` | IslamHouse publishes its material for free distribution; **permission to redistribute it inside an app is not confirmed in writing** | **Release gate:** written permission from IslamHouse.com (or remove these packs). Full books, videos and audio are not bundled: they download from IslamHouse hosts only when the user opens them, and are kept on the device |
 
 Coverage is measured, not claimed: each mosque pack records its bbox and count. OSM coverage of
 mosques varies (Cape Town's 69 records are certainly fewer than the mosques that exist); the app says
@@ -25,7 +26,7 @@ shown.
 
 | Source | Why not yet | What is needed |
 |---|---|---|
-| IslamHouse / Balagh catalog | API reachable but not tested; no credentials, limits, stable-ID or redistribution terms verified; Balagh's curation not inspected | Written permission per item/collection for offline redistribution, indexing and embedding; then `tools/build_*_pack.py` style ingestion with an inventory report (discovered / downloadable / indexed / failed / unsupported) |
+| Balagh (بلاغ) app content | An App Store app's private storage cannot be copied (App Store binaries do not run in the Simulator, and extracting another app's data is not permitted); its own curation and Q&A are not published through an API we can use | The publisher's permission and an export or API. The IslamHouse catalogue above is the public source used instead |
 | Hadith collections (Arabic and translations) | Digital editions carry their own terms | A licensed edition with stable numbering |
 | Other Quran translations (ur, tr, id, fr, es) on Tanzil | Tanzil marks them non-commercial; translators/publishers hold rights | Permission from each translator/publisher |
 | Offline street-map tiles | Live maps now ship (below); offline map packs need a licensed or self-built extract | A self-hosted vector tile extract (Protomaps/OpenMapTiles build) with style, glyphs and sprites for MapLibre |
@@ -78,6 +79,7 @@ python3 tools/build_quran_pack.py --arabic quran-simple.txt --translation en.pic
     --metadata quran-data.xml --questions shared/content/common-questions.json \
     --out packs/sources/quran-tanzil-pickthall
 python3 tools/gen_fixtures.py && python3 tools/reference_search.py --gen   # fixtures
+python3 tools/build_islamhouse_pack.py --out packs/sources                   # IslamHouse library (cached in .cache/)
 python3 tools/gen_strings.py                                                # iOS + Android strings
 ```
 
