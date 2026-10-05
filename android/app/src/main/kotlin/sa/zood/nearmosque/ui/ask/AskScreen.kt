@@ -118,7 +118,7 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
                             Text(
                                 text, color = white, style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.heightIn(min = 48.dp).glass(RoundedCornerShape(18.dp), shadow = 6.dp)
-                                    .clickable(role = androidx.compose.ui.semantics.Role.Button) { vm.askCommon(q, text) }
+                                    .clickable(role = androidx.compose.ui.semantics.Role.Button) { vm.askCommon(q, text, lang) }
                                     .padding(horizontal = 14.dp, vertical = 12.dp),
                             )
                         }
@@ -156,7 +156,7 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
                 value = input, onValueChange = { input = it }, modifier = Modifier.weight(1f).glass(RoundedCornerShape(26.dp), shadow = 6.dp),
                 placeholder = { Text(stringResource(if (ui.turns.isEmpty()) R.string.ask_placeholder else R.string.ask_follow_up_placeholder), color = white.copy(alpha = 0.7f)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
-                keyboardActions = KeyboardActions(onSend = { vm.ask(input); input = "" }),
+                keyboardActions = KeyboardActions(onSend = { vm.ask(input, lang); input = "" }),
                 maxLines = 4,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent, unfocusedContainerColor = androidx.compose.ui.graphics.Color.Transparent,
@@ -165,7 +165,7 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
                 ),
             )
             Spacer(Modifier.width(10.dp))
-            GlassButton(onClick = { vm.ask(input); input = "" }, prominent = true, enabled = input.isNotBlank() && !ui.busy, modifier = Modifier.size(56.dp)) {
+            GlassButton(onClick = { vm.ask(input, lang); input = "" }, prominent = true, enabled = input.isNotBlank() && !ui.busy, modifier = Modifier.size(56.dp)) {
                 Icon(Icons.AutoMirrored.Filled.Send, contentDescription = stringResource(R.string.ask_send), modifier = Modifier.size(20.dp))
             }
         }
@@ -192,7 +192,11 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
                 Text(stringResource(R.string.answer_from_passages), style = MaterialTheme.typography.titleMedium)
                 Text(stringResource(R.string.answer_from_passages_body), style = MaterialTheme.typography.bodyMedium)
             }
-            AnswerKind.INSUFFICIENT -> {
+            AnswerKind.INSUFFICIENT -> if (t.library.isNotEmpty()) {
+                Text(stringResource(R.string.library_found_title), style = MaterialTheme.typography.titleMedium)
+                Spacer(Modifier.height(4.dp))
+                Text(stringResource(R.string.library_found_body), style = MaterialTheme.typography.bodyMedium)
+            } else {
                 Text(stringResource(R.string.answer_insufficient_title), style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(4.dp))
                 Text(stringResource(R.string.answer_insufficient_body), style = MaterialTheme.typography.bodyMedium)
@@ -202,6 +206,12 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
             Spacer(Modifier.height(12.dp))
             Text(stringResource(R.string.sources), style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
             t.citations.forEach { SourceCard(it, lang, onRead) }
+        }
+        if (t.library.isNotEmpty()) {
+            Spacer(Modifier.height(12.dp))
+            Text(stringResource(R.string.library_section), style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            t.library.forEach { LibraryCard(it) }
+            Text(stringResource(R.string.library_note) + " " + stringResource(R.string.library_offline_note), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f), modifier = Modifier.padding(top = 6.dp))
         }
         if (t.related.isNotEmpty()) {
             TextButton(onClick = { more = !more }, modifier = Modifier.heightIn(min = 48.dp)) {

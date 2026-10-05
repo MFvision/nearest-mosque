@@ -2266,6 +2266,249 @@
       "id": "Tanya",
       "fr": "Demander",
       "es": "Preguntar"
+    },
+    "library_section": {
+      "en": "From the IslamHouse library",
+      "ar": "من مكتبة دار الإسلام",
+      "ur": "IslamHouse لائبریری سے",
+      "tr": "IslamHouse kütüphanesinden",
+      "id": "Dari perpustakaan IslamHouse",
+      "fr": "De la bibliothèque IslamHouse",
+      "es": "De la biblioteca IslamHouse"
+    },
+    "library_found_title": {
+      "en": "Books and articles about this",
+      "ar": "كتب ومقالات عن هذا الموضوع",
+      "ur": "اس موضوع پر کتابیں اور مضامین",
+      "tr": "Bu konuda kitaplar ve makaleler",
+      "id": "Buku dan artikel tentang ini",
+      "fr": "Livres et articles sur ce sujet",
+      "es": "Libros y artículos sobre esto"
+    },
+    "library_found_body": {
+      "en": "No verse on your phone clearly matches, but these IslamHouse items do. Open one to read it.",
+      "ar": "لم نجد آية تطابق السؤال بوضوح، لكن هذه المواد من دار الإسلام تتناوله. افتح أحدها لقراءته.",
+      "ur": "آپ کے فون پر کوئی آیت واضح طور پر مطابقت نہیں رکھتی، لیکن یہ IslamHouse مواد اس موضوع پر ہیں۔ پڑھنے کے لیے کوئی ایک کھولیں۔",
+      "tr": "Telefonunuzda açıkça eşleşen bir ayet yok, ancak bu IslamHouse içerikleri konuyu ele alıyor. Okumak için birini açın.",
+      "id": "Tidak ada ayat di ponsel Anda yang jelas cocok, tetapi materi IslamHouse ini membahasnya. Buka salah satunya untuk membaca.",
+      "fr": "Aucun verset sur votre téléphone ne correspond clairement, mais ces contenus d’IslamHouse traitent du sujet. Ouvrez-en un pour le lire.",
+      "es": "Ningún versículo de tu teléfono coincide claramente, pero estos materiales de IslamHouse tratan el tema. Abre uno para leerlo."
+    },
+    "library_open": {
+      "en": "Open",
+      "ar": "فتح",
+      "ur": "کھولیں",
+      "tr": "Aç",
+      "id": "Buka",
+      "fr": "Ouvrir",
+      "es": "Abrir"
+    },
+    "library_file": {
+      "en": "%1$s · %2$s",
+      "ar": "%1$s · %2$s",
+      "ur": "%1$s · %2$s",
+      "tr": "%1$s · %2$s",
+      "id": "%1$s · %2$s",
+      "fr": "%1$s · %2$s",
+      "es": "%1$s · %2$s"
+    },
+    "library_type_books": {
+      "en": "Book",
+      "ar": "كتاب",
+      "ur": "کتاب",
+      "tr": "Kitap",
+      "id": "Buku",
+      "fr": "Livre",
+      "es": "Libro"
+    },
+    "library_type_articles": {
+      "en": "Article",
+      "ar": "مقال",
+      "ur": "مضمون",
+      "tr": "Makale",
+      "id": "Artikel",
+      "fr": "Article",
+      "es": "Artículo"
+    },
+    "library_type_fatwa": {
+      "en": "Fatwa",
+      "ar": "فتوى",
+      "ur": "فتویٰ",
+      "tr": "Fetva",
+      "id": "Fatwa",
+      "fr": "Fatwa",
+      "es": "Fatua"
+    },
+    "library_by": {
+      "en": "By %1$s",
+      "ar": "تأليف: %1$s",
+      "ur": "از %1$s",
+      "tr": "Yazar: %1$s",
+      "id": "Oleh %1$s",
+      "fr": "Par %1$s",
+      "es": "Por %1$s"
+    },
+    "library_note": {
+      "en": "From the IslamHouse.com library. Books open inside the app; downloading one needs internet the first time.",
+      "ar": "من مكتبة دار الإسلام IslamHouse.com. تُفتح الكتب داخل التطبيق، ويحتاج تنزيل الكتاب أول مرة إلى إنترنت.",
+      "ur": "IslamHouse.com کی لائبریری سے۔ کتابیں ایپ کے اندر کھلتی ہیں؛ پہلی بار ڈاؤن لوڈ کے لیے انٹرنیٹ درکار ہے۔",
+      "tr": "IslamHouse.com kütüphanesinden. Kitaplar uygulamanın içinde açılır; ilk indirme için internet gerekir.",
+      "id": "Dari perpustakaan IslamHouse.com. Buku dibuka di dalam aplikasi; unduhan pertama memerlukan internet.",
+      "fr": "Bibliothèque IslamHouse.com. Les livres s’ouvrent dans l’app ; le premier téléchargement nécessite internet.",
+      "es": "De la biblioteca IslamHouse.com. Los libros se abren en la app; la primera descarga necesita internet."
+    },
+    "pack_kind_library": {
+      "en": "Library: %1$s",
+      "ar": "المكتبة: %1$s",
+      "ur": "لائبریری: %1$s",
+      "tr": "Kütüphane: %1$s",
+      "id": "Perpustakaan: %1$s",
+      "fr": "Bibliothèque : %1$s",
+      "es": "Biblioteca: %1$s"
+    },
+    "directions_choose": {
+      "en": "Open directions in",
+      "ar": "فتح الاتجاهات في",
+      "ur": "راستہ کس میں کھولیں",
+      "tr": "Yol tarifini aç",
+      "id": "Buka petunjuk arah di",
+      "fr": "Ouvrir l’itinéraire dans",
+      "es": "Abrir la ruta en"
+    },
+    "maps_apple": {
+      "en": "Apple Maps",
+      "ar": "خرائط Apple",
+      "ur": "Apple Maps",
+      "tr": "Apple Haritalar",
+      "id": "Apple Maps",
+      "fr": "Plans",
+      "es": "Mapas de Apple"
+    },
+    "maps_google": {
+      "en": "Google Maps",
+      "ar": "خرائط Google",
+      "ur": "Google Maps",
+      "tr": "Google Haritalar",
+      "id": "Google Maps",
+      "fr": "Google Maps",
+      "es": "Google Maps"
+    },
+    "maps_waze": {
+      "en": "Waze",
+      "ar": "Waze",
+      "ur": "Waze",
+      "tr": "Waze",
+      "id": "Waze",
+      "fr": "Waze",
+      "es": "Waze"
+    },
+    "library_read": {
+      "en": "Read in the app",
+      "ar": "اقرأ داخل التطبيق",
+      "ur": "ایپ میں پڑھیں",
+      "tr": "Uygulamada oku",
+      "id": "Baca di aplikasi",
+      "fr": "Lire dans l’app",
+      "es": "Leer en la app"
+    },
+    "library_watch": {
+      "en": "Watch",
+      "ar": "شاهد",
+      "ur": "دیکھیں",
+      "tr": "İzle",
+      "id": "Tonton",
+      "fr": "Regarder",
+      "es": "Ver"
+    },
+    "library_listen": {
+      "en": "Listen",
+      "ar": "استمع",
+      "ur": "سنیں",
+      "tr": "Dinle",
+      "id": "Dengarkan",
+      "fr": "Écouter",
+      "es": "Escuchar"
+    },
+    "library_web": {
+      "en": "On IslamHouse",
+      "ar": "على موقع دار الإسلام",
+      "ur": "IslamHouse پر",
+      "tr": "IslamHouse’ta",
+      "id": "Di IslamHouse",
+      "fr": "Sur IslamHouse",
+      "es": "En IslamHouse"
+    },
+    "library_downloading": {
+      "en": "Downloading…",
+      "ar": "جارٍ التنزيل…",
+      "ur": "ڈاؤن لوڈ ہو رہا ہے…",
+      "tr": "İndiriliyor…",
+      "id": "Mengunduh…",
+      "fr": "Téléchargement…",
+      "es": "Descargando…"
+    },
+    "library_download_failed": {
+      "en": "Couldn’t load it. Check your connection and try again.",
+      "ar": "تعذّر التحميل. تحقّق من الاتصال وحاول مرة أخرى.",
+      "ur": "لوڈ نہیں ہو سکا۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔",
+      "tr": "Yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+      "id": "Gagal memuat. Periksa koneksi lalu coba lagi.",
+      "fr": "Chargement impossible. Vérifiez la connexion et réessayez.",
+      "es": "No se pudo cargar. Revisa la conexión e inténtalo de nuevo."
+    },
+    "library_retry": {
+      "en": "Try again",
+      "ar": "أعد المحاولة",
+      "ur": "دوبارہ کوشش کریں",
+      "tr": "Tekrar dene",
+      "id": "Coba lagi",
+      "fr": "Réessayer",
+      "es": "Reintentar"
+    },
+    "library_page": {
+      "en": "Page %1$d of %2$d",
+      "ar": "صفحة %1$d من %2$d",
+      "ur": "صفحہ %1$d از %2$d",
+      "tr": "Sayfa %1$d / %2$d",
+      "id": "Halaman %1$d dari %2$d",
+      "fr": "Page %1$d sur %2$d",
+      "es": "Página %1$d de %2$d"
+    },
+    "library_found_page": {
+      "en": "Opened at the first page that mentions your question",
+      "ar": "فُتح على أول صفحة تذكر سؤالك",
+      "ur": "آپ کے سوال کا ذکر کرنے والے پہلے صفحے پر کھولا گیا",
+      "tr": "Sorunuzun geçtiği ilk sayfada açıldı",
+      "id": "Dibuka di halaman pertama yang menyebut pertanyaan Anda",
+      "fr": "Ouvert à la première page qui mentionne votre question",
+      "es": "Abierto en la primera página que menciona tu pregunta"
+    },
+    "library_offline_note": {
+      "en": "Books you open are saved on this phone and open again without internet.",
+      "ar": "الكتب التي تفتحها تُحفظ على هذا الجهاز وتُفتح لاحقًا دون إنترنت.",
+      "ur": "جو کتابیں آپ کھولتے ہیں وہ اسی فون پر محفوظ رہتی ہیں اور بعد میں انٹرنیٹ کے بغیر کھلتی ہیں۔",
+      "tr": "Açtığınız kitaplar bu telefona kaydedilir ve sonra internetsiz açılır.",
+      "id": "Buku yang Anda buka disimpan di ponsel ini dan bisa dibuka lagi tanpa internet.",
+      "fr": "Les livres ouverts sont enregistrés sur ce téléphone et se rouvrent hors ligne.",
+      "es": "Los libros que abres se guardan en este teléfono y se vuelven a abrir sin internet."
+    },
+    "library_type_videos": {
+      "en": "Video",
+      "ar": "فيديو",
+      "ur": "ویڈیو",
+      "tr": "Video",
+      "id": "Video",
+      "fr": "Vidéo",
+      "es": "Vídeo"
+    },
+    "library_type_audios": {
+      "en": "Audio",
+      "ar": "صوتيات",
+      "ur": "آڈیو",
+      "tr": "Ses",
+      "id": "Audio",
+      "fr": "Audio",
+      "es": "Audio"
     }
   }
 }

@@ -107,7 +107,20 @@ class Retriever(
     private val store: ChunkStore,
     commonQuestions: List<CommonQuestion>,
     stopwords: Map<String, List<String>>,
+    private val gates: Gates = Gates.BOOKS,
 ) {
+    /**
+     * Evidence gates. BOOKS is fixed by shared/fixtures/retrieval.json. LIBRARY (catalogue records,
+     * where a word like "Islam" occurs in hundreds of titles and so carries little IDF) accepts lower
+     * scores but requires most of the question's own words.
+     */
+    data class Gates(val minScore: Double, val minCoverage: Double, val orMatchedAtLeast: Int?) {
+        companion object {
+            val BOOKS = Gates(MIN_SCORE, MIN_COVERAGE, 2)
+            val LIBRARY = Gates(0.5, 0.6, null)
+        }
+    }
+
     private class PreparedQuestion(val q: CommonQuestion, val triggers: List<List<String>>, val questions: List<Set<String>>, val expansion: List<String>)
 
     private val prepared = commonQuestions.map { q ->
@@ -162,7 +175,7 @@ class Retriever(
             if (content.isNotEmpty()) s *= COORD_BASE + (1 - COORD_BASE) * coverage
             S(c.id, c.seq, s, coverage, matched)
         }.sortedWith(compareByDescending<S> { it.score }.thenBy { it.seq })
-        return scored.filter { it.score >= MIN_SCORE && (it.coverage >= MIN_COVERAGE || it.matched >= 2) }
+        return scored.filter { it.score >= gates.minScore && (it.coverage >= gates.minCoverage || (gates.orMatchedAtLeast != null && it.matched >= gates.orMatchedAtLeast)) }
             .take(MAX_PASSAGES)
             .map { ScoredPassage(it.id, it.score, it.coverage) }
     }
@@ -209,6 +222,12 @@ class Retriever(
     }
 }
 
+/** Stopwords for library retrieval: the query stopwords without the `_domain` words ("Islam", "Quran"...). */
+fun libraryStopwords(stopwords: Map<String, List<String>>): Map<String, List<String>> {
+    val domain = stopwords["_domain"].orEmpty().flatMap { TextNormalizer.tokens(it) }.toSet()
+    return stopwords.filterKeys { !it.startsWith("_") }.mapValues { (_, words) -> words.filter { w -> TextNormalizer.tokens(w).none { it in domain } } }
+}
+
 /** A composed answer: only references to stored passages, plus an optional editorial summary. */
 data class Answer(
     val question: String,
@@ -220,6 +239,8 @@ data class Answer(
     val related: List<String>,
     /** Prose written on-device from the cited passages, when a local model produced a valid answer. */
     val generated: String? = null,
+    /** Matching items from a separate library collection (IslamHouse), most relevant first. */
+    val library: List<String> = emptyList(),
 )
 
 object AnswerComposer {

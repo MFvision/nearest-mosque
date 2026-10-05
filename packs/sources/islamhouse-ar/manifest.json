@@ -1,0 +1,50 @@
+{
+  "id": "sources.islamhouse-ar",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "IslamHouse library (ar)",
+    "ar": "مكتبة دار الإسلام (العربية)"
+  },
+  "languages": [
+    "ar"
+  ],
+  "recordCount": 11931,
+  "categories": {
+    "books": 5094,
+    "articles": 1672,
+    "fatwa": 482,
+    "videos": 842,
+    "audios": 3841
+  },
+  "source": {
+    "name": "IslamHouse.com API v3",
+    "url": "https://islamhouse.com/",
+    "snapshot": "2026-10-05",
+    "builtAt": "2026-10-05T09:05:21Z"
+  },
+  "license": {
+    "id": "IslamHouse-free-distribution-unconfirmed",
+    "name": "IslamHouse material for free distribution; in-app redistribution permission not yet confirmed",
+    "url": "https://islamhouse.com/",
+    "attribution": "IslamHouse.com"
+  },
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 19482963,
+      "sha256": "90428e414bcd31e970b332a7c9eacd466efc7e0a5ef71129c196e50c7cf02bde"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 642,
+      "sha256": "9add91a338b6ad83dfb542c030f225d6c07428410d4044dd433a8957368d4ddf"
+    },
+    {
+      "path": "NOTICE-islamhouse.txt",
+      "bytes": 414,
+      "sha256": "b258bb8ae49c1e6ec3c3ff0f67bcf84bfb143c7547a1e41a20090145c246a291"
+    }
+  ]
+}

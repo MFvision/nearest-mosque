@@ -1,0 +1,4 @@
+Catalogue records (titles, descriptions, authors and the beginning of item texts) from IslamHouse.com,
+retrieved through the public IslamHouse API (api3.islamhouse.com). Full books, articles and fatwas are
+opened on IslamHouse.com. IslamHouse publishes its material for free distribution; written permission for
+redistribution inside this app has not yet been confirmed. Remove this pack if permission is refused.

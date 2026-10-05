@@ -1,0 +1,50 @@
+{
+  "id": "sources.islamhouse-fr",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "IslamHouse library (fr)",
+    "fr": "Bibliothèque IslamHouse (français)"
+  },
+  "languages": [
+    "fr"
+  ],
+  "recordCount": 1993,
+  "categories": {
+    "books": 370,
+    "articles": 229,
+    "fatwa": 290,
+    "videos": 483,
+    "audios": 621
+  },
+  "source": {
+    "name": "IslamHouse.com API v3",
+    "url": "https://islamhouse.com/",
+    "snapshot": "2026-10-05",
+    "builtAt": "2026-10-05T09:06:15Z"
+  },
+  "license": {
+    "id": "IslamHouse-free-distribution-unconfirmed",
+    "name": "IslamHouse material for free distribution; in-app redistribution permission not yet confirmed",
+    "url": "https://islamhouse.com/",
+    "attribution": "IslamHouse.com"
+  },
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 3621814,
+      "sha256": "4bf591e40d4dba7f332f32060084d7b1409f78db4811c9589688784fccff7ba4"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 678,
+      "sha256": "a2c9b52783e2939ff15c3e48617e3e8a96a982b8213ff8c6fe71d20fb5257c26"
+    },
+    {
+      "path": "NOTICE-islamhouse.txt",
+      "bytes": 414,
+      "sha256": "b258bb8ae49c1e6ec3c3ff0f67bcf84bfb143c7547a1e41a20090145c246a291"
+    }
+  ]
+}

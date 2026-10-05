@@ -105,6 +105,60 @@ fun SourceCard(r: ResolvedCitation, lang: String, onRead: (ResolvedCitation) -> 
     }
 }
 
+/** An IslamHouse library item: type, title, authors, excerpt, and the item itself opened inside the app. */
+@Composable
+fun LibraryCard(r: ResolvedCitation) {
+    val context = LocalContext.current
+    val c = r.chunk
+    val white = androidx.compose.ui.graphics.Color.White
+    val typeLabel = when (c.sectionName("type")) {
+        "books" -> stringResource(R.string.library_type_books)
+        "articles" -> stringResource(R.string.library_type_articles)
+        "fatwa" -> stringResource(R.string.library_type_fatwa)
+        "videos" -> stringResource(R.string.library_type_videos)
+        "audios" -> stringResource(R.string.library_type_audios)
+        else -> null
+    }
+    val mode = remember(c.id) { LibraryMode.of(c) }
+    var reading by remember { mutableStateOf(false) }
+    if (reading && mode != null) LibraryReader(c, mode, onDismiss = { reading = false })
+    val authors = (c.section["authors"] as? kotlinx.serialization.json.JsonArray)?.mapNotNull { (it as? kotlinx.serialization.json.JsonPrimitive)?.content }.orEmpty()
+    val excerpt = c.original.text.removePrefix(c.anchor).trim().take(260)
+    val rtl = c.original.lang == "ar" || c.original.lang == "ur"
+    Column(
+        Modifier.fillMaxWidth().padding(top = 8.dp)
+            .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
+    ) {
+        typeLabel?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = Tokens.gold) }
+        CompositionLocalProvider(LocalLayoutDirection provides if (rtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+            Column {
+                Text(c.anchor, style = MaterialTheme.typography.titleSmall, color = white, modifier = Modifier.fillMaxWidth())
+                if (authors.isNotEmpty()) {
+                    Text(stringResource(R.string.library_by, authors.joinToString(", ")), style = MaterialTheme.typography.bodySmall, color = white.copy(alpha = 0.7f), modifier = Modifier.fillMaxWidth())
+                }
+                if (excerpt.isNotEmpty()) {
+                    Spacer(Modifier.height(4.dp))
+                    Text(excerpt + if (c.original.text.length > excerpt.length + c.anchor.length + 1) "…" else "", style = MaterialTheme.typography.bodyMedium, color = white.copy(alpha = 0.9f), maxLines = 5, modifier = Modifier.fillMaxWidth())
+                }
+            }
+        }
+        Row {
+            val link = androidx.compose.ui.graphics.Color(0xFF8CC0DE)
+            if (mode != null) {
+                val label = when (mode) {
+                    is LibraryMode.Media -> stringResource(if (mode.video) R.string.library_watch else R.string.library_listen)
+                    else -> stringResource(R.string.library_read)
+                }
+                val size = c.sectionName("attachmentSize")?.takeIf { mode !is LibraryMode.Web }
+                TextButton(onClick = { reading = true }, modifier = Modifier.heightIn(min = 48.dp)) {
+                    Text(if (size != null) stringResource(R.string.library_file, label, size) else label, color = Tokens.gold)
+                }
+            }
+            c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_web), color = link) } }
+        }
+    }
+}
+
 @Composable
 private fun OriginalText(text: String, lang: String, emphasized: Boolean = true) {
     val rtl = lang == "ar" || lang == "ur"

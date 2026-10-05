@@ -19,6 +19,7 @@ data class Turn(
     val answer: Answer? = null,
     val citations: List<ResolvedCitation> = emptyList(),
     val related: List<ResolvedCitation> = emptyList(),
+    val library: List<ResolvedCitation> = emptyList(),
 )
 
 data class AskUi(
@@ -46,14 +47,14 @@ class AskViewModel(private val c: AppContainer) : ViewModel() {
         }
     }
 
-    fun ask(text: String) {
+    fun ask(text: String, lang: String) {
         val q = text.trim()
         if (q.isEmpty() || _ui.value.busy) return
         val context = _ui.value.turns.takeLast(2).map { it.question }
-        run(q) { c.ask.ask(q, context) }
+        run(q) { c.ask.ask(q, context, lang) }
     }
 
-    fun askCommon(q: CommonQuestion, displayed: String) = run(displayed) { c.ask.answerFor(q, displayed) }
+    fun askCommon(q: CommonQuestion, displayed: String, lang: String) = run(displayed) { c.ask.answerFor(q, displayed, lang) }
 
     private fun run(question: String, block: suspend () -> Answer) {
         val turn = Turn(nextId++, question)
@@ -63,7 +64,8 @@ class AskViewModel(private val c: AppContainer) : ViewModel() {
                 val a = block()
                 val cites = c.ask.resolve(a.citations)
                 val related = c.ask.resolve(a.related)
-                update(turn.id) { it.copy(answer = a, citations = cites, related = related) }
+                val library = c.ask.resolve(a.library)
+                update(turn.id) { it.copy(answer = a, citations = cites, related = related, library = library) }
             } finally {
                 _ui.value = _ui.value.copy(busy = false)
             }

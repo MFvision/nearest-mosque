@@ -92,12 +92,12 @@ fun MosqueEntity.toMosque(): Mosque? {
 }
 
 /** Full-text candidates from Room's FTS4 table. Must be called off the main thread. */
-class RoomChunkStore(private val dao: SourceDao) : ChunkStore {
-    override val totalChunks: Int by lazy { dao.countChunks() }
-    override val averageLength: Double by lazy { dao.averageTokens() }
-    override fun documentFrequency(term: String): Int = dao.ftsCount("\"" + term.replace("\"", "") + "\"")
+class RoomChunkStore(private val dao: SourceDao, private val scope: ChunkScope = ChunkScope.Books) : ChunkStore {
+    override val totalChunks: Int by lazy { dao.rawInt(countQuery(scope)) }
+    override val averageLength: Double by lazy { dao.rawDouble(averageQuery(scope)) }
+    override fun documentFrequency(term: String): Int = dao.rawInt(ftsCountQuery(term, scope))
     override fun candidates(terms: Collection<String>): List<CandidateChunk> =
-        if (terms.isEmpty()) emptyList() else dao.candidates(candidatesQuery(terms)).map {
+        if (terms.isEmpty()) emptyList() else dao.candidates(candidatesQuery(terms, scope)).map {
             CandidateChunk(it.id, it.seq, if (it.searchText.isEmpty()) emptyList() else it.searchText.split(' '))
         }
 }
@@ -107,15 +107,32 @@ data class ResolvedCitation(val chunk: SourceChunk, val packId: String, val docu
 class AskRepository(private val db: AppDatabase, private val stopwords: Map<String, List<String>>) {
     private val mutex = Mutex()
     private var cached: Pair<Long, Retriever>? = null
+    private var libraries: Map<String, Retriever> = emptyMap()
     private var questionsCache: List<CommonQuestion> = emptyList()
+    private val libraryStopwords = sa.zood.nearmosque.core.libraryStopwords(stopwords)
 
     /** Rebuilt whenever the installed packs change (keyed by install timestamps). */
     private suspend fun retriever(): Retriever = mutex.withLock {
         val key = db.packs().all().filter { it.kind == "sources" }.sumOf { it.installedAt xor it.recordCount.toLong() }
         cached?.takeIf { it.first == key }?.second ?: run {
             questionsCache = db.sources().questions().map { PackJson.decodeFromString(CommonQuestion.serializer(), it.json) }
+            libraries = db.sources().chunkPackIds().filter { it.startsWith(ChunkScope.LIBRARY_PREFIX) }
+                .associate { it.removePrefix(ChunkScope.LIBRARY_PREFIX) to Retriever(RoomChunkStore(db.sources(), ChunkScope.Library(it)), emptyList(), libraryStopwords, sa.zood.nearmosque.core.Retriever.Gates.LIBRARY) }
             Retriever(RoomChunkStore(db.sources()), questionsCache, stopwords).also { cached = key to it }
         }
+    }
+
+    /**
+     * Library items (IslamHouse) for the question: the interface language's library first, then
+     * English and Arabic; the first library with evidence wins.
+     */
+    private suspend fun library(question: String, context: List<String>, lang: String): List<String> {
+        retriever()
+        for (l in listOf(lang, "en", "ar").distinct()) {
+            val r = libraries[l]?.retrieve(question, context) ?: continue
+            if (r.kind != sa.zood.nearmosque.core.AnswerKind.INSUFFICIENT) return r.passages.map { it.chunkId }.take(LIBRARY_RESULTS)
+        }
+        return emptyList()
     }
 
     suspend fun commonQuestions(): List<CommonQuestion> = withContext(Dispatchers.IO) {
@@ -123,14 +140,15 @@ class AskRepository(private val db: AppDatabase, private val stopwords: Map<Stri
         questionsCache
     }
 
-    suspend fun ask(question: String, context: List<String>): Answer = withContext(Dispatchers.IO) {
-        AnswerComposer.compose(question, retriever().retrieve(question, context))
+    suspend fun ask(question: String, context: List<String>, lang: String = "en"): Answer = withContext(Dispatchers.IO) {
+        AnswerComposer.compose(question, retriever().retrieve(question, context)).copy(library = library(question, context, lang))
     }
 
-    suspend fun answerFor(q: CommonQuestion, displayQuestion: String): Answer = withContext(Dispatchers.IO) {
+    suspend fun answerFor(q: CommonQuestion, displayQuestion: String, lang: String = "en"): Answer = withContext(Dispatchers.IO) {
         val r = retriever().retrieve(displayQuestion)
         // A tapped common question always shows that question's answer, plus any extra passages found.
         AnswerComposer.compose(displayQuestion, r.copy(kind = sa.zood.nearmosque.core.AnswerKind.COMMON, commonQuestion = q))
+            .copy(library = library(displayQuestion, emptyList(), lang))
     }
 
     suspend fun resolve(ids: List<String>): List<ResolvedCitation> = withContext(Dispatchers.IO) {
@@ -145,9 +163,12 @@ class AskRepository(private val db: AppDatabase, private val stopwords: Map<Stri
     }
 
     companion object {
+        const val LIBRARY_RESULTS = 5
+
         fun parseStopwords(json: String): Map<String, List<String>> {
             val obj = Json.parseToJsonElement(json) as kotlinx.serialization.json.JsonObject
-            return obj.filterKeys { !it.startsWith("_") }.mapValues { (_, v) ->
+            // Language lists plus `_domain`; the Retriever itself ignores keys starting with "_".
+            return obj.filterValues { it is kotlinx.serialization.json.JsonArray }.mapValues { (_, v) ->
                 (v as kotlinx.serialization.json.JsonArray).map { (it as kotlinx.serialization.json.JsonPrimitive).content }
             }
         }

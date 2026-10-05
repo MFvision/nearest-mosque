@@ -21,7 +21,10 @@ import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.PackError
 import sa.zood.nearmosque.core.PackVerifier
 import sa.zood.nearmosque.data.MosqueResult
+import sa.zood.nearmosque.data.ChunkScope
 import sa.zood.nearmosque.data.RoomChunkStore
+import sa.zood.nearmosque.data.countQuery
+import sa.zood.nearmosque.data.ftsCountQuery
 import java.io.ByteArrayInputStream
 import java.io.File
 
@@ -40,13 +43,35 @@ class DataLayerTest {
     @Test
     fun builtinPacksInstallWithManifestCounts() = runBlocking {
         val installed = c.db.packs().all().associateBy { it.id }
-        assertEquals(setOf("mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall"), installed.keys)
+        val library = listOf("en", "ar", "ur", "tr", "id", "fr", "es").map { "sources.islamhouse-$it" }
+        assertEquals(setOf("mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall") + library, installed.keys)
         for (p in installed.values) {
             val m = PackVerifier.parseManifest(p.manifestJson)
             assertEquals(p.id, m.recordCount, p.recordCount)
         }
-        assertEquals(6236, c.db.sources().countChunks())
-        assertEquals(8, c.db.sources().questions().size)
+        assertEquals(6236, books())
+        assertTrue(c.db.sources().rawInt(countQuery(ChunkScope.Library("sources.islamhouse-en"))) > 1000)
+        assertTrue(c.db.sources().questions().size >= 8)
+    }
+
+    private fun books() = c.db.sources().rawInt(countQuery(ChunkScope.Books))
+
+    /** The library is a separate collection: questions the Quran pack cannot answer still find IslamHouse items. */
+    @Test
+    fun libraryAnswersInTheInterfaceLanguage() = runBlocking {
+        val en = c.ask.ask("What is Islam?", emptyList(), "en")
+        assertTrue(en.library.isNotEmpty())
+        assertTrue(en.library.all { it.startsWith("ih:en:") })
+        val items = c.ask.resolve(en.library)
+        assertTrue(items.any { it.chunk.anchor.contains("Islam", ignoreCase = true) })
+        assertTrue(items.all { it.chunk.url!!.startsWith("https://islamhouse.com/en/") })
+        val ar = c.ask.ask("ما هو الإسلام؟", emptyList(), "ar")
+        assertTrue(ar.library.isNotEmpty() && ar.library.all { it.startsWith("ih:ar:") })
+        // No match in the Urdu library for an English-only question: falls back to English.
+        val fallback = c.ask.ask("What is Islam?", emptyList(), "ur")
+        assertTrue(fallback.library.isNotEmpty())
+        // Off-topic questions still get nothing from the library.
+        assertTrue(c.ask.ask("What is the capital of France?", emptyList(), "en").library.isEmpty())
     }
 
     /** The Room FTS4 store must give exactly the reference results (shared/fixtures/retrieval.json). */
@@ -90,13 +115,13 @@ class DataLayerTest {
     @Test
     fun removingABookPackRemovesChunksIndexAndAnswers() = runBlocking {
         c.packs.remove("sources.quran-tanzil-pickthall")
-        assertEquals(0, c.db.sources().countChunks())
-        assertEquals(0, c.db.sources().ftsCount("\"wash\""))
+        assertEquals(0, books())
+        assertEquals(0, c.db.sources().rawInt(ftsCountQuery("wash", ChunkScope.Books)))
         assertEquals(AnswerKind.INSUFFICIENT, c.ask.ask("neither slumber nor sleep", emptyList()).kind)
         c.packs.ensureBuiltins() // removed by the user: not reinstalled automatically
-        assertEquals(0, c.db.sources().countChunks())
+        assertEquals(0, books())
         c.packs.restoreBuiltins()
-        assertEquals(6236, c.db.sources().countChunks())
+        assertEquals(6236, books())
     }
 
     @Test

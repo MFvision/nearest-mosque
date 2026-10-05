@@ -1,0 +1,50 @@
+{
+  "id": "sources.islamhouse-id",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "IslamHouse library (id)",
+    "id": "Perpustakaan IslamHouse (Indonesia)"
+  },
+  "languages": [
+    "id"
+  ],
+  "recordCount": 2015,
+  "categories": {
+    "books": 365,
+    "articles": 820,
+    "fatwa": 370,
+    "videos": 354,
+    "audios": 106
+  },
+  "source": {
+    "name": "IslamHouse.com API v3",
+    "url": "https://islamhouse.com/",
+    "snapshot": "2026-10-05",
+    "builtAt": "2026-10-05T09:05:58Z"
+  },
+  "license": {
+    "id": "IslamHouse-free-distribution-unconfirmed",
+    "name": "IslamHouse material for free distribution; in-app redistribution permission not yet confirmed",
+    "url": "https://islamhouse.com/",
+    "attribution": "IslamHouse.com"
+  },
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 3833225,
+      "sha256": "5ac46df3fe29a949ff577a41c790c7ab55782ab370ab2cd3d37779386569cba7"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 677,
+      "sha256": "41544c739fc84b9b7b9c7c7a6a21615366e3314dff7bc90b688843e401982a8f"
+    },
+    {
+      "path": "NOTICE-islamhouse.txt",
+      "bytes": 414,
+      "sha256": "b258bb8ae49c1e6ec3c3ff0f67bcf84bfb143c7547a1e41a20090145c246a291"
+    }
+  ]
+}

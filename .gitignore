@@ -14,3 +14,4 @@ ios/**/.swiftpm/
 ios/Packages/**/Package.resolved
 # Python
 tools/__pycache__/
+.cache/

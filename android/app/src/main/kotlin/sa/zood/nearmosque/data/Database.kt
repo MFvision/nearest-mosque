@@ -137,17 +137,17 @@ interface SourceDao {
     @Query("DELETE FROM common_question WHERE packId = :packId")
     suspend fun deleteQuestions(packId: String)
 
-    @Query("SELECT COUNT(*) FROM source_chunk")
-    fun countChunks(): Int
+    @RawQuery
+    fun rawInt(query: SupportSQLiteQuery): Int
 
-    @Query("SELECT COALESCE(AVG(tokenCount), 0) FROM source_chunk")
-    fun averageTokens(): Double
-
-    @Query("SELECT COUNT(*) FROM source_chunk_fts WHERE source_chunk_fts MATCH :query")
-    fun ftsCount(query: String): Int
+    @RawQuery
+    fun rawDouble(query: SupportSQLiteQuery): Double
 
     @RawQuery
     fun candidates(query: SupportSQLiteQuery): List<CandidateRow>
+
+    @Query("SELECT DISTINCT packId FROM source_chunk")
+    fun chunkPackIds(): List<String>
 
     @Query("SELECT * FROM source_chunk WHERE id IN (:ids)")
     suspend fun chunks(ids: List<String>): List<SourceChunkEntity>
@@ -164,15 +164,38 @@ interface SourceDao {
 
 data class CandidateRow(val id: String, val seq: Long, val searchText: String)
 
-fun candidatesQuery(terms: Collection<String>): SupportSQLiteQuery {
-    // Tokens are normalized letters/digits only; quoting keeps FTS operators from being interpreted.
-    val match = terms.joinToString(" OR ") { "\"" + it.replace("\"", "") + "\"" }
-    return SimpleSQLiteQuery(
-        "SELECT c.id AS id, c.seq AS seq, c.searchText AS searchText FROM source_chunk c " +
-            "JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ?",
-        arrayOf(match),
-    )
+/**
+ * Which chunks a retriever sees. Books (the Quran pack and other cited books) and each IslamHouse
+ * library pack are separate collections with their own BM25 statistics, so adding the library never
+ * changes how verses rank.
+ */
+sealed class ChunkScope(val where: String, val args: Array<Any>) {
+    data object Books : ChunkScope("c.packId NOT LIKE '$LIBRARY_PREFIX%'", emptyArray())
+    class Library(packId: String) : ChunkScope("c.packId = ?", arrayOf(packId))
+
+    companion object {
+        const val LIBRARY_PREFIX = "sources.islamhouse-"
+        fun libraryPack(lang: String) = LIBRARY_PREFIX + lang
+    }
 }
+
+/** Tokens are normalized letters/digits only; quoting keeps FTS operators from being interpreted. */
+fun ftsTerm(t: String) = "\"" + t.replace("\"", "") + "\""
+
+fun countQuery(scope: ChunkScope) = SimpleSQLiteQuery("SELECT COUNT(*) FROM source_chunk c WHERE ${scope.where}", scope.args)
+
+fun averageQuery(scope: ChunkScope) = SimpleSQLiteQuery("SELECT COALESCE(AVG(c.tokenCount), 0) FROM source_chunk c WHERE ${scope.where}", scope.args)
+
+fun ftsCountQuery(term: String, scope: ChunkScope) = SimpleSQLiteQuery(
+    "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    arrayOf<Any>(ftsTerm(term), *scope.args),
+)
+
+fun candidatesQuery(terms: Collection<String>, scope: ChunkScope = ChunkScope.Books): SupportSQLiteQuery = SimpleSQLiteQuery(
+    "SELECT c.id AS id, c.seq AS seq, c.searchText AS searchText FROM source_chunk c " +
+        "JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND ${scope.where}",
+    arrayOf<Any>(terms.joinToString(" OR ") { ftsTerm(it) }, *scope.args),
+)
 
 @Database(
     entities = [

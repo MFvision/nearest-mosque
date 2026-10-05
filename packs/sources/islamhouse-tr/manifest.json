@@ -1,0 +1,50 @@
+{
+  "id": "sources.islamhouse-tr",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "IslamHouse library (tr)",
+    "tr": "IslamHouse kütüphanesi (Türkçe)"
+  },
+  "languages": [
+    "tr"
+  ],
+  "recordCount": 1194,
+  "categories": {
+    "books": 211,
+    "articles": 284,
+    "fatwa": 506,
+    "videos": 96,
+    "audios": 97
+  },
+  "source": {
+    "name": "IslamHouse.com API v3",
+    "url": "https://islamhouse.com/",
+    "snapshot": "2026-10-05",
+    "builtAt": "2026-10-05T09:05:50Z"
+  },
+  "license": {
+    "id": "IslamHouse-free-distribution-unconfirmed",
+    "name": "IslamHouse material for free distribution; in-app redistribution permission not yet confirmed",
+    "url": "https://islamhouse.com/",
+    "attribution": "IslamHouse.com"
+  },
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 2465632,
+      "sha256": "0257caa15400fbe6089d394453ccaa2ace09d9c08c8bdd2a0f05679408293952"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 677,
+      "sha256": "d6174d318572bc9e11cb016188a09fad2c4727edf7615dae0057ea29117d0fb8"
+    },
+    {
+      "path": "NOTICE-islamhouse.txt",
+      "bytes": 414,
+      "sha256": "b258bb8ae49c1e6ec3c3ff0f67bcf84bfb143c7547a1e41a20090145c246a291"
+    }
+  ]
+}

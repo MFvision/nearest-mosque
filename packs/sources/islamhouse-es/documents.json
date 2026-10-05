@@ -1,0 +1,24 @@
+[
+ {
+  "id": "islamhouse-es",
+  "kind": "library",
+  "title": {
+   "en": "IslamHouse.com",
+   "ar": "دار الإسلام IslamHouse.com",
+   "es": "Biblioteca IslamHouse (español)"
+  },
+  "edition": "IslamHouse API v3 catalogue, 2026-10-05",
+  "publisher": "IslamHouse.com",
+  "language": "es",
+  "url": "https://islamhouse.com/es/",
+  "license": {
+   "id": "IslamHouse-free-distribution-unconfirmed",
+   "name": "IslamHouse material for free distribution; in-app redistribution permission not yet confirmed",
+   "url": "https://islamhouse.com/",
+   "attribution": "IslamHouse.com"
+  },
+  "retrievedAt": "2026-10-05",
+  "citation": "item",
+  "textType": "selectable"
+ }
+]

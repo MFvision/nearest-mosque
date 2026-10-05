@@ -132,8 +132,9 @@ fun SettingsScreen(
                 }
                 packs.forEach { p ->
                     val m = PackJson.decodeFromString(PackManifest.serializer(), p.manifestJson)
-                    val title = when (p.kind) {
-                        "mosques" -> stringResource(R.string.pack_kind_mosques, m.coverage?.name ?: m.title(lang))
+                    val title = when {
+                        p.kind == "mosques" -> stringResource(R.string.pack_kind_mosques, m.coverage?.name ?: m.title(lang))
+                        p.id.startsWith(sa.zood.nearmosque.data.ChunkScope.LIBRARY_PREFIX) -> stringResource(R.string.pack_kind_library, m.title(lang))
                         else -> stringResource(R.string.pack_kind_books, m.title(lang))
                     }
                     PackRow(title, m, p.recordCount, p.bytes, p.builtin) { confirmRemove = p }
