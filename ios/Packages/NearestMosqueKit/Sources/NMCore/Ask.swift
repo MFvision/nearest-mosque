@@ -186,7 +186,9 @@ public final class Retriever: @unchecked Sendable {
             return S(id: c.id, seq: c.seq, score: s, coverage: coverage, matched: matched)
         }.sorted { ($0.score, -$0.seq) > ($1.score, -$1.seq) }
         let g = gates
-        return scored.filter { $0.score >= g.minScore && ($0.coverage >= g.minCoverage || (g.orMatchedAtLeast.map { m in $0.matched >= m } ?? false)) }
+        return scored.filter { s in
+            s.score >= g.minScore && (s.coverage >= g.minCoverage || (g.orMatchedAtLeast.map { s.matched >= $0 } ?? false))
+        }
             .prefix(Retriever.maxPassages)
             .map { ScoredPassage(chunkId: $0.id, score: $0.score, coverage: $0.coverage) }
     }
@@ -224,7 +226,7 @@ public func libraryStopwords(_ stopwords: [String: [String]]) -> [String: [Strin
     let domain = Set((stopwords["_domain"] ?? []).flatMap(TextNormalizer.tokens))
     var out: [String: [String]] = [:]
     for (k, words) in stopwords where !k.hasPrefix("_") {
-        out[k] = words.filter { w in !TextNormalizer.tokens(w).contains(where: domain.contains) }
+        out[k] = words.filter { w in !TextNormalizer.tokens(w).contains { domain.contains($0) } }
     }
     return out
 }

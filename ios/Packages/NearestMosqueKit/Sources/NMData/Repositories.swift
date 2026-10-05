@@ -77,7 +77,7 @@ public enum ChunkScope: Sendable {
         case .library: return "c.packId = ?"
         }
     }
-    var args: [DatabaseValueConvertible] {
+    var args: [DatabaseValueConvertible?] {
         switch self {
         case .books: return []
         case .library(let p): return [p]
@@ -105,7 +105,7 @@ public final class GRDBChunkStore: ChunkStore, @unchecked Sendable {
     static func quote(_ t: String) -> String { "\"" + t.replacingOccurrences(of: "\"", with: "") + "\"" }
 
     public func documentFrequency(_ term: String) -> Int {
-        let args = StatementArguments([Self.quote(term)] + scope.args)
+        let args = StatementArguments([Self.quote(term) as DatabaseValueConvertible?] + scope.args)
         return (try? db.writer.read { db in
             try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM source_chunk c JOIN source_chunk_fts f ON f.rowid = c.rowid WHERE source_chunk_fts MATCH ? AND \(scope.sql)", arguments: args)
         }) ?? 0
@@ -114,7 +114,7 @@ public final class GRDBChunkStore: ChunkStore, @unchecked Sendable {
     public func candidates(_ terms: [String]) -> [CandidateChunk] {
         guard !terms.isEmpty else { return [] }
         let match = terms.map(Self.quote).joined(separator: " OR ")
-        let args = StatementArguments([match] + scope.args)
+        let args = StatementArguments([match as DatabaseValueConvertible?] + scope.args)
         return (try? db.writer.read { db in
             try Row.fetchAll(db, sql: """
                 SELECT c.id, c.seq, c.searchText FROM source_chunk c

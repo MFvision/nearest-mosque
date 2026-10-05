@@ -363,11 +363,11 @@ struct GlassSegmented: View {
 }
 
 enum ExternalMaps {
-    enum App: CaseIterable { case apple, google, waze }
+    enum MapsApp: CaseIterable { case apple, google, waze }
 
     /// Opens directions in the chosen maps app (outside this app's offline guarantee). Google Maps and Waze
     /// open in their app when installed, otherwise on their website.
-    static func directions(to p: LatLng, name: String?, app: App = .apple) {
+    static func directions(to p: LatLng, name: String?, app: MapsApp = .apple) {
         let ll = "\(p.latitude),\(p.longitude)"
         var urls: [URL?] = []
         switch app {

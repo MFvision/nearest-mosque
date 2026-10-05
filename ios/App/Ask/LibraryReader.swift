@@ -62,7 +62,7 @@ enum LibraryFiles {
             let task = URLSession.shared.downloadTask(with: url) { file, response, error in
                 if let error { return cont.resume(throwing: error) }
                 guard let file, let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode),
-                      let final = http.url, isAllowed(final) else { return cont.resume(throwing: URLError(.badServerResponse)) }
+                      let final = http.url, LibraryFiles.isAllowed(final) else { return cont.resume(throwing: URLError(.badServerResponse)) }
                 // The temporary file is deleted when this handler returns: move it first.
                 let keep = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
                 do { try FileManager.default.moveItem(at: file, to: keep); cont.resume(returning: keep) } catch { cont.resume(throwing: error) }
