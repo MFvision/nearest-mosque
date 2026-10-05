@@ -8,6 +8,7 @@ struct Turn: Identifiable {
     var answer: Answer?
     var citations: [ResolvedCitation] = []
     var related: [ResolvedCitation] = []
+    var library: [ResolvedCitation] = []
 }
 
 /// Conversation is kept in memory only: not persisted and never sent anywhere.
@@ -22,12 +23,14 @@ final class AskModel {
         let q = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !q.isEmpty, !busy, let repo = app.ask else { return }
         let context = turns.suffix(2).map(\.question)
-        run(app, q) { try repo.ask(q, context: context) }
+        let lang = app.l10n.language
+        run(app, q) { try repo.ask(q, context: context, lang: lang) }
     }
 
     func ask(_ app: AppModel, common q: CommonQuestion, displayed: String) {
         guard let repo = app.ask else { return }
-        run(app, displayed) { try repo.answer(for: q, displayed: displayed) }
+        let lang = app.l10n.language
+        run(app, displayed) { try repo.answer(for: q, displayed: displayed, lang: lang) }
     }
 
     private func run(_ app: AppModel, _ question: String, _ block: @escaping @Sendable () throws -> Answer) {
@@ -41,6 +44,7 @@ final class AskModel {
             guard var answer = try? await Task.detached(operation: block).value else { return }
             let cites = (try? repo.resolve(answer.citations)) ?? []
             let related = (try? repo.resolve(answer.related)) ?? []
+            let library = (try? repo.resolve(answer.library)) ?? []
             if answer.kind == .passages, let written = await LocalAnswerer.write(question: question, passages: cites, language: lang) {
                 answer.generated = written
             }
@@ -48,6 +52,7 @@ final class AskModel {
             turns[i].answer = answer
             turns[i].citations = cites
             turns[i].related = related
+            turns[i].library = library
         }
     }
 
@@ -225,8 +230,13 @@ struct AnswerCard: View {
                     Text(l10n.t("answer_from_passages_body")).font(.subheadline)
                 }
             case .insufficient:
-                Text(l10n.t("answer_insufficient_title")).font(.headline)
-                Text(l10n.t("answer_insufficient_body")).font(.subheadline)
+                if turn.library.isEmpty {
+                    Text(l10n.t("answer_insufficient_title")).font(.headline)
+                    Text(l10n.t("answer_insufficient_body")).font(.subheadline)
+                } else {
+                    Text(l10n.t("library_found_title")).font(.headline)
+                    Text(l10n.t("library_found_body")).font(.subheadline)
+                }
             }
             if !turn.citations.isEmpty {
                 Text(l10n.t("sources")).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
@@ -238,6 +248,11 @@ struct AnswerCard: View {
                     Text(l10n.t("related_passages")).font(.subheadline.weight(.semibold))
                     ForEach(turn.related) { SourceCard(index: nil, citation: $0, onRead: onRead) }
                 }
+            }
+            if !turn.library.isEmpty {
+                Text(l10n.t("library_section")).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+                ForEach(turn.library) { LibraryCard(item: $0, question: turn.question) }
+                Text(l10n.t("library_note") + " " + l10n.t("library_offline_note")).font(.caption).foregroundStyle(.white.opacity(0.7))
             }
             if !["ar", "en"].contains(l10n.language), answer.kind != .insufficient {
                 Text(l10n.t("answer_language_note")).font(.caption).foregroundStyle(.white.opacity(0.7))

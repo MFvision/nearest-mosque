@@ -52,6 +52,7 @@ struct SettingsView: View {
                     }
                     ForEach(installed) { p in
                         let title = p.kind == "mosques" ? l10n.t("pack_kind_mosques", p.manifest.coverage?.name ?? p.manifest.title(l10n.language))
+                            : p.id.hasPrefix(ChunkScope.libraryPrefix) ? l10n.t("pack_kind_library", p.manifest.title(l10n.language))
                             : l10n.t("pack_kind_books", p.manifest.title(l10n.language))
                         packRow(title, p.manifest, records: p.recordCount, bytes: p.bytes, builtin: p.builtin)
                             .swipeActions { Button(l10n.t("remove"), role: .destructive) { confirmRemove = p } }

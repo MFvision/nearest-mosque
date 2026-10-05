@@ -26,7 +26,8 @@ final class DataLayerTests: XCTestCase {
 
     func testBuiltinsInstallWithManifestCounts() throws {
         let installed = try packs.installed()
-        XCTAssertEqual(Set(installed.map(\.id)), ["mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall"])
+        let library = Set(["en", "ar", "ur", "tr", "id", "fr", "es"].map(ChunkScope.libraryPack))
+        XCTAssertEqual(Set(installed.map(\.id)), Set(["mosques.za-cape-town", "mosques.eg-cairo", "mosques.gb-london", "sources.quran-tanzil-pickthall"]).union(library))
         for p in installed { XCTAssertEqual(p.recordCount, p.manifest.recordCount, p.id) }
     }
 
@@ -50,13 +51,29 @@ final class DataLayerTests: XCTestCase {
         XCTAssertEqual(try ask.context(resolved[0]).map(\.id), ["quran:5:3", "quran:5:4", "quran:5:5", "quran:5:6", "quran:5:7", "quran:5:8", "quran:5:9"])
     }
 
+    /// The library is a separate collection: questions the Quran pack cannot answer still find IslamHouse items.
+    func testLibraryAnswersInTheInterfaceLanguage() throws {
+        let stop = AskRepository.parseStopwords(try Data(contentsOf: Self.root.appendingPathComponent("shared/content/stopwords.json")))
+        let ask = AskRepository(db: db, stopwords: stop)
+        let en = try ask.ask("What is Islam?", lang: "en")
+        XCTAssertFalse(en.library.isEmpty)
+        XCTAssertTrue(en.library.allSatisfy { $0.hasPrefix("ih:en:") })
+        let items = try ask.resolve(en.library)
+        XCTAssertTrue(items.contains { $0.chunk.anchor.localizedCaseInsensitiveContains("Islam") })
+        XCTAssertTrue(items.allSatisfy { $0.chunk.url?.hasPrefix("https://islamhouse.com/en/") == true })
+        let ar = try ask.ask("ما هو الإسلام؟", lang: "ar")
+        XCTAssertTrue(!ar.library.isEmpty && ar.library.allSatisfy { $0.hasPrefix("ih:ar:") })
+        XCTAssertFalse(try ask.ask("What is Islam?", lang: "ur").library.isEmpty)
+        XCTAssertTrue(try ask.ask("What is the capital of France?", lang: "en").library.isEmpty)
+    }
+
     func testRemoveAndRestoreBookPack() throws {
         let stop = AskRepository.parseStopwords(try Data(contentsOf: Self.root.appendingPathComponent("shared/content/stopwords.json")))
         let ask = AskRepository(db: db, stopwords: stop)
         try packs.remove("sources.quran-tanzil-pickthall")
         XCTAssertEqual(try ask.ask("neither slumber nor sleep").kind, .insufficient)
         packs.ensureBuiltins()
-        XCTAssertEqual(try packs.installed().filter { $0.kind == "sources" }.count, 0)
+        XCTAssertFalse(try packs.installed().contains { $0.id == "sources.quran-tanzil-pickthall" })
         packs.restoreBuiltins()
         XCTAssertEqual(try ask.ask("neither slumber nor sleep").citations.first, "quran:2:255")
     }

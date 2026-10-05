@@ -8,6 +8,15 @@ public struct ChunkSection: Codable, Hashable, Sendable {
     public var nameAr: String?
     public var nameTranslit: String?
     public var nameEn: String?
+    // Library items (IslamHouse): books, articles, fatwa, videos, audios.
+    public var type: String?
+    public var itemId: Int?
+    public var title: String?
+    public var authors: [String]?
+    public var attachment: String?
+    public var attachmentType: String?
+    public var attachmentSize: String?
+    public var hasText: Bool?
 }
 
 /// One JSON line of a book pack (tools/build_quran_pack.py). Anchors are stable across versions.
@@ -103,13 +112,24 @@ public final class Retriever: @unchecked Sendable {
     public static let k1 = 1.2, b = 0.75, expansionWeight = 0.5, contextWeight = 0.3
     public static let maxPassages = 5, minScore = 3.0, minCoverage = 0.5, coordBase = 0.0
 
+    /// Evidence gates. `books` is fixed by shared/fixtures/retrieval.json. `library` (catalogue records, where a
+    /// word like "Islam" occurs in hundreds of titles and so carries little IDF) accepts lower scores but
+    /// requires most of the question's own words.
+    public struct Gates: Sendable {
+        public let minScore: Double, minCoverage: Double, orMatchedAtLeast: Int?
+        public static let books = Gates(minScore: Retriever.minScore, minCoverage: Retriever.minCoverage, orMatchedAtLeast: 2)
+        public static let library = Gates(minScore: 0.5, minCoverage: 0.6, orMatchedAtLeast: nil)
+    }
+
     struct Prepared { let q: CommonQuestion; let triggers: [[String]]; let questions: [Set<String>]; let expansion: [String] }
     private let store: ChunkStore
     private let prepared: [Prepared]
     private let stop: Set<String>
+    private let gates: Gates
 
-    public init(store: ChunkStore, commonQuestions: [CommonQuestion], stopwords: [String: [String]]) {
+    public init(store: ChunkStore, commonQuestions: [CommonQuestion], stopwords: [String: [String]], gates: Gates = .books) {
         self.store = store
+        self.gates = gates
         self.prepared = commonQuestions.map { q in
             Prepared(
                 q: q,
@@ -165,7 +185,8 @@ public final class Retriever: @unchecked Sendable {
             if !content.isEmpty { s *= Retriever.coordBase + (1 - Retriever.coordBase) * coverage }
             return S(id: c.id, seq: c.seq, score: s, coverage: coverage, matched: matched)
         }.sorted { ($0.score, -$0.seq) > ($1.score, -$1.seq) }
-        return scored.filter { $0.score >= Retriever.minScore && ($0.coverage >= Retriever.minCoverage || $0.matched >= 2) }
+        let g = gates
+        return scored.filter { $0.score >= g.minScore && ($0.coverage >= g.minCoverage || (g.orMatchedAtLeast.map { m in $0.matched >= m } ?? false)) }
             .prefix(Retriever.maxPassages)
             .map { ScoredPassage(chunkId: $0.id, score: $0.score, coverage: $0.coverage) }
     }
@@ -198,6 +219,16 @@ public final class Retriever: @unchecked Sendable {
     }
 }
 
+/// Stopwords for library retrieval: the query stopwords without the `_domain` words ("Islam", "Quran"...).
+public func libraryStopwords(_ stopwords: [String: [String]]) -> [String: [String]] {
+    let domain = Set((stopwords["_domain"] ?? []).flatMap(TextNormalizer.tokens))
+    var out: [String: [String]] = [:]
+    for (k, words) in stopwords where !k.hasPrefix("_") {
+        out[k] = words.filter { w in !TextNormalizer.tokens(w).contains(where: domain.contains) }
+    }
+    return out
+}
+
 /// A composed answer: references to stored passages plus an optional editorial or on-device text.
 public struct Answer: Sendable {
     public let question: String
@@ -207,6 +238,8 @@ public struct Answer: Sendable {
     public let related: [String]
     /// Written on-device from the cited passages only (validated), or nil.
     public var generated: String?
+    /// Matching items from a separate library collection (IslamHouse), most relevant first.
+    public var library: [String] = []
 }
 
 public enum AnswerComposer {
