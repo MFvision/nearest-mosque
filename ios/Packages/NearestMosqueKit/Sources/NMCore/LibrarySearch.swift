@@ -9,7 +9,7 @@ public enum LibraryText {
     static let arSuffixes = ["ها", "ان", "ات", "ون", "ين", "يه", "ه", "ي"]
     static let latinSuffixes = ["ing", "ers", "er", "ed"]
 
-    static func len(_ s: String) -> Int { s.unicodeScalars.count }
+    public static func len(_ s: String) -> Int { s.unicodeScalars.count }
     static func dropLastScalars(_ s: String, _ n: Int) -> String {
         var u = String.UnicodeScalarView(s.unicodeScalars)
         u.removeLast(n)
