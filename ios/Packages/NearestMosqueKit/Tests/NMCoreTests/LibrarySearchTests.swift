@@ -27,3 +27,12 @@ final class LibrarySearchTests: XCTestCase {
         }
     }
 }
+
+final class OtherSourcesTests: XCTestCase {
+    func testLinksCarryTheQuestionAndLanguage() {
+        let l = Dictionary(uniqueKeysWithValues: OtherSources.links("ما حكم تارك الصلاة؟", lang: "ar").map { ($0.id, $0.url.absoluteString) })
+        XCTAssertEqual(l["islamqa"], "https://islamqa.info/ar/search?q=%D9%85%D8%A7%20%D8%AD%D9%83%D9%85%20%D8%AA%D8%A7%D8%B1%D9%83%20%D8%A7%D9%84%D8%B5%D9%84%D8%A7%D8%A9%D8%9F")
+        XCTAssertTrue(l["binothaimeen"]?.hasPrefix("https://www.google.com/search?q=site%3Abinothaimeen.net%20") == true)
+        XCTAssertEqual(OtherSources.links("prayer", lang: "xx").first?.url.absoluteString, "https://islamqa.info/en/search?q=prayer")
+    }
+}

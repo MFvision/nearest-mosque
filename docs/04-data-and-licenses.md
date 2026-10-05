@@ -29,7 +29,7 @@ shown.
 
 | Source | Why not yet | What is needed |
 |---|---|---|
-| Ibn Uthaymeen (binothaimeen.net), IslamQA, Dorar, alifta.gov.sa | All rights reserved; Ibn Uthaymeen's foundation asks to be contacted for publishing permission; IslamQA's terms bar redistribution; Dorar's API is for live website search; alifta states no reuse terms | Written permission from each publisher. The app may link to their pages meanwhile |
+| Ibn Uthaymeen (binothaimeen.net), IslamQA, Dorar, alifta.gov.sa | All rights reserved; Ibn Uthaymeen's foundation asks to be contacted for publishing permission; IslamQA's terms bar redistribution; Dorar blocks automated access and offers its API for live website search; alifta's robots.txt disallows its content API | Not copied. Under every answer, "Search these sites too" opens each site's own search (IslamQA, Dorar) or a web search limited to the site (Ibn Uthaymeen, alifta) with the question, only when tapped (`OtherSources` in both apps). Bundling their texts needs each publisher's permission |
 | Balagh (بلاغ) app content | An App Store app's private storage cannot be copied (App Store binaries do not run in the Simulator, and extracting another app's data is not permitted); its own curation and Q&A are not published through an API we can use | The publisher's permission and an export or API. The IslamHouse catalogue above is the public source used instead |
 | Hadith collections (Arabic and translations) | Digital editions carry their own terms | A licensed edition with stable numbering |
 | Other Quran translations (ur, tr, id, fr, es) on Tanzil | Tanzil marks them non-commercial; translators/publishers hold rights | Permission from each translator/publisher |

@@ -16,6 +16,8 @@
     <string name="answer_insufficient_title">I couldn’t find this in your books</string>
     <string name="answer_language_note">Your books are in Arabic and English. Quotes stay in their original language.</string>
     <string name="answer_not_fatwa">Answers quote books; they are not a fatwa. For a personal ruling, ask a qualified scholar.</string>
+    <string name="answer_search_more">Search these sites too</string>
+    <string name="answer_search_more_note">Opens the site in your browser with your question.</string>
     <string name="answer_searching">Searching your books…</string>
     <string name="app_name">Near Mosque</string>
     <string name="ask_follow_up_placeholder">Ask a follow-up…</string>
@@ -278,6 +280,10 @@
     <string name="settings">Settings</string>
     <string name="show_less_detail">Show less</string>
     <string name="show_more_detail">Show more detail</string>
+    <string name="site_alifta">Permanent Committee (alifta)</string>
+    <string name="site_binothaimeen">Ibn Uthaymeen</string>
+    <string name="site_dorar">Dorar (hadith)</string>
+    <string name="site_islamqa">IslamQA</string>
     <string name="source_offline_pack">From your downloaded data</string>
     <string name="source_online_apple">Live from Apple Maps</string>
     <string name="source_online_osm">Live from OpenStreetMap</string>

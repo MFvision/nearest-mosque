@@ -2797,6 +2797,60 @@
       "id": "Menyiapkan perpustakaan untuk bahasa Anda…",
       "fr": "Préparation de la bibliothèque pour votre langue…",
       "es": "Preparando la biblioteca para tu idioma…"
+    },
+    "answer_search_more": {
+      "en": "Search these sites too",
+      "ar": "ابحث أيضًا في هذه المواقع",
+      "ur": "یہ ویب سائٹس بھی تلاش کریں",
+      "tr": "Bu sitelerde de ara",
+      "id": "Cari juga di situs ini",
+      "fr": "Chercher aussi sur ces sites",
+      "es": "Buscar también en estos sitios"
+    },
+    "site_islamqa": {
+      "en": "IslamQA",
+      "ar": "الإسلام سؤال وجواب",
+      "ur": "اسلام سوال و جواب",
+      "tr": "İslam Soru Cevap",
+      "id": "IslamQA",
+      "fr": "Islam Questions-Réponses",
+      "es": "Islam Preguntas y Respuestas"
+    },
+    "site_dorar": {
+      "en": "Dorar (hadith)",
+      "ar": "الدرر السنية",
+      "ur": "الدرر السنیہ",
+      "tr": "Dorar (hadis)",
+      "id": "Dorar (hadis)",
+      "fr": "Dorar (hadiths)",
+      "es": "Dorar (hadices)"
+    },
+    "site_binothaimeen": {
+      "en": "Ibn Uthaymeen",
+      "ar": "موقع ابن عثيمين",
+      "ur": "ابن عثیمین",
+      "tr": "İbn Useymin",
+      "id": "Ibnu Utsaimin",
+      "fr": "Ibn Uthaymin",
+      "es": "Ibn Uthaymin"
+    },
+    "site_alifta": {
+      "en": "Permanent Committee (alifta)",
+      "ar": "الإفتاء",
+      "ur": "سعودی افتاء",
+      "tr": "Daimi Fetva Kurulu",
+      "id": "Lajnah Daimah",
+      "fr": "Comité permanent",
+      "es": "Comité Permanente"
+    },
+    "answer_search_more_note": {
+      "en": "Opens the site in your browser with your question.",
+      "ar": "يفتح الموقع في المتصفح مع سؤالك.",
+      "ur": "آپ کے سوال کے ساتھ ویب سائٹ براؤزر میں کھلتی ہے۔",
+      "tr": "Siteyi sorunuzla tarayıcıda açar.",
+      "id": "Membuka situs di peramban dengan pertanyaan Anda.",
+      "fr": "Ouvre le site dans votre navigateur avec votre question.",
+      "es": "Abre el sitio en tu navegador con tu pregunta."
     }
   }
 }

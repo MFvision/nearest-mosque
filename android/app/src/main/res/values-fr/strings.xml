@@ -16,6 +16,8 @@
     <string name="answer_insufficient_title">Je n’ai pas trouvé cela dans vos livres</string>
     <string name="answer_language_note">Vos livres sont en arabe et en anglais. Les citations restent dans leur langue d’origine.</string>
     <string name="answer_not_fatwa">Les réponses citent des livres ; ce n’est pas une fatwa. Pour votre cas, consultez un savant qualifié.</string>
+    <string name="answer_search_more">Chercher aussi sur ces sites</string>
+    <string name="answer_search_more_note">Ouvre le site dans votre navigateur avec votre question.</string>
     <string name="answer_searching">Recherche dans vos livres…</string>
     <string name="app_name">Near Mosque</string>
     <string name="ask_follow_up_placeholder">Posez une question de suivi…</string>
@@ -278,6 +280,10 @@
     <string name="settings">Réglages</string>
     <string name="show_less_detail">Moins de détails</string>
     <string name="show_more_detail">Plus de détails</string>
+    <string name="site_alifta">Comité permanent</string>
+    <string name="site_binothaimeen">Ibn Uthaymin</string>
+    <string name="site_dorar">Dorar (hadiths)</string>
+    <string name="site_islamqa">Islam Questions-Réponses</string>
     <string name="source_offline_pack">Depuis vos données téléchargées</string>
     <string name="source_online_apple">En direct de Plans d’Apple</string>
     <string name="source_online_osm">En direct d’OpenStreetMap</string>

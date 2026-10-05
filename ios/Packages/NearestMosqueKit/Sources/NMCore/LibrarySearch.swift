@@ -249,3 +249,26 @@ public enum LibraryParts {
         return (t.hasPrefix(c.anchor) ? String(t.dropFirst(c.anchor.count)) : t).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
+
+/// Sites the app links to but does not copy (their terms reserve republishing): the question opens in the
+/// site's own search, or a web search limited to the site, only when the user taps it.
+public enum OtherSources {
+    public struct Link: Hashable, Sendable { public let id: String; public let url: URL }
+
+    static let islamQaLanguages: Set<String> = ["ar", "en", "ur", "tr", "id", "fr", "es"]
+    /// Same escaping as Java's URLEncoder with "+" as "%20" (letters, digits and . - * _ kept).
+    static func encode(_ s: String) -> String {
+        var allowed = CharacterSet.alphanumerics.intersection(CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
+        allowed.insert(charactersIn: ".-*_")
+        return s.addingPercentEncoding(withAllowedCharacters: allowed) ?? s
+    }
+
+    public static func links(_ question: String, lang: String) -> [Link] {
+        let q = encode(question.trimmingCharacters(in: .whitespacesAndNewlines))
+        let qa = islamQaLanguages.contains(lang) ? lang : "en"
+        func site(_ host: String) -> String { "https://www.google.com/search?q=" + encode("site:\(host) ") + q }
+        return [("islamqa", "https://islamqa.info/\(qa)/search?q=\(q)"), ("dorar", "https://dorar.net/hadith/search?q=\(q)"),
+                ("binothaimeen", site("binothaimeen.net")), ("alifta", site("alifta.gov.sa"))]
+            .compactMap { id, u in URL(string: u).map { Link(id: id, url: $0) } }
+    }
+}

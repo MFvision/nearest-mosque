@@ -282,6 +282,7 @@ struct AnswerCard: View {
             if !["ar", "en"].contains(l10n.language), answer.kind != .insufficient {
                 Text(l10n.t("answer_language_note")).font(.caption).foregroundStyle(.white.opacity(0.7))
             }
+            OtherSourcesRow(question: turn.question)
             Text(l10n.t("answer_not_fatwa")).font(.caption).foregroundStyle(.white.opacity(0.7))
         }
         .foregroundStyle(.white)
@@ -314,5 +315,33 @@ struct FlowLayout: Layout {
             x += size.width + spacing
             rowH = max(rowH, size.height)
         }
+    }
+}
+
+/// Sites the app links to but does not copy: each opens its own search for the question when tapped.
+struct OtherSourcesRow: View {
+    @Environment(Localization.self) private var l10n
+    @Environment(\.openURL) private var openURL
+    let question: String
+    private static let labels = ["islamqa": "site_islamqa", "dorar": "site_dorar", "binothaimeen": "site_binothaimeen", "alifta": "site_alifta"]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(l10n.t("answer_search_more")).font(.caption.weight(.semibold)).foregroundStyle(Theme.gold)
+            FlowLayout(spacing: 8) {
+                ForEach(OtherSources.links(question, lang: l10n.language), id: \.id) { link in
+                    Button { openURL(link.url) } label: {
+                        Text(l10n.t(Self.labels[link.id] ?? link.id)).font(.caption)
+                            .padding(.horizontal, 12).frame(minHeight: 36)
+                            .foregroundStyle(Color(hex: 0x8CC0DE))
+                            .contentShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .glass(Capsule())
+                }
+            }
+            Text(l10n.t("answer_search_more_note")).font(.caption2).foregroundStyle(.white.opacity(0.6))
+        }
+        .padding(.top, 4)
     }
 }

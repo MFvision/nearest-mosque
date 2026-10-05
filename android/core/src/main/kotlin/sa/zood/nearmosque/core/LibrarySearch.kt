@@ -208,3 +208,25 @@ object LibraryParts {
 
     fun publisher(c: SourceChunk): String? = c.sectionName("publisher")
 }
+
+/**
+ * Sites the app links to but does not copy (their terms reserve republishing): the question opens in the
+ * site's own search, or a web search limited to the site, only when the user taps it.
+ */
+object OtherSources {
+    data class Link(val id: String, val url: String)
+
+    private val islamQaLanguages = setOf("ar", "en", "ur", "tr", "id", "fr", "es")
+
+    fun links(question: String, lang: String): List<Link> {
+        val q = java.net.URLEncoder.encode(question.trim(), "UTF-8").replace("+", "%20")
+        val qa = if (lang in islamQaLanguages) lang else "en"
+        fun site(host: String) = "https://www.google.com/search?q=" + java.net.URLEncoder.encode("site:$host ", "UTF-8").replace("+", "%20") + q
+        return listOf(
+            Link("islamqa", "https://islamqa.info/$qa/search?q=$q"),
+            Link("dorar", "https://dorar.net/hadith/search?q=$q"),
+            Link("binothaimeen", site("binothaimeen.net")),
+            Link("alifta", site("alifta.gov.sa")),
+        )
+    }
+}

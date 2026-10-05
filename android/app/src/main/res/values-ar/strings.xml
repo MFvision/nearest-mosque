@@ -16,6 +16,8 @@
     <string name="answer_insufficient_title">لم أجد هذا في كتبك</string>
     <string name="answer_language_note">كتبك باللغتين العربية والإنجليزية، وتبقى الاقتباسات بلغتها الأصلية.</string>
     <string name="answer_not_fatwa">الإجابات اقتباسات من الكتب وليست فتوى. للحكم في حالتك اسأل عالمًا مؤهلًا.</string>
+    <string name="answer_search_more">ابحث أيضًا في هذه المواقع</string>
+    <string name="answer_search_more_note">يفتح الموقع في المتصفح مع سؤالك.</string>
     <string name="answer_searching">جارٍ البحث في كتبك…</string>
     <string name="app_name">أقرب مسجد</string>
     <string name="ask_follow_up_placeholder">اسأل سؤالًا متابعًا…</string>
@@ -282,6 +284,10 @@
     <string name="settings">الإعدادات</string>
     <string name="show_less_detail">عرض أقل</string>
     <string name="show_more_detail">عرض تفاصيل أكثر</string>
+    <string name="site_alifta">الإفتاء</string>
+    <string name="site_binothaimeen">موقع ابن عثيمين</string>
+    <string name="site_dorar">الدرر السنية</string>
+    <string name="site_islamqa">الإسلام سؤال وجواب</string>
     <string name="source_offline_pack">من بياناتك المحمّلة</string>
     <string name="source_online_apple">مباشر من خرائط Apple</string>
     <string name="source_online_osm">مباشر من OpenStreetMap</string>

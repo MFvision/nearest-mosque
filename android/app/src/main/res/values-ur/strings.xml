@@ -16,6 +16,8 @@
     <string name="answer_insufficient_title">یہ آپ کی کتابوں میں نہیں ملا</string>
     <string name="answer_language_note">آپ کی کتابیں عربی اور انگریزی میں ہیں؛ اقتباسات اپنی اصل زبان میں رہتے ہیں۔</string>
     <string name="answer_not_fatwa">جوابات کتابوں کے حوالے ہیں، فتویٰ نہیں۔ ذاتی مسئلے کے لیے مستند عالم سے پوچھیں۔</string>
+    <string name="answer_search_more">یہ ویب سائٹس بھی تلاش کریں</string>
+    <string name="answer_search_more_note">آپ کے سوال کے ساتھ ویب سائٹ براؤزر میں کھلتی ہے۔</string>
     <string name="answer_searching">آپ کی کتابوں میں تلاش جاری ہے…</string>
     <string name="app_name">قریبی مسجد</string>
     <string name="ask_follow_up_placeholder">مزید پوچھیں…</string>
@@ -278,6 +280,10 @@
     <string name="settings">ترتیبات</string>
     <string name="show_less_detail">کم دکھائیں</string>
     <string name="show_more_detail">مزید تفصیل</string>
+    <string name="site_alifta">سعودی افتاء</string>
+    <string name="site_binothaimeen">ابن عثیمین</string>
+    <string name="site_dorar">الدرر السنیہ</string>
+    <string name="site_islamqa">اسلام سوال و جواب</string>
     <string name="source_offline_pack">آپ کے ڈاؤن لوڈ کردہ ڈیٹا سے</string>
     <string name="source_online_apple">Apple Maps سے براہ راست</string>
     <string name="source_online_osm">OpenStreetMap سے براہ راست</string>

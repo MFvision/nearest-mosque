@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import sa.zood.nearmosque.platform.ExternalActions
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -234,9 +235,36 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
             Text(stringResource(R.string.answer_language_note), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f))
         }
         Spacer(Modifier.height(6.dp))
+        OtherSourcesRow(t.question, lang)
         Text(stringResource(R.string.answer_not_fatwa), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f))
     }
 }
 
 /** Summary in the interface language, else English; the label always says it is not yet reviewed. */
 fun summaryFor(q: CommonQuestion, lang: String): String = q.summary[lang] ?: q.summary["en"].orEmpty()
+
+/** Sites the app links to but does not copy: each opens its own search for the question when tapped. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun OtherSourcesRow(question: String, lang: String) {
+    val context = LocalContext.current
+    val labels = mapOf(
+        "islamqa" to R.string.site_islamqa, "dorar" to R.string.site_dorar,
+        "binothaimeen" to R.string.site_binothaimeen, "alifta" to R.string.site_alifta,
+    )
+    Column(Modifier.padding(top = 6.dp)) {
+        Text(stringResource(R.string.answer_search_more), style = MaterialTheme.typography.labelMedium, color = Tokens.gold)
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 4.dp)) {
+            sa.zood.nearmosque.core.OtherSources.links(question, lang).forEach { l ->
+                Text(
+                    stringResource(labels.getValue(l.id)), color = androidx.compose.ui.graphics.Color(0xFF8CC0DE),
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.heightIn(min = 40.dp).glass(RoundedCornerShape(50)).clickable { ExternalActions.open(context, l.url) }
+                        .padding(horizontal = 12.dp, vertical = 10.dp),
+                )
+            }
+        }
+        Text(stringResource(R.string.answer_search_more_note), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.6f), modifier = Modifier.padding(top = 4.dp))
+    }
+}
+

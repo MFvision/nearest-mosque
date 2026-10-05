@@ -16,6 +16,8 @@
     <string name="answer_insufficient_title">Saya tidak menemukannya di buku Anda</string>
     <string name="answer_language_note">Buku Anda berbahasa Arab dan Inggris. Kutipan tetap dalam bahasa aslinya.</string>
     <string name="answer_not_fatwa">Jawaban adalah kutipan buku, bukan fatwa. Untuk hukum pribadi, tanyakan kepada ulama yang berkompeten.</string>
+    <string name="answer_search_more">Cari juga di situs ini</string>
+    <string name="answer_search_more_note">Membuka situs di peramban dengan pertanyaan Anda.</string>
     <string name="answer_searching">Mencari di buku Anda…</string>
     <string name="app_name">Near Mosque</string>
     <string name="ask_follow_up_placeholder">Ajukan pertanyaan lanjutan…</string>
@@ -277,6 +279,10 @@
     <string name="settings">Pengaturan</string>
     <string name="show_less_detail">Tampilkan lebih sedikit</string>
     <string name="show_more_detail">Tampilkan detail</string>
+    <string name="site_alifta">Lajnah Daimah</string>
+    <string name="site_binothaimeen">Ibnu Utsaimin</string>
+    <string name="site_dorar">Dorar (hadis)</string>
+    <string name="site_islamqa">IslamQA</string>
     <string name="source_offline_pack">Dari data yang diunduh</string>
     <string name="source_online_apple">Langsung dari Apple Maps</string>
     <string name="source_online_osm">Langsung dari OpenStreetMap</string>

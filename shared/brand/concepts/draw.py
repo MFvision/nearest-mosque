@@ -1,6 +1,6 @@
 import math
 BG = '''<defs>
-<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<linearGradient id="bg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1024" y2="1024">
  <stop offset="0" stop-color="#E9B96A"/><stop offset="0.45" stop-color="#F6DDAE"/><stop offset="1" stop-color="#FFF8EC"/>
 </linearGradient>
 </defs>

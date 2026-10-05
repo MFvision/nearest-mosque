@@ -16,6 +16,8 @@
     <string name="answer_insufficient_title">Bunu kitaplarınızda bulamadım</string>
     <string name="answer_language_note">Kitaplarınız Arapça ve İngilizce. Alıntılar orijinal dillerinde kalır.</string>
     <string name="answer_not_fatwa">Cevaplar kitaplardan alıntıdır, fetva değildir. Kişisel bir hüküm için yetkin bir âlime danışın.</string>
+    <string name="answer_search_more">Bu sitelerde de ara</string>
+    <string name="answer_search_more_note">Siteyi sorunuzla tarayıcıda açar.</string>
     <string name="answer_searching">Kitaplarınızda aranıyor…</string>
     <string name="app_name">Near Mosque</string>
     <string name="ask_follow_up_placeholder">Devam sorusu sorun…</string>
@@ -278,6 +280,10 @@
     <string name="settings">Ayarlar</string>
     <string name="show_less_detail">Daha az</string>
     <string name="show_more_detail">Daha fazla ayrıntı</string>
+    <string name="site_alifta">Daimi Fetva Kurulu</string>
+    <string name="site_binothaimeen">İbn Useymin</string>
+    <string name="site_dorar">Dorar (hadis)</string>
+    <string name="site_islamqa">İslam Soru Cevap</string>
     <string name="source_offline_pack">İndirilen verilerinizden</string>
     <string name="source_online_apple">Apple Haritalar’dan canlı</string>
     <string name="source_online_osm">OpenStreetMap’ten canlı</string>

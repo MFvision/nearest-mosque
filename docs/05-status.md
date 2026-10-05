@@ -40,6 +40,7 @@ Legend: **Done** = implemented and covered by automated tests or rendered screen
 | More sources: Ibn Baz fatwas (24,138), HadeethEnc hadiths (7 languages), QuranEnc translations (ur, tr, id, fr, es) | Done | Done (CI) | Reader shows each part (question/answer, hadith/explanation/lessons, verse/translation/notes) with grade, printed source and the required attribution and version |
 | Library packs install for the reader's languages (interface language, Arabic, and English for non-Arabic readers), in the background after the Quran and mosques | Done | Done | Installs stream line by line (no whole pack in memory); other languages install when the interface language changes |
 | New app icon (customer's layered emblem with the brand's location arrow) | Done | Done | `shared/brand/near-mosque-icon.svg`; adaptive icon with monochrome layer on Android |
+| "Search these sites too" under each answer: IslamQA, Dorar, Ibn Uthaymeen, alifta (link out, nothing copied) | Done | Done | Link building unit-tested on both platforms |
 | Directions: choice of maps app | System chooser of installed maps apps | Apple Maps, Google Maps, Waze | Google Maps/Waze open their app when installed, else their website |
 | Source cards: reference, verbatim original, labelled translation, read-in-context offline, original link | Done | Built | Android screenshots |
 | "Not found" instead of guessing; prompt-injection question returns nothing | Done | Done | Fixtures |
