@@ -288,6 +288,9 @@
     <string name="site_binothaimeen">ابن عثیمین</string>
     <string name="site_dorar">الدرر السنیہ</string>
     <string name="site_islamqa">اسلام سوال و جواب</string>
+    <string name="sky_card_hint">قبلہ کے لیے تھپتھپائیں</string>
+    <string name="sky_day_a11y">سورج کا راستہ: طلوع %1$s، مغرب %2$s۔ دن کا %3$s گزر چکا ہے۔</string>
+    <string name="sky_night_a11y">رات: مغرب %1$s، طلوع %2$s۔ رات کا %3$s گزر چکا ہے۔</string>
     <string name="source_offline_pack">آپ کے ڈاؤن لوڈ کردہ ڈیٹا سے</string>
     <string name="source_online_apple">Apple Maps سے براہ راست</string>
     <string name="source_online_osm">OpenStreetMap سے براہ راست</string>

@@ -9,6 +9,13 @@ import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -43,7 +50,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -56,7 +62,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.launch
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.CompassState
 import sa.zood.nearmosque.core.PrayerEvent
@@ -72,7 +77,8 @@ import sa.zood.nearmosque.ui.theme.Tokens
 
 /**
  * Prayer & Qibla: the sky for the current prayer period (drawn by AppRoot), the Qibla arc with the
- * next prayer inside, today's times on glass. Scrolling past the arc pins a compact glass summary.
+ * next prayer inside, today's times on glass. Scrolling past the arc pins a compact glass bar; tapping
+ * it opens the sky card (next prayer, the sun on its path, the Qibla), whose Qibla row opens the compass.
  */
 @Composable
 fun PrayerScreen(
@@ -84,11 +90,14 @@ fun PrayerScreen(
     onPickCity: () -> Unit,
     onOpenCalculation: () -> Unit,
     onOpenCompass: () -> Unit,
+    /** Screenshot tests: shows the compact bar already opened into the sky card. */
+    demoSkyCard: Boolean = false,
 ) {
     val context = LocalContext.current
+    var expanded by rememberSaveable { mutableStateOf(demoSkyCard) }
     val listState = rememberLazyListState()
-    val scope = rememberCoroutineScope()
     val showCompact by remember { derivedStateOf { listState.firstVisibleItemIndex > 0 || listState.firstVisibleItemScrollOffset > 900 } }
+    LaunchedEffect(showCompact) { if (!showCompact && !demoSkyCard) expanded = false }
     val locationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         vm.useDeviceLocation(context.getString(R.string.location_current))
     }
@@ -134,6 +143,7 @@ fun PrayerScreen(
             if (today != null && today.status == ScheduleStatus.Unavailable) {
                 item("polar") { PolarCard(onUseNearest = { vm.setPolar(sa.zood.nearmosque.core.PolarRule.NEAREST_LATITUDE) }) }
             }
+            ui.arc?.let { arc -> item("sky") { DayArcView(arc, ui.sky, loc.zoneId) } }
             if (today != null && today.status != ScheduleStatus.Unavailable) {
                 item("schedule") {
                     ScheduleCard(
@@ -148,12 +158,27 @@ fun PrayerScreen(
             }
             item("dates") { DatesCard(ui, onOpenCalculation) }
         }
+        val open = expanded && (showCompact || demoSkyCard)
+        AnimatedVisibility(visible = open, enter = fadeIn(), exit = fadeOut()) {
+            Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.28f)).pointerInput(Unit) { detectTapGestures { expanded = false } })
+        }
         AnimatedVisibility(
-            visible = showCompact && ui.next != null,
+            visible = (showCompact || demoSkyCard) && ui.next != null,
             enter = fadeIn() + slideInVertically { -it }, exit = fadeOut() + slideOutVertically { -it },
             modifier = Modifier.statusBarsPadding().padding(horizontal = 16.dp, vertical = 6.dp),
         ) {
-            CompactPrayerBar(ui, compass) { scope.launch { listState.animateScrollToItem(0) } }
+            Box {
+                AnimatedVisibility(visible = !open, enter = fadeIn(), exit = fadeOut()) {
+                    CompactPrayerBar(ui, compass) { expanded = true }
+                }
+                AnimatedVisibility(
+                    visible = open,
+                    enter = fadeIn() + expandVertically(expandFrom = Alignment.Top),
+                    exit = fadeOut() + shrinkVertically(shrinkTowards = Alignment.Top),
+                ) {
+                    SkyCard(ui, compass, aligned, onQibla = onOpenCompass, onCollapse = { expanded = false })
+                }
+            }
         }
     }
 }

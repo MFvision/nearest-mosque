@@ -13452,6 +13452,147 @@
         }
       }
     },
+    "sky_card_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap for the Qibla"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط لاتجاه القبلة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبلہ کے لیے تھپتھپائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kıble için dokunun"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketuk untuk kiblat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez pour la qibla"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque para la alquibla"
+          }
+        }
+      }
+    },
+    "sky_day_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sun path: sunrise %1$@, Maghrib %2$@. %3$@ of daylight has passed."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مسار الشمس: الشروق %1$@، المغرب %2$@. مضى %3$@ من النهار."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سورج کا راستہ: طلوع %1$@، مغرب %2$@۔ دن کا %3$@ گزر چکا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güneşin yolu: gün doğumu %1$@, akşam %2$@. Gündüzün %3$@ geçti."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lintasan matahari: terbit %1$@, Magrib %2$@. %3$@ siang telah berlalu."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Course du soleil : lever %1$@, Maghrib %2$@. %3$@ de la journée est passé."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorrido del sol: salida %1$@, Magrib %2$@. Ha pasado el %3$@ del día."
+          }
+        }
+      }
+    },
+    "sky_night_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Night: Maghrib %1$@, sunrise %2$@. %3$@ of the night has passed."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الليل: المغرب %1$@، الشروق %2$@. مضى %3$@ من الليل."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رات: مغرب %1$@، طلوع %2$@۔ رات کا %3$@ گزر چکا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gece: akşam %1$@, gün doğumu %2$@. Gecenin %3$@ geçti."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malam: Magrib %1$@, terbit %2$@. %3$@ malam telah berlalu."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuit : Maghrib %1$@, lever %2$@. %3$@ de la nuit est passé."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noche: Magrib %1$@, salida %2$@. Ha pasado el %3$@ de la noche."
+          }
+        }
+      }
+    },
     "source_offline_pack": {
       "extractionState": "manual",
       "localizations": {

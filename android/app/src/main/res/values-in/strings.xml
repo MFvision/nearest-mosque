@@ -287,6 +287,9 @@
     <string name="site_binothaimeen">Ibnu Utsaimin</string>
     <string name="site_dorar">Dorar (hadis)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="sky_card_hint">Ketuk untuk kiblat</string>
+    <string name="sky_day_a11y">Lintasan matahari: terbit %1$s, Magrib %2$s. %3$s siang telah berlalu.</string>
+    <string name="sky_night_a11y">Malam: Magrib %1$s, terbit %2$s. %3$s malam telah berlalu.</string>
     <string name="source_offline_pack">Dari data yang diunduh</string>
     <string name="source_online_apple">Langsung dari Apple Maps</string>
     <string name="source_online_osm">Langsung dari OpenStreetMap</string>

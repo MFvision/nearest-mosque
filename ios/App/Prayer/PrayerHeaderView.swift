@@ -234,7 +234,8 @@ private struct ArcLayer: View, Animatable {
     }
 }
 
-/// Compact glass summary pinned while scrolling: next prayer, countdown, small Qibla indicator.
+/// Compact glass bar pinned while scrolling: next prayer, countdown, small Qibla indicator. The whole
+/// bar is one button that opens the sky card (it highlights while pressed).
 struct CompactPrayerBar: View {
     @Environment(Localization.self) private var l10n
     let snap: PrayerSnapshot
@@ -243,23 +244,28 @@ struct CompactPrayerBar: View {
 
     var body: some View {
         if let next = snap.next, let loc = snap.location {
-            HStack(spacing: 12) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(l10n.t(Format.prayerKey(next.event)) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
-                    Text(l10n.t("remaining_long", Format.remainingLong(PrayerCalculator.remaining(snap.now, next.at), locale: l10n.locale)))
-                        .font(.subheadline).monospacedDigit().foregroundStyle(Theme.accent)
-                }
-                Spacer()
-                if let b = snap.qiblaBearing { MiniQiblaIndicator(bearing: b, compass: compass).frame(width: 40, height: 40) }
-                Button(action: onExpand) { Image(systemName: "chevron.up").font(.headline).frame(width: 44, height: 44) }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(l10n.t("expand"))
-            }
-            .foregroundStyle(Theme.ink)
-            .padding(.leading, 18).padding(.trailing, 6)
-            .frame(minHeight: Theme.compactHeight)
-            .glass(Capsule())
+            Button(action: onExpand) { bar(next, loc) }
+                .buttonStyle(PressHighlight(shape: AnyShape(Capsule())))
+                .glass(Capsule(), interactive: true)
+                .accessibilityHint(l10n.t("expand"))
         }
+    }
+
+    private func bar(_ next: Upcoming, _ loc: PrayerLocation) -> some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(l10n.t(Format.prayerKey(next.event)) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
+                Text(l10n.t("remaining_long", Format.remainingLong(PrayerCalculator.remaining(snap.now, next.at), locale: l10n.locale)))
+                    .font(.subheadline).monospacedDigit().foregroundStyle(Theme.accent)
+            }
+            Spacer()
+            if let b = snap.qiblaBearing { MiniQiblaIndicator(bearing: b, compass: compass).frame(width: 40, height: 40) }
+            Image(systemName: "chevron.down").font(.headline).frame(width: 44, height: 44).accessibilityHidden(true)
+        }
+        .foregroundStyle(Theme.ink)
+        .padding(.leading, 18).padding(.trailing, 6)
+        .frame(minHeight: Theme.compactHeight)
+        .contentShape(Capsule())
     }
 }
 

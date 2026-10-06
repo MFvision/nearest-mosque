@@ -292,6 +292,9 @@
     <string name="site_binothaimeen">موقع ابن عثيمين</string>
     <string name="site_dorar">الدرر السنية</string>
     <string name="site_islamqa">الإسلام سؤال وجواب</string>
+    <string name="sky_card_hint">اضغط لاتجاه القبلة</string>
+    <string name="sky_day_a11y">مسار الشمس: الشروق %1$s، المغرب %2$s. مضى %3$s من النهار.</string>
+    <string name="sky_night_a11y">الليل: المغرب %1$s، الشروق %2$s. مضى %3$s من الليل.</string>
     <string name="source_offline_pack">من بياناتك المحمّلة</string>
     <string name="source_online_apple">مباشر من خرائط Apple</string>
     <string name="source_online_osm">مباشر من OpenStreetMap</string>

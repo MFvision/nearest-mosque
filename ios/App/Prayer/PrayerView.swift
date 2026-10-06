@@ -12,6 +12,8 @@ struct PrayerSnapshot {
     let qiblaBearing: Double?
     let qiblaDistance: Double?
     let sky: SkyPeriod
+    /// Sunrise-to-Maghrib (or night) path for the sky card; nil without a location or on polar days.
+    let arc: DayArc?
 
     @MainActor
     init(model: AppModel, now: Date) {
@@ -29,6 +31,7 @@ struct PrayerSnapshot {
         qiblaBearing = location.map { Qibla.bearing(from: $0.location) }
         qiblaDistance = location.map { Qibla.distanceMeters(from: $0.location) }
         sky = location == nil ? .night : SkyPeriod.at(now, today: today, current: current)
+        arc = location == nil ? nil : DayArc.at(now, days: days)
     }
 
     /// Elapsed fraction of the current prayer period (time progress, not sun position).
@@ -40,7 +43,8 @@ struct PrayerSnapshot {
 }
 
 /// Prayer & Qibla: the sky for the current prayer period, the Qibla arc with the next prayer inside,
-/// and today's times on glass. Scrolling past the arc pins a compact glass summary at the top.
+/// and today's times on glass. Scrolling past the arc pins a compact glass bar at the top; tapping it
+/// opens the sky card (next prayer, the sun on its path, the Qibla), whose Qibla row opens the compass.
 struct PrayerView: View {
     @Environment(AppModel.self) private var model
     @Environment(Localization.self) private var l10n
@@ -51,8 +55,15 @@ struct PrayerView: View {
     @State private var showCompass = false
     @State private var detector = AlignmentDetector()
     @State private var aligned = false
+    @State private var expanded = false
+    @Namespace private var header
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    private var showCompact: Bool { scrollOffset > 300 }
+    /// Screenshots only (-demoSkyCard): shows the compact bar and opens the sky card without scrolling.
+    @State private var demoSkyCard = false
+
+    private var showCompact: Bool { scrollOffset > 300 || demoSkyCard }
+    private var motion: Animation { reduceMotion ? .easeInOut(duration: 0.2) : Theme.spring }
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -75,15 +86,33 @@ struct PrayerView: View {
                     }
                     .scrollIndicators(.hidden)
                     .onScrollGeometryChange(for: CGFloat.self) { $0.contentOffset.y + $0.contentInsets.top } action: { _, v in scrollOffset = v }
+                    if expanded {
+                        Color.black.opacity(0.28).ignoresSafeArea()
+                            .onTapGesture { withAnimation(motion) { expanded = false } }
+                            .accessibilityHidden(true)
+                            .transition(.opacity)
+                    }
                     if showCompact, snap.next != nil {
-                        CompactPrayerBar(snap: snap, compass: model.location.compass) {
-                            withAnimation(Theme.spring) { proxy.scrollTo("top", anchor: .top) }
+                        Group {
+                            if expanded {
+                                SkyCard(snap: snap, compass: model.location.compass, aligned: aligned,
+                                        onQibla: { showCompass = true },
+                                        onCollapse: { withAnimation(motion) { expanded = false } })
+                                    .matchedGeometryEffect(id: "header", in: header)
+                                    .transition(.opacity)
+                            } else {
+                                CompactPrayerBar(snap: snap, compass: model.location.compass) {
+                                    withAnimation(motion) { expanded = true }
+                                }
+                                .matchedGeometryEffect(id: "header", in: header)
+                                .transition(.move(edge: .top).combined(with: .opacity))
+                            }
                         }
                         .padding(.horizontal, 16)
-                        .transition(.move(edge: .top).combined(with: .opacity))
                     }
                 }
-                .animation(Theme.spring, value: showCompact)
+                .animation(motion, value: showCompact)
+                .onChange(of: showCompact) { _, on in if !on { expanded = false } }
                 .onChange(of: model.location.compass) { _, c in updateAlignment(c, snap.qiblaBearing) }
             }
         }
@@ -94,6 +123,7 @@ struct PrayerView: View {
             model.location.beginHeading()
             #if DEBUG
             if UserDefaults.standard.bool(forKey: "demoCompass") { showCompass = true }
+            if UserDefaults.standard.bool(forKey: "demoSkyCard") { demoSkyCard = true; expanded = true }
             #endif
         }
         .onDisappear { model.location.endHeading() }
@@ -120,6 +150,9 @@ struct PrayerView: View {
         }
         if !loc.zoneConfirmed { ZoneConfirmCard(location: loc, onChange: { showCity = true }) }
         if snap.today?.status == .unavailable { PolarCard() }
+        if let arc = snap.arc {
+            DayArcView(arc: arc, period: snap.sky, zone: loc.zone).padding(6).glassCard(padding: 0)
+        }
         if let today = snap.today, today.status != .unavailable { ScheduleCard(snap: snap, today: today) }
         DatesCard(snap: snap, onCalculation: { showCalc = true })
     }

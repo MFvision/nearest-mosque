@@ -17,6 +17,7 @@ import kotlinx.coroutines.withContext
 import sa.zood.nearmosque.AppContainer
 import sa.zood.nearmosque.core.AsrMadhab
 import sa.zood.nearmosque.core.City
+import sa.zood.nearmosque.core.DayArc
 import sa.zood.nearmosque.core.DaySchedule
 import sa.zood.nearmosque.core.HighLatRule
 import sa.zood.nearmosque.core.LatLng
@@ -48,6 +49,8 @@ data class PrayerUi(
     val qiblaBearing: Double? = null,
     val qiblaDistance: Double? = null,
     val sky: SkyPeriod = SkyPeriod.NIGHT,
+    /** Sunrise-to-Maghrib (or night) path for the sky card; null without a location or on polar days. */
+    val arc: DayArc? = null,
 )
 
 sealed interface LocateState {
@@ -104,6 +107,7 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
             current = current, fajrEndsAt = calc.fajrEndsAt(todaySchedule, now),
             qiblaBearing = Qibla.bearing(loc.location), qiblaDistance = Qibla.distanceMeters(loc.location),
             sky = SkyPeriod.at(now, todaySchedule[PrayerEvent.SUNRISE], current, hasLocation = true),
+            arc = DayArc.at(now, cached),
         )
     }
 

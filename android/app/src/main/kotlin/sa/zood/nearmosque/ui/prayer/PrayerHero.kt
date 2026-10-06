@@ -27,7 +27,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +38,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -248,14 +249,20 @@ fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier 
     }
 }
 
-/** Compact glass summary pinned while scrolling: next prayer, countdown, small Qibla indicator. */
+/**
+ * Compact glass bar pinned while scrolling: next prayer, countdown, small Qibla indicator. The whole
+ * bar is one button that opens the sky card (with a ripple while pressed).
+ */
 @Composable
 fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, onExpand: () -> Unit) {
     val context = LocalContext.current
     val next = ui.next ?: return
     val zone = ui.location?.zoneId ?: return
     Row(
-        Modifier.fillMaxWidth().heightIn(min = Tokens.compactHeight.dp).glass(RoundedCornerShape(50)).padding(start = 20.dp, end = 6.dp),
+        Modifier.fillMaxWidth().heightIn(min = Tokens.compactHeight.dp).glass(RoundedCornerShape(50))
+            .clip(RoundedCornerShape(50))
+            .clickable(role = Role.Button, onClickLabel = stringResource(R.string.expand), onClick = onExpand)
+            .padding(start = 20.dp, end = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f)) {
@@ -266,14 +273,14 @@ fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, onExpand: () -> Unit) 
             )
         }
         ui.qiblaBearing?.let { MiniQiblaIndicator(it, compass) }
-        Box(Modifier.size(48.dp).clickable(role = Role.Button, onClickLabel = stringResource(R.string.expand), onClick = onExpand), contentAlignment = Alignment.Center) {
-            Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowUp), contentDescription = stringResource(R.string.expand), tint = Ink)
+        Box(Modifier.size(48.dp), contentAlignment = Alignment.Center) {
+            Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowDown), contentDescription = null, tint = Ink)
         }
     }
 }
 
 @Composable
-private fun MiniQiblaIndicator(bearing: Double, compass: CompassState) {
+internal fun MiniQiblaIndicator(bearing: Double, compass: CompassState) {
     val live = compass as? CompassState.Live
     val angle = if (live != null) Angles.relativeToQibla(bearing, live.headingTrue) else bearing
     val label = stringResource(R.string.qibla) + ", " + stringResource(R.string.qibla_bearing, Format.degrees(LocalContext.current, bearing))

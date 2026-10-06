@@ -49,6 +49,12 @@ struct QiblaDial: View {
                     Text(l10n.t("compass_north")).font(.system(size: size * 0.07, weight: .bold)).foregroundStyle(Color(hex: 0xF2B8B5))
                         .offset(y: -size / 2 + size * 0.15)
                     ZStack {
+                        // Direction light: a soft beam from the centre towards the Kaaba, brighter when facing it.
+                        QiblaBeam()
+                            .fill(LinearGradient(colors: [Theme.gold.opacity(aligned ? 0.6 : 0.24), Theme.gold.opacity(0)], startPoint: .bottom, endPoint: .top))
+                            .frame(width: size * 0.48, height: size * 0.48).offset(y: -size * 0.24)
+                            .blur(radius: aligned ? 2 : 4)
+                            .animation(reduceMotion ? nil : .easeInOut(duration: 0.35), value: aligned)
                         Capsule().fill(LinearGradient(colors: [Theme.gold.opacity(0.2), Theme.gold], startPoint: .bottom, endPoint: .top))
                             .frame(width: 3, height: size * 0.3).offset(y: -size * 0.15)
                         KaabaIcon(size: size * 0.13).offset(y: -size * 0.36)
@@ -75,6 +81,18 @@ struct QiblaDial: View {
         }
         .accessibilityElement()
         .accessibilityLabel(l10n.t("qibla_dial_a11y", l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale))))
+    }
+}
+
+/// Wedge from the bottom centre of its frame (the dial centre) out to the top, 28° wide.
+private struct QiblaBeam: Shape {
+    func path(in r: CGRect) -> Path {
+        var p = Path()
+        let c = CGPoint(x: r.midX, y: r.maxY)
+        p.move(to: c)
+        p.addArc(center: c, radius: r.height, startAngle: .degrees(-104), endAngle: .degrees(-76), clockwise: false)
+        p.closeSubpath()
+        return p
     }
 }
 

@@ -288,6 +288,9 @@
     <string name="site_binothaimeen">İbn Useymin</string>
     <string name="site_dorar">Dorar (hadis)</string>
     <string name="site_islamqa">İslam Soru Cevap</string>
+    <string name="sky_card_hint">Kıble için dokunun</string>
+    <string name="sky_day_a11y">Güneşin yolu: gün doğumu %1$s, akşam %2$s. Gündüzün %3$s geçti.</string>
+    <string name="sky_night_a11y">Gece: akşam %1$s, gün doğumu %2$s. Gecenin %3$s geçti.</string>
     <string name="source_offline_pack">İndirilen verilerinizden</string>
     <string name="source_online_apple">Apple Haritalar’dan canlı</string>
     <string name="source_online_osm">OpenStreetMap’ten canlı</string>

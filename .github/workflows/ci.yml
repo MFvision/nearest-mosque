@@ -174,12 +174,15 @@ jobs:
           shot 05-prayer-en -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 06-prayer-ar -demoCity "Cape Town" -demoTab prayer -languageOverride ar
           shot 06b-qibla-compass -demoCity "Cape Town" -demoTab prayer -demoCompass YES -languageOverride en
+          shot 06c-sky-card -demoCity "Cape Town" -demoTab prayer -demoSkyCard YES -languageOverride en
+          shot 06d-sky-card-ar -demoCity "Cape Town" -demoTab prayer -demoSkyCard YES -languageOverride ar
           shot 07-mosques-compass -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 0 -languageOverride en
           shot 08-mosques-map -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 1 -languageOverride en
           shot 09-ask-answer -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
           shot 10-ask-ar -demoCity "Cape Town" -demoTab ask -languageOverride ar
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
+          shot 11b-sky-card-dark -demoCity "Cape Town" -demoTab prayer -demoSkyCard YES -languageOverride en
           shot 12-mosques-dark -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 0 -languageOverride en
           shot 13-ask-answer-dark -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
           ls -la shots

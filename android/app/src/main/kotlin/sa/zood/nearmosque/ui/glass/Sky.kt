@@ -134,7 +134,7 @@ private fun DrawScope.drawClouds(sz: Size, tint: Color, opacity: Float) {
     }
 }
 
-private fun DrawScope.drawStars(seed: Long, area: Size, alpha: Float) {
+internal fun DrawScope.drawStars(seed: Long, area: Size, alpha: Float) {
     var s = seed * 6364136223846793005L + 1442695040888963407L
     fun next(): Float {
         s = s * 6364136223846793005L + 1442695040888963407L

@@ -2887,6 +2887,33 @@
       "id": "Gelap",
       "fr": "Sombre",
       "es": "Oscuro"
+    },
+    "sky_day_a11y": {
+      "en": "Sun path: sunrise %1$s, Maghrib %2$s. %3$s of daylight has passed.",
+      "ar": "مسار الشمس: الشروق %1$s، المغرب %2$s. مضى %3$s من النهار.",
+      "ur": "سورج کا راستہ: طلوع %1$s، مغرب %2$s۔ دن کا %3$s گزر چکا ہے۔",
+      "tr": "Güneşin yolu: gün doğumu %1$s, akşam %2$s. Gündüzün %3$s geçti.",
+      "id": "Lintasan matahari: terbit %1$s, Magrib %2$s. %3$s siang telah berlalu.",
+      "fr": "Course du soleil : lever %1$s, Maghrib %2$s. %3$s de la journée est passé.",
+      "es": "Recorrido del sol: salida %1$s, Magrib %2$s. Ha pasado el %3$s del día."
+    },
+    "sky_night_a11y": {
+      "en": "Night: Maghrib %1$s, sunrise %2$s. %3$s of the night has passed.",
+      "ar": "الليل: المغرب %1$s، الشروق %2$s. مضى %3$s من الليل.",
+      "ur": "رات: مغرب %1$s، طلوع %2$s۔ رات کا %3$s گزر چکا ہے۔",
+      "tr": "Gece: akşam %1$s, gün doğumu %2$s. Gecenin %3$s geçti.",
+      "id": "Malam: Magrib %1$s, terbit %2$s. %3$s malam telah berlalu.",
+      "fr": "Nuit : Maghrib %1$s, lever %2$s. %3$s de la nuit est passé.",
+      "es": "Noche: Magrib %1$s, salida %2$s. Ha pasado el %3$s de la noche."
+    },
+    "sky_card_hint": {
+      "en": "Tap for the Qibla",
+      "ar": "اضغط لاتجاه القبلة",
+      "ur": "قبلہ کے لیے تھپتھپائیں",
+      "tr": "Kıble için dokunun",
+      "id": "Ketuk untuk kiblat",
+      "fr": "Touchez pour la qibla",
+      "es": "Toque para la alquibla"
     }
   }
 }

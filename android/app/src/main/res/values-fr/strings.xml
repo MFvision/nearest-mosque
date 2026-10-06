@@ -288,6 +288,9 @@
     <string name="site_binothaimeen">Ibn Uthaymin</string>
     <string name="site_dorar">Dorar (hadiths)</string>
     <string name="site_islamqa">Islam Questions-Réponses</string>
+    <string name="sky_card_hint">Touchez pour la qibla</string>
+    <string name="sky_day_a11y">Course du soleil : lever %1$s, Maghrib %2$s. %3$s de la journée est passé.</string>
+    <string name="sky_night_a11y">Nuit : Maghrib %1$s, lever %2$s. %3$s de la nuit est passé.</string>
     <string name="source_offline_pack">Depuis vos données téléchargées</string>
     <string name="source_online_apple">En direct de Plans d’Apple</string>
     <string name="source_online_osm">En direct d’OpenStreetMap</string>

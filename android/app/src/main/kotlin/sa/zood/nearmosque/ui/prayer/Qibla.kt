@@ -119,6 +119,13 @@ fun QiblaDial(bearing: Double, compass: CompassState, aligned: Boolean, modifier
             drawContext.canvas.nativeCanvas.drawText(north, c.x, c.y - r + r * 0.32f, textPaint)
             // Qibla arrow fixed to the ring at the true bearing.
             rotate(bearing.toFloat(), c) {
+                // Direction light: a soft 28° beam from the centre towards the Kaaba, brighter when facing it.
+                val beam = androidx.compose.ui.graphics.Path().apply {
+                    moveTo(c.x, c.y)
+                    arcTo(androidx.compose.ui.geometry.Rect(c, r * 0.96f), -104f, 28f, false)
+                    close()
+                }
+                drawPath(beam, Brush.radialGradient(listOf(Tokens.gold.copy(alpha = if (aligned) 0.6f else 0.24f), Tokens.gold.copy(alpha = 0f)), c, r * 0.96f))
                 val tip = Offset(c.x, c.y - r * 0.62f)
                 drawLine(Brush.verticalGradient(listOf(Tokens.gold, Tokens.gold.copy(alpha = 0.15f)), startY = tip.y, endY = c.y), c, tip, 3.dp.toPx(), StrokeCap.Round)
                 val k = r * 0.26f

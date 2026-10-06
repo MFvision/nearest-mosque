@@ -288,6 +288,9 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadith)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="sky_card_hint">Tap for the Qibla</string>
+    <string name="sky_day_a11y">Sun path: sunrise %1$s, Maghrib %2$s. %3$s of daylight has passed.</string>
+    <string name="sky_night_a11y">Night: Maghrib %1$s, sunrise %2$s. %3$s of the night has passed.</string>
     <string name="source_offline_pack">From your downloaded data</string>
     <string name="source_online_apple">Live from Apple Maps</string>
     <string name="source_online_osm">Live from OpenStreetMap</string>
