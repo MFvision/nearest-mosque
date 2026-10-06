@@ -74,11 +74,11 @@
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">Dit punt ligt ver van de steden die we kennen, dus we weten de tijdzone niet zeker. De gebedstijden gebruiken %1$s.</string>
     <string name="confirm_time_zone_title">Bevestig de tijdzone</string>
-    <string name="content_body">Hadith, een Koranvertaling, tafsir en de bibliotheek in %1$s. Alleen gedownload als je op de knop tikt, daarna bewaard op deze telefoon.</string>
     <string name="content_done">Geïnstalleerd. ‘Vraag’ antwoordt nu ook hieruit.</string>
     <string name="content_download">Downloaden (%1$s)</string>
     <string name="content_downloading">Downloaden… %1$s van %2$s</string>
     <string name="content_failed">De download is niet voltooid. Controleer je verbinding en probeer het opnieuw.</string>
+    <string name="content_note">Alleen gedownload als je op de knop tikt, daarna bewaard op deze telefoon.</string>
     <string name="content_title">Inhoud in %1$s</string>
     <string name="copy_answer">Kopiëren</string>
     <string name="countdown_a11y">%1$s om %2$s, over %3$s</string>

@@ -74,11 +74,11 @@
     <string name="compass_north">ఉ</string>
     <string name="confirm_time_zone_body">ఈ ప్రదేశం మాకు తెలిసిన నగరాలకు దూరంగా ఉంది, కాబట్టి దాని టైమ్ జోన్ గురించి ఖచ్చితంగా చెప్పలేం. నమాజ్ సమయాలు %1$s ను ఉపయోగిస్తాయి.</string>
     <string name="confirm_time_zone_title">టైమ్ జోన్‌ను నిర్ధారించండి</string>
-    <string name="content_body">%1$s భాషలో హదీస్, ఖురాన్ అనువాదం, తఫ్సీర్, లైబ్రరీ. మీరు బటన్ నొక్కినప్పుడు మాత్రమే డౌన్‌లోడ్ అవుతుంది, ఆ తర్వాత ఈ ఫోన్‌లోనే ఉంటుంది.</string>
     <string name="content_done">ఇన్‌స్టాల్ అయింది. ఇప్పుడు “అడగండి” దీని నుండి కూడా సమాధానం ఇస్తుంది.</string>
     <string name="content_download">డౌన్‌లోడ్ (%1$s)</string>
     <string name="content_downloading">డౌన్‌లోడ్ అవుతోంది… %1$s / %2$s</string>
     <string name="content_failed">డౌన్‌లోడ్ పూర్తి కాలేదు. కనెక్షన్‌ను తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.</string>
+    <string name="content_note">మీరు బటన్ నొక్కినప్పుడు మాత్రమే డౌన్‌లోడ్ అవుతుంది, ఆ తర్వాత ఈ ఫోన్‌లోనే ఉంటుంది.</string>
     <string name="content_title">%1$s భాషలో కంటెంట్</string>
     <string name="copy_answer">కాపీ</string>
     <string name="countdown_a11y">%1$s %2$s కి, %3$s లో</string>

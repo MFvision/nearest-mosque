@@ -74,11 +74,11 @@
     <string name="compass_north">ಉ</string>
     <string name="confirm_time_zone_body">ಈ ಸ್ಥಳವು ನಮಗೆ ತಿಳಿದಿರುವ ನಗರಗಳಿಂದ ದೂರದಲ್ಲಿದೆ, ಆದ್ದರಿಂದ ಅದರ ಸಮಯ ವಲಯದ ಬಗ್ಗೆ ಖಚಿತವಾಗಿ ಹೇಳಲಾಗದು. ನಮಾಜ್ ಸಮಯಗಳು %1$s ಅನ್ನು ಬಳಸುತ್ತವೆ.</string>
     <string name="confirm_time_zone_title">ಸಮಯ ವಲಯವನ್ನು ದೃಢೀಕರಿಸಿ</string>
-    <string name="content_body">%1$s ಭಾಷೆಯಲ್ಲಿ ಹದೀಸ್, ಕುರ್‌ಆನ್ ಅನುವಾದ, ತಫ್ಸೀರ್ ಮತ್ತು ಗ್ರಂಥಾಲಯ. ನೀವು ಬಟನ್ ಒತ್ತಿದಾಗ ಮಾತ್ರ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತದೆ, ನಂತರ ಈ ಫೋನ್‌ನಲ್ಲೇ ಉಳಿಯುತ್ತದೆ.</string>
     <string name="content_done">ಇನ್‌ಸ್ಟಾಲ್ ಆಗಿದೆ. ಈಗ “ಕೇಳಿ” ಇದರಿಂದಲೂ ಉತ್ತರಿಸುತ್ತದೆ.</string>
     <string name="content_download">ಡೌನ್‌ಲೋಡ್ (%1$s)</string>
     <string name="content_downloading">ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ… %1$s / %2$s</string>
     <string name="content_failed">ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಳ್ಳಲಿಲ್ಲ. ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <string name="content_note">ನೀವು ಬಟನ್ ಒತ್ತಿದಾಗ ಮಾತ್ರ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತದೆ, ನಂತರ ಈ ಫೋನ್‌ನಲ್ಲೇ ಉಳಿಯುತ್ತದೆ.</string>
     <string name="content_title">%1$s ಭಾಷೆಯಲ್ಲಿ ವಿಷಯ</string>
     <string name="copy_answer">ನಕಲಿಸಿ</string>
     <string name="countdown_a11y">%1$s %2$s ಕ್ಕೆ, %3$s ರಲ್ಲಿ</string>

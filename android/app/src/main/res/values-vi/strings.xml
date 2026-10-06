@@ -74,11 +74,11 @@
     <string name="compass_north">B</string>
     <string name="confirm_time_zone_body">Điểm này ở xa các thành phố chúng tôi biết, nên không thể chắc chắn về múi giờ. Giờ cầu nguyện sẽ dùng %1$s.</string>
     <string name="confirm_time_zone_title">Xác nhận múi giờ</string>
-    <string name="content_body">Hadith, bản dịch Qur’an, tafsir và thư viện bằng %1$s. Chỉ tải về khi bạn chạm vào nút, sau đó được lưu trên điện thoại này.</string>
     <string name="content_done">Đã cài đặt. Giờ “Hỏi” cũng trả lời dựa trên nội dung này.</string>
     <string name="content_download">Tải về (%1$s)</string>
     <string name="content_downloading">Đang tải về… %1$s / %2$s</string>
     <string name="content_failed">Chưa tải về xong. Hãy kiểm tra kết nối và thử lại.</string>
+    <string name="content_note">Chỉ tải về khi bạn chạm vào nút, sau đó được lưu trên điện thoại này.</string>
     <string name="content_title">Nội dung bằng %1$s</string>
     <string name="copy_answer">Sao chép</string>
     <string name="countdown_a11y">%1$s lúc %2$s, còn %3$s</string>

@@ -74,11 +74,11 @@
     <string name="compass_north">K</string>
     <string name="confirm_time_zone_body">Bu nokta bildiğimiz şehirlerden uzak, saat dilimi kesin değil. Vakitler için %1$s kullanılacak.</string>
     <string name="confirm_time_zone_title">Saat dilimini onaylayın</string>
-    <string name="content_body">%1$s hadisler, Kur’an meali, tefsir ve kütüphane. Yalnızca düğmeye dokunduğunuzda indirilir, ardından bu telefonda kalır.</string>
     <string name="content_done">Yüklendi. “Sor” artık buradan da yanıt veriyor.</string>
     <string name="content_download">İndir (%1$s)</string>
     <string name="content_downloading">İndiriliyor… %1$s / %2$s</string>
     <string name="content_failed">İndirme tamamlanmadı. Bağlantınızı kontrol edip tekrar deneyin.</string>
+    <string name="content_note">Yalnızca düğmeye dokunduğunuzda indirilir, ardından bu telefonda kalır.</string>
     <string name="content_title">%1$s içerik</string>
     <string name="copy_answer">Kopyala</string>
     <string name="countdown_a11y">%1$s saat %2$s, %3$s sonra</string>

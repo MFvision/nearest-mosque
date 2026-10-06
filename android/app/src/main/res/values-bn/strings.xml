@@ -74,11 +74,11 @@
     <string name="compass_north">উ</string>
     <string name="confirm_time_zone_body">এই জায়গাটি আমাদের জানা শহরগুলো থেকে দূরে, তাই এর টাইম জোন সম্পর্কে আমরা নিশ্চিত হতে পারছি না। নামাজের সময় %1$s অনুযায়ী হবে।</string>
     <string name="confirm_time_zone_title">টাইম জোন নিশ্চিত করুন</string>
-    <string name="content_body">%1$s ভাষায় হাদিস, কুরআনের অনুবাদ, তাফসির ও লাইব্রেরি। শুধু বোতামে ট্যাপ করলেই ডাউনলোড হবে, তারপর এই ফোনেই থাকবে।</string>
     <string name="content_done">ইনস্টল হয়েছে। এখন “প্রশ্ন করুন” এটি থেকেও উত্তর দেয়।</string>
     <string name="content_download">ডাউনলোড (%1$s)</string>
     <string name="content_downloading">ডাউনলোড হচ্ছে… %1$s / %2$s</string>
     <string name="content_failed">ডাউনলোড শেষ হয়নি। সংযোগ দেখে আবার চেষ্টা করুন।</string>
+    <string name="content_note">শুধু বোতামে ট্যাপ করলেই ডাউনলোড হবে, তারপর এই ফোনেই থাকবে।</string>
     <string name="content_title">%1$s ভাষায় কনটেন্ট</string>
     <string name="copy_answer">কপি করুন</string>
     <string name="countdown_a11y">%1$s %2$s-এ, %3$s পর</string>

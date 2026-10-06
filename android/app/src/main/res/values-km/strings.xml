@@ -74,11 +74,11 @@
     <string name="compass_north">ជ</string>
     <string name="confirm_time_zone_body">ចំណុចនេះនៅឆ្ងាយពីទីក្រុងដែលយើងស្គាល់ ដូច្នេះយើងមិនអាចប្រាកដអំពីល្វែងម៉ោងរបស់វាបានទេ។ ម៉ោងសឡាតនឹងប្រើ %1$s។</string>
     <string name="confirm_time_zone_title">បញ្ជាក់ល្វែងម៉ោង</string>
-    <string name="content_body">ហាឌីស ការបកប្រែគម្ពីរគូរ៉ាន តាហ្វសៀរ និងបណ្ណាល័យជាភាសា %1$s។ ទាញយកតែពេលអ្នកចុចប៊ូតុងប៉ុណ្ណោះ រួចរក្សាទុកនៅលើទូរសព្ទនេះ។</string>
     <string name="content_done">បានដំឡើងហើយ។ ឥឡូវ «សួរ» ក៏ឆ្លើយពីខ្លឹមសារនេះដែរ។</string>
     <string name="content_download">ទាញយក (%1$s)</string>
     <string name="content_downloading">កំពុងទាញយក… %1$s / %2$s</string>
     <string name="content_failed">ការទាញយកមិនបានបញ្ចប់ទេ។ សូមពិនិត្យការតភ្ជាប់ ហើយព្យាយាមម្ដងទៀត។</string>
+    <string name="content_note">ទាញយកតែពេលអ្នកចុចប៊ូតុងប៉ុណ្ណោះ រួចរក្សាទុកនៅលើទូរសព្ទនេះ។</string>
     <string name="content_title">ខ្លឹមសារជាភាសា %1$s</string>
     <string name="copy_answer">ចម្លង</string>
     <string name="countdown_a11y">%1$s នៅម៉ោង %2$s ក្នុងរយៈពេល %3$s ទៀត</string>

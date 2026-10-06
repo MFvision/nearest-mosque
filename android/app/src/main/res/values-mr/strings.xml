@@ -74,11 +74,11 @@
     <string name="compass_north">उ</string>
     <string name="confirm_time_zone_body">हे ठिकाण आम्हाला माहीत असलेल्या शहरांपासून दूर आहे, त्यामुळे त्याच्या टाइम झोनबद्दल आम्हाला खात्री नाही. नमाजच्या वेळा %1$s नुसार असतील.</string>
     <string name="confirm_time_zone_title">टाइम झोनची खात्री करा</string>
-    <string name="content_body">%1$s भाषेत हदीस, कुरआनचा अनुवाद, तफसीर आणि ग्रंथालय. फक्त बटण टॅप केल्यावरच डाउनलोड होईल, नंतर याच फोनवर राहील.</string>
     <string name="content_done">इन्स्टॉल झाले. आता “विचारा” यातूनही उत्तर देते.</string>
     <string name="content_download">डाउनलोड करा (%1$s)</string>
     <string name="content_downloading">डाउनलोड होत आहे… %1$s / %2$s</string>
     <string name="content_failed">डाउनलोड पूर्ण झाले नाही. कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
+    <string name="content_note">फक्त बटण टॅप केल्यावरच डाउनलोड होईल, नंतर याच फोनवर राहील.</string>
     <string name="content_title">%1$s भाषेतील मजकूर</string>
     <string name="copy_answer">कॉपी करा</string>
     <string name="countdown_a11y">%1$s %2$s वाजता, %3$s मध्ये</string>

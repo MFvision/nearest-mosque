@@ -319,21 +319,23 @@ private struct SetupPage: View {
                 Text(l10n.t("onb_setup_title")).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
                 Text(l10n.t("onb_setup_body")).font(.body).foregroundStyle(Theme.ink.opacity(0.88))
                 Text(l10n.t("language")).font(.headline)
-                FlowLayout(spacing: 8) {
-                    ForEach(Localization.supported, id: \.self) { code in
-                        let selected = l10n.language == code
-                        Button { l10n.override = code } label: {
-                            Text(Localization.nativeNames[code] ?? code).font(.subheadline.weight(selected ? .semibold : .regular))
-                                .padding(.horizontal, 14).frame(minHeight: 44)
-                                .foregroundStyle(selected ? Theme.navyNight : Theme.ink)
-                                .background(selected ? Theme.gold : .clear, in: Capsule())
-                                .contentShape(Capsule())
+                // One button that opens the list (36 languages no longer fit as chips), so the content offer
+                // below stays in view right after the choice.
+                Menu {
+                    Picker(l10n.t("language"), selection: $l10n.override) {
+                        ForEach(Localization.supported, id: \.self) { code in
+                            Text(Localization.nativeNames[code] ?? code).tag(Optional(code))
                         }
-                        .buttonStyle(.plain)
-                        .glass(Capsule())
-                        .accessibilityAddTraits(selected ? .isSelected : [])
                     }
+                } label: {
+                    Label(Localization.nativeNames[l10n.language] ?? l10n.language, systemImage: "globe")
+                        .font(.body.weight(.semibold)).frame(maxWidth: .infinity, minHeight: 50)
+                        .contentShape(Capsule())
                 }
+                .buttonStyle(.plain)
+                .glass(Capsule())
+                .accessibilityLabel(l10n.t("language"))
+                .accessibilityValue(Localization.nativeNames[l10n.language] ?? l10n.language)
                 // Content in the chosen language, when the app has none built in for it (downloaded on tap only).
                 ContentDownloadCard(lang: l10n.language, onSky: true)
                 Text(l10n.t("location_section")).font(.headline).padding(.top, 6)

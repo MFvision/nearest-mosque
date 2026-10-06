@@ -74,11 +74,11 @@
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">Este punto está lejos de las ciudades conocidas y su zona horaria es incierta. Se usará %1$s.</string>
     <string name="confirm_time_zone_title">Confirma la zona horaria</string>
-    <string name="content_body">Hadices, traducción del Corán, tafsir y biblioteca en %1$s. Solo se descarga cuando tocas el botón y luego se guarda en este teléfono.</string>
     <string name="content_done">Instalado. Ahora «Preguntar» también responde con este contenido.</string>
     <string name="content_download">Descargar (%1$s)</string>
     <string name="content_downloading">Descargando… %1$s de %2$s</string>
     <string name="content_failed">La descarga no terminó. Revisa la conexión e inténtalo de nuevo.</string>
+    <string name="content_note">Solo se descarga cuando tocas el botón y luego se guarda en este teléfono.</string>
     <string name="content_title">Contenido en %1$s</string>
     <string name="copy_answer">Copiar</string>
     <string name="countdown_a11y">%1$s a las %2$s, en %3$s</string>

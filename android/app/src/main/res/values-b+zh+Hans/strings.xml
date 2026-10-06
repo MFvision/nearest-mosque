@@ -74,11 +74,11 @@
     <string name="compass_north">北</string>
     <string name="confirm_time_zone_body">此地点离我们已知的城市较远，无法确定其时区。礼拜时间将使用 %1$s。</string>
     <string name="confirm_time_zone_title">确认时区</string>
-    <string name="content_body">%1$s圣训、古兰经译本、经注和图书馆。仅在你点按按钮时下载，之后保存在这部手机上。</string>
     <string name="content_done">已安装。“提问”现在也会依据这些内容作答。</string>
     <string name="content_download">下载（%1$s）</string>
     <string name="content_downloading">正在下载… %1$s / %2$s</string>
     <string name="content_failed">下载未完成。请检查网络连接后重试。</string>
+    <string name="content_note">仅在你点按按钮时下载，之后保存在这部手机上。</string>
     <string name="content_title">%1$s内容</string>
     <string name="copy_answer">复制</string>
     <string name="countdown_a11y">%1$s 在 %2$s，还有 %3$s</string>

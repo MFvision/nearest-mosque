@@ -74,11 +74,11 @@
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">Ce point est loin des villes connues : son fuseau est incertain. Les horaires utiliseront %1$s.</string>
     <string name="confirm_time_zone_title">Confirmez le fuseau horaire</string>
-    <string name="content_body">Hadiths, traduction du Coran, tafsir et bibliothèque en %1$s. Téléchargés uniquement quand vous touchez le bouton, puis conservés sur ce téléphone.</string>
     <string name="content_done">Installé. « Demander » répond désormais aussi à partir de ce contenu.</string>
     <string name="content_download">Télécharger (%1$s)</string>
     <string name="content_downloading">Téléchargement… %1$s sur %2$s</string>
     <string name="content_failed">Le téléchargement n’a pas abouti. Vérifiez la connexion et réessayez.</string>
+    <string name="content_note">Téléchargés uniquement quand vous touchez le bouton, puis conservés sur ce téléphone.</string>
     <string name="content_title">Contenu en %1$s</string>
     <string name="copy_answer">Copier</string>
     <string name="countdown_a11y">%1$s à %2$s, dans %3$s</string>

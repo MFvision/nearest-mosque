@@ -205,4 +205,8 @@ class ScreenshotTest {
 
     @Test @Config(qualifiers = "b+zh+Hans-w393dp-h852dp-xxhdpi")
     fun askChinese() = shoot("ask_zh", Tab.ASK)
+
+    // The setup page offers the language's content for download (nothing is fetched in the test).
+    @Test @Config(qualifiers = "sw-w393dp-h852dp-xxhdpi")
+    fun onboardingSetupSwahili() = shoot("onboarding_setup_sw", Tab.PRAYER, onboardingPage = 5)
 }

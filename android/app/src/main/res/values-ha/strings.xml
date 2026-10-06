@@ -74,11 +74,11 @@
     <string name="compass_north">A</string>
     <string name="confirm_time_zone_body">Wannan wuri yana nesa da garuruwan da muka sani, don haka ba mu da tabbacin yankin lokacinsa. Lokutan sallah za su yi amfani da %1$s.</string>
     <string name="confirm_time_zone_title">Tabbatar da yankin lokaci</string>
-    <string name="content_body">Hadisi, fassarar Alƙur\'ani, tafsiri da ɗakin karatu cikin %1$s. Ana saukewa ne kawai idan kuka danna maɓallin, sannan su zauna a wannan wayar.</string>
     <string name="content_done">An saka. Yanzu “Tambaya” yana amsawa daga ciki ma.</string>
     <string name="content_download">Sauke (%1$s)</string>
     <string name="content_downloading">Ana saukewa… %1$s cikin %2$s</string>
     <string name="content_failed">Saukewar ba ta kammala ba. Duba haɗin intanet ɗinku kuma ku sake gwadawa.</string>
+    <string name="content_note">Ana saukewa ne kawai idan kuka danna maɓallin, sannan su zauna a wannan wayar.</string>
     <string name="content_title">Abubuwa cikin %1$s</string>
     <string name="copy_answer">Kwafa</string>
     <string name="countdown_a11y">%1$s da ƙarfe %2$s, nan da %3$s</string>

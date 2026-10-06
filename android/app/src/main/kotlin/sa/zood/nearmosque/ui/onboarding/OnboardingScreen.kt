@@ -360,16 +360,21 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
         Spacer(Modifier.height(18.dp))
         Text(stringResource(R.string.language), color = Ink, style = MaterialTheme.typography.titleMedium)
         Spacer(Modifier.height(8.dp))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            LANGUAGES.forEach { (code, name) ->
-                val on = code == current
-                Text(
-                    name, color = if (on) Tokens.navyNight else Ink, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Normal),
-                    modifier = Modifier.heightIn(min = 48.dp).glass(RoundedCornerShape(50), tint = if (on) Tokens.gold else null, shadow = 4.dp)
-                        .clickable(role = Role.RadioButton) { setAppLanguage(code) }
-                        .semantics { selected = on }
-                        .padding(horizontal = 16.dp, vertical = 13.dp),
-                )
+        // One button that opens the list (36 languages no longer fit as chips), so the content offer below
+        // stays in view right after the choice.
+        var picking by remember { mutableStateOf(false) }
+        Box {
+            GlassButton(onClick = { picking = true }, modifier = Modifier.fillMaxWidth()) {
+                GlassButtonText(LANGUAGES.firstOrNull { it.first == current }?.second ?: current, painterResource(R.drawable.ic_globe))
+            }
+            DropdownMenu(expanded = picking, onDismissRequest = { picking = false }) {
+                LANGUAGES.forEach { (code, name) ->
+                    DropdownMenuItem(
+                        text = { Text(name) },
+                        trailingIcon = { if (code == current) Text("✓") },
+                        onClick = { picking = false; setAppLanguage(code) },
+                    )
+                }
             }
         }
         // Content in the chosen language, when the app has none built in for it (downloaded on tap only).

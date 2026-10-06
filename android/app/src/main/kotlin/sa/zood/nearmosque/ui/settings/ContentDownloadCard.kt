@@ -78,7 +78,11 @@ fun ContentDownloadCard(lang: String, modifier: Modifier = Modifier, onSky: Bool
             }
             ContentDownloads.State.Done -> Text(stringResource(R.string.content_done), color = Accent, style = MaterialTheme.typography.bodyMedium)
             else -> {
-                Text(stringResource(R.string.content_body, name), color = secondary, style = MaterialTheme.typography.bodyMedium)
+                // What this language actually has (some sources lack a translation or tafsir in it).
+                val kinds = contentKinds(downloads.catalog.forLanguage(lang)).map { stringResource(it) }
+                Text(kinds.joinToString(" · "), color = Accent, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold))
+                Spacer(Modifier.height(4.dp))
+                Text(stringResource(R.string.content_note), color = secondary, style = MaterialTheme.typography.bodyMedium)
                 if (state == ContentDownloads.State.Failed) {
                     Spacer(Modifier.height(6.dp))
                     Text(stringResource(R.string.content_failed), color = Color(0xFFF2B8B5), style = MaterialTheme.typography.bodyMedium)
@@ -93,4 +97,15 @@ fun ContentDownloadCard(lang: String, modifier: Modifier = Modifier, onSky: Bool
             }
         }
     }
+}
+
+/** The kinds of content in [packs], in a fixed order, as the labels used in the library. */
+fun contentKinds(packs: List<RemotePack>): List<Int> {
+    val ids = packs.map { it.id.removePrefix("sources.") }
+    return listOfNotNull(
+        R.string.library_type_hadith.takeIf { ids.any { it.startsWith("hadeethenc-") } },
+        R.string.library_type_quran.takeIf { ids.any { it.startsWith("quranenc-") && !it.startsWith("quranenc-tafsir-") } },
+        R.string.library_type_tafsir.takeIf { ids.any { it.startsWith("quranenc-tafsir-") } },
+        R.string.library_title.takeIf { ids.any { it.startsWith("islamhouse-") } },
+    )
 }

@@ -13,6 +13,17 @@ struct ContentDownloadCard: View {
     /// True when the catalog lists content for `lang` (Settings shows the section only then).
     static func offered(_ lang: String, _ app: AppModel) -> Bool { !app.downloads.catalog.forLanguage(lang).isEmpty }
 
+    /// The kinds of content in `packs`, in a fixed order, as the string keys used in the library.
+    static func kinds(_ packs: [RemotePack]) -> [String] {
+        let ids = packs.map { $0.id.replacingOccurrences(of: "sources.", with: "") }
+        return [
+            ids.contains { $0.hasPrefix("hadeethenc-") } ? "library_type_hadith" : nil,
+            ids.contains { $0.hasPrefix("quranenc-") && !$0.hasPrefix("quranenc-tafsir-") } ? "library_type_quran" : nil,
+            ids.contains { $0.hasPrefix("quranenc-tafsir-") } ? "library_type_tafsir" : nil,
+            ids.contains { $0.hasPrefix("islamhouse-") } ? "library_title" : nil,
+        ].compactMap { $0 }
+    }
+
     private func size(_ bytes: Int) -> String {
         ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file)
     }
@@ -32,7 +43,10 @@ struct ContentDownloadCard: View {
                 case .done?:
                     Text(l10n.t("content_done")).font(.subheadline).foregroundStyle(Theme.accent)
                 default:
-                    Text(l10n.t("content_body", Languages.name(lang))).font(.subheadline).foregroundStyle(Theme.ink.opacity(0.8))
+                    // What this language actually has (some sources lack a translation or tafsir in it).
+                    Text(Self.kinds(d.catalog.forLanguage(lang)).map { l10n.t($0) }.joined(separator: " · "))
+                        .font(.subheadline.weight(.semibold)).foregroundStyle(Theme.accent)
+                    Text(l10n.t("content_note")).font(.subheadline).foregroundStyle(Theme.ink.opacity(0.8))
                     if state == .failed {
                         Text(l10n.t("content_failed")).font(.subheadline).foregroundStyle(.red)
                     }

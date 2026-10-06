@@ -74,11 +74,11 @@
     <string name="compass_north">U</string>
     <string name="confirm_time_zone_body">Titik ini jauh dari kota yang kami kenal, jadi zona waktunya belum pasti. Jadwal akan memakai %1$s.</string>
     <string name="confirm_time_zone_title">Konfirmasi zona waktu</string>
-    <string name="content_body">Hadis, terjemahan Al-Qur’an, tafsir, dan perpustakaan dalam %1$s. Diunduh hanya saat Anda mengetuk tombol, lalu disimpan di ponsel ini.</string>
     <string name="content_done">Terpasang. Kini “Tanya” juga menjawab dari konten ini.</string>
     <string name="content_download">Unduh (%1$s)</string>
     <string name="content_downloading">Mengunduh… %1$s dari %2$s</string>
     <string name="content_failed">Unduhan tidak selesai. Periksa koneksi lalu coba lagi.</string>
+    <string name="content_note">Diunduh hanya saat Anda mengetuk tombol, lalu disimpan di ponsel ini.</string>
     <string name="content_title">Konten dalam %1$s</string>
     <string name="copy_answer">Salin</string>
     <string name="countdown_a11y">%1$s pukul %2$s, dalam %3$s</string>
