@@ -31,6 +31,10 @@ struct SettingsView: View {
                     .pickerStyle(.inline)
                 } header: { Text(l10n.t("language")) } footer: { Text(l10n.t("draft_translations_note")) }
 
+                if ContentDownloadCard.offered(l10n.language, app) {
+                    Section { ContentDownloadCard(lang: l10n.language) }
+                }
+
                 Section(l10n.t("appearance")) {
                     Picker(l10n.t("appearance"), selection: $appearance) {
                         Text(l10n.t("appearance_system")).tag("system")

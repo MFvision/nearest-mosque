@@ -113,6 +113,7 @@ fun SettingsScreen(
                     RadioRow(name, current == code) { setAppLanguage(code) }
                 }
                 Text(stringResource(R.string.draft_translations_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
+                ContentDownloadCard(sa.zood.nearmosque.ui.Format.languageCode(context), Modifier.padding(top = 12.dp))
 
                 Section(stringResource(R.string.appearance))
                 val appearance = sa.zood.nearmosque.Appearance.current(context)

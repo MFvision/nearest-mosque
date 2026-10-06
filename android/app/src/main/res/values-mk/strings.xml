@@ -74,6 +74,12 @@
     <string name="compass_north">С</string>
     <string name="confirm_time_zone_body">Оваа точка е далеку од градовите што ги знаеме, па не можеме да бидеме сигурни во нејзината временска зона. Времињата за намаз ќе користат %1$s.</string>
     <string name="confirm_time_zone_title">Потврдете ја временската зона</string>
+    <string name="content_body">Хадиси, превод на Куранот, тефсир и библиотека на %1$s. Се презема само кога ќе го допрете копчето, а потоа останува на овој телефон.</string>
+    <string name="content_done">Инсталирано. „Прашај“ сега одговара и од оваа содржина.</string>
+    <string name="content_download">Преземи (%1$s)</string>
+    <string name="content_downloading">Се презема… %1$s од %2$s</string>
+    <string name="content_failed">Преземањето не заврши. Проверете ја врската и обидете се повторно.</string>
+    <string name="content_title">Содржина на %1$s</string>
     <string name="copy_answer">Копирај</string>
     <string name="countdown_a11y">%1$s во %2$s, за %3$s</string>
     <string name="countdown_in">за %1$s</string>

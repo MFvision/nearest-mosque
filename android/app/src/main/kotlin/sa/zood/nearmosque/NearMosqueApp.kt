@@ -72,6 +72,12 @@ class AppContainer(
         sa.zood.nearmosque.core.Lexicon.parse(packs.readAsset("lexicon.json")),
         semantic,
     )
+    /** Content for languages without bundled content, downloaded when the reader asks. */
+    val downloads = sa.zood.nearmosque.data.ContentDownloads(
+        packs, db,
+        runCatching { sa.zood.nearmosque.core.RemoteCatalog.parse(packs.readAsset("remote-packs.json")) }.getOrDefault(sa.zood.nearmosque.core.RemoteCatalog.EMPTY),
+        scope, afterInstall = { semantic.ensure() },
+    )
     val location = LocationService(app)
     val heading = HeadingService(app)
     val calculator = PrayerCalculator()

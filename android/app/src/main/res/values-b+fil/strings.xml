@@ -74,6 +74,12 @@
     <string name="compass_north">H</string>
     <string name="confirm_time_zone_body">Malayo ang puntong ito sa mga lungsod na alam namin, kaya hindi kami sigurado sa time zone nito. Gagamitin ng mga oras ng dasal ang %1$s.</string>
     <string name="confirm_time_zone_title">Kumpirmahin ang time zone</string>
+    <string name="content_body">Hadith, salin ng Qur\'an, tafsir at aklatan sa %1$s. Ida-download lang kapag pinindot mo ang button, saka itatago sa teleponong ito.</string>
+    <string name="content_done">Na-install na. Sumasagot na rin mula rito ang “Magtanong.”</string>
+    <string name="content_download">I-download (%1$s)</string>
+    <string name="content_downloading">Nagda-download… %1$s sa %2$s</string>
+    <string name="content_failed">Hindi natapos ang download. Tingnan ang koneksyon at subukan muli.</string>
+    <string name="content_title">Nilalaman sa %1$s</string>
     <string name="copy_answer">Kopyahin</string>
     <string name="countdown_a11y">%1$s nang %2$s, sa loob ng %3$s</string>
     <string name="countdown_in">sa loob ng %1$s</string>

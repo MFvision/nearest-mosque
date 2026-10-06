@@ -16135,6 +16135,1332 @@
         }
       }
     },
+    "content_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadith, a Quran translation, tafsir and the library in %1$@. Downloaded only when you tap the button, then kept on this phone."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأحاديث وترجمة معاني القرآن والتفسير والمكتبة بلغة %1$@. لا تُنزَّل إلا عند الضغط على الزر، ثم تبقى على هذا الهاتف."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ میں حدیث، قرآن کا ترجمہ، تفسیر اور لائبریری۔ صرف بٹن دبانے پر ڈاؤن لوڈ ہوگا، پھر اسی فون پر محفوظ رہے گا۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ hadisler, Kur’an meali, tefsir ve kütüphane. Yalnızca düğmeye dokunduğunuzda indirilir, ardından bu telefonda kalır."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadis, terjemahan Al-Qur’an, tafsir, dan perpustakaan dalam %1$@. Diunduh hanya saat Anda mengetuk tombol, lalu disimpan di ponsel ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadiths, traduction du Coran, tafsir et bibliothèque en %1$@. Téléchargés uniquement quand vous touchez le bouton, puis conservés sur ce téléphone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadices, traducción del Corán, tafsir y biblioteca en %1$@. Solo se descarga cuando tocas el botón y luego se guarda en este teléfono."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хадисы, перевод Корана, тафсир и библиотека на языке %1$@. Загружаются только по нажатию кнопки и затем хранятся на этом телефоне."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ভাষায় হাদিস, কুরআনের অনুবাদ, তাফসির ও লাইব্রেরি। শুধু বোতামে ট্যাপ করলেই ডাউনলোড হবে, তারপর এই ফোনেই থাকবে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حدیث، ترجمه قرآن، تفسیر و کتابخانه به %1$@. فقط وقتی دکمه را بزنید دانلود می‌شود و سپس روی همین گوشی می‌ماند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حدیث، ترجمه قرآن، تفسیر و کتابخانه به زبان %1$@. تنها وقتی دکمه را بزنید دانلود می‌شود و بعد روی همین موبایل می‌ماند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@圣训、古兰经译本、经注和图书馆。仅在你点按按钮时下载，之后保存在这部手机上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ में हदीस, क़ुरआन का अनुवाद, तफ़सीर और लाइब्रेरी। सिर्फ़ बटन दबाने पर डाउनलोड होगी, फिर इसी फ़ोन पर रहेगी।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadiths, tradução do Alcorão, tafsir e biblioteca em %1$@. Só é baixado quando você toca no botão e depois fica salvo neste celular."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadisi, fassarar Alƙur'ani, tafsiri da ɗakin karatu cikin %1$@. Ana saukewa ne kawai idan kuka danna maɓallin, sannan su zauna a wannan wayar."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadithi, tafsiri ya Qur'ani, tafsir na maktaba kwa %1$@. Hupakuliwa tu unapogusa kitufe, kisha hubaki kwenye simu hii."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadith, salin ng Qur'an, tafsir at aklatan sa %1$@. Ida-download lang kapag pinindot mo ang button, saka itatago sa teleponong ito."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadith, bản dịch Qur’an, tafsir và thư viện bằng %1$@. Chỉ tải về khi bạn chạm vào nút, sau đó được lưu trên điện thoại này."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หะดีษ คำแปลอัลกุรอาน ตัฟซีร และห้องสมุดเป็นภาษา %1$@ ดาวน์โหลดเมื่อคุณแตะปุ่มเท่านั้น แล้วเก็บไว้ในโทรศัพท์เครื่องนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ហាឌីស ការបកប្រែគម្ពីរគូរ៉ាន តាហ្វសៀរ និងបណ្ណាល័យជាភាសា %1$@។ ទាញយកតែពេលអ្នកចុចប៊ូតុងប៉ុណ្ណោះ រួចរក្សាទុកនៅលើទូរសព្ទនេះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ھەدىس، قۇرئان تەرجىمىسى، تەپسىر ۋە كۈتۈپخانا. پەقەت كۇنۇپكىنى باسقاندىلا چۈشۈرۈلىدۇ، ئاندىن مۇشۇ تېلېفوندا ساقلىنىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فەرموودە، وەرگێڕانی قورئان، تەفسیر و کتێبخانە بە %1$@. تەنها کاتێک دوگمەکە لێدەدەیت دادەگیرێت، پاشان لەسەر ئەم مۆبایلە دەمێنێتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadisi, prijevod Kur'ana, tefsir i biblioteka (%1$@). Preuzima se samo kada dodirnete dugme, a zatim ostaje na ovom telefonu."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хадиси, превод Кур'ана, тефсир и библиотека (%1$@). Преузима се само када додирнете дугме, а затим остаје на овом телефону."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хадиси, превод на Куранот, тефсир и библиотека на %1$@. Се презема само кога ќе го допрете копчето, а потоа останува на овој телефон."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ nyelvű hadísz, Korán-fordítás, tafszír és könyvtár. Csak akkor töltődik le, ha megérinted a gombot, utána ezen a telefonon marad."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadith, een Koranvertaling, tafsir en de bibliotheek in %1$@. Alleen gedownload als je op de knop tikt, daarna bewaard op deze telefoon."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჰადისი, ყურანის თარგმანი, თაფსირი და ბიბლიოთეკა (%1$@). ჩამოიტვირთება მხოლოდ ღილაკზე შეხებისას და შემდეგ ამ ტელეფონზე დარჩება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ භාෂාවෙන් හදීස්, කුර්ආන් පරිවර්තනය, තෆ්සීර් සහ පුස්තකාලය. බොත්තම තට්ටු කළ විට පමණක් බාගත වන අතර, පසුව මෙම දුරකථනයේම තබා ගැනේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ భాషలో హదీస్, ఖురాన్ అనువాదం, తఫ్సీర్, లైబ్రరీ. మీరు బటన్ నొక్కినప్పుడు మాత్రమే డౌన్‌లోడ్ అవుతుంది, ఆ తర్వాత ఈ ఫోన్‌లోనే ఉంటుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ಭಾಷೆಯಲ್ಲಿ ಹದೀಸ್, ಕುರ್‌ಆನ್ ಅನುವಾದ, ತಫ್ಸೀರ್ ಮತ್ತು ಗ್ರಂಥಾಲಯ. ನೀವು ಬಟನ್ ಒತ್ತಿದಾಗ ಮಾತ್ರ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತದೆ, ನಂತರ ಈ ಫೋನ್‌ನಲ್ಲೇ ಉಳಿಯುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ഭാഷയിൽ ഹദീസ്, ഖുർആൻ പരിഭാഷ, തഫ്സീർ, ലൈബ്രറി. ബട്ടൺ ടാപ്പ് ചെയ്യുമ്പോൾ മാത്രം ഡൗൺലോഡ് ചെയ്യും, പിന്നീട് ഈ ഫോണിൽ സൂക്ഷിക്കും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ भाषेत हदीस, कुरआनचा अनुवाद, तफसीर आणि ग्रंथालय. फक्त बटण टॅप केल्यावरच डाउनलोड होईल, नंतर याच फोनवर राहील."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ભાષામાં હદીસ, કુરઆનનો અનુવાદ, તફસીર અને લાઇબ્રેરી. ફક્ત બટન દબાવો ત્યારે જ ડાઉનલોડ થશે, પછી આ ફોન પર જ રહેશે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ਵਿੱਚ ਹਦੀਸ, ਕੁਰਆਨ ਦਾ ਅਨੁਵਾਦ, ਤਫ਼ਸੀਰ ਅਤੇ ਲਾਇਬ੍ਰੇਰੀ। ਸਿਰਫ਼ ਬਟਨ ਦਬਾਉਣ ’ਤੇ ਹੀ ਡਾਊਨਲੋਡ ਹੋਵੇਗੀ, ਫਿਰ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਰਹੇਗੀ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ভাষাত হাদীছ, কোৰআনৰ অনুবাদ, তাফছীৰ আৰু লাইব্ৰেৰী। কেৱল বুটামত টিপিলেহে ডাউনলোড হ'ব, তাৰ পিছত এই ফোনতে থাকিব।"
+          }
+        }
+      }
+    },
+    "content_done": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installed. Ask now answers from it too."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم التثبيت. أصبح «اسأل» يجيب منه أيضًا."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انسٹال ہو گیا۔ اب “پوچھیں” اس سے بھی جواب دیتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yüklendi. “Sor” artık buradan da yanıt veriyor."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terpasang. Kini “Tanya” juga menjawab dari konten ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installé. « Demander » répond désormais aussi à partir de ce contenu."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalado. Ahora «Preguntar» también responde con este contenido."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Установлено. Теперь «Спросить» отвечает и по этим материалам."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ইনস্টল হয়েছে। এখন “প্রশ্ন করুন” এটি থেকেও উত্তর দেয়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نصب شد. اکنون «بپرسید» از این محتوا هم پاسخ می‌دهد."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نصب شد. حالا «بپرسید» از این محتوا هم جواب می‌دهد."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已安装。“提问”现在也会依据这些内容作答。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इंस्टॉल हो गया। अब “पूछें” इससे भी जवाब देता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalado. Agora o “Perguntar” também responde com base nele."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An saka. Yanzu “Tambaya” yana amsawa daga ciki ma."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imesakinishwa. Sasa “Uliza” hujibu pia kutoka kwake."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na-install na. Sumasagot na rin mula rito ang “Magtanong.”"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã cài đặt. Giờ “Hỏi” cũng trả lời dựa trên nội dung này."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ติดตั้งแล้ว ตอนนี้ “ถาม” ตอบจากเนื้อหานี้ได้ด้วย"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានដំឡើងហើយ។ ឥឡូវ «សួរ» ក៏ឆ្លើយពីខ្លឹមសារនេះដែរ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئورنىتىلدى. ئەمدى «سوراش» بۇنىڭدىنمۇ جاۋاب بېرىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دامەزرا. ئێستا «بپرسە» لەمەشەوە وەڵام دەداتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalirano. „Pitaj“ sada odgovara i iz ovog sadržaja."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Инсталирано. „Питај“ сада одговара и из овог садржаја."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Инсталирано. „Прашај“ сега одговара и од оваа содржина."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telepítve. A „Kérdezz” mostantól ebből is válaszol."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geïnstalleerd. ‘Vraag’ antwoordt nu ook hieruit."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაინსტალირდა. ახლა „კითხვა“ ამ მასალიდანაც პასუხობს."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ස්ථාපනය විය. දැන් “අහන්න” මෙයින්ද පිළිතුරු දෙයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఇన్‌స్టాల్ అయింది. ఇప్పుడు “అడగండి” దీని నుండి కూడా సమాధానం ఇస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಇನ್‌ಸ್ಟಾಲ್ ಆಗಿದೆ. ಈಗ “ಕೇಳಿ” ಇದರಿಂದಲೂ ಉತ್ತರಿಸುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇൻസ്റ്റാൾ ചെയ്തു. ഇനി “ചോദിക്കൂ” ഇതിൽ നിന്നും ഉത്തരം നൽകും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इन्स्टॉल झाले. आता “विचारा” यातूनही उत्तर देते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઇન્સ્ટોલ થઈ ગયું. હવે “પૂછો” આમાંથી પણ જવાબ આપે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇੰਸਟਾਲ ਹੋ ਗਿਆ। ਹੁਣ “ਪੁੱਛੋ” ਇਸ ਤੋਂ ਵੀ ਜਵਾਬ ਦਿੰਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ইনষ্টল হ'ল। এতিয়া “সোধক”এ ইয়াৰ পৰাও উত্তৰ দিয়ে।"
+          }
+        }
+      }
+    },
+    "content_download": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download (%1$@)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تنزيل (%1$@)"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈاؤن لوڈ (%1$@)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndir (%1$@)"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unduh (%1$@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger (%1$@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar (%1$@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скачать (%1$@)"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড (%1$@)"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود (%1$@)"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود (%1$@)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载（%1$@）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड करें (%1$@)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixar (%1$@)"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauke (%1$@)"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pakua (%1$@)"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-download (%1$@)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tải về (%1$@)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดาวน์โหลด (%1$@)"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទាញយក (%1$@)"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چۈشۈرۈش (%1$@)"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داگرتن (%1$@)"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preuzmi (%1$@)"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преузми (%1$@)"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преземи (%1$@)"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letöltés (%1$@)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloaden (%1$@)"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩამოტვირთვა (%1$@)"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බාගන්න (%1$@)"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డౌన్‌లోడ్ (%1$@)"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೌನ್‌ಲೋಡ್ (%1$@)"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൗൺലോഡ് (%1$@)"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड करा (%1$@)"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાઉનલોડ કરો (%1$@)"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਊਨਲੋਡ ਕਰੋ (%1$@)"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড (%1$@)"
+          }
+        }
+      }
+    },
+    "content_downloading": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloading… %1$@ of %2$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جارٍ التنزيل… %1$@ من %2$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈاؤن لوڈ ہو رہا ہے… %2$@ میں سے %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndiriliyor… %1$@ / %2$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mengunduh… %1$@ dari %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Téléchargement… %1$@ sur %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargando… %1$@ de %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Загрузка… %1$@ из %2$@"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড হচ্ছে… %1$@ / %2$@"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در حال دانلود… %1$@ از %2$@"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در حال دانلود… %1$@ از %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在下载… %1$@ / %2$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड हो रहा है… %2$@ में से %1$@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixando… %1$@ de %2$@"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ana saukewa… %1$@ cikin %2$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inapakua… %1$@ kati ya %2$@"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nagda-download… %1$@ sa %2$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đang tải về… %1$@ / %2$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กำลังดาวน์โหลด… %1$@ จาก %2$@"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "កំពុងទាញយក… %1$@ / %2$@"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چۈشۈرۈۋاتىدۇ… %1$@ / %2$@"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دادەگیرێت… %1$@ لە %2$@"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preuzimanje… %1$@ od %2$@"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преузимање… %1$@ од %2$@"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Се презема… %1$@ од %2$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letöltés… %1$@ / %2$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloaden… %1$@ van %2$@"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "იტვირთება… %1$@ / %2$@"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බාගත වෙමින්… %1$@ / %2$@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డౌన్‌లోడ్ అవుతోంది… %1$@ / %2$@"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ… %1$@ / %2$@"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൗൺലോഡ് ചെയ്യുന്നു… %1$@ / %2$@"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड होत आहे… %1$@ / %2$@"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાઉનલોડ થઈ રહ્યું છે… %1$@ / %2$@"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ… %2$@ ਵਿੱਚੋਂ %1$@"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড হৈ আছে… %1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "content_failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The download did not finish. Check the connection and try again."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يكتمل التنزيل. تحقق من الاتصال وحاول مرة أخرى."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈاؤن لوڈ مکمل نہیں ہوا۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndirme tamamlanmadı. Bağlantınızı kontrol edip tekrar deneyin."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unduhan tidak selesai. Periksa koneksi lalu coba lagi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le téléchargement n’a pas abouti. Vérifiez la connexion et réessayez."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La descarga no terminó. Revisa la conexión e inténtalo de nuevo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Загрузка не завершилась. Проверьте подключение и повторите."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড শেষ হয়নি। সংযোগ দেখে আবার চেষ্টা করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود کامل نشد. اتصال را بررسی کنید و دوباره امتحان کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود کامل نشد. اتصال را بررسی کنید و دوباره کوشش کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载未完成。请检查网络连接后重试。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड पूरा नहीं हुआ। कनेक्शन जाँचें और फिर कोशिश करें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O download não terminou. Verifique a conexão e tente de novo."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saukewar ba ta kammala ba. Duba haɗin intanet ɗinku kuma ku sake gwadawa."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upakuaji haukukamilika. Angalia muunganisho wako na ujaribu tena."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi natapos ang download. Tingnan ang koneksyon at subukan muli."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chưa tải về xong. Hãy kiểm tra kết nối và thử lại."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดาวน์โหลดไม่สำเร็จ ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការទាញយកមិនបានបញ្ចប់ទេ។ សូមពិនិត្យការតភ្ជាប់ ហើយព្យាយាមម្ដងទៀត។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چۈشۈرۈش تاماملانمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داگرتن تەواو نەبوو. پەیوەندییەکەت بپشکنە و دووبارە هەوڵ بدەرەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preuzimanje nije završeno. Provjerite vezu i pokušajte ponovo."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преузимање није завршено. Проверите везу и покушајте поново."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преземањето не заврши. Проверете ја врската и обидете се повторно."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A letöltés nem fejeződött be. Ellenőrizd a kapcsolatot, és próbáld újra."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De download is niet voltooid. Controleer je verbinding en probeer het opnieuw."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩამოტვირთვა ვერ დასრულდა. შეამოწმეთ კავშირი და სცადეთ ხელახლა."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බාගැනීම අවසන් නොවීය. සම්බන්ධතාව පරීක්ෂා කර නැවත උත්සාහ කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డౌన్‌లోడ్ పూర్తి కాలేదు. కనెక్షన్‌ను తనిఖీ చేసి మళ్లీ ప్రయత్నించండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಳ್ಳಲಿಲ್ಲ. ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൗൺലോഡ് പൂർത്തിയായില്ല. കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड पूर्ण झाले नाही. कनेक्शन तपासा आणि पुन्हा प्रयत्न करा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાઉનલોડ પૂરું ન થયું. કનેક્શન તપાસો અને ફરી પ્રયાસ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਊਨਲੋਡ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ। ਕਨੈਕਸ਼ਨ ਜਾਂਚੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড সম্পূৰ্ণ নহ'ল। সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।"
+          }
+        }
+      }
+    },
+    "content_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Content in %1$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المحتوى بلغة %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ میں مواد"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ içerik"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konten dalam %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contenu en %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contenido en %1$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Материалы на языке %1$@"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ভাষায় কনটেন্ট"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محتوا به %1$@"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محتوا به زبان %1$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@内容"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ में सामग्री"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conteúdo em %1$@"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abubuwa cikin %1$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maudhui kwa %1$@"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nilalaman sa %1$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nội dung bằng %1$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เนื้อหาเป็นภาษา %1$@"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ខ្លឹមសារជាភាសា %1$@"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ مەزمۇن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناوەڕۆک بە %1$@"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sadržaj na jeziku: %1$@"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Садржај на језику: %1$@"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Содржина на %1$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ nyelvű tartalom"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inhoud in %1$@"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მასალა ენაზე: %1$@"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ භාෂාවෙන් අන්තර්ගතය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ భాషలో కంటెంట్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ಭಾಷೆಯಲ್ಲಿ ವಿಷಯ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ഭാഷയിലുള്ള ഉള്ളടക്കം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ भाषेतील मजकूर"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ભાષામાં સામગ્રી"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ਵਿੱਚ ਸਮੱਗਰੀ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ভাষাত সমল"
+          }
+        }
+      }
+    },
     "copy_answer": {
       "extractionState": "manual",
       "localizations": {

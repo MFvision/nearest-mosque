@@ -74,6 +74,12 @@
     <string name="compass_north">ਉ</string>
     <string name="confirm_time_zone_body">ਇਹ ਥਾਂ ਸਾਡੇ ਜਾਣੇ-ਪਛਾਣੇ ਸ਼ਹਿਰਾਂ ਤੋਂ ਦੂਰ ਹੈ, ਇਸ ਲਈ ਇਸ ਦੇ ਸਮਾਂ ਖੇਤਰ ਬਾਰੇ ਪੱਕਾ ਨਹੀਂ ਕਹਿ ਸਕਦੇ। ਨਮਾਜ਼ ਦੇ ਵਕਤ %1$s ਵਰਤਣਗੇ।</string>
     <string name="confirm_time_zone_title">ਸਮਾਂ ਖੇਤਰ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+    <string name="content_body">%1$s ਵਿੱਚ ਹਦੀਸ, ਕੁਰਆਨ ਦਾ ਅਨੁਵਾਦ, ਤਫ਼ਸੀਰ ਅਤੇ ਲਾਇਬ੍ਰੇਰੀ। ਸਿਰਫ਼ ਬਟਨ ਦਬਾਉਣ ’ਤੇ ਹੀ ਡਾਊਨਲੋਡ ਹੋਵੇਗੀ, ਫਿਰ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਰਹੇਗੀ।</string>
+    <string name="content_done">ਇੰਸਟਾਲ ਹੋ ਗਿਆ। ਹੁਣ “ਪੁੱਛੋ” ਇਸ ਤੋਂ ਵੀ ਜਵਾਬ ਦਿੰਦਾ ਹੈ।</string>
+    <string name="content_download">ਡਾਊਨਲੋਡ ਕਰੋ (%1$s)</string>
+    <string name="content_downloading">ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ… %2$s ਵਿੱਚੋਂ %1$s</string>
+    <string name="content_failed">ਡਾਊਨਲੋਡ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ। ਕਨੈਕਸ਼ਨ ਜਾਂਚੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <string name="content_title">%1$s ਵਿੱਚ ਸਮੱਗਰੀ</string>
     <string name="copy_answer">ਕਾਪੀ ਕਰੋ</string>
     <string name="countdown_a11y">%1$s %2$s ਵਜੇ, %3$s ਵਿੱਚ</string>
     <string name="countdown_in">%1$s ਵਿੱਚ</string>

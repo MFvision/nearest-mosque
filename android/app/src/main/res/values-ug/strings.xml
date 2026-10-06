@@ -74,6 +74,12 @@
     <string name="compass_north">ش</string>
     <string name="confirm_time_zone_body">بۇ نۇقتا بىز بىلىدىغان شەھەرلەردىن يىراق، شۇڭا ئۇنىڭ ۋاقىت رايونىغا جەزم قىلالمايمىز. ناماز ۋاقىتلىرى %1$s نى ئىشلىتىدۇ.</string>
     <string name="confirm_time_zone_title">ۋاقىت رايونىنى جەزملەڭ</string>
+    <string name="content_body">%1$s ھەدىس، قۇرئان تەرجىمىسى، تەپسىر ۋە كۈتۈپخانا. پەقەت كۇنۇپكىنى باسقاندىلا چۈشۈرۈلىدۇ، ئاندىن مۇشۇ تېلېفوندا ساقلىنىدۇ.</string>
+    <string name="content_done">ئورنىتىلدى. ئەمدى «سوراش» بۇنىڭدىنمۇ جاۋاب بېرىدۇ.</string>
+    <string name="content_download">چۈشۈرۈش (%1$s)</string>
+    <string name="content_downloading">چۈشۈرۈۋاتىدۇ… %1$s / %2$s</string>
+    <string name="content_failed">چۈشۈرۈش تاماملانمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
+    <string name="content_title">%1$s مەزمۇن</string>
     <string name="copy_answer">كۆچۈرۈش</string>
     <string name="countdown_a11y">%1$s سائەت %2$s دە، %3$s دىن كېيىن</string>
     <string name="countdown_in">%1$s دىن كېيىن</string>

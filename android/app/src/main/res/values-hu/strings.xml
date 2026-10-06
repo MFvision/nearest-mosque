@@ -74,6 +74,12 @@
     <string name="compass_north">É</string>
     <string name="confirm_time_zone_body">Ez a pont messze van az általunk ismert városoktól, ezért nem lehetünk biztosak az időzónájában. Az imaidők a(z) %1$s időzónát használják.</string>
     <string name="confirm_time_zone_title">Erősítsd meg az időzónát</string>
+    <string name="content_body">%1$s nyelvű hadísz, Korán-fordítás, tafszír és könyvtár. Csak akkor töltődik le, ha megérinted a gombot, utána ezen a telefonon marad.</string>
+    <string name="content_done">Telepítve. A „Kérdezz” mostantól ebből is válaszol.</string>
+    <string name="content_download">Letöltés (%1$s)</string>
+    <string name="content_downloading">Letöltés… %1$s / %2$s</string>
+    <string name="content_failed">A letöltés nem fejeződött be. Ellenőrizd a kapcsolatot, és próbáld újra.</string>
+    <string name="content_title">%1$s nyelvű tartalom</string>
     <string name="copy_answer">Másolás</string>
     <string name="countdown_a11y">%1$s %2$s-kor, %3$s múlva</string>
     <string name="countdown_in">%1$s múlva</string>

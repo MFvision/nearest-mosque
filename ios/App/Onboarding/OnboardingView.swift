@@ -334,6 +334,8 @@ private struct SetupPage: View {
                         .accessibilityAddTraits(selected ? .isSelected : [])
                     }
                 }
+                // Content in the chosen language, when the app has none built in for it (downloaded on tap only).
+                ContentDownloadCard(lang: l10n.language, onSky: true)
                 Text(l10n.t("location_section")).font(.headline).padding(.top, 6)
                 if let loc = model.settings.location {
                     Label(l10n.t("onb_location_set", loc.name), systemImage: "checkmark.circle.fill")

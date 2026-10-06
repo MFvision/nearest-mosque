@@ -74,6 +74,12 @@
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">This point is far from the cities we know, so we can’t be sure of its time zone. Prayer times will use %1$s.</string>
     <string name="confirm_time_zone_title">Confirm the time zone</string>
+    <string name="content_body">Hadith, a Quran translation, tafsir and the library in %1$s. Downloaded only when you tap the button, then kept on this phone.</string>
+    <string name="content_done">Installed. Ask now answers from it too.</string>
+    <string name="content_download">Download (%1$s)</string>
+    <string name="content_downloading">Downloading… %1$s of %2$s</string>
+    <string name="content_failed">The download did not finish. Check the connection and try again.</string>
+    <string name="content_title">Content in %1$s</string>
     <string name="copy_answer">Copy</string>
     <string name="countdown_a11y">%1$s at %2$s, in %3$s</string>
     <string name="countdown_in">in %1$s</string>

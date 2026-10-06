@@ -74,6 +74,12 @@
     <string name="compass_north">ش</string>
     <string name="confirm_time_zone_body">هذه النقطة بعيدة عن المدن المعروفة لدينا، لذا لا نستطيع الجزم بمنطقتها الزمنية. ستُستخدم %1$s للمواقيت.</string>
     <string name="confirm_time_zone_title">أكّد المنطقة الزمنية</string>
+    <string name="content_body">الأحاديث وترجمة معاني القرآن والتفسير والمكتبة بلغة %1$s. لا تُنزَّل إلا عند الضغط على الزر، ثم تبقى على هذا الهاتف.</string>
+    <string name="content_done">تم التثبيت. أصبح «اسأل» يجيب منه أيضًا.</string>
+    <string name="content_download">تنزيل (%1$s)</string>
+    <string name="content_downloading">جارٍ التنزيل… %1$s من %2$s</string>
+    <string name="content_failed">لم يكتمل التنزيل. تحقق من الاتصال وحاول مرة أخرى.</string>
+    <string name="content_title">المحتوى بلغة %1$s</string>
     <string name="copy_answer">نسخ</string>
     <string name="countdown_a11y">%1$s الساعة %2$s، بعد %3$s</string>
     <string name="countdown_in">بعد %1$s</string>

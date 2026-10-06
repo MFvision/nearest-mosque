@@ -74,6 +74,12 @@
     <string name="compass_north">വ</string>
     <string name="confirm_time_zone_body">ഈ സ്ഥലം ഞങ്ങൾക്ക് അറിയാവുന്ന നഗരങ്ങളിൽ നിന്ന് അകലെയാണ്, അതിനാൽ അതിന്റെ സമയ മേഖല ഉറപ്പിച്ച് പറയാനാവില്ല. നമസ്കാര സമയങ്ങൾ %1$s ഉപയോഗിക്കും.</string>
     <string name="confirm_time_zone_title">സമയ മേഖല സ്ഥിരീകരിക്കുക</string>
+    <string name="content_body">%1$s ഭാഷയിൽ ഹദീസ്, ഖുർആൻ പരിഭാഷ, തഫ്സീർ, ലൈബ്രറി. ബട്ടൺ ടാപ്പ് ചെയ്യുമ്പോൾ മാത്രം ഡൗൺലോഡ് ചെയ്യും, പിന്നീട് ഈ ഫോണിൽ സൂക്ഷിക്കും.</string>
+    <string name="content_done">ഇൻസ്റ്റാൾ ചെയ്തു. ഇനി “ചോദിക്കൂ” ഇതിൽ നിന്നും ഉത്തരം നൽകും.</string>
+    <string name="content_download">ഡൗൺലോഡ് (%1$s)</string>
+    <string name="content_downloading">ഡൗൺലോഡ് ചെയ്യുന്നു… %1$s / %2$s</string>
+    <string name="content_failed">ഡൗൺലോഡ് പൂർത്തിയായില്ല. കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <string name="content_title">%1$s ഭാഷയിലുള്ള ഉള്ളടക്കം</string>
     <string name="copy_answer">പകർത്തുക</string>
     <string name="countdown_a11y">%1$s %2$s-ന്, %3$s കഴിഞ്ഞ്</string>
     <string name="countdown_in">%1$s കഴിഞ്ഞ്</string>

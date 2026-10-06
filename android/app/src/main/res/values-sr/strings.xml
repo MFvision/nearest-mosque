@@ -74,6 +74,12 @@
     <string name="compass_north">С</string>
     <string name="confirm_time_zone_body">Ова тачка је далеко од градова које познајемо, па не можемо бити сигурни у њену временску зону. Намаска времена ће користити %1$s.</string>
     <string name="confirm_time_zone_title">Потврдите временску зону</string>
+    <string name="content_body">Хадиси, превод Кур\'ана, тефсир и библиотека (%1$s). Преузима се само када додирнете дугме, а затим остаје на овом телефону.</string>
+    <string name="content_done">Инсталирано. „Питај“ сада одговара и из овог садржаја.</string>
+    <string name="content_download">Преузми (%1$s)</string>
+    <string name="content_downloading">Преузимање… %1$s од %2$s</string>
+    <string name="content_failed">Преузимање није завршено. Проверите везу и покушајте поново.</string>
+    <string name="content_title">Садржај на језику: %1$s</string>
     <string name="copy_answer">Копирај</string>
     <string name="countdown_a11y">%1$s у %2$s, за %3$s</string>
     <string name="countdown_in">за %1$s</string>

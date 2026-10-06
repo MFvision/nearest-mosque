@@ -74,6 +74,12 @@
     <string name="compass_north">ش</string>
     <string name="confirm_time_zone_body">یہ مقام ہمارے معلوم شہروں سے دور ہے، اس لیے ٹائم زون یقینی نہیں۔ اوقات کے لیے %1$s استعمال ہوگا۔</string>
     <string name="confirm_time_zone_title">ٹائم زون کی تصدیق کریں</string>
+    <string name="content_body">%1$s میں حدیث، قرآن کا ترجمہ، تفسیر اور لائبریری۔ صرف بٹن دبانے پر ڈاؤن لوڈ ہوگا، پھر اسی فون پر محفوظ رہے گا۔</string>
+    <string name="content_done">انسٹال ہو گیا۔ اب “پوچھیں” اس سے بھی جواب دیتا ہے۔</string>
+    <string name="content_download">ڈاؤن لوڈ (%1$s)</string>
+    <string name="content_downloading">ڈاؤن لوڈ ہو رہا ہے… %2$s میں سے %1$s</string>
+    <string name="content_failed">ڈاؤن لوڈ مکمل نہیں ہوا۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔</string>
+    <string name="content_title">%1$s میں مواد</string>
     <string name="copy_answer">نقل کریں</string>
     <string name="countdown_a11y">%1$s، %2$s بجے، %3$s میں</string>
     <string name="countdown_in">%1$s میں</string>

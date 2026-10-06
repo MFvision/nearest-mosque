@@ -134,6 +134,12 @@ class PackManager(
         }
     }
 
+    /** Installs a pack downloaded and checked by [sa.zood.nearmosque.core.RemotePacks.fetch]. */
+    suspend fun installDownloaded(p: sa.zood.nearmosque.core.FetchedPack) {
+        install(p.manifest, builtin = false) { name -> p.files[name]?.inputStream() }
+        prefs.edit().putStringSet(KEY_REMOVED, prefs.getStringSet(KEY_REMOVED, emptySet()).orEmpty() - p.manifest.id).apply()
+    }
+
     suspend fun install(manifest: PackManifest, builtin: Boolean, open: (String) -> InputStream?) = withContext(Dispatchers.IO) {
         _busy.value = true
         try {

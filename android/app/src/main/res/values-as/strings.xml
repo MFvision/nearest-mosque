@@ -74,6 +74,12 @@
     <string name="compass_north">উ</string>
     <string name="confirm_time_zone_body">এই ঠাইখন আমি জনা চহৰবোৰৰ পৰা দূৰত, সেয়েহে ইয়াৰ সময় অঞ্চলৰ বিষয়ে আমি নিশ্চিত হ\'ব নোৱাৰোঁ। নামাজৰ সময় %1$s অনুসৰি হ\'ব।</string>
     <string name="confirm_time_zone_title">সময় অঞ্চল নিশ্চিত কৰক</string>
+    <string name="content_body">%1$s ভাষাত হাদীছ, কোৰআনৰ অনুবাদ, তাফছীৰ আৰু লাইব্ৰেৰী। কেৱল বুটামত টিপিলেহে ডাউনলোড হ\'ব, তাৰ পিছত এই ফোনতে থাকিব।</string>
+    <string name="content_done">ইনষ্টল হ\'ল। এতিয়া “সোধক”এ ইয়াৰ পৰাও উত্তৰ দিয়ে।</string>
+    <string name="content_download">ডাউনলোড (%1$s)</string>
+    <string name="content_downloading">ডাউনলোড হৈ আছে… %1$s / %2$s</string>
+    <string name="content_failed">ডাউনলোড সম্পূৰ্ণ নহ\'ল। সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।</string>
+    <string name="content_title">%1$s ভাষাত সমল</string>
     <string name="copy_answer">কপি কৰক</string>
     <string name="countdown_a11y">%1$s %2$s বজাত, %3$s পিছত</string>
     <string name="countdown_in">%1$s পিছত</string>

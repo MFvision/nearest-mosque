@@ -74,6 +74,12 @@
     <string name="compass_north">С</string>
     <string name="confirm_time_zone_body">Эта точка далеко от известных нам городов, поэтому мы не уверены в её часовом поясе. Время намазов будет рассчитано по %1$s.</string>
     <string name="confirm_time_zone_title">Подтвердите часовой пояс</string>
+    <string name="content_body">Хадисы, перевод Корана, тафсир и библиотека на языке %1$s. Загружаются только по нажатию кнопки и затем хранятся на этом телефоне.</string>
+    <string name="content_done">Установлено. Теперь «Спросить» отвечает и по этим материалам.</string>
+    <string name="content_download">Скачать (%1$s)</string>
+    <string name="content_downloading">Загрузка… %1$s из %2$s</string>
+    <string name="content_failed">Загрузка не завершилась. Проверьте подключение и повторите.</string>
+    <string name="content_title">Материалы на языке %1$s</string>
     <string name="copy_answer">Копировать</string>
     <string name="countdown_a11y">%1$s в %2$s, через %3$s</string>
     <string name="countdown_in">через %1$s</string>

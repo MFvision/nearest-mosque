@@ -372,6 +372,8 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
                 )
             }
         }
+        // Content in the chosen language, when the app has none built in for it (downloaded on tap only).
+        sa.zood.nearmosque.ui.settings.ContentDownloadCard(current, Modifier.padding(top = 14.dp), onSky = true)
         Spacer(Modifier.height(18.dp))
         Text(stringResource(R.string.location_section), color = Ink, style = MaterialTheme.typography.titleMedium)
         ui.location?.let {

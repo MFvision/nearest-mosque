@@ -61,6 +61,8 @@ final class AppModel {
     private(set) var ask: AskRepository?
     /// Meaning-based library search (vectors built in the background after the libraries install).
     private(set) var semantic: SemanticIndexStore?
+    /// Content for languages without bundled content, downloaded when the reader asks.
+    let downloads = ContentDownloads()
     private(set) var cities: CityIndex?
     private(set) var ready = false
     private(set) var storageError: String?

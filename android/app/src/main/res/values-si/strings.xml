@@ -74,6 +74,12 @@
     <string name="compass_north">උ</string>
     <string name="confirm_time_zone_body">මෙම ස්ථානය අප දන්නා නගරවලින් දුරයි, එබැවින් එහි වේලා කලාපය ගැන අපට විශ්වාස කළ නොහැක. සලාත වේලාවන් %1$s භාවිත කරයි.</string>
     <string name="confirm_time_zone_title">වේලා කලාපය තහවුරු කරන්න</string>
+    <string name="content_body">%1$s භාෂාවෙන් හදීස්, කුර්ආන් පරිවර්තනය, තෆ්සීර් සහ පුස්තකාලය. බොත්තම තට්ටු කළ විට පමණක් බාගත වන අතර, පසුව මෙම දුරකථනයේම තබා ගැනේ.</string>
+    <string name="content_done">ස්ථාපනය විය. දැන් “අහන්න” මෙයින්ද පිළිතුරු දෙයි.</string>
+    <string name="content_download">බාගන්න (%1$s)</string>
+    <string name="content_downloading">බාගත වෙමින්… %1$s / %2$s</string>
+    <string name="content_failed">බාගැනීම අවසන් නොවීය. සම්බන්ධතාව පරීක්ෂා කර නැවත උත්සාහ කරන්න.</string>
+    <string name="content_title">%1$s භාෂාවෙන් අන්තර්ගතය</string>
     <string name="copy_answer">පිටපත් කරන්න</string>
     <string name="countdown_a11y">%1$s %2$s ට, තව %3$s කින්</string>
     <string name="countdown_in">තව %1$s කින්</string>

@@ -74,6 +74,12 @@
     <string name="compass_north">K</string>
     <string name="confirm_time_zone_body">Mahali hapa ni mbali na miji tunayoijua, kwa hivyo hatuna uhakika wa saa zake za eneo. Nyakati za sala zitatumia %1$s.</string>
     <string name="confirm_time_zone_title">Thibitisha saa za eneo</string>
+    <string name="content_body">Hadithi, tafsiri ya Qur\'ani, tafsir na maktaba kwa %1$s. Hupakuliwa tu unapogusa kitufe, kisha hubaki kwenye simu hii.</string>
+    <string name="content_done">Imesakinishwa. Sasa “Uliza” hujibu pia kutoka kwake.</string>
+    <string name="content_download">Pakua (%1$s)</string>
+    <string name="content_downloading">Inapakua… %1$s kati ya %2$s</string>
+    <string name="content_failed">Upakuaji haukukamilika. Angalia muunganisho wako na ujaribu tena.</string>
+    <string name="content_title">Maudhui kwa %1$s</string>
     <string name="copy_answer">Nakili</string>
     <string name="countdown_a11y">%1$s saa %2$s, baada ya %3$s</string>
     <string name="countdown_in">baada ya %1$s</string>
