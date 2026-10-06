@@ -22,13 +22,17 @@ struct NearMosqueApp: App {
 
 enum AppTab: Hashable { case prayer, mosques, ask }
 
-/// Exactly three destinations on a Liquid Glass tab bar. Settings, downloads and sources sit behind
-/// the gear on each tab. First launch shows the animated tour.
+/// Two tabs on a Liquid Glass tab bar (Prayer & Qibla, Nearest Mosque) and Ask AI as a floating pill
+/// above it that opens the chat full screen. Settings, downloads and sources sit behind the gear on
+/// each tab. First launch shows the animated tour.
 struct RootView: View {
     @Environment(AppModel.self) private var model
     @Environment(Localization.self) private var l10n
-    @State private var tab: AppTab = Self.initialTab
+    @State private var tab: AppTab = Self.initialTab == .mosques ? .mosques : .prayer
     @State private var showSettings = false
+    @State private var showAsk = Self.initialTab == .ask
+    /// Kept here so closing Ask and opening it again keeps the conversation.
+    @State private var ask = AskModel()
 
     private static var initialTab: AppTab {
         #if DEBUG
@@ -50,12 +54,15 @@ struct RootView: View {
             Tab(l10n.t("tab_mosques"), image: "MosqueTab", value: AppTab.mosques) {
                 NavigationStack { MosquesView(showSettings: $showSettings) }
             }
-            Tab(l10n.t("tab_ask_short"), systemImage: "text.book.closed", value: AppTab.ask) {
-                NavigationStack { AskView(showSettings: $showSettings) }
-            }
         }
         .tint(Theme.gold)
         .modifier(TabBarMinimize())
+        .modifier(AskAccessory { showAsk = true })
+        .fullScreenCover(isPresented: $showAsk) {
+            NavigationStack { AskView(vm: ask) { showAsk = false } }
+                .environment(\.locale, l10n.locale)
+                .environment(\.layoutDirection, l10n.layoutDirection)
+        }
         .sheet(isPresented: $showSettings) {
             SettingsView()
                 .environment(\.locale, l10n.locale)
@@ -78,6 +85,57 @@ private struct TabBarMinimize: ViewModifier {
         #else
         content
         #endif
+    }
+}
+
+/// The floating "Ask AI" pill. iOS 26: the tab bar's bottom accessory (it folds in beside the bar when
+/// the bar minimizes). Earlier: a glass capsule just above the tab bar.
+private struct AskAccessory: ViewModifier {
+    var open: () -> Void
+    func body(content: Content) -> some View {
+        #if compiler(>=6.2)
+        if #available(iOS 26.0, *) {
+            content.tabViewBottomAccessory { AskPill(open: open) }
+        } else {
+            fallback(content)
+        }
+        #else
+        fallback(content)
+        #endif
+    }
+
+    private func fallback(_ content: Content) -> some View {
+        content.overlay(alignment: .bottom) {
+            AskPill(open: open)
+                .glass(Capsule(), tint: Theme.gold.opacity(0.25), interactive: true)
+                .padding(.horizontal, 40)
+                .padding(.bottom, 58)
+        }
+    }
+}
+
+private struct AskPill: View {
+    @Environment(Localization.self) private var l10n
+    var open: () -> Void
+    var body: some View {
+        Button(action: open) {
+            HStack(spacing: 10) {
+                Image(systemName: "sparkles").font(.headline).foregroundStyle(Theme.accent)
+                Text(l10n.t("tab_ask")).font(.headline)
+                Text(l10n.t("ask_title")).font(.subheadline).foregroundStyle(Theme.ink.opacity(0.75)).lineLimit(1)
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.up").font(.footnote.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.6))
+            }
+            .foregroundStyle(Theme.ink)
+            .padding(.horizontal, 16)
+            .frame(minHeight: 48)
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(l10n.t("tab_ask"))
+        .accessibilityHint(l10n.t("ask_title"))
+        .accessibilityAddTraits(.isButton)
     }
 }
 

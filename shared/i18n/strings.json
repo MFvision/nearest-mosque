@@ -2914,6 +2914,105 @@
       "id": "Ketuk untuk kiblat",
       "fr": "Touchez pour la qibla",
       "es": "Toque para la alquibla"
+    },
+    "ask_stage_understanding": {
+      "en": "Understanding your question",
+      "ar": "فهم سؤالك",
+      "ur": "آپ کا سوال سمجھا جا رہا ہے",
+      "tr": "Sorunuz anlaşılıyor",
+      "id": "Memahami pertanyaan Anda",
+      "fr": "Compréhension de votre question",
+      "es": "Entendiendo su pregunta"
+    },
+    "ask_stage_searching": {
+      "en": "Searching the books on your phone",
+      "ar": "البحث في الكتب على هاتفك",
+      "ur": "آپ کے فون کی کتابوں میں تلاش",
+      "tr": "Telefonunuzdaki kitaplarda aranıyor",
+      "id": "Mencari di buku pada ponsel Anda",
+      "fr": "Recherche dans les livres de votre téléphone",
+      "es": "Buscando en los libros de su teléfono"
+    },
+    "ask_stage_reading": {
+      "en": "Reading the sources",
+      "ar": "قراءة المصادر",
+      "ur": "ماخذ پڑھے جا رہے ہیں",
+      "tr": "Kaynaklar okunuyor",
+      "id": "Membaca sumber",
+      "fr": "Lecture des sources",
+      "es": "Leyendo las fuentes"
+    },
+    "ask_stage_writing": {
+      "en": "Writing the answer",
+      "ar": "كتابة الإجابة",
+      "ur": "جواب لکھا جا رہا ہے",
+      "tr": "Cevap yazılıyor",
+      "id": "Menulis jawaban",
+      "fr": "Rédaction de la réponse",
+      "es": "Escribiendo la respuesta"
+    },
+    "chat_history": {
+      "en": "Chats",
+      "ar": "المحادثات",
+      "ur": "گفتگو",
+      "tr": "Sohbetler",
+      "id": "Obrolan",
+      "fr": "Conversations",
+      "es": "Conversaciones"
+    },
+    "chat_history_empty": {
+      "en": "No saved chats yet.",
+      "ar": "لا توجد محادثات محفوظة بعد.",
+      "ur": "ابھی کوئی محفوظ گفتگو نہیں۔",
+      "tr": "Henüz kayıtlı sohbet yok.",
+      "id": "Belum ada obrolan tersimpan.",
+      "fr": "Aucune conversation enregistrée.",
+      "es": "Aún no hay conversaciones guardadas."
+    },
+    "chat_history_note": {
+      "en": "Chats are saved only on this phone and never sent anywhere. Opening one asks its questions again.",
+      "ar": "تُحفظ المحادثات على هذا الهاتف فقط ولا تُرسل إلى أي مكان. فتح محادثة يعيد طرح أسئلتها.",
+      "ur": "گفتگو صرف اسی فون پر محفوظ ہوتی ہے اور کہیں نہیں بھیجی جاتی۔ کھولنے پر اس کے سوال دوبارہ پوچھے جاتے ہیں۔",
+      "tr": "Sohbetler yalnızca bu telefonda saklanır ve hiçbir yere gönderilmez. Açtığınızda soruları yeniden sorulur.",
+      "id": "Obrolan hanya disimpan di ponsel ini dan tidak dikirim ke mana pun. Membukanya akan mengajukan pertanyaannya lagi.",
+      "fr": "Les conversations restent sur ce téléphone et ne sont envoyées nulle part. En ouvrir une repose ses questions.",
+      "es": "Las conversaciones se guardan solo en este teléfono y no se envían a ningún sitio. Abrir una vuelve a hacer sus preguntas."
+    },
+    "chat_delete_all": {
+      "en": "Delete all chats",
+      "ar": "حذف كل المحادثات",
+      "ur": "تمام گفتگو حذف کریں",
+      "tr": "Tüm sohbetleri sil",
+      "id": "Hapus semua obrolan",
+      "fr": "Supprimer toutes les conversations",
+      "es": "Eliminar todas las conversaciones"
+    },
+    "chat_delete": {
+      "en": "Delete",
+      "ar": "حذف",
+      "ur": "حذف کریں",
+      "tr": "Sil",
+      "id": "Hapus",
+      "fr": "Supprimer",
+      "es": "Eliminar"
+    },
+    "library_card_body": {
+      "en": "Books, fatwas, lectures and the Quran: read, listen or watch offline.",
+      "ar": "كتب وفتاوى ومحاضرات والقرآن: اقرأ أو استمع أو شاهد دون اتصال.",
+      "ur": "کتابیں، فتاویٰ، لیکچرز اور قرآن: آف لائن پڑھیں، سنیں یا دیکھیں۔",
+      "tr": "Kitaplar, fetvalar, dersler ve Kur'an: çevrimdışı okuyun, dinleyin veya izleyin.",
+      "id": "Buku, fatwa, ceramah, dan Al-Qur'an: baca, dengarkan, atau tonton secara offline.",
+      "fr": "Livres, fatwas, conférences et Coran : lire, écouter ou regarder hors ligne.",
+      "es": "Libros, fetuas, conferencias y el Corán: lea, escuche o vea sin conexión."
+    },
+    "suggested_questions": {
+      "en": "You could also ask",
+      "ar": "يمكنك أن تسأل أيضًا",
+      "ur": "آپ یہ بھی پوچھ سکتے ہیں",
+      "tr": "Şunu da sorabilirsiniz",
+      "id": "Anda juga bisa bertanya",
+      "fr": "Vous pourriez aussi demander",
+      "es": "También puede preguntar"
     }
   }
 }

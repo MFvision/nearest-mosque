@@ -45,6 +45,8 @@ class AppContainer(
     private val app = context.applicationContext
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     val db = AppDatabase.create(app, inMemoryDb)
+    /** Saved Ask chats (questions only), on this phone. */
+    val chats = sa.zood.nearmosque.data.ChatHistory(java.io.File(app.filesDir, if (inMemoryDb) "chats-test.json" else "chats.json"))
     val settings = settingsFile?.let { f ->
         SettingsStore(androidx.datastore.preferences.core.PreferenceDataStoreFactory.create(produceFile = { f }))
     } ?: SettingsStore(app)

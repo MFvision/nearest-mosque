@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -85,9 +86,10 @@ enum class Tab(val label: Int, val icon: Int, val horizon: Float) {
 }
 
 /**
- * Exactly three destinations on a floating glass tab bar, all over one animated sky that follows the
- * prayer period (the horizon glides between tabs). Settings, downloads and sources sit behind the
- * gear on each tab. First launch shows the animated tour.
+ * Two tabs (Prayer & Qibla, Nearest Mosque) on a floating glass bar with Ask AI as a separate gold pill
+ * beside it that opens the chat full screen, all over one animated sky that follows the prayer period
+ * (the horizon glides between screens). Settings, downloads and sources sit behind the gear on each
+ * tab. First launch shows the animated tour.
  */
 @Composable
 fun AppRoot(container: AppContainer, initialTab: Tab = Tab.PRAYER, showOnboarding: Boolean? = null, onboardingPage: Int = 0) {
@@ -109,6 +111,8 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
     val mosquesVm: MosquesViewModel = viewModel(factory = factory)
     val askVm: AskViewModel = viewModel(factory = factory)
     var tab by rememberSaveable { mutableStateOf(initialTab) }
+    // The tab under Ask, to return to when it closes.
+    var under by rememberSaveable { mutableStateOf(if (initialTab == Tab.ASK) Tab.PRAYER else initialTab) }
     var showSettings by rememberSaveable { mutableStateOf(false) }
     var showCity by rememberSaveable { mutableStateOf(false) }
     var showCalc by rememberSaveable { mutableStateOf(false) }
@@ -132,7 +136,7 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
         aligned = detector.aligned
     }
 
-    BackHandler(enabled = tab != Tab.PRAYER && !showSettings) { tab = Tab.PRAYER }
+    BackHandler(enabled = tab != Tab.PRAYER && !showSettings) { tab = if (tab == Tab.ASK) under else Tab.PRAYER }
 
     val sky = Sky.of(prayer.sky, sa.zood.nearmosque.ui.theme.LocalDark.current)
     val horizon by animateFloatAsState(tab.horizon, spring(dampingRatio = 0.86f, stiffness = 120f), label = "horizon")
@@ -146,9 +150,11 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
                     onOpenCalculation = { showCalc = true }, onOpenCompass = { showCompass = true },
                 )
                 Tab.MOSQUES -> MosquesScreen(mosquesVm, compass, onOpenSettings = { showSettings = true })
-                Tab.ASK -> AskScreen(askVm, onOpenSettings = { showSettings = true })
+                Tab.ASK -> AskScreen(askVm, onClose = { tab = under })
             }
-            GlassTabBar(tab, onSelect = { tab = it }, modifier = Modifier.align(Alignment.BottomCenter))
+            if (tab != Tab.ASK) {
+                GlassTabBar(tab, onSelect = { tab = it; if (it != Tab.ASK) under = it }, modifier = Modifier.align(Alignment.BottomCenter))
+            }
         }
 
         if (showSettings) {
@@ -173,33 +179,54 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
     }
 }
 
-/** Floating glass capsule with the three tabs; the selected one sits in a gold glass bubble. */
+/**
+ * Floating glass capsule with the two tabs (the selected one sits in a gold glass bubble) and, beside
+ * it, the gold "Ask AI" pill.
+ */
 @Composable
 private fun GlassTabBar(selected: Tab, onSelect: (Tab) -> Unit, modifier: Modifier = Modifier) {
+    val askLabel = stringResource(R.string.tab_ask)
+    // Nearly opaque, so the list scrolling underneath never shows through the labels.
+    val sky = LocalSky.current
+    val barTint = if (sky.dark) sky.low.copy(alpha = 0.96f) else androidx.compose.ui.graphics.Color.White.copy(alpha = 0.96f)
     Row(
-        modifier.navigationBarsPadding().padding(bottom = 10.dp).widthIn(max = 420.dp)
-            .padding(horizontal = 20.dp)
-            .glass(RoundedCornerShape(50), tint = LocalSky.current.glassTint)
-            .padding(6.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        modifier.navigationBarsPadding().padding(bottom = 10.dp).widthIn(max = 460.dp).padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Tab.entries.forEach { t ->
-            val on = t == selected
-            val bg by animateFloatAsState(if (on) 1f else 0f, tween(250), label = "tab")
-            Column(
-                Modifier.weight(1f).heightIn(min = 56.dp)
-                    .background(Tokens.gold.copy(alpha = 0.22f * bg), RoundedCornerShape(50))
-                    .clickable(role = Role.Tab) { onSelect(t) }
-                    .semantics { this.selected = on }
-                    .padding(horizontal = 6.dp, vertical = 6.dp),
-                horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
-            ) {
-                Icon(painterResource(t.icon), contentDescription = null, tint = if (on) Accent else Ink, modifier = Modifier.size(24.dp))
-                Text(
-                    stringResource(t.label), color = if (on) Accent else Ink.copy(alpha = 0.9f), maxLines = 1, overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.labelSmall.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Medium, fontSize = 11.sp),
-                )
+        Row(
+            Modifier.weight(1f).glass(RoundedCornerShape(50), tint = barTint).padding(6.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            listOf(Tab.PRAYER, Tab.MOSQUES).forEach { t ->
+                val on = t == selected
+                val bg by animateFloatAsState(if (on) 1f else 0f, tween(250), label = "tab")
+                Column(
+                    Modifier.weight(1f).heightIn(min = 56.dp)
+                        .background(Tokens.gold.copy(alpha = 0.22f * bg), RoundedCornerShape(50))
+                        .clickable(role = Role.Tab) { onSelect(t) }
+                        .semantics { this.selected = on }
+                        .padding(horizontal = 6.dp, vertical = 6.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
+                ) {
+                    Icon(painterResource(t.icon), contentDescription = null, tint = if (on) Accent else Ink, modifier = Modifier.size(24.dp))
+                    Text(
+                        stringResource(t.label), color = if (on) Accent else Ink.copy(alpha = 0.9f), maxLines = 1, overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.labelSmall.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Medium, fontSize = 11.sp),
+                    )
+                }
             }
+        }
+        androidx.compose.foundation.layout.Spacer(Modifier.width(10.dp))
+        Row(
+            Modifier.heightIn(min = 68.dp)
+                .glass(RoundedCornerShape(50), tint = androidx.compose.ui.graphics.lerp(barTint, Tokens.gold, if (sky.dark) 0.35f else 0.45f).copy(alpha = 0.94f))
+                .clickable(role = Role.Button, onClickLabel = askLabel) { onSelect(Tab.ASK) }
+                .padding(horizontal = 18.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(painterResource(R.drawable.ic_sparkle), contentDescription = null, tint = Accent, modifier = Modifier.size(22.dp))
+            androidx.compose.foundation.layout.Spacer(Modifier.width(8.dp))
+            Text(askLabel, color = Ink, maxLines = 1, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
         }
     }
 }

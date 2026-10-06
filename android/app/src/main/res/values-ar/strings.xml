@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">اسأل سؤالًا متابعًا…</string>
     <string name="ask_placeholder">اكتب سؤالك…</string>
     <string name="ask_send">اسأل</string>
+    <string name="ask_stage_reading">قراءة المصادر</string>
+    <string name="ask_stage_searching">البحث في الكتب على هاتفك</string>
+    <string name="ask_stage_understanding">فهم سؤالك</string>
+    <string name="ask_stage_writing">كتابة الإجابة</string>
     <string name="ask_subtitle">تقتبس الإجابات من الكتب الموجودة على هاتفك مع رقم الآية أو الصفحة.</string>
     <string name="ask_title">اسأل عن أي شيء في الإسلام</string>
     <string name="asr_hanafi">الحنفي</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">مسجد</string>
     <string name="category_prayer_space">مصلّى</string>
     <string name="change">تغيير</string>
+    <string name="chat_delete">حذف</string>
+    <string name="chat_delete_all">حذف كل المحادثات</string>
+    <string name="chat_history">المحادثات</string>
+    <string name="chat_history_empty">لا توجد محادثات محفوظة بعد.</string>
+    <string name="chat_history_note">تُحفظ المحادثات على هذا الهاتف فقط ولا تُرسل إلى أي مكان. فتح محادثة يعيد طرح أسئلتها.</string>
     <string name="choose_city_body">تُحسب المواقيت على هاتفك. اختر مدينة أو استخدم موقعك، دون الحاجة إلى الإنترنت.</string>
     <string name="choose_city_title">اختر مدينتك</string>
     <string name="clear_conversation_history">مسح سجل الأسئلة</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">حفظ</string>
     <string name="library_browse">تصفّح</string>
     <string name="library_by">تأليف: %1$s</string>
+    <string name="library_card_body">كتب وفتاوى ومحاضرات والقرآن: اقرأ أو استمع أو شاهد دون اتصال.</string>
     <string name="library_delete">حذف</string>
     <string name="library_delete_all">حذف الكل</string>
     <string name="library_download_failed">تعذّر التحميل. تحقّق من الاتصال وحاول مرة أخرى.</string>
@@ -304,6 +314,7 @@
     <string name="sources_licenses">المصادر والتراخيص</string>
     <string name="stop">إيقاف</string>
     <string name="straight_line">%1$s بخط مستقيم</string>
+    <string name="suggested_questions">يمكنك أن تسأل أيضًا</string>
     <string name="summary_label">خلاصة</string>
     <string name="sunrise_not_prayer_note">الشروق نهاية وقت الفجر، وليس صلاة.</string>
     <string name="supporting_passage">نص داعم</string>

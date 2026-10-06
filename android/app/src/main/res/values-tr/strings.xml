@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">Devam sorusu sorun…</string>
     <string name="ask_placeholder">Sorunuzu yazın…</string>
     <string name="ask_send">Sor</string>
+    <string name="ask_stage_reading">Kaynaklar okunuyor</string>
+    <string name="ask_stage_searching">Telefonunuzdaki kitaplarda aranıyor</string>
+    <string name="ask_stage_understanding">Sorunuz anlaşılıyor</string>
+    <string name="ask_stage_writing">Cevap yazılıyor</string>
     <string name="ask_subtitle">Cevaplar telefonunuzdaki kitaplardan, ayet veya sayfa numarasıyla alıntı yapar.</string>
     <string name="ask_title">İslam hakkında her şeyi sorun</string>
     <string name="asr_hanafi">Hanefî</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">Cami</string>
     <string name="category_prayer_space">Mescit</string>
     <string name="change">Değiştir</string>
+    <string name="chat_delete">Sil</string>
+    <string name="chat_delete_all">Tüm sohbetleri sil</string>
+    <string name="chat_history">Sohbetler</string>
+    <string name="chat_history_empty">Henüz kayıtlı sohbet yok.</string>
+    <string name="chat_history_note">Sohbetler yalnızca bu telefonda saklanır ve hiçbir yere gönderilmez. Açtığınızda soruları yeniden sorulur.</string>
     <string name="choose_city_body">Vakitler telefonunuzda hesaplanır. Bir şehir seçin veya konumunuzu kullanın. İnternet gerekmez.</string>
     <string name="choose_city_title">Şehrinizi seçin</string>
     <string name="clear_conversation_history">Soru geçmişini temizle</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">Kaydet</string>
     <string name="library_browse">Göz at</string>
     <string name="library_by">Yazar: %1$s</string>
+    <string name="library_card_body">Kitaplar, fetvalar, dersler ve Kur\'an: çevrimdışı okuyun, dinleyin veya izleyin.</string>
     <string name="library_delete">Sil</string>
     <string name="library_delete_all">Tümünü sil</string>
     <string name="library_download_failed">Yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.</string>
@@ -300,6 +310,7 @@
     <string name="sources_licenses">Kaynaklar ve lisanslar</string>
     <string name="stop">Durdur</string>
     <string name="straight_line">Kuş uçuşu %1$s</string>
+    <string name="suggested_questions">Şunu da sorabilirsiniz</string>
     <string name="summary_label">Özet</string>
     <string name="sunrise_not_prayer_note">Güneşin doğuşu imsak vaktinin sonudur; bir namaz değildir.</string>
     <string name="supporting_passage">Destekleyen pasaj</string>

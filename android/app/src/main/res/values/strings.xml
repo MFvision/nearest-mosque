@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">Ask a follow-up…</string>
     <string name="ask_placeholder">Type your question…</string>
     <string name="ask_send">Ask</string>
+    <string name="ask_stage_reading">Reading the sources</string>
+    <string name="ask_stage_searching">Searching the books on your phone</string>
+    <string name="ask_stage_understanding">Understanding your question</string>
+    <string name="ask_stage_writing">Writing the answer</string>
     <string name="ask_subtitle">Answers quote the books on your phone, with the page or verse.</string>
     <string name="ask_title">Ask anything about Islam</string>
     <string name="asr_hanafi">Hanafi</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">Mosque</string>
     <string name="category_prayer_space">Prayer space</string>
     <string name="change">Change</string>
+    <string name="chat_delete">Delete</string>
+    <string name="chat_delete_all">Delete all chats</string>
+    <string name="chat_history">Chats</string>
+    <string name="chat_history_empty">No saved chats yet.</string>
+    <string name="chat_history_note">Chats are saved only on this phone and never sent anywhere. Opening one asks its questions again.</string>
     <string name="choose_city_body">Prayer times are calculated on your phone. Pick a city or use your location. No internet needed.</string>
     <string name="choose_city_title">Choose your city</string>
     <string name="clear_conversation_history">Clear question history</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">Save</string>
     <string name="library_browse">Browse</string>
     <string name="library_by">By %1$s</string>
+    <string name="library_card_body">Books, fatwas, lectures and the Quran: read, listen or watch offline.</string>
     <string name="library_delete">Delete</string>
     <string name="library_delete_all">Delete all</string>
     <string name="library_download_failed">Couldn’t load it. Check your connection and try again.</string>
@@ -300,6 +310,7 @@
     <string name="sources_licenses">Sources and licenses</string>
     <string name="stop">Stop</string>
     <string name="straight_line">%1$s straight-line</string>
+    <string name="suggested_questions">You could also ask</string>
     <string name="summary_label">Summary</string>
     <string name="sunrise_not_prayer_note">Sunrise marks the end of Fajr time; it is not a prayer.</string>
     <string name="supporting_passage">Supporting passage</string>

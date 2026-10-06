@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">Ajukan pertanyaan lanjutan…</string>
     <string name="ask_placeholder">Ketik pertanyaan Anda…</string>
     <string name="ask_send">Tanya</string>
+    <string name="ask_stage_reading">Membaca sumber</string>
+    <string name="ask_stage_searching">Mencari di buku pada ponsel Anda</string>
+    <string name="ask_stage_understanding">Memahami pertanyaan Anda</string>
+    <string name="ask_stage_writing">Menulis jawaban</string>
     <string name="ask_subtitle">Jawaban mengutip buku di ponsel Anda, lengkap dengan ayat atau halaman.</string>
     <string name="ask_title">Tanyakan apa saja tentang Islam</string>
     <string name="asr_hanafi">Hanafi</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">Masjid</string>
     <string name="category_prayer_space">Musala</string>
     <string name="change">Ubah</string>
+    <string name="chat_delete">Hapus</string>
+    <string name="chat_delete_all">Hapus semua obrolan</string>
+    <string name="chat_history">Obrolan</string>
+    <string name="chat_history_empty">Belum ada obrolan tersimpan.</string>
+    <string name="chat_history_note">Obrolan hanya disimpan di ponsel ini dan tidak dikirim ke mana pun. Membukanya akan mengajukan pertanyaannya lagi.</string>
     <string name="choose_city_body">Jadwal salat dihitung di ponsel Anda. Pilih kota atau gunakan lokasi Anda. Tanpa internet.</string>
     <string name="choose_city_title">Pilih kota Anda</string>
     <string name="clear_conversation_history">Hapus riwayat pertanyaan</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">Simpan</string>
     <string name="library_browse">Jelajahi</string>
     <string name="library_by">Oleh %1$s</string>
+    <string name="library_card_body">Buku, fatwa, ceramah, dan Al-Qur\'an: baca, dengarkan, atau tonton secara offline.</string>
     <string name="library_delete">Hapus</string>
     <string name="library_delete_all">Hapus semua</string>
     <string name="library_download_failed">Gagal memuat. Periksa koneksi lalu coba lagi.</string>
@@ -299,6 +309,7 @@
     <string name="sources_licenses">Sumber dan lisensi</string>
     <string name="stop">Berhenti</string>
     <string name="straight_line">%1$s garis lurus</string>
+    <string name="suggested_questions">Anda juga bisa bertanya</string>
     <string name="summary_label">Ringkasan</string>
     <string name="sunrise_not_prayer_note">Terbit menandai akhir waktu Subuh; bukan waktu salat.</string>
     <string name="supporting_passage">Kutipan pendukung</string>

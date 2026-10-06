@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">مزید پوچھیں…</string>
     <string name="ask_placeholder">اپنا سوال لکھیں…</string>
     <string name="ask_send">پوچھیں</string>
+    <string name="ask_stage_reading">ماخذ پڑھے جا رہے ہیں</string>
+    <string name="ask_stage_searching">آپ کے فون کی کتابوں میں تلاش</string>
+    <string name="ask_stage_understanding">آپ کا سوال سمجھا جا رہا ہے</string>
+    <string name="ask_stage_writing">جواب لکھا جا رہا ہے</string>
     <string name="ask_subtitle">جوابات آپ کے فون میں موجود کتابوں سے حوالے کے ساتھ آتے ہیں۔</string>
     <string name="ask_title">اسلام کے بارے میں کچھ بھی پوچھیں</string>
     <string name="asr_hanafi">حنفی</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">مسجد</string>
     <string name="category_prayer_space">جائے نماز</string>
     <string name="change">تبدیل کریں</string>
+    <string name="chat_delete">حذف کریں</string>
+    <string name="chat_delete_all">تمام گفتگو حذف کریں</string>
+    <string name="chat_history">گفتگو</string>
+    <string name="chat_history_empty">ابھی کوئی محفوظ گفتگو نہیں۔</string>
+    <string name="chat_history_note">گفتگو صرف اسی فون پر محفوظ ہوتی ہے اور کہیں نہیں بھیجی جاتی۔ کھولنے پر اس کے سوال دوبارہ پوچھے جاتے ہیں۔</string>
     <string name="choose_city_body">اوقات آپ کے فون پر ہی شمار ہوتے ہیں۔ شہر منتخب کریں یا اپنا مقام استعمال کریں، انٹرنیٹ کی ضرورت نہیں۔</string>
     <string name="choose_city_title">اپنا شہر منتخب کریں</string>
     <string name="clear_conversation_history">سوالات کی تاریخ مٹائیں</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">محفوظ کریں</string>
     <string name="library_browse">براؤز</string>
     <string name="library_by">از %1$s</string>
+    <string name="library_card_body">کتابیں، فتاویٰ، لیکچرز اور قرآن: آف لائن پڑھیں، سنیں یا دیکھیں۔</string>
     <string name="library_delete">حذف کریں</string>
     <string name="library_delete_all">سب حذف کریں</string>
     <string name="library_download_failed">لوڈ نہیں ہو سکا۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔</string>
@@ -300,6 +310,7 @@
     <string name="sources_licenses">ماخذ اور لائسنس</string>
     <string name="stop">روکیں</string>
     <string name="straight_line">%1$s سیدھی لکیر میں</string>
+    <string name="suggested_questions">آپ یہ بھی پوچھ سکتے ہیں</string>
     <string name="summary_label">خلاصہ</string>
     <string name="sunrise_not_prayer_note">طلوعِ آفتاب فجر کے وقت کا اختتام ہے، یہ نماز نہیں۔</string>
     <string name="supporting_passage">معاون اقتباس</string>

@@ -29,8 +29,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledIconButton
@@ -81,7 +81,8 @@ import sa.zood.nearmosque.ui.theme.Tokens
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
+/** Ask AI, opened full screen from the floating pill; [onClose] goes back to the tab underneath. */
+fun AskScreen(vm: AskViewModel, onClose: () -> Unit) {
     val context = LocalContext.current
     val container = appContainer()
     val lang = Format.languageCode(context)
@@ -89,6 +90,14 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
     var input by rememberSaveable { mutableStateOf("") }
     var reading by remember { mutableStateOf<ResolvedCitation?>(null) }
     var library by remember { mutableStateOf(false) }
+    var history by remember { mutableStateOf(false) }
+    val chats by vm.chats.collectAsStateWithLifecycle()
+    if (history) {
+        ChatHistorySheet(
+            chats, onOpen = { history = false; vm.open(it, lang) }, onDelete = vm::deleteChat,
+            onDeleteAll = vm::deleteAllChats, onDismiss = { history = false },
+        )
+    }
     // The library packs follow the interface language (installed in the background when it changes).
     LaunchedEffect(lang) { container.ensureLibraries(lang) }
     if (library) LibraryScreen(onDismiss = { library = false })
@@ -98,18 +107,18 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
 
     Column(Modifier.fillMaxSize().statusBarsPadding().imePadding()) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-            if (ui.turns.isNotEmpty()) {
-                GlassIconButton(rememberVectorPainter(Icons.Filled.Refresh), stringResource(R.string.new_conversation), vm::newConversation)
-            } else {
-                Spacer(Modifier.size(48.dp))
-            }
+            GlassIconButton(rememberVectorPainter(Icons.Filled.Close), stringResource(R.string.close), onClose)
             Text(
-                stringResource(R.string.ask_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = white,
+                stringResource(R.string.tab_ask), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = white,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center, maxLines = 1,
             )
-            GlassIconButton(androidx.compose.ui.res.painterResource(R.drawable.ic_book), stringResource(R.string.library_title), { library = true })
+            if (ui.turns.isNotEmpty()) {
+                GlassIconButton(rememberVectorPainter(Icons.Filled.Edit), stringResource(R.string.new_conversation), vm::newConversation)
+                Spacer(Modifier.size(8.dp))
+            }
+            GlassIconButton(androidx.compose.ui.res.painterResource(R.drawable.ic_history), stringResource(R.string.chat_history), { history = true })
             Spacer(Modifier.size(8.dp))
-            GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onOpenSettings)
+            GlassIconButton(androidx.compose.ui.res.painterResource(R.drawable.ic_book), stringResource(R.string.library_title), { library = true })
         }
         LazyColumn(Modifier.weight(1f), state = list, contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             if (ui.turns.isEmpty()) {
@@ -118,6 +127,8 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
                     Text(stringResource(R.string.ask_title), style = MaterialTheme.typography.displaySmall, color = white, modifier = Modifier.semantics { heading() })
                     Spacer(Modifier.height(8.dp))
                     Text(stringResource(R.string.ask_subtitle), style = MaterialTheme.typography.bodyLarge, color = white.copy(alpha = 0.85f))
+                    Spacer(Modifier.height(12.dp))
+                    LibraryEntryCard { library = true }
                     Spacer(Modifier.height(8.dp))
                     Text(stringResource(R.string.ai_pack_not_installed), style = MaterialTheme.typography.bodySmall, color = white.copy(alpha = 0.7f))
                 }
@@ -147,22 +158,19 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
                     )
                     Spacer(Modifier.height(10.dp))
                     if (t.answer == null) {
-                        GlassCard(padding = 12.dp) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = white)
-                                Spacer(Modifier.width(10.dp))
-                                Text(stringResource(R.string.answer_searching), color = white, modifier = Modifier.weight(1f).semantics { liveRegion = LiveRegionMode.Polite })
-                                GlassButton(onClick = vm::stop) { GlassButtonText(stringResource(R.string.stop)) }
-                            }
-                        }
+                        ThinkingCard(ui.stage, ui.stagesDone, onStop = vm::stop)
                     } else {
                         AnswerCard(t, lang, onRead = { reading = it })
+                        if (t.id == ui.turns.last().id && !ui.busy) {
+                            Spacer(Modifier.height(10.dp))
+                            Suggestions(ui.common, ui.turns, lang) { q, text -> vm.askCommon(q, text, lang) }
+                        }
                     }
                 }
             }
         }
         Row(
-            Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = bottomBarPadding(4.dp).calculateBottomPadding()).navigationBarsPadding(),
+            Modifier.fillMaxWidth().navigationBarsPadding().padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             TextField(

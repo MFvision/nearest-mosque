@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">Haz otra pregunta…</string>
     <string name="ask_placeholder">Escribe tu pregunta…</string>
     <string name="ask_send">Preguntar</string>
+    <string name="ask_stage_reading">Leyendo las fuentes</string>
+    <string name="ask_stage_searching">Buscando en los libros de su teléfono</string>
+    <string name="ask_stage_understanding">Entendiendo su pregunta</string>
+    <string name="ask_stage_writing">Escribiendo la respuesta</string>
     <string name="ask_subtitle">Las respuestas citan los libros de tu teléfono, con el versículo o la página.</string>
     <string name="ask_title">Pregunta lo que quieras sobre el islam</string>
     <string name="asr_hanafi">Hanafí</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">Mezquita</string>
     <string name="category_prayer_space">Sala de oración</string>
     <string name="change">Cambiar</string>
+    <string name="chat_delete">Eliminar</string>
+    <string name="chat_delete_all">Eliminar todas las conversaciones</string>
+    <string name="chat_history">Conversaciones</string>
+    <string name="chat_history_empty">Aún no hay conversaciones guardadas.</string>
+    <string name="chat_history_note">Las conversaciones se guardan solo en este teléfono y no se envían a ningún sitio. Abrir una vuelve a hacer sus preguntas.</string>
     <string name="choose_city_body">Los horarios se calculan en tu teléfono. Elige una ciudad o usa tu ubicación. Sin internet.</string>
     <string name="choose_city_title">Elige tu ciudad</string>
     <string name="clear_conversation_history">Borrar historial de preguntas</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">Guardar</string>
     <string name="library_browse">Explorar</string>
     <string name="library_by">Por %1$s</string>
+    <string name="library_card_body">Libros, fetuas, conferencias y el Corán: lea, escuche o vea sin conexión.</string>
     <string name="library_delete">Eliminar</string>
     <string name="library_delete_all">Eliminar todo</string>
     <string name="library_download_failed">No se pudo cargar. Revisa la conexión e inténtalo de nuevo.</string>
@@ -300,6 +310,7 @@
     <string name="sources_licenses">Fuentes y licencias</string>
     <string name="stop">Detener</string>
     <string name="straight_line">%1$s en línea recta</string>
+    <string name="suggested_questions">También puede preguntar</string>
     <string name="summary_label">Resumen</string>
     <string name="sunrise_not_prayer_note">El amanecer marca el fin de Fajr; no es una oración.</string>
     <string name="supporting_passage">Pasaje de apoyo</string>

@@ -14,39 +14,87 @@ struct Turn: Identifiable {
     var libraryCited = 0
 }
 
-/// Conversation is kept in memory only: not persisted and never sent anywhere.
+/// The conversation on screen. Only the questions are saved (ChatHistory, on this phone); nothing is sent anywhere.
 @MainActor
 @Observable
 final class AskModel {
     var turns: [Turn] = []
     var busy = false
+    /// The step in progress and the steps finished, for the thinking card.
+    var stage: AskStage = .searching
+    var stagesDone: [AskStage] = []
+    let history = ChatHistory()
+    private(set) var chatId = UUID()
     private var task: Task<Void, Never>?
 
     func ask(_ app: AppModel, _ text: String) {
         let q = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !q.isEmpty, !busy, let repo = app.ask else { return }
-        let context = turns.suffix(2).map(\.question)
-        let lang = app.l10n.language
-        run(app, q, rephrase: true) { also in try repo.ask(q, context: context, lang: lang, also: also) }
+        guard !q.isEmpty, !busy, app.ask != nil else { return }
+        history.record(q, in: chatId)
+        task = Task { await perform(app, typed: q) }
     }
 
     func ask(_ app: AppModel, common q: CommonQuestion, displayed: String) {
-        guard let repo = app.ask else { return }
-        let lang = app.l10n.language
-        run(app, displayed) { _ in try repo.answer(for: q, displayed: displayed, lang: lang) }
+        guard !busy, app.ask != nil else { return }
+        history.record(displayed, in: chatId)
+        task = Task { await perform(app, common: q, displayed: displayed) }
     }
 
-    private func run(_ app: AppModel, _ question: String, rephrase: Bool = false, _ block: @escaping @Sendable ([AskRepository.AlsoSearch]) throws -> Answer) {
+    /// Opens a saved chat: its questions are asked again, in order, on the device.
+    func open(_ app: AppModel, _ chat: SavedChat) {
+        reset()
+        chatId = chat.id
+        let common = (try? app.ask?.commonQuestions()) ?? []
+        let lang = app.l10n.language
+        task = Task {
+            for q in chat.questions {
+                guard !Task.isCancelled else { return }
+                if let c = common.first(where: { ($0.question[lang] ?? $0.question["en"]) == q }) {
+                    await perform(app, common: c, displayed: q)
+                } else {
+                    await perform(app, typed: q, rephrase: false)
+                }
+            }
+        }
+    }
+
+    private func perform(_ app: AppModel, typed q: String, rephrase: Bool = true) async {
+        guard let repo = app.ask else { return }
+        let context = turns.suffix(2).map(\.question)
+        let lang = app.l10n.language
+        await run(app, q, rephrase: rephrase) { also in try repo.ask(q, context: context, lang: lang, also: also) }
+    }
+
+    private func perform(_ app: AppModel, common q: CommonQuestion, displayed: String) async {
+        guard let repo = app.ask else { return }
+        let lang = app.l10n.language
+        await run(app, displayed) { _ in try repo.answer(for: q, displayed: displayed, lang: lang) }
+    }
+
+    private func step(_ next: AskStage) {
+        if stage != next, !stagesDone.contains(stage) { stagesDone.append(stage) }
+        stage = next
+    }
+
+    private func run(_ app: AppModel, _ question: String, rephrase: Bool = false, _ block: @escaping @Sendable ([AskRepository.AlsoSearch]) throws -> Answer) async {
         guard let repo = app.ask else { return }
         let turn = Turn(question: question)
         turns.append(turn)
         busy = true
+        stagesDone = []
+        stage = .searching
         let lang = app.l10n.language
-        task = Task {
+        do {
             defer { busy = false }
             // With Apple Intelligence: Arabic and English search phrasings of the question, written on the device.
-            let also = rephrase ? await QueryRewriter.searchQueries(for: question, language: lang) : []
+            var also: [AskRepository.AlsoSearch] = []
+            if rephrase, LocalAnswerer.availability(language: lang) == .available {
+                stage = .understanding
+                also = await QueryRewriter.searchQueries(for: question, language: lang)
+            }
+            step(.searching)
             guard var answer = try? await Task.detached(operation: { try block(also) }).value else { return }
+            step(.reading)
             let cites = (try? repo.resolve(answer.citations)) ?? []
             let related = (try? repo.resolve(answer.related)) ?? []
             let library = (try? repo.resolve(answer.library)) ?? []
@@ -54,10 +102,12 @@ final class AskModel {
             let quran = answer.kind == .passages ? cites.map(LocalAnswerer.evidence(quran:)) : []
             let fromLibrary = Array(library.compactMap { l in LocalAnswerer.evidence(library: l).map { (l, $0) } }.prefix(3))
             var offset: Int?
-            if answer.kind != .common, !(quran.isEmpty && fromLibrary.isEmpty),
-               let written = await LocalAnswerer.write(question: question, evidence: quran + fromLibrary.map(\.1), language: lang) {
-                answer.generated = written
-                offset = quran.count
+            if answer.kind != .common, !(quran.isEmpty && fromLibrary.isEmpty), LocalAnswerer.availability(language: lang) == .available {
+                step(.writing)
+                if let written = await LocalAnswerer.write(question: question, evidence: quran + fromLibrary.map(\.1), language: lang) {
+                    answer.generated = written
+                    offset = quran.count
+                }
             }
             // Cited library records first, so the numbers in the answer match the cards' order.
             let citedIds = Set(fromLibrary.map(\.0.id))
@@ -78,17 +128,20 @@ final class AskModel {
         busy = false
     }
 
-    func reset() { task?.cancel(); turns = []; busy = false }
+    func reset() { task?.cancel(); turns = []; busy = false; chatId = UUID() }
 }
 
+/// Ask AI, opened full screen from the floating pill. The conversation (AskModel) lives in the root, so
+/// closing and reopening keeps it; saved chats open from the history button.
 struct AskView: View {
     @Environment(AppModel.self) private var app
     @Environment(Localization.self) private var l10n
-    @Binding var showSettings: Bool
-    @State private var vm = AskModel()
+    let vm: AskModel
+    var onClose: () -> Void
     @State private var input = ""
     @State private var reading: ResolvedCitation?
     @State private var showLibrary = false
+    @State private var showHistory = false
     @FocusState private var focused: Bool
 
     var body: some View {
@@ -112,14 +165,9 @@ struct AskView: View {
                             if let a = t.answer {
                                 AnswerCard(turn: t, answer: a, onRead: { reading = $0 })
                                     .transition(.move(edge: .bottom).combined(with: .opacity))
+                                if t.id == vm.turns.last?.id, !vm.busy { suggestions }
                             } else {
-                                HStack(spacing: 10) {
-                                    ProgressView().tint(Theme.ink)
-                                    Text(l10n.t("answer_searching"))
-                                    Spacer()
-                                    Button(l10n.t("stop")) { vm.stop() }.glassButton()
-                                }
-                                .glassCard(padding: 12)
+                                ThinkingView(stage: vm.stage, done: vm.stagesDone) { vm.stop() }
                             }
                         }
                         .id(t.id)
@@ -141,6 +189,11 @@ struct AskView: View {
         .skyBackground(horizon: 0.3, skyline: true)
         .toolbar(.hidden, for: .navigationBar)
         .sheet(item: $reading) { ReaderView(citation: $0) }
+        .sheet(isPresented: $showHistory) {
+            ChatHistoryView(history: vm.history) { chat in vm.open(app, chat) }
+                .environment(\.locale, l10n.locale)
+                .environment(\.layoutDirection, l10n.layoutDirection)
+        }
         .fullScreenCover(isPresented: $showLibrary) { LibraryView() }
         #if DEBUG
         // The library packs follow the interface language (installed in the background when it changes).
@@ -155,26 +208,80 @@ struct AskView: View {
     }
 
     private var header: some View {
-        HStack {
+        HStack(spacing: 8) {
+            GlassIconButton(systemImage: "xmark", label: l10n.t("close"), action: onClose)
+            Spacer()
+            Text(l10n.t("tab_ask")).font(.headline).lineLimit(1).minimumScaleFactor(0.8)
+            Spacer()
             if !vm.turns.isEmpty {
                 GlassIconButton(systemImage: "square.and.pencil", label: l10n.t("new_conversation")) { withAnimation(Theme.spring) { vm.reset() } }
-            } else {
-                Color.clear.frame(width: 44, height: 44)
             }
-            Spacer()
-            Text(l10n.t("ask_title")).font(.headline).lineLimit(1).minimumScaleFactor(0.8)
-            Spacer()
+            GlassIconButton(systemImage: "clock.arrow.circlepath", label: l10n.t("chat_history")) { showHistory = true }
             GlassIconButton(systemImage: "books.vertical", label: l10n.t("library_title")) { showLibrary = true }
-            SettingsButton(show: $showSettings)
         }
         .padding(.top, 4)
         .padding(.bottom, 8)
+    }
+
+    /// The library, large and first: books, fatwas and lectures to open directly.
+    private var libraryCard: some View {
+        Button { showLibrary = true } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "books.vertical.fill").font(.title2).foregroundStyle(Theme.accent)
+                    .frame(width: 48, height: 48)
+                    .background(Theme.gold.opacity(0.16), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(l10n.t("library_title")).font(.headline)
+                    Text(l10n.t("library_card_body")).font(.subheadline).foregroundStyle(Theme.ink.opacity(0.8)).multilineTextAlignment(.leading)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.forward").font(.footnote.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.6)).accessibilityHidden(true)
+            }
+            .padding(14)
+            .contentShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
+        }
+        .buttonStyle(PressHighlight(shape: AnyShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))))
+        .glass(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
+    }
+
+    /// Up to three common questions not yet asked here, closest in wording to the last question first.
+    private var suggestions: some View {
+        let lang = l10n.language
+        let asked = Set(vm.turns.map(\.question))
+        let words = Set((vm.turns.last?.question ?? "").lowercased().split { !$0.isLetter }.map(String.init).filter { $0.count > 2 })
+        let qs = ((try? app.ask?.commonQuestions()) ?? [])
+            .map { q in (q, q.question[lang] ?? q.question["en"] ?? q.id) }
+            .filter { !asked.contains($0.1) }
+        let ranked = qs.enumerated().sorted { a, b in
+            let sa = Set(a.element.1.lowercased().split { !$0.isLetter }.map(String.init)).intersection(words).count
+            let sb = Set(b.element.1.lowercased().split { !$0.isLetter }.map(String.init)).intersection(words).count
+            return sa != sb ? sa > sb : a.offset < b.offset
+        }.prefix(3).map(\.element)
+        return VStack(alignment: .leading, spacing: 8) {
+            if !ranked.isEmpty {
+                Text(l10n.t("suggested_questions")).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.ink.opacity(0.8))
+                    .accessibilityAddTraits(.isHeader)
+                ForEach(0..<ranked.count, id: \.self) { i in
+                    let (q, text) = ranked[i]
+                    Button { vm.ask(app, common: q, displayed: text) } label: {
+                        Label(text, systemImage: "arrow.turn.down.right").font(.subheadline).multilineTextAlignment(.leading)
+                            .padding(.horizontal, 14).padding(.vertical, 10).frame(minHeight: 44)
+                            .contentShape(RoundedRectangle(cornerRadius: 18))
+                    }
+                    .buttonStyle(.plain)
+                    .glass(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                }
+            }
+        }
+        .padding(.top, 4)
     }
 
     private var intro: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(l10n.t("ask_title")).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
             Text(l10n.t("ask_subtitle")).foregroundStyle(Theme.ink.opacity(0.85))
+            libraryCard
             if LocalAnswerer.availability(language: l10n.language) != .available {
                 Label(l10n.t("ai_pack_not_installed"), systemImage: "lock.shield").font(.footnote).foregroundStyle(Theme.ink.opacity(0.75))
             }

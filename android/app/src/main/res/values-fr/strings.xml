@@ -27,6 +27,10 @@
     <string name="ask_follow_up_placeholder">Posez une question de suivi…</string>
     <string name="ask_placeholder">Écrivez votre question…</string>
     <string name="ask_send">Demander</string>
+    <string name="ask_stage_reading">Lecture des sources</string>
+    <string name="ask_stage_searching">Recherche dans les livres de votre téléphone</string>
+    <string name="ask_stage_understanding">Compréhension de votre question</string>
+    <string name="ask_stage_writing">Rédaction de la réponse</string>
     <string name="ask_subtitle">Les réponses citent les livres de votre téléphone, avec le verset ou la page.</string>
     <string name="ask_title">Posez vos questions sur l’islam</string>
     <string name="asr_hanafi">Hanafite</string>
@@ -39,6 +43,11 @@
     <string name="category_mosque">Mosquée</string>
     <string name="category_prayer_space">Salle de prière</string>
     <string name="change">Modifier</string>
+    <string name="chat_delete">Supprimer</string>
+    <string name="chat_delete_all">Supprimer toutes les conversations</string>
+    <string name="chat_history">Conversations</string>
+    <string name="chat_history_empty">Aucune conversation enregistrée.</string>
+    <string name="chat_history_note">Les conversations restent sur ce téléphone et ne sont envoyées nulle part. En ouvrir une repose ses questions.</string>
     <string name="choose_city_body">Les horaires sont calculés sur votre téléphone. Choisissez une ville ou utilisez votre position. Sans internet.</string>
     <string name="choose_city_title">Choisissez votre ville</string>
     <string name="clear_conversation_history">Effacer l’historique des questions</string>
@@ -98,6 +107,7 @@
     <string name="library_bookmark">Enregistrer</string>
     <string name="library_browse">Parcourir</string>
     <string name="library_by">Par %1$s</string>
+    <string name="library_card_body">Livres, fatwas, conférences et Coran : lire, écouter ou regarder hors ligne.</string>
     <string name="library_delete">Supprimer</string>
     <string name="library_delete_all">Tout supprimer</string>
     <string name="library_download_failed">Chargement impossible. Vérifiez la connexion et réessayez.</string>
@@ -300,6 +310,7 @@
     <string name="sources_licenses">Sources et licences</string>
     <string name="stop">Arrêter</string>
     <string name="straight_line">%1$s à vol d’oiseau</string>
+    <string name="suggested_questions">Vous pourriez aussi demander</string>
     <string name="summary_label">Résumé</string>
     <string name="sunrise_not_prayer_note">Le lever du soleil marque la fin du Fajr ; ce n’est pas une prière.</string>
     <string name="supporting_passage">Passage à l’appui</string>

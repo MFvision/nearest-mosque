@@ -12,6 +12,7 @@ import sa.zood.nearmosque.AppContainer
 import sa.zood.nearmosque.core.Answer
 import sa.zood.nearmosque.core.CommonQuestion
 import sa.zood.nearmosque.data.ResolvedCitation
+import sa.zood.nearmosque.data.SavedChat
 
 data class Turn(
     val id: Long,
@@ -22,23 +23,33 @@ data class Turn(
     val library: List<ResolvedCitation> = emptyList(),
 )
 
+/** What the Ask pipeline is doing right now (each step is real). */
+enum class AskStage(val label: Int) {
+    SEARCHING(sa.zood.nearmosque.R.string.ask_stage_searching),
+    READING(sa.zood.nearmosque.R.string.ask_stage_reading),
+}
+
 data class AskUi(
     val ready: Boolean = false,
     val common: List<CommonQuestion> = emptyList(),
     val turns: List<Turn> = emptyList(),
     val busy: Boolean = false,
+    val stage: AskStage = AskStage.SEARCHING,
+    val stagesDone: List<AskStage> = emptyList(),
 )
 
 /**
- * Conversation lives in memory only (not persisted, not sent anywhere). Answers come from the
- * local retriever; there is no on-device generator on Android in this build, so every answer is
- * the cited-search form, which is the required fallback anyway.
+ * The conversation on screen. Only the questions are saved (ChatHistory, on this phone); nothing is
+ * sent anywhere. Answers come from the local retriever; there is no on-device generator on Android in
+ * this build, so every answer is the cited-search form, which is the required fallback anyway.
  */
 class AskViewModel(private val c: AppContainer) : ViewModel() {
     private val _ui = MutableStateFlow(AskUi())
     val ui: StateFlow<AskUi> = _ui.asStateFlow()
+    val chats = c.chats.chats
     private var job: Job? = null
     private var nextId = 1L
+    private var chatId = java.util.UUID.randomUUID().toString()
 
     init {
         viewModelScope.launch {
@@ -50,25 +61,48 @@ class AskViewModel(private val c: AppContainer) : ViewModel() {
     fun ask(text: String, lang: String) {
         val q = text.trim()
         if (q.isEmpty() || _ui.value.busy) return
+        c.chats.record(q, chatId)
+        job = viewModelScope.launch { askTyped(q, lang) }
+    }
+
+    fun askCommon(q: CommonQuestion, displayed: String, lang: String) {
+        if (_ui.value.busy) return
+        c.chats.record(displayed, chatId)
+        job = viewModelScope.launch { run(displayed) { c.ask.answerFor(q, displayed, lang) } }
+    }
+
+    /** Opens a saved chat: its questions are asked again, in order, on the device. */
+    fun open(chat: SavedChat, lang: String) {
+        newConversation()
+        chatId = chat.id
+        job = viewModelScope.launch {
+            chat.questions.forEach { q ->
+                val common = _ui.value.common.firstOrNull { (it.question[lang] ?: it.question["en"]) == q }
+                if (common != null) run(q) { c.ask.answerFor(common, q, lang) } else askTyped(q, lang)
+            }
+        }
+    }
+
+    fun deleteChat(id: String) = c.chats.delete(id)
+    fun deleteAllChats() = c.chats.deleteAll()
+
+    private suspend fun askTyped(q: String, lang: String) {
         val context = _ui.value.turns.takeLast(2).map { it.question }
         run(q) { c.ask.ask(q, context, lang) }
     }
 
-    fun askCommon(q: CommonQuestion, displayed: String, lang: String) = run(displayed) { c.ask.answerFor(q, displayed, lang) }
-
-    private fun run(question: String, block: suspend () -> Answer) {
+    private suspend fun run(question: String, block: suspend () -> Answer) {
         val turn = Turn(nextId++, question)
-        _ui.value = _ui.value.copy(turns = _ui.value.turns + turn, busy = true)
-        job = viewModelScope.launch {
-            try {
-                val a = block()
-                val cites = c.ask.resolve(a.citations)
-                val related = c.ask.resolve(a.related)
-                val library = c.ask.resolve(a.library)
-                update(turn.id) { it.copy(answer = a, citations = cites, related = related, library = library) }
-            } finally {
-                _ui.value = _ui.value.copy(busy = false)
-            }
+        _ui.value = _ui.value.copy(turns = _ui.value.turns + turn, busy = true, stage = AskStage.SEARCHING, stagesDone = emptyList())
+        try {
+            val a = block()
+            _ui.value = _ui.value.copy(stage = AskStage.READING, stagesDone = listOf(AskStage.SEARCHING))
+            val cites = c.ask.resolve(a.citations)
+            val related = c.ask.resolve(a.related)
+            val library = c.ask.resolve(a.library)
+            update(turn.id) { it.copy(answer = a, citations = cites, related = related, library = library) }
+        } finally {
+            _ui.value = _ui.value.copy(busy = false)
         }
     }
 
@@ -79,6 +113,7 @@ class AskViewModel(private val c: AppContainer) : ViewModel() {
 
     fun newConversation() {
         job?.cancel()
+        chatId = java.util.UUID.randomUUID().toString()
         _ui.value = _ui.value.copy(turns = emptyList(), busy = false)
     }
 
