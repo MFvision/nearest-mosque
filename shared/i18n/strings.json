@@ -3382,6 +3382,24 @@
       "id": "Apa kata para ulama",
       "fr": "Ce qu'ont dit les savants",
       "es": "Lo que dijeron los sabios"
+    },
+    "library_type_tafsir": {
+      "en": "Tafsir",
+      "ar": "تفسير",
+      "ur": "تفسیر",
+      "tr": "Tefsir",
+      "id": "Tafsir",
+      "fr": "Tafsir (exégèse)",
+      "es": "Tafsir (exégesis)"
+    },
+    "library_part_tafsir": {
+      "en": "Tafsir (explanation of the verse)",
+      "ar": "التفسير",
+      "ur": "تفسیر",
+      "tr": "Tefsir",
+      "id": "Tafsir",
+      "fr": "Tafsir (explication du verset)",
+      "es": "Tafsir (explicación de la aleya)"
     }
   }
 }

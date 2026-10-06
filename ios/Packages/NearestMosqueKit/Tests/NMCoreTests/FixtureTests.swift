@@ -184,7 +184,7 @@ final class QiblaAndTextTests: XCTestCase {
 
 final class DataTests: XCTestCase {
     func testPacksVerifyAndTamperingIsDetected() throws {
-        let packs = ["packs/cities", "packs/mosques/za-cape-town", "packs/mosques/eg-cairo", "packs/mosques/gb-london", "packs/sources/quran-tanzil-pickthall"]
+        let packs = ["packs/cities", "packs/mosques/za-cape-town", "packs/mosques/eg-cairo", "packs/mosques/gb-london", "packs/sources/quran-tanzil-pickthall", "packs/sources/quranenc-tafsir-ar"]
         for p in packs {
             let dir = Fixtures.root.appendingPathComponent(p)
             let m = try PackVerifier.parseManifest(Data(contentsOf: dir.appendingPathComponent("manifest.json")))

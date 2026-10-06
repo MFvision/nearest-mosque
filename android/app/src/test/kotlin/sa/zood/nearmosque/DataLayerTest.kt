@@ -55,7 +55,8 @@ class DataLayerTest {
         assertTrue(c.db.sources().questions().size >= 8)
         // Every bundled library pack: manifest count = records in its file (installation is checked below).
         val langs = listOf("en", "ar", "ur", "tr", "id", "fr", "es")
-        val library = langs.map { "islamhouse-$it" } + "binbaz-ar" + langs.map { "hadeethenc-$it" } + listOf("ur", "tr", "id", "fr", "es").map { "quranenc-$it" }
+        val library = langs.map { "islamhouse-$it" } + "binbaz-ar" + langs.map { "hadeethenc-$it" } + listOf("ur", "tr", "id", "fr", "es").map { "quranenc-$it" } +
+            listOf("ar", "tr", "id", "fr", "es").map { "quranenc-tafsir-$it" }
         for (dir in library) {
             val folder = File(root, "packs/sources/$dir")
             val m = PackVerifier.parseManifest(File(folder, "manifest.json").readText())
@@ -87,7 +88,7 @@ class DataLayerTest {
         val items = c.ask.resolve(en.library.filter { it.startsWith("ih:en:") })
         assertTrue(items.any { it.chunk.anchor.contains("Islam", ignoreCase = true) })
         assertTrue(items.all { it.chunk.url!!.startsWith("https://islamhouse.com/en/") })
-        assertTrue(c.ask.ask("ما هو الإسلام؟", emptyList(), "ar").library.all { it.startsWith("ih:ar:") || it.startsWith("bb:") || it.startsWith("he:ar:") })
+        assertTrue(c.ask.ask("ما هو الإسلام؟", emptyList(), "ar").library.all { it.startsWith("ih:ar:") || it.startsWith("bb:") || it.startsWith("he:ar:") || it.startsWith("qt:ar:") })
         assertTrue(c.ask.ask("What is the capital of France?", emptyList(), "en").library.isEmpty())
         // A common question leads with its own hadith, in the reader's language.
         val friday = c.ask.commonQuestions().first { it.id == "friday-prayer" }
@@ -119,6 +120,12 @@ class DataLayerTest {
         val verse = c.ask.resolve(listOf("qe:ur:2:255")).single().chunk
         assertEquals("quran:2:255", verse.sectionName("verse"))
         assertEquals("translation", sa.zood.nearmosque.core.LibraryParts.parts(verse).first().kind)
+        // Al-Mukhtasar tafsir (Arabic, installed with Arabic): one record per verse, linked to the verse.
+        val tafsir = c.ask.resolve(listOf("qt:ar:2:255")).single().chunk
+        assertEquals("tafsir", tafsir.sectionName("type"))
+        assertEquals("quran:2:255", tafsir.sectionName("verse"))
+        assertEquals("tafsir", sa.zood.nearmosque.core.LibraryParts.parts(tafsir).first().kind)
+        assertTrue(tafsir.sectionName("version")!!.isNotBlank())
 
         // Cross-language: an English question with few English hits is filled from Arabic via the lexicon.
         val cross = c.ask.ask("ruling on smoking", emptyList(), "en")

@@ -148,6 +148,7 @@
     <string name="library_part_explanation">تشریح</string>
     <string name="library_part_footnotes">حواشی</string>
     <string name="library_part_hadith">حدیث</string>
+    <string name="library_part_tafsir">تفسیر</string>
     <string name="library_part_translation">ترجمہ</string>
     <string name="library_part_verse">آیت</string>
     <string name="library_part_words">الفاظ کے معانی</string>
@@ -166,6 +167,7 @@
     <string name="library_type_fatwa">فتویٰ</string>
     <string name="library_type_hadith">حدیث</string>
     <string name="library_type_quran">قرآن کا ترجمہ</string>
+    <string name="library_type_tafsir">تفسیر</string>
     <string name="library_type_videos">ویڈیو</string>
     <string name="library_unbookmark">محفوظ سے ہٹائیں</string>
     <string name="library_watch">دیکھیں</string>

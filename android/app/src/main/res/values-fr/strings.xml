@@ -148,6 +148,7 @@
     <string name="library_part_explanation">Explication</string>
     <string name="library_part_footnotes">Notes</string>
     <string name="library_part_hadith">Hadith</string>
+    <string name="library_part_tafsir">Tafsir (explication du verset)</string>
     <string name="library_part_translation">Traduction du sens</string>
     <string name="library_part_verse">Verset</string>
     <string name="library_part_words">Sens des mots</string>
@@ -166,6 +167,7 @@
     <string name="library_type_fatwa">Fatwa</string>
     <string name="library_type_hadith">Hadith</string>
     <string name="library_type_quran">Traduction du Coran</string>
+    <string name="library_type_tafsir">Tafsir (exégèse)</string>
     <string name="library_type_videos">Vidéo</string>
     <string name="library_unbookmark">Retirer des enregistrés</string>
     <string name="library_watch">Regarder</string>

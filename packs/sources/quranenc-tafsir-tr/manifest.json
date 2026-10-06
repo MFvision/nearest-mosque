@@ -1,0 +1,46 @@
+{
+  "id": "sources.quranenc-tafsir-tr",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Al-Mukhtasar in Interpreting the Noble Quran",
+    "ar": "المختصر في تفسير القرآن الكريم",
+    "tr": "Turkish Translation of Al-Mukhtasar in Interpreting the Noble Quran"
+  },
+  "languages": [
+    "tr"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/tr/browse/turkish_mokhtasar",
+    "snapshot": "2026-10-06",
+    "translationKey": "turkish_mokhtasar",
+    "version": "1.0.0",
+    "issued": "2026-07-27"
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Turkish Translation of Al-Mukhtasar in Interpreting the Noble Quran (v1.0.0)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 4683211,
+      "sha256": "fa0849f389c0f872f52fcda4f61690cd7b1be6bb0f411fa2324d82da8212c54e"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 901,
+      "sha256": "315ae81d0d34d03d04bbaf1be0d37d99cf2cff4769ad90cb26630d9389ee0332"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 621,
+      "sha256": "b056db9413d552ec459bca75dc7dc4ca8ec3856c244e19175522a43a2fada741"
+    }
+  ]
+}

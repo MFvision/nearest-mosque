@@ -1,0 +1,9 @@
+# French Translation of Al-Mukhtasar in Interpreting the Noble Quran
+# Issued by the Tafsir Center for Quranic Studies
+# Source: https://quranenc.com/fr/browse/french_mokhtasar
+# Version: 1.0.0 (2026-10-01)
+
+Al-Mukhtasar in Interpreting the Noble Quran from QuranEnc.com, published unaltered under its terms: no
+modification, addition or deletion; the publisher and source (QuranEnc.com) credited; the version number
+stated; the version information kept; notes sent to the source; new versions followed; no inappropriate
+advertisements. The Arabic verse text shown with it is from Tanzil (see the Quran pack's notice).

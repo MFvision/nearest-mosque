@@ -1,0 +1,46 @@
+{
+  "id": "sources.quranenc-tafsir-es",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Al-Mukhtasar in Interpreting the Noble Quran",
+    "ar": "المختصر في تفسير القرآن الكريم",
+    "es": "Spanish Translation of Al-Mukhtasar in Interpreting the Noble Quran"
+  },
+  "languages": [
+    "es"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/es/browse/spanish_mokhtasar",
+    "snapshot": "2026-10-06",
+    "translationKey": "spanish_mokhtasar",
+    "version": "1.4.1",
+    "issued": "2026-02-23"
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Spanish Translation of Al-Mukhtasar in Interpreting the Noble Quran (v1.4.1)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 4557642,
+      "sha256": "80807371951408fcfa4d34109975bd597b05536822cf77458776c165c4f0e280"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 901,
+      "sha256": "0278ebeda5b7d1d06c0583e1cf71711604365b21ef3cc91f910e646625f820a5"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 621,
+      "sha256": "bb2162e6fb5191e35f31f2711b56ae4238bdd8dc8eccaf0061bcf9f4242bc561"
+    }
+  ]
+}

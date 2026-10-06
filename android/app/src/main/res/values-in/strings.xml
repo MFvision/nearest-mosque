@@ -148,6 +148,7 @@
     <string name="library_part_explanation">Penjelasan</string>
     <string name="library_part_footnotes">Catatan kaki</string>
     <string name="library_part_hadith">Hadis</string>
+    <string name="library_part_tafsir">Tafsir</string>
     <string name="library_part_translation">Terjemahan</string>
     <string name="library_part_verse">Ayat</string>
     <string name="library_part_words">Makna kata</string>
@@ -166,6 +167,7 @@
     <string name="library_type_fatwa">Fatwa</string>
     <string name="library_type_hadith">Hadis</string>
     <string name="library_type_quran">Terjemahan Al-Qur’an</string>
+    <string name="library_type_tafsir">Tafsir</string>
     <string name="library_type_videos">Video</string>
     <string name="library_unbookmark">Hapus dari tersimpan</string>
     <string name="library_watch">Tonton</string>

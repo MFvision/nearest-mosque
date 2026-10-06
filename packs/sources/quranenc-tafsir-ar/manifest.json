@@ -1,0 +1,45 @@
+{
+  "id": "sources.quranenc-tafsir-ar",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Al-Mukhtasar in Interpreting the Noble Quran",
+    "ar": "المختصر في تفسير القرآن الكريم"
+  },
+  "languages": [
+    "ar"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/ar/browse/arabic_mokhtasar",
+    "snapshot": "2026-10-06",
+    "translationKey": "arabic_mokhtasar",
+    "version": "1.0.0",
+    "issued": "2017-02-15"
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Arabic language - Al-Mukhtsar in Interpreting the Noble Quran (v1.0.0)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 4678011,
+      "sha256": "8d184b0f182f29d88607932e1aea5ac26d28e08706b053e3b704c4a356a1b3a4"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 813,
+      "sha256": "25e7e8aaebd5ec2092ed063909580a606315cb0b0a6f9b455edefebc76f1c188"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 614,
+      "sha256": "223c340600ab608113f5c28f742ef6ee2f35f1220f4aee4ddb255e765f34351f"
+    }
+  ]
+}

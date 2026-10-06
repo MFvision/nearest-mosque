@@ -90,8 +90,8 @@ class SearchAndDataTest {
     @Test
     fun allBundledPacksVerifyAndTamperingIsDetected() {
         val packs = File(Fixtures.root, "packs").walk().filter { it.name == "manifest.json" }.toList()
-        // cities, 3 mosque regions, Quran, 7 IslamHouse, Ibn Baz fatwas, 7 HadeethEnc, 5 QuranEnc
-        assertEquals(25, packs.size)
+        // cities, 3 mosque regions, Quran, 7 IslamHouse, Ibn Baz fatwas, 7 HadeethEnc, 5 QuranEnc, 5 QuranEnc tafsir
+        assertEquals(30, packs.size)
         for (m in packs) {
             val manifest = PackVerifier.parseManifest(m.readText())
             PackVerifier.verify(manifest) { path -> File(m.parentFile, path).takeIf { it.exists() }?.inputStream() }

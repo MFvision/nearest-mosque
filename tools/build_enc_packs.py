@@ -13,7 +13,8 @@ this script picks up new versions.
 
 HadeethEnc: https://hadeethenc.com/browse/download/{lang} (Excel). QuranEnc: the SQLite file of one
 downloadable translation per language (keys below); the app shows the Arabic verse with it from the
-bundled Tanzil Quran pack.
+bundled Tanzil Quran pack. The Mukhtasar tafsir is built the same way from its SQLite download, with its
+title and version read from QuranEnc's index page.
 """
 import argparse
 import datetime
@@ -29,6 +30,9 @@ import openpyxl
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 HE_LANGS = ["ar", "en", "ur", "tr", "id", "fr", "es"]
 QE_KEYS = {"ur": "urdu_junagarhi", "tr": "turkish_rwwad", "id": "indonesian_affairs", "fr": "french_rashid", "es": "spanish_garcia"}
+# Al-Mukhtasar in Interpreting the Noble Quran (Tafsir Center for Quranic Studies), in the languages QuranEnc
+# offers it for download. English and Urdu are browsable on the site but not downloadable, so not included.
+TAFSIR_KEYS = {"ar": "arabic_mokhtasar", "tr": "turkish_mokhtasar", "id": "indonesian_mokhtasar", "fr": "french_mokhtasar", "es": "spanish_mokhtasar"}
 UA = "NearMosque-pack-builder/0.1 (+https://github.com/MFvision/nearest-mosque)"
 # Parts of a record's text (title, hadith, explanation...) are stored once, in original.text, separated by
 # U+2063 (INVISIBLE SEPARATOR); section.parts lists their kind and language in the same order. The search
@@ -162,18 +166,88 @@ def build_quranenc(lang, key, translations, cache, out_root, today):
     write_pack(out_root, f"quranenc-{lang}", manifest, documents, rows, notice)
 
 
+def quranenc_index(cache):
+    """Title and version of each QuranEnc work, from the site's index page (the API list has translations only)."""
+    import html as htmlmod
+    page = open(fetch("https://quranenc.com/en/home", os.path.join(cache, "home.html")), encoding="utf-8").read()
+    return page, htmlmod
+
+
+def tafsir_meta(key, cache):
+    page, htmlmod = quranenc_index(cache)
+    i = page.rfind(f"/browse/{key}")
+    m = re.search(r"(\d\d)/(\d\d)/(\d{4}) - V([\d.]+)", page[i:i + 4000]) if i >= 0 else None
+    if not m:
+        raise SystemExit(f"{key}: version not found on the QuranEnc index page")
+    browse = open(fetch(f"https://quranenc.com/en/browse/{key}", os.path.join(cache, f"{key}.html")), encoding="utf-8").read()
+    t = re.search(r"<title>(.*?)</title>", browse, re.S)
+    title = htmlmod.unescape(t.group(1)).strip().split(" - Encyclopedia of the Noble Quran")[0] if t else key
+    return {"title": title, "version": m.group(4), "issued": f"{m.group(3)}-{m.group(2)}-{m.group(1)}"}
+
+
+def build_tafsir(lang, key, cache, out_root, today):
+    """Al-Mukhtasar tafsir, one record per verse, stored unaltered with its version (QuranEnc terms)."""
+    meta = tafsir_meta(key, cache)
+    version = meta["version"]
+    path = fetch(f"https://quranenc.com/downloads/sqlite/{key}.sqlite", os.path.join(cache, f"{key}.sqlite"))
+    with open(path, "rb") as f:
+        if f.read(15) != b"SQLite format 3":
+            raise SystemExit(f"{key}: QuranEnc did not return a SQLite file (not offered for download)")
+    db = sqlite3.connect(path)
+    doc_id = f"quranenc-tafsir-{lang}"
+    rows = []
+    for sura, aya, tr, fn in db.execute("SELECT sura, aya, translation, footnotes FROM translations ORDER BY sura, aya"):
+        tr, fn = clean(tr), clean(fn)
+        body, kinds = compact([{"kind": "tafsir", "lang": lang, "text": tr}, {"kind": "footnotes", "lang": lang, "text": fn}])
+        section = {"type": "tafsir", "publisher": "quranenc", "surah": sura, "ayah": aya, "translationKey": key,
+                   "translationTitle": meta["title"], "version": version, "parts": kinds, "verse": f"quran:{sura}:{aya}"}
+        rows.append({"id": f"qt:{lang}:{sura}:{aya}", "anchor": f"{sura}:{aya}", "section": section,
+                     "original": {"docId": doc_id, "lang": lang, "text": body},
+                     "url": f"https://quranenc.com/{lang}/browse/{key}/{sura}#{aya}"})
+    if len(rows) != 6236:
+        raise SystemExit(f"{key}: expected 6236 verses, found {len(rows)}")
+    license_ = {"id": "QuranEnc-terms", "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+                "url": "https://quranenc.com/", "attribution": f"QuranEnc.com — {meta['title']} (v{version})"}
+    title = {"en": "Al-Mukhtasar in Interpreting the Noble Quran", "ar": "المختصر في تفسير القرآن الكريم"}
+    if lang not in title:
+        title[lang] = meta["title"]
+    documents = [{"id": doc_id, "kind": "library", "title": title, "edition": f"QuranEnc.com {key} v{version}",
+                  "publisher": "Tafsir Center for Quranic Studies, via QuranEnc.com", "language": lang,
+                  "url": f"https://quranenc.com/{lang}/browse/{key}", "license": license_, "retrievedAt": today,
+                  "citation": "item", "textType": "selectable", "tafsirOf": "quran-ar-tanzil"}]
+    manifest = {"id": f"sources.quranenc-tafsir-{lang}", "kind": "sources", "schemaVersion": 1, "version": 1,
+                "title": title, "languages": [lang],
+                "source": {"name": "QuranEnc.com", "url": f"https://quranenc.com/{lang}/browse/{key}", "snapshot": today,
+                           "translationKey": key, "version": version, "issued": meta["issued"]},
+                "license": license_}
+    notice = {"NOTICE-quranenc.txt": f"# {meta['title']}\n# Issued by the Tafsir Center for Quranic Studies\n"
+              f"# Source: https://quranenc.com/{lang}/browse/{key}\n# Version: {version} ({meta['issued']})\n\n"
+              "Al-Mukhtasar in Interpreting the Noble Quran from QuranEnc.com, published unaltered under its terms: no\n"
+              "modification, addition or deletion; the publisher and source (QuranEnc.com) credited; the version number\n"
+              "stated; the version information kept; notes sent to the source; new versions followed; no inappropriate\n"
+              "advertisements. The Arabic verse text shown with it is from Tanzil (see the Quran pack's notice).\n"}
+    write_pack(out_root, f"quranenc-tafsir-{lang}", manifest, documents, rows, notice)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(ROOT, "packs", "sources"))
     ap.add_argument("--cache", default=os.path.join(ROOT, ".cache"))
+    ap.add_argument("--only", choices=["hadith", "translations", "tafsir"], help="build one group of packs")
     a = ap.parse_args()
     today = datetime.date.today().isoformat()
     he_cache = os.path.join(a.cache, "hadeethenc")
     qe_cache = os.path.join(a.cache, "quranenc")
     os.makedirs(he_cache, exist_ok=True)
     os.makedirs(qe_cache, exist_ok=True)
-    for lang in HE_LANGS:
-        build_hadeethenc(lang, he_cache, a.out, today)
+    if a.only in (None, "hadith"):
+        for lang in HE_LANGS:
+            build_hadeethenc(lang, he_cache, a.out, today)
+    if a.only in (None, "tafsir"):
+        for lang, key in TAFSIR_KEYS.items():
+            build_tafsir(lang, key, qe_cache, a.out, today)
+    if a.only not in (None, "translations"):
+        return
     lst = os.path.join(qe_cache, "list.json")
     fetch("https://quranenc.com/api/v1/translations/list", lst)
     translations = json.load(open(lst, encoding="utf-8"))["translations"]

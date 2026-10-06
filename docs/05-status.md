@@ -57,6 +57,13 @@ Legend: **Done** = implemented and covered by automated tests or rendered screen
 | Navigation: two tabs and a floating Ask AI pill (iOS 26: tab bar bottom accessory) opening the chat full screen | Done | Done | Screenshots both platforms |
 | Ask AI: thinking card with the real steps, chats saved on the phone (questions only, excluded from backup), history, new chat, suggested questions, Library card | Done | Done | Android `ChatHistoryTest`; iOS unverified on a device |
 | Reduced motion / transparency, contrast, large text | Done (150% text screenshots) | Built (accessibility-medium screenshots in CI) | Contrast checked by `tools/check_tokens.py`. Screen-reader labels audited in code (map, rows, radar, tap targets fixed); not yet tried with VoiceOver/TalkBack on a device. iOS Increase Contrast not specially handled |
+| Home-screen widgets: next prayer with a live countdown, today's times; cream, green or night look | Done (RemoteViews screenshots) | Built (CI simulator build) | Android: small and medium, style picked on add and reconfigurable, refreshed after each prayer. iOS: small, medium, large and Lock Screen (circular, rectangular, inline) plus a Control Centre Qibla control; state shared through the app's keychain group. Not tried on a device |
+| Reminders and alarms: minutes before, Friday (45 min before Dhuhr), Ramadan suhoor and iftar, Fajr alarm | Built | Built | Planner unit-tested on both cores. Android: alarm-clock Fajr alarm with Stop. iOS 26: AlarmKit Fajr alarm (API not exercised on a device). No adhan audio: needs a licensed recording |
+| Siri and shortcuts: Open Qibla, Next prayer; nearmosque:// links | Built | Built | iOS App Intents (English phrases only); Android static shortcuts. Not tried with Siri or a launcher on a device |
+| Read aloud: the answer, then up to two cited verses (Arabic and translation) | Built | Built | System text-to-speech; voices depend on what the phone has installed |
+| Full-screen mosque map | Built | Built | Expand button on the map card |
+| Scholars' answer first: a matching fatwa leads the answer card | Done | Built | Android data tests; iOS CI build |
+| Tafsir (Al-Mukhtasar) for cited verses, in ar, tr, id, fr, es (Arabic for other readers) | Done | Built | Android data tests resolve the 2:255 tafsir; a Tafsir button on each Quran citation opens it. Asbab al-nuzul not included (no licensed source) |
 
 ## 5.2 Test results (this environment and CI)
 

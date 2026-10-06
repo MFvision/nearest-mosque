@@ -58,6 +58,7 @@ fun libraryTypeLabel(c: SourceChunk): String? {
         "audios" -> stringResource(R.string.library_type_audios)
         "hadith" -> stringResource(R.string.library_type_hadith)
         "quran" -> stringResource(R.string.library_type_quran)
+        "tafsir" -> stringResource(R.string.library_type_tafsir)
         else -> null
     } ?: return null
     return listOfNotNull(type, c.sectionName("collection")).joinToString(" · ")
@@ -88,6 +89,7 @@ private fun partLabel(kind: String): String? = when (kind) {
     "words" -> stringResource(R.string.library_part_words)
     "verse" -> stringResource(R.string.library_part_verse)
     "translation" -> stringResource(R.string.library_part_translation)
+    "tafsir" -> stringResource(R.string.library_part_tafsir)
     "footnotes" -> stringResource(R.string.library_part_footnotes)
     else -> null
 }

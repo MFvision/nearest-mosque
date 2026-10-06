@@ -74,6 +74,10 @@ fun SourceCard(r: ResolvedCitation, lang: String, onRead: (ResolvedCitation) -> 
     val c = r.chunk
     val original = r.documents[c.original.docId]
     val white = Ink
+    val container = appContainer()
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    var tafsir by remember { mutableStateOf<SourceChunk?>(null) }
+    tafsir?.let { LibraryReader(it, LibraryMode.Text, onDismiss = { tafsir = null }) }
     Column(
         Modifier.fillMaxWidth().padding(top = 8.dp)
             .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
@@ -107,6 +111,16 @@ fun SourceCard(r: ResolvedCitation, lang: String, onRead: (ResolvedCitation) -> 
         Row {
             val link = androidx.compose.ui.graphics.Color(0xFF8CC0DE)
             TextButton(onClick = { onRead(r) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.source_open), color = link) }
+            val surah = c.sectionName("surah")
+            val ayah = c.sectionName("ayah")
+            if (c.id.startsWith("quran:") && surah != null && ayah != null) {
+                // Al-Mukhtasar tafsir of the verse, in the reader's language when installed, else in Arabic.
+                TextButton(onClick = {
+                    scope.launch {
+                        tafsir = listOf(lang, "ar").firstNotNullOfOrNull { l -> container.ask.resolve(listOf("qt:$l:$surah:$ayah")).firstOrNull()?.chunk }
+                    }
+                }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_type_tafsir), color = link) }
+            }
             c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.source_original_link), color = link) } }
         }
     }

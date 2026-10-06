@@ -148,6 +148,7 @@
     <string name="library_part_explanation">Açıklama</string>
     <string name="library_part_footnotes">Dipnotlar</string>
     <string name="library_part_hadith">Hadis</string>
+    <string name="library_part_tafsir">Tefsir</string>
     <string name="library_part_translation">Meal</string>
     <string name="library_part_verse">Ayet</string>
     <string name="library_part_words">Kelime anlamları</string>
@@ -166,6 +167,7 @@
     <string name="library_type_fatwa">Fetva</string>
     <string name="library_type_hadith">Hadis</string>
     <string name="library_type_quran">Kur’an meali</string>
+    <string name="library_type_tafsir">Tefsir</string>
     <string name="library_type_videos">Video</string>
     <string name="library_unbookmark">Kaydedilenlerden kaldır</string>
     <string name="library_watch">İzle</string>

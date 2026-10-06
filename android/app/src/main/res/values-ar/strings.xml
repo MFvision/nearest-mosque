@@ -148,6 +148,7 @@
     <string name="library_part_explanation">الشرح</string>
     <string name="library_part_footnotes">الحواشي</string>
     <string name="library_part_hadith">الحديث</string>
+    <string name="library_part_tafsir">التفسير</string>
     <string name="library_part_translation">ترجمة المعنى</string>
     <string name="library_part_verse">الآية</string>
     <string name="library_part_words">معاني الكلمات</string>
@@ -166,6 +167,7 @@
     <string name="library_type_fatwa">فتوى</string>
     <string name="library_type_hadith">حديث</string>
     <string name="library_type_quran">ترجمة معاني القرآن</string>
+    <string name="library_type_tafsir">تفسير</string>
     <string name="library_type_videos">فيديو</string>
     <string name="library_unbookmark">إزالة من المحفوظات</string>
     <string name="library_watch">شاهد</string>

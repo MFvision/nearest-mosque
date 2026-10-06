@@ -148,6 +148,7 @@
     <string name="library_part_explanation">Explicación</string>
     <string name="library_part_footnotes">Notas</string>
     <string name="library_part_hadith">Hadiz</string>
+    <string name="library_part_tafsir">Tafsir (explicación de la aleya)</string>
     <string name="library_part_translation">Traducción del significado</string>
     <string name="library_part_verse">Aleya</string>
     <string name="library_part_words">Significado de las palabras</string>
@@ -166,6 +167,7 @@
     <string name="library_type_fatwa">Fatua</string>
     <string name="library_type_hadith">Hadiz</string>
     <string name="library_type_quran">Traducción del Corán</string>
+    <string name="library_type_tafsir">Tafsir (exégesis)</string>
     <string name="library_type_videos">Vídeo</string>
     <string name="library_unbookmark">Quitar de guardados</string>
     <string name="library_watch">Ver</string>

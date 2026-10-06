@@ -12,12 +12,23 @@ func referenceLabel(_ c: SourceChunk, l10n: Localization) -> String {
 /// A citation: reference, exact original quote in its own direction, labelled translation, and
 /// actions to read in context offline or open the original link.
 struct SourceCard: View {
+    @Environment(AppModel.self) private var app
     @Environment(Localization.self) private var l10n
     @Environment(\.colorScheme) private var scheme
     @Environment(\.openURL) private var openURL
     let index: Int?
     let citation: ResolvedCitation
     var onRead: (ResolvedCitation) -> Void
+    @State private var tafsir: SourceChunk?
+
+    /// Al-Mukhtasar tafsir of a cited verse, in the reader's language when installed, else in Arabic.
+    private func tafsirOf(_ c: SourceChunk) -> SourceChunk? {
+        guard c.id.hasPrefix("quran:"), let s = c.section?.surah, let a = c.section?.ayah else { return nil }
+        for lang in [l10n.language, "ar"] {
+            if let t = (try? app.ask?.resolve(["qt:\(lang):\(s):\(a)"]))?.first?.chunk { return t }
+        }
+        return nil
+    }
 
     var body: some View {
         let c = citation.chunk
@@ -43,6 +54,9 @@ struct SourceCard: View {
             }
             HStack(spacing: 16) {
                 Button { onRead(citation) } label: { Label(l10n.t("source_open"), systemImage: "text.book.closed") }
+                if c.id.hasPrefix("quran:") {
+                    Button { tafsir = tafsirOf(c) } label: { Label(l10n.t("library_type_tafsir"), systemImage: "text.quote") }
+                }
                 if let u = c.url.flatMap({ URL(string: $0) }) {
                     Button { openURL(u) } label: { Label(l10n.t("source_original_link"), systemImage: "arrow.up.right.square") }
                 }
@@ -53,6 +67,7 @@ struct SourceCard: View {
         }
         .foregroundStyle(Theme.ink)
         .glassCard(padding: 14, cornerRadius: 20, tint: Color.white.opacity(0.04))
+        .fullScreenCover(item: $tafsir) { LibraryReaderView(chunk: $0, mode: .text, question: "") }
     }
 }
 

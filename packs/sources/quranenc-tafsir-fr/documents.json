@@ -1,0 +1,25 @@
+[
+ {
+  "id": "quranenc-tafsir-fr",
+  "kind": "library",
+  "title": {
+   "en": "Al-Mukhtasar in Interpreting the Noble Quran",
+   "ar": "المختصر في تفسير القرآن الكريم",
+   "fr": "French Translation of Al-Mukhtasar in Interpreting the Noble Quran"
+  },
+  "edition": "QuranEnc.com french_mokhtasar v1.0.0",
+  "publisher": "Tafsir Center for Quranic Studies, via QuranEnc.com",
+  "language": "fr",
+  "url": "https://quranenc.com/fr/browse/french_mokhtasar",
+  "license": {
+   "id": "QuranEnc-terms",
+   "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+   "url": "https://quranenc.com/",
+   "attribution": "QuranEnc.com — French Translation of Al-Mukhtasar in Interpreting the Noble Quran (v1.0.0)"
+  },
+  "retrievedAt": "2026-10-06",
+  "citation": "item",
+  "textType": "selectable",
+  "tafsirOf": "quran-ar-tanzil"
+ }
+]

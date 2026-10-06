@@ -20,6 +20,7 @@ func libraryTypeLabel(_ c: SourceChunk, _ l10n: Localization) -> String? {
     case "audios": key = "library_type_audios"
     case "hadith": key = "library_type_hadith"
     case "quran": key = "library_type_quran"
+    case "tafsir": key = "library_type_tafsir"
     default: return nil
     }
     return ([l10n.t(key)] + [c.section?.collection].compactMap { $0 }).joined(separator: " · ")
@@ -59,6 +60,7 @@ struct PartsReader: View {
         case "words": return l10n.t("library_part_words")
         case "verse": return l10n.t("library_part_verse")
         case "translation": return l10n.t("library_part_translation")
+        case "tafsir": return l10n.t("library_part_tafsir")
         case "footnotes": return l10n.t("library_part_footnotes")
         default: return nil
         }

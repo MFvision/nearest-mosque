@@ -1,0 +1,46 @@
+{
+  "id": "sources.quranenc-tafsir-id",
+  "kind": "sources",
+  "schemaVersion": 1,
+  "version": 1,
+  "title": {
+    "en": "Al-Mukhtasar in Interpreting the Noble Quran",
+    "ar": "المختصر في تفسير القرآن الكريم",
+    "id": "Indonesian Translation of Al-Mukhtasar in Interpreting the Noble Quran"
+  },
+  "languages": [
+    "id"
+  ],
+  "source": {
+    "name": "QuranEnc.com",
+    "url": "https://quranenc.com/id/browse/indonesian_mokhtasar",
+    "snapshot": "2026-10-06",
+    "translationKey": "indonesian_mokhtasar",
+    "version": "1.0.0",
+    "issued": "2026-07-27"
+  },
+  "license": {
+    "id": "QuranEnc-terms",
+    "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
+    "url": "https://quranenc.com/",
+    "attribution": "QuranEnc.com — Indonesian Translation of Al-Mukhtasar in Interpreting the Noble Quran (v1.0.0)"
+  },
+  "recordCount": 6236,
+  "files": [
+    {
+      "path": "chunks.jsonl",
+      "bytes": 5058373,
+      "sha256": "2c7413697aecad8de5478971ddc6f8e440f02d4a6cca5fe3b6e3eb7b2de52570"
+    },
+    {
+      "path": "documents.json",
+      "bytes": 913,
+      "sha256": "7715da01ec71bb6d30fcae06ffd5470a76176f675eb41d7c77ca705e02cc44cb"
+    },
+    {
+      "path": "NOTICE-quranenc.txt",
+      "bytes": 627,
+      "sha256": "dd3818792ed31bc19c344e4d2861bad7fd2513efee58b0186e02b5d1675ee5d7"
+    }
+  ]
+}
