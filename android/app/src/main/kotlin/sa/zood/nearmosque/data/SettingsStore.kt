@@ -43,6 +43,8 @@ data class AppSettings(
     val onboarded: Boolean = false,
     /** Live mosque results (OpenStreetMap via Overpass) added to downloaded data; disclosed in onboarding and Settings. */
     val onlineSearch: Boolean = true,
+    /** Early, Friday and Ramadan reminders and the Fajr alarm. */
+    val alerts: sa.zood.nearmosque.core.AlertSettings = sa.zood.nearmosque.core.AlertSettings(),
 )
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -72,6 +74,11 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val mosqueView = stringPreferencesKey("mosque_view")
         val onboarded = booleanPreferencesKey("onboarded")
         val onlineSearch = booleanPreferencesKey("online_search")
+        val alertBefore = intPreferencesKey("alert_before")
+        val alertFriday = booleanPreferencesKey("alert_friday")
+        val alertRamadan = booleanPreferencesKey("alert_ramadan")
+        /** Minutes before Fajr for the alarm; -1 (or missing) = off. */
+        val alertFajr = intPreferencesKey("alert_fajr_alarm")
         fun offset(e: PrayerEvent) = intPreferencesKey("offset_${e.name}")
     }
 
@@ -106,7 +113,20 @@ class SettingsStore(private val store: DataStore<Preferences>) {
             mosqueView = p[K.mosqueView] ?: "compass",
             onboarded = p[K.onboarded] ?: false,
             onlineSearch = p[K.onlineSearch] ?: true,
+            alerts = sa.zood.nearmosque.core.AlertSettings(
+                minutesBefore = p[K.alertBefore] ?: 0,
+                friday = p[K.alertFriday] ?: false,
+                ramadan = p[K.alertRamadan] ?: false,
+                fajrAlarmMinutesBefore = p[K.alertFajr]?.takeIf { it >= 0 },
+            ),
         )
+    }
+
+    suspend fun setAlerts(a: sa.zood.nearmosque.core.AlertSettings) = store.edit { p ->
+        p[K.alertBefore] = a.minutesBefore
+        p[K.alertFriday] = a.friday
+        p[K.alertRamadan] = a.ramadan
+        p[K.alertFajr] = a.fajrAlarmMinutesBefore ?: -1
     }
 
     suspend fun setPrayerLocation(loc: PrayerLocation, follow: Boolean) = store.edit { p ->

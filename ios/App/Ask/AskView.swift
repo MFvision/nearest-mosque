@@ -341,8 +341,35 @@ struct AnswerCard: View {
     var onRead: (ResolvedCitation) -> Void
     @State private var more = false
 
+    /// The answer in the interface language, then the quoted verses (Arabic, then their translation).
+    private var spoken: [(String, String)] {
+        var parts: [(String, String)] = []
+        switch answer.kind {
+        case .common: parts.append((answer.commonQuestion.flatMap { $0.summary[l10n.language] ?? $0.summary["en"] } ?? "", l10n.language))
+        default: if let g = answer.generated { parts.append((g, l10n.language)) }
+        }
+        for c in turn.citations.prefix(2) {
+            parts.append((c.chunk.original.text, c.chunk.original.lang))
+            if let t = c.chunk.allTranslations.first { parts.append((t.text, t.lang)) }
+        }
+        return parts
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if !spoken.isEmpty {
+                let on = Speaker.shared.speaking == turn.id.uuidString
+                HStack {
+                    Spacer()
+                    Button { Speaker.shared.toggle(turn.id.uuidString, spoken) } label: {
+                        Label(l10n.t(on ? "read_aloud_stop" : "read_aloud"), systemImage: on ? "stop.fill" : "speaker.wave.2.fill")
+                            .font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
+                            .padding(.horizontal, 12).frame(minHeight: 36).contentShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .glass(Capsule())
+                }
+            }
             switch answer.kind {
             case .common:
                 let q = answer.commonQuestion!

@@ -57,6 +57,28 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Picker(l10n.t("alerts_before"), selection: alertBinding(\.minutesBefore)) {
+                        ForEach(AlertSettings.beforeChoices, id: \.self) { m in
+                            Text(m == 0 ? l10n.t("alerts_off") : l10n.t("alerts_minutes", m)).tag(m)
+                        }
+                    }
+                    Toggle(isOn: alertBinding(\.friday)) {
+                        VStack(alignment: .leading) { Text(l10n.t("alerts_friday")); Text(l10n.t("alerts_friday_note")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                    Toggle(isOn: alertBinding(\.ramadan)) {
+                        VStack(alignment: .leading) { Text(l10n.t("alerts_ramadan")); Text(l10n.t("alerts_ramadan_note")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                    Picker(selection: alertBinding(\.fajrAlarmMinutesBefore)) {
+                        Text(l10n.t("alerts_off")).tag(Int?.none)
+                        ForEach(AlertSettings.fajrAlarmChoices, id: \.self) { m in
+                            Text(m == 0 ? l10n.t("alerts_at_fajr") : l10n.t("alerts_minutes", m)).tag(Int?.some(m))
+                        }
+                    } label: {
+                        VStack(alignment: .leading) { Text(l10n.t("alerts_fajr_alarm")); Text(l10n.t("alerts_fajr_alarm_note")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                } header: { Text(l10n.t("alerts_section")) } footer: { Text(l10n.t("alerts_bells_note")) }
+
+                Section {
                     if let m = app.packs?.citiesManifest() {
                         packRow(l10n.t("pack_kind_cities"), m, records: m.recordCount ?? 0, bytes: m.files.reduce(0) { $0 + $1.bytes }, builtin: true)
                     }
@@ -146,4 +168,9 @@ struct SettingsView: View {
                 .font(.caption).foregroundStyle(.secondary)
         }
     }
+
+    private func alertBinding<T>(_ path: WritableKeyPath<AlertSettings, T>) -> Binding<T> {
+        Binding(get: { app.settings.alerts[keyPath: path] }, set: { v in var a = app.settings.alerts; a[keyPath: path] = v; app.setAlerts(a) })
+    }
+
 }

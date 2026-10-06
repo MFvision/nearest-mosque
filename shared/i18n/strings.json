@@ -3175,6 +3175,195 @@
       "id": "Buka aplikasi untuk memilih kota Anda",
       "fr": "Ouvrez l'application pour choisir votre ville",
       "es": "Abra la app para elegir su ciudad"
+    },
+    "alerts_section": {
+      "en": "Reminders and alarms",
+      "ar": "التنبيهات والمنبّه",
+      "ur": "یاددہانیاں اور الارم",
+      "tr": "Hatırlatıcılar ve alarmlar",
+      "id": "Pengingat dan alarm",
+      "fr": "Rappels et alarmes",
+      "es": "Recordatorios y alarmas"
+    },
+    "alerts_bells_note": {
+      "en": "Turn on the bell next to a prayer for a reminder at its time.",
+      "ar": "فعّل الجرس بجانب الصلاة لتصلك تذكرة في وقتها.",
+      "ur": "نماز کے ساتھ گھنٹی آن کریں تاکہ وقت پر یاددہانی ملے۔",
+      "tr": "Vaktinde hatırlatma için namazın yanındaki zili açın.",
+      "id": "Nyalakan lonceng di samping salat untuk pengingat pada waktunya.",
+      "fr": "Activez la cloche à côté d'une prière pour un rappel à son heure.",
+      "es": "Active la campana junto a una oración para un aviso a su hora."
+    },
+    "alerts_before": {
+      "en": "Early reminder",
+      "ar": "تذكير مبكر",
+      "ur": "پیشگی یاددہانی",
+      "tr": "Erken hatırlatma",
+      "id": "Pengingat lebih awal",
+      "fr": "Rappel anticipé",
+      "es": "Aviso previo"
+    },
+    "alerts_off": {
+      "en": "Off",
+      "ar": "إيقاف",
+      "ur": "بند",
+      "tr": "Kapalı",
+      "id": "Mati",
+      "fr": "Désactivé",
+      "es": "Desactivado"
+    },
+    "alerts_minutes": {
+      "en": "%1$d min before",
+      "ar": "قبل %1$d دقيقة",
+      "ur": "%1$d منٹ پہلے",
+      "tr": "%1$d dk önce",
+      "id": "%1$d menit sebelum",
+      "fr": "%1$d min avant",
+      "es": "%1$d min antes"
+    },
+    "alerts_friday": {
+      "en": "Friday (Jumu'ah) reminder",
+      "ar": "تذكير صلاة الجمعة",
+      "ur": "جمعہ کی یاددہانی",
+      "tr": "Cuma namazı hatırlatması",
+      "id": "Pengingat salat Jumat",
+      "fr": "Rappel du vendredi (Joumou'a)",
+      "es": "Aviso del viernes (yumu'a)"
+    },
+    "alerts_friday_note": {
+      "en": "45 minutes before Dhuhr on Fridays.",
+      "ar": "قبل الظهر بـ45 دقيقة يوم الجمعة.",
+      "ur": "جمعہ کو ظہر سے 45 منٹ پہلے۔",
+      "tr": "Cuma günleri öğleden 45 dakika önce.",
+      "id": "45 menit sebelum Zuhur pada hari Jumat.",
+      "fr": "45 minutes avant Dhuhr le vendredi.",
+      "es": "45 minutos antes del Dhuhr los viernes."
+    },
+    "alerts_ramadan": {
+      "en": "Ramadan: suhoor and iftar",
+      "ar": "رمضان: السحور والإفطار",
+      "ur": "رمضان: سحری اور افطار",
+      "tr": "Ramazan: sahur ve iftar",
+      "id": "Ramadan: sahur dan iftar",
+      "fr": "Ramadan : suhour et iftar",
+      "es": "Ramadán: suhur e iftar"
+    },
+    "alerts_ramadan_note": {
+      "en": "Suhoor 45 minutes before Fajr, iftar at Maghrib. Only during Ramadan.",
+      "ar": "السحور قبل الفجر بـ45 دقيقة والإفطار عند المغرب، في رمضان فقط.",
+      "ur": "سحری فجر سے 45 منٹ پہلے، افطار مغرب پر۔ صرف رمضان میں۔",
+      "tr": "Sahur imsaktan 45 dk önce, iftar akşam ezanında. Yalnızca Ramazan'da.",
+      "id": "Sahur 45 menit sebelum Subuh, iftar saat Magrib. Hanya selama Ramadan.",
+      "fr": "Suhour 45 minutes avant Fajr, iftar au Maghrib. Seulement pendant le Ramadan.",
+      "es": "Suhur 45 minutos antes del Fajr, iftar en el Magrib. Solo en Ramadán."
+    },
+    "alerts_fajr_alarm": {
+      "en": "Fajr alarm",
+      "ar": "منبّه الفجر",
+      "ur": "فجر کا الارم",
+      "tr": "Sabah alarmı",
+      "id": "Alarm Subuh",
+      "fr": "Alarme du Fajr",
+      "es": "Alarma del Fajr"
+    },
+    "alerts_fajr_alarm_note": {
+      "en": "Rings like an alarm until you stop it, even on silent where the phone allows.",
+      "ar": "يرنّ كالمنبّه حتى توقفه، حتى في الوضع الصامت إن سمح الهاتف.",
+      "ur": "الارم کی طرح بجتا ہے جب تک آپ بند نہ کریں، فون اجازت دے تو خاموش موڈ میں بھی۔",
+      "tr": "Durdurana kadar alarm gibi çalar; telefon izin verirse sessizde de.",
+      "id": "Berbunyi seperti alarm sampai Anda hentikan, bahkan saat senyap jika ponsel mengizinkan.",
+      "fr": "Sonne comme une alarme jusqu'à l'arrêt, même en silencieux si le téléphone le permet.",
+      "es": "Suena como una alarma hasta que la detenga, incluso en silencio si el teléfono lo permite."
+    },
+    "alerts_at_fajr": {
+      "en": "At Fajr",
+      "ar": "عند الفجر",
+      "ur": "فجر کے وقت",
+      "tr": "İmsak vaktinde",
+      "id": "Saat Subuh",
+      "fr": "À l'heure du Fajr",
+      "es": "A la hora del Fajr"
+    },
+    "reminder_before_title": {
+      "en": "%1$s in %2$d min",
+      "ar": "%1$s بعد %2$d دقيقة",
+      "ur": "%1$s %2$d منٹ میں",
+      "tr": "%1$s %2$d dk sonra",
+      "id": "%1$s dalam %2$d menit",
+      "fr": "%1$s dans %2$d min",
+      "es": "%1$s en %2$d min"
+    },
+    "reminder_friday_title": {
+      "en": "Jumu'ah today",
+      "ar": "صلاة الجمعة اليوم",
+      "ur": "آج جمعہ ہے",
+      "tr": "Bugün Cuma",
+      "id": "Hari ini Jumat",
+      "fr": "Joumou'a aujourd'hui",
+      "es": "Hoy es yumu'a"
+    },
+    "reminder_friday_body": {
+      "en": "Dhuhr is at %1$s. Time to get ready for the Friday prayer.",
+      "ar": "الظهر الساعة %1$s. حان وقت الاستعداد لصلاة الجمعة.",
+      "ur": "ظہر %1$s پر ہے۔ جمعہ کی نماز کی تیاری کا وقت ہے۔",
+      "tr": "Öğle %1$s'de. Cuma namazına hazırlanma vakti.",
+      "id": "Zuhur pukul %1$s. Saatnya bersiap untuk salat Jumat.",
+      "fr": "Dhuhr est à %1$s. Il est temps de se préparer pour la prière du vendredi.",
+      "es": "El Dhuhr es a las %1$s. Es hora de prepararse para la oración del viernes."
+    },
+    "reminder_suhoor_title": {
+      "en": "Suhoor",
+      "ar": "السحور",
+      "ur": "سحری",
+      "tr": "Sahur",
+      "id": "Sahur",
+      "fr": "Suhour",
+      "es": "Suhur"
+    },
+    "reminder_suhoor_body": {
+      "en": "Fajr is at %1$s.",
+      "ar": "الفجر الساعة %1$s.",
+      "ur": "فجر %1$s پر ہے۔",
+      "tr": "İmsak %1$s'de.",
+      "id": "Subuh pukul %1$s.",
+      "fr": "Le Fajr est à %1$s.",
+      "es": "El Fajr es a las %1$s."
+    },
+    "reminder_iftar_title": {
+      "en": "Iftar: time to break the fast",
+      "ar": "الإفطار: حان وقت الفطور",
+      "ur": "افطار کا وقت",
+      "tr": "İftar vakti",
+      "id": "Waktunya berbuka",
+      "fr": "Iftar : l'heure de rompre le jeûne",
+      "es": "Iftar: hora de romper el ayuno"
+    },
+    "alarm_stop": {
+      "en": "Stop",
+      "ar": "إيقاف",
+      "ur": "بند کریں",
+      "tr": "Durdur",
+      "id": "Hentikan",
+      "fr": "Arrêter",
+      "es": "Detener"
+    },
+    "read_aloud": {
+      "en": "Listen",
+      "ar": "استمع",
+      "ur": "سنیں",
+      "tr": "Dinle",
+      "id": "Dengarkan",
+      "fr": "Écouter",
+      "es": "Escuchar"
+    },
+    "read_aloud_stop": {
+      "en": "Stop",
+      "ar": "إيقاف",
+      "ur": "روکیں",
+      "tr": "Durdur",
+      "id": "Hentikan",
+      "fr": "Arrêter",
+      "es": "Detener"
     }
   }
 }

@@ -26,6 +26,8 @@ struct StoredSettings: Codable, Equatable {
     var prayer = PrayerSettings()
     var methodChosenByUser = false
     var reminders: Set<PrayerEvent> = []
+    /// Early, Friday and Ramadan reminders and the Fajr alarm.
+    var alerts = AlertSettings()
     var onboarded = false
     /// Live mosque results (Apple Maps search) added to downloaded data; disclosed in onboarding and Settings.
     var onlineSearch = true
@@ -39,6 +41,7 @@ struct StoredSettings: Codable, Equatable {
         prayer = try c.decodeIfPresent(PrayerSettings.self, forKey: .prayer) ?? PrayerSettings()
         methodChosenByUser = try c.decodeIfPresent(Bool.self, forKey: .methodChosenByUser) ?? false
         reminders = try c.decodeIfPresent(Set<PrayerEvent>.self, forKey: .reminders) ?? []
+        alerts = (try? c.decodeIfPresent(AlertSettings.self, forKey: .alerts)) ?? AlertSettings()
         onboarded = try c.decodeIfPresent(Bool.self, forKey: .onboarded) ?? false
         onlineSearch = try c.decodeIfPresent(Bool.self, forKey: .onlineSearch) ?? true
     }
@@ -223,8 +226,16 @@ final class AppModel {
         await rescheduleReminders()
     }
 
+    func setAlerts(_ a: AlertSettings) {
+        settings.alerts = a
+        Task {
+            if !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
+            await rescheduleReminders()
+        }
+    }
+
     func rescheduleReminders() async {
-        await Reminders.reschedule(location: settings.location, settings: settings.prayer, enabled: settings.reminders, l10n: l10n)
+        await Reminders.reschedule(location: settings.location, settings: settings.prayer, enabled: settings.reminders, alerts: settings.alerts, l10n: l10n)
     }
 
     /// Sky for the prayer period in progress (night when no location is chosen yet).

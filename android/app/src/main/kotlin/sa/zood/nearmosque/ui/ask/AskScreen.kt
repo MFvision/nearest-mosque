@@ -198,7 +198,30 @@ fun AskScreen(vm: AskViewModel, onClose: () -> Unit) {
 private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit) {
     val a = t.answer ?: return
     var more by rememberSaveable(t.id) { mutableStateOf(false) }
+    val context = LocalContext.current
+    // The answer in the interface language, then the quoted verses (Arabic, then their translation).
+    val spoken = buildList {
+        if (a.kind == AnswerKind.COMMON) a.commonQuestion?.let { add(summaryFor(it, lang) to lang) }
+        t.citations.take(2).forEach { c ->
+            add(c.chunk.original.text to c.chunk.original.lang)
+            c.chunk.translations.firstOrNull()?.let { add(it.text to it.lang) }
+        }
+    }
+    val speaking by sa.zood.nearmosque.platform.Speaker.speaking.collectAsStateWithLifecycle()
     GlassCard(Modifier.semantics(mergeDescendants = false) { liveRegion = LiveRegionMode.Polite }) {
+        if (spoken.isNotEmpty()) {
+            val on = speaking == t.id.toString()
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                TextButton(onClick = { sa.zood.nearmosque.platform.Speaker.toggle(context, t.id.toString(), spoken) }, modifier = Modifier.heightIn(min = 48.dp)) {
+                    Icon(
+                        if (on) androidx.compose.ui.res.painterResource(R.drawable.ic_stop) else androidx.compose.ui.res.painterResource(R.drawable.ic_speaker),
+                        contentDescription = null, tint = Accent, modifier = Modifier.size(18.dp),
+                    )
+                    Spacer(Modifier.width(6.dp))
+                    Text(stringResource(if (on) R.string.read_aloud_stop else R.string.read_aloud), color = Accent)
+                }
+            }
+        }
         when (a.kind) {
             AnswerKind.COMMON -> {
                 val q = a.commonQuestion!!
