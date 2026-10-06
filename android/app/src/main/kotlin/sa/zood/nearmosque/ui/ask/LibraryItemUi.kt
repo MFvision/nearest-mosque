@@ -38,7 +38,7 @@ import sa.zood.nearmosque.core.SourceChunk
 import sa.zood.nearmosque.data.LibraryFiles
 import sa.zood.nearmosque.ui.theme.Tokens
 
-private fun rtl(lang: String) = lang == "ar" || lang == "ur"
+private fun rtl(lang: String) = sa.zood.nearmosque.core.Languages.isRtl(lang)
 
 /** Title shown for a library record (a Qur'an reference for QuranEnc verses). */
 @Composable

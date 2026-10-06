@@ -1,3 +1,4 @@
+import NMCore
 import SwiftUI
 
 /// Interface language: the device's ordered preference (which already reflects the per-app choice in
@@ -5,10 +6,8 @@ import SwiftUI
 /// the chosen language, so switching works offline and immediately.
 @Observable
 final class Localization {
-    static let supported = ["en", "ar", "ur", "tr", "id", "fr", "es"]
-    static let nativeNames: [String: String] = [
-        "en": "English", "ar": "العربية", "ur": "اردو", "tr": "Türkçe", "id": "Bahasa Indonesia", "fr": "Français", "es": "Español",
-    ]
+    static let supported = Languages.all.map(\.code)
+    static let nativeNames = Dictionary(uniqueKeysWithValues: Languages.all.map { ($0.code, $0.name) })
     private static let key = "languageOverride"
 
     /// nil = use device language.
@@ -27,24 +26,19 @@ final class Localization {
     }
 
     private func reload() {
-        let device = Bundle.main.preferredLocalizations.first.map { Self.base($0) } ?? "en"
-        let lang = override ?? (Self.supported.contains(device) ? device : Self.bestMatch() ?? "en")
+        let device = Bundle.main.preferredLocalizations.first.flatMap(Languages.code(identifier:))
+        let lang = override.flatMap { Self.supported.contains($0) ? $0 : nil } ?? device ?? Self.bestMatch() ?? "en"
         language = lang
-        bundle = Bundle.main.path(forResource: lang, ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
+        bundle = Bundle.main.path(forResource: Languages.lproj(lang), ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
     }
 
     /// First supported language in the user's ordered preferences.
     private static func bestMatch() -> String? {
-        Locale.preferredLanguages.map(base).first(where: supported.contains)
+        Locale.preferredLanguages.lazy.compactMap(Languages.code(identifier:)).first
     }
 
-    static func base(_ id: String) -> String {
-        let b = String(id.split(separator: "-").first ?? Substring(id))
-        return b == "in" ? "id" : b
-    }
-
-    var locale: Locale { Locale(identifier: language) }
-    var isRTL: Bool { language == "ar" || language == "ur" }
+    var locale: Locale { Locale(identifier: Languages.tag(language)) }
+    var isRTL: Bool { Languages.isRTL(language) }
     var layoutDirection: LayoutDirection { isRTL ? .rightToLeft : .leftToRight }
 
     func t(_ key: String) -> String { bundle.localizedString(forKey: key, value: nil, table: nil) }

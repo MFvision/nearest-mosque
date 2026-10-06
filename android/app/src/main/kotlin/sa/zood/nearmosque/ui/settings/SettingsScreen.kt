@@ -57,9 +57,11 @@ import sa.zood.nearmosque.ui.prayer.PrayerUi
 import sa.zood.nearmosque.ui.theme.LocalExtraColors
 
 /** Each language is listed in its own name so anyone can find theirs. */
-val LANGUAGES = listOf(
-    "en" to "English", "ar" to "العربية", "ur" to "اردو", "tr" to "Türkçe",
-    "id" to "Bahasa Indonesia", "fr" to "Français", "es" to "Español",
+val LANGUAGES: List<Pair<String, String>> = sa.zood.nearmosque.core.Languages.all.map { it.code to it.name }
+
+/** Makes [code] the app's language (its platform locale tag, e.g. fa-AF for Dari). */
+fun setAppLanguage(code: String?) = AppCompatDelegate.setApplicationLocales(
+    code?.let { LocaleListCompat.forLanguageTags(sa.zood.nearmosque.core.Languages.tag(it)) } ?: LocaleListCompat.getEmptyLocaleList(),
 )
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
@@ -94,7 +96,7 @@ fun SettingsScreen(
             }
         }
     }
-    val current = AppCompatDelegate.getApplicationLocales().takeIf { !it.isEmpty }?.get(0)?.language?.let { if (it == "in") "id" else it }
+    val current = AppCompatDelegate.getApplicationLocales().takeIf { !it.isEmpty }?.get(0)?.let { sa.zood.nearmosque.core.Languages.code(it.language, it.country, it.script) }
 
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(Modifier.fillMaxSize().safeDrawingPadding()) {
@@ -108,7 +110,7 @@ fun SettingsScreen(
                     AppCompatDelegate.setApplicationLocales(LocaleListCompat.getEmptyLocaleList())
                 }
                 LANGUAGES.forEach { (code, name) ->
-                    RadioRow(name, current == code) { AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(code)) }
+                    RadioRow(name, current == code) { setAppLanguage(code) }
                 }
                 Text(stringResource(R.string.draft_translations_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
 

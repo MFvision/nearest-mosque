@@ -17,15 +17,13 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DecimalStyle
 import java.time.format.FormatStyle
 import java.util.Locale
+import sa.zood.nearmosque.core.Languages
 
 /** Locale-aware formatting. Every number, time and date the user sees goes through here. */
 object Format {
     fun locale(context: Context): Locale = context.resources.configuration.locales[0] ?: Locale.getDefault()
 
-    fun languageCode(context: Context): String = when (val l = locale(context).language) {
-        "in" -> "id"
-        else -> l
-    }
+    fun languageCode(context: Context): String = locale(context).let { Languages.code(it.language, it.country, it.script) }
 
     @StringRes
     fun prayerName(e: PrayerEvent): Int = when (e) {

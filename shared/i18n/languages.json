@@ -1,0 +1,365 @@
+{
+ "_comment": "Interface languages. tools/gen_strings.py reads this to generate the platform resources and the Languages tables in both cores. 'code' is the app's own code (content packs, Ask); 'tag' is the platform locale tag; 'android' the res folder; 'ios' the .lproj name. 'enabled' languages are shipped; the others wait for their strings.",
+ "languages": [
+  {
+   "code": "en",
+   "name": "English",
+   "english": "English",
+   "rtl": false,
+   "tag": "en",
+   "android": "values",
+   "ios": "en",
+   "enabled": true
+  },
+  {
+   "code": "ar",
+   "name": "العربية",
+   "english": "Arabic",
+   "rtl": true,
+   "tag": "ar",
+   "android": "values-ar",
+   "ios": "ar",
+   "enabled": true
+  },
+  {
+   "code": "ur",
+   "name": "اردو",
+   "english": "Urdu",
+   "rtl": true,
+   "tag": "ur",
+   "android": "values-ur",
+   "ios": "ur",
+   "enabled": true
+  },
+  {
+   "code": "tr",
+   "name": "Türkçe",
+   "english": "Turkish",
+   "rtl": false,
+   "tag": "tr",
+   "android": "values-tr",
+   "ios": "tr",
+   "enabled": true
+  },
+  {
+   "code": "id",
+   "name": "Bahasa Indonesia",
+   "english": "Indonesian",
+   "rtl": false,
+   "tag": "id",
+   "android": "values-in",
+   "ios": "id",
+   "enabled": true
+  },
+  {
+   "code": "fr",
+   "name": "Français",
+   "english": "French",
+   "rtl": false,
+   "tag": "fr",
+   "android": "values-fr",
+   "ios": "fr",
+   "enabled": true
+  },
+  {
+   "code": "es",
+   "name": "Español",
+   "english": "Spanish",
+   "rtl": false,
+   "tag": "es",
+   "android": "values-es",
+   "ios": "es",
+   "enabled": true
+  },
+  {
+   "code": "ru",
+   "name": "Русский",
+   "english": "Russian",
+   "rtl": false,
+   "tag": "ru",
+   "android": "values-ru",
+   "ios": "ru",
+   "enabled": false
+  },
+  {
+   "code": "bn",
+   "name": "বাংলা",
+   "english": "Bengali",
+   "rtl": false,
+   "tag": "bn",
+   "android": "values-bn",
+   "ios": "bn",
+   "enabled": false
+  },
+  {
+   "code": "fa",
+   "name": "فارسی",
+   "english": "Persian",
+   "rtl": true,
+   "tag": "fa",
+   "android": "values-fa",
+   "ios": "fa",
+   "enabled": false
+  },
+  {
+   "code": "prs",
+   "name": "دری",
+   "english": "Dari",
+   "rtl": true,
+   "tag": "fa-AF",
+   "android": "values-fa-rAF",
+   "ios": "fa-AF",
+   "enabled": false
+  },
+  {
+   "code": "zh",
+   "name": "中文（简体）",
+   "english": "Chinese (Simplified)",
+   "rtl": false,
+   "tag": "zh-Hans",
+   "android": "values-b+zh+Hans",
+   "ios": "zh-Hans",
+   "enabled": false
+  },
+  {
+   "code": "hi",
+   "name": "हिन्दी",
+   "english": "Hindi",
+   "rtl": false,
+   "tag": "hi",
+   "android": "values-hi",
+   "ios": "hi",
+   "enabled": false
+  },
+  {
+   "code": "pt",
+   "name": "Português",
+   "english": "Portuguese",
+   "rtl": false,
+   "tag": "pt",
+   "android": "values-pt",
+   "ios": "pt",
+   "enabled": false
+  },
+  {
+   "code": "ha",
+   "name": "Hausa",
+   "english": "Hausa",
+   "rtl": false,
+   "tag": "ha",
+   "android": "values-ha",
+   "ios": "ha",
+   "enabled": false
+  },
+  {
+   "code": "sw",
+   "name": "Kiswahili",
+   "english": "Swahili",
+   "rtl": false,
+   "tag": "sw",
+   "android": "values-sw",
+   "ios": "sw",
+   "enabled": false
+  },
+  {
+   "code": "tl",
+   "name": "Tagalog",
+   "english": "Tagalog",
+   "rtl": false,
+   "tag": "fil",
+   "android": "values-b+fil",
+   "ios": "fil",
+   "enabled": false
+  },
+  {
+   "code": "vi",
+   "name": "Tiếng Việt",
+   "english": "Vietnamese",
+   "rtl": false,
+   "tag": "vi",
+   "android": "values-vi",
+   "ios": "vi",
+   "enabled": false
+  },
+  {
+   "code": "th",
+   "name": "ไทย",
+   "english": "Thai",
+   "rtl": false,
+   "tag": "th",
+   "android": "values-th",
+   "ios": "th",
+   "enabled": false
+  },
+  {
+   "code": "km",
+   "name": "ខ្មែរ",
+   "english": "Khmer",
+   "rtl": false,
+   "tag": "km",
+   "android": "values-km",
+   "ios": "km",
+   "enabled": false
+  },
+  {
+   "code": "ug",
+   "name": "ئۇيغۇرچە",
+   "english": "Uyghur",
+   "rtl": true,
+   "tag": "ug",
+   "android": "values-ug",
+   "ios": "ug",
+   "enabled": false
+  },
+  {
+   "code": "ckb",
+   "name": "کوردی",
+   "english": "Kurdish (Sorani)",
+   "rtl": true,
+   "tag": "ckb",
+   "android": "values-b+ckb",
+   "ios": "ckb",
+   "enabled": false
+  },
+  {
+   "code": "bs",
+   "name": "Bosanski",
+   "english": "Bosnian",
+   "rtl": false,
+   "tag": "bs",
+   "android": "values-bs",
+   "ios": "bs",
+   "enabled": false
+  },
+  {
+   "code": "sr",
+   "name": "Српски",
+   "english": "Serbian",
+   "rtl": false,
+   "tag": "sr",
+   "android": "values-sr",
+   "ios": "sr",
+   "enabled": false
+  },
+  {
+   "code": "mk",
+   "name": "Македонски",
+   "english": "Macedonian",
+   "rtl": false,
+   "tag": "mk",
+   "android": "values-mk",
+   "ios": "mk",
+   "enabled": false
+  },
+  {
+   "code": "hu",
+   "name": "Magyar",
+   "english": "Hungarian",
+   "rtl": false,
+   "tag": "hu",
+   "android": "values-hu",
+   "ios": "hu",
+   "enabled": false
+  },
+  {
+   "code": "nl",
+   "name": "Nederlands",
+   "english": "Dutch",
+   "rtl": false,
+   "tag": "nl",
+   "android": "values-nl",
+   "ios": "nl",
+   "enabled": false
+  },
+  {
+   "code": "ka",
+   "name": "ქართული",
+   "english": "Georgian",
+   "rtl": false,
+   "tag": "ka",
+   "android": "values-ka",
+   "ios": "ka",
+   "enabled": false
+  },
+  {
+   "code": "si",
+   "name": "සිංහල",
+   "english": "Sinhala",
+   "rtl": false,
+   "tag": "si",
+   "android": "values-si",
+   "ios": "si",
+   "enabled": false
+  },
+  {
+   "code": "te",
+   "name": "తెలుగు",
+   "english": "Telugu",
+   "rtl": false,
+   "tag": "te",
+   "android": "values-te",
+   "ios": "te",
+   "enabled": false
+  },
+  {
+   "code": "kn",
+   "name": "ಕನ್ನಡ",
+   "english": "Kannada",
+   "rtl": false,
+   "tag": "kn",
+   "android": "values-kn",
+   "ios": "kn",
+   "enabled": false
+  },
+  {
+   "code": "ml",
+   "name": "മലയാളം",
+   "english": "Malayalam",
+   "rtl": false,
+   "tag": "ml",
+   "android": "values-ml",
+   "ios": "ml",
+   "enabled": false
+  },
+  {
+   "code": "mr",
+   "name": "मराठी",
+   "english": "Marathi",
+   "rtl": false,
+   "tag": "mr",
+   "android": "values-mr",
+   "ios": "mr",
+   "enabled": false
+  },
+  {
+   "code": "gu",
+   "name": "ગુજરાતી",
+   "english": "Gujarati",
+   "rtl": false,
+   "tag": "gu",
+   "android": "values-gu",
+   "ios": "gu",
+   "enabled": false
+  },
+  {
+   "code": "pa",
+   "name": "ਪੰਜਾਬੀ",
+   "english": "Punjabi",
+   "rtl": false,
+   "tag": "pa",
+   "android": "values-pa",
+   "ios": "pa",
+   "enabled": false
+  },
+  {
+   "code": "as",
+   "name": "অসমীয়া",
+   "english": "Assamese",
+   "rtl": false,
+   "tag": "as",
+   "android": "values-as",
+   "ios": "as",
+   "enabled": false
+  }
+ ]
+}

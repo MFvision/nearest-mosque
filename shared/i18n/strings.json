@@ -1,14 +1,5 @@
 {
-  "_comment": "Single source of UI strings. tools/gen_strings.py generates ios/App/Resources/Localizable.xcstrings and android/app/src/main/res/values*/strings.xml. Placeholders use %1$s / %1$d. Translations other than English and Arabic are first drafts that need native review (see docs/05-status.md).",
-  "languages": [
-    "en",
-    "ar",
-    "ur",
-    "tr",
-    "id",
-    "fr",
-    "es"
-  ],
+  "_comment": "Single source of UI strings; the languages are listed in languages.json. tools/gen_strings.py generates ios/App/Resources/Localizable.xcstrings and android/app/src/main/res/values*/strings.xml. Placeholders use %1$s / %1$d. Translations other than English and Arabic are first drafts that need native review (see docs/05-status.md).",
   "strings": {
     "app_name": {
       "en": "Near Mosque",

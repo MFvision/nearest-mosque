@@ -1,4 +1,5 @@
 import AVFoundation
+import NMCore
 import SwiftUI
 
 /// Reads text aloud with the phone's own voices (on the device, offline). One thing at a time: starting
@@ -24,7 +25,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         speaking = id
         for (text, lang) in parts where !text.isEmpty {
             let u = AVSpeechUtterance(string: text)
-            u.voice = AVSpeechSynthesisVoice(language: lang) ?? AVSpeechSynthesisVoice(language: String(lang.prefix(2)))
+            u.voice = AVSpeechSynthesisVoice(language: Languages.tag(lang)) ?? AVSpeechSynthesisVoice(language: String(Languages.tag(lang).prefix(2)))
             u.postUtteranceDelay = 0.3
             synth.speak(u)
         }

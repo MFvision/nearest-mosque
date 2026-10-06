@@ -29,7 +29,7 @@ object Speaker {
             val t = tts
             if (t != null) {
                 parts.filter { it.first.isNotBlank() }.forEachIndexed { i, (text, lang) ->
-                    t.language = Locale.forLanguageTag(lang)
+                    t.language = Locale.forLanguageTag(sa.zood.nearmosque.core.Languages.tag(lang))
                     t.speak(text, TextToSpeech.QUEUE_ADD, null, "$id#$i#${parts.size}")
                 }
             }

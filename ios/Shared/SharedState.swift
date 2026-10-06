@@ -15,8 +15,8 @@ struct SharedState: Codable, Equatable {
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
-    var locale: Locale { Locale(identifier: language) }
-    var isRTL: Bool { language == "ar" || language == "ur" }
+    var locale: Locale { Locale(identifier: Languages.tag(language)) }
+    var isRTL: Bool { Languages.isRTL(language) }
 
     /// Today's, yesterday's and tomorrow's schedules around `now`.
     func days(_ now: Date, calculator: PrayerCalculator = PrayerCalculator()) -> [DaySchedule] {

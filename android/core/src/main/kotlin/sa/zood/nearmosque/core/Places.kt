@@ -13,12 +13,12 @@ data class City(
     val population: Long,
 ) {
     /**
-     * Name for display: for ar/ur interfaces a name written entirely in Arabic script (GeoNames also
+     * Name for display: for Arabic-script interfaces (ar, ur, fa...) a name written entirely in Arabic script (GeoNames also
      * carries romanized mixtures such as "kېp ټawn", which are skipped), preferring spellings without
-     * Persian/Urdu letters for Arabic and with them for Urdu; otherwise the Latin name.
+     * Persian/Urdu letters for Arabic and with them for the others; otherwise the Latin name.
      */
     fun displayName(languageCode: String): String {
-        if (languageCode != "ar" && languageCode != "ur") return name
+        if (!Languages.isRtl(languageCode)) return name
         val clean = arabicNames.filter(::isPureArabicScript)
         val urduStyle = clean.filter { n -> n.any { it in URDU_LETTERS } }
         val arabicStyle = clean - urduStyle.toSet()

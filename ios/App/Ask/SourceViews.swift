@@ -5,7 +5,7 @@ import SwiftUI
 func referenceLabel(_ c: SourceChunk, l10n: Localization) -> String {
     let base: String
     if let s = c.section?.surah, let a = c.section?.ayah { base = l10n.t("reference_quran", s, a) } else { base = c.anchor }
-    let name = (l10n.language == "ar" || l10n.language == "ur") ? c.section?.nameAr : c.section?.nameTranslit
+    let name = Languages.isRTL(l10n.language) ? c.section?.nameAr : c.section?.nameTranslit
     return name.map { "\(base) · \($0)" } ?? base
 }
 
@@ -76,14 +76,14 @@ struct OriginalText: View {
     let text: String
     let lang: String
     var body: some View {
-        let rtl = lang == "ar" || lang == "ur"
+        let rtl = Languages.isRTL(lang)
         Text(text)
             .font(rtl ? .title2 : .body)
             .lineSpacing(rtl ? 10 : 2)
             .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             .environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
-            .environment(\.locale, Locale(identifier: lang))
+            .environment(\.locale, Locale(identifier: Languages.tag(lang)))
             .textSelection(.enabled)
     }
 }

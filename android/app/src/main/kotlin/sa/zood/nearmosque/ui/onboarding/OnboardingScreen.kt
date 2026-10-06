@@ -1,5 +1,7 @@
 package sa.zood.nearmosque.ui.onboarding
 
+import sa.zood.nearmosque.ui.settings.LANGUAGES
+import sa.zood.nearmosque.ui.settings.setAppLanguage
 import sa.zood.nearmosque.ui.theme.Accent
 
 import sa.zood.nearmosque.ui.theme.Ink
@@ -115,7 +117,6 @@ import kotlin.math.sin
 
 private const val PAGES = 6
 
-private val LANGUAGES = listOf("en" to "English", "ar" to "العربية", "ur" to "اردو", "tr" to "Türkçe", "id" to "Bahasa Indonesia", "fr" to "Français", "es" to "Español")
 
 /**
  * First-launch tour on the sky: five animated pages that show how each part works, then a setup page
@@ -335,7 +336,7 @@ private fun LanguageMenu() {
                 DropdownMenuItem(
                     text = { Text(name) },
                     trailingIcon = { if (!followsDevice && code == current) Text("✓") },
-                    onClick = { open = false; AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(code)) },
+                    onClick = { open = false; setAppLanguage(code) },
                 )
             }
         }
@@ -365,7 +366,7 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
                 Text(
                     name, color = if (on) Tokens.navyNight else Ink, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Normal),
                     modifier = Modifier.heightIn(min = 48.dp).glass(RoundedCornerShape(50), tint = if (on) Tokens.gold else null, shadow = 4.dp)
-                        .clickable(role = Role.RadioButton) { AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(code)) }
+                        .clickable(role = Role.RadioButton) { setAppLanguage(code) }
                         .semantics { selected = on }
                         .padding(horizontal = 16.dp, vertical = 13.dp),
                 )

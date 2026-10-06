@@ -60,7 +60,7 @@ fun referenceLabel(c: SourceChunk, lang: String): String {
     val s = c.surah
     val a = c.ayah
     val base = if (s != null && a != null) stringResource(R.string.reference_quran, s, a) else c.anchor
-    val name = if (lang == "ar" || lang == "ur") c.sectionName("nameAr") else c.sectionName("nameTranslit")
+    val name = if (sa.zood.nearmosque.core.Languages.isRtl(lang)) c.sectionName("nameAr") else c.sectionName("nameTranslit")
     return if (name != null) "$base · $name" else base
 }
 
@@ -144,7 +144,7 @@ fun LibraryCard(r: ResolvedCitation) {
     val authors = (c.section["authors"] as? kotlinx.serialization.json.JsonArray)?.mapNotNull { (it as? kotlinx.serialization.json.JsonPrimitive)?.content }.orEmpty()
     val summary = sa.zood.nearmosque.core.LibraryParts.summary(c)
     val excerpt = summary.take(260)
-    val rtl = c.original.lang == "ar" || c.original.lang == "ur"
+    val rtl = sa.zood.nearmosque.core.Languages.isRtl(c.original.lang)
     Column(
         Modifier.fillMaxWidth().padding(top = 8.dp)
             .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
@@ -192,7 +192,7 @@ fun LibraryCard(r: ResolvedCitation) {
 
 @Composable
 private fun OriginalText(text: String, lang: String, emphasized: Boolean = true) {
-    val rtl = lang == "ar" || lang == "ur"
+    val rtl = sa.zood.nearmosque.core.Languages.isRtl(lang)
     CompositionLocalProvider(LocalLayoutDirection provides if (rtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
         Text(
             text,

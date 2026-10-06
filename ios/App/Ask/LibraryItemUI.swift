@@ -2,7 +2,7 @@ import NMCore
 import NMData
 import SwiftUI
 
-private func isRTL(_ lang: String) -> Bool { lang == "ar" || lang == "ur" }
+private func isRTL(_ lang: String) -> Bool { Languages.isRTL(lang) }
 
 /// Title shown for a library record (a Qur'an reference for QuranEnc verses).
 func libraryTitle(_ c: SourceChunk, _ l10n: Localization) -> String {

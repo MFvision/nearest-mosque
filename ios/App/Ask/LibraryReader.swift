@@ -112,7 +112,7 @@ struct LibraryCard: View {
     var body: some View {
         let c = item.chunk
         let mode = LibraryMode(c)
-        let rtl = c.original.lang == "ar" || c.original.lang == "ur"
+        let rtl = Languages.isRTL(c.original.lang)
         let summary = LibraryParts.summary(c)
         let excerpt = String(summary.prefix(260))
         VStack(alignment: .leading, spacing: 6) {
