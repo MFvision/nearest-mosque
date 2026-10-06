@@ -222,6 +222,13 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
                 }
             }
         }
+        // A scholar's fatwa that matches comes first, with its book and the full text one tap away.
+        val lead = if (a.kind != AnswerKind.COMMON) t.library.firstOrNull { it.chunk.sectionName("type") == "fatwa" } else null
+        if (lead != null) {
+            Text(stringResource(R.string.answer_scholars), style = MaterialTheme.typography.titleSmall, color = Accent, modifier = Modifier.semantics { heading() })
+            LibraryCard(lead)
+            Spacer(Modifier.height(10.dp))
+        }
         when (a.kind) {
             AnswerKind.COMMON -> {
                 val q = a.commonQuestion!!
@@ -251,10 +258,11 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
             Text(stringResource(R.string.sources), style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
             t.citations.forEach { SourceCard(it, lang, onRead) }
         }
-        if (t.library.isNotEmpty()) {
+        val rest = t.library.filter { it.chunk.id != lead?.chunk?.id }
+        if (rest.isNotEmpty()) {
             Spacer(Modifier.height(12.dp))
             Text(stringResource(R.string.library_section), style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
-            t.library.forEach { LibraryCard(it) }
+            rest.forEach { LibraryCard(it) }
             Text(stringResource(R.string.library_note) + " " + stringResource(R.string.library_offline_note), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f), modifier = Modifier.padding(top = 6.dp))
         }
         if (t.related.isNotEmpty()) {

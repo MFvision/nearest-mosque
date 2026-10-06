@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">Saya tidak menemukannya di buku Anda</string>
     <string name="answer_language_note">Buku Anda berbahasa Arab dan Inggris. Kutipan tetap dalam bahasa aslinya.</string>
     <string name="answer_not_fatwa">Jawaban adalah kutipan buku, bukan fatwa. Untuk hukum pribadi, tanyakan kepada ulama yang berkompeten.</string>
+    <string name="answer_scholars">Apa kata para ulama</string>
     <string name="answer_search_more">Cari juga di situs ini</string>
     <string name="answer_search_more_note">Membuka situs di peramban dengan pertanyaan Anda.</string>
     <string name="answer_searching">Mencari di buku Anda…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">Lokasi jadwal salat</string>
     <string name="map_a11y">Peta masjid terdekat. Gunakan tindakan untuk membuka salah satunya, atau gunakan daftar.</string>
     <string name="map_attribution_ofm">Peta © OpenFreeMap, OpenMapTiles, kontributor OpenStreetMap</string>
+    <string name="map_full_screen">Peta layar penuh</string>
     <string name="map_needs_internet">Latar peta perlu internet. Daftar berfungsi offline.</string>
     <string name="map_offline_plot">Tampilan offline: arah dan jarak dari titik pencarian. Bukan peta jalan.</string>
     <string name="maps_apple">Apple Maps</string>

@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">Je n’ai pas trouvé cela dans vos livres</string>
     <string name="answer_language_note">Vos livres sont en arabe et en anglais. Les citations restent dans leur langue d’origine.</string>
     <string name="answer_not_fatwa">Les réponses citent des livres ; ce n’est pas une fatwa. Pour votre cas, consultez un savant qualifié.</string>
+    <string name="answer_scholars">Ce qu\'ont dit les savants</string>
     <string name="answer_search_more">Chercher aussi sur ces sites</string>
     <string name="answer_search_more_note">Ouvre le site dans votre navigateur avec votre question.</string>
     <string name="answer_searching">Recherche dans vos livres…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">Lieu des horaires</string>
     <string name="map_a11y">Carte des mosquées proches. Utilisez les actions pour en ouvrir une, ou la liste.</string>
     <string name="map_attribution_ofm">Carte © OpenFreeMap, OpenMapTiles, contributeurs OpenStreetMap</string>
+    <string name="map_full_screen">Carte plein écran</string>
     <string name="map_needs_internet">Le fond de carte nécessite internet. La liste fonctionne hors ligne.</string>
     <string name="map_offline_plot">Vue hors ligne : direction et distance depuis le point de recherche. Pas un plan des rues.</string>
     <string name="maps_apple">Plans</string>

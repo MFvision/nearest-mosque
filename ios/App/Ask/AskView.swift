@@ -341,6 +341,13 @@ struct AnswerCard: View {
     var onRead: (ResolvedCitation) -> Void
     @State private var more = false
 
+    /// The first matching fatwa, shown before everything else (not for common questions, which have their own
+    /// reviewed summary, nor when the on-device answer already cites the library in order).
+    private var scholarLead: ResolvedCitation? {
+        guard answer.kind != .common, turn.libraryCiteOffset == nil else { return nil }
+        return turn.library.first { $0.chunk.section?.type == "fatwa" }
+    }
+
     /// The answer in the interface language, then the quoted verses (Arabic, then their translation).
     private var spoken: [(String, String)] {
         var parts: [(String, String)] = []
@@ -369,6 +376,12 @@ struct AnswerCard: View {
                     .buttonStyle(.plain)
                     .glass(Capsule())
                 }
+            }
+            // A scholar's fatwa that matches comes first, with its book and the full text one tap away.
+            if let lead = scholarLead {
+                Text(l10n.t("answer_scholars")).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.accent)
+                    .accessibilityAddTraits(.isHeader)
+                LibraryCard(item: lead, question: turn.question, index: nil)
             }
             switch answer.kind {
             case .common:
@@ -407,11 +420,13 @@ struct AnswerCard: View {
                     ForEach(turn.related) { SourceCard(index: nil, citation: $0, onRead: onRead) }
                 }
             }
-            if !turn.library.isEmpty {
+            if turn.library.contains(where: { $0.id != scholarLead?.id }) {
                 Text(l10n.t("library_section")).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
                 ForEach(Array(turn.library.enumerated()), id: \.element.id) { i, item in
-                    let n = turn.libraryCiteOffset.flatMap { i < turn.libraryCited ? $0 + i + 1 : nil }
-                    LibraryCard(item: item, question: turn.question, index: n)
+                    if item.id != scholarLead?.id {
+                        let n = turn.libraryCiteOffset.flatMap { i < turn.libraryCited ? $0 + i + 1 : nil }
+                        LibraryCard(item: item, question: turn.question, index: n)
+                    }
                 }
                 Text(l10n.t("library_note") + " " + l10n.t("library_offline_note")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
             }

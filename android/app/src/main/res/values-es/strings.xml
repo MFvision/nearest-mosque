@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">No encontré esto en tus libros</string>
     <string name="answer_language_note">Tus libros están en árabe e inglés. Las citas se mantienen en su idioma original.</string>
     <string name="answer_not_fatwa">Las respuestas citan libros; no son una fetua. Para tu caso, consulta a un erudito cualificado.</string>
+    <string name="answer_scholars">Lo que dijeron los sabios</string>
     <string name="answer_search_more">Buscar también en estos sitios</string>
     <string name="answer_search_more_note">Abre el sitio en tu navegador con tu pregunta.</string>
     <string name="answer_searching">Buscando en tus libros…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">Ubicación de los horarios</string>
     <string name="map_a11y">Mapa de mezquitas cercanas. Use las acciones para abrir una, o la lista.</string>
     <string name="map_attribution_ofm">Mapa © OpenFreeMap, OpenMapTiles, colaboradores de OpenStreetMap</string>
+    <string name="map_full_screen">Mapa a pantalla completa</string>
     <string name="map_needs_internet">El fondo del mapa necesita internet. La lista funciona sin conexión.</string>
     <string name="map_offline_plot">Vista sin conexión: dirección y distancia desde el punto de búsqueda. No es un callejero.</string>
     <string name="maps_apple">Mapas de Apple</string>

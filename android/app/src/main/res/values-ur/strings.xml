@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">یہ آپ کی کتابوں میں نہیں ملا</string>
     <string name="answer_language_note">آپ کی کتابیں عربی اور انگریزی میں ہیں؛ اقتباسات اپنی اصل زبان میں رہتے ہیں۔</string>
     <string name="answer_not_fatwa">جوابات کتابوں کے حوالے ہیں، فتویٰ نہیں۔ ذاتی مسئلے کے لیے مستند عالم سے پوچھیں۔</string>
+    <string name="answer_scholars">علماء نے کیا کہا</string>
     <string name="answer_search_more">یہ ویب سائٹس بھی تلاش کریں</string>
     <string name="answer_search_more_note">آپ کے سوال کے ساتھ ویب سائٹ براؤزر میں کھلتی ہے۔</string>
     <string name="answer_searching">آپ کی کتابوں میں تلاش جاری ہے…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">اوقاتِ نماز کا مقام</string>
     <string name="map_a11y">قریبی مساجد کا نقشہ۔ کوئی مسجد کھولنے کے لیے ایکشنز یا فہرست استعمال کریں۔</string>
     <string name="map_attribution_ofm">نقشہ © OpenFreeMap، OpenMapTiles، OpenStreetMap معاونین</string>
+    <string name="map_full_screen">پوری اسکرین کا نقشہ</string>
     <string name="map_needs_internet">نقشے کا پس منظر انٹرنیٹ مانگتا ہے۔ فہرست آف لائن کام کرتی ہے۔</string>
     <string name="map_offline_plot">آف لائن منظر: تلاش کے مقام سے سمت اور فاصلہ۔ یہ گلیوں کا نقشہ نہیں۔</string>
     <string name="maps_apple">Apple Maps</string>

@@ -43,6 +43,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -113,6 +115,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
     val lang = Format.languageCode(context)
     val ui by vm.ui.collectAsStateWithLifecycle()
     val device by vm.device.collectAsStateWithLifecycle()
+    var fullMap by remember { mutableStateOf(false) }
     var selected by remember { mutableStateOf<RankedMosque?>(null) }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { vm.useDevice(lang) }
     val requestLocation = { permission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) }
@@ -150,11 +153,17 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                             }
                         }
                     } else {
-                        MosqueMap(
-                            ui.items, center, device?.location, onSelect = { selected = it }, onSearchHere = { vm.searchAt(it, lang) },
-                            modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(Tokens.cardRadius.dp))
-                                .border(1.dp, Ink.copy(alpha = 0.25f), RoundedCornerShape(Tokens.cardRadius.dp)),
-                        )
+                        Box {
+                            MosqueMap(
+                                ui.items, center, device?.location, onSelect = { selected = it }, onSearchHere = { vm.searchAt(it, lang) },
+                                modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(Tokens.cardRadius.dp))
+                                    .border(1.dp, Ink.copy(alpha = 0.25f), RoundedCornerShape(Tokens.cardRadius.dp)),
+                            )
+                            sa.zood.nearmosque.ui.glass.GlassIconButton(
+                                androidx.compose.ui.res.painterResource(R.drawable.ic_fullscreen), stringResource(R.string.map_full_screen), { fullMap = true },
+                                Modifier.align(Alignment.TopEnd).padding(8.dp),
+                            )
+                        }
                     }
                 }
                 Spacer(Modifier.height(10.dp))
@@ -204,6 +213,15 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                     }
                 }
             }
+        }
+    }
+    val mapCenter = ui.center
+    if (fullMap && mapCenter != null) {
+        androidx.compose.ui.window.Dialog(
+            onDismissRequest = { fullMap = false },
+            properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false),
+        ) {
+            FullScreenMosqueMap(ui.items, mapCenter, device?.location, onSelect = { selected = it }, onSearchHere = { vm.searchAt(it, lang) }, onClose = { fullMap = false })
         }
     }
     selected?.let { s ->
@@ -390,6 +408,38 @@ private fun MosqueRadar(items: List<RankedMosque>, center: LatLng, heading: Doub
                 ) { MosquePin(i == 0, size = 34.dp) }
             }
             YouDot()
+        }
+    }
+}
+
+/** The map full screen with a row of the nearest mosques along the bottom; a card or a pin opens the mosque. */
+@Composable
+private fun FullScreenMosqueMap(
+    items: List<RankedMosque>, center: LatLng, device: LatLng?, onSelect: (RankedMosque) -> Unit, onSearchHere: (LatLng) -> Unit, onClose: () -> Unit,
+) {
+    val context = LocalContext.current
+    val lang = Format.languageCode(context)
+    Box(Modifier.fillMaxSize()) {
+        MosqueMap(items, center, device, onSelect = onSelect, onSearchHere = onSearchHere, modifier = Modifier.fillMaxSize())
+        sa.zood.nearmosque.ui.glass.GlassIconButton(
+            androidx.compose.ui.graphics.vector.rememberVectorPainter(androidx.compose.material.icons.Icons.Filled.Close), stringResource(R.string.close), onClose,
+            Modifier.align(Alignment.TopEnd).statusBarsPadding().padding(12.dp),
+        )
+        androidx.compose.foundation.lazy.LazyRow(
+            Modifier.align(Alignment.BottomCenter).fillMaxWidth().navigationBarsPadding().padding(bottom = 12.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            items(items.take(12).size) { i ->
+                val r = items[i]
+                val name = r.mosque.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
+                Column(
+                    Modifier.width(190.dp).glass(RoundedCornerShape(18.dp)).clickable(role = Role.Button) { onSelect(r) }.padding(12.dp),
+                ) {
+                    if (i == 0) Text(stringResource(R.string.nearest_known_mosque), color = Accent, style = MaterialTheme.typography.labelSmall)
+                    Text(name, color = Ink, style = MaterialTheme.typography.titleSmall, maxLines = 2)
+                    Text(Format.distance(context, r.distanceMeters), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
+                }
+            }
         }
     }
 }

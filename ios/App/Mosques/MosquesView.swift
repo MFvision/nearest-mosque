@@ -81,6 +81,7 @@ struct MosquesView: View {
     @State private var favoritesOnly = false
     @State private var selected: RankedMosque?
     @State private var mapSelection: String?
+    @State private var fullMap = false
     @State private var locating = false
     @State private var denied = false
 
@@ -164,6 +165,15 @@ struct MosquesView: View {
                 .frame(height: 320)
                 .clipShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
                 .overlay(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous).stroke(Theme.ink.opacity(0.25), lineWidth: 1))
+                .overlay(alignment: .topTrailing) {
+                    GlassIconButton(systemImage: "arrow.up.left.and.arrow.down.right", label: l10n.t("map_full_screen")) { fullMap = true }
+                        .padding(8)
+                }
+                .fullScreenCover(isPresented: $fullMap) {
+                    FullScreenMosqueMap(vm: vm, center: center)
+                        .environment(\.locale, l10n.locale)
+                        .environment(\.layoutDirection, l10n.layoutDirection)
+                }
             }
         }
         .transition(.opacity)
@@ -417,5 +427,68 @@ struct DirectionsMenu<MenuLabel: View>: View {
                 Button(l10n.t("maps_waze")) { ExternalMaps.directions(to: to, name: name, app: .waze) }
             }
         } label: { label() }
+    }
+}
+
+/// The map full screen: pins for the nearby mosques, the walking route to the nearest, and a row of
+/// cards along the bottom (nearest first); a card or a pin opens the mosque.
+struct FullScreenMosqueMap: View {
+    @Environment(AppModel.self) private var app
+    @Environment(Localization.self) private var l10n
+    @Environment(\.dismiss) private var dismiss
+    let vm: MosquesModel
+    let center: LatLng
+    @State private var selection: String?
+    @State private var selected: RankedMosque?
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            MosqueMap(items: vm.items, center: center, route: vm.items.first.flatMap { vm.routes[$0.id] }, selection: $selection) {
+                vm.search(app, center: $0, origin: .selectedPoint)
+            }
+            .ignoresSafeArea()
+            HStack {
+                Spacer()
+                GlassIconButton(systemImage: "xmark", label: l10n.t("close")) { dismiss() }
+            }
+            .padding(.horizontal, 16)
+            VStack {
+                Spacer()
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(Array(vm.items.prefix(12).enumerated()), id: \.element.id) { i, r in
+                            Button { selected = r } label: {
+                                VStack(alignment: .leading, spacing: 3) {
+                                    if i == 0 { Text(l10n.t("nearest_known_mosque")).font(.caption2.weight(.semibold)).foregroundStyle(Theme.accent) }
+                                    Text(r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed")).font(.subheadline.weight(.semibold)).lineLimit(2)
+                                    Text(Format.distance(r.distanceMeters, l10n: l10n)).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
+                                }
+                                .foregroundStyle(Theme.ink)
+                                .frame(width: 180, alignment: .leading)
+                                .padding(12)
+                                .contentShape(RoundedRectangle(cornerRadius: 18))
+                            }
+                            .buttonStyle(.plain)
+                            .glass(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                            .accessibilityLabel(l10n.t("mosque_detail_a11y", r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), Format.distance(r.distanceMeters, l10n: l10n)))
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                }
+                .scrollIndicators(.hidden)
+                .padding(.bottom, 8)
+            }
+        }
+        .onChange(of: selection) { _, id in
+            if let id, let r = vm.items.first(where: { $0.id == id }) { selected = r }
+        }
+        .sheet(item: $selected, onDismiss: { selection = nil }) { r in
+            MosqueDetailView(ranked: r, favorite: vm.favorites.contains(r.id), canFavorite: r.mosque.packId.hasPrefix("mosques."),
+                             route: vm.routes[r.id]) { on in
+                try? app.mosques?.setFavorite(r.id, on)
+                vm.refreshFavorites(app)
+            }
+            .presentationDetents([.medium, .large])
+        }
     }
 }

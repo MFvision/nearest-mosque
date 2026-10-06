@@ -3364,6 +3364,24 @@
       "id": "Hentikan",
       "fr": "Arrêter",
       "es": "Detener"
+    },
+    "map_full_screen": {
+      "en": "Full-screen map",
+      "ar": "خريطة بملء الشاشة",
+      "ur": "پوری اسکرین کا نقشہ",
+      "tr": "Tam ekran harita",
+      "id": "Peta layar penuh",
+      "fr": "Carte plein écran",
+      "es": "Mapa a pantalla completa"
+    },
+    "answer_scholars": {
+      "en": "What the scholars said",
+      "ar": "ما قاله العلماء",
+      "ur": "علماء نے کیا کہا",
+      "tr": "Âlimler ne dedi",
+      "id": "Apa kata para ulama",
+      "fr": "Ce qu'ont dit les savants",
+      "es": "Lo que dijeron los sabios"
     }
   }
 }

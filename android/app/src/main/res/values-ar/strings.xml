@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">لم أجد هذا في كتبك</string>
     <string name="answer_language_note">كتبك باللغتين العربية والإنجليزية، وتبقى الاقتباسات بلغتها الأصلية.</string>
     <string name="answer_not_fatwa">الإجابات اقتباسات من الكتب وليست فتوى. للحكم في حالتك اسأل عالمًا مؤهلًا.</string>
+    <string name="answer_scholars">ما قاله العلماء</string>
     <string name="answer_search_more">ابحث أيضًا في هذه المواقع</string>
     <string name="answer_search_more_note">يفتح الموقع في المتصفح مع سؤالك.</string>
     <string name="answer_searching">جارٍ البحث في كتبك…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">موقع حساب المواقيت</string>
     <string name="map_a11y">خريطة المساجد القريبة. استخدم الإجراءات لفتح مسجد، أو استخدم القائمة.</string>
     <string name="map_attribution_ofm">الخريطة © OpenFreeMap وOpenMapTiles ومساهمو OpenStreetMap</string>
+    <string name="map_full_screen">خريطة بملء الشاشة</string>
     <string name="map_needs_internet">خلفية الخريطة تحتاج إلى الإنترنت، والقائمة تعمل دونه.</string>
     <string name="map_offline_plot">عرض دون إنترنت: الاتجاه والمسافة من نقطة البحث، وليس خريطة شوارع.</string>
     <string name="maps_apple">خرائط Apple</string>

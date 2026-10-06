@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">Bunu kitaplarınızda bulamadım</string>
     <string name="answer_language_note">Kitaplarınız Arapça ve İngilizce. Alıntılar orijinal dillerinde kalır.</string>
     <string name="answer_not_fatwa">Cevaplar kitaplardan alıntıdır, fetva değildir. Kişisel bir hüküm için yetkin bir âlime danışın.</string>
+    <string name="answer_scholars">Âlimler ne dedi</string>
     <string name="answer_search_more">Bu sitelerde de ara</string>
     <string name="answer_search_more_note">Siteyi sorunuzla tarayıcıda açar.</string>
     <string name="answer_searching">Kitaplarınızda aranıyor…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">Namaz vakitleri konumu</string>
     <string name="map_a11y">Yakındaki camilerin haritası. Birini açmak için eylemleri veya listeyi kullanın.</string>
     <string name="map_attribution_ofm">Harita © OpenFreeMap, OpenMapTiles, OpenStreetMap katkıcıları</string>
+    <string name="map_full_screen">Tam ekran harita</string>
     <string name="map_needs_internet">Harita arka planı internet gerektirir. Liste çevrim dışı çalışır.</string>
     <string name="map_offline_plot">Çevrim dışı görünüm: arama noktasından yön ve mesafe. Sokak haritası değildir.</string>
     <string name="maps_apple">Apple Haritalar</string>

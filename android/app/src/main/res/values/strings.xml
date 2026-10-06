@@ -29,6 +29,7 @@
     <string name="answer_insufficient_title">I couldn’t find this in your books</string>
     <string name="answer_language_note">Your books are in Arabic and English. Quotes stay in their original language.</string>
     <string name="answer_not_fatwa">Answers quote books; they are not a fatwa. For a personal ruling, ask a qualified scholar.</string>
+    <string name="answer_scholars">What the scholars said</string>
     <string name="answer_search_more">Search these sites too</string>
     <string name="answer_search_more_note">Opens the site in your browser with your question.</string>
     <string name="answer_searching">Searching your books…</string>
@@ -178,6 +179,7 @@
     <string name="location_section">Location for prayer times</string>
     <string name="map_a11y">Map of nearby mosques. Use the actions to open one, or use the list.</string>
     <string name="map_attribution_ofm">Map © OpenFreeMap, OpenMapTiles, OpenStreetMap contributors</string>
+    <string name="map_full_screen">Full-screen map</string>
     <string name="map_needs_internet">The map background needs internet. The list works offline.</string>
     <string name="map_offline_plot">Offline view: direction and distance from the search point. Not a street map.</string>
     <string name="maps_apple">Apple Maps</string>
