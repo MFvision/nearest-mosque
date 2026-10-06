@@ -16,7 +16,7 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "0.4.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,7 +45,7 @@ android {
 
     sourceSets {
         // Data packs are shared with iOS and live outside the Gradle project.
-        getByName("main").assets.srcDirs("../../packs", "../../shared/content")
+        getByName("main").assets.srcDirs("../../packs", "../../shared/content", "../../shared/semantic")
     }
 
     testOptions {

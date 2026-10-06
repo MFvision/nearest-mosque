@@ -78,6 +78,7 @@ struct SettingsView: View {
                         }
                     }
                     Text("Adhan (MIT) · Batoul Apps; GRDB (MIT) · Gwendal Roué").font(.caption)
+                    Text("Search model: static-similarity-mrl-multilingual-v1 · sentence-transformers (Apache-2.0), reduced to 256 dimensions").font(.caption)
                     Text("Map and live mosque results: Apple Maps (online)").font(.caption)
                 }
                 Section(l10n.t("privacy")) { Text(l10n.t("privacy_body")) }

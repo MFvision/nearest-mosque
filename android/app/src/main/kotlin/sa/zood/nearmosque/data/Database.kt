@@ -164,6 +164,9 @@ interface SourceDao {
     @Query("SELECT id FROM source_chunk WHERE packId = :packId ORDER BY seq LIMIT :limit OFFSET :offset")
     suspend fun pageIds(packId: String, limit: Int, offset: Int): List<String>
 
+    @Query("SELECT MAX(seq) FROM source_chunk WHERE packId = :packId")
+    suspend fun maxSeq(packId: String): Long?
+
     @Query("SELECT * FROM source_document")
     suspend fun documents(): List<SourceDocumentEntity>
 

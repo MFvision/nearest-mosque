@@ -55,6 +55,8 @@ final class AppModel {
     private(set) var packs: PackManager?
     private(set) var mosques: MosqueRepository?
     private(set) var ask: AskRepository?
+    /// Meaning-based library search (vectors built in the background after the libraries install).
+    private(set) var semantic: SemanticIndexStore?
     private(set) var cities: CityIndex?
     private(set) var ready = false
     private(set) var storageError: String?
@@ -96,7 +98,11 @@ final class AppModel {
             packs = opened.1
             cities = opened.2
             mosques = MosqueRepository(db: opened.0)
-            ask = AskRepository(db: opened.0, stopwords: AskRepository.parseStopwords(stopData), lexicon: Lexicon(json: lexiconData))
+            if let model = Bundle.main.url(forResource: "model", withExtension: "bin"),
+               let support = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true) {
+                semantic = SemanticIndexStore(dir: support.appendingPathComponent("semantic"), db: opened.0, modelURL: model)
+            }
+            ask = AskRepository(db: opened.0, stopwords: AskRepository.parseStopwords(stopData), lexicon: Lexicon(json: lexiconData), semantic: semantic)
         } catch {
             storageError = error.localizedDescription
         }
@@ -130,8 +136,11 @@ final class AppModel {
         librariesTask = Task {
             await previous?.value
             let wanted = ChunkScope.libraryLanguages(lang)
+            let semantic = semantic
             await Task.detached(priority: .utility) {
                 packs.ensureBuiltins { ChunkScope.isLibrary($0.id) && wanted.contains(ChunkScope.libraryLanguage($0.id)) }
+                // Meaning-based search: vectors for the installed libraries, built once per install.
+                try? semantic?.ensure()
             }.value
             installingLibraries = false
         }

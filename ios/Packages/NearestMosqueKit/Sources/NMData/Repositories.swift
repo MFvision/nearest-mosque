@@ -215,16 +215,19 @@ public final class AskRepository: @unchecked Sendable {
     let stopwords: [String: [String]]
     let libraryStopwords: Set<String>
     let lexicon: Lexicon
+    /// Meaning-based search; nil (tests) or not yet built means word search only.
+    let semantic: SemanticIndexStore?
     private var cache: (key: String, retriever: Retriever, questions: [CommonQuestion], libraries: [String: LibraryRetriever])?
     private let lock = NSLock()
     public static let libraryResults = 6
     public static let libraryEnough = 3
 
-    public init(db: AppDatabase, stopwords: [String: [String]], lexicon: Lexicon = .empty) {
+    public init(db: AppDatabase, stopwords: [String: [String]], lexicon: Lexicon = .empty, semantic: SemanticIndexStore? = nil) {
         self.db = db
         self.stopwords = stopwords
         self.libraryStopwords = LibraryText.stopwords(stopwords)
         self.lexicon = lexicon
+        self.semantic = semantic
     }
 
     private func retriever() throws -> (Retriever, [CommonQuestion]) {
@@ -269,7 +272,21 @@ public final class AskRepository: @unchecked Sendable {
                 .filter { !$0.passages.isEmpty }
             for id in Self.interleave(hits.map(\.passages)) where !out.contains(id) { out.append(id) }
         }
-        return Array(out.prefix(Self.libraryResults))
+        let langs: Set<String> = [lang, "en", "ar"]
+        return withSemantic(q, Array(out.prefix(Self.libraryResults)), packs: libs.keys.filter { langs.contains(ChunkScope.libraryLanguage($0)) }, limit: Self.libraryResults)
+    }
+
+    public static let semanticCandidates = 10
+
+    /// Adds items found by meaning (see SemanticMerge): they must clear a higher bar when word search found
+    /// nothing, and at most three join, after the first three word-search results.
+    func withSemantic(_ question: String, _ words: [String], packs: [String], limit: Int) -> [String] {
+        guard let semantic else { return words }
+        let indexes = packs.compactMap { semantic.index($0) }
+        guard !indexes.isEmpty, let q = semantic.embed(question) else { return words }
+        let hits = indexes.flatMap { $0.search(q, k: Self.semanticCandidates, floor: SemanticMerge.assist) }
+            .sorted { $0.score != $1.score ? $0.score > $1.score : $0.id < $1.id }
+        return SemanticMerge.merge(words, hits, limit: limit)
     }
 
     /// Round-robin over ranked lists, starting with the list whose best passage scores highest.
@@ -286,10 +303,32 @@ public final class AskRepository: @unchecked Sendable {
 
     public func retrieve(_ q: String, context: [String] = []) throws -> RetrievalResult { try retriever().0.retrieve(q, context: context) }
 
-    public func ask(_ q: String, context: [String] = [], lang: String = "en") throws -> Answer {
+    /// Another phrasing of the question to search the library with (written on the device), in `lang`.
+    public struct AlsoSearch: Sendable {
+        public let text: String
+        public let lang: String
+        public init(text: String, lang: String) { self.text = text; self.lang = lang }
+    }
+
+    /// `also`: rephrasings (e.g. an Arabic query for an English question) whose library results are
+    /// interleaved after the question's own; each passes the same search gates on its own.
+    public func ask(_ q: String, context: [String] = [], lang: String = "en", also: [AlsoSearch] = []) throws -> Answer {
         var a = AnswerComposer.compose(q, try retrieve(q, context: context))
-        a.library = try withHadith(a.commonQuestion, try library(q, context: context, lang: lang), lang: lang)
+        var lib = try library(q, context: context, lang: lang)
+        if !also.isEmpty {
+            lib = Self.roundRobin([lib] + (try also.map { try library($0.text, lang: $0.lang) }), limit: Self.libraryResults)
+        }
+        a.library = try withHadith(a.commonQuestion, lib, lang: lang)
         return a
+    }
+
+    /// One id from each list in turn (first list first), without duplicates.
+    static func roundRobin(_ lists: [[String]], limit: Int) -> [String] {
+        var out: [String] = []
+        for i in 0..<(lists.map(\.count).max() ?? 0) {
+            for l in lists where i < l.count && !out.contains(l[i]) { out.append(l[i]) }
+        }
+        return Array(out.prefix(limit))
     }
 
     /// A tapped common question always shows that question's answer, plus extra passages found.
@@ -353,7 +392,8 @@ public final class AskRepository: @unchecked Sendable {
     /// Search inside one collection with library search.
     public func searchIn(_ packId: String, _ query: String) throws -> [ResolvedCitation] {
         guard let r = try cached().libraries[packId] else { return [] }
-        return try resolve(r.retrieve(query, limit: Self.searchInResults).passages.map(\.chunkId))
+        let words = r.retrieve(query, limit: Self.searchInResults).passages.map(\.chunkId)
+        return try resolve(withSemantic(query, words, packs: [packId], limit: Self.searchInResults))
     }
 
     public func context(_ c: ResolvedCitation, around: Int = 3) throws -> [SourceChunk] {

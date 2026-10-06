@@ -122,6 +122,8 @@ class AskRepository(
     private val db: AppDatabase,
     private val stopwords: Map<String, List<String>>,
     private val lexicon: sa.zood.nearmosque.core.Lexicon = sa.zood.nearmosque.core.Lexicon.EMPTY,
+    /** Meaning-based search; null (tests) or not yet built means word search only. */
+    private val semantic: SemanticIndexStore? = null,
 ) {
     private val mutex = Mutex()
     private var cached: Pair<Long, Retriever>? = null
@@ -157,7 +159,21 @@ class AskRepository(
                 .filter { it.passages.isNotEmpty() }
             out += interleave(hits.map { it.passages })
         }
-        return out.take(LIBRARY_RESULTS)
+        return withSemantic(question, out.take(LIBRARY_RESULTS), libraries.keys.filter { ChunkScope.libraryLanguage(it) in setOf(lang, "en", "ar") }, LIBRARY_RESULTS)
+    }
+
+    /**
+     * Adds items found by meaning (see core SemanticMerge): they must clear a higher bar when word search
+     * found nothing, and at most three join, after the first three word-search results.
+     */
+    private fun withSemantic(question: String, words: List<String>, packs: Collection<String>, limit: Int): List<String> {
+        val sem = semantic ?: return words
+        val indexes = packs.mapNotNull { sem.index(it) }
+        if (indexes.isEmpty()) return words
+        val q = sem.embed(question)
+        val hits = indexes.flatMap { it.search(q, SEMANTIC_CANDIDATES, sa.zood.nearmosque.core.SemanticMerge.ASSIST) }
+            .sortedWith(compareByDescending<Pair<Double, String>> { it.first }.thenBy { it.second })
+        return sa.zood.nearmosque.core.SemanticMerge.merge(words, hits, limit)
     }
 
     suspend fun commonQuestions(): List<CommonQuestion> = withContext(Dispatchers.IO) {
@@ -212,7 +228,8 @@ class AskRepository(
     suspend fun searchIn(packId: String, query: String): List<ResolvedCitation> = withContext(Dispatchers.IO) {
         retriever()
         val r = libraries[packId] ?: return@withContext emptyList()
-        resolve(r.retrieve(query, limit = SEARCH_IN_RESULTS).passages.map { it.chunkId })
+        val words = r.retrieve(query, limit = SEARCH_IN_RESULTS).passages.map { it.chunkId }
+        resolve(withSemantic(query, words, listOf(packId), SEARCH_IN_RESULTS))
     }
 
     suspend fun context(c: ResolvedCitation, around: Int = 3): List<SourceChunk> = withContext(Dispatchers.IO) {
@@ -223,6 +240,7 @@ class AskRepository(
         const val LIBRARY_RESULTS = 6
         const val LIBRARY_ENOUGH = 3
         const val SEARCH_IN_RESULTS = 30
+        const val SEMANTIC_CANDIDATES = 10
 
         /** Round-robin over ranked lists, starting with the list whose best passage scores highest. */
         fun interleave(lists: List<List<sa.zood.nearmosque.core.ScoredPassage>>): List<String> {

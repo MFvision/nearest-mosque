@@ -89,6 +89,15 @@ class DataLayerTest {
         assertTrue(items.all { it.chunk.url!!.startsWith("https://islamhouse.com/en/") })
         assertTrue(c.ask.ask("ما هو الإسلام؟", emptyList(), "ar").library.all { it.startsWith("ih:ar:") || it.startsWith("bb:") || it.startsWith("he:ar:") })
         assertTrue(c.ask.ask("What is the capital of France?", emptyList(), "en").library.isEmpty())
+        // A common question leads with its own hadith, in the reader's language.
+        val friday = c.ask.commonQuestions().first { it.id == "friday-prayer" }
+        assertEquals(listOf("he:en:5394", "he:en:3711"), c.ask.answerFor(friday, "What is the Friday prayer?", "en").library.take(2))
+        // Meaning-based search: vectors are built on the device from the installed records.
+        c.semantic.ensure()
+        assertEquals(c.db.packs().all().filter { ChunkScope.isLibrary(it.id) }.map { it.id }.toSet(), c.semantic.ready)
+        val kin = c.semantic.index("sources.hadeethenc-en")!!.search(c.semantic.embed("keeping good relations with relatives"), 1, 0.55)
+        assertEquals("he:en:3854", kin.single().second)
+        assertTrue(c.ask.ask("What is the capital of France?", emptyList(), "en").library.isEmpty())
         // Ibn Baz fatwas for Arabic questions; stems reach other word forms.
         val fatwas = c.ask.resolve(c.ask.ask("ما حكم تارك الصلاة؟", emptyList(), "ar").library.filter { it.startsWith("bb:") })
         assertTrue(fatwas.isNotEmpty())

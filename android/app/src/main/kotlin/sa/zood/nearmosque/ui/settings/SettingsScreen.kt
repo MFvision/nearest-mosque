@@ -163,6 +163,7 @@ fun SettingsScreen(
                         Spacer(Modifier.height(6.dp))
                     }
                 Text("Adhan (MIT) · Batoul Apps; MapLibre Android (BSD-2-Clause)", style = MaterialTheme.typography.bodySmall)
+                Text("Search model: static-similarity-mrl-multilingual-v1 · sentence-transformers (Apache-2.0), reduced to 256 dimensions", style = MaterialTheme.typography.bodySmall)
                 Text(stringResource(R.string.map_attribution_ofm), style = MaterialTheme.typography.bodySmall)
 
                 Section(stringResource(R.string.privacy))

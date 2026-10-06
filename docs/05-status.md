@@ -44,10 +44,13 @@ Legend: **Done** = implemented and covered by automated tests or rendered screen
 | Directions: choice of maps app | System chooser of installed maps apps | Apple Maps, Google Maps, Waze | Google Maps/Waze open their app when installed, else their website |
 | Source cards: reference, verbatim original, labelled translation, read-in-context offline, original link | Done | Built | Android screenshots |
 | "Not found" instead of guessing; prompt-injection question returns nothing | Done | Done | Fixtures |
-| Common answers labelled "awaiting scholar review" | Done | Done | All 8 are `unreviewed`; none may be relabelled without a named reviewer |
+| Common answers labelled "awaiting scholar review" | Done | Done | All 20 are `unreviewed`; none may be relabelled without a named reviewer |
+| 20 common questions in 7 languages (added: what is Islam, five pillars, becoming Muslim, the Prophet ﷺ, the Quran, how to pray, Hajj, Friday prayer, halal food, dua, parents, the Kaaba), each citing verses and, where one fits, a HadeethEnc hadith shown in the reader's language | Done | Done | Matching checked on 73 phrasings in 7 languages; 14 shared retrieval cases; non-English summaries are draft translations |
+| Meaning-based (semantic) library search, hybrid with word search | Done | Done | Same results on all platforms (shared fixture). On 30 test questions in 7 languages, a correct fatwa or hadith in the top 6 for 23 (word search alone: 20); off-topic questions gain at most one item. Vectors build in the background after install (about 40 s for ar+en+ur in the Android test runner; unmeasured on phones) |
+| iOS: on-device rephrasing of questions into Arabic and English search queries (Apple Intelligence) | — | Built | Unverified on a device; skipped when the model or language is unavailable |
 | On-device generation | Not started | Built | iOS 26 Foundation Models provider, gated on availability + language, output rejected unless every paragraph cites a supplied passage. Android: no model shipped (cited search only) |
 | Cloud AI | — | — | Not implemented; off by design |
-| Embeddings / vector search, OCR, PDF/EPUB import, IslamHouse ingestion | Not started | Not started | Next increments; licensing first (see 04) |
+| OCR, PDF/EPUB import | Not started | Not started | Next increments; licensing first (see 04) |
 | Guided learning flows | Not started | Not started | |
 | Reduced motion / transparency, contrast, large text | Partial | Built | Contrast checked by `tools/check_tokens.py` (35 checks). Large-text and screen-reader passes not yet run on devices |
 

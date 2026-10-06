@@ -55,7 +55,9 @@ jobs:
           python3 tools/gen_fixtures.py
           python3 tools/reference_search.py --gen
           python3 tools/library_search.py --gen
-          git diff --exit-code -- shared/fixtures
+          python3 tools/semantic.py --gen
+          python3 tools/refresh_questions.py
+          git diff --exit-code -- shared/fixtures packs/sources/quran-tanzil-pickthall
 
   android:
     name: Android (unit, Robolectric, screenshots, APK)

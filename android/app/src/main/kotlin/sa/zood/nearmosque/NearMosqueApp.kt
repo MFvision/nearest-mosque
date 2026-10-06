@@ -50,9 +50,14 @@ class AppContainer(
     val packs = PackManager(app, db)
     val cities = CityRepository(packs)
     val mosques = MosqueRepository(db)
+    /** Meaning-based library search; vectors are built in the background after the libraries install. */
+    val semantic = sa.zood.nearmosque.data.SemanticIndexStore(java.io.File(app.filesDir, "semantic"), db) {
+        app.assets.open("model.bin").use { it.readBytes() }
+    }
     val ask = AskRepository(
         db, AskRepository.parseStopwords(packs.readAsset("stopwords.json")),
         sa.zood.nearmosque.core.Lexicon.parse(packs.readAsset("lexicon.json")),
+        semantic,
     )
     val location = LocationService(app)
     val heading = HeadingService(app)
@@ -98,6 +103,7 @@ class AppContainer(
                 runCatching {
                     packs.ensureBuiltins { sa.zood.nearmosque.data.ChunkScope.isLibrary(it.id) && sa.zood.nearmosque.data.ChunkScope.libraryLanguage(it.id) in wanted }
                 }
+                runCatching { semantic.ensure() }
             }
         }
     }

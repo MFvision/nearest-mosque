@@ -67,6 +67,12 @@ switched off in Settings; the map images are only loaded when the Map view is op
 No analytics, crash reporting or ads are included. The only network code is the live map and live
 mosque search described in 4.2b.
 
+## 4.3b Search model
+
+| Item | Source | License | Status |
+|---|---|---|---|
+| `shared/semantic/model.bin` (meaning-based search) | sentence-transformers `static-similarity-mrl-multilingual-v1`, retrieved 2026-10-06; Latin- and Arabic-script tokens only, first 256 dimensions, int8 (`tools/semantic.py --build-model`) | Apache-2.0 (tokenizer vocabulary: BERT multilingual uncased, Apache-2.0); notice in `shared/semantic/NOTICE.md` and Settings → Sources and licenses | OK |
+
 ## 4.4 Brand assets
 
 `shared/brand/near-mosque-logo-source.png` is the logo from the website ZIP; the app icon and header

@@ -42,9 +42,19 @@ Domain services (pure, injected clock)          Repositories (local DB is the so
   ▼
 Platform adapters: LocationService, HeadingService, NotificationScheduler,
                    LocalInferenceProvider (Foundation Models on iOS 26 / none on Android yet),
+                   SemanticIndexStore (meaning-based search vectors, built on the device),
                    ExternalMaps
 ```
 
+* Library search is hybrid. Word search (BM25 with stemming and the lexicon) comes first; meaning-based
+  search adds at most three items after the first three, only above a similarity gate (0.45 when word
+  search found something, 0.55 when it found nothing). The model is a static embedding model
+  (`shared/semantic/model.bin`, 16.9 MB): a text's vector is the mean of its word-piece vectors, so no
+  neural network runs. Item vectors are computed on the phone after a library pack installs and cached
+  per pack install. `tools/semantic.py` is the reference; `shared/fixtures/semantic.json` keeps the three
+  implementations identical. On iOS 26 with Apple Intelligence, the on-device model first rephrases a
+  typed question as short Arabic and English search queries (4-second limit), whose results are
+  interleaved with the question's own.
 * Clock, location, heading and storage are injected; tests use fixed clocks and fake sensors.
 * All database and pack work runs off the main thread; long operations are cancellable.
 * Countdown text is recomputed from scheduled instants and the current clock every second; nothing

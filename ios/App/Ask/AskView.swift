@@ -27,16 +27,16 @@ final class AskModel {
         guard !q.isEmpty, !busy, let repo = app.ask else { return }
         let context = turns.suffix(2).map(\.question)
         let lang = app.l10n.language
-        run(app, q) { try repo.ask(q, context: context, lang: lang) }
+        run(app, q, rephrase: true) { also in try repo.ask(q, context: context, lang: lang, also: also) }
     }
 
     func ask(_ app: AppModel, common q: CommonQuestion, displayed: String) {
         guard let repo = app.ask else { return }
         let lang = app.l10n.language
-        run(app, displayed) { try repo.answer(for: q, displayed: displayed, lang: lang) }
+        run(app, displayed) { _ in try repo.answer(for: q, displayed: displayed, lang: lang) }
     }
 
-    private func run(_ app: AppModel, _ question: String, _ block: @escaping @Sendable () throws -> Answer) {
+    private func run(_ app: AppModel, _ question: String, rephrase: Bool = false, _ block: @escaping @Sendable ([AskRepository.AlsoSearch]) throws -> Answer) {
         guard let repo = app.ask else { return }
         let turn = Turn(question: question)
         turns.append(turn)
@@ -44,7 +44,9 @@ final class AskModel {
         let lang = app.l10n.language
         task = Task {
             defer { busy = false }
-            guard var answer = try? await Task.detached(operation: block).value else { return }
+            // With Apple Intelligence: Arabic and English search phrasings of the question, written on the device.
+            let also = rephrase ? await QueryRewriter.searchQueries(for: question, language: lang) : []
+            guard var answer = try? await Task.detached(operation: { try block(also) }).value else { return }
             let cites = (try? repo.resolve(answer.citations)) ?? []
             let related = (try? repo.resolve(answer.related)) ?? []
             let library = (try? repo.resolve(answer.library)) ?? []
