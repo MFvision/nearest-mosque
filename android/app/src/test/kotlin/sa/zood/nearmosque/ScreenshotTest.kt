@@ -192,4 +192,17 @@ class ScreenshotTest {
 
     @Test @Config(qualifiers = "tr-w393dp-h852dp-xxhdpi")
     fun askTurkish() = shoot("ask_tr", Tab.ASK)
+
+    // Draft languages: layout, script and direction (Persian right to left).
+    @Test @Config(qualifiers = "fa-w393dp-h852dp-xxhdpi")
+    fun prayerPersian() = shoot("prayer_fa", Tab.PRAYER)
+
+    @Test @Config(qualifiers = "hi-w393dp-h852dp-xxhdpi")
+    fun prayerHindi() = shoot("prayer_hi", Tab.PRAYER, dark = false)
+
+    @Test @Config(qualifiers = "ru-w393dp-h852dp-xxhdpi")
+    fun mosquesRussian() = shoot("mosques_ru", Tab.MOSQUES)
+
+    @Test @Config(qualifiers = "b+zh+Hans-w393dp-h852dp-xxhdpi")
+    fun askChinese() = shoot("ask_zh", Tab.ASK)
 }

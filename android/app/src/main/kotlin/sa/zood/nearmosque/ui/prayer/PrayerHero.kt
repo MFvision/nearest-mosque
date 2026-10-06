@@ -214,56 +214,64 @@ fun QiblaArc(
     }
     val outer = LocalLayoutDirection.current
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        BoxWithConstraints(modifier.fillMaxWidth().aspectRatio(1f)) {
+        // At least square; taller when the text inside needs more lines (longer languages, large text),
+        // so it never runs into the card below. The ring itself depends on the width only.
+        BoxWithConstraints(modifier.fillMaxWidth()) {
+          val side = maxWidth
+          Box(Modifier.fillMaxWidth().heightIn(min = side)) {
             val density = LocalDensity.current
-            val wPx = with(density) { maxWidth.toPx() }
+            val wPx = with(density) { side.toPx() }
             val r = wPx * 0.43f
             val discPx = with(density) { Tokens.discSize.dp.toPx() }
             val discY = discPx / 2 + with(density) { 6.dp.toPx() }
             val c = Offset(wPx / 2, discY + r)
             val ink = Ink
-            Canvas(Modifier.fillMaxSize()) {
-                if (light != null) {
-                    // The glass catching the sun (or the moon): a soft glow on that side and a bright stretch of rim.
-                    drawLightSheen(light, c, r)
-                    drawLightRim(light, c, r, 6.dp.toPx())
+            Box(Modifier.size(side)) {
+                Canvas(Modifier.fillMaxSize()) {
+                    if (light != null) {
+                        // The glass catching the sun (or the moon): a soft glow on that side and a bright stretch of rim.
+                        drawLightSheen(light, c, r)
+                        drawLightRim(light, c, r, 6.dp.toPx())
+                    }
+                    drawCircle(
+                        Brush.verticalGradient(0f to ink.copy(alpha = 0.55f), 0.45f to ink.copy(alpha = 0.22f), 0.8f to ink.copy(alpha = 0f), startY = c.y - r, endY = c.y + r),
+                        radius = r, center = c, style = Stroke(1.5.dp.toPx()),
+                    )
+                    val box = Offset(c.x - r, c.y - r)
+                    val sz = Size(2 * r, 2 * r)
+                    if (aligned) {
+                        drawArc(Tokens.gold.copy(alpha = 0.9f), -90f, 38f, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
+                        drawArc(Tokens.gold.copy(alpha = 0.9f), -90f, -38f, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
+                    }
+                    if (mode != ArcMode.NONE) {
+                        val rel = Angles.normalize180(shown.value.toDouble()).toFloat()
+                        drawArc(ink.copy(alpha = 0.75f), -90f, rel, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
+                        val rad = Math.toRadians(shown.value.toDouble())
+                        val m = Offset(c.x + r * sin(rad).toFloat(), c.y - r * cos(rad).toFloat())
+                        drawCircle(Brush.radialGradient(listOf(Tokens.gold.copy(alpha = 0.6f), Color.Transparent), center = m, radius = 22.dp.toPx()), 22.dp.toPx(), m)
+                        drawCircle(Tokens.gold, 10.dp.toPx(), m)
+                        drawCircle(ink.copy(alpha = 0.85f), 10.dp.toPx(), m, style = Stroke(2.dp.toPx()))
+                    }
                 }
-                drawCircle(
-                    Brush.verticalGradient(0f to ink.copy(alpha = 0.55f), 0.45f to ink.copy(alpha = 0.22f), 0.8f to ink.copy(alpha = 0f), startY = c.y - r, endY = c.y + r),
-                    radius = r, center = c, style = Stroke(1.5.dp.toPx()),
-                )
-                val box = Offset(c.x - r, c.y - r)
-                val sz = Size(2 * r, 2 * r)
-                if (aligned) {
-                    drawArc(Tokens.gold.copy(alpha = 0.9f), -90f, 38f, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
-                    drawArc(Tokens.gold.copy(alpha = 0.9f), -90f, -38f, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
+                LogoDisc(aligned, Modifier.align(Alignment.TopCenter).padding(top = 6.dp), arrow = if (mode == ArcMode.NONE) null else shown.value, light = light)
+                if (mode == ArcMode.NORTH_UP) {
+                    Text(
+                        stringResource(R.string.compass_north), color = Ink.copy(alpha = 0.85f), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                        modifier = Modifier.align(Alignment.TopCenter).padding(top = (Tokens.discSize + 12).dp),
+                    )
                 }
-                if (mode != ArcMode.NONE) {
-                    val rel = Angles.normalize180(shown.value.toDouble()).toFloat()
-                    drawArc(ink.copy(alpha = 0.75f), -90f, rel, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
-                    val rad = Math.toRadians(shown.value.toDouble())
-                    val m = Offset(c.x + r * sin(rad).toFloat(), c.y - r * cos(rad).toFloat())
-                    drawCircle(Brush.radialGradient(listOf(Tokens.gold.copy(alpha = 0.6f), Color.Transparent), center = m, radius = 22.dp.toPx()), 22.dp.toPx(), m)
-                    drawCircle(Tokens.gold, 10.dp.toPx(), m)
-                    drawCircle(ink.copy(alpha = 0.85f), 10.dp.toPx(), m, style = Stroke(2.dp.toPx()))
+                CompositionLocalProvider(LocalLayoutDirection provides outer) {
+                    // Small labels along the sides of the ring: the distance to the Kaaba and the nearest mosque (tappable).
+                    val labelR = r + with(density) { 10.dp.toPx() }
+                    kaabaDistance?.let {
+                        CurvedSideLabel(it, Ink.copy(alpha = 0.8f), c, labelR, 250f, icon = painterResource(R.drawable.logo_body), size = 11.sp)
+                    }
+                    if (nearest != null && onNearest != null) {
+                        CurvedSideLabel(nearest, Accent, c, labelR, 110f, icon = painterResource(R.drawable.ic_tab_mosque), bold = true, onClick = onNearest)
+                    }
                 }
-            }
-            LogoDisc(aligned, Modifier.align(Alignment.TopCenter).padding(top = 6.dp), arrow = if (mode == ArcMode.NONE) null else shown.value, light = light)
-            if (mode == ArcMode.NORTH_UP) {
-                Text(
-                    stringResource(R.string.compass_north), color = Ink.copy(alpha = 0.85f), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    modifier = Modifier.align(Alignment.TopCenter).padding(top = (Tokens.discSize + 12).dp),
-                )
             }
             CompositionLocalProvider(LocalLayoutDirection provides outer) {
-                // Small labels along the sides of the ring: the distance to the Kaaba and the nearest mosque (tappable).
-                val labelR = r + with(density) { 10.dp.toPx() }
-                kaabaDistance?.let {
-                    CurvedSideLabel(it, Ink.copy(alpha = 0.8f), c, labelR, 250f, icon = painterResource(R.drawable.logo_body), size = 11.sp)
-                }
-                if (nearest != null && onNearest != null) {
-                    CurvedSideLabel(nearest, Accent, c, labelR, 110f, icon = painterResource(R.drawable.ic_tab_mosque), bold = true, onClick = onNearest)
-                }
                 // Content starts below the disc (never overlapping it), centred horizontally inside the circle.
                 Box(
                     Modifier.width(with(density) { (r * 1.7f).toDp() }).align(Alignment.TopCenter)
@@ -272,6 +280,7 @@ fun QiblaArc(
                     content = content,
                 )
             }
+          }
         }
     }
 }

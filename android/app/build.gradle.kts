@@ -40,7 +40,7 @@ android {
 
     androidResources {
         // Only the seven reviewed interface languages are packaged; see res/xml/locales_config.xml.
-        localeFilters += listOf("en", "ar", "ur", "tr", "in", "fr", "es")
+        localeFilters += listOf("en", "ar", "ur", "tr", "in", "fr", "es", "ru", "bn", "fa", "fa-rAF", "b+zh+Hans", "hi", "pt", "ha", "sw", "b+fil", "vi", "th", "km", "ug", "b+ckb", "bs", "sr", "mk", "hu", "nl", "ka", "si", "te", "kn", "ml", "mr", "gu", "pa", "as")
     }
 
     sourceSets {

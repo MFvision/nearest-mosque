@@ -64,6 +64,7 @@ Legend: **Done** = implemented and covered by automated tests or rendered screen
 | Full-screen mosque map | Built | Built | Expand button on the map card |
 | Scholars' answer first: a matching fatwa leads the answer card | Done | Built | Android data tests; iOS CI build |
 | Tafsir (Al-Mukhtasar) for cited verses, in ar, tr, id, fr, es (Arabic for other readers) | Done | Built | Android data tests resolve the 2:255 tafsir; a Tafsir button on each Quran citation opens it. Asbab al-nuzul not included (no licensed source) |
+| 36 interface languages (29 added: ru, bn, fa, prs, zh, hi, pt, ha, sw, tl, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as) from one table, `shared/i18n/languages.json` | Done (screenshots: fa right to left, hi, ru, zh) | Built | All 374 strings drafted for each new language and checked for placeholders and plural forms; every new language is a draft that needs a native speaker's review before release, Hausa, Assamese and Khmer first. The app name stays "Near Mosque" except in Arabic-script languages, as in the existing drafts. Content (library, hadith, translations) for the new languages is not added yet: those readers get the Arabic and English library |
 
 ## 5.2 Test results (this environment and CI)
 

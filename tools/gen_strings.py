@@ -6,7 +6,7 @@
 
 languages.json lists every interface language; the enabled ones are shipped. From it this also writes
 Android's locales_config.xml, the Languages tables of both cores (codes, names, right-to-left, platform
-locale tags) and the CFBundleLocalizations line of ios/project.yml.
+locale tags), the CFBundleLocalizations line of ios/project.yml and Android's localeFilters.
 """
 import json
 import os
@@ -25,6 +25,7 @@ KOTLIN_OUT = os.path.join(ROOT, "android", "core", "src", "main", "kotlin", "sa"
 SWIFT_OUT = os.path.join(ROOT, "ios", "Packages", "NearestMosqueKit", "Sources", "NMCore", "Languages.swift")
 LOCALES_OUT = os.path.join(ROOT, "android", "app", "src", "main", "res", "xml", "locales_config.xml")
 PROJECT_YML = os.path.join(ROOT, "ios", "project.yml")
+GRADLE = os.path.join(ROOT, "android", "app", "build.gradle.kts")
 PLACEHOLDER = re.compile(r"%(\d+\$)?([-+ 0#]*\d*)([sd])")
 
 
@@ -208,6 +209,14 @@ def patch_project_yml():
     return re.sub(r"CFBundleLocalizations: \[[^\]]*\]", line, text)
 
 
+def patch_gradle():
+    """The APK keeps only the shipped languages' resources (localeFilters, from the res folder qualifiers)."""
+    text = open(GRADLE, encoding="utf-8").read()
+    quals = ["en"] + [l["android"][len("values-"):] for l in LANGUAGES if l["android"] != "values"]
+    line = "localeFilters += listOf(" + ", ".join(f'"{q}"' for q in quals) + ")"
+    return re.sub(r"localeFilters \+= listOf\([^)]*\)", line, text)
+
+
 def main():
     check = "--check" in sys.argv
     data = json.load(open(SRC, encoding="utf-8"))
@@ -223,6 +232,7 @@ def main():
     outputs[KOTLIN_OUT] = build_kotlin()
     outputs[SWIFT_OUT] = build_swift()
     outputs[PROJECT_YML] = patch_project_yml()
+    outputs[GRADLE] = patch_gradle()
     stale = []
     for path, content in outputs.items():
         if check:

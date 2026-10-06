@@ -69,7 +69,7 @@ targets:
         LSApplicationQueriesSchemes: [comgooglemaps, waze]
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es]
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
         CFBundleAllowMixedLocalizations: false
         LSRequiresIPhoneOS: true
         ITSAppUsesNonExemptEncryption: false
@@ -110,7 +110,7 @@ targets:
         CFBundleDisplayName: Near Mosque
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es]
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
         SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension

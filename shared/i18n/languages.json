@@ -79,7 +79,7 @@
    "tag": "ru",
    "android": "values-ru",
    "ios": "ru",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "bn",
@@ -89,7 +89,7 @@
    "tag": "bn",
    "android": "values-bn",
    "ios": "bn",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "fa",
@@ -99,7 +99,7 @@
    "tag": "fa",
    "android": "values-fa",
    "ios": "fa",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "prs",
@@ -109,7 +109,7 @@
    "tag": "fa-AF",
    "android": "values-fa-rAF",
    "ios": "fa-AF",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "zh",
@@ -119,7 +119,7 @@
    "tag": "zh-Hans",
    "android": "values-b+zh+Hans",
    "ios": "zh-Hans",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "hi",
@@ -129,7 +129,7 @@
    "tag": "hi",
    "android": "values-hi",
    "ios": "hi",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "pt",
@@ -139,7 +139,7 @@
    "tag": "pt",
    "android": "values-pt",
    "ios": "pt",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "ha",
@@ -149,7 +149,7 @@
    "tag": "ha",
    "android": "values-ha",
    "ios": "ha",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "sw",
@@ -159,7 +159,7 @@
    "tag": "sw",
    "android": "values-sw",
    "ios": "sw",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "tl",
@@ -169,7 +169,7 @@
    "tag": "fil",
    "android": "values-b+fil",
    "ios": "fil",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "vi",
@@ -179,7 +179,7 @@
    "tag": "vi",
    "android": "values-vi",
    "ios": "vi",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "th",
@@ -189,7 +189,7 @@
    "tag": "th",
    "android": "values-th",
    "ios": "th",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "km",
@@ -199,7 +199,7 @@
    "tag": "km",
    "android": "values-km",
    "ios": "km",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "ug",
@@ -209,7 +209,7 @@
    "tag": "ug",
    "android": "values-ug",
    "ios": "ug",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "ckb",
@@ -219,7 +219,7 @@
    "tag": "ckb",
    "android": "values-b+ckb",
    "ios": "ckb",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "bs",
@@ -229,7 +229,7 @@
    "tag": "bs",
    "android": "values-bs",
    "ios": "bs",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "sr",
@@ -239,7 +239,7 @@
    "tag": "sr",
    "android": "values-sr",
    "ios": "sr",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "mk",
@@ -249,7 +249,7 @@
    "tag": "mk",
    "android": "values-mk",
    "ios": "mk",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "hu",
@@ -259,7 +259,7 @@
    "tag": "hu",
    "android": "values-hu",
    "ios": "hu",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "nl",
@@ -269,7 +269,7 @@
    "tag": "nl",
    "android": "values-nl",
    "ios": "nl",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "ka",
@@ -279,7 +279,7 @@
    "tag": "ka",
    "android": "values-ka",
    "ios": "ka",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "si",
@@ -289,7 +289,7 @@
    "tag": "si",
    "android": "values-si",
    "ios": "si",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "te",
@@ -299,7 +299,7 @@
    "tag": "te",
    "android": "values-te",
    "ios": "te",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "kn",
@@ -309,7 +309,7 @@
    "tag": "kn",
    "android": "values-kn",
    "ios": "kn",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "ml",
@@ -319,7 +319,7 @@
    "tag": "ml",
    "android": "values-ml",
    "ios": "ml",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "mr",
@@ -329,7 +329,7 @@
    "tag": "mr",
    "android": "values-mr",
    "ios": "mr",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "gu",
@@ -339,7 +339,7 @@
    "tag": "gu",
    "android": "values-gu",
    "ios": "gu",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "pa",
@@ -349,7 +349,7 @@
    "tag": "pa",
    "android": "values-pa",
    "ios": "pa",
-   "enabled": false
+   "enabled": true
   },
   {
    "code": "as",
@@ -359,7 +359,7 @@
    "tag": "as",
    "android": "values-as",
    "ios": "as",
-   "enabled": false
+   "enabled": true
   }
  ]
 }

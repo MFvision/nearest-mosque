@@ -46,6 +46,180 @@
             "state": "translated",
             "value": "Near Mosque"
           }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجد"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجد"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەڭ يېقىن مەسچىت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزیکترین مزگەوت"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque"
+          }
         }
       }
     },
@@ -92,6 +266,180 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tu ubicación se usa en este teléfono para los horarios, la alquibla y las mezquitas cercanas. Solo se envía una ubicación aproximada, y solo con la búsqueda en línea activada."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваше местоположение используется на этом телефоне для времени намазов, киблы и мечетей поблизости. Отправляется только приблизительное местоположение и только при включённом онлайн-поиске мечетей."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপনার লোকেশন এই ফোনেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। শুধু আনুমানিক লোকেশন পাঠানো হয়, এবং তা কেবল অনলাইন মসজিদ সার্চ চালু থাকলেই।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت شما روی همین گوشی برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت شما روی همین موبایل برای اوقات نماز، قبله و مساجد نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的位置在此手机上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी लोकेशन इसी फ़ोन पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua localização é usada neste celular para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ana amfani da wurinku a wannan wayar don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mahali ulipo panatumika kwenye simu hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ginagamit ang iyong lokasyon sa teleponong ito para sa mga oras ng dasal, ang Qibla at mga kalapit na masjid. Tinatayang lokasyon lang ang ipinapadala, at kapag naka-on lang ang online na paghahanap ng masjid."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vị trí của bạn được dùng trên điện thoại này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตำแหน่งของคุณใช้บนโทรศัพท์นี้สำหรับเวลาละหมาด กิบลัต และมัสยิดใกล้เคียง ระบบจะส่งเพียงตำแหน่งโดยประมาณ และเฉพาะเมื่อเปิดการค้นหามัสยิดออนไลน์เท่านั้น"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទីតាំងរបស់អ្នកត្រូវបានប្រើនៅលើទូរសព្ទនេះ សម្រាប់ម៉ោងសឡាត គិបឡាត់ និងម៉ាស្ជិតក្បែរៗ។ មានតែទីតាំងប្រហាក់ប្រហែលប៉ុណ្ណោះដែលត្រូវបានផ្ញើ ហើយតែនៅពេលបើកការស្វែងរកម៉ាស្ជិតតាមអ៊ីនធឺណិតប៉ុណ្ណោះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئورنىڭىز مۇشۇ تېلېفوندا ناماز ۋاقىتلىرى، قىبلە ۋە يېقىن ئەتراپتىكى مەسچىتلەر ئۈچۈن ئىشلىتىلىدۇ. پەقەت تەخمىنىي ئورۇنلا يوللىنىدۇ، ئۇ ھەم پەقەت توردا مەسچىت ئىزدەش ئوچۇق بولغاندىلا."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شوێنەکەت لەسەر ئەم مۆبایلە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaša lokacija se koristi na ovom telefonu za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша локација се користи на овом телефону за намаска времена, киблу и џамије у близини. Шаље се само приближна локација, и то само кад је укључена претрага џамија на мрежи."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вашата локација се користи на овој телефон за времињата за намаз, киблата и џамиите во близина. Се испраќа само приближна локација и само кога е вклучено пребарувањето џамии на интернет."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A helyzetedet ez a telefon használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je locatie wordt op deze telefoon gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თქვენი მდებარეობა ამ ტელეფონზე გამოიყენება ლოცვის დროებისთვის, ყიბლისთვის და ახლომდებარე მეჩეთებისთვის. იგზავნება მხოლოდ მიახლოებითი მდებარეობა და მხოლოდ მაშინ, როცა მეჩეთების ონლაინ ძიება ჩართულია."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම දුරකථනයේ භාවිත වේ. යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි, එයද මාර්ගගත පල්ලි සෙවුම සක්‍රිය විට පමණි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయాలు, ఖిబ్లా, దగ్గరి మసీదుల కోసం మీ లొకేషన్ ఈ ఫోన్‌లోనే ఉపయోగించబడుతుంది. సుమారు లొకేషన్ మాత్రమే పంపబడుతుంది, అదీ ఆన్‌లైన్ మసీదు శోధన ఆన్‌లో ఉన్నప్పుడు మాత్రమే."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯಗಳು, ಕಿಬ್ಲಾ ಮತ್ತು ಹತ್ತಿರದ ಮಸೀದಿಗಳಿಗಾಗಿ ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಈ ಫೋನ್‌ನಲ್ಲೇ ಬಳಸಲಾಗುತ್ತದೆ. ಅಂದಾಜು ಸ್ಥಳವನ್ನು ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ, ಅದೂ ಆನ್‌ಲೈನ್ ಮಸೀದಿ ಹುಡುಕಾಟ ಆನ್ ಆಗಿದ್ದಾಗ ಮಾತ್ರ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയങ്ങൾ, ഖിബ്‌ല, അടുത്തുള്ള പള്ളികൾ എന്നിവയ്ക്കായി നിങ്ങളുടെ ലൊക്കേഷൻ ഈ ഫോണിൽ ഉപയോഗിക്കുന്നു. ഏകദേശ ലൊക്കേഷൻ മാത്രമേ അയയ്ക്കൂ, അതും ഓൺലൈൻ പള്ളി തിരയൽ ഓണായിരിക്കുമ്പോൾ മാത്രം."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमचे लोकेशन याच फोनवर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. फक्त अंदाजे लोकेशन पाठवले जाते, आणि तेही ऑनलाइन मशीद शोध चालू असेल तेव्हाच."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારું લોકેશન આ જ ફોન પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপোনাৰ অৱস্থান এই ফোনতে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।"
           }
         }
       }

@@ -144,6 +144,7 @@ struct QiblaArc<Content: View>: View {
     @Environment(Localization.self) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown: Double = 0
+    @State private var width: CGFloat = 0
 
     init(angle: Double, mode: ArcMode, aligned: Bool, springs: Bool = true, light: SkyLight? = nil,
          kaabaDistance: String? = nil, nearest: String? = nil, onNearest: (() -> Void)? = nil, @ViewBuilder content: () -> Content) {
@@ -152,6 +153,27 @@ struct QiblaArc<Content: View>: View {
     }
 
     var body: some View {
+        // At least square; taller when the text inside needs more lines (longer languages, large text),
+        // so it never runs into the card below. The ring itself depends on the width only.
+        ZStack(alignment: .top) {
+            Color.clear.aspectRatio(1 / 1.0, contentMode: .fit).overlay { ring }
+            // Content starts below the disc (never overlapping it), centred inside the circle.
+            content
+                .frame(width: width > 0 ? width * 0.43 * 1.7 : nil)
+                .padding(.top, Theme.discSize + 32)
+                .padding(.bottom, 8)
+                .environment(\.layoutDirection, .leftToRight)
+        }
+        .onGeometryChange(for: CGFloat.self, of: { $0.size.width }) { width = $0 }
+        .frame(maxWidth: 520)
+        .onAppear { shown = angle }
+        .onChange(of: angle) { _, a in
+            let next = Angles.shortestTarget(current: shown, target: a)
+            if reduceMotion || !springs { shown = next } else { withAnimation(.interpolatingSpring(stiffness: 140, damping: 22)) { shown = next } }
+        }
+    }
+
+    private var ring: some View {
         GeometryReader { geo in
             let w = geo.size.width
             let r = w * 0.43
@@ -180,20 +202,8 @@ struct QiblaArc<Content: View>: View {
                     CurvedSideLabel(text: nearest, icon: Image("MosqueTab"), weight: .semibold, color: Theme.accent,
                                     center: c, radius: r + 10, angle: 110, action: onNearest)
                 }
-                // Content starts below the disc (never overlapping it), centred inside the circle.
-                content
-                    .frame(width: r * 1.7)
-                    .padding(.top, discY + Theme.discSize / 2 + 26)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
             .environment(\.layoutDirection, .leftToRight)
-        }
-        .aspectRatio(1 / 1.0, contentMode: .fit)
-        .frame(maxWidth: 520)
-        .onAppear { shown = angle }
-        .onChange(of: angle) { _, a in
-            let next = Angles.shortestTarget(current: shown, target: a)
-            if reduceMotion || !springs { shown = next } else { withAnimation(.interpolatingSpring(stiffness: 140, damping: 22)) { shown = next } }
         }
     }
 }
