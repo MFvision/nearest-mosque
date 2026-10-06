@@ -98,31 +98,26 @@ class ScreenshotTest {
         compose.onNodeWithText("Today’s prayer times").performScrollTo()
     }
 
-    /** Scrolls until the compact bar shows, then taps it: the sky card. */
-    private fun openSkyCard() {
-        // Past the hero (item 0), so the compact bar is pinned.
+    /** Scrolls down until the header has shrunk into the bar across the top. */
+    private fun scrollToCompact() {
         compose.onNode(androidx.compose.ui.test.hasScrollToIndexAction()).performScrollToIndex(2)
         compose.waitForIdle()
-        compose.onNode(androidx.compose.ui.test.SemanticsMatcher("opens the sky card") {
-            androidx.compose.ui.semantics.SemanticsActions.OnClick in it.config && it.config[androidx.compose.ui.semantics.SemanticsActions.OnClick].label in setOf("Expand", "توسيع")
-        }).performClick()
         compose.mainClock.advanceTimeBy(1500)
     }
 
-    // 05:30, before sunrise: the night half with the moon.
-    @Test fun skyCardNight() = shoot("sky_card_night_en", Tab.PRAYER) { openSkyCard() }
+    @Test fun compactNight() = shoot("compact_night_en", Tab.PRAYER) { scrollToCompact() }
 
-    // 14:10 in light mode: the sun past Dhuhr on its path.
-    @Test fun skyCardDayLight() = shoot(
-        "sky_card_day_en_light", Tab.PRAYER, dark = false,
+    // 14:10 in light mode: the bar by day; the sun past Dhuhr on its path.
+    @Test fun compactDayLight() = shoot(
+        "compact_day_en_light", Tab.PRAYER, dark = false,
         at = ZonedDateTime.of(2026, 10, 3, 14, 10, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant(),
-    ) { openSkyCard() }
+    ) { scrollToCompact() }
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
-    fun skyCardArabic() = shoot(
-        "sky_card_day_ar", Tab.PRAYER,
+    fun compactArabic() = shoot(
+        "compact_day_ar", Tab.PRAYER,
         at = ZonedDateTime.of(2026, 10, 3, 14, 10, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant(),
-    ) { openSkyCard() }
+    ) { scrollToCompact() }
 
     // The phone's largest common text size (150%): nothing may be cut or overlap.
     @Test @Config(fontScale = 1.5f)
@@ -132,7 +127,12 @@ class ScreenshotTest {
     fun askLargeText() = shoot("ask_en_large_text", Tab.ASK)
 
     @Test @Config(fontScale = 1.5f)
-    fun skyCardLargeText() = shoot("sky_card_en_large_text", Tab.PRAYER) { openSkyCard() }
+    fun compactLargeText() = shoot("compact_en_large_text", Tab.PRAYER) { scrollToCompact() }
+
+    // Maghrib light on the glass (18:40) in dark and light mode.
+    @Test fun prayerMaghrib() = shoot("prayer_maghrib_en", Tab.PRAYER, at = ZonedDateTime.of(2026, 10, 3, 18, 40, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
+
+    @Test fun prayerDayLight() = shoot("prayer_day_en_light", Tab.PRAYER, dark = false, at = ZonedDateTime.of(2026, 10, 3, 10, 0, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
 
     @Test fun mosquesList() = shoot("mosques_en", Tab.MOSQUES)
 

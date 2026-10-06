@@ -60,6 +60,9 @@ final class AppModel {
     private(set) var cities: CityIndex?
     private(set) var ready = false
     private(set) var storageError: String?
+    /// Nearest downloaded mosque to the phone (or to the prayer city), for the prayer screen.
+    private(set) var nearestMosque: RankedMosque?
+    private var nearestKey: String?
 
     var settings: StoredSettings {
         didSet { save() }
@@ -218,6 +221,19 @@ final class AppModel {
     // Not observed: a cache filled during view evaluation must not trigger re-renders.
     @ObservationIgnored private var cacheKey: String?
     @ObservationIgnored private var cached: [DaySchedule] = []
+
+    /// Looks up the nearest downloaded mosque when the phone (or the prayer city) has moved ~100 m.
+    func refreshNearestMosque() {
+        guard let repo = mosques, let center = location.position?.location ?? settings.location?.location else { return }
+        let key = "\((center.latitude * 1000).rounded())/\((center.longitude * 1000).rounded())"
+        guard key != nearestKey else { return }
+        nearestKey = key
+        let lang = l10n.language
+        Task {
+            let r = try? await Task.detached { try repo.nearest(center, radiusMeters: 25_000, lang: lang) }.value
+            if case let .found(list, _) = r { nearestMosque = list.first } else { nearestMosque = nil }
+        }
+    }
 
     func days(now: Date) -> [DaySchedule] {
         guard let loc = settings.location else { return [] }

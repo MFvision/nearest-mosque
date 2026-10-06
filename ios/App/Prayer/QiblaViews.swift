@@ -119,15 +119,10 @@ struct QiblaCompassView: View {
             Spacer(minLength: 0)
             if let bearing = snap.qiblaBearing {
                 QiblaDial(bearing: bearing, compass: compass, aligned: aligned).frame(maxWidth: 380).padding(.horizontal, 12)
+                    .background { GuidingLight(angle: relative(bearing, compass), aligned: aligned) }
                 Text(qiblaGuidance(compass, bearing: bearing, l10n: l10n)).font(.title2.weight(.semibold)).multilineTextAlignment(.center)
                     .foregroundStyle(aligned ? Theme.accent : Theme.ink)
                     .accessibilityAddTraits(.updatesFrequently)
-                GlassGroup(spacing: 8) {
-                    HStack(spacing: 8) {
-                        info(l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale)))
-                        if let d = snap.qiblaDistance { info(l10n.t("qibla_distance", Format.distance(d, l10n: l10n))) }
-                    }
-                }
                 switch compass {
                 case let .live(_, accuracy, _):
                     if let a = accuracy { Text(l10n.t("heading_accuracy", Format.degrees(a, locale: l10n.locale))).font(.footnote).foregroundStyle(Theme.ink.opacity(0.75)) }
@@ -153,7 +148,38 @@ struct QiblaCompassView: View {
         }
     }
 
-    private func info(_ text: String) -> some View {
-        Text(text).font(.footnote.weight(.medium)).padding(.horizontal, 12).padding(.vertical, 8).glass(Capsule())
+    private func relative(_ bearing: Double, _ compass: CompassState) -> Double {
+        if case let .live(h, _, _) = compass { return Angles.relativeToQibla(qiblaBearingTrue: bearing, headingTrue: h) }
+        return bearing
+    }
+}
+
+/// The light that guides to the Qibla: a wide glow off the edge of the dial on the Qibla's side, turning
+/// with the phone and brightening (and widening) when the phone faces it. Still under Reduce Motion.
+private struct GuidingLight: View {
+    let angle: Double
+    let aligned: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown: Double = 0
+
+    var body: some View {
+        GeometryReader { g in
+            let s = min(g.size.width, g.size.height)
+            let r = shown * .pi / 180
+            Circle()
+                .fill(RadialGradient(colors: [Theme.gold.opacity(aligned ? 0.75 : 0.45), Theme.gold.opacity(0)], center: .center, startRadius: 0, endRadius: s * (aligned ? 0.75 : 0.55)))
+                .frame(width: s * 1.5, height: s * 1.5)
+                .position(x: g.size.width / 2 + s * 0.5 * sin(r), y: g.size.height / 2 - s * 0.5 * cos(r))
+                .blur(radius: 20)
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .onAppear { shown = angle }
+        .onChange(of: angle) { _, a in
+            let next = Angles.shortestTarget(current: shown, target: a)
+            if reduceMotion { shown = next } else { withAnimation(.interpolatingSpring(stiffness: 140, damping: 22)) { shown = next } }
+        }
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.4), value: aligned)
     }
 }

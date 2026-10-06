@@ -23,6 +23,7 @@ object Tokens {
     val goldText = Color(0xFF8A6A1C)
     /** Gold text on the light skies (goldText is below 4.5:1 on some of them). */
     val goldInk = Color(0xFF6E5414)
+    val moonlight = Color(0xFFC9D8FF)
     val sand = Color(0xFFF4EEDF)
     val surfaceLight = Color(0xFFF2F2F7)
     val cardLight = Color(0xFFFFFFFF)
@@ -36,7 +37,7 @@ object Tokens {
 
     const val cardRadius = 26
     const val sheetRadius = 28
-    const val discSize = 76
+    const val discSize = 92
     const val compactHeight = 64
 }
 
@@ -148,3 +149,26 @@ val QuranTextStyle = TextStyle(fontSize = 22.sp, lineHeight = 40.sp)
  * stays in order inside an Arabic or Urdu layout. Interface strings keep the layout direction.
  */
 val DataDirection = androidx.compose.ui.text.style.TextDirection.Content
+
+/**
+ * Light on the glass from where the sun (or the moon) is: pink-gold at Fajr, gold by day, orange at
+ * Maghrib, cool moonlight at night. [angle] is degrees clockwise from the top of the view (-90 = the
+ * left horizon, 90 = the right), following the sun along the day in the reading direction.
+ */
+@Immutable
+data class SkyLight(val color: Color, val angle: Float, val strength: Float) {
+    companion object {
+        fun of(arc: sa.zood.nearmosque.core.DayArc?, period: SkyPeriod, sky: Sky, rtl: Boolean): SkyLight {
+            val f = arc?.let { if (rtl) 1 - it.fraction else it.fraction } ?: 0.5
+            val angle = (-90 + 180 * f).toFloat()
+            if (arc != null && !arc.isDay) return SkyLight(if (sky.dark) Tokens.moonlight else Tokens.navy, angle, if (sky.dark) 0.7f else 0.35f)
+            // The pale daytime skies of light mode need a deeper colour to show on the glass.
+            val c = if (sky.dark) sky.glow else androidx.compose.ui.graphics.lerp(sky.glow, Tokens.goldDeep, 0.55f)
+            return when (period) {
+                SkyPeriod.FAJR, SkyPeriod.SUNRISE, SkyPeriod.MAGHRIB -> SkyLight(c, angle, 1f)
+                SkyPeriod.ASR -> SkyLight(c, angle, 0.9f)
+                else -> SkyLight(c, angle, 0.8f)
+            }
+        }
+    }
+}

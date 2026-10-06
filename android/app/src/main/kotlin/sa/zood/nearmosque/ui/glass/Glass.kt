@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.glass
 
+import androidx.compose.foundation.layout.fillMaxSize
+
+import androidx.compose.ui.graphics.graphicsLayer
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -200,9 +204,16 @@ fun GlassSegmented(selected: Int, options: List<Pair<String, Int>>, onSelect: (I
     }
 }
 
-/** Brand disc on top of the Qibla arc; glows gold when the phone faces the Qibla. */
+/**
+ * The brand disc; glows gold when the phone faces the Qibla. With [arrow] the logo's own arrow turns to
+ * point at the Qibla (degrees clockwise from the top of the phone; 0 = facing it), so the logo itself
+ * shows which way to turn. [light] lays the time-of-day reflection on its rim.
+ */
 @Composable
-fun LogoDisc(glow: Boolean, modifier: Modifier = Modifier, size: Dp = Tokens.discSize.dp, animate: Boolean = !reducedMotion()) {
+fun LogoDisc(
+    glow: Boolean, modifier: Modifier = Modifier, size: Dp = Tokens.discSize.dp, animate: Boolean = !reducedMotion(),
+    arrow: Float? = null, light: sa.zood.nearmosque.ui.theme.SkyLight? = null,
+) {
     val k = 0.94f + 0.14f * loopingFloat(animate && glow, 1600, reverse = true, label = "pulse", still = 0.5f)
     val glowAlpha by animateFloatAsState(if (glow) 1f else 0f, tween(500), label = "glow")
     Box(modifier.size(size).clearAndSetSemantics { }, contentAlignment = Alignment.Center) {
@@ -218,7 +229,26 @@ fun LogoDisc(glow: Boolean, modifier: Modifier = Modifier, size: Dp = Tokens.dis
                 .border(if (glow) 3.dp else 1.5.dp, if (glow) Tokens.gold else Color.White.copy(alpha = 0.7f), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
-            Image(painterResource(R.drawable.logo_mark), contentDescription = null, modifier = Modifier.padding(size * 0.16f))
+            if (arrow != null) {
+                Box(Modifier.padding(size * 0.16f)) {
+                    Image(painterResource(R.drawable.logo_body), contentDescription = null)
+                    Image(
+                        painterResource(R.drawable.logo_arrow), contentDescription = null,
+                        modifier = Modifier.graphicsLayer {
+                            rotationZ = arrow
+                            // Centre of the arrow in the logo images (shared/brand/emblem/install.py ARROW_PIVOT).
+                            transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 0.765625f)
+                        },
+                    )
+                }
+            } else {
+                Image(painterResource(R.drawable.logo_mark), contentDescription = null, modifier = Modifier.padding(size * 0.16f))
+            }
+            if (light != null) {
+                androidx.compose.foundation.Canvas(Modifier.fillMaxSize()) {
+                    drawLightRim(light, center, this.size.minDimension / 2 - 2.dp.toPx(), 3.dp.toPx())
+                }
+            }
         }
     }
 }

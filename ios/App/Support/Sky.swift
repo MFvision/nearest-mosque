@@ -62,6 +62,55 @@ struct Sky: Equatable {
     var showsStars: Bool { dark && period.hasStars }
 }
 
+/// Light on the glass from where the sun (or the moon) is: pink-gold at Fajr, gold by day, orange at
+/// Maghrib, cool moonlight at night. `angle` is degrees clockwise from the top of the view (-90 = the
+/// left horizon, 90 = the right), following the sun along the day in the reading direction.
+struct SkyLight: Equatable {
+    let color: Color
+    let angle: Double
+    let strength: Double
+
+    static func of(_ arc: DayArc?, period: SkyPeriod, sky: Sky, rtl: Bool) -> SkyLight {
+        let f = arc.map { rtl ? 1 - $0.fraction : $0.fraction } ?? 0.5
+        let angle = -90 + 180 * f
+        if let arc, !arc.isDay {
+            return SkyLight(color: sky.dark ? Color(hex: 0xC9D8FF) : Theme.navy, angle: angle, strength: sky.dark ? 0.7 : 0.35)
+        }
+        // The pale daytime skies of light mode need a deeper colour to show on the glass.
+        let c = sky.dark ? sky.glow : sky.glow.mix(with: Theme.goldDeep, by: 0.55)
+        switch period {
+        case .fajr, .sunrise, .maghrib: return SkyLight(color: c, angle: angle, strength: 1)
+        case .asr: return SkyLight(color: c, angle: angle, strength: 0.9)
+        default: return SkyLight(color: c, angle: angle, strength: 0.8)
+        }
+    }
+
+    /// A bright stretch of rim on the side facing the light, fading round the shape.
+    func rim<S: Shape>(_ shape: S, width: CGFloat) -> some View {
+        // Gradient stops round the shape from 12 o'clock, brightest at the light's angle (wrapping past 12).
+        let c = (angle.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360) / 360
+        let stops: [Gradient.Stop] = (0...48).map { i in
+            let t = Double(i) / 48
+            let d = min(abs(t - c), 1 - abs(t - c))
+            return .init(color: color.opacity(strength * max(0, 1 - d / 0.2)), location: t)
+        }
+        return shape
+            .stroke(AngularGradient(stops: stops, center: .center, startAngle: .degrees(-90), endAngle: .degrees(270)), lineWidth: width)
+            .blur(radius: 0.6)
+            .allowsHitTesting(false)
+    }
+
+    /// A soft glow just inside the shape on the side facing the light.
+    func sheen(size: CGFloat) -> some View {
+        let r = Double.pi * angle / 180
+        return Circle()
+            .fill(RadialGradient(colors: [color.opacity(0.6 * strength), color.opacity(0)], center: .center, startRadius: 0, endRadius: size * 0.42))
+            .frame(width: size * 0.84, height: size * 0.84)
+            .offset(x: size * 0.36 * sin(r), y: -size * 0.36 * cos(r))
+            .allowsHitTesting(false)
+    }
+}
+
 private struct SkyKey: EnvironmentKey { static let defaultValue = Sky.of(.night) }
 
 extension EnvironmentValues {

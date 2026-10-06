@@ -46,6 +46,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.graphicsLayer
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -90,14 +93,18 @@ fun PrayerScreen(
     onPickCity: () -> Unit,
     onOpenCalculation: () -> Unit,
     onOpenCompass: () -> Unit,
-    /** Screenshot tests: shows the compact bar already opened into the sky card. */
-    demoSkyCard: Boolean = false,
+    onOpenMosques: () -> Unit = {},
 ) {
     val context = LocalContext.current
-    var expanded by rememberSaveable { mutableStateOf(demoSkyCard) }
+    val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
-    val showCompact by remember { derivedStateOf { listState.firstVisibleItemIndex > 0 || listState.firstVisibleItemScrollOffset > 900 } }
-    LaunchedEffect(showCompact) { if (!showCompact && !demoSkyCard) expanded = false }
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    val fadePx = with(density) { 240.dp.toPx() }
+    // The bar replaces the header once most of the header has scrolled away; the header fades as it goes.
+    val showCompact by remember { derivedStateOf { listState.firstVisibleItemIndex > 0 || listState.firstVisibleItemScrollOffset > fadePx * 1.25f } }
+    val heroAlpha by remember { derivedStateOf { if (listState.firstVisibleItemIndex > 0) 0f else 1f - (listState.firstVisibleItemScrollOffset / fadePx - 0.3f).coerceIn(0f, 1f) } }
+    val lang = Format.languageCode(context)
+    LaunchedEffect(ui.location?.location, lang) { vm.refreshNearestMosque(lang) }
     val locationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         vm.useDeviceLocation(context.getString(R.string.location_current))
     }
@@ -113,7 +120,11 @@ fun PrayerScreen(
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = bottomBarPadding(16.dp).calculateBottomPadding()),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            item("hero") { PrayerHero(ui, compass, aligned, onLocation = onPickCity, onSettings = onOpenSettings, onQibla = onOpenCompass) }
+            item("hero") {
+                Box(Modifier.graphicsLayer { alpha = heroAlpha; val k = 0.9f + 0.1f * heroAlpha; scaleX = k; scaleY = k; transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 0f) }) {
+                    PrayerHero(ui, compass, aligned, onLocation = onPickCity, onSettings = onOpenSettings, onQibla = onOpenCompass, onMosques = onOpenMosques)
+                }
+            }
             val loc = ui.location
             if (loc == null) {
                 item("choose") {
@@ -158,27 +169,11 @@ fun PrayerScreen(
             }
             item("dates") { DatesCard(ui, onOpenCalculation) }
         }
-        val open = expanded && (showCompact || demoSkyCard)
-        AnimatedVisibility(visible = open, enter = fadeIn(), exit = fadeOut()) {
-            Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.28f)).pointerInput(Unit) { detectTapGestures { expanded = false } })
-        }
         AnimatedVisibility(
-            visible = (showCompact || demoSkyCard) && ui.next != null,
+            visible = showCompact && ui.next != null,
             enter = fadeIn() + slideInVertically { -it }, exit = fadeOut() + slideOutVertically { -it },
-            modifier = Modifier.statusBarsPadding().padding(horizontal = 16.dp, vertical = 6.dp),
         ) {
-            Box {
-                AnimatedVisibility(visible = !open, enter = fadeIn(), exit = fadeOut()) {
-                    CompactPrayerBar(ui, compass) { expanded = true }
-                }
-                AnimatedVisibility(
-                    visible = open,
-                    enter = fadeIn() + expandVertically(expandFrom = Alignment.Top),
-                    exit = fadeOut() + shrinkVertically(shrinkTowards = Alignment.Top),
-                ) {
-                    SkyCard(ui, compass, aligned, onQibla = onOpenCompass, onCollapse = { expanded = false })
-                }
-            }
+            CompactPrayerBar(ui, compass, aligned) { scope.launch { listState.animateScrollToItem(0) } }
         }
     }
 }

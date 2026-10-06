@@ -148,6 +148,7 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
                     prayerVm, prayer, compass, aligned,
                     onOpenSettings = { showSettings = true }, onPickCity = { showCity = true },
                     onOpenCalculation = { showCalc = true }, onOpenCompass = { showCompass = true },
+                    onOpenMosques = { tab = Tab.MOSQUES; under = Tab.MOSQUES },
                 )
                 Tab.MOSQUES -> MosquesScreen(mosquesVm, compass, onOpenSettings = { showSettings = true })
                 Tab.ASK -> AskScreen(askVm, onClose = { tab = under })

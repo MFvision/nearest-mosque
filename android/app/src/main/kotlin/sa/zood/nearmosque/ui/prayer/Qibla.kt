@@ -1,5 +1,7 @@
 package sa.zood.nearmosque.ui.prayer
 
+import androidx.compose.runtime.getValue
+
 import sa.zood.nearmosque.ui.theme.Accent
 
 import sa.zood.nearmosque.ui.theme.Ink
@@ -58,6 +60,7 @@ import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.Angles
 import sa.zood.nearmosque.core.CompassState
 import sa.zood.nearmosque.ui.Format
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import sa.zood.nearmosque.ui.glass.glass
 import androidx.compose.ui.graphics.drawscope.translate
 import sa.zood.nearmosque.ui.theme.Tokens
@@ -65,7 +68,7 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 
 @Composable
-private fun guidance(compass: CompassState, bearing: Double): String {
+internal fun qiblaGuidance(compass: CompassState, bearing: Double): String {
     val context = LocalContext.current
     return when (compass) {
         is CompassState.BearingOnly -> stringResource(R.string.qibla_no_sensor, Format.degrees(context, bearing))
@@ -171,20 +174,17 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
             }
             Spacer(Modifier.height(16.dp))
             Box(Modifier.fillMaxWidth().widthIn(max = 420.dp).weight(1f, fill = false), contentAlignment = Alignment.Center) {
+                val live = compass as? CompassState.Live
+                GuidingLight(if (live != null) Angles.relativeToQibla(bearing, live.headingTrue) else bearing, aligned, Modifier.matchParentSize())
                 QiblaDial(bearing, compass, aligned, Modifier.fillMaxWidth(0.9f))
             }
             Spacer(Modifier.height(16.dp))
             Text(
-                guidance(compass, bearing), style = MaterialTheme.typography.headlineSmall, textAlign = TextAlign.Center,
+                qiblaGuidance(compass, bearing), style = MaterialTheme.typography.headlineSmall, textAlign = TextAlign.Center,
                 color = if (aligned) Accent else Ink,
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
             )
             Spacer(Modifier.height(10.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                InfoChip(stringResource(R.string.qibla_bearing, Format.degrees(context, bearing)))
-                ui.qiblaDistance?.let { InfoChip(stringResource(R.string.qibla_distance, Format.distance(context, it))) }
-            }
-            Spacer(Modifier.height(8.dp))
             val note = when (compass) {
                 is CompassState.Live -> compass.accuracyDeg?.let { stringResource(R.string.heading_accuracy, it.roundToInt().toString()) }
                 CompassState.BearingOnly -> stringResource(R.string.qibla_north_up)
@@ -196,10 +196,25 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
     }
 }
 
+/**
+ * The light that guides to the Qibla: a wide glow off the edge of the dial on the Qibla's side, turning
+ * with the phone and brightening (and widening) when the phone faces it.
+ */
 @Composable
-private fun InfoChip(text: String) {
-    Text(
-        text, color = Ink, style = MaterialTheme.typography.labelMedium,
-        modifier = Modifier.glass(androidx.compose.foundation.shape.RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 12.dp, vertical = 8.dp),
-    )
+private fun GuidingLight(angle: Double, aligned: Boolean, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val shown = remember { Animatable(angle.toFloat()) }
+    val instant = reducedMotion(context)
+    LaunchedEffect(angle) {
+        val target = Angles.shortestTarget(shown.value.toDouble(), angle).toFloat()
+        if (instant) shown.snapTo(target) else shown.animateTo(target, spring(dampingRatio = 0.75f, stiffness = 140f))
+    }
+    val strength by androidx.compose.animation.core.animateFloatAsState(if (aligned) 1f else 0f, label = "light")
+    Canvas(modifier.clearAndSetSemantics {}) {
+        val s = size.minDimension
+        val rad = Math.toRadians(shown.value.toDouble())
+        val at = Offset(center.x + s * 0.5f * kotlin.math.sin(rad).toFloat(), center.y - s * 0.5f * kotlin.math.cos(rad).toFloat())
+        val r = s * (0.55f + 0.2f * strength)
+        drawCircle(Brush.radialGradient(listOf(Tokens.gold.copy(alpha = 0.45f + 0.3f * strength), Tokens.gold.copy(alpha = 0f)), at, r), r, at)
+    }
 }

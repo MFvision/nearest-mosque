@@ -179,3 +179,23 @@ fun DrawScope.drawSkyline(origin: Offset, sz: Size, color: Color) {
     }
     drawPath(path, color)
 }
+
+/** A bright stretch of a circle's rim on the side facing [light], fading round it. */
+fun androidx.compose.ui.graphics.drawscope.DrawScope.drawLightRim(light: sa.zood.nearmosque.ui.theme.SkyLight, center: Offset, radius: Float, width: Float) {
+    // Sweep gradients start at 3 o'clock; the light's angle is from 12 o'clock.
+    val c = (((light.angle - 90f) % 360f) + 360f) % 360f / 360f
+    val stops = (0..48).map { i ->
+        val t = i / 48f
+        val d = minOf(kotlin.math.abs(t - c), 1 - kotlin.math.abs(t - c))
+        t to light.color.copy(alpha = light.strength * maxOf(0f, 1 - d / 0.2f))
+    }.toTypedArray()
+    drawCircle(Brush.sweepGradient(*stops, center = center), radius, center, style = androidx.compose.ui.graphics.drawscope.Stroke(width))
+}
+
+/** A soft glow just inside a circle on the side facing [light]. */
+fun androidx.compose.ui.graphics.drawscope.DrawScope.drawLightSheen(light: sa.zood.nearmosque.ui.theme.SkyLight, center: Offset, radius: Float) {
+    val r = Math.toRadians(light.angle.toDouble())
+    val at = Offset(center.x + radius * 0.72f * kotlin.math.sin(r).toFloat(), center.y - radius * 0.72f * kotlin.math.cos(r).toFloat())
+    val g = radius * 0.84f
+    drawCircle(Brush.radialGradient(listOf(light.color.copy(alpha = 0.6f * light.strength), light.color.copy(alpha = 0f)), at, g), g, at)
+}

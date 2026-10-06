@@ -1,5 +1,23 @@
 package sa.zood.nearmosque.ui.prayer
 
+import androidx.compose.foundation.background
+
+import androidx.compose.foundation.layout.statusBarsPadding
+
+import androidx.compose.ui.graphics.RectangleShape
+
+import androidx.compose.ui.draw.shadow
+
+import androidx.compose.ui.semantics.role
+
+import sa.zood.nearmosque.ui.glass.drawLightRim
+
+import sa.zood.nearmosque.ui.glass.drawLightSheen
+
+import sa.zood.nearmosque.ui.theme.SkyLight
+
+import sa.zood.nearmosque.ui.theme.LocalSky
+
 import sa.zood.nearmosque.ui.theme.Accent
 
 import sa.zood.nearmosque.ui.theme.Ink
@@ -85,14 +103,17 @@ import kotlin.math.sin
 enum class ArcMode { LIVE, NORTH_UP, NONE }
 
 /**
- * Top of Prayer & Qibla: glass location pill and gear, the Qibla arc with the brand disc at the top and
- * the next prayer inside, and quick facts. The gold dot on the arc is where the Qibla is relative to
- * the top of the phone; when it meets the disc the phone faces the Qibla and the disc glows. Without
- * a live true heading the arc is north-up and the dot is the bearing from true north.
+ * Top of Prayer & Qibla, the middle of the three views: glass location pill and gear, the Qibla arc with
+ * the logo at the top and the next prayer inside, lit by the time of day (the glass reflects the sun or
+ * the moon from where it is). The logo's arrow and the gold dot on the arc point to the Qibla relative to
+ * the top of the phone; when the phone faces it the logo glows. Without a live heading both are
+ * north-up. Tapping anywhere on the arc opens the full Qibla view. Below: the nearest mosque.
  */
-@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation: () -> Unit, onSettings: () -> Unit, onQibla: () -> Unit) {
+fun PrayerHero(
+    ui: PrayerUi, compass: CompassState, aligned: Boolean,
+    onLocation: () -> Unit, onSettings: () -> Unit, onQibla: () -> Unit, onMosques: () -> Unit = {},
+) {
     val context = LocalContext.current
     val bearing = ui.qiblaBearing
     val live = compass as? CompassState.Live
@@ -106,6 +127,8 @@ fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation
         live != null -> Angles.relativeToQibla(bearing, live.headingTrue)
         else -> bearing
     }
+    val sky = LocalSky.current
+    val light = SkyLight.of(ui.arc, ui.sky, sky, LocalLayoutDirection.current == LayoutDirection.Rtl)
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
             Spacer(Modifier.size(48.dp))
@@ -115,28 +138,28 @@ fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation
             GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onSettings)
         }
         QiblaArc(
-            dot, mode, aligned,
+            dot, mode, aligned, light = light,
             modifier = Modifier.widthIn(max = 520.dp).clickable(enabled = bearing != null, role = Role.Button, onClickLabel = stringResource(R.string.qibla_open_compass), onClick = onQibla),
         ) {
-            ArcContent(ui, compass, mode, aligned)
+            ArcContent(ui, compass, aligned)
         }
-        if (bearing != null) {
-            // Large text: the north hint moves out of the arc, where it has room.
-            if (mode == ArcMode.NORTH_UP && largeText()) {
-                Text(
-                    stringResource(R.string.qibla_from_north_hint), color = Ink.copy(alpha = 0.75f), textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
-                )
-            }
-            androidx.compose.foundation.layout.FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+        val n = ui.nearestMosque
+        if (n != null && ui.location != null) {
+            val lang = Format.languageCode(context)
+            val name = n.mosque.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
+            val distance = Format.distance(context, n.distanceMeters)
+            val desc = stringResource(R.string.nearest_known_mosque) + ". " + stringResource(R.string.mosque_detail_a11y, name, distance)
+            Row(
+                Modifier.heightIn(min = 48.dp).glass(RoundedCornerShape(50), shadow = 4.dp)
+                    .clickable(role = Role.Button, onClick = onMosques)
+                    .clearAndSetSemantics { contentDescription = desc; role = Role.Button }
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Chip(stringResource(R.string.qibla_bearing, Format.degrees(context, bearing)))
-                ui.qiblaDistance?.let { Chip(stringResource(R.string.qibla_distance, Format.distance(context, it))) }
+                Icon(painterResource(R.drawable.ic_tab_mosque), contentDescription = null, tint = Accent, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(8.dp))
+                Text(stringResource(R.string.nearest_mosque_chip, distance), color = Ink, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
             }
-            Spacer(Modifier.size(8.dp))
-            GlassButton(onClick = onQibla) { GlassButtonText(stringResource(R.string.qibla_open_compass), painterResource(R.drawable.ic_compass)) }
         }
     }
 }
@@ -146,15 +169,7 @@ fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation
 fun largeText(): Boolean = LocalDensity.current.fontScale >= 1.3f
 
 @Composable
-private fun Chip(text: String) {
-    Text(
-        text, color = Ink, style = MaterialTheme.typography.labelMedium, maxLines = 1,
-        modifier = Modifier.glass(RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 12.dp, vertical = 8.dp),
-    )
-}
-
-@Composable
-private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, aligned: Boolean) {
+private fun ArcContent(ui: PrayerUi, compass: CompassState, aligned: Boolean) {
     val context = LocalContext.current
     val zone = ui.location?.zoneId
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -179,25 +194,17 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, align
         }
         val bearing = ui.qiblaBearing
         if (bearing != null) {
-            val live = compass as? CompassState.Live
-            val text = when {
-                live == null -> stringResource(R.string.qibla_bearing, Format.degrees(context, bearing))
-                live.needsCalibration -> stringResource(R.string.qibla_calibrate)
-                aligned -> stringResource(R.string.qibla_you_are_facing)
-                else -> stringResource(R.string.qibla_move_phone)
-            }
-            Spacer(Modifier.size(14.dp))
+            // Which way to turn (the logo's arrow shows it too); the angle from north only without a compass.
+            Spacer(Modifier.size(12.dp))
             Text(
-                text, color = if (aligned) Accent else Ink, textAlign = TextAlign.Center,
+                qiblaGuidance(compass, bearing), color = if (aligned) Accent else Ink, textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-                modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
+                modifier = Modifier.padding(horizontal = 12.dp).semantics { liveRegion = LiveRegionMode.Polite },
             )
-            if (mode == ArcMode.NORTH_UP && !largeText()) {
-                Text(
-                    stringResource(R.string.qibla_from_north_hint), color = Ink.copy(alpha = 0.75f), textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 24.dp, vertical = 2.dp),
-                )
-            }
+            Text(
+                stringResource(R.string.sky_card_hint), color = Ink.copy(alpha = 0.7f), textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodySmall, modifier = Modifier.clearAndSetSemantics {},
+            )
         }
     }
 }
@@ -208,7 +215,10 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, align
  * path. The lower half fades out so content can sit inside. Geometry never mirrors with RTL.
  */
 @Composable
-fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier = Modifier, springs: Boolean = true, content: @Composable BoxScope.() -> Unit) {
+fun QiblaArc(
+    angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier = Modifier, springs: Boolean = true,
+    light: SkyLight? = null, content: @Composable BoxScope.() -> Unit,
+) {
     val reduced = reducedMotion()
     val shown = remember { Animatable(angle.toFloat()) }
     LaunchedEffect(angle) {
@@ -226,6 +236,11 @@ fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier 
             val c = Offset(wPx / 2, discY + r)
             val ink = Ink
             Canvas(Modifier.fillMaxSize()) {
+                if (light != null) {
+                    // The glass catching the sun (or the moon): a soft glow on that side and a bright stretch of rim.
+                    drawLightSheen(light, c, r)
+                    drawLightRim(light, c, r, 6.dp.toPx())
+                }
                 drawCircle(
                     Brush.verticalGradient(0f to ink.copy(alpha = 0.55f), 0.45f to ink.copy(alpha = 0.22f), 0.8f to ink.copy(alpha = 0f), startY = c.y - r, endY = c.y + r),
                     radius = r, center = c, style = Stroke(1.5.dp.toPx()),
@@ -246,7 +261,7 @@ fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier 
                     drawCircle(ink.copy(alpha = 0.85f), 10.dp.toPx(), m, style = Stroke(2.dp.toPx()))
                 }
             }
-            LogoDisc(aligned, Modifier.align(Alignment.TopCenter).padding(top = 6.dp))
+            LogoDisc(aligned, Modifier.align(Alignment.TopCenter).padding(top = 6.dp), arrow = if (mode == ArcMode.NONE) null else shown.value, light = light)
             if (mode == ArcMode.NORTH_UP) {
                 Text(
                     stringResource(R.string.compass_north), color = Ink.copy(alpha = 0.85f), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
@@ -267,21 +282,43 @@ fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier 
 }
 
 /**
- * Compact glass bar pinned while scrolling: next prayer, countdown, small Qibla indicator. The whole
- * bar is one button that opens the sky card (with a ripple while pressed).
+ * The first of the three views: when the big header scrolls away, this bar takes its place at the top
+ * (full width, on the sky, so the page never shows through). The logo's arrow keeps pointing to the
+ * Qibla. Tapping it scrolls back up to the big header.
  */
 @Composable
-fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, onExpand: () -> Unit) {
+fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, aligned: Boolean, onExpand: () -> Unit) {
     val context = LocalContext.current
     val next = ui.next ?: return
     val zone = ui.location?.zoneId ?: return
+    val sky = LocalSky.current
+    val bearing = ui.qiblaBearing
+    val live = compass as? CompassState.Live
+    val target = when {
+        bearing == null -> null
+        live != null -> Angles.relativeToQibla(bearing, live.headingTrue)
+        else -> bearing
+    }
+    val shown = remember { Animatable((target ?: 0.0).toFloat()) }
+    val reduced = reducedMotion()
+    LaunchedEffect(target) {
+        if (target == null) return@LaunchedEffect
+        val t = Angles.shortestTarget(shown.value.toDouble(), target).toFloat()
+        if (reduced) shown.snapTo(t) else shown.animateTo(t, spring(dampingRatio = 0.75f, stiffness = 140f))
+    }
     Row(
-        Modifier.fillMaxWidth().heightIn(min = Tokens.compactHeight.dp).glass(RoundedCornerShape(50))
-            .clip(RoundedCornerShape(50))
+        Modifier.fillMaxWidth()
+            // The top of the same sky, opaque, reaching up under the status bar.
+            .shadow(8.dp, RectangleShape)
+            .background(Brush.verticalGradient(listOf(sky.top, androidx.compose.ui.graphics.lerp(sky.top, sky.mid, 0.35f))))
             .clickable(role = Role.Button, onClickLabel = stringResource(R.string.expand), onClick = onExpand)
-            .padding(start = 20.dp, end = 6.dp),
+            .statusBarsPadding()
+            .heightIn(min = Tokens.compactHeight.dp)
+            .padding(horizontal = 16.dp, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        LogoDisc(aligned, size = 46.dp, arrow = if (target == null) null else shown.value)
+        Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Text(stringResource(Format.prayerName(next.event)) + "  " + Format.time(context, next.at, zone), color = Ink, style = MaterialTheme.typography.titleMedium)
             Text(
@@ -289,10 +326,7 @@ fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, onExpand: () -> Unit) 
                 color = Accent, style = MaterialTheme.typography.bodyMedium.copy(fontFeatureSettings = "tnum"),
             )
         }
-        ui.qiblaBearing?.let { MiniQiblaIndicator(it, compass) }
-        Box(Modifier.size(48.dp), contentAlignment = Alignment.Center) {
-            Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowDown), contentDescription = null, tint = Ink)
-        }
+        Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowDown), contentDescription = null, tint = Ink)
     }
 }
 

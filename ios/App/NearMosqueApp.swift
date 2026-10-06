@@ -49,7 +49,7 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $tab) {
             Tab(l10n.t("tab_prayer"), systemImage: "location.north.circle", value: AppTab.prayer) {
-                NavigationStack { PrayerView(showSettings: $showSettings) }
+                NavigationStack { PrayerView(showSettings: $showSettings, onMosques: { tab = .mosques }) }
             }
             Tab(l10n.t("tab_mosques"), image: "MosqueTab", value: AppTab.mosques) {
                 NavigationStack { MosquesView(showSettings: $showSettings) }

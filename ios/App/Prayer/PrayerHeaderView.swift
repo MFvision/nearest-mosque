@@ -2,14 +2,17 @@ import NMCore
 import SwiftUI
 import UIKit
 
-/// Top of Prayer & Qibla: glass location pill and gear, the Qibla arc with the brand disc at the top
-/// and the next prayer inside, and quick facts. The gold dot on the arc is where the Qibla is relative
-/// to the top of the phone; when it meets the disc the phone faces the Qibla and the disc glows.
-/// Without a live true heading the arc is north-up and the dot is the bearing from true north.
+/// Top of Prayer & Qibla, the middle of the three views: glass location pill and gear, the Qibla arc with
+/// the logo at the top and the next prayer inside, lit by the time of day (the glass reflects the sun or
+/// the moon from where it is). The logo's arrow and the gold dot on the arc point to the Qibla relative
+/// to the top of the phone; when the phone faces it the logo glows. Without a live heading both are
+/// north-up. Tapping anywhere on the arc opens the full Qibla view. Below: the nearest mosque.
 struct PrayerHero: View {
+    @Environment(AppModel.self) private var model
     @Environment(Localization.self) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.colorScheme) private var scheme
+    @Environment(\.layoutDirection) private var direction
     /// The big time grows with the text-size setting (and still fits the arc: minimumScaleFactor).
     @ScaledMetric(relativeTo: .largeTitle) private var timeSize: CGFloat = 60
     let snap: PrayerSnapshot
@@ -18,6 +21,7 @@ struct PrayerHero: View {
     var onLocation: () -> Void
     var onSettings: () -> Void
     var onQibla: () -> Void
+    var onMosques: () -> Void
 
     var body: some View {
         VStack(spacing: 6) {
@@ -30,7 +34,7 @@ struct PrayerHero: View {
             }
             .padding(.top, 4)
 
-            QiblaArc(angle: dotAngle, mode: arcMode, aligned: aligned) {
+            QiblaArc(angle: dotAngle, mode: arcMode, aligned: aligned, light: light) {
                 arcContent
             }
             .contentShape(Rectangle())
@@ -38,39 +42,30 @@ struct PrayerHero: View {
             .accessibilityElement(children: .contain)
             .accessibilityAction(named: l10n.t("qibla_open_compass")) { if snap.location != nil { onQibla() } }
 
-            if let bearing = snap.qiblaBearing {
-                // Large text: the north hint moves out of the arc, where it has room.
-                if arcMode == .northUp && typeSize >= .xxLarge {
-                    Text(l10n.t("qibla_from_north_hint")).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
-                        .multilineTextAlignment(.center).padding(.horizontal, 16)
-                }
-                GlassGroup(spacing: 8) {
-                    // Side by side when they fit, else stacked (large text).
-                    ViewThatFits(in: .horizontal) {
-                        HStack(spacing: 8) { chips(bearing) }
-                        VStack(spacing: 8) { chips(bearing) }
+            if let n = model.nearestMosque, snap.location != nil {
+                let name = n.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed")
+                Button(action: onMosques) {
+                    HStack(spacing: 8) {
+                        Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 18, height: 18)
+                            .foregroundStyle(Theme.accent)
+                        Text(l10n.t("nearest_mosque_chip", Format.distance(n.distanceMeters, l10n: l10n))).font(.subheadline.weight(.semibold))
+                        Image(systemName: "chevron.forward").font(.caption.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.6))
                     }
+                    .padding(.horizontal, 16).frame(minHeight: 44)
+                    .contentShape(Capsule())
                 }
-                Button(action: onQibla) {
-                    Label(l10n.t("qibla_open_compass"), systemImage: "safari").frame(minHeight: 30)
-                }
-                .glassButton()
-                .padding(.top, 2)
+                .buttonStyle(PressHighlight(shape: AnyShape(Capsule())))
+                .glass(Capsule(), interactive: true)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(l10n.t("nearest_known_mosque") + ". " + l10n.t("mosque_detail_a11y", name, Format.distance(n.distanceMeters, l10n: l10n)))
+                .accessibilityAddTraits(.isButton)
             }
         }
         .foregroundStyle(Theme.ink)
     }
 
-    @ViewBuilder private func chips(_ bearing: Double) -> some View {
-        chip(l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale)), "location.north.line")
-        if let d = snap.qiblaDistance { chip(l10n.t("qibla_distance", Format.distance(d, l10n: l10n)), "point.topleft.down.to.point.bottomright.curvepath") }
-    }
-
-    private func chip(_ text: String, _ icon: String) -> some View {
-        Label(text, systemImage: icon)
-            .font(.footnote.weight(.medium)).lineLimit(2).minimumScaleFactor(0.8)
-            .padding(.horizontal, 12).padding(.vertical, 8)
-            .glass(Capsule())
+    private var light: SkyLight {
+        SkyLight.of(snap.arc, period: snap.sky, sky: Sky.of(snap.sky, dark: scheme == .dark), rtl: direction == .rightToLeft)
     }
 
     private var arcMode: ArcMode {
@@ -106,28 +101,15 @@ struct PrayerHero: View {
             } else if snap.location == nil {
                 Text(l10n.t("app_name")).font(.largeTitle.weight(.semibold))
             }
-            if snap.qiblaBearing != nil {
-                Text(guidance).font(.title3.weight(.semibold)).multilineTextAlignment(.center)
+            if let b = snap.qiblaBearing {
+                // Which way to turn (the logo's arrow shows it too); the angle from north only without a compass.
+                Text(qiblaGuidance(compass, bearing: b, l10n: l10n)).font(.headline).multilineTextAlignment(.center)
                     .foregroundStyle(aligned ? Theme.accent : Theme.ink)
-                    .padding(.top, 14)
+                    .padding(.top, 12).padding(.horizontal, 12)
                     .accessibilityAddTraits(.updatesFrequently)
-                    .accessibilityAction { onQibla() }
-                if arcMode == .northUp && typeSize < .xxLarge {
-                    Text(l10n.t("qibla_from_north_hint")).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
-                        .multilineTextAlignment(.center).padding(.horizontal, 24)
-                }
+                Text(l10n.t("sky_card_hint")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
+                    .accessibilityHidden(true)
             }
-        }
-    }
-
-    private var guidance: String {
-        guard let b = snap.qiblaBearing else { return "" }
-        switch compass {
-        case .bearingOnly:
-            return l10n.t("qibla_bearing", Format.degrees(b, locale: l10n.locale))
-        case let .live(_, _, calibrate):
-            if calibrate { return l10n.t("qibla_calibrate") }
-            return l10n.t(aligned ? "qibla_you_are_facing" : "qibla_move_phone")
         }
     }
 }
@@ -166,13 +148,15 @@ struct QiblaArc<Content: View>: View {
     let aligned: Bool
     /// False when the caller already animates `angle` frame by frame (onboarding demo).
     var springs = true
+    /// The time-of-day light reflected on the arc and the logo.
+    var light: SkyLight?
     @ViewBuilder var content: Content
     @Environment(Localization.self) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown: Double = 0
 
-    init(angle: Double, mode: ArcMode, aligned: Bool, springs: Bool = true, @ViewBuilder content: () -> Content) {
-        self.angle = angle; self.mode = mode; self.aligned = aligned; self.springs = springs; self.content = content()
+    init(angle: Double, mode: ArcMode, aligned: Bool, springs: Bool = true, light: SkyLight? = nil, @ViewBuilder content: () -> Content) {
+        self.angle = angle; self.mode = mode; self.aligned = aligned; self.springs = springs; self.light = light; self.content = content()
     }
 
     var body: some View {
@@ -182,8 +166,16 @@ struct QiblaArc<Content: View>: View {
             let discY = Theme.discSize / 2 + 6
             let c = CGPoint(x: w / 2, y: discY + r)
             ZStack(alignment: .top) {
+                if let light {
+                    // The glass catching the sun (or the moon): a soft glow on that side and a bright stretch of rim.
+                    light.sheen(size: 2 * r).position(c)
+                    light.rim(Circle(), width: 6)
+                        .frame(width: 2 * r, height: 2 * r).position(c)
+                        .mask(LinearGradient(stops: [.init(color: .black, location: 0), .init(color: .black, location: 0.45), .init(color: .clear, location: 0.8)],
+                                             startPoint: .top, endPoint: .bottom))
+                }
                 ArcLayer(angle: shown, center: c, radius: r, mode: mode, aligned: aligned)
-                LogoDisc(glow: aligned).position(x: c.x, y: discY)
+                LogoDisc(glow: aligned, arrow: mode == .none ? nil : shown, light: light).position(x: c.x, y: discY)
                 if mode == .northUp {
                     Text(l10n.t("compass_north")).font(.caption.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.85))
                         .position(x: c.x, y: discY + Theme.discSize / 2 + 14)
@@ -249,38 +241,70 @@ private struct ArcLayer: View, Animatable {
     }
 }
 
-/// Compact glass bar pinned while scrolling: next prayer, countdown, small Qibla indicator. The whole
-/// bar is one button that opens the sky card (it highlights while pressed).
+/// The first of the three views: when the big header scrolls away, this bar takes its place at the top
+/// (full width, on the sky, so the page never shows through). The logo's arrow keeps pointing to the
+/// Qibla. Tapping it scrolls back up to the big header.
 struct CompactPrayerBar: View {
     @Environment(Localization.self) private var l10n
+    @Environment(\.colorScheme) private var scheme
     let snap: PrayerSnapshot
     let compass: CompassState
+    let aligned: Bool
     var onExpand: () -> Void
 
     var body: some View {
         if let next = snap.next, let loc = snap.location {
-            Button(action: onExpand) { bar(next, loc) }
-                .buttonStyle(PressHighlight(shape: AnyShape(Capsule())))
-                .glass(Capsule(), interactive: true)
-                .accessibilityHint(l10n.t("expand"))
+            let sky = Sky.of(snap.sky, dark: scheme == .dark)
+            Button(action: onExpand) {
+                HStack(spacing: 12) {
+                    TurningLogo(target: arrowTarget, size: 46, glow: aligned)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(l10n.t(Format.prayerKey(next.event)) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
+                        Text(l10n.t("remaining_long", Format.remainingLong(PrayerCalculator.remaining(snap.now, next.at), locale: l10n.locale)))
+                            .font(.subheadline).monospacedDigit().foregroundStyle(Theme.accent)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.down").font(.headline).frame(width: 44, height: 44).accessibilityHidden(true)
+                }
+                .foregroundStyle(Theme.ink)
+                .padding(.horizontal, 16).padding(.vertical, 6)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(PressHighlight(shape: AnyShape(Rectangle())))
+            .background {
+                // The top of the same sky, opaque, reaching up under the status bar.
+                LinearGradient(colors: [sky.top, sky.top.mix(with: sky.mid, by: 0.35)], startPoint: .top, endPoint: .bottom)
+                    .overlay(alignment: .bottom) { Rectangle().fill(Theme.ink.opacity(0.12)).frame(height: 1) }
+                    .shadow(color: .black.opacity(0.18), radius: 8, y: 3)
+                    .ignoresSafeArea(edges: .top)
+            }
+            .accessibilityHint(l10n.t("expand"))
         }
     }
 
-    private func bar(_ next: Upcoming, _ loc: PrayerLocation) -> some View {
-        HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(l10n.t(Format.prayerKey(next.event)) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
-                Text(l10n.t("remaining_long", Format.remainingLong(PrayerCalculator.remaining(snap.now, next.at), locale: l10n.locale)))
-                    .font(.subheadline).monospacedDigit().foregroundStyle(Theme.accent)
+    private var arrowTarget: Double? {
+        guard let b = snap.qiblaBearing else { return nil }
+        if case let .live(h, _, _) = compass { return Angles.relativeToQibla(qiblaBearingTrue: b, headingTrue: h) }
+        return b
+    }
+}
+
+/// The logo disc whose arrow turns to `target` by the shortest way (springy unless Reduce Motion).
+struct TurningLogo: View {
+    let target: Double?
+    var size: CGFloat = Theme.discSize
+    var glow = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown: Double = 0
+
+    var body: some View {
+        LogoDisc(size: size, glow: glow, arrow: target == nil ? nil : shown)
+            .onAppear { shown = target ?? 0 }
+            .onChange(of: target) { _, t in
+                guard let t else { return }
+                let next = Angles.shortestTarget(current: shown, target: t)
+                if reduceMotion { shown = next } else { withAnimation(.interpolatingSpring(stiffness: 140, damping: 22)) { shown = next } }
             }
-            Spacer()
-            if let b = snap.qiblaBearing { MiniQiblaIndicator(bearing: b, compass: compass).frame(width: 40, height: 40) }
-            Image(systemName: "chevron.down").font(.headline).frame(width: 44, height: 44).accessibilityHidden(true)
-        }
-        .foregroundStyle(Theme.ink)
-        .padding(.leading, 18).padding(.trailing, 6)
-        .frame(minHeight: Theme.compactHeight)
-        .contentShape(Capsule())
     }
 }
 

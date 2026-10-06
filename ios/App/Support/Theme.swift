@@ -29,7 +29,8 @@ enum Theme {
     static let sand = Color(hex: 0xF4EEDF)
     static let solidSurface = Color(hex: 0x14232F)
     static let cardRadius: CGFloat = 26
-    static let discSize: CGFloat = 76
+    /// Large enough for the logo's arrow to read as the Qibla pointer.
+    static let discSize: CGFloat = 92
     static let compactHeight: CGFloat = 64
     static let spring = Animation.spring(response: 0.42, dampingFraction: 0.86)
 
@@ -217,10 +218,16 @@ struct GlassIconButton: View {
     }
 }
 
-/// The brand disc on top of the Qibla arc; glows gold when the phone faces the Qibla.
+/// The brand disc on top of the Qibla arc; glows gold when the phone faces the Qibla. With `arrow` the
+/// logo's own arrow turns to point at the Qibla (degrees clockwise from the top of the phone; 0 = facing
+/// it), so the logo itself shows which way to turn. `light` lays the time-of-day reflection on the glass.
 struct LogoDisc: View {
     var size: CGFloat = Theme.discSize
     var glow: Bool
+    var arrow: Double? = nil
+    var light: SkyLight? = nil
+    /// Centre of the arrow in the logo images (shared/brand/emblem/install.py ARROW_PIVOT).
+    static let arrowPivot = UnitPoint(x: 0.5, y: 0.765625)
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var pulse = false
 
@@ -230,7 +237,19 @@ struct LogoDisc: View {
         ZStack {
             Circle().fill(.white.opacity(0.94))
             Circle().stroke(glow ? Theme.gold : .white.opacity(0.7), lineWidth: glow ? 3 : 1.5)
-            Image("LogoMark").resizable().scaledToFit().padding(size * 0.16)
+            if let light { light.rim(Circle(), width: 3) }
+            if let arrow {
+                ZStack {
+                    Image("LogoBody").resizable().scaledToFit()
+                    Image("LogoArrow").resizable().scaledToFit()
+                        .rotationEffect(.degrees(arrow), anchor: Self.arrowPivot)
+                        .shadow(color: glow ? Theme.gold : .clear, radius: 6)
+                }
+                .padding(size * 0.16)
+                .environment(\.layoutDirection, .leftToRight)
+            } else {
+                Image("LogoMark").resizable().scaledToFit().padding(size * 0.16)
+            }
         }
         .frame(width: size, height: size)
         .background {

@@ -9081,6 +9081,53 @@
         }
       }
     },
+    "nearest_mosque_chip": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nearest mosque · %1$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أقرب مسجد · %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریب ترین مسجد · %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yakın cami · %1$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masjid terdekat · %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mosquée la plus proche · %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mezquita más cercana · %1$@"
+          }
+        }
+      }
+    },
     "new_conversation": {
       "extractionState": "manual",
       "localizations": {

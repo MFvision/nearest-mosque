@@ -195,6 +195,7 @@
     <string name="mosques_need_location_body">Allow location, or use the city you chose for prayer times.</string>
     <string name="mosques_need_location_title">Find mosques near you</string>
     <string name="nearest_known_mosque">Nearest known mosque</string>
+    <string name="nearest_mosque_chip">Nearest mosque · %1$s</string>
     <string name="new_conversation">New conversation</string>
     <string name="next_day">next day</string>
     <string name="next_prayer">Next prayer</string>

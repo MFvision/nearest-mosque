@@ -35,6 +35,7 @@ import sa.zood.nearmosque.ui.theme.SkyPeriod
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import kotlin.math.roundToLong
 
 data class PrayerUi(
     val settings: AppSettings? = null,
@@ -51,6 +52,8 @@ data class PrayerUi(
     val sky: SkyPeriod = SkyPeriod.NIGHT,
     /** Sunrise-to-Maghrib (or night) path for the sky card; null without a location or on polar days. */
     val arc: DayArc? = null,
+    /** Nearest downloaded mosque to the phone (or to the prayer city). */
+    val nearestMosque: sa.zood.nearmosque.core.RankedMosque? = null,
 )
 
 sealed interface LocateState {
@@ -73,8 +76,24 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
         }
     }
 
-    val ui: StateFlow<PrayerUi> = combine(c.settings.settings, ticker) { s, now -> build(s, now) }
+    private val nearest = MutableStateFlow<sa.zood.nearmosque.core.RankedMosque?>(null)
+    private var nearestKey: String? = null
+
+    val ui: StateFlow<PrayerUi> = combine(c.settings.settings, ticker, nearest) { s, now, n -> build(s, now).copy(nearestMosque = n) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), PrayerUi())
+
+    /** Looks up the nearest downloaded mosque when the phone (or the prayer city) has moved ~100 m. */
+    fun refreshNearestMosque(lang: String) {
+        viewModelScope.launch {
+            c.ready.first { it }
+            val center = c.devicePosition.value?.location ?: c.settings.settings.first().prayerLocation?.location ?: return@launch
+            val key = "${(center.latitude * 1000).roundToLong()}/${(center.longitude * 1000).roundToLong()}"
+            if (key == nearestKey) return@launch
+            nearestKey = key
+            val r = c.mosques.nearest(center, 25_000.0, lang)
+            nearest.value = (r as? sa.zood.nearmosque.data.MosqueResult.Found)?.items?.firstOrNull()
+        }
+    }
 
     private val _locate = MutableStateFlow<LocateState>(LocateState.Idle)
     val locate: StateFlow<LocateState> = _locate.asStateFlow()

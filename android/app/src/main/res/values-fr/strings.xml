@@ -195,6 +195,7 @@
     <string name="mosques_need_location_body">Autorisez la localisation ou utilisez la ville choisie pour les horaires.</string>
     <string name="mosques_need_location_title">Trouvez les mosquées proches</string>
     <string name="nearest_known_mosque">Mosquée connue la plus proche</string>
+    <string name="nearest_mosque_chip">Mosquée la plus proche · %1$s</string>
     <string name="new_conversation">Nouvelle conversation</string>
     <string name="next_day">lendemain</string>
     <string name="next_prayer">Prochaine prière</string>

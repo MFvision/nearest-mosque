@@ -3049,6 +3049,15 @@
       "id": "Mengubah lokasi salat",
       "fr": "Change le lieu de prière",
       "es": "Cambia el lugar de oración"
+    },
+    "nearest_mosque_chip": {
+      "en": "Nearest mosque · %1$s",
+      "ar": "أقرب مسجد · %1$s",
+      "ur": "قریب ترین مسجد · %1$s",
+      "tr": "En yakın cami · %1$s",
+      "id": "Masjid terdekat · %1$s",
+      "fr": "Mosquée la plus proche · %1$s",
+      "es": "Mezquita más cercana · %1$s"
     }
   }
 }

@@ -195,6 +195,7 @@
     <string name="mosques_need_location_body">Konum izni verin veya namaz vakitleri için seçtiğiniz şehri kullanın.</string>
     <string name="mosques_need_location_title">Yakınınızdaki camileri bulun</string>
     <string name="nearest_known_mosque">Bilinen en yakın cami</string>
+    <string name="nearest_mosque_chip">En yakın cami · %1$s</string>
     <string name="new_conversation">Yeni sohbet</string>
     <string name="next_day">ertesi gün</string>
     <string name="next_prayer">Sonraki namaz</string>

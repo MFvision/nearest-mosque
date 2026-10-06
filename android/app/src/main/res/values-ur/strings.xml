@@ -195,6 +195,7 @@
     <string name="mosques_need_location_body">مقام کی اجازت دیں، یا نماز کے اوقات کے لیے منتخب شہر استعمال کریں۔</string>
     <string name="mosques_need_location_title">اپنے قریب مساجد تلاش کریں</string>
     <string name="nearest_known_mosque">قریب ترین معلوم مسجد</string>
+    <string name="nearest_mosque_chip">قریب ترین مسجد · %1$s</string>
     <string name="new_conversation">نئی گفتگو</string>
     <string name="next_day">اگلے دن</string>
     <string name="next_prayer">اگلی نماز</string>

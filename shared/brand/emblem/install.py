@@ -6,7 +6,8 @@ Writes ../near-mosque-icon.svg, ../near-mosque-icon-dark.svg and ../near-mosque-
 (headless Chromium) the iOS app icon (light, dark and tinted) and logo mark, and the Android adaptive
 icon foreground, monochrome layer and logo mark."""
 import os, subprocess, tempfile
-from options import behind, behind_inner, place, BEHIND_EXTENT
+from options import behind, behind_inner, place, BEHIND_EXTENT, ARROW, FACET, ARROW2, NAVY, GOLD, WEIGHT, arrow_tf
+from emblem import emblem, INK
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
 CHROME = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell"
@@ -48,6 +49,20 @@ def opaque(path):
     Image.open(path).convert("RGB").save(path)
 
 
+def guide_layers():
+    """The mark split in two for the Qibla guide: the emblem alone, and the arrow alone pointing straight up
+    at its place in the mark. The apps turn the arrow about its centre, ARROW_PIVOT (fractions of the image)."""
+    body = fit(emblem(**WEIGHT, ink=INK), 512, 488)
+    a = ARROW2
+    arrow = fit(f'<g transform="{arrow_tf(a["x"], a["y"], a["h"], 0)}"><path d="{ARROW}" fill="{NAVY}" stroke="{NAVY}" '
+                f'stroke-width="3" stroke-linejoin="round"/><path d="{FACET}" fill="{GOLD}"/></g>', 512, 488)
+    return body, arrow
+
+
+k = 488 / (BOTTOM - TOP)
+ARROW_PIVOT = ((256 - CX * k + ARROW2["x"] * k) / 512, (256 - (TOP + BOTTOM) / 2 * k + ARROW2["y"] * k) / 512)
+
+
 if __name__ == "__main__":
     light, dark = behind("l"), behind("d", dark=True)
     mark = fit(behind_inner(), 512, 488)
@@ -64,6 +79,16 @@ if __name__ == "__main__":
     # Adaptive icon: 108 dp canvas (432 px), artwork inside the 66 dp safe circle (264 px); 218 px tall keeps the roof corners and arrow tip inside it.
     render(fit(behind_inner(), 432, 218), f"{DRAWABLE}/ic_launcher_foreground.png", 432)
     render(fit(behind_inner(ink="#FFFFFF", body="#FFFFFF", facet="#FFFFFF"), 432, 218), f"{DRAWABLE}/ic_launcher_monochrome.png", 432)
+    body, arrow = guide_layers()
+    for name, svg in (("LogoBody", body), ("LogoArrow", arrow)):
+        os.makedirs(f"{IOS}/{name}.imageset", exist_ok=True)
+        fname = name.lower().replace("logo", "logo-")
+        render(svg, f"{IOS}/{name}.imageset/{fname}.png", 512)
+        open(f"{IOS}/{name}.imageset/Contents.json", "w").write(
+            '{"images":[{"filename":"%s.png","idiom":"universal"}],"info":{"author":"xcode","version":1}}\n' % fname)
+    render(body, f"{DRAWABLE}/logo_body.png", 512)
+    render(arrow, f"{DRAWABLE}/logo_arrow.png", 512)
+    print("arrow pivot", ARROW_PIVOT)
     render(light, f"{ROOT}/shared/brand/app-icon-preview.png", 1024)
     render(mark, f"{ROOT}/shared/brand/mark-512.png", 512)
     print("installed")

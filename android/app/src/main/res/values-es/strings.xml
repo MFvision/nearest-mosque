@@ -195,6 +195,7 @@
     <string name="mosques_need_location_body">Permite la ubicación o usa la ciudad elegida para los horarios.</string>
     <string name="mosques_need_location_title">Encuentra mezquitas cerca</string>
     <string name="nearest_known_mosque">Mezquita conocida más cercana</string>
+    <string name="nearest_mosque_chip">Mezquita más cercana · %1$s</string>
     <string name="new_conversation">Nueva conversación</string>
     <string name="next_day">día siguiente</string>
     <string name="next_prayer">Próxima oración</string>

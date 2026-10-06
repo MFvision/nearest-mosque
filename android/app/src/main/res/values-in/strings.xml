@@ -194,6 +194,7 @@
     <string name="mosques_need_location_body">Izinkan lokasi, atau gunakan kota yang Anda pilih untuk jadwal salat.</string>
     <string name="mosques_need_location_title">Temukan masjid di dekat Anda</string>
     <string name="nearest_known_mosque">Masjid terdekat yang diketahui</string>
+    <string name="nearest_mosque_chip">Masjid terdekat · %1$s</string>
     <string name="new_conversation">Percakapan baru</string>
     <string name="next_day">hari berikutnya</string>
     <string name="next_prayer">Salat berikutnya</string>

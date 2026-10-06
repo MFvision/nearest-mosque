@@ -199,6 +199,7 @@
     <string name="mosques_need_location_body">اسمح بالوصول إلى الموقع، أو استخدم المدينة التي اخترتها للمواقيت.</string>
     <string name="mosques_need_location_title">اعثر على المساجد القريبة</string>
     <string name="nearest_known_mosque">أقرب مسجد معروف</string>
+    <string name="nearest_mosque_chip">أقرب مسجد · %1$s</string>
     <string name="new_conversation">محادثة جديدة</string>
     <string name="next_day">اليوم التالي</string>
     <string name="next_prayer">الصلاة القادمة</string>
