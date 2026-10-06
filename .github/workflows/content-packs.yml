@@ -1,0 +1,66 @@
+name: Content packs
+
+# Builds the downloadable content packs (hadith, Quran translation, tafsir, IslamHouse library) for the
+# interface languages that have no bundled content, and publishes them as the assets of one GitHub
+# release. remote-packs.json in that release is the catalog: copy it to shared/content/ so the apps
+# offer those downloads. Each build goes to a new tag and an existing release is never overwritten,
+# because shipped apps check every pack against the catalog they were built with.
+# Start it from the Actions tab (Run workflow).
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag for this build (content-v1, content-v2, ...)"
+        required: true
+        default: content-v1
+      langs:
+        description: "Languages to build, separated by spaces (empty: all without bundled content)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: content-packs
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and publish content packs
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      TAG: ${{ inputs.tag }}
+      LANGS: ${{ inputs.langs }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install openpyxl
+        run: pip install openpyxl==3.1.5
+      - name: Refuse to overwrite an existing release
+        run: |
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; choose a new tag."
+            exit 1
+          fi
+      - name: Build packs
+        run: |
+          python3 tools/build_remote_packs.py --out build/remote \
+            --base-url "https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/" \
+            ${LANGS:+--langs $LANGS}
+      - name: Publish the release
+        run: |
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Content packs ($TAG)" \
+            --notes "Downloadable content packs for Near Mosque. The catalog is remote-packs.json." \
+            build/remote/assets/remote-packs.json
+          # Upload in batches (the release holds every pack file, compressed).
+          find build/remote/assets -name '*.z' -print0 | xargs -0 -n 50 gh release upload "$TAG" --repo "$GITHUB_REPOSITORY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: remote-packs-catalog
+          path: build/remote/assets/remote-packs.json
