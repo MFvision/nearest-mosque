@@ -86,7 +86,17 @@ def fetch_lang(lang, cache_dir):
     return items
 
 
-def build(lang, items, out_root):
+def library_name(lang):
+    if lang in NAMES:
+        return NAMES[lang]
+    langs = json.load(open(os.path.join(os.path.dirname(__file__), "..", "shared", "i18n", "languages.json"), encoding="utf-8"))
+    native = next((l["name"] for l in langs["languages"] if l["code"] == lang), lang)
+    return f"IslamHouse ({native})"
+
+
+def build(lang, items, out_root, src=None):
+    """One library pack for the app language `lang`; `src` is IslamHouse's code for it when different (ckb → ku)."""
+    src = src or lang
     out = os.path.join(out_root, f"islamhouse-{lang}")
     os.makedirs(out, exist_ok=True)
     doc_id = f"islamhouse-{lang}"
@@ -117,7 +127,7 @@ def build(lang, items, out_root):
             "anchor": title,
             "section": section,
             "original": {"docId": doc_id, "lang": lang, "text": text},
-            "url": f"https://islamhouse.com/{lang}/{it['_type']}/{it['id']}/",
+            "url": f"https://islamhouse.com/{src}/{it['_type']}/{it['id']}/",
         })
     with open(os.path.join(out, "chunks.jsonl"), "w", encoding="utf-8") as f:
         for i, r in enumerate(rows, start=1):
@@ -125,9 +135,9 @@ def build(lang, items, out_root):
     today = datetime.date.today().isoformat()
     documents = [{
         "id": doc_id, "kind": "library",
-        "title": {"en": "IslamHouse.com", "ar": "دار الإسلام IslamHouse.com", lang: NAMES[lang]},
+        "title": {"en": "IslamHouse.com", "ar": "دار الإسلام IslamHouse.com", lang: library_name(lang)},
         "edition": f"IslamHouse API v3 catalogue, {today}",
-        "publisher": "IslamHouse.com", "language": lang, "url": f"https://islamhouse.com/{lang}/",
+        "publisher": "IslamHouse.com", "language": lang, "url": f"https://islamhouse.com/{src}/",
         "license": {
             "id": "IslamHouse-free-distribution-unconfirmed",
             "name": "IslamHouse material for free distribution; in-app redistribution permission not yet confirmed",
@@ -147,7 +157,7 @@ def build(lang, items, out_root):
         files.append({"path": name, "bytes": os.path.getsize(p), "sha256": sha256_file(p)})
     manifest = {
         "id": f"sources.islamhouse-{lang}", "kind": "sources", "schemaVersion": 1, "version": PACK_VERSION,
-        "title": {"en": f"IslamHouse library ({lang})", lang: NAMES[lang]},
+        "title": {"en": f"IslamHouse library ({lang})", lang: library_name(lang)},
         "languages": [lang], "recordCount": len(rows),
         "categories": {t: sum(1 for r in rows if r["section"]["type"] == t) for t in TYPES},
         "source": {"name": "IslamHouse.com API v3", "url": "https://islamhouse.com/", "snapshot": today,

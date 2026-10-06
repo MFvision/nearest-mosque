@@ -40,6 +40,11 @@ UA = "NearMosque-pack-builder/0.1 (+https://github.com/MFvision/nearest-mosque)"
 SEP = "\u2063"
 
 
+def qe_site(lang):
+    """QuranEnc's page language for links: the reader's when the site has it, else English."""
+    return lang if lang in ("ar", "en", "ur", "tr", "id", "fr", "es") else "en"
+
+
 def compact(parts):
     """original.text and the parts' kinds/languages for records with several text parts."""
     parts = [p for p in parts if p["text"]]
@@ -85,8 +90,12 @@ def write_pack(out_root, folder, manifest, documents, rows, notice):
     print(f"{manifest['id']}: {len(rows)} records, chunks.jsonl {files[0]['bytes'] / 1e6:.1f} MB")
 
 
-def build_hadeethenc(lang, cache, out_root, today):
-    path = fetch(f"https://hadeethenc.com/browse/download/{lang}", os.path.join(cache, f"he-{lang}.xlsx"))
+def build_hadeethenc(lang, cache, out_root, today, src=None):
+    """Hadith pack for the app language `lang`; `src` is HadeethEnc's code for it when different (ckb → ku)."""
+    src = src or lang
+    path = fetch(f"https://hadeethenc.com/browse/download/{src}", os.path.join(cache, f"he-{src}.xlsx"))
+    if open(path, "rb").read(2) != b"PK":
+        raise SystemExit(f"hadeethenc {src}: not an Excel file (language not offered)")
     ws = openpyxl.load_workbook(path, read_only=True).active
     it = ws.iter_rows(values_only=True)
     header_text = clean(next(it)[0])
@@ -115,15 +124,15 @@ def build_hadeethenc(lang, cache, out_root, today):
                    "grade": grade, "source": takhrij, "version": version, "parts": kinds}
         rows.append({"id": f"he:{lang}:{r['id']}", "anchor": r["title"], "section": section,
                      "original": {"docId": doc_id, "lang": lang, "text": body},
-                     "url": r.get("link") or f"https://hadeethenc.com/{lang}/browse/hadith/{r['id']}"})
+                     "url": r.get("link") or f"https://hadeethenc.com/{src}/browse/hadith/{r['id']}"})
     license_ = {"id": "HadeethEnc-terms", "name": "HadeethEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
                 "url": "https://hadeethenc.com/", "attribution": f"HadeethEnc.com (v{version})"}
     documents = [{"id": doc_id, "kind": "library", "title": {"en": "Encyclopedia of Translated Prophetic Hadiths", "ar": "موسوعة الأحاديث النبوية المترجمة"},
                   "edition": f"HadeethEnc.com v{version}", "publisher": "HadeethEnc.com", "language": lang,
-                  "url": f"https://hadeethenc.com/{lang}", "license": license_, "retrievedAt": today, "citation": "item", "textType": "selectable"}]
+                  "url": f"https://hadeethenc.com/{src}", "license": license_, "retrievedAt": today, "citation": "item", "textType": "selectable"}]
     manifest = {"id": f"sources.hadeethenc-{lang}", "kind": "sources", "schemaVersion": 1, "version": 1,
                 "title": {"en": f"HadeethEnc hadiths ({lang})", "ar": "موسوعة الأحاديث النبوية المترجمة"}, "languages": [lang],
-                "source": {"name": "HadeethEnc.com", "url": f"https://hadeethenc.com/{lang}", "snapshot": today, "version": version},
+                "source": {"name": "HadeethEnc.com", "url": f"https://hadeethenc.com/{src}", "snapshot": today, "version": version},
                 "license": license_}
     notice = {"NOTICE-hadeethenc.txt": header_text + "\n\n"
               "Translated Prophetic Hadiths from HadeethEnc.com, published unaltered under its terms: no modification,\n"
@@ -147,18 +156,18 @@ def build_quranenc(lang, key, translations, cache, out_root, today):
                    "translationTitle": meta["title"], "version": version, "parts": kinds, "verse": f"quran:{sura}:{aya}"}
         rows.append({"id": f"qe:{lang}:{sura}:{aya}", "anchor": f"{sura}:{aya}", "section": section,
                      "original": {"docId": doc_id, "lang": lang, "text": body},
-                     "url": f"https://quranenc.com/{lang}/browse/{key}/{sura}#{aya}"})
+                     "url": f"https://quranenc.com/{qe_site(lang)}/browse/{key}/{sura}#{aya}"})
     license_ = {"id": "QuranEnc-terms", "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
                 "url": "https://quranenc.com/", "attribution": f"QuranEnc.com — {meta['title']} (v{version})"}
     documents = [{"id": doc_id, "kind": "library", "title": {"en": meta["title"], lang: meta["title"]}, "edition": f"QuranEnc.com {key} v{version}",
-                  "publisher": "QuranEnc.com", "language": lang, "url": f"https://quranenc.com/{lang}/browse/{key}",
+                  "publisher": "QuranEnc.com", "language": lang, "url": f"https://quranenc.com/{qe_site(lang)}/browse/{key}",
                   "license": license_, "retrievedAt": today, "citation": "item", "textType": "selectable", "translationOf": "quran-ar-tanzil"}]
     manifest = {"id": f"sources.quranenc-{lang}", "kind": "sources", "schemaVersion": 1, "version": 1,
                 "title": {"en": meta["title"], lang: meta["title"]}, "languages": [lang],
-                "source": {"name": "QuranEnc.com", "url": f"https://quranenc.com/{lang}/browse/{key}", "snapshot": today,
+                "source": {"name": "QuranEnc.com", "url": f"https://quranenc.com/{qe_site(lang)}/browse/{key}", "snapshot": today,
                            "translationKey": key, "version": version, "lastUpdate": meta.get("last_update")},
                 "license": license_}
-    notice = {"NOTICE-quranenc.txt": f"# {meta['title']}\n# Source: https://quranenc.com/{lang}/browse/{key}\n# Version: {version}\n\n"
+    notice = {"NOTICE-quranenc.txt": f"# {meta['title']}\n# Source: https://quranenc.com/{qe_site(lang)}/browse/{key}\n# Version: {version}\n\n"
               "Translation of the meanings of the Noble Quran from QuranEnc.com, published unaltered under its terms: no\n"
               "modification, addition or deletion; the publisher and source (QuranEnc.com) credited; the version number\n"
               "stated; the version information kept; notes sent to the source; new versions followed; no inappropriate\n"
@@ -203,7 +212,7 @@ def build_tafsir(lang, key, cache, out_root, today):
                    "translationTitle": meta["title"], "version": version, "parts": kinds, "verse": f"quran:{sura}:{aya}"}
         rows.append({"id": f"qt:{lang}:{sura}:{aya}", "anchor": f"{sura}:{aya}", "section": section,
                      "original": {"docId": doc_id, "lang": lang, "text": body},
-                     "url": f"https://quranenc.com/{lang}/browse/{key}/{sura}#{aya}"})
+                     "url": f"https://quranenc.com/{qe_site(lang)}/browse/{key}/{sura}#{aya}"})
     if len(rows) != 6236:
         raise SystemExit(f"{key}: expected 6236 verses, found {len(rows)}")
     license_ = {"id": "QuranEnc-terms", "name": "QuranEnc.com terms: re-publishing permitted unaltered, with source, publisher and version",
@@ -213,15 +222,15 @@ def build_tafsir(lang, key, cache, out_root, today):
         title[lang] = meta["title"]
     documents = [{"id": doc_id, "kind": "library", "title": title, "edition": f"QuranEnc.com {key} v{version}",
                   "publisher": "Tafsir Center for Quranic Studies, via QuranEnc.com", "language": lang,
-                  "url": f"https://quranenc.com/{lang}/browse/{key}", "license": license_, "retrievedAt": today,
+                  "url": f"https://quranenc.com/{qe_site(lang)}/browse/{key}", "license": license_, "retrievedAt": today,
                   "citation": "item", "textType": "selectable", "tafsirOf": "quran-ar-tanzil"}]
     manifest = {"id": f"sources.quranenc-tafsir-{lang}", "kind": "sources", "schemaVersion": 1, "version": 1,
                 "title": title, "languages": [lang],
-                "source": {"name": "QuranEnc.com", "url": f"https://quranenc.com/{lang}/browse/{key}", "snapshot": today,
+                "source": {"name": "QuranEnc.com", "url": f"https://quranenc.com/{qe_site(lang)}/browse/{key}", "snapshot": today,
                            "translationKey": key, "version": version, "issued": meta["issued"]},
                 "license": license_}
     notice = {"NOTICE-quranenc.txt": f"# {meta['title']}\n# Issued by the Tafsir Center for Quranic Studies\n"
-              f"# Source: https://quranenc.com/{lang}/browse/{key}\n# Version: {version} ({meta['issued']})\n\n"
+              f"# Source: https://quranenc.com/{qe_site(lang)}/browse/{key}\n# Version: {version} ({meta['issued']})\n\n"
               "Al-Mukhtasar in Interpreting the Noble Quran from QuranEnc.com, published unaltered under its terms: no\n"
               "modification, addition or deletion; the publisher and source (QuranEnc.com) credited; the version number\n"
               "stated; the version information kept; notes sent to the source; new versions followed; no inappropriate\n"
