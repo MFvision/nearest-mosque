@@ -146,6 +146,21 @@ final class QiblaAndTextTests: XCTestCase {
         }
     }
 
+    func testCommonQuestionHadithPreferTheReadersLanguage() throws {
+        let data = try Data(contentsOf: Fixtures.root.appendingPathComponent("packs/sources/quran-tanzil-pickthall/common-questions.json"))
+        let q = try JSONDecoder().decode(CommonQuestionsFile.self, from: data).questions.first { $0.id == "friday-prayer" }!
+        XCTAssertEqual(q.hadith, [5394, 3711])
+        XCTAssertEqual(CommonHadith.candidates(5394, lang: "fr"), ["he:fr:5394", "he:en:5394", "he:ar:5394"])
+        XCTAssertEqual(CommonHadith.candidates(5394, lang: "ar"), ["he:ar:5394", "he:en:5394"])
+        // French lacks 5394 here: English stands in; 3711 is shown in French.
+        let installed: Set<String> = ["he:en:5394", "he:ar:5394", "he:fr:3711", "he:en:3711"]
+        XCTAssertEqual(CommonHadith.resolve(q, lang: "fr", installed: installed), ["he:en:5394", "he:fr:3711"])
+        XCTAssertEqual(CommonHadith.resolve(q, lang: "fr", installed: []), [])
+        // The question's hadith lead; library results fill the rest without duplicates.
+        XCTAssertEqual(CommonHadith.merge(["a", "b"], ["b", "x", "y", "z"], limit: 4), ["a", "b", "x", "y"])
+        XCTAssertEqual(CommonHadith.merge(["a", "b"], ["x"], limit: 1), ["a", "b"])
+    }
+
     func testRetrievalFixturesMatchReferenceExactly() {
         let r = Fixtures.retriever()
         var failures: [String] = []

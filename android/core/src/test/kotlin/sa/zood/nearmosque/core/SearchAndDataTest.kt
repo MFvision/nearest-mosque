@@ -24,6 +24,24 @@ class SearchAndDataTest {
     }
 
     @Test
+    fun commonQuestionHadithPreferTheReadersLanguage() {
+        val q = PackJson.decodeFromString(
+            CommonQuestionsFile.serializer(),
+            Fixtures.file("packs/sources/quran-tanzil-pickthall/common-questions.json").readText(),
+        ).questions.first { it.id == "friday-prayer" }
+        assertEquals(listOf(5394, 3711), q.hadith)
+        assertEquals(listOf("he:fr:5394", "he:en:5394", "he:ar:5394"), CommonHadith.candidates(5394, "fr"))
+        assertEquals(listOf("he:ar:5394", "he:en:5394"), CommonHadith.candidates(5394, "ar"))
+        // French lacks 5394 here: English stands in; 3711 is shown in French.
+        val installed = setOf("he:en:5394", "he:ar:5394", "he:fr:3711", "he:en:3711")
+        assertEquals(listOf("he:en:5394", "he:fr:3711"), CommonHadith.resolve(q, "fr", installed))
+        assertEquals(emptyList<String>(), CommonHadith.resolve(q, "fr", emptySet()))
+        // The question's hadith lead; library results fill the rest without duplicates.
+        assertEquals(listOf("a", "b", "x", "y"), CommonHadith.merge(listOf("a", "b"), listOf("b", "x", "y", "z"), 4))
+        assertEquals(listOf("a", "b"), CommonHadith.merge(listOf("a", "b"), listOf("x"), 1))
+    }
+
+    @Test
     fun retrievalFixturesMatchReferenceExactly() {
         val r = Fixtures.retriever()
         val f = Fixtures.read("shared/fixtures/retrieval.json").jsonObject

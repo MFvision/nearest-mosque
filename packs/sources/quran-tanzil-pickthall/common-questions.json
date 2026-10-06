@@ -6,6 +6,7 @@
     {
       "id": "wudu",
       "citations": ["quran:5:6", "quran:4:43"],
+      "hadith": [3313],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "How do I perform wudu (ablution)?",
@@ -17,13 +18,13 @@
         "es": "¿Cómo se hace la ablución (wudu)?"
       },
       "summary": {
-        "en": "Verse 5:6 tells believers who rise for prayer to wash the face, wash the hands up to the elbows, wipe the head, and (wash) the feet up to the ankles. The same verse, and 4:43, allow dry purification with clean earth (tayammum) for someone who is ill, travelling, or cannot find water. The step-by-step method taught by the Prophet ﷺ comes from hadith books, which are not on your phone yet.",
-        "ar": "تأمر الآية 5:6 المؤمنين إذا قاموا إلى الصلاة بغسل الوجه، وغسل الأيدي إلى المرافق، ومسح الرأس، والأرجل إلى الكعبين. وتبيح الآية نفسها والآية 4:43 التيمم بالصعيد الطيب للمريض أو المسافر أو من لم يجد الماء. أما صفة الوضوء خطوة بخطوة كما علّمها النبي ﷺ فمصدرها كتب الحديث، وهي غير موجودة على هاتفك بعد.",
-        "ur": "آیت 5:6 نماز کے لیے اٹھنے والے مومنوں کو چہرہ دھونے، کہنیوں تک ہاتھ دھونے، سر کا مسح کرنے اور ٹخنوں تک پاؤں (دھونے) کا حکم دیتی ہے۔ یہی آیت اور 4:43 بیمار، مسافر یا پانی نہ پانے والے کے لیے پاک مٹی سے تیمم کی اجازت دیتی ہیں۔ نبی ﷺ کا سکھایا ہوا مکمل طریقہ حدیث کی کتابوں میں ہے، جو ابھی آپ کے فون پر نہیں۔",
-        "tr": "5:6. ayet, namaza kalkan müminlere yüzü yıkamayı, elleri dirseklere kadar yıkamayı, başı meshetmeyi ve ayakları topuklara kadar (yıkamayı) emreder. Aynı ayet ve 4:43, hasta, yolcu veya su bulamayan kişiye temiz toprakla teyemmüm izni verir. Peygamber’in ﷺ öğrettiği adım adım yöntem hadis kitaplarındadır; bunlar henüz telefonunuzda yok.",
-        "id": "Ayat 5:6 memerintahkan orang beriman yang hendak salat untuk membasuh muka, membasuh tangan sampai siku, mengusap kepala, dan (membasuh) kaki sampai mata kaki. Ayat yang sama dan 4:43 membolehkan tayamum dengan tanah yang bersih bagi yang sakit, bepergian, atau tidak menemukan air. Tata cara langkah demi langkah yang diajarkan Nabi ﷺ berasal dari kitab hadis, yang belum ada di ponsel Anda.",
-        "fr": "Le verset 5:6 demande aux croyants qui se lèvent pour la prière de se laver le visage, les mains jusqu’aux coudes, de passer les mains sur la tête et (de laver) les pieds jusqu’aux chevilles. Ce verset et 4:43 permettent la purification sèche avec une terre propre (tayammum) pour le malade, le voyageur ou celui qui ne trouve pas d’eau. La méthode détaillée enseignée par le Prophète ﷺ vient des recueils de hadiths, pas encore présents sur votre téléphone.",
-        "es": "El versículo 5:6 indica a los creyentes que se levantan para orar que laven el rostro, las manos hasta los codos, pasen las manos por la cabeza y (laven) los pies hasta los tobillos. Ese versículo y el 4:43 permiten la purificación seca con tierra limpia (tayammum) a quien está enfermo, de viaje o no encuentra agua. El método paso a paso que enseñó el Profeta ﷺ procede de los libros de hadiz, que aún no están en tu teléfono."
+        "en": "Verse 5:6 tells believers who rise for prayer to wash the face, wash the hands up to the elbows, wipe the head, and (wash) the feet up to the ankles. The same verse, and 4:43, allow dry purification with clean earth (tayammum) for someone who is ill, travelling, or cannot find water. In the hadith below, ʿUthman ibn ʿAffan shows the ablution of the Prophet ﷺ: washing the hands three times, rinsing the mouth and nose, washing the face three times and the arms to the elbows three times, wiping the head, then washing each foot three times.",
+        "ar": "تأمر الآية 5:6 المؤمنين إذا قاموا إلى الصلاة بغسل الوجه، وغسل الأيدي إلى المرافق، ومسح الرأس، والأرجل إلى الكعبين. وتبيح الآية نفسها والآية 4:43 التيمم بالصعيد الطيب للمريض أو المسافر أو من لم يجد الماء. وفي الحديث أدناه يصف عثمان بن عفان وضوء النبي ﷺ: غسل الكفين ثلاثًا، ثم المضمضة والاستنشاق، ثم غسل الوجه ثلاثًا واليدين إلى المرفقين ثلاثًا، ثم مسح الرأس، ثم غسل كل رجل ثلاثًا.",
+        "ur": "آیت 5:6 نماز کے لیے اٹھنے والے مومنوں کو چہرہ دھونے، کہنیوں تک ہاتھ دھونے، سر کا مسح کرنے اور ٹخنوں تک پاؤں (دھونے) کا حکم دیتی ہے۔ یہی آیت اور 4:43 بیمار، مسافر یا پانی نہ پانے والے کے لیے پاک مٹی سے تیمم کی اجازت دیتی ہیں۔ نیچے دی گئی حدیث میں عثمان بن عفان نبی ﷺ کا وضو دکھاتے ہیں: ہاتھ تین بار دھونا، کلی کرنا اور ناک میں پانی ڈالنا، چہرہ تین بار اور کہنیوں تک بازو تین بار دھونا، سر کا مسح کرنا، پھر ہر پاؤں تین بار دھونا۔",
+        "tr": "5:6. ayet, namaza kalkan müminlere yüzü yıkamayı, elleri dirseklere kadar yıkamayı, başı meshetmeyi ve ayakları topuklara kadar (yıkamayı) emreder. Aynı ayet ve 4:43, hasta, yolcu veya su bulamayan kişiye temiz toprakla teyemmüm izni verir. Aşağıdaki hadiste Osman b. Affan, Peygamber’in ﷺ abdestini gösterir: elleri üç kez yıkamak, ağza ve buruna su vermek, yüzü üç kez ve kolları dirseklere kadar üç kez yıkamak, başı meshetmek, sonra her ayağı üç kez yıkamak.",
+        "id": "Ayat 5:6 memerintahkan orang beriman yang hendak salat untuk membasuh muka, membasuh tangan sampai siku, mengusap kepala, dan (membasuh) kaki sampai mata kaki. Ayat yang sama dan 4:43 membolehkan tayamum dengan tanah yang bersih bagi yang sakit, bepergian, atau tidak menemukan air. Dalam hadis di bawah, ‘Utsman bin ‘Affan memperagakan wudu Nabi ﷺ: membasuh kedua telapak tangan tiga kali, berkumur dan memasukkan air ke hidung, membasuh muka tiga kali dan tangan sampai siku tiga kali, mengusap kepala, lalu membasuh setiap kaki tiga kali.",
+        "fr": "Le verset 5:6 demande aux croyants qui se lèvent pour la prière de se laver le visage, les mains jusqu’aux coudes, de passer les mains sur la tête et (de laver) les pieds jusqu’aux chevilles. Ce verset et 4:43 permettent la purification sèche avec une terre propre (tayammum) pour le malade, le voyageur ou celui qui ne trouve pas d’eau. Dans le hadith ci-dessous, ‘Uthman ibn ‘Affan montre les ablutions du Prophète ﷺ : se laver les mains trois fois, se rincer la bouche et le nez, se laver le visage trois fois et les bras jusqu’aux coudes trois fois, passer les mains sur la tête, puis se laver chaque pied trois fois.",
+        "es": "El versículo 5:6 indica a los creyentes que se levantan para orar que laven el rostro, las manos hasta los codos, pasen las manos por la cabeza y (laven) los pies hasta los tobillos. Ese versículo y el 4:43 permiten la purificación seca con tierra limpia (tayammum) a quien está enfermo, de viaje o no encuentra agua. En el hadiz de abajo, ‘Uthman ibn ‘Affan muestra la ablución del Profeta ﷺ: lavarse las manos tres veces, enjuagarse la boca y la nariz, lavarse el rostro tres veces y los brazos hasta los codos tres veces, pasar las manos por la cabeza y luego lavarse cada pie tres veces."
       },
       "triggers": {
         "en": ["wudu", "wudhu", "wuzu", "ablution", "ablutions"],
@@ -39,6 +40,7 @@
     {
       "id": "prayer-times",
       "citations": ["quran:4:103", "quran:11:114", "quran:17:78"],
+      "hadith": [],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "Why do Muslims pray at fixed times?",
@@ -72,6 +74,7 @@
     {
       "id": "fasting",
       "citations": ["quran:2:183", "quran:2:184", "quran:2:185"],
+      "hadith": [],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "Who has to fast in Ramadan?",
@@ -105,6 +108,7 @@
     {
       "id": "travel-prayer",
       "citations": ["quran:4:101", "quran:4:43", "quran:5:6"],
+      "hadith": [5207],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "How do I pray while travelling?",
@@ -116,28 +120,29 @@
         "es": "¿Cómo rezo cuando viajo?"
       },
       "summary": {
-        "en": "Verse 4:101 says it is no sin to shorten the prayer when going forth in the land if one fears attack. When water cannot be found, including on a journey, 4:43 and 5:6 permit dry purification with clean earth. The rules for shortening and combining prayers on ordinary journeys come from hadith and scholarly works that are not on your phone yet.",
-        "ar": "تقول الآية 4:101 إنه لا جناح في قصر الصلاة عند الضرب في الأرض إن خيف أن يفتن الذين كفروا. وعند فقد الماء، ومنه حال السفر، تبيح الآيتان 4:43 و5:6 التيمم بالصعيد الطيب. أما أحكام القصر والجمع في السفر المعتاد فمصدرها الحديث وكتب العلماء، وهي غير موجودة على هاتفك بعد.",
-        "ur": "آیت 4:101 کہتی ہے کہ زمین میں سفر کرتے وقت اگر حملے کا خوف ہو تو نماز قصر کرنے میں کوئی گناہ نہیں۔ پانی نہ ملنے پر، سفر سمیت، آیات 4:43 اور 5:6 پاک مٹی سے تیمم کی اجازت دیتی ہیں۔ عام سفر میں قصر اور جمع کے احکام حدیث اور علما کی کتابوں سے آتے ہیں، جو ابھی آپ کے فون پر نہیں۔",
-        "tr": "4:101. ayet, yeryüzünde yolculuğa çıkıldığında saldırıya uğrama korkusu varsa namazı kısaltmakta günah olmadığını söyler. Yolculuk dahil su bulunamadığında 4:43 ve 5:6. ayetler temiz toprakla teyemmüme izin verir. Olağan yolculukta namazı kısaltma ve birleştirme hükümleri hadislerden ve âlimlerin eserlerinden gelir; bunlar henüz telefonunuzda yok.",
-        "id": "Ayat 4:101 menyatakan tidak berdosa meng-qasar salat ketika bepergian di bumi jika takut diserang. Bila air tidak ditemukan, termasuk dalam perjalanan, ayat 4:43 dan 5:6 membolehkan tayamum dengan tanah yang bersih. Aturan qasar dan jamak pada perjalanan biasa berasal dari hadis dan kitab ulama yang belum ada di ponsel Anda.",
-        "fr": "Le verset 4:101 dit qu’il n’y a pas de faute à raccourcir la prière lorsqu’on parcourt la terre si l’on craint une attaque. Faute d’eau, notamment en voyage, 4:43 et 5:6 permettent la purification sèche avec une terre propre. Les règles pour raccourcir et regrouper les prières lors d’un voyage ordinaire viennent des hadiths et d’ouvrages savants absents de votre téléphone.",
-        "es": "El versículo 4:101 dice que no es pecado acortar la oración al recorrer la tierra si se teme un ataque. Cuando no hay agua, también de viaje, 4:43 y 5:6 permiten la purificación seca con tierra limpia. Las normas para acortar y juntar oraciones en viajes ordinarios proceden del hadiz y de obras de eruditos que aún no están en tu teléfono."
+        "en": "Verse 4:101 says it is no sin to shorten the prayer when going forth in the land if one fears attack. When water cannot be found, including on a journey, 4:43 and 5:6 permit dry purification with clean earth. In the hadith below, Ibn ʿUmar reports that on journeys the Prophet ﷺ prayed no more than two rakʿahs, and so did Abu Bakr, ʿUmar and ʿUthman. Distances and combining prayers are explained in fiqh books.",
+        "ar": "تقول الآية 4:101 إنه لا جناح في قصر الصلاة عند الضرب في الأرض إن خيف أن يفتن الذين كفروا. وعند فقد الماء، ومنه حال السفر، تبيح الآيتان 4:43 و5:6 التيمم بالصعيد الطيب. وفي الحديث أدناه يخبر ابن عمر أن النبي ﷺ كان لا يزيد في السفر على ركعتين، وكذلك أبو بكر وعمر وعثمان. أما مسافة القصر والجمع بين الصلاتين فمبيّنة في كتب الفقه.",
+        "ur": "آیت 4:101 کہتی ہے کہ زمین میں سفر کرتے وقت اگر حملے کا خوف ہو تو نماز قصر کرنے میں کوئی گناہ نہیں۔ پانی نہ ملنے پر، سفر سمیت، آیات 4:43 اور 5:6 پاک مٹی سے تیمم کی اجازت دیتی ہیں۔ نیچے دی گئی حدیث میں ابن عمر بتاتے ہیں کہ نبی ﷺ سفر میں دو رکعت سے زیادہ نہیں پڑھتے تھے، اور ابو بکر، عمر اور عثمان بھی ایسا ہی کرتے تھے۔ قصر کی مسافت اور نمازیں جمع کرنے کے احکام فقہ کی کتابوں میں ہیں۔",
+        "tr": "4:101. ayet, yeryüzünde yolculuğa çıkıldığında saldırıya uğrama korkusu varsa namazı kısaltmakta günah olmadığını söyler. Yolculuk dahil su bulunamadığında 4:43 ve 5:6. ayetler temiz toprakla teyemmüme izin verir. Aşağıdaki hadiste İbn Ömer, Peygamber’in ﷺ yolculukta iki rekâttan fazla kılmadığını, Ebû Bekir, Ömer ve Osman’ın da böyle yaptığını bildirir. Mesafe ve namazları birleştirme hükümleri fıkıh kitaplarında açıklanır.",
+        "id": "Ayat 4:101 menyatakan tidak berdosa meng-qasar salat ketika bepergian di bumi jika takut diserang. Bila air tidak ditemukan, termasuk dalam perjalanan, ayat 4:43 dan 5:6 membolehkan tayamum dengan tanah yang bersih. Dalam hadis di bawah, Ibnu ‘Umar menuturkan bahwa dalam perjalanan Nabi ﷺ tidak salat lebih dari dua rakaat, demikian pula Abu Bakar, ‘Umar, dan ‘Utsman. Jarak perjalanan dan jamak salat dijelaskan dalam kitab fikih.",
+        "fr": "Le verset 4:101 dit qu’il n’y a pas de faute à raccourcir la prière lorsqu’on parcourt la terre si l’on craint une attaque. Faute d’eau, notamment en voyage, 4:43 et 5:6 permettent la purification sèche avec une terre propre. Dans le hadith ci-dessous, Ibn ‘Umar rapporte qu’en voyage le Prophète ﷺ ne priait pas plus de deux rak‘as, de même qu’Abu Bakr, ‘Umar et ‘Uthman. Les distances et le regroupement des prières sont expliqués dans les livres de fiqh.",
+        "es": "El versículo 4:101 dice que no es pecado acortar la oración al recorrer la tierra si se teme un ataque. Cuando no hay agua, también de viaje, 4:43 y 5:6 permiten la purificación seca con tierra limpia. En el hadiz de abajo, Ibn ‘Umar relata que de viaje el Profeta ﷺ no rezaba más de dos rak‘as, y lo mismo hacían Abu Bakr, ‘Umar y ‘Uthman. Las distancias y la unión de oraciones se explican en los libros de fiqh."
       },
       "triggers": {
-        "en": ["travel", "travelling", "traveling", "journey", "trip", "shorten", "qasr"],
-        "ar": ["سفر", "السفر", "مسافر", "قصر", "اسافر"],
-        "ur": ["سفر", "مسافر", "قصر"],
-        "tr": ["yolculuk", "yolculukta", "seyahat", "seferi", "misafir"],
-        "id": ["bepergian", "perjalanan", "musafir", "qasar", "safar"],
-        "fr": ["voyage", "voyager", "voyageur"],
-        "es": ["viaje", "viajar", "viajo", "viajero"]
+        "en": ["travel", "travelling", "traveling", "journey", "trip", "shorten", "qasr", "pray on a journey", "pray while travelling", "pray while traveling", "pray when travelling", "pray when traveling", "pray on a trip", "prayer on a journey", "prayer while travelling", "prayer while traveling"],
+        "ar": ["سفر", "السفر", "مسافر", "قصر", "اسافر", "الصلاه في السفر", "صلاه المسافر"],
+        "ur": ["سفر", "مسافر", "قصر", "سفر میں نماز", "مسافر کی نماز"],
+        "tr": ["yolculuk", "yolculukta", "seyahat", "seferi", "misafir", "yolculukta namaz", "seferi namaz"],
+        "id": ["bepergian", "perjalanan", "musafir", "qasar", "safar", "salat dalam perjalanan", "sholat dalam perjalanan", "shalat dalam perjalanan", "salat saat bepergian", "sholat saat bepergian"],
+        "fr": ["voyage", "voyager", "voyageur", "prier en voyage", "priere en voyage", "priere du voyageur"],
+        "es": ["viaje", "viajar", "viajo", "viajero", "rezar de viaje", "oracion del viajero", "rezar en un viaje"]
       },
       "expansion": ["journey", "curtail", "worship", "forth", "land", "water", "تقصروا", "سفر", "الارض"]
     },
     {
       "id": "belief-god",
       "citations": ["quran:112:1", "quran:112:2", "quran:112:3", "quran:112:4", "quran:2:255"],
+      "hadith": [],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "What do Muslims believe about God?",
@@ -171,6 +176,7 @@
     {
       "id": "core-beliefs",
       "citations": ["quran:2:285", "quran:4:136", "quran:2:177"],
+      "hadith": [4563],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "What are the core beliefs of Islam?",
@@ -182,13 +188,13 @@
         "es": "¿Cuáles son las creencias básicas del islam?"
       },
       "summary": {
-        "en": "The Quran describes believers as those who believe in Allah, His angels, His scriptures, His messengers and the Last Day (2:285, 4:136, 2:177). Verse 2:177 joins this faith to action: giving wealth to relatives, orphans and the needy, establishing prayer, paying zakat, keeping promises and being patient in hardship. Belief in divine decree (qadar) is taught in hadith, which are not on your phone yet.",
-        "ar": "يصف القرآن المؤمنين بأنهم يؤمنون بالله وملائكته وكتبه ورسله واليوم الآخر (2:285، 4:136، 2:177). وتربط الآية 2:177 هذا الإيمان بالعمل: إيتاء المال ذوي القربى واليتامى والمساكين، وإقامة الصلاة، وإيتاء الزكاة، والوفاء بالعهد، والصبر في البأساء. أما الإيمان بالقدر فمصدره الحديث، وهو غير موجود على هاتفك بعد.",
-        "ur": "قرآن مومنوں کو وہ لوگ بتاتا ہے جو اللہ، اس کے فرشتوں، اس کی کتابوں، اس کے رسولوں اور آخرت کے دن پر ایمان رکھتے ہیں (2:285، 4:136، 2:177)۔ آیت 2:177 اس ایمان کو عمل سے جوڑتی ہے: رشتہ داروں، یتیموں اور مسکینوں کو مال دینا، نماز قائم کرنا، زکوٰۃ دینا، عہد پورا کرنا اور مشکل میں صبر۔ تقدیر پر ایمان حدیث میں سکھایا گیا ہے، جو ابھی آپ کے فون پر نہیں۔",
-        "tr": "Kur’an müminleri Allah’a, meleklerine, kitaplarına, peygamberlerine ve ahiret gününe inananlar olarak tanımlar (2:285, 4:136, 2:177). 2:177. ayet bu imanı amelle birleştirir: akrabaya, yetimlere ve yoksullara mal vermek, namazı kılmak, zekâtı vermek, sözünde durmak ve sıkıntıda sabretmek. Kadere iman hadislerde öğretilir; bunlar henüz telefonunuzda yok.",
-        "id": "Al-Qur’an menggambarkan orang beriman sebagai mereka yang beriman kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya, rasul-rasul-Nya, dan hari akhir (2:285, 4:136, 2:177). Ayat 2:177 mengaitkan iman ini dengan amal: memberikan harta kepada kerabat, anak yatim, dan orang miskin, mendirikan salat, menunaikan zakat, menepati janji, dan sabar dalam kesulitan. Iman kepada takdir diajarkan dalam hadis, yang belum ada di ponsel Anda.",
-        "fr": "Le Coran décrit les croyants comme ceux qui croient en Allah, en Ses anges, en Ses Écritures, en Ses messagers et au Jour dernier (2:285, 4:136, 2:177). Le verset 2:177 relie cette foi aux actes : donner de ses biens aux proches, aux orphelins et aux nécessiteux, accomplir la prière, verser la zakat, tenir ses engagements et être patient dans l’épreuve. La croyance au décret divin (qadar) est enseignée dans les hadiths, absents de votre téléphone.",
-        "es": "El Corán describe a los creyentes como quienes creen en Alá, Sus ángeles, Sus Escrituras, Sus mensajeros y el Último Día (2:285, 4:136, 2:177). El 2:177 une esta fe a las obras: dar bienes a parientes, huérfanos y necesitados, establecer la oración, pagar el zakat, cumplir los compromisos y ser paciente en la adversidad. La creencia en el decreto divino (qadar) se enseña en el hadiz, que aún no está en tu teléfono."
+        "en": "The Quran describes believers as those who believe in Allah, His angels, His scriptures, His messengers and the Last Day (2:285, 4:136, 2:177). Verse 2:177 joins this faith to action: giving wealth to relatives, orphans and the needy, establishing prayer, paying zakat, keeping promises and being patient in hardship. In the hadith of Jibril below, the Prophet ﷺ adds belief in divine decree (qadar), its good and its bad.",
+        "ar": "يصف القرآن المؤمنين بأنهم يؤمنون بالله وملائكته وكتبه ورسله واليوم الآخر (2:285، 4:136، 2:177). وتربط الآية 2:177 هذا الإيمان بالعمل: إيتاء المال ذوي القربى واليتامى والمساكين، وإقامة الصلاة، وإيتاء الزكاة، والوفاء بالعهد، والصبر في البأساء. وفي حديث جبريل أدناه يضيف النبي ﷺ الإيمان بالقدر خيره وشره.",
+        "ur": "قرآن مومنوں کو وہ لوگ بتاتا ہے جو اللہ، اس کے فرشتوں، اس کی کتابوں، اس کے رسولوں اور آخرت کے دن پر ایمان رکھتے ہیں (2:285، 4:136، 2:177)۔ آیت 2:177 اس ایمان کو عمل سے جوڑتی ہے: رشتہ داروں، یتیموں اور مسکینوں کو مال دینا، نماز قائم کرنا، زکوٰۃ دینا، عہد پورا کرنا اور مشکل میں صبر۔ نیچے حدیثِ جبریل میں نبی ﷺ اچھی اور بری تقدیر پر ایمان کا بھی ذکر فرماتے ہیں۔",
+        "tr": "Kur’an müminleri Allah’a, meleklerine, kitaplarına, peygamberlerine ve ahiret gününe inananlar olarak tanımlar (2:285, 4:136, 2:177). 2:177. ayet bu imanı amelle birleştirir: akrabaya, yetimlere ve yoksullara mal vermek, namazı kılmak, zekâtı vermek, sözünde durmak ve sıkıntıda sabretmek. Aşağıdaki Cibril hadisinde Peygamber ﷺ hayrıyla şerriyle kadere imanı da ekler.",
+        "id": "Al-Qur’an menggambarkan orang beriman sebagai mereka yang beriman kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya, rasul-rasul-Nya, dan hari akhir (2:285, 4:136, 2:177). Ayat 2:177 mengaitkan iman ini dengan amal: memberikan harta kepada kerabat, anak yatim, dan orang miskin, mendirikan salat, menunaikan zakat, menepati janji, dan sabar dalam kesulitan. Dalam hadis Jibril di bawah, Nabi ﷺ menambahkan iman kepada takdir, yang baik maupun yang buruk.",
+        "fr": "Le Coran décrit les croyants comme ceux qui croient en Allah, en Ses anges, en Ses Écritures, en Ses messagers et au Jour dernier (2:285, 4:136, 2:177). Le verset 2:177 relie cette foi aux actes : donner de ses biens aux proches, aux orphelins et aux nécessiteux, accomplir la prière, verser la zakat, tenir ses engagements et être patient dans l’épreuve. Dans le hadith de Jibril ci-dessous, le Prophète ﷺ ajoute la foi au décret divin (qadar), dans son bien et dans son mal.",
+        "es": "El Corán describe a los creyentes como quienes creen en Alá, Sus ángeles, Sus Escrituras, Sus mensajeros y el Último Día (2:285, 4:136, 2:177). El 2:177 une esta fe a las obras: dar bienes a parientes, huérfanos y necesitados, establecer la oración, pagar el zakat, cumplir los compromisos y ser paciente en la adversidad. En el hadiz de Yibril de abajo, el Profeta ﷺ añade la fe en el decreto divino (qadar), en lo bueno y en lo malo."
       },
       "triggers": {
         "en": ["beliefs", "belief", "faith", "iman", "pillars of faith", "articles of faith"],
@@ -204,6 +210,7 @@
     {
       "id": "zakat",
       "citations": ["quran:9:60", "quran:2:43", "quran:2:110"],
+      "hadith": [3390],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "What is zakat and who receives it?",
@@ -215,13 +222,13 @@
         "es": "¿Qué es el zakat y quién lo recibe?"
       },
       "summary": {
-        "en": "The Quran often pairs establishing prayer with paying zakat, the obligatory alms (2:43, 2:110). Verse 9:60 lists who may receive it: the poor, the needy, those who collect it, those whose hearts are to be reconciled, freeing captives, debtors, the cause of Allah, and the wayfarer. Amounts and thresholds (nisab) are explained in hadith and fiqh books that are not on your phone yet.",
-        "ar": "يقرن القرآن كثيرًا بين إقامة الصلاة وإيتاء الزكاة (2:43، 2:110). وتذكر الآية 9:60 مستحقيها: الفقراء، والمساكين، والعاملين عليها، والمؤلفة قلوبهم، وفي الرقاب، والغارمين، وفي سبيل الله، وابن السبيل. أما المقادير والنصاب فمصدرها الحديث وكتب الفقه، وهي غير موجودة على هاتفك بعد.",
-        "ur": "قرآن اکثر نماز قائم کرنے کے ساتھ زکوٰۃ ادا کرنے کا ذکر کرتا ہے (2:43، 2:110)۔ آیت 9:60 اس کے مستحقین بتاتی ہے: فقرا، مساکین، زکوٰۃ وصول کرنے والے، جن کے دل جوڑنے ہوں، غلام آزاد کرانا، قرض دار، اللہ کی راہ، اور مسافر۔ مقدار اور نصاب کی تفصیل حدیث اور فقہ کی کتابوں میں ہے، جو ابھی آپ کے فون پر نہیں۔",
-        "tr": "Kur’an namazı kılmayı sıklıkla zekât vermekle birlikte anar (2:43, 2:110). 9:60. ayet zekâtın verileceği yerleri sayar: fakirler, yoksullar, zekât toplayan görevliler, kalpleri ısındırılacak olanlar, köleler, borçlular, Allah yolu ve yolda kalmışlar. Miktarlar ve nisap hadis ve fıkıh kitaplarında açıklanır; bunlar henüz telefonunuzda yok.",
-        "id": "Al-Qur’an sering menyandingkan mendirikan salat dengan menunaikan zakat (2:43, 2:110). Ayat 9:60 menyebut penerimanya: fakir, miskin, amil zakat, mualaf, untuk memerdekakan budak, orang berutang, di jalan Allah, dan ibnu sabil. Kadar dan nisab dijelaskan dalam hadis dan kitab fikih yang belum ada di ponsel Anda.",
-        "fr": "Le Coran associe souvent l’accomplissement de la prière au versement de la zakat, l’aumône obligatoire (2:43, 2:110). Le verset 9:60 cite ses bénéficiaires : les pauvres, les nécessiteux, ceux qui la collectent, ceux dont les cœurs sont à gagner, l’affranchissement des captifs, les endettés, la cause d’Allah et le voyageur. Les montants et le seuil (nisab) sont expliqués dans les hadiths et les livres de fiqh, absents de votre téléphone.",
-        "es": "El Corán une a menudo establecer la oración y pagar el zakat, la limosna obligatoria (2:43, 2:110). El 9:60 enumera quién puede recibirlo: los pobres, los necesitados, quienes lo recaudan, aquellos cuyos corazones hay que ganar, la liberación de cautivos, los endeudados, la causa de Alá y el viajero. Las cantidades y el mínimo (nisab) se explican en el hadiz y los libros de fiqh, que aún no están en tu teléfono."
+        "en": "The Quran often pairs establishing prayer with paying zakat, the obligatory alms (2:43, 2:110). Verse 9:60 lists who may receive it: the poor, the needy, those who collect it, those whose hearts are to be reconciled, freeing captives, debtors, the cause of Allah, and the wayfarer. In the hadith below, the Prophet ﷺ sends Muʿadh to Yemen and tells him that zakat is taken from the rich among them and given to their poor. Amounts and thresholds (nisab) are explained in fiqh books.",
+        "ar": "يقرن القرآن كثيرًا بين إقامة الصلاة وإيتاء الزكاة (2:43، 2:110). وتذكر الآية 9:60 مستحقيها: الفقراء، والمساكين، والعاملين عليها، والمؤلفة قلوبهم، وفي الرقاب، والغارمين، وفي سبيل الله، وابن السبيل. وفي الحديث أدناه يبعث النبي ﷺ معاذًا إلى اليمن ويخبره أن الزكاة تؤخذ من أغنيائهم فتُرد على فقرائهم. أما المقادير والنصاب فمبيّنة في كتب الفقه.",
+        "ur": "قرآن اکثر نماز قائم کرنے کے ساتھ زکوٰۃ ادا کرنے کا ذکر کرتا ہے (2:43، 2:110)۔ آیت 9:60 اس کے مستحقین بتاتی ہے: فقرا، مساکین، زکوٰۃ وصول کرنے والے، جن کے دل جوڑنے ہوں، غلام آزاد کرانا، قرض دار، اللہ کی راہ، اور مسافر۔ نیچے دی گئی حدیث میں نبی ﷺ معاذ کو یمن بھیجتے ہیں اور بتاتے ہیں کہ زکوٰۃ ان کے مالداروں سے لے کر ان کے غریبوں کو دی جائے گی۔ مقدار اور نصاب کی تفصیل فقہ کی کتابوں میں ہے۔",
+        "tr": "Kur’an namazı kılmayı sıklıkla zekât vermekle birlikte anar (2:43, 2:110). 9:60. ayet zekâtın verileceği yerleri sayar: fakirler, yoksullar, zekât toplayan görevliler, kalpleri ısındırılacak olanlar, köleler, borçlular, Allah yolu ve yolda kalmışlar. Aşağıdaki hadiste Peygamber ﷺ Muâz’ı Yemen’e gönderir ve zekâtın zenginlerinden alınıp fakirlerine verileceğini söyler. Miktarlar ve nisap fıkıh kitaplarında açıklanır.",
+        "id": "Al-Qur’an sering menyandingkan mendirikan salat dengan menunaikan zakat (2:43, 2:110). Ayat 9:60 menyebut penerimanya: fakir, miskin, amil zakat, mualaf, untuk memerdekakan budak, orang berutang, di jalan Allah, dan ibnu sabil. Dalam hadis di bawah, Nabi ﷺ mengutus Mu‘adz ke Yaman dan memberitahunya bahwa zakat diambil dari orang kaya mereka dan diberikan kepada orang miskin mereka. Kadar dan nisab dijelaskan dalam kitab fikih.",
+        "fr": "Le Coran associe souvent l’accomplissement de la prière au versement de la zakat, l’aumône obligatoire (2:43, 2:110). Le verset 9:60 cite ses bénéficiaires : les pauvres, les nécessiteux, ceux qui la collectent, ceux dont les cœurs sont à gagner, l’affranchissement des captifs, les endettés, la cause d’Allah et le voyageur. Dans le hadith ci-dessous, le Prophète ﷺ envoie Mu‘adh au Yémen et lui dit que la zakat est prise de leurs riches et rendue à leurs pauvres. Les montants et le seuil (nisab) sont expliqués dans les livres de fiqh.",
+        "es": "El Corán une a menudo establecer la oración y pagar el zakat, la limosna obligatoria (2:43, 2:110). El 9:60 enumera quién puede recibirlo: los pobres, los necesitados, quienes lo recaudan, aquellos cuyos corazones hay que ganar, la liberación de cautivos, los endeudados, la causa de Alá y el viajero. En el hadiz de abajo, el Profeta ﷺ envía a Mu‘adh a Yemen y le dice que el zakat se toma de sus ricos y se da a sus pobres. Las cantidades y el mínimo (nisab) se explican en los libros de fiqh."
       },
       "triggers": {
         "en": ["zakat", "zakah", "alms", "charity", "poor-due"],
@@ -237,6 +244,7 @@
     {
       "id": "qibla",
       "citations": ["quran:2:144", "quran:2:149", "quran:2:150"],
+      "hadith": [],
       "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
       "question": {
         "en": "Which direction do Muslims face when praying?",
@@ -266,6 +274,414 @@
         "es": ["alquibla", "qibla", "direccion", "kaaba"]
       },
       "expansion": ["qiblah", "inviolable", "place", "worship", "turn", "faces", "toward", "شطر", "المسجد", "الحرام", "قبله"]
+    },
+    {
+      "id": "what-is-islam",
+      "citations": ["quran:3:19", "quran:3:85", "quran:2:112"],
+      "hadith": [4563],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What is Islam?",
+        "ar": "ما هو الإسلام؟",
+        "ur": "اسلام کیا ہے؟",
+        "tr": "İslam nedir?",
+        "id": "Apa itu Islam?",
+        "fr": "Qu’est-ce que l’islam ?",
+        "es": "¿Qué es el islam?"
+      },
+      "summary": {
+        "en": "Verse 3:19 says that the religion with Allah is Islam, surrender to Him, and 3:85 says that no other religion will be accepted from whoever seeks it. Verse 2:112 says that whoever submits himself to Allah while doing good has his reward with his Lord. In the hadith of Jibril below, the Prophet ﷺ defines Islam as testifying that there is no god but Allah and that Muhammad is the Messenger of Allah, establishing prayer, paying zakat, fasting Ramadan and performing Hajj for whoever is able; the same hadith also explains faith (iman) and excellence (ihsan).",
+        "ar": "تقول الآية 3:19 إن الدين عند الله الإسلام، وتقول الآية 3:85 إن من يبتغِ غير الإسلام دينًا فلن يُقبل منه. وتقول الآية 2:112 إن من أسلم وجهه لله وهو محسن فله أجره عند ربه. وفي حديث جبريل أدناه عرّف النبي ﷺ الإسلام بأن تشهد أن لا إله إلا الله وأن محمدًا رسول الله، وتقيم الصلاة، وتؤتي الزكاة، وتصوم رمضان، وتحج البيت إن استطعت إليه سبيلًا، وبيّن في الحديث نفسه الإيمان والإحسان.",
+        "ur": "آیت 3:19 کہتی ہے کہ اللہ کے نزدیک دین اسلام ہے، اور آیت 3:85 کہتی ہے کہ جو اسلام کے سوا کوئی اور دین چاہے گا اس سے قبول نہیں کیا جائے گا۔ آیت 2:112 کہتی ہے کہ جس نے نیکی کرتے ہوئے اپنے آپ کو اللہ کے سپرد کر دیا اس کا اجر اس کے رب کے پاس ہے۔ نیچے حدیثِ جبریل میں نبی ﷺ نے اسلام کی تعریف یوں فرمائی: اس بات کی گواہی کہ اللہ کے سوا کوئی معبود نہیں اور محمد اللہ کے رسول ہیں، نماز قائم کرنا، زکوٰۃ دینا، رمضان کے روزے رکھنا اور استطاعت ہو تو حج کرنا؛ اسی حدیث میں ایمان اور احسان کی وضاحت بھی ہے۔",
+        "tr": "3:19. ayet, Allah katında dinin İslam olduğunu, 3:85. ayet ise İslam’dan başka bir din arayandan bunun kabul edilmeyeceğini söyler. 2:112. ayet, iyilik yaparak kendini Allah’a teslim edenin mükâfatının Rabbi katında olduğunu bildirir. Aşağıdaki Cibril hadisinde Peygamber ﷺ İslam’ı şöyle tanımlar: Allah’tan başka ilah olmadığına ve Muhammed’in Allah’ın Resulü olduğuna şahitlik etmek, namazı kılmak, zekâtı vermek, Ramazan orucunu tutmak ve gücü yetene haccetmek; aynı hadis iman ve ihsanı da açıklar.",
+        "id": "Ayat 3:19 menyatakan bahwa agama di sisi Allah adalah Islam, dan ayat 3:85 menyatakan bahwa siapa yang mencari agama selain Islam tidak akan diterima darinya. Ayat 2:112 menyatakan bahwa siapa yang berserah diri kepada Allah sambil berbuat baik, pahalanya ada di sisi Tuhannya. Dalam hadis Jibril di bawah, Nabi ﷺ mendefinisikan Islam sebagai bersaksi bahwa tiada tuhan selain Allah dan bahwa Muhammad adalah utusan Allah, mendirikan salat, menunaikan zakat, berpuasa Ramadan, dan berhaji bagi yang mampu; hadis yang sama juga menjelaskan iman dan ihsan.",
+        "fr": "Le verset 3:19 dit que la religion auprès d’Allah est l’islam, la soumission à Lui, et le verset 3:85 dit qu’aucune autre religion ne sera acceptée de celui qui la recherche. Le verset 2:112 dit que celui qui se soumet à Allah tout en faisant le bien trouvera sa récompense auprès de son Seigneur. Dans le hadith de Jibril ci-dessous, le Prophète ﷺ définit l’islam : attester qu’il n’y a de dieu qu’Allah et que Muhammad est le Messager d’Allah, accomplir la prière, verser la zakat, jeûner le Ramadan et faire le pèlerinage pour qui en a les moyens ; le même hadith explique aussi la foi (iman) et l’excellence (ihsan).",
+        "es": "El versículo 3:19 dice que la religión ante Allah es el islam, la sumisión a Él, y el 3:85 dice que a quien busque otra religión no se le aceptará. El versículo 2:112 dice que quien se somete a Allah haciendo el bien tiene su recompensa junto a su Señor. En el hadiz de Yibril que aparece abajo, el Profeta ﷺ define el islam como atestiguar que no hay dios sino Allah y que Muhammad es el Mensajero de Allah, establecer la oración, pagar el zakat, ayunar en Ramadán y peregrinar quien pueda; el mismo hadiz explica también la fe (iman) y la excelencia (ihsan)."
+      },
+      "triggers": {
+        "en": ["what is islam", "meaning of islam", "definition of islam", "what does islam mean", "religion of islam"],
+        "ar": ["ما هو الاسلام", "ما الاسلام", "تعريف الاسلام", "معنى الاسلام", "ما هو دين الاسلام"],
+        "ur": ["اسلام کیا ہے", "اسلام کیا ہے؟", "اسلام کی تعریف", "اسلام کا مطلب"],
+        "tr": ["islam nedir", "islam ne demek", "islamin anlami"],
+        "id": ["apa itu islam", "pengertian islam", "arti islam", "apakah islam"],
+        "fr": ["qu est ce que l islam", "c est quoi l islam", "definition de l islam"],
+        "es": ["que es el islam", "significado del islam", "definicion del islam"]
+      },
+      "expansion": ["Surrender", "religion", "الدين", "الاسلام"]
+    },
+    {
+      "id": "five-pillars",
+      "citations": ["quran:2:43", "quran:2:183", "quran:3:97"],
+      "hadith": [65000],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What are the five pillars of Islam?",
+        "ar": "ما هي أركان الإسلام الخمسة؟",
+        "ur": "اسلام کے پانچ ارکان کیا ہیں؟",
+        "tr": "İslam’ın beş şartı nedir?",
+        "id": "Apa saja rukun Islam?",
+        "fr": "Quels sont les cinq piliers de l’islam ?",
+        "es": "¿Cuáles son los cinco pilares del islam?"
+      },
+      "summary": {
+        "en": "In the hadith below, the Prophet ﷺ says Islam is built on five: testifying that there is no god but Allah and that Muhammad is His servant and Messenger, establishing prayer, paying zakat, pilgrimage to the House, and fasting Ramadan. The Quran commands prayer and zakat (2:43), prescribes fasting (2:183) and makes pilgrimage to the House a duty for whoever is able to make the journey (3:97). How each pillar is performed is explained in hadith and fiqh books.",
+        "ar": "في الحديث أدناه يقول النبي ﷺ: بُني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمدًا عبده ورسوله، وإقام الصلاة، وإيتاء الزكاة، وحج البيت، وصوم رمضان. ويأمر القرآن بالصلاة والزكاة (2:43)، ويفرض الصيام (2:183)، ويجعل حج البيت فرضًا على من استطاع إليه سبيلًا (3:97). أما تفصيل أداء كل ركن فمصدره كتب الحديث والفقه.",
+        "ur": "نیچے دی گئی حدیث میں نبی ﷺ فرماتے ہیں کہ اسلام کی بنیاد پانچ چیزوں پر ہے: اس بات کی گواہی کہ اللہ کے سوا کوئی معبود نہیں اور محمد اس کے بندے اور رسول ہیں، نماز قائم کرنا، زکوٰۃ دینا، بیت اللہ کا حج کرنا اور رمضان کے روزے رکھنا۔ قرآن نماز اور زکوٰۃ کا حکم دیتا ہے (2:43)، روزے فرض کرتا ہے (2:183) اور استطاعت رکھنے والے پر بیت اللہ کا حج فرض کرتا ہے (3:97)۔ ہر رکن کی ادائیگی کا طریقہ حدیث اور فقہ کی کتابوں میں تفصیل سے ہے۔",
+        "tr": "Aşağıdaki hadiste Peygamber ﷺ, İslam’ın beş temel üzerine kurulduğunu söyler: Allah’tan başka ilah olmadığına ve Muhammed’in O’nun kulu ve Resulü olduğuna şahitlik etmek, namazı kılmak, zekâtı vermek, Kâbe’yi haccetmek ve Ramazan orucunu tutmak. Kur’an namazı ve zekâtı emreder (2:43), orucu farz kılar (2:183) ve gücü yetene Kâbe’yi haccetmeyi bir görev yapar (3:97). Her şartın nasıl yerine getirileceği hadis ve fıkıh kitaplarında açıklanır.",
+        "id": "Dalam hadis di bawah, Nabi ﷺ bersabda bahwa Islam dibangun di atas lima: bersaksi bahwa tiada tuhan selain Allah dan bahwa Muhammad adalah hamba dan utusan-Nya, mendirikan salat, menunaikan zakat, berhaji ke Baitullah, dan berpuasa Ramadan. Al-Qur’an memerintahkan salat dan zakat (2:43), mewajibkan puasa (2:183), dan menjadikan haji ke Baitullah kewajiban bagi yang mampu menempuh perjalanannya (3:97). Tata cara setiap rukun dijelaskan dalam kitab hadis dan fikih.",
+        "fr": "Dans le hadith ci-dessous, le Prophète ﷺ dit que l’islam est bâti sur cinq piliers : attester qu’il n’y a de dieu qu’Allah et que Muhammad est Son serviteur et Messager, accomplir la prière, verser la zakat, faire le pèlerinage à la Maison et jeûner le Ramadan. Le Coran ordonne la prière et la zakat (2:43), prescrit le jeûne (2:183) et fait du pèlerinage à la Maison un devoir pour qui peut en faire le voyage (3:97). La manière d’accomplir chaque pilier est expliquée dans les livres de hadith et de fiqh.",
+        "es": "En el hadiz de abajo, el Profeta ﷺ dice que el islam se edifica sobre cinco: atestiguar que no hay dios sino Allah y que Muhammad es Su siervo y Mensajero, establecer la oración, pagar el zakat, peregrinar a la Casa y ayunar en Ramadán. El Corán ordena la oración y el zakat (2:43), prescribe el ayuno (2:183) y hace de la peregrinación a la Casa un deber para quien pueda hacer el viaje (3:97). Cómo se cumple cada pilar se explica en los libros de hadiz y de fiqh."
+      },
+      "triggers": {
+        "en": ["pillars of islam", "five pillars", "5 pillars", "pillar of islam", "pillars in islam"],
+        "ar": ["اركان الاسلام", "اركان الاسلام الخمسه", "الاركان الخمسه", "بني الاسلام على خمس"],
+        "ur": ["اسلام کے ارکان", "اسلام کے پانچ ارکان", "پانچ ارکان", "ارکان اسلام", "اسلام کے بنیادی ارکان"],
+        "tr": ["islamin sartlari", "islam in sartlari", "islamin bes sarti", "islam in bes sarti", "bes sart", "islamin bes temeli"],
+        "id": ["rukun islam", "lima rukun islam", "rukun islam ada"],
+        "fr": ["piliers de l islam", "cinq piliers", "5 piliers"],
+        "es": ["pilares del islam", "cinco pilares", "5 pilares"]
+      },
+      "expansion": ["worship", "poor-due", "pilgrimage", "Fasting"]
+    },
+    {
+      "id": "becoming-muslim",
+      "citations": ["quran:47:19", "quran:48:29"],
+      "hadith": [4563, 3446],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "How does someone become Muslim?",
+        "ar": "كيف يدخل الإنسان في الإسلام؟",
+        "ur": "کوئی شخص مسلمان کیسے بنتا ہے؟",
+        "tr": "Kişi nasıl Müslüman olur?",
+        "id": "Bagaimana cara masuk Islam?",
+        "fr": "Comment devient-on musulman ?",
+        "es": "¿Cómo se hace uno musulmán?"
+      },
+      "summary": {
+        "en": "The testimony of faith (shahada) joins two truths stated in the Quran: that there is no god but Allah (47:19) and that Muhammad is the Messenger of Allah (48:29). In the hadith of Jibril below, Islam begins with testifying to both, followed by prayer, zakat, fasting and Hajj. In the second hadith, when ʿAmr ibn al-ʿAs came to accept Islam, the Prophet ﷺ told him that Islam wipes out what came before it. These sources do not describe a ceremony; a local mosque or scholar can guide you in person.",
+        "ar": "تجمع الشهادتان حقيقتين وردتا في القرآن: أنه لا إله إلا الله (47:19)، وأن محمدًا رسول الله (48:29). وفي حديث جبريل أدناه يبدأ الإسلام بالشهادة بهما، ثم الصلاة والزكاة والصيام والحج. وفي الحديث الثاني لما جاء عمرو بن العاص ليُسلم قال له النبي ﷺ: إن الإسلام يهدم ما كان قبله. ولا تصف هذه المصادر مراسم خاصة، ويمكن لأقرب مسجد أو عالم أن يرشدك مباشرة.",
+        "ur": "کلمۂ شہادت قرآن میں بیان کی گئی دو حقیقتوں کو جمع کرتا ہے: اللہ کے سوا کوئی معبود نہیں (47:19) اور محمد اللہ کے رسول ہیں (48:29)۔ نیچے حدیثِ جبریل میں اسلام کی ابتدا انہی دونوں کی گواہی سے ہوتی ہے، پھر نماز، زکوٰۃ، روزہ اور حج۔ دوسری حدیث میں جب عمرو بن العاص اسلام قبول کرنے آئے تو نبی ﷺ نے فرمایا کہ اسلام پچھلے گناہوں کو مٹا دیتا ہے۔ ان ذرائع میں کسی خاص رسم کا ذکر نہیں؛ قریبی مسجد یا کوئی عالم براہِ راست رہنمائی کر سکتا ہے۔",
+        "tr": "Kelime-i şehadet, Kur’an’da geçen iki gerçeği birleştirir: Allah’tan başka ilah yoktur (47:19) ve Muhammed Allah’ın Resulüdür (48:29). Aşağıdaki Cibril hadisinde İslam bu ikisine şahitlikle başlar, ardından namaz, zekât, oruç ve hac gelir. İkinci hadiste Amr b. Âs Müslüman olmaya geldiğinde Peygamber ﷺ ona İslam’ın kendinden öncekini sileceğini söyler. Bu kaynaklar özel bir tören anlatmaz; yakındaki bir cami veya âlim size yüz yüze yol gösterebilir.",
+        "id": "Dua kalimat syahadat menggabungkan dua kebenaran yang disebut dalam Al-Qur’an: tiada tuhan selain Allah (47:19) dan Muhammad adalah utusan Allah (48:29). Dalam hadis Jibril di bawah, Islam dimulai dengan bersaksi atas keduanya, lalu salat, zakat, puasa, dan haji. Dalam hadis kedua, ketika ‘Amr bin al-‘Ash datang untuk masuk Islam, Nabi ﷺ bersabda bahwa Islam menghapus apa yang sebelumnya. Sumber-sumber ini tidak menggambarkan upacara khusus; masjid terdekat atau seorang ulama dapat membimbing Anda secara langsung.",
+        "fr": "L’attestation de foi (chahada) réunit deux vérités énoncées dans le Coran : il n’y a de dieu qu’Allah (47:19) et Muhammad est le Messager d’Allah (48:29). Dans le hadith de Jibril ci-dessous, l’islam commence par l’attestation de ces deux vérités, puis la prière, la zakat, le jeûne et le pèlerinage. Dans le second hadith, quand ‘Amr ibn al-‘As vint embrasser l’islam, le Prophète ﷺ lui dit que l’islam efface ce qui l’a précédé. Ces sources ne décrivent pas de cérémonie ; une mosquée proche ou un savant peut vous guider en personne.",
+        "es": "El testimonio de fe (shahada) une dos verdades que afirma el Corán: no hay dios sino Allah (47:19) y Muhammad es el Mensajero de Allah (48:29). En el hadiz de Yibril de abajo, el islam empieza por atestiguar ambas, seguido de la oración, el zakat, el ayuno y la peregrinación. En el segundo hadiz, cuando ‘Amr ibn al-‘As vino a aceptar el islam, el Profeta ﷺ le dijo que el islam borra lo que vino antes. Estas fuentes no describen ninguna ceremonia; una mezquita cercana o un sabio pueden guiarte en persona."
+      },
+      "triggers": {
+        "en": ["become muslim", "become a muslim", "becoming muslim", "convert to islam", "revert to islam", "accept islam", "embrace islam", "shahada", "shahadah", "convert"],
+        "ar": ["الدخول في الاسلام", "ادخل الاسلام", "يدخل الاسلام", "يدخل في الاسلام", "اعتناق الاسلام", "اعتنق الاسلام", "شهادتين", "شهادتان", "اصبح مسلما", "ادخل في الاسلام", "تدخل في الاسلام", "دخول الاسلام", "اريد ان اسلم", "كيف اسلم"],
+        "ur": ["مسلمان کیسے", "مسلمان بننا", "مسلمان بنتا", "اسلام قبول", "کلمہ شہادت", "مسلمان ہونا"],
+        "tr": ["musluman olmak", "musluman olur", "musluman olunur", "kelime i sehadet", "kelimei sehadet", "sehadet getirmek", "ihtida"],
+        "id": ["masuk islam", "menjadi muslim", "syahadat", "mualaf", "memeluk islam"],
+        "fr": ["devenir musulman", "devient musulman", "se convertir a l islam", "conversion a l islam", "chahada", "shahada"],
+        "es": ["hacerse musulman", "hace uno musulman", "convertirse al islam", "ser musulman", "shahada"]
+      },
+      "expansion": ["messenger", "رسول"]
+    },
+    {
+      "id": "prophet-muhammad",
+      "citations": ["quran:33:40", "quran:48:29", "quran:21:107", "quran:68:4"],
+      "hadith": [],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "Who is the Prophet Muhammad ﷺ?",
+        "ar": "من هو النبي محمد ﷺ؟",
+        "ur": "نبی محمد ﷺ کون ہیں؟",
+        "tr": "Hz. Muhammed ﷺ kimdir?",
+        "id": "Siapakah Nabi Muhammad ﷺ?",
+        "fr": "Qui est le Prophète Muhammad ﷺ ?",
+        "es": "¿Quién es el Profeta Muhammad ﷺ?"
+      },
+      "summary": {
+        "en": "The Quran calls Muhammad ﷺ the Messenger of Allah and the Seal of the Prophets (33:40, 48:29). It says he was sent only as a mercy to the worlds (21:107) and that he is of a great moral character (68:4). His life story (sira) and his teachings in detail come from hadith and biography books; the hadith collection on your phone holds many of his sayings.",
+        "ar": "يصف القرآن محمدًا ﷺ بأنه رسول الله وخاتم النبيين (33:40، 48:29)، وأنه لم يُرسل إلا رحمة للعالمين (21:107)، وأنه على خلق عظيم (68:4). أما سيرته وتفصيل تعاليمه فمصدرها كتب الحديث والسيرة، وفي مجموعة الأحاديث على هاتفك كثير من أقواله.",
+        "ur": "قرآن محمد ﷺ کو اللہ کا رسول اور خاتم النبیین کہتا ہے (33:40، 48:29)۔ وہ بتاتا ہے کہ آپ کو تمام جہانوں کے لیے رحمت بنا کر بھیجا گیا (21:107) اور آپ اخلاق کے بلند ترین مرتبے پر ہیں (68:4)۔ آپ کی سیرت اور تعلیمات کی تفصیل حدیث اور سیرت کی کتابوں میں ہے؛ آپ کے فون پر موجود احادیث کے مجموعے میں آپ کے بہت سے ارشادات ہیں۔",
+        "tr": "Kur’an, Muhammed’i ﷺ Allah’ın Resulü ve peygamberlerin sonuncusu olarak anar (33:40, 48:29). Onun âlemlere ancak rahmet olarak gönderildiğini (21:107) ve yüce bir ahlak üzere olduğunu (68:4) bildirir. Hayatı (siyer) ve öğretilerinin ayrıntıları hadis ve siyer kitaplarındadır; telefonunuzdaki hadis koleksiyonu onun pek çok sözünü içerir.",
+        "id": "Al-Qur’an menyebut Muhammad ﷺ sebagai utusan Allah dan penutup para nabi (33:40, 48:29). Al-Qur’an menyatakan bahwa beliau diutus semata-mata sebagai rahmat bagi seluruh alam (21:107) dan bahwa beliau berakhlak agung (68:4). Kisah hidup (sirah) dan rincian ajarannya berasal dari kitab hadis dan sirah; koleksi hadis di ponsel Anda memuat banyak sabdanya.",
+        "fr": "Le Coran appelle Muhammad ﷺ le Messager d’Allah et le Sceau des prophètes (33:40, 48:29). Il dit qu’il n’a été envoyé que comme miséricorde pour les mondes (21:107) et qu’il est d’une moralité éminente (68:4). Sa biographie (sira) et le détail de ses enseignements viennent des livres de hadith et de sira ; le recueil de hadiths de votre téléphone contient beaucoup de ses paroles.",
+        "es": "El Corán llama a Muhammad ﷺ el Mensajero de Allah y el Sello de los Profetas (33:40, 48:29). Dice que fue enviado solo como misericordia para los mundos (21:107) y que tiene un carácter moral sublime (68:4). Su biografía (sira) y el detalle de sus enseñanzas proceden de los libros de hadiz y de sira; la colección de hadices de tu teléfono recoge muchas de sus palabras."
+      },
+      "triggers": {
+        "en": ["who is muhammad", "who was muhammad", "who is prophet muhammad", "who was prophet muhammad", "who is the prophet", "who was the prophet", "who is the messenger"],
+        "ar": ["من هو النبي محمد", "من هو محمد", "من هو الرسول", "من هو رسول الله", "من هو النبي", "من هو نبي الاسلام"],
+        "ur": ["محمد ﷺ کون", "نبی کون ہیں", "محمد کون ہیں", "محمد کون تھے", "رسول اللہ کون"],
+        "tr": ["muhammed kimdir", "peygamber kimdir", "hz muhammed kimdir", "peygamberimiz kimdir"],
+        "id": ["siapa nabi muhammad", "siapakah nabi muhammad", "siapa muhammad", "siapakah muhammad"],
+        "fr": ["qui est le prophete", "qui est muhammad", "qui etait muhammad", "qui est mahomet", "qui etait le prophete"],
+        "es": ["quien es el profeta", "quien es muhammad", "quien fue muhammad", "quien es mahoma", "quien fue el profeta"]
+      },
+      "expansion": ["messenger", "Prophets", "mercy", "رسول", "رحمه"]
+    },
+    {
+      "id": "quran",
+      "citations": ["quran:2:2", "quran:2:185", "quran:12:2", "quran:15:9", "quran:17:9"],
+      "hadith": [],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What is the Quran?",
+        "ar": "ما هو القرآن الكريم؟",
+        "ur": "قرآن کیا ہے؟",
+        "tr": "Kur’an nedir?",
+        "id": "Apa itu Al-Qur’an?",
+        "fr": "Qu’est-ce que le Coran ?",
+        "es": "¿Qué es el Corán?"
+      },
+      "summary": {
+        "en": "The Quran describes itself as the Book in which there is no doubt, guidance for those who are mindful of Allah (2:2). It was revealed in the month of Ramadan as guidance for mankind and the criterion between right and wrong (2:185), as an Arabic recitation so that people may understand (12:2). Allah says He sent down the Reminder and will guard it (15:9), and that it guides to what is most upright (17:9). You can read the whole text, with translations, from Ask and the library.",
+        "ar": "يصف القرآن نفسه بأنه الكتاب الذي لا ريب فيه، هدى للمتقين (2:2). وقد أُنزل في شهر رمضان هدى للناس وبينات من الهدى والفرقان (2:185)، قرآنًا عربيًا لعل الناس يعقلون (12:2). ويقول الله إنه نزّل الذكر وإنه له لحافظ (15:9)، وإن هذا القرآن يهدي للتي هي أقوم (17:9). ويمكنك قراءة النص كاملًا مع الترجمات من «اسأل» والمكتبة.",
+        "ur": "قرآن اپنے آپ کو ایسی کتاب کہتا ہے جس میں کوئی شک نہیں، پرہیزگاروں کے لیے ہدایت (2:2)۔ یہ رمضان کے مہینے میں انسانوں کے لیے ہدایت اور حق و باطل میں فرق کرنے والی کتاب بن کر نازل ہوا (2:185)، عربی قرآن تاکہ لوگ سمجھیں (12:2)۔ اللہ فرماتا ہے کہ اسی نے یہ ذکر نازل کیا اور وہی اس کا محافظ ہے (15:9)، اور یہ قرآن سب سے سیدھی راہ دکھاتا ہے (17:9)۔ پورا متن ترجموں کے ساتھ «پوچھیں» اور لائبریری میں پڑھا جا سکتا ہے۔",
+        "tr": "Kur’an kendini, içinde şüphe olmayan ve Allah’a karşı gelmekten sakınanlar için yol gösterici olan Kitap diye tanıtır (2:2). İnsanlara yol gösterici ve hakla batılı ayıran olarak Ramazan ayında (2:185), anlaşılsın diye Arapça bir Kur’an olarak indirilmiştir (12:2). Allah, Zikr’i kendisinin indirdiğini ve onu koruyacağını (15:9), bu Kur’an’ın en doğru yola ilettiğini (17:9) bildirir. Metnin tamamını mealleriyle birlikte Sor ve kütüphane bölümünden okuyabilirsiniz.",
+        "id": "Al-Qur’an menyebut dirinya sebagai Kitab yang tidak ada keraguan padanya, petunjuk bagi orang-orang yang bertakwa (2:2). Ia diturunkan pada bulan Ramadan sebagai petunjuk bagi manusia dan pembeda antara yang benar dan yang batil (2:185), sebagai bacaan berbahasa Arab agar manusia memahaminya (12:2). Allah berfirman bahwa Dia yang menurunkan Adz-Dzikr dan Dia pula yang menjaganya (15:9), dan bahwa Al-Qur’an ini menunjukkan jalan yang paling lurus (17:9). Anda dapat membaca teks lengkapnya beserta terjemahan dari Tanya dan perpustakaan.",
+        "fr": "Le Coran se décrit comme le Livre au sujet duquel il n’y a aucun doute, une guidance pour ceux qui craignent Allah (2:2). Il a été révélé durant le mois de Ramadan comme guidance pour les gens et comme discernement entre le vrai et le faux (2:185), en une lecture arabe afin que les gens comprennent (12:2). Allah dit qu’Il a fait descendre le Rappel et qu’Il en est le gardien (15:9), et que ce Coran guide vers ce qui est le plus droit (17:9). Vous pouvez lire le texte complet, avec des traductions, depuis Demander et la bibliothèque.",
+        "es": "El Corán se describe como el Libro en el que no hay duda, guía para los temerosos de Allah (2:2). Fue revelado en el mes de Ramadán como guía para la humanidad y criterio entre lo verdadero y lo falso (2:185), como recitación en árabe para que la gente comprenda (12:2). Allah dice que Él hizo descender el Recuerdo y que Él lo protege (15:9), y que este Corán guía a lo más recto (17:9). Puedes leer el texto completo, con traducciones, desde Preguntar y la biblioteca."
+      },
+      "triggers": {
+        "en": ["what is the quran", "what is quran", "what is the koran", "what is the holy quran", "about the quran"],
+        "ar": ["ما هو القران", "ما القران", "تعريف القران", "ما هو القران الكريم"],
+        "ur": ["قرآن کیا ہے", "قرآن مجید کیا ہے", "قرآن کیا ہے؟"],
+        "tr": ["kur an nedir", "kuran nedir", "kur an i kerim nedir"],
+        "id": ["apa itu al qur an", "apa itu al quran", "apa itu quran", "pengertian al quran"],
+        "fr": ["qu est ce que le coran", "c est quoi le coran"],
+        "es": ["que es el coran", "que es el quran"]
+      },
+      "expansion": ["Scripture", "Reminder", "guidance", "الكتاب", "هدى"]
+    },
+    {
+      "id": "how-to-pray",
+      "citations": ["quran:2:238", "quran:20:14", "quran:29:45"],
+      "hadith": [3185],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "How do I pray (salah)?",
+        "ar": "كيف أصلي؟",
+        "ur": "نماز کیسے پڑھوں؟",
+        "tr": "Namaz nasıl kılınır?",
+        "id": "Bagaimana cara salat?",
+        "fr": "Comment faire la prière (salat) ?",
+        "es": "¿Cómo se reza (salat)?"
+      },
+      "summary": {
+        "en": "In the hadith below, the Prophet ﷺ taught a man who had prayed badly: when you stand for prayer, say the takbir (Allahu akbar); recite what is easy for you of the Quran; bow until you are at rest in bowing; rise until you stand straight; prostrate until you are at rest in prostration; sit up until you are at rest sitting; and do this throughout your whole prayer. The Quran commands guarding the prayers and standing before Allah in devotion (2:238), establishing prayer for His remembrance (20:14), and says that prayer restrains from indecency and wrongdoing (29:45). What to recite in each position and how to end the prayer are explained in hadith and fiqh books.",
+        "ar": "في الحديث أدناه علّم النبي ﷺ رجلًا لم يُحسن صلاته: إذا قمت إلى الصلاة فكبّر، ثم اقرأ ما تيسر معك من القرآن، ثم اركع حتى تطمئن راكعًا، ثم ارفع حتى تعتدل قائمًا، ثم اسجد حتى تطمئن ساجدًا، ثم ارفع حتى تطمئن جالسًا، وافعل ذلك في صلاتك كلها. ويأمر القرآن بالمحافظة على الصلوات والقيام لله قانتين (2:238)، وبإقامة الصلاة لذكره (20:14)، ويقول إن الصلاة تنهى عن الفحشاء والمنكر (29:45). أما ما يُقال في كل ركن وكيفية الختام فمبيّن في كتب الحديث والفقه.",
+        "ur": "نیچے دی گئی حدیث میں نبی ﷺ نے ایک ایسے شخص کو جس نے ٹھیک نماز نہیں پڑھی تھی یوں سکھایا: جب نماز کے لیے کھڑے ہو تو تکبیر (اللہ اکبر) کہو، پھر قرآن میں سے جو آسانی سے پڑھ سکو پڑھو، پھر رکوع کرو یہاں تک کہ رکوع میں اطمینان ہو جائے، پھر اٹھو یہاں تک کہ سیدھے کھڑے ہو جاؤ، پھر سجدہ کرو یہاں تک کہ سجدے میں اطمینان ہو جائے، پھر اٹھ کر اطمینان سے بیٹھو، اور اپنی پوری نماز میں ایسا ہی کرو۔ قرآن نمازوں کی حفاظت اور اللہ کے سامنے عاجزی سے کھڑے ہونے کا حکم دیتا ہے (2:238)، اس کی یاد کے لیے نماز قائم کرنے کا حکم دیتا ہے (20:14)، اور کہتا ہے کہ نماز بے حیائی اور برائی سے روکتی ہے (29:45)۔ ہر رکن میں کیا پڑھا جائے اور نماز کیسے ختم کی جائے، یہ حدیث اور فقہ کی کتابوں میں ہے۔",
+        "tr": "Aşağıdaki hadiste Peygamber ﷺ namazını düzgün kılmayan bir adama şöyle öğretir: Namaza durduğunda tekbir al (Allahu ekber), sonra Kur’an’dan kolayına geleni oku, sonra rükûda tam duruncaya kadar rükû et, sonra dimdik ayakta duruncaya kadar doğrul, sonra secdede tam duruncaya kadar secde et, sonra oturuşta tam duruncaya kadar doğrul ve bunu namazının tamamında yap. Kur’an namazları korumayı ve Allah’ın huzurunda saygıyla durmayı (2:238), O’nu anmak için namaz kılmayı (20:14) emreder ve namazın hayâsızlıktan ve kötülükten alıkoyduğunu söyler (29:45). Her rükünde ne okunacağı ve namazın nasıl bitirileceği hadis ve fıkıh kitaplarında açıklanır.",
+        "id": "Dalam hadis di bawah, Nabi ﷺ mengajari seorang laki-laki yang salatnya tidak benar: jika engkau berdiri untuk salat, bertakbirlah (Allahu akbar), lalu bacalah apa yang mudah bagimu dari Al-Qur’an, lalu rukuklah hingga tenang dalam rukuk, lalu bangkitlah hingga berdiri tegak, lalu sujudlah hingga tenang dalam sujud, lalu bangkitlah hingga tenang dalam duduk, dan lakukan itu dalam seluruh salatmu. Al-Qur’an memerintahkan untuk memelihara salat dan berdiri karena Allah dengan khusyuk (2:238), mendirikan salat untuk mengingat-Nya (20:14), dan menyatakan bahwa salat mencegah dari perbuatan keji dan mungkar (29:45). Apa yang dibaca di setiap gerakan dan cara mengakhiri salat dijelaskan dalam kitab hadis dan fikih.",
+        "fr": "Dans le hadith ci-dessous, le Prophète ﷺ enseigna à un homme qui avait mal prié : quand tu te lèves pour la prière, dis le takbir (Allahu akbar) ; récite ce qui t’est facile du Coran ; incline-toi jusqu’à être apaisé dans l’inclinaison ; redresse-toi jusqu’à être bien droit ; prosterne-toi jusqu’à être apaisé dans la prosternation ; relève-toi jusqu’à être apaisé assis ; et fais cela dans toute ta prière. Le Coran ordonne de préserver les prières et de se tenir devant Allah avec dévotion (2:238), d’accomplir la prière pour se souvenir de Lui (20:14), et dit que la prière préserve de la turpitude et du blâmable (29:45). Ce qu’on récite dans chaque position et la manière de terminer la prière sont expliqués dans les livres de hadith et de fiqh.",
+        "es": "En el hadiz de abajo, el Profeta ﷺ enseñó a un hombre que había rezado mal: cuando te pongas de pie para la oración, di el takbir (Allahu akbar); recita lo que te resulte fácil del Corán; inclínate hasta quedar en calma en la inclinación; levántate hasta quedar erguido; prostérnate hasta quedar en calma en la postración; incorpórate hasta quedar en calma sentado; y haz esto en toda tu oración. El Corán ordena preservar las oraciones y estar ante Allah con devoción (2:238), establecer la oración para recordarle (20:14), y dice que la oración aparta de la indecencia y de lo reprobable (29:45). Qué se recita en cada posición y cómo se termina la oración se explica en los libros de hadiz y de fiqh."
+      },
+      "triggers": {
+        "en": ["how to pray", "how do i pray", "how do you pray", "how to perform salah", "how to perform prayer", "how to do salah", "how to offer prayer", "steps of prayer", "steps of salah", "how to pray salah", "how to perform salat"],
+        "ar": ["كيف اصلي", "كيفيه الصلاه", "صفه الصلاه", "طريقه الصلاه", "كيف تصلي", "كيف نصلي", "كيف اصلي الصلاه"],
+        "ur": ["نماز کیسے", "نماز کا طریقہ", "نماز پڑھنے کا طریقہ", "نماز کیسے پڑھیں", "نماز کیسے پڑھوں"],
+        "tr": ["namaz nasil kilinir", "namaz kilmak", "namazin kilinisi", "nasil namaz kilinir", "namaz nasil kilarim"],
+        "id": ["cara salat", "cara sholat", "cara shalat", "tata cara salat", "tata cara sholat", "tata cara shalat"],
+        "fr": ["comment prier", "comment faire la priere", "comment faire la salat", "comment accomplir la priere"],
+        "es": ["como rezar", "como orar", "como se reza", "como hacer el salat", "como hacer la oracion"]
+      },
+      "expansion": ["worship", "prayers", "bow", "الصلاه", "الصلوات"]
+    },
+    {
+      "id": "hajj",
+      "citations": ["quran:3:97", "quran:22:27", "quran:2:197"],
+      "hadith": [3446],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What is Hajj?",
+        "ar": "ما هو الحج؟",
+        "ur": "حج کیا ہے؟",
+        "tr": "Hac nedir?",
+        "id": "Apa itu haji?",
+        "fr": "Qu’est-ce que le Hajj ?",
+        "es": "¿Qué es el Hajj?"
+      },
+      "summary": {
+        "en": "Verse 3:97 makes pilgrimage to the House (the Kaaba in Makkah) a duty owed to Allah by everyone who is able to make the journey. Verse 22:27 commands proclaiming the pilgrimage to mankind: people will come on foot and on every lean camel, from every distant path. Hajj is in the well-known months, and during it there is to be no indecency, wrongdoing or quarrelling (2:197). In the hadith below, the Prophet ﷺ says that Hajj wipes out what came before it. The rites, step by step, are explained in hadith and fiqh books.",
+        "ar": "تجعل الآية 3:97 حج البيت (الكعبة في مكة) حقًا لله على كل من استطاع إليه سبيلًا. وتأمر الآية 22:27 بالأذان في الناس بالحج: يأتون رجالًا وعلى كل ضامر من كل فج عميق. والحج أشهر معلومات، فلا رفث فيه ولا فسوق ولا جدال (2:197). وفي الحديث أدناه يقول النبي ﷺ إن الحج يهدم ما كان قبله. أما المناسك خطوة بخطوة فمبيّنة في كتب الحديث والفقه.",
+        "ur": "آیت 3:97 بیت اللہ (مکہ میں کعبہ) کا حج ہر اس شخص پر اللہ کا حق قرار دیتی ہے جو وہاں تک پہنچنے کی استطاعت رکھتا ہو۔ آیت 22:27 لوگوں میں حج کا اعلان کرنے کا حکم دیتی ہے: لوگ پیدل اور ہر دبلی اونٹنی پر ہر دور دراز راستے سے آئیں گے۔ حج کے مہینے معلوم ہیں، اور ان میں نہ بے حیائی ہو، نہ نافرمانی اور نہ جھگڑا (2:197)۔ نیچے دی گئی حدیث میں نبی ﷺ فرماتے ہیں کہ حج پچھلے گناہوں کو مٹا دیتا ہے۔ مناسک کی تفصیل حدیث اور فقہ کی کتابوں میں ہے۔",
+        "tr": "3:97. ayet, yoluna gücü yeten herkesin Kâbe’yi (Mekke’deki Beytullah’ı) haccetmesini Allah’ın insanlar üzerindeki bir hakkı kılar. 22:27. ayet, haccın insanlara ilan edilmesini emreder: insanlar yaya olarak ve her uzak yoldan gelen arık develer üzerinde gelecektir. Hac bilinen aylardadır ve hacda kadına yaklaşmak, günah işlemek ve kavga etmek yoktur (2:197). Aşağıdaki hadiste Peygamber ﷺ haccın kendinden öncekini sileceğini söyler. Haccın adım adım menasiki hadis ve fıkıh kitaplarında açıklanır.",
+        "id": "Ayat 3:97 menjadikan haji ke Baitullah (Ka’bah di Makkah) sebagai kewajiban kepada Allah bagi setiap orang yang mampu menempuh perjalanannya. Ayat 22:27 memerintahkan untuk menyeru manusia agar berhaji: mereka akan datang dengan berjalan kaki dan dengan mengendarai setiap unta yang kurus dari segenap penjuru yang jauh. Haji dilaksanakan pada bulan-bulan yang telah diketahui, dan di dalamnya tidak boleh ada rafats, kefasikan, dan berbantah-bantahan (2:197). Dalam hadis di bawah, Nabi ﷺ bersabda bahwa haji menghapus apa yang sebelumnya. Manasik langkah demi langkah dijelaskan dalam kitab hadis dan fikih.",
+        "fr": "Le verset 3:97 fait du pèlerinage à la Maison (la Kaaba à La Mecque) un devoir envers Allah pour quiconque peut en faire le voyage. Le verset 22:27 ordonne d’appeler les gens au pèlerinage : ils viendront à pied et sur toute monture amaigrie, de tout chemin lointain. Le Hajj a lieu pendant des mois connus, et il n’y a alors ni rapports intimes, ni perversité, ni dispute (2:197). Dans le hadith ci-dessous, le Prophète ﷺ dit que le Hajj efface ce qui l’a précédé. Les rites, étape par étape, sont expliqués dans les livres de hadith et de fiqh.",
+        "es": "El versículo 3:97 hace de la peregrinación a la Casa (la Kaaba en La Meca) un deber hacia Allah para todo el que pueda hacer el viaje. El versículo 22:27 ordena proclamar la peregrinación a la gente: vendrán a pie y en todo camello enflaquecido, desde todo camino lejano. El Hajj es en meses conocidos, y en él no hay relaciones íntimas, ni transgresión, ni disputa (2:197). En el hadiz de abajo, el Profeta ﷺ dice que el Hajj borra lo que vino antes. Los ritos, paso a paso, se explican en los libros de hadiz y de fiqh."
+      },
+      "triggers": {
+        "en": ["what is hajj", "hajj", "haj", "pilgrimage", "what is the hajj"],
+        "ar": ["ما هو الحج", "الحج", "حج", "مناسك الحج"],
+        "ur": ["حج کیا ہے", "حج", "حج کے مناسک"],
+        "tr": ["hac nedir", "hac", "hacc", "hacca"],
+        "id": ["apa itu haji", "haji", "ibadah haji", "naik haji"],
+        "fr": ["qu est ce que le hajj", "hajj", "pelerinage"],
+        "es": ["que es el hajj", "hajj", "peregrinacion"]
+      },
+      "expansion": ["pilgrimage", "House", "الحج", "البيت"]
+    },
+    {
+      "id": "friday-prayer",
+      "citations": ["quran:62:9", "quran:62:10"],
+      "hadith": [5394, 3711],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What is the Friday prayer (Jumu’ah)?",
+        "ar": "ما هي صلاة الجمعة؟",
+        "ur": "جمعہ کی نماز کیا ہے؟",
+        "tr": "Cuma namazı nedir?",
+        "id": "Apa itu salat Jumat?",
+        "fr": "Qu’est-ce que la prière du vendredi (joumou’a) ?",
+        "es": "¿Qué es la oración del viernes (yumu’a)?"
+      },
+      "summary": {
+        "en": "Verse 62:9 tells believers that when the call is made for prayer on Friday, the day of congregation, they should hasten to the remembrance of Allah and leave trading; 62:10 says that once the prayer is over they may disperse in the land, seek Allah’s bounty and remember Allah often. In the hadiths below, the Prophet ﷺ tells whoever comes to the Friday prayer to take a bath (ghusl), and says Friday is the best day on which the sun has risen. Who must attend and how the sermon is given are explained in hadith and fiqh books.",
+        "ar": "تأمر الآية 62:9 المؤمنين إذا نودي للصلاة من يوم الجمعة أن يسعوا إلى ذكر الله ويذروا البيع، وتقول الآية 62:10 إنه إذا قُضيت الصلاة فلهم أن ينتشروا في الأرض ويبتغوا من فضل الله ويذكروا الله كثيرًا. وفي الحديثين أدناه يأمر النبي ﷺ من جاء الجمعة أن يغتسل، ويخبر أن خير يوم طلعت عليه الشمس يوم الجمعة. أما من تجب عليه وكيفية الخطبة فمبيّن في كتب الحديث والفقه.",
+        "ur": "آیت 62:9 مومنوں کو حکم دیتی ہے کہ جب جمعہ کے دن نماز کے لیے پکارا جائے تو اللہ کے ذکر کی طرف دوڑو اور خرید و فروخت چھوڑ دو؛ آیت 62:10 کہتی ہے کہ جب نماز پوری ہو جائے تو زمین میں پھیل جاؤ، اللہ کا فضل تلاش کرو اور اللہ کو کثرت سے یاد کرو۔ نیچے دی گئی احادیث میں نبی ﷺ جمعہ کے لیے آنے والے کو غسل کرنے کا حکم دیتے ہیں اور فرماتے ہیں کہ جن دنوں پر سورج طلوع ہوتا ہے ان میں سب سے بہتر دن جمعہ ہے۔ جمعہ کس پر فرض ہے اور خطبہ کیسے دیا جائے، یہ حدیث اور فقہ کی کتابوں میں ہے۔",
+        "tr": "62:9. ayet, müminlere cuma günü namaz için çağrı yapıldığında Allah’ı anmaya koşmalarını ve alışverişi bırakmalarını söyler; 62:10. ayet ise namaz kılınınca yeryüzüne dağılabileceklerini, Allah’ın lütfunu arayabileceklerini ve Allah’ı çokça anmalarını bildirir. Aşağıdaki hadislerde Peygamber ﷺ cumaya gelen kişinin gusletmesini emreder ve üzerine güneşin doğduğu en hayırlı günün cuma olduğunu söyler. Cumanın kimlere farz olduğu ve hutbenin nasıl okunacağı hadis ve fıkıh kitaplarında açıklanır.",
+        "id": "Ayat 62:9 memerintahkan orang beriman, apabila diseru untuk salat pada hari Jumat, agar bersegera mengingat Allah dan meninggalkan jual beli; ayat 62:10 menyatakan bahwa setelah salat selesai mereka boleh bertebaran di muka bumi, mencari karunia Allah, dan banyak mengingat Allah. Dalam hadis-hadis di bawah, Nabi ﷺ memerintahkan siapa pun yang datang salat Jumat untuk mandi (ghusl), dan bersabda bahwa hari terbaik saat matahari terbit adalah hari Jumat. Siapa yang wajib menghadirinya dan cara khutbah disampaikan dijelaskan dalam kitab hadis dan fikih.",
+        "fr": "Le verset 62:9 dit aux croyants que lorsqu’on appelle à la prière le vendredi, jour du rassemblement, ils doivent accourir au rappel d’Allah et laisser le commerce ; le verset 62:10 dit qu’une fois la prière achevée ils peuvent se disperser sur la terre, rechercher la grâce d’Allah et L’invoquer souvent. Dans les hadiths ci-dessous, le Prophète ﷺ demande à quiconque vient à la prière du vendredi de faire le grand lavage (ghusl), et dit que le vendredi est le meilleur jour sur lequel le soleil se lève. Qui doit y assister et comment le sermon est donné sont expliqués dans les livres de hadith et de fiqh.",
+        "es": "El versículo 62:9 dice a los creyentes que, cuando se llame a la oración el viernes, día de la congregación, acudan al recuerdo de Allah y dejen el comercio; el 62:10 dice que, terminada la oración, pueden dispersarse por la tierra, buscar el favor de Allah y recordarle mucho. En los hadices de abajo, el Profeta ﷺ ordena a quien acuda a la oración del viernes que haga el baño completo (gusl), y dice que el viernes es el mejor día sobre el que sale el sol. Quién debe asistir y cómo se da el sermón se explica en los libros de hadiz y de fiqh."
+      },
+      "triggers": {
+        "en": ["friday prayer", "jumuah", "jummah", "jumah", "jumu ah", "juma", "friday prayers", "jumma"],
+        "ar": ["صلاه الجمعه", "الجمعه", "جمعه", "خطبه الجمعه"],
+        "ur": ["جمعہ", "جمعے", "نماز جمعہ", "جمعہ کی نماز"],
+        "tr": ["cuma", "cuma namazi", "cuma hutbesi"],
+        "id": ["jumat", "salat jumat", "sholat jumat", "shalat jumat", "jum at"],
+        "fr": ["vendredi", "joumoua", "jumua", "priere du vendredi"],
+        "es": ["viernes", "yumua", "jumua", "oracion del viernes"]
+      },
+      "expansion": ["congregation", "trading", "الجمعه"]
+    },
+    {
+      "id": "halal-food",
+      "citations": ["quran:2:168", "quran:2:172", "quran:2:173", "quran:5:3"],
+      "hadith": [4314, 4316],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What food is halal?",
+        "ar": "ما الطعام الحلال؟",
+        "ur": "کون سا کھانا حلال ہے؟",
+        "tr": "Hangi yiyecekler helaldir?",
+        "id": "Makanan apa yang halal?",
+        "fr": "Quelle nourriture est halal ?",
+        "es": "¿Qué comida es halal?"
+      },
+      "summary": {
+        "en": "The Quran tells people to eat of what is lawful and good on the earth (2:168), and believers to eat of the good things Allah has provided and to thank Him (2:172). It forbids carrion, blood, pork and what has been dedicated to other than Allah (2:173, 5:3); 5:3 adds animals killed by strangling, a blow, a fall, goring or a wild beast unless slaughtered in time. Whoever is forced by necessity, without desiring it or going beyond the limit, commits no sin. In the hadiths below, the Prophet ﷺ says that the lawful is clear and the unlawful is clear, with doubtful matters between them, and that Allah is good and accepts only what is good. Rules on slaughter, seafood and modern products are explained in fiqh books and fatwas.",
+        "ar": "يأمر القرآن الناس أن يأكلوا مما في الأرض حلالًا طيبًا (2:168)، والمؤمنين أن يأكلوا من طيبات ما رزقهم الله ويشكروه (2:172). ويحرّم الميتة والدم ولحم الخنزير وما أُهلّ به لغير الله (2:173، 5:3)، وتزيد الآية 5:3 المنخنقة والموقوذة والمتردية والنطيحة وما أكل السبع إلا ما ذُكّي. ومن اضطر غير باغ ولا عاد فلا إثم عليه. وفي الحديثين أدناه يقول النبي ﷺ إن الحلال بيّن والحرام بيّن وبينهما مشتبهات، وإن الله طيب لا يقبل إلا طيبًا. أما أحكام الذبح والمأكولات البحرية والمنتجات الحديثة فمبيّنة في كتب الفقه والفتاوى.",
+        "ur": "قرآن لوگوں کو حکم دیتا ہے کہ زمین کی حلال اور پاکیزہ چیزیں کھاؤ (2:168)، اور مومنوں کو کہ اللہ کی دی ہوئی پاکیزہ چیزیں کھاؤ اور اس کا شکر ادا کرو (2:172)۔ وہ مردار، خون، سور کا گوشت اور غیر اللہ کے نام پر ذبح کی گئی چیز حرام کرتا ہے (2:173، 5:3)؛ آیت 5:3 میں گلا گھٹ کر، چوٹ لگ کر، اونچائی سے گر کر، سینگ لگ کر مرنے والا اور درندے کا کھایا ہوا جانور بھی شامل ہے، سوائے اس کے جسے بروقت ذبح کر لیا جائے۔ جو مجبوری میں ہو، نہ خواہش رکھتا ہو اور نہ حد سے بڑھے، اس پر کوئی گناہ نہیں۔ نیچے دی گئی احادیث میں نبی ﷺ فرماتے ہیں کہ حلال واضح ہے اور حرام واضح ہے اور ان کے درمیان مشتبہ چیزیں ہیں، اور اللہ پاک ہے اور پاک چیز ہی قبول کرتا ہے۔ ذبح، سمندری غذا اور جدید مصنوعات کے احکام فقہ اور فتاویٰ کی کتابوں میں ہیں۔",
+        "tr": "Kur’an insanlara yeryüzündeki helal ve temiz şeylerden yemelerini (2:168), müminlere de Allah’ın verdiği temiz rızıklardan yiyip O’na şükretmelerini söyler (2:172). Leşi, kanı, domuz etini ve Allah’tan başkası adına kesileni haram kılar (2:173, 5:3); 5:3. ayet buna boğulmuş, darbeyle öldürülmüş, yüksekten düşmüş, boynuzlanmış ve yırtıcı hayvanın yediği hayvanları, vaktinde kesilenler hariç, ekler. Zorda kalan, istekli olmadan ve sınırı aşmadan yerse günah işlemiş olmaz. Aşağıdaki hadislerde Peygamber ﷺ helalin de haramın da açık olduğunu, ikisinin arasında şüpheli şeyler bulunduğunu ve Allah’ın temiz olduğunu, ancak temiz olanı kabul ettiğini söyler. Kesim, deniz ürünleri ve modern ürünlerle ilgili hükümler fıkıh kitaplarında ve fetvalarda açıklanır.",
+        "id": "Al-Qur’an memerintahkan manusia memakan apa yang halal lagi baik di bumi (2:168), dan orang beriman memakan rezeki baik yang Allah berikan serta bersyukur kepada-Nya (2:172). Al-Qur’an mengharamkan bangkai, darah, daging babi, dan hewan yang disembelih atas nama selain Allah (2:173, 5:3); ayat 5:3 menambahkan hewan yang mati tercekik, dipukul, jatuh, ditanduk, atau dimakan binatang buas, kecuali yang sempat disembelih. Siapa yang terpaksa tanpa menginginkannya dan tanpa melampaui batas, tidak berdosa. Dalam hadis-hadis di bawah, Nabi ﷺ bersabda bahwa yang halal itu jelas dan yang haram itu jelas, dan di antara keduanya ada perkara syubhat, serta bahwa Allah itu baik dan hanya menerima yang baik. Hukum penyembelihan, makanan laut, dan produk modern dijelaskan dalam kitab fikih dan fatwa.",
+        "fr": "Le Coran demande aux gens de manger de ce qui est licite et bon sur la terre (2:168), et aux croyants de manger des bonnes choses qu’Allah leur a attribuées et de Le remercier (2:172). Il interdit la bête morte, le sang, la viande de porc et ce qui a été consacré à autre qu’Allah (2:173, 5:3) ; le verset 5:3 y ajoute la bête étouffée, assommée, morte d’une chute, d’un coup de corne ou entamée par un fauve, sauf si on l’a égorgée à temps. Celui qui y est contraint par nécessité, sans le désirer ni transgresser, ne commet pas de péché. Dans les hadiths ci-dessous, le Prophète ﷺ dit que le licite est clair et l’illicite est clair, avec entre eux des choses ambiguës, et qu’Allah est bon et n’accepte que ce qui est bon. Les règles de l’abattage, des produits de la mer et des produits modernes sont expliquées dans les livres de fiqh et les fatwas.",
+        "es": "El Corán pide a la gente que coma de lo lícito y bueno que hay en la tierra (2:168), y a los creyentes que coman de las cosas buenas que Allah les ha provisto y le agradezcan (2:172). Prohíbe la carroña, la sangre, la carne de cerdo y lo dedicado a otro que Allah (2:173, 5:3); el 5:3 añade el animal estrangulado, muerto a golpes, por una caída, por una cornada o devorado por una fiera, salvo que se degüelle a tiempo. Quien se ve obligado por necesidad, sin desearlo ni excederse, no comete pecado. En los hadices de abajo, el Profeta ﷺ dice que lo lícito es claro y lo ilícito es claro, con asuntos dudosos entre ambos, y que Allah es bueno y solo acepta lo bueno. Las normas sobre el sacrificio, los productos del mar y los productos modernos se explican en los libros de fiqh y las fatwas."
+      },
+      "triggers": {
+        "en": ["halal food", "halal meat", "food halal", "food is halal", "eat halal", "haram food", "forbidden food", "pork", "what can muslims eat", "foods are halal", "halal to eat"],
+        "ar": ["الطعام الحلال", "الاكل الحلال", "اللحم الحلال", "الاطعمه المحرمه", "لحم الخنزير", "ما يحل اكله", "الاطعمه الحلال", "الطعام الحرام"],
+        "ur": ["حلال کھانا", "حلال گوشت", "حرام کھانا", "سور کا گوشت", "کھانا حلال"],
+        "tr": ["helal yiyecek", "helal gida", "helal et", "domuz eti", "haram yiyecek", "yiyecekler helal"],
+        "id": ["makanan halal", "daging halal", "makanan haram", "daging babi", "makanan apa yang halal"],
+        "fr": ["nourriture halal", "viande halal", "aliments halal", "porc", "nourriture est halal"],
+        "es": ["comida halal", "carne halal", "cerdo", "comida es halal", "alimentos halal"]
+      },
+      "expansion": ["lawful", "carrion", "swineflesh", "حلالا", "الميته"]
+    },
+    {
+      "id": "dua",
+      "citations": ["quran:2:186", "quran:40:60", "quran:7:55"],
+      "hadith": [5496],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "How do I make dua (supplication)?",
+        "ar": "كيف أدعو الله؟",
+        "ur": "دعا کیسے مانگوں؟",
+        "tr": "Nasıl dua edilir?",
+        "id": "Bagaimana cara berdoa?",
+        "fr": "Comment faire des invocations (dou’a) ?",
+        "es": "¿Cómo se hace la súplica (du’a)?"
+      },
+      "summary": {
+        "en": "Allah says He is near and answers the call of whoever calls on Him (2:186), and: ‘Call on Me; I will answer you’ (40:60). Verse 7:55 tells believers to call on their Lord humbly and in private. In the hadith below, the Prophet ﷺ says that supplication is worship, then recites 40:60. Recommended words and times for dua are found in the hadith collections.",
+        "ar": "يقول الله إنه قريب يجيب دعوة الداع إذا دعاه (2:186)، ويقول: ﴿ادعوني أستجب لكم﴾ (40:60). وتأمر الآية 7:55 المؤمنين أن يدعوا ربهم تضرعًا وخفية. وفي الحديث أدناه يقول النبي ﷺ: الدعاء هو العبادة، ثم يقرأ الآية 40:60. أما الأدعية المأثورة وأوقات الإجابة فموجودة في كتب الحديث.",
+        "ur": "اللہ فرماتا ہے کہ وہ قریب ہے اور پکارنے والے کی پکار کا جواب دیتا ہے جب وہ اسے پکارے (2:186)، اور فرماتا ہے: «مجھے پکارو، میں تمہاری دعا قبول کروں گا» (40:60)۔ آیت 7:55 مومنوں کو حکم دیتی ہے کہ اپنے رب کو عاجزی سے اور چپکے چپکے پکاریں۔ نیچے دی گئی حدیث میں نبی ﷺ فرماتے ہیں کہ دعا ہی عبادت ہے، پھر آیت 40:60 تلاوت فرماتے ہیں۔ مسنون دعائیں اور قبولیت کے اوقات حدیث کی کتابوں میں ہیں۔",
+        "tr": "Allah yakın olduğunu ve kendisine dua edenin duasına karşılık verdiğini (2:186), ayrıca “Bana dua edin, size karşılık vereyim” buyurduğunu bildirir (40:60). 7:55. ayet müminlere Rablerine yalvararak ve gizlice dua etmelerini söyler. Aşağıdaki hadiste Peygamber ﷺ duanın ibadet olduğunu söyler, ardından 40:60. ayeti okur. Tavsiye edilen dua sözleri ve vakitleri hadis kitaplarında yer alır.",
+        "id": "Allah berfirman bahwa Dia dekat dan mengabulkan doa orang yang berdoa apabila ia berdoa kepada-Nya (2:186), dan: ‘Berdoalah kepada-Ku, niscaya Aku kabulkan untukmu’ (40:60). Ayat 7:55 memerintahkan orang beriman berdoa kepada Tuhan mereka dengan rendah hati dan suara yang lembut. Dalam hadis di bawah, Nabi ﷺ bersabda bahwa doa adalah ibadah, lalu membaca ayat 40:60. Lafaz doa yang dianjurkan dan waktu-waktunya terdapat dalam kitab-kitab hadis.",
+        "fr": "Allah dit qu’Il est proche et qu’Il répond à l’appel de celui qui L’invoque (2:186), et : « Invoquez-Moi, Je vous répondrai » (40:60). Le verset 7:55 demande aux croyants d’invoquer leur Seigneur avec humilité et en secret. Dans le hadith ci-dessous, le Prophète ﷺ dit que l’invocation est l’adoration, puis récite le verset 40:60. Les formules recommandées et les moments propices se trouvent dans les recueils de hadiths.",
+        "es": "Allah dice que está cerca y responde a la súplica de quien le invoca (2:186), y: «Invocadme y os responderé» (40:60). El versículo 7:55 pide a los creyentes que invoquen a su Señor con humildad y en secreto. En el hadiz de abajo, el Profeta ﷺ dice que la súplica es adoración, y luego recita el 40:60. Las palabras recomendadas y los momentos para la súplica se encuentran en las colecciones de hadices."
+      },
+      "triggers": {
+        "en": ["dua", "duaa", "du a", "supplication", "make dua", "how to make dua", "supplicate"],
+        "ar": ["الدعاء", "دعاء", "ادعو الله", "كيف ادعو", "الدعاء المستجاب"],
+        "ur": ["دعا", "دعا کیسے", "دعا مانگنا", "دعا کیسے مانگوں"],
+        "tr": ["dua", "dua etmek", "nasil dua", "dua edilir"],
+        "id": ["doa", "berdoa", "cara berdoa"],
+        "fr": ["doua", "dua", "invocation", "invocations", "invoquer allah"],
+        "es": ["dua", "suplica", "suplicas", "duaa"]
+      },
+      "expansion": ["prayer", "suppliant", "call", "دعوه", "ادعوني"]
+    },
+    {
+      "id": "parents",
+      "citations": ["quran:17:23", "quran:17:24", "quran:31:14"],
+      "hadith": [3044],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What does Islam say about parents?",
+        "ar": "ماذا يقول الإسلام عن الوالدين؟",
+        "ur": "اسلام والدین کے بارے میں کیا کہتا ہے؟",
+        "tr": "İslam anne baba hakkında ne der?",
+        "id": "Apa kata Islam tentang orang tua?",
+        "fr": "Que dit l’islam sur les parents ?",
+        "es": "¿Qué dice el islam sobre los padres?"
+      },
+      "summary": {
+        "en": "Verse 17:23 joins worshipping Allah alone with kindness to parents: when one or both of them reach old age, do not say even ‘uff’ to them or scold them, but speak to them with honour. Verse 17:24 says to lower to them the wing of humility out of mercy and to pray: ‘My Lord, have mercy on them as they raised me when I was small.’ Verse 31:14 recalls the mother who carried her child in weakness upon weakness, and tells people to thank Allah and their parents. In the hadith below, the Prophet ﷺ counts undutifulness to parents among the major sins.",
+        "ar": "تقرن الآية 17:23 عبادة الله وحده بالإحسان إلى الوالدين: إذا بلغ أحدهما أو كلاهما الكبر فلا تقل لهما أف ولا تنهرهما، وقل لهما قولًا كريمًا. وتقول الآية 17:24: واخفض لهما جناح الذل من الرحمة، وقل: رب ارحمهما كما ربياني صغيرًا. وتذكّر الآية 31:14 بالأم التي حملت ولدها وهنًا على وهن، وتأمر بشكر الله والوالدين. وفي الحديث أدناه يعدّ النبي ﷺ عقوق الوالدين من الكبائر.",
+        "ur": "آیت 17:23 صرف اللہ کی عبادت کے ساتھ والدین سے حسنِ سلوک کو جوڑتی ہے: اگر ان میں سے ایک یا دونوں بڑھاپے کو پہنچ جائیں تو انہیں اُف تک نہ کہو، نہ جھڑکو، بلکہ ان سے عزت کے ساتھ بات کرو۔ آیت 17:24 کہتی ہے کہ رحمت سے ان کے لیے عاجزی کا بازو جھکا دو اور دعا کرو: اے میرے رب! ان پر رحم فرما جیسے انہوں نے بچپن میں میری پرورش کی۔ آیت 31:14 اس ماں کو یاد دلاتی ہے جس نے کمزوری پر کمزوری اٹھا کر بچے کو پیٹ میں رکھا، اور اللہ اور والدین کا شکر ادا کرنے کا حکم دیتی ہے۔ نیچے دی گئی حدیث میں نبی ﷺ والدین کی نافرمانی کو کبیرہ گناہوں میں شمار فرماتے ہیں۔",
+        "tr": "17:23. ayet, yalnız Allah’a ibadeti anne babaya iyilikle birlikte anar: onlardan biri veya ikisi yaşlanırsa onlara “öf” bile deme, onları azarlama, onlarla güzel söz söyle. 17:24. ayet, merhametle onlara alçak gönüllülük kanadını germeyi ve “Rabbim, onlar beni küçükken nasıl yetiştirdilerse sen de onlara öyle merhamet et” diye dua etmeyi söyler. 31:14. ayet, çocuğunu zayıflık üstüne zayıflıkla taşıyan anneyi hatırlatır ve Allah’a ve anne babaya şükretmeyi emreder. Aşağıdaki hadiste Peygamber ﷺ anne babaya isyanı büyük günahlar arasında sayar.",
+        "id": "Ayat 17:23 menggandengkan ibadah kepada Allah semata dengan berbakti kepada orang tua: jika salah satu atau keduanya mencapai usia lanjut, jangan sekali-kali mengatakan ‘ah’ kepada mereka dan jangan membentak mereka, tetapi ucapkanlah perkataan yang mulia. Ayat 17:24 memerintahkan untuk merendahkan diri kepada mereka dengan penuh kasih sayang dan berdoa: ‘Wahai Tuhanku, sayangilah keduanya sebagaimana mereka mendidikku waktu kecil.’ Ayat 31:14 mengingatkan ibu yang mengandung anaknya dalam keadaan lemah yang bertambah-tambah, dan memerintahkan bersyukur kepada Allah dan kepada orang tua. Dalam hadis di bawah, Nabi ﷺ menyebut durhaka kepada orang tua termasuk dosa besar.",
+        "fr": "Le verset 17:23 associe l’adoration d’Allah seul à la bonté envers les parents : si l’un d’eux ou les deux atteignent la vieillesse, ne leur dis même pas « fi », ne les brusque pas, mais adresse-leur des paroles respectueuses. Le verset 17:24 demande de s’abaisser devant eux avec humilité par miséricorde et de dire : « Seigneur, fais-leur miséricorde comme ils m’ont élevé tout petit. » Le verset 31:14 rappelle la mère qui a porté son enfant faiblesse sur faiblesse, et demande de remercier Allah et ses parents. Dans le hadith ci-dessous, le Prophète ﷺ compte la désobéissance aux parents parmi les grands péchés.",
+        "es": "El versículo 17:23 une la adoración de Allah solo con la bondad hacia los padres: si uno de ellos o ambos llegan a la vejez, no les digas ni «uf», no los reprendas y háblales con respeto. El versículo 17:24 pide inclinar ante ellos el ala de la humildad por misericordia y decir: «Señor mío, ten misericordia de ellos como ellos me criaron de pequeño». El versículo 31:14 recuerda a la madre que llevó a su hijo con debilidad tras debilidad, y pide agradecer a Allah y a los padres. En el hadiz de abajo, el Profeta ﷺ cuenta la desobediencia a los padres entre los pecados mayores."
+      },
+      "triggers": {
+        "en": ["parents", "my parents", "mother and father", "obey parents", "honour parents", "honor parents", "respect parents", "kindness to parents"],
+        "ar": ["الوالدين", "والدين", "بر الوالدين", "عقوق الوالدين", "امي وابي", "الوالدان"],
+        "ur": ["والدین", "ماں باپ", "والدین کے حقوق", "والدین کی خدمت"],
+        "tr": ["anne baba", "anne babaya", "ebeveyn", "anne ve baba"],
+        "id": ["orang tua", "berbakti kepada orang tua", "birrul walidain", "ibu bapak"],
+        "fr": ["parents", "pere et mere", "mes parents"],
+        "es": ["padres", "padre y madre", "mis padres"]
+      },
+      "expansion": ["parents", "mother", "بالوالدين", "لوالديك"]
+    },
+    {
+      "id": "kaaba",
+      "citations": ["quran:3:96", "quran:2:125", "quran:5:97", "quran:3:97"],
+      "hadith": [],
+      "reviewStatus": "unreviewed", "reviewedBy": null, "reviewedAt": null,
+      "question": {
+        "en": "What is the Kaaba?",
+        "ar": "ما هي الكعبة؟",
+        "ur": "خانہ کعبہ کیا ہے؟",
+        "tr": "Kâbe nedir?",
+        "id": "Apa itu Ka’bah?",
+        "fr": "Qu’est-ce que la Kaaba ?",
+        "es": "¿Qué es la Kaaba?"
+      },
+      "summary": {
+        "en": "Verse 3:96 says the first House of worship set up for mankind is the one at Bakkah (Makkah), blessed and a guidance for the worlds. Verse 2:125 says Allah made the House a place of return and safety for people, told them to take the station of Ibrahim as a place of prayer, and charged Ibrahim and Ismail to purify it for those who circle it, stay there in devotion, bow and prostrate. Verse 5:97 calls the Kaaba the Sacred House, set up as a support for mankind, and 3:97 makes pilgrimage to it a duty for whoever is able. Muslims face it in prayer; see the Qibla answer.",
+        "ar": "تقول الآية 3:96 إن أول بيت وُضع للناس للذي ببكة (مكة) مباركًا وهدى للعالمين. وتقول الآية 2:125 إن الله جعل البيت مثابة للناس وأمنًا، وأمر أن يُتخذ من مقام إبراهيم مصلى، وعهد إلى إبراهيم وإسماعيل أن يطهّرا بيته للطائفين والعاكفين والركع السجود. وتسمّي الآية 5:97 الكعبةَ البيتَ الحرام قيامًا للناس، وتجعل الآية 3:97 حجه فرضًا على من استطاع إليه سبيلًا. ويتجه المسلمون إليها في صلاتهم؛ انظر جواب القبلة.",
+        "ur": "آیت 3:96 کہتی ہے کہ لوگوں کے لیے بنایا گیا پہلا گھر وہی ہے جو بکہ (مکہ) میں ہے، برکت والا اور تمام جہانوں کے لیے ہدایت۔ آیت 2:125 کہتی ہے کہ اللہ نے اس گھر کو لوگوں کے لیے لوٹ کر آنے کی جگہ اور امن کی جگہ بنایا، مقامِ ابراہیم کو نماز کی جگہ بنانے کا حکم دیا، اور ابراہیم و اسماعیل کو اسے طواف کرنے والوں، اعتکاف کرنے والوں اور رکوع و سجدہ کرنے والوں کے لیے پاک رکھنے کا ذمہ دیا۔ آیت 5:97 کعبہ کو حرمت والا گھر اور لوگوں کے قیام کا ذریعہ کہتی ہے، اور آیت 3:97 استطاعت رکھنے والے پر اس کا حج فرض کرتی ہے۔ مسلمان نماز میں اسی کی طرف رخ کرتے ہیں؛ قبلہ والا جواب دیکھیں۔",
+        "tr": "3:96. ayet, insanlar için kurulan ilk ibadet evinin Bekke’deki (Mekke’deki) olduğunu, mübarek ve âlemlere yol gösterici olduğunu söyler. 2:125. ayet, Allah’ın Beyt’i insanlar için toplanma ve güven yeri kıldığını, Makam-ı İbrahim’in namaz yeri edinilmesini emrettiğini ve İbrahim ile İsmail’e onu tavaf edenler, itikâfa girenler, rükû ve secde edenler için temizlemelerini emrettiğini bildirir. 5:97. ayet Kâbe’yi insanlar için bir dayanak kılınan Beyt-i Haram diye anar, 3:97. ayet ise gücü yetene onu haccetmeyi farz kılar. Müslümanlar namazda ona yönelir; Kıble cevabına bakın.",
+        "id": "Ayat 3:96 menyatakan bahwa rumah ibadah pertama yang dibangun untuk manusia adalah yang di Bakkah (Makkah), yang diberkahi dan menjadi petunjuk bagi seluruh alam. Ayat 2:125 menyatakan bahwa Allah menjadikan Baitullah tempat berkumpul dan tempat yang aman bagi manusia, memerintahkan menjadikan maqam Ibrahim sebagai tempat salat, dan menugaskan Ibrahim dan Ismail menyucikannya bagi orang yang tawaf, yang iktikaf, yang rukuk, dan yang sujud. Ayat 5:97 menyebut Ka’bah sebagai rumah suci yang dijadikan sebagai pusat bagi manusia, dan ayat 3:97 mewajibkan haji ke sana bagi yang mampu. Umat Islam menghadap ke sana dalam salat; lihat jawaban tentang kiblat.",
+        "fr": "Le verset 3:96 dit que la première Maison de culte établie pour les gens est celle de Bakka (La Mecque), bénie et guidance pour les mondes. Le verset 2:125 dit qu’Allah a fait de la Maison un lieu de retour et de sécurité pour les gens, a demandé de prendre la station d’Ibrahim comme lieu de prière, et a chargé Ibrahim et Ismaïl de la purifier pour ceux qui en font le tour, qui y font retraite, qui s’inclinent et se prosternent. Le verset 5:97 appelle la Kaaba la Maison sacrée, établie comme soutien pour les gens, et le verset 3:97 fait du pèlerinage vers elle un devoir pour qui en a les moyens. Les musulmans se tournent vers elle dans la prière ; voir la réponse sur la qibla.",
+        "es": "El versículo 3:96 dice que la primera Casa de adoración establecida para la humanidad es la de Bakka (La Meca), bendita y guía para los mundos. El versículo 2:125 dice que Allah hizo de la Casa un lugar de retorno y de seguridad para la gente, mandó tomar la estación de Ibrahim como lugar de oración, y encargó a Ibrahim e Ismael purificarla para quienes la circunvalan, permanecen en ella en retiro, se inclinan y se postran. El versículo 5:97 llama a la Kaaba la Casa Sagrada, establecida como sostén para la humanidad, y el 3:97 hace de la peregrinación a ella un deber para quien pueda. Los musulmanes se orientan hacia ella en la oración; consulta la respuesta sobre la qibla."
+      },
+      "triggers": {
+        "en": ["what is the kaaba", "what is kaaba", "kaaba", "kabah", "ka bah", "the kaba", "house of allah", "sacred house"],
+        "ar": ["ما هي الكعبه", "ما الكعبه", "الكعبه", "البيت الحرام", "بيت الله", "الكعبه المشرفه"],
+        "ur": ["خانہ کعبہ", "کعبہ", "کعبہ کیا ہے", "بیت اللہ"],
+        "tr": ["kabe nedir", "kabe", "beytullah", "kabe i muazzama"],
+        "id": ["apa itu ka bah", "ka bah", "kakbah", "kabah", "baitullah"],
+        "fr": ["qu est ce que la kaaba", "kaaba", "maison sacree"],
+        "es": ["que es la kaaba", "kaaba", "caaba", "casa sagrada"]
+      },
+      "expansion": ["House", "Sanctuary", "Ka bah", "البيت", "الكعبه"]
     }
   ]
 }

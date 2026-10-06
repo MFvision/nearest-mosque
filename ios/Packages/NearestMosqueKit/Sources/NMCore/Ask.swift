@@ -66,6 +66,8 @@ public struct SourceDocument: Codable, Hashable, Sendable {
 public struct CommonQuestion: Codable, Hashable, Identifiable, Sendable {
     public let id: String
     public let citations: [String]
+    /// HadeethEnc item ids the summary quotes; shown under it in the reader's language (see `CommonHadith`).
+    public var hadith: [Int]?
     public let reviewStatus: String
     public var reviewedBy: String?
     public var reviewedAt: String?
@@ -75,6 +77,24 @@ public struct CommonQuestion: Codable, Hashable, Identifiable, Sendable {
     public var expansion: [String]?
 
     public var isReviewed: Bool { reviewStatus == "reviewed" && !(reviewedBy ?? "").isEmpty }
+}
+
+/// Chunk ids for a common question's hadith: the reader's language first, then English, then Arabic.
+public enum CommonHadith {
+    public static func candidates(_ itemId: Int, lang: String) -> [String] {
+        var seen = Set<String>()
+        return [lang, "en", "ar"].filter { seen.insert($0).inserted }.map { "he:\($0):\(itemId)" }
+    }
+
+    /// For each item, the first candidate that is installed (`installed` holds chunk ids).
+    public static func resolve(_ q: CommonQuestion, lang: String, installed: Set<String>) -> [String] {
+        (q.hadith ?? []).compactMap { id in candidates(id, lang: lang).first(where: installed.contains) }
+    }
+
+    /// The question's hadith first, then the library results, without duplicates.
+    public static func merge(_ hadith: [String], _ library: [String], limit: Int) -> [String] {
+        Array((hadith + library.filter { !hadith.contains($0) }).prefix(max(limit, hadith.count)))
+    }
 }
 
 public struct CommonQuestionsFile: Codable, Sendable { public let schemaVersion: Int; public let packId: String; public let questions: [CommonQuestion] }

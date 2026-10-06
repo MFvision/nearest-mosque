@@ -288,7 +288,7 @@ public final class AskRepository: @unchecked Sendable {
 
     public func ask(_ q: String, context: [String] = [], lang: String = "en") throws -> Answer {
         var a = AnswerComposer.compose(q, try retrieve(q, context: context))
-        a.library = try library(q, context: context, lang: lang)
+        a.library = try withHadith(a.commonQuestion, try library(q, context: context, lang: lang), lang: lang)
         return a
     }
 
@@ -298,8 +298,18 @@ public final class AskRepository: @unchecked Sendable {
         r.kind = .common
         r.commonQuestion = q
         var a = AnswerComposer.compose(displayed, r)
-        a.library = try library(displayed, lang: lang)
+        a.library = try withHadith(q, try library(displayed, lang: lang), lang: lang)
         return a
+    }
+
+    /// A common question's own hadith (installed ones, in the reader's language when possible) lead the library list.
+    func withHadith(_ q: CommonQuestion?, _ library: [String], lang: String) throws -> [String] {
+        guard let q, let items = q.hadith, !items.isEmpty else { return library }
+        let wanted = items.flatMap { CommonHadith.candidates($0, lang: lang) }
+        let installed = try db.writer.read { db in
+            Set(try String.fetchAll(db, sql: "SELECT id FROM source_chunk WHERE id IN (\(wanted.map { _ in "?" }.joined(separator: ",")))", arguments: StatementArguments(wanted)))
+        }
+        return CommonHadith.merge(CommonHadith.resolve(q, lang: lang, installed: installed), library, limit: Self.libraryResults)
     }
 
     public func resolve(_ ids: [String]) throws -> [ResolvedCitation] {

@@ -208,6 +208,221 @@
       }
     },
     {
+      "id": "en-what-is-islam",
+      "q": "What is Islam?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "what-is-islam",
+        "passagesInclude": [
+          "quran:3:19"
+        ]
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "what-is-islam",
+        "passages": []
+      }
+    },
+    {
+      "id": "ar-pillars",
+      "q": "ما هي أركان الإسلام الخمسة؟",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "five-pillars"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "five-pillars",
+        "passages": []
+      }
+    },
+    {
+      "id": "ar-becoming-muslim",
+      "q": "كيف أدخل في الإسلام؟",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "becoming-muslim"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "becoming-muslim",
+        "passages": [
+          "quran:36:26"
+        ]
+      }
+    },
+    {
+      "id": "en-prophet",
+      "q": "Who is the Prophet Muhammad?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "prophet-muhammad"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "prophet-muhammad",
+        "passages": [
+          "quran:33:40",
+          "quran:19:41",
+          "quran:7:158",
+          "quran:33:7",
+          "quran:3:84"
+        ]
+      }
+    },
+    {
+      "id": "es-quran",
+      "q": "¿Qué es el Corán?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "quran"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "quran",
+        "passages": []
+      }
+    },
+    {
+      "id": "ur-how-to-pray",
+      "q": "نماز کیسے پڑھوں؟",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "how-to-pray"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "how-to-pray",
+        "passages": []
+      }
+    },
+    {
+      "id": "en-pray-journey",
+      "q": "How do I pray on a journey?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "travel-prayer"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "travel-prayer",
+        "passages": [
+          "quran:24:57",
+          "quran:25:14",
+          "quran:72:18",
+          "quran:108:2",
+          "quran:9:108"
+        ]
+      }
+    },
+    {
+      "id": "ar-hajj",
+      "q": "ما هو الحج؟",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "hajj"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "hajj",
+        "passages": [
+          "quran:2:197",
+          "quran:2:196",
+          "quran:9:3"
+        ]
+      }
+    },
+    {
+      "id": "tr-friday",
+      "q": "Cuma namazı nedir?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "friday-prayer"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "friday-prayer",
+        "passages": []
+      }
+    },
+    {
+      "id": "en-halal-food",
+      "q": "What food is halal?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "halal-food",
+        "passagesInclude": [
+          "quran:2:173"
+        ]
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "halal-food",
+        "passages": [
+          "quran:5:88",
+          "quran:16:114",
+          "quran:44:44",
+          "quran:80:24",
+          "quran:69:36"
+        ]
+      }
+    },
+    {
+      "id": "id-dua",
+      "q": "Bagaimana cara berdoa?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "dua"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "dua",
+        "passages": []
+      }
+    },
+    {
+      "id": "fr-parents",
+      "q": "Que dit l’islam sur les parents ?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "parents"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "parents",
+        "passages": []
+      }
+    },
+    {
+      "id": "es-kaaba",
+      "q": "¿Qué es la Kaaba?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "kaaba"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "kaaba",
+        "passages": []
+      }
+    },
+    {
+      "id": "en-kaaba-direction",
+      "q": "Which direction is the Kaaba?",
+      "expect": {
+        "kind": "common",
+        "commonQuestionId": "qibla"
+      },
+      "referenceResult": {
+        "kind": "common",
+        "commonQuestionId": "qibla",
+        "passages": [
+          "quran:16:9",
+          "quran:2:256"
+        ]
+      }
+    },
+    {
       "id": "en-throne-verse",
       "q": "neither slumber nor sleep overtakes him",
       "expect": {

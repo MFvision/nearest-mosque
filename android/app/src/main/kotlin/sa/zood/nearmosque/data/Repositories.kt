@@ -166,14 +166,23 @@ class AskRepository(
     }
 
     suspend fun ask(question: String, context: List<String>, lang: String = "en"): Answer = withContext(Dispatchers.IO) {
-        AnswerComposer.compose(question, retriever().retrieve(question, context)).copy(library = library(question, context, lang))
+        val a = AnswerComposer.compose(question, retriever().retrieve(question, context))
+        a.copy(library = withHadith(a.commonQuestion, library(question, context, lang), lang))
     }
 
     suspend fun answerFor(q: CommonQuestion, displayQuestion: String, lang: String = "en"): Answer = withContext(Dispatchers.IO) {
         val r = retriever().retrieve(displayQuestion)
         // A tapped common question always shows that question's answer, plus any extra passages found.
         AnswerComposer.compose(displayQuestion, r.copy(kind = sa.zood.nearmosque.core.AnswerKind.COMMON, commonQuestion = q))
-            .copy(library = library(displayQuestion, emptyList(), lang))
+            .copy(library = withHadith(q, library(displayQuestion, emptyList(), lang), lang))
+    }
+
+    /** A common question's own hadith (installed ones, in the reader's language when possible) lead the library list. */
+    private suspend fun withHadith(q: CommonQuestion?, library: List<String>, lang: String): List<String> {
+        if (q == null || q.hadith.isEmpty()) return library
+        val wanted = q.hadith.flatMap { sa.zood.nearmosque.core.CommonHadith.candidates(it, lang) }
+        val installed = db.sources().chunks(wanted).map { it.id }.toSet()
+        return sa.zood.nearmosque.core.CommonHadith.merge(sa.zood.nearmosque.core.CommonHadith.resolve(q, lang, installed), library, LIBRARY_RESULTS)
     }
 
     suspend fun resolve(ids: List<String>): List<ResolvedCitation> = withContext(Dispatchers.IO) {

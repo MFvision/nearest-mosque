@@ -51,6 +51,8 @@ data class SourceDocument(
 data class CommonQuestion(
     val id: String,
     val citations: List<String>,
+    /** HadeethEnc item ids the summary quotes; shown under it in the reader's language (see [CommonHadith]). */
+    val hadith: List<Int> = emptyList(),
     val reviewStatus: String,
     val reviewedBy: String? = null,
     val reviewedAt: String? = null,
@@ -60,6 +62,19 @@ data class CommonQuestion(
     val expansion: List<String> = emptyList(),
 ) {
     val isReviewed: Boolean get() = reviewStatus == "reviewed" && !reviewedBy.isNullOrBlank()
+}
+
+/** Chunk ids for a common question's hadith: the reader's language first, then English, then Arabic. */
+object CommonHadith {
+    fun candidates(itemId: Int, lang: String): List<String> = listOf(lang, "en", "ar").distinct().map { "he:$it:$itemId" }
+
+    /** For each item, the first candidate that is installed ([installed] holds chunk ids). */
+    fun resolve(q: CommonQuestion, lang: String, installed: Set<String>): List<String> =
+        q.hadith.mapNotNull { id -> candidates(id, lang).firstOrNull { it in installed } }
+
+    /** The question's hadith first, then the library results, without duplicates. */
+    fun merge(hadith: List<String>, library: List<String>, limit: Int): List<String> =
+        (hadith + library.filter { it !in hadith }).take(maxOf(limit, hadith.size))
 }
 
 @Serializable
