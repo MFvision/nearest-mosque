@@ -3058,6 +3058,51 @@
       "id": "Masjid terdekat · %1$s",
       "fr": "Mosquée la plus proche · %1$s",
       "es": "Mezquita más cercana · %1$s"
+    },
+    "qibla_go_right": {
+      "en": "Turn right",
+      "ar": "انعطف يمينًا",
+      "ur": "دائیں مڑیں",
+      "tr": "Sağa dönün",
+      "id": "Belok kanan",
+      "fr": "Tournez à droite",
+      "es": "Gire a la derecha"
+    },
+    "qibla_go_left": {
+      "en": "Turn left",
+      "ar": "انعطف يسارًا",
+      "ur": "بائیں مڑیں",
+      "tr": "Sola dönün",
+      "id": "Belok kiri",
+      "fr": "Tournez à gauche",
+      "es": "Gire a la izquierda"
+    },
+    "qibla_go_right_little": {
+      "en": "Turn right a little",
+      "ar": "انعطف يمينًا قليلًا",
+      "ur": "تھوڑا دائیں مڑیں",
+      "tr": "Biraz sağa dönün",
+      "id": "Belok kanan sedikit",
+      "fr": "Tournez un peu à droite",
+      "es": "Gire un poco a la derecha"
+    },
+    "qibla_go_left_little": {
+      "en": "Turn left a little",
+      "ar": "انعطف يسارًا قليلًا",
+      "ur": "تھوڑا بائیں مڑیں",
+      "tr": "Biraz sola dönün",
+      "id": "Belok kiri sedikit",
+      "fr": "Tournez un peu à gauche",
+      "es": "Gire un poco a la izquierda"
+    },
+    "qibla_facing_short": {
+      "en": "Facing the Qibla",
+      "ar": "استقبلت القبلة",
+      "ur": "آپ قبلہ رخ ہیں",
+      "tr": "Kıbleye dönüksünüz",
+      "id": "Menghadap kiblat",
+      "fr": "Face à la qibla",
+      "es": "De cara a la alquibla"
     }
   }
 }

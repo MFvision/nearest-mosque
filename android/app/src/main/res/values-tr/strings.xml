@@ -262,7 +262,12 @@
     <string name="qibla_calibrate">Pusula hassasiyeti düşük. Telefonu metal ve mıknatıslardan uzakta 8 çizerek hareket ettirin.</string>
     <string name="qibla_dial_a11y">Kıble göstergesi. %1$s</string>
     <string name="qibla_distance">Kâbe’ye %1$s</string>
+    <string name="qibla_facing_short">Kıbleye dönüksünüz</string>
     <string name="qibla_from_north_hint">Canlı pusula yok: altın nokta kıbleyi kuzeye göre gösterir</string>
+    <string name="qibla_go_left">Sola dönün</string>
+    <string name="qibla_go_left_little">Biraz sola dönün</string>
+    <string name="qibla_go_right">Sağa dönün</string>
+    <string name="qibla_go_right_little">Biraz sağa dönün</string>
     <string name="qibla_hold_flat">Telefonu düz tutun</string>
     <string name="qibla_location_needed">Kıbleyi bulmak için bir konum seçin.</string>
     <string name="qibla_move_phone">Telefonu kıbleye çevirin</string>

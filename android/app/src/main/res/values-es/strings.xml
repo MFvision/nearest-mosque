@@ -262,7 +262,12 @@
     <string name="qibla_calibrate">Precisión baja. Mueve el teléfono en forma de 8, lejos de metales e imanes.</string>
     <string name="qibla_dial_a11y">Indicador de alquibla. %1$s</string>
     <string name="qibla_distance">%1$s hasta la Kaaba</string>
+    <string name="qibla_facing_short">De cara a la alquibla</string>
     <string name="qibla_from_north_hint">Sin brújula en vivo: el punto dorado indica la alquibla desde el norte</string>
+    <string name="qibla_go_left">Gire a la izquierda</string>
+    <string name="qibla_go_left_little">Gire un poco a la izquierda</string>
+    <string name="qibla_go_right">Gire a la derecha</string>
+    <string name="qibla_go_right_little">Gire un poco a la derecha</string>
     <string name="qibla_hold_flat">Sostén el teléfono en horizontal</string>
     <string name="qibla_location_needed">Elige una ubicación para encontrar la alquibla.</string>
     <string name="qibla_move_phone">Gira el teléfono hacia la alquibla</string>

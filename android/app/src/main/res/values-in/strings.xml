@@ -261,7 +261,12 @@
     <string name="qibla_calibrate">Akurasi kompas rendah. Gerakkan ponsel membentuk angka 8, jauh dari logam dan magnet.</string>
     <string name="qibla_dial_a11y">Penunjuk kiblat. %1$s</string>
     <string name="qibla_distance">%1$s ke Ka’bah</string>
+    <string name="qibla_facing_short">Menghadap kiblat</string>
     <string name="qibla_from_north_hint">Tanpa kompas langsung: titik emas menunjukkan kiblat dari utara</string>
+    <string name="qibla_go_left">Belok kiri</string>
+    <string name="qibla_go_left_little">Belok kiri sedikit</string>
+    <string name="qibla_go_right">Belok kanan</string>
+    <string name="qibla_go_right_little">Belok kanan sedikit</string>
     <string name="qibla_hold_flat">Pegang ponsel mendatar</string>
     <string name="qibla_location_needed">Pilih lokasi untuk menemukan kiblat.</string>
     <string name="qibla_move_phone">Putar ponsel ke arah kiblat</string>

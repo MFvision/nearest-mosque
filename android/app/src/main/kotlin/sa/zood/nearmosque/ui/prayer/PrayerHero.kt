@@ -112,7 +112,7 @@ enum class ArcMode { LIVE, NORTH_UP, NONE }
 @Composable
 fun PrayerHero(
     ui: PrayerUi, compass: CompassState, aligned: Boolean,
-    onLocation: () -> Unit, onSettings: () -> Unit, onQibla: () -> Unit, onMosques: () -> Unit = {},
+    onLocation: () -> Unit, onSettings: () -> Unit, onQibla: () -> Unit, onNearest: (sa.zood.nearmosque.core.RankedMosque) -> Unit = {},
 ) {
     val context = LocalContext.current
     val bearing = ui.qiblaBearing
@@ -137,29 +137,15 @@ fun PrayerHero(
             }
             GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onSettings)
         }
+        val n = ui.nearestMosque
         QiblaArc(
             dot, mode, aligned, light = light,
+            kaabaDistance = ui.qiblaDistance?.let { stringResource(R.string.qibla_distance, Format.distance(context, it)) },
+            nearest = n?.let { stringResource(R.string.nearest_mosque_chip, Format.distance(context, it.distanceMeters)) },
+            onNearest = n?.let { { onNearest(it) } },
             modifier = Modifier.widthIn(max = 520.dp).clickable(enabled = bearing != null, role = Role.Button, onClickLabel = stringResource(R.string.qibla_open_compass), onClick = onQibla),
         ) {
             ArcContent(ui, compass, aligned)
-        }
-        val n = ui.nearestMosque
-        if (n != null && ui.location != null) {
-            val lang = Format.languageCode(context)
-            val name = n.mosque.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
-            val distance = Format.distance(context, n.distanceMeters)
-            val desc = stringResource(R.string.nearest_known_mosque) + ". " + stringResource(R.string.mosque_detail_a11y, name, distance)
-            Row(
-                Modifier.heightIn(min = 48.dp).glass(RoundedCornerShape(50), shadow = 4.dp)
-                    .clickable(role = Role.Button, onClick = onMosques)
-                    .clearAndSetSemantics { contentDescription = desc; role = Role.Button }
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Icon(painterResource(R.drawable.ic_tab_mosque), contentDescription = null, tint = Accent, modifier = Modifier.size(18.dp))
-                Spacer(Modifier.width(8.dp))
-                Text(stringResource(R.string.nearest_mosque_chip, distance), color = Ink, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
-            }
         }
     }
 }
@@ -217,7 +203,8 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, aligned: Boolean) {
 @Composable
 fun QiblaArc(
     angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier = Modifier, springs: Boolean = true,
-    light: SkyLight? = null, content: @Composable BoxScope.() -> Unit,
+    light: SkyLight? = null, kaabaDistance: String? = null, nearest: String? = null, onNearest: (() -> Unit)? = null,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     val reduced = reducedMotion()
     val shown = remember { Animatable(angle.toFloat()) }
@@ -269,6 +256,14 @@ fun QiblaArc(
                 )
             }
             CompositionLocalProvider(LocalLayoutDirection provides outer) {
+                // Small labels along the sides of the ring: the distance to the Kaaba and the nearest mosque (tappable).
+                val labelR = r + with(density) { 14.dp.toPx() }
+                kaabaDistance?.let {
+                    RingSideLabel(250f, labelR, c) {
+                        Text(it, color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.labelSmall, maxLines = 1, modifier = Modifier.clearAndSetSemantics {})
+                    }
+                }
+                if (nearest != null && onNearest != null) RingSideLabel(110f, labelR, c) { NearestLabel(nearest, onNearest) }
                 // Content starts below the disc (never overlapping it), centred horizontally inside the circle.
                 Box(
                     Modifier.width(with(density) { (r * 1.7f).toDp() }).align(Alignment.TopCenter)

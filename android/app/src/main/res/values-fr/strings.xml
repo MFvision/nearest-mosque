@@ -262,7 +262,12 @@
     <string name="qibla_calibrate">Précision faible. Décrivez un 8 avec le téléphone, loin du métal et des aimants.</string>
     <string name="qibla_dial_a11y">Cadran de la qibla. %1$s</string>
     <string name="qibla_distance">%1$s jusqu’à la Kaaba</string>
+    <string name="qibla_facing_short">Face à la qibla</string>
     <string name="qibla_from_north_hint">Pas de boussole en direct : le point doré indique la qibla depuis le nord</string>
+    <string name="qibla_go_left">Tournez à gauche</string>
+    <string name="qibla_go_left_little">Tournez un peu à gauche</string>
+    <string name="qibla_go_right">Tournez à droite</string>
+    <string name="qibla_go_right_little">Tournez un peu à droite</string>
     <string name="qibla_hold_flat">Tenez le téléphone à plat</string>
     <string name="qibla_location_needed">Choisissez un lieu pour trouver la qibla.</string>
     <string name="qibla_move_phone">Tournez le téléphone vers la qibla</string>

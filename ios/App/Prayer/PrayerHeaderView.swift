@@ -21,7 +21,8 @@ struct PrayerHero: View {
     var onLocation: () -> Void
     var onSettings: () -> Void
     var onQibla: () -> Void
-    var onMosques: () -> Void
+    /// Opens the nearest mosque (details, directions in a maps app, call, website).
+    var onNearest: (RankedMosque) -> Void
 
     var body: some View {
         VStack(spacing: 6) {
@@ -34,7 +35,10 @@ struct PrayerHero: View {
             }
             .padding(.top, 4)
 
-            QiblaArc(angle: dotAngle, mode: arcMode, aligned: aligned, light: light) {
+            QiblaArc(angle: dotAngle, mode: arcMode, aligned: aligned, light: light,
+                     kaabaDistance: snap.qiblaDistance.map { l10n.t("qibla_distance", Format.distance($0, l10n: l10n)) },
+                     nearest: model.nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) },
+                     onNearest: { if let n = model.nearestMosque { onNearest(n) } }) {
                 arcContent
             }
             .contentShape(Rectangle())
@@ -42,24 +46,6 @@ struct PrayerHero: View {
             .accessibilityElement(children: .contain)
             .accessibilityAction(named: l10n.t("qibla_open_compass")) { if snap.location != nil { onQibla() } }
 
-            if let n = model.nearestMosque, snap.location != nil {
-                let name = n.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed")
-                Button(action: onMosques) {
-                    HStack(spacing: 8) {
-                        Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 18, height: 18)
-                            .foregroundStyle(Theme.accent)
-                        Text(l10n.t("nearest_mosque_chip", Format.distance(n.distanceMeters, l10n: l10n))).font(.subheadline.weight(.semibold))
-                        Image(systemName: "chevron.forward").font(.caption.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.6))
-                    }
-                    .padding(.horizontal, 16).frame(minHeight: 44)
-                    .contentShape(Capsule())
-                }
-                .buttonStyle(PressHighlight(shape: AnyShape(Capsule())))
-                .glass(Capsule(), interactive: true)
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(l10n.t("nearest_known_mosque") + ". " + l10n.t("mosque_detail_a11y", name, Format.distance(n.distanceMeters, l10n: l10n)))
-                .accessibilityAddTraits(.isButton)
-            }
         }
         .foregroundStyle(Theme.ink)
     }
@@ -150,13 +136,19 @@ struct QiblaArc<Content: View>: View {
     var springs = true
     /// The time-of-day light reflected on the arc and the logo.
     var light: SkyLight?
+    /// Small labels along the sides of the ring: the distance to the Kaaba (left) and the nearest mosque (right, tappable).
+    var kaabaDistance: String?
+    var nearest: String?
+    var onNearest: (() -> Void)?
     @ViewBuilder var content: Content
     @Environment(Localization.self) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown: Double = 0
 
-    init(angle: Double, mode: ArcMode, aligned: Bool, springs: Bool = true, light: SkyLight? = nil, @ViewBuilder content: () -> Content) {
-        self.angle = angle; self.mode = mode; self.aligned = aligned; self.springs = springs; self.light = light; self.content = content()
+    init(angle: Double, mode: ArcMode, aligned: Bool, springs: Bool = true, light: SkyLight? = nil,
+         kaabaDistance: String? = nil, nearest: String? = nil, onNearest: (() -> Void)? = nil, @ViewBuilder content: () -> Content) {
+        self.angle = angle; self.mode = mode; self.aligned = aligned; self.springs = springs; self.light = light
+        self.kaabaDistance = kaabaDistance; self.nearest = nearest; self.onNearest = onNearest; self.content = content()
     }
 
     var body: some View {
@@ -179,6 +171,27 @@ struct QiblaArc<Content: View>: View {
                 if mode == .northUp {
                     Text(l10n.t("compass_north")).font(.caption.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.85))
                         .position(x: c.x, y: discY + Theme.discSize / 2 + 14)
+                }
+                if let kaabaDistance {
+                    RingSideLabel(angle: 250, radius: r + 14, center: c) {
+                        Text(kaabaDistance).font(.caption2.weight(.medium)).foregroundStyle(Theme.ink.opacity(0.75))
+                            .environment(\.layoutDirection, l10n.layoutDirection)
+                    }
+                    .accessibilityHidden(true)
+                }
+                if let nearest, let onNearest {
+                    RingSideLabel(angle: 110, radius: r + 14, center: c) {
+                        Button(action: onNearest) {
+                            HStack(spacing: 4) {
+                                Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 13, height: 13)
+                                Text(nearest)
+                            }
+                            .font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
+                            .padding(.horizontal, 6).frame(minHeight: 32).contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .environment(\.layoutDirection, l10n.layoutDirection)
+                    }
                 }
                 // Content starts below the disc (never overlapping it), centred inside the circle.
                 content

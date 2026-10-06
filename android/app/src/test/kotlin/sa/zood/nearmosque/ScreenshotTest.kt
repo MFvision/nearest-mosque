@@ -20,6 +20,8 @@ import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.data.PrayerLocation
 import sa.zood.nearmosque.ui.AppRoot
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import sa.zood.nearmosque.ui.Tab
 import sa.zood.nearmosque.ui.theme.NearMosqueTheme
 import java.time.ZoneId
@@ -133,6 +135,40 @@ class ScreenshotTest {
     @Test fun prayerMaghrib() = shoot("prayer_maghrib_en", Tab.PRAYER, at = ZonedDateTime.of(2026, 10, 3, 18, 40, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
 
     @Test fun prayerDayLight() = shoot("prayer_day_en_light", Tab.PRAYER, dark = false, at = ZonedDateTime.of(2026, 10, 3, 10, 0, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
+
+    /** The full Qibla view, with a live heading [heading]° (Cape Town's Qibla is about 23°). */
+    private fun shootQibla(name: String, heading: Double, dark: Boolean = true) {
+        val c = container()
+        val vm = sa.zood.nearmosque.ui.prayer.PrayerViewModel(c)
+        vm.refreshNearestMosque("en")
+        compose.setContent {
+            NearMosqueTheme(dark = dark) {
+                androidx.compose.runtime.CompositionLocalProvider(LocalAppContainer provides c) {
+                    val ui by vm.ui.collectAsState()
+                    androidx.compose.runtime.CompositionLocalProvider(sa.zood.nearmosque.ui.theme.LocalSky provides sa.zood.nearmosque.ui.theme.Sky.of(ui.sky, dark)) {
+                        val compass = sa.zood.nearmosque.core.CompassState.Live(heading, 8.0, false)
+                        val aligned = ui.qiblaBearing?.let { kotlin.math.abs(sa.zood.nearmosque.core.Angles.relativeToQibla(it, heading)) < 3 } ?: false
+                        sa.zood.nearmosque.ui.prayer.QiblaCompassScreen(ui, compass, aligned, onClose = {})
+                    }
+                }
+            }
+        }
+        compose.waitForIdle()
+        compose.mainClock.advanceTimeBy(2000)
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/$name.png")
+    }
+
+    // Phone pointing 80° away: "Turn left".
+    @Test fun qiblaTurn() = shootQibla("qibla_turn_en", heading = 103.0)
+
+    @Test fun qiblaTurnLight() = shootQibla("qibla_turn_en_light", heading = 330.0, dark = false)
+
+    // Facing it: the dot reaches the Kaaba, the logo arrow points straight up, the light brightens.
+    @Test fun qiblaFacing() = shootQibla("qibla_facing_en", heading = 23.4)
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun qiblaArabic() = shootQibla("qibla_turn_ar", heading = 60.0)
 
     @Test fun mosquesList() = shoot("mosques_en", Tab.MOSQUES)
 

@@ -57,6 +57,7 @@ struct PrayerView: View {
     @State private var showCompass = false
     @State private var detector = AlignmentDetector()
     @State private var aligned = false
+    @State private var mosque: RankedMosque?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// The bar replaces the header once most of the header has scrolled away.
@@ -74,7 +75,7 @@ struct PrayerView: View {
                         VStack(spacing: 14) {
                             PrayerHero(snap: snap, compass: model.location.compass, aligned: aligned,
                                        onLocation: { showCity = true }, onSettings: { showSettings = true },
-                                       onQibla: { showCompass = true }, onMosques: onMosques)
+                                       onQibla: { showCompass = true }, onNearest: { mosque = $0 })
                                 .opacity(heroOpacity)
                                 .scaleEffect(reduceMotion ? 1 : 0.9 + 0.1 * heroOpacity, anchor: .top)
                                 .id("top")
@@ -122,6 +123,13 @@ struct PrayerView: View {
         .sheet(isPresented: $showCity) { CityPickerView() }
         .sheet(isPresented: $showCalc) { CalculationView() }
         .fullScreenCover(isPresented: $showCompass) { QiblaCompassView() }
+        .sheet(item: $mosque) { r in
+            MosqueDetailView(ranked: r, favorite: ((try? model.mosques?.favorites()) ?? []).contains(r.id),
+                             canFavorite: r.mosque.packId.hasPrefix("mosques.")) { on in
+                try? model.mosques?.setFavorite(r.id, on)
+            }
+            .presentationDetents([.medium, .large])
+        }
     }
 
     /// Changes when the phone or the prayer city moves, or the data becomes ready.
@@ -230,7 +238,7 @@ private struct PolarCard: View {
 }
 
 /// Today's times on glass. The upcoming prayer sits in a gold glass pill with an "Upcoming" badge.
-private struct ScheduleCard: View {
+struct ScheduleCard: View {
     @Environment(AppModel.self) private var model
     @Environment(Localization.self) private var l10n
     let snap: PrayerSnapshot

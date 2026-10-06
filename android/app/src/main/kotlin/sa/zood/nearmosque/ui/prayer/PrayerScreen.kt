@@ -105,6 +105,8 @@ fun PrayerScreen(
     val heroAlpha by remember { derivedStateOf { if (listState.firstVisibleItemIndex > 0) 0f else 1f - (listState.firstVisibleItemScrollOffset / fadePx - 0.3f).coerceIn(0f, 1f) } }
     val lang = Format.languageCode(context)
     LaunchedEffect(ui.location?.location, lang) { vm.refreshNearestMosque(lang) }
+    var mosque by remember { mutableStateOf<sa.zood.nearmosque.core.RankedMosque?>(null) }
+    mosque?.let { NearestMosqueSheet(it, onDismiss = { mosque = null }) }
     val locationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         vm.useDeviceLocation(context.getString(R.string.location_current))
     }
@@ -122,7 +124,7 @@ fun PrayerScreen(
         ) {
             item("hero") {
                 Box(Modifier.graphicsLayer { alpha = heroAlpha; val k = 0.9f + 0.1f * heroAlpha; scaleX = k; scaleY = k; transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 0f) }) {
-                    PrayerHero(ui, compass, aligned, onLocation = onPickCity, onSettings = onOpenSettings, onQibla = onOpenCompass, onMosques = onOpenMosques)
+                    PrayerHero(ui, compass, aligned, onLocation = onPickCity, onSettings = onOpenSettings, onQibla = onOpenCompass, onNearest = { mosque = it })
                 }
             }
             val loc = ui.location
@@ -240,7 +242,7 @@ fun prayerIcon(e: PrayerEvent): Int = when (e) {
 
 /** Today's times on glass; the upcoming prayer sits in a gold glass pill with an "Upcoming" badge. */
 @Composable
-private fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleReminder: (PrayerEvent, Boolean) -> Unit) {
+internal fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleReminder: ((PrayerEvent, Boolean) -> Unit)?) {
     val context = LocalContext.current
     val today = ui.today ?: return
     val zone = today.zone
@@ -280,7 +282,7 @@ private fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleRemi
                     style = MaterialTheme.typography.titleMedium.copy(fontFeatureSettings = "tnum"),
                     fontWeight = if (isNext) FontWeight.SemiBold else FontWeight.Normal, color = fg,
                 )
-                if (e.isPrayer) {
+                if (e.isPrayer && onToggleReminder != null) {
                     val on = e in reminders
                     val label = stringResource(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, name)
                     Box(

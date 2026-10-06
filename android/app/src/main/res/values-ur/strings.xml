@@ -262,7 +262,12 @@
     <string name="qibla_calibrate">قطب نما کی درستی کم ہے۔ فون کو دھات اور مقناطیس سے دور 8 کی شکل میں گھمائیں۔</string>
     <string name="qibla_dial_a11y">قبلہ ڈائل۔ %1$s</string>
     <string name="qibla_distance">کعبہ تک %1$s</string>
+    <string name="qibla_facing_short">آپ قبلہ رخ ہیں</string>
     <string name="qibla_from_north_hint">لائیو قطب نما نہیں: سنہری نقطہ شمال سے قبلہ دکھاتا ہے</string>
+    <string name="qibla_go_left">بائیں مڑیں</string>
+    <string name="qibla_go_left_little">تھوڑا بائیں مڑیں</string>
+    <string name="qibla_go_right">دائیں مڑیں</string>
+    <string name="qibla_go_right_little">تھوڑا دائیں مڑیں</string>
     <string name="qibla_hold_flat">فون کو سیدھا افقی رکھیں</string>
     <string name="qibla_location_needed">قبلہ معلوم کرنے کے لیے مقام منتخب کریں۔</string>
     <string name="qibla_move_phone">فون کو قبلہ کی طرف گھمائیں</string>

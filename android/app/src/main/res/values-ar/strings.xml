@@ -266,7 +266,12 @@
     <string name="qibla_calibrate">دقة البوصلة منخفضة. حرّك الهاتف على شكل الرقم 8 بعيدًا عن المعادن والمغناطيس.</string>
     <string name="qibla_dial_a11y">مؤشر القبلة. %1$s</string>
     <string name="qibla_distance">%1$s إلى الكعبة</string>
+    <string name="qibla_facing_short">استقبلت القبلة</string>
     <string name="qibla_from_north_hint">لا توجد بوصلة حية: النقطة الذهبية تُظهر القبلة من الشمال</string>
+    <string name="qibla_go_left">انعطف يسارًا</string>
+    <string name="qibla_go_left_little">انعطف يسارًا قليلًا</string>
+    <string name="qibla_go_right">انعطف يمينًا</string>
+    <string name="qibla_go_right_little">انعطف يمينًا قليلًا</string>
     <string name="qibla_hold_flat">أمسك الهاتف بشكل أفقي</string>
     <string name="qibla_location_needed">اختر موقعًا لمعرفة القبلة.</string>
     <string name="qibla_move_phone">حرّك الهاتف باتجاه القبلة</string>

@@ -262,7 +262,12 @@
     <string name="qibla_calibrate">Compass accuracy is low. Move your phone in a figure 8, away from metal and magnets.</string>
     <string name="qibla_dial_a11y">Qibla dial. %1$s</string>
     <string name="qibla_distance">%1$s to the Kaaba</string>
+    <string name="qibla_facing_short">Facing the Qibla</string>
     <string name="qibla_from_north_hint">No live compass: the gold dot shows the Qibla from north</string>
+    <string name="qibla_go_left">Turn left</string>
+    <string name="qibla_go_left_little">Turn left a little</string>
+    <string name="qibla_go_right">Turn right</string>
+    <string name="qibla_go_right_little">Turn right a little</string>
     <string name="qibla_hold_flat">Hold your phone flat</string>
     <string name="qibla_location_needed">Choose a location to find the Qibla.</string>
     <string name="qibla_move_phone">Turn the phone toward the Qibla</string>
