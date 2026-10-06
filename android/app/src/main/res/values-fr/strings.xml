@@ -43,6 +43,7 @@
     <string name="category_mosque">Mosquée</string>
     <string name="category_prayer_space">Salle de prière</string>
     <string name="change">Modifier</string>
+    <string name="change_city_hint">Change le lieu de prière</string>
     <string name="chat_delete">Supprimer</string>
     <string name="chat_delete_all">Supprimer toutes les conversations</string>
     <string name="chat_history">Conversations</string>
@@ -85,6 +86,7 @@
     <string name="fajr_ends_at_sunrise">Le temps du Fajr finit au lever du soleil, %1$s</string>
     <string name="favorite_add">Ajouter aux favoris</string>
     <string name="favorite_remove">Retirer des favoris</string>
+    <string name="favorite_state">Dans les favoris</string>
     <string name="favorites">Favoris</string>
     <string name="follow_device_location">Suivre ma position</string>
     <string name="get_directions">Itinéraire</string>
@@ -161,6 +163,7 @@
     <string name="location_denied">Localisation désactivée. Autorisez-la dans Réglages ou choisissez une ville.</string>
     <string name="location_fix_failed">Position introuvable. Sortez à l’extérieur ou choisissez une ville.</string>
     <string name="location_section">Lieu des horaires</string>
+    <string name="map_a11y">Carte des mosquées proches. Utilisez les actions pour en ouvrir une, ou la liste.</string>
     <string name="map_attribution_ofm">Carte © OpenFreeMap, OpenMapTiles, contributeurs OpenStreetMap</string>
     <string name="map_needs_internet">Le fond de carte nécessite internet. La liste fonctionne hors ligne.</string>
     <string name="map_offline_plot">Vue hors ligne : direction et distance depuis le point de recherche. Pas un plan des rues.</string>
@@ -268,6 +271,7 @@
     <string name="qibla_turn_left">Tournez à gauche de %1$s°</string>
     <string name="qibla_turn_right">Tournez à droite de %1$s°</string>
     <string name="qibla_you_are_facing">Vous faites face à la qibla</string>
+    <string name="radar_a11y">Boussole des mosquées proches. La plus proche : %1$s</string>
     <string name="ramadan_isha">Ramadan : Isha 30 minutes plus tard (Umm al-Qura)</string>
     <string name="recenter">Ma position</string>
     <string name="record_source">Source : %1$s, données au %2$s</string>

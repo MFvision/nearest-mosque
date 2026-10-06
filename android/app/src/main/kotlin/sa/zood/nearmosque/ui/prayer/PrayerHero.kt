@@ -90,6 +90,7 @@ enum class ArcMode { LIVE, NORTH_UP, NONE }
  * the top of the phone; when it meets the disc the phone faces the Qibla and the disc glows. Without
  * a live true heading the arc is north-up and the dot is the bearing from true north.
  */
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
 fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation: () -> Unit, onSettings: () -> Unit, onQibla: () -> Unit) {
     val context = LocalContext.current
@@ -120,7 +121,17 @@ fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation
             ArcContent(ui, compass, mode, aligned)
         }
         if (bearing != null) {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            // Large text: the north hint moves out of the arc, where it has room.
+            if (mode == ArcMode.NORTH_UP && largeText()) {
+                Text(
+                    stringResource(R.string.qibla_from_north_hint), color = Ink.copy(alpha = 0.75f), textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                )
+            }
+            androidx.compose.foundation.layout.FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 Chip(stringResource(R.string.qibla_bearing, Format.degrees(context, bearing)))
                 ui.qiblaDistance?.let { Chip(stringResource(R.string.qibla_distance, Format.distance(context, it))) }
             }
@@ -129,6 +140,10 @@ fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation
         }
     }
 }
+
+/** Text size at 130% or more (Settings → Display → Font size). */
+@Composable
+fun largeText(): Boolean = LocalDensity.current.fontScale >= 1.3f
 
 @Composable
 private fun Chip(text: String) {
@@ -151,7 +166,9 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, align
             val a11y = stringResource(R.string.countdown_a11y, name, time, Format.countdown(context, remaining))
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
                 Text(name, color = Ink.copy(alpha = 0.92f), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
-                Text(time, color = Ink, fontSize = 58.sp, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
+                // The big time grows with the text size up to 115%, so it still fits inside the arc.
+                val fs = LocalDensity.current.fontScale
+                Text(time, color = Ink, fontSize = (58f * minOf(fs, 1.15f) / fs).sp, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
                 Text(
                     stringResource(R.string.remaining_long, Format.remainingLong(context, remaining)), color = Ink.copy(alpha = 0.85f),
                     style = MaterialTheme.typography.bodyLarge.copy(fontFeatureSettings = "tnum"),
@@ -175,7 +192,7 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, align
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
             )
-            if (mode == ArcMode.NORTH_UP) {
+            if (mode == ArcMode.NORTH_UP && !largeText()) {
                 Text(
                     stringResource(R.string.qibla_from_north_hint), color = Ink.copy(alpha = 0.75f), textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 24.dp, vertical = 2.dp),

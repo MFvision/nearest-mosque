@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -105,7 +106,9 @@ private fun BrowseTab() {
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         items(packs, key = { it.id }) { p ->
             Column(
-                Modifier.fillMaxWidth().glass(RoundedCornerShape(18.dp), tint = Ink.copy(alpha = 0.04f)).clickable { open = p }.padding(16.dp),
+                Modifier.fillMaxWidth().glass(RoundedCornerShape(18.dp), tint = Ink.copy(alpha = 0.04f))
+                    .clickable(role = androidx.compose.ui.semantics.Role.Button) { open = p }
+                    .semantics(mergeDescendants = true) {}.padding(16.dp),
             ) {
                 Text(p.title[lang] ?: p.title["en"] ?: p.id, color = Ink, style = MaterialTheme.typography.titleSmall)
                 Text(stringResource(R.string.library_items_count, p.count), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)

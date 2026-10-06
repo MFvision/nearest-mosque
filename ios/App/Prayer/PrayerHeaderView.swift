@@ -9,6 +9,7 @@ import UIKit
 struct PrayerHero: View {
     @Environment(Localization.self) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
     /// The big time grows with the text-size setting (and still fits the arc: minimumScaleFactor).
     @ScaledMetric(relativeTo: .largeTitle) private var timeSize: CGFloat = 60
     let snap: PrayerSnapshot
@@ -35,12 +36,19 @@ struct PrayerHero: View {
             .contentShape(Rectangle())
             .onTapGesture { if snap.location != nil { onQibla() } }
             .accessibilityElement(children: .contain)
+            .accessibilityAction(named: l10n.t("qibla_open_compass")) { if snap.location != nil { onQibla() } }
 
             if let bearing = snap.qiblaBearing {
+                // Large text: the north hint moves out of the arc, where it has room.
+                if arcMode == .northUp && typeSize >= .xxLarge {
+                    Text(l10n.t("qibla_from_north_hint")).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
+                        .multilineTextAlignment(.center).padding(.horizontal, 16)
+                }
                 GlassGroup(spacing: 8) {
-                    HStack(spacing: 8) {
-                        chip(l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale)), "location.north.line")
-                        if let d = snap.qiblaDistance { chip(l10n.t("qibla_distance", Format.distance(d, l10n: l10n)), "point.topleft.down.to.point.bottomright.curvepath") }
+                    // Side by side when they fit, else stacked (large text).
+                    ViewThatFits(in: .horizontal) {
+                        HStack(spacing: 8) { chips(bearing) }
+                        VStack(spacing: 8) { chips(bearing) }
                     }
                 }
                 Button(action: onQibla) {
@@ -53,9 +61,14 @@ struct PrayerHero: View {
         .foregroundStyle(Theme.ink)
     }
 
+    @ViewBuilder private func chips(_ bearing: Double) -> some View {
+        chip(l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale)), "location.north.line")
+        if let d = snap.qiblaDistance { chip(l10n.t("qibla_distance", Format.distance(d, l10n: l10n)), "point.topleft.down.to.point.bottomright.curvepath") }
+    }
+
     private func chip(_ text: String, _ icon: String) -> some View {
         Label(text, systemImage: icon)
-            .font(.footnote.weight(.medium)).lineLimit(1).minimumScaleFactor(0.8)
+            .font(.footnote.weight(.medium)).lineLimit(2).minimumScaleFactor(0.8)
             .padding(.horizontal, 12).padding(.vertical, 8)
             .glass(Capsule())
     }
@@ -99,7 +112,7 @@ struct PrayerHero: View {
                     .padding(.top, 14)
                     .accessibilityAddTraits(.updatesFrequently)
                     .accessibilityAction { onQibla() }
-                if arcMode == .northUp {
+                if arcMode == .northUp && typeSize < .xxLarge {
                     Text(l10n.t("qibla_from_north_hint")).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
                         .multilineTextAlignment(.center).padding(.horizontal, 24)
                 }
@@ -121,14 +134,15 @@ struct PrayerHero: View {
 
 /// Glass capsule with the prayer location; opens the city picker.
 struct LocationPill: View {
+    @Environment(Localization.self) private var l10n
     let name: String
     var action: () -> Void
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
-                Image(systemName: "mappin.and.ellipse").font(.subheadline)
+                Image(systemName: "mappin.and.ellipse").font(.subheadline).accessibilityHidden(true)
                 Text(name).font(.subheadline.weight(.semibold)).lineLimit(1)
-                Image(systemName: "chevron.down").font(.caption.weight(.bold))
+                Image(systemName: "chevron.down").font(.caption.weight(.bold)).accessibilityHidden(true)
             }
             .foregroundStyle(Theme.ink)
             .padding(.horizontal, 16)
@@ -137,6 +151,7 @@ struct LocationPill: View {
         }
         .buttonStyle(.plain)
         .glass(Capsule())
+        .accessibilityHint(l10n.t("change_city_hint"))
     }
 }
 

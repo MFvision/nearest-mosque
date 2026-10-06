@@ -275,6 +275,21 @@ struct MosquesView: View {
 
 /// Glass mosque card: name, straight-line distance, walking route when known, one Directions button.
 struct MosqueCard: View {
+    /// One sentence for VoiceOver: nearest, name and distance, walking route, favorite, and the source.
+    private func a11y(_ name: String) -> String {
+        let m = ranked.mosque
+        var parts: [String] = []
+        if nearest { parts.append(l10n.t("nearest_known_mosque")) }
+        parts.append(l10n.t("mosque_detail_a11y", name, Format.distance(ranked.distanceMeters, l10n: l10n)))
+        if let route {
+            parts.append(l10n.t("walking_route", Format.distance(route.meters, l10n: l10n), l10n.t("minutes_short", Int((route.seconds / 60).rounded()))))
+        }
+        if favorite { parts.append(l10n.t("favorite_state")) }
+        if m.packId == OnlineMosques.applePackId { parts.append(l10n.t("source_online_apple")) }
+        else if m.category == .prayer_space { parts.append(l10n.t("category_prayer_space")) }
+        return parts.joined(separator: ". ")
+    }
+
     @Environment(Localization.self) private var l10n
     let ranked: RankedMosque
     let nearest: Bool
@@ -312,12 +327,13 @@ struct MosqueCard: View {
                     Spacer(minLength: 4)
                     if favorite { Image(systemName: "star.fill").foregroundStyle(Theme.accent).accessibilityHidden(true) }
                     Image(systemName: l10n.isRTL ? "chevron.left" : "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink.opacity(0.6))
+                        .accessibilityHidden(true)
                 }
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .accessibilityElement(children: .combine)
-            .accessibilityLabel(l10n.t("mosque_detail_a11y", name, Format.distance(ranked.distanceMeters, l10n: l10n)))
+            .accessibilityLabel(a11y(name))
             DirectionsMenu(to: m.location, name: name) {
                 Label(l10n.t("get_directions"), systemImage: "location.north.line.fill").frame(maxWidth: .infinity, minHeight: 28)
             }

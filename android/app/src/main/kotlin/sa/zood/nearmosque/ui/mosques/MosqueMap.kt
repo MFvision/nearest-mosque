@@ -20,6 +20,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
@@ -147,7 +150,22 @@ fun MosqueMap(
         )
     }
     Box(modifier) {
-        AndroidView({ mapView }, Modifier.fillMaxSize())
+        // TalkBack cannot reach pins drawn by the map: the map reads as one summary, with an action
+        // per nearby mosque (nearest first) that opens it, like tapping its pin.
+        val mapLabel = stringResource(R.string.map_a11y)
+        val lang = sa.zood.nearmosque.ui.Format.languageCode(context)
+        val unnamed = stringResource(R.string.mosque_unnamed)
+        val actions = items.take(8).map { r ->
+            val label = context.getString(R.string.mosque_detail_a11y, r.mosque.displayName(lang) ?: unnamed, sa.zood.nearmosque.ui.Format.distance(context, r.distanceMeters))
+            androidx.compose.ui.semantics.CustomAccessibilityAction(label) { select(r); true }
+        }
+        AndroidView(
+            { mapView },
+            Modifier.fillMaxSize().semantics {
+                contentDescription = mapLabel
+                customActions = actions
+            },
+        )
         val v = visible
         if (v != null && Geo.distanceMeters(v, center) > 400) {
             GlassButton(onClick = { onSearchHere(v) }, prominent = true, modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 12.dp)) {

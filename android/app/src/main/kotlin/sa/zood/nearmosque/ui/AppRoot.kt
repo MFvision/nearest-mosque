@@ -210,7 +210,8 @@ private fun GlassTabBar(selected: Tab, onSelect: (Tab) -> Unit, modifier: Modifi
                 ) {
                     Icon(painterResource(t.icon), contentDescription = null, tint = if (on) Accent else Ink, modifier = Modifier.size(24.dp))
                     Text(
-                        stringResource(t.label), color = if (on) Accent else Ink.copy(alpha = 0.9f), maxLines = 1, overflow = TextOverflow.Ellipsis,
+                        stringResource(t.label), color = if (on) Accent else Ink.copy(alpha = 0.9f), maxLines = 2, overflow = TextOverflow.Ellipsis,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center, lineHeight = 13.sp,
                         style = MaterialTheme.typography.labelSmall.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Medium, fontSize = 11.sp),
                     )
                 }

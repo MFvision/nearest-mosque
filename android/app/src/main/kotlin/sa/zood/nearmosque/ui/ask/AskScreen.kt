@@ -271,7 +271,7 @@ private fun OtherSourcesRow(question: String, lang: String) {
                 Text(
                     stringResource(labels.getValue(l.id)), color = androidx.compose.ui.graphics.Color(0xFF8CC0DE),
                     style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.heightIn(min = 40.dp).glass(RoundedCornerShape(50)).clickable { ExternalActions.open(context, l.url) }
+                    modifier = Modifier.heightIn(min = 40.dp).glass(RoundedCornerShape(50)).clickable(role = androidx.compose.ui.semantics.Role.Button) { ExternalActions.open(context, l.url) }
                         .padding(horizontal = 12.dp, vertical = 10.dp),
                 )
             }

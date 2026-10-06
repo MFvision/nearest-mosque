@@ -43,6 +43,7 @@
     <string name="category_mosque">مسجد</string>
     <string name="category_prayer_space">مصلّى</string>
     <string name="change">تغيير</string>
+    <string name="change_city_hint">يغيّر موقع الصلاة</string>
     <string name="chat_delete">حذف</string>
     <string name="chat_delete_all">حذف كل المحادثات</string>
     <string name="chat_history">المحادثات</string>
@@ -85,6 +86,7 @@
     <string name="fajr_ends_at_sunrise">ينتهي وقت الفجر عند الشروق، %1$s</string>
     <string name="favorite_add">أضف إلى المفضلة</string>
     <string name="favorite_remove">أزل من المفضلة</string>
+    <string name="favorite_state">في المفضلة</string>
     <string name="favorites">المفضلة</string>
     <string name="follow_device_location">اتبع موقعي</string>
     <string name="get_directions">الاتجاهات</string>
@@ -161,6 +163,7 @@
     <string name="location_denied">الوصول إلى الموقع متوقف. يمكنك السماح به من الإعدادات أو اختيار مدينة.</string>
     <string name="location_fix_failed">تعذّر تحديد الموقع. اخرج إلى مكان مفتوح أو اختر مدينة.</string>
     <string name="location_section">موقع حساب المواقيت</string>
+    <string name="map_a11y">خريطة المساجد القريبة. استخدم الإجراءات لفتح مسجد، أو استخدم القائمة.</string>
     <string name="map_attribution_ofm">الخريطة © OpenFreeMap وOpenMapTiles ومساهمو OpenStreetMap</string>
     <string name="map_needs_internet">خلفية الخريطة تحتاج إلى الإنترنت، والقائمة تعمل دونه.</string>
     <string name="map_offline_plot">عرض دون إنترنت: الاتجاه والمسافة من نقطة البحث، وليس خريطة شوارع.</string>
@@ -272,6 +275,7 @@
     <string name="qibla_turn_left">استدر يسارًا %1$s°</string>
     <string name="qibla_turn_right">استدر يمينًا %1$s°</string>
     <string name="qibla_you_are_facing">أنت باتجاه القبلة</string>
+    <string name="radar_a11y">بوصلة المساجد القريبة. الأقرب: %1$s</string>
     <string name="ramadan_isha">رمضان: العشاء بعد 30 دقيقة إضافية (أم القرى)</string>
     <string name="recenter">موقعي</string>
     <string name="record_source">المصدر: %1$s، البيانات حتى %2$s</string>

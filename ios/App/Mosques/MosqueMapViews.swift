@@ -123,6 +123,7 @@ struct MosqueMap: View {
             ForEach(items.prefix(60)) { r in
                 Annotation(r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), coordinate: r.mosque.location.coordinate, anchor: .center) {
                     MosquePin(highlighted: selection == r.id || (selection == nil && r.id == items.first?.id))
+                        .accessibilityLabel(l10n.t("mosque_detail_a11y", r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), Format.distance(r.distanceMeters, l10n: l10n)))
                 }
                 .tag(r.id)
             }
@@ -182,6 +183,7 @@ struct MosqueRadar: View {
                             .rotationEffect(.degrees(Double(i) * 10))
                     }
                     Text(l10n.t("compass_north")).font(.caption.weight(.bold)).foregroundStyle(Color(hex: 0xF2B8B5)).offset(y: -s / 2 + 26)
+                        .accessibilityHidden(true)
                     if let first = shown.first {
                         let p = point(first, maxD: maxD, usable: usable)
                         Path { path in
@@ -213,6 +215,10 @@ struct MosqueRadar: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .environment(\.layoutDirection, .leftToRight)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(items.first.map { f in
+            l10n.t("radar_a11y", l10n.t("mosque_detail_a11y", f.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), Format.distance(f.distanceMeters, l10n: l10n)))
+        } ?? "")
         .onAppear { rotation = -(heading ?? 0) }
         .onChange(of: heading) { _, h in
             let next = Angles.shortestTarget(current: rotation, target: -(h ?? 0))

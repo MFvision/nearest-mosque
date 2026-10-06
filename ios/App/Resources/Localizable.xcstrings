@@ -1976,6 +1976,53 @@
         }
       }
     },
+    "change_city_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes the prayer location"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يغيّر موقع الصلاة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز کا مقام بدلتا ہے"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namaz konumunu değiştirir"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mengubah lokasi salat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change le lieu de prière"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia el lugar de oración"
+          }
+        }
+      }
+    },
     "chat_delete": {
       "extractionState": "manual",
       "localizations": {
@@ -3946,6 +3993,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quitar de favoritos"
+          }
+        }
+      }
+    },
+    "favorite_state": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In favorites"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في المفضلة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پسندیدہ میں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorilerde"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Di favorit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans les favoris"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En favoritos"
           }
         }
       }
@@ -7518,6 +7612,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ubicación de los horarios"
+          }
+        }
+      }
+    },
+    "map_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map of nearby mosques. Use the actions to open one, or use the list."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خريطة المساجد القريبة. استخدم الإجراءات لفتح مسجد، أو استخدم القائمة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریبی مساجد کا نقشہ۔ کوئی مسجد کھولنے کے لیے ایکشنز یا فہرست استعمال کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakındaki camilerin haritası. Birini açmak için eylemleri veya listeyi kullanın."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peta masjid terdekat. Gunakan tindakan untuk membuka salah satunya, atau gunakan daftar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carte des mosquées proches. Utilisez les actions pour en ouvrir une, ou la liste."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapa de mezquitas cercanas. Use las acciones para abrir una, o la lista."
           }
         }
       }
@@ -12508,6 +12649,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "Estás orientado a la alquibla"
+          }
+        }
+      }
+    },
+    "radar_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compass of nearby mosques. Nearest: %1$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بوصلة المساجد القريبة. الأقرب: %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریبی مساجد کا قطب نما۔ قریب ترین: %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakındaki camilerin pusulası. En yakın: %1$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kompas masjid terdekat. Terdekat: %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boussole des mosquées proches. La plus proche : %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brújula de mezquitas cercanas. La más cercana: %1$@"
           }
         }
       }

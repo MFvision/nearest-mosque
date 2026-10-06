@@ -185,6 +185,12 @@ jobs:
           shot 11b-sky-card-dark -demoCity "Cape Town" -demoTab prayer -demoSkyCard YES -languageOverride en
           shot 12-mosques-dark -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 0 -languageOverride en
           shot 13-ask-answer-dark -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
+          # Large text (Settings → Accessibility → Larger Text): nothing may be cut or overlap.
+          xcrun simctl ui "$UDID" content_size accessibility-medium || true
+          shot 14-prayer-large-text -demoCity "Cape Town" -demoTab prayer -languageOverride en
+          shot 15-sky-card-large-text -demoCity "Cape Town" -demoTab prayer -demoSkyCard YES -languageOverride en
+          shot 16-ask-large-text -demoCity "Cape Town" -demoTab ask -languageOverride en
+          xcrun simctl ui "$UDID" content_size medium || true
           ls -la shots
           # Contact sheet for quick review.
           python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet pillow

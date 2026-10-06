@@ -124,6 +124,16 @@ class ScreenshotTest {
         at = ZonedDateTime.of(2026, 10, 3, 14, 10, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant(),
     ) { openSkyCard() }
 
+    // The phone's largest common text size (150%): nothing may be cut or overlap.
+    @Test @Config(fontScale = 1.5f)
+    fun prayerLargeText() = shoot("prayer_en_large_text", Tab.PRAYER)
+
+    @Test @Config(fontScale = 1.5f)
+    fun askLargeText() = shoot("ask_en_large_text", Tab.ASK)
+
+    @Test @Config(fontScale = 1.5f)
+    fun skyCardLargeText() = shoot("sky_card_en_large_text", Tab.PRAYER) { openSkyCard() }
+
     @Test fun mosquesList() = shoot("mosques_en", Tab.MOSQUES)
 
     @Test @Config(qualifiers = "ur-w393dp-h852dp-xxhdpi")

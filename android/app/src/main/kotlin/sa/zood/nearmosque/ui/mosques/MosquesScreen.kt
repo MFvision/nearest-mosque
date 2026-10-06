@@ -67,6 +67,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
@@ -281,7 +282,17 @@ private fun MosqueCard(r: RankedMosque, nearest: Boolean, favorite: Boolean, sho
     val m = r.mosque
     val name = m.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
     val distance = Format.distance(context, r.distanceMeters)
-    val a11y = stringResource(R.string.mosque_detail_a11y, name, distance)
+    // One sentence for TalkBack: nearest, name and distance, favorite, and where the entry comes from.
+    val a11y = listOfNotNull(
+        if (nearest) stringResource(R.string.nearest_known_mosque) else null,
+        stringResource(R.string.mosque_detail_a11y, name, distance),
+        if (favorite) stringResource(R.string.favorite_state) else null,
+        when {
+            m.packId == OnlineMosques.PACK_ID -> stringResource(R.string.source_online_osm)
+            m.category == MosqueCategory.PRAYER_SPACE -> stringResource(R.string.category_prayer_space)
+            else -> null
+        },
+    ).joinToString(". ")
     GlassCard(padding = 14.dp, tint = if (nearest) Tokens.gold.copy(alpha = 0.12f) else null) {
         Row(
             Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onOpen).semantics { contentDescription = a11y },
@@ -327,7 +338,13 @@ private fun MosqueRadar(items: List<RankedMosque>, center: LatLng, heading: Doub
     val context = LocalContext.current
     val lang = Format.languageCode(context)
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        BoxWithConstraints(modifier.aspectRatio(1f).glass(CircleShape), contentAlignment = Alignment.Center) {
+        val summary = shown.firstOrNull()?.let { f ->
+            stringResource(R.string.radar_a11y, stringResource(R.string.mosque_detail_a11y, f.mosque.displayName(lang) ?: stringResource(R.string.mosque_unnamed), Format.distance(context, f.distanceMeters)))
+        }
+        BoxWithConstraints(
+            modifier.aspectRatio(1f).glass(CircleShape).semantics { if (summary != null) contentDescription = summary },
+            contentAlignment = Alignment.Center,
+        ) {
             val density = LocalDensity.current
             val s = with(density) { maxWidth.toPx() }
             val usable = s / 2 - with(density) { 28.dp.toPx() }
@@ -361,7 +378,7 @@ private fun MosqueRadar(items: List<RankedMosque>, center: LatLng, heading: Doub
             val nDist = s / 2 - with(density) { 26.dp.toPx() }
             Text(
                 north, color = Color(0xFFF2B8B5), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                modifier = Modifier.offset { IntOffset((nDist * sin(nr)).roundToInt(), (-nDist * cos(nr)).roundToInt()) },
+                modifier = Modifier.offset { IntOffset((nDist * sin(nr)).roundToInt(), (-nDist * cos(nr)).roundToInt()) }.clearAndSetSemantics {},
             )
             shown.forEachIndexed { i, r ->
                 val p = pos(r)

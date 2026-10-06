@@ -164,7 +164,7 @@ fun ChatHistorySheet(chats: List<SavedChat>, onOpen: (SavedChat) -> Unit, onDele
             LazyColumn(Modifier.weight(1f, fill = false)) {
                 items(chats, key = { it.id }) { chat ->
                     Row(
-                        Modifier.fillMaxWidth().heightIn(min = 56.dp).clickable { onOpen(chat) }.padding(vertical = 6.dp),
+                        Modifier.fillMaxWidth().heightIn(min = 56.dp).clickable(role = Role.Button) { onOpen(chat) }.padding(vertical = 6.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(Modifier.weight(1f)) {

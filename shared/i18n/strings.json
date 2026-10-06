@@ -3013,6 +3013,42 @@
       "id": "Anda juga bisa bertanya",
       "fr": "Vous pourriez aussi demander",
       "es": "También puede preguntar"
+    },
+    "favorite_state": {
+      "en": "In favorites",
+      "ar": "في المفضلة",
+      "ur": "پسندیدہ میں",
+      "tr": "Favorilerde",
+      "id": "Di favorit",
+      "fr": "Dans les favoris",
+      "es": "En favoritos"
+    },
+    "map_a11y": {
+      "en": "Map of nearby mosques. Use the actions to open one, or use the list.",
+      "ar": "خريطة المساجد القريبة. استخدم الإجراءات لفتح مسجد، أو استخدم القائمة.",
+      "ur": "قریبی مساجد کا نقشہ۔ کوئی مسجد کھولنے کے لیے ایکشنز یا فہرست استعمال کریں۔",
+      "tr": "Yakındaki camilerin haritası. Birini açmak için eylemleri veya listeyi kullanın.",
+      "id": "Peta masjid terdekat. Gunakan tindakan untuk membuka salah satunya, atau gunakan daftar.",
+      "fr": "Carte des mosquées proches. Utilisez les actions pour en ouvrir une, ou la liste.",
+      "es": "Mapa de mezquitas cercanas. Use las acciones para abrir una, o la lista."
+    },
+    "radar_a11y": {
+      "en": "Compass of nearby mosques. Nearest: %1$s",
+      "ar": "بوصلة المساجد القريبة. الأقرب: %1$s",
+      "ur": "قریبی مساجد کا قطب نما۔ قریب ترین: %1$s",
+      "tr": "Yakındaki camilerin pusulası. En yakın: %1$s",
+      "id": "Kompas masjid terdekat. Terdekat: %1$s",
+      "fr": "Boussole des mosquées proches. La plus proche : %1$s",
+      "es": "Brújula de mezquitas cercanas. La más cercana: %1$s"
+    },
+    "change_city_hint": {
+      "en": "Changes the prayer location",
+      "ar": "يغيّر موقع الصلاة",
+      "ur": "نماز کا مقام بدلتا ہے",
+      "tr": "Namaz konumunu değiştirir",
+      "id": "Mengubah lokasi salat",
+      "fr": "Change le lieu de prière",
+      "es": "Cambia el lugar de oración"
     }
   }
 }

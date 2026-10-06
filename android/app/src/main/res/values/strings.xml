@@ -43,6 +43,7 @@
     <string name="category_mosque">Mosque</string>
     <string name="category_prayer_space">Prayer space</string>
     <string name="change">Change</string>
+    <string name="change_city_hint">Changes the prayer location</string>
     <string name="chat_delete">Delete</string>
     <string name="chat_delete_all">Delete all chats</string>
     <string name="chat_history">Chats</string>
@@ -85,6 +86,7 @@
     <string name="fajr_ends_at_sunrise">Fajr time ends at sunrise, %1$s</string>
     <string name="favorite_add">Add to favorites</string>
     <string name="favorite_remove">Remove from favorites</string>
+    <string name="favorite_state">In favorites</string>
     <string name="favorites">Favorites</string>
     <string name="follow_device_location">Follow my location</string>
     <string name="get_directions">Get directions</string>
@@ -161,6 +163,7 @@
     <string name="location_denied">Location access is off. You can allow it in Settings or choose a city.</string>
     <string name="location_fix_failed">Couldn’t get a location fix. Go outside or choose a city.</string>
     <string name="location_section">Location for prayer times</string>
+    <string name="map_a11y">Map of nearby mosques. Use the actions to open one, or use the list.</string>
     <string name="map_attribution_ofm">Map © OpenFreeMap, OpenMapTiles, OpenStreetMap contributors</string>
     <string name="map_needs_internet">The map background needs internet. The list works offline.</string>
     <string name="map_offline_plot">Offline view: direction and distance from the search point. Not a street map.</string>
@@ -268,6 +271,7 @@
     <string name="qibla_turn_left">Turn left %1$s°</string>
     <string name="qibla_turn_right">Turn right %1$s°</string>
     <string name="qibla_you_are_facing">You’re facing the Qibla</string>
+    <string name="radar_a11y">Compass of nearby mosques. Nearest: %1$s</string>
     <string name="ramadan_isha">Ramadan: Isha 30 minutes later (Umm al-Qura)</string>
     <string name="recenter">My location</string>
     <string name="record_source">Source: %1$s, data as of %2$s</string>

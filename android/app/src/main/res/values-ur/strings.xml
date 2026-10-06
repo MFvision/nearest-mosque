@@ -43,6 +43,7 @@
     <string name="category_mosque">مسجد</string>
     <string name="category_prayer_space">جائے نماز</string>
     <string name="change">تبدیل کریں</string>
+    <string name="change_city_hint">نماز کا مقام بدلتا ہے</string>
     <string name="chat_delete">حذف کریں</string>
     <string name="chat_delete_all">تمام گفتگو حذف کریں</string>
     <string name="chat_history">گفتگو</string>
@@ -85,6 +86,7 @@
     <string name="fajr_ends_at_sunrise">فجر کا وقت طلوعِ آفتاب پر ختم، %1$s</string>
     <string name="favorite_add">پسندیدہ میں شامل کریں</string>
     <string name="favorite_remove">پسندیدہ سے ہٹائیں</string>
+    <string name="favorite_state">پسندیدہ میں</string>
     <string name="favorites">پسندیدہ</string>
     <string name="follow_device_location">میرے مقام کے مطابق</string>
     <string name="get_directions">راستہ دیکھیں</string>
@@ -161,6 +163,7 @@
     <string name="location_denied">مقام تک رسائی بند ہے۔ ترتیبات میں اجازت دیں یا شہر منتخب کریں۔</string>
     <string name="location_fix_failed">مقام معلوم نہیں ہو سکا۔ کھلی جگہ جائیں یا شہر منتخب کریں۔</string>
     <string name="location_section">اوقاتِ نماز کا مقام</string>
+    <string name="map_a11y">قریبی مساجد کا نقشہ۔ کوئی مسجد کھولنے کے لیے ایکشنز یا فہرست استعمال کریں۔</string>
     <string name="map_attribution_ofm">نقشہ © OpenFreeMap، OpenMapTiles، OpenStreetMap معاونین</string>
     <string name="map_needs_internet">نقشے کا پس منظر انٹرنیٹ مانگتا ہے۔ فہرست آف لائن کام کرتی ہے۔</string>
     <string name="map_offline_plot">آف لائن منظر: تلاش کے مقام سے سمت اور فاصلہ۔ یہ گلیوں کا نقشہ نہیں۔</string>
@@ -268,6 +271,7 @@
     <string name="qibla_turn_left">بائیں %1$s° مڑیں</string>
     <string name="qibla_turn_right">دائیں %1$s° مڑیں</string>
     <string name="qibla_you_are_facing">آپ قبلہ رخ ہیں</string>
+    <string name="radar_a11y">قریبی مساجد کا قطب نما۔ قریب ترین: %1$s</string>
     <string name="ramadan_isha">رمضان: عشاء 30 منٹ بعد (ام القریٰ)</string>
     <string name="recenter">میرا مقام</string>
     <string name="record_source">ماخذ: %1$s، ڈیٹا بتاریخ %2$s</string>

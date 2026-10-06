@@ -218,12 +218,16 @@ fun DayArcView(arc: DayArc, period: SkyPeriod, zone: ZoneId, height: Dp = 156.dp
 /** Prayer name and time, centred on [at] (pixels from the top-left, never mirrored). */
 @Composable
 private fun ArcLabel(e: PrayerEvent, time: Instant, zone: ZoneId, at: Offset) {
+    val inset = with(LocalDensity.current) { 6.dp.roundToPx() }
     val context = LocalContext.current
     Column(
         // Fills the sky and places itself by absolute pixels (place, not placeRelative: no RTL mirroring).
         Modifier.fillMaxSize().layout { m, c ->
             val p = m.measure(c.copy(minWidth = 0, minHeight = 0))
-            layout(c.maxWidth, c.maxHeight) { p.place((at.x - p.width / 2f).roundToInt(), (at.y - p.height / 2f).roundToInt()) }
+            // Centred on the point, but kept inside the sky (large text makes labels wider than the margin).
+            val x = (at.x - p.width / 2f).roundToInt().coerceIn(inset, maxOf(inset, c.maxWidth - p.width - inset))
+            val y = (at.y - p.height / 2f).roundToInt().coerceIn(0, maxOf(0, c.maxHeight - p.height))
+            layout(c.maxWidth, c.maxHeight) { p.place(x, y) }
         },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

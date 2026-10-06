@@ -43,6 +43,7 @@
     <string name="category_mosque">Cami</string>
     <string name="category_prayer_space">Mescit</string>
     <string name="change">Değiştir</string>
+    <string name="change_city_hint">Namaz konumunu değiştirir</string>
     <string name="chat_delete">Sil</string>
     <string name="chat_delete_all">Tüm sohbetleri sil</string>
     <string name="chat_history">Sohbetler</string>
@@ -85,6 +86,7 @@
     <string name="fajr_ends_at_sunrise">İmsak vakti güneş doğunca biter, %1$s</string>
     <string name="favorite_add">Favorilere ekle</string>
     <string name="favorite_remove">Favorilerden çıkar</string>
+    <string name="favorite_state">Favorilerde</string>
     <string name="favorites">Favoriler</string>
     <string name="follow_device_location">Konumumu takip et</string>
     <string name="get_directions">Yol tarifi al</string>
@@ -161,6 +163,7 @@
     <string name="location_denied">Konum erişimi kapalı. Ayarlar’dan izin verebilir veya şehir seçebilirsiniz.</string>
     <string name="location_fix_failed">Konum alınamadı. Açık alana çıkın veya şehir seçin.</string>
     <string name="location_section">Namaz vakitleri konumu</string>
+    <string name="map_a11y">Yakındaki camilerin haritası. Birini açmak için eylemleri veya listeyi kullanın.</string>
     <string name="map_attribution_ofm">Harita © OpenFreeMap, OpenMapTiles, OpenStreetMap katkıcıları</string>
     <string name="map_needs_internet">Harita arka planı internet gerektirir. Liste çevrim dışı çalışır.</string>
     <string name="map_offline_plot">Çevrim dışı görünüm: arama noktasından yön ve mesafe. Sokak haritası değildir.</string>
@@ -268,6 +271,7 @@
     <string name="qibla_turn_left">Sola %1$s° dönün</string>
     <string name="qibla_turn_right">Sağa %1$s° dönün</string>
     <string name="qibla_you_are_facing">Kıbleye dönüksünüz</string>
+    <string name="radar_a11y">Yakındaki camilerin pusulası. En yakın: %1$s</string>
     <string name="ramadan_isha">Ramazan: Yatsı 30 dakika sonra (Ümmü’l-Kurâ)</string>
     <string name="recenter">Konumum</string>
     <string name="record_source">Kaynak: %1$s, veri tarihi %2$s</string>

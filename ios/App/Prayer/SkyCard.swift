@@ -126,10 +126,10 @@ struct DayArcView: View {
                 // where the sun or moon is on that mark.
                 ForEach(arc.marks, id: \.at) { m in
                     let outside = abs(m.fraction - arc.fraction) < 0.1 || m.fraction < 0.2 || m.fraction > 0.8
-                    label(m.event, m.at).position(x: point(m.fraction).x, y: point(m.fraction).y + (outside ? -22 : 22))
+                    PinnedLabel(at: CGPoint(x: point(m.fraction).x, y: point(m.fraction).y + (outside ? -22 : 22))) { label(m.event, m.at) }
                 }
-                label(arc.startEvent, arc.start).position(x: point(0).x, y: horizon + 20)
-                label(arc.endEvent, arc.end).position(x: point(1).x, y: horizon + 20)
+                PinnedLabel(at: CGPoint(x: point(0).x, y: horizon + 20)) { label(arc.startEvent, arc.start) }
+                PinnedLabel(at: CGPoint(x: point(1).x, y: horizon + 20)) { label(arc.endEvent, arc.end) }
                 celestial.position(here)
             }
             .frame(width: w, height: h)
@@ -166,6 +166,31 @@ struct DayArcView: View {
         let e = Format.time(arc.end, zone: zone, locale: l10n.locale)
         let pct = arc.fraction.formatted(.percent.precision(.fractionLength(0)).locale(l10n.locale))
         return arc.isDay ? l10n.t("sky_day_a11y", s, e, pct) : l10n.t("sky_night_a11y", s, e, pct)
+    }
+}
+
+/// Places its content centred on `at` (points from the top-left, never mirrored) but kept inside its
+/// bounds, so large text never pushes a label off the sky.
+private struct PinnedLabel<Content: View>: View {
+    let at: CGPoint
+    @ViewBuilder var content: Content
+    var body: some View {
+        PinLayout(at: at) { content }.environment(\.layoutDirection, .leftToRight)
+    }
+}
+
+private struct PinLayout: Layout {
+    let at: CGPoint
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        proposal.replacingUnspecifiedDimensions()
+    }
+    func placeSubviews(in b: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        for v in subviews {
+            let s = v.sizeThatFits(.unspecified)
+            let x = min(max(at.x - s.width / 2, 6), max(6, b.width - s.width - 6))
+            let y = min(max(at.y - s.height / 2, 0), max(0, b.height - s.height))
+            v.place(at: CGPoint(x: b.minX + x, y: b.minY + y), proposal: ProposedViewSize(s))
+        }
     }
 }
 

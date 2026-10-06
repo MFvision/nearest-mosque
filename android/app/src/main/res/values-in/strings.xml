@@ -43,6 +43,7 @@
     <string name="category_mosque">Masjid</string>
     <string name="category_prayer_space">Musala</string>
     <string name="change">Ubah</string>
+    <string name="change_city_hint">Mengubah lokasi salat</string>
     <string name="chat_delete">Hapus</string>
     <string name="chat_delete_all">Hapus semua obrolan</string>
     <string name="chat_history">Obrolan</string>
@@ -85,6 +86,7 @@
     <string name="fajr_ends_at_sunrise">Waktu Subuh berakhir saat terbit, %1$s</string>
     <string name="favorite_add">Tambah ke favorit</string>
     <string name="favorite_remove">Hapus dari favorit</string>
+    <string name="favorite_state">Di favorit</string>
     <string name="favorites">Favorit</string>
     <string name="follow_device_location">Ikuti lokasi saya</string>
     <string name="get_directions">Petunjuk arah</string>
@@ -161,6 +163,7 @@
     <string name="location_denied">Akses lokasi mati. Izinkan di Pengaturan atau pilih kota.</string>
     <string name="location_fix_failed">Lokasi tidak didapat. Pergi ke tempat terbuka atau pilih kota.</string>
     <string name="location_section">Lokasi jadwal salat</string>
+    <string name="map_a11y">Peta masjid terdekat. Gunakan tindakan untuk membuka salah satunya, atau gunakan daftar.</string>
     <string name="map_attribution_ofm">Peta © OpenFreeMap, OpenMapTiles, kontributor OpenStreetMap</string>
     <string name="map_needs_internet">Latar peta perlu internet. Daftar berfungsi offline.</string>
     <string name="map_offline_plot">Tampilan offline: arah dan jarak dari titik pencarian. Bukan peta jalan.</string>
@@ -267,6 +270,7 @@
     <string name="qibla_turn_left">Putar ke kiri %1$s°</string>
     <string name="qibla_turn_right">Putar ke kanan %1$s°</string>
     <string name="qibla_you_are_facing">Anda menghadap kiblat</string>
+    <string name="radar_a11y">Kompas masjid terdekat. Terdekat: %1$s</string>
     <string name="ramadan_isha">Ramadan: Isya 30 menit lebih lambat (Umm al-Qura)</string>
     <string name="recenter">Lokasi saya</string>
     <string name="record_source">Sumber: %1$s, data per %2$s</string>
