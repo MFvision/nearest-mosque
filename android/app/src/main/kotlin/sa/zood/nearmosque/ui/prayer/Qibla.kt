@@ -74,6 +74,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.semantics.contentDescription
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.Angles
 import sa.zood.nearmosque.core.CompassState
@@ -144,22 +146,6 @@ internal fun DrawScope.drawBrandArrow(c: Offset, h: Float, body: Color, facet: C
 }
 
 /**
- * A short label laid along the outside of a ring, tangent to it: on the left it reads bottom to top, on
- * the right top to bottom ([angle] in degrees clockwise from the top; [center] and [radius] in pixels).
- */
-@Composable
-internal fun RingSideLabel(angle: Float, radius: Float, center: Offset, content: @Composable () -> Unit) {
-    val a = Math.toRadians(angle.toDouble())
-    val at = Offset(center.x + radius * sin(a).toFloat(), center.y - radius * cos(a).toFloat())
-    Box(
-        Modifier.layout { m, c ->
-            val p = m.measure(c.copy(minWidth = 0, minHeight = 0))
-            layout(c.maxWidth, c.maxHeight) { p.place((at.x - p.width / 2f).roundToInt(), (at.y - p.height / 2f).roundToInt()) }
-        }.graphicsLayer { rotationZ = if (angle < 180f) angle else angle - 360f },
-    ) { content() }
-}
-
-/**
  * The Qibla ring, after the reference: a thin glass ring with the Kaaba (the logo's cube) fixed at the
  * top and the logo's arrow in the middle pointing to the Qibla. A gold dot on the ring marks the Qibla
  * with a dotted line towards the middle, and a glowing stretch of ring runs from the dot to the Kaaba:
@@ -170,6 +156,8 @@ internal fun RingSideLabel(angle: Float, radius: Float, center: Offset, content:
 fun QiblaRing(
     angle: Double, aligned: Boolean, guidance: String, modifier: Modifier = Modifier,
     kaabaDistance: String? = null, nearest: String? = null, onNearest: (() -> Unit)? = null,
+    /** Short guidance (with a live compass) curves along the ring; the longer no-compass note stays straight. */
+    curveGuidance: Boolean = true,
 ) {
     val shown = turning(angle)
     val dark = LocalSky.current.dark
@@ -206,22 +194,29 @@ fun QiblaRing(
                     .border(if (aligned) 3.dp else 1.5.dp, if (aligned) Tokens.gold else Color.White, CircleShape)
                     .padding(9.dp),
             ) { Image(painterResource(R.drawable.logo_body), contentDescription = null) }
-            CompositionLocalProvider(LocalLayoutDirection provides outer) {
-                Text(
-                    guidance, color = Accent, textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-                    modifier = Modifier.align(Alignment.TopCenter).padding(top = with(density) { (c.y + r * 0.52f).toDp() })
-                        .widthIn(max = with(density) { (r * 1.4f).toDp() }).semantics { liveRegion = LiveRegionMode.Polite },
-                )
-                val labelR = r + with(density) { 18.dp.toPx() }
-                kaabaDistance?.let {
-                    RingSideLabel(250f, labelR, c) {
-                        Text(it, color = Ink.copy(alpha = 0.8f), style = MaterialTheme.typography.labelMedium, maxLines = 1)
-                    }
+            val accent = Accent
+            if (curveGuidance) {
+                // Plain words along the inside of the ring, below the arrow.
+                val gp = curvedPaint(18.sp, bold = true, color = accent)
+                Canvas(Modifier.fillMaxSize().semantics { contentDescription = guidance; liveRegion = LiveRegionMode.Polite }) {
+                    drawCurvedText(guidance, gp, c, r * 0.74f, 180f, outside = false)
                 }
-                if (nearest != null && onNearest != null) {
-                    RingSideLabel(110f, labelR, c) { NearestLabel(nearest, onNearest) }
+            } else {
+                CompositionLocalProvider(LocalLayoutDirection provides outer) {
+                    Text(
+                        guidance, color = accent, textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
+                        modifier = Modifier.align(Alignment.TopCenter).padding(top = with(density) { (c.y + r * 0.52f).toDp() })
+                            .widthIn(max = with(density) { (r * 1.4f).toDp() }).semantics { liveRegion = LiveRegionMode.Polite },
+                    )
                 }
+            }
+            val labelR = r + with(density) { 12.dp.toPx() }
+            kaabaDistance?.let {
+                CurvedSideLabel(it, Ink.copy(alpha = 0.85f), c, labelR, 250f, icon = painterResource(R.drawable.logo_body))
+            }
+            if (nearest != null && onNearest != null) {
+                CurvedSideLabel(nearest, accent, c, labelR, 110f, icon = painterResource(R.drawable.ic_tab_mosque), bold = true, onClick = onNearest)
             }
         }
     }
@@ -294,6 +289,7 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
                     kaabaDistance = ui.qiblaDistance?.let { stringResource(R.string.qibla_distance, Format.distance(context, it)) },
                     nearest = n?.let { stringResource(R.string.nearest_mosque_chip, Format.distance(context, it.distanceMeters)) },
                     onNearest = n?.let { { mosque = it } },
+                    curveGuidance = compass is CompassState.Live,
                 )
                 Text(
                     stringResource(R.string.qibla_hold_flat) + " · " + stringResource(R.string.qibla_approximate),

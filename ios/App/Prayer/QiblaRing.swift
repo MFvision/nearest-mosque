@@ -19,24 +19,6 @@ struct BrandArrow: Shape {
     }
 }
 
-/// A short label laid along the outside of a ring, tangent to it: on the left it reads bottom to top,
-/// on the right top to bottom (`angle` in degrees clockwise from the top). Geometry never mirrors.
-struct RingSideLabel<Label: View>: View {
-    let angle: Double
-    let radius: CGFloat
-    let center: CGPoint
-    @ViewBuilder var label: Label
-
-    var body: some View {
-        let a = angle * .pi / 180
-        label
-            .fixedSize()
-            // Tangent to the ring: clockwise (reading down) on the right, anticlockwise (reading up) on the left.
-            .rotationEffect(.degrees(angle < 180 ? angle : angle - 360))
-            .position(x: center.x + radius * sin(a), y: center.y - radius * cos(a))
-    }
-}
-
 /// The Qibla ring, after the reference: a thin glass ring with the Kaaba (the logo's cube) fixed at the
 /// top and the logo's arrow in the middle pointing to the Qibla. A gold dot on the ring marks the Qibla
 /// with a dotted line towards the middle, and a glowing stretch of ring runs from the dot to the Kaaba:
@@ -50,6 +32,8 @@ struct QiblaRing: View {
     let angle: Double
     let aligned: Bool
     let guidance: String
+    /// Short guidance (with a live compass) curves along the ring; the longer no-compass note stays straight.
+    var curveGuidance = true
     var kaabaDistance: String?
     var nearest: String?
     var onNearest: (() -> Void)?
@@ -103,30 +87,25 @@ struct QiblaRing: View {
                 .rotationEffect(.degrees(shown))
                 .shadow(color: aligned ? Theme.gold.opacity(0.9) : .black.opacity(0.25), radius: aligned ? 14 : 6)
                 .position(c)
-                Text(guidance).font(.headline).foregroundStyle(Theme.accent).multilineTextAlignment(.center)
-                    .frame(width: r * 1.4)
-                    .position(x: c.x, y: c.y + r * 0.62)
-                    .accessibilityAddTraits(.updatesFrequently)
+                if curveGuidance {
+                    // Plain words along the inside of the ring, below the arrow.
+                    CurvedText(text: guidance, style: .headline, weight: .semibold, color: Theme.accent,
+                               center: c, radius: r * 0.74, angle: 180, outside: false)
+                    Color.clear.frame(width: 1, height: 1).position(c)
+                        .accessibilityElement().accessibilityLabel(guidance).accessibilityAddTraits(.updatesFrequently)
+                } else {
+                    Text(guidance).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.accent).multilineTextAlignment(.center)
+                        .frame(width: r * 1.4)
+                        .position(x: c.x, y: c.y + r * 0.62)
+                        .accessibilityAddTraits(.updatesFrequently)
+                }
                 if let kaabaDistance {
-                    RingSideLabel(angle: 250, radius: r + 18, center: c) {
-                        Label(kaabaDistance, systemImage: "location.north.line").labelStyle(.titleAndIcon)
-                            .font(.caption.weight(.medium)).foregroundStyle(Theme.ink.opacity(0.8))
-                            .environment(\.layoutDirection, l10n.layoutDirection)
-                    }
+                    CurvedSideLabel(text: kaabaDistance, icon: Image("LogoBody"), color: Theme.ink.opacity(0.85),
+                                    center: c, radius: r + 12, angle: 250)
                 }
                 if let nearest, let onNearest {
-                    RingSideLabel(angle: 110, radius: r + 18, center: c) {
-                        Button(action: onNearest) {
-                            HStack(spacing: 4) {
-                                Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 14, height: 14)
-                                Text(nearest)
-                            }
-                            .font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
-                            .padding(.horizontal, 6).frame(minHeight: 32).contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .environment(\.layoutDirection, l10n.layoutDirection)
-                    }
+                    CurvedSideLabel(text: nearest, icon: Image("MosqueTab"), weight: .semibold, color: Theme.accent,
+                                    center: c, radius: r + 12, angle: 110, action: onNearest)
                 }
             }
             .environment(\.layoutDirection, .leftToRight)
@@ -198,6 +177,7 @@ struct QiblaCompassView: View {
                         if let bearing = snap.qiblaBearing {
                             QiblaRing(angle: relative(bearing, compass), aligned: aligned,
                                       guidance: qiblaGuidance(compass, bearing: bearing, l10n: l10n),
+                                      curveGuidance: { if case .live = compass { return true } else { return false } }(),
                                       kaabaDistance: snap.qiblaDistance.map { l10n.t("qibla_distance", Format.distance($0, l10n: l10n)) },
                                       nearest: model.nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) },
                                       onNearest: { mosque = model.nearestMosque })

@@ -257,13 +257,13 @@ fun QiblaArc(
             }
             CompositionLocalProvider(LocalLayoutDirection provides outer) {
                 // Small labels along the sides of the ring: the distance to the Kaaba and the nearest mosque (tappable).
-                val labelR = r + with(density) { 14.dp.toPx() }
+                val labelR = r + with(density) { 10.dp.toPx() }
                 kaabaDistance?.let {
-                    RingSideLabel(250f, labelR, c) {
-                        Text(it, color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.labelSmall, maxLines = 1, modifier = Modifier.clearAndSetSemantics {})
-                    }
+                    CurvedSideLabel(it, Ink.copy(alpha = 0.8f), c, labelR, 250f, icon = painterResource(R.drawable.logo_body), size = 11.sp)
                 }
-                if (nearest != null && onNearest != null) RingSideLabel(110f, labelR, c) { NearestLabel(nearest, onNearest) }
+                if (nearest != null && onNearest != null) {
+                    CurvedSideLabel(nearest, Accent, c, labelR, 110f, icon = painterResource(R.drawable.ic_tab_mosque), bold = true, onClick = onNearest)
+                }
                 // Content starts below the disc (never overlapping it), centred horizontally inside the circle.
                 Box(
                     Modifier.width(with(density) { (r * 1.7f).toDp() }).align(Alignment.TopCenter)

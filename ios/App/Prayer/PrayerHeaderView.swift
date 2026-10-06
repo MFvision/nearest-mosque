@@ -173,25 +173,12 @@ struct QiblaArc<Content: View>: View {
                         .position(x: c.x, y: discY + Theme.discSize / 2 + 14)
                 }
                 if let kaabaDistance {
-                    RingSideLabel(angle: 250, radius: r + 14, center: c) {
-                        Text(kaabaDistance).font(.caption2.weight(.medium)).foregroundStyle(Theme.ink.opacity(0.75))
-                            .environment(\.layoutDirection, l10n.layoutDirection)
-                    }
-                    .accessibilityHidden(true)
+                    CurvedSideLabel(text: kaabaDistance, icon: Image("LogoBody"), style: .caption2, color: Theme.ink.opacity(0.8),
+                                    center: c, radius: r + 10, angle: 250)
                 }
                 if let nearest, let onNearest {
-                    RingSideLabel(angle: 110, radius: r + 14, center: c) {
-                        Button(action: onNearest) {
-                            HStack(spacing: 4) {
-                                Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 13, height: 13)
-                                Text(nearest)
-                            }
-                            .font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
-                            .padding(.horizontal, 6).frame(minHeight: 32).contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .environment(\.layoutDirection, l10n.layoutDirection)
-                    }
+                    CurvedSideLabel(text: nearest, icon: Image("MosqueTab"), weight: .semibold, color: Theme.accent,
+                                    center: c, radius: r + 10, angle: 110, action: onNearest)
                 }
                 // Content starts below the disc (never overlapping it), centred inside the circle.
                 content
