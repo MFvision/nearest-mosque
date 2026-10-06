@@ -1,5 +1,5 @@
 {
-  "description": "Search-field normalization: NFKD, drop nonspacing marks, lowercase, letter map, split on non-letters/digits, light stemming. Displayed text is never normalized.",
+  "description": "Search-field normalization: NFKD, drop nonspacing marks, lowercase, letter map, split on non-letters/digits, light stemming; runs of unspaced scripts (Chinese, Thai, Khmer...) become overlapping two-letter pieces. Displayed text is never normalized.",
   "cases": [
     {
       "id": "arabic-tashkeel",
@@ -29,6 +29,57 @@
         "بالله",
         "مومنين",
         "وضو"
+      ]
+    },
+    {
+      "id": "chinese-pieces",
+      "input": "什么是礼拜？天房 Kaaba",
+      "tokens": [
+        "什么",
+        "么是",
+        "是礼",
+        "礼拜",
+        "天房",
+        "kaaba"
+      ]
+    },
+    {
+      "id": "thai-pieces",
+      "input": "การละหมาด ๕ เวลา",
+      "tokens": [
+        "กา",
+        "าร",
+        "รล",
+        "ละ",
+        "ะห",
+        "หม",
+        "มา",
+        "าด",
+        "๕",
+        "เว",
+        "วล",
+        "ลา"
+      ]
+    },
+    {
+      "id": "khmer-pieces",
+      "input": "ការថ្វាយបង្គំ",
+      "tokens": [
+        "ករ",
+        "រថ",
+        "ថវ",
+        "វយ",
+        "យប",
+        "បង",
+        "ងគ"
+      ]
+    },
+    {
+      "id": "single-ideograph",
+      "input": "礼 拜",
+      "tokens": [
+        "礼",
+        "拜"
       ]
     },
     {

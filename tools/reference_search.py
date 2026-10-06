@@ -62,19 +62,47 @@ def stem(tok):
     return tok
 
 
+# Scripts written without spaces between words (Chinese, Japanese kana, Thai, Lao, Khmer, Myanmar): a run of
+# their letters is indexed as overlapping two-letter pieces, and their spacing vowel signs are dropped like the
+# other marks, so a query matches any text that contains it.
+UNSPACED = [(0x0E00, 0x0EFF), (0x1000, 0x109F), (0x1780, 0x17FF), (0x19E0, 0x19FF), (0x3040, 0x30FF),
+            (0x3400, 0x4DBF), (0x4E00, 0x9FFF), (0xF900, 0xFAFF), (0x20000, 0x2FFFF)]
+
+
+def is_unspaced(c):
+    o = ord(c)
+    return any(lo <= o <= hi for lo, hi in UNSPACED)
+
+
+def pieces(run):
+    return [run] if len(run) == 1 else [run[i:i + 2] for i in range(len(run) - 1)]
+
+
 def normalize(text):
     """Return the list of normalized search tokens for a text."""
     s = unicodedata.normalize("NFKD", text)
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
     s = s.lower()
     s = "".join(CHAR_MAP.get(c, c) for c in s)
-    out, cur = [], []
+    out, cur, run = [], [], []
     for c in s:
         cat = unicodedata.category(c)
+        if is_unspaced(c):
+            if cat == "Mc":
+                continue
+            if cat[0] == "L":
+                if cur:
+                    out.append("".join(cur)); cur = []
+                run.append(c)
+                continue
+        if run:
+            out.extend(pieces("".join(run))); run = []
         if cat[0] == "L" or cat == "Nd":
             cur.append(c)
         elif cur:
             out.append("".join(cur)); cur = []
+    if run:
+        out.extend(pieces("".join(run)))
     if cur:
         out.append("".join(cur))
     return [stem(t) for t in out if t]
@@ -193,6 +221,10 @@ NORMALIZATION_CASES = [
     ("arabic-tashkeel", "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ"),
     ("arabic-hamza-forms", "أإآ ٱلصلاة مُؤمن رئيس"),
     ("arabic-prefixes", "والصلاة بالله للمؤمنين الوضوء"),
+    ("chinese-pieces", "什么是礼拜？天房 Kaaba"),
+    ("thai-pieces", "การละหมาด ๕ เวลา"),
+    ("khmer-pieces", "ការថ្វាយបង្គំ"),
+    ("single-ideograph", "礼 拜"),
     ("arabic-indic-digits", "٢:٢٥٥ و ۱۲۳"),
     ("urdu-letters", "زکوٰۃ روزہ کیسے ہے"),
     ("turkish-dotted", "İMSAK ıslak Abdest nasıl alınır?"),
@@ -246,7 +278,7 @@ def generate():
     out = os.path.join(ROOT, "shared", "fixtures")
     norm = [{"id": cid, "input": text, "tokens": normalize(text)} for cid, text in NORMALIZATION_CASES]
     with open(os.path.join(out, "normalization.json"), "w", encoding="utf-8") as f:
-        json.dump({"description": "Search-field normalization: NFKD, drop nonspacing marks, lowercase, letter map, split on non-letters/digits, light stemming. Displayed text is never normalized.", "cases": norm}, f, ensure_ascii=False, indent=2)
+        json.dump({"description": "Search-field normalization: NFKD, drop nonspacing marks, lowercase, letter map, split on non-letters/digits, light stemming; runs of unspaced scripts (Chinese, Thai, Khmer...) become overlapping two-letter pieces. Displayed text is never normalized.", "cases": norm}, f, ensure_ascii=False, indent=2)
         f.write("\n")
     corpus = Corpus()
     failures = 0

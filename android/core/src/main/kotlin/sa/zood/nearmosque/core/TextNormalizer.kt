@@ -49,18 +49,42 @@ object TextNormalizer {
         }
         val out = ArrayList<String>()
         val cur = StringBuilder()
+        val run = ArrayList<String>()
+        fun flushRun() {
+            if (run.size == 1) out += run[0] else for (k in 0 until run.size - 1) out += run[k] + run[k + 1]
+            run.clear()
+        }
         val s = mapped.toString()
         i = 0
         while (i < s.length) {
             val cp = s.codePointAt(i)
             i += Character.charCount(cp)
             val type = Character.getType(cp)
+            if (isUnspaced(cp)) {
+                if (type == Character.COMBINING_SPACING_MARK.toInt()) continue
+                if (Character.isLetter(cp)) {
+                    if (cur.isNotEmpty()) { out += cur.toString(); cur.setLength(0) }
+                    run += String(Character.toChars(cp))
+                    continue
+                }
+            }
+            if (run.isNotEmpty()) flushRun()
             val keep = Character.isLetter(cp) || type == Character.DECIMAL_DIGIT_NUMBER.toInt()
             if (keep) cur.appendCodePoint(cp) else if (cur.isNotEmpty()) { out += cur.toString(); cur.setLength(0) }
         }
+        if (run.isNotEmpty()) flushRun()
         if (cur.isNotEmpty()) out += cur.toString()
         return out.map(::stem)
     }
+
+    /**
+     * Scripts written without spaces between words (Chinese, Japanese kana, Thai, Lao, Khmer, Myanmar): a run of
+     * their letters is indexed as overlapping two-letter pieces, and their spacing vowel signs are dropped like
+     * the other marks, so a query matches any text that contains it.
+     */
+    private val unspaced = listOf(0x0E00..0x0EFF, 0x1000..0x109F, 0x1780..0x17FF, 0x19E0..0x19FF, 0x3040..0x30FF,
+        0x3400..0x4DBF, 0x4E00..0x9FFF, 0xF900..0xFAFF, 0x20000..0x2FFFF)
+    private fun isUnspaced(cp: Int) = unspaced.any { cp in it }
 
     /** Space-joined tokens stored in the full-text index column. */
     fun searchText(text: String): String = tokens(text).joinToString(" ")
