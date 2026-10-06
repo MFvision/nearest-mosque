@@ -1,5 +1,9 @@
 package sa.zood.nearmosque
 
+import kotlinx.coroutines.flow.distinctUntilChanged
+
+import kotlinx.coroutines.flow.map
+
 import android.app.Application
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +34,12 @@ class NearMosqueApp : Application() {
         Appearance.apply(this)
         container = AppContainer(this)
         container.start()
+        // Widgets follow the city and the calculation settings.
+        container.scope.launch {
+            container.settings.settings.map { it.prayerLocation to it.prayer }.distinctUntilChanged().collect {
+                sa.zood.nearmosque.platform.PrayerWidgets.refresh(this@NearMosqueApp)
+            }
+        }
     }
 }
 

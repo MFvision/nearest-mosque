@@ -304,6 +304,7 @@
     <string name="settings">Settings</string>
     <string name="show_less_detail">Show less</string>
     <string name="show_more_detail">Show more detail</string>
+    <string name="siri_next_prayer">%1$s is at %2$s, in %3$s.</string>
     <string name="site_alifta">Permanent Committee (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadith)</string>
@@ -320,6 +321,9 @@
     <string name="sources_licenses">Sources and licenses</string>
     <string name="stop">Stop</string>
     <string name="straight_line">%1$s straight-line</string>
+    <string name="style_cream">Gold and cream</string>
+    <string name="style_green">Green</string>
+    <string name="style_night">Night sky</string>
     <string name="suggested_questions">You could also ask</string>
     <string name="summary_label">Summary</string>
     <string name="sunrise_not_prayer_note">Sunrise marks the end of Fajr time; it is not a prayer.</string>
@@ -345,4 +349,8 @@
     <string name="view_map">Map</string>
     <string name="walking_route">Walking route · %1$s · %2$s</string>
     <string name="website">Website</string>
+    <string name="widget_choose_city">Open Near Mosque to choose your city</string>
+    <string name="widget_next_description">The next prayer with a countdown</string>
+    <string name="widget_style_title">Widget style</string>
+    <string name="widget_times_description">The next prayer and today\'s times</string>
 </resources>

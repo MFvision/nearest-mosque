@@ -3103,6 +3103,78 @@
       "id": "Menghadap kiblat",
       "fr": "Face à la qibla",
       "es": "De cara a la alquibla"
+    },
+    "siri_next_prayer": {
+      "en": "%1$s is at %2$s, in %3$s.",
+      "ar": "%1$s الساعة %2$s، بعد %3$s.",
+      "ur": "%1$s %2$s بجے ہے، %3$s میں۔",
+      "tr": "%1$s saat %2$s, %3$s sonra.",
+      "id": "%1$s pukul %2$s, %3$s lagi.",
+      "fr": "%1$s est à %2$s, dans %3$s.",
+      "es": "%1$s es a las %2$s, dentro de %3$s."
+    },
+    "widget_next_description": {
+      "en": "The next prayer with a countdown",
+      "ar": "الصلاة القادمة مع العد التنازلي",
+      "ur": "اگلی نماز اور الٹی گنتی",
+      "tr": "Geri sayımla sıradaki namaz",
+      "id": "Salat berikutnya dengan hitung mundur",
+      "fr": "La prochaine prière avec un compte à rebours",
+      "es": "La próxima oración con cuenta atrás"
+    },
+    "widget_times_description": {
+      "en": "The next prayer and today's times",
+      "ar": "الصلاة القادمة ومواقيت اليوم",
+      "ur": "اگلی نماز اور آج کے اوقات",
+      "tr": "Sıradaki namaz ve bugünün vakitleri",
+      "id": "Salat berikutnya dan jadwal hari ini",
+      "fr": "La prochaine prière et les horaires du jour",
+      "es": "La próxima oración y los horarios de hoy"
+    },
+    "widget_style_title": {
+      "en": "Widget style",
+      "ar": "نمط الأداة",
+      "ur": "وجیٹ کا انداز",
+      "tr": "Widget stili",
+      "id": "Gaya widget",
+      "fr": "Style du widget",
+      "es": "Estilo del widget"
+    },
+    "style_cream": {
+      "en": "Gold and cream",
+      "ar": "ذهبي وكريمي",
+      "ur": "سنہرا اور کریم",
+      "tr": "Altın ve krem",
+      "id": "Emas dan krem",
+      "fr": "Or et crème",
+      "es": "Dorado y crema"
+    },
+    "style_green": {
+      "en": "Green",
+      "ar": "أخضر",
+      "ur": "سبز",
+      "tr": "Yeşil",
+      "id": "Hijau",
+      "fr": "Vert",
+      "es": "Verde"
+    },
+    "style_night": {
+      "en": "Night sky",
+      "ar": "سماء الليل",
+      "ur": "رات کا آسمان",
+      "tr": "Gece göğü",
+      "id": "Langit malam",
+      "fr": "Ciel de nuit",
+      "es": "Cielo nocturno"
+    },
+    "widget_choose_city": {
+      "en": "Open Near Mosque to choose your city",
+      "ar": "افتح التطبيق لاختيار مدينتك",
+      "ur": "شہر منتخب کرنے کے لیے ایپ کھولیں",
+      "tr": "Şehrinizi seçmek için uygulamayı açın",
+      "id": "Buka aplikasi untuk memilih kota Anda",
+      "fr": "Ouvrez l'application pour choisir votre ville",
+      "es": "Abra la app para elegir su ciudad"
     }
   }
 }

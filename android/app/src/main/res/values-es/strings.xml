@@ -304,6 +304,7 @@
     <string name="settings">Ajustes</string>
     <string name="show_less_detail">Menos detalles</string>
     <string name="show_more_detail">Más detalles</string>
+    <string name="siri_next_prayer">%1$s es a las %2$s, dentro de %3$s.</string>
     <string name="site_alifta">Comité Permanente</string>
     <string name="site_binothaimeen">Ibn Uthaymin</string>
     <string name="site_dorar">Dorar (hadices)</string>
@@ -320,6 +321,9 @@
     <string name="sources_licenses">Fuentes y licencias</string>
     <string name="stop">Detener</string>
     <string name="straight_line">%1$s en línea recta</string>
+    <string name="style_cream">Dorado y crema</string>
+    <string name="style_green">Verde</string>
+    <string name="style_night">Cielo nocturno</string>
     <string name="suggested_questions">También puede preguntar</string>
     <string name="summary_label">Resumen</string>
     <string name="sunrise_not_prayer_note">El amanecer marca el fin de Fajr; no es una oración.</string>
@@ -345,4 +349,8 @@
     <string name="view_map">Mapa</string>
     <string name="walking_route">Ruta a pie · %1$s · %2$s</string>
     <string name="website">Sitio web</string>
+    <string name="widget_choose_city">Abra la app para elegir su ciudad</string>
+    <string name="widget_next_description">La próxima oración con cuenta atrás</string>
+    <string name="widget_style_title">Estilo del widget</string>
+    <string name="widget_times_description">La próxima oración y los horarios de hoy</string>
 </resources>

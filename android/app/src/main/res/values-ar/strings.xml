@@ -308,6 +308,7 @@
     <string name="settings">الإعدادات</string>
     <string name="show_less_detail">عرض أقل</string>
     <string name="show_more_detail">عرض تفاصيل أكثر</string>
+    <string name="siri_next_prayer">%1$s الساعة %2$s، بعد %3$s.</string>
     <string name="site_alifta">الإفتاء</string>
     <string name="site_binothaimeen">موقع ابن عثيمين</string>
     <string name="site_dorar">الدرر السنية</string>
@@ -324,6 +325,9 @@
     <string name="sources_licenses">المصادر والتراخيص</string>
     <string name="stop">إيقاف</string>
     <string name="straight_line">%1$s بخط مستقيم</string>
+    <string name="style_cream">ذهبي وكريمي</string>
+    <string name="style_green">أخضر</string>
+    <string name="style_night">سماء الليل</string>
     <string name="suggested_questions">يمكنك أن تسأل أيضًا</string>
     <string name="summary_label">خلاصة</string>
     <string name="sunrise_not_prayer_note">الشروق نهاية وقت الفجر، وليس صلاة.</string>
@@ -349,4 +353,8 @@
     <string name="view_map">خريطة</string>
     <string name="walking_route">طريق المشي · %1$s · %2$s</string>
     <string name="website">الموقع</string>
+    <string name="widget_choose_city">افتح التطبيق لاختيار مدينتك</string>
+    <string name="widget_next_description">الصلاة القادمة مع العد التنازلي</string>
+    <string name="widget_style_title">نمط الأداة</string>
+    <string name="widget_times_description">الصلاة القادمة ومواقيت اليوم</string>
 </resources>

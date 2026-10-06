@@ -304,6 +304,7 @@
     <string name="settings">Ayarlar</string>
     <string name="show_less_detail">Daha az</string>
     <string name="show_more_detail">Daha fazla ayrıntı</string>
+    <string name="siri_next_prayer">%1$s saat %2$s, %3$s sonra.</string>
     <string name="site_alifta">Daimi Fetva Kurulu</string>
     <string name="site_binothaimeen">İbn Useymin</string>
     <string name="site_dorar">Dorar (hadis)</string>
@@ -320,6 +321,9 @@
     <string name="sources_licenses">Kaynaklar ve lisanslar</string>
     <string name="stop">Durdur</string>
     <string name="straight_line">Kuş uçuşu %1$s</string>
+    <string name="style_cream">Altın ve krem</string>
+    <string name="style_green">Yeşil</string>
+    <string name="style_night">Gece göğü</string>
     <string name="suggested_questions">Şunu da sorabilirsiniz</string>
     <string name="summary_label">Özet</string>
     <string name="sunrise_not_prayer_note">Güneşin doğuşu imsak vaktinin sonudur; bir namaz değildir.</string>
@@ -345,4 +349,8 @@
     <string name="view_map">Harita</string>
     <string name="walking_route">Yürüyüş rotası · %1$s · %2$s</string>
     <string name="website">Web sitesi</string>
+    <string name="widget_choose_city">Şehrinizi seçmek için uygulamayı açın</string>
+    <string name="widget_next_description">Geri sayımla sıradaki namaz</string>
+    <string name="widget_style_title">Widget stili</string>
+    <string name="widget_times_description">Sıradaki namaz ve bugünün vakitleri</string>
 </resources>

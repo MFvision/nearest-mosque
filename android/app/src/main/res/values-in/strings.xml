@@ -303,6 +303,7 @@
     <string name="settings">Pengaturan</string>
     <string name="show_less_detail">Tampilkan lebih sedikit</string>
     <string name="show_more_detail">Tampilkan detail</string>
+    <string name="siri_next_prayer">%1$s pukul %2$s, %3$s lagi.</string>
     <string name="site_alifta">Lajnah Daimah</string>
     <string name="site_binothaimeen">Ibnu Utsaimin</string>
     <string name="site_dorar">Dorar (hadis)</string>
@@ -319,6 +320,9 @@
     <string name="sources_licenses">Sumber dan lisensi</string>
     <string name="stop">Berhenti</string>
     <string name="straight_line">%1$s garis lurus</string>
+    <string name="style_cream">Emas dan krem</string>
+    <string name="style_green">Hijau</string>
+    <string name="style_night">Langit malam</string>
     <string name="suggested_questions">Anda juga bisa bertanya</string>
     <string name="summary_label">Ringkasan</string>
     <string name="sunrise_not_prayer_note">Terbit menandai akhir waktu Subuh; bukan waktu salat.</string>
@@ -344,4 +348,8 @@
     <string name="view_map">Peta</string>
     <string name="walking_route">Rute jalan kaki · %1$s · %2$s</string>
     <string name="website">Situs web</string>
+    <string name="widget_choose_city">Buka aplikasi untuk memilih kota Anda</string>
+    <string name="widget_next_description">Salat berikutnya dengan hitung mundur</string>
+    <string name="widget_style_title">Gaya widget</string>
+    <string name="widget_times_description">Salat berikutnya dan jadwal hari ini</string>
 </resources>

@@ -304,6 +304,7 @@
     <string name="settings">Réglages</string>
     <string name="show_less_detail">Moins de détails</string>
     <string name="show_more_detail">Plus de détails</string>
+    <string name="siri_next_prayer">%1$s est à %2$s, dans %3$s.</string>
     <string name="site_alifta">Comité permanent</string>
     <string name="site_binothaimeen">Ibn Uthaymin</string>
     <string name="site_dorar">Dorar (hadiths)</string>
@@ -320,6 +321,9 @@
     <string name="sources_licenses">Sources et licences</string>
     <string name="stop">Arrêter</string>
     <string name="straight_line">%1$s à vol d’oiseau</string>
+    <string name="style_cream">Or et crème</string>
+    <string name="style_green">Vert</string>
+    <string name="style_night">Ciel de nuit</string>
     <string name="suggested_questions">Vous pourriez aussi demander</string>
     <string name="summary_label">Résumé</string>
     <string name="sunrise_not_prayer_note">Le lever du soleil marque la fin du Fajr ; ce n’est pas une prière.</string>
@@ -345,4 +349,8 @@
     <string name="view_map">Carte</string>
     <string name="walking_route">Itinéraire à pied · %1$s · %2$s</string>
     <string name="website">Site web</string>
+    <string name="widget_choose_city">Ouvrez l\'application pour choisir votre ville</string>
+    <string name="widget_next_description">La prochaine prière avec un compte à rebours</string>
+    <string name="widget_style_title">Style du widget</string>
+    <string name="widget_times_description">La prochaine prière et les horaires du jour</string>
 </resources>

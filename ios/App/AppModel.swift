@@ -2,6 +2,7 @@ import Foundation
 import NMCore
 import NMData
 import SwiftUI
+import WidgetKit
 
 /// The location prayer times are calculated for: separate from the device position and map centre.
 struct PrayerLocation: Codable, Equatable {
@@ -63,6 +64,9 @@ final class AppModel {
     /// Nearest downloaded mosque to the phone (or to the prayer city), for the prayer screen.
     private(set) var nearestMosque: RankedMosque?
     private var nearestKey: String?
+    /// Set by a widget tap, Siri or a control: the prayer screen opens the Qibla view.
+    var requestQibla = false
+    private var lastShared: SharedState?
 
     var settings: StoredSettings {
         didSet { save() }
@@ -78,6 +82,19 @@ final class AppModel {
 
     private func save() {
         if let data = try? JSONEncoder().encode(settings) { UserDefaults.standard.set(data, forKey: "settings") }
+        shareWithWidgets()
+    }
+
+    /// Gives the widgets and Siri the city, method and language (shared keychain), and refreshes the widgets.
+    func shareWithWidgets() {
+        let s = settings.location.map {
+            SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
+                        prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays)
+        }
+        guard s != lastShared else { return }
+        lastShared = s
+        SharedStore.write(s)
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     var packsRoot: URL? { Bundle.main.url(forResource: "packs", withExtension: nil) }

@@ -304,6 +304,7 @@
     <string name="settings">ترتیبات</string>
     <string name="show_less_detail">کم دکھائیں</string>
     <string name="show_more_detail">مزید تفصیل</string>
+    <string name="siri_next_prayer">%1$s %2$s بجے ہے، %3$s میں۔</string>
     <string name="site_alifta">سعودی افتاء</string>
     <string name="site_binothaimeen">ابن عثیمین</string>
     <string name="site_dorar">الدرر السنیہ</string>
@@ -320,6 +321,9 @@
     <string name="sources_licenses">ماخذ اور لائسنس</string>
     <string name="stop">روکیں</string>
     <string name="straight_line">%1$s سیدھی لکیر میں</string>
+    <string name="style_cream">سنہرا اور کریم</string>
+    <string name="style_green">سبز</string>
+    <string name="style_night">رات کا آسمان</string>
     <string name="suggested_questions">آپ یہ بھی پوچھ سکتے ہیں</string>
     <string name="summary_label">خلاصہ</string>
     <string name="sunrise_not_prayer_note">طلوعِ آفتاب فجر کے وقت کا اختتام ہے، یہ نماز نہیں۔</string>
@@ -345,4 +349,8 @@
     <string name="view_map">نقشہ</string>
     <string name="walking_route">پیدل راستہ · %1$s · %2$s</string>
     <string name="website">ویب سائٹ</string>
+    <string name="widget_choose_city">شہر منتخب کرنے کے لیے ایپ کھولیں</string>
+    <string name="widget_next_description">اگلی نماز اور الٹی گنتی</string>
+    <string name="widget_style_title">وجیٹ کا انداز</string>
+    <string name="widget_times_description">اگلی نماز اور آج کے اوقات</string>
 </resources>

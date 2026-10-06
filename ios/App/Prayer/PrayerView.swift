@@ -120,6 +120,9 @@ struct PrayerView: View {
             #endif
         }
         .onDisappear { model.location.endHeading() }
+        .onChange(of: model.requestQibla, initial: true) { _, asked in
+            if asked { model.requestQibla = false; showCompass = true }
+        }
         .sheet(isPresented: $showCity) { CityPickerView() }
         .sheet(isPresented: $showCalc) { CalculationView() }
         .fullScreenCover(isPresented: $showCompass) { QiblaCompassView() }

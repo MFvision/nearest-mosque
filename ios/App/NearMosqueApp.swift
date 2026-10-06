@@ -57,6 +57,17 @@ struct RootView: View {
         }
         .tint(Theme.gold)
         .modifier(TabBarMinimize())
+        // Widgets: nearmosque://prayer, nearmosque://qibla, nearmosque://ask. Siri and controls: openQibla.
+        .onOpenURL { url in
+            switch url.host {
+            case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
+            case "ask": showAsk = true
+            default: tab = .prayer
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .openQibla)) { _ in openQiblaIfAsked() }
+        .onAppear { openQiblaIfAsked(); model.shareWithWidgets() }
+        .onChange(of: l10n.language) { _, _ in model.shareWithWidgets() }
         .modifier(AskAccessory { showAsk = true })
         .fullScreenCover(isPresented: $showAsk) {
             NavigationStack { AskView(vm: ask) { showAsk = false } }
@@ -74,6 +85,15 @@ struct RootView: View {
                 .environment(\.locale, l10n.locale)
                 .environment(\.layoutDirection, l10n.layoutDirection)
         }
+    }
+}
+
+extension RootView {
+    /// A Siri request or control run before the app was open leaves this flag.
+    fileprivate func openQiblaIfAsked() {
+        guard UserDefaults.standard.bool(forKey: "openQiblaOnLaunch") else { return }
+        UserDefaults.standard.set(false, forKey: "openQiblaOnLaunch")
+        tab = .prayer; showAsk = false; model.requestQibla = true
     }
 }
 

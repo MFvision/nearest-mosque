@@ -92,14 +92,17 @@ enum class Tab(val label: Int, val icon: Int, val horizon: Float) {
  * tab. First launch shows the animated tour.
  */
 @Composable
-fun AppRoot(container: AppContainer, initialTab: Tab = Tab.PRAYER, showOnboarding: Boolean? = null, onboardingPage: Int = 0) {
+fun AppRoot(
+    container: AppContainer, initialTab: Tab = Tab.PRAYER, showOnboarding: Boolean? = null, onboardingPage: Int = 0,
+    route: kotlinx.coroutines.flow.MutableStateFlow<String?>? = null,
+) {
     androidx.compose.runtime.CompositionLocalProvider(sa.zood.nearmosque.LocalAppContainer provides container) {
-        AppRootContent(container, initialTab, showOnboarding, onboardingPage)
+        AppRootContent(container, initialTab, showOnboarding, onboardingPage, route)
     }
 }
 
 @Composable
-private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboarding: Boolean?, onboardingPage: Int) {
+private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboarding: Boolean?, onboardingPage: Int, route: kotlinx.coroutines.flow.MutableStateFlow<String?>?) {
     val factory = remember(container) {
         viewModelFactory {
             initializer { PrayerViewModel(container) }
@@ -118,6 +121,17 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
     var showCalc by rememberSaveable { mutableStateOf(false) }
     var showCompass by rememberSaveable { mutableStateOf(false) }
     val prayer by prayerVm.ui.collectAsStateWithLifecycle()
+    // Widgets and app-icon shortcuts.
+    val asked = route?.collectAsStateWithLifecycle()?.value
+    LaunchedEffect(asked) {
+        when (asked) {
+            "qibla" -> { tab = Tab.PRAYER; under = Tab.PRAYER; showCompass = true }
+            "mosques" -> { tab = Tab.MOSQUES; under = Tab.MOSQUES }
+            "ask" -> tab = Tab.ASK
+            "prayer" -> { tab = Tab.PRAYER; under = Tab.PRAYER }
+        }
+        if (asked != null) route.value = null
+    }
 
     // Heading sensors run only while a compass-bearing screen is visible (and the app is in the foreground).
     val loc = prayer.location?.location
