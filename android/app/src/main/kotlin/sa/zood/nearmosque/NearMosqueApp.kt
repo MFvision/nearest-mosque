@@ -27,6 +27,7 @@ class NearMosqueApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        Appearance.apply(this)
         container = AppContainer(this)
         container.start()
     }
@@ -106,6 +107,23 @@ class AppContainer(
                 runCatching { semantic.ensure() }
             }
         }
+    }
+}
+
+/** Light / dark / same as the phone (Settings). Kept in plain preferences so it applies before the first frame. */
+object Appearance {
+    const val SYSTEM = androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+    const val LIGHT = androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+    const val DARK = androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+    private const val KEY = "appearance"
+
+    fun current(context: Context): Int = context.getSharedPreferences("ui", Context.MODE_PRIVATE).getInt(KEY, SYSTEM)
+
+    fun apply(context: Context) = androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(current(context))
+
+    fun set(context: Context, mode: Int) {
+        context.getSharedPreferences("ui", Context.MODE_PRIVATE).edit().putInt(KEY, mode).apply()
+        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(mode)
     }
 }
 

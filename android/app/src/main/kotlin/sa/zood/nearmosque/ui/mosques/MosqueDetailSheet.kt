@@ -1,5 +1,7 @@
 package sa.zood.nearmosque.ui.mosques
 
+import sa.zood.nearmosque.ui.theme.Accent
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -70,7 +72,7 @@ fun MosqueDetailSheet(r: RankedMosque, favorite: Boolean, onToggleFavorite: () -
                 if (m.packId.startsWith("mosques.")) {
                     IconToggleButton(checked = favorite, onCheckedChange = { onToggleFavorite() }) {
                         Icon(
-                            Icons.Filled.Star, tint = if (favorite) Tokens.gold else LocalExtraColors.current.textSecondary,
+                            Icons.Filled.Star, tint = if (favorite) Accent else LocalExtraColors.current.textSecondary,
                             contentDescription = stringResource(if (favorite) R.string.favorite_remove else R.string.favorite_add),
                         )
                     }

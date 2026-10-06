@@ -75,16 +75,16 @@ struct PartsReader: View {
             } else {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
-                        if let t = libraryTypeLabel(chunk, l10n) { Text(t).font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold) }
+                        if let t = libraryTypeLabel(chunk, l10n) { Text(t).font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent) }
                         Text(libraryTitle(chunk, l10n)).font(.title2.bold())
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .environment(\.layoutDirection, isRTL(chunk.original.lang) ? .rightToLeft : .leftToRight)
                         ForEach(Array(parts.enumerated()), id: \.offset) { _, p in
-                            if let l = label(p.kind) { Text(l).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.gold).padding(.top, 6) }
+                            if let l = label(p.kind) { Text(l).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.accent).padding(.top, 6) }
                             Text(p.text)
-                                .font(p.kind == "verse" ? .system(size: 22) : (p.kind == "footnotes" ? .footnote : .system(size: 18)))
+                                .font(p.kind == "verse" ? .title2 : (p.kind == "footnotes" ? .footnote : .title3))
                                 .lineSpacing(p.kind == "verse" ? 10 : 7)
-                                .foregroundStyle(.white.opacity(p.kind == "footnotes" ? 0.8 : 1))
+                                .foregroundStyle(Theme.ink.opacity(p.kind == "footnotes" ? 0.8 : 1))
                                 .textSelection(.enabled)
                                 .multilineTextAlignment(.leading)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -99,11 +99,11 @@ struct PartsReader: View {
                             if let src = s?.source, !src.isEmpty { Text(l10n.t("library_source", src)) }
                             if let pub = libraryPublisherLine(chunk, l10n) { Text(pub) }
                         }
-                        .font(.caption).foregroundStyle(.white.opacity(0.75))
+                        .font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
                     }
                     .padding(20)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Theme.ink)
                 .background(Color(hex: 0x0B1220).ignoresSafeArea())
             }
         }

@@ -20,6 +20,10 @@
     <string name="answer_search_more_note">Opens the site in your browser with your question.</string>
     <string name="answer_searching">Searching your books…</string>
     <string name="app_name">Near Mosque</string>
+    <string name="appearance">Appearance</string>
+    <string name="appearance_dark">Dark</string>
+    <string name="appearance_light">Light</string>
+    <string name="appearance_system">Same as phone</string>
     <string name="ask_follow_up_placeholder">Ask a follow-up…</string>
     <string name="ask_placeholder">Type your question…</string>
     <string name="ask_send">Ask</string>

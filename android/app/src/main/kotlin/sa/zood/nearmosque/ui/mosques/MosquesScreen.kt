@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.mosques
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import android.Manifest
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -118,10 +122,10 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
         Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
             GlassIconButton(
                 painterResource(if (ui.favoritesOnly) R.drawable.ic_star_filled else R.drawable.ic_star_outline), stringResource(R.string.favorites),
-                onClick = { vm.setFavoritesOnly(!ui.favoritesOnly) }, tint = if (ui.favoritesOnly) Tokens.gold else Color.White,
+                onClick = { vm.setFavoritesOnly(!ui.favoritesOnly) }, tint = if (ui.favoritesOnly) Accent else Ink,
             )
             Text(
-                stringResource(R.string.tab_mosques), Modifier.weight(1f).semantics { heading() }, color = Color.White,
+                stringResource(R.string.tab_mosques), Modifier.weight(1f).semantics { heading() }, color = Ink,
                 style = MaterialTheme.typography.titleMedium, textAlign = androidx.compose.ui.text.style.TextAlign.Center,
             )
             GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onOpenSettings)
@@ -139,7 +143,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                             guidance(ui.items, center, heading)?.let { g ->
                                 Spacer(Modifier.height(6.dp))
                                 Text(
-                                    g, color = if (g == stringResource(R.string.mosque_ahead)) Tokens.gold else Color.White,
+                                    g, color = if (g == stringResource(R.string.mosque_ahead)) Accent else Ink,
                                     style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
                                 )
                             }
@@ -148,7 +152,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                         MosqueMap(
                             ui.items, center, device?.location, onSelect = { selected = it }, onSearchHere = { vm.searchAt(it, lang) },
                             modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(Tokens.cardRadius.dp))
-                                .border(1.dp, Color.White.copy(alpha = 0.25f), RoundedCornerShape(Tokens.cardRadius.dp)),
+                                .border(1.dp, Ink.copy(alpha = 0.25f), RoundedCornerShape(Tokens.cardRadius.dp)),
                         )
                     }
                 }
@@ -170,7 +174,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                     NeedLocation(ui.permissionDenied, ui.locating, onAllow = requestLocation, onUseCity = { vm.usePrayerCity(lang) })
                 }
                 ui.loading && ui.items.isEmpty() -> item("loading") {
-                    Box(Modifier.fillMaxWidth().padding(top = 40.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = Color.White) }
+                    Box(Modifier.fillMaxWidth().padding(top = 40.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = Ink) }
                 }
                 ui.items.isNotEmpty() -> {
                     itemsIndexed(ui.items.take(40), key = { _, r -> r.mosque.sourceId }) { i, r ->
@@ -181,7 +185,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                         Text(
                             stringResource(R.string.data_attribution_osm) + (if (online) " · " + stringResource(R.string.source_online_osm) else "") +
                                 (if (ui.mode == 1) " · " + stringResource(R.string.map_attribution_ofm) else ""),
-                            color = Color.White.copy(alpha = 0.6f), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 4.dp),
+                            color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 4.dp),
                         )
                     }
                 }
@@ -231,10 +235,10 @@ private fun StatusRow(ui: MosquesUi, onUseDevice: () -> Unit) {
     }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
-            Text(text, style = MaterialTheme.typography.bodyMedium, color = Color.White)
+            Text(text, style = MaterialTheme.typography.bodyMedium, color = Ink)
             when (ui.online) {
-                OnlineState.SEARCHING -> Text(stringResource(R.string.online_searching), style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.7f))
-                OnlineState.UNAVAILABLE -> Text(stringResource(R.string.online_offline_note), style = MaterialTheme.typography.bodySmall, color = Tokens.gold)
+                OnlineState.SEARCHING -> Text(stringResource(R.string.online_searching), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f))
+                OnlineState.UNAVAILABLE -> Text(stringResource(R.string.online_offline_note), style = MaterialTheme.typography.bodySmall, color = Accent)
                 else -> Unit
             }
         }
@@ -248,9 +252,9 @@ private fun StatusRow(ui: MosquesUi, onUseDevice: () -> Unit) {
 @Composable
 private fun NeedLocation(denied: Boolean, locating: Boolean, onAllow: () -> Unit, onUseCity: () -> Unit) {
     GlassCard(padding = 20.dp) {
-        Text(stringResource(R.string.mosques_need_location_title), style = MaterialTheme.typography.titleLarge, color = Color.White, modifier = Modifier.semantics { heading() })
+        Text(stringResource(R.string.mosques_need_location_title), style = MaterialTheme.typography.titleLarge, color = Ink, modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(4.dp))
-        Text(stringResource(if (denied) R.string.location_denied else R.string.mosques_need_location_body), style = MaterialTheme.typography.bodyLarge, color = Color.White.copy(alpha = 0.85f))
+        Text(stringResource(if (denied) R.string.location_denied else R.string.mosques_need_location_body), style = MaterialTheme.typography.bodyLarge, color = Ink.copy(alpha = 0.85f))
         Spacer(Modifier.height(14.dp))
         GlassButton(onClick = onAllow, prominent = true, enabled = !locating, modifier = Modifier.fillMaxWidth()) {
             GlassButtonText(stringResource(if (locating) R.string.locating else R.string.allow_location), painterResource(R.drawable.ic_pin))
@@ -263,9 +267,9 @@ private fun NeedLocation(denied: Boolean, locating: Boolean, onAllow: () -> Unit
 @Composable
 private fun EmptyState(title: String, body: String) {
     GlassCard {
-        Text(title, style = MaterialTheme.typography.titleMedium, color = Color.White, modifier = Modifier.semantics { heading() })
+        Text(title, style = MaterialTheme.typography.titleMedium, color = Ink, modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(4.dp))
-        Text(body, style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.85f))
+        Text(body, style = MaterialTheme.typography.bodyMedium, color = Ink.copy(alpha = 0.85f))
     }
 }
 
@@ -286,16 +290,16 @@ private fun MosqueCard(r: RankedMosque, nearest: Boolean, favorite: Boolean, sho
             MosquePin(nearest, size = 44.dp)
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
-                if (nearest) Text(stringResource(R.string.nearest_known_mosque), color = Tokens.gold, style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold))
-                Text(name, color = Color.White, style = MaterialTheme.typography.titleMedium.copy(textDirection = DataDirection), maxLines = 2, overflow = TextOverflow.Ellipsis)
-                if (showDistance) Text(stringResource(R.string.straight_line, distance), color = Color.White.copy(alpha = 0.8f), style = MaterialTheme.typography.bodyMedium)
+                if (nearest) Text(stringResource(R.string.nearest_known_mosque), color = Accent, style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold))
+                Text(name, color = Ink, style = MaterialTheme.typography.titleMedium.copy(textDirection = DataDirection), maxLines = 2, overflow = TextOverflow.Ellipsis)
+                if (showDistance) Text(stringResource(R.string.straight_line, distance), color = Ink.copy(alpha = 0.8f), style = MaterialTheme.typography.bodyMedium)
                 when {
-                    m.packId == OnlineMosques.PACK_ID -> Text(stringResource(R.string.source_online_osm), color = Color.White.copy(alpha = 0.6f), style = MaterialTheme.typography.labelSmall)
-                    m.category == MosqueCategory.PRAYER_SPACE -> Text(stringResource(R.string.category_prayer_space), color = Color.White.copy(alpha = 0.6f), style = MaterialTheme.typography.labelSmall)
+                    m.packId == OnlineMosques.PACK_ID -> Text(stringResource(R.string.source_online_osm), color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.labelSmall)
+                    m.category == MosqueCategory.PRAYER_SPACE -> Text(stringResource(R.string.category_prayer_space), color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.labelSmall)
                 }
             }
-            if (favorite) Icon(painterResource(R.drawable.ic_star_filled), contentDescription = null, tint = Tokens.gold, modifier = Modifier.size(18.dp))
-            Icon(rememberVectorPainter(Icons.AutoMirrored.Filled.KeyboardArrowRight), contentDescription = null, tint = Color.White.copy(alpha = 0.6f))
+            if (favorite) Icon(painterResource(R.drawable.ic_star_filled), contentDescription = null, tint = Accent, modifier = Modifier.size(18.dp))
+            Icon(rememberVectorPainter(Icons.AutoMirrored.Filled.KeyboardArrowRight), contentDescription = null, tint = Ink.copy(alpha = 0.6f))
         }
         Spacer(Modifier.height(10.dp))
         GlassButton(onClick = { ExternalActions.directions(context, m.location, name) }, prominent = nearest, modifier = Modifier.fillMaxWidth()) {
@@ -332,15 +336,16 @@ private fun MosqueRadar(items: List<RankedMosque>, center: LatLng, heading: Doub
                 val rad = sqrt(r.distanceMeters / maxD).toFloat() * usable
                 return Offset(rad * sin(b).toFloat(), -rad * cos(b).toFloat())
             }
+            val ink = Ink
             Canvas(Modifier.fillMaxSize()) {
                 val c = this.center
-                for (k in 1..2) drawCircle(Color.White.copy(alpha = 0.16f), size.minDimension / 2 * k / 3f, c, style = Stroke(1.dp.toPx()))
+                for (k in 1..2) drawCircle(ink.copy(alpha = 0.16f), size.minDimension / 2 * k / 3f, c, style = Stroke(1.dp.toPx()))
                 rotate(rotation.value, c) {
                     for (i in 0 until 36) {
                         val major = i % 9 == 0
                         rotate(i * 10f, c) {
                             drawLine(
-                                Color.White.copy(alpha = if (major) 0.8f else 0.3f), Offset(c.x, 4.dp.toPx()),
+                                ink.copy(alpha = if (major) 0.8f else 0.3f), Offset(c.x, 4.dp.toPx()),
                                 Offset(c.x, (if (major) 14 else 9).dp.toPx()), (if (major) 2 else 1).dp.toPx(),
                             )
                         }
@@ -350,7 +355,7 @@ private fun MosqueRadar(items: List<RankedMosque>, center: LatLng, heading: Doub
                     val p = pos(first)
                     drawLine(Tokens.gold, c, c + p, 3.dp.toPx(), StrokeCap.Round, PathEffect.dashPathEffect(floatArrayOf(14f, 14f)))
                 }
-                if (heading != null) drawLine(Color.White, Offset(c.x, -2.dp.toPx()), Offset(c.x, 12.dp.toPx()), 4.dp.toPx(), StrokeCap.Round)
+                if (heading != null) drawLine(ink, Offset(c.x, -2.dp.toPx()), Offset(c.x, 12.dp.toPx()), 4.dp.toPx(), StrokeCap.Round)
             }
             val nr = Math.toRadians(rotation.value.toDouble())
             val nDist = s / 2 - with(density) { 26.dp.toPx() }

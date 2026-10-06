@@ -15,6 +15,7 @@ struct SettingsView: View {
     @State private var message: String?
     @State private var showCity = false
     @State private var showCalc = false
+    @AppStorage("appearance") private var appearance = "system"
 
     var body: some View {
         @Bindable var l10n = l10n
@@ -29,6 +30,15 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.inline)
                 } header: { Text(l10n.t("language")) } footer: { Text(l10n.t("draft_translations_note")) }
+
+                Section(l10n.t("appearance")) {
+                    Picker(l10n.t("appearance"), selection: $appearance) {
+                        Text(l10n.t("appearance_system")).tag("system")
+                        Text(l10n.t("appearance_light")).tag("light")
+                        Text(l10n.t("appearance_dark")).tag("dark")
+                    }
+                    .pickerStyle(.segmented)
+                }
 
                 Section(l10n.t("location_section")) {
                     if let loc = app.settings.location {

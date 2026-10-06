@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.ask
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -106,14 +110,14 @@ fun PartsText(c: SourceChunk) {
         if (verseId != null) verse = container.ask.resolve(listOf(verseId)).firstOrNull()?.let { LibraryParts.Part("verse", "ar", it.chunk.original.text) }
     }
     val parts = listOfNotNull(verse) + LibraryParts.parts(c).filter { it.kind != "title" }
-    val white = Color.White
+    val white = Ink
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp)) {
-        libraryTypeLabel(c)?.let { Text(it, color = Tokens.gold, style = MaterialTheme.typography.labelLarge) }
+        libraryTypeLabel(c)?.let { Text(it, color = Accent, style = MaterialTheme.typography.labelLarge) }
         CompositionLocalProvider(LocalLayoutDirection provides if (rtl(c.original.lang)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
             Text(libraryTitle(c), color = white, style = MaterialTheme.typography.headlineSmall, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
         }
         for (p in parts) {
-            partLabel(p.kind)?.let { Text(it, color = Tokens.gold, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 16.dp)) }
+            partLabel(p.kind)?.let { Text(it, color = Accent, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 16.dp)) }
             CompositionLocalProvider(LocalLayoutDirection provides if (rtl(p.lang)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                 SelectionContainer {
                     Text(

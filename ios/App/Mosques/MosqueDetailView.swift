@@ -39,7 +39,7 @@ struct MosqueDetailView: View {
                     Button {
                         favorite.toggle(); onFavorite(favorite)
                     } label: {
-                        Image(systemName: favorite ? "star.fill" : "star").foregroundStyle(favorite ? Theme.gold : .secondary).frame(width: 44, height: 44)
+                        Image(systemName: favorite ? "star.fill" : "star").foregroundStyle(favorite ? Theme.accent : .secondary).frame(width: 44, height: 44)
                     }
                     .accessibilityLabel(l10n.t(favorite ? "favorite_remove" : "favorite_add"))
                     }

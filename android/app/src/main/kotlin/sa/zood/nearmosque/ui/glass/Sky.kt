@@ -78,15 +78,17 @@ fun SkyBackdrop(sky: Sky, modifier: Modifier = Modifier, horizon: Float = 0.64f,
                 radius = w * 0.7f, center = Offset(w / 2, y0),
             )
         }
-        val cloudTint = lerp(Color.White, glow, 0.35f)
+        // Light skies: softer ridges and lake (the night palette darkens them a lot more).
+        val shade = if (sky.dark) 1f else 0.35f
+        val cloudTint = lerp(Color.White, glow, if (sky.dark) 0.35f else 0.15f)
         translate(left = -w * (0.1f + 0.45f * d), top = y0 * 0.38f) {
             drawClouds(Size(w * 1.7f, y0 * 0.55f), cloudTint, if (stars) 0.35f else 0.8f)
         }
         drawRidge(FAR, Offset(0f, y0 - h * 0.075f), Size(w, h * 0.16f), Brush.verticalGradient(listOf(lerp(mid, glow, 0.22f).copy(alpha = 0.85f), low), startY = y0 - h * 0.075f, endY = y0 + h * 0.085f))
-        if (skyline) drawSkyline(Offset(w * 0.19f, y0 - h * 0.13f), Size(w * 0.62f, h * 0.15f), lerp(low, Color.Black, 0.25f))
-        drawRidge(NEAR, Offset(0f, y0 - h * 0.035f), Size(w, h * 0.12f), Brush.verticalGradient(listOf(lerp(low, Color.Black, 0.18f), lerp(low, Color.Black, 0.18f))))
+        if (skyline) drawSkyline(Offset(w * 0.19f, y0 - h * 0.13f), Size(w * 0.62f, h * 0.15f), lerp(low, Color.Black, 0.25f * shade))
+        drawRidge(NEAR, Offset(0f, y0 - h * 0.035f), Size(w, h * 0.12f), Brush.verticalGradient(listOf(lerp(low, Color.Black, 0.18f * shade), lerp(low, Color.Black, 0.18f * shade))))
         val lakeTop = y0 + h * 0.06f
-        drawRect(Brush.verticalGradient(listOf(lerp(low, glow, 0.12f), lerp(low, Color.Black, 0.2f)), startY = lakeTop, endY = h), topLeft = Offset(0f, lakeTop), size = Size(w, h - lakeTop))
+        drawRect(Brush.verticalGradient(listOf(lerp(low, glow, 0.12f), lerp(low, Color.Black, 0.2f * shade)), startY = lakeTop, endY = h), topLeft = Offset(0f, lakeTop), size = Size(w, h - lakeTop))
         scale(1f, 1.3f, pivot = Offset(w / 2, y0 + h * 0.16f)) {
             drawCircle(
                 Brush.radialGradient(listOf(glow.copy(alpha = 0.32f * (0.75f + 0.25f * tw)), glow.copy(alpha = 0f)), center = Offset(w / 2, y0 + h * 0.16f), radius = w * 0.3f),

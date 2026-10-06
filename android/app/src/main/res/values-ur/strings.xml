@@ -20,6 +20,10 @@
     <string name="answer_search_more_note">آپ کے سوال کے ساتھ ویب سائٹ براؤزر میں کھلتی ہے۔</string>
     <string name="answer_searching">آپ کی کتابوں میں تلاش جاری ہے…</string>
     <string name="app_name">قریبی مسجد</string>
+    <string name="appearance">ظاہری شکل</string>
+    <string name="appearance_dark">گہرا</string>
+    <string name="appearance_light">روشن</string>
+    <string name="appearance_system">فون کے مطابق</string>
     <string name="ask_follow_up_placeholder">مزید پوچھیں…</string>
     <string name="ask_placeholder">اپنا سوال لکھیں…</string>
     <string name="ask_send">پوچھیں</string>

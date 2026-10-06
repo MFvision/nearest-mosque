@@ -28,8 +28,21 @@ struct Sky: Equatable {
     let mid: Color
     let glow: Color
     let low: Color
+    var dark = true
 
-    static func of(_ p: SkyPeriod) -> Sky {
+    static func of(_ p: SkyPeriod, dark: Bool = true) -> Sky {
+        if !dark {
+            // Light appearance (tokens.json "skyLight"): daytime pastels of the same periods.
+            switch p {
+            case .night: return Sky(period: p, top: Color(hex: 0xDCE4F0), mid: Color(hex: 0xE8EDF5), glow: Color(hex: 0xC3D0E6), low: Color(hex: 0xF5F7FB), dark: false)
+            case .fajr: return Sky(period: p, top: Color(hex: 0xE2DEEF), mid: Color(hex: 0xEEE5EE), glow: Color(hex: 0xF2C4B4), low: Color(hex: 0xFBF6F3), dark: false)
+            case .sunrise: return Sky(period: p, top: Color(hex: 0xF7E3C4), mid: Color(hex: 0xFBEEDB), glow: Color(hex: 0xF5C47A), low: Color(hex: 0xFFF9F0), dark: false)
+            case .day: return Sky(period: p, top: Color(hex: 0xD6E7F5), mid: Color(hex: 0xEAF3FA), glow: Color(hex: 0xFBEBC0), low: Color(hex: 0xFFFDF7), dark: false)
+            case .asr: return Sky(period: p, top: Color(hex: 0xF1DDB3), mid: Color(hex: 0xF7EBD2), glow: Color(hex: 0xF0CB7E), low: Color(hex: 0xFFFBF2), dark: false)
+            case .maghrib: return Sky(period: p, top: Color(hex: 0xF3D2C2), mid: Color(hex: 0xF9E3D5), glow: Color(hex: 0xF2A47D), low: Color(hex: 0xFFF6EF), dark: false)
+            case .isha: return Sky(period: p, top: Color(hex: 0xDEE1EF), mid: Color(hex: 0xEBEDF6), glow: Color(hex: 0xC6CBE4), low: Color(hex: 0xF8F8FC), dark: false)
+            }
+        }
         switch p {
         case .night: return Sky(period: p, top: Color(hex: 0x081B29), mid: Color(hex: 0x12304A), glow: Color(hex: 0x2C4C7A), low: Color(hex: 0x0B1A2C))
         case .fajr: return Sky(period: p, top: Color(hex: 0x141E3C), mid: Color(hex: 0x3A3566), glow: Color(hex: 0xC98A8A), low: Color(hex: 0x1E2242))
@@ -41,8 +54,12 @@ struct Sky: Equatable {
         }
     }
 
-    /// Tint for glass over this sky, so white text stays legible where the horizon is bright.
-    var glassTint: Color { low.opacity(0.35) }
+    /// Tint for glass over this sky, so text stays legible where the horizon is bright.
+    var glassTint: Color { dark ? low.opacity(0.35) : Color.white.opacity(0.45) }
+    /// How much the ridges and lake are darkened (much less on the light skies).
+    var shade: Double { dark ? 1 : 0.35 }
+    /// Stars only on the night skies.
+    var showsStars: Bool { dark && period.hasStars }
 }
 
 private struct SkyKey: EnvironmentKey { static let defaultValue = Sky.of(.night) }
@@ -79,7 +96,7 @@ struct SkyBackdrop: View {
                     .init(color: sky.low, location: 1),
                 ], startPoint: .top, endPoint: .bottom)
 
-                if sky.period.hasStars {
+                if sky.showsStars {
                     StarField(seed: 7).opacity(twinkle ? 0.95 : 0.55)
                         .frame(width: w, height: y0 * 0.85)
                     StarField(seed: 31).opacity(twinkle ? 0.45 : 0.9)
@@ -97,10 +114,10 @@ struct SkyBackdrop: View {
                 // The cloud band is wider than the screen: as an overlay it never changes the stack's size
                 // (an oversized child shifted every layer sideways and cut the ridges and lake with a hard edge).
                 Color.clear.frame(width: w, height: h).overlay(alignment: .topLeading) {
-                    CloudBand(tint: Color.white.mix(with: sky.glow, by: 0.35))
+                    CloudBand(tint: Color.white.mix(with: sky.glow, by: sky.dark ? 0.35 : 0.15))
                         .frame(width: w * 1.7, height: y0 * 0.55)
                         .offset(x: drift ? -w * 0.55 : -w * 0.1, y: y0 * 0.38)
-                        .opacity(sky.period.hasStars ? 0.35 : 0.8)
+                        .opacity(sky.showsStars ? 0.35 : 0.8)
                 }
 
                 Ridge(points: Ridge.far)
@@ -109,17 +126,17 @@ struct SkyBackdrop: View {
                     .offset(y: y0 - h * 0.075)
                 if skyline {
                     MosqueSkyline()
-                        .fill(sky.low.mix(with: .black, by: 0.25))
+                        .fill(sky.low.mix(with: .black, by: 0.25 * sky.shade))
                         .frame(width: w * 0.62, height: h * 0.15)
                         .offset(x: w * 0.19, y: y0 - h * 0.13)
                 }
                 Ridge(points: Ridge.near)
-                    .fill(sky.low.mix(with: .black, by: 0.18))
+                    .fill(sky.low.mix(with: .black, by: 0.18 * sky.shade))
                     .frame(width: w, height: h * 0.12)
                     .offset(y: y0 - h * 0.035)
 
                 // Lake with a soft reflection of the glow.
-                LinearGradient(colors: [sky.low.mix(with: sky.glow, by: 0.12), sky.low.mix(with: .black, by: 0.2)], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [sky.low.mix(with: sky.glow, by: 0.12), sky.low.mix(with: .black, by: 0.2 * sky.shade)], startPoint: .top, endPoint: .bottom)
                     .frame(width: w, height: max(0, h - y0 - h * 0.06))
                     .offset(y: y0 + h * 0.06)
                 Circle()
@@ -222,12 +239,13 @@ struct Ridge: Shape {
 /// and the sky in the environment for glass tints.
 struct SkyBackground: ViewModifier {
     @Environment(AppModel.self) private var model
+    @Environment(\.colorScheme) private var scheme
     var horizon: CGFloat = 0.64
     var skyline = false
 
     func body(content: Content) -> some View {
         TimelineView(.everyMinute) { ctx in
-            let sky = Sky.of(model.skyPeriod(now: ctx.date))
+            let sky = Sky.of(model.skyPeriod(now: ctx.date), dark: scheme == .dark)
             content
                 .environment(\.sky, sky)
                 .background { SkyBackdrop(sky: sky, horizon: horizon, skyline: skyline).ignoresSafeArea() }

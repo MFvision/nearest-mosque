@@ -114,7 +114,7 @@ struct AskView: View {
                                     .transition(.move(edge: .bottom).combined(with: .opacity))
                             } else {
                                 HStack(spacing: 10) {
-                                    ProgressView().tint(.white)
+                                    ProgressView().tint(Theme.ink)
                                     Text(l10n.t("answer_searching"))
                                     Spacer()
                                     Button(l10n.t("stop")) { vm.stop() }.glassButton()
@@ -136,7 +136,7 @@ struct AskView: View {
             }
         }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .safeAreaInset(edge: .bottom) { inputBar }
         .skyBackground(horizon: 0.3, skyline: true)
         .toolbar(.hidden, for: .navigationBar)
@@ -174,12 +174,12 @@ struct AskView: View {
     private var intro: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(l10n.t("ask_title")).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
-            Text(l10n.t("ask_subtitle")).foregroundStyle(.white.opacity(0.85))
+            Text(l10n.t("ask_subtitle")).foregroundStyle(Theme.ink.opacity(0.85))
             if LocalAnswerer.availability(language: l10n.language) != .available {
-                Label(l10n.t("ai_pack_not_installed"), systemImage: "lock.shield").font(.footnote).foregroundStyle(.white.opacity(0.75))
+                Label(l10n.t("ai_pack_not_installed"), systemImage: "lock.shield").font(.footnote).foregroundStyle(Theme.ink.opacity(0.75))
             }
             Text(l10n.t("common_questions")).font(.headline).padding(.top, 8).accessibilityAddTraits(.isHeader)
-            if !app.ready { ProgressView().tint(.white) }
+            if !app.ready { ProgressView().tint(Theme.ink) }
             let qs = (try? app.ask?.commonQuestions()) ?? []
             GlassGroup(spacing: 8) {
                 FlowLayout(spacing: 8) {
@@ -240,11 +240,11 @@ struct AnswerCard: View {
             case .common:
                 let q = answer.commonQuestion!
                 Text(q.isReviewed ? l10n.t("answer_common_reviewed", q.reviewedBy ?? "") : l10n.t("answer_common_unreviewed"))
-                    .font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold)
+                    .font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
                 Text(q.summary[l10n.language] ?? q.summary["en"] ?? "")
             case .passages:
                 if let g = answer.generated {
-                    Text(l10n.t("answer_generated_on_device")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold)
+                    Text(l10n.t("answer_generated_on_device")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
                     Text(g)
                 } else {
                     Text(l10n.t("answer_from_passages")).font(.headline)
@@ -252,7 +252,7 @@ struct AnswerCard: View {
                 }
             case .insufficient:
                 if let g = answer.generated {
-                    Text(l10n.t("answer_generated_on_device")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold)
+                    Text(l10n.t("answer_generated_on_device")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
                     Text(g)
                 } else if turn.library.isEmpty {
                     Text(l10n.t("answer_insufficient_title")).font(.headline)
@@ -279,15 +279,15 @@ struct AnswerCard: View {
                     let n = turn.libraryCiteOffset.flatMap { i < turn.libraryCited ? $0 + i + 1 : nil }
                     LibraryCard(item: item, question: turn.question, index: n)
                 }
-                Text(l10n.t("library_note") + " " + l10n.t("library_offline_note")).font(.caption).foregroundStyle(.white.opacity(0.7))
+                Text(l10n.t("library_note") + " " + l10n.t("library_offline_note")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
             }
             if !["ar", "en"].contains(l10n.language), answer.kind != .insufficient {
-                Text(l10n.t("answer_language_note")).font(.caption).foregroundStyle(.white.opacity(0.7))
+                Text(l10n.t("answer_language_note")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
             }
             OtherSourcesRow(question: turn.question)
-            Text(l10n.t("answer_not_fatwa")).font(.caption).foregroundStyle(.white.opacity(0.7))
+            Text(l10n.t("answer_not_fatwa")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard()
     }
 }
@@ -329,7 +329,7 @@ struct OtherSourcesRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(l10n.t("answer_search_more")).font(.caption.weight(.semibold)).foregroundStyle(Theme.gold)
+            Text(l10n.t("answer_search_more")).font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
             FlowLayout(spacing: 8) {
                 ForEach(OtherSources.links(question, lang: l10n.language), id: \.id) { link in
                     Button { openURL(link.url) } label: {
@@ -342,7 +342,7 @@ struct OtherSourcesRow: View {
                     .glass(Capsule())
                 }
             }
-            Text(l10n.t("answer_search_more_note")).font(.caption2).foregroundStyle(.white.opacity(0.6))
+            Text(l10n.t("answer_search_more_note")).font(.caption2).foregroundStyle(Theme.ink.opacity(0.6))
         }
         .padding(.top, 4)
     }

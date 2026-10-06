@@ -1,5 +1,7 @@
 package sa.zood.nearmosque.ui.ask
 
+import sa.zood.nearmosque.ui.theme.Ink
+
 import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
 import android.net.Uri
@@ -96,8 +98,8 @@ fun LibraryReader(c: SourceChunk, mode: LibraryMode, onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
         Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Color.White) }
-                Text(libraryTitle(c), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall, color = Color.White, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
+                Text(libraryTitle(c), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall, color = Ink, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 c.url?.let { url ->
                     TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text(libraryWebLabel(c), color = Color(0xFF8CC0DE))
@@ -130,11 +132,11 @@ private fun PdfReader(c: SourceChunk, url: String) {
     when {
         f != null -> PdfPages(f)
         failed -> Column(Modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(stringResource(R.string.library_download_failed), color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(R.string.library_download_failed), color = Ink, style = MaterialTheme.typography.bodyLarge)
             TextButton(onClick = { attempt++ }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_retry), color = Color(0xFF8CC0DE)) }
         }
         else -> Column(Modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(stringResource(R.string.library_downloading), color = Color.White, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(R.string.library_downloading), color = Ink, style = MaterialTheme.typography.bodyLarge)
             Spacer(Modifier.padding(6.dp))
             if (progress > 0f) LinearProgressIndicator(progress = { progress }, modifier = Modifier.width(220.dp)) else LinearProgressIndicator(Modifier.width(220.dp))
         }
@@ -146,7 +148,7 @@ private fun PdfPages(file: File) {
     val renderer = remember(file) { runCatching { PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)) }.getOrNull() }
     DisposableEffect(renderer) { onDispose { renderer?.close() } }
     if (renderer == null) {
-        Text(stringResource(R.string.library_download_failed), Modifier.padding(24.dp), color = Color.White)
+        Text(stringResource(R.string.library_download_failed), Modifier.padding(24.dp), color = Ink)
         return
     }
     // PdfRenderer allows one open page at a time.
@@ -178,8 +180,8 @@ private fun PdfPages(file: File) {
                 if (b != null) {
                     Image(b.asImageBitmap(), pageLabel, Modifier.fillMaxWidth().aspectRatio(b.width.toFloat() / b.height), contentScale = ContentScale.FillWidth)
                 } else {
-                    Box(Modifier.fillMaxWidth().aspectRatio(0.707f).background(Color.White.copy(alpha = 0.06f)).semantics { contentDescription = pageLabel }, contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(color = Color.White.copy(alpha = 0.6f))
+                    Box(Modifier.fillMaxWidth().aspectRatio(0.707f).background(Ink.copy(alpha = 0.06f)).semantics { contentDescription = pageLabel }, contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator(color = Ink.copy(alpha = 0.6f))
                     }
                 }
             }
@@ -187,7 +189,7 @@ private fun PdfPages(file: File) {
         Text(
             stringResource(R.string.library_page, page, renderer.pageCount),
             Modifier.align(Alignment.BottomCenter).padding(16.dp).background(Color.Black.copy(alpha = 0.6f), RoundedCornerShape(50)).padding(horizontal = 14.dp, vertical = 6.dp),
-            color = Color.White, style = MaterialTheme.typography.labelLarge,
+            color = Ink, style = MaterialTheme.typography.labelLarge,
         )
     }
 }

@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.prayer
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
@@ -128,7 +132,7 @@ fun PrayerHero(ui: PrayerUi, compass: CompassState, aligned: Boolean, onLocation
 @Composable
 private fun Chip(text: String) {
     Text(
-        text, color = Color.White, style = MaterialTheme.typography.labelMedium, maxLines = 1,
+        text, color = Ink, style = MaterialTheme.typography.labelMedium, maxLines = 1,
         modifier = Modifier.glass(RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 12.dp, vertical = 8.dp),
     )
 }
@@ -145,15 +149,15 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, align
             val remaining = PrayerCalculator.remaining(ui.now, next.at)
             val a11y = stringResource(R.string.countdown_a11y, name, time, Format.countdown(context, remaining))
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
-                Text(name, color = Color.White.copy(alpha = 0.92f), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
-                Text(time, color = Color.White, fontSize = 58.sp, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
+                Text(name, color = Ink.copy(alpha = 0.92f), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
+                Text(time, color = Ink, fontSize = 58.sp, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
                 Text(
-                    stringResource(R.string.remaining_long, Format.remainingLong(context, remaining)), color = Color.White.copy(alpha = 0.85f),
+                    stringResource(R.string.remaining_long, Format.remainingLong(context, remaining)), color = Ink.copy(alpha = 0.85f),
                     style = MaterialTheme.typography.bodyLarge.copy(fontFeatureSettings = "tnum"),
                 )
             }
         } else if (ui.location == null) {
-            Text(stringResource(R.string.app_name), color = Color.White, style = MaterialTheme.typography.headlineMedium)
+            Text(stringResource(R.string.app_name), color = Ink, style = MaterialTheme.typography.headlineMedium)
         }
         val bearing = ui.qiblaBearing
         if (bearing != null) {
@@ -166,13 +170,13 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, mode: ArcMode, align
             }
             Spacer(Modifier.size(14.dp))
             Text(
-                text, color = if (aligned) Tokens.gold else Color.White, textAlign = TextAlign.Center,
+                text, color = if (aligned) Accent else Ink, textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
             )
             if (mode == ArcMode.NORTH_UP) {
                 Text(
-                    stringResource(R.string.qibla_from_north_hint), color = Color.White.copy(alpha = 0.75f), textAlign = TextAlign.Center,
+                    stringResource(R.string.qibla_from_north_hint), color = Ink.copy(alpha = 0.75f), textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(horizontal = 24.dp, vertical = 2.dp),
                 )
             }
@@ -202,9 +206,10 @@ fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier 
             val discPx = with(density) { Tokens.discSize.dp.toPx() }
             val discY = discPx / 2 + with(density) { 6.dp.toPx() }
             val c = Offset(wPx / 2, discY + r)
+            val ink = Ink
             Canvas(Modifier.fillMaxSize()) {
                 drawCircle(
-                    Brush.verticalGradient(0f to Color.White.copy(alpha = 0.55f), 0.45f to Color.White.copy(alpha = 0.22f), 0.8f to Color.White.copy(alpha = 0f), startY = c.y - r, endY = c.y + r),
+                    Brush.verticalGradient(0f to ink.copy(alpha = 0.55f), 0.45f to ink.copy(alpha = 0.22f), 0.8f to ink.copy(alpha = 0f), startY = c.y - r, endY = c.y + r),
                     radius = r, center = c, style = Stroke(1.5.dp.toPx()),
                 )
                 val box = Offset(c.x - r, c.y - r)
@@ -215,18 +220,18 @@ fun QiblaArc(angle: Double, mode: ArcMode, aligned: Boolean, modifier: Modifier 
                 }
                 if (mode != ArcMode.NONE) {
                     val rel = Angles.normalize180(shown.value.toDouble()).toFloat()
-                    drawArc(Color.White.copy(alpha = 0.75f), -90f, rel, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
+                    drawArc(ink.copy(alpha = 0.75f), -90f, rel, false, box, sz, style = Stroke(3.dp.toPx(), cap = StrokeCap.Round))
                     val rad = Math.toRadians(shown.value.toDouble())
                     val m = Offset(c.x + r * sin(rad).toFloat(), c.y - r * cos(rad).toFloat())
                     drawCircle(Brush.radialGradient(listOf(Tokens.gold.copy(alpha = 0.6f), Color.Transparent), center = m, radius = 22.dp.toPx()), 22.dp.toPx(), m)
                     drawCircle(Tokens.gold, 10.dp.toPx(), m)
-                    drawCircle(Color.White.copy(alpha = 0.85f), 10.dp.toPx(), m, style = Stroke(2.dp.toPx()))
+                    drawCircle(ink.copy(alpha = 0.85f), 10.dp.toPx(), m, style = Stroke(2.dp.toPx()))
                 }
             }
             LogoDisc(aligned, Modifier.align(Alignment.TopCenter).padding(top = 6.dp))
             if (mode == ArcMode.NORTH_UP) {
                 Text(
-                    stringResource(R.string.compass_north), color = Color.White.copy(alpha = 0.85f), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                    stringResource(R.string.compass_north), color = Ink.copy(alpha = 0.85f), style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     modifier = Modifier.align(Alignment.TopCenter).padding(top = (Tokens.discSize + 12).dp),
                 )
             }
@@ -254,15 +259,15 @@ fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, onExpand: () -> Unit) 
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f)) {
-            Text(stringResource(Format.prayerName(next.event)) + "  " + Format.time(context, next.at, zone), color = Color.White, style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(Format.prayerName(next.event)) + "  " + Format.time(context, next.at, zone), color = Ink, style = MaterialTheme.typography.titleMedium)
             Text(
                 stringResource(R.string.remaining_long, Format.remainingLong(context, PrayerCalculator.remaining(ui.now, next.at))),
-                color = Tokens.gold, style = MaterialTheme.typography.bodyMedium.copy(fontFeatureSettings = "tnum"),
+                color = Accent, style = MaterialTheme.typography.bodyMedium.copy(fontFeatureSettings = "tnum"),
             )
         }
         ui.qiblaBearing?.let { MiniQiblaIndicator(it, compass) }
         Box(Modifier.size(48.dp).clickable(role = Role.Button, onClickLabel = stringResource(R.string.expand), onClick = onExpand), contentAlignment = Alignment.Center) {
-            Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowUp), contentDescription = stringResource(R.string.expand), tint = Color.White)
+            Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowUp), contentDescription = stringResource(R.string.expand), tint = Ink)
         }
     }
 }
@@ -273,10 +278,11 @@ private fun MiniQiblaIndicator(bearing: Double, compass: CompassState) {
     val angle = if (live != null) Angles.relativeToQibla(bearing, live.headingTrue) else bearing
     val label = stringResource(R.string.qibla) + ", " + stringResource(R.string.qibla_bearing, Format.degrees(LocalContext.current, bearing))
     Box(Modifier.size(40.dp).semantics { contentDescription = label }, contentAlignment = Alignment.Center) {
+        val ink = Ink
         Canvas(Modifier.fillMaxSize()) {
-            drawCircle(Color.White.copy(alpha = 0.6f), size.minDimension / 2 - 1.dp.toPx(), style = Stroke(1.5.dp.toPx()))
-            if (live == null) drawCircle(Color.White, 2.dp.toPx(), Offset(center.x, 4.dp.toPx()))
+            drawCircle(ink.copy(alpha = 0.6f), size.minDimension / 2 - 1.dp.toPx(), style = Stroke(1.5.dp.toPx()))
+            if (live == null) drawCircle(ink, 2.dp.toPx(), Offset(center.x, 4.dp.toPx()))
         }
-        Icon(painterResource(R.drawable.ic_directions), contentDescription = null, tint = Tokens.gold, modifier = Modifier.size(18.dp).rotate(angle.toFloat()))
+        Icon(painterResource(R.drawable.ic_directions), contentDescription = null, tint = Accent, modifier = Modifier.size(18.dp).rotate(angle.toFloat()))
     }
 }

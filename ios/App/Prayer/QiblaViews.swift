@@ -38,10 +38,10 @@ struct QiblaDial: View {
                     Circle().fill(Theme.gold.opacity(0.35)).blur(radius: 30).scaleEffect(1.05)
                 }
                 Circle().fill(.clear).glass(Circle())
-                Circle().stroke(.white.opacity(0.35), lineWidth: 1)
+                Circle().stroke(Theme.ink.opacity(0.35), lineWidth: 1)
                 ZStack {
                     ForEach(0..<72, id: \.self) { i in
-                        Rectangle().fill(.white.opacity(i % 18 == 0 ? 0.85 : 0.3))
+                        Rectangle().fill(Theme.ink.opacity(i % 18 == 0 ? 0.85 : 0.3))
                             .frame(width: i % 18 == 0 ? 2 : 1, height: size * (i % 18 == 0 ? 0.06 : 0.03))
                             .offset(y: -size / 2 + size * 0.05)
                             .rotationEffect(.degrees(Double(i) * 5))
@@ -58,7 +58,7 @@ struct QiblaDial: View {
                 .rotationEffect(.degrees(ring))
                 if case .live = compass {
                     // Forward direction of the phone.
-                    Capsule().fill(aligned ? Theme.gold : .white).frame(width: 4, height: 16).offset(y: -size / 2 - 2)
+                    Capsule().fill(aligned ? Theme.gold : Theme.ink).frame(width: 4, height: 16).offset(y: -size / 2 - 2)
                 }
                 Circle().fill(Color(hex: 0x4F8EF7)).frame(width: 16, height: 16)
                     .overlay(Circle().stroke(.white, lineWidth: 3))
@@ -93,7 +93,7 @@ struct QiblaCompassView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(l10n.t("qibla")).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
-                    Text(snap.location?.name ?? "").font(.subheadline).foregroundStyle(.white.opacity(0.8))
+                    Text(snap.location?.name ?? "").font(.subheadline).foregroundStyle(Theme.ink.opacity(0.8))
                 }
                 Spacer()
                 GlassIconButton(systemImage: "xmark", label: l10n.t("close")) { dismiss() }
@@ -102,7 +102,7 @@ struct QiblaCompassView: View {
             if let bearing = snap.qiblaBearing {
                 QiblaDial(bearing: bearing, compass: compass, aligned: aligned).frame(maxWidth: 380).padding(.horizontal, 12)
                 Text(qiblaGuidance(compass, bearing: bearing, l10n: l10n)).font(.title2.weight(.semibold)).multilineTextAlignment(.center)
-                    .foregroundStyle(aligned ? Theme.gold : .white)
+                    .foregroundStyle(aligned ? Theme.accent : Theme.ink)
                     .accessibilityAddTraits(.updatesFrequently)
                 GlassGroup(spacing: 8) {
                     HStack(spacing: 8) {
@@ -112,17 +112,17 @@ struct QiblaCompassView: View {
                 }
                 switch compass {
                 case let .live(_, accuracy, _):
-                    if let a = accuracy { Text(l10n.t("heading_accuracy", Format.degrees(a, locale: l10n.locale))).font(.footnote).foregroundStyle(.white.opacity(0.75)) }
+                    if let a = accuracy { Text(l10n.t("heading_accuracy", Format.degrees(a, locale: l10n.locale))).font(.footnote).foregroundStyle(Theme.ink.opacity(0.75)) }
                 case .bearingOnly:
-                    Text(l10n.t("qibla_north_up")).font(.footnote).foregroundStyle(.white.opacity(0.75))
+                    Text(l10n.t("qibla_north_up")).font(.footnote).foregroundStyle(Theme.ink.opacity(0.75))
                 }
-                Text(l10n.t("qibla_hold_flat") + " · " + l10n.t("qibla_approximate")).font(.footnote).foregroundStyle(.white.opacity(0.75)).multilineTextAlignment(.center)
+                Text(l10n.t("qibla_hold_flat") + " · " + l10n.t("qibla_approximate")).font(.footnote).foregroundStyle(Theme.ink.opacity(0.75)).multilineTextAlignment(.center)
             } else {
                 Text(l10n.t("qibla_location_needed"))
             }
             Spacer(minLength: 0)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .padding(20)
         .skyBackground(horizon: 0.82)
         .sensoryFeedback(.success, trigger: aligned) { _, new in new }

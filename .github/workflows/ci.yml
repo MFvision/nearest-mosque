@@ -158,6 +158,8 @@ jobs:
           xcrun simctl location "$UDID" set -33.9249,18.4241 || true
           xcrun simctl status_bar "$UDID" override --time 9:41 --batteryLevel 100 --cellularBars 4 || true
           mkdir -p shots
+          # The app follows the phone's appearance: shots in light mode first, then a few in dark mode.
+          xcrun simctl ui "$UDID" appearance light || true
           shot() { name=$1; shift
             xcrun simctl terminate "$UDID" sa.zood.nearmosque 2>/dev/null || true
             xcrun simctl launch "$UDID" sa.zood.nearmosque "$@"
@@ -176,6 +178,10 @@ jobs:
           shot 08-mosques-map -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 1 -languageOverride en
           shot 09-ask-answer -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
           shot 10-ask-ar -demoCity "Cape Town" -demoTab ask -languageOverride ar
+          xcrun simctl ui "$UDID" appearance dark || true
+          shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
+          shot 12-mosques-dark -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 0 -languageOverride en
+          shot 13-ask-answer-dark -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
           ls -la shots
           # Contact sheet for quick review.
           python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet pillow

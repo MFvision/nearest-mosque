@@ -20,6 +20,10 @@
     <string name="answer_search_more_note">Siteyi sorunuzla tarayıcıda açar.</string>
     <string name="answer_searching">Kitaplarınızda aranıyor…</string>
     <string name="app_name">Near Mosque</string>
+    <string name="appearance">Görünüm</string>
+    <string name="appearance_dark">Koyu</string>
+    <string name="appearance_light">Açık</string>
+    <string name="appearance_system">Telefonla aynı</string>
     <string name="ask_follow_up_placeholder">Devam sorusu sorun…</string>
     <string name="ask_placeholder">Sorunuzu yazın…</string>
     <string name="ask_send">Sor</string>

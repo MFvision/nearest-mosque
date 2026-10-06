@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.ask
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -69,13 +73,13 @@ fun SourceCard(r: ResolvedCitation, lang: String, onRead: (ResolvedCitation) -> 
     val context = LocalContext.current
     val c = r.chunk
     val original = r.documents[c.original.docId]
-    val white = androidx.compose.ui.graphics.Color.White
+    val white = Ink
     Column(
         Modifier.fillMaxWidth().padding(top = 8.dp)
             .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
     ) {
         Row(verticalAlignment = androidx.compose.ui.Alignment.Top) {
-            androidx.compose.material3.Icon(androidx.compose.ui.res.painterResource(R.drawable.ic_book), contentDescription = null, tint = Tokens.gold, modifier = Modifier.padding(top = 2.dp))
+            androidx.compose.material3.Icon(androidx.compose.ui.res.painterResource(R.drawable.ic_book), contentDescription = null, tint = Accent, modifier = Modifier.padding(top = 2.dp))
             Spacer(Modifier.width(10.dp))
             Column {
                 Text(referenceLabel(c, lang), style = MaterialTheme.typography.titleSmall, color = white)
@@ -86,14 +90,14 @@ fun SourceCard(r: ResolvedCitation, lang: String, onRead: (ResolvedCitation) -> 
             }
         }
         Spacer(Modifier.height(6.dp))
-        Text(stringResource(R.string.exact_quote), style = MaterialTheme.typography.labelSmall, color = Tokens.gold)
+        Text(stringResource(R.string.exact_quote), style = MaterialTheme.typography.labelSmall, color = Accent)
         CompositionLocalProvider(androidx.compose.material3.LocalContentColor provides white) { OriginalText(c.original.text, c.original.lang) }
         c.translations.forEach { t ->
             val doc = r.documents[t.docId]
             Spacer(Modifier.height(6.dp))
             Text(
                 stringResource(R.string.translation_by, listOfNotNull(doc?.translator, doc?.year?.toString()).joinToString(", ")),
-                style = MaterialTheme.typography.labelSmall, color = Tokens.gold,
+                style = MaterialTheme.typography.labelSmall, color = Accent,
             )
             Text(
                 t.text, color = white,
@@ -114,7 +118,7 @@ fun LibraryCard(r: ResolvedCitation) {
     val context = LocalContext.current
     val container = appContainer()
     val c = r.chunk
-    val white = androidx.compose.ui.graphics.Color.White
+    val white = Ink
     val typeLabel = libraryTypeLabel(c)
     val publisherLine = libraryPublisherLine(c)
     val mode = remember(c.id) { LibraryMode.of(c) }
@@ -131,7 +135,7 @@ fun LibraryCard(r: ResolvedCitation) {
         Modifier.fillMaxWidth().padding(top = 8.dp)
             .glass(RoundedCornerShape(20.dp), tint = white.copy(alpha = 0.04f), shadow = 4.dp).padding(14.dp),
     ) {
-        typeLabel?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = Tokens.gold) }
+        typeLabel?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = Accent) }
         publisherLine?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = white.copy(alpha = 0.6f)) }
         CompositionLocalProvider(LocalLayoutDirection provides if (rtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
             Column {
@@ -154,7 +158,7 @@ fun LibraryCard(r: ResolvedCitation) {
                 }
                 val size = c.sectionName("attachmentSize")?.takeIf { mode !is LibraryMode.Web }
                 TextButton(onClick = { reading = true }, modifier = Modifier.heightIn(min = 48.dp)) {
-                    Text(if (size != null) stringResource(R.string.library_file, label, size) else label, color = Tokens.gold)
+                    Text(if (size != null) stringResource(R.string.library_file, label, size) else label, color = Accent)
                 }
             }
             c.url?.let { url -> TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) { Text(libraryWebLabel(c), color = link) } }
@@ -165,7 +169,7 @@ fun LibraryCard(r: ResolvedCitation) {
                 androidx.compose.material3.Icon(
                     androidx.compose.ui.res.painterResource(if (saved) R.drawable.ic_star_filled else R.drawable.ic_star_outline),
                     contentDescription = stringResource(if (saved) R.string.library_unbookmark else R.string.library_bookmark),
-                    tint = if (saved) Tokens.gold else white.copy(alpha = 0.8f),
+                    tint = if (saved) Accent else white.copy(alpha = 0.8f),
                 )
             }
         }
@@ -207,7 +211,7 @@ fun ReaderSheet(r: ResolvedCitation, vm: AskViewModel, onDismiss: () -> Unit) {
                             .background(if (cited) Tokens.gold.copy(alpha = 0.16f) else androidx.compose.ui.graphics.Color.Transparent, RoundedCornerShape(12.dp))
                             .padding(10.dp),
                     ) {
-                        Text(referenceLabel(c, lang), style = MaterialTheme.typography.labelLarge, color = Tokens.gold)
+                        Text(referenceLabel(c, lang), style = MaterialTheme.typography.labelLarge, color = Accent)
                         OriginalText(c.original.text, c.original.lang, emphasized = cited)
                         c.translations.forEach { t ->
                             Text(t.text, style = MaterialTheme.typography.bodyMedium.copy(textDirection = TextDirection.Ltr))

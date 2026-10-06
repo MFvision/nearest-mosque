@@ -3,6 +3,8 @@ import SwiftUI
 @main
 struct NearMosqueApp: App {
     @State private var model = AppModel()
+    /// "system", "light" or "dark" (Settings → Appearance).
+    @AppStorage("appearance") private var appearance = "system"
 
     var body: some Scene {
         WindowGroup {
@@ -11,8 +13,8 @@ struct NearMosqueApp: App {
                 .environment(model.l10n)
                 .environment(\.locale, model.l10n.locale)
                 .environment(\.layoutDirection, model.l10n.layoutDirection)
-                // The app always sits on a sky, so glass and text use the dark appearance.
-                .preferredColorScheme(.dark)
+                // Follows the phone unless Settings → Appearance picks light or dark.
+                .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .task { await model.start() }
         }
     }

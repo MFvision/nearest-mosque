@@ -55,9 +55,9 @@ class ScreenshotTest {
         c
     }
 
-    private fun shoot(name: String, tab: Tab, location: PrayerLocation? = capeTown, onboardingPage: Int? = null, after: () -> Unit = {}) {
+    private fun shoot(name: String, tab: Tab, location: PrayerLocation? = capeTown, onboardingPage: Int? = null, dark: Boolean = true, after: () -> Unit = {}) {
         val c = container(location)
-        compose.setContent { NearMosqueTheme { AppRoot(c, initialTab = tab, showOnboarding = onboardingPage != null, onboardingPage = onboardingPage ?: 0) } }
+        compose.setContent { NearMosqueTheme(dark = dark) { AppRoot(c, initialTab = tab, showOnboarding = onboardingPage != null, onboardingPage = onboardingPage ?: 0) } }
         compose.waitForIdle()
         after()
         compose.waitForIdle()
@@ -65,6 +65,15 @@ class ScreenshotTest {
     }
 
     @Test fun prayerEnglish() = shoot("prayer_en", Tab.PRAYER)
+
+    @Test fun prayerLight() = shoot("prayer_en_light", Tab.PRAYER, dark = false)
+
+    @Test fun mosquesLight() = shoot("mosques_en_light", Tab.MOSQUES, dark = false)
+
+    @Test fun askLight() = shoot("ask_en_light", Tab.ASK, dark = false)
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun prayerArabicLight() = shoot("prayer_ar_light", Tab.PRAYER, dark = false)
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
     fun prayerArabicRtl() = shoot("prayer_ar", Tab.PRAYER)

@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -130,7 +134,7 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
 
     BackHandler(enabled = tab != Tab.PRAYER && !showSettings) { tab = Tab.PRAYER }
 
-    val sky = Sky.of(prayer.sky)
+    val sky = Sky.of(prayer.sky, sa.zood.nearmosque.ui.theme.LocalDark.current)
     val horizon by animateFloatAsState(tab.horizon, spring(dampingRatio = 0.86f, stiffness = 120f), label = "horizon")
     CompositionLocalProvider(LocalSky provides sky) {
         Box(Modifier.fillMaxSize().background(sky.low)) {
@@ -190,9 +194,9 @@ private fun GlassTabBar(selected: Tab, onSelect: (Tab) -> Unit, modifier: Modifi
                     .padding(horizontal = 6.dp, vertical = 6.dp),
                 horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
             ) {
-                Icon(painterResource(t.icon), contentDescription = null, tint = if (on) Tokens.gold else Color.White, modifier = Modifier.size(24.dp))
+                Icon(painterResource(t.icon), contentDescription = null, tint = if (on) Accent else Ink, modifier = Modifier.size(24.dp))
                 Text(
-                    stringResource(t.label), color = if (on) Tokens.gold else Color.White.copy(alpha = 0.9f), maxLines = 1, overflow = TextOverflow.Ellipsis,
+                    stringResource(t.label), color = if (on) Accent else Ink.copy(alpha = 0.9f), maxLines = 1, overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.labelSmall.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Medium, fontSize = 11.sp),
                 )
             }

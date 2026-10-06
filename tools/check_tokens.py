@@ -44,12 +44,21 @@ def main():
             checks.append((f"white on sky {name} {stop}", "FFFFFF", s[stop], 4.5))
         checks.append((f"white on sky {name} mid + 20% glow", "FFFFFF", blend(s["mid"], s["glow"], 0.2), 4.5))
         checks.append((f"white on sky {name} low + 25% glow", "FFFFFF", blend(s["low"], s["glow"], 0.25), 4.5))
+    for name, sky in t.get("skyLight", {}).items():
+        if name.startswith("_"):
+            continue
+        s = {k: v.lstrip("#").upper() for k, v in sky.items()}
+        for ink in ("textLight", "goldInk", "textSecondaryLight"):
+            for stop in ("top", "mid", "low"):
+                checks.append((f"{ink} on light sky {name} {stop}", col[ink], s[stop], 4.5))
+            checks.append((f"{ink} on light sky {name} mid + 20% glow", col[ink], blend(s["mid"], s["glow"], 0.2), 4.5))
+            checks.append((f"{ink} on light sky {name} low + 25% glow", col[ink], blend(s["low"], s["glow"], 0.25), 4.5))
     for name, a, b, need in checks:
         r = ratio(a, b)
         if r < need:
             errors.append(f"{name}: {r:.2f} < {need}")
 
-    sky_hex = {c.lstrip("#").upper() for k, v in t["sky"].items() if not k.startswith("_") for c in v.values()}
+    sky_hex = {c.lstrip("#").upper() for group in ("sky", "skyLight") for k, v in t.get(group, {}).items() if not k.startswith("_") for c in v.values()}
     kt = open(os.path.join(ROOT, "android/app/src/main/kotlin/sa/zood/nearmosque/ui/theme/Theme.kt")).read()
     sw = "".join(open(os.path.join(ROOT, "ios/App/Support", f)).read() for f in ("Theme.swift", "Sky.swift"))
     used_kt = {m.upper() for m in re.findall(r"0xFF([0-9A-Fa-f]{6})", kt)}

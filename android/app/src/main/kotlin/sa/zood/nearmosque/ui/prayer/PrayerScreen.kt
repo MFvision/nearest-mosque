@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.prayer
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import android.Manifest
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -120,7 +124,7 @@ fun PrayerScreen(
             if (ui.today?.status is ScheduleStatus.Estimated) {
                 item("estimated") {
                     Text(
-                        stringResource(R.string.estimated_badge), color = Tokens.gold, style = MaterialTheme.typography.labelLarge,
+                        stringResource(R.string.estimated_badge), color = Accent, style = MaterialTheme.typography.labelLarge,
                         modifier = Modifier.glass(RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 14.dp, vertical = 8.dp),
                     )
                 }
@@ -157,9 +161,9 @@ fun PrayerScreen(
 @Composable
 private fun ChooseLocationCard(locating: Boolean, error: String?, onUseLocation: () -> Unit, onPickCity: () -> Unit) {
     GlassCard(padding = 20.dp) {
-        Text(stringResource(R.string.choose_city_title), style = MaterialTheme.typography.titleLarge, color = Color.White, modifier = Modifier.semantics { heading() })
+        Text(stringResource(R.string.choose_city_title), style = MaterialTheme.typography.titleLarge, color = Ink, modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(6.dp))
-        Text(stringResource(R.string.choose_city_body), style = MaterialTheme.typography.bodyLarge, color = Color.White.copy(alpha = 0.85f))
+        Text(stringResource(R.string.choose_city_body), style = MaterialTheme.typography.bodyLarge, color = Ink.copy(alpha = 0.85f))
         Spacer(Modifier.height(16.dp))
         GlassButton(onClick = onUseLocation, prominent = true, enabled = !locating, modifier = Modifier.fillMaxWidth()) {
             if (locating) {
@@ -183,9 +187,9 @@ private fun ChooseLocationCard(locating: Boolean, error: String?, onUseLocation:
 private fun ZoneConfirmCard(loc: PrayerLocation, onConfirm: () -> Unit, onChange: () -> Unit) {
     val context = LocalContext.current
     GlassCard {
-        Text(stringResource(R.string.confirm_time_zone_title), style = MaterialTheme.typography.titleMedium, color = Color.White)
+        Text(stringResource(R.string.confirm_time_zone_title), style = MaterialTheme.typography.titleMedium, color = Ink)
         Spacer(Modifier.height(4.dp))
-        Text(stringResource(R.string.confirm_time_zone_body, Format.zoneName(context, loc.zoneId)), style = MaterialTheme.typography.bodyMedium, color = Color.White)
+        Text(stringResource(R.string.confirm_time_zone_body, Format.zoneName(context, loc.zoneId)), style = MaterialTheme.typography.bodyMedium, color = Ink)
         Spacer(Modifier.height(10.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             GlassButton(onClick = onConfirm, prominent = true) { GlassButtonText(stringResource(R.string.use_this_time_zone)) }
@@ -197,9 +201,9 @@ private fun ZoneConfirmCard(loc: PrayerLocation, onConfirm: () -> Unit, onChange
 @Composable
 private fun PolarCard(onUseNearest: () -> Unit) {
     GlassCard {
-        Text(stringResource(R.string.polar_unavailable_title), style = MaterialTheme.typography.titleMedium, color = Color.White)
+        Text(stringResource(R.string.polar_unavailable_title), style = MaterialTheme.typography.titleMedium, color = Ink)
         Spacer(Modifier.height(4.dp))
-        Text(stringResource(R.string.polar_unavailable_body), style = MaterialTheme.typography.bodyMedium, color = Color.White)
+        Text(stringResource(R.string.polar_unavailable_body), style = MaterialTheme.typography.bodyMedium, color = Ink)
         Spacer(Modifier.height(10.dp))
         GlassButton(onClick = onUseNearest, prominent = true) { GlassButtonText(stringResource(R.string.polar_use_nearest)) }
     }
@@ -222,7 +226,7 @@ private fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleRemi
     val zone = today.zone
     GlassCard(padding = 10.dp) {
         Text(
-            stringResource(R.string.todays_times), style = MaterialTheme.typography.titleSmall, color = Color.White.copy(alpha = 0.8f),
+            stringResource(R.string.todays_times), style = MaterialTheme.typography.titleSmall, color = Ink.copy(alpha = 0.8f),
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).semantics { heading() },
         )
         PrayerEvent.entries.forEachIndexed { i, e ->
@@ -230,7 +234,7 @@ private fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleRemi
             val isNext = ui.next?.event == e && !ui.next.isTomorrow
             val name = stringResource(Format.prayerName(e))
             val nextDay = at.atZone(zone).toLocalDate().isAfter(today.date)
-            val fg = if (isNext) Tokens.gold else if (e.isPrayer) Color.White else Color.White.copy(alpha = 0.7f)
+            val fg = if (isNext) Accent else if (e.isPrayer) Ink else Ink.copy(alpha = 0.7f)
             Row(
                 Modifier.fillMaxWidth().heightIn(min = 54.dp)
                     .then(
@@ -246,7 +250,7 @@ private fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleRemi
                 if (isNext) {
                     Spacer(Modifier.width(8.dp))
                     Text(
-                        stringResource(R.string.upcoming), color = Tokens.gold, style = MaterialTheme.typography.labelSmall,
+                        stringResource(R.string.upcoming), color = Accent, style = MaterialTheme.typography.labelSmall,
                         modifier = Modifier.border(1.dp, Tokens.gold.copy(alpha = 0.7f), RoundedCornerShape(50)).padding(horizontal = 8.dp, vertical = 3.dp),
                     )
                 }
@@ -265,18 +269,18 @@ private fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleRemi
                     ) {
                         Icon(
                             painterResource(if (on) R.drawable.ic_bell else R.drawable.ic_bell_off), contentDescription = null,
-                            tint = if (on) Tokens.gold else Color.White.copy(alpha = 0.55f), modifier = Modifier.size(18.dp),
+                            tint = if (on) Accent else Ink.copy(alpha = 0.55f), modifier = Modifier.size(18.dp),
                         )
                     }
                 } else {
                     Spacer(Modifier.width(48.dp))
                 }
             }
-            if (i < PrayerEvent.entries.size - 1 && !isNext) HorizontalDivider(Modifier.padding(horizontal = 10.dp), color = Color.White.copy(alpha = 0.10f))
+            if (i < PrayerEvent.entries.size - 1 && !isNext) HorizontalDivider(Modifier.padding(horizontal = 10.dp), color = Ink.copy(alpha = 0.10f))
         }
         Text(
             stringResource(R.string.sunrise_not_prayer_note), Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 4.dp),
-            style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.7f),
+            style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f),
         )
     }
 }
@@ -288,14 +292,14 @@ private fun DatesCard(ui: PrayerUi, onOpenCalculation: () -> Unit) {
     val date = ui.now.atZone(loc.zoneId).toLocalDate()
     val adj = ui.settings?.prayer?.hijriAdjustmentDays ?: 0
     GlassCard {
-        Text(Format.gregorian(context, date), style = MaterialTheme.typography.titleMedium, color = Color.White)
-        Format.hijri(context, date, adj)?.let { Text(it, style = MaterialTheme.typography.bodyLarge, color = Tokens.gold) }
-        Text(stringResource(R.string.hijri_calendar_note), style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.7f))
-        HorizontalDivider(Modifier.padding(vertical = 10.dp), color = Color.White.copy(alpha = 0.18f))
+        Text(Format.gregorian(context, date), style = MaterialTheme.typography.titleMedium, color = Ink)
+        Format.hijri(context, date, adj)?.let { Text(it, style = MaterialTheme.typography.bodyLarge, color = Accent) }
+        Text(stringResource(R.string.hijri_calendar_note), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f))
+        HorizontalDivider(Modifier.padding(vertical = 10.dp), color = Ink.copy(alpha = 0.18f))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                ui.settings?.prayer?.method?.let { Text(stringResource(Format.methodName(it)), style = MaterialTheme.typography.bodyMedium, color = Color.White) }
-                Text(stringResource(R.string.time_zone_label, Format.zoneName(context, loc.zoneId)), style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.7f))
+                ui.settings?.prayer?.method?.let { Text(stringResource(Format.methodName(it)), style = MaterialTheme.typography.bodyMedium, color = Ink) }
+                Text(stringResource(R.string.time_zone_label, Format.zoneName(context, loc.zoneId)), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f))
             }
             Spacer(Modifier.width(8.dp))
             GlassButton(onClick = onOpenCalculation) { GlassButtonText(stringResource(R.string.calculation)) }

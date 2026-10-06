@@ -20,6 +20,10 @@
     <string name="answer_search_more_note">Membuka situs di peramban dengan pertanyaan Anda.</string>
     <string name="answer_searching">Mencari di buku Anda…</string>
     <string name="app_name">Near Mosque</string>
+    <string name="appearance">Tampilan</string>
+    <string name="appearance_dark">Gelap</string>
+    <string name="appearance_light">Terang</string>
+    <string name="appearance_system">Sama seperti ponsel</string>
     <string name="ask_follow_up_placeholder">Ajukan pertanyaan lanjutan…</string>
     <string name="ask_placeholder">Ketik pertanyaan Anda…</string>
     <string name="ask_send">Tanya</string>

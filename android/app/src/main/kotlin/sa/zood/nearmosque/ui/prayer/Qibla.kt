@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.prayer
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import android.provider.Settings
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
@@ -98,15 +102,16 @@ fun QiblaDial(bearing: Double, compass: CompassState, aligned: Boolean, modifier
     }
     val north = stringResource(R.string.compass_north)
     val desc = stringResource(R.string.qibla_dial_a11y, stringResource(R.string.qibla_bearing, Format.degrees(context, bearing)))
-    val onSurface = Color.White
+    val onSurface = Ink
     val kaaba = painterResource(R.drawable.ic_kaaba)
     val textPaint = remember { android.graphics.Paint().apply { isAntiAlias = true; textAlign = android.graphics.Paint.Align.CENTER } }
+    val ink = Ink
     Canvas(modifier.aspectRatio(1f).semantics { contentDescription = desc }) {
         val c = Offset(size.width / 2, size.height / 2)
         val r = size.minDimension / 2 - 4.dp.toPx()
         if (aligned) drawCircle(Brush.radialGradient(listOf(Tokens.gold.copy(alpha = 0.45f), Color.Transparent), c, r * 1.05f), r * 1.05f, c)
-        drawCircle(Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.16f), Color.White.copy(alpha = 0.05f))), r, c)
-        drawCircle(Brush.linearGradient(listOf(Color.White.copy(alpha = 0.55f), Color.White.copy(alpha = 0.08f), Color.White.copy(alpha = 0.25f))), r, c, style = Stroke(1.dp.toPx()))
+        drawCircle(Brush.verticalGradient(listOf(ink.copy(alpha = 0.16f), ink.copy(alpha = 0.05f))), r, c)
+        drawCircle(Brush.linearGradient(listOf(ink.copy(alpha = 0.55f), ink.copy(alpha = 0.08f), ink.copy(alpha = 0.25f))), r, c, style = Stroke(1.dp.toPx()))
         rotate(ring.value, c) {
             ticks(c, r, onSurface)
             textPaint.color = android.graphics.Color.argb(255, 242, 184, 181)
@@ -117,13 +122,13 @@ fun QiblaDial(bearing: Double, compass: CompassState, aligned: Boolean, modifier
                 val tip = Offset(c.x, c.y - r * 0.62f)
                 drawLine(Brush.verticalGradient(listOf(Tokens.gold, Tokens.gold.copy(alpha = 0.15f)), startY = tip.y, endY = c.y), c, tip, 3.dp.toPx(), StrokeCap.Round)
                 val k = r * 0.26f
-                drawCircle(Color.White.copy(alpha = 0.9f), k * 0.72f, Offset(c.x, c.y - r * 0.74f))
+                drawCircle(ink.copy(alpha = 0.9f), k * 0.72f, Offset(c.x, c.y - r * 0.74f))
                 translate(c.x - k / 2, c.y - r * 0.74f - k / 2) { with(kaaba) { draw(androidx.compose.ui.geometry.Size(k, k)) } }
             }
         }
         // Phone's forward direction.
-        if (live != null) drawLine(if (aligned) Tokens.gold else Color.White, Offset(c.x, c.y - r - 2.dp.toPx()), Offset(c.x, c.y - r + 12.dp.toPx()), 4.dp.toPx(), StrokeCap.Round)
-        drawCircle(Color.White, 9.dp.toPx(), c)
+        if (live != null) drawLine(if (aligned) Tokens.gold else ink, Offset(c.x, c.y - r - 2.dp.toPx()), Offset(c.x, c.y - r + 12.dp.toPx()), 4.dp.toPx(), StrokeCap.Round)
+        drawCircle(ink, 9.dp.toPx(), c)
         drawCircle(sa.zood.nearmosque.ui.glass.BLUE, 6.dp.toPx(), c)
     }
 }
@@ -152,8 +157,8 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
         Column(Modifier.fillMaxSize().safeDrawingPadding().padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text(stringResource(R.string.qibla), style = MaterialTheme.typography.headlineMedium, color = Color.White, modifier = Modifier.semantics { heading() })
-                    Text(ui.location?.name.orEmpty(), style = MaterialTheme.typography.bodyLarge, color = Color.White.copy(alpha = 0.8f))
+                    Text(stringResource(R.string.qibla), style = MaterialTheme.typography.headlineMedium, color = Ink, modifier = Modifier.semantics { heading() })
+                    Text(ui.location?.name.orEmpty(), style = MaterialTheme.typography.bodyLarge, color = Ink.copy(alpha = 0.8f))
                 }
                 sa.zood.nearmosque.ui.glass.GlassIconButton(androidx.compose.ui.graphics.vector.rememberVectorPainter(Icons.Filled.Close), stringResource(R.string.close), onClose)
             }
@@ -164,7 +169,7 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
             Spacer(Modifier.height(16.dp))
             Text(
                 guidance(compass, bearing), style = MaterialTheme.typography.headlineSmall, textAlign = TextAlign.Center,
-                color = if (aligned) Tokens.gold else Color.White,
+                color = if (aligned) Accent else Ink,
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
             )
             Spacer(Modifier.height(10.dp))
@@ -177,9 +182,9 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
                 is CompassState.Live -> compass.accuracyDeg?.let { stringResource(R.string.heading_accuracy, it.roundToInt().toString()) }
                 CompassState.BearingOnly -> stringResource(R.string.qibla_north_up)
             }
-            note?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.75f)) }
+            note?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = Ink.copy(alpha = 0.75f)) }
             Spacer(Modifier.height(8.dp))
-            Text(stringResource(R.string.qibla_hold_flat) + " · " + stringResource(R.string.qibla_approximate), style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center, color = Color.White.copy(alpha = 0.75f))
+            Text(stringResource(R.string.qibla_hold_flat) + " · " + stringResource(R.string.qibla_approximate), style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center, color = Ink.copy(alpha = 0.75f))
         }
     }
 }
@@ -187,7 +192,7 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
 @Composable
 private fun InfoChip(text: String) {
     Text(
-        text, color = Color.White, style = MaterialTheme.typography.labelMedium,
+        text, color = Ink, style = MaterialTheme.typography.labelMedium,
         modifier = Modifier.glass(androidx.compose.foundation.shape.RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 12.dp, vertical = 8.dp),
     )
 }

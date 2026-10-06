@@ -114,7 +114,7 @@ struct PrayerView: View {
         let loc = snap.location!
         if snap.today?.status.isEstimated == true {
             Label(l10n.t("estimated_badge"), systemImage: "exclamationmark.circle")
-                .font(.footnote.weight(.semibold)).foregroundStyle(Theme.gold)
+                .font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
                 .padding(.horizontal, 14).padding(.vertical, 8)
                 .glass(Capsule())
         }
@@ -135,7 +135,7 @@ private struct ChooseLocationCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(l10n.t("choose_city_title")).font(.title2.weight(.semibold)).accessibilityAddTraits(.isHeader)
-            Text(l10n.t("choose_city_body")).foregroundStyle(.white.opacity(0.85))
+            Text(l10n.t("choose_city_body")).foregroundStyle(Theme.ink.opacity(0.85))
             GlassGroup {
                 VStack(spacing: 10) {
                     Button {
@@ -160,7 +160,7 @@ private struct ChooseLocationCard: View {
             }
             if let error { Text(error).font(.footnote).foregroundStyle(Color(hex: 0xF2B8B5)) }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard(padding: 20)
     }
 }
@@ -179,7 +179,7 @@ private struct ZoneConfirmCard: View {
                 Button(l10n.t("change"), action: onChange).glassButton()
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard()
     }
 }
@@ -193,7 +193,7 @@ private struct PolarCard: View {
             Text(l10n.t("polar_unavailable_body")).font(.subheadline)
             Button(l10n.t("polar_use_nearest")) { model.settings.prayer.polarRule = .NEAREST_LATITUDE }.prominentButton()
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard()
     }
 }
@@ -207,7 +207,7 @@ private struct ScheduleCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(l10n.t("todays_times")).font(.subheadline.weight(.semibold)).foregroundStyle(.white.opacity(0.8))
+            Text(l10n.t("todays_times")).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.ink.opacity(0.8))
                 .accessibilityAddTraits(.isHeader).padding(.horizontal, 8).padding(.bottom, 6)
             GlassGroup(spacing: 4) {
                 VStack(spacing: 2) {
@@ -216,9 +216,9 @@ private struct ScheduleCard: View {
                     }
                 }
             }
-            Text(l10n.t("sunrise_not_prayer_note")).font(.caption).foregroundStyle(.white.opacity(0.7)).padding(.horizontal, 8).padding(.top, 8)
+            Text(l10n.t("sunrise_not_prayer_note")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7)).padding(.horizontal, 8).padding(.top, 8)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard(padding: 10)
     }
 
@@ -227,25 +227,25 @@ private struct ScheduleCard: View {
         let name = l10n.t(Format.prayerKey(e))
         let nextDay = CivilDate.of(at, in: today.zone) > today.date
         HStack(spacing: 12) {
-            Image(systemName: Theme.icon(e)).font(.system(size: 17)).frame(width: 26)
-                .foregroundStyle(isNext ? Theme.gold : .white.opacity(e.isPrayer ? 0.9 : 0.6))
+            Image(systemName: Theme.icon(e)).font(.body).frame(minWidth: 26)
+                .foregroundStyle(isNext ? Theme.accent : Theme.ink.opacity(e.isPrayer ? 0.9 : 0.6))
                 .accessibilityHidden(true)
             Text(name).font(.body.weight(isNext ? .semibold : .regular))
-                .foregroundStyle(isNext ? Theme.gold : .white.opacity(e.isPrayer ? 1 : 0.7))
+                .foregroundStyle(isNext ? Theme.accent : Theme.ink.opacity(e.isPrayer ? 1 : 0.7))
             if isNext {
-                Text(l10n.t("upcoming")).font(.caption2.weight(.semibold)).foregroundStyle(Theme.gold)
+                Text(l10n.t("upcoming")).font(.caption2.weight(.semibold)).foregroundStyle(Theme.accent)
                     .padding(.horizontal, 8).padding(.vertical, 3)
                     .overlay(Capsule().stroke(Theme.gold.opacity(0.7), lineWidth: 1))
             }
             Spacer(minLength: 4)
             Text(Format.time(at, zone: today.zone, locale: l10n.locale) + (nextDay ? " (\(l10n.t("next_day")))" : ""))
                 .font(.title3.weight(isNext ? .semibold : .regular)).monospacedDigit()
-                .foregroundStyle(isNext ? Theme.gold : .white)
+                .foregroundStyle(isNext ? Theme.accent : Theme.ink)
             if e.isPrayer {
                 let on = model.settings.reminders.contains(e)
                 Button { Task { await model.setReminder(e, !on) } } label: {
-                    Image(systemName: on ? "bell.fill" : "bell.slash").font(.system(size: 15))
-                        .foregroundStyle(on ? Theme.gold : .white.opacity(0.55))
+                    Image(systemName: on ? "bell.fill" : "bell.slash").font(.subheadline)
+                        .foregroundStyle(on ? Theme.accent : Theme.ink.opacity(0.55))
                         .frame(width: 44, height: 44).contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
@@ -277,19 +277,19 @@ private struct DatesCard: View {
             let d = CivilDate.of(snap.now, in: loc.zone)
             VStack(alignment: .leading, spacing: 6) {
                 Text(Format.gregorian(d, locale: l10n.locale)).font(.headline)
-                Text(Format.hijri(d, adjustment: model.settings.prayer.hijriAdjustmentDays, locale: l10n.locale)).foregroundStyle(Theme.gold)
-                Text(l10n.t("hijri_calendar_note")).font(.caption).foregroundStyle(.white.opacity(0.7))
-                Divider().overlay(.white.opacity(0.2)).padding(.vertical, 4)
+                Text(Format.hijri(d, adjustment: model.settings.prayer.hijriAdjustmentDays, locale: l10n.locale)).foregroundStyle(Theme.accent)
+                Text(l10n.t("hijri_calendar_note")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
+                Divider().overlay(Theme.ink.opacity(0.2)).padding(.vertical, 4)
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(l10n.t(Format.methodKey(model.settings.prayer.method))).font(.subheadline)
-                        Text(l10n.t("time_zone_label", Format.zoneName(loc.zone, locale: l10n.locale))).font(.caption).foregroundStyle(.white.opacity(0.7))
+                        Text(l10n.t("time_zone_label", Format.zoneName(loc.zone, locale: l10n.locale))).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                     }
                     Spacer()
                     Button(l10n.t("calculation"), action: onCalculation).glassButton()
                 }
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Theme.ink)
             .glassCard()
         }
     }

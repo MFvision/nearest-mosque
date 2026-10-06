@@ -10,6 +10,22 @@ enum Theme {
     static let gold = Color(hex: 0xD4A843)
     static let goldDeep = Color(hex: 0xB8922F)
     static let goldText = Color(hex: 0x8A6A1C)
+    /// Gold text on the light skies (goldText is below 4.5:1 on some of them).
+    static let goldInk = Color(hex: 0x6E5414)
+    static let textLight = Color(hex: 0x10202B)
+    static let textSecondaryLight = Color(hex: 0x4A5A66)
+    static let cardLight = Color(hex: 0xFFFFFF)
+
+    /// Text and icons on the sky and on glass: white in dark mode, ink on the light skies.
+    static let ink = dynamic(dark: .white, light: textLight)
+    /// Gold for text and icons: brand gold in dark mode, goldInk on the light skies (4.5:1).
+    static let accent = dynamic(dark: gold, light: goldInk)
+    /// Opaque card when Reduce Transparency is on.
+    static let solidCard = dynamic(dark: solidSurface, light: cardLight)
+
+    static func dynamic(dark: Color, light: Color) -> Color {
+        Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor(dark) : UIColor(light) })
+    }
     static let sand = Color(hex: 0xF4EEDF)
     static let solidSurface = Color(hex: 0x14232F)
     static let cardRadius: CGFloat = 26
@@ -17,8 +33,7 @@ enum Theme {
     static let compactHeight: CGFloat = 64
     static let spring = Animation.spring(response: 0.42, dampingFraction: 0.86)
 
-    /// On the sky everything is light-on-dark; gold reads well there.
-    static func accentText(_ scheme: ColorScheme) -> Color { scheme == .dark ? gold : goldText }
+    static func accentText(_ scheme: ColorScheme) -> Color { scheme == .dark ? gold : goldInk }
 
     static func icon(_ e: PrayerEvent) -> String {
         switch e {
@@ -51,8 +66,8 @@ struct GlassSurface<S: Shape>: ViewModifier {
     func body(content: Content) -> some View {
         if reduceTransparency {
             content
-                .background(Theme.solidSurface, in: shape)
-                .overlay(shape.stroke(Color.white.opacity(0.18), lineWidth: 1))
+                .background(Theme.solidCard, in: shape)
+                .overlay(shape.stroke(Theme.ink.opacity(0.18), lineWidth: 1))
         } else {
             #if compiler(>=6.2)
             if #available(iOS 26.0, *) {
@@ -135,7 +150,7 @@ struct FallbackGlassButtonStyle: ButtonStyle {
             .font(.body.weight(.semibold))
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
-            .foregroundStyle(prominent ? Theme.navyNight : .white)
+            .foregroundStyle(prominent ? Theme.navyNight : Theme.ink)
             .background {
                 if prominent { Capsule().fill(Theme.gold) } else { Capsule().fill(.ultraThinMaterial) }
             }
@@ -191,8 +206,8 @@ struct GlassIconButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: systemImage)
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundStyle(.white)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(Theme.ink)
                 .frame(width: 44, height: 44)
                 .contentShape(Circle())
         }

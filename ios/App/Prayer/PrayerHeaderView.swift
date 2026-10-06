@@ -9,6 +9,8 @@ import UIKit
 struct PrayerHero: View {
     @Environment(Localization.self) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// The big time grows with the text-size setting (and still fits the arc: minimumScaleFactor).
+    @ScaledMetric(relativeTo: .largeTitle) private var timeSize: CGFloat = 60
     let snap: PrayerSnapshot
     let compass: CompassState
     let aligned: Bool
@@ -48,7 +50,7 @@ struct PrayerHero: View {
                 .padding(.top, 2)
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
     }
 
     private func chip(_ text: String, _ icon: String) -> some View {
@@ -78,11 +80,11 @@ struct PrayerHero: View {
                 let time = Format.time(next.at, zone: zone, locale: l10n.locale)
                 let remaining = PrayerCalculator.remaining(snap.now, next.at)
                 VStack(spacing: 2) {
-                    Text(name).font(.title2.weight(.medium)).foregroundStyle(.white.opacity(0.92))
-                    Text(time).font(.system(size: 60, weight: .light)).monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
+                    Text(name).font(.title2.weight(.medium)).foregroundStyle(Theme.ink.opacity(0.92))
+                    Text(time).font(.system(size: timeSize, weight: .light)).monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
                         .contentTransition(.numericText())
                     Text(l10n.t("remaining_long", Format.remainingLong(remaining, locale: l10n.locale)))
-                        .font(.callout).monospacedDigit().foregroundStyle(.white.opacity(0.85))
+                        .font(.callout).monospacedDigit().foregroundStyle(Theme.ink.opacity(0.85))
                         .contentTransition(reduceMotion ? .identity : .numericText(countsDown: true))
                 }
                 .accessibilityElement(children: .ignore)
@@ -93,12 +95,12 @@ struct PrayerHero: View {
             }
             if snap.qiblaBearing != nil {
                 Text(guidance).font(.title3.weight(.semibold)).multilineTextAlignment(.center)
-                    .foregroundStyle(aligned ? Theme.gold : .white)
+                    .foregroundStyle(aligned ? Theme.accent : Theme.ink)
                     .padding(.top, 14)
                     .accessibilityAddTraits(.updatesFrequently)
                     .accessibilityAction { onQibla() }
                 if arcMode == .northUp {
-                    Text(l10n.t("qibla_from_north_hint")).font(.caption).foregroundStyle(.white.opacity(0.75))
+                    Text(l10n.t("qibla_from_north_hint")).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
                         .multilineTextAlignment(.center).padding(.horizontal, 24)
                 }
             }
@@ -128,7 +130,7 @@ struct LocationPill: View {
                 Text(name).font(.subheadline.weight(.semibold)).lineLimit(1)
                 Image(systemName: "chevron.down").font(.caption.weight(.bold))
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Theme.ink)
             .padding(.horizontal, 16)
             .frame(minHeight: 44)
             .contentShape(Capsule())
@@ -168,7 +170,7 @@ struct QiblaArc<Content: View>: View {
                 ArcLayer(angle: shown, center: c, radius: r, mode: mode, aligned: aligned)
                 LogoDisc(glow: aligned).position(x: c.x, y: discY)
                 if mode == .northUp {
-                    Text(l10n.t("compass_north")).font(.caption.weight(.bold)).foregroundStyle(.white.opacity(0.85))
+                    Text(l10n.t("compass_north")).font(.caption.weight(.bold)).foregroundStyle(Theme.ink.opacity(0.85))
                         .position(x: c.x, y: discY + Theme.discSize / 2 + 14)
                 }
                 // Content starts below the disc (never overlapping it), centred inside the circle.
@@ -204,9 +206,9 @@ private struct ArcLayer: View, Animatable {
             var circle = Path()
             circle.addEllipse(in: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r))
             ctx.stroke(circle, with: .linearGradient(Gradient(stops: [
-                .init(color: .white.opacity(0.55), location: 0),
-                .init(color: .white.opacity(0.22), location: 0.45),
-                .init(color: .white.opacity(0.0), location: 0.8),
+                .init(color: Theme.ink.opacity(0.55), location: 0),
+                .init(color: Theme.ink.opacity(0.22), location: 0.45),
+                .init(color: Theme.ink.opacity(0.0), location: 0.8),
             ]), startPoint: CGPoint(x: c.x, y: c.y - r), endPoint: CGPoint(x: c.x, y: c.y + r)), lineWidth: 1.5)
 
             if aligned {
@@ -220,13 +222,13 @@ private struct ArcLayer: View, Animatable {
             let rel = Angles.normalize180(angle)
             var trail = Path()
             trail.addArc(center: c, radius: r, startAngle: .degrees(-90), endAngle: .degrees(-90 + rel), clockwise: rel < 0)
-            ctx.stroke(trail, with: .color(.white.opacity(0.75)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+            ctx.stroke(trail, with: .color(Theme.ink.opacity(0.75)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
             let rad = angle * .pi / 180
             let m = CGPoint(x: c.x + r * sin(rad), y: c.y - r * cos(rad))
             ctx.fill(Path(ellipseIn: CGRect(x: m.x - 22, y: m.y - 22, width: 44, height: 44)),
                      with: .radialGradient(Gradient(colors: [Theme.gold.opacity(0.6), .clear]), center: m, startRadius: 0, endRadius: 22))
             ctx.fill(Path(ellipseIn: CGRect(x: m.x - 10, y: m.y - 10, width: 20, height: 20)), with: .color(Theme.gold))
-            ctx.stroke(Path(ellipseIn: CGRect(x: m.x - 10, y: m.y - 10, width: 20, height: 20)), with: .color(.white.opacity(0.85)), lineWidth: 2)
+            ctx.stroke(Path(ellipseIn: CGRect(x: m.x - 10, y: m.y - 10, width: 20, height: 20)), with: .color(Theme.ink.opacity(0.85)), lineWidth: 2)
         }
         .accessibilityHidden(true)
     }
@@ -245,7 +247,7 @@ struct CompactPrayerBar: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(l10n.t(Format.prayerKey(next.event)) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
                     Text(l10n.t("remaining_long", Format.remainingLong(PrayerCalculator.remaining(snap.now, next.at), locale: l10n.locale)))
-                        .font(.subheadline).monospacedDigit().foregroundStyle(Theme.gold)
+                        .font(.subheadline).monospacedDigit().foregroundStyle(Theme.accent)
                 }
                 Spacer()
                 if let b = snap.qiblaBearing { MiniQiblaIndicator(bearing: b, compass: compass).frame(width: 40, height: 40) }
@@ -253,7 +255,7 @@ struct CompactPrayerBar: View {
                     .buttonStyle(.plain)
                     .accessibilityLabel(l10n.t("expand"))
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Theme.ink)
             .padding(.leading, 18).padding(.trailing, 6)
             .frame(minHeight: Theme.compactHeight)
             .glass(Capsule())
@@ -274,9 +276,9 @@ struct MiniQiblaIndicator: View {
         }()
         let live: Bool = { if case .live = compass { return true } else { return false } }()
         ZStack {
-            Circle().stroke(.white.opacity(0.6), lineWidth: 1.5)
-            if !live { Circle().fill(.white).frame(width: 4, height: 4).offset(y: -16) }
-            Image(systemName: "location.north.fill").font(.system(size: 15)).foregroundStyle(Theme.gold).rotationEffect(.degrees(angle))
+            Circle().stroke(Theme.ink.opacity(0.6), lineWidth: 1.5)
+            if !live { Circle().fill(Theme.ink).frame(width: 4, height: 4).offset(y: -16) }
+            Image(systemName: "location.north.fill").font(.footnote).foregroundStyle(Theme.accent).rotationEffect(.degrees(angle))
         }
         .environment(\.layoutDirection, .leftToRight)
         .accessibilityElement()

@@ -105,7 +105,7 @@ struct MosquesView: View {
             .scrollIndicators(.hidden)
         }
         .padding(.horizontal, 16)
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .skyBackground(horizon: 0.42)
         .toolbar(.hidden, for: .navigationBar)
         .task(id: app.ready) { start() }
@@ -152,7 +152,7 @@ struct MosquesView: View {
                     MosqueRadar(items: vm.items, center: center, heading: heading, selected: nil) { selected = $0 }
                         .frame(maxHeight: 300)
                     if let g = MosqueRadar.guidance(items: vm.items, center: center, heading: heading, l10n: l10n) {
-                        Text(g).font(.headline).foregroundStyle(g == l10n.t("mosque_ahead") ? Theme.gold : .white)
+                        Text(g).font(.headline).foregroundStyle(g == l10n.t("mosque_ahead") ? Theme.accent : Theme.ink)
                             .accessibilityAddTraits(.updatesFrequently)
                     }
                 }
@@ -163,7 +163,7 @@ struct MosquesView: View {
                 .id(center)
                 .frame(height: 320)
                 .clipShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous).stroke(.white.opacity(0.25), lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous).stroke(Theme.ink.opacity(0.25), lineWidth: 1))
             }
         }
         .transition(.opacity)
@@ -196,8 +196,8 @@ struct MosquesView: View {
                     case .selectedPoint: Text(l10n.t("searching_from_point"))
                     }
                     switch vm.online {
-                    case .searching: Text(l10n.t("online_searching")).foregroundStyle(.white.opacity(0.7))
-                    case .unavailable: Text(l10n.t("online_offline_note")).foregroundStyle(Theme.gold)
+                    case .searching: Text(l10n.t("online_searching")).foregroundStyle(Theme.ink.opacity(0.7))
+                    case .unavailable: Text(l10n.t("online_offline_note")).foregroundStyle(Theme.accent)
                     default: EmptyView()
                     }
                 }
@@ -221,7 +221,7 @@ struct MosquesView: View {
         } else if vm.center == nil {
             VStack(alignment: .leading, spacing: 12) {
                 Text(l10n.t("mosques_need_location_title")).font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
-                Text(l10n.t(denied ? "location_denied" : "mosques_need_location_body")).foregroundStyle(.white.opacity(0.85))
+                Text(l10n.t(denied ? "location_denied" : "mosques_need_location_body")).foregroundStyle(Theme.ink.opacity(0.85))
                 GlassGroup {
                     VStack(spacing: 10) {
                         Button(action: useDevice) {
@@ -239,12 +239,12 @@ struct MosquesView: View {
             }
             .glassCard(padding: 20)
         } else if vm.loading && vm.items.isEmpty {
-            ProgressView().tint(.white).padding(.top, 40)
+            ProgressView().tint(Theme.ink).padding(.top, 40)
         } else if !vm.items.isEmpty {
             ForEach(Array(vm.items.prefix(40).enumerated()), id: \.element.id) { i, r in
                 MosqueCard(ranked: r, nearest: i == 0, favorite: vm.favorites.contains(r.id), route: vm.routes[r.id], showDistance: true) { selected = r }
             }
-            Text(attribution).font(.caption).foregroundStyle(.white.opacity(0.6)).frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 4)
+            Text(attribution).font(.caption).foregroundStyle(Theme.ink.opacity(0.6)).frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 4)
         } else if vm.online != .searching {
             switch vm.result {
             case let .noRecordsInCoverage(name, radius):
@@ -267,7 +267,7 @@ struct MosquesView: View {
     private func empty(_ title: String, _ body: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title).font(.headline).accessibilityAddTraits(.isHeader)
-            Text(body).font(.subheadline).foregroundStyle(.white.opacity(0.85))
+            Text(body).font(.subheadline).foregroundStyle(Theme.ink.opacity(0.85))
         }
         .glassCard()
     }
@@ -292,26 +292,26 @@ struct MosqueCard: View {
                     MosquePin(highlighted: nearest, size: 44)
                     VStack(alignment: .leading, spacing: 3) {
                         if nearest {
-                            Text(l10n.t("nearest_known_mosque")).font(.caption.weight(.semibold)).foregroundStyle(Theme.gold)
+                            Text(l10n.t("nearest_known_mosque")).font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
                         }
                         Text(name).font(.headline).lineLimit(2).multilineTextAlignment(.leading)
                         if showDistance {
-                            Text(l10n.t("straight_line", Format.distance(ranked.distanceMeters, l10n: l10n))).font(.subheadline).foregroundStyle(.white.opacity(0.8))
+                            Text(l10n.t("straight_line", Format.distance(ranked.distanceMeters, l10n: l10n))).font(.subheadline).foregroundStyle(Theme.ink.opacity(0.8))
                         }
                         if let route {
                             Label(l10n.t("walking_route", Format.distance(route.meters, l10n: l10n), l10n.t("minutes_short", Int((route.seconds / 60).rounded()))),
                                   systemImage: "figure.walk")
-                                .font(.footnote).foregroundStyle(.white.opacity(0.85))
+                                .font(.footnote).foregroundStyle(Theme.ink.opacity(0.85))
                         }
                         if m.packId == OnlineMosques.applePackId {
-                            Text(l10n.t("source_online_apple")).font(.caption2).foregroundStyle(.white.opacity(0.6))
+                            Text(l10n.t("source_online_apple")).font(.caption2).foregroundStyle(Theme.ink.opacity(0.6))
                         } else if m.category == .prayer_space {
-                            Text(l10n.t("category_prayer_space")).font(.caption2).foregroundStyle(.white.opacity(0.6))
+                            Text(l10n.t("category_prayer_space")).font(.caption2).foregroundStyle(Theme.ink.opacity(0.6))
                         }
                     }
                     Spacer(minLength: 4)
-                    if favorite { Image(systemName: "star.fill").foregroundStyle(Theme.gold).accessibilityHidden(true) }
-                    Image(systemName: l10n.isRTL ? "chevron.left" : "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.white.opacity(0.6))
+                    if favorite { Image(systemName: "star.fill").foregroundStyle(Theme.accent).accessibilityHidden(true) }
+                    Image(systemName: l10n.isRTL ? "chevron.left" : "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink.opacity(0.6))
                 }
                 .contentShape(Rectangle())
             }
@@ -323,7 +323,7 @@ struct MosqueCard: View {
             }
             .modifier(DirectionsStyle(prominent: nearest))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard(padding: 14, tint: nearest ? Theme.gold.opacity(0.12) : nil)
     }
 }
@@ -346,7 +346,7 @@ struct GlassSegmented: View {
             ForEach(Array(options.enumerated()), id: \.offset) { i, o in
                 Button { withAnimation(Theme.spring) { selection = i } } label: {
                     Label(o.0, systemImage: o.1).font(.subheadline.weight(.semibold))
-                        .foregroundStyle(selection == i ? Theme.navyNight : .white)
+                        .foregroundStyle(selection == i ? Theme.navyNight : Theme.ink)
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .background {
                             if selection == i { Capsule().fill(Theme.gold).matchedGeometryEffect(id: "thumb", in: ns) }

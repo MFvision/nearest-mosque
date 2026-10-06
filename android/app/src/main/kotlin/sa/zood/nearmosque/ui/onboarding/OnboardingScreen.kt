@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.onboarding
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import android.Manifest
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -173,7 +177,7 @@ private fun Dots(index: Int) {
         horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         repeat(PAGES) { i ->
-            Box(Modifier.size(if (i == index) 22.dp else 7.dp, 7.dp).background(if (i == index) Tokens.gold else Color.White.copy(alpha = 0.4f), RoundedCornerShape(50)))
+            Box(Modifier.size(if (i == index) 22.dp else 7.dp, 7.dp).background(if (i == index) Tokens.gold else Ink.copy(alpha = 0.4f), RoundedCornerShape(50)))
         }
     }
 }
@@ -186,9 +190,9 @@ private fun Page(title: String, body: String, art: @Composable () -> Unit) {
     ) {
         Box(Modifier.fillMaxWidth().widthIn(max = 420.dp).height(300.dp), contentAlignment = Alignment.Center) { art() }
         Spacer(Modifier.height(20.dp))
-        Text(title, color = Color.White, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold), textAlign = TextAlign.Center, modifier = Modifier.semantics { heading() })
+        Text(title, color = Ink, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold), textAlign = TextAlign.Center, modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(12.dp))
-        Text(body, color = Color.White.copy(alpha = 0.88f), style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal), textAlign = TextAlign.Center)
+        Text(body, color = Ink.copy(alpha = 0.88f), style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal), textAlign = TextAlign.Center)
     }
 }
 
@@ -218,10 +222,11 @@ private fun PrayerArt() {
     val events = listOf(PrayerEvent.FAJR, PrayerEvent.DHUHR, PrayerEvent.ASR, PrayerEvent.MAGHRIB, PrayerEvent.ISHA)
     val active = (p * 5).toInt().coerceAtMost(4)
     Column(Modifier.clearAndSetSemantics { }, horizontalAlignment = Alignment.CenterHorizontally) {
+        val ink = Ink
         Canvas(Modifier.size(240.dp, 80.dp)) {
             val c = Offset(size.width / 2, size.height + 40.dp.toPx())
             val r = 110.dp.toPx()
-            drawArc(Color.White.copy(alpha = 0.4f), -160f, 140f, false, Offset(c.x - r, c.y - r), androidx.compose.ui.geometry.Size(2 * r, 2 * r), style = Stroke(2.dp.toPx()))
+            drawArc(ink.copy(alpha = 0.4f), -160f, 140f, false, Offset(c.x - r, c.y - r), androidx.compose.ui.geometry.Size(2 * r, 2 * r), style = Stroke(2.dp.toPx()))
             val a = Math.toRadians((-70 + 140 * ease(p)).toDouble())
             val m = Offset(c.x + r * sin(a).toFloat(), c.y - r * cos(a).toFloat())
             drawCircle(Tokens.gold.copy(alpha = 0.4f), 16.dp.toPx(), m)
@@ -235,9 +240,9 @@ private fun PrayerArt() {
                     Modifier.fillMaxWidth().height(32.dp).background(if (on) Tokens.gold.copy(alpha = 0.15f) else Color.Transparent, RoundedCornerShape(12.dp)).padding(horizontal = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(painterResource(prayerIcon(e)), contentDescription = null, tint = if (on) Tokens.gold else Color.White, modifier = Modifier.size(18.dp))
+                    Icon(painterResource(prayerIcon(e)), contentDescription = null, tint = if (on) Accent else Ink, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(10.dp))
-                    Text(stringResource(Format.prayerName(e)), color = if (on) Tokens.gold else Color.White.copy(alpha = 0.85f), style = MaterialTheme.typography.bodyMedium.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Normal))
+                    Text(stringResource(Format.prayerName(e)), color = if (on) Accent else Ink.copy(alpha = 0.85f), style = MaterialTheme.typography.bodyMedium.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Normal))
                 }
             }
         }
@@ -250,7 +255,7 @@ private fun QiblaArt() {
     val angle = if (p < 0.65f) 75.0 * (1 - ease(p / 0.65f)) else 0.0
     Box(Modifier.width(280.dp).clearAndSetSemantics { }) {
         QiblaArc(angle, ArcMode.LIVE, aligned = p >= 0.65f, springs = false) {
-            Icon(painterResource(R.drawable.ic_phone_outline), contentDescription = null, tint = Color.White, modifier = Modifier.size(64.dp).rotate((-angle * 0.4).toFloat()).offset(y = 30.dp))
+            Icon(painterResource(R.drawable.ic_phone_outline), contentDescription = null, tint = Ink, modifier = Modifier.size(64.dp).rotate((-angle * 0.4).toFloat()).offset(y = 30.dp))
         }
     }
 }
@@ -260,8 +265,9 @@ private fun MosqueArt() {
     val p = phase(5000)
     val pins = listOf(0.72f to 0.28f, 0.25f to 0.32f, 0.78f to 0.7f, 0.3f to 0.74f, 0.55f to 0.15f)
     Box(Modifier.size(280.dp).glass(CircleShape).clearAndSetSemantics { }, contentAlignment = Alignment.Center) {
+        val ink = Ink
         Canvas(Modifier.fillMaxSize()) {
-            for (k in 1..2) drawCircle(Color.White.copy(alpha = 0.22f), size.minDimension / 2 * k / 3f, style = Stroke(1.dp.toPx()))
+            for (k in 1..2) drawCircle(ink.copy(alpha = 0.22f), size.minDimension / 2 * k / 3f, style = Stroke(1.dp.toPx()))
             val t = ease((p - 0.45f) / 0.3f)
             val target = Offset(pins[0].first * size.width, pins[0].second * size.height)
             drawLine(Tokens.gold, center, center + (target - center) * t, 3.dp.toPx(), StrokeCap.Round, PathEffect.dashPathEffect(floatArrayOf(14f, 14f)))
@@ -282,25 +288,25 @@ private fun AskArt() {
     Column(Modifier.width(300.dp).clearAndSetSemantics { }, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         val q = ease(p / 0.15f)
         Text(
-            stringResource(R.string.onb_demo_question), color = Color.White, style = MaterialTheme.typography.bodyMedium,
+            stringResource(R.string.onb_demo_question), color = Ink, style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.align(Alignment.End).alpha(q).offset(y = (12 * (1 - q)).dp)
                 .glass(RoundedCornerShape(18.dp), tint = Tokens.navy.copy(alpha = 0.5f), shadow = 4.dp).padding(horizontal = 14.dp, vertical = 10.dp),
         )
         if (p > 0.2f && p < 0.4f) {
             Row(Modifier.glass(RoundedCornerShape(50), shadow = 4.dp).padding(12.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                repeat(3) { i -> Box(Modifier.size(7.dp).alpha(0.3f + 0.7f * abs(sin((p * 20 + i) * 1.2f))).background(Color.White, CircleShape)) }
+                repeat(3) { i -> Box(Modifier.size(7.dp).alpha(0.3f + 0.7f * abs(sin((p * 20 + i) * 1.2f))).background(Ink, CircleShape)) }
             }
         }
         val c = ease((p - 0.4f) / 0.15f)
         GlassCard(Modifier.alpha(c).offset(y = (20 * (1 - c)).dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(painterResource(R.drawable.ic_book), contentDescription = null, tint = Tokens.gold, modifier = Modifier.size(18.dp))
+                Icon(painterResource(R.drawable.ic_book), contentDescription = null, tint = Accent, modifier = Modifier.size(18.dp))
                 Spacer(Modifier.width(8.dp))
-                Text("Qur’an 13:28", color = Tokens.gold, style = MaterialTheme.typography.titleSmall)
+                Text("Qur’an 13:28", color = Accent, style = MaterialTheme.typography.titleSmall)
             }
-            Text(stringResource(R.string.supporting_passage), color = Color.White.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
+            Text(stringResource(R.string.supporting_passage), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
             Text(
-                "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", color = Color.White, style = MaterialTheme.typography.titleLarge.copy(textDirection = androidx.compose.ui.text.style.TextDirection.Rtl),
+                "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", color = Ink, style = MaterialTheme.typography.titleLarge.copy(textDirection = androidx.compose.ui.text.style.TextDirection.Rtl),
                 modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.End,
             )
         }
@@ -347,17 +353,17 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
     }
     val current = Format.languageCode(context)
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp)) {
-        Text(stringResource(R.string.onb_setup_title), color = Color.White, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold), modifier = Modifier.semantics { heading() })
+        Text(stringResource(R.string.onb_setup_title), color = Ink, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold), modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(8.dp))
-        Text(stringResource(R.string.onb_setup_body), color = Color.White.copy(alpha = 0.88f), style = MaterialTheme.typography.bodyLarge)
+        Text(stringResource(R.string.onb_setup_body), color = Ink.copy(alpha = 0.88f), style = MaterialTheme.typography.bodyLarge)
         Spacer(Modifier.height(18.dp))
-        Text(stringResource(R.string.language), color = Color.White, style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(R.string.language), color = Ink, style = MaterialTheme.typography.titleMedium)
         Spacer(Modifier.height(8.dp))
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             LANGUAGES.forEach { (code, name) ->
                 val on = code == current
                 Text(
-                    name, color = if (on) Tokens.navyNight else Color.White, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Normal),
+                    name, color = if (on) Tokens.navyNight else Ink, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = if (on) FontWeight.SemiBold else FontWeight.Normal),
                     modifier = Modifier.heightIn(min = 48.dp).glass(RoundedCornerShape(50), tint = if (on) Tokens.gold else null, shadow = 4.dp)
                         .clickable(role = Role.RadioButton) { AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(code)) }
                         .semantics { selected = on }
@@ -366,10 +372,10 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
             }
         }
         Spacer(Modifier.height(18.dp))
-        Text(stringResource(R.string.location_section), color = Color.White, style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(R.string.location_section), color = Ink, style = MaterialTheme.typography.titleMedium)
         ui.location?.let {
             Spacer(Modifier.height(6.dp))
-            Text(stringResource(R.string.onb_location_set, it.name), color = Tokens.gold, style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
+            Text(stringResource(R.string.onb_location_set, it.name), color = Accent, style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
         }
         Spacer(Modifier.height(10.dp))
         GlassButton(
@@ -384,7 +390,7 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
             else -> Unit
         }
         Spacer(Modifier.height(12.dp))
-        Text(stringResource(R.string.online_search_body), color = Color.White.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.online_search_body), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
         Spacer(Modifier.height(24.dp))
     }
 }

@@ -172,11 +172,11 @@ struct MosqueRadar: View {
             ZStack {
                 Circle().fill(.clear).glass(Circle())
                 ForEach(1...2, id: \.self) { k in
-                    Circle().stroke(.white.opacity(0.16), lineWidth: 1).frame(width: s * CGFloat(k) / 3, height: s * CGFloat(k) / 3)
+                    Circle().stroke(Theme.ink.opacity(0.16), lineWidth: 1).frame(width: s * CGFloat(k) / 3, height: s * CGFloat(k) / 3)
                 }
                 ZStack {
                     ForEach(0..<36, id: \.self) { i in
-                        Rectangle().fill(.white.opacity(i % 9 == 0 ? 0.8 : 0.3))
+                        Rectangle().fill(Theme.ink.opacity(i % 9 == 0 ? 0.8 : 0.3))
                             .frame(width: i % 9 == 0 ? 2 : 1, height: i % 9 == 0 ? 10 : 5)
                             .offset(y: -s / 2 + 10)
                             .rotationEffect(.degrees(Double(i) * 10))
@@ -206,7 +206,7 @@ struct MosqueRadar: View {
                 .rotationEffect(.degrees(rotation))
                 Circle().fill(Color(hex: 0x4F8EF7)).frame(width: 16, height: 16).overlay(Circle().stroke(.white, lineWidth: 3))
                 if heading != nil {
-                    Capsule().fill(.white).frame(width: 4, height: 14).offset(y: -s / 2 - 1)
+                    Capsule().fill(Theme.ink).frame(width: 4, height: 14).offset(y: -s / 2 - 1)
                 }
             }
             .frame(width: s, height: s)

@@ -42,6 +42,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
@@ -77,12 +78,21 @@ import sa.zood.nearmosque.ui.theme.Tokens
  * text stays legible, a light top-to-bottom sheen, a specular rim brighter at the top-left and a soft
  * shadow. The backdrop is a smooth procedural sky, so no blur pass is needed for the effect.
  */
-fun Modifier.glass(shape: Shape, tint: Color? = null, shadow: Dp = 14.dp): Modifier = this
-    .shadow(shadow, shape, ambientColor = Color.Black.copy(alpha = 0.35f), spotColor = Color.Black.copy(alpha = 0.35f))
-    .clip(shape)
-    .background(tint ?: Color.Transparent, shape)
-    .background(Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.17f), Color.White.copy(alpha = 0.06f))), shape)
-    .border(1.dp, Brush.linearGradient(listOf(Color.White.copy(alpha = 0.55f), Color.White.copy(alpha = 0.06f), Color.White.copy(alpha = 0.22f)), start = Offset.Zero, end = Offset.Infinite), shape)
+fun Modifier.glass(shape: Shape, tint: Color? = null, shadow: Dp = 14.dp): Modifier = composed {
+    // Night: translucent with a white sheen and rim. Light skies: frosted white with a soft ink rim.
+    val dark = LocalSky.current.dark
+    val shadowColor = Color.Black.copy(alpha = if (dark) 0.35f else 0.12f)
+    val sheen = if (dark) listOf(Color.White.copy(alpha = 0.17f), Color.White.copy(alpha = 0.06f))
+    else listOf(Color.White.copy(alpha = 0.55f), Color.White.copy(alpha = 0.35f))
+    val rim = if (dark) listOf(Color.White.copy(alpha = 0.55f), Color.White.copy(alpha = 0.06f), Color.White.copy(alpha = 0.22f))
+    else listOf(Color.White.copy(alpha = 0.95f), Tokens.textLight.copy(alpha = 0.06f), Tokens.textLight.copy(alpha = 0.12f))
+    this
+        .shadow(shadow, shape, ambientColor = shadowColor, spotColor = shadowColor)
+        .clip(shape)
+        .background(tint ?: Color.Transparent, shape)
+        .background(Brush.verticalGradient(sheen), shape)
+        .border(1.dp, Brush.linearGradient(rim, start = Offset.Zero, end = Offset.Infinite), shape)
+}
 
 @Composable
 fun Modifier.glassSky(shape: Shape, tint: Color? = null): Modifier = glass(shape, tint ?: LocalSky.current.glassTint)
@@ -96,7 +106,7 @@ fun GlassCard(
     tint: Color? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    CompositionLocalProvider(LocalContentColor provides Color.White) {
+    CompositionLocalProvider(LocalContentColor provides sa.zood.nearmosque.ui.theme.Ink) {
         Column(modifier.fillMaxWidth().glassSky(RoundedCornerShape(corner), tint).padding(padding), content = content)
     }
 }
@@ -117,7 +127,7 @@ fun GlassButton(
     val base = if (prominent) Modifier.shadow(10.dp, shape, spotColor = Tokens.gold).clip(shape).background(Tokens.gold, shape)
         .border(1.dp, Color.White.copy(alpha = 0.35f), shape)
     else Modifier.glass(shape, shadow = 6.dp)
-    CompositionLocalProvider(LocalContentColor provides if (prominent) Tokens.navyNight else Color.White) {
+    CompositionLocalProvider(LocalContentColor provides if (prominent) Tokens.navyNight else sa.zood.nearmosque.ui.theme.Ink) {
         Row(
             modifier.scale(scale).alpha(if (enabled) 1f else 0.5f).then(base)
                 .clickable(interactionSource = source, indication = null, enabled = enabled, role = Role.Button, onClick = onClick)
@@ -140,7 +150,7 @@ fun GlassButtonText(text: String, icon: Painter? = null) {
 
 /** Round 48 dp glass icon button. */
 @Composable
-fun GlassIconButton(icon: Painter, label: String, onClick: () -> Unit, modifier: Modifier = Modifier, tint: Color = Color.White) {
+fun GlassIconButton(icon: Painter, label: String, onClick: () -> Unit, modifier: Modifier = Modifier, tint: Color = sa.zood.nearmosque.ui.theme.Ink) {
     Box(
         modifier.size(48.dp).glass(CircleShape, shadow = 6.dp).clickable(role = Role.Button, onClickLabel = label, onClick = onClick)
             .semantics { contentDescription = label },
@@ -158,14 +168,14 @@ fun LocationPill(name: String, onClick: () -> Unit, modifier: Modifier = Modifie
             .heightIn(min = 48.dp).widthIn(max = 260.dp).padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(painterResource(R.drawable.ic_pin), contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
+        Icon(painterResource(R.drawable.ic_pin), contentDescription = null, tint = sa.zood.nearmosque.ui.theme.Ink, modifier = Modifier.size(18.dp))
         Spacer(Modifier.width(8.dp))
         Text(
-            name, color = Color.White, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false),
+            name, color = sa.zood.nearmosque.ui.theme.Ink, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false),
             style = MaterialTheme.typography.titleSmall.copy(textDirection = sa.zood.nearmosque.ui.theme.DataDirection),
         )
         Spacer(Modifier.width(6.dp))
-        Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, tint = Color.White, modifier = Modifier.size(16.dp))
+        Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, tint = sa.zood.nearmosque.ui.theme.Ink, modifier = Modifier.size(16.dp))
     }
 }
 
@@ -181,7 +191,7 @@ fun GlassSegmented(selected: Int, options: List<Pair<String, Int>>, onSelect: (I
                     .clickable(role = Role.Tab) { onSelect(i) }.semantics { this.selected = on },
                 horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically,
             ) {
-                val fg = if (on) Tokens.navyNight else Color.White
+                val fg = if (on) Tokens.navyNight else sa.zood.nearmosque.ui.theme.Ink
                 Icon(painterResource(icon), contentDescription = null, tint = fg, modifier = Modifier.size(18.dp))
                 Spacer(Modifier.width(6.dp))
                 Text(label, color = fg, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))

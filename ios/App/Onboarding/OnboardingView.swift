@@ -57,7 +57,7 @@ struct OnboardingView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 12)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .skyBackground(horizon: 0.8)
     }
 
@@ -74,7 +74,7 @@ private struct PageDots: View {
     var body: some View {
         HStack(spacing: 6) {
             ForEach(0..<count, id: \.self) { i in
-                Capsule().fill(i == index ? Theme.gold : .white.opacity(0.4))
+                Capsule().fill(i == index ? Theme.gold : Theme.ink.opacity(0.4))
                     .frame(width: i == index ? 22 : 7, height: 7)
             }
         }
@@ -96,7 +96,7 @@ private struct OnboardingPage<Art: View>: View {
             VStack(spacing: 20) {
                 art.frame(height: 300).frame(maxWidth: 420)
                 Text(title).font(.largeTitle.bold()).multilineTextAlignment(.center).accessibilityAddTraits(.isHeader)
-                Text(message).font(.title3).multilineTextAlignment(.center).foregroundStyle(.white.opacity(0.88))
+                Text(message).font(.title3).multilineTextAlignment(.center).foregroundStyle(Theme.ink.opacity(0.88))
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, 28)
@@ -152,7 +152,7 @@ private struct PrayerArt: View {
         Loop(period: 6) { p in
             VStack(spacing: 14) {
                 ZStack {
-                    Circle().trim(from: 0.55, to: 0.95).stroke(.white.opacity(0.4), lineWidth: 2).frame(width: 220, height: 220).rotationEffect(.degrees(0))
+                    Circle().trim(from: 0.55, to: 0.95).stroke(Theme.ink.opacity(0.4), lineWidth: 2).frame(width: 220, height: 220).rotationEffect(.degrees(0))
                     let a = (-72 + 144 * ease(p)) * .pi / 180
                     Circle().fill(Theme.gold).frame(width: 18, height: 18)
                         .shadow(color: Theme.gold, radius: 10)
@@ -170,7 +170,7 @@ private struct PrayerArt: View {
                             Spacer()
                         }
                         .font(.subheadline.weight(i == active ? .semibold : .regular))
-                        .foregroundStyle(i == active ? Theme.gold : .white.opacity(0.85))
+                        .foregroundStyle(i == active ? Theme.accent : Theme.ink.opacity(0.85))
                         .padding(.horizontal, 14).frame(height: 30)
                         .background(i == active ? Theme.gold.opacity(0.15) : .clear, in: RoundedRectangle(cornerRadius: 12))
                     }
@@ -208,7 +208,7 @@ private struct MosqueArt: View {
                 let s = min(geo.size.width, geo.size.height)
                 ZStack {
                     ForEach(1...3, id: \.self) { k in
-                        Circle().stroke(.white.opacity(0.22), lineWidth: 1).frame(width: s * CGFloat(k) / 3, height: s * CGFloat(k) / 3)
+                        Circle().stroke(Theme.ink.opacity(0.22), lineWidth: 1).frame(width: s * CGFloat(k) / 3, height: s * CGFloat(k) / 3)
                     }
                     Path { path in
                         path.move(to: CGPoint(x: s / 2, y: s / 2))
@@ -254,15 +254,15 @@ private struct AskArt: View {
                 if p > 0.2 && p < 0.4 {
                     HStack(spacing: 6) {
                         ForEach(0..<3, id: \.self) { i in
-                            Circle().fill(.white).frame(width: 7, height: 7)
+                            Circle().fill(Theme.ink).frame(width: 7, height: 7)
                                 .opacity(0.3 + 0.7 * abs(sin((p * 20 + Double(i)) * 1.2)))
                         }
                     }
                     .padding(12).glass(Capsule())
                 }
                 VStack(alignment: .leading, spacing: 6) {
-                    Label("Qur’an 13:28", systemImage: "book.closed").font(.subheadline.weight(.semibold)).foregroundStyle(Theme.gold)
-                    Text(l10n.t("supporting_passage")).font(.caption).foregroundStyle(.white.opacity(0.7))
+                    Label("Qur’an 13:28", systemImage: "book.closed").font(.subheadline.weight(.semibold)).foregroundStyle(Theme.accent)
+                    Text(l10n.t("supporting_passage")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                     Text("أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ").font(.title3)
                         .environment(\.layoutDirection, .rightToLeft)
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -317,7 +317,7 @@ private struct SetupPage: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 Text(l10n.t("onb_setup_title")).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
-                Text(l10n.t("onb_setup_body")).font(.body).foregroundStyle(.white.opacity(0.88))
+                Text(l10n.t("onb_setup_body")).font(.body).foregroundStyle(Theme.ink.opacity(0.88))
                 Text(l10n.t("language")).font(.headline)
                 FlowLayout(spacing: 8) {
                     ForEach(Localization.supported, id: \.self) { code in
@@ -325,7 +325,7 @@ private struct SetupPage: View {
                         Button { l10n.override = code } label: {
                             Text(Localization.nativeNames[code] ?? code).font(.subheadline.weight(selected ? .semibold : .regular))
                                 .padding(.horizontal, 14).frame(minHeight: 44)
-                                .foregroundStyle(selected ? Theme.navyNight : .white)
+                                .foregroundStyle(selected ? Theme.navyNight : Theme.ink)
                                 .background(selected ? Theme.gold : .clear, in: Capsule())
                                 .contentShape(Capsule())
                         }
@@ -337,7 +337,7 @@ private struct SetupPage: View {
                 Text(l10n.t("location_section")).font(.headline).padding(.top, 6)
                 if let loc = model.settings.location {
                     Label(l10n.t("onb_location_set", loc.name), systemImage: "checkmark.circle.fill")
-                        .foregroundStyle(Theme.gold).font(.body.weight(.semibold))
+                        .foregroundStyle(Theme.accent).font(.body.weight(.semibold))
                 }
                 GlassGroup {
                     VStack(spacing: 10) {
@@ -362,7 +362,7 @@ private struct SetupPage: View {
                     }
                 }
                 if let error { Text(error).font(.footnote).foregroundStyle(Color(hex: 0xF2B8B5)) }
-                Text(l10n.t("online_search_body")).font(.footnote).foregroundStyle(.white.opacity(0.75))
+                Text(l10n.t("online_search_body")).font(.footnote).foregroundStyle(Theme.ink.opacity(0.75))
             }
             .padding(.horizontal, 24)
             .padding(.top, 8)

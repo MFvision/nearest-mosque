@@ -117,18 +117,18 @@ struct LibraryCard: View {
         let excerpt = String(summary.prefix(260))
         VStack(alignment: .leading, spacing: 6) {
             if let t = libraryTypeLabel(c, l10n) {
-                Text(t).font(.caption2.weight(.semibold)).foregroundStyle(Theme.gold)
+                Text(t).font(.caption2.weight(.semibold)).foregroundStyle(Theme.accent)
             }
-            if let pub = libraryPublisherLine(c, l10n) { Text(pub).font(.caption2).foregroundStyle(.white.opacity(0.6)) }
+            if let pub = libraryPublisherLine(c, l10n) { Text(pub).font(.caption2).foregroundStyle(Theme.ink.opacity(0.6)) }
             VStack(alignment: .leading, spacing: 4) {
                 Text((index.map { "[\($0)] " } ?? "") + libraryTitle(c, l10n)).font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity, alignment: .leading)
                 if let authors = c.section?.authors, !authors.isEmpty {
-                    Text(l10n.t("library_by", authors.joined(separator: ", "))).font(.caption).foregroundStyle(.white.opacity(0.7))
+                    Text(l10n.t("library_by", authors.joined(separator: ", "))).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 if !excerpt.isEmpty {
                     Text(excerpt + (summary.count > excerpt.count ? "…" : ""))
-                        .font(.subheadline).foregroundStyle(.white.opacity(0.9)).lineLimit(5)
+                        .font(.subheadline).foregroundStyle(Theme.ink.opacity(0.9)).lineLimit(5)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -137,7 +137,7 @@ struct LibraryCard: View {
             HStack(spacing: 16) {
                 if let mode {
                     Button { reading = true } label: { Label(actionTitle(mode, c), systemImage: actionIcon(mode)) }
-                        .foregroundStyle(Theme.gold)
+                        .foregroundStyle(Theme.accent)
                 }
                 if let u = c.url.flatMap(URL.init(string:)) {
                     Button { openURL(u) } label: { Label(libraryWebLabel(c, l10n), systemImage: "safari") }
@@ -146,13 +146,13 @@ struct LibraryCard: View {
                 Spacer(minLength: 0)
                 let saved = app.bookmarks.contains(c.id)
                 Button { app.setBookmark(c.id, !saved) } label: { Image(systemName: saved ? "bookmark.fill" : "bookmark") }
-                    .foregroundStyle(saved ? Theme.gold : .white.opacity(0.8))
+                    .foregroundStyle(saved ? Theme.accent : Theme.ink.opacity(0.8))
                     .accessibilityLabel(l10n.t(saved ? "library_unbookmark" : "library_bookmark"))
             }
             .font(.subheadline.weight(.medium))
             .padding(.top, 2)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard(padding: 14, cornerRadius: 20, tint: Color.white.opacity(0.04))
         .fullScreenCover(isPresented: $reading) {
             if let mode { LibraryReaderView(chunk: c, mode: mode, question: question) }
@@ -233,7 +233,7 @@ private struct PDFReader: View {
                     .ignoresSafeArea(edges: .bottom)
                 VStack {
                     if foundPage {
-                        Text(l10n.t("library_found_page")).font(.footnote.weight(.medium)).foregroundStyle(.white)
+                        Text(l10n.t("library_found_page")).font(.footnote.weight(.medium)).foregroundStyle(Theme.ink)
                             .padding(.horizontal, 14).padding(.vertical, 8)
                             .background(.black.opacity(0.65), in: Capsule())
                             .padding(.top, 8)
@@ -241,7 +241,7 @@ private struct PDFReader: View {
                     }
                     Spacer()
                     if page.total > 0 {
-                        Text(l10n.t("library_page", page.current, page.total)).font(.footnote.weight(.semibold)).foregroundStyle(.white)
+                        Text(l10n.t("library_page", page.current, page.total)).font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink)
                             .padding(.horizontal, 14).padding(.vertical, 6)
                             .background(.black.opacity(0.6), in: Capsule())
                             .padding(.bottom, 16)
@@ -249,14 +249,14 @@ private struct PDFReader: View {
                 }
             } else if failed {
                 VStack(spacing: 12) {
-                    Text(l10n.t("library_download_failed")).multilineTextAlignment(.center).foregroundStyle(.white)
+                    Text(l10n.t("library_download_failed")).multilineTextAlignment(.center).foregroundStyle(Theme.ink)
                     Button(l10n.t("library_retry")) { attempt += 1 }.buttonStyle(.borderedProminent).tint(Theme.gold)
                 }
                 .padding(24)
             } else {
                 VStack(spacing: 12) {
-                    Text(l10n.t("library_downloading")).foregroundStyle(.white)
-                    if progress > 0 { ProgressView(value: progress).frame(width: 220).tint(Theme.gold) } else { ProgressView().tint(.white) }
+                    Text(l10n.t("library_downloading")).foregroundStyle(Theme.ink)
+                    if progress > 0 { ProgressView(value: progress).frame(width: 220).tint(Theme.gold) } else { ProgressView().tint(Theme.ink) }
                 }
             }
         }

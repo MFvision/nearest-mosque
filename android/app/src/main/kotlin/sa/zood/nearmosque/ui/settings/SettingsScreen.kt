@@ -109,6 +109,16 @@ fun SettingsScreen(
                 }
                 Text(stringResource(R.string.draft_translations_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
 
+                Section(stringResource(R.string.appearance))
+                val appearance = sa.zood.nearmosque.Appearance.current(context)
+                listOf(
+                    sa.zood.nearmosque.Appearance.SYSTEM to R.string.appearance_system,
+                    sa.zood.nearmosque.Appearance.LIGHT to R.string.appearance_light,
+                    sa.zood.nearmosque.Appearance.DARK to R.string.appearance_dark,
+                ).forEach { (mode, label) ->
+                    RadioRow(stringResource(label), appearance == mode) { sa.zood.nearmosque.Appearance.set(context, mode) }
+                }
+
                 Section(stringResource(R.string.location_section))
                 Text(prayer.location?.name ?: "—", style = MaterialTheme.typography.bodyLarge)
                 prayer.location?.let { Text(stringResource(R.string.time_zone_label, Format.zoneName(context, it.zoneId)), style = MaterialTheme.typography.bodySmall) }

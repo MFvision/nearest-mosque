@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.ask
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -54,12 +58,12 @@ fun LibraryScreen(onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
         Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Color.White) }
-                Text(stringResource(R.string.library_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = Color.White)
+                TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
+                Text(stringResource(R.string.library_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = Ink)
             }
-            TabRow(selectedTabIndex = tab, containerColor = Color.Transparent, contentColor = Tokens.gold) {
+            TabRow(selectedTabIndex = tab, containerColor = Color.Transparent, contentColor = Accent) {
                 listOf(R.string.library_saved, R.string.library_browse, R.string.library_downloads).forEachIndexed { i, label ->
-                    Tab(selected = tab == i, onClick = { tab = i }, text = { Text(stringResource(label), color = if (tab == i) Tokens.gold else Color.White) })
+                    Tab(selected = tab == i, onClick = { tab = i }, text = { Text(stringResource(label), color = if (tab == i) Accent else Ink) })
                 }
             }
             when (tab) {
@@ -73,7 +77,7 @@ fun LibraryScreen(onDismiss: () -> Unit) {
 
 @Composable
 private fun Empty(text: String) {
-    Text(text, Modifier.fillMaxWidth().padding(32.dp), color = Color.White.copy(alpha = 0.8f), style = MaterialTheme.typography.bodyLarge)
+    Text(text, Modifier.fillMaxWidth().padding(32.dp), color = Ink.copy(alpha = 0.8f), style = MaterialTheme.typography.bodyLarge)
 }
 
 @Composable
@@ -101,10 +105,10 @@ private fun BrowseTab() {
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         items(packs, key = { it.id }) { p ->
             Column(
-                Modifier.fillMaxWidth().glass(RoundedCornerShape(18.dp), tint = Color.White.copy(alpha = 0.04f)).clickable { open = p }.padding(16.dp),
+                Modifier.fillMaxWidth().glass(RoundedCornerShape(18.dp), tint = Ink.copy(alpha = 0.04f)).clickable { open = p }.padding(16.dp),
             ) {
-                Text(p.title[lang] ?: p.title["en"] ?: p.id, color = Color.White, style = MaterialTheme.typography.titleSmall)
-                Text(stringResource(R.string.library_items_count, p.count), color = Color.White.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
+                Text(p.title[lang] ?: p.title["en"] ?: p.id, color = Ink, style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.library_items_count, p.count), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
             }
         }
     }
@@ -124,12 +128,12 @@ private fun CollectionView(p: AskRepository.LibraryPack, lang: String, onBack: (
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.library_browse), color = Color(0xFF8CC0DE)) }
-            Text(title, color = Color.White, style = MaterialTheme.typography.titleSmall, maxLines = 1)
+            Text(title, color = Ink, style = MaterialTheme.typography.titleSmall, maxLines = 1)
         }
         OutlinedTextField(
             query, { query = it }, Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             placeholder = { Text(stringResource(R.string.library_search_in, title)) }, singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(focusedTextColor = Color.White, unfocusedTextColor = Color.White, focusedBorderColor = Tokens.gold),
+            colors = OutlinedTextFieldDefaults.colors(focusedTextColor = Ink, unfocusedTextColor = Ink, focusedBorderColor = Tokens.gold),
         )
         LazyColumn(contentPadding = PaddingValues(16.dp)) {
             items(items, key = { it.chunk.id }) { LibraryCard(it) }
@@ -158,15 +162,15 @@ private fun DownloadsTab() {
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(android.text.format.Formatter.formatShortFileSize(context, items.sumOf { it.second.length() }), Modifier.weight(1f), color = Color.White.copy(alpha = 0.8f))
+                Text(android.text.format.Formatter.formatShortFileSize(context, items.sumOf { it.second.length() }), Modifier.weight(1f), color = Ink.copy(alpha = 0.8f))
                 TextButton(onClick = { files.deleteAll(); version++ }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_delete_all), color = Color(0xFFE8A0A0)) }
             }
         }
         items(items, key = { it.second.name }) { (r, f) ->
             Column {
-                if (r != null) LibraryCard(r) else Text(f.name, color = Color.White)
+                if (r != null) LibraryCard(r) else Text(f.name, color = Ink)
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(android.text.format.Formatter.formatShortFileSize(context, f.length()), Modifier.weight(1f), color = Color.White.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
+                    Text(android.text.format.Formatter.formatShortFileSize(context, f.length()), Modifier.weight(1f), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
                     TextButton(onClick = { files.delete(f); version++ }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_delete), color = Color(0xFFE8A0A0)) }
                 }
             }

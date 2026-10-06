@@ -24,19 +24,19 @@ struct SourceCard: View {
         let doc = citation.documents[c.original.docId]
         VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .top, spacing: 10) {
-                Image(systemName: "book.closed").font(.title3).foregroundStyle(Theme.gold).accessibilityHidden(true)
+                Image(systemName: "book.closed").font(.title3).foregroundStyle(Theme.accent).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text((index.map { "[\($0)] " } ?? "") + referenceLabel(c, l10n: l10n)).font(.subheadline.weight(.semibold))
                     Text(l10n.t("supporting_passage") + " · " + [doc?.title[l10n.language] ?? doc?.title["en"], doc?.edition].compactMap { $0 }.joined(separator: " · "))
-                        .font(.caption).foregroundStyle(.white.opacity(0.7))
+                        .font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                 }
             }
-            Text(l10n.t("exact_quote")).font(.caption2.weight(.semibold)).foregroundStyle(Theme.gold)
+            Text(l10n.t("exact_quote")).font(.caption2.weight(.semibold)).foregroundStyle(Theme.accent)
             OriginalText(text: c.original.text, lang: c.original.lang)
             ForEach(c.allTranslations, id: \.docId) { t in
                 let td = citation.documents[t.docId]
                 Text(l10n.t("translation_by", [td?.translator, td?.year.map { String($0) }].compactMap { $0 }.joined(separator: ", ")))
-                    .font(.caption2.weight(.semibold)).foregroundStyle(Theme.gold)
+                    .font(.caption2.weight(.semibold)).foregroundStyle(Theme.accent)
                 Text(t.text).font(.subheadline)
                     .environment(\.layoutDirection, .leftToRight)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -51,7 +51,7 @@ struct SourceCard: View {
             .foregroundStyle(Color(hex: 0x8CC0DE))
             .padding(.top, 2)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .glassCard(padding: 14, cornerRadius: 20, tint: Color.white.opacity(0.04))
     }
 }
@@ -63,7 +63,7 @@ struct OriginalText: View {
     var body: some View {
         let rtl = lang == "ar" || lang == "ur"
         Text(text)
-            .font(rtl ? .system(size: 22) : .body)
+            .font(rtl ? .title2 : .body)
             .lineSpacing(rtl ? 10 : 2)
             .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -85,7 +85,7 @@ struct ReaderView: View {
         NavigationStack {
             List(around) { c in
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(referenceLabel(c, l10n: l10n)).font(.caption.weight(.semibold)).foregroundStyle(Theme.gold)
+                    Text(referenceLabel(c, l10n: l10n)).font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
                     OriginalText(text: c.original.text, lang: c.original.lang)
                     ForEach(c.allTranslations, id: \.docId) { Text($0.text).font(.subheadline).environment(\.layoutDirection, .leftToRight) }
                 }

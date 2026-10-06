@@ -2851,6 +2851,42 @@
       "id": "Membuka situs di peramban dengan pertanyaan Anda.",
       "fr": "Ouvre le site dans votre navigateur avec votre question.",
       "es": "Abre el sitio en tu navegador con tu pregunta."
+    },
+    "appearance": {
+      "en": "Appearance",
+      "ar": "المظهر",
+      "ur": "ظاہری شکل",
+      "tr": "Görünüm",
+      "id": "Tampilan",
+      "fr": "Apparence",
+      "es": "Apariencia"
+    },
+    "appearance_system": {
+      "en": "Same as phone",
+      "ar": "مثل الهاتف",
+      "ur": "فون کے مطابق",
+      "tr": "Telefonla aynı",
+      "id": "Sama seperti ponsel",
+      "fr": "Comme le téléphone",
+      "es": "Igual que el teléfono"
+    },
+    "appearance_light": {
+      "en": "Light",
+      "ar": "فاتح",
+      "ur": "روشن",
+      "tr": "Açık",
+      "id": "Terang",
+      "fr": "Clair",
+      "es": "Claro"
+    },
+    "appearance_dark": {
+      "en": "Dark",
+      "ar": "داكن",
+      "ur": "گہرا",
+      "tr": "Koyu",
+      "id": "Gelap",
+      "fr": "Sombre",
+      "es": "Oscuro"
     }
   }
 }

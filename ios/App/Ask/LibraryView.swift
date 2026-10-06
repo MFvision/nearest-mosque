@@ -26,7 +26,7 @@ struct LibraryView: View {
                 }
                 Spacer(minLength: 0)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Theme.ink)
             .background(Color(hex: 0x0B1220).ignoresSafeArea())
             .navigationTitle(l10n.t("library_title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -37,7 +37,7 @@ struct LibraryView: View {
 
 private struct EmptyNote: View {
     let text: String
-    var body: some View { Text(text).font(.body).foregroundStyle(.white.opacity(0.8)).padding(32).frame(maxWidth: .infinity, alignment: .leading) }
+    var body: some View { Text(text).font(.body).foregroundStyle(Theme.ink.opacity(0.8)).padding(32).frame(maxWidth: .infinity, alignment: .leading) }
 }
 
 private struct SavedList: View {
@@ -63,7 +63,7 @@ private struct CollectionsList: View {
                         NavigationLink { CollectionView(pack: p) } label: {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(p.title[l10n.language] ?? p.title["en"] ?? p.id).font(.subheadline.weight(.semibold))
-                                Text(l10n.t("library_items_count", p.count)).font(.caption).foregroundStyle(.white.opacity(0.7))
+                                Text(l10n.t("library_items_count", p.count)).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .glassCard(padding: 14, cornerRadius: 18, tint: Color.white.opacity(0.04))
@@ -97,7 +97,7 @@ private struct CollectionView: View {
             }
             .padding(16)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Theme.ink)
         .background(Color(hex: 0x0B1220).ignoresSafeArea())
         .navigationTitle(title)
         .searchable(text: $query, prompt: l10n.t("library_search_in", title))
@@ -126,14 +126,14 @@ private struct DownloadsList: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text(ByteCountFormatter.string(fromByteCount: Int64(files.reduce(0) { $0 + $1.bytes }), countStyle: .file)).foregroundStyle(.white.opacity(0.8))
+                        Text(ByteCountFormatter.string(fromByteCount: Int64(files.reduce(0) { $0 + $1.bytes }), countStyle: .file)).foregroundStyle(Theme.ink.opacity(0.8))
                         Spacer()
                         Button(l10n.t("library_delete_all")) { files.forEach { LibraryFiles.delete($0.url) }; version += 1 }.foregroundStyle(Color(hex: 0xE8A0A0))
                     }
                     ForEach(files, id: \.url) { f in
                         if let r = resolved[f.id] { LibraryCard(item: r, question: "") } else { Text(f.url.lastPathComponent) }
                         HStack {
-                            Text(ByteCountFormatter.string(fromByteCount: Int64(f.bytes), countStyle: .file)).font(.caption).foregroundStyle(.white.opacity(0.7))
+                            Text(ByteCountFormatter.string(fromByteCount: Int64(f.bytes), countStyle: .file)).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                             Spacer()
                             Button(l10n.t("library_delete")) { LibraryFiles.delete(f.url); version += 1 }.font(.caption).foregroundStyle(Color(hex: 0xE8A0A0))
                         }

@@ -1,5 +1,9 @@
 package sa.zood.nearmosque.ui.ask
 
+import sa.zood.nearmosque.ui.theme.Accent
+
+import sa.zood.nearmosque.ui.theme.Ink
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -90,7 +94,7 @@ fun AskScreen(vm: AskViewModel, onOpenSettings: () -> Unit) {
     if (library) LibraryScreen(onDismiss = { library = false })
     val list = rememberLazyListState()
     LaunchedEffect(ui.turns.size, ui.turns.lastOrNull()?.answer) { if (ui.turns.isNotEmpty()) list.animateScrollToItem(list.layoutInfo.totalItemsCount.coerceAtLeast(1) - 1) }
-    val white = androidx.compose.ui.graphics.Color.White
+    val white = Ink
 
     Column(Modifier.fillMaxSize().statusBarsPadding().imePadding()) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -192,7 +196,7 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
                 val q = a.commonQuestion!!
                 Text(
                     if (q.isReviewed) stringResource(R.string.answer_common_reviewed, q.reviewedBy!!) else stringResource(R.string.answer_common_unreviewed),
-                    style = MaterialTheme.typography.labelLarge, color = Tokens.gold,
+                    style = MaterialTheme.typography.labelLarge, color = Accent,
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(summaryFor(q, lang), style = MaterialTheme.typography.bodyLarge)
@@ -220,7 +224,7 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
             Spacer(Modifier.height(12.dp))
             Text(stringResource(R.string.library_section), style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
             t.library.forEach { LibraryCard(it) }
-            Text(stringResource(R.string.library_note) + " " + stringResource(R.string.library_offline_note), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f), modifier = Modifier.padding(top = 6.dp))
+            Text(stringResource(R.string.library_note) + " " + stringResource(R.string.library_offline_note), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f), modifier = Modifier.padding(top = 6.dp))
         }
         if (t.related.isNotEmpty()) {
             TextButton(onClick = { more = !more }, modifier = Modifier.heightIn(min = 48.dp)) {
@@ -232,11 +236,11 @@ private fun AnswerCard(t: Turn, lang: String, onRead: (ResolvedCitation) -> Unit
             }
         }
         if (lang != "ar" && lang != "en" && a.kind != AnswerKind.INSUFFICIENT) {
-            Text(stringResource(R.string.answer_language_note), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f))
+            Text(stringResource(R.string.answer_language_note), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f))
         }
         Spacer(Modifier.height(6.dp))
         OtherSourcesRow(t.question, lang)
-        Text(stringResource(R.string.answer_not_fatwa), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f))
+        Text(stringResource(R.string.answer_not_fatwa), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.7f))
     }
 }
 
@@ -253,7 +257,7 @@ private fun OtherSourcesRow(question: String, lang: String) {
         "binothaimeen" to R.string.site_binothaimeen, "alifta" to R.string.site_alifta,
     )
     Column(Modifier.padding(top = 6.dp)) {
-        Text(stringResource(R.string.answer_search_more), style = MaterialTheme.typography.labelMedium, color = Tokens.gold)
+        Text(stringResource(R.string.answer_search_more), style = MaterialTheme.typography.labelMedium, color = Accent)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 4.dp)) {
             sa.zood.nearmosque.core.OtherSources.links(question, lang).forEach { l ->
                 Text(
@@ -264,7 +268,7 @@ private fun OtherSourcesRow(question: String, lang: String) {
                 )
             }
         }
-        Text(stringResource(R.string.answer_search_more_note), style = MaterialTheme.typography.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.6f), modifier = Modifier.padding(top = 4.dp))
+        Text(stringResource(R.string.answer_search_more_note), style = MaterialTheme.typography.bodySmall, color = Ink.copy(alpha = 0.6f), modifier = Modifier.padding(top = 4.dp))
     }
 }
 
