@@ -52,7 +52,11 @@ Legend: **Done** = implemented and covered by automated tests or rendered screen
 | Cloud AI | — | — | Not implemented; off by design |
 | OCR, PDF/EPUB import | Not started | Not started | Next increments; licensing first (see 04) |
 | Guided learning flows | Not started | Not started | |
-| Reduced motion / transparency, contrast, large text | Partial | Built | Contrast checked by `tools/check_tokens.py` (35 checks). Large-text and screen-reader passes not yet run on devices |
+| Light and dark appearance following the phone (Settings → Appearance overrides) | Done | Done | Daytime pastel skies in light mode; `tools/check_tokens.py` checks 4.5:1 for text and gold on every light sky stop |
+| Prayer header in three levels: compact bar → sky card (next prayer, sun or moon on its path with the prayers marked, Qibla row) → full compass with a direction beam | Done | Done | `DayArc` unit-tested on both platforms; screenshots: Android `sky_card_*`, iOS CI 06c/06d/11b/15 |
+| Navigation: two tabs and a floating Ask AI pill (iOS 26: tab bar bottom accessory) opening the chat full screen | Done | Done | Screenshots both platforms |
+| Ask AI: thinking card with the real steps, chats saved on the phone (questions only, excluded from backup), history, new chat, suggested questions, Library card | Done | Done | Android `ChatHistoryTest`; iOS unverified on a device |
+| Reduced motion / transparency, contrast, large text | Done (150% text screenshots) | Built (accessibility-medium screenshots in CI) | Contrast checked by `tools/check_tokens.py`. Screen-reader labels audited in code (map, rows, radar, tap targets fixed); not yet tried with VoiceOver/TalkBack on a device. iOS Increase Contrast not specially handled |
 
 ## 5.2 Test results (this environment and CI)
 

@@ -82,14 +82,17 @@ struct DayArcView: View {
     let arc: DayArc
     let period: SkyPeriod
     let zone: TimeZone
-    var height: CGFloat = 156
+    /// Grows with the text size so the labels never collide (capped so the card still fits).
+    @ScaledMetric(relativeTo: .caption2) private var scaled: CGFloat = 156
+    private var height: CGFloat { min(scaled, 300) }
 
     var body: some View {
         let sky = Sky.of(period, dark: scheme == .dark)
         GeometryReader { geo in
             let w = geo.size.width, h = geo.size.height
             let horizon = h * 0.74
-            let a = w / 2 - 34, b = horizon - 40
+            let k = height / 156
+            let a = w / 2 - 34, b = horizon - 40 * k
             let point: (Double) -> CGPoint = { t in
                 let f = direction == .rightToLeft ? 1 - t : t
                 let theta = Double.pi * (1 - f)
@@ -126,10 +129,10 @@ struct DayArcView: View {
                 // where the sun or moon is on that mark.
                 ForEach(arc.marks, id: \.at) { m in
                     let outside = abs(m.fraction - arc.fraction) < 0.1 || m.fraction < 0.2 || m.fraction > 0.8
-                    PinnedLabel(at: CGPoint(x: point(m.fraction).x, y: point(m.fraction).y + (outside ? -22 : 22))) { label(m.event, m.at) }
+                    PinnedLabel(at: CGPoint(x: point(m.fraction).x, y: point(m.fraction).y + (outside ? -22 : 22) * k)) { label(m.event, m.at) }
                 }
-                PinnedLabel(at: CGPoint(x: point(0).x, y: horizon + 20)) { label(arc.startEvent, arc.start) }
-                PinnedLabel(at: CGPoint(x: point(1).x, y: horizon + 20)) { label(arc.endEvent, arc.end) }
+                PinnedLabel(at: CGPoint(x: point(0).x, y: horizon + 20 * k)) { label(arc.startEvent, arc.start) }
+                PinnedLabel(at: CGPoint(x: point(1).x, y: horizon + 20 * k)) { label(arc.endEvent, arc.end) }
                 celestial.position(here)
             }
             .frame(width: w, height: h)
