@@ -137,3 +137,22 @@ jobs:
         run: |
           python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
           WAIT_MINUTES=60 /tmp/asc/bin/python tools/asc_testflight.py
+
+  # The archive step's automatic signing creates a development certificate on each fresh machine; it is
+  # useless once the machine is gone and Apple caps how many an account holds, so revoke this run's.
+  certificates:
+    name: Revoke this build's development certificate
+    needs: testflight
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Revoke development certificates created in the last hours by CI
+        run: |
+          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
+          /tmp/asc/bin/python tools/asc_certificates.py revoke-recent

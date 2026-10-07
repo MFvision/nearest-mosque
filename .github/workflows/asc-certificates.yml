@@ -1,0 +1,32 @@
+name: Apple development certificates
+
+# Lists, or revokes, the development certificates that CI builds created through the App Store Connect
+# API key (one per TestFlight build; unusable once the build machine is gone). Certificates made in Xcode
+# on a person's own Mac and distribution certificates are never touched; names are never printed.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "list, or revoke-ci (revoke every development certificate created by CI)"
+        required: true
+        default: list
+
+permissions:
+  contents: read
+
+jobs:
+  certificates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pyjwt cryptography
+      - run: python tools/asc_certificates.py "$MODE"
