@@ -103,31 +103,36 @@ struct PrayerView: View {
     private var wide: some View {
         TimelineView(.periodic(from: .now, by: 1)) { ctx in
             let snap = PrayerSnapshot(model: model, now: ctx.date)
-            HStack(alignment: .top, spacing: 24) {
-                ScrollView {
-                    PrayerHero(snap: snap, compass: model.location.compass, aligned: aligned,
-                               onLocation: { showCity = true }, onSettings: { showSettings = true },
-                               onQibla: { showCompass = true }, onNearest: { mosque = $0 })
-                        .padding(.bottom, 32)
-                }
-                .scrollIndicators(.hidden)
-                .frame(maxWidth: 520)
-                ScrollView {
-                    VStack(spacing: 14) {
-                        if snap.location == nil {
-                            ChooseLocationCard(onPickCity: { showCity = true })
-                        } else {
-                            content(snap)
-                        }
+            GeometryReader { geo in
+                HStack(alignment: .top, spacing: 24) {
+                    // Each column is centred on the screen's height while it fits, and scrolls when it does not.
+                    ScrollView {
+                        PrayerHero(snap: snap, compass: model.location.compass, aligned: aligned,
+                                   onLocation: { showCity = true }, onSettings: { showSettings = true },
+                                   onQibla: { showCompass = true }, onNearest: { mosque = $0 })
+                            .padding(.vertical, 32)
+                            .frame(minHeight: geo.size.height)
                     }
-                    .padding(.top, 60)
-                    .padding(.bottom, 80)
+                    .scrollIndicators(.hidden)
+                    .frame(maxWidth: 520)
+                    ScrollView {
+                        VStack(spacing: 14) {
+                            if snap.location == nil {
+                                ChooseLocationCard(onPickCity: { showCity = true })
+                            } else {
+                                content(snap)
+                            }
+                        }
+                        .padding(.top, 60)
+                        .padding(.bottom, 80)
+                        .frame(minHeight: geo.size.height)
+                    }
+                    .scrollIndicators(.hidden)
+                    .frame(maxWidth: 640)
                 }
-                .scrollIndicators(.hidden)
-                .frame(maxWidth: 640)
+                .padding(.horizontal, 28)
+                .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal, 28)
-            .frame(maxWidth: .infinity)
             .onChange(of: model.location.compass) { _, c in updateAlignment(c, snap.qiblaBearing) }
         }
     }
