@@ -59,6 +59,8 @@ struct PrayerView: View {
     @State private var aligned = false
     @State private var mosque: RankedMosque?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Regular width (iPad, Mac): the wide layout.
+    @Environment(\.horizontalSizeClass) private var hSize
 
     /// The bar replaces the header once most of the header has scrolled away.
     private var showCompact: Bool { scrollOffset > 300 }
@@ -67,6 +69,71 @@ struct PrayerView: View {
     private var motion: Animation { reduceMotion ? .easeInOut(duration: 0.2) : Theme.spring }
 
     var body: some View {
+        Group {
+            if hSize == .regular { wide } else { narrow }
+        }
+        .task(id: nearestKey) { model.refreshNearestMosque() }
+        .skyBackground()
+        .toolbar(.hidden, for: .navigationBar)
+        .sensoryFeedback(.success, trigger: aligned) { _, new in new }
+        .onAppear {
+            model.location.beginHeading()
+            #if DEBUG
+            if UserDefaults.standard.bool(forKey: "demoCompass") { showCompass = true }
+            #endif
+        }
+        .onDisappear { model.location.endHeading() }
+        .onChange(of: model.requestQibla, initial: true) { _, asked in
+            if asked { model.requestQibla = false; showCompass = true }
+        }
+        .sheet(isPresented: $showCity) { CityPickerView() }
+        .sheet(isPresented: $showCalc) { CalculationView() }
+        .fullScreenCover(isPresented: $showCompass) { QiblaCompassView() }
+        .sheet(item: $mosque) { r in
+            MosqueDetailView(ranked: r, favorite: ((try? model.mosques?.favorites()) ?? []).contains(r.id),
+                             canFavorite: r.mosque.packId.hasPrefix("mosques.")) { on in
+                try? model.mosques?.setFavorite(r.id, on)
+            }
+            .presentationDetents([.medium, .large])
+        }
+    }
+
+    /// iPad and Mac: two columns, the header (Qibla arc, next prayer, nearest mosque) beside the sun's path,
+    /// today's times and the dates; nothing shrinks into the bar.
+    private var wide: some View {
+        TimelineView(.periodic(from: .now, by: 1)) { ctx in
+            let snap = PrayerSnapshot(model: model, now: ctx.date)
+            HStack(alignment: .top, spacing: 24) {
+                ScrollView {
+                    PrayerHero(snap: snap, compass: model.location.compass, aligned: aligned,
+                               onLocation: { showCity = true }, onSettings: { showSettings = true },
+                               onQibla: { showCompass = true }, onNearest: { mosque = $0 })
+                        .padding(.bottom, 32)
+                }
+                .scrollIndicators(.hidden)
+                .frame(maxWidth: 520)
+                ScrollView {
+                    VStack(spacing: 14) {
+                        if snap.location == nil {
+                            ChooseLocationCard(onPickCity: { showCity = true })
+                        } else {
+                            content(snap)
+                        }
+                    }
+                    .padding(.top, 60)
+                    .padding(.bottom, 80)
+                }
+                .scrollIndicators(.hidden)
+                .frame(maxWidth: 640)
+            }
+            .padding(.horizontal, 28)
+            .frame(maxWidth: .infinity)
+            .onChange(of: model.location.compass) { _, c in updateAlignment(c, snap.qiblaBearing) }
+        }
+    }
+
+    /// iPhone: one column; scrolling shrinks the header into the bar.
+    private var narrow: some View {
         ScrollViewReader { proxy in
             TimelineView(.periodic(from: .now, by: 1)) { ctx in
                 let snap = PrayerSnapshot(model: model, now: ctx.date)
@@ -108,30 +175,6 @@ struct PrayerView: View {
                 }
                 #endif
             }
-        }
-        .task(id: nearestKey) { model.refreshNearestMosque() }
-        .skyBackground()
-        .toolbar(.hidden, for: .navigationBar)
-        .sensoryFeedback(.success, trigger: aligned) { _, new in new }
-        .onAppear {
-            model.location.beginHeading()
-            #if DEBUG
-            if UserDefaults.standard.bool(forKey: "demoCompass") { showCompass = true }
-            #endif
-        }
-        .onDisappear { model.location.endHeading() }
-        .onChange(of: model.requestQibla, initial: true) { _, asked in
-            if asked { model.requestQibla = false; showCompass = true }
-        }
-        .sheet(isPresented: $showCity) { CityPickerView() }
-        .sheet(isPresented: $showCalc) { CalculationView() }
-        .fullScreenCover(isPresented: $showCompass) { QiblaCompassView() }
-        .sheet(item: $mosque) { r in
-            MosqueDetailView(ranked: r, favorite: ((try? model.mosques?.favorites()) ?? []).contains(r.id),
-                             canFavorite: r.mosque.packId.hasPrefix("mosques.")) { on in
-                try? model.mosques?.setFavorite(r.id, on)
-            }
-            .presentationDetents([.medium, .large])
         }
     }
 

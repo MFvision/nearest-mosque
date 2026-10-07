@@ -244,6 +244,8 @@ jobs:
             ipad 08-ask-landscape -demoCity "Cape Town" -demoTab ask -demoAsk YES -demoLandscape YES -languageOverride en
             ipad 09-onboarding -demoOnboarding YES -demoOnboardingPage 0 -languageOverride en
             ipad 10-widgets-today -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind today -demoWidgetLook cream -languageOverride en
+            ipad 10b-widgets-ring -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind ring -demoWidgetLook night -languageOverride en
+            ipad 10c-mosques-compass -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 0 -languageOverride ar
             xcrun simctl ui "$IPAD" appearance dark || true
             ipad 11-prayer-dark-landscape -demoCity "Cape Town" -demoTab prayer -demoLandscape YES -languageOverride ar
             xcrun simctl shutdown "$IPAD" || true

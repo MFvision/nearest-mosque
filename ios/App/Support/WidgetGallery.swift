@@ -1,6 +1,7 @@
 #if DEBUG
 import NMCore
 import SwiftUI
+import UIKit
 import WidgetKit
 
 /// Debug builds only: the home-screen widgets drawn at their real sizes, for CI screenshots
@@ -25,10 +26,13 @@ struct WidgetGalleryView: View {
 
     private var sizes: [(WidgetFamily, CGSize)] {
         let small = CGSize(width: 170, height: 170), medium = CGSize(width: 364, height: 170), large = CGSize(width: 364, height: 382)
+        // iPad only (on an iPhone the gallery would be cut off).
+        let xl: [(WidgetFamily, CGSize)] = UIDevice.current.userInterfaceIdiom == .pad ? [(.systemExtraLarge, CGSize(width: 715, height: 330))] : []
         switch kind {
-        case .next, .ring: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)]
+        case .next: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)]
+        case .ring: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)] + xl
         case .countdown: return [(.systemSmall, small), (.systemMedium, medium)]
-        case .today: return [(.systemMedium, medium), (.systemLarge, large)]
+        case .today: return [(.systemMedium, medium), (.systemLarge, large)] + xl
         case .mosque, .ask, .qibla: return [(.systemSmall, small), (.systemMedium, medium)]
         case .actions: return [(.systemMedium, medium)]
         }

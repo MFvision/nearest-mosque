@@ -104,7 +104,7 @@ struct RingWidget: Widget {
         }
         .configurationDisplayName(LocalizedStringResource("widget_kind_ring"))
         .description(LocalizedStringResource("widget_kind_ring_desc"))
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
     }
 }
 
@@ -115,7 +115,7 @@ struct TodayWidget: Widget {
         }
         .configurationDisplayName(LocalizedStringResource("widget_kind_today"))
         .description(LocalizedStringResource("widget_kind_today_desc"))
-        .supportedFamilies([.systemMedium, .systemLarge])
+        .supportedFamilies([.systemMedium, .systemLarge, .systemExtraLarge])
     }
 }
 

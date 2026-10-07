@@ -175,6 +175,9 @@ struct AskView: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 16)
+                // A comfortable reading width on iPad and Mac.
+                .frame(maxWidth: 760)
+                .frame(maxWidth: .infinity)
                 .animation(Theme.spring, value: vm.turns.map(\.answer?.question))
             }
             .scrollIndicators(.hidden)
@@ -185,7 +188,7 @@ struct AskView: View {
         }
         }
         .foregroundStyle(Theme.ink)
-        .safeAreaInset(edge: .bottom) { inputBar }
+        .safeAreaInset(edge: .bottom) { inputBar.frame(maxWidth: 760).frame(maxWidth: .infinity) }
         .skyBackground(horizon: 0.3, skyline: true)
         .toolbar(.hidden, for: .navigationBar)
         .sheet(item: $reading) { ReaderView(citation: $0) }

@@ -84,6 +84,8 @@ struct MosquesView: View {
     @State private var fullMap = false
     @State private var locating = false
     @State private var denied = false
+    /// iPad and Mac (regular width): the list beside a full-height map or compass.
+    @Environment(\.horizontalSizeClass) private var hSize
 
     private var heading: Double? {
         if case let .live(h, _, _) = app.location.compass { return h }
@@ -93,19 +95,19 @@ struct MosquesView: View {
     var body: some View {
         VStack(spacing: 12) {
             header
-            if let center = vm.center, !favoritesOnly, !vm.items.isEmpty {
-                visual(center)
-            }
-            ScrollView {
-                LazyVStack(spacing: 12) {
-                    statusRow
-                    content
+            if hSize == .regular, let center = vm.center, !favoritesOnly, !vm.items.isEmpty {
+                HStack(alignment: .top, spacing: 16) {
+                    list.frame(width: 400)
+                    visual(center, fill: true)
                 }
-                .padding(.bottom, 24)
+            } else {
+                if let center = vm.center, !favoritesOnly, !vm.items.isEmpty {
+                    visual(center, fill: false)
+                }
+                list
             }
-            .scrollIndicators(.hidden)
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, hSize == .regular ? 24 : 16)
         .foregroundStyle(Theme.ink)
         .skyBackground(horizon: 0.42)
         .toolbar(.hidden, for: .navigationBar)
@@ -129,6 +131,17 @@ struct MosquesView: View {
         }
     }
 
+    private var list: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                statusRow
+                content
+            }
+            .padding(.bottom, 24)
+        }
+        .scrollIndicators(.hidden)
+    }
+
     private var header: some View {
         VStack(spacing: 12) {
             HStack {
@@ -150,12 +163,13 @@ struct MosquesView: View {
         .padding(.top, 4)
     }
 
-    @ViewBuilder private func visual(_ center: LatLng) -> some View {
+    /// `fill`: takes the height it is given (beside the list) instead of a fixed band above it.
+    @ViewBuilder private func visual(_ center: LatLng, fill: Bool) -> some View {
         Group {
             if mode == 0 {
                 VStack(spacing: 8) {
                     MosqueRadar(items: vm.items, center: center, heading: heading, selected: nil) { selected = $0 }
-                        .frame(maxHeight: 300)
+                        .frame(maxHeight: fill ? 560 : 300)
                     if let g = MosqueRadar.guidance(items: vm.items, center: center, heading: heading, l10n: l10n) {
                         Text(g).font(.headline).foregroundStyle(g == l10n.t("mosque_ahead") ? Theme.accent : Theme.ink)
                             .accessibilityAddTraits(.updatesFrequently)
@@ -166,7 +180,8 @@ struct MosquesView: View {
                     vm.search(app, center: $0, origin: .selectedPoint)
                 }
                 .id(center)
-                .frame(height: 320)
+                .frame(height: fill ? nil : 320)
+                .frame(maxHeight: fill ? .infinity : nil)
                 .clipShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
                 .overlay(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous).stroke(Theme.ink.opacity(0.25), lineWidth: 1))
                 .overlay(alignment: .topTrailing) {
@@ -178,6 +193,8 @@ struct MosquesView: View {
                         .environment(\.locale, l10n.locale)
                         .environment(\.layoutDirection, l10n.layoutDirection)
                 }
+                // Clear of the Ask pill at the bottom.
+                .padding(.bottom, fill ? 70 : 0)
             }
         }
         .transition(.opacity)

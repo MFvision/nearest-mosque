@@ -415,6 +415,16 @@ struct PrayerWidgetView: View {
                 rows(s, p, events: PrayerEvent.allCases, font: .caption, icons: true, bells: false)
                     .frame(maxWidth: .infinity)
             }
+        case .systemExtraLarge:
+            // iPad: a big ring beside today's times.
+            HStack(spacing: 28) {
+                ring(s, next, p, line: 9, nameFont: .title2.weight(.semibold), timeSize: 38, label: true)
+                VStack(alignment: .leading, spacing: 10) {
+                    dates(s, p)
+                    rows(s, p, events: PrayerEvent.allCases, font: .title3, icons: true, bells: true)
+                }
+                .frame(maxWidth: .infinity)
+            }
         default:
             VStack(spacing: 12) {
                 ring(s, next, p, line: 8, nameFont: .title2.weight(.semibold), timeSize: 36, label: true)
@@ -438,7 +448,31 @@ struct PrayerWidgetView: View {
             Spacer(minLength: 4)
             place(s, p).frame(maxWidth: 70)
         }
-        if family == .systemLarge {
+        if family == .systemExtraLarge {
+            // iPad: the summary as a column beside the six tiles.
+            HStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(alignment: .top) { dates(s, p); Spacer(minLength: 4); place(s, p).frame(maxWidth: 90) }
+                    VStack(alignment: .leading, spacing: 6) {
+                        Label(name(s, next.event), systemImage: next.event.symbol).font(.title3.weight(.semibold)).foregroundStyle(p.ink)
+                        Text(s.time(next.at)).font(.system(size: 40, weight: .light)).monospacedDigit().foregroundStyle(p.ink)
+                        HStack(spacing: 6) {
+                            Image(systemName: "timer")
+                            countdown(next)
+                        }
+                        .font(.title3.weight(.medium)).foregroundStyle(p.secondary)
+                        bar(next, p)
+                    }
+                    .padding(12)
+                    .background(p.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    Spacer(minLength: 0)
+                }
+                .frame(width: 260)
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
+                    ForEach(PrayerEvent.allCases, id: \.self) { e in tile(s, e, next, p, big: true) }
+                }
+            }
+        } else if family == .systemLarge {
             VStack(spacing: 10) {
                 summary
                 let events = PrayerEvent.allCases
