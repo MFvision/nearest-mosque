@@ -4,7 +4,7 @@ import SwiftUI
 import WidgetKit
 
 /// Debug builds only: the home-screen widgets drawn at their real sizes, for CI screenshots
-/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask -demoWidgetLook cream|green|night`).
+/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask|qibla|actions -demoWidgetLook cream|green|night`).
 /// Uses the city and settings chosen in the app, like the widgets themselves.
 struct WidgetGalleryView: View {
     @Environment(AppModel.self) private var model
@@ -16,6 +16,8 @@ struct WidgetGalleryView: View {
         case "today": return .today
         case "mosque": return .mosque
         case "ask": return .ask
+        case "qibla": return .qibla
+        case "actions": return .actions
         default: return .next
         }
     }
@@ -27,7 +29,8 @@ struct WidgetGalleryView: View {
         case .next, .ring: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)]
         case .countdown: return [(.systemSmall, small), (.systemMedium, medium)]
         case .today: return [(.systemMedium, medium), (.systemLarge, large)]
-        case .mosque, .ask: return [(.systemSmall, small), (.systemMedium, medium)]
+        case .mosque, .ask, .qibla: return [(.systemSmall, small), (.systemMedium, medium)]
+        case .actions: return [(.systemMedium, medium)]
         }
     }
 

@@ -42,7 +42,7 @@ class WidgetScreenshotTest {
         c.settings.setReminder(sa.zood.nearmosque.core.PrayerEvent.MAGHRIB, true)
         val (views, _) = PrayerWidgets.views(context, c, c.settings.settings.first(), kind, style, extras)
         val density = context.resources.displayMetrics.density
-        val w = ((if (kind in setOf(WidgetKind.SMALL, WidgetKind.MOSQUE_SMALL, WidgetKind.ASK_SMALL, WidgetKind.RING_SMALL)) 170 else 340) * density).toInt()
+        val w = ((if (kind in setOf(WidgetKind.SMALL, WidgetKind.MOSQUE_SMALL, WidgetKind.ASK_SMALL, WidgetKind.RING_SMALL, WidgetKind.QIBLA_SMALL)) 170 else 340) * density).toInt()
         val h = (when (kind) { WidgetKind.LARGE, WidgetKind.TODAY_LARGE, WidgetKind.RING -> 380; WidgetKind.TODAY -> 180; else -> 170 } * density).toInt()
         val activity = org.robolectric.Robolectric.buildActivity(androidx.activity.ComponentActivity::class.java).setup().get()
         val parent = FrameLayout(activity).apply { setBackgroundColor(0xFFC8C8CD.toInt()); setPadding(24, 24, 24, 24) }
@@ -101,4 +101,11 @@ class WidgetScreenshotTest {
     @Test fun ringNight() = shoot("widget_ring_night", WidgetKind.RING, WidgetStyle.NIGHT)
     @Test fun ringSmallGreen() = shoot("widget_ring_small_green", WidgetKind.RING_SMALL, WidgetStyle.GREEN)
     @Test fun ringMediumCream() = shoot("widget_ring_medium_cream", WidgetKind.RING_MEDIUM, WidgetStyle.CREAM)
+
+    @Test fun qiblaSmallGreen() = shoot("widget_qibla_small_green", WidgetKind.QIBLA_SMALL, WidgetStyle.GREEN)
+    @Test fun qiblaNight() = shoot("widget_qibla_night", WidgetKind.QIBLA, WidgetStyle.NIGHT)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun qiblaArabic() = shoot("widget_qibla_cream_ar", WidgetKind.QIBLA, WidgetStyle.CREAM)
+    @Test fun actionsCream() = shoot("widget_actions_cream", WidgetKind.ACTIONS, WidgetStyle.CREAM)
+    @Test fun actionsNight() = shoot("widget_actions_night", WidgetKind.ACTIONS, WidgetStyle.NIGHT)
 }

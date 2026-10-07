@@ -23,6 +23,7 @@ import sa.zood.nearmosque.MainActivity
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.container
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.core.Qibla
 import sa.zood.nearmosque.data.AppSettings
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.prayer.prayerIcon
@@ -52,6 +53,7 @@ enum class WidgetKind(val layout: Int) {
     RING_SMALL(R.layout.widget_ring_small), RING_MEDIUM(R.layout.widget_ring_medium), RING(R.layout.widget_ring),
     TODAY(R.layout.widget_today), TODAY_LARGE(R.layout.widget_today_large),
     MOSQUE_SMALL(R.layout.widget_mosque_small), MOSQUE(R.layout.widget_mosque), ASK_SMALL(R.layout.widget_ask_small), ASK(R.layout.widget_ask),
+    QIBLA_SMALL(R.layout.widget_qibla_small), QIBLA(R.layout.widget_qibla), ACTIONS(R.layout.widget_actions),
     ;
 
     val isRing get() = this == RING_SMALL || this == RING_MEDIUM || this == RING
@@ -96,6 +98,8 @@ object PrayerWidgets {
         PrayerWidgetToday::class.java to WidgetKind.TODAY, PrayerWidgetTodayLarge::class.java to WidgetKind.TODAY_LARGE,
         MosqueWidgetSmall::class.java to WidgetKind.MOSQUE_SMALL, MosqueWidget::class.java to WidgetKind.MOSQUE,
         AskWidgetSmall::class.java to WidgetKind.ASK_SMALL, AskWidget::class.java to WidgetKind.ASK,
+        QiblaWidgetSmall::class.java to WidgetKind.QIBLA_SMALL, QiblaWidget::class.java to WidgetKind.QIBLA,
+        ActionsWidget::class.java to WidgetKind.ACTIONS,
     )
     private val dirs = listOf(R.drawable.ic_dir_0, R.drawable.ic_dir_1, R.drawable.ic_dir_2, R.drawable.ic_dir_3,
         R.drawable.ic_dir_4, R.drawable.ic_dir_5, R.drawable.ic_dir_6, R.drawable.ic_dir_7)
@@ -188,6 +192,8 @@ object PrayerWidgets {
         when (kind) {
             WidgetKind.MOSQUE_SMALL, WidgetKind.MOSQUE -> { mosqueViews(context, v, s, kind, st, extras); return v to null }
             WidgetKind.ASK_SMALL, WidgetKind.ASK -> { askViews(context, v, kind, st, extras, now); return v to null }
+            WidgetKind.QIBLA_SMALL, WidgetKind.QIBLA -> { qiblaViews(context, v, s, kind, st); return v to null }
+            WidgetKind.ACTIONS -> { actionsViews(context, v, st); return v to null }
             else -> Unit
         }
         if (loc == null || next == null) {
@@ -307,6 +313,185 @@ object PrayerWidgets {
             bell(rowBells[i], e, now0)
         }
         return v to next.at
+    }
+
+    /** North-up, from the prayer city: widgets cannot read the compass, so a tap opens the live compass. */
+    private fun qiblaViews(context: Context, v: RemoteViews, s: AppSettings, kind: WidgetKind, st: WidgetStyle) {
+        v.setOnClickPendingIntent(R.id.widget_root, link(context, 20, "nearmosque://qibla"))
+        val loc = s.prayerLocation
+        if (loc == null) {
+            v.setTextViewText(R.id.qibla_caption, context.getString(R.string.widget_choose_city))
+            v.setTextViewText(R.id.qibla_title, context.getString(R.string.widget_choose_city))
+            v.setTextColor(R.id.qibla_caption, st.ink)
+            v.setTextColor(R.id.qibla_title, st.ink)
+            return
+        }
+        val b = Qibla.bearing(loc.location)
+        val deg = Math.round(b).toInt() % 360
+        val nf = java.text.NumberFormat.getIntegerInstance(context.resources.configuration.locales[0])
+        val density = context.resources.displayMetrics.density
+        if (kind == WidgetKind.QIBLA_SMALL) {
+            v.setImageViewBitmap(R.id.qibla_dial, qiblaDial(st, b, (140 * density).toInt()))
+            v.setTextViewText(R.id.qibla_caption, "${nf.format(deg)}° · ${loc.name}")
+            v.setTextColor(R.id.qibla_caption, st.ink)
+        } else {
+            v.setImageViewBitmap(R.id.qibla_dial, qiblaHalfDial(st, b, (170 * density).toInt()))
+            v.setTextViewText(R.id.qibla_title, context.getString(R.string.widget_kind_qibla))
+            v.setTextColor(R.id.qibla_title, st.secondary)
+            v.setTextViewText(R.id.qibla_degrees, "${nf.format(deg)}°")
+            v.setTextColor(R.id.qibla_degrees, st.ink)
+            v.setTextViewText(R.id.qibla_turn, if (b <= 180) context.getString(R.string.widget_qibla_right, nf.format(deg))
+                else context.getString(R.string.widget_qibla_left, nf.format(360 - deg)))
+            v.setTextColor(R.id.qibla_turn, st.ink)
+            v.setTextViewText(R.id.qibla_distance, context.getString(R.string.qibla_distance, Format.distance(context, Qibla.distanceMeters(loc.location))))
+            v.setTextColor(R.id.qibla_distance, st.secondary)
+            v.setTextViewText(R.id.qibla_live, context.getString(R.string.widget_qibla_live))
+            v.setTextColor(R.id.qibla_live, st.accent)
+        }
+        v.setContentDescription(R.id.qibla_dial, context.getString(R.string.qibla_bearing, nf.format(deg)))
+    }
+
+    /** Ask, the nearest mosque, and prayer times with the Qibla. */
+    private fun actionsViews(context: Context, v: RemoteViews, st: WidgetStyle) {
+        listOf(
+            Triple(R.id.action_ask, R.drawable.ic_sparkle, R.string.tab_ask_short) to "nearmosque://ask",
+            Triple(R.id.action_mosque, R.drawable.ic_tab_mosque, R.string.tab_mosques) to "nearmosque://mosques",
+            Triple(R.id.action_qibla, R.drawable.ic_tab_prayer, R.string.tab_prayer) to "nearmosque://qibla",
+        ).forEachIndexed { i, (ids, uri) ->
+            val (root, icon, label) = ids
+            val iconId = listOf(R.id.action_ask_icon, R.id.action_mosque_icon, R.id.action_qibla_icon)[i]
+            val labelId = listOf(R.id.action_ask_label, R.id.action_mosque_label, R.id.action_qibla_label)[i]
+            v.setInt(root, "setBackgroundResource", st.card)
+            v.setImageViewResource(iconId, icon)
+            v.setInt(iconId, "setBackgroundResource", st.pill)
+            v.setInt(iconId, "setColorFilter", st.onPill)
+            v.setTextViewText(labelId, context.getString(label))
+            v.setTextColor(labelId, st.ink)
+            v.setOnClickPendingIntent(root, link(context, 30 + i, uri))
+        }
+    }
+
+    private fun pillColor(st: WidgetStyle) = when (st) {
+        WidgetStyle.CREAM -> 0xFFC99A3A.toInt()
+        WidgetStyle.GREEN -> 0xFFD9E6C8.toInt()
+        WidgetStyle.NIGHT -> 0xFFD4A843.toInt()
+    }
+
+    /** A dark cube with its gold band, centred on ([cx], [cy]). */
+    private fun drawKaaba(canvas: Canvas, cx: Float, cy: Float, size: Float) {
+        val x0 = cx - size / 2
+        val y0 = cy - size / 2
+        fun pt(x: Float, y: Float) = Pair(x0 + x * size, y0 + y * size)
+        fun poly(color: Int, vararg p: Pair<Float, Float>) {
+            val path = android.graphics.Path()
+            path.moveTo(p[0].first, p[0].second)
+            for (q in p.drop(1)) path.lineTo(q.first, q.second)
+            path.close()
+            canvas.drawPath(path, Paint(Paint.ANTI_ALIAS_FLAG).apply { this.color = color })
+        }
+        poly(0xFF121212.toInt(), pt(0.12f, 0.3f), pt(0.62f, 0.3f), pt(0.62f, 0.88f), pt(0.12f, 0.88f))
+        poly(0xFF262626.toInt(), pt(0.62f, 0.3f), pt(0.88f, 0.18f), pt(0.88f, 0.74f), pt(0.62f, 0.88f))
+        poly(0xFF3A3A3A.toInt(), pt(0.12f, 0.3f), pt(0.38f, 0.18f), pt(0.88f, 0.18f), pt(0.62f, 0.3f))
+        poly(0xFFD9A842.toInt(), pt(0.12f, 0.4f), pt(0.62f, 0.4f), pt(0.62f, 0.47f), pt(0.12f, 0.47f))
+        poly(0xFFA88028.toInt(), pt(0.62f, 0.4f), pt(0.88f, 0.28f), pt(0.88f, 0.35f), pt(0.62f, 0.47f))
+    }
+
+    private fun cardColor(st: WidgetStyle) = when (st) {
+        WidgetStyle.CREAM -> 0xC7FFFFFF.toInt()
+        WidgetStyle.GREEN -> 0x38000000
+        WidgetStyle.NIGHT -> 0x1AFFFFFF
+    }
+
+    /** North-up dial: ticks, N at the top, a gold arrow to the Qibla with a glow and the Kaaba where it points. */
+    private fun qiblaDial(st: WidgetStyle, bearing: Double, size: Int): Bitmap {
+        val b = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(b)
+        val c = size / 2f
+        val r = size / 2f - 2
+        val p = Paint(Paint.ANTI_ALIAS_FLAG)
+        p.color = cardColor(st)
+        canvas.drawCircle(c, c, r, p)
+        p.style = Paint.Style.STROKE
+        for (i in 0 until 36) {
+            val t = Math.toRadians(i * 10.0)
+            val long = i % 9 == 0
+            p.color = (st.secondary and 0x00FFFFFF) or ((if (long) 0xCC else 0x66) shl 24)
+            p.strokeWidth = size * (if (long) 0.012f else 0.007f)
+            val r1 = r - size * 0.015f
+            val r2 = r - size * (if (long) 0.065f else 0.04f)
+            canvas.drawLine(c + r1 * Math.sin(t).toFloat(), c - r1 * Math.cos(t).toFloat(), c + r2 * Math.sin(t).toFloat(), c - r2 * Math.cos(t).toFloat(), p)
+        }
+        p.style = Paint.Style.FILL
+        p.color = st.accent
+        p.textSize = size * 0.085f
+        p.isFakeBoldText = true
+        p.textAlign = Paint.Align.CENTER
+        canvas.drawText("N", c, c - r + size * 0.115f, p)
+        val a = Math.toRadians(bearing)
+        val tr = r - size * 0.25f
+        val tx = c + tr * Math.sin(a).toFloat()
+        val ty = c - tr * Math.cos(a).toFloat()
+        val gold = pillColor(st)
+        p.color = (gold and 0x00FFFFFF) or (0x55 shl 24)
+        canvas.drawCircle(tx, ty, size * 0.1f, p)
+        p.style = Paint.Style.STROKE
+        p.color = gold
+        p.strokeWidth = size * 0.025f
+        p.strokeCap = Paint.Cap.ROUND
+        val er = tr - size * 0.07f
+        canvas.drawLine(c, c, c + er * Math.sin(a).toFloat(), c - er * Math.cos(a).toFloat(), p)
+        p.style = Paint.Style.FILL
+        canvas.drawCircle(c, c, size * 0.035f, p)
+        drawKaaba(canvas, tx, ty, size * 0.15f)
+        return b
+    }
+
+    /** Half a dial facing the Qibla: the Kaaba at the top, a gold arrow to it, and N where north lies (held at the edge when behind). */
+    private fun qiblaHalfDial(st: WidgetStyle, bearing: Double, width: Int): Bitmap {
+        val height = (width * 0.62f).toInt()
+        val b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(b)
+        val c = width / 2f
+        val cy = height - width * 0.04f
+        // Room above the top for the Kaaba's glow.
+        val r = minOf(width / 2f - width * 0.07f, cy - width * 0.115f)
+        val p = Paint(Paint.ANTI_ALIAS_FLAG)
+        p.style = Paint.Style.STROKE
+        p.strokeWidth = width * 0.07f
+        p.color = cardColor(st)
+        canvas.drawArc(RectF(c - r, cy - r, c + r, cy + r), 180f, 180f, false, p)
+        for (i in 0..12) {
+            val t = Math.toRadians(i * 15.0 - 90)
+            val major = i % 6 == 0
+            p.color = (st.secondary and 0x00FFFFFF) or ((if (major) 0xE6 else 0x73) shl 24)
+            p.strokeWidth = width * (if (major) 0.009f else 0.006f)
+            val r1 = r - width * 0.02f
+            val r2 = r + width * 0.02f
+            canvas.drawLine(c + r1 * Math.sin(t).toFloat(), cy - r1 * Math.cos(t).toFloat(), c + r2 * Math.sin(t).toFloat(), cy - r2 * Math.cos(t).toFloat(), p)
+        }
+        val gold = pillColor(st)
+        p.color = gold
+        p.strokeWidth = width * 0.022f
+        p.strokeCap = Paint.Cap.ROUND
+        canvas.drawLine(c, cy, c, cy - r + width * 0.11f, p)
+        p.style = Paint.Style.FILL
+        canvas.drawCircle(c, cy, width * 0.028f, p)
+        p.color = (gold and 0x00FFFFFF) or (0x55 shl 24)
+        canvas.drawCircle(c, cy - r, width * 0.11f, p)
+        drawKaaba(canvas, c, cy - r, width * 0.14f)
+        var rel = (-bearing) % 360
+        if (rel > 180) rel -= 360 else if (rel < -180) rel += 360
+        val n = Math.toRadians(rel.coerceIn(-90.0, 90.0))
+        val nx = c + r * Math.sin(n).toFloat()
+        val ny = cy - r * Math.cos(n).toFloat()
+        p.color = st.accent
+        canvas.drawCircle(nx, ny, width * 0.05f, p)
+        p.color = st.onPill
+        p.textSize = width * 0.055f
+        p.isFakeBoldText = true
+        p.textAlign = Paint.Align.CENTER
+        canvas.drawText("N", nx, ny + width * 0.02f, p)
+        return b
     }
 
     /** The ring: a track, the elapsed part of the prayer period clockwise from the top, and a dot at its end. */
@@ -473,6 +658,15 @@ class MosqueWidgetSmall : PrayerWidgetProvider()
 
 /** The three nearest mosques, each opening its page. */
 class MosqueWidget : PrayerWidgetProvider()
+
+/** The Qibla from north on a dial. */
+class QiblaWidgetSmall : PrayerWidgetProvider()
+
+/** Half a dial facing the Qibla, with the angle from north and the distance to the Kaaba. */
+class QiblaWidget : PrayerWidgetProvider()
+
+/** Ask, the nearest mosque, and prayer times with the Qibla. */
+class ActionsWidget : PrayerWidgetProvider()
 
 /** Opens Ask. */
 class AskWidgetSmall : PrayerWidgetProvider()

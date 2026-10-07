@@ -386,6 +386,8 @@
     <string name="website">تور بېكەت</string>
     <string name="widget_ask_suggested">سوراپ بېقىڭ</string>
     <string name="widget_choose_city">شەھىرىڭىزنى تاللاش ئۈچۈن «ئەڭ يېقىن مەسچىت» نى ئېچىڭ</string>
+    <string name="widget_kind_actions">تېز مەشغۇلاتلار</string>
+    <string name="widget_kind_actions_desc">سوراش، ئەڭ يېقىن مەسچىت ۋە قىبلە بىلەن ناماز ۋاقىتلىرى، ھەر بىرى بىر چېكىشتە.</string>
     <string name="widget_kind_ask">ئىسلام توغرىسىدا سوراش</string>
     <string name="widget_kind_ask_desc">سوئال سوراڭ ياكى بۈگۈنكى تەۋسىيەلەرنىڭ بىرىنى بېسىڭ.</string>
     <string name="widget_kind_countdown">ناماز تەتۈر ساناقلىقى</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">ئەڭ يېقىن مەسچىتلەر، ئۇلارنىڭ يىراقلىقى ۋە يۆنىلىشى.</string>
     <string name="widget_kind_next">كېيىنكى ناماز</string>
     <string name="widget_kind_next_desc">كېيىنكى ناماز، تەتۈر ساناق ۋە بۈگۈنكى ناماز ۋاقىتلىرى.</string>
+    <string name="widget_kind_qibla">قىبلە</string>
+    <string name="widget_kind_qibla_desc">شەھىرىڭىز ئۈچۈن شىمالدىن قىبلە يۆنىلىشى. جانلىق كومپاس ئۈچۈن چېكىڭ.</string>
     <string name="widget_kind_ring">ناماز ھالقىسى</string>
     <string name="widget_kind_ring_desc">كېيىنكى نامازغىچە قالغان ۋاقىت ھالقىدا، بۈگۈنكى بارلىق ۋاقىتلار بىلەن.</string>
     <string name="widget_kind_today">بۈگۈنكى نامازلار</string>
     <string name="widget_kind_today_desc">شەھىرىڭىزدىكى بەش ۋاخ ناماز، چېسلا ۋە كېيىنكى ناماز بىلەن بىرگە.</string>
     <string name="widget_next_description">تەتۈر ساناقلىق كېيىنكى ناماز</string>
+    <string name="widget_qibla_left">شىمالدىن سولغا %1$s° بۇرۇلۇڭ</string>
+    <string name="widget_qibla_live">جانلىق كومپاس ئۈچۈن چېكىڭ</string>
+    <string name="widget_qibla_right">شىمالدىن ئوڭغا %1$s° بۇرۇلۇڭ</string>
     <string name="widget_remaining">قالغان ۋاقىت</string>
     <string name="widget_style_title">ۋىجېت ئۇسلۇبى</string>
     <string name="widget_times_description">كېيىنكى ناماز ۋە بۈگۈنكى ۋاقىتلار</string>

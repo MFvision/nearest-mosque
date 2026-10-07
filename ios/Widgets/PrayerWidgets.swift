@@ -141,6 +141,28 @@ struct AskWidget: Widget {
     }
 }
 
+struct QiblaWidget: Widget {
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: "QiblaDirection", intent: PrayerWidgetIntent.self, provider: PrayerProvider()) { entry in
+            WidgetFrame(entry: entry, kind: .qibla)
+        }
+        .configurationDisplayName(LocalizedStringResource("widget_kind_qibla"))
+        .description(LocalizedStringResource("widget_kind_qibla_desc"))
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular])
+    }
+}
+
+struct ActionsWidget: Widget {
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: "QuickActions", intent: PrayerWidgetIntent.self, provider: PrayerProvider()) { entry in
+            WidgetFrame(entry: entry, kind: .actions)
+        }
+        .configurationDisplayName(LocalizedStringResource("widget_kind_actions"))
+        .description(LocalizedStringResource("widget_kind_actions_desc"))
+        .supportedFamilies([.systemMedium])
+    }
+}
+
 /// Control Center and Lock Screen control: opens the Qibla.
 struct QiblaControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
@@ -162,6 +184,8 @@ struct NearMosqueWidgets: WidgetBundle {
         TodayWidget()
         MosqueWidget()
         AskWidget()
+        QiblaWidget()
+        ActionsWidget()
         QiblaControl()
     }
 }

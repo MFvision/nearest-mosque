@@ -386,6 +386,8 @@
     <string name="website">ماڵپەڕ</string>
     <string name="widget_ask_suggested">ئەمانە بپرسە</string>
     <string name="widget_choose_city">«نزیکترین مزگەوت» بکەرەوە بۆ هەڵبژاردنی شارەکەت</string>
+    <string name="widget_kind_actions">کردارە خێراکان</string>
+    <string name="widget_kind_actions_desc">پرسیار، نزیکترین مزگەوت، و کاتەکانی نوێژ لەگەڵ قیبلە، هەر یەکە بە یەک دەستلێدان.</string>
     <string name="widget_kind_ask">دەربارەی ئیسلام بپرسە</string>
     <string name="widget_kind_ask_desc">پرسیارێک بکە، یان دەست بنێ بە یەکێک لە پێشنیارەکانی ئەمڕۆ.</string>
     <string name="widget_kind_countdown">ژمێرەری پێچەوانەی نوێژ</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">نزیکترین مزگەوتەکان، دووری و ئاراستەیان.</string>
     <string name="widget_kind_next">نوێژی داهاتوو</string>
     <string name="widget_kind_next_desc">نوێژی داهاتوو، ژمێرەری پێچەوانەکەی و کاتەکانی نوێژی ئەمڕۆ.</string>
+    <string name="widget_kind_qibla">قیبلە</string>
+    <string name="widget_kind_qibla_desc">ئاراستەی قیبلە لە باکوورەوە بۆ شارەکەت. بۆ قیبلەنمای ڕاستەوخۆ دەستی لێ بدە.</string>
     <string name="widget_kind_ring">ئەڵقەی نوێژ</string>
     <string name="widget_kind_ring_desc">کاتی ماوە بۆ نوێژی داهاتوو لەسەر ئەڵقەیەک، لەگەڵ هەموو کاتەکانی ئەمڕۆ.</string>
     <string name="widget_kind_today">نوێژەکانی ئەمڕۆ</string>
     <string name="widget_kind_today_desc">هەر پێنج نوێژی شارەکەت، لەگەڵ بەروار و نوێژی داهاتوو.</string>
     <string name="widget_next_description">نوێژی داهاتوو لەگەڵ ژمێرەری پێچەوانە</string>
+    <string name="widget_qibla_left">لە باکوورەوە، %1$s° بەرەو چەپ بسووڕێوە</string>
+    <string name="widget_qibla_live">بۆ قیبلەنمای ڕاستەوخۆ دەستی لێ بدە</string>
+    <string name="widget_qibla_right">لە باکوورەوە، %1$s° بەرەو ڕاست بسووڕێوە</string>
     <string name="widget_remaining">کاتی ماوە</string>
     <string name="widget_style_title">شێوازی ویجێت</string>
     <string name="widget_times_description">نوێژی داهاتوو و کاتەکانی ئەمڕۆ</string>

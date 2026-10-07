@@ -84880,6 +84880,448 @@
         }
       }
     },
+    "widget_kind_actions": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick actions"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختصارات سريعة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فوری اقدامات"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı işlemler"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tindakan cepat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actions rapides"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acciones rápidas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Быстрые действия"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "দ্রুত কাজ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اقدامات سریع"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اقدامات سریع"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷操作"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "त्वरित क्रियाएँ"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ações rápidas"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayyuka masu sauri"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitendo vya haraka"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mabilisang aksyon"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thao tác nhanh"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทางลัด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សកម្មភាពរហ័ស"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تېز مەشغۇلاتلار"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کردارە خێراکان"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brze radnje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Брзе радње"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Брзи дејства"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gyors műveletek"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snelle acties"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სწრაფი მოქმედებები"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉක්මන් ක්‍රියා"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "త్వరిత చర్యలు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ತ್ವರಿತ ಕ್ರಿಯೆಗಳು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ദ്രുത പ്രവർത്തനങ്ങൾ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झटपट क्रिया"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઝડપી ક્રિયાઓ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੇਜ਼ ਕਾਰਵਾਈਆਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "দ্ৰুত কাৰ্য"
+          }
+        }
+      }
+    },
+    "widget_kind_actions_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask, the nearest mosque, and prayer times with the Qibla, one tap each."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسأل، وأقرب مسجد، ومواقيت الصلاة مع القبلة، كلٌّ بلمسة واحدة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پوچھیں، قریب ترین مسجد، اور قبلہ کے ساتھ نماز کے اوقات، ہر ایک ایک ٹیپ میں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sor, en yakın cami ve kıbleyle namaz vakitleri, her biri tek dokunuşla."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanya, masjid terdekat, serta jadwal salat dengan kiblat, masing-masing satu ketukan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demander, la mosquée la plus proche, et les horaires avec la qibla, d’une seule touche."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preguntar, la mezquita más cercana y los horarios con la alquibla, con un toque cada uno."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вопрос, ближайшая мечеть и время молитв с киблой — одним касанием."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জিজ্ঞাসা, কাছের মসজিদ, এবং কিবলাসহ নামাজের সময়, প্রতিটি এক ট্যাপে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسیدن، نزدیک‌ترین مسجد، و اوقات نماز با قبله، هر کدام با یک ضربه."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسیدن، نزدیک‌ترین مسجد، و اوقات نماز با قبله، هر کدام با یک ضربه."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提问、最近的清真寺、礼拜时间与朝向，一键直达。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूछें, सबसे नज़दीकी मस्जिद, और क़िबला के साथ नमाज़ के समय, हर एक एक टैप में।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perguntar, a mesquita mais próxima e os horários com a qibla, cada um com um toque."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambaya, masallaci mafi kusa, da lokutan sallah tare da alƙibla, kowanne da taɓawa ɗaya."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uliza, msikiti wa karibu, na nyakati za sala pamoja na kibla, kila kimoja kwa mguso mmoja."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magtanong, ang pinakamalapit na masjid, at oras ng salah kasama ang qibla, tig-isang tap."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hỏi, nhà thờ Hồi giáo gần nhất, và giờ cầu nguyện kèm hướng Qibla, mỗi thứ một chạm."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ถามคำถาม มัสยิดใกล้ที่สุด และเวลาละหมาดพร้อมกิบลัต แตะครั้งเดียว"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សួរ វិហារឥស្លាមជិតបំផុត និងម៉ោងសឡាតជាមួយគិបឡាត ចុចតែម្ដង។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوراش، ئەڭ يېقىن مەسچىت ۋە قىبلە بىلەن ناماز ۋاقىتلىرى، ھەر بىرى بىر چېكىشتە."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسیار، نزیکترین مزگەوت، و کاتەکانی نوێژ لەگەڵ قیبلە، هەر یەکە بە یەک دەستلێدان."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pitaj, najbliža džamija i vaktija s kiblom, svako jednim dodirom."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Питај, најближа џамија и времена молитве са киблом, свако једним додиром."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прашај, најблиската џамија и времињата за молитва со киблата, секое со еден допир."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kérdezés, a legközelebbi mecset, és az imaidők a kiblával, egy-egy koppintással."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vragen, de dichtstbijzijnde moskee en gebedstijden met de qibla, elk met één tik."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "კითხვა, უახლოესი მეჩეთი და ლოცვის დრო ყიბლასთან ერთად, თითო შეხებით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අසන්න, ළඟම පල්ලිය, සහ කිබ්ලා සමඟ සලාත් වේලාවන්, එක් තට්ටුවකින්."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అడగండి, దగ్గరి మసీదు, ఖిబ్లాతో నమాజ్ సమయాలు, ఒక్కో ట్యాప్‌తో."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕೇಳಿ, ಹತ್ತಿರದ ಮಸೀದಿ, ಮತ್ತು ಕಿಬ್ಲಾ ಸಹಿತ ನಮಾಜ್ ಸಮಯಗಳು, ಒಂದೊಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചോദിക്കുക, അടുത്തുള്ള പള്ളി, ഖിബ്‌ലയോടൊപ്പം നമസ്കാര സമയങ്ങൾ, ഓരോന്നും ഒറ്റ ടാപ്പിൽ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विचारा, जवळची मशीद, आणि किब्लासह नमाजाच्या वेळा, प्रत्येकी एका टॅपमध्ये."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "પૂછો, નજીકની મસ્જિદ, અને કિબ્લા સાથે નમાઝના સમય, દરેક એક ટૅપમાં."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪੁੱਛੋ, ਨੇੜਲੀ ਮਸਜਿਦ, ਅਤੇ ਕਿਬਲੇ ਨਾਲ ਨਮਾਜ਼ ਦੇ ਸਮੇਂ, ਹਰ ਇੱਕ ਇੱਕ ਟੈਪ ਵਿੱਚ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সোধক, ওচৰৰ মছজিদ, আৰু কিবলাৰ সৈতে নামাজৰ সময়, প্ৰতিটো এটা টিপত।"
+          }
+        }
+      }
+    },
     "widget_kind_ask": {
       "extractionState": "manual",
       "localizations": {
@@ -86648,6 +87090,448 @@
         }
       }
     },
+    "widget_kind_qibla": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "القبلة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبلہ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kıble"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kiblat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alquibla"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кибла"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিবলা"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبله"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبله"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "朝向"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क़िबला"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alƙibla"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hướng Qibla"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กิบลัต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "គិបឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قىبلە"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قیبلە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кибла"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кибла"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყიბლა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "කිබ්ලා"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఖిబ్లా"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಿಬ್ಲಾ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഖിബ്‌ല"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किब्ला"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "કિબ્લા"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਿਬਲਾ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিবলা"
+          }
+        }
+      }
+    },
+    "widget_kind_qibla_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Qibla direction from north for your city. Tap for the live compass."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اتجاه القبلة من الشمال لمدينتك. اضغط لفتح البوصلة الحية."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آپ کے شہر کے لیے شمال سے قبلہ کی سمت۔ زندہ قطب نما کے لیے تھپتھپائیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şehriniz için kuzeyden kıble yönü. Canlı pusula için dokunun."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arah kiblat dari utara untuk kota Anda. Ketuk untuk kompas langsung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La direction de la qibla depuis le nord pour votre ville. Touchez pour la boussole en direct."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La dirección de la alquibla desde el norte para tu ciudad. Toca para la brújula en vivo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Направление киблы от севера для вашего города. Нажмите, чтобы открыть компас."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপনার শহরের জন্য উত্তর থেকে কিবলার দিক। লাইভ কম্পাসের জন্য ট্যাপ করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جهت قبله از شمال برای شهر شما. برای قطب‌نمای زنده ضربه بزنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جهت قبله از شمال برای شهر شما. برای قطب‌نمای زنده ضربه بزنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您所在城市从正北算起的朝向。轻点打开实时指南针。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके शहर के लिए उत्तर से क़िबला की दिशा। लाइव कंपास के लिए टैप करें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A direção da qibla a partir do norte para a sua cidade. Toque para a bússola ao vivo."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hanyar alƙibla daga arewa a garinku. Taɓa don kamfas kai tsaye."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mwelekeo wa kibla kutoka kaskazini kwa mji wako. Gusa kwa dira hai."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang direksyon ng qibla mula sa hilaga para sa iyong lungsod. I-tap para sa live na compass."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hướng Qibla tính từ hướng bắc cho thành phố của bạn. Chạm để mở la bàn trực tiếp."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทิศกิบลัตจากทิศเหนือสำหรับเมืองของคุณ แตะเพื่อเปิดเข็มทิศสด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទិសគិបឡាតពីទិសខាងជើងសម្រាប់ទីក្រុងរបស់អ្នក។ ចុចដើម្បីបើកត្រីវិស័យផ្ទាល់។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شەھىرىڭىز ئۈچۈن شىمالدىن قىبلە يۆنىلىشى. جانلىق كومپاس ئۈچۈن چېكىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئاراستەی قیبلە لە باکوورەوە بۆ شارەکەت. بۆ قیبلەنمای ڕاستەوخۆ دەستی لێ بدە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smjer kible od sjevera za vaš grad. Dodirnite za kompas uživo."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Смер кибле од севера за ваш град. Додирните за компас уживо."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Насоката на киблата од север за вашиот град. Допрете за компасот во живо."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A kibla iránya északtól a városában. Koppintson az élő iránytűért."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De qibla-richting vanaf het noorden voor uw stad. Tik voor het live kompas."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყიბლის მიმართულება ჩრდილოეთიდან თქვენი ქალაქისთვის. შეეხეთ ცოცხალი კომპასისთვის."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ නගරයට උතුරේ සිට කිබ්ලා දිශාව. සජීවී මාලිමාව සඳහා තට්ටු කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ నగరానికి ఉత్తరం నుండి ఖిబ్లా దిశ. లైవ్ కంపాస్ కోసం నొక్కండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ನಗರಕ್ಕೆ ಉತ್ತರದಿಂದ ಕಿಬ್ಲಾ ದಿಕ್ಕು. ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങളുടെ നഗരത്തിന് വടക്കുനിന്നുള്ള ഖിബ്‌ല ദിശ. ലൈവ് കോമ്പസിനായി ടാപ്പ് ചെയ്യുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमच्या शहरासाठी उत्तरेपासून किब्लाची दिशा. थेट होकायंत्रासाठी टॅप करा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારા શહેર માટે ઉત્તરથી કિબ્લાની દિશા. લાઇવ હોકાયંત્ર માટે ટૅપ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਲਈ ਉੱਤਰ ਤੋਂ ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ। ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਟੈਪ ਕਰੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপোনাৰ চহৰৰ বাবে উত্তৰৰ পৰা কিবলাৰ দিশ। লাইভ কম্পাছৰ বাবে টিপক।"
+          }
+        }
+      }
+    },
     "widget_kind_ring": {
       "extractionState": "manual",
       "localizations": {
@@ -87749,6 +88633,669 @@
           "stringUnit": {
             "state": "translated",
             "value": "কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ"
+          }
+        }
+      }
+    },
+    "widget_qibla_left": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From north, turn left %1$@°"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من الشمال، انعطف يسارًا %1$@°"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمال سے بائیں %1$@° مڑیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuzeyden sola %1$@° dönün"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dari utara, putar ke kiri %1$@°"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depuis le nord, tournez à gauche de %1$@°"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde el norte, gira a la izquierda %1$@°"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "От севера поверните налево на %1$@°"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "উত্তর থেকে বাঁয়ে %1$@° ঘুরুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از شمال، %1$@° به چپ بچرخید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از شمال، %1$@° به چپ بچرخید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从正北向左转 %1$@°"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उत्तर से बाएँ %1$@° मुड़ें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir do norte, vire à esquerda %1$@°"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daga arewa, juya hagu %1$@°"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kutoka kaskazini, geuka kushoto %1$@°"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula sa hilaga, kumaliwa ng %1$@°"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ hướng bắc, quay trái %1$@°"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "จากทิศเหนือ หันซ้าย %1$@°"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពីទិសខាងជើង បត់ឆ្វេង %1$@°"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شىمالدىن سولغا %1$@° بۇرۇلۇڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لە باکوورەوە، %1$@° بەرەو چەپ بسووڕێوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od sjevera, okrenite se lijevo %1$@°"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од севера, окрените се лево %1$@°"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од север, свртете лево %1$@°"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Északtól fordulj balra %1$@°-ot"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanaf het noorden %1$@° naar links"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩრდილოეთიდან მოუხვიეთ მარცხნივ %1$@°"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "උතුරේ සිට වමට %1$@° හැරෙන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఉత్తరం నుండి ఎడమకు %1$@° తిరగండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಉತ್ತರದಿಂದ ಎಡಕ್ಕೆ %1$@° ತಿರುಗಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വടക്കുനിന്ന് ഇടത്തോട്ട് %1$@° തിരിയുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उत्तरेपासून डावीकडे %1$@° वळा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઉત્તરથી ડાબે %1$@° વળો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਉੱਤਰ ਤੋਂ ਖੱਬੇ %1$@° ਮੁੜੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "উত্তৰৰ পৰা বাওঁফালে %1$@° ঘূৰক"
+          }
+        }
+      }
+    },
+    "widget_qibla_live": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap for the live compass"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط للبوصلة الحية"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زندہ قطب نما کے لیے تھپتھپائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canlı pusula için dokunun"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketuk untuk kompas langsung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez pour la boussole en direct"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca para la brújula en vivo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите для компаса"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লাইভ কম্পাসের জন্য ট্যাপ করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای قطب‌نمای زنده ضربه بزنید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای قطب‌نمای زنده ضربه بزنید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点打开实时指南针"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लाइव कंपास के लिए टैप करें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque para a bússola ao vivo"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taɓa don kamfas kai tsaye"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gusa kwa dira hai"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-tap para sa live na compass"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm để mở la bàn trực tiếp"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะเพื่อเปิดเข็มทิศสด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចុចដើម្បីបើកត្រីវិស័យផ្ទាល់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جانلىق كومپاس ئۈچۈن چېكىڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۆ قیبلەنمای ڕاستەوخۆ دەستی لێ بدە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodirnite za kompas uživo"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додирните за компас уживо"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Допрете за компас во живо"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppintson az élő iránytűért"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tik voor het live kompas"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შეეხეთ ცოცხალი კომპასისთვის"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සජීවී මාලිමාව සඳහා තට්ටු කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లైవ్ కంపాస్ కోసం నొక్కండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ലൈവ് കോമ്പസിനായി ടാപ്പ് ചെയ്യുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "थेट होकायंत्रासाठी टॅप करा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "લાઇવ હોકાયંત્ર માટે ટૅપ કરો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਟੈਪ ਕਰੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লাইভ কম্পাছৰ বাবে টিপক"
+          }
+        }
+      }
+    },
+    "widget_qibla_right": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From north, turn right %1$@°"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من الشمال، انعطف يمينًا %1$@°"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمال سے دائیں %1$@° مڑیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuzeyden sağa %1$@° dönün"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dari utara, putar ke kanan %1$@°"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depuis le nord, tournez à droite de %1$@°"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde el norte, gira a la derecha %1$@°"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "От севера поверните направо на %1$@°"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "উত্তর থেকে ডানে %1$@° ঘুরুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از شمال، %1$@° به راست بچرخید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از شمال، %1$@° به راست بچرخید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从正北向右转 %1$@°"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उत्तर से दाएँ %1$@° मुड़ें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir do norte, vire à direita %1$@°"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daga arewa, juya dama %1$@°"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kutoka kaskazini, geuka kulia %1$@°"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula sa hilaga, kumanan ng %1$@°"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ hướng bắc, quay phải %1$@°"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "จากทิศเหนือ หันขวา %1$@°"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពីទិសខាងជើង បត់ស្ដាំ %1$@°"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شىمالدىن ئوڭغا %1$@° بۇرۇلۇڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لە باکوورەوە، %1$@° بەرەو ڕاست بسووڕێوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od sjevera, okrenite se desno %1$@°"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од севера, окрените се десно %1$@°"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од север, свртете десно %1$@°"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Északtól fordulj jobbra %1$@°-ot"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanaf het noorden %1$@° naar rechts"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩრდილოეთიდან მოუხვიეთ მარჯვნივ %1$@°"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "උතුරේ සිට දකුණට %1$@° හැරෙන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఉత్తరం నుండి కుడికి %1$@° తిరగండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಉತ್ತರದಿಂದ ಬಲಕ್ಕೆ %1$@° ತಿರುಗಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വടക്കുനിന്ന് വലത്തോട്ട് %1$@° തിരിയുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उत्तरेपासून उजवीकडे %1$@° वळा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઉત્તરથી જમણે %1$@° વળો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਉੱਤਰ ਤੋਂ ਸੱਜੇ %1$@° ਮੁੜੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "উত্তৰৰ পৰা সোঁফালে %1$@° ঘূৰক"
           }
         }
       }

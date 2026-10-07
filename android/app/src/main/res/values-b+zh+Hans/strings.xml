@@ -385,6 +385,8 @@
     <string name="website">网站</string>
     <string name="widget_ask_suggested">试着问问</string>
     <string name="widget_choose_city">打开应用以选择你的城市</string>
+    <string name="widget_kind_actions">快捷操作</string>
+    <string name="widget_kind_actions_desc">提问、最近的清真寺、礼拜时间与朝向，一键直达。</string>
     <string name="widget_kind_ask">伊斯兰教问答</string>
     <string name="widget_kind_ask_desc">提出问题，或点按今日推荐的问题之一。</string>
     <string name="widget_kind_countdown">礼拜倒计时</string>
@@ -393,11 +395,16 @@
     <string name="widget_kind_mosque_desc">最近的清真寺，有多远、在哪个方向。</string>
     <string name="widget_kind_next">下一次礼拜</string>
     <string name="widget_kind_next_desc">下一次礼拜、倒计时及今日礼拜时间。</string>
+    <string name="widget_kind_qibla">朝向</string>
+    <string name="widget_kind_qibla_desc">您所在城市从正北算起的朝向。轻点打开实时指南针。</string>
     <string name="widget_kind_ring">礼拜圆环</string>
     <string name="widget_kind_ring_desc">圆环显示距下次礼拜的剩余时间，并列出今天的全部时间。</string>
     <string name="widget_kind_today">今日礼拜</string>
     <string name="widget_kind_today_desc">你所在城市的五次礼拜，附日期和下一次礼拜。</string>
     <string name="widget_next_description">下一次礼拜及倒计时</string>
+    <string name="widget_qibla_left">从正北向左转 %1$s°</string>
+    <string name="widget_qibla_live">轻点打开实时指南针</string>
+    <string name="widget_qibla_right">从正北向右转 %1$s°</string>
     <string name="widget_remaining">剩余时间</string>
     <string name="widget_style_title">小组件样式</string>
     <string name="widget_times_description">下一次礼拜及今日时间</string>

@@ -386,6 +386,8 @@
     <string name="website">Website</string>
     <string name="widget_ask_suggested">Subukang itanong</string>
     <string name="widget_choose_city">Buksan ang Near Mosque para piliin ang iyong lungsod</string>
+    <string name="widget_kind_actions">Mabilisang aksyon</string>
+    <string name="widget_kind_actions_desc">Magtanong, ang pinakamalapit na masjid, at oras ng salah kasama ang qibla, tig-isang tap.</string>
     <string name="widget_kind_ask">Magtanong tungkol sa Islam</string>
     <string name="widget_kind_ask_desc">Magtanong, o i-tap ang isa sa mga mungkahi ngayong araw.</string>
     <string name="widget_kind_countdown">Countdown sa dasal</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">Ang pinakamalalapit na masjid, gaano kalayo at saang direksyon.</string>
     <string name="widget_kind_next">Susunod na dasal</string>
     <string name="widget_kind_next_desc">Ang susunod na dasal, ang countdown nito at ang mga oras ngayong araw.</string>
+    <string name="widget_kind_qibla">Qibla</string>
+    <string name="widget_kind_qibla_desc">Ang direksyon ng qibla mula sa hilaga para sa iyong lungsod. I-tap para sa live na compass.</string>
     <string name="widget_kind_ring">Singsing ng salah</string>
     <string name="widget_kind_ring_desc">Ang natitirang oras bago ang susunod na salah sa isang singsing, kasama ang lahat ng oras ngayon.</string>
     <string name="widget_kind_today">Mga dasal ngayon</string>
     <string name="widget_kind_today_desc">Lahat ng limang dasal para sa iyong lungsod, kasama ang petsa at ang susunod na dasal.</string>
     <string name="widget_next_description">Ang susunod na dasal na may countdown</string>
+    <string name="widget_qibla_left">Mula sa hilaga, kumaliwa ng %1$s°</string>
+    <string name="widget_qibla_live">I-tap para sa live na compass</string>
+    <string name="widget_qibla_right">Mula sa hilaga, kumanan ng %1$s°</string>
     <string name="widget_remaining">Natitirang oras</string>
     <string name="widget_style_title">Istilo ng widget</string>
     <string name="widget_times_description">Ang susunod na dasal at ang mga oras ngayong araw</string>

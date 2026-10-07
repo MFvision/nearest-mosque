@@ -386,6 +386,8 @@
     <string name="website">Sitio web</string>
     <string name="widget_ask_suggested">Prueba a preguntar</string>
     <string name="widget_choose_city">Abra la app para elegir su ciudad</string>
+    <string name="widget_kind_actions">Acciones rápidas</string>
+    <string name="widget_kind_actions_desc">Preguntar, la mezquita más cercana y los horarios con la alquibla, con un toque cada uno.</string>
     <string name="widget_kind_ask">Pregunta sobre el islam</string>
     <string name="widget_kind_ask_desc">Haz una pregunta o toca una de las sugerencias de hoy.</string>
     <string name="widget_kind_countdown">Cuenta atrás</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">Las mezquitas más cercanas, a qué distancia están y en qué dirección.</string>
     <string name="widget_kind_next">Próxima oración</string>
     <string name="widget_kind_next_desc">La próxima oración, su cuenta atrás y los horarios de hoy.</string>
+    <string name="widget_kind_qibla">Alquibla</string>
+    <string name="widget_kind_qibla_desc">La dirección de la alquibla desde el norte para tu ciudad. Toca para la brújula en vivo.</string>
     <string name="widget_kind_ring">Anillo de oración</string>
     <string name="widget_kind_ring_desc">El tiempo hasta la próxima oración en un anillo, con todos los horarios de hoy.</string>
     <string name="widget_kind_today">Oraciones de hoy</string>
     <string name="widget_kind_today_desc">Las cinco oraciones de tu ciudad, con la fecha y la próxima oración.</string>
     <string name="widget_next_description">La próxima oración con cuenta atrás</string>
+    <string name="widget_qibla_left">Desde el norte, gira a la izquierda %1$s°</string>
+    <string name="widget_qibla_live">Toca para la brújula en vivo</string>
+    <string name="widget_qibla_right">Desde el norte, gira a la derecha %1$s°</string>
     <string name="widget_remaining">Tiempo restante</string>
     <string name="widget_style_title">Estilo del widget</string>
     <string name="widget_times_description">La próxima oración y los horarios de hoy</string>

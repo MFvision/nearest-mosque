@@ -386,6 +386,8 @@
     <string name="website">ویب‌سایت</string>
     <string name="widget_ask_suggested">این‌ها را بپرسید</string>
     <string name="widget_choose_city">برای انتخاب شهر، «نزدیک‌ترین مسجد» را باز کنید</string>
+    <string name="widget_kind_actions">اقدامات سریع</string>
+    <string name="widget_kind_actions_desc">پرسیدن، نزدیک‌ترین مسجد، و اوقات نماز با قبله، هر کدام با یک ضربه.</string>
     <string name="widget_kind_ask">در مورد اسلام بپرسید</string>
     <string name="widget_kind_ask_desc">سوال خود را بپرسید یا روی یکی از پیشنهادهای امروز ضربه بزنید.</string>
     <string name="widget_kind_countdown">شمارش معکوس نماز</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">نزدیک‌ترین مساجد، فاصله و جهت آن‌ها.</string>
     <string name="widget_kind_next">نماز بعدی</string>
     <string name="widget_kind_next_desc">نماز بعدی، شمارش معکوس آن و اوقات نماز امروز.</string>
+    <string name="widget_kind_qibla">قبله</string>
+    <string name="widget_kind_qibla_desc">جهت قبله از شمال برای شهر شما. برای قطب‌نمای زنده ضربه بزنید.</string>
     <string name="widget_kind_ring">حلقهٔ نماز</string>
     <string name="widget_kind_ring_desc">وقت باقی‌مانده تا نماز بعدی روی یک حلقه، همراه با همهٔ اوقات امروز.</string>
     <string name="widget_kind_today">نمازهای امروز</string>
     <string name="widget_kind_today_desc">هر پنج نماز شهر شما، همراه با تاریخ و نماز بعدی.</string>
     <string name="widget_next_description">نماز بعدی با شمارش معکوس</string>
+    <string name="widget_qibla_left">از شمال، %1$s° به چپ بچرخید</string>
+    <string name="widget_qibla_live">برای قطب‌نمای زنده ضربه بزنید</string>
+    <string name="widget_qibla_right">از شمال، %1$s° به راست بچرخید</string>
     <string name="widget_remaining">وقت باقی‌مانده</string>
     <string name="widget_style_title">سبک ویجت</string>
     <string name="widget_times_description">نماز بعدی و اوقات امروز</string>

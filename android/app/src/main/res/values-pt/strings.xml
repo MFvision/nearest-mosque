@@ -387,6 +387,8 @@
     <string name="website">Site</string>
     <string name="widget_ask_suggested">Experimente perguntar</string>
     <string name="widget_choose_city">Abra o Near Mosque para escolher sua cidade</string>
+    <string name="widget_kind_actions">Ações rápidas</string>
+    <string name="widget_kind_actions_desc">Perguntar, a mesquita mais próxima e os horários com a qibla, cada um com um toque.</string>
     <string name="widget_kind_ask">Pergunte sobre o islã</string>
     <string name="widget_kind_ask_desc">Faça uma pergunta ou toque em uma das sugestões de hoje.</string>
     <string name="widget_kind_countdown">Contagem regressiva</string>
@@ -395,11 +397,16 @@
     <string name="widget_kind_mosque_desc">As mesquitas mais próximas, a que distância estão e em que direção.</string>
     <string name="widget_kind_next">Próxima oração</string>
     <string name="widget_kind_next_desc">A próxima oração, sua contagem regressiva e os horários de hoje.</string>
+    <string name="widget_kind_qibla">Qibla</string>
+    <string name="widget_kind_qibla_desc">A direção da qibla a partir do norte para a sua cidade. Toque para a bússola ao vivo.</string>
     <string name="widget_kind_ring">Anel de oração</string>
     <string name="widget_kind_ring_desc">O tempo até a próxima oração num anel, com todos os horários de hoje.</string>
     <string name="widget_kind_today">Orações de hoje</string>
     <string name="widget_kind_today_desc">As cinco orações da sua cidade, com a data e a próxima oração.</string>
     <string name="widget_next_description">A próxima oração com contagem regressiva</string>
+    <string name="widget_qibla_left">A partir do norte, vire à esquerda %1$s°</string>
+    <string name="widget_qibla_live">Toque para a bússola ao vivo</string>
+    <string name="widget_qibla_right">A partir do norte, vire à direita %1$s°</string>
     <string name="widget_remaining">Tempo restante</string>
     <string name="widget_style_title">Estilo do widget</string>
     <string name="widget_times_description">A próxima oração e os horários de hoje</string>

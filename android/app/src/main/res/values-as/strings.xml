@@ -386,6 +386,8 @@
     <string name="website">ৱেবছাইট</string>
     <string name="widget_ask_suggested">এইবোৰ সুধি চাওক</string>
     <string name="widget_choose_city">আপোনাৰ চহৰ বাছিবলৈ Near Mosque এপটো খোলক</string>
+    <string name="widget_kind_actions">দ্ৰুত কাৰ্য</string>
+    <string name="widget_kind_actions_desc">সোধক, ওচৰৰ মছজিদ, আৰু কিবলাৰ সৈতে নামাজৰ সময়, প্ৰতিটো এটা টিপত।</string>
     <string name="widget_kind_ask">ইছলামৰ বিষয়ে সোধক</string>
     <string name="widget_kind_ask_desc">প্ৰশ্ন সোধক, নাইবা আজিৰ পৰামৰ্শবোৰৰ এটাত টেপ কৰক।</string>
     <string name="widget_kind_countdown">নামাজৰ কাউণ্টডাউন</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">ওচৰৰ মছজিদসমূহ, সেইবোৰৰ দূৰত্ব আৰু দিশ।</string>
     <string name="widget_kind_next">পৰৱৰ্তী নামাজ</string>
     <string name="widget_kind_next_desc">পৰৱৰ্তী নামাজ, ইয়াৰ কাউণ্টডাউন আৰু আজিৰ সময়।</string>
+    <string name="widget_kind_qibla">কিবলা</string>
+    <string name="widget_kind_qibla_desc">আপোনাৰ চহৰৰ বাবে উত্তৰৰ পৰা কিবলাৰ দিশ। লাইভ কম্পাছৰ বাবে টিপক।</string>
     <string name="widget_kind_ring">নামাজ ৰিং</string>
     <string name="widget_kind_ring_desc">পৰৱৰ্তী নামাজলৈ বাকী সময় এটা ৰিঙত, আজিৰ সকলো সময়ৰ সৈতে।</string>
     <string name="widget_kind_today">আজিৰ নামাজ</string>
     <string name="widget_kind_today_desc">আপোনাৰ চহৰৰ পাঁচ ওৱাক্ত নামাজ, তাৰিখ আৰু পৰৱৰ্তী নামাজৰ সৈতে।</string>
     <string name="widget_next_description">কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ</string>
+    <string name="widget_qibla_left">উত্তৰৰ পৰা বাওঁফালে %1$s° ঘূৰক</string>
+    <string name="widget_qibla_live">লাইভ কম্পাছৰ বাবে টিপক</string>
+    <string name="widget_qibla_right">উত্তৰৰ পৰা সোঁফালে %1$s° ঘূৰক</string>
     <string name="widget_remaining">বাকী সময়</string>
     <string name="widget_style_title">ৱিজেটৰ শৈলী</string>
     <string name="widget_times_description">পৰৱৰ্তী নামাজ আৰু আজিৰ সময়</string>

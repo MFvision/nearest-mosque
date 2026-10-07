@@ -386,6 +386,8 @@
     <string name="website">Веб-страница</string>
     <string name="widget_ask_suggested">Обидете се да прашате</string>
     <string name="widget_choose_city">Отворете „Near Mosque“ за да го изберете градот</string>
+    <string name="widget_kind_actions">Брзи дејства</string>
+    <string name="widget_kind_actions_desc">Прашај, најблиската џамија и времињата за молитва со киблата, секое со еден допир.</string>
     <string name="widget_kind_ask">Прашај за исламот</string>
     <string name="widget_kind_ask_desc">Поставете прашање или допрете еден од денешните предлози.</string>
     <string name="widget_kind_countdown">Одбројување до намаз</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">Најблиските џамии, колку се оддалечени и во која насока.</string>
     <string name="widget_kind_next">Следен намаз</string>
     <string name="widget_kind_next_desc">Следниот намаз, одбројувањето до него и денешните времиња за намаз.</string>
+    <string name="widget_kind_qibla">Кибла</string>
+    <string name="widget_kind_qibla_desc">Насоката на киблата од север за вашиот град. Допрете за компасот во живо.</string>
     <string name="widget_kind_ring">Прстен на молитви</string>
     <string name="widget_kind_ring_desc">Преостанатото време до следната молитва на прстен, со сите денешни времиња.</string>
     <string name="widget_kind_today">Денешни намази</string>
     <string name="widget_kind_today_desc">Сите пет намази за вашиот град, со датумот и следниот намаз.</string>
     <string name="widget_next_description">Следниот намаз со одбројување</string>
+    <string name="widget_qibla_left">Од север, свртете лево %1$s°</string>
+    <string name="widget_qibla_live">Допрете за компас во живо</string>
+    <string name="widget_qibla_right">Од север, свртете десно %1$s°</string>
     <string name="widget_remaining">Преостанато време</string>
     <string name="widget_style_title">Стил на виџетот</string>
     <string name="widget_times_description">Следниот намаз и денешните времиња</string>

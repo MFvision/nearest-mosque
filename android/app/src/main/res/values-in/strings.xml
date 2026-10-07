@@ -385,6 +385,8 @@
     <string name="website">Situs web</string>
     <string name="widget_ask_suggested">Coba tanyakan</string>
     <string name="widget_choose_city">Buka aplikasi untuk memilih kota Anda</string>
+    <string name="widget_kind_actions">Tindakan cepat</string>
+    <string name="widget_kind_actions_desc">Tanya, masjid terdekat, serta jadwal salat dengan kiblat, masing-masing satu ketukan.</string>
     <string name="widget_kind_ask">Tanya tentang Islam</string>
     <string name="widget_kind_ask_desc">Ajukan pertanyaan, atau ketuk salah satu saran hari ini.</string>
     <string name="widget_kind_countdown">Hitung mundur salat</string>
@@ -393,11 +395,16 @@
     <string name="widget_kind_mosque_desc">Masjid-masjid terdekat, jaraknya, dan arahnya.</string>
     <string name="widget_kind_next">Salat berikutnya</string>
     <string name="widget_kind_next_desc">Salat berikutnya, hitung mundurnya, dan jadwal hari ini.</string>
+    <string name="widget_kind_qibla">Kiblat</string>
+    <string name="widget_kind_qibla_desc">Arah kiblat dari utara untuk kota Anda. Ketuk untuk kompas langsung.</string>
     <string name="widget_kind_ring">Lingkar salat</string>
     <string name="widget_kind_ring_desc">Sisa waktu menuju salat berikutnya dalam lingkaran, dengan semua jadwal hari ini.</string>
     <string name="widget_kind_today">Salat hari ini</string>
     <string name="widget_kind_today_desc">Lima waktu salat untuk kota Anda, dengan tanggal dan salat berikutnya.</string>
     <string name="widget_next_description">Salat berikutnya dengan hitung mundur</string>
+    <string name="widget_qibla_left">Dari utara, putar ke kiri %1$s°</string>
+    <string name="widget_qibla_live">Ketuk untuk kompas langsung</string>
+    <string name="widget_qibla_right">Dari utara, putar ke kanan %1$s°</string>
     <string name="widget_remaining">Sisa waktu</string>
     <string name="widget_style_title">Gaya widget</string>
     <string name="widget_times_description">Salat berikutnya dan jadwal hari ini</string>

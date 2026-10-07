@@ -386,6 +386,8 @@
     <string name="website">Web sitesi</string>
     <string name="widget_ask_suggested">Şunları sormayı deneyin</string>
     <string name="widget_choose_city">Şehrinizi seçmek için uygulamayı açın</string>
+    <string name="widget_kind_actions">Hızlı işlemler</string>
+    <string name="widget_kind_actions_desc">Sor, en yakın cami ve kıbleyle namaz vakitleri, her biri tek dokunuşla.</string>
     <string name="widget_kind_ask">İslam hakkında sor</string>
     <string name="widget_kind_ask_desc">Bir soru sorun veya bugünün önerilerinden birine dokunun.</string>
     <string name="widget_kind_countdown">Namaz geri sayımı</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">En yakın camiler, uzaklıkları ve yönleri.</string>
     <string name="widget_kind_next">Sonraki namaz</string>
     <string name="widget_kind_next_desc">Sonraki namaz, geri sayımı ve bugünün vakitleri.</string>
+    <string name="widget_kind_qibla">Kıble</string>
+    <string name="widget_kind_qibla_desc">Şehriniz için kuzeyden kıble yönü. Canlı pusula için dokunun.</string>
     <string name="widget_kind_ring">Namaz halkası</string>
     <string name="widget_kind_ring_desc">Sonraki namaza kalan süre bir halkada, bugünün tüm vakitleriyle.</string>
     <string name="widget_kind_today">Bugünün namazları</string>
     <string name="widget_kind_today_desc">Şehriniz için beş vakit namaz, tarih ve sonraki namazla birlikte.</string>
     <string name="widget_next_description">Geri sayımla sıradaki namaz</string>
+    <string name="widget_qibla_left">Kuzeyden sola %1$s° dönün</string>
+    <string name="widget_qibla_live">Canlı pusula için dokunun</string>
+    <string name="widget_qibla_right">Kuzeyden sağa %1$s° dönün</string>
     <string name="widget_remaining">Kalan süre</string>
     <string name="widget_style_title">Widget stili</string>
     <string name="widget_times_description">Sıradaki namaz ve bugünün vakitleri</string>

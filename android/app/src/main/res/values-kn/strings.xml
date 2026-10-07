@@ -386,6 +386,8 @@
     <string name="website">ವೆಬ್‌ಸೈಟ್</string>
     <string name="widget_ask_suggested">ಹೀಗೆ ಕೇಳಿ ನೋಡಿ</string>
     <string name="widget_choose_city">ನಿಮ್ಮ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಲು Near Mosque ತೆರೆಯಿರಿ</string>
+    <string name="widget_kind_actions">ತ್ವರಿತ ಕ್ರಿಯೆಗಳು</string>
+    <string name="widget_kind_actions_desc">ಕೇಳಿ, ಹತ್ತಿರದ ಮಸೀದಿ, ಮತ್ತು ಕಿಬ್ಲಾ ಸಹಿತ ನಮಾಜ್ ಸಮಯಗಳು, ಒಂದೊಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ.</string>
     <string name="widget_kind_ask">ಇಸ್ಲಾಂ ಬಗ್ಗೆ ಕೇಳಿ</string>
     <string name="widget_kind_ask_desc">ಪ್ರಶ್ನೆ ಕೇಳಿ, ಅಥವಾ ಇಂದಿನ ಸಲಹೆಗಳಲ್ಲಿ ಒಂದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="widget_kind_countdown">ನಮಾಜ್ ಕ್ಷಣಗಣನೆ</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">ಅತಿ ಹತ್ತಿರದ ಮಸೀದಿಗಳು, ಅವುಗಳ ದೂರ ಮತ್ತು ದಿಕ್ಕು.</string>
     <string name="widget_kind_next">ಮುಂದಿನ ನಮಾಜ್</string>
     <string name="widget_kind_next_desc">ಮುಂದಿನ ನಮಾಜ್, ಅದರ ಕ್ಷಣಗಣನೆ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು.</string>
+    <string name="widget_kind_qibla">ಕಿಬ್ಲಾ</string>
+    <string name="widget_kind_qibla_desc">ನಿಮ್ಮ ನಗರಕ್ಕೆ ಉತ್ತರದಿಂದ ಕಿಬ್ಲಾ ದಿಕ್ಕು. ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="widget_kind_ring">ನಮಾಜ್ ರಿಂಗ್</string>
     <string name="widget_kind_ring_desc">ಮುಂದಿನ ನಮಾಜ್‌ವರೆಗೆ ಉಳಿದ ಸಮಯ ಒಂದು ರಿಂಗ್‌ನಲ್ಲಿ, ಇಂದಿನ ಎಲ್ಲ ಸಮಯಗಳೊಂದಿಗೆ.</string>
     <string name="widget_kind_today">ಇಂದಿನ ನಮಾಜ್‌ಗಳು</string>
     <string name="widget_kind_today_desc">ನಿಮ್ಮ ನಗರದ ಎಲ್ಲಾ ಐದು ನಮಾಜ್‌ಗಳು, ದಿನಾಂಕ ಮತ್ತು ಮುಂದಿನ ನಮಾಜ್‌ನೊಂದಿಗೆ.</string>
     <string name="widget_next_description">ಕ್ಷಣಗಣನೆಯೊಂದಿಗೆ ಮುಂದಿನ ನಮಾಜ್</string>
+    <string name="widget_qibla_left">ಉತ್ತರದಿಂದ ಎಡಕ್ಕೆ %1$s° ತಿರುಗಿ</string>
+    <string name="widget_qibla_live">ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+    <string name="widget_qibla_right">ಉತ್ತರದಿಂದ ಬಲಕ್ಕೆ %1$s° ತಿರುಗಿ</string>
     <string name="widget_remaining">ಉಳಿದ ಸಮಯ</string>
     <string name="widget_style_title">ವಿಜೆಟ್ ಶೈಲಿ</string>
     <string name="widget_times_description">ಮುಂದಿನ ನಮಾಜ್ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು</string>

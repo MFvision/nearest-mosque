@@ -386,6 +386,8 @@
     <string name="website">Website</string>
     <string name="widget_ask_suggested">Vraag bijvoorbeeld</string>
     <string name="widget_choose_city">Open Near Mosque om je stad te kiezen</string>
+    <string name="widget_kind_actions">Snelle acties</string>
+    <string name="widget_kind_actions_desc">Vragen, de dichtstbijzijnde moskee en gebedstijden met de qibla, elk met één tik.</string>
     <string name="widget_kind_ask">Vraag over de islam</string>
     <string name="widget_kind_ask_desc">Stel een vraag of tik op een van de suggesties van vandaag.</string>
     <string name="widget_kind_countdown">Aftellen tot gebed</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">De dichtstbijzijnde moskeeën, hoe ver ze zijn en in welke richting.</string>
     <string name="widget_kind_next">Volgend gebed</string>
     <string name="widget_kind_next_desc">Het volgende gebed, de aftelling ernaartoe en de gebedstijden van vandaag.</string>
+    <string name="widget_kind_qibla">Qibla</string>
+    <string name="widget_kind_qibla_desc">De qibla-richting vanaf het noorden voor uw stad. Tik voor het live kompas.</string>
     <string name="widget_kind_ring">Gebedsring</string>
     <string name="widget_kind_ring_desc">De tijd tot het volgende gebed op een ring, met alle tijden van vandaag.</string>
     <string name="widget_kind_today">Gebeden van vandaag</string>
     <string name="widget_kind_today_desc">Alle vijf gebeden voor je stad, met de datum en het volgende gebed.</string>
     <string name="widget_next_description">Het volgende gebed met een aftelling</string>
+    <string name="widget_qibla_left">Vanaf het noorden %1$s° naar links</string>
+    <string name="widget_qibla_live">Tik voor het live kompas</string>
+    <string name="widget_qibla_right">Vanaf het noorden %1$s° naar rechts</string>
     <string name="widget_remaining">Resterende tijd</string>
     <string name="widget_style_title">Widgetstijl</string>
     <string name="widget_times_description">Het volgende gebed en de tijden van vandaag</string>

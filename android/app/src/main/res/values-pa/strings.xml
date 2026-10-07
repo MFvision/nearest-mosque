@@ -386,6 +386,8 @@
     <string name="website">ਵੈੱਬਸਾਈਟ</string>
     <string name="widget_ask_suggested">ਇਹ ਪੁੱਛ ਕੇ ਦੇਖੋ</string>
     <string name="widget_choose_city">ਆਪਣਾ ਸ਼ਹਿਰ ਚੁਣਨ ਲਈ Near Mosque ਖੋਲ੍ਹੋ</string>
+    <string name="widget_kind_actions">ਤੇਜ਼ ਕਾਰਵਾਈਆਂ</string>
+    <string name="widget_kind_actions_desc">ਪੁੱਛੋ, ਨੇੜਲੀ ਮਸਜਿਦ, ਅਤੇ ਕਿਬਲੇ ਨਾਲ ਨਮਾਜ਼ ਦੇ ਸਮੇਂ, ਹਰ ਇੱਕ ਇੱਕ ਟੈਪ ਵਿੱਚ।</string>
     <string name="widget_kind_ask">ਇਸਲਾਮ ਬਾਰੇ ਪੁੱਛੋ</string>
     <string name="widget_kind_ask_desc">ਸਵਾਲ ਪੁੱਛੋ, ਜਾਂ ਅੱਜ ਦੇ ਸੁਝਾਵਾਂ ਵਿੱਚੋਂ ਕਿਸੇ ਇੱਕ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
     <string name="widget_kind_countdown">ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">ਸਭ ਤੋਂ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ, ਉਨ੍ਹਾਂ ਦੀ ਦੂਰੀ ਅਤੇ ਦਿਸ਼ਾ।</string>
     <string name="widget_kind_next">ਅਗਲੀ ਨਮਾਜ਼</string>
     <string name="widget_kind_next_desc">ਅਗਲੀ ਨਮਾਜ਼, ਉਸ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ।</string>
+    <string name="widget_kind_qibla">ਕਿਬਲਾ</string>
+    <string name="widget_kind_qibla_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਲਈ ਉੱਤਰ ਤੋਂ ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ। ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਟੈਪ ਕਰੋ।</string>
     <string name="widget_kind_ring">ਨਮਾਜ਼ ਰਿੰਗ</string>
     <string name="widget_kind_ring_desc">ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਬਾਕੀ ਸਮਾਂ ਇੱਕ ਰਿੰਗ ’ਤੇ, ਅੱਜ ਦੇ ਸਾਰੇ ਸਮਿਆਂ ਨਾਲ।</string>
     <string name="widget_kind_today">ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ</string>
     <string name="widget_kind_today_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੀਆਂ ਪੰਜੇ ਨਮਾਜ਼ਾਂ, ਤਾਰੀਖ਼ ਅਤੇ ਅਗਲੀ ਨਮਾਜ਼ ਸਮੇਤ।</string>
     <string name="widget_next_description">ਉਲਟੀ ਗਿਣਤੀ ਨਾਲ ਅਗਲੀ ਨਮਾਜ਼</string>
+    <string name="widget_qibla_left">ਉੱਤਰ ਤੋਂ ਖੱਬੇ %1$s° ਮੁੜੋ</string>
+    <string name="widget_qibla_live">ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਟੈਪ ਕਰੋ</string>
+    <string name="widget_qibla_right">ਉੱਤਰ ਤੋਂ ਸੱਜੇ %1$s° ਮੁੜੋ</string>
     <string name="widget_remaining">ਬਾਕੀ ਵਕਤ</string>
     <string name="widget_style_title">ਵਿਜੇਟ ਦੀ ਸ਼ੈਲੀ</string>
     <string name="widget_times_description">ਅਗਲੀ ਨਮਾਜ਼ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ</string>

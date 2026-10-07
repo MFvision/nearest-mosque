@@ -385,6 +385,8 @@
     <string name="website">เว็บไซต์</string>
     <string name="widget_ask_suggested">ลองถาม</string>
     <string name="widget_choose_city">เปิดแอปเพื่อเลือกเมืองของคุณ</string>
+    <string name="widget_kind_actions">ทางลัด</string>
+    <string name="widget_kind_actions_desc">ถามคำถาม มัสยิดใกล้ที่สุด และเวลาละหมาดพร้อมกิบลัต แตะครั้งเดียว</string>
     <string name="widget_kind_ask">ถามเรื่องอิสลาม</string>
     <string name="widget_kind_ask_desc">ถามคำถาม หรือแตะคำถามแนะนำของวันนี้</string>
     <string name="widget_kind_countdown">นับถอยหลังละหมาด</string>
@@ -393,11 +395,16 @@
     <string name="widget_kind_mosque_desc">มัสยิดที่ใกล้ที่สุด ระยะทาง และทิศทาง</string>
     <string name="widget_kind_next">ละหมาดถัดไป</string>
     <string name="widget_kind_next_desc">ละหมาดถัดไป การนับถอยหลัง และเวลาละหมาดวันนี้</string>
+    <string name="widget_kind_qibla">กิบลัต</string>
+    <string name="widget_kind_qibla_desc">ทิศกิบลัตจากทิศเหนือสำหรับเมืองของคุณ แตะเพื่อเปิดเข็มทิศสด</string>
     <string name="widget_kind_ring">วงเวลาละหมาด</string>
     <string name="widget_kind_ring_desc">เวลาที่เหลือถึงละหมาดถัดไปบนวงแหวน พร้อมเวลาทั้งหมดของวันนี้</string>
     <string name="widget_kind_today">ละหมาดวันนี้</string>
     <string name="widget_kind_today_desc">ละหมาดทั้งห้าเวลาของเมืองคุณ พร้อมวันที่และละหมาดถัดไป</string>
     <string name="widget_next_description">ละหมาดถัดไปพร้อมการนับถอยหลัง</string>
+    <string name="widget_qibla_left">จากทิศเหนือ หันซ้าย %1$s°</string>
+    <string name="widget_qibla_live">แตะเพื่อเปิดเข็มทิศสด</string>
+    <string name="widget_qibla_right">จากทิศเหนือ หันขวา %1$s°</string>
     <string name="widget_remaining">เวลาที่เหลือ</string>
     <string name="widget_style_title">สไตล์วิดเจ็ต</string>
     <string name="widget_times_description">ละหมาดถัดไปและเวลาของวันนี้</string>

@@ -386,6 +386,8 @@
     <string name="website">Shafin yanar gizo</string>
     <string name="widget_ask_suggested">Gwada tambaya</string>
     <string name="widget_choose_city">Buɗe Near Mosque don zaɓar garinku</string>
+    <string name="widget_kind_actions">Ayyuka masu sauri</string>
+    <string name="widget_kind_actions_desc">Tambaya, masallaci mafi kusa, da lokutan sallah tare da alƙibla, kowanne da taɓawa ɗaya.</string>
     <string name="widget_kind_ask">Tambaya game da Musulunci</string>
     <string name="widget_kind_ask_desc">Yi tambaya, ko ka taɓa ɗaya daga cikin shawarwarin yau.</string>
     <string name="widget_kind_countdown">Ƙidayar sallah</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">Masallatai mafi kusa, nisansu da kuma inda suke.</string>
     <string name="widget_kind_next">Sallah ta gaba</string>
     <string name="widget_kind_next_desc">Sallah ta gaba, ƙidayarta da lokutan sallah na yau.</string>
+    <string name="widget_kind_qibla">Alƙibla</string>
+    <string name="widget_kind_qibla_desc">Hanyar alƙibla daga arewa a garinku. Taɓa don kamfas kai tsaye.</string>
     <string name="widget_kind_ring">Zoben sallah</string>
     <string name="widget_kind_ring_desc">Lokacin da ya rage zuwa sallah ta gaba a kan zobe, tare da dukan lokutan yau.</string>
     <string name="widget_kind_today">Sallolin yau</string>
     <string name="widget_kind_today_desc">Salloli biyar na garinku, tare da kwanan wata da sallah ta gaba.</string>
     <string name="widget_next_description">Sallah ta gaba tare da ƙidaya</string>
+    <string name="widget_qibla_left">Daga arewa, juya hagu %1$s°</string>
+    <string name="widget_qibla_live">Taɓa don kamfas kai tsaye</string>
+    <string name="widget_qibla_right">Daga arewa, juya dama %1$s°</string>
     <string name="widget_remaining">Sauran lokaci</string>
     <string name="widget_style_title">Salon widget</string>
     <string name="widget_times_description">Sallah ta gaba da lokutan yau</string>

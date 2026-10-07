@@ -386,6 +386,8 @@
     <string name="website">වෙබ් අඩවිය</string>
     <string name="widget_ask_suggested">මෙසේ අහලා බලන්න</string>
     <string name="widget_choose_city">ඔබේ නගරය තේරීමට Near Mosque විවෘත කරන්න</string>
+    <string name="widget_kind_actions">ඉක්මන් ක්‍රියා</string>
+    <string name="widget_kind_actions_desc">අසන්න, ළඟම පල්ලිය, සහ කිබ්ලා සමඟ සලාත් වේලාවන්, එක් තට්ටුවකින්.</string>
     <string name="widget_kind_ask">ඉස්ලාමය ගැන අහන්න</string>
     <string name="widget_kind_ask_desc">ප්‍රශ්නයක් අහන්න, නැතහොත් අද යෝජනාවලින් එකක් තට්ටු කරන්න.</string>
     <string name="widget_kind_countdown">සලාතයට ඉතිරි කාලය</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">ළඟම පල්ලි, ඒවාට ඇති දුර සහ දිශාව.</string>
     <string name="widget_kind_next">ඊළඟ සලාතය</string>
     <string name="widget_kind_next_desc">ඊළඟ සලාතය, එයට ඉතිරි කාලය සහ අද සලාත වේලාවන්.</string>
+    <string name="widget_kind_qibla">කිබ්ලා</string>
+    <string name="widget_kind_qibla_desc">ඔබේ නගරයට උතුරේ සිට කිබ්ලා දිශාව. සජීවී මාලිමාව සඳහා තට්ටු කරන්න.</string>
     <string name="widget_kind_ring">සලාත් වළල්ල</string>
     <string name="widget_kind_ring_desc">ඊළඟ සලාතයට ඉතිරි කාලය වළල්ලක, අද සියලු වේලාවන් සමඟ.</string>
     <string name="widget_kind_today">අද සලාත</string>
     <string name="widget_kind_today_desc">ඔබේ නගරයේ සලාත පහම, දිනය සහ ඊළඟ සලාතය සමඟ.</string>
     <string name="widget_next_description">ගණන් කිරීමක් සහිත ඊළඟ සලාතය</string>
+    <string name="widget_qibla_left">උතුරේ සිට වමට %1$s° හැරෙන්න</string>
+    <string name="widget_qibla_live">සජීවී මාලිමාව සඳහා තට්ටු කරන්න</string>
+    <string name="widget_qibla_right">උතුරේ සිට දකුණට %1$s° හැරෙන්න</string>
     <string name="widget_remaining">ඉතිරි කාලය</string>
     <string name="widget_style_title">විජට් විලාසය</string>
     <string name="widget_times_description">ඊළඟ සලාතය සහ අද වේලාවන්</string>

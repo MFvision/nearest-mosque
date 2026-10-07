@@ -386,6 +386,8 @@
     <string name="website">Tovuti</string>
     <string name="widget_ask_suggested">Jaribu kuuliza</string>
     <string name="widget_choose_city">Fungua Near Mosque ili kuchagua mji wako</string>
+    <string name="widget_kind_actions">Vitendo vya haraka</string>
+    <string name="widget_kind_actions_desc">Uliza, msikiti wa karibu, na nyakati za sala pamoja na kibla, kila kimoja kwa mguso mmoja.</string>
     <string name="widget_kind_ask">Uliza kuhusu Uislamu</string>
     <string name="widget_kind_ask_desc">Uliza swali, au gusa mojawapo ya mapendekezo ya leo.</string>
     <string name="widget_kind_countdown">Muda hadi sala</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">Misikiti iliyo karibu zaidi, umbali wake na upande ilipo.</string>
     <string name="widget_kind_next">Sala ijayo</string>
     <string name="widget_kind_next_desc">Sala ijayo, hesabu yake ya kurudi nyuma na nyakati za leo.</string>
+    <string name="widget_kind_qibla">Kibla</string>
+    <string name="widget_kind_qibla_desc">Mwelekeo wa kibla kutoka kaskazini kwa mji wako. Gusa kwa dira hai.</string>
     <string name="widget_kind_ring">Mduara wa sala</string>
     <string name="widget_kind_ring_desc">Muda uliobaki hadi sala inayofuata kwenye mduara, pamoja na nyakati zote za leo.</string>
     <string name="widget_kind_today">Sala za leo</string>
     <string name="widget_kind_today_desc">Sala zote tano za mji wako, pamoja na tarehe na sala ijayo.</string>
     <string name="widget_next_description">Sala ijayo pamoja na hesabu ya kurudi nyuma</string>
+    <string name="widget_qibla_left">Kutoka kaskazini, geuka kushoto %1$s°</string>
+    <string name="widget_qibla_live">Gusa kwa dira hai</string>
+    <string name="widget_qibla_right">Kutoka kaskazini, geuka kulia %1$s°</string>
     <string name="widget_remaining">Muda uliobaki</string>
     <string name="widget_style_title">Mtindo wa wijeti</string>
     <string name="widget_times_description">Sala ijayo na nyakati za leo</string>

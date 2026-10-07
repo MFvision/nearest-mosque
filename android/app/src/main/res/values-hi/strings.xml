@@ -386,6 +386,8 @@
     <string name="website">वेबसाइट</string>
     <string name="widget_ask_suggested">पूछकर देखें</string>
     <string name="widget_choose_city">अपना शहर चुनने के लिए Near Mosque ऐप खोलें</string>
+    <string name="widget_kind_actions">त्वरित क्रियाएँ</string>
+    <string name="widget_kind_actions_desc">पूछें, सबसे नज़दीकी मस्जिद, और क़िबला के साथ नमाज़ के समय, हर एक एक टैप में।</string>
     <string name="widget_kind_ask">इस्लाम के बारे में पूछें</string>
     <string name="widget_kind_ask_desc">सवाल पूछें, या आज के सुझावों में से किसी एक पर टैप करें।</string>
     <string name="widget_kind_countdown">नमाज़ की उलटी गिनती</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">सबसे नज़दीकी मस्जिदें, उनकी दूरी और दिशा।</string>
     <string name="widget_kind_next">अगली नमाज़</string>
     <string name="widget_kind_next_desc">अगली नमाज़, उसकी उलटी गिनती और आज के समय।</string>
+    <string name="widget_kind_qibla">क़िबला</string>
+    <string name="widget_kind_qibla_desc">आपके शहर के लिए उत्तर से क़िबला की दिशा। लाइव कंपास के लिए टैप करें।</string>
     <string name="widget_kind_ring">नमाज़ रिंग</string>
     <string name="widget_kind_ring_desc">अगली नमाज़ तक बाकी समय एक रिंग पर, आज के सभी समय के साथ।</string>
     <string name="widget_kind_today">आज की नमाज़ें</string>
     <string name="widget_kind_today_desc">आपके शहर की पाँचों नमाज़ें, तारीख़ और अगली नमाज़ के साथ।</string>
     <string name="widget_next_description">उलटी गिनती के साथ अगली नमाज़</string>
+    <string name="widget_qibla_left">उत्तर से बाएँ %1$s° मुड़ें</string>
+    <string name="widget_qibla_live">लाइव कंपास के लिए टैप करें</string>
+    <string name="widget_qibla_right">उत्तर से दाएँ %1$s° मुड़ें</string>
     <string name="widget_remaining">बाक़ी समय</string>
     <string name="widget_style_title">विजेट स्टाइल</string>
     <string name="widget_times_description">अगली नमाज़ और आज के समय</string>

@@ -386,6 +386,8 @@
     <string name="website">ვებსაიტი</string>
     <string name="widget_ask_suggested">სცადეთ კითხვა</string>
     <string name="widget_choose_city">გახსენით აპი ქალაქის ასარჩევად</string>
+    <string name="widget_kind_actions">სწრაფი მოქმედებები</string>
+    <string name="widget_kind_actions_desc">კითხვა, უახლოესი მეჩეთი და ლოცვის დრო ყიბლასთან ერთად, თითო შეხებით.</string>
     <string name="widget_kind_ask">კითხვა ისლამზე</string>
     <string name="widget_kind_ask_desc">დასვით კითხვა ან შეეხეთ დღის ერთ-ერთ შეთავაზებას.</string>
     <string name="widget_kind_countdown">ლოცვის უკუთვლა</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">უახლოესი მეჩეთები, რა მანძილზეა და რა მიმართულებით.</string>
     <string name="widget_kind_next">შემდეგი ლოცვა</string>
     <string name="widget_kind_next_desc">შემდეგი ლოცვა, მისი უკუთვლა და დღევანდელი ლოცვის დროები.</string>
+    <string name="widget_kind_qibla">ყიბლა</string>
+    <string name="widget_kind_qibla_desc">ყიბლის მიმართულება ჩრდილოეთიდან თქვენი ქალაქისთვის. შეეხეთ ცოცხალი კომპასისთვის.</string>
     <string name="widget_kind_ring">ლოცვის რგოლი</string>
     <string name="widget_kind_ring_desc">შემდეგ ლოცვამდე დარჩენილი დრო რგოლზე, დღევანდელი ყველა დროით.</string>
     <string name="widget_kind_today">დღევანდელი ლოცვები</string>
     <string name="widget_kind_today_desc">თქვენი ქალაქის ხუთივე ლოცვა, თარიღით და შემდეგი ლოცვით.</string>
     <string name="widget_next_description">შემდეგი ლოცვა უკუთვლით</string>
+    <string name="widget_qibla_left">ჩრდილოეთიდან მოუხვიეთ მარცხნივ %1$s°</string>
+    <string name="widget_qibla_live">შეეხეთ ცოცხალი კომპასისთვის</string>
+    <string name="widget_qibla_right">ჩრდილოეთიდან მოუხვიეთ მარჯვნივ %1$s°</string>
     <string name="widget_remaining">დარჩენილი დრო</string>
     <string name="widget_style_title">ვიჯეტის სტილი</string>
     <string name="widget_times_description">შემდეგი ლოცვა და დღევანდელი დროები</string>

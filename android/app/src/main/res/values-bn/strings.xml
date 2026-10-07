@@ -386,6 +386,8 @@
     <string name="website">ওয়েবসাইট</string>
     <string name="widget_ask_suggested">জিজ্ঞেস করে দেখুন</string>
     <string name="widget_choose_city">আপনার শহর বেছে নিতে Near Mosque অ্যাপ খুলুন</string>
+    <string name="widget_kind_actions">দ্রুত কাজ</string>
+    <string name="widget_kind_actions_desc">জিজ্ঞাসা, কাছের মসজিদ, এবং কিবলাসহ নামাজের সময়, প্রতিটি এক ট্যাপে।</string>
     <string name="widget_kind_ask">ইসলাম নিয়ে প্রশ্ন করুন</string>
     <string name="widget_kind_ask_desc">প্রশ্ন করুন, অথবা আজকের পরামর্শগুলোর একটিতে ট্যাপ করুন।</string>
     <string name="widget_kind_countdown">নামাজের কাউন্টডাউন</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">নিকটতম মসজিদগুলো, সেগুলোর দূরত্ব ও দিক।</string>
     <string name="widget_kind_next">পরবর্তী নামাজ</string>
     <string name="widget_kind_next_desc">পরবর্তী নামাজ, তার কাউন্টডাউন ও আজকের সময়।</string>
+    <string name="widget_kind_qibla">কিবলা</string>
+    <string name="widget_kind_qibla_desc">আপনার শহরের জন্য উত্তর থেকে কিবলার দিক। লাইভ কম্পাসের জন্য ট্যাপ করুন।</string>
     <string name="widget_kind_ring">নামাজ রিং</string>
     <string name="widget_kind_ring_desc">পরের নামাজ পর্যন্ত বাকি সময় একটি রিংয়ে, আজকের সব সময়সহ।</string>
     <string name="widget_kind_today">আজকের নামাজ</string>
     <string name="widget_kind_today_desc">আপনার শহরের পাঁচ ওয়াক্ত নামাজ, তারিখ ও পরবর্তী নামাজসহ।</string>
     <string name="widget_next_description">কাউন্টডাউনসহ পরবর্তী নামাজ</string>
+    <string name="widget_qibla_left">উত্তর থেকে বাঁয়ে %1$s° ঘুরুন</string>
+    <string name="widget_qibla_live">লাইভ কম্পাসের জন্য ট্যাপ করুন</string>
+    <string name="widget_qibla_right">উত্তর থেকে ডানে %1$s° ঘুরুন</string>
     <string name="widget_remaining">বাকি সময়</string>
     <string name="widget_style_title">উইজেটের স্টাইল</string>
     <string name="widget_times_description">পরবর্তী নামাজ ও আজকের সময়</string>

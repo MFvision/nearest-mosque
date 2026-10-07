@@ -386,6 +386,8 @@
     <string name="website">Site web</string>
     <string name="widget_ask_suggested">Essayez de demander</string>
     <string name="widget_choose_city">Ouvrez l\'application pour choisir votre ville</string>
+    <string name="widget_kind_actions">Actions rapides</string>
+    <string name="widget_kind_actions_desc">Demander, la mosquée la plus proche, et les horaires avec la qibla, d’une seule touche.</string>
     <string name="widget_kind_ask">Questions sur l\'islam</string>
     <string name="widget_kind_ask_desc">Posez une question ou touchez l\'une des suggestions du jour.</string>
     <string name="widget_kind_countdown">Compte à rebours</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">Les mosquées les plus proches, leur distance et leur direction.</string>
     <string name="widget_kind_next">Prochaine prière</string>
     <string name="widget_kind_next_desc">La prochaine prière, son compte à rebours et les horaires du jour.</string>
+    <string name="widget_kind_qibla">Qibla</string>
+    <string name="widget_kind_qibla_desc">La direction de la qibla depuis le nord pour votre ville. Touchez pour la boussole en direct.</string>
     <string name="widget_kind_ring">Anneau de prière</string>
     <string name="widget_kind_ring_desc">Le temps restant avant la prochaine prière sur un anneau, avec tous les horaires du jour.</string>
     <string name="widget_kind_today">Prières du jour</string>
     <string name="widget_kind_today_desc">Les cinq prières de votre ville, avec la date et la prochaine prière.</string>
     <string name="widget_next_description">La prochaine prière avec un compte à rebours</string>
+    <string name="widget_qibla_left">Depuis le nord, tournez à gauche de %1$s°</string>
+    <string name="widget_qibla_live">Touchez pour la boussole en direct</string>
+    <string name="widget_qibla_right">Depuis le nord, tournez à droite de %1$s°</string>
     <string name="widget_remaining">Temps restant</string>
     <string name="widget_style_title">Style du widget</string>
     <string name="widget_times_description">La prochaine prière et les horaires du jour</string>

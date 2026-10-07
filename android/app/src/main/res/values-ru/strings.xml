@@ -388,6 +388,8 @@
     <string name="website">Сайт</string>
     <string name="widget_ask_suggested">Попробуйте спросить</string>
     <string name="widget_choose_city">Откройте «Near Mosque», чтобы выбрать город</string>
+    <string name="widget_kind_actions">Быстрые действия</string>
+    <string name="widget_kind_actions_desc">Вопрос, ближайшая мечеть и время молитв с киблой — одним касанием.</string>
     <string name="widget_kind_ask">Спросить об исламе</string>
     <string name="widget_kind_ask_desc">Задайте вопрос или нажмите на одну из подсказок дня.</string>
     <string name="widget_kind_countdown">Отсчёт до намаза</string>
@@ -396,11 +398,16 @@
     <string name="widget_kind_mosque_desc">Ближайшие мечети, расстояние до них и направление.</string>
     <string name="widget_kind_next">Следующий намаз</string>
     <string name="widget_kind_next_desc">Следующий намаз, обратный отсчёт и время намазов на сегодня.</string>
+    <string name="widget_kind_qibla">Кибла</string>
+    <string name="widget_kind_qibla_desc">Направление киблы от севера для вашего города. Нажмите, чтобы открыть компас.</string>
     <string name="widget_kind_ring">Кольцо молитв</string>
     <string name="widget_kind_ring_desc">Время до следующей молитвы на кольце и всё расписание на сегодня.</string>
     <string name="widget_kind_today">Намазы на сегодня</string>
     <string name="widget_kind_today_desc">Все пять намазов для вашего города, с датой и следующим намазом.</string>
     <string name="widget_next_description">Следующий намаз с обратным отсчётом</string>
+    <string name="widget_qibla_left">От севера поверните налево на %1$s°</string>
+    <string name="widget_qibla_live">Нажмите для компаса</string>
+    <string name="widget_qibla_right">От севера поверните направо на %1$s°</string>
     <string name="widget_remaining">Осталось</string>
     <string name="widget_style_title">Стиль виджета</string>
     <string name="widget_times_description">Следующий намаз и время на сегодня</string>

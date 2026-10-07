@@ -385,6 +385,8 @@
     <string name="website">គេហទំព័រ</string>
     <string name="widget_ask_suggested">សាកសួរ</string>
     <string name="widget_choose_city">បើកកម្មវិធី ដើម្បីជ្រើសរើសទីក្រុងរបស់អ្នក</string>
+    <string name="widget_kind_actions">សកម្មភាពរហ័ស</string>
+    <string name="widget_kind_actions_desc">សួរ វិហារឥស្លាមជិតបំផុត និងម៉ោងសឡាតជាមួយគិបឡាត ចុចតែម្ដង។</string>
     <string name="widget_kind_ask">សួរអំពីសាសនាឥស្លាម</string>
     <string name="widget_kind_ask_desc">សួរសំណួរ ឬចុចលើសំណួរណែនាំមួយសម្រាប់ថ្ងៃនេះ។</string>
     <string name="widget_kind_countdown">រាប់ថយក្រោយសឡាត</string>
@@ -393,11 +395,16 @@
     <string name="widget_kind_mosque_desc">ម៉ាស្ជិតជិតបំផុត ចម្ងាយ និងទិសដៅ។</string>
     <string name="widget_kind_next">សឡាតបន្ទាប់</string>
     <string name="widget_kind_next_desc">សឡាតបន្ទាប់ ការរាប់ថយក្រោយ និងម៉ោងសឡាតថ្ងៃនេះ។</string>
+    <string name="widget_kind_qibla">គិបឡាត</string>
+    <string name="widget_kind_qibla_desc">ទិសគិបឡាតពីទិសខាងជើងសម្រាប់ទីក្រុងរបស់អ្នក។ ចុចដើម្បីបើកត្រីវិស័យផ្ទាល់។</string>
     <string name="widget_kind_ring">រង្វង់សឡាត</string>
     <string name="widget_kind_ring_desc">ពេលនៅសល់ដល់សឡាតបន្ទាប់លើរង្វង់ ជាមួយម៉ោងទាំងអស់ថ្ងៃនេះ។</string>
     <string name="widget_kind_today">សឡាតថ្ងៃនេះ</string>
     <string name="widget_kind_today_desc">សឡាតទាំងប្រាំសម្រាប់ទីក្រុងរបស់អ្នក ព្រមទាំងកាលបរិច្ឆេទ និងសឡាតបន្ទាប់។</string>
     <string name="widget_next_description">សឡាតបន្ទាប់ ជាមួយការរាប់ថយក្រោយ</string>
+    <string name="widget_qibla_left">ពីទិសខាងជើង បត់ឆ្វេង %1$s°</string>
+    <string name="widget_qibla_live">ចុចដើម្បីបើកត្រីវិស័យផ្ទាល់</string>
+    <string name="widget_qibla_right">ពីទិសខាងជើង បត់ស្ដាំ %1$s°</string>
     <string name="widget_remaining">ពេលនៅសល់</string>
     <string name="widget_style_title">រចនាប័ទ្មវីដជែត</string>
     <string name="widget_times_description">សឡាតបន្ទាប់ និងម៉ោងថ្ងៃនេះ</string>

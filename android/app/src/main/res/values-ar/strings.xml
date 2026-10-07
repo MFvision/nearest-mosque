@@ -390,6 +390,8 @@
     <string name="website">الموقع</string>
     <string name="widget_ask_suggested">جرّب أن تسأل</string>
     <string name="widget_choose_city">افتح التطبيق لاختيار مدينتك</string>
+    <string name="widget_kind_actions">اختصارات سريعة</string>
+    <string name="widget_kind_actions_desc">اسأل، وأقرب مسجد، ومواقيت الصلاة مع القبلة، كلٌّ بلمسة واحدة.</string>
     <string name="widget_kind_ask">اسأل عن الإسلام</string>
     <string name="widget_kind_ask_desc">اطرح سؤالك، أو اضغط أحد اقتراحات اليوم.</string>
     <string name="widget_kind_countdown">العد التنازلي للصلاة</string>
@@ -398,11 +400,16 @@
     <string name="widget_kind_mosque_desc">أقرب المساجد، وبُعدها، واتجاهها.</string>
     <string name="widget_kind_next">الصلاة القادمة</string>
     <string name="widget_kind_next_desc">الصلاة القادمة وعدّها التنازلي ومواقيت اليوم.</string>
+    <string name="widget_kind_qibla">القبلة</string>
+    <string name="widget_kind_qibla_desc">اتجاه القبلة من الشمال لمدينتك. اضغط لفتح البوصلة الحية.</string>
     <string name="widget_kind_ring">حلقة الصلاة</string>
     <string name="widget_kind_ring_desc">الوقت المتبقي للصلاة القادمة على حلقة، مع مواقيت اليوم كلها.</string>
     <string name="widget_kind_today">صلوات اليوم</string>
     <string name="widget_kind_today_desc">الصلوات الخمس لمدينتك مع التاريخ والصلاة القادمة.</string>
     <string name="widget_next_description">الصلاة القادمة مع العد التنازلي</string>
+    <string name="widget_qibla_left">من الشمال، انعطف يسارًا %1$s°</string>
+    <string name="widget_qibla_live">اضغط للبوصلة الحية</string>
+    <string name="widget_qibla_right">من الشمال، انعطف يمينًا %1$s°</string>
     <string name="widget_remaining">المتبقي</string>
     <string name="widget_style_title">نمط الأداة</string>
     <string name="widget_times_description">الصلاة القادمة ومواقيت اليوم</string>

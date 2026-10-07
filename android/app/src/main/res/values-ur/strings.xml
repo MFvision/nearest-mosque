@@ -386,6 +386,8 @@
     <string name="website">ویب سائٹ</string>
     <string name="widget_ask_suggested">یہ پوچھ کر دیکھیں</string>
     <string name="widget_choose_city">شہر منتخب کرنے کے لیے ایپ کھولیں</string>
+    <string name="widget_kind_actions">فوری اقدامات</string>
+    <string name="widget_kind_actions_desc">پوچھیں، قریب ترین مسجد، اور قبلہ کے ساتھ نماز کے اوقات، ہر ایک ایک ٹیپ میں۔</string>
     <string name="widget_kind_ask">اسلام کے بارے میں پوچھیں</string>
     <string name="widget_kind_ask_desc">سوال پوچھیں، یا آج کی تجاویز میں سے کسی ایک پر ٹیپ کریں۔</string>
     <string name="widget_kind_countdown">نماز کی الٹی گنتی</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">قریب ترین مساجد، ان کا فاصلہ اور سمت۔</string>
     <string name="widget_kind_next">اگلی نماز</string>
     <string name="widget_kind_next_desc">اگلی نماز، اس کی الٹی گنتی اور آج کے اوقات۔</string>
+    <string name="widget_kind_qibla">قبلہ</string>
+    <string name="widget_kind_qibla_desc">آپ کے شہر کے لیے شمال سے قبلہ کی سمت۔ زندہ قطب نما کے لیے تھپتھپائیں۔</string>
     <string name="widget_kind_ring">نماز رنگ</string>
     <string name="widget_kind_ring_desc">اگلی نماز تک باقی وقت ایک دائرے پر، آج کے تمام اوقات کے ساتھ۔</string>
     <string name="widget_kind_today">آج کی نمازیں</string>
     <string name="widget_kind_today_desc">آپ کے شہر کی پانچوں نمازیں، تاریخ اور اگلی نماز کے ساتھ۔</string>
     <string name="widget_next_description">اگلی نماز اور الٹی گنتی</string>
+    <string name="widget_qibla_left">شمال سے بائیں %1$s° مڑیں</string>
+    <string name="widget_qibla_live">زندہ قطب نما کے لیے تھپتھپائیں</string>
+    <string name="widget_qibla_right">شمال سے دائیں %1$s° مڑیں</string>
     <string name="widget_remaining">باقی وقت</string>
     <string name="widget_style_title">وجیٹ کا انداز</string>
     <string name="widget_times_description">اگلی نماز اور آج کے اوقات</string>

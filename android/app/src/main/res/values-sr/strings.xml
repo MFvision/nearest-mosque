@@ -387,6 +387,8 @@
     <string name="website">Веб-сајт</string>
     <string name="widget_ask_suggested">Пробајте да питате</string>
     <string name="widget_choose_city">Отворите „Near Mosque” да изаберете град</string>
+    <string name="widget_kind_actions">Брзе радње</string>
+    <string name="widget_kind_actions_desc">Питај, најближа џамија и времена молитве са киблом, свако једним додиром.</string>
     <string name="widget_kind_ask">Питај о исламу</string>
     <string name="widget_kind_ask_desc">Поставите питање или додирните један од данашњих предлога.</string>
     <string name="widget_kind_countdown">Одбројавање до намаза</string>
@@ -395,11 +397,16 @@
     <string name="widget_kind_mosque_desc">Најближе џамије, колико су удаљене и у ком правцу.</string>
     <string name="widget_kind_next">Следећи намаз</string>
     <string name="widget_kind_next_desc">Следећи намаз, одбројавање до њега и данашња намаска времена.</string>
+    <string name="widget_kind_qibla">Кибла</string>
+    <string name="widget_kind_qibla_desc">Смер кибле од севера за ваш град. Додирните за компас уживо.</string>
     <string name="widget_kind_ring">Прстен молитви</string>
     <string name="widget_kind_ring_desc">Преостало време до следеће молитве на прстену, са свим данашњим временима.</string>
     <string name="widget_kind_today">Данашњи намази</string>
     <string name="widget_kind_today_desc">Свих пет намаза за ваш град, са датумом и следећим намазом.</string>
     <string name="widget_next_description">Следећи намаз са одбројавањем</string>
+    <string name="widget_qibla_left">Од севера, окрените се лево %1$s°</string>
+    <string name="widget_qibla_live">Додирните за компас уживо</string>
+    <string name="widget_qibla_right">Од севера, окрените се десно %1$s°</string>
     <string name="widget_remaining">Преостало време</string>
     <string name="widget_style_title">Стил виџета</string>
     <string name="widget_times_description">Следећи намаз и данашња времена</string>

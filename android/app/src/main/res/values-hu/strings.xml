@@ -386,6 +386,8 @@
     <string name="website">Weboldal</string>
     <string name="widget_ask_suggested">Kérdezd meg például</string>
     <string name="widget_choose_city">Nyisd meg a Near Mosque alkalmazást a város kiválasztásához</string>
+    <string name="widget_kind_actions">Gyors műveletek</string>
+    <string name="widget_kind_actions_desc">Kérdezés, a legközelebbi mecset, és az imaidők a kiblával, egy-egy koppintással.</string>
     <string name="widget_kind_ask">Kérdezz az iszlámról</string>
     <string name="widget_kind_ask_desc">Tegyél fel egy kérdést, vagy koppints a mai javaslatok egyikére.</string>
     <string name="widget_kind_countdown">Ima-visszaszámláló</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">A legközelebbi mecsetek, a távolságuk és az irányuk.</string>
     <string name="widget_kind_next">Következő ima</string>
     <string name="widget_kind_next_desc">A következő ima, a visszaszámlálás és a mai imaidők.</string>
+    <string name="widget_kind_qibla">Kibla</string>
+    <string name="widget_kind_qibla_desc">A kibla iránya északtól a városában. Koppintson az élő iránytűért.</string>
     <string name="widget_kind_ring">Imagyűrű</string>
     <string name="widget_kind_ring_desc">A következő imáig hátralévő idő egy gyűrűn, a mai összes időponttal.</string>
     <string name="widget_kind_today">Mai imák</string>
     <string name="widget_kind_today_desc">Városod mind az öt imája, a dátummal és a következő imával.</string>
     <string name="widget_next_description">A következő ima visszaszámlálással</string>
+    <string name="widget_qibla_left">Északtól fordulj balra %1$s°-ot</string>
+    <string name="widget_qibla_live">Koppintson az élő iránytűért</string>
+    <string name="widget_qibla_right">Északtól fordulj jobbra %1$s°-ot</string>
     <string name="widget_remaining">Hátralévő idő</string>
     <string name="widget_style_title">Widget stílusa</string>
     <string name="widget_times_description">A következő ima és a mai időpontok</string>

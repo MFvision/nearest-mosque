@@ -386,6 +386,8 @@
     <string name="website">വെബ്സൈറ്റ്</string>
     <string name="widget_ask_suggested">ഇങ്ങനെ ചോദിച്ചുനോക്കൂ</string>
     <string name="widget_choose_city">നഗരം തിരഞ്ഞെടുക്കാൻ Near Mosque തുറക്കുക</string>
+    <string name="widget_kind_actions">ദ്രുത പ്രവർത്തനങ്ങൾ</string>
+    <string name="widget_kind_actions_desc">ചോദിക്കുക, അടുത്തുള്ള പള്ളി, ഖിബ്‌ലയോടൊപ്പം നമസ്കാര സമയങ്ങൾ, ഓരോന്നും ഒറ്റ ടാപ്പിൽ.</string>
     <string name="widget_kind_ask">ഇസ്‌ലാമിനെക്കുറിച്ച് ചോദിക്കൂ</string>
     <string name="widget_kind_ask_desc">ഒരു ചോദ്യം ചോദിക്കൂ, അല്ലെങ്കിൽ ഇന്നത്തെ നിർദ്ദേശങ്ങളിൽ ഒന്നിൽ ടാപ്പ് ചെയ്യൂ.</string>
     <string name="widget_kind_countdown">നമസ്കാര കൗണ്ട്ഡൗൺ</string>
@@ -394,11 +396,16 @@
     <string name="widget_kind_mosque_desc">ഏറ്റവും അടുത്ത പള്ളികൾ, അവയിലേക്കുള്ള ദൂരവും ദിശയും.</string>
     <string name="widget_kind_next">അടുത്ത നമസ്കാരം</string>
     <string name="widget_kind_next_desc">അടുത്ത നമസ്കാരം, അതിന്റെ കൗണ്ട്ഡൗൺ, ഇന്നത്തെ സമയങ്ങൾ.</string>
+    <string name="widget_kind_qibla">ഖിബ്‌ല</string>
+    <string name="widget_kind_qibla_desc">നിങ്ങളുടെ നഗരത്തിന് വടക്കുനിന്നുള്ള ഖിബ്‌ല ദിശ. ലൈവ് കോമ്പസിനായി ടാപ്പ് ചെയ്യുക.</string>
     <string name="widget_kind_ring">നമസ്കാര വളയം</string>
     <string name="widget_kind_ring_desc">അടുത്ത നമസ്കാരം വരെ ശേഷിക്കുന്ന സമയം ഒരു വളയത്തിൽ, ഇന്നത്തെ എല്ലാ സമയങ്ങളോടും കൂടി.</string>
     <string name="widget_kind_today">ഇന്നത്തെ നമസ്കാരങ്ങൾ</string>
     <string name="widget_kind_today_desc">നിങ്ങളുടെ നഗരത്തിലെ അഞ്ച് നമസ്കാരങ്ങളും, തീയതിയും അടുത്ത നമസ്കാരവും സഹിതം.</string>
     <string name="widget_next_description">കൗണ്ട്ഡൗണോടെ അടുത്ത നമസ്കാരം</string>
+    <string name="widget_qibla_left">വടക്കുനിന്ന് ഇടത്തോട്ട് %1$s° തിരിയുക</string>
+    <string name="widget_qibla_live">ലൈവ് കോമ്പസിനായി ടാപ്പ് ചെയ്യുക</string>
+    <string name="widget_qibla_right">വടക്കുനിന്ന് വലത്തോട്ട് %1$s° തിരിയുക</string>
     <string name="widget_remaining">ബാക്കി സമയം</string>
     <string name="widget_style_title">വിജറ്റ് ശൈലി</string>
     <string name="widget_times_description">അടുത്ത നമസ്കാരവും ഇന്നത്തെ സമയങ്ങളും</string>

@@ -15,15 +15,17 @@ enum WidgetLook: String, AppEnum {
     ]
 }
 
-/// Which widget: the next prayer, the countdown bar, the ring, today's five prayers, the nearest mosques, or Ask.
+/// Which widget: the next prayer, the countdown bar, the ring, today's five prayers, the nearest mosques, Ask,
+/// the Qibla, or the three quick actions.
 enum PrayerWidgetKind {
-    case next, countdown, ring, today, mosque, ask
+    case next, countdown, ring, today, mosque, ask, qibla, actions
 
     /// Where a tap on the widget (outside its own links) goes.
     func url(_ state: SharedState?) -> URL? {
         switch self {
         case .mosque: return URL(string: state?.mosques?.first.map { "nearmosque://mosque?id=\(Self.encode($0.id))" } ?? "nearmosque://mosques")
         case .ask: return URL(string: "nearmosque://ask")
+        case .qibla: return URL(string: "nearmosque://qibla")
         default: return URL(string: "nearmosque://prayer")
         }
     }
@@ -119,7 +121,11 @@ struct PrayerWidgetView: View {
     var body: some View {
         let p = WidgetPalette.of(entry.look)
         Group {
-            if let s = entry.state, kind == .mosque {
+            if kind == .actions {
+                actionsView(entry.state, p)
+            } else if let s = entry.state, kind == .qibla {
+                qiblaView(s, p)
+            } else if let s = entry.state, kind == .mosque {
                 mosqueView(s, p)
             } else if let s = entry.state, kind == .ask {
                 askView(s, p)
@@ -128,7 +134,7 @@ struct PrayerWidgetView: View {
                 case .next: nextView(s, next, p)
                 case .countdown: countdownView(s, next, p)
                 case .ring: ringView(s, next, p)
-                case .today, .mosque, .ask: todayView(s, next, p)
+                case .today, .mosque, .ask, .qibla, .actions: todayView(s, next, p)
                 }
             } else {
                 VStack(spacing: 6) {
@@ -585,13 +591,217 @@ extension PrayerWidgetView {
             }
         }
     }
+
+    // MARK: Qibla
+
+    /// North-up: widgets cannot read the compass, so the arrow shows the Qibla from north, and a tap opens
+    /// the live compass in the app.
+    @ViewBuilder func qiblaView(_ s: SharedState, _ p: WidgetPalette) -> some View {
+        if let here = s.location {
+            let b = Qibla.bearing(from: here)
+            let deg = Int(b.rounded()) % 360
+            switch family {
+            case .accessoryCircular:
+                ZStack {
+                    AccessoryWidgetBackground()
+                    Text("N").font(.system(size: 9, weight: .bold)).offset(y: -22)
+                    Image(systemName: "location.north.fill").font(.system(size: 18, weight: .bold)).rotationEffect(.degrees(b))
+                }
+                .environment(\.layoutDirection, .leftToRight)
+                .accessibilityLabel(s.t("qibla_bearing", "\(deg)"))
+            case .systemSmall:
+                VStack(spacing: 4) {
+                    QiblaDial(bearing: b, palette: p, look: entry.look)
+                    Text("\(deg)° · \(s.name)").font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(1).minimumScaleFactor(0.7)
+                }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(s.t("qibla_bearing", "\(deg)"))
+            default:
+                HStack(spacing: 14) {
+                    QiblaHalfDial(bearing: b, palette: p, look: entry.look)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Label(s.t("widget_kind_qibla"), systemImage: "location.north.line.fill").font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
+                        Text("\(deg)°").font(.system(size: 34, weight: .semibold)).monospacedDigit().foregroundStyle(p.ink)
+                        Text(b <= 180 ? s.t("widget_qibla_right", "\(deg)") : s.t("widget_qibla_left", "\(360 - deg)"))
+                            .font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(2).minimumScaleFactor(0.8)
+                        Text(s.t("qibla_distance", s.distance(Qibla.distanceMeters(from: here)))).font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
+                        Spacer(minLength: 0)
+                        Label(s.t("widget_qibla_live"), systemImage: "hand.tap").font(.caption2.weight(.semibold)).foregroundStyle(p.accent).lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        }
+    }
+
+    // MARK: Quick actions
+
+    @ViewBuilder func actionsView(_ s: SharedState?, _ p: WidgetPalette) -> some View {
+        let items: [(String, String, Bool, String)] = [
+            (s?.t("tab_ask_short") ?? "Ask", "sparkles", false, "nearmosque://ask"),
+            (s?.t("tab_mosques") ?? "Nearest Mosque", "MosqueTab", true, "nearmosque://mosques"),
+            (s?.t("tab_prayer") ?? "Prayer & Qibla", "location.north.circle", false, "nearmosque://qibla"),
+        ]
+        HStack(spacing: 8) {
+            ForEach(items, id: \.3) { item in
+                Link(destination: URL(string: item.3)!) {
+                    VStack(spacing: 8) {
+                        ZStack {
+                            Circle().fill(p.pill)
+                            if item.2 {
+                                Image(item.1).renderingMode(.template).resizable().scaledToFit().frame(width: 26, height: 26)
+                            } else {
+                                Image(systemName: item.1).font(.system(size: 24, weight: .semibold))
+                            }
+                        }
+                        .foregroundStyle(p.onPill)
+                        .frame(width: 54, height: 54)
+                        Text(item.0).font(.caption.weight(.semibold)).foregroundStyle(p.ink).multilineTextAlignment(.center)
+                            .lineLimit(2).minimumScaleFactor(0.75)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(p.card, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                }
+            }
+        }
+    }
+}
+
+/// A north-up dial: ticks, N at the top, and a gold arrow to the Qibla with a glow where it points.
+struct QiblaDial: View {
+    let bearing: Double
+    let palette: WidgetPalette
+    let look: WidgetLook
+
+    var body: some View {
+        GeometryReader { g in
+            let d = min(g.size.width, g.size.height)
+            let r = d / 2
+            let c = CGPoint(x: g.size.width / 2, y: g.size.height / 2)
+            let a = bearing * .pi / 180
+            let tip = CGPoint(x: c.x + (r - 28) * sin(a), y: c.y - (r - 28) * cos(a))
+            ZStack {
+                Circle().fill(palette.card).frame(width: d, height: d).position(c)
+                ForEach(0..<36) { i in
+                    let t = Double(i) * 10 * .pi / 180
+                    let long = i % 9 == 0
+                    Path { path in
+                        path.move(to: CGPoint(x: c.x + (r - 2) * sin(t), y: c.y - (r - 2) * cos(t)))
+                        path.addLine(to: CGPoint(x: c.x + (r - (long ? 9 : 5)) * sin(t), y: c.y - (r - (long ? 9 : 5)) * cos(t)))
+                    }
+                    .stroke(palette.secondary.opacity(long ? 0.8 : 0.4), lineWidth: long ? 1.5 : 1)
+                }
+                Text("N").font(.system(size: 10, weight: .bold)).foregroundStyle(palette.accent).position(x: c.x, y: c.y - r + 11)
+                Circle().fill(palette.pill.opacity(0.35)).frame(width: 26, height: 26).blur(radius: 3).position(tip)
+                Path { path in
+                    path.move(to: c)
+                    path.addLine(to: CGPoint(x: c.x + (r - 39) * sin(a), y: c.y - (r - 39) * cos(a)))
+                }
+                .stroke(palette.pill, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                WidgetKaaba().frame(width: 18, height: 18).position(tip)
+                Circle().fill(palette.pill).frame(width: 8, height: 8).position(c)
+            }
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .aspectRatio(1, contentMode: .fit)
+    }
+}
+
+/// Half a dial facing the Qibla: the Kaaba at the top, a gold arrow to it, and N marked where north lies
+/// (held at the edge when north is behind you).
+struct QiblaHalfDial: View {
+    let bearing: Double
+    let palette: WidgetPalette
+    let look: WidgetLook
+
+    var body: some View {
+        GeometryReader { g in
+            // Room above the top for the Kaaba and its glow.
+            let r = min(g.size.width / 2 - 8, g.size.height - 30)
+            let c = CGPoint(x: g.size.width / 2, y: g.size.height - 6)
+            // North, relative to the Qibla at the top: -bearing, folded into -180...180.
+            let north = max(-90, min(90, Self.fold(-bearing))) * .pi / 180
+            ZStack {
+                Path { path in
+                    path.addArc(center: c, radius: r, startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
+                }
+                .stroke(palette.card, lineWidth: 14)
+                ForEach(0..<13) { i in
+                    let t = (Double(i) * 15 - 90) * .pi / 180
+                    Path { path in
+                        path.move(to: CGPoint(x: c.x + (r - 4) * sin(t), y: c.y - (r - 4) * cos(t)))
+                        path.addLine(to: CGPoint(x: c.x + (r + 4) * sin(t), y: c.y - (r + 4) * cos(t)))
+                    }
+                    .stroke(palette.secondary.opacity(i % 6 == 0 ? 0.9 : 0.45), lineWidth: i % 6 == 0 ? 1.6 : 1)
+                }
+                Path { path in
+                    path.move(to: c)
+                    path.addLine(to: CGPoint(x: c.x, y: c.y - r + 22))
+                }
+                .stroke(palette.pill, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                Circle().fill(palette.pill.opacity(0.35)).frame(width: 40, height: 40).blur(radius: 5).position(x: c.x, y: c.y - r)
+                WidgetKaaba().frame(width: 26, height: 26).position(x: c.x, y: c.y - r)
+                ZStack {
+                    Circle().fill(palette.accent)
+                    Text("N").font(.system(size: 10, weight: .heavy)).foregroundStyle(palette.onPill)
+                }
+                .frame(width: 18, height: 18)
+                .position(x: c.x + r * sin(north), y: c.y - r * cos(north))
+                Circle().fill(palette.pill).frame(width: 10, height: 10).position(c)
+            }
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .aspectRatio(1.6, contentMode: .fit)
+    }
+
+    /// An angle in -180...180.
+    static func fold(_ a: Double) -> Double {
+        let x = a.truncatingRemainder(dividingBy: 360)
+        return x > 180 ? x - 360 : (x < -180 ? x + 360 : x)
+    }
+}
+
+/// A small Kaaba: a dark cube with its gold band.
+struct WidgetKaaba: View {
+    var body: some View {
+        Canvas { ctx, s in
+            let w = s.width, h = s.height
+            var front = Path()
+            front.addRect(CGRect(x: w * 0.12, y: h * 0.3, width: w * 0.5, height: h * 0.58))
+            var side = Path()
+            side.move(to: CGPoint(x: w * 0.62, y: h * 0.3))
+            side.addLine(to: CGPoint(x: w * 0.88, y: h * 0.18))
+            side.addLine(to: CGPoint(x: w * 0.88, y: h * 0.74))
+            side.addLine(to: CGPoint(x: w * 0.62, y: h * 0.88))
+            side.closeSubpath()
+            var top = Path()
+            top.move(to: CGPoint(x: w * 0.12, y: h * 0.3))
+            top.addLine(to: CGPoint(x: w * 0.38, y: h * 0.18))
+            top.addLine(to: CGPoint(x: w * 0.88, y: h * 0.18))
+            top.addLine(to: CGPoint(x: w * 0.62, y: h * 0.3))
+            top.closeSubpath()
+            ctx.fill(front, with: .color(Color(white: 0.07)))
+            ctx.fill(side, with: .color(Color(white: 0.15)))
+            ctx.fill(top, with: .color(Color(white: 0.23)))
+            ctx.fill(Path(CGRect(x: w * 0.12, y: h * 0.4, width: w * 0.5, height: h * 0.07)), with: .color(Color(red: 0.85, green: 0.66, blue: 0.26)))
+            var band = Path()
+            band.move(to: CGPoint(x: w * 0.62, y: h * 0.4))
+            band.addLine(to: CGPoint(x: w * 0.88, y: h * 0.28))
+            band.addLine(to: CGPoint(x: w * 0.88, y: h * 0.35))
+            band.addLine(to: CGPoint(x: w * 0.62, y: h * 0.47))
+            band.closeSubpath()
+            ctx.fill(band, with: .color(Color(red: 0.66, green: 0.5, blue: 0.16)))
+        }
+        .accessibilityHidden(true)
+    }
 }
 
 extension SharedState {
     /// Widget gallery preview before the app has shared anything.
-    static let preview = SharedState(name: "Makkah", latitude: 21.4225, longitude: 39.8262, zoneId: "Asia/Riyadh",
+    static let preview = SharedState(name: "Madinah", latitude: 24.4672, longitude: 39.6111, zoneId: "Asia/Riyadh",
                                      prayer: PrayerSettings(method: .UMM_AL_QURA), language: "en", hijriAdjustmentDays: 0,
                                      reminders: ["fajr", "maghrib"],
-                                     mosques: [SharedMosque(id: "preview-1", name: "Masjid al-Haram", meters: 450, bearing: 40)],
+                                     mosques: [SharedMosque(id: "preview-1", name: "Masjid an-Nabawi", meters: 450, bearing: 40)],
                                      questions: ["What is Islam?", "How do I pray?", "What are the five pillars?"])
 }
