@@ -381,7 +381,14 @@
     <string name="walking_route">Gyalogos útvonal · %1$s · %2$s</string>
     <string name="website">Weboldal</string>
     <string name="widget_choose_city">Nyisd meg a Near Mosque alkalmazást a város kiválasztásához</string>
+    <string name="widget_kind_countdown">Ima-visszaszámláló</string>
+    <string name="widget_kind_countdown_desc">Sáv, amely a következő imáig fokozatosan megtelik.</string>
+    <string name="widget_kind_next">Következő ima</string>
+    <string name="widget_kind_next_desc">A következő ima, a visszaszámlálás és a mai imaidők.</string>
+    <string name="widget_kind_today">Mai imák</string>
+    <string name="widget_kind_today_desc">Városod mind az öt imája, a dátummal és a következő imával.</string>
     <string name="widget_next_description">A következő ima visszaszámlálással</string>
+    <string name="widget_remaining">Hátralévő idő</string>
     <string name="widget_style_title">Widget stílusa</string>
     <string name="widget_times_description">A következő ima és a mai időpontok</string>
 </resources>

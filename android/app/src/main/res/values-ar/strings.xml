@@ -385,7 +385,14 @@
     <string name="walking_route">طريق المشي · %1$s · %2$s</string>
     <string name="website">الموقع</string>
     <string name="widget_choose_city">افتح التطبيق لاختيار مدينتك</string>
+    <string name="widget_kind_countdown">العد التنازلي للصلاة</string>
+    <string name="widget_kind_countdown_desc">شريط يمتلئ حتى الصلاة القادمة.</string>
+    <string name="widget_kind_next">الصلاة القادمة</string>
+    <string name="widget_kind_next_desc">الصلاة القادمة وعدّها التنازلي ومواقيت اليوم.</string>
+    <string name="widget_kind_today">صلوات اليوم</string>
+    <string name="widget_kind_today_desc">الصلوات الخمس لمدينتك مع التاريخ والصلاة القادمة.</string>
     <string name="widget_next_description">الصلاة القادمة مع العد التنازلي</string>
+    <string name="widget_remaining">المتبقي</string>
     <string name="widget_style_title">نمط الأداة</string>
     <string name="widget_times_description">الصلاة القادمة ومواقيت اليوم</string>
 </resources>

@@ -8,7 +8,7 @@ struct NearMosqueApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
+            rootView
                 .environment(model)
                 .environment(model.l10n)
                 .environment(\.locale, model.l10n.locale)
@@ -17,6 +17,16 @@ struct NearMosqueApp: App {
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .task { await model.start() }
         }
+    }
+}
+
+extension NearMosqueApp {
+    @ViewBuilder private var rootView: some View {
+        #if DEBUG
+        if UserDefaults.standard.bool(forKey: "demoWidgets") { WidgetGalleryView() } else { RootView() }
+        #else
+        RootView()
+        #endif
     }
 }
 

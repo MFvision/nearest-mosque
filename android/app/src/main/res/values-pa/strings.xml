@@ -381,7 +381,14 @@
     <string name="walking_route">ਪੈਦਲ ਰਸਤਾ · %1$s · %2$s</string>
     <string name="website">ਵੈੱਬਸਾਈਟ</string>
     <string name="widget_choose_city">ਆਪਣਾ ਸ਼ਹਿਰ ਚੁਣਨ ਲਈ Near Mosque ਖੋਲ੍ਹੋ</string>
+    <string name="widget_kind_countdown">ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ</string>
+    <string name="widget_kind_countdown_desc">ਇੱਕ ਪੱਟੀ ਜੋ ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਭਰਦੀ ਜਾਂਦੀ ਹੈ।</string>
+    <string name="widget_kind_next">ਅਗਲੀ ਨਮਾਜ਼</string>
+    <string name="widget_kind_next_desc">ਅਗਲੀ ਨਮਾਜ਼, ਉਸ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ।</string>
+    <string name="widget_kind_today">ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ</string>
+    <string name="widget_kind_today_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੀਆਂ ਪੰਜੇ ਨਮਾਜ਼ਾਂ, ਤਾਰੀਖ਼ ਅਤੇ ਅਗਲੀ ਨਮਾਜ਼ ਸਮੇਤ।</string>
     <string name="widget_next_description">ਉਲਟੀ ਗਿਣਤੀ ਨਾਲ ਅਗਲੀ ਨਮਾਜ਼</string>
+    <string name="widget_remaining">ਬਾਕੀ ਵਕਤ</string>
     <string name="widget_style_title">ਵਿਜੇਟ ਦੀ ਸ਼ੈਲੀ</string>
     <string name="widget_times_description">ਅਗਲੀ ਨਮਾਜ਼ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ</string>
 </resources>

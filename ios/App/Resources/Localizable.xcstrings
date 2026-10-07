@@ -83775,6 +83775,1332 @@
         }
       }
     },
+    "widget_kind_countdown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prayer countdown"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "العد التنازلي للصلاة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز کی الٹی گنتی"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namaz geri sayımı"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hitung mundur salat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte à rebours"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta atrás"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отсчёт до намаза"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজের কাউন্টডাউন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمارش معکوس نماز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمارش معکوس نماز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "礼拜倒计时"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ की उलटी गिनती"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contagem regressiva"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ƙidayar sallah"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muda hadi sala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Countdown sa dasal"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đếm ngược cầu nguyện"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นับถอยหลังละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រាប់ថយក្រោយសឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز تەتۈر ساناقلىقى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ژمێرەری پێچەوانەی نوێژ"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odbrojavanje do namaza"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Одбројавање до намаза"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Одбројување до намаз"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ima-visszaszámláló"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aftellen tot gebed"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ლოცვის უკუთვლა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාතයට ඉතිරි කාලය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ కౌంట్‌డౌన్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಕ್ಷಣಗಣನೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര കൗണ്ട്ഡൗൺ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज काउंटडाउन"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝ કાઉન્ટડાઉન"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজৰ কাউণ্টডাউন"
+          }
+        }
+      }
+    },
+    "widget_kind_countdown_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A bar that fills up until the next prayer."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شريط يمتلئ حتى الصلاة القادمة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ایک پٹی جو اگلی نماز تک بھرتی جاتی ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki namaza kadar dolan bir çubuk."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bilah yang terisi hingga salat berikutnya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une barre qui se remplit jusqu'à la prochaine prière."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una barra que se llena hasta la próxima oración."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Полоса, которая заполняется до следующего намаза."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরবর্তী নামাজ পর্যন্ত ভরতে থাকা একটি বার।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نواری که تا نماز بعدی پر می‌شود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نواری که تا نماز بعدی پر می‌شود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一条进度条，随时间填满，直到下一次礼拜。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक पट्टी जो अगली नमाज़ तक भरती जाती है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma barra que se enche até a próxima oração."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sandar da ke cika har zuwa sallah ta gaba."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upau unaojaa hadi sala ijayo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isang bar na napupuno hanggang sa susunod na dasal."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thanh đầy dần cho đến lần cầu nguyện tiếp theo."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แถบที่ค่อยๆ เต็มจนถึงละหมาดถัดไป"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "របារដែលពេញបន្តិចម្ដងៗ រហូតដល់សឡាតបន្ទាប់។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كېيىنكى نامازغىچە تولۇپ بارىدىغان بالداق."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شریتێک کە تا نوێژی داهاتوو پڕ دەبێتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traka koja se puni do sljedećeg namaza."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Трака која се пуни до следећег намаза."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лента што се полни до следниот намаз."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sáv, amely a következő imáig fokozatosan megtelik."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een balk die zich vult tot het volgende gebed."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ზოლი, რომელიც შემდეგ ლოცვამდე ივსება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඊළඟ සලාතය තෙක් පිරෙන තීරුවක්."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తదుపరి నమాజ్ వరకు నిండే ఒక బార్."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮುಂದಿನ ನಮಾಜ್‌ವರೆಗೆ ತುಂಬುವ ಒಂದು ಪಟ್ಟಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്ത നമസ്കാരം വരെ നിറയുന്ന ഒരു ബാർ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुढच्या नमाजपर्यंत भरत जाणारी पट्टी."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આગામી નમાઝ સુધી ભરાતી એક પટ્ટી."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇੱਕ ਪੱਟੀ ਜੋ ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਭਰਦੀ ਜਾਂਦੀ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পৰৱৰ্তী নামাজলৈকে ভৰি অহা এডাল বাৰ।"
+          }
+        }
+      }
+    },
+    "widget_kind_next": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next prayer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصلاة القادمة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگلی نماز"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki namaz"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salat berikutnya"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prochaine prière"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próxima oración"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следующий намаз"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরবর্তী নামাজ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一次礼拜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगली नमाज़"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próxima oração"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sallah ta gaba"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sala ijayo"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Susunod na dasal"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cầu nguyện tiếp theo"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดถัดไป"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតបន្ទាប់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كېيىنكى ناماز"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژی داهاتوو"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sljedeći namaz"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следећи намаз"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следен намаз"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Következő ima"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volgend gebed"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შემდეგი ლოცვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඊළඟ සලාතය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తదుపరి నమాజ్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮುಂದಿನ ನಮಾಜ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്ത നമസ്കാരം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुढची नमाज"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આગામી નમાઝ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਗਲੀ ਨਮਾਜ਼"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পৰৱৰ্তী নামাজ"
+          }
+        }
+      }
+    },
+    "widget_kind_next_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The next prayer, its countdown and today's times."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصلاة القادمة وعدّها التنازلي ومواقيت اليوم."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگلی نماز، اس کی الٹی گنتی اور آج کے اوقات۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki namaz, geri sayımı ve bugünün vakitleri."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salat berikutnya, hitung mundurnya, dan jadwal hari ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La prochaine prière, son compte à rebours et les horaires du jour."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La próxima oración, su cuenta atrás y los horarios de hoy."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следующий намаз, обратный отсчёт и время намазов на сегодня."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরবর্তী নামাজ, তার কাউন্টডাউন ও আজকের সময়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی، شمارش معکوس آن و اوقات امروز."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی، شمارش معکوس آن و اوقات نماز امروز."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一次礼拜、倒计时及今日礼拜时间。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगली नमाज़, उसकी उलटी गिनती और आज के समय।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A próxima oração, sua contagem regressiva e os horários de hoje."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sallah ta gaba, ƙidayarta da lokutan sallah na yau."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sala ijayo, hesabu yake ya kurudi nyuma na nyakati za leo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang susunod na dasal, ang countdown nito at ang mga oras ngayong araw."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lần cầu nguyện tiếp theo, đếm ngược và các giờ cầu nguyện hôm nay."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดถัดไป การนับถอยหลัง และเวลาละหมาดวันนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតបន្ទាប់ ការរាប់ថយក្រោយ និងម៉ោងសឡាតថ្ងៃនេះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كېيىنكى ناماز، تەتۈر ساناق ۋە بۈگۈنكى ناماز ۋاقىتلىرى."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژی داهاتوو، ژمێرەری پێچەوانەکەی و کاتەکانی نوێژی ئەمڕۆ."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sljedeći namaz, odbrojavanje do njega i današnja namaska vremena."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следећи намаз, одбројавање до њега и данашња намаска времена."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следниот намаз, одбројувањето до него и денешните времиња за намаз."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A következő ima, a visszaszámlálás és a mai imaidők."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het volgende gebed, de aftelling ernaartoe en de gebedstijden van vandaag."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შემდეგი ლოცვა, მისი უკუთვლა და დღევანდელი ლოცვის დროები."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඊළඟ සලාතය, එයට ඉතිරි කාලය සහ අද සලාත වේලාවන්."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తదుపరి నమాజ్, దాని కౌంట్‌డౌన్ మరియు ఈరోజు సమయాలు."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮುಂದಿನ ನಮಾಜ್, ಅದರ ಕ್ಷಣಗಣನೆ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്ത നമസ്കാരം, അതിന്റെ കൗണ്ട്ഡൗൺ, ഇന്നത്തെ സമയങ്ങൾ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुढची नमाज, तिचे काउंटडाउन आणि आजच्या वेळा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આગામી નમાઝ, તેનું કાઉન્ટડાઉન અને આજના સમય."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਗਲੀ ਨਮਾਜ਼, ਉਸ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পৰৱৰ্তী নামাজ, ইয়াৰ কাউণ্টডাউন আৰু আজিৰ সময়।"
+          }
+        }
+      }
+    },
+    "widget_kind_today": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's prayers"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صلوات اليوم"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آج کی نمازیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugünün namazları"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salat hari ini"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prières du jour"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oraciones de hoy"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Намазы на сегодня"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজকের নামাজ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نمازهای امروز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نمازهای امروز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日礼拜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज की नमाज़ें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orações de hoje"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sallolin yau"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sala za leo"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mga dasal ngayon"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cầu nguyện hôm nay"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดวันนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតថ្ងៃនេះ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۈگۈنكى نامازلار"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژەکانی ئەمڕۆ"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Današnji namazi"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Данашњи намази"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Денешни намази"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mai imák"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebeden van vandaag"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დღევანდელი ლოცვები"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අද සලාත"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈరోజు నమాజ్‌లు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಇಂದಿನ ನಮಾಜ್‌ಗಳು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇന്നത്തെ നമസ്കാരങ്ങൾ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आजच्या नमाज"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આજની નમાઝ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজিৰ নামাজ"
+          }
+        }
+      }
+    },
+    "widget_kind_today_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All five prayers for your city, with the date and the next prayer."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصلوات الخمس لمدينتك مع التاريخ والصلاة القادمة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آپ کے شہر کی پانچوں نمازیں، تاریخ اور اگلی نماز کے ساتھ۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şehriniz için beş vakit namaz, tarih ve sonraki namazla birlikte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lima waktu salat untuk kota Anda, dengan tanggal dan salat berikutnya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les cinq prières de votre ville, avec la date et la prochaine prière."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las cinco oraciones de tu ciudad, con la fecha y la próxima oración."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все пять намазов для вашего города, с датой и следующим намазом."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপনার শহরের পাঁচ ওয়াক্ত নামাজ, তারিখ ও পরবর্তী নামাজসহ।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هر پنج نماز شهر شما، همراه با تاریخ و نماز بعدی."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هر پنج نماز شهر شما، همراه با تاریخ و نماز بعدی."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你所在城市的五次礼拜，附日期和下一次礼拜。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके शहर की पाँचों नमाज़ें, तारीख़ और अगली नमाज़ के साथ।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As cinco orações da sua cidade, com a data e a próxima oração."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salloli biyar na garinku, tare da kwanan wata da sallah ta gaba."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sala zote tano za mji wako, pamoja na tarehe na sala ijayo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lahat ng limang dasal para sa iyong lungsod, kasama ang petsa at ang susunod na dasal."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cả năm lần cầu nguyện tại thành phố của bạn, kèm ngày và lần cầu nguyện tiếp theo."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดทั้งห้าเวลาของเมืองคุณ พร้อมวันที่และละหมาดถัดไป"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតទាំងប្រាំសម្រាប់ទីក្រុងរបស់អ្នក ព្រមទាំងកាលបរិច្ឆេទ និងសឡាតបន្ទាប់។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شەھىرىڭىزدىكى بەش ۋاخ ناماز، چېسلا ۋە كېيىنكى ناماز بىلەن بىرگە."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هەر پێنج نوێژی شارەکەت، لەگەڵ بەروار و نوێژی داهاتوو."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svih pet namaza za vaš grad, s datumom i sljedećim namazom."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свих пет намаза за ваш град, са датумом и следећим намазом."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сите пет намази за вашиот град, со датумот и следниот намаз."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Városod mind az öt imája, a dátummal és a következő imával."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle vijf gebeden voor je stad, met de datum en het volgende gebed."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თქვენი ქალაქის ხუთივე ლოცვა, თარიღით და შემდეგი ლოცვით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ නගරයේ සලාත පහම, දිනය සහ ඊළඟ සලාතය සමඟ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ నగరానికి ఐదు నమాజ్‌లు, తేదీ మరియు తదుపరి నమాజ్‌తో."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ನಗರದ ಎಲ್ಲಾ ಐದು ನಮಾಜ್‌ಗಳು, ದಿನಾಂಕ ಮತ್ತು ಮುಂದಿನ ನಮಾಜ್‌ನೊಂದಿಗೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങളുടെ നഗരത്തിലെ അഞ്ച് നമസ്കാരങ്ങളും, തീയതിയും അടുത്ത നമസ്കാരവും സഹിതം."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमच्या शहरातील पाचही नमाज, तारीख आणि पुढच्या नमाजसह."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારા શહેરની પાંચેય નમાઝ, તારીખ અને આગામી નમાઝ સાથે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੀਆਂ ਪੰਜੇ ਨਮਾਜ਼ਾਂ, ਤਾਰੀਖ਼ ਅਤੇ ਅਗਲੀ ਨਮਾਜ਼ ਸਮੇਤ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপোনাৰ চহৰৰ পাঁচ ওৱাক্ত নামাজ, তাৰিখ আৰু পৰৱৰ্তী নামাজৰ সৈতে।"
+          }
+        }
+      }
+    },
     "widget_next_description": {
       "extractionState": "manual",
       "localizations": {
@@ -83992,6 +85318,227 @@
           "stringUnit": {
             "state": "translated",
             "value": "কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ"
+          }
+        }
+      }
+    },
+    "widget_remaining": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time left"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المتبقي"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "باقی وقت"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalan süre"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sisa waktu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps restant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo restante"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Осталось"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বাকি সময়"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زمان باقی‌مانده"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقت باقی‌مانده"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剩余时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बाक़ी समय"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo restante"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauran lokaci"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muda uliobaki"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natitirang oras"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Còn lại"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เวลาที่เหลือ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពេលនៅសល់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قالغان ۋاقىت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتی ماوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preostalo vrijeme"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преостало време"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преостанато време"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hátralévő idő"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resterende tijd"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დარჩენილი დრო"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉතිරි කාලය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మిగిలిన సమయం"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಉಳಿದ ಸಮಯ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ബാക്കി സമയം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उरलेला वेळ"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "બાકી સમય"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬਾਕੀ ਵਕਤ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বাকী সময়"
           }
         }
       }

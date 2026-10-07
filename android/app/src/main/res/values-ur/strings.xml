@@ -381,7 +381,14 @@
     <string name="walking_route">پیدل راستہ · %1$s · %2$s</string>
     <string name="website">ویب سائٹ</string>
     <string name="widget_choose_city">شہر منتخب کرنے کے لیے ایپ کھولیں</string>
+    <string name="widget_kind_countdown">نماز کی الٹی گنتی</string>
+    <string name="widget_kind_countdown_desc">ایک پٹی جو اگلی نماز تک بھرتی جاتی ہے۔</string>
+    <string name="widget_kind_next">اگلی نماز</string>
+    <string name="widget_kind_next_desc">اگلی نماز، اس کی الٹی گنتی اور آج کے اوقات۔</string>
+    <string name="widget_kind_today">آج کی نمازیں</string>
+    <string name="widget_kind_today_desc">آپ کے شہر کی پانچوں نمازیں، تاریخ اور اگلی نماز کے ساتھ۔</string>
     <string name="widget_next_description">اگلی نماز اور الٹی گنتی</string>
+    <string name="widget_remaining">باقی وقت</string>
     <string name="widget_style_title">وجیٹ کا انداز</string>
     <string name="widget_times_description">اگلی نماز اور آج کے اوقات</string>
 </resources>

@@ -381,7 +381,14 @@
     <string name="walking_route">Ruta sa paglalakad · %1$s · %2$s</string>
     <string name="website">Website</string>
     <string name="widget_choose_city">Buksan ang Near Mosque para piliin ang iyong lungsod</string>
+    <string name="widget_kind_countdown">Countdown sa dasal</string>
+    <string name="widget_kind_countdown_desc">Isang bar na napupuno hanggang sa susunod na dasal.</string>
+    <string name="widget_kind_next">Susunod na dasal</string>
+    <string name="widget_kind_next_desc">Ang susunod na dasal, ang countdown nito at ang mga oras ngayong araw.</string>
+    <string name="widget_kind_today">Mga dasal ngayon</string>
+    <string name="widget_kind_today_desc">Lahat ng limang dasal para sa iyong lungsod, kasama ang petsa at ang susunod na dasal.</string>
     <string name="widget_next_description">Ang susunod na dasal na may countdown</string>
+    <string name="widget_remaining">Natitirang oras</string>
     <string name="widget_style_title">Istilo ng widget</string>
     <string name="widget_times_description">Ang susunod na dasal at ang mga oras ngayong araw</string>
 </resources>

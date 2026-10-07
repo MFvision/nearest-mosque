@@ -381,7 +381,14 @@
     <string name="walking_route">നടപ്പാത · %1$s · %2$s</string>
     <string name="website">വെബ്സൈറ്റ്</string>
     <string name="widget_choose_city">നഗരം തിരഞ്ഞെടുക്കാൻ Near Mosque തുറക്കുക</string>
+    <string name="widget_kind_countdown">നമസ്കാര കൗണ്ട്ഡൗൺ</string>
+    <string name="widget_kind_countdown_desc">അടുത്ത നമസ്കാരം വരെ നിറയുന്ന ഒരു ബാർ.</string>
+    <string name="widget_kind_next">അടുത്ത നമസ്കാരം</string>
+    <string name="widget_kind_next_desc">അടുത്ത നമസ്കാരം, അതിന്റെ കൗണ്ട്ഡൗൺ, ഇന്നത്തെ സമയങ്ങൾ.</string>
+    <string name="widget_kind_today">ഇന്നത്തെ നമസ്കാരങ്ങൾ</string>
+    <string name="widget_kind_today_desc">നിങ്ങളുടെ നഗരത്തിലെ അഞ്ച് നമസ്കാരങ്ങളും, തീയതിയും അടുത്ത നമസ്കാരവും സഹിതം.</string>
     <string name="widget_next_description">കൗണ്ട്ഡൗണോടെ അടുത്ത നമസ്കാരം</string>
+    <string name="widget_remaining">ബാക്കി സമയം</string>
     <string name="widget_style_title">വിജറ്റ് ശൈലി</string>
     <string name="widget_times_description">അടുത്ത നമസ്കാരവും ഇന്നത്തെ സമയങ്ങളും</string>
 </resources>

@@ -380,7 +380,14 @@
     <string name="walking_route">Rute jalan kaki · %1$s · %2$s</string>
     <string name="website">Situs web</string>
     <string name="widget_choose_city">Buka aplikasi untuk memilih kota Anda</string>
+    <string name="widget_kind_countdown">Hitung mundur salat</string>
+    <string name="widget_kind_countdown_desc">Bilah yang terisi hingga salat berikutnya.</string>
+    <string name="widget_kind_next">Salat berikutnya</string>
+    <string name="widget_kind_next_desc">Salat berikutnya, hitung mundurnya, dan jadwal hari ini.</string>
+    <string name="widget_kind_today">Salat hari ini</string>
+    <string name="widget_kind_today_desc">Lima waktu salat untuk kota Anda, dengan tanggal dan salat berikutnya.</string>
     <string name="widget_next_description">Salat berikutnya dengan hitung mundur</string>
+    <string name="widget_remaining">Sisa waktu</string>
     <string name="widget_style_title">Gaya widget</string>
     <string name="widget_times_description">Salat berikutnya dan jadwal hari ini</string>
 </resources>

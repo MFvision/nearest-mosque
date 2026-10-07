@@ -381,7 +381,14 @@
     <string name="walking_route">ფეხით მარშრუტი · %1$s · %2$s</string>
     <string name="website">ვებსაიტი</string>
     <string name="widget_choose_city">გახსენით აპი ქალაქის ასარჩევად</string>
+    <string name="widget_kind_countdown">ლოცვის უკუთვლა</string>
+    <string name="widget_kind_countdown_desc">ზოლი, რომელიც შემდეგ ლოცვამდე ივსება.</string>
+    <string name="widget_kind_next">შემდეგი ლოცვა</string>
+    <string name="widget_kind_next_desc">შემდეგი ლოცვა, მისი უკუთვლა და დღევანდელი ლოცვის დროები.</string>
+    <string name="widget_kind_today">დღევანდელი ლოცვები</string>
+    <string name="widget_kind_today_desc">თქვენი ქალაქის ხუთივე ლოცვა, თარიღით და შემდეგი ლოცვით.</string>
     <string name="widget_next_description">შემდეგი ლოცვა უკუთვლით</string>
+    <string name="widget_remaining">დარჩენილი დრო</string>
     <string name="widget_style_title">ვიჯეტის სტილი</string>
     <string name="widget_times_description">შემდეგი ლოცვა და დღევანდელი დროები</string>
 </resources>

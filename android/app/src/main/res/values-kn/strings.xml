@@ -381,7 +381,14 @@
     <string name="walking_route">ನಡಿಗೆಯ ಮಾರ್ಗ · %1$s · %2$s</string>
     <string name="website">ವೆಬ್‌ಸೈಟ್</string>
     <string name="widget_choose_city">ನಿಮ್ಮ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಲು Near Mosque ತೆರೆಯಿರಿ</string>
+    <string name="widget_kind_countdown">ನಮಾಜ್ ಕ್ಷಣಗಣನೆ</string>
+    <string name="widget_kind_countdown_desc">ಮುಂದಿನ ನಮಾಜ್‌ವರೆಗೆ ತುಂಬುವ ಒಂದು ಪಟ್ಟಿ.</string>
+    <string name="widget_kind_next">ಮುಂದಿನ ನಮಾಜ್</string>
+    <string name="widget_kind_next_desc">ಮುಂದಿನ ನಮಾಜ್, ಅದರ ಕ್ಷಣಗಣನೆ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು.</string>
+    <string name="widget_kind_today">ಇಂದಿನ ನಮಾಜ್‌ಗಳು</string>
+    <string name="widget_kind_today_desc">ನಿಮ್ಮ ನಗರದ ಎಲ್ಲಾ ಐದು ನಮಾಜ್‌ಗಳು, ದಿನಾಂಕ ಮತ್ತು ಮುಂದಿನ ನಮಾಜ್‌ನೊಂದಿಗೆ.</string>
     <string name="widget_next_description">ಕ್ಷಣಗಣನೆಯೊಂದಿಗೆ ಮುಂದಿನ ನಮಾಜ್</string>
+    <string name="widget_remaining">ಉಳಿದ ಸಮಯ</string>
     <string name="widget_style_title">ವಿಜೆಟ್ ಶೈಲಿ</string>
     <string name="widget_times_description">ಮುಂದಿನ ನಮಾಜ್ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು</string>
 </resources>

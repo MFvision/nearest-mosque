@@ -380,7 +380,14 @@
     <string name="walking_route">步行路线 · %1$s · %2$s</string>
     <string name="website">网站</string>
     <string name="widget_choose_city">打开应用以选择你的城市</string>
+    <string name="widget_kind_countdown">礼拜倒计时</string>
+    <string name="widget_kind_countdown_desc">一条进度条，随时间填满，直到下一次礼拜。</string>
+    <string name="widget_kind_next">下一次礼拜</string>
+    <string name="widget_kind_next_desc">下一次礼拜、倒计时及今日礼拜时间。</string>
+    <string name="widget_kind_today">今日礼拜</string>
+    <string name="widget_kind_today_desc">你所在城市的五次礼拜，附日期和下一次礼拜。</string>
     <string name="widget_next_description">下一次礼拜及倒计时</string>
+    <string name="widget_remaining">剩余时间</string>
     <string name="widget_style_title">小组件样式</string>
     <string name="widget_times_description">下一次礼拜及今日时间</string>
 </resources>

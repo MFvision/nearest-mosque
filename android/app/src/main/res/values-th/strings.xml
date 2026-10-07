@@ -380,7 +380,14 @@
     <string name="walking_route">เส้นทางเดิน · %1$s · %2$s</string>
     <string name="website">เว็บไซต์</string>
     <string name="widget_choose_city">เปิดแอปเพื่อเลือกเมืองของคุณ</string>
+    <string name="widget_kind_countdown">นับถอยหลังละหมาด</string>
+    <string name="widget_kind_countdown_desc">แถบที่ค่อยๆ เต็มจนถึงละหมาดถัดไป</string>
+    <string name="widget_kind_next">ละหมาดถัดไป</string>
+    <string name="widget_kind_next_desc">ละหมาดถัดไป การนับถอยหลัง และเวลาละหมาดวันนี้</string>
+    <string name="widget_kind_today">ละหมาดวันนี้</string>
+    <string name="widget_kind_today_desc">ละหมาดทั้งห้าเวลาของเมืองคุณ พร้อมวันที่และละหมาดถัดไป</string>
     <string name="widget_next_description">ละหมาดถัดไปพร้อมการนับถอยหลัง</string>
+    <string name="widget_remaining">เวลาที่เหลือ</string>
     <string name="widget_style_title">สไตล์วิดเจ็ต</string>
     <string name="widget_times_description">ละหมาดถัดไปและเวลาของวันนี้</string>
 </resources>

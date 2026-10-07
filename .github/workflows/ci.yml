@@ -180,6 +180,12 @@ jobs:
           shot 08-mosques-map -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 1 -languageOverride en
           shot 09-ask-answer -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
           shot 10-ask-ar -demoCity "Cape Town" -demoTab ask -languageOverride ar
+          # Home-screen widgets at their real sizes (debug gallery; same views as the widget extension).
+          shot 17-widgets-next -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind next -demoWidgetLook cream -languageOverride en
+          shot 18-widgets-countdown -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind countdown -demoWidgetLook green -languageOverride en
+          shot 19-widgets-today -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind today -demoWidgetLook night -languageOverride en
+          shot 20-widgets-next-ar -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind next -demoWidgetLook green -languageOverride ar
+          shot 21-widgets-today-ar -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind today -demoWidgetLook cream -languageOverride ar
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 11b-compact-bar-dark -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en

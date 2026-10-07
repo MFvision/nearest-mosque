@@ -383,7 +383,14 @@
     <string name="walking_route">Пешком · %1$s · %2$s</string>
     <string name="website">Сайт</string>
     <string name="widget_choose_city">Откройте «Near Mosque», чтобы выбрать город</string>
+    <string name="widget_kind_countdown">Отсчёт до намаза</string>
+    <string name="widget_kind_countdown_desc">Полоса, которая заполняется до следующего намаза.</string>
+    <string name="widget_kind_next">Следующий намаз</string>
+    <string name="widget_kind_next_desc">Следующий намаз, обратный отсчёт и время намазов на сегодня.</string>
+    <string name="widget_kind_today">Намазы на сегодня</string>
+    <string name="widget_kind_today_desc">Все пять намазов для вашего города, с датой и следующим намазом.</string>
     <string name="widget_next_description">Следующий намаз с обратным отсчётом</string>
+    <string name="widget_remaining">Осталось</string>
     <string name="widget_style_title">Стиль виджета</string>
     <string name="widget_times_description">Следующий намаз и время на сегодня</string>
 </resources>

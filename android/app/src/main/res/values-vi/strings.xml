@@ -380,7 +380,14 @@
     <string name="walking_route">Đường đi bộ · %1$s · %2$s</string>
     <string name="website">Trang web</string>
     <string name="widget_choose_city">Mở ứng dụng để chọn thành phố của bạn</string>
+    <string name="widget_kind_countdown">Đếm ngược cầu nguyện</string>
+    <string name="widget_kind_countdown_desc">Thanh đầy dần cho đến lần cầu nguyện tiếp theo.</string>
+    <string name="widget_kind_next">Cầu nguyện tiếp theo</string>
+    <string name="widget_kind_next_desc">Lần cầu nguyện tiếp theo, đếm ngược và các giờ cầu nguyện hôm nay.</string>
+    <string name="widget_kind_today">Cầu nguyện hôm nay</string>
+    <string name="widget_kind_today_desc">Cả năm lần cầu nguyện tại thành phố của bạn, kèm ngày và lần cầu nguyện tiếp theo.</string>
     <string name="widget_next_description">Giờ cầu nguyện tiếp theo kèm đếm ngược</string>
+    <string name="widget_remaining">Còn lại</string>
     <string name="widget_style_title">Kiểu tiện ích</string>
     <string name="widget_times_description">Giờ cầu nguyện tiếp theo và các giờ hôm nay</string>
 </resources>

@@ -94,7 +94,8 @@ final class AppModel {
     func shareWithWidgets() {
         let s = settings.location.map {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
-                        prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays)
+                        prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
+                        reminders: settings.reminders.map(\.rawValue).sorted())
         }
         guard s != lastShared else { return }
         lastShared = s
@@ -225,6 +226,7 @@ final class AppModel {
     func setReminder(_ e: PrayerEvent, _ on: Bool) async {
         if on, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
         if on { settings.reminders.insert(e) } else { settings.reminders.remove(e) }
+        shareWithWidgets()
         await rescheduleReminders()
     }
 

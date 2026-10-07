@@ -382,7 +382,14 @@
     <string name="walking_route">Pješačka ruta · %1$s · %2$s</string>
     <string name="website">Web stranica</string>
     <string name="widget_choose_city">Otvorite „Near Mosque” da odaberete grad</string>
+    <string name="widget_kind_countdown">Odbrojavanje do namaza</string>
+    <string name="widget_kind_countdown_desc">Traka koja se puni do sljedećeg namaza.</string>
+    <string name="widget_kind_next">Sljedeći namaz</string>
+    <string name="widget_kind_next_desc">Sljedeći namaz, odbrojavanje do njega i današnja namaska vremena.</string>
+    <string name="widget_kind_today">Današnji namazi</string>
+    <string name="widget_kind_today_desc">Svih pet namaza za vaš grad, s datumom i sljedećim namazom.</string>
     <string name="widget_next_description">Sljedeći namaz s odbrojavanjem</string>
+    <string name="widget_remaining">Preostalo vrijeme</string>
     <string name="widget_style_title">Stil widgeta</string>
     <string name="widget_times_description">Sljedeći namaz i današnja vremena</string>
 </resources>

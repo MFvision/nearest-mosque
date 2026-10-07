@@ -381,7 +381,14 @@
     <string name="walking_route">খোজকাঢ়ি যোৱাৰ পথ · %1$s · %2$s</string>
     <string name="website">ৱেবছাইট</string>
     <string name="widget_choose_city">আপোনাৰ চহৰ বাছিবলৈ Near Mosque এপটো খোলক</string>
+    <string name="widget_kind_countdown">নামাজৰ কাউণ্টডাউন</string>
+    <string name="widget_kind_countdown_desc">পৰৱৰ্তী নামাজলৈকে ভৰি অহা এডাল বাৰ।</string>
+    <string name="widget_kind_next">পৰৱৰ্তী নামাজ</string>
+    <string name="widget_kind_next_desc">পৰৱৰ্তী নামাজ, ইয়াৰ কাউণ্টডাউন আৰু আজিৰ সময়।</string>
+    <string name="widget_kind_today">আজিৰ নামাজ</string>
+    <string name="widget_kind_today_desc">আপোনাৰ চহৰৰ পাঁচ ওৱাক্ত নামাজ, তাৰিখ আৰু পৰৱৰ্তী নামাজৰ সৈতে।</string>
     <string name="widget_next_description">কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ</string>
+    <string name="widget_remaining">বাকী সময়</string>
     <string name="widget_style_title">ৱিজেটৰ শৈলী</string>
     <string name="widget_times_description">পৰৱৰ্তী নামাজ আৰু আজিৰ সময়</string>
 </resources>

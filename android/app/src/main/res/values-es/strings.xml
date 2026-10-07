@@ -381,7 +381,14 @@
     <string name="walking_route">Ruta a pie · %1$s · %2$s</string>
     <string name="website">Sitio web</string>
     <string name="widget_choose_city">Abra la app para elegir su ciudad</string>
+    <string name="widget_kind_countdown">Cuenta atrás</string>
+    <string name="widget_kind_countdown_desc">Una barra que se llena hasta la próxima oración.</string>
+    <string name="widget_kind_next">Próxima oración</string>
+    <string name="widget_kind_next_desc">La próxima oración, su cuenta atrás y los horarios de hoy.</string>
+    <string name="widget_kind_today">Oraciones de hoy</string>
+    <string name="widget_kind_today_desc">Las cinco oraciones de tu ciudad, con la fecha y la próxima oración.</string>
     <string name="widget_next_description">La próxima oración con cuenta atrás</string>
+    <string name="widget_remaining">Tiempo restante</string>
     <string name="widget_style_title">Estilo del widget</string>
     <string name="widget_times_description">La próxima oración y los horarios de hoy</string>
 </resources>

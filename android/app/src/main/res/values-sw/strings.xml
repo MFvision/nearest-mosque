@@ -381,7 +381,14 @@
     <string name="walking_route">Njia ya kutembea · %1$s · %2$s</string>
     <string name="website">Tovuti</string>
     <string name="widget_choose_city">Fungua Near Mosque ili kuchagua mji wako</string>
+    <string name="widget_kind_countdown">Muda hadi sala</string>
+    <string name="widget_kind_countdown_desc">Upau unaojaa hadi sala ijayo.</string>
+    <string name="widget_kind_next">Sala ijayo</string>
+    <string name="widget_kind_next_desc">Sala ijayo, hesabu yake ya kurudi nyuma na nyakati za leo.</string>
+    <string name="widget_kind_today">Sala za leo</string>
+    <string name="widget_kind_today_desc">Sala zote tano za mji wako, pamoja na tarehe na sala ijayo.</string>
     <string name="widget_next_description">Sala ijayo pamoja na hesabu ya kurudi nyuma</string>
+    <string name="widget_remaining">Muda uliobaki</string>
     <string name="widget_style_title">Mtindo wa wijeti</string>
     <string name="widget_times_description">Sala ijayo na nyakati za leo</string>
 </resources>

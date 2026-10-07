@@ -381,7 +381,14 @@
     <string name="walking_route">පයින් යන මඟ · %1$s · %2$s</string>
     <string name="website">වෙබ් අඩවිය</string>
     <string name="widget_choose_city">ඔබේ නගරය තේරීමට Near Mosque විවෘත කරන්න</string>
+    <string name="widget_kind_countdown">සලාතයට ඉතිරි කාලය</string>
+    <string name="widget_kind_countdown_desc">ඊළඟ සලාතය තෙක් පිරෙන තීරුවක්.</string>
+    <string name="widget_kind_next">ඊළඟ සලාතය</string>
+    <string name="widget_kind_next_desc">ඊළඟ සලාතය, එයට ඉතිරි කාලය සහ අද සලාත වේලාවන්.</string>
+    <string name="widget_kind_today">අද සලාත</string>
+    <string name="widget_kind_today_desc">ඔබේ නගරයේ සලාත පහම, දිනය සහ ඊළඟ සලාතය සමඟ.</string>
     <string name="widget_next_description">ගණන් කිරීමක් සහිත ඊළඟ සලාතය</string>
+    <string name="widget_remaining">ඉතිරි කාලය</string>
     <string name="widget_style_title">විජට් විලාසය</string>
     <string name="widget_times_description">ඊළඟ සලාතය සහ අද වේලාවන්</string>
 </resources>

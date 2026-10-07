@@ -381,7 +381,14 @@
     <string name="walking_route">پىيادە يول · %1$s · %2$s</string>
     <string name="website">تور بېكەت</string>
     <string name="widget_choose_city">شەھىرىڭىزنى تاللاش ئۈچۈن «ئەڭ يېقىن مەسچىت» نى ئېچىڭ</string>
+    <string name="widget_kind_countdown">ناماز تەتۈر ساناقلىقى</string>
+    <string name="widget_kind_countdown_desc">كېيىنكى نامازغىچە تولۇپ بارىدىغان بالداق.</string>
+    <string name="widget_kind_next">كېيىنكى ناماز</string>
+    <string name="widget_kind_next_desc">كېيىنكى ناماز، تەتۈر ساناق ۋە بۈگۈنكى ناماز ۋاقىتلىرى.</string>
+    <string name="widget_kind_today">بۈگۈنكى نامازلار</string>
+    <string name="widget_kind_today_desc">شەھىرىڭىزدىكى بەش ۋاخ ناماز، چېسلا ۋە كېيىنكى ناماز بىلەن بىرگە.</string>
     <string name="widget_next_description">تەتۈر ساناقلىق كېيىنكى ناماز</string>
+    <string name="widget_remaining">قالغان ۋاقىت</string>
     <string name="widget_style_title">ۋىجېت ئۇسلۇبى</string>
     <string name="widget_times_description">كېيىنكى ناماز ۋە بۈگۈنكى ۋاقىتلار</string>
 </resources>

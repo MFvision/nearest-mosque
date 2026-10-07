@@ -381,7 +381,14 @@
     <string name="walking_route">ڕێگای پیادە · %1$s · %2$s</string>
     <string name="website">ماڵپەڕ</string>
     <string name="widget_choose_city">«نزیکترین مزگەوت» بکەرەوە بۆ هەڵبژاردنی شارەکەت</string>
+    <string name="widget_kind_countdown">ژمێرەری پێچەوانەی نوێژ</string>
+    <string name="widget_kind_countdown_desc">شریتێک کە تا نوێژی داهاتوو پڕ دەبێتەوە.</string>
+    <string name="widget_kind_next">نوێژی داهاتوو</string>
+    <string name="widget_kind_next_desc">نوێژی داهاتوو، ژمێرەری پێچەوانەکەی و کاتەکانی نوێژی ئەمڕۆ.</string>
+    <string name="widget_kind_today">نوێژەکانی ئەمڕۆ</string>
+    <string name="widget_kind_today_desc">هەر پێنج نوێژی شارەکەت، لەگەڵ بەروار و نوێژی داهاتوو.</string>
     <string name="widget_next_description">نوێژی داهاتوو لەگەڵ ژمێرەری پێچەوانە</string>
+    <string name="widget_remaining">کاتی ماوە</string>
     <string name="widget_style_title">شێوازی ویجێت</string>
     <string name="widget_times_description">نوێژی داهاتوو و کاتەکانی ئەمڕۆ</string>
 </resources>

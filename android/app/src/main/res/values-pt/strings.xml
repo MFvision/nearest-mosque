@@ -382,7 +382,14 @@
     <string name="walking_route">Rota a pé · %1$s · %2$s</string>
     <string name="website">Site</string>
     <string name="widget_choose_city">Abra o Near Mosque para escolher sua cidade</string>
+    <string name="widget_kind_countdown">Contagem regressiva</string>
+    <string name="widget_kind_countdown_desc">Uma barra que se enche até a próxima oração.</string>
+    <string name="widget_kind_next">Próxima oração</string>
+    <string name="widget_kind_next_desc">A próxima oração, sua contagem regressiva e os horários de hoje.</string>
+    <string name="widget_kind_today">Orações de hoje</string>
+    <string name="widget_kind_today_desc">As cinco orações da sua cidade, com a data e a próxima oração.</string>
     <string name="widget_next_description">A próxima oração com contagem regressiva</string>
+    <string name="widget_remaining">Tempo restante</string>
     <string name="widget_style_title">Estilo do widget</string>
     <string name="widget_times_description">A próxima oração e os horários de hoje</string>
 </resources>

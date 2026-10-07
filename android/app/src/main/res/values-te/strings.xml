@@ -381,7 +381,14 @@
     <string name="walking_route">నడక మార్గం · %1$s · %2$s</string>
     <string name="website">వెబ్‌సైట్</string>
     <string name="widget_choose_city">మీ నగరాన్ని ఎంచుకోవడానికి Near Mosque తెరవండి</string>
+    <string name="widget_kind_countdown">నమాజ్ కౌంట్‌డౌన్</string>
+    <string name="widget_kind_countdown_desc">తదుపరి నమాజ్ వరకు నిండే ఒక బార్.</string>
+    <string name="widget_kind_next">తదుపరి నమాజ్</string>
+    <string name="widget_kind_next_desc">తదుపరి నమాజ్, దాని కౌంట్‌డౌన్ మరియు ఈరోజు సమయాలు.</string>
+    <string name="widget_kind_today">ఈరోజు నమాజ్‌లు</string>
+    <string name="widget_kind_today_desc">మీ నగరానికి ఐదు నమాజ్‌లు, తేదీ మరియు తదుపరి నమాజ్‌తో.</string>
     <string name="widget_next_description">కౌంట్‌డౌన్‌తో తదుపరి నమాజ్</string>
+    <string name="widget_remaining">మిగిలిన సమయం</string>
     <string name="widget_style_title">విడ్జెట్ శైలి</string>
     <string name="widget_times_description">తదుపరి నమాజ్ మరియు ఈరోజు సమయాలు</string>
 </resources>

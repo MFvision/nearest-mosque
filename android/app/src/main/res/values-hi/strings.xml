@@ -381,7 +381,14 @@
     <string name="walking_route">पैदल रास्ता · %1$s · %2$s</string>
     <string name="website">वेबसाइट</string>
     <string name="widget_choose_city">अपना शहर चुनने के लिए Near Mosque ऐप खोलें</string>
+    <string name="widget_kind_countdown">नमाज़ की उलटी गिनती</string>
+    <string name="widget_kind_countdown_desc">एक पट्टी जो अगली नमाज़ तक भरती जाती है।</string>
+    <string name="widget_kind_next">अगली नमाज़</string>
+    <string name="widget_kind_next_desc">अगली नमाज़, उसकी उलटी गिनती और आज के समय।</string>
+    <string name="widget_kind_today">आज की नमाज़ें</string>
+    <string name="widget_kind_today_desc">आपके शहर की पाँचों नमाज़ें, तारीख़ और अगली नमाज़ के साथ।</string>
     <string name="widget_next_description">उलटी गिनती के साथ अगली नमाज़</string>
+    <string name="widget_remaining">बाक़ी समय</string>
     <string name="widget_style_title">विजेट स्टाइल</string>
     <string name="widget_times_description">अगली नमाज़ और आज के समय</string>
 </resources>

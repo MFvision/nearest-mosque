@@ -12,11 +12,15 @@ struct SharedState: Codable, Equatable {
     var prayer: PrayerSettings
     var language: String
     var hijriAdjustmentDays: Int
+    /// Prayers whose reminder is on (PrayerEvent raw values); the widgets show a bell for them.
+    var reminders: [String]?
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
     var locale: Locale { Locale(identifier: Languages.tag(language)) }
     var isRTL: Bool { Languages.isRTL(language) }
+
+    func reminderOn(_ e: PrayerEvent) -> Bool { reminders?.contains(e.rawValue) ?? false }
 
     /// Today's, yesterday's and tomorrow's schedules around `now`.
     func days(_ now: Date, calculator: PrayerCalculator = PrayerCalculator()) -> [DaySchedule] {
@@ -27,13 +31,48 @@ struct SharedState: Codable, Equatable {
 
     /// A string from the app's String Catalog in the chosen language.
     func t(_ key: String, _ args: CVarArg...) -> String {
-        let bundle = Bundle.main.path(forResource: language, ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
+        let bundle = Bundle.main.path(forResource: Languages.lproj(language), ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
         let format = bundle.localizedString(forKey: key, value: nil, table: nil)
         return args.isEmpty ? format : String(format: format, locale: locale, arguments: args)
     }
 
     func time(_ d: Date) -> String {
         d.formatted(Date.FormatStyle(date: .omitted, time: .shortened, locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone))
+    }
+
+    /// The time and its AM/PM mark apart (tiles show the mark on its own line); no mark in 24-hour locales.
+    func timeParts(_ d: Date) -> (time: String, mark: String?) {
+        let f = DateFormatter()
+        f.locale = locale
+        f.timeZone = zone
+        f.calendar = Calendar(identifier: .gregorian)
+        f.setLocalizedDateFormatFromTemplate("jmm")
+        let full = f.string(from: d)
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = zone
+        let mark = cal.component(.hour, from: d) < 12 ? f.amSymbol ?? "" : f.pmSymbol ?? ""
+        guard !mark.isEmpty, full.contains(mark) else { return (full, nil) }
+        return (full.replacingOccurrences(of: mark, with: "").trimmingCharacters(in: .whitespaces), mark)
+    }
+
+    func weekday(_ d: Date) -> String {
+        d.formatted(Date.FormatStyle(locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone).weekday(.wide))
+    }
+
+    /// Gregorian date, numeric in the reader's locale.
+    func gregorian(_ d: Date) -> String {
+        d.formatted(Date.FormatStyle(date: .numeric, time: .omitted, locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone))
+    }
+
+    /// Day and month, short ("6 Oct").
+    func dayMonth(_ d: Date) -> String {
+        d.formatted(Date.FormatStyle(locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone).day().month(.abbreviated))
+    }
+
+    /// Hijri date (Umm al-Qura, with the app's adjustment), numeric.
+    func hijriNumeric(_ now: Date) -> String {
+        CivilDate.of(now, in: zone).adding(days: hijriAdjustmentDays).noonUTC.formatted(
+            Date.FormatStyle(date: .numeric, time: .omitted, locale: locale, calendar: Calendar(identifier: .islamicUmmAlQura), timeZone: TimeZone(identifier: "UTC")!))
     }
 
     func hijri(_ now: Date) -> String {

@@ -381,7 +381,14 @@
     <string name="walking_route">مسیر پیاده · %1$s · %2$s</string>
     <string name="website">وب‌سایت</string>
     <string name="widget_choose_city">برای انتخاب شهر، «نزدیک‌ترین مسجد» را باز کنید</string>
+    <string name="widget_kind_countdown">شمارش معکوس نماز</string>
+    <string name="widget_kind_countdown_desc">نواری که تا نماز بعدی پر می‌شود.</string>
+    <string name="widget_kind_next">نماز بعدی</string>
+    <string name="widget_kind_next_desc">نماز بعدی، شمارش معکوس آن و اوقات امروز.</string>
+    <string name="widget_kind_today">نمازهای امروز</string>
+    <string name="widget_kind_today_desc">هر پنج نماز شهر شما، همراه با تاریخ و نماز بعدی.</string>
     <string name="widget_next_description">نماز بعدی با شمارش معکوس</string>
+    <string name="widget_remaining">زمان باقی‌مانده</string>
     <string name="widget_style_title">سبک ابزارک</string>
     <string name="widget_times_description">نماز بعدی و اوقات امروز</string>
 </resources>

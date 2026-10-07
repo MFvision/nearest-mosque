@@ -382,7 +382,14 @@
     <string name="walking_route">Пешачка рута · %1$s · %2$s</string>
     <string name="website">Веб-сајт</string>
     <string name="widget_choose_city">Отворите „Near Mosque” да изаберете град</string>
+    <string name="widget_kind_countdown">Одбројавање до намаза</string>
+    <string name="widget_kind_countdown_desc">Трака која се пуни до следећег намаза.</string>
+    <string name="widget_kind_next">Следећи намаз</string>
+    <string name="widget_kind_next_desc">Следећи намаз, одбројавање до њега и данашња намаска времена.</string>
+    <string name="widget_kind_today">Данашњи намази</string>
+    <string name="widget_kind_today_desc">Свих пет намаза за ваш град, са датумом и следећим намазом.</string>
     <string name="widget_next_description">Следећи намаз са одбројавањем</string>
+    <string name="widget_remaining">Преостало време</string>
     <string name="widget_style_title">Стил виџета</string>
     <string name="widget_times_description">Следећи намаз и данашња времена</string>
 </resources>
