@@ -68,6 +68,8 @@ targets:
         CFBundleDisplayName: Near Mosque
         # The Mac menu bar shows this name.
         CFBundleName: Near Mosque
+        # Required for the Mac App Store (same category as on iPhone: Lifestyle).
+        LSApplicationCategoryType: public.app-category.lifestyle
         SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
         # Widgets open the app with nearmosque://prayer, nearmosque://qibla or nearmosque://ask.
         CFBundleURLTypes:
