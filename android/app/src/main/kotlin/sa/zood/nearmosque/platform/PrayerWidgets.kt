@@ -40,9 +40,10 @@ enum class WidgetStyle(
         R.drawable.widget_card_night, R.drawable.widget_pill_night, 0xFF081B29.toInt(), R.id.progress_night, R.string.style_night),
 }
 
-/** The four widgets: next prayer (small and medium), the countdown bar, and today's five prayers. */
+/** The widgets: next prayer (small, medium, large), the countdown bar, and today's prayers (medium, large). */
 enum class WidgetKind(val layout: Int) {
-    SMALL(R.layout.widget_small), MEDIUM(R.layout.widget_medium), COUNTDOWN(R.layout.widget_countdown), TODAY(R.layout.widget_today),
+    SMALL(R.layout.widget_small), MEDIUM(R.layout.widget_medium), LARGE(R.layout.widget_large),
+    COUNTDOWN(R.layout.widget_countdown), TODAY(R.layout.widget_today), TODAY_LARGE(R.layout.widget_today_large),
 }
 
 /**
@@ -55,15 +56,20 @@ object PrayerWidgets {
     const val ACTION_REFRESH = "sa.zood.nearmosque.widgets.REFRESH"
     private val providers = listOf(
         PrayerWidgetSmall::class.java to WidgetKind.SMALL, PrayerWidgetMedium::class.java to WidgetKind.MEDIUM,
-        PrayerWidgetCountdown::class.java to WidgetKind.COUNTDOWN, PrayerWidgetToday::class.java to WidgetKind.TODAY,
+        PrayerWidgetLarge::class.java to WidgetKind.LARGE, PrayerWidgetCountdown::class.java to WidgetKind.COUNTDOWN,
+        PrayerWidgetToday::class.java to WidgetKind.TODAY, PrayerWidgetTodayLarge::class.java to WidgetKind.TODAY_LARGE,
     )
     private val rows = listOf(R.id.row0, R.id.row1, R.id.row2, R.id.row3, R.id.row4, R.id.row5)
     private val rowNames = listOf(R.id.row0_name, R.id.row1_name, R.id.row2_name, R.id.row3_name, R.id.row4_name, R.id.row5_name)
     private val rowTimes = listOf(R.id.row0_time, R.id.row1_time, R.id.row2_time, R.id.row3_time, R.id.row4_time, R.id.row5_time)
-    private val tiles = listOf(R.id.tile0, R.id.tile1, R.id.tile2, R.id.tile3, R.id.tile4)
-    private val tileNames = listOf(R.id.tile0_name, R.id.tile1_name, R.id.tile2_name, R.id.tile3_name, R.id.tile4_name)
-    private val tileTimes = listOf(R.id.tile0_time, R.id.tile1_time, R.id.tile2_time, R.id.tile3_time, R.id.tile4_time)
-    private val tileMarks = listOf(R.id.tile0_mark, R.id.tile1_mark, R.id.tile2_mark, R.id.tile3_mark, R.id.tile4_mark)
+    private val rowIcons = listOf(R.id.row0_icon, R.id.row1_icon, R.id.row2_icon, R.id.row3_icon, R.id.row4_icon, R.id.row5_icon)
+    private val rowBells = listOf(R.id.row0_bell, R.id.row1_bell, R.id.row2_bell, R.id.row3_bell, R.id.row4_bell, R.id.row5_bell)
+    private val tiles = listOf(R.id.tile0, R.id.tile1, R.id.tile2, R.id.tile3, R.id.tile4, R.id.tile5)
+    private val tileNames = listOf(R.id.tile0_name, R.id.tile1_name, R.id.tile2_name, R.id.tile3_name, R.id.tile4_name, R.id.tile5_name)
+    private val tileTimes = listOf(R.id.tile0_time, R.id.tile1_time, R.id.tile2_time, R.id.tile3_time, R.id.tile4_time, R.id.tile5_time)
+    private val tileMarks = listOf(R.id.tile0_mark, R.id.tile1_mark, R.id.tile2_mark, R.id.tile3_mark, R.id.tile4_mark, R.id.tile5_mark)
+    private val tileIcons = listOf(R.id.tile0_icon, R.id.tile1_icon, R.id.tile2_icon, R.id.tile3_icon, R.id.tile4_icon, R.id.tile5_icon)
+    private val tileBells = listOf(R.id.tile0_bell, R.id.tile1_bell, R.id.tile2_bell, R.id.tile3_bell, R.id.tile4_bell, R.id.tile5_bell)
 
     private fun prefs(c: Context) = c.getSharedPreferences("widgets", Context.MODE_PRIVATE)
     fun style(c: Context, id: Int): WidgetStyle = WidgetStyle.entries.getOrElse(prefs(c).getInt("style_$id", 0)) { WidgetStyle.CREAM }
@@ -91,7 +97,7 @@ object PrayerWidgets {
             for (id in m.getAppWidgetIds(ComponentName(context, cls))) {
                 val (v, at) = views(context, context.container, s, kind, style(context, id))
                 next = at
-                bar = bar || kind == WidgetKind.COUNTDOWN
+                bar = bar || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE
                 m.updateAppWidget(id, v)
             }
         }
@@ -138,7 +144,15 @@ object PrayerWidgets {
         val today = days[1]
         val current = PrayerEvent.entries.lastOrNull { e -> today[e]?.let { !it.isAfter(now) } ?: false }
         fun isPast(e: PrayerEvent) = today[e]?.let { !it.isAfter(now) } == true && e != current
-        val accentTitle = kind == WidgetKind.TODAY
+        val accentTitle = kind == WidgetKind.TODAY || kind == WidgetKind.TODAY_LARGE
+        /** A prayer's reminder bell (none for sunrise), drawn on a highlighted background when [onPill]. */
+        fun bell(id: Int, e: PrayerEvent, onPill: Boolean) {
+            if (!e.isPrayer) { v.setViewVisibility(id, View.INVISIBLE); return }
+            val on = e in s.reminders
+            v.setImageViewResource(id, if (on) R.drawable.ic_bell else R.drawable.ic_bell_off)
+            v.setInt(id, "setColorFilter", when { onPill -> st.onPill; on -> st.accent; else -> faded(st.secondary) })
+            v.setContentDescription(id, context.getString(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, context.getString(Format.prayerName(e))))
+        }
 
         // The next prayer: name and icon, time, reminder bell, the day, time left.
         v.setTextViewText(R.id.widget_name, context.getString(Format.prayerName(next.event)))
@@ -160,7 +174,7 @@ object PrayerWidgets {
         v.setChronometer(R.id.widget_countdown, SystemClock.elapsedRealtime() + left, null, true)
         v.setChronometerCountDown(R.id.widget_countdown, true)
         v.setTextColor(R.id.widget_countdown, st.ink)
-        if (kind == WidgetKind.MEDIUM || kind == WidgetKind.COUNTDOWN) v.setInt(R.id.next_card, "setBackgroundResource", st.card)
+        if (kind == WidgetKind.MEDIUM || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE) v.setInt(R.id.next_card, "setBackgroundResource", st.card)
 
         // Countdown bar.
         v.setTextViewText(R.id.widget_title, context.getString(R.string.next_prayer))
@@ -181,11 +195,13 @@ object PrayerWidgets {
         v.setInt(R.id.widget_pin, "setColorFilter", st.accent)
         v.setTextViewText(R.id.widget_city, loc.name)
         v.setTextColor(R.id.widget_city, st.ink)
-        if (kind == WidgetKind.TODAY) {
+        if (accentTitle) {
             v.setInt(R.id.widget_time, "setBackgroundResource", st.card)
             v.setInt(R.id.widget_countdown, "setBackgroundResource", st.card)
         }
-        PrayerEvent.prayers.forEachIndexed { i, e ->
+        // Five tiles (medium) or six with sunrise (large).
+        val tileEvents = if (kind == WidgetKind.TODAY_LARGE) PrayerEvent.entries else PrayerEvent.prayers
+        tileEvents.forEachIndexed { i, e ->
             val at = today[e]
             val isNext = !next.isTomorrow && next.event == e
             val color = when {
@@ -200,6 +216,9 @@ object PrayerWidgets {
             v.setViewVisibility(tileMarks[i], if (parts?.second != null) View.VISIBLE else View.GONE)
             for (id in listOf(tileNames[i], tileTimes[i], tileMarks[i])) v.setTextColor(id, color)
             v.setInt(tiles[i], "setBackgroundResource", if (isNext) st.pill else st.card)
+            v.setImageViewResource(tileIcons[i], prayerIcon(e))
+            v.setInt(tileIcons[i], "setColorFilter", if (isNext) st.onPill else st.accent)
+            bell(tileBells[i], e, isNext)
         }
 
         // Medium: the six times, past ones faded, the current period highlighted.
@@ -216,6 +235,9 @@ object PrayerWidgets {
             v.setTextColor(rowNames[i], color)
             v.setTextColor(rowTimes[i], color)
             v.setInt(rows[i], "setBackgroundResource", if (now0) st.pill else R.drawable.widget_row_none)
+            v.setImageViewResource(rowIcons[i], prayerIcon(e))
+            v.setInt(rowIcons[i], "setColorFilter", if (now0) st.onPill else if (isPast(e)) faded(st.accent) else st.accent)
+            bell(rowBells[i], e, now0)
         }
         return v to next.at
     }
@@ -255,8 +277,14 @@ class PrayerWidgetSmall : PrayerWidgetProvider()
 /** Next prayer and today's six times. */
 class PrayerWidgetMedium : PrayerWidgetProvider()
 
+/** Next prayer with the city, dates and bar, and today's six times with icons and bells. */
+class PrayerWidgetLarge : PrayerWidgetProvider()
+
 /** A bar that fills up until the next prayer. */
 class PrayerWidgetCountdown : PrayerWidgetProvider()
 
 /** Today's five prayers with the dates, the next prayer and the city. */
 class PrayerWidgetToday : PrayerWidgetProvider()
+
+/** Today's six times as tiles with icons and bells, with the dates, the next prayer and the city. */
+class PrayerWidgetTodayLarge : PrayerWidgetProvider()

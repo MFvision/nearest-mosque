@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Today, large: the dates, the next prayer and time left, the city, and six tiles with icons and bells (the next one highlighted). Colours and backgrounds are set from code per style (PrayerWidgets). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_cream"
+    android:padding="14dp">
+    <ImageView
+        android:id="@+id/widget_mark"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:alpha="0.08"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_tab_mosque" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView android:id="@+id/widget_weekday" style="@style/NMWidgetText.Name" android:textSize="14sp" />
+                <TextView android:id="@+id/widget_gregorian" style="@style/NMWidgetText.Date" />
+                <TextView android:id="@+id/widget_hijri" style="@style/NMWidgetText.Date" />
+            </LinearLayout>
+            <FrameLayout android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/widget_name" style="@style/NMWidgetText.Name" android:textSize="14sp" android:layout_marginEnd="6dp" />
+                    <TextView android:id="@+id/widget_time" style="@style/NMWidgetText.Chip" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/widget_left_label" style="@style/NMWidgetText.Name" android:textSize="14sp" android:layout_marginEnd="6dp" />
+                    <Chronometer android:id="@+id/widget_countdown" style="@style/NMWidgetText.Chip" />
+                </LinearLayout>
+            </LinearLayout>
+            <FrameLayout android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView android:id="@+id/widget_pin" android:layout_width="20dp" android:layout_height="20dp" android:importantForAccessibility="no" android:src="@drawable/ic_pin" />
+                <TextView android:id="@+id/widget_city" style="@style/NMWidgetText.City" android:maxWidth="76dp" android:maxLines="2" android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/tile0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <ImageView android:id="@+id/tile0_icon" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" />
+                        <ImageView android:id="@+id/tile0_bell" android:layout_width="13dp" android:layout_height="13dp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/tile0_name" style="@style/NMWidgetText.TileName" android:textSize="14sp" android:layout_marginTop="2dp" />
+                    <TextView android:id="@+id/tile0_time" style="@style/NMWidgetText.TileTime" android:textSize="19sp" />
+                    <TextView android:id="@+id/tile0_mark" style="@style/NMWidgetText.TileMark" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/tile1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <ImageView android:id="@+id/tile1_icon" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" />
+                        <ImageView android:id="@+id/tile1_bell" android:layout_width="13dp" android:layout_height="13dp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/tile1_name" style="@style/NMWidgetText.TileName" android:textSize="14sp" android:layout_marginTop="2dp" />
+                    <TextView android:id="@+id/tile1_time" style="@style/NMWidgetText.TileTime" android:textSize="19sp" />
+                    <TextView android:id="@+id/tile1_mark" style="@style/NMWidgetText.TileMark" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/tile2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <ImageView android:id="@+id/tile2_icon" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" />
+                        <ImageView android:id="@+id/tile2_bell" android:layout_width="13dp" android:layout_height="13dp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/tile2_name" style="@style/NMWidgetText.TileName" android:textSize="14sp" android:layout_marginTop="2dp" />
+                    <TextView android:id="@+id/tile2_time" style="@style/NMWidgetText.TileTime" android:textSize="19sp" />
+                    <TextView android:id="@+id/tile2_mark" style="@style/NMWidgetText.TileMark" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/tile3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <ImageView android:id="@+id/tile3_icon" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" />
+                        <ImageView android:id="@+id/tile3_bell" android:layout_width="13dp" android:layout_height="13dp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/tile3_name" style="@style/NMWidgetText.TileName" android:textSize="14sp" android:layout_marginTop="2dp" />
+                    <TextView android:id="@+id/tile3_time" style="@style/NMWidgetText.TileTime" android:textSize="19sp" />
+                    <TextView android:id="@+id/tile3_mark" style="@style/NMWidgetText.TileMark" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/tile4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <ImageView android:id="@+id/tile4_icon" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" />
+                        <ImageView android:id="@+id/tile4_bell" android:layout_width="13dp" android:layout_height="13dp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/tile4_name" style="@style/NMWidgetText.TileName" android:textSize="14sp" android:layout_marginTop="2dp" />
+                    <TextView android:id="@+id/tile4_time" style="@style/NMWidgetText.TileTime" android:textSize="19sp" />
+                    <TextView android:id="@+id/tile4_mark" style="@style/NMWidgetText.TileMark" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/tile5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <ImageView android:id="@+id/tile5_icon" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" />
+                        <ImageView android:id="@+id/tile5_bell" android:layout_width="13dp" android:layout_height="13dp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/tile5_name" style="@style/NMWidgetText.TileName" android:textSize="14sp" android:layout_marginTop="2dp" />
+                    <TextView android:id="@+id/tile5_time" style="@style/NMWidgetText.TileTime" android:textSize="19sp" />
+                    <TextView android:id="@+id/tile5_mark" style="@style/NMWidgetText.TileMark" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

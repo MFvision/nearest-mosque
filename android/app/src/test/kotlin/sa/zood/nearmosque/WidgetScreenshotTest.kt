@@ -41,7 +41,7 @@ class WidgetScreenshotTest {
         val (views, _) = PrayerWidgets.views(context, c, c.settings.settings.first(), kind, style)
         val density = context.resources.displayMetrics.density
         val w = ((if (kind == WidgetKind.SMALL) 170 else 340) * density).toInt()
-        val h = ((if (kind == WidgetKind.TODAY) 180 else 170) * density).toInt()
+        val h = (when (kind) { WidgetKind.LARGE, WidgetKind.TODAY_LARGE -> 380; WidgetKind.TODAY -> 180; else -> 170 } * density).toInt()
         val activity = org.robolectric.Robolectric.buildActivity(androidx.activity.ComponentActivity::class.java).setup().get()
         val parent = FrameLayout(activity).apply { setBackgroundColor(0xFFC8C8CD.toInt()); setPadding(24, 24, 24, 24) }
         val v = views.apply(activity, parent)
@@ -59,6 +59,11 @@ class WidgetScreenshotTest {
     @Test fun countdownGreen() = shoot("widget_countdown_green", WidgetKind.COUNTDOWN, WidgetStyle.GREEN)
     @Test fun countdownCream() = shoot("widget_countdown_cream", WidgetKind.COUNTDOWN, WidgetStyle.CREAM)
     @Test fun todayNight() = shoot("widget_today_night", WidgetKind.TODAY, WidgetStyle.NIGHT)
+    @Test fun largeCream() = shoot("widget_large_cream", WidgetKind.LARGE, WidgetStyle.CREAM)
+    @Test fun largeNight() = shoot("widget_large_night", WidgetKind.LARGE, WidgetStyle.NIGHT)
+    @Test fun todayLargeGreen() = shoot("widget_today_large_green", WidgetKind.TODAY_LARGE, WidgetStyle.GREEN)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun todayLargeArabic() = shoot("widget_today_large_cream_ar", WidgetKind.TODAY_LARGE, WidgetStyle.CREAM)
     @Test fun todayGreen() = shoot("widget_today_green", WidgetKind.TODAY, WidgetStyle.GREEN)
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")

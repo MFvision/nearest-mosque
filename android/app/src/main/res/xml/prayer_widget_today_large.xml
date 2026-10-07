@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="250dp"
+    android:minHeight="250dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="4"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/widget_today_large"
+    android:previewLayout="@layout/widget_today_large"
+    android:description="@string/widget_kind_today_desc"
+    android:configure="sa.zood.nearmosque.ui.WidgetStyleActivity"
+    android:widgetFeatures="reconfigurable|configuration_optional" />

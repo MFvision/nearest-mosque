@@ -81,6 +81,12 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_widget_medium" />
         </receiver>
+        <receiver android:name=".platform.PrayerWidgetLarge" android:exported="false" android:label="@string/widget_kind_next">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_widget_large" />
+        </receiver>
         <receiver android:name=".platform.PrayerWidgetCountdown" android:exported="false" android:label="@string/widget_kind_countdown">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -92,6 +98,12 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_widget_today" />
+        </receiver>
+        <receiver android:name=".platform.PrayerWidgetTodayLarge" android:exported="false" android:label="@string/widget_kind_today">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_widget_today_large" />
         </receiver>
 
         <!-- Persists the per-app language chosen in Settings on Android 12 and below. -->
