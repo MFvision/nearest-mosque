@@ -203,11 +203,18 @@ public final class Retriever: @unchecked Sendable {
         struct S { let id: String; let seq: Int; let score: Double; let coverage: Double; let matched: Int }
         let scored: [S] = store.candidates(order).compactMap { c in
             var tf: [String: Int] = [:]
-            for t in c.tokens where weights[t] != nil { tf[t, default: 0] += 1 }
+            var firstSeen: [String] = []
+            for t in c.tokens where weights[t] != nil {
+                if tf[t] == nil { firstSeen.append(t) }
+                tf[t, default: 0] += 1
+            }
             guard !tf.isEmpty else { return nil }
             let dl = Double(c.tokens.count)
             var s = 0.0
-            for (t, f) in tf {
+            // Summed in the order the words first appear in the passage, as the reference does: a dictionary's
+            // order changes from run to run, and so would the last digits of the sum and the order of ties.
+            for t in firstSeen {
+                let f = tf[t]!
                 let fd = Double(f)
                 s += weights[t]! * idf[t]! * fd * (Retriever.k1 + 1) / (fd + Retriever.k1 * (1 - Retriever.b + Retriever.b * dl / avgdl))
             }

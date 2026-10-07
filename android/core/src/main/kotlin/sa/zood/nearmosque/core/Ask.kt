@@ -173,7 +173,8 @@ class Retriever(
         }
         data class S(val id: String, val seq: Long, val score: Double, val coverage: Double, val matched: Int)
         val scored = store.candidates(weights.keys).mapNotNull { c ->
-            val tf = HashMap<String, Int>()
+            // In the order words first appear in the passage, as the reference sums them (ties stay in the same order).
+            val tf = LinkedHashMap<String, Int>()
             for (t in c.tokens) if (t in weights) tf.merge(t, 1, Int::plus)
             if (tf.isEmpty()) return@mapNotNull null
             val dl = c.tokens.size

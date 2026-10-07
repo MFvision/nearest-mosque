@@ -197,7 +197,8 @@ public final class LibraryRetriever: @unchecked Sendable {
                 let cover = Double(owners[id]?.count ?? 0) / Double(content.count)
                 return (id, (weight[id] ?? 0) * (Self.k1 + 1) / (1 + Self.k1 * (1 - Self.b + Self.b * Double(dl) / avgdl)) * cover)
             }
-            candidateIds = est.sorted { $0.1 > $1.1 }.prefix(Self.maxRows).map(\.0)
+            // Ties by id, as the reference: the dictionary's own order changes from run to run.
+            candidateIds = est.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }.prefix(Self.maxRows).map(\.0)
         }
         struct S { let id: String; let seq: Int; let score: Double; let coverage: Double }
         let scored: [S] = store.rows(candidateIds).compactMap { c in

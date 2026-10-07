@@ -145,7 +145,7 @@ class LibraryRetriever(private val store: LibraryStore, private val stop: Set<St
             candidateIds = lengths.entries.map { (id, dl) ->
                 val cover = owners.getValue(id).size.toDouble() / content.size
                 id to weight.getOrDefault(id, 0.0) * (K1 + 1) / (1 + K1 * (1 - B + B * dl / avgdl)) * cover
-            }.sortedByDescending { it.second }.take(MAX_ROWS).map { it.first }
+            }.sortedWith(compareByDescending<Pair<String, Double>> { it.second }.thenBy { it.first }).take(MAX_ROWS).map { it.first }
         }
         data class S(val id: String, val seq: Long, val score: Double, val coverage: Double)
         val scored = store.rows(candidateIds).mapNotNull { c ->
