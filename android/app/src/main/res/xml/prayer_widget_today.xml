@@ -7,8 +7,8 @@
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
     android:updatePeriodMillis="1800000"
-    android:initialLayout="@layout/widget_medium"
-    android:previewLayout="@layout/widget_medium"
-    android:description="@string/widget_kind_next_desc"
+    android:initialLayout="@layout/widget_today"
+    android:previewLayout="@layout/widget_today"
+    android:description="@string/widget_kind_today_desc"
     android:configure="sa.zood.nearmosque.ui.WidgetStyleActivity"
     android:widgetFeatures="reconfigurable|configuration_optional" />

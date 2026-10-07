@@ -69,6 +69,40 @@ object Format {
         DateTimeFormatter.ofPattern("d MMMM y G", loc).withChronology(HijrahChronology.INSTANCE).withDecimalStyle(DecimalStyle.of(loc)).format(h)
     }.getOrNull()
 
+    fun weekday(context: Context, date: LocalDate): String {
+        val loc = locale(context)
+        return DateTimeFormatter.ofPattern("EEEE", loc).format(date)
+    }
+
+    /** Gregorian date, numeric in the reader's locale. */
+    fun gregorianNumeric(context: Context, date: LocalDate): String {
+        val loc = locale(context)
+        return DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(loc).withDecimalStyle(DecimalStyle.of(loc)).format(date)
+    }
+
+    /** Day and month, short ("6 Oct"). */
+    fun dayMonth(context: Context, date: LocalDate): String {
+        val loc = locale(context)
+        return DateTimeFormatter.ofPattern(DateFormat.getBestDateTimePattern(loc, "dMMM"), loc).withDecimalStyle(DecimalStyle.of(loc)).format(date)
+    }
+
+    /** Hijri date (Umm al-Qura, with the app's adjustment), numeric. */
+    fun hijriNumeric(context: Context, date: LocalDate, adjustmentDays: Int): String? = runCatching {
+        val loc = locale(context)
+        val h = HijrahDate.from(date.plusDays(adjustmentDays.toLong()))
+        DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(loc).withChronology(HijrahChronology.INSTANCE)
+            .withDecimalStyle(DecimalStyle.of(loc)).format(h)
+    }.getOrNull()
+
+    /** The time and its AM/PM mark apart (widget tiles show the mark on its own line); no mark in 24-hour mode. */
+    fun timeParts(context: Context, instant: Instant, zone: ZoneId): Pair<String, String?> {
+        val full = time(context, instant, zone)
+        if (DateFormat.is24HourFormat(context)) return full to null
+        val loc = locale(context)
+        val mark = DateTimeFormatter.ofPattern("a", loc).format(instant.atZone(zone))
+        return if (mark.isNotEmpty() && full.contains(mark)) full.replace(mark, "").trim() to mark else full to null
+    }
+
     /** H:MM:SS (or M:SS under an hour), localized digits. */
     fun countdown(context: Context, d: Duration): String {
         val s = d.seconds.coerceAtLeast(0)

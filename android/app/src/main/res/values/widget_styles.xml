@@ -21,7 +21,7 @@
         <item name="android:fontFeatureSettings">tnum</item>
     </style>
     <style name="NMWidgetText.Countdown">
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:fontFeatureSettings">tnum</item>
     </style>
     <style name="NMWidgetRow">
@@ -41,5 +41,45 @@
     <style name="NMWidgetText.RowTime">
         <item name="android:textSize">13sp</item>
         <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+    <style name="NMWidgetText.TimeMedium" parent="NMWidgetText.Time">
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="NMWidgetText.Small">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="NMWidgetText.Date">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+    <style name="NMWidgetText.Big">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+    <style name="NMWidgetText.Chip">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">72dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
+    <style name="NMWidgetText.TileName">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="NMWidgetText.TileTime">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+    <style name="NMWidgetText.TileMark">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

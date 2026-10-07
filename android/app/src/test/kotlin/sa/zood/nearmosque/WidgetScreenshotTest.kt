@@ -14,6 +14,7 @@ import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.data.PrayerLocation
 import sa.zood.nearmosque.platform.PrayerWidgets
+import sa.zood.nearmosque.platform.WidgetKind
 import sa.zood.nearmosque.platform.WidgetStyle
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -25,7 +26,7 @@ import java.time.ZonedDateTime
 class WidgetScreenshotTest {
     private val context = ApplicationProvider.getApplicationContext<android.content.Context>()
 
-    private fun shoot(name: String, medium: Boolean, style: WidgetStyle) = runBlocking {
+    private fun shoot(name: String, kind: WidgetKind, style: WidgetStyle) = runBlocking {
         val c = AppContainer(
             context, inMemoryDb = true,
             clock = { ZonedDateTime.of(2026, 10, 3, 14, 10, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant() },
@@ -35,10 +36,12 @@ class WidgetScreenshotTest {
             PrayerLocation("Cape Town", LatLng(-33.92584, 18.42322), ZoneId.of("Africa/Johannesburg"), "ZA", PrayerLocation.Source.CITY), follow = false,
         )
         c.settings.setMethod(Method.MUSLIM_WORLD_LEAGUE, byUser = false)
-        val (views, _) = PrayerWidgets.views(context, c, c.settings.settings.first(), medium, style)
+        c.settings.setReminder(sa.zood.nearmosque.core.PrayerEvent.FAJR, true)
+        c.settings.setReminder(sa.zood.nearmosque.core.PrayerEvent.MAGHRIB, true)
+        val (views, _) = PrayerWidgets.views(context, c, c.settings.settings.first(), kind, style)
         val density = context.resources.displayMetrics.density
-        val w = ((if (medium) 330 else 160) * density).toInt()
-        val h = (160 * density).toInt()
+        val w = ((if (kind == WidgetKind.SMALL) 170 else 340) * density).toInt()
+        val h = ((if (kind == WidgetKind.TODAY) 180 else 170) * density).toInt()
         val activity = org.robolectric.Robolectric.buildActivity(androidx.activity.ComponentActivity::class.java).setup().get()
         val parent = FrameLayout(activity).apply { setBackgroundColor(0xFFC8C8CD.toInt()); setPadding(24, 24, 24, 24) }
         val v = views.apply(activity, parent)
@@ -48,12 +51,22 @@ class WidgetScreenshotTest {
         parent.captureRoboImage("build/screenshots/$name.png")
     }
 
-    @Test fun smallCream() = shoot("widget_small_cream", false, WidgetStyle.CREAM)
-    @Test fun smallGreen() = shoot("widget_small_green", false, WidgetStyle.GREEN)
-    @Test fun mediumCream() = shoot("widget_medium_cream", true, WidgetStyle.CREAM)
-    @Test fun mediumGreen() = shoot("widget_medium_green", true, WidgetStyle.GREEN)
-    @Test fun mediumNight() = shoot("widget_medium_night", true, WidgetStyle.NIGHT)
+    @Test fun smallCream() = shoot("widget_small_cream", WidgetKind.SMALL, WidgetStyle.CREAM)
+    @Test fun smallGreen() = shoot("widget_small_green", WidgetKind.SMALL, WidgetStyle.GREEN)
+    @Test fun mediumCream() = shoot("widget_medium_cream", WidgetKind.MEDIUM, WidgetStyle.CREAM)
+    @Test fun mediumGreen() = shoot("widget_medium_green", WidgetKind.MEDIUM, WidgetStyle.GREEN)
+    @Test fun mediumNight() = shoot("widget_medium_night", WidgetKind.MEDIUM, WidgetStyle.NIGHT)
+    @Test fun countdownGreen() = shoot("widget_countdown_green", WidgetKind.COUNTDOWN, WidgetStyle.GREEN)
+    @Test fun countdownCream() = shoot("widget_countdown_cream", WidgetKind.COUNTDOWN, WidgetStyle.CREAM)
+    @Test fun todayNight() = shoot("widget_today_night", WidgetKind.TODAY, WidgetStyle.NIGHT)
+    @Test fun todayGreen() = shoot("widget_today_green", WidgetKind.TODAY, WidgetStyle.GREEN)
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
-    fun mediumArabic() = shoot("widget_medium_cream_ar", true, WidgetStyle.CREAM)
+    fun mediumArabic() = shoot("widget_medium_cream_ar", WidgetKind.MEDIUM, WidgetStyle.CREAM)
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun todayArabic() = shoot("widget_today_cream_ar", WidgetKind.TODAY, WidgetStyle.CREAM)
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun countdownArabic() = shoot("widget_countdown_night_ar", WidgetKind.COUNTDOWN, WidgetStyle.NIGHT)
 }
