@@ -11,6 +11,11 @@ on:
     tags:
       - "ios-v*"
   workflow_dispatch:
+    inputs:
+      mac_only:
+        description: "Only the Mac app (skip the iPhone and iPad upload)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -71,6 +76,7 @@ jobs:
           echo "build=$(( 100 + ${{ github.run_number }} ))" >> "$GITHUB_OUTPUT"
 
       - name: Archive (Release, automatic signing)
+        if: ${{ !inputs.mac_only }}
         run: |
           set -o pipefail
           xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
@@ -82,7 +88,7 @@ jobs:
             archive | tee archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
           grep -q "ARCHIVE SUCCEEDED" archive.log
 
-      - name: Export and upload to App Store Connect
+      - name: Write the export options
         run: |
           set -o pipefail
           cat > ExportOptions.plist <<EOF
@@ -99,6 +105,11 @@ jobs:
           </dict>
           </plist>
           EOF
+
+      - name: Export and upload to App Store Connect
+        if: ${{ !inputs.mac_only }}
+        run: |
+          set -o pipefail
           xcodebuild -exportArchive -archivePath build/NearMosque.xcarchive -exportOptionsPlist ExportOptions.plist \
             -exportPath build/export -allowProvisioningUpdates \
             -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
@@ -107,7 +118,8 @@ jobs:
           echo "Uploaded build $BUILD_NUMBER of $BUNDLE_ID. It appears in TestFlight after Apple finishes processing (usually 5-30 minutes)."
 
       # The Mac app (Mac Catalyst, same bundle id): a separate macOS build in TestFlight. Allowed to fail
-      # on its own so it never holds back the iPhone and iPad build above.
+      # on its own so it never holds back the iPhone and iPad build above. Signed for the App Store at
+      # archive time: a development profile would need a registered Mac, and CI's Macs are throwaway.
       - name: Archive the Mac app (Mac Catalyst)
         id: mac_archive
         continue-on-error: true
@@ -115,7 +127,7 @@ jobs:
           set -o pipefail
           xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
             -destination 'generic/platform=macOS,variant=Mac Catalyst' -archivePath build/NearMosque-mac.xcarchive \
-            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic CODE_SIGN_IDENTITY="Apple Distribution" \
             APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             -allowProvisioningUpdates \
             -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
@@ -166,7 +178,7 @@ jobs:
       - name: Wait, answer export compliance, add the build to internal groups
         run: |
           python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
-          WAIT_MINUTES=60 PLATFORMS=IOS,MAC_OS /tmp/asc/bin/python tools/asc_testflight.py
+          WAIT_MINUTES=60 PLATFORMS=${{ inputs.mac_only && 'MAC_OS' || 'IOS,MAC_OS' }} /tmp/asc/bin/python tools/asc_testflight.py
 
   # The archive step's automatic signing creates a development certificate on each fresh machine; it is
   # useless once the machine is gone and Apple caps how many an account holds, so revoke this run's.

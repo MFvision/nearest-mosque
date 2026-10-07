@@ -84,8 +84,8 @@ def main() -> int:
     platforms = [p for p in os.environ.get("PLATFORMS", "IOS").split(",") if p]
     status = 0
     for platform in platforms:
-        # The Mac build (MAC_OS) is optional: a missing or failed one is reported, never fails the run.
-        optional = platform != "IOS"
+        # Next to the iPhone build, the Mac build (MAC_OS) is optional: a missing or failed one is reported only.
+        optional = platform != "IOS" and len(platforms) > 1
         try:
             rc = handle(app_id, platform, want, min(wait, 20) if optional else wait)
         except urllib.error.HTTPError:
