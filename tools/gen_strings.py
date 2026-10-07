@@ -101,7 +101,9 @@ def build_android(data, lang):
 
 def build_ios_infoplist(data):
     """InfoPlist.xcstrings: localized display name and permission purpose strings."""
-    keys = {"CFBundleDisplayName": "app_name", "NSLocationWhenInUseUsageDescription": "permission_location_ios"}
+    # NSLocationUsageDescription: the same purpose string for the Mac app (macOS reads this key).
+    keys = {"CFBundleDisplayName": "app_name", "NSLocationWhenInUseUsageDescription": "permission_location_ios",
+            "NSLocationUsageDescription": "permission_location_ios"}
     out = {"sourceLanguage": "en", "version": "1.0", "strings": {}}
     for plist_key, src in keys.items():
         entry = data["strings"][src]

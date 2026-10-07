@@ -70,6 +70,13 @@ final class MosquesModel {
     }
 
     func refreshFavorites(_ app: AppModel) { favorites = (try? app.mosques?.favorites()) ?? [] }
+
+    /// The walking route to one mosque, on demand (the card in view on the full-screen map).
+    func loadRoute(_ app: AppModel, _ r: RankedMosque) async {
+        guard routes[r.id] == nil, r.distanceMeters < 6_000, let from = app.location.position?.location, origin == .device else { return }
+        let searched = center
+        if let route = await routeService.walking(from: from, to: r.mosque), center == searched { routes[r.id] = route }
+    }
 }
 
 struct MosquesView: View {
@@ -121,6 +128,14 @@ struct MosquesView: View {
         .onChange(of: app.requestMosqueId) { _, _ in openRequestedMosque() }
         .onChange(of: vm.items) { _, _ in openRequestedMosque() }
         .onAppear { openRequestedMosque() }
+        #if DEBUG
+        // CI screenshots: `-demoFullMap YES` opens the full-screen map once mosques are listed.
+        .onChange(of: vm.items.isEmpty) { _, empty in
+            guard !empty, UserDefaults.standard.bool(forKey: "demoFullMap") else { return }
+            mode = 1
+            Task { try? await Task.sleep(for: .seconds(1)); fullMap = true }
+        }
+        #endif
         .sheet(item: $selected, onDismiss: { mapSelection = nil }) { r in
             MosqueDetailView(ranked: r, favorite: vm.favorites.contains(r.id), canFavorite: r.mosque.packId.hasPrefix("mosques."),
                              route: vm.routes[r.id]) { on in
@@ -459,8 +474,9 @@ struct DirectionsMenu<MenuLabel: View>: View {
     }
 }
 
-/// The map full screen: pins for the nearby mosques, the walking route to the nearest, and a row of
-/// cards along the bottom (nearest first); a card or a pin opens the mosque.
+/// The map full screen, as on nearmosque.net: a card per mosque along the bottom (nearest first). Swiping
+/// the cards flies the map to that mosque; tapping a pin brings its card. Each card has the name, address,
+/// distance, walking time and the next prayer, with Go, Call and Website; tapping it opens the full page.
 struct FullScreenMosqueMap: View {
     @Environment(AppModel.self) private var app
     @Environment(Localization.self) private var l10n
@@ -468,50 +484,56 @@ struct FullScreenMosqueMap: View {
     let vm: MosquesModel
     let center: LatLng
     @State private var selection: String?
-    @State private var selected: RankedMosque?
+    @State private var focused: String?
+    @State private var detail: RankedMosque?
+
+    private var shown: [RankedMosque] { Array(vm.items.prefix(20)) }
+    private var focus: RankedMosque? { shown.first { $0.id == focused } ?? shown.first }
 
     var body: some View {
-        ZStack(alignment: .top) {
-            MosqueMap(items: vm.items, center: center, route: vm.items.first.flatMap { vm.routes[$0.id] }, selection: $selection) {
-                vm.search(app, center: $0, origin: .selectedPoint)
-            }
-            .ignoresSafeArea()
-            HStack {
-                Spacer()
-                GlassIconButton(systemImage: "xmark", label: l10n.t("close")) { dismiss() }
-            }
-            .padding(.horizontal, 16)
-            VStack {
-                Spacer()
-                ScrollView(.horizontal) {
-                    HStack(spacing: 10) {
-                        ForEach(Array(vm.items.prefix(12).enumerated()), id: \.element.id) { i, r in
-                            Button { selected = r } label: {
-                                VStack(alignment: .leading, spacing: 3) {
-                                    if i == 0 { Text(l10n.t("nearest_known_mosque")).font(.caption2.weight(.semibold)).foregroundStyle(Theme.accent) }
-                                    Text(r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed")).font(.subheadline.weight(.semibold)).lineLimit(2)
-                                    Text(Format.distance(r.distanceMeters, l10n: l10n)).font(.caption).foregroundStyle(Theme.ink.opacity(0.75))
-                                }
-                                .foregroundStyle(Theme.ink)
-                                .frame(width: 180, alignment: .leading)
-                                .padding(12)
-                                .contentShape(RoundedRectangle(cornerRadius: 18))
-                            }
-                            .buttonStyle(.plain)
-                            .glass(RoundedRectangle(cornerRadius: 18, style: .continuous))
-                            .accessibilityLabel(l10n.t("mosque_detail_a11y", r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), Format.distance(r.distanceMeters, l10n: l10n)))
-                        }
-                    }
-                    .padding(.horizontal, 16)
+        TimelineView(.periodic(from: .now, by: 30)) { ctx in
+            let next = nextPrayer(ctx.date)
+            ZStack(alignment: .top) {
+                MosqueMap(items: vm.items, center: center, route: focus.flatMap { vm.routes[$0.id] }, selection: $selection,
+                          focus: focus, bottomInset: 250) {
+                    vm.search(app, center: $0, origin: .selectedPoint)
                 }
-                .scrollIndicators(.hidden)
-                .padding(.bottom, 8)
+                .ignoresSafeArea()
+                HStack {
+                    Spacer()
+                    GlassIconButton(systemImage: "xmark", label: l10n.t("close")) { dismiss() }
+                }
+                .padding(.horizontal, 16)
+                VStack {
+                    Spacer()
+                    ScrollView(.horizontal) {
+                        LazyHStack(spacing: 12) {
+                            ForEach(Array(shown.enumerated()), id: \.element.id) { i, r in
+                                MosqueMapCard(ranked: r, nearest: i == 0, route: vm.routes[r.id], next: next) { detail = r }
+                                    .containerRelativeFrame(.horizontal) { w, _ in min(w - 40, 440) }
+                                    .id(r.id)
+                            }
+                        }
+                        .scrollTargetLayout()
+                    }
+                    .contentMargins(.horizontal, 20, for: .scrollContent)
+                    .scrollTargetBehavior(.viewAligned)
+                    .scrollPosition(id: $focused)
+                    .scrollIndicators(.hidden)
+                    .padding(.bottom, 8)
+                }
             }
         }
+        .onAppear { focused = shown.first?.id }
+        // A tapped pin brings its card.
         .onChange(of: selection) { _, id in
-            if let id, let r = vm.items.first(where: { $0.id == id }) { selected = r }
+            guard let id else { return }
+            withAnimation(Theme.spring) { focused = id }
+            selection = nil
         }
-        .sheet(item: $selected, onDismiss: { selection = nil }) { r in
+        // The walking time of the card in view (online, from Apple Maps).
+        .task(id: focused) { if let f = focus { await vm.loadRoute(app, f) } }
+        .sheet(item: $detail) { r in
             MosqueDetailView(ranked: r, favorite: vm.favorites.contains(r.id), canFavorite: r.mosque.packId.hasPrefix("mosques."),
                              route: vm.routes[r.id]) { on in
                 try? app.mosques?.setFavorite(r.id, on)
@@ -519,5 +541,104 @@ struct FullScreenMosqueMap: View {
             }
             .presentationDetents([.medium, .large])
         }
+    }
+
+    private func nextPrayer(_ now: Date) -> (name: String, time: String)? {
+        guard let loc = app.settings.location, let n = app.calculator.nextPrayer(app.days(now: now), now: now) else { return nil }
+        return (l10n.t(Format.prayerKey(n.event)), Format.time(n.at, zone: loc.zone, locale: l10n.locale))
+    }
+}
+
+/// One mosque on the full-screen map: who, where and how far, the next prayer, and what to do.
+struct MosqueMapCard: View {
+    @Environment(Localization.self) private var l10n
+    @Environment(\.openURL) private var openURL
+    let ranked: RankedMosque
+    let nearest: Bool
+    let route: WalkingRoute?
+    let next: (name: String, time: String)?
+    var onDetails: () -> Void
+
+    var body: some View {
+        let m = ranked.mosque
+        let name = m.displayName(l10n.language) ?? l10n.t("mosque_unnamed")
+        VStack(alignment: .leading, spacing: 12) {
+            Button(action: onDetails) {
+                HStack(alignment: .top, spacing: 10) {
+                    MosquePin(highlighted: nearest, size: 40)
+                    VStack(alignment: .leading, spacing: 2) {
+                        if nearest {
+                            Text(l10n.t("nearest_known_mosque")).font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
+                        }
+                        Text(name).font(.title3.weight(.bold)).lineLimit(2).multilineTextAlignment(.leading)
+                        if let a = m.address, !a.isEmpty {
+                            Text(a).font(.footnote).foregroundStyle(.secondary).lineLimit(1)
+                        }
+                    }
+                    Spacer(minLength: 4)
+                    Image(systemName: "chevron.forward").font(.footnote.weight(.semibold)).foregroundStyle(.secondary)
+                        .padding(.top, 4)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(l10n.t("mosque_detail_a11y", name, Format.distance(ranked.distanceMeters, l10n: l10n)))
+            HStack(spacing: 6) {
+                chip("location.fill", Format.distance(ranked.distanceMeters, l10n: l10n))
+                chip(travel.icon, travel.text)
+                if let next { chip("clock.fill", "\(next.name) \(next.time)", gold: true) }
+            }
+            HStack(spacing: 10) {
+                DirectionsMenu(to: m.location, name: name) {
+                    action("arrow.triangle.turn.up.right.diamond.fill", l10n.t("directions"), prominent: true)
+                }
+                Button { call(m.phone) } label: { action("phone.fill", l10n.t("call"), prominent: false) }
+                    .disabled(m.phone == nil).opacity(m.phone == nil ? 0.35 : 1)
+                Button { web(m.website) } label: { action("globe", l10n.t("website"), prominent: false) }
+                    .disabled(m.website == nil).opacity(m.website == nil ? 0.35 : 1)
+            }
+            .buttonStyle(.plain)
+        }
+        .foregroundStyle(Theme.ink)
+        .padding(16)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .shadow(color: .black.opacity(0.18), radius: 16, y: 6)
+    }
+
+    /// Walking time from Apple Maps when known, otherwise estimated from the straight line (≈); driving
+    /// beyond walking distance.
+    private var travel: (icon: String, text: String) {
+        if let route { return ("figure.walk", l10n.t("minutes_short", max(1, Int((route.seconds / 60).rounded())))) }
+        let d = ranked.distanceMeters * 1.3
+        if d < 4_000 { return ("figure.walk", "≈ " + l10n.t("minutes_short", max(1, Int((d / 80).rounded())))) }
+        return ("car.fill", "≈ " + l10n.t("minutes_short", max(1, Int((d / 600).rounded()))))
+    }
+
+    private func chip(_ icon: String, _ text: String, gold: Bool = false) -> some View {
+        Label(text, systemImage: icon)
+            .font(.caption.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.75)
+            .padding(.horizontal, 10).padding(.vertical, 6)
+            .foregroundStyle(gold ? Theme.accent : Theme.ink)
+            .background((gold ? Theme.gold : Theme.ink).opacity(gold ? 0.16 : 0.08), in: Capsule())
+    }
+
+    private func action(_ icon: String, _ label: String, prominent: Bool) -> some View {
+        VStack(spacing: 5) {
+            Image(systemName: icon).font(.title3.weight(.semibold))
+                .frame(width: 50, height: 50)
+                .foregroundStyle(prominent ? .white : Theme.ink)
+                .background(prominent ? AnyShapeStyle(Theme.gold) : AnyShapeStyle(Theme.ink.opacity(0.08)), in: Circle())
+            Text(label).font(.caption.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity)
+        .contentShape(Rectangle())
+    }
+
+    private func call(_ phone: String?) {
+        if let p = phone, let u = URL(string: "tel:" + p.filter { $0.isNumber || $0 == "+" }) { openURL(u) }
+    }
+
+    private func web(_ site: String?) {
+        if let w = site, let u = URL(string: w.hasPrefix("http") ? w : "https://" + w) { openURL(u) }
     }
 }

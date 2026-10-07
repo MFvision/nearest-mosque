@@ -85,6 +85,7 @@ targets:
         ITSAppUsesNonExemptEncryption: false
         NSAlarmKitUsageDescription: Rings the Fajr alarm you set in Settings.
         NSLocationWhenInUseUsageDescription: Your location is used on this phone for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        NSLocationUsageDescription: Your location is used on this device for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
         UILaunchScreen:
           UIColorName: ""
         UIApplicationSceneManifest:

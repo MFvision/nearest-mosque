@@ -102,14 +102,28 @@ struct MosqueMap: View {
     let center: LatLng
     let route: WalkingRoute?
     @Binding var selection: String?
+    /// The mosque the map flies to and highlights (the card in view on the full-screen map).
+    var focus: RankedMosque?
+    /// Room taken by cards over the bottom of the map: the focused mosque is placed above them.
+    var bottomInset: CGFloat
     var onSearchHere: (LatLng) -> Void
     @State private var camera: MapCameraPosition
     @State private var visible: CLLocationCoordinate2D?
 
-    init(items: [RankedMosque], center: LatLng, route: WalkingRoute?, selection: Binding<String?>, onSearchHere: @escaping (LatLng) -> Void) {
+    init(items: [RankedMosque], center: LatLng, route: WalkingRoute?, selection: Binding<String?>, focus: RankedMosque? = nil,
+         bottomInset: CGFloat = 0, onSearchHere: @escaping (LatLng) -> Void) {
         self.items = items; self.center = center; self.route = route; self._selection = selection; self.onSearchHere = onSearchHere
+        self.focus = focus; self.bottomInset = bottomInset
         let span = max(1500, min(20_000, (items.prefix(6).map(\.distanceMeters).max() ?? 2000) * 2.6))
         _camera = State(initialValue: .region(MKCoordinateRegion(center: center.coordinate, latitudinalMeters: span, longitudinalMeters: span)))
+    }
+
+    /// Flies to the focused mosque, close enough to read the streets around it.
+    private func fly() {
+        guard let f = focus else { return }
+        withAnimation(.easeInOut(duration: 0.7)) {
+            camera = .camera(MapCamera(centerCoordinate: f.mosque.location.coordinate, distance: 1400))
+        }
     }
 
     private var moved: Bool {
@@ -122,7 +136,7 @@ struct MosqueMap: View {
             UserAnnotation()
             ForEach(items.prefix(60)) { r in
                 Annotation(r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), coordinate: r.mosque.location.coordinate, anchor: .center) {
-                    MosquePin(highlighted: selection == r.id || (selection == nil && r.id == items.first?.id))
+                    MosquePin(highlighted: (focus?.id ?? selection ?? items.first?.id) == r.id)
                         .accessibilityLabel(l10n.t("mosque_detail_a11y", r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), Format.distance(r.distanceMeters, l10n: l10n)))
                 }
                 .tag(r.id)
@@ -138,6 +152,8 @@ struct MosqueMap: View {
             MapScaleView()
         }
         .onMapCameraChange(frequency: .onEnd) { ctx in visible = ctx.region.center }
+        .onChange(of: focus?.id) { _, _ in fly() }
+        .safeAreaPadding(.bottom, bottomInset)
         .overlay(alignment: .bottom) {
             if moved, let v = visible, let p = LatLng(v.latitude, v.longitude) {
                 Button { onSearchHere(p) } label: { Label(l10n.t("search_this_area"), systemImage: "magnifyingglass") }
