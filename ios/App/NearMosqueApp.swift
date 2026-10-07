@@ -18,6 +18,25 @@ struct NearMosqueApp: App {
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .task { await model.start() }
         }
+        .commands {
+            // Mac menu bar and iPad keyboard shortcuts (⌘1, ⌘2, ⌘K, ⌘,).
+            CommandGroup(replacing: .appSettings) {
+                Button(model.l10n.t("settings")) { open("nearmosque://settings") }.keyboardShortcut(",", modifiers: .command)
+            }
+            CommandGroup(replacing: .textFormatting) {}
+            CommandGroup(replacing: .newItem) {}
+            CommandMenu(model.l10n.t("app_name")) {
+                Button(model.l10n.t("tab_prayer")) { open("nearmosque://prayer") }.keyboardShortcut("1", modifiers: .command)
+                Button(model.l10n.t("tab_mosques")) { open("nearmosque://mosques") }.keyboardShortcut("2", modifiers: .command)
+                Button(model.l10n.t("widget_kind_qibla")) { open("nearmosque://qibla") }.keyboardShortcut("3", modifiers: .command)
+                Divider()
+                Button(model.l10n.t("widget_kind_ask")) { open("nearmosque://ask") }.keyboardShortcut("k", modifiers: .command)
+            }
+        }
+    }
+
+    @MainActor private func open(_ s: String) {
+        if let url = URL(string: s) { PendingRoute.open(url) }
     }
 }
 
@@ -115,10 +134,11 @@ extension RootView {
     fileprivate func open(_ url: URL) {
         let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
         // A sheet on top would keep the requested screen from showing.
-        showSettings = false
+        if url.host != "settings" { showSettings = false }
         switch url.host {
         case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
         case "mosques": tab = .mosques; showAsk = false
+        case "settings": showAsk = false; showSettings = true
         case "mosque":
             tab = .mosques; showAsk = false
             model.requestMosqueId = query.first { $0.name == "id" }?.value

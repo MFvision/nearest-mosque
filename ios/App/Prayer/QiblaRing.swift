@@ -183,8 +183,11 @@ struct QiblaCompassView: View {
                                       onNearest: { mosque = model.nearestMosque })
                                 .frame(maxWidth: 420)
                                 .accessibilityElement(children: .contain)
-                            Text(l10n.t("qibla_hold_flat") + " · " + l10n.t("qibla_approximate"))
-                                .font(.caption).foregroundStyle(Theme.ink.opacity(0.7)).multilineTextAlignment(.center)
+                            // Only where there is a compass to hold (not on a Mac).
+                            if model.location.headingAvailable {
+                                Text(l10n.t("qibla_hold_flat") + " · " + l10n.t("qibla_approximate"))
+                                    .font(.caption).foregroundStyle(Theme.ink.opacity(0.7)).multilineTextAlignment(.center)
+                            }
                         } else {
                             Text(l10n.t("qibla_location_needed")).padding(.top, 60)
                         }

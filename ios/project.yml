@@ -66,6 +66,8 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: Near Mosque
+        # The Mac menu bar shows this name.
+        CFBundleName: Near Mosque
         SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
         # Widgets open the app with nearmosque://prayer, nearmosque://qibla or nearmosque://ask.
         CFBundleURLTypes:
