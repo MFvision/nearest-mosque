@@ -88,7 +88,8 @@ class WidgetScreenshotTest {
 
     @Test fun mosqueSmallCream() = shoot("widget_mosque_small_cream", WidgetKind.MOSQUE_SMALL, WidgetStyle.CREAM, sampleMosques)
     @Test fun mosqueGreen() = shoot("widget_mosque_green", WidgetKind.MOSQUE, WidgetStyle.GREEN, sampleMosques)
-    @Test fun mosqueEmpty() = shoot("widget_mosque_empty_night", WidgetKind.MOSQUE, WidgetStyle.NIGHT)
+    @Test fun mosqueEmpty() = shoot("widget_mosque_empty_night", WidgetKind.MOSQUE, WidgetStyle.NIGHT, WidgetExtras(mosques = emptyList()))
+    @Test fun mosqueUnknown() = shoot("widget_mosque_unknown_cream", WidgetKind.MOSQUE_SMALL, WidgetStyle.CREAM)
     @Test fun askSmallNight() = shoot("widget_ask_small_night", WidgetKind.ASK_SMALL, WidgetStyle.NIGHT, sampleMosques)
     @Test fun askCream() = shoot("widget_ask_cream", WidgetKind.ASK, WidgetStyle.CREAM, sampleMosques)
 

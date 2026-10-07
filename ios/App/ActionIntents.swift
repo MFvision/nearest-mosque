@@ -172,7 +172,7 @@ final class OneShotLocation: NSObject, CLLocationManagerDelegate {
         guard status == .authorizedWhenInUse || status == .authorizedAlways else { return nil }
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        let fresh = await withCheckedContinuation { c in
+        let fresh: CLLocation? = await withCheckedContinuation { c in
             cont = c
             manager.requestLocation()
             Task { @MainActor in

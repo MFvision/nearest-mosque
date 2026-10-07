@@ -64,7 +64,8 @@ enum class WidgetKind(val layout: Int) {
 data class WidgetMosque(val id: String, val name: String, val meters: Double, val bearing: Double)
 
 /** What the mosque and Ask widgets show besides prayer times. */
-data class WidgetExtras(val mosques: List<WidgetMosque> = emptyList(), val questions: List<String> = emptyList()) {
+/** [mosques]: null when not known (no place yet, or the area's mosques are not on the phone); empty when none are within reach. */
+data class WidgetExtras(val mosques: List<WidgetMosque>? = null, val questions: List<String> = emptyList()) {
     /** Two suggested questions for today (they change every day). */
     fun todaysQuestions(day: Long): List<String> =
         if (questions.isEmpty()) emptyList() else listOf(questions[((2 * day) % questions.size).toInt()], questions[((2 * day + 1) % questions.size).toInt()]).distinct()
@@ -73,10 +74,14 @@ data class WidgetExtras(val mosques: List<WidgetMosque> = emptyList(), val quest
         suspend fun load(c: sa.zood.nearmosque.AppContainer, s: AppSettings, lang: String): WidgetExtras {
             val center = c.devicePosition.value?.location ?: s.prayerLocation?.location
             val mosques = center?.let { at ->
-                (runCatching { c.mosques.nearest(at, 25_000.0, lang) }.getOrNull() as? sa.zood.nearmosque.data.MosqueResult.Found)?.items?.take(3)?.map { r ->
-                    WidgetMosque(r.mosque.sourceId, r.mosque.displayName(lang) ?: "", r.distanceMeters, sa.zood.nearmosque.core.Geo.initialBearing(at, r.mosque.location))
+                when (val r = runCatching { c.mosques.nearest(at, 25_000.0, lang) }.getOrNull()) {
+                    is sa.zood.nearmosque.data.MosqueResult.Found -> r.items.take(3).map { m ->
+                        WidgetMosque(m.mosque.sourceId, m.mosque.displayName(lang) ?: "", m.distanceMeters, sa.zood.nearmosque.core.Geo.initialBearing(at, m.mosque.location))
+                    }
+                    is sa.zood.nearmosque.data.MosqueResult.NoRecordsInCoverage -> emptyList()
+                    else -> null
                 }
-            }.orEmpty()
+            }
             val questions = runCatching { c.ask.commonQuestions() }.getOrDefault(emptyList()).mapNotNull { it.question[lang] ?: it.question["en"] }
             return WidgetExtras(mosques, questions)
         }
@@ -337,11 +342,11 @@ object PrayerWidgets {
         val nf = java.text.NumberFormat.getIntegerInstance(context.resources.configuration.locales[0])
         val density = context.resources.displayMetrics.density
         if (kind == WidgetKind.QIBLA_SMALL) {
-            v.setImageViewBitmap(R.id.qibla_dial, qiblaDial(st, b, (140 * density).toInt()))
+            v.setImageViewBitmap(R.id.qibla_dial, qiblaDial(st, b, (140 * density).toInt(), context.getString(R.string.compass_north)))
             v.setTextViewText(R.id.qibla_caption, "${nf.format(deg)}° · ${loc.name}")
             v.setTextColor(R.id.qibla_caption, st.ink)
         } else {
-            v.setImageViewBitmap(R.id.qibla_dial, qiblaHalfDial(st, b, (170 * density).toInt()))
+            v.setImageViewBitmap(R.id.qibla_dial, qiblaHalfDial(st, b, (170 * density).toInt(), context.getString(R.string.compass_north)))
             v.setTextViewText(R.id.qibla_title, context.getString(R.string.widget_kind_qibla))
             v.setTextColor(R.id.qibla_title, st.secondary)
             v.setTextViewText(R.id.qibla_degrees, "${nf.format(deg)}°")
@@ -409,7 +414,7 @@ object PrayerWidgets {
     }
 
     /** North-up dial: ticks, N at the top, a gold arrow to the Qibla with a glow and the Kaaba where it points. */
-    private fun qiblaDial(st: WidgetStyle, bearing: Double, size: Int): Bitmap {
+    private fun qiblaDial(st: WidgetStyle, bearing: Double, size: Int, north: String): Bitmap {
         val b = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(b)
         val c = size / 2f
@@ -432,7 +437,7 @@ object PrayerWidgets {
         p.textSize = size * 0.085f
         p.isFakeBoldText = true
         p.textAlign = Paint.Align.CENTER
-        canvas.drawText("N", c, c - r + size * 0.115f, p)
+        canvas.drawText(north, c, c - r + size * 0.115f, p)
         val a = Math.toRadians(bearing)
         val tr = r - size * 0.25f
         val tx = c + tr * Math.sin(a).toFloat()
@@ -453,7 +458,7 @@ object PrayerWidgets {
     }
 
     /** Half a dial facing the Qibla: the Kaaba at the top, a gold arrow to it, and N where north lies (held at the edge when behind). */
-    private fun qiblaHalfDial(st: WidgetStyle, bearing: Double, width: Int): Bitmap {
+    private fun qiblaHalfDial(st: WidgetStyle, bearing: Double, width: Int, north: String): Bitmap {
         val height = (width * 0.62f).toInt()
         val b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(b)
@@ -496,7 +501,7 @@ object PrayerWidgets {
         p.textSize = width * 0.055f
         p.isFakeBoldText = true
         p.textAlign = Paint.Align.CENTER
-        canvas.drawText("N", nx, ny + width * 0.02f, p)
+        canvas.drawText(north, nx, ny + width * 0.02f, p)
         return b
     }
 
@@ -538,8 +543,9 @@ object PrayerWidgets {
         v.setTextViewText(R.id.widget_city, s.prayerLocation?.name.orEmpty())
         v.setTextColor(R.id.widget_city, st.secondary)
         v.setOnClickPendingIntent(R.id.widget_root, link(context, 10, "nearmosque://mosques"))
-        if (x.mosques.isEmpty()) {
-            v.setTextViewText(R.id.mq_empty, context.getString(R.string.no_records_title))
+        val list = x.mosques.orEmpty()
+        if (list.isEmpty()) {
+            v.setTextViewText(R.id.mq_empty, context.getString(if (x.mosques == null) R.string.siri_nearest_open_app else R.string.no_records_title))
             v.setTextColor(R.id.mq_empty, st.ink)
             v.setViewVisibility(R.id.mq_empty, View.VISIBLE)
             for (id in mqRows + listOf(R.id.mq0_name, R.id.mq0_row, R.id.mq_go)) v.setViewVisibility(id, View.GONE)
@@ -549,7 +555,7 @@ object PrayerWidgets {
         for (id in listOf(R.id.mq0_name, R.id.mq0_row, R.id.mq_go)) v.setViewVisibility(id, View.VISIBLE)
         fun dir(bearing: Double) = dirs[(((bearing % 360 + 360) % 360 + 22.5) / 45).toInt() % 8]
         // Small: the nearest one.
-        val first = x.mosques[0]
+        val first = list[0]
         v.setTextViewText(R.id.mq0_name, first.name.ifEmpty { context.getString(R.string.mosque_unnamed) })
         v.setTextColor(R.id.mq0_name, st.ink)
         v.setImageViewResource(R.id.mq0_dir, dir(first.bearing))
@@ -562,7 +568,7 @@ object PrayerWidgets {
         if (kind == WidgetKind.MOSQUE_SMALL) v.setOnClickPendingIntent(R.id.widget_root, link(context, 11, "nearmosque://mosque?id=${Uri.encode(first.id)}"))
         // Medium: up to three, each opening its page; the nearest highlighted.
         mqRows.forEachIndexed { i, row ->
-            val m = x.mosques.getOrNull(i)
+            val m = list.getOrNull(i)
             if (m == null) { v.setViewVisibility(row, View.INVISIBLE); return@forEachIndexed }
             v.setViewVisibility(row, View.VISIBLE)
             val hi = i == 0

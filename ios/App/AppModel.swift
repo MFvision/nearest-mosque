@@ -71,6 +71,10 @@ final class AppModel {
     /// Up to three nearest mosques and where they were measured from (shared with the widgets).
     private(set) var nearestMosques: [RankedMosque] = []
     private var nearestCenter: LatLng?
+    /// The mosque data covers the last place looked at (so an empty list means none within reach).
+    private var nearestCovered = false
+    /// Suggested questions in the reader's language, read once per language (not on every settings save).
+    private var questionsCache: (lang: String, list: [String])?
     /// Set by a widget tap: the mosques tab opens this mosque's page.
     var requestMosqueId: String?
     private var nearestKey: String?
@@ -96,8 +100,9 @@ final class AppModel {
     }
 
     /// Gives the widgets and Siri the city, method and language (shared keychain), and refreshes the widgets.
-    private func sharedMosques() -> [SharedMosque] {
-        guard let c = nearestCenter else { return [] }
+    /// nil when not known: no place looked at yet, or the area's mosques are not on the phone.
+    private func sharedMosques() -> [SharedMosque]? {
+        guard let c = nearestCenter, nearestCovered else { return nil }
         return nearestMosques.map { r in
             SharedMosque(id: r.id, name: r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), meters: r.distanceMeters, bearing: Geo.initialBearing(from: c, to: r.mosque.location))
         }
@@ -105,7 +110,10 @@ final class AppModel {
 
     private func sharedQuestions() -> [String] {
         let lang = l10n.language
-        return ((try? ask?.commonQuestions()) ?? []).compactMap { $0.question[lang] ?? $0.question["en"] }
+        if let c = questionsCache, c.lang == lang { return c.list }
+        let list = ((try? ask?.commonQuestions()) ?? []).compactMap { $0.question[lang] ?? $0.question["en"] }
+        if !list.isEmpty { questionsCache = (lang, list) }
+        return list
     }
 
     func shareWithWidgets() {
@@ -281,7 +289,14 @@ final class AppModel {
         let lang = l10n.language
         Task {
             let r = try? await Task.detached { try repo.nearest(center, radiusMeters: 25_000, lang: lang) }.value
-            if case let .found(list, _) = r { nearestMosque = list.first; nearestMosques = Array(list.prefix(3)) } else { nearestMosque = nil; nearestMosques = [] }
+            switch r {
+            case let .found(list, _):
+                nearestMosque = list.first; nearestMosques = Array(list.prefix(3)); nearestCovered = true
+            case .noRecordsInCoverage:
+                nearestMosque = nil; nearestMosques = []; nearestCovered = true
+            default:
+                nearestMosque = nil; nearestMosques = []; nearestCovered = false
+            }
             nearestCenter = center
             shareWithWidgets()
         }

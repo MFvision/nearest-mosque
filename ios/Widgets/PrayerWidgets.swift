@@ -67,7 +67,7 @@ struct WidgetFrame: View {
             .containerBackground(for: .widget) {
                 ZStack(alignment: .bottomTrailing) {
                     p.background
-                    Image("MosqueTab").renderingMode(.template).resizable().scaledToFit()
+                    Image(decorative: "MosqueTab").renderingMode(.template).resizable().scaledToFit()
                         .frame(width: 90, height: 90).foregroundStyle(p.accent.opacity(0.08)).offset(x: 14, y: 14)
                 }
             }

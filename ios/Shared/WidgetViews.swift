@@ -138,7 +138,7 @@ struct PrayerWidgetView: View {
                 }
             } else {
                 VStack(spacing: 6) {
-                    Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 26, height: 26).foregroundStyle(p.accent)
+                    Image(decorative: "MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 26, height: 26).foregroundStyle(p.accent)
                     Text(entry.state?.t("choose_city_title") ?? "Open Near Mosque to choose your city")
                         .font(.caption.weight(.semibold)).multilineTextAlignment(.center).foregroundStyle(p.ink)
                 }
@@ -499,14 +499,15 @@ extension PrayerWidgetView {
     @ViewBuilder func mosqueView(_ s: SharedState, _ p: WidgetPalette) -> some View {
         let list = s.mosques ?? []
         let title = HStack(spacing: 6) {
-            Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(p.accent)
+            Image(decorative: "MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(p.accent)
             Text(s.t("widget_kind_mosque")).font(.caption.weight(.bold)).foregroundStyle(p.secondary).lineLimit(1)
         }
         if list.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
                 title
                 Spacer(minLength: 0)
-                Text(s.t("no_records_title")).font(.subheadline.weight(.semibold)).foregroundStyle(p.ink)
+                // nil: not known yet, or this area's mosques are not on the phone; empty: none within reach.
+                Text(s.t(s.mosques == nil ? "siri_nearest_open_app" : "no_records_title")).font(.subheadline.weight(.semibold)).foregroundStyle(p.ink)
                 Text(s.name).font(.caption).foregroundStyle(p.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -534,7 +535,7 @@ extension PrayerWidgetView {
                 ForEach(Array(list.prefix(3).enumerated()), id: \.offset) { i, m in
                     Link(destination: URL(string: "nearmosque://mosque?id=\(PrayerWidgetKind.encode(m.id))")!) {
                         HStack(spacing: 8) {
-                            Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 16, height: 16)
+                            Image(decorative: "MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 16, height: 16)
                                 .foregroundStyle(i == 0 ? p.onPill : p.accent)
                             Text(m.name).font(.subheadline.weight(i == 0 ? .semibold : .regular)).lineLimit(1)
                             Spacer(minLength: 6)
@@ -600,29 +601,33 @@ extension PrayerWidgetView {
         if let here = s.location {
             let b = Qibla.bearing(from: here)
             let deg = Int(b.rounded()) % 360
+            let num = { (n: Int) in n.formatted(.number.locale(s.locale)) }
+            let north = s.t("compass_north")
             switch family {
             case .accessoryCircular:
                 ZStack {
                     AccessoryWidgetBackground()
-                    Text("N").font(.system(size: 9, weight: .bold)).offset(y: -22)
+                    Text(north).font(.system(size: 9, weight: .bold)).offset(y: -22)
                     Image(systemName: "location.north.fill").font(.system(size: 18, weight: .bold)).rotationEffect(.degrees(b))
                 }
                 .environment(\.layoutDirection, .leftToRight)
-                .accessibilityLabel(s.t("qibla_bearing", "\(deg)"))
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(s.t("qibla_bearing", num(deg)))
             case .systemSmall:
                 VStack(spacing: 4) {
-                    QiblaDial(bearing: b, palette: p, look: entry.look)
-                    Text("\(deg)° · \(s.name)").font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(1).minimumScaleFactor(0.7)
+                    QiblaDial(bearing: b, north: north, palette: p, look: entry.look)
+                    Text("\(num(deg))° · \(s.name)").font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(1).minimumScaleFactor(0.7)
                 }
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel(s.t("qibla_bearing", "\(deg)"))
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(s.t("qibla_bearing", num(deg)))
             default:
                 HStack(spacing: 14) {
-                    QiblaHalfDial(bearing: b, palette: p, look: entry.look)
+                    QiblaHalfDial(bearing: b, north: north, palette: p, look: entry.look)
+                        .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 3) {
                         Label(s.t("widget_kind_qibla"), systemImage: "location.north.line.fill").font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
-                        Text("\(deg)°").font(.system(size: 34, weight: .semibold)).monospacedDigit().foregroundStyle(p.ink)
-                        Text(b <= 180 ? s.t("widget_qibla_right", "\(deg)") : s.t("widget_qibla_left", "\(360 - deg)"))
+                        Text("\(num(deg))°").font(.system(size: 34, weight: .semibold)).monospacedDigit().foregroundStyle(p.ink)
+                        Text(deg <= 180 ? s.t("widget_qibla_right", num(deg)) : s.t("widget_qibla_left", num(360 - deg)))
                             .font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(2).minimumScaleFactor(0.8)
                         Text(s.t("qibla_distance", s.distance(Qibla.distanceMeters(from: here)))).font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
                         Spacer(minLength: 0)
@@ -650,7 +655,7 @@ extension PrayerWidgetView {
                         ZStack {
                             Circle().fill(p.pill)
                             if item.2 {
-                                Image(item.1).renderingMode(.template).resizable().scaledToFit().frame(width: 26, height: 26)
+                                Image(decorative: item.1).renderingMode(.template).resizable().scaledToFit().frame(width: 26, height: 26)
                             } else {
                                 Image(systemName: item.1).font(.system(size: 24, weight: .semibold))
                             }
@@ -684,6 +689,7 @@ private func tick(_ center: CGPoint, _ inner: CGFloat, _ outer: CGFloat, _ degre
 /// A north-up dial: ticks, N at the top, and a gold arrow to the Qibla with a glow and the Kaaba where it points.
 struct QiblaDial: View {
     let bearing: Double
+    let north: String
     let palette: WidgetPalette
     let look: WidgetLook
 
@@ -709,7 +715,7 @@ struct QiblaDial: View {
                     ctx.fill(Path(ellipseIn: CGRect(x: c.x - 4, y: c.y - 4, width: 8, height: 8)), with: .color(palette.pill))
                     ctx.fill(Path(ellipseIn: CGRect(x: tip.x - 13, y: tip.y - 13, width: 26, height: 26)), with: .color(palette.pill.opacity(0.3)))
                 }
-                Text("N").font(.system(size: 10, weight: .bold)).foregroundStyle(palette.accent).position(x: c.x, y: c.y - r + 11)
+                Text(north).font(.system(size: 10, weight: .bold)).foregroundStyle(palette.accent).position(x: c.x, y: c.y - r + 11)
                 WidgetKaaba().frame(width: 18, height: 18).position(tip)
             }
         }
@@ -722,6 +728,7 @@ struct QiblaDial: View {
 /// (held at the edge when north is behind you).
 struct QiblaHalfDial: View {
     let bearing: Double
+    let north: String
     let palette: WidgetPalette
     let look: WidgetLook
 
@@ -731,7 +738,7 @@ struct QiblaHalfDial: View {
             let r: CGFloat = min(g.size.width / 2 - 8, g.size.height - 30)
             let c = CGPoint(x: g.size.width / 2, y: g.size.height - 6)
             // North, relative to the Qibla at the top: -bearing, folded into -180...180 and held within the half.
-            let north: CGPoint = dialPoint(c, r, max(-90, min(90, Self.fold(-bearing))))
+            let northAt: CGPoint = dialPoint(c, r, max(-90, min(90, Self.fold(-bearing))))
             let top = CGPoint(x: c.x, y: c.y - r)
             ZStack {
                 Canvas { ctx, _ in
@@ -752,10 +759,10 @@ struct QiblaHalfDial: View {
                 WidgetKaaba().frame(width: 26, height: 26).position(top)
                 ZStack {
                     Circle().fill(palette.accent)
-                    Text("N").font(.system(size: 10, weight: .heavy)).foregroundStyle(palette.onPill)
+                    Text(north).font(.system(size: 10, weight: .heavy)).foregroundStyle(palette.onPill)
                 }
                 .frame(width: 18, height: 18)
-                .position(north)
+                .position(northAt)
             }
         }
         .environment(\.layoutDirection, .leftToRight)

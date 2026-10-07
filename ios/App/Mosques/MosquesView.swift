@@ -184,9 +184,11 @@ struct MosquesView: View {
         .animation(Theme.spring, value: mode)
     }
 
+    /// Opens the mosque a widget asked for if it is in the first list shown; otherwise drops the request,
+    /// so it cannot pop up later.
     private func openRequestedMosque() {
-        guard let id = app.requestMosqueId, let r = vm.items.first(where: { $0.id == id }) else { return }
-        selected = r
+        guard let id = app.requestMosqueId, !vm.items.isEmpty else { return }
+        if let r = vm.items.first(where: { $0.id == id }) { selected = r }
         app.requestMosqueId = nil
     }
 

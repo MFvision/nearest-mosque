@@ -195,9 +195,9 @@ struct AskView: View {
                 .environment(\.layoutDirection, l10n.layoutDirection)
         }
         .fullScreenCover(isPresented: $showLibrary) { LibraryView() }
-        #if DEBUG
         // The library packs follow the interface language (installed in the background when it changes).
         .task(id: l10n.language) { if app.ready { app.ensureLibraries(for: l10n.language) } }
+        #if DEBUG
         .task(id: app.ready) {
             // CI screenshots: `-demoAsk YES` asks the first common question.
             guard app.ready, vm.turns.isEmpty, UserDefaults.standard.bool(forKey: "demoAsk"),

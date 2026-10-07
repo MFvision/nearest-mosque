@@ -74,7 +74,7 @@ struct RootView: View {
         .onReceive(NotificationCenter.default.publisher(for: .openRoute)) { _ in PendingRoute.take().map(open) }
         .onChange(of: model.ready) { _, ready in
             // A question from Siri or a widget that arrived before the library was open.
-            if ready, let q = pendingQuestion { pendingQuestion = nil; ask.ask(model, q) }
+            if ready, let q = pendingQuestion { pendingQuestion = nil; ask.reset(); ask.ask(model, q) }
         }
         .onReceive(NotificationCenter.default.publisher(for: .openQibla)) { _ in openQiblaIfAsked() }
         .onAppear { openQiblaIfAsked(); PendingRoute.take().map(open); model.shareWithWidgets() }
@@ -103,6 +103,8 @@ extension RootView {
     /// A Siri request or control run before the app was open leaves this flag.
     fileprivate func open(_ url: URL) {
         let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
+        // A sheet on top would keep the requested screen from showing.
+        showSettings = false
         switch url.host {
         case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
         case "mosques": tab = .mosques; showAsk = false
@@ -111,7 +113,8 @@ extension RootView {
             model.requestMosqueId = query.first { $0.name == "id" }?.value
         case "ask":
             if let q = query.first(where: { $0.name == "q" })?.value, !q.isEmpty {
-                if model.ready { ask.ask(model, q) } else { pendingQuestion = q }
+                // Its own conversation: earlier turns would be mixed into a short question.
+                if model.ready { ask.reset(); ask.ask(model, q) } else { pendingQuestion = q }
             }
             showAsk = true
         default: tab = .prayer; showAsk = false
