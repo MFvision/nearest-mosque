@@ -124,6 +124,7 @@
     <string name="import_done">%1$s añadido</string>
     <string name="import_failed">No se pudo añadir el archivo: %1$s</string>
     <string name="import_pack">Importar desde archivo</string>
+    <string name="intent_ask_prompt">¿Qué quieres preguntar?</string>
     <string name="language">Idioma</string>
     <string name="library_answer">Respuesta</string>
     <string name="library_bookmark">Guardar</string>
@@ -335,6 +336,9 @@
     <string name="settings">Ajustes</string>
     <string name="show_less_detail">Menos detalles</string>
     <string name="show_more_detail">Más detalles</string>
+    <string name="siri_nearest_mosque">La mezquita más cercana es %1$s, a %2$s.</string>
+    <string name="siri_nearest_none">No hay ninguna mezquita registrada a menos de 25 km.</string>
+    <string name="siri_nearest_open_app">Abre Near Mosque una vez para que encuentre las mezquitas cercanas.</string>
     <string name="siri_next_prayer">%1$s es a las %2$s, dentro de %3$s.</string>
     <string name="site_alifta">Comité Permanente</string>
     <string name="site_binothaimeen">Ibn Uthaymin</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">Las mezquitas más cercanas, a qué distancia están y en qué dirección.</string>
     <string name="widget_kind_next">Próxima oración</string>
     <string name="widget_kind_next_desc">La próxima oración, su cuenta atrás y los horarios de hoy.</string>
+    <string name="widget_kind_ring">Anillo de oración</string>
+    <string name="widget_kind_ring_desc">El tiempo hasta la próxima oración en un anillo, con todos los horarios de hoy.</string>
     <string name="widget_kind_today">Oraciones de hoy</string>
     <string name="widget_kind_today_desc">Las cinco oraciones de tu ciudad, con la fecha y la próxima oración.</string>
     <string name="widget_next_description">La próxima oración con cuenta atrás</string>
     <string name="widget_remaining">Tiempo restante</string>
     <string name="widget_style_title">Estilo del widget</string>
     <string name="widget_times_description">La próxima oración y los horarios de hoy</string>
+    <string name="widget_until">Tiempo hasta</string>
 </resources>

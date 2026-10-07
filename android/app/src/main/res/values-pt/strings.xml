@@ -124,6 +124,7 @@
     <string name="import_done">%1$s adicionado</string>
     <string name="import_failed">Não foi possível adicionar este arquivo: %1$s</string>
     <string name="import_pack">Importar de arquivo</string>
+    <string name="intent_ask_prompt">O que você quer perguntar?</string>
     <string name="language">Idioma</string>
     <string name="library_answer">Resposta</string>
     <string name="library_bookmark">Salvar</string>
@@ -336,6 +337,9 @@
     <string name="settings">Configurações</string>
     <string name="show_less_detail">Mostrar menos</string>
     <string name="show_more_detail">Mostrar mais detalhes</string>
+    <string name="siri_nearest_mosque">A mesquita mais próxima é %1$s, a %2$s.</string>
+    <string name="siri_nearest_none">Não há mesquita registrada num raio de 25 km.</string>
+    <string name="siri_nearest_open_app">Abra o Near Mosque uma vez para encontrar mesquitas perto de você.</string>
     <string name="siri_next_prayer">%1$s é às %2$s, em %3$s.</string>
     <string name="site_alifta">Comitê Permanente (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -391,10 +395,13 @@
     <string name="widget_kind_mosque_desc">As mesquitas mais próximas, a que distância estão e em que direção.</string>
     <string name="widget_kind_next">Próxima oração</string>
     <string name="widget_kind_next_desc">A próxima oração, sua contagem regressiva e os horários de hoje.</string>
+    <string name="widget_kind_ring">Anel de oração</string>
+    <string name="widget_kind_ring_desc">O tempo até a próxima oração num anel, com todos os horários de hoje.</string>
     <string name="widget_kind_today">Orações de hoje</string>
     <string name="widget_kind_today_desc">As cinco orações da sua cidade, com a data e a próxima oração.</string>
     <string name="widget_next_description">A próxima oração com contagem regressiva</string>
     <string name="widget_remaining">Tempo restante</string>
     <string name="widget_style_title">Estilo do widget</string>
     <string name="widget_times_description">A próxima oração e os horários de hoje</string>
+    <string name="widget_until">Falta para</string>
 </resources>

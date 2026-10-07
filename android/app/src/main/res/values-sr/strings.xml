@@ -124,6 +124,7 @@
     <string name="import_done">Додато: %1$s</string>
     <string name="import_failed">Овај фајл није могуће додати: %1$s</string>
     <string name="import_pack">Увези из фајла</string>
+    <string name="intent_ask_prompt">Шта желите да питате?</string>
     <string name="language">Језик</string>
     <string name="library_answer">Одговор</string>
     <string name="library_bookmark">Сачувај</string>
@@ -336,6 +337,9 @@
     <string name="settings">Подешавања</string>
     <string name="show_less_detail">Прикажи мање</string>
     <string name="show_more_detail">Прикажи више детаља</string>
+    <string name="siri_nearest_mosque">Најближа џамија је %1$s, удаљена %2$s.</string>
+    <string name="siri_nearest_none">Нема забележене џамије у кругу од 25 км.</string>
+    <string name="siri_nearest_open_app">Отворите Near Mosque једном да пронађе џамије у близини.</string>
     <string name="siri_next_prayer">%1$s је у %2$s, за %3$s.</string>
     <string name="site_alifta">Стални комитет (alifta)</string>
     <string name="site_binothaimeen">Ибн Усејмин</string>
@@ -391,10 +395,13 @@
     <string name="widget_kind_mosque_desc">Најближе џамије, колико су удаљене и у ком правцу.</string>
     <string name="widget_kind_next">Следећи намаз</string>
     <string name="widget_kind_next_desc">Следећи намаз, одбројавање до њега и данашња намаска времена.</string>
+    <string name="widget_kind_ring">Прстен молитви</string>
+    <string name="widget_kind_ring_desc">Преостало време до следеће молитве на прстену, са свим данашњим временима.</string>
     <string name="widget_kind_today">Данашњи намази</string>
     <string name="widget_kind_today_desc">Свих пет намаза за ваш град, са датумом и следећим намазом.</string>
     <string name="widget_next_description">Следећи намаз са одбројавањем</string>
     <string name="widget_remaining">Преостало време</string>
     <string name="widget_style_title">Стил виџета</string>
     <string name="widget_times_description">Следећи намаз и данашња времена</string>
+    <string name="widget_until">Преостало до</string>
 </resources>

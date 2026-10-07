@@ -124,6 +124,7 @@
     <string name="import_done">%1$s ditambahkan</string>
     <string name="import_failed">File tidak dapat ditambahkan: %1$s</string>
     <string name="import_pack">Impor dari file</string>
+    <string name="intent_ask_prompt">Apa yang ingin Anda tanyakan?</string>
     <string name="language">Bahasa</string>
     <string name="library_answer">Jawaban</string>
     <string name="library_bookmark">Simpan</string>
@@ -334,6 +335,9 @@
     <string name="settings">Pengaturan</string>
     <string name="show_less_detail">Tampilkan lebih sedikit</string>
     <string name="show_more_detail">Tampilkan detail</string>
+    <string name="siri_nearest_mosque">Masjid terdekat adalah %1$s, berjarak %2$s.</string>
+    <string name="siri_nearest_none">Tidak ada masjid tercatat dalam radius 25 km dari Anda.</string>
+    <string name="siri_nearest_open_app">Buka Near Mosque sekali agar dapat menemukan masjid di dekat Anda.</string>
     <string name="siri_next_prayer">%1$s pukul %2$s, %3$s lagi.</string>
     <string name="site_alifta">Lajnah Daimah</string>
     <string name="site_binothaimeen">Ibnu Utsaimin</string>
@@ -389,10 +393,13 @@
     <string name="widget_kind_mosque_desc">Masjid-masjid terdekat, jaraknya, dan arahnya.</string>
     <string name="widget_kind_next">Salat berikutnya</string>
     <string name="widget_kind_next_desc">Salat berikutnya, hitung mundurnya, dan jadwal hari ini.</string>
+    <string name="widget_kind_ring">Lingkar salat</string>
+    <string name="widget_kind_ring_desc">Sisa waktu menuju salat berikutnya dalam lingkaran, dengan semua jadwal hari ini.</string>
     <string name="widget_kind_today">Salat hari ini</string>
     <string name="widget_kind_today_desc">Lima waktu salat untuk kota Anda, dengan tanggal dan salat berikutnya.</string>
     <string name="widget_next_description">Salat berikutnya dengan hitung mundur</string>
     <string name="widget_remaining">Sisa waktu</string>
     <string name="widget_style_title">Gaya widget</string>
     <string name="widget_times_description">Salat berikutnya dan jadwal hari ini</string>
+    <string name="widget_until">Sisa waktu menuju</string>
 </resources>

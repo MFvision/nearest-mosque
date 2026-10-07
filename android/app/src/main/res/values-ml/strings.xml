@@ -124,6 +124,7 @@
     <string name="import_done">%1$s ചേർത്തു</string>
     <string name="import_failed">ഈ ഫയൽ ചേർക്കാനായില്ല: %1$s</string>
     <string name="import_pack">ഫയലിൽ നിന്ന് ഇമ്പോർട്ട് ചെയ്യുക</string>
+    <string name="intent_ask_prompt">നിങ്ങൾക്ക് എന്താണ് ചോദിക്കേണ്ടത്?</string>
     <string name="language">ഭാഷ</string>
     <string name="library_answer">ഉത്തരം</string>
     <string name="library_bookmark">സേവ് ചെയ്യുക</string>
@@ -335,6 +336,9 @@
     <string name="settings">ക്രമീകരണങ്ങൾ</string>
     <string name="show_less_detail">കുറച്ച് കാണിക്കുക</string>
     <string name="show_more_detail">കൂടുതൽ വിശദാംശങ്ങൾ കാണിക്കുക</string>
+    <string name="siri_nearest_mosque">ഏറ്റവും അടുത്ത പള്ളി %1$s ആണ്, %2$s അകലെ.</string>
+    <string name="siri_nearest_none">നിങ്ങളിൽ നിന്ന് 25 കി.മീ. ഉള്ളിൽ രേഖപ്പെടുത്തിയ പള്ളിയില്ല.</string>
+    <string name="siri_nearest_open_app">അടുത്തുള്ള പള്ളികൾ കണ്ടെത്താൻ Near Mosque ഒരിക്കൽ തുറക്കുക.</string>
     <string name="siri_next_prayer">%1$s %2$s-ന്, %3$s കഴിഞ്ഞ്.</string>
     <string name="site_alifta">സ്ഥിരം സമിതി (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">ഏറ്റവും അടുത്ത പള്ളികൾ, അവയിലേക്കുള്ള ദൂരവും ദിശയും.</string>
     <string name="widget_kind_next">അടുത്ത നമസ്കാരം</string>
     <string name="widget_kind_next_desc">അടുത്ത നമസ്കാരം, അതിന്റെ കൗണ്ട്ഡൗൺ, ഇന്നത്തെ സമയങ്ങൾ.</string>
+    <string name="widget_kind_ring">നമസ്കാര വളയം</string>
+    <string name="widget_kind_ring_desc">അടുത്ത നമസ്കാരം വരെ ശേഷിക്കുന്ന സമയം ഒരു വളയത്തിൽ, ഇന്നത്തെ എല്ലാ സമയങ്ങളോടും കൂടി.</string>
     <string name="widget_kind_today">ഇന്നത്തെ നമസ്കാരങ്ങൾ</string>
     <string name="widget_kind_today_desc">നിങ്ങളുടെ നഗരത്തിലെ അഞ്ച് നമസ്കാരങ്ങളും, തീയതിയും അടുത്ത നമസ്കാരവും സഹിതം.</string>
     <string name="widget_next_description">കൗണ്ട്ഡൗണോടെ അടുത്ത നമസ്കാരം</string>
     <string name="widget_remaining">ബാക്കി സമയം</string>
     <string name="widget_style_title">വിജറ്റ് ശൈലി</string>
     <string name="widget_times_description">അടുത്ത നമസ്കാരവും ഇന്നത്തെ സമയങ്ങളും</string>
+    <string name="widget_until">ശേഷിക്കുന്ന സമയം:</string>
 </resources>

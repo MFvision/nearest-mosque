@@ -124,6 +124,7 @@
     <string name="import_done">%1$s شامل ہو گیا</string>
     <string name="import_failed">یہ فائل شامل نہیں ہو سکی: %1$s</string>
     <string name="import_pack">فائل سے درآمد کریں</string>
+    <string name="intent_ask_prompt">آپ کیا پوچھنا چاہتے ہیں؟</string>
     <string name="language">زبان</string>
     <string name="library_answer">جواب</string>
     <string name="library_bookmark">محفوظ کریں</string>
@@ -335,6 +336,9 @@
     <string name="settings">ترتیبات</string>
     <string name="show_less_detail">کم دکھائیں</string>
     <string name="show_more_detail">مزید تفصیل</string>
+    <string name="siri_nearest_mosque">قریب ترین مسجد %1$s ہے، %2$s دور۔</string>
+    <string name="siri_nearest_none">آپ سے 25 کلومیٹر کے اندر کوئی مسجد درج نہیں۔</string>
+    <string name="siri_nearest_open_app">ایک بار قریبی مسجد کھولیں تاکہ یہ آپ کے قریب مساجد تلاش کر سکے۔</string>
     <string name="siri_next_prayer">%1$s %2$s بجے ہے، %3$s میں۔</string>
     <string name="site_alifta">سعودی افتاء</string>
     <string name="site_binothaimeen">ابن عثیمین</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">قریب ترین مساجد، ان کا فاصلہ اور سمت۔</string>
     <string name="widget_kind_next">اگلی نماز</string>
     <string name="widget_kind_next_desc">اگلی نماز، اس کی الٹی گنتی اور آج کے اوقات۔</string>
+    <string name="widget_kind_ring">نماز رنگ</string>
+    <string name="widget_kind_ring_desc">اگلی نماز تک باقی وقت ایک دائرے پر، آج کے تمام اوقات کے ساتھ۔</string>
     <string name="widget_kind_today">آج کی نمازیں</string>
     <string name="widget_kind_today_desc">آپ کے شہر کی پانچوں نمازیں، تاریخ اور اگلی نماز کے ساتھ۔</string>
     <string name="widget_next_description">اگلی نماز اور الٹی گنتی</string>
     <string name="widget_remaining">باقی وقت</string>
     <string name="widget_style_title">وجیٹ کا انداز</string>
     <string name="widget_times_description">اگلی نماز اور آج کے اوقات</string>
+    <string name="widget_until">باقی وقت تا</string>
 </resources>

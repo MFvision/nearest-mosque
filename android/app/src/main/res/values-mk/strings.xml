@@ -124,6 +124,7 @@
     <string name="import_done">Додадено: %1$s</string>
     <string name="import_failed">Оваа датотека не може да се додаде: %1$s</string>
     <string name="import_pack">Увези од датотека</string>
+    <string name="intent_ask_prompt">Што сакате да прашате?</string>
     <string name="language">Јазик</string>
     <string name="library_answer">Одговор</string>
     <string name="library_bookmark">Зачувај</string>
@@ -335,6 +336,9 @@
     <string name="settings">Поставки</string>
     <string name="show_less_detail">Прикажи помалку</string>
     <string name="show_more_detail">Прикажи повеќе детали</string>
+    <string name="siri_nearest_mosque">Најблиската џамија е %1$s, на %2$s.</string>
+    <string name="siri_nearest_none">Нема запишана џамија во радиус од 25 км.</string>
+    <string name="siri_nearest_open_app">Отворете го Near Mosque еднаш за да ги најде блиските џамии.</string>
     <string name="siri_next_prayer">%1$s е во %2$s, за %3$s.</string>
     <string name="site_alifta">Постојан комитет (alifta)</string>
     <string name="site_binothaimeen">Ибн Усејмин</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">Најблиските џамии, колку се оддалечени и во која насока.</string>
     <string name="widget_kind_next">Следен намаз</string>
     <string name="widget_kind_next_desc">Следниот намаз, одбројувањето до него и денешните времиња за намаз.</string>
+    <string name="widget_kind_ring">Прстен на молитви</string>
+    <string name="widget_kind_ring_desc">Преостанатото време до следната молитва на прстен, со сите денешни времиња.</string>
     <string name="widget_kind_today">Денешни намази</string>
     <string name="widget_kind_today_desc">Сите пет намази за вашиот град, со датумот и следниот намаз.</string>
     <string name="widget_next_description">Следниот намаз со одбројување</string>
     <string name="widget_remaining">Преостанато време</string>
     <string name="widget_style_title">Стил на виџетот</string>
     <string name="widget_times_description">Следниот намаз и денешните времиња</string>
+    <string name="widget_until">Преостанато до</string>
 </resources>

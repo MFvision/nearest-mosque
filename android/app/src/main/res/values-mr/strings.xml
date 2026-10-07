@@ -124,6 +124,7 @@
     <string name="import_done">%1$s जोडले</string>
     <string name="import_failed">ही फाइल जोडता आली नाही: %1$s</string>
     <string name="import_pack">फाइलमधून आयात करा</string>
+    <string name="intent_ask_prompt">तुम्हाला काय विचारायचे आहे?</string>
     <string name="language">भाषा</string>
     <string name="library_answer">उत्तर</string>
     <string name="library_bookmark">सेव्ह करा</string>
@@ -335,6 +336,9 @@
     <string name="settings">सेटिंग्ज</string>
     <string name="show_less_detail">कमी दाखवा</string>
     <string name="show_more_detail">अधिक तपशील दाखवा</string>
+    <string name="siri_nearest_mosque">सर्वात जवळची मशीद %1$s आहे, %2$s दूर.</string>
+    <string name="siri_nearest_none">तुमच्यापासून 25 किमीमध्ये कोणतीही मशीद नोंदलेली नाही.</string>
+    <string name="siri_nearest_open_app">जवळच्या मशिदी शोधण्यासाठी Near Mosque एकदा उघडा.</string>
     <string name="siri_next_prayer">%1$s %2$s वाजता आहे, %3$s मध्ये.</string>
     <string name="site_alifta">स्थायी समिती (alifta)</string>
     <string name="site_binothaimeen">इब्न उसैमीन</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">सर्वात जवळच्या मशिदी, त्यांचे अंतर आणि दिशा.</string>
     <string name="widget_kind_next">पुढची नमाज</string>
     <string name="widget_kind_next_desc">पुढची नमाज, तिचे काउंटडाउन आणि आजच्या वेळा.</string>
+    <string name="widget_kind_ring">नमाज वर्तुळ</string>
+    <string name="widget_kind_ring_desc">पुढील नमाजपर्यंत उरलेला वेळ वर्तुळावर, आजच्या सर्व वेळांसह.</string>
     <string name="widget_kind_today">आजच्या नमाज</string>
     <string name="widget_kind_today_desc">तुमच्या शहरातील पाचही नमाज, तारीख आणि पुढच्या नमाजसह.</string>
     <string name="widget_next_description">काउंटडाउनसह पुढची नमाज</string>
     <string name="widget_remaining">उरलेला वेळ</string>
     <string name="widget_style_title">विजेटची शैली</string>
     <string name="widget_times_description">पुढची नमाज आणि आजच्या वेळा</string>
+    <string name="widget_until">उरलेला वेळ:</string>
 </resources>

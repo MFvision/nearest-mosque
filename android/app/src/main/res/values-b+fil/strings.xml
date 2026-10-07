@@ -124,6 +124,7 @@
     <string name="import_done">Naidagdag ang %1$s</string>
     <string name="import_failed">Hindi maidagdag ang file na ito: %1$s</string>
     <string name="import_pack">Mag-import mula sa file</string>
+    <string name="intent_ask_prompt">Ano ang gusto mong itanong?</string>
     <string name="language">Wika</string>
     <string name="library_answer">Sagot</string>
     <string name="library_bookmark">I-save</string>
@@ -335,6 +336,9 @@
     <string name="settings">Mga Setting</string>
     <string name="show_less_detail">Ipakita ang mas kaunti</string>
     <string name="show_more_detail">Ipakita ang higit pang detalye</string>
+    <string name="siri_nearest_mosque">Ang pinakamalapit na masjid ay %1$s, %2$s ang layo.</string>
+    <string name="siri_nearest_none">Walang naitalang masjid sa loob ng 25 km mula sa iyo.</string>
+    <string name="siri_nearest_open_app">Buksan ang Near Mosque nang isang beses para mahanap ang mga masjid malapit sa iyo.</string>
     <string name="siri_next_prayer">Ang %1$s ay sa %2$s, sa loob ng %3$s.</string>
     <string name="site_alifta">Permanent Committee (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">Ang pinakamalalapit na masjid, gaano kalayo at saang direksyon.</string>
     <string name="widget_kind_next">Susunod na dasal</string>
     <string name="widget_kind_next_desc">Ang susunod na dasal, ang countdown nito at ang mga oras ngayong araw.</string>
+    <string name="widget_kind_ring">Singsing ng salah</string>
+    <string name="widget_kind_ring_desc">Ang natitirang oras bago ang susunod na salah sa isang singsing, kasama ang lahat ng oras ngayon.</string>
     <string name="widget_kind_today">Mga dasal ngayon</string>
     <string name="widget_kind_today_desc">Lahat ng limang dasal para sa iyong lungsod, kasama ang petsa at ang susunod na dasal.</string>
     <string name="widget_next_description">Ang susunod na dasal na may countdown</string>
     <string name="widget_remaining">Natitirang oras</string>
     <string name="widget_style_title">Istilo ng widget</string>
     <string name="widget_times_description">Ang susunod na dasal at ang mga oras ngayong araw</string>
+    <string name="widget_until">Natitirang oras bago ang</string>
 </resources>

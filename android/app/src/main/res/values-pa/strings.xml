@@ -124,6 +124,7 @@
     <string name="import_done">%1$s ਜੋੜਿਆ ਗਿਆ</string>
     <string name="import_failed">ਇਹ ਫ਼ਾਈਲ ਜੋੜੀ ਨਹੀਂ ਜਾ ਸਕੀ: %1$s</string>
     <string name="import_pack">ਫ਼ਾਈਲ ਤੋਂ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="intent_ask_prompt">ਤੁਸੀਂ ਕੀ ਪੁੱਛਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="language">ਭਾਸ਼ਾ</string>
     <string name="library_answer">ਜਵਾਬ</string>
     <string name="library_bookmark">ਸੰਭਾਲੋ</string>
@@ -335,6 +336,9 @@
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="show_less_detail">ਘੱਟ ਦਿਖਾਓ</string>
     <string name="show_more_detail">ਹੋਰ ਵੇਰਵਾ ਦਿਖਾਓ</string>
+    <string name="siri_nearest_mosque">ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ %1$s ਹੈ, %2$s ਦੂਰ।</string>
+    <string name="siri_nearest_none">ਤੁਹਾਡੇ ਤੋਂ 25 ਕਿਮੀ ਅੰਦਰ ਕੋਈ ਮਸਜਿਦ ਦਰਜ ਨਹੀਂ।</string>
+    <string name="siri_nearest_open_app">ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲੱਭਣ ਲਈ ਇੱਕ ਵਾਰ Near Mosque ਖੋਲ੍ਹੋ।</string>
     <string name="siri_next_prayer">%1$s %2$s ਵਜੇ ਹੈ, %3$s ਵਿੱਚ।</string>
     <string name="site_alifta">ਸਥਾਈ ਕਮੇਟੀ (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">ਸਭ ਤੋਂ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ, ਉਨ੍ਹਾਂ ਦੀ ਦੂਰੀ ਅਤੇ ਦਿਸ਼ਾ।</string>
     <string name="widget_kind_next">ਅਗਲੀ ਨਮਾਜ਼</string>
     <string name="widget_kind_next_desc">ਅਗਲੀ ਨਮਾਜ਼, ਉਸ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ।</string>
+    <string name="widget_kind_ring">ਨਮਾਜ਼ ਰਿੰਗ</string>
+    <string name="widget_kind_ring_desc">ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਬਾਕੀ ਸਮਾਂ ਇੱਕ ਰਿੰਗ ’ਤੇ, ਅੱਜ ਦੇ ਸਾਰੇ ਸਮਿਆਂ ਨਾਲ।</string>
     <string name="widget_kind_today">ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ</string>
     <string name="widget_kind_today_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੀਆਂ ਪੰਜੇ ਨਮਾਜ਼ਾਂ, ਤਾਰੀਖ਼ ਅਤੇ ਅਗਲੀ ਨਮਾਜ਼ ਸਮੇਤ।</string>
     <string name="widget_next_description">ਉਲਟੀ ਗਿਣਤੀ ਨਾਲ ਅਗਲੀ ਨਮਾਜ਼</string>
     <string name="widget_remaining">ਬਾਕੀ ਵਕਤ</string>
     <string name="widget_style_title">ਵਿਜੇਟ ਦੀ ਸ਼ੈਲੀ</string>
     <string name="widget_times_description">ਅਗਲੀ ਨਮਾਜ਼ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ</string>
+    <string name="widget_until">ਬਾਕੀ ਸਮਾਂ:</string>
 </resources>

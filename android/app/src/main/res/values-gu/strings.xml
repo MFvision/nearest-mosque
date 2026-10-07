@@ -124,6 +124,7 @@
     <string name="import_done">%1$s ઉમેર્યું</string>
     <string name="import_failed">આ ફાઇલ ઉમેરી શકાઈ નહીં: %1$s</string>
     <string name="import_pack">ફાઇલમાંથી ઇમ્પોર્ટ કરો</string>
+    <string name="intent_ask_prompt">તમે શું પૂછવા માંગો છો?</string>
     <string name="language">ભાષા</string>
     <string name="library_answer">જવાબ</string>
     <string name="library_bookmark">સેવ કરો</string>
@@ -335,6 +336,9 @@
     <string name="settings">સેટિંગ્સ</string>
     <string name="show_less_detail">ઓછું બતાવો</string>
     <string name="show_more_detail">વધુ વિગત બતાવો</string>
+    <string name="siri_nearest_mosque">સૌથી નજીકની મસ્જિદ %1$s છે, %2$s દૂર.</string>
+    <string name="siri_nearest_none">તમારાથી 25 કિમીમાં કોઈ મસ્જિદ નોંધાયેલી નથી.</string>
+    <string name="siri_nearest_open_app">નજીકની મસ્જિદો શોધવા માટે Near Mosque એક વાર ખોલો.</string>
     <string name="siri_next_prayer">%1$s %2$s વાગ્યે છે, %3$s માં.</string>
     <string name="site_alifta">કાયમી સમિતિ (alifta)</string>
     <string name="site_binothaimeen">ઇબ્ન ઉસૈમીન</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">સૌથી નજીકની મસ્જિદો, તેમનું અંતર અને દિશા.</string>
     <string name="widget_kind_next">આગામી નમાઝ</string>
     <string name="widget_kind_next_desc">આગામી નમાઝ, તેનું કાઉન્ટડાઉન અને આજના સમય.</string>
+    <string name="widget_kind_ring">નમાઝ રિંગ</string>
+    <string name="widget_kind_ring_desc">આગલી નમાઝ સુધીનો બાકી સમય રિંગ પર, આજના બધા સમય સાથે.</string>
     <string name="widget_kind_today">આજની નમાઝ</string>
     <string name="widget_kind_today_desc">તમારા શહેરની પાંચેય નમાઝ, તારીખ અને આગામી નમાઝ સાથે.</string>
     <string name="widget_next_description">કાઉન્ટડાઉન સાથે આગામી નમાઝ</string>
     <string name="widget_remaining">બાકી સમય</string>
     <string name="widget_style_title">વિજેટની શૈલી</string>
     <string name="widget_times_description">આગામી નમાઝ અને આજના સમય</string>
+    <string name="widget_until">બાકી સમય:</string>
 </resources>

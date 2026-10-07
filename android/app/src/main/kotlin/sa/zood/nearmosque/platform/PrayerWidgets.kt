@@ -7,6 +7,10 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
 import android.net.Uri
 import android.os.SystemClock
 import android.view.View
@@ -40,11 +44,17 @@ enum class WidgetStyle(
         R.drawable.widget_card_night, R.drawable.widget_pill_night, 0xFF081B29.toInt(), R.id.progress_night, R.string.style_night),
 }
 
-/** The widgets: next prayer (small, medium, large), the countdown bar, and today's prayers (medium, large). */
+/** The widgets: next prayer (small, medium, large), the countdown bar, the ring (small, medium, large), today's prayers
+ *  (medium, large), the nearest mosques and Ask (small, medium). */
 enum class WidgetKind(val layout: Int) {
     SMALL(R.layout.widget_small), MEDIUM(R.layout.widget_medium), LARGE(R.layout.widget_large),
-    COUNTDOWN(R.layout.widget_countdown), TODAY(R.layout.widget_today), TODAY_LARGE(R.layout.widget_today_large),
+    COUNTDOWN(R.layout.widget_countdown),
+    RING_SMALL(R.layout.widget_ring_small), RING_MEDIUM(R.layout.widget_ring_medium), RING(R.layout.widget_ring),
+    TODAY(R.layout.widget_today), TODAY_LARGE(R.layout.widget_today_large),
     MOSQUE_SMALL(R.layout.widget_mosque_small), MOSQUE(R.layout.widget_mosque), ASK_SMALL(R.layout.widget_ask_small), ASK(R.layout.widget_ask),
+    ;
+
+    val isRing get() = this == RING_SMALL || this == RING_MEDIUM || this == RING
 }
 
 /** One of the nearest mosques: distance and direction (degrees from north) from where the phone or the prayer city is. */
@@ -81,6 +91,8 @@ object PrayerWidgets {
     private val providers = listOf(
         PrayerWidgetSmall::class.java to WidgetKind.SMALL, PrayerWidgetMedium::class.java to WidgetKind.MEDIUM,
         PrayerWidgetLarge::class.java to WidgetKind.LARGE, PrayerWidgetCountdown::class.java to WidgetKind.COUNTDOWN,
+        PrayerWidgetRingSmall::class.java to WidgetKind.RING_SMALL, PrayerWidgetRingMedium::class.java to WidgetKind.RING_MEDIUM,
+        PrayerWidgetRing::class.java to WidgetKind.RING,
         PrayerWidgetToday::class.java to WidgetKind.TODAY, PrayerWidgetTodayLarge::class.java to WidgetKind.TODAY_LARGE,
         MosqueWidgetSmall::class.java to WidgetKind.MOSQUE_SMALL, MosqueWidget::class.java to WidgetKind.MOSQUE,
         AskWidgetSmall::class.java to WidgetKind.ASK_SMALL, AskWidget::class.java to WidgetKind.ASK,
@@ -131,11 +143,13 @@ object PrayerWidgets {
         val extras = WidgetExtras.load(context.container, s, Format.languageCode(context))
         var next: Instant? = null
         var bar = false
+        var ring = false
         for ((cls, kind) in providers) {
             for (id in m.getAppWidgetIds(ComponentName(context, cls))) {
                 val (v, at) = views(context, context.container, s, kind, style(context, id), extras)
                 next = at
                 bar = bar || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE
+                ring = ring || kind.isRing
                 m.updateAppWidget(id, v)
             }
         }
@@ -145,6 +159,8 @@ object PrayerWidgets {
             next?.plusSeconds(1),
             zone?.let { now.atZone(it).toLocalDate().plusDays(1).atStartOfDay(it).toInstant() },
             if (bar) now.plus(Duration.ofMinutes(30)) else null,
+            // The ring is a picture drawn here, so it moves on every 10 minutes.
+            if (ring) now.plus(Duration.ofMinutes(10)) else null,
         )
         candidates.minOrNull()?.let { scheduleNext(context, it.toEpochMilli()) }
     }
@@ -229,6 +245,12 @@ object PrayerWidgets {
         val fraction = if (start != null && next.at.isAfter(start)) Duration.between(start, now).toMillis().toDouble() / Duration.between(start, next.at).toMillis() else 0.0
         v.setProgressBar(st.progress, 1000, (fraction.coerceIn(0.0, 1.0) * 1000).toInt(), false)
         v.setInt(R.id.widget_timer, "setColorFilter", st.secondary)
+        if (kind.isRing) {
+            val px = ((if (kind == WidgetKind.RING) 260 else 150) * context.resources.displayMetrics.density).toInt()
+            v.setImageViewBitmap(R.id.ring_image, ringBitmap(st, fraction.coerceIn(0.0, 1.0), px))
+            v.setTextViewText(R.id.widget_left_label, context.getString(R.string.widget_until))
+            v.setTextColor(R.id.widget_left_label, st.secondary)
+        }
 
         // Today: dates, city, chips and the five tiles.
         v.setTextViewText(R.id.widget_weekday, weekday)
@@ -285,6 +307,32 @@ object PrayerWidgets {
             bell(rowBells[i], e, now0)
         }
         return v to next.at
+    }
+
+    /** The ring: a track, the elapsed part of the prayer period clockwise from the top, and a dot at its end. */
+    private fun ringBitmap(st: WidgetStyle, fraction: Double, size: Int): Bitmap {
+        val b = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(b)
+        val stroke = size * 0.032f
+        val dot = stroke * 1.25f
+        val pad = dot + stroke * 0.5f
+        val rect = RectF(pad, pad, size - pad, size - pad)
+        val arcColor = if (st == WidgetStyle.CREAM) 0xFFC99A3A.toInt() else st.accent
+        val line = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeWidth = stroke; strokeCap = Paint.Cap.ROUND }
+        line.color = if (st == WidgetStyle.CREAM) 0xFFFFFFFF.toInt() else (st.ink and 0x00FFFFFF) or (0x29 shl 24)
+        canvas.drawArc(rect, 0f, 360f, false, line)
+        line.color = arcColor
+        canvas.drawArc(rect, -90f, (fraction * 360).toFloat().coerceAtLeast(0.5f), false, line)
+        val r = rect.width() / 2
+        val a = Math.toRadians(fraction * 360)
+        val cx = (size / 2f + r * Math.sin(a)).toFloat()
+        val cy = (size / 2f - r * Math.cos(a)).toFloat()
+        val fill = Paint(Paint.ANTI_ALIAS_FLAG)
+        fill.color = 0xFFFFFFFF.toInt()
+        canvas.drawCircle(cx, cy, dot + stroke * 0.4f, fill)
+        fill.color = arcColor
+        canvas.drawCircle(cx, cy, dot, fill)
+        return b
     }
 
     private fun link(context: Context, code: Int, uri: String): PendingIntent =
@@ -404,6 +452,15 @@ class PrayerWidgetLarge : PrayerWidgetProvider()
 
 /** A bar that fills up until the next prayer. */
 class PrayerWidgetCountdown : PrayerWidgetProvider()
+
+/** Time left to the next prayer on a ring. */
+class PrayerWidgetRingSmall : PrayerWidgetProvider()
+
+/** The ring and today's six times. */
+class PrayerWidgetRingMedium : PrayerWidgetProvider()
+
+/** A large ring and today's six times in two columns. */
+class PrayerWidgetRing : PrayerWidgetProvider()
 
 /** Today's five prayers with the dates, the next prayer and the city. */
 class PrayerWidgetToday : PrayerWidgetProvider()

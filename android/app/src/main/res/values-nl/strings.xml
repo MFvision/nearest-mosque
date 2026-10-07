@@ -124,6 +124,7 @@
     <string name="import_done">%1$s toegevoegd</string>
     <string name="import_failed">Kon dit bestand niet toevoegen: %1$s</string>
     <string name="import_pack">Importeren uit bestand</string>
+    <string name="intent_ask_prompt">Wat wilt u vragen?</string>
     <string name="language">Taal</string>
     <string name="library_answer">Antwoord</string>
     <string name="library_bookmark">Bewaren</string>
@@ -335,6 +336,9 @@
     <string name="settings">Instellingen</string>
     <string name="show_less_detail">Minder tonen</string>
     <string name="show_more_detail">Meer details tonen</string>
+    <string name="siri_nearest_mosque">De dichtstbijzijnde moskee is %1$s, op %2$s.</string>
+    <string name="siri_nearest_none">Er staat geen moskee binnen 25 km van u.</string>
+    <string name="siri_nearest_open_app">Open Near Mosque één keer zodat het moskeeën bij u kan vinden.</string>
     <string name="siri_next_prayer">%1$s is om %2$s, over %3$s.</string>
     <string name="site_alifta">Permanent Comité (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">De dichtstbijzijnde moskeeën, hoe ver ze zijn en in welke richting.</string>
     <string name="widget_kind_next">Volgend gebed</string>
     <string name="widget_kind_next_desc">Het volgende gebed, de aftelling ernaartoe en de gebedstijden van vandaag.</string>
+    <string name="widget_kind_ring">Gebedsring</string>
+    <string name="widget_kind_ring_desc">De tijd tot het volgende gebed op een ring, met alle tijden van vandaag.</string>
     <string name="widget_kind_today">Gebeden van vandaag</string>
     <string name="widget_kind_today_desc">Alle vijf gebeden voor je stad, met de datum en het volgende gebed.</string>
     <string name="widget_next_description">Het volgende gebed met een aftelling</string>
     <string name="widget_remaining">Resterende tijd</string>
     <string name="widget_style_title">Widgetstijl</string>
     <string name="widget_times_description">Het volgende gebed en de tijden van vandaag</string>
+    <string name="widget_until">Nog te gaan tot</string>
 </resources>

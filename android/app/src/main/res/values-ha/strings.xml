@@ -124,6 +124,7 @@
     <string name="import_done">An ƙara %1$s</string>
     <string name="import_failed">Ba a iya ƙara wannan fayil ba: %1$s</string>
     <string name="import_pack">Shigo daga fayil</string>
+    <string name="intent_ask_prompt">Me kuke so ku tambaya?</string>
     <string name="language">Harshe</string>
     <string name="library_answer">Amsa</string>
     <string name="library_bookmark">Ajiye</string>
@@ -335,6 +336,9 @@
     <string name="settings">Saituna</string>
     <string name="show_less_detail">Nuna kaɗan</string>
     <string name="show_more_detail">Nuna ƙarin bayani</string>
+    <string name="siri_nearest_mosque">Masallaci mafi kusa shi ne %1$s, nisan %2$s.</string>
+    <string name="siri_nearest_none">Babu masallacin da aka rubuta a cikin kilomita 25 daga gare ku.</string>
+    <string name="siri_nearest_open_app">Bude Near Mosque sau ɗaya don ya nemo masallatai kusa da ku.</string>
     <string name="siri_next_prayer">%1$s da ƙarfe %2$s ne, nan da %3$s.</string>
     <string name="site_alifta">Kwamitin Dindindin (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">Masallatai mafi kusa, nisansu da kuma inda suke.</string>
     <string name="widget_kind_next">Sallah ta gaba</string>
     <string name="widget_kind_next_desc">Sallah ta gaba, ƙidayarta da lokutan sallah na yau.</string>
+    <string name="widget_kind_ring">Zoben sallah</string>
+    <string name="widget_kind_ring_desc">Lokacin da ya rage zuwa sallah ta gaba a kan zobe, tare da dukan lokutan yau.</string>
     <string name="widget_kind_today">Sallolin yau</string>
     <string name="widget_kind_today_desc">Salloli biyar na garinku, tare da kwanan wata da sallah ta gaba.</string>
     <string name="widget_next_description">Sallah ta gaba tare da ƙidaya</string>
     <string name="widget_remaining">Sauran lokaci</string>
     <string name="widget_style_title">Salon widget</string>
     <string name="widget_times_description">Sallah ta gaba da lokutan yau</string>
+    <string name="widget_until">Lokacin da ya rage zuwa</string>
 </resources>

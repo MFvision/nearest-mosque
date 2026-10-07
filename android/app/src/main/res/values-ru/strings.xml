@@ -124,6 +124,7 @@
     <string name="import_done">Добавлено: %1$s</string>
     <string name="import_failed">Не удалось добавить файл: %1$s</string>
     <string name="import_pack">Импорт из файла</string>
+    <string name="intent_ask_prompt">Что вы хотите спросить?</string>
     <string name="language">Язык</string>
     <string name="library_answer">Ответ</string>
     <string name="library_bookmark">Сохранить</string>
@@ -337,6 +338,9 @@
     <string name="settings">Настройки</string>
     <string name="show_less_detail">Свернуть</string>
     <string name="show_more_detail">Подробнее</string>
+    <string name="siri_nearest_mosque">Ближайшая мечеть: %1$s, в %2$s.</string>
+    <string name="siri_nearest_none">В радиусе 25 км мечетей не найдено.</string>
+    <string name="siri_nearest_open_app">Откройте Near Mosque один раз, чтобы найти мечети рядом.</string>
     <string name="siri_next_prayer">%1$s в %2$s, через %3$s.</string>
     <string name="site_alifta">Постоянный комитет (alifta)</string>
     <string name="site_binothaimeen">Ибн Усаймин</string>
@@ -392,10 +396,13 @@
     <string name="widget_kind_mosque_desc">Ближайшие мечети, расстояние до них и направление.</string>
     <string name="widget_kind_next">Следующий намаз</string>
     <string name="widget_kind_next_desc">Следующий намаз, обратный отсчёт и время намазов на сегодня.</string>
+    <string name="widget_kind_ring">Кольцо молитв</string>
+    <string name="widget_kind_ring_desc">Время до следующей молитвы на кольце и всё расписание на сегодня.</string>
     <string name="widget_kind_today">Намазы на сегодня</string>
     <string name="widget_kind_today_desc">Все пять намазов для вашего города, с датой и следующим намазом.</string>
     <string name="widget_next_description">Следующий намаз с обратным отсчётом</string>
     <string name="widget_remaining">Осталось</string>
     <string name="widget_style_title">Стиль виджета</string>
     <string name="widget_times_description">Следующий намаз и время на сегодня</string>
+    <string name="widget_until">Осталось до</string>
 </resources>

@@ -124,6 +124,7 @@
     <string name="import_done">%1$s قوشۇلدى</string>
     <string name="import_failed">بۇ ھۆججەتنى قوشقىلى بولمىدى: %1$s</string>
     <string name="import_pack">ھۆججەتتىن ئەكىرىش</string>
+    <string name="intent_ask_prompt">نېمە سورىماقچى؟</string>
     <string name="language">تىل</string>
     <string name="library_answer">جاۋاب</string>
     <string name="library_bookmark">ساقلاش</string>
@@ -335,6 +336,9 @@
     <string name="settings">تەڭشەك</string>
     <string name="show_less_detail">ئازراق كۆرسىتىش</string>
     <string name="show_more_detail">تېخىمۇ تەپسىلىي</string>
+    <string name="siri_nearest_mosque">ئەڭ يېقىن مەسچىت %1$s، %2$s يىراقلىقتا.</string>
+    <string name="siri_nearest_none">25 كىلومېتىر ئىچىدە خاتىرىلەنگەن مەسچىت يوق.</string>
+    <string name="siri_nearest_open_app">يېقىندىكى مەسچىتلەرنى تېپىش ئۈچۈن ئەڭ يېقىن مەسچىت نى بىر قېتىم ئېچىڭ.</string>
     <string name="siri_next_prayer">%1$s سائەت %2$s دە، %3$s دىن كېيىن.</string>
     <string name="site_alifta">دائىمىي كومىتېت (alifta)</string>
     <string name="site_binothaimeen">ئىبن ئۇسەيمىن</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">ئەڭ يېقىن مەسچىتلەر، ئۇلارنىڭ يىراقلىقى ۋە يۆنىلىشى.</string>
     <string name="widget_kind_next">كېيىنكى ناماز</string>
     <string name="widget_kind_next_desc">كېيىنكى ناماز، تەتۈر ساناق ۋە بۈگۈنكى ناماز ۋاقىتلىرى.</string>
+    <string name="widget_kind_ring">ناماز ھالقىسى</string>
+    <string name="widget_kind_ring_desc">كېيىنكى نامازغىچە قالغان ۋاقىت ھالقىدا، بۈگۈنكى بارلىق ۋاقىتلار بىلەن.</string>
     <string name="widget_kind_today">بۈگۈنكى نامازلار</string>
     <string name="widget_kind_today_desc">شەھىرىڭىزدىكى بەش ۋاخ ناماز، چېسلا ۋە كېيىنكى ناماز بىلەن بىرگە.</string>
     <string name="widget_next_description">تەتۈر ساناقلىق كېيىنكى ناماز</string>
     <string name="widget_remaining">قالغان ۋاقىت</string>
     <string name="widget_style_title">ۋىجېت ئۇسلۇبى</string>
     <string name="widget_times_description">كېيىنكى ناماز ۋە بۈگۈنكى ۋاقىتلار</string>
+    <string name="widget_until">قالغان ۋاقىت:</string>
 </resources>

@@ -124,6 +124,7 @@
     <string name="import_done">%1$s imeongezwa</string>
     <string name="import_failed">Imeshindwa kuongeza faili hii: %1$s</string>
     <string name="import_pack">Leta kutoka kwenye faili</string>
+    <string name="intent_ask_prompt">Ungependa kuuliza nini?</string>
     <string name="language">Lugha</string>
     <string name="library_answer">Jibu</string>
     <string name="library_bookmark">Hifadhi</string>
@@ -335,6 +336,9 @@
     <string name="settings">Mipangilio</string>
     <string name="show_less_detail">Onyesha machache</string>
     <string name="show_more_detail">Onyesha maelezo zaidi</string>
+    <string name="siri_nearest_mosque">Msikiti wa karibu zaidi ni %1$s, umbali wa %2$s.</string>
+    <string name="siri_nearest_none">Hakuna msikiti uliorekodiwa ndani ya km 25 kutoka kwako.</string>
+    <string name="siri_nearest_open_app">Fungua Near Mosque mara moja ili ipate misikiti iliyo karibu nawe.</string>
     <string name="siri_next_prayer">%1$s ni saa %2$s, baada ya %3$s.</string>
     <string name="site_alifta">Kamati ya Kudumu (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">Misikiti iliyo karibu zaidi, umbali wake na upande ilipo.</string>
     <string name="widget_kind_next">Sala ijayo</string>
     <string name="widget_kind_next_desc">Sala ijayo, hesabu yake ya kurudi nyuma na nyakati za leo.</string>
+    <string name="widget_kind_ring">Mduara wa sala</string>
+    <string name="widget_kind_ring_desc">Muda uliobaki hadi sala inayofuata kwenye mduara, pamoja na nyakati zote za leo.</string>
     <string name="widget_kind_today">Sala za leo</string>
     <string name="widget_kind_today_desc">Sala zote tano za mji wako, pamoja na tarehe na sala ijayo.</string>
     <string name="widget_next_description">Sala ijayo pamoja na hesabu ya kurudi nyuma</string>
     <string name="widget_remaining">Muda uliobaki</string>
     <string name="widget_style_title">Mtindo wa wijeti</string>
     <string name="widget_times_description">Sala ijayo na nyakati za leo</string>
+    <string name="widget_until">Muda uliobaki hadi</string>
 </resources>

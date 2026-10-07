@@ -43,6 +43,7 @@ struct RootView: View {
     @State private var showAsk = Self.initialTab == .ask
     /// Kept here so closing Ask and opening it again keeps the conversation.
     @State private var ask = AskModel()
+    @State private var pendingQuestion: String?
 
     private static var initialTab: AppTab {
         #if DEBUG
@@ -68,23 +69,15 @@ struct RootView: View {
         .tint(Theme.gold)
         .modifier(TabBarMinimize())
         // Widgets: nearmosque://prayer, nearmosque://qibla, nearmosque://mosques, nearmosque://mosque?id=…,
-        // nearmosque://ask (optionally ?q=… to ask a suggested question). Siri and controls: openQibla.
-        .onOpenURL { url in
-            let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
-            switch url.host {
-            case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
-            case "mosques": tab = .mosques; showAsk = false
-            case "mosque":
-                tab = .mosques; showAsk = false
-                model.requestMosqueId = query.first { $0.name == "id" }?.value
-            case "ask":
-                if let q = query.first(where: { $0.name == "q" })?.value, !q.isEmpty { ask.ask(model, q) }
-                showAsk = true
-            default: tab = .prayer
-            }
+        // nearmosque://ask (optionally ?q=… to ask a question). Shortcuts: PendingRoute; controls: openQibla.
+        .onOpenURL { open($0) }
+        .onReceive(NotificationCenter.default.publisher(for: .openRoute)) { _ in PendingRoute.take().map(open) }
+        .onChange(of: model.ready) { _, ready in
+            // A question from Siri or a widget that arrived before the library was open.
+            if ready, let q = pendingQuestion { pendingQuestion = nil; ask.ask(model, q) }
         }
         .onReceive(NotificationCenter.default.publisher(for: .openQibla)) { _ in openQiblaIfAsked() }
-        .onAppear { openQiblaIfAsked(); model.shareWithWidgets() }
+        .onAppear { openQiblaIfAsked(); PendingRoute.take().map(open); model.shareWithWidgets() }
         .onChange(of: l10n.language) { _, _ in model.shareWithWidgets() }
         .modifier(AskAccessory { showAsk = true })
         .fullScreenCover(isPresented: $showAsk) {
@@ -108,6 +101,23 @@ struct RootView: View {
 
 extension RootView {
     /// A Siri request or control run before the app was open leaves this flag.
+    fileprivate func open(_ url: URL) {
+        let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
+        switch url.host {
+        case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
+        case "mosques": tab = .mosques; showAsk = false
+        case "mosque":
+            tab = .mosques; showAsk = false
+            model.requestMosqueId = query.first { $0.name == "id" }?.value
+        case "ask":
+            if let q = query.first(where: { $0.name == "q" })?.value, !q.isEmpty {
+                if model.ready { ask.ask(model, q) } else { pendingQuestion = q }
+            }
+            showAsk = true
+        default: tab = .prayer; showAsk = false
+        }
+    }
+
     fileprivate func openQiblaIfAsked() {
         guard UserDefaults.standard.bool(forKey: "openQiblaOnLaunch") else { return }
         UserDefaults.standard.set(false, forKey: "openQiblaOnLaunch")

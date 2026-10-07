@@ -124,6 +124,7 @@
     <string name="import_done">Dodano: %1$s</string>
     <string name="import_failed">Ovu datoteku nije moguće dodati: %1$s</string>
     <string name="import_pack">Uvezi iz datoteke</string>
+    <string name="intent_ask_prompt">Šta želite pitati?</string>
     <string name="language">Jezik</string>
     <string name="library_answer">Odgovor</string>
     <string name="library_bookmark">Sačuvaj</string>
@@ -336,6 +337,9 @@
     <string name="settings">Postavke</string>
     <string name="show_less_detail">Prikaži manje</string>
     <string name="show_more_detail">Prikaži više detalja</string>
+    <string name="siri_nearest_mosque">Najbliža džamija je %1$s, udaljena %2$s.</string>
+    <string name="siri_nearest_none">Nema zabilježene džamije u krugu od 25 km.</string>
+    <string name="siri_nearest_open_app">Otvorite Near Mosque jednom da pronađe džamije u blizini.</string>
     <string name="siri_next_prayer">%1$s je u %2$s, za %3$s.</string>
     <string name="site_alifta">Stalni komitet (alifta)</string>
     <string name="site_binothaimeen">Ibn Usejmin</string>
@@ -391,10 +395,13 @@
     <string name="widget_kind_mosque_desc">Najbliže džamije, koliko su udaljene i u kojem pravcu.</string>
     <string name="widget_kind_next">Sljedeći namaz</string>
     <string name="widget_kind_next_desc">Sljedeći namaz, odbrojavanje do njega i današnja namaska vremena.</string>
+    <string name="widget_kind_ring">Prsten namaza</string>
+    <string name="widget_kind_ring_desc">Preostalo vrijeme do sljedećeg namaza na prstenu, sa svim današnjim vremenima.</string>
     <string name="widget_kind_today">Današnji namazi</string>
     <string name="widget_kind_today_desc">Svih pet namaza za vaš grad, s datumom i sljedećim namazom.</string>
     <string name="widget_next_description">Sljedeći namaz s odbrojavanjem</string>
     <string name="widget_remaining">Preostalo vrijeme</string>
     <string name="widget_style_title">Stil widgeta</string>
     <string name="widget_times_description">Sljedeći namaz i današnja vremena</string>
+    <string name="widget_until">Preostalo do</string>
 </resources>

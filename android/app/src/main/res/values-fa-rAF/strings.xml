@@ -124,6 +124,7 @@
     <string name="import_done">%1$s اضافه شد</string>
     <string name="import_failed">این فایل اضافه نشد: %1$s</string>
     <string name="import_pack">وارد کردن از فایل</string>
+    <string name="intent_ask_prompt">چه می‌خواهید بپرسید؟</string>
     <string name="language">زبان</string>
     <string name="library_answer">پاسخ</string>
     <string name="library_bookmark">ذخیره</string>
@@ -335,6 +336,9 @@
     <string name="settings">تنظیمات</string>
     <string name="show_less_detail">کمتر</string>
     <string name="show_more_detail">جزئیات بیشتر</string>
+    <string name="siri_nearest_mosque">نزدیک‌ترین مسجد %1$s است، به فاصلهٔ %2$s.</string>
+    <string name="siri_nearest_none">هیچ مسجدی در فاصلهٔ ۲۵ کیلومتری شما ثبت نشده است.</string>
+    <string name="siri_nearest_open_app">یک بار نزدیک‌ترین مسجد را باز کنید تا مسجدهای نزدیک شما را پیدا کند.</string>
     <string name="siri_next_prayer">%1$s ساعت %2$s است، %3$s دیگر.</string>
     <string name="site_alifta">کمیته دائمی (alifta)</string>
     <string name="site_binothaimeen">ابن عثیمین</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">نزدیک‌ترین مساجد، فاصله و جهت آن‌ها.</string>
     <string name="widget_kind_next">نماز بعدی</string>
     <string name="widget_kind_next_desc">نماز بعدی، شمارش معکوس آن و اوقات نماز امروز.</string>
+    <string name="widget_kind_ring">حلقهٔ نماز</string>
+    <string name="widget_kind_ring_desc">وقت باقی‌مانده تا نماز بعدی روی یک حلقه، همراه با همهٔ اوقات امروز.</string>
     <string name="widget_kind_today">نمازهای امروز</string>
     <string name="widget_kind_today_desc">هر پنج نماز شهر شما، همراه با تاریخ و نماز بعدی.</string>
     <string name="widget_next_description">نماز بعدی با شمارش معکوس</string>
     <string name="widget_remaining">وقت باقی‌مانده</string>
     <string name="widget_style_title">سبک ویجت</string>
     <string name="widget_times_description">نماز بعدی و اوقات امروز</string>
+    <string name="widget_until">وقت باقی‌مانده تا</string>
 </resources>

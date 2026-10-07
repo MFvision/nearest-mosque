@@ -124,6 +124,7 @@
     <string name="import_done">%1$s එක් කළා</string>
     <string name="import_failed">මෙම ගොනුව එක් කළ නොහැකි විය: %1$s</string>
     <string name="import_pack">ගොනුවකින් ආයාත කරන්න</string>
+    <string name="intent_ask_prompt">ඔබට අසන්නට අවශ්‍ය කුමක්ද?</string>
     <string name="language">භාෂාව</string>
     <string name="library_answer">පිළිතුර</string>
     <string name="library_bookmark">සුරකින්න</string>
@@ -335,6 +336,9 @@
     <string name="settings">සැකසීම්</string>
     <string name="show_less_detail">අඩුවෙන් පෙන්වන්න</string>
     <string name="show_more_detail">වැඩි විස්තර පෙන්වන්න</string>
+    <string name="siri_nearest_mosque">ළඟම පල්ලිය %1$s, %2$s ක් දුරින්.</string>
+    <string name="siri_nearest_none">ඔබට කි.මී. 25ක් ඇතුළත වාර්තා වූ පල්ලියක් නැත.</string>
+    <string name="siri_nearest_open_app">ළඟ පල්ලි සොයා ගැනීමට Near Mosque එක් වරක් විවෘත කරන්න.</string>
     <string name="siri_next_prayer">%1$s %2$s ට, තව %3$s කින්.</string>
     <string name="site_alifta">ස්ථිර කමිටුව (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">ළඟම පල්ලි, ඒවාට ඇති දුර සහ දිශාව.</string>
     <string name="widget_kind_next">ඊළඟ සලාතය</string>
     <string name="widget_kind_next_desc">ඊළඟ සලාතය, එයට ඉතිරි කාලය සහ අද සලාත වේලාවන්.</string>
+    <string name="widget_kind_ring">සලාත් වළල්ල</string>
+    <string name="widget_kind_ring_desc">ඊළඟ සලාතයට ඉතිරි කාලය වළල්ලක, අද සියලු වේලාවන් සමඟ.</string>
     <string name="widget_kind_today">අද සලාත</string>
     <string name="widget_kind_today_desc">ඔබේ නගරයේ සලාත පහම, දිනය සහ ඊළඟ සලාතය සමඟ.</string>
     <string name="widget_next_description">ගණන් කිරීමක් සහිත ඊළඟ සලාතය</string>
     <string name="widget_remaining">ඉතිරි කාලය</string>
     <string name="widget_style_title">විජට් විලාසය</string>
     <string name="widget_times_description">ඊළඟ සලාතය සහ අද වේලාවන්</string>
+    <string name="widget_until">ඉතිරි කාලය:</string>
 </resources>

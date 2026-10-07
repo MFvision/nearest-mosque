@@ -15,9 +15,9 @@ enum WidgetLook: String, AppEnum {
     ]
 }
 
-/// Which widget: the next prayer, the countdown bar, today's five prayers, the nearest mosques, or Ask.
+/// Which widget: the next prayer, the countdown bar, the ring, today's five prayers, the nearest mosques, or Ask.
 enum PrayerWidgetKind {
-    case next, countdown, today, mosque, ask
+    case next, countdown, ring, today, mosque, ask
 
     /// Where a tap on the widget (outside its own links) goes.
     func url(_ state: SharedState?) -> URL? {
@@ -127,6 +127,7 @@ struct PrayerWidgetView: View {
                 switch kind {
                 case .next: nextView(s, next, p)
                 case .countdown: countdownView(s, next, p)
+                case .ring: ringView(s, next, p)
                 case .today, .mosque, .ask: todayView(s, next, p)
                 }
             } else {
@@ -349,6 +350,67 @@ struct PrayerWidgetView: View {
                 }
                 .padding(12)
                 .background(p.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            }
+        }
+    }
+
+    // MARK: Ring
+
+    /// Time left to the next prayer on a ring that fills clockwise from the top, with a dot at its end.
+    private func ring(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette, line: CGFloat, nameFont: Font, timeSize: CGFloat, label: Bool) -> some View {
+        let track = entry.look == .cream ? Color.white : p.ink.opacity(0.16)
+        let arc = entry.look == .cream ? p.pill : p.accent
+        return ZStack {
+            Circle().stroke(track, lineWidth: line)
+            Circle().trim(from: 0, to: max(0.005, entry.progress))
+                .stroke(arc, style: StrokeStyle(lineWidth: line, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+            GeometryReader { g in
+                let r = min(g.size.width, g.size.height) / 2
+                let a = entry.progress * 2 * .pi
+                Circle().fill(arc)
+                    .overlay(Circle().stroke(Color.white, lineWidth: line * 0.7))
+                    .frame(width: line * 2.6, height: line * 2.6)
+                    .position(x: g.size.width / 2 + r * sin(a), y: g.size.height / 2 - r * cos(a))
+            }
+            .environment(\.layoutDirection, .leftToRight)
+            VStack(spacing: 2) {
+                if label { Text(s.t("widget_until")).font(.caption).foregroundStyle(p.secondary) }
+                Text(name(s, next.event)).font(nameFont).foregroundStyle(p.ink).lineLimit(1).minimumScaleFactor(0.6)
+                countdown(next).font(.system(size: timeSize, weight: .medium)).foregroundStyle(p.ink)
+                    .multilineTextAlignment(.center).lineLimit(1).minimumScaleFactor(0.5)
+            }
+            .padding(.horizontal, line * 2.5)
+        }
+        .aspectRatio(1, contentMode: .fit)
+        .accessibilityElement(children: .combine)
+    }
+
+    /// Today's six times in two columns (Fajr to Dhuhr, then Asr to Isha).
+    private func grid(_ s: SharedState, _ p: WidgetPalette, font: Font) -> some View {
+        HStack(alignment: .top, spacing: 8) {
+            rows(s, p, events: [.fajr, .sunrise, .dhuhr], font: font, icons: false, bells: false)
+            rows(s, p, events: [.asr, .maghrib, .isha], font: font, icons: false, bells: false)
+        }
+    }
+
+    @ViewBuilder private func ringView(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette) -> some View {
+        switch family {
+        case .systemSmall:
+            ring(s, next, p, line: 6, nameFont: .subheadline.weight(.semibold), timeSize: 19, label: false)
+                .padding(4)
+        case .systemMedium:
+            HStack(spacing: 12) {
+                ring(s, next, p, line: 6, nameFont: .subheadline.weight(.semibold), timeSize: 19, label: true)
+                rows(s, p, events: PrayerEvent.allCases, font: .caption, icons: true, bells: false)
+                    .frame(maxWidth: .infinity)
+            }
+        default:
+            VStack(spacing: 12) {
+                ring(s, next, p, line: 8, nameFont: .title2.weight(.semibold), timeSize: 36, label: true)
+                    .padding(.horizontal, 30)
+                    .frame(maxHeight: .infinity)
+                grid(s, p, font: .subheadline)
             }
         }
     }

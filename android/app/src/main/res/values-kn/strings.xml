@@ -124,6 +124,7 @@
     <string name="import_done">%1$s ಸೇರಿಸಲಾಗಿದೆ</string>
     <string name="import_failed">ಈ ಫೈಲ್ ಅನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ: %1$s</string>
     <string name="import_pack">ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ</string>
+    <string name="intent_ask_prompt">ನೀವು ಏನು ಕೇಳಲು ಬಯಸುತ್ತೀರಿ?</string>
     <string name="language">ಭಾಷೆ</string>
     <string name="library_answer">ಉತ್ತರ</string>
     <string name="library_bookmark">ಉಳಿಸಿ</string>
@@ -335,6 +336,9 @@
     <string name="settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <string name="show_less_detail">ಕಡಿಮೆ ತೋರಿಸಿ</string>
     <string name="show_more_detail">ಹೆಚ್ಚಿನ ವಿವರ ತೋರಿಸಿ</string>
+    <string name="siri_nearest_mosque">ಹತ್ತಿರದ ಮಸೀದಿ %1$s, %2$s ದೂರದಲ್ಲಿ.</string>
+    <string name="siri_nearest_none">ನಿಮ್ಮಿಂದ 25 ಕಿ.ಮೀ. ಒಳಗೆ ದಾಖಲಾದ ಮಸೀದಿ ಇಲ್ಲ.</string>
+    <string name="siri_nearest_open_app">ಹತ್ತಿರದ ಮಸೀದಿಗಳನ್ನು ಹುಡುಕಲು Near Mosque ಅನ್ನು ಒಮ್ಮೆ ತೆರೆಯಿರಿ.</string>
     <string name="siri_next_prayer">%1$s %2$s ಕ್ಕೆ, %3$s ರಲ್ಲಿ.</string>
     <string name="site_alifta">ಸ್ಥಾಯಿ ಸಮಿತಿ (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">ಅತಿ ಹತ್ತಿರದ ಮಸೀದಿಗಳು, ಅವುಗಳ ದೂರ ಮತ್ತು ದಿಕ್ಕು.</string>
     <string name="widget_kind_next">ಮುಂದಿನ ನಮಾಜ್</string>
     <string name="widget_kind_next_desc">ಮುಂದಿನ ನಮಾಜ್, ಅದರ ಕ್ಷಣಗಣನೆ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು.</string>
+    <string name="widget_kind_ring">ನಮಾಜ್ ರಿಂಗ್</string>
+    <string name="widget_kind_ring_desc">ಮುಂದಿನ ನಮಾಜ್‌ವರೆಗೆ ಉಳಿದ ಸಮಯ ಒಂದು ರಿಂಗ್‌ನಲ್ಲಿ, ಇಂದಿನ ಎಲ್ಲ ಸಮಯಗಳೊಂದಿಗೆ.</string>
     <string name="widget_kind_today">ಇಂದಿನ ನಮಾಜ್‌ಗಳು</string>
     <string name="widget_kind_today_desc">ನಿಮ್ಮ ನಗರದ ಎಲ್ಲಾ ಐದು ನಮಾಜ್‌ಗಳು, ದಿನಾಂಕ ಮತ್ತು ಮುಂದಿನ ನಮಾಜ್‌ನೊಂದಿಗೆ.</string>
     <string name="widget_next_description">ಕ್ಷಣಗಣನೆಯೊಂದಿಗೆ ಮುಂದಿನ ನಮಾಜ್</string>
     <string name="widget_remaining">ಉಳಿದ ಸಮಯ</string>
     <string name="widget_style_title">ವಿಜೆಟ್ ಶೈಲಿ</string>
     <string name="widget_times_description">ಮುಂದಿನ ನಮಾಜ್ ಮತ್ತು ಇಂದಿನ ಸಮಯಗಳು</string>
+    <string name="widget_until">ಉಳಿದ ಸಮಯ:</string>
 </resources>

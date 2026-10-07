@@ -188,6 +188,8 @@ jobs:
           shot 21-widgets-today-ar -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind today -demoWidgetLook cream -languageOverride ar
           shot 22-widgets-mosque -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind mosque -demoWidgetLook cream -languageOverride en
           shot 23-widgets-ask-ar -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind ask -demoWidgetLook night -languageOverride ar
+          shot 24-widgets-ring-ar -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind ring -demoWidgetLook cream -languageOverride ar
+          shot 25-widgets-ring -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind ring -demoWidgetLook night -languageOverride en
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 11b-compact-bar-dark -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en

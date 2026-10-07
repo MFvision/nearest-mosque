@@ -124,6 +124,7 @@
     <string name="import_done">%1$s যোগ করা হয়েছে</string>
     <string name="import_failed">এই ফাইলটি যোগ করা যায়নি: %1$s</string>
     <string name="import_pack">ফাইল থেকে ইমপোর্ট করুন</string>
+    <string name="intent_ask_prompt">আপনি কী জানতে চান?</string>
     <string name="language">ভাষা</string>
     <string name="library_answer">উত্তর</string>
     <string name="library_bookmark">সেভ করুন</string>
@@ -335,6 +336,9 @@
     <string name="settings">সেটিংস</string>
     <string name="show_less_detail">কম দেখান</string>
     <string name="show_more_detail">আরও বিস্তারিত দেখান</string>
+    <string name="siri_nearest_mosque">সবচেয়ে কাছের মসজিদ %1$s, %2$s দূরে।</string>
+    <string name="siri_nearest_none">আপনার 25 কিমির মধ্যে কোনো মসজিদ নথিভুক্ত নেই।</string>
+    <string name="siri_nearest_open_app">কাছের মসজিদ খুঁজতে একবার Near Mosque খুলুন।</string>
     <string name="siri_next_prayer">%1$s %2$s-এ, %3$s পর।</string>
     <string name="site_alifta">স্থায়ী কমিটি (alifta)</string>
     <string name="site_binothaimeen">ইবনে উসাইমিন</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">নিকটতম মসজিদগুলো, সেগুলোর দূরত্ব ও দিক।</string>
     <string name="widget_kind_next">পরবর্তী নামাজ</string>
     <string name="widget_kind_next_desc">পরবর্তী নামাজ, তার কাউন্টডাউন ও আজকের সময়।</string>
+    <string name="widget_kind_ring">নামাজ রিং</string>
+    <string name="widget_kind_ring_desc">পরের নামাজ পর্যন্ত বাকি সময় একটি রিংয়ে, আজকের সব সময়সহ।</string>
     <string name="widget_kind_today">আজকের নামাজ</string>
     <string name="widget_kind_today_desc">আপনার শহরের পাঁচ ওয়াক্ত নামাজ, তারিখ ও পরবর্তী নামাজসহ।</string>
     <string name="widget_next_description">কাউন্টডাউনসহ পরবর্তী নামাজ</string>
     <string name="widget_remaining">বাকি সময়</string>
     <string name="widget_style_title">উইজেটের স্টাইল</string>
     <string name="widget_times_description">পরবর্তী নামাজ ও আজকের সময়</string>
+    <string name="widget_until">বাকি সময়:</string>
 </resources>

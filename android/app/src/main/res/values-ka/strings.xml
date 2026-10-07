@@ -124,6 +124,7 @@
     <string name="import_done">დაემატა: %1$s</string>
     <string name="import_failed">ამ ფაილის დამატება ვერ მოხერხდა: %1$s</string>
     <string name="import_pack">ფაილიდან იმპორტი</string>
+    <string name="intent_ask_prompt">რისი კითხვა გსურთ?</string>
     <string name="language">ენა</string>
     <string name="library_answer">პასუხი</string>
     <string name="library_bookmark">შენახვა</string>
@@ -335,6 +336,9 @@
     <string name="settings">პარამეტრები</string>
     <string name="show_less_detail">ნაკლების ჩვენება</string>
     <string name="show_more_detail">მეტი დეტალის ჩვენება</string>
+    <string name="siri_nearest_mosque">უახლოესი მეჩეთია %1$s, %2$s-ში.</string>
+    <string name="siri_nearest_none">25 კმ-ის რადიუსში მეჩეთი არ არის აღრიცხული.</string>
+    <string name="siri_nearest_open_app">ერთხელ გახსენით Near Mosque, რომ ახლომდებარე მეჩეთები იპოვოს.</string>
     <string name="siri_next_prayer">%1$s — %2$s-ზე, დარჩა %3$s.</string>
     <string name="site_alifta">მუდმივი კომიტეტი (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">უახლოესი მეჩეთები, რა მანძილზეა და რა მიმართულებით.</string>
     <string name="widget_kind_next">შემდეგი ლოცვა</string>
     <string name="widget_kind_next_desc">შემდეგი ლოცვა, მისი უკუთვლა და დღევანდელი ლოცვის დროები.</string>
+    <string name="widget_kind_ring">ლოცვის რგოლი</string>
+    <string name="widget_kind_ring_desc">შემდეგ ლოცვამდე დარჩენილი დრო რგოლზე, დღევანდელი ყველა დროით.</string>
     <string name="widget_kind_today">დღევანდელი ლოცვები</string>
     <string name="widget_kind_today_desc">თქვენი ქალაქის ხუთივე ლოცვა, თარიღით და შემდეგი ლოცვით.</string>
     <string name="widget_next_description">შემდეგი ლოცვა უკუთვლით</string>
     <string name="widget_remaining">დარჩენილი დრო</string>
     <string name="widget_style_title">ვიჯეტის სტილი</string>
     <string name="widget_times_description">შემდეგი ლოცვა და დღევანდელი დროები</string>
+    <string name="widget_until">დარჩენილი დრო:</string>
 </resources>

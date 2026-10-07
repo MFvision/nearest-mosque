@@ -42,6 +42,26 @@
         <item name="android:textSize">13sp</item>
         <item name="android:fontFeatureSettings">tnum</item>
     </style>
+    <style name="NMWidgetRow.Large">
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+    <style name="NMWidgetText.RowName.Large">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="NMWidgetText.RowTime.Large">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="NMWidgetText.RingName">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="NMWidgetText.RingTime">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
     <style name="NMWidgetText.TimeMedium" parent="NMWidgetText.Time">
         <item name="android:textSize">26sp</item>
     </style>

@@ -4,7 +4,7 @@ import SwiftUI
 import WidgetKit
 
 /// Debug builds only: the home-screen widgets drawn at their real sizes, for CI screenshots
-/// (`-demoWidgets YES -demoWidgetKind next|countdown|today|mosque|ask -demoWidgetLook cream|green|night`).
+/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask -demoWidgetLook cream|green|night`).
 /// Uses the city and settings chosen in the app, like the widgets themselves.
 struct WidgetGalleryView: View {
     @Environment(AppModel.self) private var model
@@ -12,6 +12,7 @@ struct WidgetGalleryView: View {
     private var kind: PrayerWidgetKind {
         switch UserDefaults.standard.string(forKey: "demoWidgetKind") {
         case "countdown": return .countdown
+        case "ring": return .ring
         case "today": return .today
         case "mosque": return .mosque
         case "ask": return .ask
@@ -23,7 +24,7 @@ struct WidgetGalleryView: View {
     private var sizes: [(WidgetFamily, CGSize)] {
         let small = CGSize(width: 170, height: 170), medium = CGSize(width: 364, height: 170), large = CGSize(width: 364, height: 382)
         switch kind {
-        case .next: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)]
+        case .next, .ring: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)]
         case .countdown: return [(.systemSmall, small), (.systemMedium, medium)]
         case .today: return [(.systemMedium, medium), (.systemLarge, large)]
         case .mosque, .ask: return [(.systemSmall, small), (.systemMedium, medium)]

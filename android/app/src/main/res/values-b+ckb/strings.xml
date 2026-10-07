@@ -124,6 +124,7 @@
     <string name="import_done">%1$s زیاد کرا</string>
     <string name="import_failed">نەتوانرا ئەم فایلە زیاد بکرێت: %1$s</string>
     <string name="import_pack">هێنان لە فایلەوە</string>
+    <string name="intent_ask_prompt">دەتەوێت چی بپرسیت؟</string>
     <string name="language">زمان</string>
     <string name="library_answer">وەڵام</string>
     <string name="library_bookmark">پاشەکەوت</string>
@@ -335,6 +336,9 @@
     <string name="settings">ڕێکخستنەکان</string>
     <string name="show_less_detail">کەمتر</string>
     <string name="show_more_detail">وردەکاری زیاتر</string>
+    <string name="siri_nearest_mosque">نزیکترین مزگەوت %1$s ـە، بە دووری %2$s.</string>
+    <string name="siri_nearest_none">هیچ مزگەوتێک لە ٢٥ کم لێتەوە تۆمار نەکراوە.</string>
+    <string name="siri_nearest_open_app">جارێک نزیکترین مزگەوت بکەرەوە بۆ ئەوەی مزگەوتە نزیکەکان بدۆزێتەوە.</string>
     <string name="siri_next_prayer">%1$s کاتژمێر %2$s دەبێت، دوای %3$s.</string>
     <string name="site_alifta">لیژنەی هەمیشەیی (alifta)</string>
     <string name="site_binothaimeen">ئیبن عوسەیمین</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">نزیکترین مزگەوتەکان، دووری و ئاراستەیان.</string>
     <string name="widget_kind_next">نوێژی داهاتوو</string>
     <string name="widget_kind_next_desc">نوێژی داهاتوو، ژمێرەری پێچەوانەکەی و کاتەکانی نوێژی ئەمڕۆ.</string>
+    <string name="widget_kind_ring">ئەڵقەی نوێژ</string>
+    <string name="widget_kind_ring_desc">کاتی ماوە بۆ نوێژی داهاتوو لەسەر ئەڵقەیەک، لەگەڵ هەموو کاتەکانی ئەمڕۆ.</string>
     <string name="widget_kind_today">نوێژەکانی ئەمڕۆ</string>
     <string name="widget_kind_today_desc">هەر پێنج نوێژی شارەکەت، لەگەڵ بەروار و نوێژی داهاتوو.</string>
     <string name="widget_next_description">نوێژی داهاتوو لەگەڵ ژمێرەری پێچەوانە</string>
     <string name="widget_remaining">کاتی ماوە</string>
     <string name="widget_style_title">شێوازی ویجێت</string>
     <string name="widget_times_description">نوێژی داهاتوو و کاتەکانی ئەمڕۆ</string>
+    <string name="widget_until">کاتی ماوە بۆ</string>
 </resources>

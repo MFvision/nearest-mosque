@@ -124,6 +124,7 @@
     <string name="import_done">已添加 %1$s</string>
     <string name="import_failed">无法添加此文件：%1$s</string>
     <string name="import_pack">从文件导入</string>
+    <string name="intent_ask_prompt">您想问什么？</string>
     <string name="language">语言</string>
     <string name="library_answer">回答</string>
     <string name="library_bookmark">保存</string>
@@ -334,6 +335,9 @@
     <string name="settings">设置</string>
     <string name="show_less_detail">收起</string>
     <string name="show_more_detail">显示更多详情</string>
+    <string name="siri_nearest_mosque">最近的清真寺是%1$s，距离%2$s。</string>
+    <string name="siri_nearest_none">您周围 25 公里内没有记录的清真寺。</string>
+    <string name="siri_nearest_open_app">请先打开一次 Near Mosque，以便查找附近的清真寺。</string>
     <string name="siri_next_prayer">%1$s 在 %2$s，还有 %3$s。</string>
     <string name="site_alifta">常设委员会（alifta）</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -389,10 +393,13 @@
     <string name="widget_kind_mosque_desc">最近的清真寺，有多远、在哪个方向。</string>
     <string name="widget_kind_next">下一次礼拜</string>
     <string name="widget_kind_next_desc">下一次礼拜、倒计时及今日礼拜时间。</string>
+    <string name="widget_kind_ring">礼拜圆环</string>
+    <string name="widget_kind_ring_desc">圆环显示距下次礼拜的剩余时间，并列出今天的全部时间。</string>
     <string name="widget_kind_today">今日礼拜</string>
     <string name="widget_kind_today_desc">你所在城市的五次礼拜，附日期和下一次礼拜。</string>
     <string name="widget_next_description">下一次礼拜及倒计时</string>
     <string name="widget_remaining">剩余时间</string>
     <string name="widget_style_title">小组件样式</string>
     <string name="widget_times_description">下一次礼拜及今日时间</string>
+    <string name="widget_until">距离</string>
 </resources>

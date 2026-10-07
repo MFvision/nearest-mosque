@@ -124,6 +124,7 @@
     <string name="import_done">%1$s ajouté</string>
     <string name="import_failed">Impossible d’ajouter ce fichier : %1$s</string>
     <string name="import_pack">Importer un fichier</string>
+    <string name="intent_ask_prompt">Que voulez-vous demander ?</string>
     <string name="language">Langue</string>
     <string name="library_answer">Réponse</string>
     <string name="library_bookmark">Enregistrer</string>
@@ -335,6 +336,9 @@
     <string name="settings">Réglages</string>
     <string name="show_less_detail">Moins de détails</string>
     <string name="show_more_detail">Plus de détails</string>
+    <string name="siri_nearest_mosque">La mosquée la plus proche est %1$s, à %2$s.</string>
+    <string name="siri_nearest_none">Aucune mosquée n’est répertoriée à moins de 25 km.</string>
+    <string name="siri_nearest_open_app">Ouvrez Near Mosque une fois pour qu’elle trouve les mosquées proches.</string>
     <string name="siri_next_prayer">%1$s est à %2$s, dans %3$s.</string>
     <string name="site_alifta">Comité permanent</string>
     <string name="site_binothaimeen">Ibn Uthaymin</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">Les mosquées les plus proches, leur distance et leur direction.</string>
     <string name="widget_kind_next">Prochaine prière</string>
     <string name="widget_kind_next_desc">La prochaine prière, son compte à rebours et les horaires du jour.</string>
+    <string name="widget_kind_ring">Anneau de prière</string>
+    <string name="widget_kind_ring_desc">Le temps restant avant la prochaine prière sur un anneau, avec tous les horaires du jour.</string>
     <string name="widget_kind_today">Prières du jour</string>
     <string name="widget_kind_today_desc">Les cinq prières de votre ville, avec la date et la prochaine prière.</string>
     <string name="widget_next_description">La prochaine prière avec un compte à rebours</string>
     <string name="widget_remaining">Temps restant</string>
     <string name="widget_style_title">Style du widget</string>
     <string name="widget_times_description">La prochaine prière et les horaires du jour</string>
+    <string name="widget_until">Temps restant avant</string>
 </resources>

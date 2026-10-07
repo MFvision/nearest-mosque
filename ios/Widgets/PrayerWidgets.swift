@@ -18,6 +18,9 @@ struct PrayerWidgetIntent: WidgetConfigurationIntent {
 // MARK: - Timeline
 
 struct PrayerProvider: AppIntentTimelineProvider {
+    /// For the ring, which is drawn per entry: an entry every 5 minutes for the next 4 hours.
+    var fine = false
+
     func placeholder(in context: Context) -> PrayerEntry {
         PrayerEntry.make(Date(), look: .cream, state: SharedState.preview)
     }
@@ -39,8 +42,10 @@ struct PrayerProvider: AppIntentTimelineProvider {
             var cal = Calendar(identifier: .gregorian)
             cal.timeZone = state.zone
             let midnight = cal.startOfDay(for: now.addingTimeInterval(86_400))
-            for t in Set(times + [midnight]).sorted() where t > now && t < horizon {
-                entries.append(PrayerEntry.make(t.addingTimeInterval(1), look: configuration.look, state: state))
+            let steps = fine ? (1...48).map { now.addingTimeInterval(Double($0) * 300) } : []
+            let end = fine ? now.addingTimeInterval(4 * 3600 + 1) : horizon
+            for t in Set(times.map { $0.addingTimeInterval(1) } + [midnight.addingTimeInterval(1)] + steps).sorted() where t > now && t < end {
+                entries.append(PrayerEntry.make(t, look: configuration.look, state: state))
             }
         }
         let next = entries.count > 1 ? entries.last!.date : now.addingTimeInterval(3600)
@@ -89,6 +94,17 @@ struct CountdownWidget: Widget {
         .configurationDisplayName(LocalizedStringResource("widget_kind_countdown"))
         .description(LocalizedStringResource("widget_kind_countdown_desc"))
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
+    }
+}
+
+struct RingWidget: Widget {
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: "PrayerRing", intent: PrayerWidgetIntent.self, provider: PrayerProvider(fine: true)) { entry in
+            WidgetFrame(entry: entry, kind: .ring)
+        }
+        .configurationDisplayName(LocalizedStringResource("widget_kind_ring"))
+        .description(LocalizedStringResource("widget_kind_ring_desc"))
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
@@ -142,6 +158,7 @@ struct NearMosqueWidgets: WidgetBundle {
     var body: some Widget {
         PrayerWidget()
         CountdownWidget()
+        RingWidget()
         TodayWidget()
         MosqueWidget()
         AskWidget()

@@ -42,8 +42,8 @@ class WidgetScreenshotTest {
         c.settings.setReminder(sa.zood.nearmosque.core.PrayerEvent.MAGHRIB, true)
         val (views, _) = PrayerWidgets.views(context, c, c.settings.settings.first(), kind, style, extras)
         val density = context.resources.displayMetrics.density
-        val w = ((if (kind in setOf(WidgetKind.SMALL, WidgetKind.MOSQUE_SMALL, WidgetKind.ASK_SMALL)) 170 else 340) * density).toInt()
-        val h = (when (kind) { WidgetKind.LARGE, WidgetKind.TODAY_LARGE -> 380; WidgetKind.TODAY -> 180; else -> 170 } * density).toInt()
+        val w = ((if (kind in setOf(WidgetKind.SMALL, WidgetKind.MOSQUE_SMALL, WidgetKind.ASK_SMALL, WidgetKind.RING_SMALL)) 170 else 340) * density).toInt()
+        val h = (when (kind) { WidgetKind.LARGE, WidgetKind.TODAY_LARGE, WidgetKind.RING -> 380; WidgetKind.TODAY -> 180; else -> 170 } * density).toInt()
         val activity = org.robolectric.Robolectric.buildActivity(androidx.activity.ComponentActivity::class.java).setup().get()
         val parent = FrameLayout(activity).apply { setBackgroundColor(0xFFC8C8CD.toInt()); setPadding(24, 24, 24, 24) }
         val v = views.apply(activity, parent)
@@ -95,4 +95,10 @@ class WidgetScreenshotTest {
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
     fun askArabic() = shoot("widget_ask_green_ar", WidgetKind.ASK, WidgetStyle.GREEN,
         sampleMosques.copy(questions = listOf("كيف أصلي الوتر؟", "ما مفطرات الصيام؟")))
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun ringArabic() = shoot("widget_ring_cream_ar", WidgetKind.RING, WidgetStyle.CREAM)
+    @Test fun ringNight() = shoot("widget_ring_night", WidgetKind.RING, WidgetStyle.NIGHT)
+    @Test fun ringSmallGreen() = shoot("widget_ring_small_green", WidgetKind.RING_SMALL, WidgetStyle.GREEN)
+    @Test fun ringMediumCream() = shoot("widget_ring_medium_cream", WidgetKind.RING_MEDIUM, WidgetStyle.CREAM)
 }

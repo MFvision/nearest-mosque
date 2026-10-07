@@ -124,6 +124,7 @@
     <string name="import_done">تمت إضافة %1$s</string>
     <string name="import_failed">تعذّرت إضافة الملف: %1$s</string>
     <string name="import_pack">استيراد من ملف</string>
+    <string name="intent_ask_prompt">ماذا تريد أن تسأل؟</string>
     <string name="language">اللغة</string>
     <string name="library_answer">الجواب</string>
     <string name="library_bookmark">حفظ</string>
@@ -339,6 +340,9 @@
     <string name="settings">الإعدادات</string>
     <string name="show_less_detail">عرض أقل</string>
     <string name="show_more_detail">عرض تفاصيل أكثر</string>
+    <string name="siri_nearest_mosque">أقرب مسجد هو %1$s، على بعد %2$s.</string>
+    <string name="siri_nearest_none">لا يوجد مسجد مسجّل في نطاق 25 كم منك.</string>
+    <string name="siri_nearest_open_app">افتح تطبيق أقرب مسجد مرة ليجد المساجد القريبة منك.</string>
     <string name="siri_next_prayer">%1$s الساعة %2$s، بعد %3$s.</string>
     <string name="site_alifta">الإفتاء</string>
     <string name="site_binothaimeen">موقع ابن عثيمين</string>
@@ -394,10 +398,13 @@
     <string name="widget_kind_mosque_desc">أقرب المساجد، وبُعدها، واتجاهها.</string>
     <string name="widget_kind_next">الصلاة القادمة</string>
     <string name="widget_kind_next_desc">الصلاة القادمة وعدّها التنازلي ومواقيت اليوم.</string>
+    <string name="widget_kind_ring">حلقة الصلاة</string>
+    <string name="widget_kind_ring_desc">الوقت المتبقي للصلاة القادمة على حلقة، مع مواقيت اليوم كلها.</string>
     <string name="widget_kind_today">صلوات اليوم</string>
     <string name="widget_kind_today_desc">الصلوات الخمس لمدينتك مع التاريخ والصلاة القادمة.</string>
     <string name="widget_next_description">الصلاة القادمة مع العد التنازلي</string>
     <string name="widget_remaining">المتبقي</string>
     <string name="widget_style_title">نمط الأداة</string>
     <string name="widget_times_description">الصلاة القادمة ومواقيت اليوم</string>
+    <string name="widget_until">المتبقي حتى</string>
 </resources>

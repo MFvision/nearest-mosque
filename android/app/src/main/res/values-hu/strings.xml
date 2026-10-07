@@ -124,6 +124,7 @@
     <string name="import_done">Hozzáadva: %1$s</string>
     <string name="import_failed">Nem sikerült hozzáadni a fájlt: %1$s</string>
     <string name="import_pack">Importálás fájlból</string>
+    <string name="intent_ask_prompt">Mit szeretne kérdezni?</string>
     <string name="language">Nyelv</string>
     <string name="library_answer">Válasz</string>
     <string name="library_bookmark">Mentés</string>
@@ -335,6 +336,9 @@
     <string name="settings">Beállítások</string>
     <string name="show_less_detail">Kevesebb</string>
     <string name="show_more_detail">Több részlet</string>
+    <string name="siri_nearest_mosque">A legközelebbi mecset: %1$s, %2$s távolságra.</string>
+    <string name="siri_nearest_none">25 km-en belül nincs nyilvántartott mecset.</string>
+    <string name="siri_nearest_open_app">Nyissa meg egyszer a Near Mosque-ot, hogy megtalálja a közeli mecseteket.</string>
     <string name="siri_next_prayer">%1$s %2$s-kor, %3$s múlva.</string>
     <string name="site_alifta">Állandó Bizottság (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">A legközelebbi mecsetek, a távolságuk és az irányuk.</string>
     <string name="widget_kind_next">Következő ima</string>
     <string name="widget_kind_next_desc">A következő ima, a visszaszámlálás és a mai imaidők.</string>
+    <string name="widget_kind_ring">Imagyűrű</string>
+    <string name="widget_kind_ring_desc">A következő imáig hátralévő idő egy gyűrűn, a mai összes időponttal.</string>
     <string name="widget_kind_today">Mai imák</string>
     <string name="widget_kind_today_desc">Városod mind az öt imája, a dátummal és a következő imával.</string>
     <string name="widget_next_description">A következő ima visszaszámlálással</string>
     <string name="widget_remaining">Hátralévő idő</string>
     <string name="widget_style_title">Widget stílusa</string>
     <string name="widget_times_description">A következő ima és a mai időpontok</string>
+    <string name="widget_until">Hátralévő idő:</string>
 </resources>

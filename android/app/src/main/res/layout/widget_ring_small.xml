@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Time left to the next prayer on a ring. Colours, the ring picture and backgrounds are set from code per style (PrayerWidgets). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_cream"
+    android:padding="10dp">
+    <ImageView
+        android:id="@+id/widget_mark"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-14dp"
+        android:alpha="0.08"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_tab_mosque" />
+    <FrameLayout
+            android:id="@+id/ring_box"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/ring_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:importantForAccessibility="no" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <TextView android:id="@+id/widget_name" style="@style/NMWidgetText.Name" android:layout_gravity="center_horizontal" />
+                <Chronometer android:id="@+id/widget_countdown" style="@style/NMWidgetText.Countdown" android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </FrameLayout>
+</RelativeLayout>

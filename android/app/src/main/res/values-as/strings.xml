@@ -124,6 +124,7 @@
     <string name="import_done">%1$s যোগ কৰা হ\'ল</string>
     <string name="import_failed">এই ফাইলটো যোগ কৰিব পৰা নগ\'ল: %1$s</string>
     <string name="import_pack">ফাইলৰ পৰা আমদানি কৰক</string>
+    <string name="intent_ask_prompt">আপুনি কি সুধিব বিচাৰে?</string>
     <string name="language">ভাষা</string>
     <string name="library_answer">উত্তৰ</string>
     <string name="library_bookmark">ছেভ কৰক</string>
@@ -335,6 +336,9 @@
     <string name="settings">ছেটিংছ</string>
     <string name="show_less_detail">কম দেখুৱাওক</string>
     <string name="show_more_detail">অধিক বিৱৰণ দেখুৱাওক</string>
+    <string name="siri_nearest_mosque">আটাইতকৈ ওচৰৰ মছজিদ %1$s, %2$s দূৰত।</string>
+    <string name="siri_nearest_none">আপোনাৰ 25 কিমিৰ ভিতৰত কোনো মছজিদ নথিভুক্ত নাই।</string>
+    <string name="siri_nearest_open_app">ওচৰৰ মছজিদ বিচাৰিবলৈ এবাৰ Near Mosque খোলক।</string>
     <string name="siri_next_prayer">%1$s %2$s বজাত, %3$s পিছত।</string>
     <string name="site_alifta">স্থায়ী কমিটি (alifta)</string>
     <string name="site_binothaimeen">ইবনে উছাইমীন</string>
@@ -390,10 +394,13 @@
     <string name="widget_kind_mosque_desc">ওচৰৰ মছজিদসমূহ, সেইবোৰৰ দূৰত্ব আৰু দিশ।</string>
     <string name="widget_kind_next">পৰৱৰ্তী নামাজ</string>
     <string name="widget_kind_next_desc">পৰৱৰ্তী নামাজ, ইয়াৰ কাউণ্টডাউন আৰু আজিৰ সময়।</string>
+    <string name="widget_kind_ring">নামাজ ৰিং</string>
+    <string name="widget_kind_ring_desc">পৰৱৰ্তী নামাজলৈ বাকী সময় এটা ৰিঙত, আজিৰ সকলো সময়ৰ সৈতে।</string>
     <string name="widget_kind_today">আজিৰ নামাজ</string>
     <string name="widget_kind_today_desc">আপোনাৰ চহৰৰ পাঁচ ওৱাক্ত নামাজ, তাৰিখ আৰু পৰৱৰ্তী নামাজৰ সৈতে।</string>
     <string name="widget_next_description">কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ</string>
     <string name="widget_remaining">বাকী সময়</string>
     <string name="widget_style_title">ৱিজেটৰ শৈলী</string>
     <string name="widget_times_description">পৰৱৰ্তী নামাজ আৰু আজিৰ সময়</string>
+    <string name="widget_until">বাকী সময়:</string>
 </resources>

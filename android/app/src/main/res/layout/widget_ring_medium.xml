@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A ring with the time left to the next prayer, and today's six times. Colours, the ring picture and backgrounds are set from code per style (PrayerWidgets). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_cream"
+    android:padding="12dp">
+    <ImageView
+        android:id="@+id/widget_mark"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-14dp"
+        android:alpha="0.08"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_tab_mosque" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1">
+            <FrameLayout
+                android:id="@+id/ring_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/ring_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:importantForAccessibility="no" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <TextView android:id="@+id/widget_left_label" style="@style/NMWidgetText.Small" android:layout_gravity="center_horizontal" />
+                    <TextView android:id="@+id/widget_name" style="@style/NMWidgetText.Name" android:layout_gravity="center_horizontal" />
+                    <Chronometer android:id="@+id/widget_countdown" style="@style/NMWidgetText.Countdown" android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+            </FrameLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <LinearLayout android:id="@+id/row0" style="@style/NMWidgetRow">
+                <ImageView android:id="@+id/row0_icon" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginEnd="6dp" android:layout_gravity="center_vertical" android:importantForAccessibility="no" />
+                <TextView android:id="@+id/row0_name" style="@style/NMWidgetText.RowName" />
+                <TextView android:id="@+id/row0_time" style="@style/NMWidgetText.RowTime" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/row1" style="@style/NMWidgetRow">
+                <ImageView android:id="@+id/row1_icon" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginEnd="6dp" android:layout_gravity="center_vertical" android:importantForAccessibility="no" />
+                <TextView android:id="@+id/row1_name" style="@style/NMWidgetText.RowName" />
+                <TextView android:id="@+id/row1_time" style="@style/NMWidgetText.RowTime" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/row2" style="@style/NMWidgetRow">
+                <ImageView android:id="@+id/row2_icon" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginEnd="6dp" android:layout_gravity="center_vertical" android:importantForAccessibility="no" />
+                <TextView android:id="@+id/row2_name" style="@style/NMWidgetText.RowName" />
+                <TextView android:id="@+id/row2_time" style="@style/NMWidgetText.RowTime" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/row3" style="@style/NMWidgetRow">
+                <ImageView android:id="@+id/row3_icon" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginEnd="6dp" android:layout_gravity="center_vertical" android:importantForAccessibility="no" />
+                <TextView android:id="@+id/row3_name" style="@style/NMWidgetText.RowName" />
+                <TextView android:id="@+id/row3_time" style="@style/NMWidgetText.RowTime" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/row4" style="@style/NMWidgetRow">
+                <ImageView android:id="@+id/row4_icon" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginEnd="6dp" android:layout_gravity="center_vertical" android:importantForAccessibility="no" />
+                <TextView android:id="@+id/row4_name" style="@style/NMWidgetText.RowName" />
+                <TextView android:id="@+id/row4_time" style="@style/NMWidgetText.RowTime" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/row5" style="@style/NMWidgetRow">
+                <ImageView android:id="@+id/row5_icon" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginEnd="6dp" android:layout_gravity="center_vertical" android:importantForAccessibility="no" />
+                <TextView android:id="@+id/row5_name" style="@style/NMWidgetText.RowName" />
+                <TextView android:id="@+id/row5_time" style="@style/NMWidgetText.RowTime" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -124,6 +124,7 @@
     <string name="import_done">បានបន្ថែម %1$s</string>
     <string name="import_failed">មិនអាចបន្ថែមឯកសារនេះបានទេ៖ %1$s</string>
     <string name="import_pack">នាំចូលពីឯកសារ</string>
+    <string name="intent_ask_prompt">តើអ្នកចង់សួរអ្វី?</string>
     <string name="language">ភាសា</string>
     <string name="library_answer">ចម្លើយ</string>
     <string name="library_bookmark">រក្សាទុក</string>
@@ -334,6 +335,9 @@
     <string name="settings">ការកំណត់</string>
     <string name="show_less_detail">បង្ហាញតិច</string>
     <string name="show_more_detail">បង្ហាញព័ត៌មានលម្អិតបន្ថែម</string>
+    <string name="siri_nearest_mosque">វិហារឥស្លាមជិតបំផុតគឺ %1$s ចម្ងាយ %2$s។</string>
+    <string name="siri_nearest_none">មិនមានវិហារឥស្លាមដែលបានកត់ត្រាក្នុងចម្ងាយ 25 គ.ម ទេ។</string>
+    <string name="siri_nearest_open_app">បើក Near Mosque ម្ដង ដើម្បីស្វែងរកវិហារឥស្លាមនៅជិតអ្នក។</string>
     <string name="siri_next_prayer">%1$s នៅម៉ោង %2$s ក្នុងរយៈពេល %3$s ទៀត។</string>
     <string name="site_alifta">គណៈកម្មាធិការអចិន្ត្រៃយ៍ (alifta)</string>
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
@@ -389,10 +393,13 @@
     <string name="widget_kind_mosque_desc">ម៉ាស្ជិតជិតបំផុត ចម្ងាយ និងទិសដៅ។</string>
     <string name="widget_kind_next">សឡាតបន្ទាប់</string>
     <string name="widget_kind_next_desc">សឡាតបន្ទាប់ ការរាប់ថយក្រោយ និងម៉ោងសឡាតថ្ងៃនេះ។</string>
+    <string name="widget_kind_ring">រង្វង់សឡាត</string>
+    <string name="widget_kind_ring_desc">ពេលនៅសល់ដល់សឡាតបន្ទាប់លើរង្វង់ ជាមួយម៉ោងទាំងអស់ថ្ងៃនេះ។</string>
     <string name="widget_kind_today">សឡាតថ្ងៃនេះ</string>
     <string name="widget_kind_today_desc">សឡាតទាំងប្រាំសម្រាប់ទីក្រុងរបស់អ្នក ព្រមទាំងកាលបរិច្ឆេទ និងសឡាតបន្ទាប់។</string>
     <string name="widget_next_description">សឡាតបន្ទាប់ ជាមួយការរាប់ថយក្រោយ</string>
     <string name="widget_remaining">ពេលនៅសល់</string>
     <string name="widget_style_title">រចនាប័ទ្មវីដជែត</string>
     <string name="widget_times_description">សឡាតបន្ទាប់ និងម៉ោងថ្ងៃនេះ</string>
+    <string name="widget_until">ពេលនៅសល់ដល់</string>
 </resources>
