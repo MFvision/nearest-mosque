@@ -204,6 +204,50 @@ jobs:
           shot 15-compact-bar-large-text -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en
           shot 16-ask-large-text -demoCity "Cape Town" -demoTab ask -languageOverride en
           xcrun simctl ui "$UDID" content_size medium || true
+          xcrun simctl shutdown "$UDID" || true
+          # iPad (same universal app): portrait and landscape, English and Arabic, and the widgets.
+          IPAD=$(xcrun simctl list devices available -j | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)['devices']
+          rts=sorted([k for k in d if 'iOS' in k], key=lambda k: [int(x) for x in k.split('iOS-')[-1].split('-')])
+          for rt in reversed(rts):
+              for dev in d[rt]:
+                  if dev['name'].startswith('iPad Pro') and '13' in dev['name']:
+                      print(dev['udid']); sys.exit()
+              for dev in d[rt]:
+                  if dev['name'].startswith('iPad'):
+                      print(dev['udid']); sys.exit()
+          ")
+          if [ -n "$IPAD" ]; then
+            echo "iPad simulator $IPAD"
+            xcrun simctl boot "$IPAD" || true
+            xcrun simctl bootstatus "$IPAD" -b
+            xcrun simctl install "$IPAD" "$APP"
+            xcrun simctl privacy "$IPAD" grant location sa.zood.nearmosque || true
+            xcrun simctl location "$IPAD" set -33.9249,18.4241 || true
+            xcrun simctl status_bar "$IPAD" override --time 9:41 --batteryLevel 100 || true
+            xcrun simctl ui "$IPAD" appearance light || true
+            mkdir -p shots/ipad
+            ipad() { name=$1; shift
+              xcrun simctl terminate "$IPAD" sa.zood.nearmosque 2>/dev/null || true
+              xcrun simctl launch "$IPAD" sa.zood.nearmosque "$@"
+              sleep 10
+              xcrun simctl io "$IPAD" screenshot "shots/ipad/$name.png"
+            }
+            ipad 01-prayer -demoCity "Cape Town" -demoTab prayer -languageOverride en
+            ipad 02-prayer-landscape -demoCity "Cape Town" -demoTab prayer -demoLandscape YES -languageOverride en
+            ipad 03-prayer-ar -demoCity "Cape Town" -demoTab prayer -languageOverride ar
+            ipad 04-qibla -demoCity "Cape Town" -demoTab prayer -demoCompass YES -languageOverride en
+            ipad 05-mosques-map -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 1 -languageOverride en
+            ipad 06-mosques-landscape -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 1 -demoLandscape YES -languageOverride en
+            ipad 07-ask-answer -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
+            ipad 08-ask-landscape -demoCity "Cape Town" -demoTab ask -demoAsk YES -demoLandscape YES -languageOverride en
+            ipad 09-onboarding -demoOnboarding YES -demoOnboardingPage 0 -languageOverride en
+            ipad 10-widgets-today -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind today -demoWidgetLook cream -languageOverride en
+            xcrun simctl ui "$IPAD" appearance dark || true
+            ipad 11-prayer-dark-landscape -demoCity "Cape Town" -demoTab prayer -demoLandscape YES -languageOverride ar
+            xcrun simctl shutdown "$IPAD" || true
+          fi
           ls -la shots
           # Contact sheet for quick review.
           python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet pillow

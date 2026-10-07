@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 @main
 struct NearMosqueApp: App {
@@ -23,7 +24,15 @@ struct NearMosqueApp: App {
 extension NearMosqueApp {
     @ViewBuilder private var rootView: some View {
         #if DEBUG
-        if UserDefaults.standard.bool(forKey: "demoWidgets") { WidgetGalleryView() } else { RootView() }
+        Group {
+            if UserDefaults.standard.bool(forKey: "demoWidgets") { WidgetGalleryView() } else { RootView() }
+        }
+        .task {
+            // CI screenshots on iPad: `-demoLandscape YES` turns the window to landscape.
+            guard UserDefaults.standard.bool(forKey: "demoLandscape"),
+                  let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { _ in }
+        }
         #else
         RootView()
         #endif
