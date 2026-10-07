@@ -668,7 +668,20 @@ extension PrayerWidgetView {
     }
 }
 
-/// A north-up dial: ticks, N at the top, and a gold arrow to the Qibla with a glow where it points.
+/// A point at `radius` from `center`, `degrees` clockwise from straight up.
+private func dialPoint(_ center: CGPoint, _ radius: CGFloat, _ degrees: Double) -> CGPoint {
+    let a = degrees * .pi / 180
+    return CGPoint(x: center.x + radius * CGFloat(sin(a)), y: center.y - radius * CGFloat(cos(a)))
+}
+
+private func tick(_ center: CGPoint, _ inner: CGFloat, _ outer: CGFloat, _ degrees: Double) -> Path {
+    var p = Path()
+    p.move(to: dialPoint(center, inner, degrees))
+    p.addLine(to: dialPoint(center, outer, degrees))
+    return p
+}
+
+/// A north-up dial: ticks, N at the top, and a gold arrow to the Qibla with a glow and the Kaaba where it points.
 struct QiblaDial: View {
     let bearing: Double
     let palette: WidgetPalette
@@ -676,31 +689,28 @@ struct QiblaDial: View {
 
     var body: some View {
         GeometryReader { g in
-            let d = min(g.size.width, g.size.height)
-            let r = d / 2
+            let d: CGFloat = min(g.size.width, g.size.height)
+            let r: CGFloat = d / 2
             let c = CGPoint(x: g.size.width / 2, y: g.size.height / 2)
-            let a = bearing * .pi / 180
-            let tip = CGPoint(x: c.x + (r - 28) * sin(a), y: c.y - (r - 28) * cos(a))
+            let tip: CGPoint = dialPoint(c, r - 28, bearing)
+            let lineEnd: CGPoint = dialPoint(c, r - 39, bearing)
             ZStack {
-                Circle().fill(palette.card).frame(width: d, height: d).position(c)
-                ForEach(0..<36) { i in
-                    let t = Double(i) * 10 * .pi / 180
-                    let long = i % 9 == 0
-                    Path { path in
-                        path.move(to: CGPoint(x: c.x + (r - 2) * sin(t), y: c.y - (r - 2) * cos(t)))
-                        path.addLine(to: CGPoint(x: c.x + (r - (long ? 9 : 5)) * sin(t), y: c.y - (r - (long ? 9 : 5)) * cos(t)))
+                Canvas { ctx, _ in
+                    ctx.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: d, height: d)), with: .color(palette.card))
+                    for i in 0..<36 {
+                        let long = i % 9 == 0
+                        let inner: CGFloat = r - (long ? 9 : 5)
+                        ctx.stroke(tick(c, inner, r - 2, Double(i) * 10), with: .color(palette.secondary.opacity(long ? 0.8 : 0.4)), lineWidth: long ? 1.5 : 1)
                     }
-                    .stroke(palette.secondary.opacity(long ? 0.8 : 0.4), lineWidth: long ? 1.5 : 1)
+                    var arrow = Path()
+                    arrow.move(to: c)
+                    arrow.addLine(to: lineEnd)
+                    ctx.stroke(arrow, with: .color(palette.pill), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                    ctx.fill(Path(ellipseIn: CGRect(x: c.x - 4, y: c.y - 4, width: 8, height: 8)), with: .color(palette.pill))
+                    ctx.fill(Path(ellipseIn: CGRect(x: tip.x - 13, y: tip.y - 13, width: 26, height: 26)), with: .color(palette.pill.opacity(0.3)))
                 }
                 Text("N").font(.system(size: 10, weight: .bold)).foregroundStyle(palette.accent).position(x: c.x, y: c.y - r + 11)
-                Circle().fill(palette.pill.opacity(0.35)).frame(width: 26, height: 26).blur(radius: 3).position(tip)
-                Path { path in
-                    path.move(to: c)
-                    path.addLine(to: CGPoint(x: c.x + (r - 39) * sin(a), y: c.y - (r - 39) * cos(a)))
-                }
-                .stroke(palette.pill, style: StrokeStyle(lineWidth: 3, lineCap: .round))
                 WidgetKaaba().frame(width: 18, height: 18).position(tip)
-                Circle().fill(palette.pill).frame(width: 8, height: 8).position(c)
             }
         }
         .environment(\.layoutDirection, .leftToRight)
@@ -718,37 +728,34 @@ struct QiblaHalfDial: View {
     var body: some View {
         GeometryReader { g in
             // Room above the top for the Kaaba and its glow.
-            let r = min(g.size.width / 2 - 8, g.size.height - 30)
+            let r: CGFloat = min(g.size.width / 2 - 8, g.size.height - 30)
             let c = CGPoint(x: g.size.width / 2, y: g.size.height - 6)
-            // North, relative to the Qibla at the top: -bearing, folded into -180...180.
-            let north = max(-90, min(90, Self.fold(-bearing))) * .pi / 180
+            // North, relative to the Qibla at the top: -bearing, folded into -180...180 and held within the half.
+            let north: CGPoint = dialPoint(c, r, max(-90, min(90, Self.fold(-bearing))))
+            let top = CGPoint(x: c.x, y: c.y - r)
             ZStack {
-                Path { path in
-                    path.addArc(center: c, radius: r, startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
-                }
-                .stroke(palette.card, lineWidth: 14)
-                ForEach(0..<13) { i in
-                    let t = (Double(i) * 15 - 90) * .pi / 180
-                    Path { path in
-                        path.move(to: CGPoint(x: c.x + (r - 4) * sin(t), y: c.y - (r - 4) * cos(t)))
-                        path.addLine(to: CGPoint(x: c.x + (r + 4) * sin(t), y: c.y - (r + 4) * cos(t)))
+                Canvas { ctx, _ in
+                    var arc = Path()
+                    arc.addArc(center: c, radius: r, startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
+                    ctx.stroke(arc, with: .color(palette.card), lineWidth: 14)
+                    for i in 0...12 {
+                        let major = i % 6 == 0
+                        ctx.stroke(tick(c, r - 4, r + 4, Double(i) * 15 - 90), with: .color(palette.secondary.opacity(major ? 0.9 : 0.45)), lineWidth: major ? 1.6 : 1)
                     }
-                    .stroke(palette.secondary.opacity(i % 6 == 0 ? 0.9 : 0.45), lineWidth: i % 6 == 0 ? 1.6 : 1)
+                    var arrow = Path()
+                    arrow.move(to: c)
+                    arrow.addLine(to: CGPoint(x: c.x, y: c.y - r + 22))
+                    ctx.stroke(arrow, with: .color(palette.pill), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                    ctx.fill(Path(ellipseIn: CGRect(x: c.x - 5, y: c.y - 5, width: 10, height: 10)), with: .color(palette.pill))
+                    ctx.fill(Path(ellipseIn: CGRect(x: top.x - 20, y: top.y - 20, width: 40, height: 40)), with: .color(palette.pill.opacity(0.3)))
                 }
-                Path { path in
-                    path.move(to: c)
-                    path.addLine(to: CGPoint(x: c.x, y: c.y - r + 22))
-                }
-                .stroke(palette.pill, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                Circle().fill(palette.pill.opacity(0.35)).frame(width: 40, height: 40).blur(radius: 5).position(x: c.x, y: c.y - r)
-                WidgetKaaba().frame(width: 26, height: 26).position(x: c.x, y: c.y - r)
+                WidgetKaaba().frame(width: 26, height: 26).position(top)
                 ZStack {
                     Circle().fill(palette.accent)
                     Text("N").font(.system(size: 10, weight: .heavy)).foregroundStyle(palette.onPill)
                 }
                 .frame(width: 18, height: 18)
-                .position(x: c.x + r * sin(north), y: c.y - r * cos(north))
-                Circle().fill(palette.pill).frame(width: 10, height: 10).position(c)
+                .position(north)
             }
         }
         .environment(\.layoutDirection, .leftToRight)
