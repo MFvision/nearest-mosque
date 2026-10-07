@@ -380,9 +380,14 @@
     <string name="view_map">نەخشە</string>
     <string name="walking_route">ڕێگای پیادە · %1$s · %2$s</string>
     <string name="website">ماڵپەڕ</string>
+    <string name="widget_ask_suggested">ئەمانە بپرسە</string>
     <string name="widget_choose_city">«نزیکترین مزگەوت» بکەرەوە بۆ هەڵبژاردنی شارەکەت</string>
+    <string name="widget_kind_ask">دەربارەی ئیسلام بپرسە</string>
+    <string name="widget_kind_ask_desc">پرسیارێک بکە، یان دەست بنێ بە یەکێک لە پێشنیارەکانی ئەمڕۆ.</string>
     <string name="widget_kind_countdown">ژمێرەری پێچەوانەی نوێژ</string>
     <string name="widget_kind_countdown_desc">شریتێک کە تا نوێژی داهاتوو پڕ دەبێتەوە.</string>
+    <string name="widget_kind_mosque">نزیکترین مزگەوت</string>
+    <string name="widget_kind_mosque_desc">نزیکترین مزگەوتەکان، دووری و ئاراستەیان.</string>
     <string name="widget_kind_next">نوێژی داهاتوو</string>
     <string name="widget_kind_next_desc">نوێژی داهاتوو، ژمێرەری پێچەوانەکەی و کاتەکانی نوێژی ئەمڕۆ.</string>
     <string name="widget_kind_today">نوێژەکانی ئەمڕۆ</string>

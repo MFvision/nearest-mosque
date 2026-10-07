@@ -380,9 +380,14 @@
     <string name="view_map">नकाशा</string>
     <string name="walking_route">चालण्याचा मार्ग · %1$s · %2$s</string>
     <string name="website">वेबसाइट</string>
+    <string name="widget_ask_suggested">असे विचारून पाहा</string>
     <string name="widget_choose_city">तुमचे शहर निवडण्यासाठी Near Mosque ॲप उघडा</string>
+    <string name="widget_kind_ask">इस्लामबद्दल विचारा</string>
+    <string name="widget_kind_ask_desc">प्रश्न विचारा, किंवा आजच्या सूचनांपैकी एकावर टॅप करा.</string>
     <string name="widget_kind_countdown">नमाज काउंटडाउन</string>
     <string name="widget_kind_countdown_desc">पुढच्या नमाजपर्यंत भरत जाणारी पट्टी.</string>
+    <string name="widget_kind_mosque">जवळची मशीद</string>
+    <string name="widget_kind_mosque_desc">सर्वात जवळच्या मशिदी, त्यांचे अंतर आणि दिशा.</string>
     <string name="widget_kind_next">पुढची नमाज</string>
     <string name="widget_kind_next_desc">पुढची नमाज, तिचे काउंटडाउन आणि आजच्या वेळा.</string>
     <string name="widget_kind_today">आजच्या नमाज</string>

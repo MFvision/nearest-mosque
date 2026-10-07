@@ -10,11 +10,11 @@ import sa.zood.nearmosque.ui.theme.NearMosqueTheme
 
 /** AppCompatActivity so the per-app language override also applies on Android 12 and below. */
 class MainActivity : AppCompatActivity() {
-    /** Where a widget or an app-icon shortcut asked to go: "prayer", "qibla", "mosques" or "ask". */
+    /** Where a widget or an app-icon shortcut asked to go: a nearmosque:// link (prayer, qibla, mosques, mosque?id=…, ask?q=…). */
     private val route = MutableStateFlow<String?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) route.value = intent?.data?.host
+        if (savedInstanceState == null) route.value = intent?.data?.toString()
         // Status and navigation bar icons follow light and dark mode (dark icons on the light skies).
         enableEdgeToEdge(
             statusBarStyle = androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: android.content.Intent) {
         super.onNewIntent(intent)
-        route.value = intent.data?.host
+        route.value = intent.data?.toString()
     }
 
     override fun onResume() {

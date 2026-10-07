@@ -382,9 +382,14 @@
     <string name="view_map">Карта</string>
     <string name="walking_route">Пешком · %1$s · %2$s</string>
     <string name="website">Сайт</string>
+    <string name="widget_ask_suggested">Попробуйте спросить</string>
     <string name="widget_choose_city">Откройте «Near Mosque», чтобы выбрать город</string>
+    <string name="widget_kind_ask">Спросить об исламе</string>
+    <string name="widget_kind_ask_desc">Задайте вопрос или нажмите на одну из подсказок дня.</string>
     <string name="widget_kind_countdown">Отсчёт до намаза</string>
     <string name="widget_kind_countdown_desc">Полоса, которая заполняется до следующего намаза.</string>
+    <string name="widget_kind_mosque">Ближайшая мечеть</string>
+    <string name="widget_kind_mosque_desc">Ближайшие мечети, расстояние до них и направление.</string>
     <string name="widget_kind_next">Следующий намаз</string>
     <string name="widget_kind_next_desc">Следующий намаз, обратный отсчёт и время намазов на сегодня.</string>
     <string name="widget_kind_today">Намазы на сегодня</string>

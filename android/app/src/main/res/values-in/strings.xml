@@ -379,9 +379,14 @@
     <string name="view_map">Peta</string>
     <string name="walking_route">Rute jalan kaki · %1$s · %2$s</string>
     <string name="website">Situs web</string>
+    <string name="widget_ask_suggested">Coba tanyakan</string>
     <string name="widget_choose_city">Buka aplikasi untuk memilih kota Anda</string>
+    <string name="widget_kind_ask">Tanya tentang Islam</string>
+    <string name="widget_kind_ask_desc">Ajukan pertanyaan, atau ketuk salah satu saran hari ini.</string>
     <string name="widget_kind_countdown">Hitung mundur salat</string>
     <string name="widget_kind_countdown_desc">Bilah yang terisi hingga salat berikutnya.</string>
+    <string name="widget_kind_mosque">Masjid terdekat</string>
+    <string name="widget_kind_mosque_desc">Masjid-masjid terdekat, jaraknya, dan arahnya.</string>
     <string name="widget_kind_next">Salat berikutnya</string>
     <string name="widget_kind_next_desc">Salat berikutnya, hitung mundurnya, dan jadwal hari ini.</string>
     <string name="widget_kind_today">Salat hari ini</string>

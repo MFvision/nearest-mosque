@@ -48,6 +48,9 @@ data class MosquesUi(
 )
 
 class MosquesViewModel(private val c: AppContainer) : ViewModel() {
+    /** A mosque a widget asked to open (source id); MosquesScreen opens its page once it is listed. */
+    val requestedId = kotlinx.coroutines.flow.MutableStateFlow<String?>(null)
+
     private val generation = SearchGeneration()
     private var job: Job? = null
     private val _ui = MutableStateFlow(MosquesUi())

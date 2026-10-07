@@ -67,11 +67,19 @@ struct RootView: View {
         }
         .tint(Theme.gold)
         .modifier(TabBarMinimize())
-        // Widgets: nearmosque://prayer, nearmosque://qibla, nearmosque://ask. Siri and controls: openQibla.
+        // Widgets: nearmosque://prayer, nearmosque://qibla, nearmosque://mosques, nearmosque://mosque?id=…,
+        // nearmosque://ask (optionally ?q=… to ask a suggested question). Siri and controls: openQibla.
         .onOpenURL { url in
+            let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
             switch url.host {
             case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
-            case "ask": showAsk = true
+            case "mosques": tab = .mosques; showAsk = false
+            case "mosque":
+                tab = .mosques; showAsk = false
+                model.requestMosqueId = query.first { $0.name == "id" }?.value
+            case "ask":
+                if let q = query.first(where: { $0.name == "q" })?.value, !q.isEmpty { ask.ask(model, q) }
+                showAsk = true
             default: tab = .prayer
             }
         }

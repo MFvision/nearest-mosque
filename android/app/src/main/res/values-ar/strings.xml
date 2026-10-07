@@ -384,9 +384,14 @@
     <string name="view_map">خريطة</string>
     <string name="walking_route">طريق المشي · %1$s · %2$s</string>
     <string name="website">الموقع</string>
+    <string name="widget_ask_suggested">جرّب أن تسأل</string>
     <string name="widget_choose_city">افتح التطبيق لاختيار مدينتك</string>
+    <string name="widget_kind_ask">اسأل عن الإسلام</string>
+    <string name="widget_kind_ask_desc">اطرح سؤالك، أو اضغط أحد اقتراحات اليوم.</string>
     <string name="widget_kind_countdown">العد التنازلي للصلاة</string>
     <string name="widget_kind_countdown_desc">شريط يمتلئ حتى الصلاة القادمة.</string>
+    <string name="widget_kind_mosque">أقرب مسجد</string>
+    <string name="widget_kind_mosque_desc">أقرب المساجد، وبُعدها، واتجاهها.</string>
     <string name="widget_kind_next">الصلاة القادمة</string>
     <string name="widget_kind_next_desc">الصلاة القادمة وعدّها التنازلي ومواقيت اليوم.</string>
     <string name="widget_kind_today">صلوات اليوم</string>

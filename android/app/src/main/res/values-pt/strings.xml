@@ -381,9 +381,14 @@
     <string name="view_map">Mapa</string>
     <string name="walking_route">Rota a pé · %1$s · %2$s</string>
     <string name="website">Site</string>
+    <string name="widget_ask_suggested">Experimente perguntar</string>
     <string name="widget_choose_city">Abra o Near Mosque para escolher sua cidade</string>
+    <string name="widget_kind_ask">Pergunte sobre o islã</string>
+    <string name="widget_kind_ask_desc">Faça uma pergunta ou toque em uma das sugestões de hoje.</string>
     <string name="widget_kind_countdown">Contagem regressiva</string>
     <string name="widget_kind_countdown_desc">Uma barra que se enche até a próxima oração.</string>
+    <string name="widget_kind_mosque">Mesquita mais próxima</string>
+    <string name="widget_kind_mosque_desc">As mesquitas mais próximas, a que distância estão e em que direção.</string>
     <string name="widget_kind_next">Próxima oração</string>
     <string name="widget_kind_next_desc">A próxima oração, sua contagem regressiva e os horários de hoje.</string>
     <string name="widget_kind_today">Orações de hoje</string>

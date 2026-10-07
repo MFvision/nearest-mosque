@@ -380,9 +380,14 @@
     <string name="view_map">Taswira</string>
     <string name="walking_route">Hanyar tafiya a ƙafa · %1$s · %2$s</string>
     <string name="website">Shafin yanar gizo</string>
+    <string name="widget_ask_suggested">Gwada tambaya</string>
     <string name="widget_choose_city">Buɗe Near Mosque don zaɓar garinku</string>
+    <string name="widget_kind_ask">Tambaya game da Musulunci</string>
+    <string name="widget_kind_ask_desc">Yi tambaya, ko ka taɓa ɗaya daga cikin shawarwarin yau.</string>
     <string name="widget_kind_countdown">Ƙidayar sallah</string>
     <string name="widget_kind_countdown_desc">Sandar da ke cika har zuwa sallah ta gaba.</string>
+    <string name="widget_kind_mosque">Masallaci mafi kusa</string>
+    <string name="widget_kind_mosque_desc">Masallatai mafi kusa, nisansu da kuma inda suke.</string>
     <string name="widget_kind_next">Sallah ta gaba</string>
     <string name="widget_kind_next_desc">Sallah ta gaba, ƙidayarta da lokutan sallah na yau.</string>
     <string name="widget_kind_today">Sallolin yau</string>

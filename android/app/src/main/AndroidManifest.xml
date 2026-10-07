@@ -106,6 +106,31 @@
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_widget_today_large" />
         </receiver>
 
+        <receiver android:name=".platform.MosqueWidgetSmall" android:exported="false" android:label="@string/widget_kind_mosque">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_mosque_small" />
+        </receiver>
+        <receiver android:name=".platform.MosqueWidget" android:exported="false" android:label="@string/widget_kind_mosque">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_mosque" />
+        </receiver>
+        <receiver android:name=".platform.AskWidgetSmall" android:exported="false" android:label="@string/widget_kind_ask">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_ask_small" />
+        </receiver>
+        <receiver android:name=".platform.AskWidget" android:exported="false" android:label="@string/widget_kind_ask">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_ask" />
+        </receiver>
+
         <!-- Persists the per-app language chosen in Settings on Android 12 and below. -->
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"

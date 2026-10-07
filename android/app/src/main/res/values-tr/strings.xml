@@ -380,9 +380,14 @@
     <string name="view_map">Harita</string>
     <string name="walking_route">Yürüyüş rotası · %1$s · %2$s</string>
     <string name="website">Web sitesi</string>
+    <string name="widget_ask_suggested">Şunları sormayı deneyin</string>
     <string name="widget_choose_city">Şehrinizi seçmek için uygulamayı açın</string>
+    <string name="widget_kind_ask">İslam hakkında sor</string>
+    <string name="widget_kind_ask_desc">Bir soru sorun veya bugünün önerilerinden birine dokunun.</string>
     <string name="widget_kind_countdown">Namaz geri sayımı</string>
     <string name="widget_kind_countdown_desc">Sonraki namaza kadar dolan bir çubuk.</string>
+    <string name="widget_kind_mosque">En yakın cami</string>
+    <string name="widget_kind_mosque_desc">En yakın camiler, uzaklıkları ve yönleri.</string>
     <string name="widget_kind_next">Sonraki namaz</string>
     <string name="widget_kind_next_desc">Sonraki namaz, geri sayımı ve bugünün vakitleri.</string>
     <string name="widget_kind_today">Bugünün namazları</string>

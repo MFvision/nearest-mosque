@@ -380,9 +380,14 @@
     <string name="view_map">რუკა</string>
     <string name="walking_route">ფეხით მარშრუტი · %1$s · %2$s</string>
     <string name="website">ვებსაიტი</string>
+    <string name="widget_ask_suggested">სცადეთ კითხვა</string>
     <string name="widget_choose_city">გახსენით აპი ქალაქის ასარჩევად</string>
+    <string name="widget_kind_ask">კითხვა ისლამზე</string>
+    <string name="widget_kind_ask_desc">დასვით კითხვა ან შეეხეთ დღის ერთ-ერთ შეთავაზებას.</string>
     <string name="widget_kind_countdown">ლოცვის უკუთვლა</string>
     <string name="widget_kind_countdown_desc">ზოლი, რომელიც შემდეგ ლოცვამდე ივსება.</string>
+    <string name="widget_kind_mosque">უახლოესი მეჩეთი</string>
+    <string name="widget_kind_mosque_desc">უახლოესი მეჩეთები, რა მანძილზეა და რა მიმართულებით.</string>
     <string name="widget_kind_next">შემდეგი ლოცვა</string>
     <string name="widget_kind_next_desc">შემდეგი ლოცვა, მისი უკუთვლა და დღევანდელი ლოცვის დროები.</string>
     <string name="widget_kind_today">დღევანდელი ლოცვები</string>

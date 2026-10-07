@@ -117,6 +117,12 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
     val device by vm.device.collectAsStateWithLifecycle()
     var fullMap by remember { mutableStateOf(false) }
     var selected by remember { mutableStateOf<RankedMosque?>(null) }
+    // A widget tap opens that mosque's page once it is in the list.
+    val requested by vm.requestedId.collectAsStateWithLifecycle()
+    androidx.compose.runtime.LaunchedEffect(requested, ui.items) {
+        val id = requested ?: return@LaunchedEffect
+        ui.items.firstOrNull { it.mosque.sourceId == id }?.let { selected = it; vm.requestedId.value = null }
+    }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { vm.useDevice(lang) }
     val requestLocation = { permission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) }
     LaunchedEffect(Unit) { vm.start(lang) }

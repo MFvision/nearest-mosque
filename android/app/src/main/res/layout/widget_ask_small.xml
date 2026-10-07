@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ask: opens the question screen. Colours and backgrounds are set from code per style (PrayerWidgets). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_cream"
+    android:padding="14dp">
+    <ImageView
+        android:id="@+id/widget_mark"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-14dp"
+        android:layout_marginBottom="-14dp"
+        android:alpha="0.08"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_tab_mosque" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView android:id="@+id/ask_spark" android:layout_width="30dp" android:layout_height="30dp" android:importantForAccessibility="no" android:src="@drawable/ic_sparkle" />
+        <FrameLayout android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
+        <TextView android:id="@+id/ask_title" style="@style/NMWidgetText.Name" android:textSize="16sp" android:maxLines="2" />
+        <TextView android:id="@+id/ask_button" style="@style/NMWidgetText.Chip" android:layout_marginTop="6dp" android:minWidth="0dp" android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="4dp" android:paddingBottom="4dp" android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

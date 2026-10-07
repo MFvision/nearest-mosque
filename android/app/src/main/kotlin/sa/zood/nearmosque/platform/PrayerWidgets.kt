@@ -44,6 +44,30 @@ enum class WidgetStyle(
 enum class WidgetKind(val layout: Int) {
     SMALL(R.layout.widget_small), MEDIUM(R.layout.widget_medium), LARGE(R.layout.widget_large),
     COUNTDOWN(R.layout.widget_countdown), TODAY(R.layout.widget_today), TODAY_LARGE(R.layout.widget_today_large),
+    MOSQUE_SMALL(R.layout.widget_mosque_small), MOSQUE(R.layout.widget_mosque), ASK_SMALL(R.layout.widget_ask_small), ASK(R.layout.widget_ask),
+}
+
+/** One of the nearest mosques: distance and direction (degrees from north) from where the phone or the prayer city is. */
+data class WidgetMosque(val id: String, val name: String, val meters: Double, val bearing: Double)
+
+/** What the mosque and Ask widgets show besides prayer times. */
+data class WidgetExtras(val mosques: List<WidgetMosque> = emptyList(), val questions: List<String> = emptyList()) {
+    /** Two suggested questions for today (they change every day). */
+    fun todaysQuestions(day: Long): List<String> =
+        if (questions.isEmpty()) emptyList() else listOf(questions[((2 * day) % questions.size).toInt()], questions[((2 * day + 1) % questions.size).toInt()]).distinct()
+
+    companion object {
+        suspend fun load(c: sa.zood.nearmosque.AppContainer, s: AppSettings, lang: String): WidgetExtras {
+            val center = c.devicePosition.value?.location ?: s.prayerLocation?.location
+            val mosques = center?.let { at ->
+                (runCatching { c.mosques.nearest(at, 25_000.0, lang) }.getOrNull() as? sa.zood.nearmosque.data.MosqueResult.Found)?.items?.take(3)?.map { r ->
+                    WidgetMosque(r.mosque.sourceId, r.mosque.displayName(lang) ?: "", r.distanceMeters, sa.zood.nearmosque.core.Geo.initialBearing(at, r.mosque.location))
+                }
+            }.orEmpty()
+            val questions = runCatching { c.ask.commonQuestions() }.getOrDefault(emptyList()).mapNotNull { it.question[lang] ?: it.question["en"] }
+            return WidgetExtras(mosques, questions)
+        }
+    }
 }
 
 /**
@@ -58,7 +82,20 @@ object PrayerWidgets {
         PrayerWidgetSmall::class.java to WidgetKind.SMALL, PrayerWidgetMedium::class.java to WidgetKind.MEDIUM,
         PrayerWidgetLarge::class.java to WidgetKind.LARGE, PrayerWidgetCountdown::class.java to WidgetKind.COUNTDOWN,
         PrayerWidgetToday::class.java to WidgetKind.TODAY, PrayerWidgetTodayLarge::class.java to WidgetKind.TODAY_LARGE,
+        MosqueWidgetSmall::class.java to WidgetKind.MOSQUE_SMALL, MosqueWidget::class.java to WidgetKind.MOSQUE,
+        AskWidgetSmall::class.java to WidgetKind.ASK_SMALL, AskWidget::class.java to WidgetKind.ASK,
     )
+    private val dirs = listOf(R.drawable.ic_dir_0, R.drawable.ic_dir_1, R.drawable.ic_dir_2, R.drawable.ic_dir_3,
+        R.drawable.ic_dir_4, R.drawable.ic_dir_5, R.drawable.ic_dir_6, R.drawable.ic_dir_7)
+    private val mqRows = listOf(R.id.mqrow0, R.id.mqrow1, R.id.mqrow2)
+    private val mqNames = listOf(R.id.mqrow0_name, R.id.mqrow1_name, R.id.mqrow2_name)
+    private val mqDirs = listOf(R.id.mqrow0_dir, R.id.mqrow1_dir, R.id.mqrow2_dir)
+    private val mqDists = listOf(R.id.mqrow0_dist, R.id.mqrow1_dist, R.id.mqrow2_dist)
+    private val mqIcons = listOf(R.id.mqrow0_icon, R.id.mqrow1_icon, R.id.mqrow2_icon)
+    private val askRows = listOf(R.id.askq0, R.id.askq1)
+    private val askTexts = listOf(R.id.askq0_text, R.id.askq1_text)
+    private val askIcons = listOf(R.id.askq0_icon, R.id.askq1_icon)
+    private val askGos = listOf(R.id.askq0_go, R.id.askq1_go)
     private val rows = listOf(R.id.row0, R.id.row1, R.id.row2, R.id.row3, R.id.row4, R.id.row5)
     private val rowNames = listOf(R.id.row0_name, R.id.row1_name, R.id.row2_name, R.id.row3_name, R.id.row4_name, R.id.row5_name)
     private val rowTimes = listOf(R.id.row0_time, R.id.row1_time, R.id.row2_time, R.id.row3_time, R.id.row4_time, R.id.row5_time)
@@ -89,13 +126,14 @@ object PrayerWidgets {
         }
     }
 
-    private fun draw(context: Context, s: AppSettings) {
+    private suspend fun draw(context: Context, s: AppSettings) {
         val m = AppWidgetManager.getInstance(context)
+        val extras = WidgetExtras.load(context.container, s, Format.languageCode(context))
         var next: Instant? = null
         var bar = false
         for ((cls, kind) in providers) {
             for (id in m.getAppWidgetIds(ComponentName(context, cls))) {
-                val (v, at) = views(context, context.container, s, kind, style(context, id))
+                val (v, at) = views(context, context.container, s, kind, style(context, id), extras)
                 next = at
                 bar = bar || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE
                 m.updateAppWidget(id, v)
@@ -115,7 +153,10 @@ object PrayerWidgets {
     private fun faded(color: Int) = (color and 0x00FFFFFF) or (0x73 shl 24)
 
     /** The widget's views for [s] at the container's clock, and the time of the next prayer. */
-    fun views(context: Context, c: sa.zood.nearmosque.AppContainer, s: AppSettings, kind: WidgetKind, st: WidgetStyle): Pair<RemoteViews, Instant?> {
+    fun views(
+        context: Context, c: sa.zood.nearmosque.AppContainer, s: AppSettings, kind: WidgetKind, st: WidgetStyle,
+        extras: WidgetExtras = WidgetExtras(),
+    ): Pair<RemoteViews, Instant?> {
         val now = c.clock()
         val loc = s.prayerLocation
         val days = loc?.let { l ->
@@ -127,8 +168,12 @@ object PrayerWidgets {
         // Views a layout does not have are skipped by RemoteViews, so every widget is filled the same way.
         v.setInt(R.id.widget_root, "setBackgroundResource", st.background)
         v.setInt(R.id.widget_mark, "setColorFilter", st.accent)
-        val open = Intent(Intent.ACTION_VIEW, Uri.parse("nearmosque://prayer"), context, MainActivity::class.java)
-        v.setOnClickPendingIntent(R.id.widget_root, PendingIntent.getActivity(context, 0, open, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
+        v.setOnClickPendingIntent(R.id.widget_root, link(context, 0, "nearmosque://prayer"))
+        when (kind) {
+            WidgetKind.MOSQUE_SMALL, WidgetKind.MOSQUE -> { mosqueViews(context, v, s, kind, st, extras); return v to null }
+            WidgetKind.ASK_SMALL, WidgetKind.ASK -> { askViews(context, v, kind, st, extras, now); return v to null }
+            else -> Unit
+        }
         if (loc == null || next == null) {
             v.setTextViewText(R.id.widget_name, context.getString(R.string.widget_choose_city))
             v.setTextColor(R.id.widget_name, st.ink)
@@ -242,6 +287,83 @@ object PrayerWidgets {
         return v to next.at
     }
 
+    private fun link(context: Context, code: Int, uri: String): PendingIntent =
+        PendingIntent.getActivity(context, code, Intent(Intent.ACTION_VIEW, Uri.parse(uri), context, MainActivity::class.java),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+    private fun mosqueViews(context: Context, v: RemoteViews, s: AppSettings, kind: WidgetKind, st: WidgetStyle, x: WidgetExtras) {
+        v.setInt(R.id.mq_icon, "setColorFilter", st.accent)
+        v.setTextViewText(R.id.mq_title, context.getString(R.string.widget_kind_mosque))
+        v.setTextColor(R.id.mq_title, st.secondary)
+        v.setInt(R.id.widget_pin, "setColorFilter", st.secondary)
+        v.setTextViewText(R.id.widget_city, s.prayerLocation?.name.orEmpty())
+        v.setTextColor(R.id.widget_city, st.secondary)
+        v.setOnClickPendingIntent(R.id.widget_root, link(context, 10, "nearmosque://mosques"))
+        if (x.mosques.isEmpty()) {
+            v.setTextViewText(R.id.mq_empty, context.getString(R.string.no_records_title))
+            v.setTextColor(R.id.mq_empty, st.ink)
+            v.setViewVisibility(R.id.mq_empty, View.VISIBLE)
+            for (id in mqRows + listOf(R.id.mq0_name, R.id.mq0_row, R.id.mq_go)) v.setViewVisibility(id, View.GONE)
+            return
+        }
+        fun dir(bearing: Double) = dirs[(((bearing % 360 + 360) % 360 + 22.5) / 45).toInt() % 8]
+        // Small: the nearest one.
+        val first = x.mosques[0]
+        v.setTextViewText(R.id.mq0_name, first.name.ifEmpty { context.getString(R.string.mosque_unnamed) })
+        v.setTextColor(R.id.mq0_name, st.ink)
+        v.setImageViewResource(R.id.mq0_dir, dir(first.bearing))
+        v.setInt(R.id.mq0_dir, "setColorFilter", st.accent)
+        v.setTextViewText(R.id.mq0_dist, Format.distance(context, first.meters))
+        v.setTextColor(R.id.mq0_dist, st.ink)
+        v.setInt(R.id.mq_go_icon, "setColorFilter", st.accent)
+        v.setTextViewText(R.id.mq_go_text, context.getString(R.string.directions))
+        v.setTextColor(R.id.mq_go_text, st.accent)
+        if (kind == WidgetKind.MOSQUE_SMALL) v.setOnClickPendingIntent(R.id.widget_root, link(context, 11, "nearmosque://mosque?id=${Uri.encode(first.id)}"))
+        // Medium: up to three, each opening its page; the nearest highlighted.
+        mqRows.forEachIndexed { i, row ->
+            val m = x.mosques.getOrNull(i)
+            if (m == null) { v.setViewVisibility(row, View.INVISIBLE); return@forEachIndexed }
+            val hi = i == 0
+            val color = if (hi) st.onPill else st.ink
+            v.setTextViewText(mqNames[i], m.name.ifEmpty { context.getString(R.string.mosque_unnamed) })
+            v.setTextColor(mqNames[i], color)
+            v.setTextViewText(mqDists[i], Format.distance(context, m.meters))
+            v.setTextColor(mqDists[i], color)
+            v.setImageViewResource(mqDirs[i], dir(m.bearing))
+            v.setInt(mqDirs[i], "setColorFilter", if (hi) st.onPill else st.accent)
+            v.setInt(mqIcons[i], "setColorFilter", if (hi) st.onPill else st.accent)
+            v.setInt(row, "setBackgroundResource", if (hi) st.pill else st.card)
+            v.setOnClickPendingIntent(row, link(context, 20 + i, "nearmosque://mosque?id=${Uri.encode(m.id)}"))
+        }
+    }
+
+    private fun askViews(context: Context, v: RemoteViews, kind: WidgetKind, st: WidgetStyle, x: WidgetExtras, now: Instant) {
+        v.setOnClickPendingIntent(R.id.widget_root, link(context, 30, "nearmosque://ask"))
+        v.setInt(R.id.ask_spark, "setColorFilter", st.accent)
+        v.setTextViewText(R.id.ask_title, context.getString(R.string.widget_kind_ask))
+        v.setTextColor(R.id.ask_title, st.ink)
+        v.setTextViewText(R.id.ask_button, context.getString(R.string.tab_ask))
+        v.setTextColor(R.id.ask_button, st.onPill)
+        v.setInt(R.id.ask_button, "setBackgroundResource", st.pill)
+        v.setInt(R.id.ask_bar, "setBackgroundResource", st.card)
+        v.setTextViewText(R.id.ask_hint, context.getString(R.string.ask_placeholder))
+        v.setTextColor(R.id.ask_hint, st.secondary)
+        v.setOnClickPendingIntent(R.id.ask_bar, link(context, 31, "nearmosque://ask"))
+        v.setTextViewText(R.id.ask_suggested, context.getString(R.string.widget_ask_suggested))
+        v.setTextColor(R.id.ask_suggested, st.secondary)
+        val qs = x.todaysQuestions(now.epochSecond / 86_400)
+        askRows.forEachIndexed { i, row ->
+            val q = qs.getOrNull(i)
+            if (q == null) { v.setViewVisibility(row, View.INVISIBLE); return@forEachIndexed }
+            v.setTextViewText(askTexts[i], q)
+            v.setTextColor(askTexts[i], st.ink)
+            v.setTextColor(askGos[i], st.secondary)
+            v.setInt(askIcons[i], "setColorFilter", st.accent)
+            v.setInt(row, "setBackgroundResource", st.card)
+            v.setOnClickPendingIntent(row, link(context, 40 + i, "nearmosque://ask?q=${Uri.encode(q)}"))
+        }
+    }
+
     /** An inexact alarm for the next redraw (no exact-alarm permission needed for widgets). */
     private fun scheduleNext(context: Context, atMillis: Long) {
         val am = context.getSystemService(AlarmManager::class.java) ?: return
@@ -288,3 +410,15 @@ class PrayerWidgetToday : PrayerWidgetProvider()
 
 /** Today's six times as tiles with icons and bells, with the dates, the next prayer and the city. */
 class PrayerWidgetTodayLarge : PrayerWidgetProvider()
+
+/** The nearest mosque: name, distance and direction. */
+class MosqueWidgetSmall : PrayerWidgetProvider()
+
+/** The three nearest mosques, each opening its page. */
+class MosqueWidget : PrayerWidgetProvider()
+
+/** Opens Ask. */
+class AskWidgetSmall : PrayerWidgetProvider()
+
+/** A question bar and two suggested questions for today. */
+class AskWidget : PrayerWidgetProvider()

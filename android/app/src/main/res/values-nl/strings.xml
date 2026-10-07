@@ -380,9 +380,14 @@
     <string name="view_map">Kaart</string>
     <string name="walking_route">Looproute · %1$s · %2$s</string>
     <string name="website">Website</string>
+    <string name="widget_ask_suggested">Vraag bijvoorbeeld</string>
     <string name="widget_choose_city">Open Near Mosque om je stad te kiezen</string>
+    <string name="widget_kind_ask">Vraag over de islam</string>
+    <string name="widget_kind_ask_desc">Stel een vraag of tik op een van de suggesties van vandaag.</string>
     <string name="widget_kind_countdown">Aftellen tot gebed</string>
     <string name="widget_kind_countdown_desc">Een balk die zich vult tot het volgende gebed.</string>
+    <string name="widget_kind_mosque">Dichtstbijzijnde moskee</string>
+    <string name="widget_kind_mosque_desc">De dichtstbijzijnde moskeeën, hoe ver ze zijn en in welke richting.</string>
     <string name="widget_kind_next">Volgend gebed</string>
     <string name="widget_kind_next_desc">Het volgende gebed, de aftelling ernaartoe en de gebedstijden van vandaag.</string>
     <string name="widget_kind_today">Gebeden van vandaag</string>

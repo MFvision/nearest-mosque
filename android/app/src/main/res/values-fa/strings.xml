@@ -380,9 +380,14 @@
     <string name="view_map">نقشه</string>
     <string name="walking_route">مسیر پیاده · %1$s · %2$s</string>
     <string name="website">وب‌سایت</string>
+    <string name="widget_ask_suggested">این‌ها را بپرسید</string>
     <string name="widget_choose_city">برای انتخاب شهر، «نزدیک‌ترین مسجد» را باز کنید</string>
+    <string name="widget_kind_ask">دربارهٔ اسلام بپرسید</string>
+    <string name="widget_kind_ask_desc">سؤال خود را بپرسید یا روی یکی از پیشنهادهای امروز بزنید.</string>
     <string name="widget_kind_countdown">شمارش معکوس نماز</string>
     <string name="widget_kind_countdown_desc">نواری که تا نماز بعدی پر می‌شود.</string>
+    <string name="widget_kind_mosque">نزدیک‌ترین مسجد</string>
+    <string name="widget_kind_mosque_desc">نزدیک‌ترین مسجدها، فاصله و جهت آن‌ها.</string>
     <string name="widget_kind_next">نماز بعدی</string>
     <string name="widget_kind_next_desc">نماز بعدی، شمارش معکوس آن و اوقات امروز.</string>
     <string name="widget_kind_today">نمازهای امروز</string>

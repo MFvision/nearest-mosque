@@ -380,9 +380,14 @@
     <string name="view_map">ਨਕਸ਼ਾ</string>
     <string name="walking_route">ਪੈਦਲ ਰਸਤਾ · %1$s · %2$s</string>
     <string name="website">ਵੈੱਬਸਾਈਟ</string>
+    <string name="widget_ask_suggested">ਇਹ ਪੁੱਛ ਕੇ ਦੇਖੋ</string>
     <string name="widget_choose_city">ਆਪਣਾ ਸ਼ਹਿਰ ਚੁਣਨ ਲਈ Near Mosque ਖੋਲ੍ਹੋ</string>
+    <string name="widget_kind_ask">ਇਸਲਾਮ ਬਾਰੇ ਪੁੱਛੋ</string>
+    <string name="widget_kind_ask_desc">ਸਵਾਲ ਪੁੱਛੋ, ਜਾਂ ਅੱਜ ਦੇ ਸੁਝਾਵਾਂ ਵਿੱਚੋਂ ਕਿਸੇ ਇੱਕ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
     <string name="widget_kind_countdown">ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ</string>
     <string name="widget_kind_countdown_desc">ਇੱਕ ਪੱਟੀ ਜੋ ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਭਰਦੀ ਜਾਂਦੀ ਹੈ।</string>
+    <string name="widget_kind_mosque">ਸਭ ਤੋਂ ਨੇੜਲੀ ਮਸਜਿਦ</string>
+    <string name="widget_kind_mosque_desc">ਸਭ ਤੋਂ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ, ਉਨ੍ਹਾਂ ਦੀ ਦੂਰੀ ਅਤੇ ਦਿਸ਼ਾ।</string>
     <string name="widget_kind_next">ਅਗਲੀ ਨਮਾਜ਼</string>
     <string name="widget_kind_next_desc">ਅਗਲੀ ਨਮਾਜ਼, ਉਸ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਅਤੇ ਅੱਜ ਦੇ ਵਕਤ।</string>
     <string name="widget_kind_today">ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ</string>

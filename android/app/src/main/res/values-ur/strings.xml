@@ -380,9 +380,14 @@
     <string name="view_map">نقشہ</string>
     <string name="walking_route">پیدل راستہ · %1$s · %2$s</string>
     <string name="website">ویب سائٹ</string>
+    <string name="widget_ask_suggested">یہ پوچھ کر دیکھیں</string>
     <string name="widget_choose_city">شہر منتخب کرنے کے لیے ایپ کھولیں</string>
+    <string name="widget_kind_ask">اسلام کے بارے میں پوچھیں</string>
+    <string name="widget_kind_ask_desc">سوال پوچھیں، یا آج کی تجاویز میں سے کسی ایک پر ٹیپ کریں۔</string>
     <string name="widget_kind_countdown">نماز کی الٹی گنتی</string>
     <string name="widget_kind_countdown_desc">ایک پٹی جو اگلی نماز تک بھرتی جاتی ہے۔</string>
+    <string name="widget_kind_mosque">قریب ترین مسجد</string>
+    <string name="widget_kind_mosque_desc">قریب ترین مساجد، ان کا فاصلہ اور سمت۔</string>
     <string name="widget_kind_next">اگلی نماز</string>
     <string name="widget_kind_next_desc">اگلی نماز، اس کی الٹی گنتی اور آج کے اوقات۔</string>
     <string name="widget_kind_today">آج کی نمازیں</string>

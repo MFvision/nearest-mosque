@@ -380,9 +380,14 @@
     <string name="view_map">خەرىتە</string>
     <string name="walking_route">پىيادە يول · %1$s · %2$s</string>
     <string name="website">تور بېكەت</string>
+    <string name="widget_ask_suggested">سوراپ بېقىڭ</string>
     <string name="widget_choose_city">شەھىرىڭىزنى تاللاش ئۈچۈن «ئەڭ يېقىن مەسچىت» نى ئېچىڭ</string>
+    <string name="widget_kind_ask">ئىسلام توغرىسىدا سوراش</string>
+    <string name="widget_kind_ask_desc">سوئال سوراڭ ياكى بۈگۈنكى تەۋسىيەلەرنىڭ بىرىنى بېسىڭ.</string>
     <string name="widget_kind_countdown">ناماز تەتۈر ساناقلىقى</string>
     <string name="widget_kind_countdown_desc">كېيىنكى نامازغىچە تولۇپ بارىدىغان بالداق.</string>
+    <string name="widget_kind_mosque">ئەڭ يېقىن مەسچىت</string>
+    <string name="widget_kind_mosque_desc">ئەڭ يېقىن مەسچىتلەر، ئۇلارنىڭ يىراقلىقى ۋە يۆنىلىشى.</string>
     <string name="widget_kind_next">كېيىنكى ناماز</string>
     <string name="widget_kind_next_desc">كېيىنكى ناماز، تەتۈر ساناق ۋە بۈگۈنكى ناماز ۋاقىتلىرى.</string>
     <string name="widget_kind_today">بۈگۈنكى نامازلار</string>

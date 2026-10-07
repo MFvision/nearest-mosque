@@ -379,9 +379,14 @@
     <string name="view_map">แผนที่</string>
     <string name="walking_route">เส้นทางเดิน · %1$s · %2$s</string>
     <string name="website">เว็บไซต์</string>
+    <string name="widget_ask_suggested">ลองถาม</string>
     <string name="widget_choose_city">เปิดแอปเพื่อเลือกเมืองของคุณ</string>
+    <string name="widget_kind_ask">ถามเรื่องอิสลาม</string>
+    <string name="widget_kind_ask_desc">ถามคำถาม หรือแตะคำถามแนะนำของวันนี้</string>
     <string name="widget_kind_countdown">นับถอยหลังละหมาด</string>
     <string name="widget_kind_countdown_desc">แถบที่ค่อยๆ เต็มจนถึงละหมาดถัดไป</string>
+    <string name="widget_kind_mosque">มัสยิดใกล้ที่สุด</string>
+    <string name="widget_kind_mosque_desc">มัสยิดที่ใกล้ที่สุด ระยะทาง และทิศทาง</string>
     <string name="widget_kind_next">ละหมาดถัดไป</string>
     <string name="widget_kind_next_desc">ละหมาดถัดไป การนับถอยหลัง และเวลาละหมาดวันนี้</string>
     <string name="widget_kind_today">ละหมาดวันนี้</string>

@@ -380,9 +380,14 @@
     <string name="view_map">નકશો</string>
     <string name="walking_route">ચાલવાનો રસ્તો · %1$s · %2$s</string>
     <string name="website">વેબસાઇટ</string>
+    <string name="widget_ask_suggested">આ પૂછી જુઓ</string>
     <string name="widget_choose_city">તમારું શહેર પસંદ કરવા માટે Near Mosque ઍપ ખોલો</string>
+    <string name="widget_kind_ask">ઇસ્લામ વિશે પૂછો</string>
+    <string name="widget_kind_ask_desc">સવાલ પૂછો, અથવા આજનાં સૂચનોમાંથી કોઈ એક પર ટૅપ કરો.</string>
     <string name="widget_kind_countdown">નમાઝ કાઉન્ટડાઉન</string>
     <string name="widget_kind_countdown_desc">આગામી નમાઝ સુધી ભરાતી એક પટ્ટી.</string>
+    <string name="widget_kind_mosque">નજીકની મસ્જિદ</string>
+    <string name="widget_kind_mosque_desc">સૌથી નજીકની મસ્જિદો, તેમનું અંતર અને દિશા.</string>
     <string name="widget_kind_next">આગામી નમાઝ</string>
     <string name="widget_kind_next_desc">આગામી નમાઝ, તેનું કાઉન્ટડાઉન અને આજના સમય.</string>
     <string name="widget_kind_today">આજની નમાઝ</string>

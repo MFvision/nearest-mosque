@@ -380,9 +380,14 @@
     <string name="view_map">Ramani</string>
     <string name="walking_route">Njia ya kutembea · %1$s · %2$s</string>
     <string name="website">Tovuti</string>
+    <string name="widget_ask_suggested">Jaribu kuuliza</string>
     <string name="widget_choose_city">Fungua Near Mosque ili kuchagua mji wako</string>
+    <string name="widget_kind_ask">Uliza kuhusu Uislamu</string>
+    <string name="widget_kind_ask_desc">Uliza swali, au gusa mojawapo ya mapendekezo ya leo.</string>
     <string name="widget_kind_countdown">Muda hadi sala</string>
     <string name="widget_kind_countdown_desc">Upau unaojaa hadi sala ijayo.</string>
+    <string name="widget_kind_mosque">Msikiti wa karibu zaidi</string>
+    <string name="widget_kind_mosque_desc">Misikiti iliyo karibu zaidi, umbali wake na upande ilipo.</string>
     <string name="widget_kind_next">Sala ijayo</string>
     <string name="widget_kind_next_desc">Sala ijayo, hesabu yake ya kurudi nyuma na nyakati za leo.</string>
     <string name="widget_kind_today">Sala za leo</string>

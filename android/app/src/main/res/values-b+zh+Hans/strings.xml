@@ -379,9 +379,14 @@
     <string name="view_map">地图</string>
     <string name="walking_route">步行路线 · %1$s · %2$s</string>
     <string name="website">网站</string>
+    <string name="widget_ask_suggested">试着问问</string>
     <string name="widget_choose_city">打开应用以选择你的城市</string>
+    <string name="widget_kind_ask">伊斯兰教问答</string>
+    <string name="widget_kind_ask_desc">提出问题，或点按今日推荐的问题之一。</string>
     <string name="widget_kind_countdown">礼拜倒计时</string>
     <string name="widget_kind_countdown_desc">一条进度条，随时间填满，直到下一次礼拜。</string>
+    <string name="widget_kind_mosque">最近的清真寺</string>
+    <string name="widget_kind_mosque_desc">最近的清真寺，有多远、在哪个方向。</string>
     <string name="widget_kind_next">下一次礼拜</string>
     <string name="widget_kind_next_desc">下一次礼拜、倒计时及今日礼拜时间。</string>
     <string name="widget_kind_today">今日礼拜</string>

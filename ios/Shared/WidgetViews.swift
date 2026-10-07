@@ -15,9 +15,20 @@ enum WidgetLook: String, AppEnum {
     ]
 }
 
-/// Which widget: the next prayer, the countdown bar, or today's five prayers.
+/// Which widget: the next prayer, the countdown bar, today's five prayers, the nearest mosques, or Ask.
 enum PrayerWidgetKind {
-    case next, countdown, today
+    case next, countdown, today, mosque, ask
+
+    /// Where a tap on the widget (outside its own links) goes.
+    func url(_ state: SharedState?) -> URL? {
+        switch self {
+        case .mosque: return URL(string: state?.mosques?.first.map { "nearmosque://mosque?id=\(Self.encode($0.id))" } ?? "nearmosque://mosques")
+        case .ask: return URL(string: "nearmosque://ask")
+        default: return URL(string: "nearmosque://prayer")
+        }
+    }
+
+    static func encode(_ s: String) -> String { s.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "" }
 }
 
 struct PrayerEntry: TimelineEntry {
@@ -108,11 +119,15 @@ struct PrayerWidgetView: View {
     var body: some View {
         let p = WidgetPalette.of(entry.look)
         Group {
-            if let s = entry.state, let next = entry.next {
+            if let s = entry.state, kind == .mosque {
+                mosqueView(s, p)
+            } else if let s = entry.state, kind == .ask {
+                askView(s, p)
+            } else if let s = entry.state, let next = entry.next {
                 switch kind {
                 case .next: nextView(s, next, p)
                 case .countdown: countdownView(s, next, p)
-                case .today: todayView(s, next, p)
+                case .today, .mosque, .ask: todayView(s, next, p)
                 }
             } else {
                 VStack(spacing: 6) {
@@ -405,9 +420,116 @@ struct PrayerWidgetView: View {
     }
 }
 
+extension PrayerWidgetView {
+    // MARK: Nearest mosque
+
+    private func arrow(_ bearing: Double, _ color: Color) -> some View {
+        Image(systemName: "location.north.fill").rotationEffect(.degrees(bearing)).foregroundStyle(color)
+            .accessibilityHidden(true)
+    }
+
+    @ViewBuilder func mosqueView(_ s: SharedState, _ p: WidgetPalette) -> some View {
+        let list = s.mosques ?? []
+        let title = HStack(spacing: 6) {
+            Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(p.accent)
+            Text(s.t("widget_kind_mosque")).font(.caption.weight(.bold)).foregroundStyle(p.secondary).lineLimit(1)
+        }
+        if list.isEmpty {
+            VStack(alignment: .leading, spacing: 6) {
+                title
+                Spacer(minLength: 0)
+                Text(s.t("no_records_title")).font(.subheadline.weight(.semibold)).foregroundStyle(p.ink)
+                Text(s.name).font(.caption).foregroundStyle(p.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        } else if family == .systemSmall {
+            let m = list[0]
+            VStack(alignment: .leading, spacing: 4) {
+                title
+                Spacer(minLength: 0)
+                Text(m.name).font(.headline).foregroundStyle(p.ink).lineLimit(3).minimumScaleFactor(0.8)
+                HStack(spacing: 6) {
+                    arrow(m.bearing, p.accent)
+                    Text(s.distance(m.meters)).font(.title3.weight(.semibold).monospacedDigit()).foregroundStyle(p.ink)
+                }
+                Label(s.t("directions"), systemImage: "arrow.triangle.turn.up.right.diamond.fill")
+                    .font(.caption.weight(.semibold)).foregroundStyle(p.accent)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        } else {
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    title
+                    Spacer()
+                    Label(s.name, systemImage: "mappin.circle.fill").font(.caption.weight(.semibold)).foregroundStyle(p.secondary).lineLimit(1)
+                }
+                ForEach(Array(list.prefix(3).enumerated()), id: \.offset) { i, m in
+                    Link(destination: URL(string: "nearmosque://mosque?id=\(PrayerWidgetKind.encode(m.id))")!) {
+                        HStack(spacing: 8) {
+                            Image("MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 16, height: 16)
+                                .foregroundStyle(i == 0 ? p.onPill : p.accent)
+                            Text(m.name).font(.subheadline.weight(i == 0 ? .semibold : .regular)).lineLimit(1)
+                            Spacer(minLength: 6)
+                            arrow(m.bearing, i == 0 ? p.onPill : p.accent)
+                            Text(s.distance(m.meters)).font(.subheadline.monospacedDigit()).lineLimit(1)
+                        }
+                        .foregroundStyle(i == 0 ? p.onPill : p.ink)
+                        .padding(.horizontal, 10).padding(.vertical, 6)
+                        .background(i == 0 ? p.pill : p.card, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }
+                }
+                Spacer(minLength: 0)
+            }
+        }
+    }
+
+    // MARK: Ask
+
+    @ViewBuilder func askView(_ s: SharedState, _ p: WidgetPalette) -> some View {
+        let bar = HStack(spacing: 8) {
+            Image(systemName: "sparkles").foregroundStyle(p.accent)
+            Text(s.t("ask_placeholder")).font(.subheadline).foregroundStyle(p.secondary).lineLimit(1)
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 12).padding(.vertical, 9)
+        .background(p.card, in: Capsule())
+        if family == .systemSmall {
+            VStack(alignment: .leading, spacing: 6) {
+                Image(systemName: "sparkles").font(.system(size: 30, weight: .semibold)).foregroundStyle(p.accent)
+                Spacer(minLength: 0)
+                Text(s.t("widget_kind_ask")).font(.headline).foregroundStyle(p.ink).lineLimit(2).minimumScaleFactor(0.8)
+                Text(s.t("tab_ask")).font(.caption.weight(.semibold)).foregroundStyle(p.onPill)
+                    .padding(.horizontal, 10).padding(.vertical, 4)
+                    .background(p.pill, in: Capsule())
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        } else {
+            VStack(alignment: .leading, spacing: 6) {
+                Link(destination: URL(string: "nearmosque://ask")!) { bar }
+                Text(s.t("widget_ask_suggested")).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
+                ForEach(s.todaysQuestions(entry.date), id: \.self) { q in
+                    Link(destination: URL(string: "nearmosque://ask?q=\(PrayerWidgetKind.encode(q))")!) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "questionmark.bubble").foregroundStyle(p.accent)
+                            Text(q).font(.subheadline.weight(.medium)).foregroundStyle(p.ink).lineLimit(1)
+                            Spacer(minLength: 0)
+                            Image(systemName: "chevron.forward").font(.caption).foregroundStyle(p.secondary)
+                        }
+                        .padding(.horizontal, 10).padding(.vertical, 6)
+                        .background(p.card, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }
+                }
+                Spacer(minLength: 0)
+            }
+        }
+    }
+}
+
 extension SharedState {
     /// Widget gallery preview before the app has shared anything.
     static let preview = SharedState(name: "Makkah", latitude: 21.4225, longitude: 39.8262, zoneId: "Asia/Riyadh",
                                      prayer: PrayerSettings(method: .UMM_AL_QURA), language: "en", hijriAdjustmentDays: 0,
-                                     reminders: ["fajr", "maghrib"])
+                                     reminders: ["fajr", "maghrib"],
+                                     mosques: [SharedMosque(id: "preview-1", name: "Masjid al-Haram", meters: 450, bearing: 40)],
+                                     questions: ["What is Islam?", "How do I pray?", "What are the five pillars?"])
 }

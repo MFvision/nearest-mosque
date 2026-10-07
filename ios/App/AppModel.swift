@@ -68,6 +68,11 @@ final class AppModel {
     private(set) var storageError: String?
     /// Nearest downloaded mosque to the phone (or to the prayer city), for the prayer screen.
     private(set) var nearestMosque: RankedMosque?
+    /// Up to three nearest mosques and where they were measured from (shared with the widgets).
+    private(set) var nearestMosques: [RankedMosque] = []
+    private var nearestCenter: LatLng?
+    /// Set by a widget tap: the mosques tab opens this mosque's page.
+    var requestMosqueId: String?
     private var nearestKey: String?
     /// Set by a widget tap, Siri or a control: the prayer screen opens the Qibla view.
     var requestQibla = false
@@ -91,11 +96,24 @@ final class AppModel {
     }
 
     /// Gives the widgets and Siri the city, method and language (shared keychain), and refreshes the widgets.
+    private func sharedMosques() -> [SharedMosque] {
+        guard let c = nearestCenter else { return [] }
+        return nearestMosques.map { r in
+            SharedMosque(id: r.id, name: r.mosque.displayName(l10n.language) ?? l10n.t("mosque_unnamed"), meters: r.distanceMeters, bearing: Geo.initialBearing(from: c, to: r.mosque.location))
+        }
+    }
+
+    private func sharedQuestions() -> [String] {
+        let lang = l10n.language
+        return ((try? ask?.commonQuestions()) ?? []).compactMap { $0.question[lang] ?? $0.question["en"] }
+    }
+
     func shareWithWidgets() {
         let s = settings.location.map {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
-                        reminders: settings.reminders.map(\.rawValue).sorted())
+                        reminders: settings.reminders.map(\.rawValue).sorted(),
+                        mosques: sharedMosques(), questions: sharedQuestions())
         }
         guard s != lastShared else { return }
         lastShared = s
@@ -263,7 +281,9 @@ final class AppModel {
         let lang = l10n.language
         Task {
             let r = try? await Task.detached { try repo.nearest(center, radiusMeters: 25_000, lang: lang) }.value
-            if case let .found(list, _) = r { nearestMosque = list.first } else { nearestMosque = nil }
+            if case let .found(list, _) = r { nearestMosque = list.first; nearestMosques = Array(list.prefix(3)) } else { nearestMosque = nil; nearestMosques = [] }
+            nearestCenter = center
+            shareWithWidgets()
         }
     }
 

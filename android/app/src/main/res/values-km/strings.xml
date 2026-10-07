@@ -379,9 +379,14 @@
     <string name="view_map">ផែនទី</string>
     <string name="walking_route">ផ្លូវដើរ · %1$s · %2$s</string>
     <string name="website">គេហទំព័រ</string>
+    <string name="widget_ask_suggested">សាកសួរ</string>
     <string name="widget_choose_city">បើកកម្មវិធី ដើម្បីជ្រើសរើសទីក្រុងរបស់អ្នក</string>
+    <string name="widget_kind_ask">សួរអំពីសាសនាឥស្លាម</string>
+    <string name="widget_kind_ask_desc">សួរសំណួរ ឬចុចលើសំណួរណែនាំមួយសម្រាប់ថ្ងៃនេះ។</string>
     <string name="widget_kind_countdown">រាប់ថយក្រោយសឡាត</string>
     <string name="widget_kind_countdown_desc">របារដែលពេញបន្តិចម្ដងៗ រហូតដល់សឡាតបន្ទាប់។</string>
+    <string name="widget_kind_mosque">ម៉ាស្ជិតជិតបំផុត</string>
+    <string name="widget_kind_mosque_desc">ម៉ាស្ជិតជិតបំផុត ចម្ងាយ និងទិសដៅ។</string>
     <string name="widget_kind_next">សឡាតបន្ទាប់</string>
     <string name="widget_kind_next_desc">សឡាតបន្ទាប់ ការរាប់ថយក្រោយ និងម៉ោងសឡាតថ្ងៃនេះ។</string>
     <string name="widget_kind_today">សឡាតថ្ងៃនេះ</string>

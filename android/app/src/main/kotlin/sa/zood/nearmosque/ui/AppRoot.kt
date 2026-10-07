@@ -123,11 +123,17 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
     val prayer by prayerVm.ui.collectAsStateWithLifecycle()
     // Widgets and app-icon shortcuts.
     val asked = route?.collectAsStateWithLifecycle()?.value
+    val askLang = sa.zood.nearmosque.ui.Format.languageCode(androidx.compose.ui.platform.LocalContext.current)
     LaunchedEffect(asked) {
-        when (asked) {
+        val uri = asked?.let { android.net.Uri.parse(if (it.contains("://")) it else "nearmosque://$it") }
+        when (uri?.host) {
             "qibla" -> { tab = Tab.PRAYER; under = Tab.PRAYER; showCompass = true }
             "mosques" -> { tab = Tab.MOSQUES; under = Tab.MOSQUES }
-            "ask" -> tab = Tab.ASK
+            "mosque" -> { tab = Tab.MOSQUES; under = Tab.MOSQUES; mosquesVm.requestedId.value = uri.getQueryParameter("id") }
+            "ask" -> {
+                tab = Tab.ASK
+                uri.getQueryParameter("q")?.takeIf { it.isNotBlank() }?.let { askVm.ask(it, askLang) }
+            }
             "prayer" -> { tab = Tab.PRAYER; under = Tab.PRAYER }
         }
         if (asked != null) route.value = null

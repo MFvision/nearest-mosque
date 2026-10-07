@@ -380,9 +380,14 @@
     <string name="view_map">মানচিত্ৰ</string>
     <string name="walking_route">খোজকাঢ়ি যোৱাৰ পথ · %1$s · %2$s</string>
     <string name="website">ৱেবছাইট</string>
+    <string name="widget_ask_suggested">এইবোৰ সুধি চাওক</string>
     <string name="widget_choose_city">আপোনাৰ চহৰ বাছিবলৈ Near Mosque এপটো খোলক</string>
+    <string name="widget_kind_ask">ইছলামৰ বিষয়ে সোধক</string>
+    <string name="widget_kind_ask_desc">প্ৰশ্ন সোধক, নাইবা আজিৰ পৰামৰ্শবোৰৰ এটাত টেপ কৰক।</string>
     <string name="widget_kind_countdown">নামাজৰ কাউণ্টডাউন</string>
     <string name="widget_kind_countdown_desc">পৰৱৰ্তী নামাজলৈকে ভৰি অহা এডাল বাৰ।</string>
+    <string name="widget_kind_mosque">ওচৰৰ মছজিদ</string>
+    <string name="widget_kind_mosque_desc">ওচৰৰ মছজিদসমূহ, সেইবোৰৰ দূৰত্ব আৰু দিশ।</string>
     <string name="widget_kind_next">পৰৱৰ্তী নামাজ</string>
     <string name="widget_kind_next_desc">পৰৱৰ্তী নামাজ, ইয়াৰ কাউণ্টডাউন আৰু আজিৰ সময়।</string>
     <string name="widget_kind_today">আজিৰ নামাজ</string>

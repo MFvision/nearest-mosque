@@ -380,9 +380,14 @@
     <string name="view_map">Carte</string>
     <string name="walking_route">Itinéraire à pied · %1$s · %2$s</string>
     <string name="website">Site web</string>
+    <string name="widget_ask_suggested">Essayez de demander</string>
     <string name="widget_choose_city">Ouvrez l\'application pour choisir votre ville</string>
+    <string name="widget_kind_ask">Questions sur l\'islam</string>
+    <string name="widget_kind_ask_desc">Posez une question ou touchez l\'une des suggestions du jour.</string>
     <string name="widget_kind_countdown">Compte à rebours</string>
     <string name="widget_kind_countdown_desc">Une barre qui se remplit jusqu\'à la prochaine prière.</string>
+    <string name="widget_kind_mosque">Mosquée la plus proche</string>
+    <string name="widget_kind_mosque_desc">Les mosquées les plus proches, leur distance et leur direction.</string>
     <string name="widget_kind_next">Prochaine prière</string>
     <string name="widget_kind_next_desc">La prochaine prière, son compte à rebours et les horaires du jour.</string>
     <string name="widget_kind_today">Prières du jour</string>

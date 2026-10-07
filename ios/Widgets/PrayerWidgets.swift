@@ -66,7 +66,7 @@ struct WidgetFrame: View {
                         .frame(width: 90, height: 90).foregroundStyle(p.accent.opacity(0.08)).offset(x: 14, y: 14)
                 }
             }
-            .widgetURL(URL(string: "nearmosque://prayer"))
+            .widgetURL(kind.url(entry.state))
     }
 }
 
@@ -103,6 +103,28 @@ struct TodayWidget: Widget {
     }
 }
 
+struct MosqueWidget: Widget {
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: "NearestMosque", intent: PrayerWidgetIntent.self, provider: PrayerProvider()) { entry in
+            WidgetFrame(entry: entry, kind: .mosque)
+        }
+        .configurationDisplayName(LocalizedStringResource("widget_kind_mosque"))
+        .description(LocalizedStringResource("widget_kind_mosque_desc"))
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
+struct AskWidget: Widget {
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: "AskIslam", intent: PrayerWidgetIntent.self, provider: PrayerProvider()) { entry in
+            WidgetFrame(entry: entry, kind: .ask)
+        }
+        .configurationDisplayName(LocalizedStringResource("widget_kind_ask"))
+        .description(LocalizedStringResource("widget_kind_ask_desc"))
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
 /// Control Center and Lock Screen control: opens the Qibla.
 struct QiblaControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
@@ -121,6 +143,8 @@ struct NearMosqueWidgets: WidgetBundle {
         PrayerWidget()
         CountdownWidget()
         TodayWidget()
+        MosqueWidget()
+        AskWidget()
         QiblaControl()
     }
 }

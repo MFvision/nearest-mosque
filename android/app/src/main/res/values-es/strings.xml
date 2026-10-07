@@ -380,9 +380,14 @@
     <string name="view_map">Mapa</string>
     <string name="walking_route">Ruta a pie · %1$s · %2$s</string>
     <string name="website">Sitio web</string>
+    <string name="widget_ask_suggested">Prueba a preguntar</string>
     <string name="widget_choose_city">Abra la app para elegir su ciudad</string>
+    <string name="widget_kind_ask">Pregunta sobre el islam</string>
+    <string name="widget_kind_ask_desc">Haz una pregunta o toca una de las sugerencias de hoy.</string>
     <string name="widget_kind_countdown">Cuenta atrás</string>
     <string name="widget_kind_countdown_desc">Una barra que se llena hasta la próxima oración.</string>
+    <string name="widget_kind_mosque">Mezquita más cercana</string>
+    <string name="widget_kind_mosque_desc">Las mezquitas más cercanas, a qué distancia están y en qué dirección.</string>
     <string name="widget_kind_next">Próxima oración</string>
     <string name="widget_kind_next_desc">La próxima oración, su cuenta atrás y los horarios de hoy.</string>
     <string name="widget_kind_today">Oraciones de hoy</string>

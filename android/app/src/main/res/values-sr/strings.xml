@@ -381,9 +381,14 @@
     <string name="view_map">Мапа</string>
     <string name="walking_route">Пешачка рута · %1$s · %2$s</string>
     <string name="website">Веб-сајт</string>
+    <string name="widget_ask_suggested">Пробајте да питате</string>
     <string name="widget_choose_city">Отворите „Near Mosque” да изаберете град</string>
+    <string name="widget_kind_ask">Питај о исламу</string>
+    <string name="widget_kind_ask_desc">Поставите питање или додирните један од данашњих предлога.</string>
     <string name="widget_kind_countdown">Одбројавање до намаза</string>
     <string name="widget_kind_countdown_desc">Трака која се пуни до следећег намаза.</string>
+    <string name="widget_kind_mosque">Најближа џамија</string>
+    <string name="widget_kind_mosque_desc">Најближе џамије, колико су удаљене и у ком правцу.</string>
     <string name="widget_kind_next">Следећи намаз</string>
     <string name="widget_kind_next_desc">Следећи намаз, одбројавање до њега и данашња намаска времена.</string>
     <string name="widget_kind_today">Данашњи намази</string>

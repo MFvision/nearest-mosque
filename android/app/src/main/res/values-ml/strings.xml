@@ -380,9 +380,14 @@
     <string name="view_map">മാപ്പ്</string>
     <string name="walking_route">നടപ്പാത · %1$s · %2$s</string>
     <string name="website">വെബ്സൈറ്റ്</string>
+    <string name="widget_ask_suggested">ഇങ്ങനെ ചോദിച്ചുനോക്കൂ</string>
     <string name="widget_choose_city">നഗരം തിരഞ്ഞെടുക്കാൻ Near Mosque തുറക്കുക</string>
+    <string name="widget_kind_ask">ഇസ്‌ലാമിനെക്കുറിച്ച് ചോദിക്കൂ</string>
+    <string name="widget_kind_ask_desc">ഒരു ചോദ്യം ചോദിക്കൂ, അല്ലെങ്കിൽ ഇന്നത്തെ നിർദ്ദേശങ്ങളിൽ ഒന്നിൽ ടാപ്പ് ചെയ്യൂ.</string>
     <string name="widget_kind_countdown">നമസ്കാര കൗണ്ട്ഡൗൺ</string>
     <string name="widget_kind_countdown_desc">അടുത്ത നമസ്കാരം വരെ നിറയുന്ന ഒരു ബാർ.</string>
+    <string name="widget_kind_mosque">ഏറ്റവും അടുത്ത പള്ളി</string>
+    <string name="widget_kind_mosque_desc">ഏറ്റവും അടുത്ത പള്ളികൾ, അവയിലേക്കുള്ള ദൂരവും ദിശയും.</string>
     <string name="widget_kind_next">അടുത്ത നമസ്കാരം</string>
     <string name="widget_kind_next_desc">അടുത്ത നമസ്കാരം, അതിന്റെ കൗണ്ട്ഡൗൺ, ഇന്നത്തെ സമയങ്ങൾ.</string>
     <string name="widget_kind_today">ഇന്നത്തെ നമസ്കാരങ്ങൾ</string>

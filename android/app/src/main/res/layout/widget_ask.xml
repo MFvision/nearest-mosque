@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ask: a question bar and two suggested questions for today, each asked on tap. Colours and backgrounds are set from code per style (PrayerWidgets). -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_cream"
+    android:padding="12dp">
+    <ImageView
+        android:id="@+id/widget_mark"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-14dp"
+        android:layout_marginBottom="-14dp"
+        android:alpha="0.08"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_tab_mosque" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/ask_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp">
+            <ImageView android:id="@+id/ask_spark" android:layout_width="18dp" android:layout_height="18dp" android:importantForAccessibility="no" android:src="@drawable/ic_sparkle" />
+            <TextView android:id="@+id/ask_hint" style="@style/NMWidgetText.RowName" android:textSize="14sp" android:layout_marginStart="8dp" />
+        </LinearLayout>
+        <TextView android:id="@+id/ask_suggested" style="@style/NMWidgetText.Small" android:textStyle="bold" android:layout_marginTop="8dp" />
+        <LinearLayout
+            android:id="@+id/askq0"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+            <ImageView android:id="@+id/askq0_icon" android:layout_width="16dp" android:layout_height="16dp" android:importantForAccessibility="no" android:src="@drawable/ic_tab_ask" />
+            <TextView android:id="@+id/askq0_text" style="@style/NMWidgetText.RowName" android:textSize="14sp" android:layout_marginStart="8dp" />
+            <TextView android:id="@+id/askq0_go" style="@style/NMWidgetText.RowTime" android:text="›" android:textSize="18sp" android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/askq1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+            <ImageView android:id="@+id/askq1_icon" android:layout_width="16dp" android:layout_height="16dp" android:importantForAccessibility="no" android:src="@drawable/ic_tab_ask" />
+            <TextView android:id="@+id/askq1_text" style="@style/NMWidgetText.RowName" android:textSize="14sp" android:layout_marginStart="8dp" />
+            <TextView android:id="@+id/askq1_go" style="@style/NMWidgetText.RowTime" android:text="›" android:textSize="18sp" android:importantForAccessibility="no" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

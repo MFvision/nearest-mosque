@@ -2,6 +2,15 @@ import Foundation
 import NMCore
 import Security
 
+/// One of the nearest mosques for the widget: distance and direction from where the app last looked.
+struct SharedMosque: Codable, Equatable {
+    var id: String
+    var name: String
+    var meters: Double
+    /// Degrees from north.
+    var bearing: Double
+}
+
 /// What the widgets (and Siri) need from the app: where prayer times are calculated, how, and in which
 /// language. Shared through a keychain access group (no App Group needed), never sent anywhere.
 struct SharedState: Codable, Equatable {
@@ -14,6 +23,9 @@ struct SharedState: Codable, Equatable {
     var hijriAdjustmentDays: Int
     /// Prayers whose reminder is on (PrayerEvent raw values); the widgets show a bell for them.
     var reminders: [String]?
+    /// The nearest mosques (up to three) and suggested questions in the reader's language.
+    var mosques: [SharedMosque]?
+    var questions: [String]?
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
@@ -21,6 +33,23 @@ struct SharedState: Codable, Equatable {
     var isRTL: Bool { Languages.isRTL(language) }
 
     func reminderOn(_ e: PrayerEvent) -> Bool { reminders?.contains(e.rawValue) ?? false }
+
+    /// "600 m", "2.4 km" in the reader's locale.
+    func distance(_ meters: Double) -> String {
+        let style = Measurement<UnitLength>.FormatStyle(width: .abbreviated, locale: locale, usage: .asProvided,
+                                                        numberFormatStyle: .number.precision(.fractionLength(0...1)))
+        return meters < 1000 ? Measurement(value: (meters / 10).rounded() * 10, unit: UnitLength.meters).formatted(style)
+            : Measurement(value: meters / 1000, unit: UnitLength.kilometers).formatted(style)
+    }
+
+    /// Two suggested questions for today (they change every day).
+    func todaysQuestions(_ now: Date) -> [String] {
+        guard let q = questions, !q.isEmpty else { return [] }
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = zone
+        let day = cal.ordinality(of: .day, in: .era, for: now) ?? 0
+        return [q[(2 * day) % q.count], q[(2 * day + 1) % q.count]].reduce(into: []) { if !$0.contains($1) { $0.append($1) } }
+    }
 
     /// Today's, yesterday's and tomorrow's schedules around `now`.
     func days(_ now: Date, calculator: PrayerCalculator = PrayerCalculator()) -> [DaySchedule] {

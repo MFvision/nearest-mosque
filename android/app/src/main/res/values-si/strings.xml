@@ -380,9 +380,14 @@
     <string name="view_map">සිතියම</string>
     <string name="walking_route">පයින් යන මඟ · %1$s · %2$s</string>
     <string name="website">වෙබ් අඩවිය</string>
+    <string name="widget_ask_suggested">මෙසේ අහලා බලන්න</string>
     <string name="widget_choose_city">ඔබේ නගරය තේරීමට Near Mosque විවෘත කරන්න</string>
+    <string name="widget_kind_ask">ඉස්ලාමය ගැන අහන්න</string>
+    <string name="widget_kind_ask_desc">ප්‍රශ්නයක් අහන්න, නැතහොත් අද යෝජනාවලින් එකක් තට්ටු කරන්න.</string>
     <string name="widget_kind_countdown">සලාතයට ඉතිරි කාලය</string>
     <string name="widget_kind_countdown_desc">ඊළඟ සලාතය තෙක් පිරෙන තීරුවක්.</string>
+    <string name="widget_kind_mosque">ළඟම පල්ලිය</string>
+    <string name="widget_kind_mosque_desc">ළඟම පල්ලි, ඒවාට ඇති දුර සහ දිශාව.</string>
     <string name="widget_kind_next">ඊළඟ සලාතය</string>
     <string name="widget_kind_next_desc">ඊළඟ සලාතය, එයට ඉතිරි කාලය සහ අද සලාත වේලාවන්.</string>
     <string name="widget_kind_today">අද සලාත</string>

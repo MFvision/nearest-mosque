@@ -4,7 +4,7 @@ import SwiftUI
 import WidgetKit
 
 /// Debug builds only: the home-screen widgets drawn at their real sizes, for CI screenshots
-/// (`-demoWidgets YES -demoWidgetKind next|countdown|today -demoWidgetLook cream|green|night`).
+/// (`-demoWidgets YES -demoWidgetKind next|countdown|today|mosque|ask -demoWidgetLook cream|green|night`).
 /// Uses the city and settings chosen in the app, like the widgets themselves.
 struct WidgetGalleryView: View {
     @Environment(AppModel.self) private var model
@@ -13,6 +13,8 @@ struct WidgetGalleryView: View {
         switch UserDefaults.standard.string(forKey: "demoWidgetKind") {
         case "countdown": return .countdown
         case "today": return .today
+        case "mosque": return .mosque
+        case "ask": return .ask
         default: return .next
         }
     }
@@ -24,14 +26,20 @@ struct WidgetGalleryView: View {
         case .next: return [(.systemSmall, small), (.systemMedium, medium), (.systemLarge, large)]
         case .countdown: return [(.systemSmall, small), (.systemMedium, medium)]
         case .today: return [(.systemMedium, medium), (.systemLarge, large)]
+        case .mosque, .ask: return [(.systemSmall, small), (.systemMedium, medium)]
         }
     }
 
     var body: some View {
-        let state = model.settings.location.map {
-            SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId, prayer: model.settings.prayer,
+        let state = model.settings.location.map { loc in
+            SharedState(name: loc.name, latitude: loc.latitude, longitude: loc.longitude, zoneId: loc.zoneId, prayer: model.settings.prayer,
                         language: model.l10n.language, hijriAdjustmentDays: model.settings.prayer.hijriAdjustmentDays,
-                        reminders: ["fajr", "maghrib", "isha"])
+                        reminders: ["fajr", "maghrib", "isha"],
+                        mosques: model.nearestMosques.map { r in
+                            SharedMosque(id: r.id, name: r.mosque.displayName(model.l10n.language) ?? "", meters: r.distanceMeters,
+                                         bearing: Geo.initialBearing(from: loc.location, to: r.mosque.location))
+                        },
+                        questions: ((try? model.ask?.commonQuestions()) ?? []).compactMap { $0.question[model.l10n.language] ?? $0.question["en"] })
         } ?? SharedState.preview
         let entry = PrayerEntry.make(Date(), look: look, state: state)
         let p = WidgetPalette.of(look)
@@ -50,6 +58,7 @@ struct WidgetGalleryView: View {
             .frame(maxWidth: .infinity)
         }
         .background(Color(white: 0.55).ignoresSafeArea())
+        .task(id: model.ready) { model.refreshNearestMosque() }
     }
 }
 #endif

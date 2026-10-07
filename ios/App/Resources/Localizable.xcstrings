@@ -83554,6 +83554,227 @@
         }
       }
     },
+    "widget_ask_suggested": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try asking"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جرّب أن تسأل"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یہ پوچھ کر دیکھیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şunları sormayı deneyin"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coba tanyakan"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essayez de demander"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba a preguntar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Попробуйте спросить"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জিজ্ঞেস করে দেখুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "این‌ها را بپرسید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "این‌ها را بپرسید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "试着问问"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूछकर देखें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Experimente perguntar"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gwada tambaya"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jaribu kuuliza"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subukang itanong"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thử hỏi"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ลองถาม"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សាកសួរ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوراپ بېقىڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەمانە بپرسە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokušajte pitati"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пробајте да питате"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обидете се да прашате"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kérdezd meg például"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraag bijvoorbeeld"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სცადეთ კითხვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "මෙසේ අහලා බලන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఇలా అడిగి చూడండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಹೀಗೆ ಕೇಳಿ ನೋಡಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇങ്ങനെ ചോദിച്ചുനോക്കൂ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "असे विचारून पाहा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આ પૂછી જુઓ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਹ ਪੁੱਛ ਕੇ ਦੇਖੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এইবোৰ সুধি চাওক"
+          }
+        }
+      }
+    },
     "widget_choose_city": {
       "extractionState": "manual",
       "localizations": {
@@ -83771,6 +83992,448 @@
           "stringUnit": {
             "state": "translated",
             "value": "আপোনাৰ চহৰ বাছিবলৈ Near Mosque এপটো খোলক"
+          }
+        }
+      }
+    },
+    "widget_kind_ask": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask about Islam"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسأل عن الإسلام"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسلام کے بارے میں پوچھیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İslam hakkında sor"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanya tentang Islam"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questions sur l'islam"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta sobre el islam"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Спросить об исламе"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ইসলাম নিয়ে প্রশ্ন করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دربارهٔ اسلام بپرسید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در مورد اسلام بپرسید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伊斯兰教问答"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस्लाम के बारे में पूछें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunte sobre o islã"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambaya game da Musulunci"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uliza kuhusu Uislamu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magtanong tungkol sa Islam"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hỏi về Hồi giáo"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ถามเรื่องอิสลาม"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សួរអំពីសាសនាឥស្លាម"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئىسلام توغرىسىدا سوراش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دەربارەی ئیسلام بپرسە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pitaj o islamu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Питај о исламу"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прашај за исламот"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kérdezz az iszlámról"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraag over de islam"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "კითხვა ისლამზე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉස්ලාමය ගැන අහන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఇస్లాం గురించి అడగండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಇಸ್ಲಾಂ ಬಗ್ಗೆ ಕೇಳಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇസ്‌ലാമിനെക്കുറിച്ച് ചോദിക്കൂ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस्लामबद्दल विचारा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઇસ્લામ વિશે પૂછો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਸਲਾਮ ਬਾਰੇ ਪੁੱਛੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ইছলামৰ বিষয়ে সোধক"
+          }
+        }
+      }
+    },
+    "widget_kind_ask_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask a question, or tap one of today's suggestions."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اطرح سؤالك، أو اضغط أحد اقتراحات اليوم."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوال پوچھیں، یا آج کی تجاویز میں سے کسی ایک پر ٹیپ کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir soru sorun veya bugünün önerilerinden birine dokunun."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajukan pertanyaan, atau ketuk salah satu saran hari ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posez une question ou touchez l'une des suggestions du jour."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz una pregunta o toca una de las sugerencias de hoy."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задайте вопрос или нажмите на одну из подсказок дня."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রশ্ন করুন, অথবা আজকের পরামর্শগুলোর একটিতে ট্যাপ করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سؤال خود را بپرسید یا روی یکی از پیشنهادهای امروز بزنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوال خود را بپرسید یا روی یکی از پیشنهادهای امروز ضربه بزنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提出问题，或点按今日推荐的问题之一。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सवाल पूछें, या आज के सुझावों में से किसी एक पर टैप करें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faça uma pergunta ou toque em uma das sugestões de hoje."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yi tambaya, ko ka taɓa ɗaya daga cikin shawarwarin yau."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uliza swali, au gusa mojawapo ya mapendekezo ya leo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magtanong, o i-tap ang isa sa mga mungkahi ngayong araw."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đặt câu hỏi hoặc chạm vào một gợi ý hôm nay."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ถามคำถาม หรือแตะคำถามแนะนำของวันนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សួរសំណួរ ឬចុចលើសំណួរណែនាំមួយសម្រាប់ថ្ងៃនេះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوئال سوراڭ ياكى بۈگۈنكى تەۋسىيەلەرنىڭ بىرىنى بېسىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسیارێک بکە، یان دەست بنێ بە یەکێک لە پێشنیارەکانی ئەمڕۆ."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postavite pitanje ili dodirnite jedan od današnjih prijedloga."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поставите питање или додирните један од данашњих предлога."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поставете прашање или допрете еден од денешните предлози."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tegyél fel egy kérdést, vagy koppints a mai javaslatok egyikére."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stel een vraag of tik op een van de suggesties van vandaag."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დასვით კითხვა ან შეეხეთ დღის ერთ-ერთ შეთავაზებას."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ප්‍රශ්නයක් අහන්න, නැතහොත් අද යෝජනාවලින් එකක් තට්ටු කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఒక ప్రశ్న అడగండి, లేదా ఈరోజు సూచనల్లో ఒకదానిపై నొక్కండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪ್ರಶ್ನೆ ಕೇಳಿ, ಅಥವಾ ಇಂದಿನ ಸಲಹೆಗಳಲ್ಲಿ ಒಂದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഒരു ചോദ്യം ചോദിക്കൂ, അല്ലെങ്കിൽ ഇന്നത്തെ നിർദ്ദേശങ്ങളിൽ ഒന്നിൽ ടാപ്പ് ചെയ്യൂ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रश्न विचारा, किंवा आजच्या सूचनांपैकी एकावर टॅप करा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સવાલ પૂછો, અથવા આજનાં સૂચનોમાંથી કોઈ એક પર ટૅપ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਵਾਲ ਪੁੱਛੋ, ਜਾਂ ਅੱਜ ਦੇ ਸੁਝਾਵਾਂ ਵਿੱਚੋਂ ਕਿਸੇ ਇੱਕ 'ਤੇ ਟੈਪ ਕਰੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্ৰশ্ন সোধক, নাইবা আজিৰ পৰামৰ্শবোৰৰ এটাত টেপ কৰক।"
           }
         }
       }
@@ -84213,6 +84876,448 @@
           "stringUnit": {
             "state": "translated",
             "value": "পৰৱৰ্তী নামাজলৈকে ভৰি অহা এডাল বাৰ।"
+          }
+        }
+      }
+    },
+    "widget_kind_mosque": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nearest mosque"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أقرب مسجد"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریب ترین مسجد"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yakın cami"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masjid terdekat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mosquée la plus proche"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mezquita más cercana"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ближайшая мечеть"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নিকটতম মসজিদ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجد"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجد"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近的清真寺"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नज़दीकी मस्जिद"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesquita mais próxima"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masallaci mafi kusa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Msikiti wa karibu zaidi"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pinakamalapit na masjid"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thánh đường gần nhất"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มัสยิดใกล้ที่สุด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ាស្ជិតជិតបំផុត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەڭ يېقىن مەسچىت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزیکترین مزگەوت"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Najbliža džamija"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Најближа џамија"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Најблиска џамија"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legközelebbi mecset"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dichtstbijzijnde moskee"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "უახლოესი მეჩეთი"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ළඟම පල්ලිය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దగ్గరి మసీదు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅತಿ ಹತ್ತಿರದ ಮಸೀದಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഏറ്റവും അടുത്ത പള്ളി"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जवळची मशीद"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નજીકની મસ્જિદ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਭ ਤੋਂ ਨੇੜਲੀ ਮਸਜਿਦ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ওচৰৰ মছজিদ"
+          }
+        }
+      }
+    },
+    "widget_kind_mosque_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The nearest mosques, how far they are and which way."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أقرب المساجد، وبُعدها، واتجاهها."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریب ترین مساجد، ان کا فاصلہ اور سمت۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yakın camiler, uzaklıkları ve yönleri."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masjid-masjid terdekat, jaraknya, dan arahnya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les mosquées les plus proches, leur distance et leur direction."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las mezquitas más cercanas, a qué distancia están y en qué dirección."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ближайшие мечети, расстояние до них и направление."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নিকটতম মসজিদগুলো, সেগুলোর দূরত্ব ও দিক।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجدها، فاصله و جهت آن‌ها."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مساجد، فاصله و جهت آن‌ها."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近的清真寺，有多远、在哪个方向。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे नज़दीकी मस्जिदें, उनकी दूरी और दिशा।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As mesquitas mais próximas, a que distância estão e em que direção."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masallatai mafi kusa, nisansu da kuma inda suke."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misikiti iliyo karibu zaidi, umbali wake na upande ilipo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang pinakamalalapit na masjid, gaano kalayo at saang direksyon."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Các thánh đường gần nhất, khoảng cách và hướng đi."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มัสยิดที่ใกล้ที่สุด ระยะทาง และทิศทาง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ាស្ជិតជិតបំផុត ចម្ងាយ និងទិសដៅ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەڭ يېقىن مەسچىتلەر، ئۇلارنىڭ يىراقلىقى ۋە يۆنىلىشى."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزیکترین مزگەوتەکان، دووری و ئاراستەیان."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Najbliže džamije, koliko su udaljene i u kojem pravcu."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Најближе џамије, колико су удаљене и у ком правцу."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Најблиските џамии, колку се оддалечени и во која насока."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A legközelebbi mecsetek, a távolságuk és az irányuk."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De dichtstbijzijnde moskeeën, hoe ver ze zijn en in welke richting."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "უახლოესი მეჩეთები, რა მანძილზეა და რა მიმართულებით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ළඟම පල්ලි, ඒවාට ඇති දුර සහ දිශාව."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దగ్గరి మసీదులు, అవి ఎంత దూరంలో, ఏ దిశలో ఉన్నాయో."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅತಿ ಹತ್ತಿರದ ಮಸೀದಿಗಳು, ಅವುಗಳ ದೂರ ಮತ್ತು ದಿಕ್ಕು."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഏറ്റവും അടുത്ത പള്ളികൾ, അവയിലേക്കുള്ള ദൂരവും ദിശയും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वात जवळच्या मशिदी, त्यांचे अंतर आणि दिशा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૌથી નજીકની મસ્જિદો, તેમનું અંતર અને દિશા."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਭ ਤੋਂ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ, ਉਨ੍ਹਾਂ ਦੀ ਦੂਰੀ ਅਤੇ ਦਿਸ਼ਾ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ওচৰৰ মছজিদসমূহ, সেইবোৰৰ দূৰত্ব আৰু দিশ।"
           }
         }
       }

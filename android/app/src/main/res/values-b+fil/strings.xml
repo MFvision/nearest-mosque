@@ -380,9 +380,14 @@
     <string name="view_map">Mapa</string>
     <string name="walking_route">Ruta sa paglalakad · %1$s · %2$s</string>
     <string name="website">Website</string>
+    <string name="widget_ask_suggested">Subukang itanong</string>
     <string name="widget_choose_city">Buksan ang Near Mosque para piliin ang iyong lungsod</string>
+    <string name="widget_kind_ask">Magtanong tungkol sa Islam</string>
+    <string name="widget_kind_ask_desc">Magtanong, o i-tap ang isa sa mga mungkahi ngayong araw.</string>
     <string name="widget_kind_countdown">Countdown sa dasal</string>
     <string name="widget_kind_countdown_desc">Isang bar na napupuno hanggang sa susunod na dasal.</string>
+    <string name="widget_kind_mosque">Pinakamalapit na masjid</string>
+    <string name="widget_kind_mosque_desc">Ang pinakamalalapit na masjid, gaano kalayo at saang direksyon.</string>
     <string name="widget_kind_next">Susunod na dasal</string>
     <string name="widget_kind_next_desc">Ang susunod na dasal, ang countdown nito at ang mga oras ngayong araw.</string>
     <string name="widget_kind_today">Mga dasal ngayon</string>

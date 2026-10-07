@@ -380,9 +380,14 @@
     <string name="view_map">Map</string>
     <string name="walking_route">Walking route · %1$s · %2$s</string>
     <string name="website">Website</string>
+    <string name="widget_ask_suggested">Try asking</string>
     <string name="widget_choose_city">Open Near Mosque to choose your city</string>
+    <string name="widget_kind_ask">Ask about Islam</string>
+    <string name="widget_kind_ask_desc">Ask a question, or tap one of today\'s suggestions.</string>
     <string name="widget_kind_countdown">Prayer countdown</string>
     <string name="widget_kind_countdown_desc">A bar that fills up until the next prayer.</string>
+    <string name="widget_kind_mosque">Nearest mosque</string>
+    <string name="widget_kind_mosque_desc">The nearest mosques, how far they are and which way.</string>
     <string name="widget_kind_next">Next prayer</string>
     <string name="widget_kind_next_desc">The next prayer, its countdown and today\'s times.</string>
     <string name="widget_kind_today">Today\'s prayers</string>

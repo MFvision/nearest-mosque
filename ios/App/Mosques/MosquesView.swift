@@ -115,6 +115,10 @@ struct MosquesView: View {
         .onChange(of: mapSelection) { _, id in
             if let id, let r = vm.items.first(where: { $0.id == id }) { selected = r }
         }
+        // A widget tap opens that mosque's page once it is in the list.
+        .onChange(of: app.requestMosqueId) { _, _ in openRequestedMosque() }
+        .onChange(of: vm.items) { _, _ in openRequestedMosque() }
+        .onAppear { openRequestedMosque() }
         .sheet(item: $selected, onDismiss: { mapSelection = nil }) { r in
             MosqueDetailView(ranked: r, favorite: vm.favorites.contains(r.id), canFavorite: r.mosque.packId.hasPrefix("mosques."),
                              route: vm.routes[r.id]) { on in
@@ -178,6 +182,12 @@ struct MosquesView: View {
         }
         .transition(.opacity)
         .animation(Theme.spring, value: mode)
+    }
+
+    private func openRequestedMosque() {
+        guard let id = app.requestMosqueId, let r = vm.items.first(where: { $0.id == id }) else { return }
+        selected = r
+        app.requestMosqueId = nil
     }
 
     private func start() {
