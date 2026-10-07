@@ -217,6 +217,7 @@ struct PrayerWidgetView: View {
 
     @ViewBuilder private func nextView(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette) -> some View {
         switch family {
+        #if !targetEnvironment(macCatalyst)
         case .accessoryInline:
             Label("\(name(s, next.event)) \(s.time(next.at))", systemImage: next.event.symbol)
         case .accessoryCircular:
@@ -236,6 +237,7 @@ struct PrayerWidgetView: View {
                 Text(s.name).font(.caption).lineLimit(1).opacity(0.8)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+        #endif
         case .systemSmall:
             nextCard(s, next, p, timeSize: 30, showDay: true)
         case .systemMedium:
@@ -302,6 +304,7 @@ struct PrayerWidgetView: View {
 
     @ViewBuilder private func countdownView(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette) -> some View {
         switch family {
+        #if !targetEnvironment(macCatalyst)
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 3) {
                 HStack {
@@ -312,6 +315,7 @@ struct PrayerWidgetView: View {
                 bar(next, p)
                 countdown(next).font(.caption)
             }
+        #endif
         case .systemSmall:
             VStack(alignment: .leading, spacing: 6) {
                 Text(s.t("next_prayer")).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
@@ -642,6 +646,7 @@ extension PrayerWidgetView {
             let num = { (n: Int) in n.formatted(.number.locale(s.locale)) }
             let north = s.t("compass_north")
             switch family {
+            #if !targetEnvironment(macCatalyst)
             case .accessoryCircular:
                 ZStack {
                     AccessoryWidgetBackground()
@@ -651,6 +656,7 @@ extension PrayerWidgetView {
                 .environment(\.layoutDirection, .leftToRight)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(s.t("qibla_bearing", num(deg)))
+            #endif
             case .systemSmall:
                 VStack(spacing: 4) {
                     QiblaDial(bearing: b, north: north, palette: p, look: entry.look)

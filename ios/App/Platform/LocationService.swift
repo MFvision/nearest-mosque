@@ -27,14 +27,23 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        #if !targetEnvironment(macCatalyst)
         manager.headingFilter = 1
+        #endif
         authorization = manager.authorizationStatus
         if let l = manager.location { position = Self.convert(l) }
     }
 
     var isDenied: Bool { authorization == .denied || authorization == .restricted }
     var isAuthorized: Bool { authorization == .authorizedWhenInUse || authorization == .authorizedAlways }
-    var headingAvailable: Bool { CLLocationManager.headingAvailable() }
+    /// Macs have no compass: the Qibla is shown from north.
+    var headingAvailable: Bool {
+        #if targetEnvironment(macCatalyst)
+        false
+        #else
+        CLLocationManager.headingAvailable()
+        #endif
+    }
 
     /// Asks for permission if needed (at the point of use) and returns one fix, or nil.
     func currentPosition() async -> DevicePosition? {
@@ -60,16 +69,20 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     func beginHeading() {
         headingUsers += 1
-        guard headingUsers == 1, CLLocationManager.headingAvailable() else { return }
+        guard headingUsers == 1, headingAvailable else { return }
         smoother.reset()
         updateOrientation()
+        #if !targetEnvironment(macCatalyst)
         manager.startUpdatingHeading()
+        #endif
     }
 
     func endHeading() {
         headingUsers = max(0, headingUsers - 1)
         if headingUsers == 0 {
+            #if !targetEnvironment(macCatalyst)
             manager.stopUpdatingHeading()
+            #endif
             compass = .bearingOnly
         }
     }
@@ -102,6 +115,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in self.finish(nil) }
     }
 
+    #if !targetEnvironment(macCatalyst)
     nonisolated func locationManager(_ m: CLLocationManager, didUpdateHeading h: CLHeading) {
         let trueHeading = h.trueHeading
         let accuracy = h.headingAccuracy
@@ -116,6 +130,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     /// Calm in-app guidance replaces the system calibration overlay.
     nonisolated func locationManagerShouldDisplayHeadingCalibration(_ m: CLLocationManager) -> Bool { false }
+    #endif
 
     nonisolated static func convert(_ l: CLLocation) -> DevicePosition? {
         guard let ll = LatLng(l.coordinate.latitude, l.coordinate.longitude) else { return nil }

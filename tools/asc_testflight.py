@@ -6,7 +6,8 @@ answers export compliance (the app only uses HTTPS: usesNonExemptEncryption = fa
 internal TestFlight group access to the build.
 
 Environment: ASC_KEY_ID, ASC_ISSUER_ID, ASC_PRIVATE_KEY (.p8 contents), BUNDLE_ID,
-optional BUILD_NUMBER (default: newest build), WAIT_MINUTES (default 0).
+optional BUILD_NUMBER (default: newest build), WAIT_MINUTES (default 0), PLATFORMS (default IOS; e.g.
+IOS,MAC_OS — the Mac build is optional and waited for at most 20 minutes).
 Needs PyJWT and cryptography.
 """
 import json
@@ -80,10 +81,29 @@ def main() -> int:
     app_id = apps[0]["id"]
     print(f"App: {apps[0]['attributes']['name']} ({bundle}), id {app_id}")
 
+    platforms = [p for p in os.environ.get("PLATFORMS", "IOS").split(",") if p]
+    status = 0
+    for platform in platforms:
+        # The Mac build (MAC_OS) is optional: a missing or failed one is reported, never fails the run.
+        optional = platform != "IOS"
+        try:
+            rc = handle(app_id, platform, want, min(wait, 20) if optional else wait)
+        except urllib.error.HTTPError:
+            if not optional:
+                raise
+            rc = 1
+        if rc and not optional:
+            status = rc
+    return status
+
+
+def handle(app_id: str, platform: str, want: str | None, wait: int) -> int:
+    """Waits for this platform's build, answers export compliance and gives the internal groups access."""
+    print(f"--- {'Mac' if platform == 'MAC_OS' else 'iPhone and iPad'} ({platform})")
     deadline = time.time() + wait * 60
     while True:
         builds = api("GET", "/builds", {
-            "filter[app]": app_id, "sort": "-uploadedDate", "limit": "10",
+            "filter[app]": app_id, "filter[preReleaseVersion.platform]": platform, "sort": "-uploadedDate", "limit": "10",
             "fields[builds]": "version,processingState,uploadedDate,usesNonExemptEncryption,expired",
         })["data"]
         target = next((b for b in builds if b["attributes"]["version"] == want), None) if want else (builds[0] if builds else None)

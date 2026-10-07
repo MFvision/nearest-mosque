@@ -31,7 +31,9 @@ extension NearMosqueApp {
             // CI screenshots on iPad: `-demoLandscape YES` turns the window to landscape.
             guard UserDefaults.standard.bool(forKey: "demoLandscape"),
                   let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            #if !targetEnvironment(macCatalyst)
             scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { _ in }
+            #endif
         }
         #else
         RootView()

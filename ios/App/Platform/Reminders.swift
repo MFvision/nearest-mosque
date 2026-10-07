@@ -2,14 +2,14 @@ import Foundation
 import NMCore
 import SwiftUI
 import UserNotifications
-#if canImport(AlarmKit)
+#if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
 import AlarmKit
 #endif
 
 /// Local prayer reminders. iOS allows 64 pending notifications per app, so the next 60 alerts (in time
 /// order, from up to 14 days) are scheduled and rebuilt whenever the app opens or settings change. The
-/// Fajr alarm uses AlarmKit on iOS 26 (it rings until stopped, even on silent); earlier iOS gets a
-/// notification instead. Standard sounds only; no background audio is kept alive.
+/// Fajr alarm uses AlarmKit on iOS 26 (it rings until stopped, even on silent); earlier iOS and the Mac
+/// get a notification instead. Standard sounds only; no background audio is kept alive.
 enum Reminders {
     static let maxPending = 60
 
@@ -78,7 +78,7 @@ enum FajrAlarms {
     /// True when AlarmKit took the alarms (so no notification is needed for them).
     @discardableResult
     static func reschedule(_ alarms: [PlannedAlert], l10n: Localization) async -> Bool {
-        #if canImport(AlarmKit)
+        #if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
         if #available(iOS 26.0, *) {
             let manager = AlarmManager.shared
             for s in UserDefaults.standard.stringArray(forKey: key) ?? [] {
@@ -111,7 +111,7 @@ enum FajrAlarms {
     }
 }
 
-#if canImport(AlarmKit)
+#if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
 @available(iOS 26.0, *)
 struct FajrAlarmMetadata: AlarmMetadata {}
 #endif

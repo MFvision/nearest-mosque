@@ -82,7 +82,7 @@ struct PrayerWidget: Widget {
         }
         .configurationDisplayName(LocalizedStringResource("widget_kind_next"))
         .description(LocalizedStringResource("widget_kind_next_desc"))
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular, .accessoryRectangular, .accessoryInline])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge] + LockScreen.next)
     }
 }
 
@@ -93,7 +93,7 @@ struct CountdownWidget: Widget {
         }
         .configurationDisplayName(LocalizedStringResource("widget_kind_countdown"))
         .description(LocalizedStringResource("widget_kind_countdown_desc"))
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
+        .supportedFamilies([.systemSmall, .systemMedium] + LockScreen.countdown)
     }
 }
 
@@ -148,7 +148,7 @@ struct QiblaWidget: Widget {
         }
         .configurationDisplayName(LocalizedStringResource("widget_kind_qibla"))
         .description(LocalizedStringResource("widget_kind_qibla_desc"))
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular])
+        .supportedFamilies([.systemSmall, .systemMedium] + LockScreen.qibla)
     }
 }
 
@@ -163,6 +163,20 @@ struct ActionsWidget: Widget {
     }
 }
 
+/// Lock Screen sizes, where there is a Lock Screen (not on the Mac).
+enum LockScreen {
+    #if targetEnvironment(macCatalyst)
+    static let next: [WidgetFamily] = []
+    static let countdown: [WidgetFamily] = []
+    static let qibla: [WidgetFamily] = []
+    #else
+    static let next: [WidgetFamily] = [.accessoryCircular, .accessoryRectangular, .accessoryInline]
+    static let countdown: [WidgetFamily] = [.accessoryRectangular]
+    static let qibla: [WidgetFamily] = [.accessoryCircular]
+    #endif
+}
+
+#if !targetEnvironment(macCatalyst)
 /// Control Center and Lock Screen control: opens the Qibla.
 struct QiblaControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
@@ -175,6 +189,8 @@ struct QiblaControl: ControlWidget {
     }
 }
 
+#endif
+
 @main
 struct NearMosqueWidgets: WidgetBundle {
     var body: some Widget {
@@ -186,6 +202,8 @@ struct NearMosqueWidgets: WidgetBundle {
         AskWidget()
         QiblaWidget()
         ActionsWidget()
+        #if !targetEnvironment(macCatalyst)
         QiblaControl()
+        #endif
     }
 }

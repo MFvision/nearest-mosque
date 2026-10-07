@@ -273,3 +273,39 @@ jobs:
         with:
           name: ios-build-log
           path: ios/build.log
+      # The Mac app (Mac Catalyst): built from the same code, launched on this Mac and screenshotted.
+      - name: Build and run the Mac app (Mac Catalyst)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Debug \
+            -destination 'generic/platform=macOS,variant=Mac Catalyst' -derivedDataPath ddmac \
+            CODE_SIGNING_ALLOWED=NO build | tee mac.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" mac.log
+          APP="$PWD/ddmac/Build/Products/Debug-maccatalyst/NearMosque.app"
+          mkdir -p shots-mac
+          mac() { name=$1; shift
+            pkill -x NearMosque 2>/dev/null || true
+            sleep 2
+            open -n "$APP" --args "$@"
+            sleep 14
+            screencapture -x "shots-mac/$name.png" || true
+          }
+          mac 01-prayer -demoCity "Cape Town" -demoTab prayer -languageOverride en
+          mac 02-prayer-ar -demoCity "Cape Town" -demoTab prayer -languageOverride ar
+          mac 03-mosques -demoCity "Cape Town" -demoTab mosques -demoMosqueMode 1 -languageOverride en
+          mac 04-ask -demoCity "Cape Town" -demoTab ask -demoAsk YES -languageOverride en
+          mac 05-qibla -demoCity "Cape Town" -demoTab prayer -demoCompass YES -languageOverride en
+          mac 06-widgets -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind today -demoWidgetLook night -languageOverride en
+          pkill -x NearMosque 2>/dev/null || true
+          ls -la shots-mac
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mac-screenshots
+          path: ios/shots-mac/
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: mac-build-log
+          path: ios/mac.log

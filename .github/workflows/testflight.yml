@@ -1,7 +1,7 @@
 name: Nearest Mosque TestFlight
 
-# Builds the iOS app, signs it with the App Store Connect API key (Xcode automatic signing, cloud-
-# managed distribution certificate) and uploads it to TestFlight.
+# Builds the iPhone and iPad app, and the Mac app (Mac Catalyst), signs them with the App Store Connect
+# API key (Xcode automatic signing, cloud-managed distribution certificate) and uploads them to TestFlight.
 # Start it from the Actions tab (Run workflow) or by pushing a tag such as `ios-v1`.
 # Needs three repository secrets (see docs/07-testflight.md):
 #   ASC_KEY_ID, ASC_ISSUER_ID, ASC_PRIVATE_KEY (contents of the .p8 file)
@@ -106,6 +106,34 @@ jobs:
           grep -q "EXPORT SUCCEEDED" export.log
           echo "Uploaded build $BUILD_NUMBER of $BUNDLE_ID. It appears in TestFlight after Apple finishes processing (usually 5-30 minutes)."
 
+      # The Mac app (Mac Catalyst, same bundle id): a separate macOS build in TestFlight. Allowed to fail
+      # on its own so it never holds back the iPhone and iPad build above.
+      - name: Archive the Mac app (Mac Catalyst)
+        id: mac_archive
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
+            -destination 'generic/platform=macOS,variant=Mac Catalyst' -archivePath build/NearMosque-mac.xcarchive \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic \
+            APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            archive | tee mac-archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
+          grep -q "ARCHIVE SUCCEEDED" mac-archive.log
+
+      - name: Export and upload the Mac app
+        if: steps.mac_archive.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          xcodebuild -exportArchive -archivePath build/NearMosque-mac.xcarchive -exportOptionsPlist ExportOptions.plist \
+            -exportPath build/export-mac -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            | tee mac-export.log | grep -E "error|Upload|EXPORT (SUCCEEDED|FAILED)" || true
+          grep -q "EXPORT SUCCEEDED" mac-export.log
+          echo "Uploaded Mac build $BUILD_NUMBER of $BUNDLE_ID."
+
       - name: Remove the API key
         if: always()
         run: rm -rf ~/.appstoreconnect/private_keys
@@ -117,6 +145,8 @@ jobs:
           path: |
             ios/archive.log
             ios/export.log
+            ios/mac-archive.log
+            ios/mac-export.log
 
   # Waiting for Apple's processing runs on Linux: the repository is private, and macOS minutes count
   # several times against the Actions allowance.
@@ -124,7 +154,7 @@ jobs:
     name: Wait for Apple processing and give internal testers access
     needs: testflight
     runs-on: ubuntu-latest
-    timeout-minutes: 70
+    timeout-minutes: 95
     env:
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
@@ -136,7 +166,7 @@ jobs:
       - name: Wait, answer export compliance, add the build to internal groups
         run: |
           python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
-          WAIT_MINUTES=60 /tmp/asc/bin/python tools/asc_testflight.py
+          WAIT_MINUTES=60 PLATFORMS=IOS,MAC_OS /tmp/asc/bin/python tools/asc_testflight.py
 
   # The archive step's automatic signing creates a development certificate on each fresh machine; it is
   # useless once the machine is gone and Apple caps how many an account holds, so revoke this run's.
