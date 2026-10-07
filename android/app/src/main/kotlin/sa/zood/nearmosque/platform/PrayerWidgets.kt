@@ -151,7 +151,8 @@ object PrayerWidgets {
         for ((cls, kind) in providers) {
             for (id in m.getAppWidgetIds(ComponentName(context, cls))) {
                 val (v, at) = views(context, context.container, s, kind, style(context, id), extras)
-                next = at
+                // Mosque, Ask, Qibla and quick actions have no prayer time: keep the one a prayer widget gave.
+                if (at != null) next = at
                 bar = bar || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE
                 ring = ring || kind.isRing
                 m.updateAppWidget(id, v)
