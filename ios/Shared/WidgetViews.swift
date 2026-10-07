@@ -9,9 +9,9 @@ import WidgetKit
 enum WidgetLook: String, AppEnum {
     case cream, green, night
 
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Style"
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "widget_style_title"
     static var caseDisplayRepresentations: [WidgetLook: DisplayRepresentation] = [
-        .cream: "Gold and cream", .green: "Green", .night: "Night sky",
+        .cream: "style_cream", .green: "style_green", .night: "style_night",
     ]
 }
 
@@ -367,10 +367,14 @@ struct PrayerWidgetView: View {
         let track = entry.look == .cream ? Color.white : p.ink.opacity(0.16)
         let arc = entry.look == .cream ? p.pill : p.accent
         return ZStack {
-            Circle().stroke(track, lineWidth: line)
-            Circle().trim(from: 0, to: max(0.005, entry.progress))
-                .stroke(arc, style: StrokeStyle(lineWidth: line, lineCap: .round))
-                .rotationEffect(.degrees(-90))
+            // Clockwise from the top in every language (right-to-left would mirror the arc).
+            ZStack {
+                Circle().stroke(track, lineWidth: line)
+                Circle().trim(from: 0, to: max(0.005, entry.progress))
+                    .stroke(arc, style: StrokeStyle(lineWidth: line, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+            }
+            .environment(\.layoutDirection, .leftToRight)
             GeometryReader { g in
                 let r = min(g.size.width, g.size.height) / 2
                 let a = entry.progress * 2 * .pi

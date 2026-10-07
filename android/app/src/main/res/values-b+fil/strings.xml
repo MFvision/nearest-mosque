@@ -124,7 +124,17 @@
     <string name="import_done">Naidagdag ang %1$s</string>
     <string name="import_failed">Hindi maidagdag ang file na ito: %1$s</string>
     <string name="import_pack">Mag-import mula sa file</string>
+    <string name="intent_ask_desc">Magtanong gamit ang boses o teksto; bubukas ang Near Mosque kasama ang sagot at mga pinagmulan nito.</string>
     <string name="intent_ask_prompt">Ano ang gusto mong itanong?</string>
+    <string name="intent_directions">Direksyon papunta sa pinakamalapit na masjid</string>
+    <string name="intent_directions_desc">Binubuksan ang walking directions papunta sa pinakamalapit na masjid sa Maps.</string>
+    <string name="intent_nearest_desc">Sinasabi ang pinakamalapit na masjid at ang layo nito nang hindi binubuksan ang app.</string>
+    <string name="intent_next_prayer_desc">Sinasabi kung anong salah ang susunod, kailan, at gaano pa katagal.</string>
+    <string name="intent_open_prayer_times">Buksan ang oras ng salah</string>
+    <string name="intent_open_prayer_times_desc">Binubuksan ang Near Mosque sa oras ng salah ngayong araw.</string>
+    <string name="intent_question">Tanong</string>
+    <string name="intent_show_qibla">Ipakita ang qibla</string>
+    <string name="intent_show_qibla_desc">Binubuksan ang Near Mosque sa direksyon ng qibla.</string>
     <string name="language">Wika</string>
     <string name="library_answer">Sagot</string>
     <string name="library_bookmark">I-save</string>

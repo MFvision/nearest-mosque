@@ -124,7 +124,17 @@
     <string name="import_done">%1$s imeongezwa</string>
     <string name="import_failed">Imeshindwa kuongeza faili hii: %1$s</string>
     <string name="import_pack">Leta kutoka kwenye faili</string>
+    <string name="intent_ask_desc">Uliza kwa sauti au maandishi; Near Mosque hufunguka na jibu na vyanzo vyake.</string>
     <string name="intent_ask_prompt">Ungependa kuuliza nini?</string>
+    <string name="intent_directions">Maelekezo ya msikiti wa karibu</string>
+    <string name="intent_directions_desc">Hufungua maelekezo ya kutembea hadi msikiti wa karibu katika Ramani.</string>
+    <string name="intent_nearest_desc">Husema msikiti wa karibu na umbali wake bila kufungua programu.</string>
+    <string name="intent_next_prayer_desc">Husema sala inayofuata, wakati wake na muda uliobaki.</string>
+    <string name="intent_open_prayer_times">Fungua nyakati za sala</string>
+    <string name="intent_open_prayer_times_desc">Hufungua Near Mosque kwenye nyakati za sala za leo.</string>
+    <string name="intent_question">Swali</string>
+    <string name="intent_show_qibla">Onyesha kibla</string>
+    <string name="intent_show_qibla_desc">Hufungua Near Mosque kwenye mwelekeo wa kibla.</string>
     <string name="language">Lugha</string>
     <string name="library_answer">Jibu</string>
     <string name="library_bookmark">Hifadhi</string>

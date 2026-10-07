@@ -124,7 +124,17 @@
     <string name="import_done">Đã thêm %1$s</string>
     <string name="import_failed">Không thể thêm tệp này: %1$s</string>
     <string name="import_pack">Nhập từ tệp</string>
+    <string name="intent_ask_desc">Hỏi bằng giọng nói hoặc văn bản; Near Mosque mở ra cùng câu trả lời và nguồn.</string>
     <string name="intent_ask_prompt">Bạn muốn hỏi gì?</string>
+    <string name="intent_directions">Chỉ đường đến nhà thờ Hồi giáo gần nhất</string>
+    <string name="intent_directions_desc">Mở chỉ đường đi bộ đến nhà thờ Hồi giáo gần nhất trong Bản đồ.</string>
+    <string name="intent_nearest_desc">Cho biết nhà thờ Hồi giáo gần nhất và khoảng cách mà không cần mở ứng dụng.</string>
+    <string name="intent_next_prayer_desc">Cho biết giờ cầu nguyện tiếp theo, lúc nào và còn bao lâu.</string>
+    <string name="intent_open_prayer_times">Mở giờ cầu nguyện</string>
+    <string name="intent_open_prayer_times_desc">Mở Near Mosque ở giờ cầu nguyện hôm nay.</string>
+    <string name="intent_question">Câu hỏi</string>
+    <string name="intent_show_qibla">Hiện hướng Qibla</string>
+    <string name="intent_show_qibla_desc">Mở Near Mosque ở hướng Qibla.</string>
     <string name="language">Ngôn ngữ</string>
     <string name="library_answer">Câu trả lời</string>
     <string name="library_bookmark">Lưu</string>

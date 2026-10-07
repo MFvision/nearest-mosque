@@ -124,7 +124,17 @@
     <string name="import_done">%1$s ਜੋੜਿਆ ਗਿਆ</string>
     <string name="import_failed">ਇਹ ਫ਼ਾਈਲ ਜੋੜੀ ਨਹੀਂ ਜਾ ਸਕੀ: %1$s</string>
     <string name="import_pack">ਫ਼ਾਈਲ ਤੋਂ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="intent_ask_desc">ਆਵਾਜ਼ ਜਾਂ ਲਿਖਤ ਨਾਲ ਪੁੱਛੋ; Near Mosque ਜਵਾਬ ਅਤੇ ਸਰੋਤਾਂ ਨਾਲ ਖੁੱਲ੍ਹਦਾ ਹੈ।</string>
     <string name="intent_ask_prompt">ਤੁਸੀਂ ਕੀ ਪੁੱਛਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="intent_directions">ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ ਦਾ ਰਸਤਾ</string>
+    <string name="intent_directions_desc">ਨਕਸ਼ਿਆਂ ਵਿੱਚ ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ ਤੱਕ ਪੈਦਲ ਰਸਤਾ ਖੋਲ੍ਹਦਾ ਹੈ।</string>
+    <string name="intent_nearest_desc">ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ ਅਤੇ ਦੂਰੀ ਦੱਸਦਾ ਹੈ।</string>
+    <string name="intent_next_prayer_desc">ਦੱਸਦਾ ਹੈ ਕਿ ਅਗਲੀ ਨਮਾਜ਼ ਕਿਹੜੀ ਹੈ, ਕਦੋਂ ਹੈ ਅਤੇ ਕਿੰਨਾ ਸਮਾਂ ਬਾਕੀ ਹੈ।</string>
+    <string name="intent_open_prayer_times">ਨਮਾਜ਼ ਦੇ ਸਮੇਂ ਖੋਲ੍ਹੋ</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque ਨੂੰ ਅੱਜ ਦੇ ਨਮਾਜ਼ ਦੇ ਸਮਿਆਂ ’ਤੇ ਖੋਲ੍ਹਦਾ ਹੈ।</string>
+    <string name="intent_question">ਸਵਾਲ</string>
+    <string name="intent_show_qibla">ਕਿਬਲਾ ਦਿਖਾਓ</string>
+    <string name="intent_show_qibla_desc">Near Mosque ਨੂੰ ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ ’ਤੇ ਖੋਲ੍ਹਦਾ ਹੈ।</string>
     <string name="language">ਭਾਸ਼ਾ</string>
     <string name="library_answer">ਜਵਾਬ</string>
     <string name="library_bookmark">ਸੰਭਾਲੋ</string>

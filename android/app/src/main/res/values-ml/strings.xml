@@ -124,7 +124,17 @@
     <string name="import_done">%1$s ചേർത്തു</string>
     <string name="import_failed">ഈ ഫയൽ ചേർക്കാനായില്ല: %1$s</string>
     <string name="import_pack">ഫയലിൽ നിന്ന് ഇമ്പോർട്ട് ചെയ്യുക</string>
+    <string name="intent_ask_desc">ശബ്ദമോ എഴുത്തോ ഉപയോഗിച്ച് ചോദിക്കുക; Near Mosque ഉത്തരവും ഉറവിടങ്ങളുമായി തുറക്കും.</string>
     <string name="intent_ask_prompt">നിങ്ങൾക്ക് എന്താണ് ചോദിക്കേണ്ടത്?</string>
+    <string name="intent_directions">അടുത്തുള്ള പള്ളിയിലേക്കുള്ള വഴി</string>
+    <string name="intent_directions_desc">മാപ്‌സിൽ അടുത്തുള്ള പള്ളിയിലേക്കുള്ള നടപ്പുവഴി തുറക്കുന്നു.</string>
+    <string name="intent_nearest_desc">ആപ്പ് തുറക്കാതെ അടുത്തുള്ള പള്ളിയും ദൂരവും പറയുന്നു.</string>
+    <string name="intent_next_prayer_desc">അടുത്ത നമസ്കാരം ഏതാണ്, എപ്പോൾ, എത്ര സമയം ബാക്കിയുണ്ട് എന്ന് പറയുന്നു.</string>
+    <string name="intent_open_prayer_times">നമസ്കാര സമയങ്ങൾ തുറക്കുക</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque ഇന്നത്തെ നമസ്കാര സമയങ്ങളിൽ തുറക്കുന്നു.</string>
+    <string name="intent_question">ചോദ്യം</string>
+    <string name="intent_show_qibla">ഖിബ്‌ല കാണിക്കുക</string>
+    <string name="intent_show_qibla_desc">Near Mosque ഖിബ്‌ല ദിശയിൽ തുറക്കുന്നു.</string>
     <string name="language">ഭാഷ</string>
     <string name="library_answer">ഉത്തരം</string>
     <string name="library_bookmark">സേവ് ചെയ്യുക</string>

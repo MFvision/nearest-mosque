@@ -124,7 +124,17 @@
     <string name="import_done">%1$s එක් කළා</string>
     <string name="import_failed">මෙම ගොනුව එක් කළ නොහැකි විය: %1$s</string>
     <string name="import_pack">ගොනුවකින් ආයාත කරන්න</string>
+    <string name="intent_ask_desc">හඬෙන් හෝ ලිඛිතව අසන්න; Near Mosque පිළිතුර සහ මූලාශ්‍ර සමඟ විවෘත වේ.</string>
     <string name="intent_ask_prompt">ඔබට අසන්නට අවශ්‍ය කුමක්ද?</string>
+    <string name="intent_directions">ළඟම පල්ලියට මාර්ගය</string>
+    <string name="intent_directions_desc">සිතියම්හි ළඟම පල්ලියට පයින් යන මාර්ගය විවෘත කරයි.</string>
+    <string name="intent_nearest_desc">යෙදුම විවෘත නොකර ළඟම පල්ලිය සහ දුර කියයි.</string>
+    <string name="intent_next_prayer_desc">ඊළඟ සලාතය කුමක්ද, කවදාද, තව කොපමණ කාලයක්ද යන්න කියයි.</string>
+    <string name="intent_open_prayer_times">සලාත් වේලාවන් විවෘත කරන්න</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque අද සලාත් වේලාවන්හි විවෘත කරයි.</string>
+    <string name="intent_question">ප්‍රශ්නය</string>
+    <string name="intent_show_qibla">කිබ්ලාව පෙන්වන්න</string>
+    <string name="intent_show_qibla_desc">Near Mosque කිබ්ලා දිශාවෙන් විවෘත කරයි.</string>
     <string name="language">භාෂාව</string>
     <string name="library_answer">පිළිතුර</string>
     <string name="library_bookmark">සුරකින්න</string>

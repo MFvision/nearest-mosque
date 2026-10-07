@@ -124,7 +124,17 @@
     <string name="import_done">%1$s eklendi</string>
     <string name="import_failed">Dosya eklenemedi: %1$s</string>
     <string name="import_pack">Dosyadan içe aktar</string>
+    <string name="intent_ask_desc">Sesle ya da yazarak sorun; Near Mosque cevap ve kaynaklarıyla açılır.</string>
     <string name="intent_ask_prompt">Ne sormak istersiniz?</string>
+    <string name="intent_directions">En yakın camiye yol tarifi</string>
+    <string name="intent_directions_desc">Haritalar’da en yakın camiye yürüyüş yol tarifini açar.</string>
+    <string name="intent_nearest_desc">Uygulamayı açmadan en yakın camiyi ve uzaklığını söyler.</string>
+    <string name="intent_next_prayer_desc">Sıradaki namazı, vaktini ve ne kadar kaldığını söyler.</string>
+    <string name="intent_open_prayer_times">Namaz vakitlerini aç</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque’u bugünün namaz vakitlerinde açar.</string>
+    <string name="intent_question">Soru</string>
+    <string name="intent_show_qibla">Kıbleyi göster</string>
+    <string name="intent_show_qibla_desc">Near Mosque’u kıble yönünde açar.</string>
     <string name="language">Dil</string>
     <string name="library_answer">Cevap</string>
     <string name="library_bookmark">Kaydet</string>

@@ -124,7 +124,17 @@
     <string name="import_done">បានបន្ថែម %1$s</string>
     <string name="import_failed">មិនអាចបន្ថែមឯកសារនេះបានទេ៖ %1$s</string>
     <string name="import_pack">នាំចូលពីឯកសារ</string>
+    <string name="intent_ask_desc">សួរដោយសំឡេង ឬអក្សរ Near Mosque នឹងបើកជាមួយចម្លើយ និងប្រភព។</string>
     <string name="intent_ask_prompt">តើអ្នកចង់សួរអ្វី?</string>
+    <string name="intent_directions">ផ្លូវទៅវិហារឥស្លាមជិតបំផុត</string>
+    <string name="intent_directions_desc">បើកផ្លូវដើរទៅវិហារឥស្លាមជិតបំផុតក្នុងផែនទី។</string>
+    <string name="intent_nearest_desc">ប្រាប់វិហារឥស្លាមជិតបំផុត និងចម្ងាយ ដោយមិនបាច់បើកកម្មវិធី។</string>
+    <string name="intent_next_prayer_desc">ប្រាប់ពីសឡាតបន្ទាប់ ពេលណា និងនៅសល់ប៉ុន្មាន។</string>
+    <string name="intent_open_prayer_times">បើកម៉ោងសឡាត</string>
+    <string name="intent_open_prayer_times_desc">បើក Near Mosque នៅម៉ោងសឡាតថ្ងៃនេះ។</string>
+    <string name="intent_question">សំណួរ</string>
+    <string name="intent_show_qibla">បង្ហាញគិបឡាត</string>
+    <string name="intent_show_qibla_desc">បើក Near Mosque នៅទិសគិបឡាត។</string>
     <string name="language">ភាសា</string>
     <string name="library_answer">ចម្លើយ</string>
     <string name="library_bookmark">រក្សាទុក</string>

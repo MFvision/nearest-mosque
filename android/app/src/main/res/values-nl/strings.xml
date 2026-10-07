@@ -124,7 +124,17 @@
     <string name="import_done">%1$s toegevoegd</string>
     <string name="import_failed">Kon dit bestand niet toevoegen: %1$s</string>
     <string name="import_pack">Importeren uit bestand</string>
+    <string name="intent_ask_desc">Stel een vraag met je stem of tekst; Near Mosque opent met het antwoord en de bronnen.</string>
     <string name="intent_ask_prompt">Wat wilt u vragen?</string>
+    <string name="intent_directions">Route naar de dichtstbijzijnde moskee</string>
+    <string name="intent_directions_desc">Opent een looproute naar de dichtstbijzijnde moskee in Kaarten.</string>
+    <string name="intent_nearest_desc">Zegt welke moskee het dichtstbij is en hoe ver, zonder de app te openen.</string>
+    <string name="intent_next_prayer_desc">Zegt welk gebed het volgende is, wanneer, en hoe lang nog.</string>
+    <string name="intent_open_prayer_times">Gebedstijden openen</string>
+    <string name="intent_open_prayer_times_desc">Opent Near Mosque op de gebedstijden van vandaag.</string>
+    <string name="intent_question">Vraag</string>
+    <string name="intent_show_qibla">Toon de qibla</string>
+    <string name="intent_show_qibla_desc">Opent Near Mosque op de qibla-richting.</string>
     <string name="language">Taal</string>
     <string name="library_answer">Antwoord</string>
     <string name="library_bookmark">Bewaren</string>

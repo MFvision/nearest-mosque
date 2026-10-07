@@ -124,7 +124,17 @@
     <string name="import_done">%1$s زیاد کرا</string>
     <string name="import_failed">نەتوانرا ئەم فایلە زیاد بکرێت: %1$s</string>
     <string name="import_pack">هێنان لە فایلەوە</string>
+    <string name="intent_ask_desc">بە دەنگ یان نووسین بپرسە؛ ئەپی نزیکترین مزگەوت لەگەڵ وەڵام و سەرچاوەکانی دەکرێتەوە.</string>
     <string name="intent_ask_prompt">دەتەوێت چی بپرسیت؟</string>
+    <string name="intent_directions">ڕێگا بۆ نزیکترین مزگەوت</string>
+    <string name="intent_directions_desc">ڕێگای پیادە بۆ نزیکترین مزگەوت لە نەخشەکان دەکاتەوە.</string>
+    <string name="intent_nearest_desc">بەبێ کردنەوەی ئەپ، نزیکترین مزگەوت و دووریەکەی دەڵێت.</string>
+    <string name="intent_next_prayer_desc">دەڵێت نوێژی داهاتوو کامەیە، کەیە و چەندی ماوە.</string>
+    <string name="intent_open_prayer_times">کاتەکانی نوێژ بکەرەوە</string>
+    <string name="intent_open_prayer_times_desc">ئەپی نزیکترین مزگەوت لەسەر کاتەکانی نوێژی ئەمڕۆ دەکاتەوە.</string>
+    <string name="intent_question">پرسیار</string>
+    <string name="intent_show_qibla">قیبلە پیشان بدە</string>
+    <string name="intent_show_qibla_desc">ئەپی نزیکترین مزگەوت لەسەر ئاراستەی قیبلە دەکاتەوە.</string>
     <string name="language">زمان</string>
     <string name="library_answer">وەڵام</string>
     <string name="library_bookmark">پاشەکەوت</string>

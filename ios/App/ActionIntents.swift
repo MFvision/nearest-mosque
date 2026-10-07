@@ -29,8 +29,8 @@ extension Notification.Name {
 }
 
 struct OpenPrayerTimesIntent: AppIntent {
-    static var title: LocalizedStringResource = "Open prayer times"
-    static var description = IntentDescription("Opens Near Mosque on today's prayer times.")
+    static var title: LocalizedStringResource = "intent_open_prayer_times"
+    static var description = IntentDescription("intent_open_prayer_times_desc")
     static var openAppWhenRun = true
 
     @MainActor
@@ -44,10 +44,10 @@ struct OpenPrayerTimesIntent: AppIntent {
 /// with it, answered on the device from cited sources.
 struct AskIslamIntent: AppIntent {
     static var title: LocalizedStringResource = "widget_kind_ask"
-    static var description = IntentDescription("Ask a question by voice or text; Near Mosque opens with the answer and its sources.")
+    static var description = IntentDescription("intent_ask_desc")
     static var openAppWhenRun = true
 
-    @Parameter(title: "Question", requestValueDialog: IntentDialog("intent_ask_prompt"))
+    @Parameter(title: "intent_question", requestValueDialog: IntentDialog("intent_ask_prompt"))
     var question: String
 
     @MainActor
@@ -63,7 +63,7 @@ struct AskIslamIntent: AppIntent {
 /// Location gives one within a few seconds, else from where the app last looked.
 struct NearestMosqueIntent: AppIntent {
     static var title: LocalizedStringResource = "widget_kind_mosque"
-    static var description = IntentDescription("Says the nearest mosque and how far it is, without opening the app.")
+    static var description = IntentDescription("intent_nearest_desc")
 
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog & ReturnsValue<String> & ShowsSnippetView {
@@ -89,8 +89,8 @@ struct NearestMosqueIntent: AppIntent {
 
 /// Walking directions to the nearest mosque in Apple Maps, without going through the app.
 struct NearestMosqueDirectionsIntent: AppIntent {
-    static var title: LocalizedStringResource = "Directions to the nearest mosque"
-    static var description = IntentDescription("Opens walking directions to the nearest mosque in Maps.")
+    static var title: LocalizedStringResource = "intent_directions"
+    static var description = IntentDescription("intent_directions_desc")
 
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog & OpensIntent {

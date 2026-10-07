@@ -9,8 +9,8 @@ extension Notification.Name {
 
 /// Opens the app on the Qibla view (Siri, Shortcuts, the Action button, Control Center).
 struct OpenQiblaIntent: AppIntent {
-    static var title: LocalizedStringResource = "Show the Qibla"
-    static var description = IntentDescription("Opens Near Mosque on the Qibla direction.")
+    static var title: LocalizedStringResource = "intent_show_qibla"
+    static var description = IntentDescription("intent_show_qibla_desc")
     static var openAppWhenRun = true
 
     @MainActor
@@ -23,8 +23,8 @@ struct OpenQiblaIntent: AppIntent {
 
 /// "When is the next prayer?": answered on the device from the city and method chosen in the app.
 struct NextPrayerIntent: AppIntent {
-    static var title: LocalizedStringResource = "Next prayer"
-    static var description = IntentDescription("Says which prayer is next, when, and how long until it.")
+    static var title: LocalizedStringResource = "widget_kind_next"
+    static var description = IntentDescription("intent_next_prayer_desc")
 
     func perform() async throws -> some IntentResult & ProvidesDialog & ReturnsValue<String> {
         guard let s = SharedStore.read(), let next = PrayerCalculator().nextPrayer(s.days(Date()), now: Date()) else {

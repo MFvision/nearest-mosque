@@ -124,7 +124,17 @@
     <string name="import_done">%1$s जोड़ा गया</string>
     <string name="import_failed">यह फ़ाइल नहीं जोड़ी जा सकी: %1$s</string>
     <string name="import_pack">फ़ाइल से इम्पोर्ट करें</string>
+    <string name="intent_ask_desc">आवाज़ या टेक्स्ट से पूछें; Near Mosque जवाब और उसके स्रोतों के साथ खुलता है।</string>
     <string name="intent_ask_prompt">आप क्या पूछना चाहते हैं?</string>
+    <string name="intent_directions">सबसे नज़दीकी मस्जिद का रास्ता</string>
+    <string name="intent_directions_desc">मैप्स में सबसे नज़दीकी मस्जिद तक पैदल रास्ता खोलता है।</string>
+    <string name="intent_nearest_desc">ऐप खोले बिना सबसे नज़दीकी मस्जिद और उसकी दूरी बताता है।</string>
+    <string name="intent_next_prayer_desc">बताता है कि अगली नमाज़ कौन सी है, कब है और कितना समय बाकी है।</string>
+    <string name="intent_open_prayer_times">नमाज़ के समय खोलें</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque को आज के नमाज़ के समय पर खोलता है।</string>
+    <string name="intent_question">सवाल</string>
+    <string name="intent_show_qibla">क़िबला दिखाएँ</string>
+    <string name="intent_show_qibla_desc">Near Mosque को क़िबला की दिशा पर खोलता है।</string>
     <string name="language">भाषा</string>
     <string name="library_answer">जवाब</string>
     <string name="library_bookmark">सेव करें</string>

@@ -124,7 +124,17 @@
     <string name="import_done">Added %1$s</string>
     <string name="import_failed">Couldn’t add this file: %1$s</string>
     <string name="import_pack">Import from file</string>
+    <string name="intent_ask_desc">Ask a question by voice or text; Near Mosque opens with the answer and its sources.</string>
     <string name="intent_ask_prompt">What would you like to ask?</string>
+    <string name="intent_directions">Directions to the nearest mosque</string>
+    <string name="intent_directions_desc">Opens walking directions to the nearest mosque in Maps.</string>
+    <string name="intent_nearest_desc">Says the nearest mosque and how far it is, without opening the app.</string>
+    <string name="intent_next_prayer_desc">Says which prayer is next, when, and how long until it.</string>
+    <string name="intent_open_prayer_times">Open prayer times</string>
+    <string name="intent_open_prayer_times_desc">Opens Near Mosque on today\'s prayer times.</string>
+    <string name="intent_question">Question</string>
+    <string name="intent_show_qibla">Show the Qibla</string>
+    <string name="intent_show_qibla_desc">Opens Near Mosque on the Qibla direction.</string>
     <string name="language">Language</string>
     <string name="library_answer">Answer</string>
     <string name="library_bookmark">Save</string>

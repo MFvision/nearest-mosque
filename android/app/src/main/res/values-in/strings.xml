@@ -124,7 +124,17 @@
     <string name="import_done">%1$s ditambahkan</string>
     <string name="import_failed">File tidak dapat ditambahkan: %1$s</string>
     <string name="import_pack">Impor dari file</string>
+    <string name="intent_ask_desc">Bertanya dengan suara atau teks; Near Mosque terbuka dengan jawaban dan sumbernya.</string>
     <string name="intent_ask_prompt">Apa yang ingin Anda tanyakan?</string>
+    <string name="intent_directions">Petunjuk arah ke masjid terdekat</string>
+    <string name="intent_directions_desc">Membuka petunjuk jalan kaki ke masjid terdekat di Peta.</string>
+    <string name="intent_nearest_desc">Memberi tahu masjid terdekat dan jaraknya tanpa membuka aplikasi.</string>
+    <string name="intent_next_prayer_desc">Memberi tahu salat berikutnya, waktunya, dan berapa lama lagi.</string>
+    <string name="intent_open_prayer_times">Buka jadwal salat</string>
+    <string name="intent_open_prayer_times_desc">Membuka Near Mosque pada jadwal salat hari ini.</string>
+    <string name="intent_question">Pertanyaan</string>
+    <string name="intent_show_qibla">Tampilkan kiblat</string>
+    <string name="intent_show_qibla_desc">Membuka Near Mosque pada arah kiblat.</string>
     <string name="language">Bahasa</string>
     <string name="library_answer">Jawaban</string>
     <string name="library_bookmark">Simpan</string>

@@ -124,7 +124,17 @@
     <string name="import_done">%1$s شامل ہو گیا</string>
     <string name="import_failed">یہ فائل شامل نہیں ہو سکی: %1$s</string>
     <string name="import_pack">فائل سے درآمد کریں</string>
+    <string name="intent_ask_desc">آواز یا تحریر سے سوال پوچھیں؛ قریبی مسجد ایپ جواب اور اس کے ماخذ کے ساتھ کھلتا ہے۔</string>
     <string name="intent_ask_prompt">آپ کیا پوچھنا چاہتے ہیں؟</string>
+    <string name="intent_directions">قریب ترین مسجد کا راستہ</string>
+    <string name="intent_directions_desc">نقشوں میں قریب ترین مسجد تک پیدل راستہ کھولتا ہے۔</string>
+    <string name="intent_nearest_desc">ایپ کھولے بغیر قریب ترین مسجد اور اس کا فاصلہ بتاتا ہے۔</string>
+    <string name="intent_next_prayer_desc">بتاتا ہے کہ اگلی نماز کون سی ہے، کب ہے، اور کتنا وقت باقی ہے۔</string>
+    <string name="intent_open_prayer_times">نماز کے اوقات کھولیں</string>
+    <string name="intent_open_prayer_times_desc">قریبی مسجد ایپ کو آج کے نماز کے اوقات پر کھولتا ہے۔</string>
+    <string name="intent_question">سوال</string>
+    <string name="intent_show_qibla">قبلہ دکھائیں</string>
+    <string name="intent_show_qibla_desc">قریبی مسجد ایپ کو قبلہ کی سمت پر کھولتا ہے۔</string>
     <string name="language">زبان</string>
     <string name="library_answer">جواب</string>
     <string name="library_bookmark">محفوظ کریں</string>

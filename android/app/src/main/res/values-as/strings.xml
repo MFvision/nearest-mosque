@@ -124,7 +124,17 @@
     <string name="import_done">%1$s যোগ কৰা হ\'ল</string>
     <string name="import_failed">এই ফাইলটো যোগ কৰিব পৰা নগ\'ল: %1$s</string>
     <string name="import_pack">ফাইলৰ পৰা আমদানি কৰক</string>
+    <string name="intent_ask_desc">মাত বা লিখনিৰে সোধক; Near Mosque উত্তৰ আৰু উৎসৰ সৈতে খোলে।</string>
     <string name="intent_ask_prompt">আপুনি কি সুধিব বিচাৰে?</string>
+    <string name="intent_directions">ওচৰৰ মছজিদলৈ পথ</string>
+    <string name="intent_directions_desc">মানচিত্ৰত ওচৰৰ মছজিদলৈ খোজ কাঢ়ি যোৱাৰ পথ খোলে।</string>
+    <string name="intent_nearest_desc">এপ নোখোলাকৈ ওচৰৰ মছজিদ আৰু দূৰত্ব কয়।</string>
+    <string name="intent_next_prayer_desc">পৰৱৰ্তী নামাজ কোনটো, কেতিয়া আৰু কিমান সময় বাকী কয়।</string>
+    <string name="intent_open_prayer_times">নামাজৰ সময় খোলক</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque আজিৰ নামাজৰ সময়ত খোলে।</string>
+    <string name="intent_question">প্ৰশ্ন</string>
+    <string name="intent_show_qibla">কিবলা দেখুৱাওক</string>
+    <string name="intent_show_qibla_desc">Near Mosque কিবলাৰ দিশত খোলে।</string>
     <string name="language">ভাষা</string>
     <string name="library_answer">উত্তৰ</string>
     <string name="library_bookmark">ছেভ কৰক</string>

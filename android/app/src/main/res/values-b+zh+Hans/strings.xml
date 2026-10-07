@@ -124,7 +124,17 @@
     <string name="import_done">已添加 %1$s</string>
     <string name="import_failed">无法添加此文件：%1$s</string>
     <string name="import_pack">从文件导入</string>
+    <string name="intent_ask_desc">用语音或文字提问；Near Mosque 会打开并显示答案及其来源。</string>
     <string name="intent_ask_prompt">您想问什么？</string>
+    <string name="intent_directions">前往最近清真寺的路线</string>
+    <string name="intent_directions_desc">在地图中打开前往最近清真寺的步行路线。</string>
+    <string name="intent_nearest_desc">无需打开应用，告诉您最近的清真寺及距离。</string>
+    <string name="intent_next_prayer_desc">告诉您下一次礼拜、时间以及剩余多久。</string>
+    <string name="intent_open_prayer_times">打开礼拜时间</string>
+    <string name="intent_open_prayer_times_desc">在今天的礼拜时间页面打开 Near Mosque。</string>
+    <string name="intent_question">问题</string>
+    <string name="intent_show_qibla">显示朝向</string>
+    <string name="intent_show_qibla_desc">在朝向页面打开 Near Mosque。</string>
     <string name="language">语言</string>
     <string name="library_answer">回答</string>
     <string name="library_bookmark">保存</string>

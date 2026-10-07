@@ -124,7 +124,17 @@
     <string name="import_done">An ƙara %1$s</string>
     <string name="import_failed">Ba a iya ƙara wannan fayil ba: %1$s</string>
     <string name="import_pack">Shigo daga fayil</string>
+    <string name="intent_ask_desc">Yi tambaya da murya ko rubutu; Near Mosque zai buɗe da amsa da tushenta.</string>
     <string name="intent_ask_prompt">Me kuke so ku tambaya?</string>
+    <string name="intent_directions">Hanyar zuwa masallaci mafi kusa</string>
+    <string name="intent_directions_desc">Yana buɗe hanyar tafiya da ƙafa zuwa masallaci mafi kusa a Taswirori.</string>
+    <string name="intent_nearest_desc">Yana faɗin masallaci mafi kusa da nisansa ba tare da buɗe manhajar ba.</string>
+    <string name="intent_next_prayer_desc">Yana faɗin sallah mai zuwa, lokacinta da sauran lokaci.</string>
+    <string name="intent_open_prayer_times">Buɗe lokutan sallah</string>
+    <string name="intent_open_prayer_times_desc">Yana buɗe Near Mosque a kan lokutan sallah na yau.</string>
+    <string name="intent_question">Tambaya</string>
+    <string name="intent_show_qibla">Nuna alƙibla</string>
+    <string name="intent_show_qibla_desc">Yana buɗe Near Mosque a kan hanyar alƙibla.</string>
     <string name="language">Harshe</string>
     <string name="library_answer">Amsa</string>
     <string name="library_bookmark">Ajiye</string>

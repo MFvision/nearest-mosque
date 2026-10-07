@@ -124,7 +124,17 @@
     <string name="import_done">تمت إضافة %1$s</string>
     <string name="import_failed">تعذّرت إضافة الملف: %1$s</string>
     <string name="import_pack">استيراد من ملف</string>
+    <string name="intent_ask_desc">اسأل بصوتك أو بالكتابة، ويفتح تطبيق أقرب مسجد مع الإجابة ومصادرها.</string>
     <string name="intent_ask_prompt">ماذا تريد أن تسأل؟</string>
+    <string name="intent_directions">الاتجاهات إلى أقرب مسجد</string>
+    <string name="intent_directions_desc">يفتح اتجاهات المشي إلى أقرب مسجد في الخرائط.</string>
+    <string name="intent_nearest_desc">يخبرك بأقرب مسجد وكم يبعد، دون فتح التطبيق.</string>
+    <string name="intent_next_prayer_desc">يخبرك بالصلاة القادمة وموعدها والوقت المتبقي لها.</string>
+    <string name="intent_open_prayer_times">فتح مواقيت الصلاة</string>
+    <string name="intent_open_prayer_times_desc">يفتح تطبيق أقرب مسجد على مواقيت صلاة اليوم.</string>
+    <string name="intent_question">السؤال</string>
+    <string name="intent_show_qibla">عرض القبلة</string>
+    <string name="intent_show_qibla_desc">يفتح تطبيق أقرب مسجد على اتجاه القبلة.</string>
     <string name="language">اللغة</string>
     <string name="library_answer">الجواب</string>
     <string name="library_bookmark">حفظ</string>

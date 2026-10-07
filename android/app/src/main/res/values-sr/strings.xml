@@ -124,7 +124,17 @@
     <string name="import_done">Додато: %1$s</string>
     <string name="import_failed">Овај фајл није могуће додати: %1$s</string>
     <string name="import_pack">Увези из фајла</string>
+    <string name="intent_ask_desc">Питајте гласом или текстом; Near Mosque се отвара са одговором и изворима.</string>
     <string name="intent_ask_prompt">Шта желите да питате?</string>
+    <string name="intent_directions">Пут до најближе џамије</string>
+    <string name="intent_directions_desc">Отвара пешачки пут до најближе џамије у Мапама.</string>
+    <string name="intent_nearest_desc">Каже најближу џамију и колико је далеко, без отварања апликације.</string>
+    <string name="intent_next_prayer_desc">Каже која је следећа молитва, када је и колико је остало.</string>
+    <string name="intent_open_prayer_times">Отвори времена молитве</string>
+    <string name="intent_open_prayer_times_desc">Отвара Near Mosque на данашњим временима молитве.</string>
+    <string name="intent_question">Питање</string>
+    <string name="intent_show_qibla">Прикажи киблу</string>
+    <string name="intent_show_qibla_desc">Отвара Near Mosque на смеру кибле.</string>
     <string name="language">Језик</string>
     <string name="library_answer">Одговор</string>
     <string name="library_bookmark">Сачувај</string>

@@ -124,7 +124,17 @@
     <string name="import_done">Hozzáadva: %1$s</string>
     <string name="import_failed">Nem sikerült hozzáadni a fájlt: %1$s</string>
     <string name="import_pack">Importálás fájlból</string>
+    <string name="intent_ask_desc">Kérdezzen hanggal vagy szöveggel; az Near Mosque a válasszal és forrásaival nyílik meg.</string>
     <string name="intent_ask_prompt">Mit szeretne kérdezni?</string>
+    <string name="intent_directions">Útvonal a legközelebbi mecsethez</string>
+    <string name="intent_directions_desc">Gyalogos útvonalat nyit a legközelebbi mecsethez a Térképben.</string>
+    <string name="intent_nearest_desc">Megmondja a legközelebbi mecsetet és a távolságát az app megnyitása nélkül.</string>
+    <string name="intent_next_prayer_desc">Megmondja, melyik a következő ima, mikor lesz, és mennyi idő van hátra.</string>
+    <string name="intent_open_prayer_times">Imaidők megnyitása</string>
+    <string name="intent_open_prayer_times_desc">Megnyitja az Near Mosque alkalmazást a mai imaidőknél.</string>
+    <string name="intent_question">Kérdés</string>
+    <string name="intent_show_qibla">Kibla mutatása</string>
+    <string name="intent_show_qibla_desc">Megnyitja az Near Mosque alkalmazást a kibla irányánál.</string>
     <string name="language">Nyelv</string>
     <string name="library_answer">Válasz</string>
     <string name="library_bookmark">Mentés</string>

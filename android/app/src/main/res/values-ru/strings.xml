@@ -124,7 +124,17 @@
     <string name="import_done">Добавлено: %1$s</string>
     <string name="import_failed">Не удалось добавить файл: %1$s</string>
     <string name="import_pack">Импорт из файла</string>
+    <string name="intent_ask_desc">Спросите голосом или текстом — Near Mosque откроется с ответом и источниками.</string>
     <string name="intent_ask_prompt">Что вы хотите спросить?</string>
+    <string name="intent_directions">Маршрут до ближайшей мечети</string>
+    <string name="intent_directions_desc">Открывает пешеходный маршрут до ближайшей мечети в Картах.</string>
+    <string name="intent_nearest_desc">Сообщает ближайшую мечеть и расстояние, не открывая приложение.</string>
+    <string name="intent_next_prayer_desc">Сообщает следующую молитву, её время и сколько осталось.</string>
+    <string name="intent_open_prayer_times">Открыть время молитв</string>
+    <string name="intent_open_prayer_times_desc">Открывает Near Mosque на сегодняшнем расписании молитв.</string>
+    <string name="intent_question">Вопрос</string>
+    <string name="intent_show_qibla">Показать киблу</string>
+    <string name="intent_show_qibla_desc">Открывает Near Mosque на направлении киблы.</string>
     <string name="language">Язык</string>
     <string name="library_answer">Ответ</string>
     <string name="library_bookmark">Сохранить</string>

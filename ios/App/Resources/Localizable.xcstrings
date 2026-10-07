@@ -27185,6 +27185,227 @@
         }
       }
     },
+    "intent_ask_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask a question by voice or text; Near Mosque opens with the answer and its sources."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسأل بصوتك أو بالكتابة، ويفتح تطبيق أقرب مسجد مع الإجابة ومصادرها."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آواز یا تحریر سے سوال پوچھیں؛ قریبی مسجد ایپ جواب اور اس کے ماخذ کے ساتھ کھلتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesle ya da yazarak sorun; Near Mosque cevap ve kaynaklarıyla açılır."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bertanya dengan suara atau teks; Near Mosque terbuka dengan jawaban dan sumbernya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posez une question à voix haute ou par écrit ; Near Mosque s’ouvre avec la réponse et ses sources."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta por voz o por texto; Near Mosque se abre con la respuesta y sus fuentes."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Спросите голосом или текстом — Near Mosque откроется с ответом и источниками."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কণ্ঠে বা লিখে জিজ্ঞাসা করুন; Near Mosque উত্তর ও তার উৎসসহ খোলে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "با صدا یا نوشتن بپرسید؛ برنامهٔ نزدیک‌ترین مسجد با پاسخ و منابع آن باز می‌شود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "با صدا یا نوشتن بپرسید؛ برنامهٔ نزدیک‌ترین مسجد با پاسخ و منابع آن باز می‌شود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用语音或文字提问；Near Mosque 会打开并显示答案及其来源。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आवाज़ या टेक्स्ट से पूछें; Near Mosque जवाब और उसके स्रोतों के साथ खुलता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunte por voz ou texto; o Near Mosque abre com a resposta e as fontes."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yi tambaya da murya ko rubutu; Near Mosque zai buɗe da amsa da tushenta."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uliza kwa sauti au maandishi; Near Mosque hufunguka na jibu na vyanzo vyake."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magtanong gamit ang boses o teksto; bubukas ang Near Mosque kasama ang sagot at mga pinagmulan nito."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hỏi bằng giọng nói hoặc văn bản; Near Mosque mở ra cùng câu trả lời và nguồn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ถามด้วยเสียงหรือข้อความ Near Mosque จะเปิดพร้อมคำตอบและแหล่งที่มา"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សួរដោយសំឡេង ឬអក្សរ Near Mosque នឹងបើកជាមួយចម្លើយ និងប្រភព។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئاۋاز ياكى يېزىق بىلەن سوراڭ؛ «ئەڭ يېقىن مەسچىت» جاۋاب ۋە مەنبەلىرى بىلەن ئېچىلىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بە دەنگ یان نووسین بپرسە؛ ئەپی نزیکترین مزگەوت لەگەڵ وەڵام و سەرچاوەکانی دەکرێتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pitajte glasom ili tekstom; Near Mosque se otvara s odgovorom i izvorima."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Питајте гласом или текстом; Near Mosque се отвара са одговором и изворима."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прашајте со глас или текст; Near Mosque се отвора со одговорот и изворите."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kérdezzen hanggal vagy szöveggel; az Near Mosque a válasszal és forrásaival nyílik meg."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stel een vraag met je stem of tekst; Near Mosque opent met het antwoord en de bronnen."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "იკითხეთ ხმით ან ტექსტით; Near Mosque გაიხსნება პასუხით და წყაროებით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "හඬෙන් හෝ ලිඛිතව අසන්න; Near Mosque පිළිතුර සහ මූලාශ්‍ර සමඟ විවෘත වේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాయిస్ లేదా టెక్స్ట్‌తో అడగండి; Near Mosque సమాధానం, మూలాలతో తెరుచుకుంటుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಧ್ವನಿ ಅಥವಾ ಪಠ್ಯದಿಂದ ಕೇಳಿ; Near Mosque ಉತ್ತರ ಮತ್ತು ಮೂಲಗಳೊಂದಿಗೆ ತೆರೆಯುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ശബ്ദമോ എഴുത്തോ ഉപയോഗിച്ച് ചോദിക്കുക; Near Mosque ഉത്തരവും ഉറവിടങ്ങളുമായി തുറക്കും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आवाज किंवा मजकुराने विचारा; Near Mosque उत्तर आणि स्रोतांसह उघडते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "અવાજ કે લખાણથી પૂછો; Near Mosque જવાબ અને તેના સ્રોત સાથે ખૂલે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਵਾਜ਼ ਜਾਂ ਲਿਖਤ ਨਾਲ ਪੁੱਛੋ; Near Mosque ਜਵਾਬ ਅਤੇ ਸਰੋਤਾਂ ਨਾਲ ਖੁੱਲ੍ਹਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "মাত বা লিখনিৰে সোধক; Near Mosque উত্তৰ আৰু উৎসৰ সৈতে খোলে।"
+          }
+        }
+      }
+    },
     "intent_ask_prompt": {
       "extractionState": "manual",
       "localizations": {
@@ -27402,6 +27623,1995 @@
           "stringUnit": {
             "state": "translated",
             "value": "আপুনি কি সুধিব বিচাৰে?"
+          }
+        }
+      }
+    },
+    "intent_directions": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Directions to the nearest mosque"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاتجاهات إلى أقرب مسجد"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریب ترین مسجد کا راستہ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yakın camiye yol tarifi"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petunjuk arah ke masjid terdekat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itinéraire vers la mosquée la plus proche"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo llegar a la mezquita más cercana"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Маршрут до ближайшей мечети"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কাছের মসজিদের পথ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مسیر تا نزدیک‌ترین مسجد"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مسیر تا نزدیک‌ترین مسجد"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前往最近清真寺的路线"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे नज़दीकी मस्जिद का रास्ता"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rota até a mesquita mais próxima"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hanyar zuwa masallaci mafi kusa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maelekezo ya msikiti wa karibu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Direksyon papunta sa pinakamalapit na masjid"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chỉ đường đến nhà thờ Hồi giáo gần nhất"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เส้นทางไปมัสยิดที่ใกล้ที่สุด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ផ្លូវទៅវិហារឥស្លាមជិតបំផុត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەڭ يېقىن مەسچىتكە يول"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڕێگا بۆ نزیکترین مزگەوت"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Put do najbliže džamije"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пут до најближе џамије"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Насоки до најблиската џамија"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Útvonal a legközelebbi mecsethez"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route naar de dichtstbijzijnde moskee"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მარშრუტი უახლოეს მეჩეთამდე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ළඟම පල්ලියට මාර්ගය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దగ్గరి మసీదుకు దారి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಹತ್ತಿರದ ಮಸೀದಿಗೆ ದಾರಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്തുള്ള പള്ളിയിലേക്കുള്ള വഴി"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जवळच्या मशिदीचा मार्ग"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નજીકની મસ્જિદનો રસ્તો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ ਦਾ ਰਸਤਾ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ওচৰৰ মছজিদলৈ পথ"
+          }
+        }
+      }
+    },
+    "intent_directions_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens walking directions to the nearest mosque in Maps."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يفتح اتجاهات المشي إلى أقرب مسجد في الخرائط."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نقشوں میں قریب ترین مسجد تک پیدل راستہ کھولتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haritalar’da en yakın camiye yürüyüş yol tarifini açar."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Membuka petunjuk jalan kaki ke masjid terdekat di Peta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre l’itinéraire à pied vers la mosquée la plus proche dans Plans."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre la ruta a pie hasta la mezquita más cercana en Mapas."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открывает пешеходный маршрут до ближайшей мечети в Картах."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "মানচিত্রে কাছের মসজিদ পর্যন্ত হাঁটার পথ খোলে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مسیر پیاده تا نزدیک‌ترین مسجد را در نقشه‌ها باز می‌کند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مسیر پیاده تا نزدیک‌ترین مسجد را در نقشه‌ها باز می‌کند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在地图中打开前往最近清真寺的步行路线。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैप्स में सबसे नज़दीकी मस्जिद तक पैदल रास्ता खोलता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre a rota a pé até a mesquita mais próxima no Mapas."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana buɗe hanyar tafiya da ƙafa zuwa masallaci mafi kusa a Taswirori."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hufungua maelekezo ya kutembea hadi msikiti wa karibu katika Ramani."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binubuksan ang walking directions papunta sa pinakamalapit na masjid sa Maps."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở chỉ đường đi bộ đến nhà thờ Hồi giáo gần nhất trong Bản đồ."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดเส้นทางเดินไปมัสยิดที่ใกล้ที่สุดในแผนที่"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើកផ្លូវដើរទៅវិហារឥស្លាមជិតបំផុតក្នុងផែនទី។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خەرىتىدە ئەڭ يېقىن مەسچىتكە پىيادە يولنى ئاچىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڕێگای پیادە بۆ نزیکترین مزگەوت لە نەخشەکان دەکاتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvara pješački put do najbliže džamije u Mapama."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвара пешачки пут до најближе џамије у Мапама."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвора пешачки насоки до најблиската џамија во Мапи."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gyalogos útvonalat nyit a legközelebbi mecsethez a Térképben."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opent een looproute naar de dichtstbijzijnde moskee in Kaarten."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ხსნის ფეხით მარშრუტს უახლოეს მეჩეთამდე რუკებში."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සිතියම්හි ළඟම පල්ලියට පයින් යන මාර්ගය විවෘත කරයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మ్యాప్స్‌లో దగ్గరి మసీదుకు నడక దారిని తెరుస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಕ್ಷೆಗಳಲ್ಲಿ ಹತ್ತಿರದ ಮಸೀದಿಗೆ ನಡಿಗೆ ದಾರಿ ತೆರೆಯುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "മാപ്‌സിൽ അടുത്തുള്ള പള്ളിയിലേക്കുള്ള നടപ്പുവഴി തുറക്കുന്നു."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नकाशांमध्ये जवळच्या मशिदीपर्यंत चालण्याचा मार्ग उघडते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નકશામાં નજીકની મસ્જિદ સુધીનો ચાલવાનો રસ્તો ખોલે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਕਸ਼ਿਆਂ ਵਿੱਚ ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ ਤੱਕ ਪੈਦਲ ਰਸਤਾ ਖੋਲ੍ਹਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "মানচিত্ৰত ওচৰৰ মছজিদলৈ খোজ কাঢ়ি যোৱাৰ পথ খোলে।"
+          }
+        }
+      }
+    },
+    "intent_nearest_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Says the nearest mosque and how far it is, without opening the app."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يخبرك بأقرب مسجد وكم يبعد، دون فتح التطبيق."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ایپ کھولے بغیر قریب ترین مسجد اور اس کا فاصلہ بتاتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamayı açmadan en yakın camiyi ve uzaklığını söyler."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memberi tahu masjid terdekat dan jaraknya tanpa membuka aplikasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indique la mosquée la plus proche et sa distance, sans ouvrir l’app."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dice la mezquita más cercana y a qué distancia está, sin abrir la app."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сообщает ближайшую мечеть и расстояние, не открывая приложение."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যাপ না খুলেই কাছের মসজিদ ও তার দূরত্ব জানায়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بدون باز کردن برنامه، نزدیک‌ترین مسجد و فاصله‌اش را می‌گوید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بدون باز کردن برنامه، نزدیک‌ترین مسجد و فاصله‌اش را می‌گوید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无需打开应用，告诉您最近的清真寺及距离。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऐप खोले बिना सबसे नज़दीकी मस्जिद और उसकी दूरी बताता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diz a mesquita mais próxima e a distância, sem abrir o app."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana faɗin masallaci mafi kusa da nisansa ba tare da buɗe manhajar ba."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Husema msikiti wa karibu na umbali wake bila kufungua programu."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sinasabi ang pinakamalapit na masjid at ang layo nito nang hindi binubuksan ang app."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cho biết nhà thờ Hồi giáo gần nhất và khoảng cách mà không cần mở ứng dụng."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "บอกมัสยิดที่ใกล้ที่สุดและระยะทางโดยไม่ต้องเปิดแอป"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប្រាប់វិហារឥស្លាមជិតបំផុត និងចម្ងាយ ដោយមិនបាច់បើកកម្មវិធី។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەپنى ئاچماي ئەڭ يېقىن مەسچىت ۋە ئارىلىقىنى ئېيتىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بەبێ کردنەوەی ئەپ، نزیکترین مزگەوت و دووریەکەی دەڵێت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaže najbližu džamiju i koliko je daleko, bez otvaranja aplikacije."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каже најближу џамију и колико је далеко, без отварања апликације."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ја кажува најблиската џамија и колку е далеку, без да ја отворите апликацијата."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megmondja a legközelebbi mecsetet és a távolságát az app megnyitása nélkül."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zegt welke moskee het dichtstbij is en hoe ver, zonder de app te openen."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გეუბნებათ უახლოეს მეჩეთს და მანძილს აპის გახსნის გარეშე."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "යෙදුම විවෘත නොකර ළඟම පල්ලිය සහ දුර කියයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "యాప్ తెరవకుండానే దగ్గరి మసీదు, దూరం చెబుతుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆ್ಯಪ್ ತೆರೆಯದೆ ಹತ್ತಿರದ ಮಸೀದಿ ಮತ್ತು ದೂರ ಹೇಳುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ആപ്പ് തുറക്കാതെ അടുത്തുള്ള പള്ളിയും ദൂരവും പറയുന്നു."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अ‍ॅप न उघडता जवळची मशीद आणि अंतर सांगते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "એપ ખોલ્યા વિના નજીકની મસ્જિદ અને અંતર કહે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਸਭ ਤੋਂ ਨੇੜੇ ਦੀ ਮਸਜਿਦ ਅਤੇ ਦੂਰੀ ਦੱਸਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এপ নোখোলাকৈ ওচৰৰ মছজিদ আৰু দূৰত্ব কয়।"
+          }
+        }
+      }
+    },
+    "intent_next_prayer_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Says which prayer is next, when, and how long until it."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يخبرك بالصلاة القادمة وموعدها والوقت المتبقي لها."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بتاتا ہے کہ اگلی نماز کون سی ہے، کب ہے، اور کتنا وقت باقی ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sıradaki namazı, vaktini ve ne kadar kaldığını söyler."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memberi tahu salat berikutnya, waktunya, dan berapa lama lagi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indique la prochaine prière, son heure et le temps restant."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dice cuál es la próxima oración, a qué hora y cuánto falta."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сообщает следующую молитву, её время и сколько осталось."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরের নামাজ কোনটি, কখন এবং কত সময় বাকি তা জানায়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "می‌گوید نماز بعدی کدام است، کی است و چقدر مانده است."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "می‌گوید نماز بعدی کدام است، کی است و چقدر مانده است."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "告诉您下一次礼拜、时间以及剩余多久。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बताता है कि अगली नमाज़ कौन सी है, कब है और कितना समय बाकी है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diz qual é a próxima oração, quando e quanto falta."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana faɗin sallah mai zuwa, lokacinta da sauran lokaci."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Husema sala inayofuata, wakati wake na muda uliobaki."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sinasabi kung anong salah ang susunod, kailan, at gaano pa katagal."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cho biết giờ cầu nguyện tiếp theo, lúc nào và còn bao lâu."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "บอกว่าละหมาดถัดไปคืออะไร เมื่อไร และเหลืออีกนานเท่าไร"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប្រាប់ពីសឡាតបន្ទាប់ ពេលណា និងនៅសល់ប៉ុន្មាន។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كېيىنكى ناماز قايسى، قاچان ۋە قانچىلىك قالغانلىقىنى ئېيتىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دەڵێت نوێژی داهاتوو کامەیە، کەیە و چەندی ماوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaže koji je sljedeći namaz, kada je i koliko je ostalo."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каже која је следећа молитва, када је и колико је остало."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кажува која е следната молитва, кога е и колку време останува."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megmondja, melyik a következő ima, mikor lesz, és mennyi idő van hátra."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zegt welk gebed het volgende is, wanneer, en hoe lang nog."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გეუბნებათ, რომელია შემდეგი ლოცვა, როდის და რამდენი დრო რჩება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඊළඟ සලාතය කුමක්ද, කවදාද, තව කොපමණ කාලයක්ද යන්න කියයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తదుపరి నమాజ్ ఏది, ఎప్పుడు, ఇంకా ఎంత సమయం ఉందో చెబుతుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮುಂದಿನ ನಮಾಜ್ ಯಾವುದು, ಯಾವಾಗ ಮತ್ತು ಎಷ್ಟು ಸಮಯ ಉಳಿದಿದೆ ಎಂದು ಹೇಳುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്ത നമസ്കാരം ഏതാണ്, എപ്പോൾ, എത്ര സമയം ബാക്കിയുണ്ട് എന്ന് പറയുന്നു."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुढील नमाज कोणती, केव्हा आणि किती वेळ उरला ते सांगते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આગલી નમાઝ કઈ છે, ક્યારે છે અને કેટલો સમય બાકી છે તે કહે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੱਸਦਾ ਹੈ ਕਿ ਅਗਲੀ ਨਮਾਜ਼ ਕਿਹੜੀ ਹੈ, ਕਦੋਂ ਹੈ ਅਤੇ ਕਿੰਨਾ ਸਮਾਂ ਬਾਕੀ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পৰৱৰ্তী নামাজ কোনটো, কেতিয়া আৰু কিমান সময় বাকী কয়।"
+          }
+        }
+      }
+    },
+    "intent_open_prayer_times": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open prayer times"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح مواقيت الصلاة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز کے اوقات کھولیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namaz vakitlerini aç"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka jadwal salat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir les horaires de prière"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir horarios de oración"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть время молитв"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজের সময় খুলুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "باز کردن اوقات نماز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "باز کردن اوقات نماز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开礼拜时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ के समय खोलें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir horários de oração"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buɗe lokutan sallah"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fungua nyakati za sala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buksan ang oras ng salah"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở giờ cầu nguyện"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดเวลาละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើកម៉ោងសឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز ۋاقىتلىرىنى ئېچىش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتەکانی نوێژ بکەرەوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvori vaktiju"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори времена молитве"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори ги времињата за молитва"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imaidők megnyitása"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebedstijden openen"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ლოცვის დროის გახსნა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත් වේලාවන් විවෘත කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయాలు తెరవండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯಗಳನ್ನು ತೆರೆಯಿರಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയങ്ങൾ തുറക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाजाच्या वेळा उघडा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝના સમય ખોલો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਦੇ ਸਮੇਂ ਖੋਲ੍ਹੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজৰ সময় খোলক"
+          }
+        }
+      }
+    },
+    "intent_open_prayer_times_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens Near Mosque on today's prayer times."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يفتح تطبيق أقرب مسجد على مواقيت صلاة اليوم."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریبی مسجد ایپ کو آج کے نماز کے اوقات پر کھولتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque’u bugünün namaz vakitlerinde açar."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Membuka Near Mosque pada jadwal salat hari ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Near Mosque sur les horaires de prière du jour."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Near Mosque en los horarios de oración de hoy."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открывает Near Mosque на сегодняшнем расписании молитв."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque আজকের নামাজের সময়ে খোলে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برنامهٔ نزدیک‌ترین مسجد را روی اوقات نماز امروز باز می‌کند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برنامهٔ نزدیک‌ترین مسجد را روی اوقات نماز امروز باز می‌کند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在今天的礼拜时间页面打开 Near Mosque。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque को आज के नमाज़ के समय पर खोलता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Near Mosque nos horários de oração de hoje."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana buɗe Near Mosque a kan lokutan sallah na yau."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hufungua Near Mosque kwenye nyakati za sala za leo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binubuksan ang Near Mosque sa oras ng salah ngayong araw."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Near Mosque ở giờ cầu nguyện hôm nay."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Near Mosque ที่เวลาละหมาดของวันนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើក Near Mosque នៅម៉ោងសឡាតថ្ងៃនេះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«ئەڭ يېقىن مەسچىت» نى بۈگۈنكى ناماز ۋاقىتلىرىدا ئاچىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەپی نزیکترین مزگەوت لەسەر کاتەکانی نوێژی ئەمڕۆ دەکاتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvara Near Mosque na današnjoj vaktiji."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвара Near Mosque на данашњим временима молитве."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Го отвора Near Mosque на денешните времиња за молитва."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megnyitja az Near Mosque alkalmazást a mai imaidőknél."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opent Near Mosque op de gebedstijden van vandaag."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ხსნის Near Mosque-ს დღევანდელი ლოცვის დროზე."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque අද සලාත් වේලාවන්හි විවෘත කරයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ను ఈరోజు నమాజ్ సమయాల వద్ద తెరుస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ಅನ್ನು ಇಂದಿನ ನಮಾಜ್ ಸಮಯಗಳಲ್ಲಿ ತೆರೆಯುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ഇന്നത്തെ നമസ്കാര സമയങ്ങളിൽ തുറക്കുന്നു."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque आजच्या नमाजाच्या वेळांवर उघडते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ને આજના નમાઝના સમય પર ખોલે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ਨੂੰ ਅੱਜ ਦੇ ਨਮਾਜ਼ ਦੇ ਸਮਿਆਂ ’ਤੇ ਖੋਲ੍ਹਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque আজিৰ নামাজৰ সময়ত খোলে।"
+          }
+        }
+      }
+    },
+    "intent_question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Question"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "السؤال"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوال"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soru"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pertanyaan"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Question"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вопрос"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রশ্ন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسش"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسش"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "问题"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सवाल"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunta"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambaya"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swali"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanong"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Câu hỏi"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "คำถาม"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សំណួរ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوئال"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسیار"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pitanje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Питање"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прашање"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kérdés"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraag"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "კითხვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ප්‍රශ්නය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రశ్న"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪ್ರಶ್ನೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചോദ്യം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रश्न"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "પ્રશ્ન"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਵਾਲ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্ৰশ্ন"
+          }
+        }
+      }
+    },
+    "intent_show_qibla": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the Qibla"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عرض القبلة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبلہ دکھائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kıbleyi göster"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tampilkan kiblat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la qibla"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar la alquibla"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать киблу"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিবলা দেখান"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نمایش قبله"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نمایش قبله"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示朝向"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क़िबला दिखाएँ"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar a qibla"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuna alƙibla"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onyesha kibla"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ipakita ang qibla"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiện hướng Qibla"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แสดงกิบลัต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បង្ហាញគិបឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قىبلىنى كۆرسەت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قیبلە پیشان بدە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prikaži kiblu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прикажи киблу"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прикажи ја киблата"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla mutatása"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toon de qibla"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყიბლის ჩვენება"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "කිබ්ලාව පෙන්වන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఖిబ్లా చూపించు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಿಬ್ಲಾ ತೋರಿಸಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഖിബ്‌ല കാണിക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किब्ला दाखवा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "કિબ્લા બતાવો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਿਬਲਾ ਦਿਖਾਓ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিবলা দেখুৱাওক"
+          }
+        }
+      }
+    },
+    "intent_show_qibla_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens Near Mosque on the Qibla direction."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يفتح تطبيق أقرب مسجد على اتجاه القبلة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قریبی مسجد ایپ کو قبلہ کی سمت پر کھولتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque’u kıble yönünde açar."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Membuka Near Mosque pada arah kiblat."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Near Mosque sur la direction de la qibla."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Near Mosque en la dirección de la alquibla."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открывает Near Mosque на направлении киблы."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque কিবলার দিকে খোলে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برنامهٔ نزدیک‌ترین مسجد را روی جهت قبله باز می‌کند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برنامهٔ نزدیک‌ترین مسجد را روی جهت قبله باز می‌کند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在朝向页面打开 Near Mosque。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque को क़िबला की दिशा पर खोलता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Near Mosque na direção da qibla."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana buɗe Near Mosque a kan hanyar alƙibla."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hufungua Near Mosque kwenye mwelekeo wa kibla."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binubuksan ang Near Mosque sa direksyon ng qibla."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Near Mosque ở hướng Qibla."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Near Mosque ที่ทิศกิบลัต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើក Near Mosque នៅទិសគិបឡាត។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«ئەڭ يېقىن مەسچىت» نى قىبلە يۆنىلىشىدە ئاچىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەپی نزیکترین مزگەوت لەسەر ئاراستەی قیبلە دەکاتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvara Near Mosque na smjeru kible."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвара Near Mosque на смеру кибле."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Го отвора Near Mosque на насоката на киблата."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megnyitja az Near Mosque alkalmazást a kibla irányánál."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opent Near Mosque op de qibla-richting."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ხსნის Near Mosque-ს ყიბლის მიმართულებაზე."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque කිබ්ලා දිශාවෙන් විවෘත කරයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ను ఖిబ్లా దిశలో తెరుస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ಅನ್ನು ಕಿಬ್ಲಾ ದಿಕ್ಕಿನಲ್ಲಿ ತೆರೆಯುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ഖിബ്‌ല ദിശയിൽ തുറക്കുന്നു."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque किब्लाच्या दिशेवर उघडते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ને કિબ્લાની દિશા પર ખોલે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque ਨੂੰ ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ ’ਤੇ ਖੋਲ੍ਹਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near Mosque কিবলাৰ দিশত খোলে।"
           }
         }
       }

@@ -1,7 +1,7 @@
 import AppIntents
 
 /// Siri phrases and Shortcuts, also for the Action button (Settings > Action Button > Shortcut).
-/// Phrases are English for now.
+/// Phrases are in English and Arabic (Resources/AppShortcuts.xcstrings); titles follow the app's language.
 struct NearMosqueShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(intent: NextPrayerIntent(), phrases: [
@@ -31,6 +31,6 @@ struct NearMosqueShortcuts: AppShortcutsProvider {
             "Show the Qibla in \(.applicationName)",
             "Where is the Qibla in \(.applicationName)",
             "\(.applicationName) Qibla",
-        ], shortTitle: "Qibla", systemImageName: "location.north.line.fill")
+        ], shortTitle: "widget_kind_qibla", systemImageName: "location.north.line.fill")
     }
 }

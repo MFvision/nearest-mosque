@@ -124,7 +124,17 @@
     <string name="import_done">%1$s قوشۇلدى</string>
     <string name="import_failed">بۇ ھۆججەتنى قوشقىلى بولمىدى: %1$s</string>
     <string name="import_pack">ھۆججەتتىن ئەكىرىش</string>
+    <string name="intent_ask_desc">ئاۋاز ياكى يېزىق بىلەن سوراڭ؛ «ئەڭ يېقىن مەسچىت» جاۋاب ۋە مەنبەلىرى بىلەن ئېچىلىدۇ.</string>
     <string name="intent_ask_prompt">نېمە سورىماقچى؟</string>
+    <string name="intent_directions">ئەڭ يېقىن مەسچىتكە يول</string>
+    <string name="intent_directions_desc">خەرىتىدە ئەڭ يېقىن مەسچىتكە پىيادە يولنى ئاچىدۇ.</string>
+    <string name="intent_nearest_desc">ئەپنى ئاچماي ئەڭ يېقىن مەسچىت ۋە ئارىلىقىنى ئېيتىدۇ.</string>
+    <string name="intent_next_prayer_desc">كېيىنكى ناماز قايسى، قاچان ۋە قانچىلىك قالغانلىقىنى ئېيتىدۇ.</string>
+    <string name="intent_open_prayer_times">ناماز ۋاقىتلىرىنى ئېچىش</string>
+    <string name="intent_open_prayer_times_desc">«ئەڭ يېقىن مەسچىت» نى بۈگۈنكى ناماز ۋاقىتلىرىدا ئاچىدۇ.</string>
+    <string name="intent_question">سوئال</string>
+    <string name="intent_show_qibla">قىبلىنى كۆرسەت</string>
+    <string name="intent_show_qibla_desc">«ئەڭ يېقىن مەسچىت» نى قىبلە يۆنىلىشىدە ئاچىدۇ.</string>
     <string name="language">تىل</string>
     <string name="library_answer">جاۋاب</string>
     <string name="library_bookmark">ساقلاش</string>

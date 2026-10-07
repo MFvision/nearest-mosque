@@ -36,8 +36,9 @@ struct SharedState: Codable, Equatable {
 
     /// "600 m", "2.4 km" in the reader's locale.
     func distance(_ meters: Double) -> String {
+        // One decimal only under 100 km ("2.4 km"); none beyond ("6,558 km").
         let style = Measurement<UnitLength>.FormatStyle(width: .abbreviated, locale: locale, usage: .asProvided,
-                                                        numberFormatStyle: .number.precision(.fractionLength(0...1)))
+                                                        numberFormatStyle: .number.precision(.fractionLength(0...(meters < 100_000 ? 1 : 0))))
         return meters < 1000 ? Measurement(value: (meters / 10).rounded() * 10, unit: UnitLength.meters).formatted(style)
             : Measurement(value: meters / 1000, unit: UnitLength.kilometers).formatted(style)
     }

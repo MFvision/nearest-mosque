@@ -124,7 +124,17 @@
     <string name="import_done">%1$s añadido</string>
     <string name="import_failed">No se pudo añadir el archivo: %1$s</string>
     <string name="import_pack">Importar desde archivo</string>
+    <string name="intent_ask_desc">Pregunta por voz o por texto; Near Mosque se abre con la respuesta y sus fuentes.</string>
     <string name="intent_ask_prompt">¿Qué quieres preguntar?</string>
+    <string name="intent_directions">Cómo llegar a la mezquita más cercana</string>
+    <string name="intent_directions_desc">Abre la ruta a pie hasta la mezquita más cercana en Mapas.</string>
+    <string name="intent_nearest_desc">Dice la mezquita más cercana y a qué distancia está, sin abrir la app.</string>
+    <string name="intent_next_prayer_desc">Dice cuál es la próxima oración, a qué hora y cuánto falta.</string>
+    <string name="intent_open_prayer_times">Abrir horarios de oración</string>
+    <string name="intent_open_prayer_times_desc">Abre Near Mosque en los horarios de oración de hoy.</string>
+    <string name="intent_question">Pregunta</string>
+    <string name="intent_show_qibla">Mostrar la alquibla</string>
+    <string name="intent_show_qibla_desc">Abre Near Mosque en la dirección de la alquibla.</string>
     <string name="language">Idioma</string>
     <string name="library_answer">Respuesta</string>
     <string name="library_bookmark">Guardar</string>

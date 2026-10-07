@@ -8,10 +8,10 @@ import WidgetKit
 // MARK: - Configuration
 
 struct PrayerWidgetIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "Prayer times"
-    static var description = IntentDescription("The next prayer with a countdown, and today's times.")
+    static var title: LocalizedStringResource = "widget_style_title"
+    static var description = IntentDescription("widget_kind_next_desc")
 
-    @Parameter(title: "Style", default: .cream)
+    @Parameter(title: "widget_style_title", default: .cream)
     var look: WidgetLook
 }
 
@@ -168,10 +168,10 @@ struct QiblaControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: "QiblaControl") {
             ControlWidgetButton(action: OpenQiblaIntent()) {
-                Label("Qibla", systemImage: "location.north.line.fill")
+                Label("widget_kind_qibla", systemImage: "location.north.line.fill")
             }
         }
-        .displayName("Qibla")
+        .displayName(LocalizedStringResource("widget_kind_qibla"))
     }
 }
 

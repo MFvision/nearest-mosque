@@ -124,7 +124,17 @@
     <string name="import_done">%1$s जोडले</string>
     <string name="import_failed">ही फाइल जोडता आली नाही: %1$s</string>
     <string name="import_pack">फाइलमधून आयात करा</string>
+    <string name="intent_ask_desc">आवाज किंवा मजकुराने विचारा; Near Mosque उत्तर आणि स्रोतांसह उघडते.</string>
     <string name="intent_ask_prompt">तुम्हाला काय विचारायचे आहे?</string>
+    <string name="intent_directions">जवळच्या मशिदीचा मार्ग</string>
+    <string name="intent_directions_desc">नकाशांमध्ये जवळच्या मशिदीपर्यंत चालण्याचा मार्ग उघडते.</string>
+    <string name="intent_nearest_desc">अ‍ॅप न उघडता जवळची मशीद आणि अंतर सांगते.</string>
+    <string name="intent_next_prayer_desc">पुढील नमाज कोणती, केव्हा आणि किती वेळ उरला ते सांगते.</string>
+    <string name="intent_open_prayer_times">नमाजाच्या वेळा उघडा</string>
+    <string name="intent_open_prayer_times_desc">Near Mosque आजच्या नमाजाच्या वेळांवर उघडते.</string>
+    <string name="intent_question">प्रश्न</string>
+    <string name="intent_show_qibla">किब्ला दाखवा</string>
+    <string name="intent_show_qibla_desc">Near Mosque किब्लाच्या दिशेवर उघडते.</string>
     <string name="language">भाषा</string>
     <string name="library_answer">उत्तर</string>
     <string name="library_bookmark">सेव्ह करा</string>

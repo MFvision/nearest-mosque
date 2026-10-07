@@ -1,0 +1,182 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "${applicationName} Qibla": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "القبلة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "${applicationName} ask about Islam": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سؤال ديني في ${applicationName}"
+          }
+        }
+      }
+    },
+    "${applicationName} nearest mosque": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابحث عن ${applicationName}"
+          }
+        }
+      }
+    },
+    "${applicationName} next prayer": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كم باقي على الصلاة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Ask ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسأل ${applicationName}"
+          }
+        }
+      }
+    },
+    "Ask a question in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عندي سؤال في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Directions to the nearest mosque in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خذني إلى ${applicationName}"
+          }
+        }
+      }
+    },
+    "Nearest mosque in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أين ${applicationName}"
+          }
+        }
+      }
+    },
+    "Next prayer in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصلاة القادمة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Open ${applicationName} prayer times": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح مواقيت الصلاة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Show prayer times in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مواقيت الصلاة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Show the Qibla in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اتجاه القبلة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Take me to the nearest mosque with ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دلني على ${applicationName}"
+          }
+        }
+      }
+    },
+    "When is the next prayer in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متى الصلاة القادمة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Where is the Qibla in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وين القبلة في ${applicationName}"
+          }
+        }
+      }
+    },
+    "Where is the nearest mosque in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وين ${applicationName}"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

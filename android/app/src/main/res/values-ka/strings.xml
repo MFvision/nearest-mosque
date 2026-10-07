@@ -124,7 +124,17 @@
     <string name="import_done">დაემატა: %1$s</string>
     <string name="import_failed">ამ ფაილის დამატება ვერ მოხერხდა: %1$s</string>
     <string name="import_pack">ფაილიდან იმპორტი</string>
+    <string name="intent_ask_desc">იკითხეთ ხმით ან ტექსტით; Near Mosque გაიხსნება პასუხით და წყაროებით.</string>
     <string name="intent_ask_prompt">რისი კითხვა გსურთ?</string>
+    <string name="intent_directions">მარშრუტი უახლოეს მეჩეთამდე</string>
+    <string name="intent_directions_desc">ხსნის ფეხით მარშრუტს უახლოეს მეჩეთამდე რუკებში.</string>
+    <string name="intent_nearest_desc">გეუბნებათ უახლოეს მეჩეთს და მანძილს აპის გახსნის გარეშე.</string>
+    <string name="intent_next_prayer_desc">გეუბნებათ, რომელია შემდეგი ლოცვა, როდის და რამდენი დრო რჩება.</string>
+    <string name="intent_open_prayer_times">ლოცვის დროის გახსნა</string>
+    <string name="intent_open_prayer_times_desc">ხსნის Near Mosque-ს დღევანდელი ლოცვის დროზე.</string>
+    <string name="intent_question">კითხვა</string>
+    <string name="intent_show_qibla">ყიბლის ჩვენება</string>
+    <string name="intent_show_qibla_desc">ხსნის Near Mosque-ს ყიბლის მიმართულებაზე.</string>
     <string name="language">ენა</string>
     <string name="library_answer">პასუხი</string>
     <string name="library_bookmark">შენახვა</string>

@@ -124,7 +124,17 @@
     <string name="import_done">เพิ่ม %1$s แล้ว</string>
     <string name="import_failed">เพิ่มไฟล์นี้ไม่ได้: %1$s</string>
     <string name="import_pack">นำเข้าจากไฟล์</string>
+    <string name="intent_ask_desc">ถามด้วยเสียงหรือข้อความ Near Mosque จะเปิดพร้อมคำตอบและแหล่งที่มา</string>
     <string name="intent_ask_prompt">คุณต้องการถามอะไร</string>
+    <string name="intent_directions">เส้นทางไปมัสยิดที่ใกล้ที่สุด</string>
+    <string name="intent_directions_desc">เปิดเส้นทางเดินไปมัสยิดที่ใกล้ที่สุดในแผนที่</string>
+    <string name="intent_nearest_desc">บอกมัสยิดที่ใกล้ที่สุดและระยะทางโดยไม่ต้องเปิดแอป</string>
+    <string name="intent_next_prayer_desc">บอกว่าละหมาดถัดไปคืออะไร เมื่อไร และเหลืออีกนานเท่าไร</string>
+    <string name="intent_open_prayer_times">เปิดเวลาละหมาด</string>
+    <string name="intent_open_prayer_times_desc">เปิด Near Mosque ที่เวลาละหมาดของวันนี้</string>
+    <string name="intent_question">คำถาม</string>
+    <string name="intent_show_qibla">แสดงกิบลัต</string>
+    <string name="intent_show_qibla_desc">เปิด Near Mosque ที่ทิศกิบลัต</string>
     <string name="language">ภาษา</string>
     <string name="library_answer">คำตอบ</string>
     <string name="library_bookmark">บันทึก</string>
