@@ -121,7 +121,10 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
     val requested by vm.requestedId.collectAsStateWithLifecycle()
     androidx.compose.runtime.LaunchedEffect(requested, ui.items) {
         val id = requested ?: return@LaunchedEffect
-        ui.items.firstOrNull { it.mosque.sourceId == id }?.let { selected = it; vm.requestedId.value = null }
+        if (ui.items.isEmpty()) return@LaunchedEffect
+        // Opened if it is in the first list shown; otherwise dropped, so it cannot pop up later.
+        ui.items.firstOrNull { it.mosque.sourceId == id }?.let { selected = it }
+        vm.requestedId.value = null
     }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { vm.useDevice(lang) }
     val requestLocation = { permission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) }

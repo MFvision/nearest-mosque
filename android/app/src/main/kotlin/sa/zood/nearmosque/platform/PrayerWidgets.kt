@@ -13,6 +13,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.net.Uri
 import android.os.SystemClock
+import android.text.TextUtils
 import android.view.View
 import android.widget.RemoteViews
 import kotlinx.coroutines.CoroutineScope
@@ -192,21 +193,23 @@ object PrayerWidgets {
         v.setOnClickPendingIntent(R.id.widget_root, link(context, 0, "nearmosque://prayer"))
         when (kind) {
             WidgetKind.MOSQUE_SMALL, WidgetKind.MOSQUE -> { mosqueViews(context, v, s, kind, st, extras); return v to null }
-            WidgetKind.ASK_SMALL, WidgetKind.ASK -> { askViews(context, v, kind, st, extras, now); return v to null }
+            WidgetKind.ASK_SMALL, WidgetKind.ASK -> { askViews(context, v, kind, st, extras, now.atZone(loc?.zoneId ?: java.time.ZoneId.systemDefault()).toLocalDate().toEpochDay()); return v to null }
             WidgetKind.QIBLA_SMALL, WidgetKind.QIBLA -> { qiblaViews(context, v, s, kind, st); return v to null }
             WidgetKind.ACTIONS -> { actionsViews(context, v, st); return v to null }
             else -> Unit
         }
+        // The launcher reapplies each update onto the views it already has, so whatever one update hides, the
+        // next must show again explicitly.
+        val cityViews = listOf(R.id.widget_time, R.id.widget_countdown, R.id.widget_bell, R.id.widget_icon, R.id.widget_day, R.id.widget_left_label,
+            R.id.widget_title, R.id.widget_timer, R.id.widget_weekday, R.id.widget_gregorian, R.id.widget_hijri, R.id.widget_pin,
+            R.id.widget_city) + rows + tiles
         if (loc == null || next == null) {
             v.setTextViewText(R.id.widget_name, context.getString(R.string.widget_choose_city))
             v.setTextColor(R.id.widget_name, st.ink)
-            for (id in listOf(R.id.widget_time, R.id.widget_countdown, R.id.widget_bell, R.id.widget_icon, R.id.widget_day, R.id.widget_left_label,
-                R.id.widget_title, st.progress, R.id.widget_timer, R.id.widget_weekday, R.id.widget_gregorian, R.id.widget_hijri, R.id.widget_pin,
-                R.id.widget_city) + rows + tiles) {
-                v.setViewVisibility(id, View.GONE)
-            }
+            for (id in cityViews + WidgetStyle.entries.map { it.progress }) v.setViewVisibility(id, View.GONE)
             return v to null
         }
+        for (id in cityViews) v.setViewVisibility(id, View.VISIBLE)
         val zone = loc.zoneId
         val date = now.atZone(zone).toLocalDate()
         val today = days[1]
@@ -234,7 +237,8 @@ object PrayerWidgets {
         v.setInt(R.id.widget_bell, "setColorFilter", if (on) st.accent else st.secondary)
         v.setContentDescription(R.id.widget_bell, context.getString(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, context.getString(Format.prayerName(next.event))))
         val weekday = Format.weekday(context, date)
-        v.setTextViewText(R.id.widget_day, if (kind == WidgetKind.COUNTDOWN) "$weekday, ${Format.dayMonth(context, date)}" else "$weekday · ${Format.dayMonth(context, date)}")
+        val comma = when (Format.languageCode(context)) { "zh" -> "，"; else -> if (TextUtils.getLayoutDirectionFromLocale(context.resources.configuration.locales[0]) == View.LAYOUT_DIRECTION_RTL) "، " else ", " }
+        v.setTextViewText(R.id.widget_day, if (kind == WidgetKind.COUNTDOWN) "$weekday$comma${Format.dayMonth(context, date)}" else "$weekday · ${Format.dayMonth(context, date)}")
         v.setTextColor(R.id.widget_day, st.secondary)
         v.setTextViewText(R.id.widget_left_label, context.getString(R.string.widget_remaining))
         v.setTextColor(R.id.widget_left_label, if (accentTitle) st.accent else st.secondary)
@@ -247,7 +251,8 @@ object PrayerWidgets {
         // Countdown bar.
         v.setTextViewText(R.id.widget_title, context.getString(R.string.next_prayer))
         v.setTextColor(R.id.widget_title, st.ink)
-        v.setViewVisibility(st.progress, View.VISIBLE)
+        // One bar per look in the layout: only this look's shows (the look can change when reconfigured).
+        for (bar in WidgetStyle.entries.map { it.progress }) v.setViewVisibility(bar, if (bar == st.progress) View.VISIBLE else View.GONE)
         val start = next.periodStart
         val fraction = if (start != null && next.at.isAfter(start)) Duration.between(start, now).toMillis().toDouble() / Duration.between(start, next.at).toMillis() else 0.0
         v.setProgressBar(st.progress, 1000, (fraction.coerceIn(0.0, 1.0) * 1000).toInt(), false)
@@ -341,7 +346,7 @@ object PrayerWidgets {
             v.setTextColor(R.id.qibla_title, st.secondary)
             v.setTextViewText(R.id.qibla_degrees, "${nf.format(deg)}°")
             v.setTextColor(R.id.qibla_degrees, st.ink)
-            v.setTextViewText(R.id.qibla_turn, if (b <= 180) context.getString(R.string.widget_qibla_right, nf.format(deg))
+            v.setTextViewText(R.id.qibla_turn, if (deg <= 180) context.getString(R.string.widget_qibla_right, nf.format(deg))
                 else context.getString(R.string.widget_qibla_left, nf.format(360 - deg)))
             v.setTextColor(R.id.qibla_turn, st.ink)
             v.setTextViewText(R.id.qibla_distance, context.getString(R.string.qibla_distance, Format.distance(context, Qibla.distanceMeters(loc.location))))
@@ -540,6 +545,8 @@ object PrayerWidgets {
             for (id in mqRows + listOf(R.id.mq0_name, R.id.mq0_row, R.id.mq_go)) v.setViewVisibility(id, View.GONE)
             return
         }
+        v.setViewVisibility(R.id.mq_empty, View.GONE)
+        for (id in listOf(R.id.mq0_name, R.id.mq0_row, R.id.mq_go)) v.setViewVisibility(id, View.VISIBLE)
         fun dir(bearing: Double) = dirs[(((bearing % 360 + 360) % 360 + 22.5) / 45).toInt() % 8]
         // Small: the nearest one.
         val first = x.mosques[0]
@@ -557,6 +564,7 @@ object PrayerWidgets {
         mqRows.forEachIndexed { i, row ->
             val m = x.mosques.getOrNull(i)
             if (m == null) { v.setViewVisibility(row, View.INVISIBLE); return@forEachIndexed }
+            v.setViewVisibility(row, View.VISIBLE)
             val hi = i == 0
             val color = if (hi) st.onPill else st.ink
             v.setTextViewText(mqNames[i], m.name.ifEmpty { context.getString(R.string.mosque_unnamed) })
@@ -571,7 +579,8 @@ object PrayerWidgets {
         }
     }
 
-    private fun askViews(context: Context, v: RemoteViews, kind: WidgetKind, st: WidgetStyle, x: WidgetExtras, now: Instant) {
+    /** [day]: the local day (epoch day in the prayer city's zone), so the suggestions change at local midnight. */
+    private fun askViews(context: Context, v: RemoteViews, kind: WidgetKind, st: WidgetStyle, x: WidgetExtras, day: Long) {
         v.setOnClickPendingIntent(R.id.widget_root, link(context, 30, "nearmosque://ask"))
         v.setInt(R.id.ask_spark, "setColorFilter", st.accent)
         v.setTextViewText(R.id.ask_title, context.getString(R.string.widget_kind_ask))
@@ -585,10 +594,11 @@ object PrayerWidgets {
         v.setOnClickPendingIntent(R.id.ask_bar, link(context, 31, "nearmosque://ask"))
         v.setTextViewText(R.id.ask_suggested, context.getString(R.string.widget_ask_suggested))
         v.setTextColor(R.id.ask_suggested, st.secondary)
-        val qs = x.todaysQuestions(now.epochSecond / 86_400)
+        val qs = x.todaysQuestions(day)
         askRows.forEachIndexed { i, row ->
             val q = qs.getOrNull(i)
             if (q == null) { v.setViewVisibility(row, View.INVISIBLE); return@forEachIndexed }
+            v.setViewVisibility(row, View.VISIBLE)
             v.setTextViewText(askTexts[i], q)
             v.setTextColor(askTexts[i], st.ink)
             v.setTextColor(askGos[i], st.secondary)
