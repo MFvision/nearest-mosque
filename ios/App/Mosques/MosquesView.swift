@@ -506,10 +506,13 @@ struct FullScreenMosqueMap: View {
                 .padding(.horizontal, 16)
                 VStack {
                     Spacer()
+                    // Nearest first from the leading edge in every language (a right-to-left scroll view starts
+                    // at the wrong card); each card keeps the reader's direction inside.
                     ScrollView(.horizontal) {
                         LazyHStack(spacing: 12) {
                             ForEach(Array(shown.enumerated()), id: \.element.id) { i, r in
                                 MosqueMapCard(ranked: r, nearest: i == 0, route: vm.routes[r.id], next: next) { detail = r }
+                                    .environment(\.layoutDirection, l10n.layoutDirection)
                                     .containerRelativeFrame(.horizontal) { w, _ in min(w - 40, 440) }
                                     .id(r.id)
                             }
@@ -520,6 +523,9 @@ struct FullScreenMosqueMap: View {
                     .scrollTargetBehavior(.viewAligned)
                     .scrollPosition(id: $focused)
                     .scrollIndicators(.hidden)
+                    // As tall as the cards, at the bottom (a horizontal scroll view would take the whole height).
+                    .fixedSize(horizontal: false, vertical: true)
+                    .environment(\.layoutDirection, .leftToRight)
                     .padding(.bottom, 8)
                 }
             }

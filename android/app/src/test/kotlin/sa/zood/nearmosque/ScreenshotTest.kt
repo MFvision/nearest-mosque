@@ -8,6 +8,9 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToIndex
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import com.github.takahirom.roborazzi.captureRoboImage
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
@@ -209,4 +212,30 @@ class ScreenshotTest {
     // The setup page offers the language's content for download (nothing is fetched in the test).
     @Test @Config(qualifiers = "sw-w393dp-h852dp-xxhdpi")
     fun onboardingSetupSwahili() = shoot("onboarding_setup_sw", Tab.PRAYER, onboardingPage = 5)
+
+    /** Full-screen map cards (the map itself is MapLibre, not drawn here). */
+    private fun shootMapCards(name: String, dark: Boolean) {
+        fun mosque(id: String, n: String, addr: String?, phone: String?, web: String?, lat: Double, lng: Double, d: Double) =
+            sa.zood.nearmosque.core.RankedMosque(
+                sa.zood.nearmosque.core.Mosque(id, "mosques.za", sa.zood.nearmosque.core.MosqueCategory.MOSQUE, mapOf("default" to n),
+                    sa.zood.nearmosque.core.LatLng(lat, lng), addr, phone, web, null, null), d)
+        val a = mosque("osm:1", "Masjid Al-Noor", "12 Long Street, Cape Town", "+27 21 000 0000", "https://example.org", -33.92, 18.42, 420.0)
+        val b = mosque("osm:2", "Palm Tree Mosque", null, null, null, -33.93, 18.41, 5200.0)
+        compose.setContent {
+            NearMosqueTheme(dark = dark) {
+                androidx.compose.foundation.layout.Column(
+                    androidx.compose.ui.Modifier.background(androidx.compose.ui.graphics.Color(0xFF9DB7C9)).padding(20.dp),
+                    verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp),
+                ) {
+                    sa.zood.nearmosque.ui.mosques.MosqueMapCard(a, nearest = true, next = "Asr" to "4:08 PM") {}
+                    sa.zood.nearmosque.ui.mosques.MosqueMapCard(b, nearest = false, next = "Asr" to "4:08 PM") {}
+                }
+            }
+        }
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/$name.png")
+    }
+
+    @Test fun mapCards() = shootMapCards("map_cards_en", dark = false)
+    @Test fun mapCardsDark() = shootMapCards("map_cards_en_dark", dark = true)
 }

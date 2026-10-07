@@ -66,6 +66,10 @@ fun MosqueMap(
     onSelect: (RankedMosque) -> Unit,
     onSearchHere: (LatLng) -> Unit,
     modifier: Modifier = Modifier,
+    /** The mosque the map flies to and highlights (the card in view on the full-screen map). */
+    focus: RankedMosque? = null,
+    /** Room taken by cards over the bottom of the map: the focused mosque is placed above them. */
+    bottomInset: androidx.compose.ui.unit.Dp = 0.dp,
 ) {
     val context = LocalContext.current
     val lifecycle = LocalLifecycleOwner.current.lifecycle
@@ -136,12 +140,21 @@ fun MosqueMap(
         val zoom = (15.5 - kotlin.math.log2(span / 500.0)).coerceIn(9.0, 16.0)
         m.cameraPosition = CameraPosition.Builder().target(org.maplibre.android.geometry.LatLng(center.latitude, center.longitude)).zoom(zoom).build()
     }
-    LaunchedEffect(style, items, device) {
+    val insetPx = with(androidx.compose.ui.platform.LocalDensity.current) { bottomInset.toPx().toDouble() }
+    LaunchedEffect(map, focus?.mosque?.sourceId) {
+        val m = map ?: return@LaunchedEffect
+        val f = focus ?: return@LaunchedEffect
+        val target = org.maplibre.android.geometry.LatLng(f.mosque.location.latitude, f.mosque.location.longitude)
+        val position = CameraPosition.Builder().target(target).zoom(15.5).padding(0.0, 0.0, 0.0, insetPx).build()
+        m.animateCamera(org.maplibre.android.camera.CameraUpdateFactory.newCameraPosition(position), 700)
+    }
+    LaunchedEffect(style, items, device, focus?.mosque?.sourceId) {
         val s = style ?: return@LaunchedEffect
-        val features = items.take(60).mapIndexed { i, r ->
+        val highlighted = focus?.mosque?.sourceId ?: items.firstOrNull()?.mosque?.sourceId
+        val features = items.take(60).map { r ->
             Feature.fromGeometry(Point.fromLngLat(r.mosque.location.longitude, r.mosque.location.latitude)).apply {
                 addStringProperty("id", r.mosque.sourceId)
-                addStringProperty("icon", if (i == 0) "pin-near" else "pin")
+                addStringProperty("icon", if (r.mosque.sourceId == highlighted) "pin-near" else "pin")
             }
         }
         (s.getSource(SOURCE) as? GeoJsonSource)?.setGeoJson(FeatureCollection.fromFeatures(features))

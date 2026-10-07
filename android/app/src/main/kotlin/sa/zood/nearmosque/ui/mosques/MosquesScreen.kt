@@ -13,6 +13,10 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import kotlinx.coroutines.launch
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.alpha
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -230,7 +234,12 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
             onDismissRequest = { fullMap = false },
             properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false),
         ) {
-            FullScreenMosqueMap(ui.items, mapCenter, device?.location, onSelect = { selected = it }, onSearchHere = { vm.searchAt(it, lang) }, onClose = { fullMap = false })
+            var next by remember { mutableStateOf<Pair<String, String>?>(null) }
+            LaunchedEffect(Unit) {
+                val zone = vm.prayerZone()
+                next = vm.nextPrayer()?.let { (e, at) -> context.getString(Format.prayerName(e)) to Format.time(context, at, zone ?: java.time.ZoneId.systemDefault()) }
+            }
+            FullScreenMosqueMap(ui.items, mapCenter, device?.location, next, onSelect = { selected = it }, onSearchHere = { vm.searchAt(it, lang) }, onClose = { fullMap = false })
         }
     }
     selected?.let { s ->
@@ -421,34 +430,119 @@ private fun MosqueRadar(items: List<RankedMosque>, center: LatLng, heading: Doub
     }
 }
 
-/** The map full screen with a row of the nearest mosques along the bottom; a card or a pin opens the mosque. */
+/**
+ * The map full screen, as on nearmosque.net: a card per mosque along the bottom (nearest first). Swiping the
+ * cards flies the map to that mosque; tapping a pin brings its card. Each card has the name, address,
+ * distance, an estimated walking time and the next prayer, with Go, Call and Website; tapping it opens
+ * the full page.
+ */
 @Composable
 private fun FullScreenMosqueMap(
-    items: List<RankedMosque>, center: LatLng, device: LatLng?, onSelect: (RankedMosque) -> Unit, onSearchHere: (LatLng) -> Unit, onClose: () -> Unit,
+    items: List<RankedMosque>, center: LatLng, device: LatLng?, next: Pair<String, String>?,
+    onSelect: (RankedMosque) -> Unit, onSearchHere: (LatLng) -> Unit, onClose: () -> Unit,
 ) {
-    val context = LocalContext.current
-    val lang = Format.languageCode(context)
+    val shown = items.take(20)
+    val pager = androidx.compose.foundation.pager.rememberPagerState { shown.size }
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val focus = shown.getOrNull(pager.settledPage)
     Box(Modifier.fillMaxSize()) {
-        MosqueMap(items, center, device, onSelect = onSelect, onSearchHere = onSearchHere, modifier = Modifier.fillMaxSize())
+        MosqueMap(
+            items, center, device,
+            // A tapped pin brings its card.
+            onSelect = { r -> shown.indexOf(r).takeIf { it >= 0 }?.let { scope.launch { pager.animateScrollToPage(it) } } ?: onSelect(r) },
+            onSearchHere = onSearchHere, modifier = Modifier.fillMaxSize(), focus = focus, bottomInset = 250.dp,
+        )
         sa.zood.nearmosque.ui.glass.GlassIconButton(
             androidx.compose.ui.graphics.vector.rememberVectorPainter(androidx.compose.material.icons.Icons.Filled.Close), stringResource(R.string.close), onClose,
             Modifier.align(Alignment.TopEnd).statusBarsPadding().padding(12.dp),
         )
-        androidx.compose.foundation.lazy.LazyRow(
+        androidx.compose.foundation.pager.HorizontalPager(
+            pager,
             Modifier.align(Alignment.BottomCenter).fillMaxWidth().navigationBarsPadding().padding(bottom = 12.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
-            items(items.take(12).size) { i ->
-                val r = items[i]
-                val name = r.mosque.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
-                Column(
-                    Modifier.width(190.dp).glass(RoundedCornerShape(18.dp)).clickable(role = Role.Button) { onSelect(r) }.padding(12.dp),
-                ) {
-                    if (i == 0) Text(stringResource(R.string.nearest_known_mosque), color = Accent, style = MaterialTheme.typography.labelSmall)
-                    Text(name, color = Ink, style = MaterialTheme.typography.titleSmall, maxLines = 2)
-                    Text(Format.distance(context, r.distanceMeters), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
+            contentPadding = PaddingValues(horizontal = 20.dp), pageSpacing = 12.dp,
+        ) { i ->
+            MosqueMapCard(shown[i], nearest = i == 0, next = next) { onSelect(shown[i]) }
+        }
+    }
+}
+
+/** One mosque on the full-screen map: who, where and how far, the next prayer, and what to do. */
+@Composable
+internal fun MosqueMapCard(r: RankedMosque, nearest: Boolean, next: Pair<String, String>?, onOpen: () -> Unit) {
+    val context = LocalContext.current
+    val lang = Format.languageCode(context)
+    val m = r.mosque
+    val name = m.displayName(lang) ?: stringResource(R.string.mosque_unnamed)
+    // Estimated from the straight line (≈): walking within 4 km, driving beyond.
+    val road = r.distanceMeters * 1.3
+    val walk = road < 4_000
+    val minutes = maxOf(1, Math.round(road / (if (walk) 80.0 else 600.0)).toInt())
+    val onCard = MaterialTheme.colorScheme.onSurface
+    Column(
+        Modifier.fillMaxWidth()
+            .shadow(12.dp, RoundedCornerShape(28.dp))
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.97f), RoundedCornerShape(28.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Row(Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onOpen), verticalAlignment = Alignment.Top) {
+            Column(Modifier.weight(1f)) {
+                if (nearest) Text(stringResource(R.string.nearest_known_mosque), color = Accent, style = MaterialTheme.typography.labelMedium)
+                Text(name, color = onCard, style = MaterialTheme.typography.titleLarge, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, maxLines = 2)
+                m.address?.takeIf { it.isNotBlank() }?.let {
+                    Text(it, color = onCard.copy(alpha = 0.65f), style = MaterialTheme.typography.bodySmall, maxLines = 1)
                 }
             }
+            // Opens the full page: a chevron pointing forward (left in right-to-left languages).
+            val rtl = androidx.compose.ui.platform.LocalLayoutDirection.current == androidx.compose.ui.unit.LayoutDirection.Rtl
+            Icon(painterResource(R.drawable.ic_chevron_down), null, tint = onCard.copy(alpha = 0.5f),
+                modifier = Modifier.padding(top = 4.dp).size(18.dp).rotate(if (rtl) 90f else -90f))
         }
+        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            MapChip(R.drawable.ic_pin, Format.distance(context, r.distanceMeters), onCard)
+            MapChip(if (walk) R.drawable.ic_walk else R.drawable.ic_car, "≈ " + stringResource(R.string.minutes_short, minutes), onCard)
+            next?.let { MapChip(R.drawable.ic_timer, "${it.first} ${it.second}", onCard, gold = true) }
+        }
+        Row(Modifier.fillMaxWidth()) {
+            MapAction(R.drawable.ic_directions, stringResource(R.string.directions), prominent = true, enabled = true, Modifier.weight(1f)) {
+                ExternalActions.directions(context, m.location, name)
+            }
+            MapAction(R.drawable.ic_call, stringResource(R.string.call), prominent = false, enabled = m.phone != null, Modifier.weight(1f)) {
+                m.phone?.let { ExternalActions.call(context, it) }
+            }
+            MapAction(R.drawable.ic_globe, stringResource(R.string.website), prominent = false, enabled = m.website != null, Modifier.weight(1f)) {
+                m.website?.let { ExternalActions.open(context, it) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MapChip(icon: Int, text: String, onCard: Color, gold: Boolean = false) {
+    val color = if (gold) Accent else onCard
+    Row(
+        Modifier.background((if (gold) sa.zood.nearmosque.ui.theme.Tokens.gold else onCard).copy(alpha = if (gold) 0.16f else 0.08f), RoundedCornerShape(50))
+            .padding(horizontal = 10.dp, vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        Icon(painterResource(icon), null, tint = color, modifier = Modifier.size(14.dp))
+        Text(text, color = color, style = MaterialTheme.typography.labelMedium, maxLines = 1)
+    }
+}
+
+@Composable
+private fun MapAction(icon: Int, label: String, prominent: Boolean, enabled: Boolean, modifier: Modifier, onClick: () -> Unit) {
+    val onCard = MaterialTheme.colorScheme.onSurface
+    Column(
+        modifier.alpha(if (enabled) 1f else 0.35f).clickable(enabled = enabled, role = Role.Button, onClick = onClick),
+        horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(5.dp),
+    ) {
+        Box(
+            Modifier.size(50.dp).background(if (prominent) sa.zood.nearmosque.ui.theme.Tokens.gold else onCard.copy(alpha = 0.08f), CircleShape),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(painterResource(icon), null, tint = if (prominent) Color.White else onCard, modifier = Modifier.size(22.dp))
+        }
+        Text(label, color = onCard, style = MaterialTheme.typography.labelMedium, maxLines = 1)
     }
 }

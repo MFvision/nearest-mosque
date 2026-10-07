@@ -318,10 +318,13 @@ jobs:
           XML
           xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
             -destination 'generic/platform=macOS,variant=Mac Catalyst' -derivedDataPath ddrel \
-            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- PROVISIONING_PROFILE_SPECIFIER= \
-            "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]=/tmp/sandbox.entitlements" build 2>&1 | tee macrel.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee macrel.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
           grep -q "BUILD SUCCEEDED" macrel.log
           APP="$PWD/ddrel/Build/Products/Release-maccatalyst/NearMosque.app"
+          # Sign inside out, ad hoc: frameworks and the widgets, then the app with the sandbox.
+          find "$APP/Contents" \( -name "*.framework" -o -name "*.dylib" \) -prune -exec codesign -f -s - {} \; 2>/dev/null || true
+          for x in "$APP"/Contents/PlugIns/*.appex; do codesign -f -s - --entitlements /tmp/sandbox.entitlements "$x"; done
+          codesign -f -s - --entitlements /tmp/sandbox.entitlements "$APP"
           codesign -d --entitlements - "$APP" 2>&1 | head -20 || true
           rm -rf ~/Library/Logs/DiagnosticReports/NearMosque* 2>/dev/null || true
           open -n "$APP"

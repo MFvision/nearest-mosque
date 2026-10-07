@@ -129,4 +129,17 @@ class MosquesViewModel(private val c: AppContainer) : ViewModel() {
         const val RADIUS_M = 25_000.0
         const val ONLINE_RADIUS_M = 10_000.0
     }
+
+    /** The next prayer at the chosen city, for the full-screen map cards (null without a city). */
+    suspend fun nextPrayer(): Pair<sa.zood.nearmosque.core.PrayerEvent, java.time.Instant>? {
+        val s = c.settings.settings.first()
+        val loc = s.prayerLocation ?: return null
+        val now = c.clock()
+        val today = now.atZone(loc.zoneId).toLocalDate()
+        val days = (-1L..1L).map { c.calculator.schedule(loc.location, today.plusDays(it), loc.zoneId, s.prayer) }
+        return c.calculator.nextPrayer(days, now)?.let { it.event to it.at }
+    }
+
+    /** The prayer city's time zone (times on the cards are shown in it). */
+    suspend fun prayerZone(): java.time.ZoneId? = c.settings.settings.first().prayerLocation?.zoneId
 }
