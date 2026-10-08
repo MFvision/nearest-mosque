@@ -271,6 +271,7 @@
     <string name="pack_kind_library">लाइब्रेरी: %1$s</string>
     <string name="pack_kind_mosques">मस्जिदें: %1$s</string>
     <string name="permission_location_ios">आपकी लोकेशन इसी फ़ोन पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।</string>
+    <string name="permission_location_tv">आपकी लोकेशन इसी Apple TV पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।</string>
     <string name="polar_nearest">नज़दीकी अक्षांश (48.5°)</string>
     <string name="polar_none">अनुपलब्ध दिखाएँ</string>
     <string name="polar_rule">जब सूरज न उगे या न डूबे</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">आज की नमाज़ों के समय</string>
     <string name="tomorrow_times">कल की नमाज़ों के समय</string>
     <string name="translation_by">अनुवाद: %1$s</string>
+    <string name="tv_alert">नमाज़ के वक़्त फ़ुल-स्क्रीन सूचना</string>
+    <string name="tv_alert_note">जब ऐप इस टीवी पर खुला हो तब दिखती है।</string>
+    <string name="tv_choose_city_body">नमाज़ के समय इसी Apple TV पर निकाले जाते हैं। कोई शहर चुनें या अपनी लोकेशन इस्तेमाल करें। इंटरनेट की ज़रूरत नहीं।</string>
+    <string name="tv_keep_awake">नमाज़ के समय का बोर्ड स्क्रीन पर रखें</string>
+    <string name="tv_keep_awake_note">जब तक नमाज़ के समय का बोर्ड खुला है, स्क्रीन सेवर शुरू नहीं होगा।</string>
+    <string name="tv_scan_directions">रास्ते के लिए अपने फ़ोन से स्कैन करें</string>
     <string name="upcoming">आने वाली</string>
     <string name="use_device_language">डिवाइस की भाषा इस्तेमाल करें</string>
     <string name="use_my_location">मेरी लोकेशन इस्तेमाल करें</string>

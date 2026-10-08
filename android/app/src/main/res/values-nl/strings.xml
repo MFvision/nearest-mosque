@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Bibliotheek: %1$s</string>
     <string name="pack_kind_mosques">Moskeeën: %1$s</string>
     <string name="permission_location_ios">Je locatie wordt op deze telefoon gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat.</string>
+    <string name="permission_location_tv">Je locatie wordt op deze Apple TV gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat.</string>
     <string name="polar_nearest">Dichtstbijzijnde breedtegraad (48,5°)</string>
     <string name="polar_none">Tonen als niet beschikbaar</string>
     <string name="polar_rule">Als de zon niet opkomt of ondergaat</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Gebedstijden van vandaag</string>
     <string name="tomorrow_times">Gebedstijden van morgen</string>
     <string name="translation_by">Vertaling: %1$s</string>
+    <string name="tv_alert">Melding op volledig scherm bij gebedstijd</string>
+    <string name="tv_alert_note">Verschijnt als de app open is op deze tv.</string>
+    <string name="tv_choose_city_body">Gebedstijden worden op deze Apple TV berekend. Kies een stad of gebruik je locatie. Geen internet nodig.</string>
+    <string name="tv_keep_awake">Gebedstijdenbord op het scherm houden</string>
+    <string name="tv_keep_awake_note">De schermbeveiliging start niet zolang het gebedstijdenbord open is.</string>
+    <string name="tv_scan_directions">Scan met je telefoon voor de route</string>
     <string name="upcoming">Komend</string>
     <string name="use_device_language">Taal van apparaat gebruiken</string>
     <string name="use_my_location">Mijn locatie gebruiken</string>

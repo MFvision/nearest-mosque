@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Maktaba: %1$s</string>
     <string name="pack_kind_mosques">Misikiti: %1$s</string>
     <string name="permission_location_ios">Mahali ulipo panatumika kwenye simu hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa.</string>
+    <string name="permission_location_tv">Mahali ulipo panatumika kwenye Apple TV hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa.</string>
     <string name="polar_nearest">Latitudo iliyo karibu (48.5°)</string>
     <string name="polar_none">Onyesha kuwa haipatikani</string>
     <string name="polar_rule">Jua lisipochomoza au kuzama</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Nyakati za sala za leo</string>
     <string name="tomorrow_times">Nyakati za sala za kesho</string>
     <string name="translation_by">Tafsiri: %1$s</string>
+    <string name="tv_alert">Tahadhari ya skrini nzima wakati wa sala</string>
+    <string name="tv_alert_note">Inaonekana programu ikiwa wazi kwenye TV hii.</string>
+    <string name="tv_choose_city_body">Nyakati za sala zinahesabiwa kwenye Apple TV hii. Chagua mji au tumia mahali ulipo. Huhitaji intaneti.</string>
+    <string name="tv_keep_awake">Acha ubao wa nyakati za sala kwenye skrini</string>
+    <string name="tv_keep_awake_note">Kiokoa skrini hakitaanza ubao wa nyakati ukiwa wazi.</string>
+    <string name="tv_scan_directions">Changanua kwa simu yako upate maelekezo</string>
     <string name="upcoming">Zijazo</string>
     <string name="use_device_language">Tumia lugha ya kifaa</string>
     <string name="use_my_location">Tumia mahali nilipo</string>

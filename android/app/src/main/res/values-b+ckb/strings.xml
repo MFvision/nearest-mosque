@@ -271,6 +271,7 @@
     <string name="pack_kind_library">کتێبخانە: %1$s</string>
     <string name="pack_kind_mosques">مزگەوتەکان: %1$s</string>
     <string name="permission_location_ios">شوێنەکەت لەسەر ئەم مۆبایلە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە.</string>
+    <string name="permission_location_tv">شوێنەکەت لەسەر ئەم Apple TV یە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە.</string>
     <string name="polar_nearest">نزیکترین پانی (٤٨٫٥°)</string>
     <string name="polar_none">وەک بەردەست نەبوو پیشان بدە</string>
     <string name="polar_rule">کاتێک خۆر هەڵنایەت یان ئاوا نابێت</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">کاتەکانی نوێژی ئەمڕۆ</string>
     <string name="tomorrow_times">کاتەکانی نوێژی سبەینێ</string>
     <string name="translation_by">وەرگێڕان: %1$s</string>
+    <string name="tv_alert">ئاگادارکردنەوەی پڕ شاشە لە کاتی نوێژدا</string>
+    <string name="tv_alert_note">کاتێک ئەپەکە لەسەر ئەم تەلەفزیۆنە کراوە بێت دەردەکەوێت.</string>
+    <string name="tv_choose_city_body">کاتەکانی نوێژ لەسەر ئەم Apple TV یە هەژمار دەکرێن. شارێک هەڵبژێرە یان شوێنەکەت بەکاربهێنە. پێویستت بە ئینتەرنێت نییە.</string>
+    <string name="tv_keep_awake">تەختەی کاتەکانی نوێژ لەسەر شاشە بهێڵەوە</string>
+    <string name="tv_keep_awake_note">تا تەختەی کاتەکانی نوێژ کراوە بێت، پارێزەری شاشە دەست پێناکات.</string>
+    <string name="tv_scan_directions">بە مۆبایلەکەت سکان بکە بۆ ڕێنمایی ڕێگا</string>
     <string name="upcoming">داهاتوو</string>
     <string name="use_device_language">زمانی ئامێر بەکاربهێنە</string>
     <string name="use_my_location">شوێنەکەم بەکاربهێنە</string>

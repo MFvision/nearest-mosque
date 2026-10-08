@@ -270,6 +270,7 @@
     <string name="pack_kind_library">បណ្ណាល័យ៖ %1$s</string>
     <string name="pack_kind_mosques">ម៉ាស្ជិត៖ %1$s</string>
     <string name="permission_location_ios">ទីតាំងរបស់អ្នកត្រូវបានប្រើនៅលើទូរសព្ទនេះ សម្រាប់ម៉ោងសឡាត គិបឡាត់ និងម៉ាស្ជិតក្បែរៗ។ មានតែទីតាំងប្រហាក់ប្រហែលប៉ុណ្ណោះដែលត្រូវបានផ្ញើ ហើយតែនៅពេលបើកការស្វែងរកម៉ាស្ជិតតាមអ៊ីនធឺណិតប៉ុណ្ណោះ។</string>
+    <string name="permission_location_tv">ទីតាំងរបស់អ្នកត្រូវបានប្រើនៅលើ Apple TV នេះ សម្រាប់ម៉ោងសឡាត គិបឡាត់ និងម៉ាស្ជិតក្បែរៗ។ មានតែទីតាំងប្រហាក់ប្រហែលប៉ុណ្ណោះដែលត្រូវបានផ្ញើ ហើយតែនៅពេលបើកការស្វែងរកម៉ាស្ជិតតាមអ៊ីនធឺណិតប៉ុណ្ណោះ។</string>
     <string name="polar_nearest">រយៈទទឹងជិតបំផុត (48.5°)</string>
     <string name="polar_none">បង្ហាញថាមិនមាន</string>
     <string name="polar_rule">នៅពេលថ្ងៃមិនរះ ឬមិនលិច</string>
@@ -382,6 +383,12 @@
     <string name="todays_times">ម៉ោងសឡាតថ្ងៃនេះ</string>
     <string name="tomorrow_times">ម៉ោងសឡាតថ្ងៃស្អែក</string>
     <string name="translation_by">ការបកប្រែ៖ %1$s</string>
+    <string name="tv_alert">ការជូនដំណឹងពេញអេក្រង់ពេលដល់ម៉ោងសឡាត</string>
+    <string name="tv_alert_note">បង្ហាញពេលកម្មវិធីកំពុងបើកនៅលើទូរទស្សន៍នេះ។</string>
+    <string name="tv_choose_city_body">ម៉ោងសឡាតត្រូវបានគណនានៅលើ Apple TV នេះ។ ជ្រើសរើសទីក្រុង ឬប្រើទីតាំងរបស់អ្នក។ មិនត្រូវការអ៊ីនធឺណិតទេ។</string>
+    <string name="tv_keep_awake">ទុកផ្ទាំងម៉ោងសឡាតនៅលើអេក្រង់</string>
+    <string name="tv_keep_awake_note">កម្មវិធីការពារអេក្រង់នឹងមិនចាប់ផ្ដើមទេ ពេលផ្ទាំងម៉ោងសឡាតកំពុងបើក។</string>
+    <string name="tv_scan_directions">ស្កេនដោយទូរសព្ទរបស់អ្នក ដើម្បីមើលផ្លូវ</string>
     <string name="upcoming">ខាងមុខ</string>
     <string name="use_device_language">ប្រើភាសារបស់ឧបករណ៍</string>
     <string name="use_my_location">ប្រើទីតាំងរបស់ខ្ញុំ</string>

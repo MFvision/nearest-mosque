@@ -272,6 +272,7 @@
     <string name="pack_kind_library">Biblioteca: %1$s</string>
     <string name="pack_kind_mosques">Mesquitas: %1$s</string>
     <string name="permission_location_ios">Sua localização é usada neste celular para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada.</string>
+    <string name="permission_location_tv">Sua localização é usada nesta Apple TV para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada.</string>
     <string name="polar_nearest">Latitude mais próxima (48,5°)</string>
     <string name="polar_none">Mostrar como indisponível</string>
     <string name="polar_rule">Quando o sol não nasce ou não se põe</string>
@@ -384,6 +385,12 @@
     <string name="todays_times">Horários de oração de hoje</string>
     <string name="tomorrow_times">Horários de oração de amanhã</string>
     <string name="translation_by">Tradução: %1$s</string>
+    <string name="tv_alert">Alerta em tela cheia na hora da oração</string>
+    <string name="tv_alert_note">Aparece quando o app está aberto nesta TV.</string>
+    <string name="tv_choose_city_body">Os horários de oração são calculados nesta Apple TV. Escolha uma cidade ou use sua localização. Não precisa de internet.</string>
+    <string name="tv_keep_awake">Manter o painel de horários na tela</string>
+    <string name="tv_keep_awake_note">A proteção de tela não começa enquanto o painel de horários estiver aberto.</string>
+    <string name="tv_scan_directions">Escaneie com o celular para ver o trajeto</string>
     <string name="upcoming">Próximas</string>
     <string name="use_device_language">Usar o idioma do aparelho</string>
     <string name="use_my_location">Usar minha localização</string>

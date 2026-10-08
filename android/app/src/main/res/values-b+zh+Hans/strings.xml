@@ -270,6 +270,7 @@
     <string name="pack_kind_library">图书馆：%1$s</string>
     <string name="pack_kind_mosques">清真寺：%1$s</string>
     <string name="permission_location_ios">你的位置在此手机上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。</string>
+    <string name="permission_location_tv">你的位置在这台 Apple TV 上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。</string>
     <string name="polar_nearest">最近纬度（48.5°）</string>
     <string name="polar_none">显示为不可用</string>
     <string name="polar_rule">太阳不升起或不落下时</string>
@@ -382,6 +383,12 @@
     <string name="todays_times">今日礼拜时间</string>
     <string name="tomorrow_times">明日礼拜时间</string>
     <string name="translation_by">译者：%1$s</string>
+    <string name="tv_alert">礼拜时间到时全屏提醒</string>
+    <string name="tv_alert_note">在此电视上打开应用时显示。</string>
+    <string name="tv_choose_city_body">礼拜时间在这台 Apple TV 上计算。选择一个城市或使用你的位置，无需联网。</string>
+    <string name="tv_keep_awake">让礼拜时间板保持显示</string>
+    <string name="tv_keep_awake_note">礼拜时间板打开时，屏幕保护程序不会启动。</string>
+    <string name="tv_scan_directions">用手机扫描获取路线</string>
     <string name="upcoming">即将到来</string>
     <string name="use_device_language">使用设备语言</string>
     <string name="use_my_location">使用我的位置</string>

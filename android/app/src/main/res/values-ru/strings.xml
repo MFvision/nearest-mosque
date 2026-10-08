@@ -273,6 +273,7 @@
     <string name="pack_kind_library">Библиотека: %1$s</string>
     <string name="pack_kind_mosques">Мечети: %1$s</string>
     <string name="permission_location_ios">Ваше местоположение используется на этом телефоне для времени намазов, киблы и мечетей поблизости. Отправляется только приблизительное местоположение и только при включённом онлайн-поиске мечетей.</string>
+    <string name="permission_location_tv">Ваше местоположение используется на этом Apple TV для времени намазов, киблы и мечетей поблизости. Отправляется только приблизительное местоположение и только при включённом онлайн-поиске мечетей.</string>
     <string name="polar_nearest">Ближайшая широта (48,5°)</string>
     <string name="polar_none">Показывать как недоступное</string>
     <string name="polar_rule">Когда солнце не восходит или не заходит</string>
@@ -385,6 +386,12 @@
     <string name="todays_times">Время намазов на сегодня</string>
     <string name="tomorrow_times">Время намазов на завтра</string>
     <string name="translation_by">Перевод: %1$s</string>
+    <string name="tv_alert">Полноэкранное оповещение во время намаза</string>
+    <string name="tv_alert_note">Показывается, когда приложение открыто на этом телевизоре.</string>
+    <string name="tv_choose_city_body">Время намазов рассчитывается на этом Apple TV. Выберите город или используйте геолокацию. Интернет не нужен.</string>
+    <string name="tv_keep_awake">Держать табло намазов на экране</string>
+    <string name="tv_keep_awake_note">Заставка не включится, пока открыто табло намазов.</string>
+    <string name="tv_scan_directions">Отсканируйте телефоном, чтобы проложить маршрут</string>
     <string name="upcoming">Далее</string>
     <string name="use_device_language">Язык устройства</string>
     <string name="use_my_location">Использовать моё местоположение</string>

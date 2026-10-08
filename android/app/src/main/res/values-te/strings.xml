@@ -271,6 +271,7 @@
     <string name="pack_kind_library">లైబ్రరీ: %1$s</string>
     <string name="pack_kind_mosques">మసీదులు: %1$s</string>
     <string name="permission_location_ios">నమాజ్ సమయాలు, ఖిబ్లా, దగ్గరి మసీదుల కోసం మీ లొకేషన్ ఈ ఫోన్‌లోనే ఉపయోగించబడుతుంది. సుమారు లొకేషన్ మాత్రమే పంపబడుతుంది, అదీ ఆన్‌లైన్ మసీదు శోధన ఆన్‌లో ఉన్నప్పుడు మాత్రమే.</string>
+    <string name="permission_location_tv">నమాజ్ సమయాలు, ఖిబ్లా, దగ్గరి మసీదుల కోసం మీ లొకేషన్ ఈ Apple TV లోనే ఉపయోగించబడుతుంది. సుమారు లొకేషన్ మాత్రమే పంపబడుతుంది, అదీ ఆన్‌లైన్ మసీదు శోధన ఆన్‌లో ఉన్నప్పుడు మాత్రమే.</string>
     <string name="polar_nearest">సమీప అక్షాంశం (48.5°)</string>
     <string name="polar_none">అందుబాటులో లేదని చూపించు</string>
     <string name="polar_rule">సూర్యుడు ఉదయించనప్పుడు లేదా అస్తమించనప్పుడు</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">ఈరోజు నమాజ్ సమయాలు</string>
     <string name="tomorrow_times">రేపటి నమాజ్ సమయాలు</string>
     <string name="translation_by">అనువాదం: %1$s</string>
+    <string name="tv_alert">నమాజ్ సమయంలో పూర్తి స్క్రీన్ హెచ్చరిక</string>
+    <string name="tv_alert_note">యాప్ ఈ టీవీలో తెరిచి ఉన్నప్పుడు కనిపిస్తుంది.</string>
+    <string name="tv_choose_city_body">నమాజ్ సమయాలు ఈ Apple TV లోనే లెక్కించబడతాయి. ఒక నగరాన్ని ఎంచుకోండి లేదా మీ లొకేషన్ ఉపయోగించండి. ఇంటర్నెట్ అవసరం లేదు.</string>
+    <string name="tv_keep_awake">నమాజ్ సమయాల బోర్డును తెరపై ఉంచు</string>
+    <string name="tv_keep_awake_note">నమాజ్ సమయాల బోర్డు తెరిచి ఉన్నంత వరకు స్క్రీన్ సేవర్ ప్రారంభం కాదు.</string>
+    <string name="tv_scan_directions">దారి కోసం మీ ఫోన్‌తో స్కాన్ చేయండి</string>
     <string name="upcoming">రాబోయేది</string>
     <string name="use_device_language">పరికర భాషను ఉపయోగించు</string>
     <string name="use_my_location">నా లొకేషన్ ఉపయోగించు</string>

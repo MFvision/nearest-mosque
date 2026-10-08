@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Library: %1$s</string>
     <string name="pack_kind_mosques">Mosques: %1$s</string>
     <string name="permission_location_ios">Your location is used on this phone for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.</string>
+    <string name="permission_location_tv">Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.</string>
     <string name="polar_nearest">Nearest latitude (48.5°)</string>
     <string name="polar_none">Show as unavailable</string>
     <string name="polar_rule">When the sun doesn’t rise or set</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Today’s prayer times</string>
     <string name="tomorrow_times">Tomorrow’s prayer times</string>
     <string name="translation_by">Translation: %1$s</string>
+    <string name="tv_alert">Full-screen alert at prayer time</string>
+    <string name="tv_alert_note">Shows while the app is open on this TV.</string>
+    <string name="tv_choose_city_body">Prayer times are calculated on this Apple TV. Pick a city or use your location. No internet needed.</string>
+    <string name="tv_keep_awake">Keep the prayer board on screen</string>
+    <string name="tv_keep_awake_note">The screen saver won’t start while the prayer board is open.</string>
+    <string name="tv_scan_directions">Scan with your phone for directions</string>
     <string name="upcoming">Upcoming</string>
     <string name="use_device_language">Use device language</string>
     <string name="use_my_location">Use my location</string>

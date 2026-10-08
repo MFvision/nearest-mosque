@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Bibliothèque : %1$s</string>
     <string name="pack_kind_mosques">Mosquées : %1$s</string>
     <string name="permission_location_ios">Votre position sert, sur ce téléphone, aux horaires, à la qibla et aux mosquées proches. Seule une position approximative est envoyée, et seulement si la recherche en ligne est activée.</string>
+    <string name="permission_location_tv">Votre position sert, sur cette Apple TV, aux horaires, à la qibla et aux mosquées proches. Seule une position approximative est envoyée, et seulement si la recherche en ligne est activée.</string>
     <string name="polar_nearest">Latitude la plus proche (48,5°)</string>
     <string name="polar_none">Afficher comme indisponible</string>
     <string name="polar_rule">Quand le soleil ne se lève ou ne se couche pas</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Horaires du jour</string>
     <string name="tomorrow_times">Horaires de demain</string>
     <string name="translation_by">Traduction : %1$s</string>
+    <string name="tv_alert">Alerte plein écran à l’heure de la prière</string>
+    <string name="tv_alert_note">S’affiche quand l’app est ouverte sur ce téléviseur.</string>
+    <string name="tv_choose_city_body">Les horaires sont calculés sur cette Apple TV. Choisissez une ville ou utilisez votre position. Sans internet.</string>
+    <string name="tv_keep_awake">Garder le tableau des horaires à l’écran</string>
+    <string name="tv_keep_awake_note">L’économiseur d’écran ne démarre pas tant que le tableau des horaires est ouvert.</string>
+    <string name="tv_scan_directions">Scannez avec votre téléphone pour l’itinéraire</string>
     <string name="upcoming">À venir</string>
     <string name="use_device_language">Utiliser la langue de l’appareil</string>
     <string name="use_my_location">Utiliser ma position</string>

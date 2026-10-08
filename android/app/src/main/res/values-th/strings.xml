@@ -270,6 +270,7 @@
     <string name="pack_kind_library">ห้องสมุด: %1$s</string>
     <string name="pack_kind_mosques">มัสยิด: %1$s</string>
     <string name="permission_location_ios">ตำแหน่งของคุณใช้บนโทรศัพท์นี้สำหรับเวลาละหมาด กิบลัต และมัสยิดใกล้เคียง ระบบจะส่งเพียงตำแหน่งโดยประมาณ และเฉพาะเมื่อเปิดการค้นหามัสยิดออนไลน์เท่านั้น</string>
+    <string name="permission_location_tv">ตำแหน่งของคุณใช้บน Apple TV เครื่องนี้สำหรับเวลาละหมาด กิบลัต และมัสยิดใกล้เคียง ระบบจะส่งเพียงตำแหน่งโดยประมาณ และเฉพาะเมื่อเปิดการค้นหามัสยิดออนไลน์เท่านั้น</string>
     <string name="polar_nearest">ละติจูดที่ใกล้ที่สุด (48.5°)</string>
     <string name="polar_none">แสดงว่าไม่มีข้อมูล</string>
     <string name="polar_rule">เมื่อดวงอาทิตย์ไม่ขึ้นหรือไม่ตก</string>
@@ -382,6 +383,12 @@
     <string name="todays_times">เวลาละหมาดวันนี้</string>
     <string name="tomorrow_times">เวลาละหมาดพรุ่งนี้</string>
     <string name="translation_by">แปลโดย: %1$s</string>
+    <string name="tv_alert">แจ้งเตือนเต็มจอเมื่อถึงเวลาละหมาด</string>
+    <string name="tv_alert_note">แสดงเมื่อเปิดแอปอยู่บนทีวีเครื่องนี้</string>
+    <string name="tv_choose_city_body">เวลาละหมาดคำนวณบน Apple TV เครื่องนี้ เลือกเมืองหรือใช้ตำแหน่งของคุณ ไม่ต้องใช้อินเทอร์เน็ต</string>
+    <string name="tv_keep_awake">แสดงกระดานเวลาละหมาดค้างไว้บนจอ</string>
+    <string name="tv_keep_awake_note">โปรแกรมรักษาหน้าจอจะไม่เริ่มขณะเปิดกระดานเวลาละหมาด</string>
+    <string name="tv_scan_directions">สแกนด้วยโทรศัพท์เพื่อดูเส้นทาง</string>
     <string name="upcoming">ถัดไป</string>
     <string name="use_device_language">ใช้ภาษาของอุปกรณ์</string>
     <string name="use_my_location">ใช้ตำแหน่งของฉัน</string>

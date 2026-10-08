@@ -271,6 +271,7 @@
     <string name="pack_kind_library">ბიბლიოთეკა: %1$s</string>
     <string name="pack_kind_mosques">მეჩეთები: %1$s</string>
     <string name="permission_location_ios">თქვენი მდებარეობა ამ ტელეფონზე გამოიყენება ლოცვის დროებისთვის, ყიბლისთვის და ახლომდებარე მეჩეთებისთვის. იგზავნება მხოლოდ მიახლოებითი მდებარეობა და მხოლოდ მაშინ, როცა მეჩეთების ონლაინ ძიება ჩართულია.</string>
+    <string name="permission_location_tv">თქვენი მდებარეობა ამ Apple TV-ზე გამოიყენება ლოცვის დროებისთვის, ყიბლისთვის და ახლომდებარე მეჩეთებისთვის. იგზავნება მხოლოდ მიახლოებითი მდებარეობა და მხოლოდ მაშინ, როცა მეჩეთების ონლაინ ძიება ჩართულია.</string>
     <string name="polar_nearest">უახლოესი განედი (48.5°)</string>
     <string name="polar_none">მიუწვდომლად ჩვენება</string>
     <string name="polar_rule">როცა მზე არ ამოდის ან არ ჩადის</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">დღევანდელი ლოცვის დროები</string>
     <string name="tomorrow_times">ხვალინდელი ლოცვის დროები</string>
     <string name="translation_by">თარგმანი: %1$s</string>
+    <string name="tv_alert">სრულეკრანიანი შეტყობინება ლოცვის დროს</string>
+    <string name="tv_alert_note">ჩანს, როცა აპი ამ ტელევიზორზეა გახსნილი.</string>
+    <string name="tv_choose_city_body">ლოცვის დროები ამ Apple TV-ზე გამოითვლება. აირჩიეთ ქალაქი ან გამოიყენეთ თქვენი მდებარეობა. ინტერნეტი არ არის საჭირო.</string>
+    <string name="tv_keep_awake">ლოცვის დროების დაფა ეკრანზე დარჩეს</string>
+    <string name="tv_keep_awake_note">ეკრანმზოგი არ ჩაირთვება, სანამ ლოცვის დროების დაფა ღიაა.</string>
+    <string name="tv_scan_directions">დაასკანერეთ ტელეფონით მარშრუტისთვის</string>
     <string name="upcoming">მომავალი</string>
     <string name="use_device_language">მოწყობილობის ენის გამოყენება</string>
     <string name="use_my_location">ჩემი მდებარეობის გამოყენება</string>

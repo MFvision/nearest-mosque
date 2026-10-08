@@ -270,6 +270,7 @@
     <string name="pack_kind_library">Perpustakaan: %1$s</string>
     <string name="pack_kind_mosques">Masjid: %1$s</string>
     <string name="permission_location_ios">Lokasi Anda digunakan di ponsel ini untuk waktu salat, kiblat, dan masjid terdekat. Hanya lokasi perkiraan yang dikirim, dan hanya saat pencarian masjid online aktif.</string>
+    <string name="permission_location_tv">Lokasi Anda digunakan di Apple TV ini untuk waktu salat, kiblat, dan masjid terdekat. Hanya lokasi perkiraan yang dikirim, dan hanya saat pencarian masjid online aktif.</string>
     <string name="polar_nearest">Lintang terdekat (48,5°)</string>
     <string name="polar_none">Tampilkan tidak tersedia</string>
     <string name="polar_rule">Saat matahari tidak terbit atau terbenam</string>
@@ -382,6 +383,12 @@
     <string name="todays_times">Jadwal salat hari ini</string>
     <string name="tomorrow_times">Jadwal salat besok</string>
     <string name="translation_by">Terjemahan: %1$s</string>
+    <string name="tv_alert">Peringatan layar penuh saat waktu salat</string>
+    <string name="tv_alert_note">Tampil saat aplikasi terbuka di TV ini.</string>
+    <string name="tv_choose_city_body">Jadwal salat dihitung di Apple TV ini. Pilih kota atau gunakan lokasi Anda. Tanpa internet.</string>
+    <string name="tv_keep_awake">Biarkan papan jadwal salat tetap tampil</string>
+    <string name="tv_keep_awake_note">Screen saver tidak akan muncul selama papan jadwal salat terbuka.</string>
+    <string name="tv_scan_directions">Pindai dengan ponsel untuk petunjuk arah</string>
     <string name="upcoming">Berikutnya</string>
     <string name="use_device_language">Gunakan bahasa perangkat</string>
     <string name="use_my_location">Gunakan lokasi saya</string>

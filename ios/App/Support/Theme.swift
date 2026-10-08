@@ -71,7 +71,7 @@ struct GlassSurface<S: Shape>: ViewModifier {
                 .overlay(shape.stroke(Theme.ink.opacity(0.18), lineWidth: 1))
         } else {
             #if compiler(>=6.2)
-            if #available(iOS 26.0, *) {
+            if #available(iOS 26.0, tvOS 26.0, *) {
                 content.glassEffect(Self.glass(tint: tint, interactive: interactive), in: shape)
             } else {
                 fallback(content)
@@ -83,7 +83,7 @@ struct GlassSurface<S: Shape>: ViewModifier {
     }
 
     #if compiler(>=6.2)
-    @available(iOS 26.0, *)
+    @available(iOS 26.0, tvOS 26.0, *)
     static func glass(tint: Color?, interactive: Bool) -> Glass {
         var g = Glass.regular
         if let tint { g = g.tint(tint) }
@@ -130,7 +130,7 @@ struct GlassGroup<Content: View>: View {
 
     var body: some View {
         #if compiler(>=6.2)
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.0, tvOS 26.0, *) {
             GlassEffectContainer(spacing: spacing) { content }
         } else {
             content
@@ -178,7 +178,7 @@ extension View {
 
     @ViewBuilder func glassButton() -> some View {
         #if compiler(>=6.2)
-        if #available(iOS 26.0, *) { buttonStyle(.glass) } else { buttonStyle(FallbackGlassButtonStyle(prominent: false)) }
+        if #available(iOS 26.0, tvOS 26.0, *) { buttonStyle(.glass) } else { buttonStyle(FallbackGlassButtonStyle(prominent: false)) }
         #else
         buttonStyle(FallbackGlassButtonStyle(prominent: false))
         #endif
@@ -187,7 +187,7 @@ extension View {
     /// Gold prominent glass button with a dark label (white on gold is below 4.5:1).
     @ViewBuilder func prominentButton() -> some View {
         #if compiler(>=6.2)
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.0, tvOS 26.0, *) {
             buttonStyle(.glassProminent).tint(Theme.gold).foregroundStyle(Theme.navyNight)
         } else {
             buttonStyle(FallbackGlassButtonStyle(prominent: true))

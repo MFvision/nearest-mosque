@@ -2,10 +2,10 @@
 import PackageDescription
 
 // Domain (NMCore) and storage (NMData) for the iOS app. Both build and test on Linux and macOS,
-// so the shared fixtures run in CI without Xcode; the SwiftUI app lives in ios/App.
+// so the shared fixtures run in CI without Xcode; the SwiftUI apps live in ios/App and ios/TV (Apple TV).
 let package = Package(
     name: "NearestMosqueKit",
-    platforms: [.iOS(.v18), .macOS(.v14)],
+    platforms: [.iOS(.v18), .macOS(.v14), .tvOS(.v18)],
     products: [
         .library(name: "NMCore", targets: ["NMCore"]),
         .library(name: "NMData", targets: ["NMData"]),

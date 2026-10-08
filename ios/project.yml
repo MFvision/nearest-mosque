@@ -4,6 +4,7 @@ options:
   bundleIdPrefix: sa.zood
   deploymentTarget:
     iOS: "18.0"
+    tvOS: "18.0"
   developmentLanguage: en
   createIntermediateGroups: true
 packages:
@@ -128,10 +129,108 @@ targets:
         SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
+  # Apple TV: the prayer board, Qibla from north and nearby mosques (same bundle id as the phone app,
+  # so one App Store listing covers both).
+  NearMosqueTV:
+    type: application
+    platform: tvOS
+    sources:
+      - path: TV
+        # The banner view is shared with the Top Shelf extension (Debug screenshots draw it in the app).
+        excludes: [TopShelf/Info.plist, TopShelf/*.entitlements]
+      - path: Shared/SharedState.swift
+      - path: App/Support/Localization.swift
+      - path: App/Support/Format.swift
+      - path: App/Support/Sky.swift
+      - path: App/Support/Theme.swift
+      - path: App/Support/Art.swift
+      - path: App/Mosques/AppleMosqueSearch.swift
+      - path: App/Resources/Localizable.xcstrings
+      # Built-in mosques and the city table only (the books stay on the phone).
+      - path: ../packs/mosques
+        type: folder
+        buildPhase: resources
+      - path: ../packs/cities
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: NearestMosqueKit
+        product: NMCore
+      - package: NearestMosqueKit
+        product: NMData
+      - target: NearMosqueTopShelf
+    entitlements:
+      path: TV/NearMosqueTV.entitlements
+      properties:
+        keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
+        TARGETED_DEVICE_FAMILY: "3"
+        ASSETCATALOG_COMPILER_APPICON_NAME: "App Icon & Top Shelf Image"
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: TV/Info.plist
+    info:
+      path: TV/Info.plist
+      properties:
+        CFBundleDisplayName: Near Mosque
+        CFBundleName: Near Mosque
+        SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
+        CFBundleURLTypes:
+          - CFBundleURLName: $(APP_BUNDLE_ID)
+            CFBundleURLSchemes: [nearmosque]
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
+        CFBundleAllowMixedLocalizations: false
+        ITSAppUsesNonExemptEncryption: false
+        NSLocationWhenInUseUsageDescription: Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        UIRequiredDeviceCapabilities: [arm64]
+        UILaunchScreen:
+          UIColorName: ""
+  NearMosqueTopShelf:
+    type: app-extension
+    platform: tvOS
+    sources:
+      - path: TV/TopShelf
+      - path: Shared/SharedState.swift
+      - path: App/Resources/Localizable.xcstrings
+    dependencies:
+      - package: NearestMosqueKit
+        product: NMCore
+      - sdk: TVServices.framework
+    entitlements:
+      path: TV/TopShelf/NearMosqueTopShelf.entitlements
+      properties:
+        keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).topshelf
+        TARGETED_DEVICE_FAMILY: "3"
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: TV/TopShelf/Info.plist
+        SKIP_INSTALL: YES
+    info:
+      path: TV/TopShelf/Info.plist
+      properties:
+        CFBundleDisplayName: Near Mosque
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
+        SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.tv-top-shelf
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ContentProvider
 schemes:
   NearMosque:
     build:
       targets:
         NearMosque: all
+    run:
+      config: Debug
+  NearMosqueTV:
+    build:
+      targets:
+        NearMosqueTV: all
     run:
       config: Debug

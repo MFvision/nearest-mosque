@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Biblioteca: %1$s</string>
     <string name="pack_kind_mosques">Mezquitas: %1$s</string>
     <string name="permission_location_ios">Tu ubicación se usa en este teléfono para los horarios, la alquibla y las mezquitas cercanas. Solo se envía una ubicación aproximada, y solo con la búsqueda en línea activada.</string>
+    <string name="permission_location_tv">Tu ubicación se usa en este Apple TV para los horarios, la alquibla y las mezquitas cercanas. Solo se envía una ubicación aproximada, y solo con la búsqueda en línea activada.</string>
     <string name="polar_nearest">Latitud más cercana (48,5°)</string>
     <string name="polar_none">Mostrar como no disponible</string>
     <string name="polar_rule">Cuando el sol no sale o no se pone</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Horarios de hoy</string>
     <string name="tomorrow_times">Horarios de mañana</string>
     <string name="translation_by">Traducción: %1$s</string>
+    <string name="tv_alert">Aviso a pantalla completa a la hora del rezo</string>
+    <string name="tv_alert_note">Se muestra cuando la app está abierta en este televisor.</string>
+    <string name="tv_choose_city_body">Los horarios se calculan en este Apple TV. Elige una ciudad o usa tu ubicación. Sin internet.</string>
+    <string name="tv_keep_awake">Mantener el panel de horarios en pantalla</string>
+    <string name="tv_keep_awake_note">El salvapantallas no se activará mientras el panel de horarios esté abierto.</string>
+    <string name="tv_scan_directions">Escanea con tu teléfono para ver la ruta</string>
     <string name="upcoming">Próxima</string>
     <string name="use_device_language">Usar el idioma del dispositivo</string>
     <string name="use_my_location">Usar mi ubicación</string>

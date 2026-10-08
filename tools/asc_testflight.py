@@ -7,7 +7,13 @@ internal TestFlight group access to the build.
 
 Environment: ASC_KEY_ID, ASC_ISSUER_ID, ASC_PRIVATE_KEY (.p8 contents), BUNDLE_ID,
 optional BUILD_NUMBER (default: newest build), WAIT_MINUTES (default 0), PLATFORMS (default IOS; e.g.
-IOS,MAC_OS — the Mac build is optional and waited for at most 20 minutes).
+IOS,MAC_OS,TV_OS — next to the iPhone build, the Mac and Apple TV builds are optional and waited for at
+most 20 minutes).
+
+  asc_testflight.py --ensure-platform TV_OS   # before the first upload for a platform (VERSION env)
+
+adds the platform to the app record by creating its first App Store version (a draft, never submitted),
+which App Store Connect needs before it accepts that platform's builds.
 Needs PyJWT and cryptography.
 """
 import json
@@ -69,7 +75,29 @@ def create_internal_group(app_id: str) -> dict:
     return g
 
 
+def ensure_platform(platform: str) -> int:
+    bundle = os.environ["BUNDLE_ID"]
+    apps = api("GET", "/apps", {"filter[bundleId]": bundle, "fields[apps]": "name"})["data"]
+    if not apps:
+        print(f"::error::No App Store Connect app record for bundle ID {bundle}.")
+        return 1
+    app_id = apps[0]["id"]
+    versions = api("GET", f"/apps/{app_id}/appStoreVersions", {"filter[platform]": platform, "limit": "1"})["data"]
+    if versions:
+        print(f"The app already has the {platform} platform.")
+        return 0
+    api("POST", "/appStoreVersions", body={"data": {
+        "type": "appStoreVersions",
+        "attributes": {"platform": platform, "versionString": os.environ.get("VERSION", "1.0")},
+        "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
+    }})
+    print(f"Added the {platform} platform to the app (a draft version, not submitted for review).")
+    return 0
+
+
 def main() -> int:
+    if len(sys.argv) == 3 and sys.argv[1] == "--ensure-platform":
+        return ensure_platform(sys.argv[2])
     bundle = os.environ["BUNDLE_ID"]
     want = os.environ.get("BUILD_NUMBER") or None
     wait = int(os.environ.get("WAIT_MINUTES", "0"))
@@ -84,7 +112,7 @@ def main() -> int:
     platforms = [p for p in os.environ.get("PLATFORMS", "IOS").split(",") if p]
     status = 0
     for platform in platforms:
-        # Next to the iPhone build, the Mac build (MAC_OS) is optional: a missing or failed one is reported only.
+        # Next to the iPhone build, the Mac and Apple TV builds are optional: a missing or failed one is reported only.
         optional = platform != "IOS" and len(platforms) > 1
         try:
             rc = handle(app_id, platform, want, min(wait, 20) if optional else wait)
@@ -99,7 +127,7 @@ def main() -> int:
 
 def handle(app_id: str, platform: str, want: str | None, wait: int) -> int:
     """Waits for this platform's build, answers export compliance and gives the internal groups access."""
-    print(f"--- {'Mac' if platform == 'MAC_OS' else 'iPhone and iPad'} ({platform})")
+    print(f"--- {({'MAC_OS': 'Mac', 'TV_OS': 'Apple TV'}).get(platform, 'iPhone and iPad')} ({platform})")
     deadline = time.time() + wait * 60
     while True:
         builds = api("GET", "/builds", {

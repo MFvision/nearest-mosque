@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Библиотека: %1$s</string>
     <string name="pack_kind_mosques">Џамии: %1$s</string>
     <string name="permission_location_ios">Вашата локација се користи на овој телефон за времињата за намаз, киблата и џамиите во близина. Се испраќа само приближна локација и само кога е вклучено пребарувањето џамии на интернет.</string>
+    <string name="permission_location_tv">Вашата локација се користи на овој Apple TV за времињата за намаз, киблата и џамиите во близина. Се испраќа само приближна локација и само кога е вклучено пребарувањето џамии на интернет.</string>
     <string name="polar_nearest">Најблиска ширина (48,5°)</string>
     <string name="polar_none">Прикажи како недостапно</string>
     <string name="polar_rule">Кога сонцето не изгрева или не заоѓа</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Денешни времиња за намаз</string>
     <string name="tomorrow_times">Утрешни времиња за намаз</string>
     <string name="translation_by">Превод: %1$s</string>
+    <string name="tv_alert">Известување на цел екран во време на намаз</string>
+    <string name="tv_alert_note">Се прикажува кога апликацијата е отворена на овој телевизор.</string>
+    <string name="tv_choose_city_body">Времињата за намаз се пресметуваат на овој Apple TV. Изберете град или користете ја вашата локација. Не е потребен интернет.</string>
+    <string name="tv_keep_awake">Задржи ја таблата со времиња на екранот</string>
+    <string name="tv_keep_awake_note">Чуварот на екранот нема да се вклучи додека таблата со времиња е отворена.</string>
+    <string name="tv_scan_directions">Скенирајте со телефонот за упатства</string>
     <string name="upcoming">Следно</string>
     <string name="use_device_language">Јазик на уредот</string>
     <string name="use_my_location">Користи ја мојата локација</string>

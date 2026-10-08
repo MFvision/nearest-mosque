@@ -270,6 +270,7 @@
     <string name="pack_kind_library">Thư viện: %1$s</string>
     <string name="pack_kind_mosques">Thánh đường: %1$s</string>
     <string name="permission_location_ios">Vị trí của bạn được dùng trên điện thoại này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến.</string>
+    <string name="permission_location_tv">Vị trí của bạn được dùng trên Apple TV này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến.</string>
     <string name="polar_nearest">Vĩ độ gần nhất (48,5°)</string>
     <string name="polar_none">Hiển thị là không khả dụng</string>
     <string name="polar_rule">Khi mặt trời không mọc hoặc không lặn</string>
@@ -382,6 +383,12 @@
     <string name="todays_times">Giờ cầu nguyện hôm nay</string>
     <string name="tomorrow_times">Giờ cầu nguyện ngày mai</string>
     <string name="translation_by">Bản dịch: %1$s</string>
+    <string name="tv_alert">Thông báo toàn màn hình khi đến giờ cầu nguyện</string>
+    <string name="tv_alert_note">Hiển thị khi ứng dụng đang mở trên TV này.</string>
+    <string name="tv_choose_city_body">Giờ cầu nguyện được tính ngay trên Apple TV này. Hãy chọn một thành phố hoặc dùng vị trí của bạn. Không cần internet.</string>
+    <string name="tv_keep_awake">Giữ bảng giờ cầu nguyện trên màn hình</string>
+    <string name="tv_keep_awake_note">Trình bảo vệ màn hình sẽ không bật khi bảng giờ cầu nguyện đang mở.</string>
+    <string name="tv_scan_directions">Quét bằng điện thoại để xem chỉ đường</string>
     <string name="upcoming">Sắp tới</string>
     <string name="use_device_language">Dùng ngôn ngữ của thiết bị</string>
     <string name="use_my_location">Dùng vị trí của tôi</string>

@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Könyvtár: %1$s</string>
     <string name="pack_kind_mosques">Mecsetek: %1$s</string>
     <string name="permission_location_ios">A helyzetedet ez a telefon használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva.</string>
+    <string name="permission_location_tv">A helyzetedet ez az Apple TV használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva.</string>
     <string name="polar_nearest">Legközelebbi szélesség (48,5°)</string>
     <string name="polar_none">Nem elérhetőként jelenjen meg</string>
     <string name="polar_rule">Ha a nap nem kel fel vagy nem nyugszik le</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Mai imaidők</string>
     <string name="tomorrow_times">Holnapi imaidők</string>
     <string name="translation_by">Fordítás: %1$s</string>
+    <string name="tv_alert">Teljes képernyős értesítés az ima idején</string>
+    <string name="tv_alert_note">Akkor jelenik meg, ha az alkalmazás nyitva van ezen a tévén.</string>
+    <string name="tv_choose_city_body">Az imaidőket ez az Apple TV számolja ki. Válassz egy várost, vagy használd a helyzetedet. Nem kell hozzá internet.</string>
+    <string name="tv_keep_awake">Az imaidő-tábla maradjon a képernyőn</string>
+    <string name="tv_keep_awake_note">A képernyővédő nem indul el, amíg az imaidő-tábla nyitva van.</string>
+    <string name="tv_scan_directions">Olvasd be a telefonoddal az útvonalhoz</string>
     <string name="upcoming">Következik</string>
     <string name="use_device_language">Az eszköz nyelve</string>
     <string name="use_my_location">Helyzetem használata</string>

@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Aklatan: %1$s</string>
     <string name="pack_kind_mosques">Mga masjid: %1$s</string>
     <string name="permission_location_ios">Ginagamit ang iyong lokasyon sa teleponong ito para sa mga oras ng dasal, ang Qibla at mga kalapit na masjid. Tinatayang lokasyon lang ang ipinapadala, at kapag naka-on lang ang online na paghahanap ng masjid.</string>
+    <string name="permission_location_tv">Ginagamit ang iyong lokasyon sa Apple TV na ito para sa mga oras ng dasal, ang Qibla at mga kalapit na masjid. Tinatayang lokasyon lang ang ipinapadala, at kapag naka-on lang ang online na paghahanap ng masjid.</string>
     <string name="polar_nearest">Pinakamalapit na latitude (48.5°)</string>
     <string name="polar_none">Ipakita bilang hindi available</string>
     <string name="polar_rule">Kapag hindi sumisikat o lumulubog ang araw</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Mga oras ng dasal ngayong araw</string>
     <string name="tomorrow_times">Mga oras ng dasal bukas</string>
     <string name="translation_by">Salin: %1$s</string>
+    <string name="tv_alert">Full-screen na alerto sa oras ng dasal</string>
+    <string name="tv_alert_note">Lumalabas kapag bukas ang app sa TV na ito.</string>
+    <string name="tv_choose_city_body">Kinakalkula ang mga oras ng dasal sa Apple TV na ito. Pumili ng lungsod o gamitin ang iyong lokasyon. Hindi kailangan ng internet.</string>
+    <string name="tv_keep_awake">Panatilihin sa screen ang board ng oras ng dasal</string>
+    <string name="tv_keep_awake_note">Hindi magsisimula ang screen saver habang bukas ang board ng oras ng dasal.</string>
+    <string name="tv_scan_directions">I-scan gamit ang iyong telepono para sa direksyon</string>
     <string name="upcoming">Paparating</string>
     <string name="use_device_language">Gamitin ang wika ng device</string>
     <string name="use_my_location">Gamitin ang aking lokasyon</string>

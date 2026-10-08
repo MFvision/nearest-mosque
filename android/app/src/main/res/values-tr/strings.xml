@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Kütüphane: %1$s</string>
     <string name="pack_kind_mosques">Camiler: %1$s</string>
     <string name="permission_location_ios">Konumunuz bu telefonda namaz vakitleri, kıble ve yakındaki camiler için kullanılır. Yalnızca çevrimiçi cami araması açıkken yaklaşık konum gönderilir.</string>
+    <string name="permission_location_tv">Konumunuz bu Apple TV\'de namaz vakitleri, kıble ve yakındaki camiler için kullanılır. Yalnızca çevrimiçi cami araması açıkken yaklaşık konum gönderilir.</string>
     <string name="polar_nearest">En yakın enlem (48,5°)</string>
     <string name="polar_none">Kullanılamaz göster</string>
     <string name="polar_rule">Güneş doğmadığında veya batmadığında</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Bugünün namaz vakitleri</string>
     <string name="tomorrow_times">Yarının namaz vakitleri</string>
     <string name="translation_by">Çeviri: %1$s</string>
+    <string name="tv_alert">Vakit girince tam ekran uyarı</string>
+    <string name="tv_alert_note">Uygulama bu TV\'de açıkken gösterilir.</string>
+    <string name="tv_choose_city_body">Vakitler bu Apple TV\'de hesaplanır. Bir şehir seçin veya konumunuzu kullanın. İnternet gerekmez.</string>
+    <string name="tv_keep_awake">Vakit panosunu ekranda tut</string>
+    <string name="tv_keep_awake_note">Vakit panosu açıkken ekran koruyucu başlamaz.</string>
+    <string name="tv_scan_directions">Yol tarifi için telefonunuzla tarayın</string>
     <string name="upcoming">Sıradaki</string>
     <string name="use_device_language">Cihaz dilini kullan</string>
     <string name="use_my_location">Konumumu kullan</string>

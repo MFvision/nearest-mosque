@@ -51,6 +51,13 @@ with the App Store Connect team as testers, "access to all builds") the new buil
 TestFlight without manual steps. **Actions → TestFlight status → Run workflow** reports the latest
 builds at any time. Internal testers install without Beta App Review; external groups need review.
 
+**Mac and Apple TV.** The same run also uploads the Mac app (Mac Catalyst) and the Apple TV app
+(`ios/TV`, same bundle id, so all three share one App Store listing). Each is allowed to fail without
+holding back the iPhone build; the inputs `mac_only` and `tv_only` upload just one of them. Before the
+first Apple TV upload the workflow adds the tvOS platform to the app record
+(`asc_testflight.py --ensure-platform TV_OS`, which creates a draft tvOS version that is never
+submitted). The TestFlight app on Apple TV installs it for the same internal testers.
+
 If the run fails, the job log and the `testflight-logs` artifact show the archive and export output.
 Typical causes: a missing secret (the first step names it), no app record for the bundle ID, or an
 API key without the Admin role.

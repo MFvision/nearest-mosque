@@ -271,6 +271,7 @@
     <string name="pack_kind_library">ലൈബ്രറി: %1$s</string>
     <string name="pack_kind_mosques">പള്ളികൾ: %1$s</string>
     <string name="permission_location_ios">നമസ്കാര സമയങ്ങൾ, ഖിബ്‌ല, അടുത്തുള്ള പള്ളികൾ എന്നിവയ്ക്കായി നിങ്ങളുടെ ലൊക്കേഷൻ ഈ ഫോണിൽ ഉപയോഗിക്കുന്നു. ഏകദേശ ലൊക്കേഷൻ മാത്രമേ അയയ്ക്കൂ, അതും ഓൺലൈൻ പള്ളി തിരയൽ ഓണായിരിക്കുമ്പോൾ മാത്രം.</string>
+    <string name="permission_location_tv">നമസ്കാര സമയങ്ങൾ, ഖിബ്‌ല, അടുത്തുള്ള പള്ളികൾ എന്നിവയ്ക്കായി നിങ്ങളുടെ ലൊക്കേഷൻ ഈ Apple TV യിൽ ഉപയോഗിക്കുന്നു. ഏകദേശ ലൊക്കേഷൻ മാത്രമേ അയയ്ക്കൂ, അതും ഓൺലൈൻ പള്ളി തിരയൽ ഓണായിരിക്കുമ്പോൾ മാത്രം.</string>
     <string name="polar_nearest">അടുത്തുള്ള അക്ഷാംശം (48.5°)</string>
     <string name="polar_none">ലഭ്യമല്ല എന്ന് കാണിക്കുക</string>
     <string name="polar_rule">സൂര്യൻ ഉദിക്കുകയോ അസ്തമിക്കുകയോ ചെയ്യാത്തപ്പോൾ</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">ഇന്നത്തെ നമസ്കാര സമയങ്ങൾ</string>
     <string name="tomorrow_times">നാളത്തെ നമസ്കാര സമയങ്ങൾ</string>
     <string name="translation_by">പരിഭാഷ: %1$s</string>
+    <string name="tv_alert">നമസ്കാര സമയത്ത് പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പ്</string>
+    <string name="tv_alert_note">ആപ്പ് ഈ ടിവിയിൽ തുറന്നിരിക്കുമ്പോൾ കാണിക്കും.</string>
+    <string name="tv_choose_city_body">നമസ്കാര സമയങ്ങൾ ഈ Apple TV യിൽ തന്നെ കണക്കാക്കുന്നു. ഒരു നഗരം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ നിങ്ങളുടെ ലൊക്കേഷൻ ഉപയോഗിക്കുക. ഇന്റർനെറ്റ് ആവശ്യമില്ല.</string>
+    <string name="tv_keep_awake">നമസ്കാര സമയ ബോർഡ് സ്ക്രീനിൽ നിലനിർത്തുക</string>
+    <string name="tv_keep_awake_note">നമസ്കാര സമയ ബോർഡ് തുറന്നിരിക്കുമ്പോൾ സ്ക്രീൻ സേവർ ആരംഭിക്കില്ല.</string>
+    <string name="tv_scan_directions">വഴിക്കായി നിങ്ങളുടെ ഫോൺ ഉപയോഗിച്ച് സ്കാൻ ചെയ്യുക</string>
     <string name="upcoming">വരാനിരിക്കുന്നത്</string>
     <string name="use_device_language">ഉപകരണത്തിന്റെ ഭാഷ ഉപയോഗിക്കുക</string>
     <string name="use_my_location">എന്റെ ലൊക്കേഷൻ ഉപയോഗിക്കുക</string>

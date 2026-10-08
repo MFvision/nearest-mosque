@@ -271,6 +271,7 @@
     <string name="pack_kind_library">Ɗakin karatu: %1$s</string>
     <string name="pack_kind_mosques">Masallatai: %1$s</string>
     <string name="permission_location_ios">Ana amfani da wurinku a wannan wayar don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet.</string>
+    <string name="permission_location_tv">Ana amfani da wurinku a wannan Apple TV don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet.</string>
     <string name="polar_nearest">Latitude mafi kusa (48.5°)</string>
     <string name="polar_none">Nuna a matsayin babu</string>
     <string name="polar_rule">Idan rana ba ta fitowa ko faɗuwa</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">Lokutan sallah na yau</string>
     <string name="tomorrow_times">Lokutan sallah na gobe</string>
     <string name="translation_by">Fassara: %1$s</string>
+    <string name="tv_alert">Sanarwa mai cike allo idan lokacin sallah ya yi</string>
+    <string name="tv_alert_note">Yana bayyana idan manhajar a buɗe take a wannan TV.</string>
+    <string name="tv_choose_city_body">Ana lissafin lokutan sallah a wannan Apple TV. Zaɓi gari ko yi amfani da wurinku. Babu buƙatar intanet.</string>
+    <string name="tv_keep_awake">Bar allon lokutan sallah a kan allo</string>
+    <string name="tv_keep_awake_note">Mai kare allo ba zai fara ba muddin allon lokutan sallah a buɗe yake.</string>
+    <string name="tv_scan_directions">Duba da wayarku don samun hanya</string>
     <string name="upcoming">Masu zuwa</string>
     <string name="use_device_language">Yi amfani da harshen na\'ura</string>
     <string name="use_my_location">Yi amfani da wurina</string>

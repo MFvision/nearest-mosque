@@ -272,6 +272,7 @@
     <string name="pack_kind_library">Библиотека: %1$s</string>
     <string name="pack_kind_mosques">Џамије: %1$s</string>
     <string name="permission_location_ios">Ваша локација се користи на овом телефону за намаска времена, киблу и џамије у близини. Шаље се само приближна локација, и то само кад је укључена претрага џамија на мрежи.</string>
+    <string name="permission_location_tv">Ваша локација се користи на овом Apple TV-у за намаска времена, киблу и џамије у близини. Шаље се само приближна локација, и то само кад је укључена претрага џамија на мрежи.</string>
     <string name="polar_nearest">Најближа ширина (48,5°)</string>
     <string name="polar_none">Прикажи као недоступно</string>
     <string name="polar_rule">Кад сунце не излази или не залази</string>
@@ -384,6 +385,12 @@
     <string name="todays_times">Данашња намаска времена</string>
     <string name="tomorrow_times">Сутрашња намаска времена</string>
     <string name="translation_by">Превод: %1$s</string>
+    <string name="tv_alert">Обавештење преко целог екрана у време намаза</string>
+    <string name="tv_alert_note">Приказује се када је апликација отворена на овом телевизору.</string>
+    <string name="tv_choose_city_body">Намаска времена се израчунавају на овом Apple TV-у. Изаберите град или користите своју локацију. Интернет није потребан.</string>
+    <string name="tv_keep_awake">Задржи таблу са временима на екрану</string>
+    <string name="tv_keep_awake_note">Чувар екрана се неће укључити док је табла са временима отворена.</string>
+    <string name="tv_scan_directions">Скенирајте телефоном за упутства</string>
     <string name="upcoming">Следеће</string>
     <string name="use_device_language">Језик уређаја</string>
     <string name="use_my_location">Користи моју локацију</string>

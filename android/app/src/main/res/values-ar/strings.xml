@@ -275,6 +275,7 @@
     <string name="pack_kind_library">المكتبة: %1$s</string>
     <string name="pack_kind_mosques">المساجد: %1$s</string>
     <string name="permission_location_ios">يُستخدم موقعك على هذا الهاتف للمواقيت والقبلة والمساجد القريبة. لا يُرسل إلا موقع تقريبي، وفقط عند تفعيل البحث عن المساجد عبر الإنترنت.</string>
+    <string name="permission_location_tv">يُستخدم موقعك على جهاز Apple TV هذا للمواقيت والقبلة والمساجد القريبة. لا يُرسل إلا موقع تقريبي، وفقط عند تفعيل البحث عن المساجد عبر الإنترنت.</string>
     <string name="polar_nearest">أقرب عرض (48.5°)</string>
     <string name="polar_none">اعرضها غير متاحة</string>
     <string name="polar_rule">عند عدم شروق الشمس أو غروبها</string>
@@ -387,6 +388,12 @@
     <string name="todays_times">مواقيت اليوم</string>
     <string name="tomorrow_times">مواقيت الغد</string>
     <string name="translation_by">ترجمة: %1$s</string>
+    <string name="tv_alert">تنبيه بملء الشاشة عند دخول الوقت</string>
+    <string name="tv_alert_note">يظهر عندما يكون التطبيق مفتوحًا على هذا التلفاز.</string>
+    <string name="tv_choose_city_body">تُحسب المواقيت على جهاز Apple TV هذا. اختر مدينة أو استخدم موقعك، دون الحاجة إلى الإنترنت.</string>
+    <string name="tv_keep_awake">إبقاء لوحة المواقيت على الشاشة</string>
+    <string name="tv_keep_awake_note">لن تبدأ شاشة التوقف ما دامت لوحة المواقيت مفتوحة.</string>
+    <string name="tv_scan_directions">امسح الرمز بهاتفك للاتجاهات</string>
     <string name="upcoming">القادمة</string>
     <string name="use_device_language">استخدم لغة الجهاز</string>
     <string name="use_my_location">استخدم موقعي</string>

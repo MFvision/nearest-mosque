@@ -272,6 +272,7 @@
     <string name="pack_kind_library">Biblioteka: %1$s</string>
     <string name="pack_kind_mosques">Džamije: %1$s</string>
     <string name="permission_location_ios">Vaša lokacija se koristi na ovom telefonu za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija.</string>
+    <string name="permission_location_tv">Vaša lokacija se koristi na ovom Apple TV-u za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija.</string>
     <string name="polar_nearest">Najbliža širina (48,5°)</string>
     <string name="polar_none">Prikaži kao nedostupno</string>
     <string name="polar_rule">Kad sunce ne izlazi ili ne zalazi</string>
@@ -384,6 +385,12 @@
     <string name="todays_times">Današnja namaska vremena</string>
     <string name="tomorrow_times">Sutrašnja namaska vremena</string>
     <string name="translation_by">Prijevod: %1$s</string>
+    <string name="tv_alert">Obavještenje preko cijelog ekrana u vrijeme namaza</string>
+    <string name="tv_alert_note">Prikazuje se kada je aplikacija otvorena na ovom televizoru.</string>
+    <string name="tv_choose_city_body">Namaska vremena se izračunavaju na ovom Apple TV-u. Odaberite grad ili koristite svoju lokaciju. Internet nije potreban.</string>
+    <string name="tv_keep_awake">Zadrži tablu s vremenima na ekranu</string>
+    <string name="tv_keep_awake_note">Čuvar ekrana se neće uključiti dok je tabla s vremenima otvorena.</string>
+    <string name="tv_scan_directions">Skenirajte telefonom za upute</string>
     <string name="upcoming">Sljedeće</string>
     <string name="use_device_language">Jezik uređaja</string>
     <string name="use_my_location">Koristi moju lokaciju</string>

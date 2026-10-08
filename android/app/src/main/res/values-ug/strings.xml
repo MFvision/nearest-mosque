@@ -271,6 +271,7 @@
     <string name="pack_kind_library">كۈتۈپخانا: %1$s</string>
     <string name="pack_kind_mosques">مەسچىتلەر: %1$s</string>
     <string name="permission_location_ios">ئورنىڭىز مۇشۇ تېلېفوندا ناماز ۋاقىتلىرى، قىبلە ۋە يېقىن ئەتراپتىكى مەسچىتلەر ئۈچۈن ئىشلىتىلىدۇ. پەقەت تەخمىنىي ئورۇنلا يوللىنىدۇ، ئۇ ھەم پەقەت توردا مەسچىت ئىزدەش ئوچۇق بولغاندىلا.</string>
+    <string name="permission_location_tv">ئورنىڭىز مۇشۇ Apple TV دا ناماز ۋاقىتلىرى، قىبلە ۋە يېقىن ئەتراپتىكى مەسچىتلەر ئۈچۈن ئىشلىتىلىدۇ. پەقەت تەخمىنىي ئورۇنلا يوللىنىدۇ، ئۇ ھەم پەقەت توردا مەسچىت ئىزدەش ئوچۇق بولغاندىلا.</string>
     <string name="polar_nearest">ئەڭ يېقىن كەڭلىك (48.5°)</string>
     <string name="polar_none">يوق دەپ كۆرسىتىش</string>
     <string name="polar_rule">قۇياش چىقمىغاندا ياكى پاتمىغاندا</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">بۈگۈنكى ناماز ۋاقىتلىرى</string>
     <string name="tomorrow_times">ئەتىكى ناماز ۋاقىتلىرى</string>
     <string name="translation_by">تەرجىمە: %1$s</string>
+    <string name="tv_alert">ناماز ۋاقتىدا پۈتۈن ئېكرانلىق ئەسكەرتىش</string>
+    <string name="tv_alert_note">ئەپ مۇشۇ تېلېۋىزوردا ئوچۇق تۇرغاندا كۆرۈنىدۇ.</string>
+    <string name="tv_choose_city_body">ناماز ۋاقىتلىرى مۇشۇ Apple TV دا ھېسابلىنىدۇ. بىر شەھەر تاللاڭ ياكى ئورنىڭىزنى ئىشلىتىڭ. تور كېرەك ئەمەس.</string>
+    <string name="tv_keep_awake">ناماز ۋاقىت تاختىسى ئېكراندا تۇرسۇن</string>
+    <string name="tv_keep_awake_note">ناماز ۋاقىت تاختىسى ئوچۇق تۇرغاندا ئېكران قوغدىغۇچ باشلانمايدۇ.</string>
+    <string name="tv_scan_directions">يول كۆرسىتىش ئۈچۈن تېلېفونىڭىزدا سكانېرلاڭ</string>
     <string name="upcoming">كېلىدىغان</string>
     <string name="use_device_language">ئۈسكۈنە تىلىنى ئىشلىتىش</string>
     <string name="use_my_location">ئورنۇمنى ئىشلىتىش</string>

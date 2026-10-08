@@ -271,6 +271,7 @@
     <string name="pack_kind_library">ਲਾਇਬ੍ਰੇਰੀ: %1$s</string>
     <string name="pack_kind_mosques">ਮਸਜਿਦਾਂ: %1$s</string>
     <string name="permission_location_ios">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।</string>
+    <string name="permission_location_tv">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ Apple TV ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।</string>
     <string name="polar_nearest">ਨੇੜਲਾ ਅਕਸ਼ਾਂਸ਼ (48.5°)</string>
     <string name="polar_none">ਉਪਲਬਧ ਨਹੀਂ ਦਿਖਾਓ</string>
     <string name="polar_rule">ਜਦੋਂ ਸੂਰਜ ਨਾ ਚੜ੍ਹੇ ਜਾਂ ਨਾ ਡੁੱਬੇ</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">ਅੱਜ ਦੇ ਨਮਾਜ਼ ਦੇ ਵਕਤ</string>
     <string name="tomorrow_times">ਕੱਲ੍ਹ ਦੇ ਨਮਾਜ਼ ਦੇ ਵਕਤ</string>
     <string name="translation_by">ਅਨੁਵਾਦ: %1$s</string>
+    <string name="tv_alert">ਨਮਾਜ਼ ਦੇ ਵਕਤ ਪੂਰੀ ਸਕਰੀਨ ’ਤੇ ਸੂਚਨਾ</string>
+    <string name="tv_alert_note">ਜਦੋਂ ਐਪ ਇਸ ਟੀਵੀ ’ਤੇ ਖੁੱਲ੍ਹੀ ਹੋਵੇ ਤਾਂ ਦਿਖਦੀ ਹੈ।</string>
+    <string name="tv_choose_city_body">ਨਮਾਜ਼ ਦੇ ਵਕਤ ਇਸੇ Apple TV ’ਤੇ ਗਿਣੇ ਜਾਂਦੇ ਹਨ। ਕੋਈ ਸ਼ਹਿਰ ਚੁਣੋ ਜਾਂ ਆਪਣਾ ਟਿਕਾਣਾ ਵਰਤੋ। ਇੰਟਰਨੈੱਟ ਦੀ ਲੋੜ ਨਹੀਂ।</string>
+    <string name="tv_keep_awake">ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ ਦਾ ਬੋਰਡ ਸਕਰੀਨ ’ਤੇ ਰੱਖੋ</string>
+    <string name="tv_keep_awake_note">ਜਦੋਂ ਤੱਕ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ ਦਾ ਬੋਰਡ ਖੁੱਲ੍ਹਾ ਹੈ, ਸਕਰੀਨ ਸੇਵਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਵੇਗਾ।</string>
+    <string name="tv_scan_directions">ਰਸਤੇ ਲਈ ਆਪਣੇ ਫ਼ੋਨ ਨਾਲ ਸਕੈਨ ਕਰੋ</string>
     <string name="upcoming">ਆਉਣ ਵਾਲੀ</string>
     <string name="use_device_language">ਡਿਵਾਈਸ ਦੀ ਭਾਸ਼ਾ ਵਰਤੋ</string>
     <string name="use_my_location">ਮੇਰਾ ਟਿਕਾਣਾ ਵਰਤੋ</string>

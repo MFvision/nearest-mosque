@@ -59465,6 +59465,227 @@
         }
       }
     },
+    "permission_location_tv": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يُستخدم موقعك على جهاز Apple TV هذا للمواقيت والقبلة والمساجد القريبة. لا يُرسل إلا موقع تقريبي، وفقط عند تفعيل البحث عن المساجد عبر الإنترنت."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آپ کا مقام اسی Apple TV پر نماز کے اوقات، قبلہ اور قریبی مساجد کے لیے استعمال ہوتا ہے۔ صرف تقریبی مقام بھیجا جاتا ہے، اور صرف جب آن لائن مسجد تلاش آن ہو۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konumunuz bu Apple TV'de namaz vakitleri, kıble ve yakındaki camiler için kullanılır. Yalnızca çevrimiçi cami araması açıkken yaklaşık konum gönderilir."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokasi Anda digunakan di Apple TV ini untuk waktu salat, kiblat, dan masjid terdekat. Hanya lokasi perkiraan yang dikirim, dan hanya saat pencarian masjid online aktif."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre position sert, sur cette Apple TV, aux horaires, à la qibla et aux mosquées proches. Seule une position approximative est envoyée, et seulement si la recherche en ligne est activée."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu ubicación se usa en este Apple TV para los horarios, la alquibla y las mezquitas cercanas. Solo se envía una ubicación aproximada, y solo con la búsqueda en línea activada."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваше местоположение используется на этом Apple TV для времени намазов, киблы и мечетей поблизости. Отправляется только приблизительное местоположение и только при включённом онлайн-поиске мечетей."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপনার লোকেশন এই Apple TV-তেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। শুধু আনুমানিক লোকেশন পাঠানো হয়, এবং তা কেবল অনলাইন মসজিদ সার্চ চালু থাকলেই।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مساجد نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的位置在这台 Apple TV 上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी लोकेशन इसी Apple TV पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua localização é usada nesta Apple TV para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ana amfani da wurinku a wannan Apple TV don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mahali ulipo panatumika kwenye Apple TV hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ginagamit ang iyong lokasyon sa Apple TV na ito para sa mga oras ng dasal, ang Qibla at mga kalapit na masjid. Tinatayang lokasyon lang ang ipinapadala, at kapag naka-on lang ang online na paghahanap ng masjid."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vị trí của bạn được dùng trên Apple TV này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตำแหน่งของคุณใช้บน Apple TV เครื่องนี้สำหรับเวลาละหมาด กิบลัต และมัสยิดใกล้เคียง ระบบจะส่งเพียงตำแหน่งโดยประมาณ และเฉพาะเมื่อเปิดการค้นหามัสยิดออนไลน์เท่านั้น"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទីតាំងរបស់អ្នកត្រូវបានប្រើនៅលើ Apple TV នេះ សម្រាប់ម៉ោងសឡាត គិបឡាត់ និងម៉ាស្ជិតក្បែរៗ។ មានតែទីតាំងប្រហាក់ប្រហែលប៉ុណ្ណោះដែលត្រូវបានផ្ញើ ហើយតែនៅពេលបើកការស្វែងរកម៉ាស្ជិតតាមអ៊ីនធឺណិតប៉ុណ្ណោះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئورنىڭىز مۇشۇ Apple TV دا ناماز ۋاقىتلىرى، قىبلە ۋە يېقىن ئەتراپتىكى مەسچىتلەر ئۈچۈن ئىشلىتىلىدۇ. پەقەت تەخمىنىي ئورۇنلا يوللىنىدۇ، ئۇ ھەم پەقەت توردا مەسچىت ئىزدەش ئوچۇق بولغاندىلا."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شوێنەکەت لەسەر ئەم Apple TV یە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaša lokacija se koristi na ovom Apple TV-u za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша локација се користи на овом Apple TV-у за намаска времена, киблу и џамије у близини. Шаље се само приближна локација, и то само кад је укључена претрага џамија на мрежи."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вашата локација се користи на овој Apple TV за времињата за намаз, киблата и џамиите во близина. Се испраќа само приближна локација и само кога е вклучено пребарувањето џамии на интернет."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A helyzetedet ez az Apple TV használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je locatie wordt op deze Apple TV gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თქვენი მდებარეობა ამ Apple TV-ზე გამოიყენება ლოცვის დროებისთვის, ყიბლისთვის და ახლომდებარე მეჩეთებისთვის. იგზავნება მხოლოდ მიახლოებითი მდებარეობა და მხოლოდ მაშინ, როცა მეჩეთების ონლაინ ძიება ჩართულია."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම Apple TV එකේ භාවිත වේ. යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි, එයද මාර්ගගත පල්ලි සෙවුම සක්‍රිය විට පමණි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయాలు, ఖిబ్లా, దగ్గరి మసీదుల కోసం మీ లొకేషన్ ఈ Apple TV లోనే ఉపయోగించబడుతుంది. సుమారు లొకేషన్ మాత్రమే పంపబడుతుంది, అదీ ఆన్‌లైన్ మసీదు శోధన ఆన్‌లో ఉన్నప్పుడు మాత్రమే."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯಗಳು, ಕಿಬ್ಲಾ ಮತ್ತು ಹತ್ತಿರದ ಮಸೀದಿಗಳಿಗಾಗಿ ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಈ Apple TV ಯಲ್ಲೇ ಬಳಸಲಾಗುತ್ತದೆ. ಅಂದಾಜು ಸ್ಥಳವನ್ನು ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ, ಅದೂ ಆನ್‌ಲೈನ್ ಮಸೀದಿ ಹುಡುಕಾಟ ಆನ್ ಆಗಿದ್ದಾಗ ಮಾತ್ರ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയങ്ങൾ, ഖിബ്‌ല, അടുത്തുള്ള പള്ളികൾ എന്നിവയ്ക്കായി നിങ്ങളുടെ ലൊക്കേഷൻ ഈ Apple TV യിൽ ഉപയോഗിക്കുന്നു. ഏകദേശ ലൊക്കേഷൻ മാത്രമേ അയയ്ക്കൂ, അതും ഓൺലൈൻ പള്ളി തിരയൽ ഓണായിരിക്കുമ്പോൾ മാത്രം."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमचे लोकेशन याच Apple TV वर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. फक्त अंदाजे लोकेशन पाठवले जाते, आणि तेही ऑनलाइन मशीद शोध चालू असेल तेव्हाच."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારું લોકેશન આ જ Apple TV પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ Apple TV ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপোনাৰ অৱস্থান এই Apple TV-তে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।"
+          }
+        }
+      }
+    },
     "polar_nearest": {
       "extractionState": "manual",
       "localizations": {
@@ -84213,6 +84434,1332 @@
           "stringUnit": {
             "state": "translated",
             "value": "অনুবাদ: %1$@"
+          }
+        }
+      }
+    },
+    "tv_alert": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full-screen alert at prayer time"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تنبيه بملء الشاشة عند دخول الوقت"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز کے وقت پوری اسکرین پر اطلاع"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vakit girince tam ekran uyarı"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peringatan layar penuh saat waktu salat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerte plein écran à l’heure de la prière"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aviso a pantalla completa a la hora del rezo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Полноэкранное оповещение во время намаза"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজের সময় পূর্ণ স্ক্রিন সতর্কতা"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هشدار تمام‌صفحه هنگام وقت نماز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هشدار تمام‌صفحه هنگام وقت نماز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "礼拜时间到时全屏提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ के वक़्त फ़ुल-स्क्रीन सूचना"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta em tela cheia na hora da oração"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sanarwa mai cike allo idan lokacin sallah ya yi"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tahadhari ya skrini nzima wakati wa sala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full-screen na alerto sa oras ng dasal"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thông báo toàn màn hình khi đến giờ cầu nguyện"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แจ้งเตือนเต็มจอเมื่อถึงเวลาละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការជូនដំណឹងពេញអេក្រង់ពេលដល់ម៉ោងសឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز ۋاقتىدا پۈتۈن ئېكرانلىق ئەسكەرتىش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئاگادارکردنەوەی پڕ شاشە لە کاتی نوێژدا"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obavještenje preko cijelog ekrana u vrijeme namaza"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обавештење преко целог екрана у време намаза"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Известување на цел екран во време на намаз"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teljes képernyős értesítés az ima idején"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melding op volledig scherm bij gebedstijd"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სრულეკრანიანი შეტყობინება ლოცვის დროს"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත වේලාවට පූර්ණ තිර දැනුම්දීම"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయంలో పూర్తి స్క్రీన్ హెచ్చరిక"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯದಲ್ಲಿ ಪೂರ್ಣ ಪರದೆಯ ಎಚ್ಚರಿಕೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയത്ത് പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പ്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाजच्या वेळी पूर्ण स्क्रीन सूचना"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝના સમયે પૂર્ણ સ્ક્રીન સૂચના"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਦੇ ਵਕਤ ਪੂਰੀ ਸਕਰੀਨ ’ਤੇ ਸੂਚਨਾ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজৰ সময়ত সম্পূৰ্ণ স্ক্ৰীণ সতৰ্কবাণী"
+          }
+        }
+      }
+    },
+    "tv_alert_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows while the app is open on this TV."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يظهر عندما يكون التطبيق مفتوحًا على هذا التلفاز."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جب ایپ اس ٹی وی پر کھلی ہو تب دکھائی دیتی ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama bu TV'de açıkken gösterilir."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tampil saat aplikasi terbuka di TV ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S’affiche quand l’app est ouverte sur ce téléviseur."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se muestra cuando la app está abierta en este televisor."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывается, когда приложение открыто на этом телевизоре."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যাপটি এই টিভিতে খোলা থাকলে দেখায়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقتی برنامه روی این تلویزیون باز است نمایش داده می‌شود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقتی برنامه روی این تلویزیون باز است نمایش داده می‌شود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在此电视上打开应用时显示。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जब ऐप इस टीवी पर खुला हो तब दिखती है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aparece quando o app está aberto nesta TV."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana bayyana idan manhajar a buɗe take a wannan TV."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inaonekana programu ikiwa wazi kwenye TV hii."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lumalabas kapag bukas ang app sa TV na ito."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiển thị khi ứng dụng đang mở trên TV này."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แสดงเมื่อเปิดแอปอยู่บนทีวีเครื่องนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បង្ហាញពេលកម្មវិធីកំពុងបើកនៅលើទូរទស្សន៍នេះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەپ مۇشۇ تېلېۋىزوردا ئوچۇق تۇرغاندا كۆرۈنىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتێک ئەپەکە لەسەر ئەم تەلەفزیۆنە کراوە بێت دەردەکەوێت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prikazuje se kada je aplikacija otvorena na ovom televizoru."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приказује се када је апликација отворена на овом телевизору."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Се прикажува кога апликацијата е отворена на овој телевизор."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akkor jelenik meg, ha az alkalmazás nyitva van ezen a tévén."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verschijnt als de app open is op deze tv."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩანს, როცა აპი ამ ტელევიზორზეა გახსნილი."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "මෙම රූපවාහිනියේ යෙදුම විවෘතව ඇති විට පෙන්වයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "యాప్ ఈ టీవీలో తెరిచి ఉన్నప్పుడు కనిపిస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆ್ಯಪ್ ಈ ಟಿವಿಯಲ್ಲಿ ತೆರೆದಿರುವಾಗ ಕಾಣಿಸುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ആപ്പ് ഈ ടിവിയിൽ തുറന്നിരിക്കുമ്പോൾ കാണിക്കും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ॲप या टीव्हीवर उघडे असताना दिसते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઍપ આ ટીવી પર ખુલ્લી હોય ત્યારે દેખાય છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜਦੋਂ ਐਪ ਇਸ ਟੀਵੀ ’ਤੇ ਖੁੱਲ੍ਹੀ ਹੋਵੇ ਤਾਂ ਦਿਖਦੀ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এপটো এই টিভিত খোলা থাকিলে দেখা যায়।"
+          }
+        }
+      }
+    },
+    "tv_choose_city_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prayer times are calculated on this Apple TV. Pick a city or use your location. No internet needed."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحسب المواقيت على جهاز Apple TV هذا. اختر مدينة أو استخدم موقعك، دون الحاجة إلى الإنترنت."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اوقات اسی Apple TV پر شمار ہوتے ہیں۔ شہر منتخب کریں یا اپنا مقام استعمال کریں، انٹرنیٹ کی ضرورت نہیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vakitler bu Apple TV'de hesaplanır. Bir şehir seçin veya konumunuzu kullanın. İnternet gerekmez."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jadwal salat dihitung di Apple TV ini. Pilih kota atau gunakan lokasi Anda. Tanpa internet."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les horaires sont calculés sur cette Apple TV. Choisissez une ville ou utilisez votre position. Sans internet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los horarios se calculan en este Apple TV. Elige una ciudad o usa tu ubicación. Sin internet."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Время намазов рассчитывается на этом Apple TV. Выберите город или используйте геолокацию. Интернет не нужен."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজের সময় এই Apple TV-তেই হিসাব করা হয়। একটি শহর বেছে নিন বা আপনার লোকেশন ব্যবহার করুন। ইন্টারনেট লাগবে না।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اوقات نماز روی همین Apple TV محاسبه می‌شود. یک شهر انتخاب کنید یا از موقعیت خود استفاده کنید. اینترنت لازم نیست."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اوقات نماز روی همین Apple TV محاسبه می‌شود. یک شهر انتخاب کنید یا از موقعیت خود استفاده کنید. انترنت لازم نیست."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "礼拜时间在这台 Apple TV 上计算。选择一个城市或使用你的位置，无需联网。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ के समय इसी Apple TV पर निकाले जाते हैं। कोई शहर चुनें या अपनी लोकेशन इस्तेमाल करें। इंटरनेट की ज़रूरत नहीं।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os horários de oração são calculados nesta Apple TV. Escolha uma cidade ou use sua localização. Não precisa de internet."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ana lissafin lokutan sallah a wannan Apple TV. Zaɓi gari ko yi amfani da wurinku. Babu buƙatar intanet."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyakati za sala zinahesabiwa kwenye Apple TV hii. Chagua mji au tumia mahali ulipo. Huhitaji intaneti."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kinakalkula ang mga oras ng dasal sa Apple TV na ito. Pumili ng lungsod o gamitin ang iyong lokasyon. Hindi kailangan ng internet."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giờ cầu nguyện được tính ngay trên Apple TV này. Hãy chọn một thành phố hoặc dùng vị trí của bạn. Không cần internet."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เวลาละหมาดคำนวณบน Apple TV เครื่องนี้ เลือกเมืองหรือใช้ตำแหน่งของคุณ ไม่ต้องใช้อินเทอร์เน็ต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងសឡាតត្រូវបានគណនានៅលើ Apple TV នេះ។ ជ្រើសរើសទីក្រុង ឬប្រើទីតាំងរបស់អ្នក។ មិនត្រូវការអ៊ីនធឺណិតទេ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز ۋاقىتلىرى مۇشۇ Apple TV دا ھېسابلىنىدۇ. بىر شەھەر تاللاڭ ياكى ئورنىڭىزنى ئىشلىتىڭ. تور كېرەك ئەمەس."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتەکانی نوێژ لەسەر ئەم Apple TV یە هەژمار دەکرێن. شارێک هەڵبژێرە یان شوێنەکەت بەکاربهێنە. پێویستت بە ئینتەرنێت نییە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namaska vremena se izračunavaju na ovom Apple TV-u. Odaberite grad ili koristite svoju lokaciju. Internet nije potreban."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Намаска времена се израчунавају на овом Apple TV-у. Изаберите град или користите своју локацију. Интернет није потребан."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Времињата за намаз се пресметуваат на овој Apple TV. Изберете град или користете ја вашата локација. Не е потребен интернет."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az imaidőket ez az Apple TV számolja ki. Válassz egy várost, vagy használd a helyzetedet. Nem kell hozzá internet."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebedstijden worden op deze Apple TV berekend. Kies een stad of gebruik je locatie. Geen internet nodig."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ლოცვის დროები ამ Apple TV-ზე გამოითვლება. აირჩიეთ ქალაქი ან გამოიყენეთ თქვენი მდებარეობა. ინტერნეტი არ არის საჭირო."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත වේලාවන් මෙම Apple TV එකේම ගණනය කෙරේ. නගරයක් තෝරන්න හෝ ඔබේ ස්ථානය භාවිත කරන්න. අන්තර්ජාලය අවශ්‍ය නැත."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయాలు ఈ Apple TV లోనే లెక్కించబడతాయి. ఒక నగరాన్ని ఎంచుకోండి లేదా మీ లొకేషన్ ఉపయోగించండి. ఇంటర్నెట్ అవసరం లేదు."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯಗಳನ್ನು ಈ Apple TV ಯಲ್ಲೇ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ. ಒಂದು ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಬಳಸಿ. ಇಂಟರ್ನೆಟ್ ಬೇಕಿಲ್ಲ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയങ്ങൾ ഈ Apple TV യിൽ തന്നെ കണക്കാക്കുന്നു. ഒരു നഗരം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ നിങ്ങളുടെ ലൊക്കേഷൻ ഉപയോഗിക്കുക. ഇന്റർനെറ്റ് ആവശ്യമില്ല."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाजच्या वेळा याच Apple TV वर मोजल्या जातात. एखादे शहर निवडा किंवा तुमचे लोकेशन वापरा. इंटरनेटची गरज नाही."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝના સમય આ જ Apple TV પર ગણાય છે. કોઈ શહેર પસંદ કરો અથવા તમારું લોકેશન વાપરો. ઇન્ટરનેટની જરૂર નથી."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਦੇ ਵਕਤ ਇਸੇ Apple TV ’ਤੇ ਗਿਣੇ ਜਾਂਦੇ ਹਨ। ਕੋਈ ਸ਼ਹਿਰ ਚੁਣੋ ਜਾਂ ਆਪਣਾ ਟਿਕਾਣਾ ਵਰਤੋ। ਇੰਟਰਨੈੱਟ ਦੀ ਲੋੜ ਨਹੀਂ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজৰ সময় এই Apple TV-তে গণনা কৰা হয়। এখন চহৰ বাছক বা আপোনাৰ অৱস্থান ব্যৱহাৰ কৰক। ইণ্টাৰনেটৰ প্ৰয়োজন নাই।"
+          }
+        }
+      }
+    },
+    "tv_keep_awake": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the prayer board on screen"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إبقاء لوحة المواقيت على الشاشة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اوقات کا بورڈ اسکرین پر رکھیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vakit panosunu ekranda tut"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biarkan papan jadwal salat tetap tampil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Garder le tableau des horaires à l’écran"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantener el panel de horarios en pantalla"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Держать табло намазов на экране"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজের সময়ের বোর্ড স্ক্রিনে রাখুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تابلوی اوقات نماز روی صفحه بماند"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تابلوی اوقات نماز روی صفحه بماند"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "让礼拜时间板保持显示"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ के समय का बोर्ड स्क्रीन पर रखें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manter o painel de horários na tela"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bar allon lokutan sallah a kan allo"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acha ubao wa nyakati za sala kwenye skrini"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Panatilihin sa screen ang board ng oras ng dasal"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giữ bảng giờ cầu nguyện trên màn hình"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แสดงกระดานเวลาละหมาดค้างไว้บนจอ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទុកផ្ទាំងម៉ោងសឡាតនៅលើអេក្រង់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز ۋاقىت تاختىسى ئېكراندا تۇرسۇن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تەختەی کاتەکانی نوێژ لەسەر شاشە بهێڵەوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zadrži tablu s vremenima na ekranu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задржи таблу са временима на екрану"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задржи ја таблата со времиња на екранот"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az imaidő-tábla maradjon a képernyőn"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebedstijdenbord op het scherm houden"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ლოცვის დროების დაფა ეკრანზე დარჩეს"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත වේලා පුවරුව තිරය මත තබන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయాల బోర్డును తెరపై ఉంచు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯಗಳ ಫಲಕವನ್ನು ಪರದೆಯ ಮೇಲೆ ಇರಿಸಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയ ബോർഡ് സ്ക്രീനിൽ നിലനിർത്തുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाजच्या वेळांचा फलक स्क्रीनवर ठेवा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝના સમયનું બોર્ડ સ્ક્રીન પર રાખો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ ਦਾ ਬੋਰਡ ਸਕਰੀਨ ’ਤੇ ਰੱਖੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজৰ সময়ৰ ব'ৰ্ড স্ক্ৰীণত ৰাখক"
+          }
+        }
+      }
+    },
+    "tv_keep_awake_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The screen saver won’t start while the prayer board is open."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لن تبدأ شاشة التوقف ما دامت لوحة المواقيت مفتوحة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جب تک اوقات کا بورڈ کھلا ہے، اسکرین سیور شروع نہیں ہوگا۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vakit panosu açıkken ekran koruyucu başlamaz."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen saver tidak akan muncul selama papan jadwal salat terbuka."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’économiseur d’écran ne démarre pas tant que le tableau des horaires est ouvert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El salvapantallas no se activará mientras el panel de horarios esté abierto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заставка не включится, пока открыто табло намазов."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজের সময়ের বোর্ড খোলা থাকলে স্ক্রিন সেভার চালু হবে না।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تا وقتی تابلوی اوقات نماز باز است، محافظ صفحه روشن نمی‌شود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تا وقتی تابلوی اوقات نماز باز است، محافظ صفحه روشن نمی‌شود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "礼拜时间板打开时，屏幕保护程序不会启动。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जब तक नमाज़ के समय का बोर्ड खुला है, स्क्रीन सेवर शुरू नहीं होगा।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A proteção de tela não começa enquanto o painel de horários estiver aberto."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mai kare allo ba zai fara ba muddin allon lokutan sallah a buɗe yake."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kiokoa skrini hakitaanza ubao wa nyakati ukiwa wazi."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi magsisimula ang screen saver habang bukas ang board ng oras ng dasal."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trình bảo vệ màn hình sẽ không bật khi bảng giờ cầu nguyện đang mở."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โปรแกรมรักษาหน้าจอจะไม่เริ่มขณะเปิดกระดานเวลาละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "កម្មវិធីការពារអេក្រង់នឹងមិនចាប់ផ្ដើមទេ ពេលផ្ទាំងម៉ោងសឡាតកំពុងបើក។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز ۋاقىت تاختىسى ئوچۇق تۇرغاندا ئېكران قوغدىغۇچ باشلانمايدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تا تەختەی کاتەکانی نوێژ کراوە بێت، پارێزەری شاشە دەست پێناکات."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Čuvar ekrana se neće uključiti dok je tabla s vremenima otvorena."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чувар екрана се неће укључити док је табла са временима отворена."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чуварот на екранот нема да се вклучи додека таблата со времиња е отворена."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A képernyővédő nem indul el, amíg az imaidő-tábla nyitva van."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De schermbeveiliging start niet zolang het gebedstijdenbord open is."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ეკრანმზოგი არ ჩაირთვება, სანამ ლოცვის დროების დაფა ღიაა."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත වේලා පුවරුව විවෘතව ඇති තාක් තිර සුරැකුම ආරම්භ නොවේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ సమయాల బోర్డు తెరిచి ఉన్నంత వరకు స్క్రీన్ సేవర్ ప్రారంభం కాదు."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಸಮಯಗಳ ಫಲಕ ತೆರೆದಿರುವವರೆಗೆ ಸ್ಕ್ರೀನ್ ಸೇವರ್ ಆರಂಭವಾಗುವುದಿಲ್ಲ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാര സമയ ബോർഡ് തുറന്നിരിക്കുമ്പോൾ സ്ക്രീൻ സേവർ ആരംഭിക്കില്ല."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाजच्या वेळांचा फलक उघडा असेपर्यंत स्क्रीन सेव्हर सुरू होणार नाही."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝના સમયનું બોર્ડ ખુલ્લું હોય ત્યાં સુધી સ્ક્રીન સેવર શરૂ નહીં થાય."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜਦੋਂ ਤੱਕ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ ਦਾ ਬੋਰਡ ਖੁੱਲ੍ਹਾ ਹੈ, ਸਕਰੀਨ ਸੇਵਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਵੇਗਾ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজৰ সময়ৰ ব'ৰ্ড খোলা থাকোঁতে স্ক্ৰীণ ছেভাৰ আৰম্ভ নহয়।"
+          }
+        }
+      }
+    },
+    "tv_scan_directions": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan with your phone for directions"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امسح الرمز بهاتفك للاتجاهات"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "راستے کے لیے اپنے فون سے اسکین کریں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yol tarifi için telefonunuzla tarayın"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pindai dengan ponsel untuk petunjuk arah"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scannez avec votre téléphone pour l’itinéraire"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escanea con tu teléfono para ver la ruta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отсканируйте телефоном, чтобы проложить маршрут"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পথনির্দেশের জন্য আপনার ফোন দিয়ে স্ক্যান করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای مسیریابی با گوشی خود اسکن کنید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای مسیریابی با موبایل خود اسکن کنید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用手机扫描获取路线"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रास्ते के लिए अपने फ़ोन से स्कैन करें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escaneie com o celular para ver o trajeto"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duba da wayarku don samun hanya"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changanua kwa simu yako upate maelekezo"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-scan gamit ang iyong telepono para sa direksyon"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quét bằng điện thoại để xem chỉ đường"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สแกนด้วยโทรศัพท์เพื่อดูเส้นทาง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ស្កេនដោយទូរសព្ទរបស់អ្នក ដើម្បីមើលផ្លូវ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يول كۆرسىتىش ئۈچۈن تېلېفونىڭىزدا سكانېرلاڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بە مۆبایلەکەت سکان بکە بۆ ڕێنمایی ڕێگا"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skenirajte telefonom za upute"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скенирајте телефоном за упутства"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скенирајте со телефонот за упатства"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olvasd be a telefonoddal az útvonalhoz"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan met je telefoon voor de route"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაასკანერეთ ტელეფონით მარშრუტისთვის"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "මාර්ගය සඳහා ඔබේ දුරකථනයෙන් ස්කෑන් කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దారి కోసం మీ ఫోన్‌తో స్కాన్ చేయండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ದಾರಿಗಾಗಿ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വഴിക്കായി നിങ്ങളുടെ ഫോൺ ഉപയോഗിച്ച് സ്കാൻ ചെയ്യുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मार्गासाठी तुमच्या फोनने स्कॅन करा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "રસ્તા માટે તમારા ફોનથી સ્કૅન કરો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰਸਤੇ ਲਈ ਆਪਣੇ ਫ਼ੋਨ ਨਾਲ ਸਕੈਨ ਕਰੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "দিশৰ বাবে আপোনাৰ ফোনেৰে স্কেন কৰক"
           }
         }
       }

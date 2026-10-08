@@ -271,6 +271,7 @@
     <string name="pack_kind_library">લાઇબ્રેરી: %1$s</string>
     <string name="pack_kind_mosques">મસ્જિદો: %1$s</string>
     <string name="permission_location_ios">તમારું લોકેશન આ જ ફોન પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય.</string>
+    <string name="permission_location_tv">તમારું લોકેશન આ જ Apple TV પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય.</string>
     <string name="polar_nearest">નજીકનો અક્ષાંશ (48.5°)</string>
     <string name="polar_none">અનુપલબ્ધ તરીકે બતાવો</string>
     <string name="polar_rule">જ્યારે સૂરજ ન ઊગે કે ન આથમે</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">આજના નમાઝના સમય</string>
     <string name="tomorrow_times">આવતીકાલના નમાઝના સમય</string>
     <string name="translation_by">અનુવાદ: %1$s</string>
+    <string name="tv_alert">નમાઝના સમયે પૂર્ણ સ્ક્રીન સૂચના</string>
+    <string name="tv_alert_note">ઍપ આ ટીવી પર ખુલ્લી હોય ત્યારે દેખાય છે.</string>
+    <string name="tv_choose_city_body">નમાઝના સમય આ જ Apple TV પર ગણાય છે. કોઈ શહેર પસંદ કરો અથવા તમારું લોકેશન વાપરો. ઇન્ટરનેટની જરૂર નથી.</string>
+    <string name="tv_keep_awake">નમાઝના સમયનું બોર્ડ સ્ક્રીન પર રાખો</string>
+    <string name="tv_keep_awake_note">નમાઝના સમયનું બોર્ડ ખુલ્લું હોય ત્યાં સુધી સ્ક્રીન સેવર શરૂ નહીં થાય.</string>
+    <string name="tv_scan_directions">રસ્તા માટે તમારા ફોનથી સ્કૅન કરો</string>
     <string name="upcoming">આગામી</string>
     <string name="use_device_language">ડિવાઇસની ભાષા વાપરો</string>
     <string name="use_my_location">મારું લોકેશન વાપરો</string>

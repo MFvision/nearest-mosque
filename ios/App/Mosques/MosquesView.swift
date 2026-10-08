@@ -454,9 +454,21 @@ enum ExternalMaps {
         let candidates = urls.compactMap { $0 }
         if let url = candidates.first(where: { $0.scheme == "https" || UIApplication.shared.canOpenURL($0) }) { UIApplication.shared.open(url) }
     }
+
+    /// Google Maps and Waze when their app is on this device (schemes listed in LSApplicationQueriesSchemes).
+    static var installedOthers: [MapsApp] {
+        #if targetEnvironment(macCatalyst)
+        return []
+        #else
+        return [(MapsApp.google, "comgooglemaps://"), (.waze, "waze://")].compactMap { app, scheme in
+            URL(string: scheme).flatMap { UIApplication.shared.canOpenURL($0) ? app : nil }
+        }
+        #endif
+    }
 }
 
-/// "Get directions": a menu to choose Apple Maps, Google Maps or Waze.
+/// "Get directions": straight to Apple Maps, or a menu that adds Google Maps and Waze when they are
+/// installed on this iPhone or iPad (never on the Mac, which has neither app).
 struct DirectionsMenu<MenuLabel: View>: View {
     @Environment(\.l10n) private var l10n
     let to: LatLng
@@ -464,13 +476,18 @@ struct DirectionsMenu<MenuLabel: View>: View {
     @ViewBuilder var label: () -> MenuLabel
 
     var body: some View {
-        Menu {
-            Section(l10n.t("directions_choose")) {
-                Button(l10n.t("maps_apple")) { ExternalMaps.directions(to: to, name: name, app: .apple) }
-                Button(l10n.t("maps_google")) { ExternalMaps.directions(to: to, name: name, app: .google) }
-                Button(l10n.t("maps_waze")) { ExternalMaps.directions(to: to, name: name, app: .waze) }
-            }
-        } label: { label() }
+        let others = ExternalMaps.installedOthers
+        if others.isEmpty {
+            Button { ExternalMaps.directions(to: to, name: name, app: .apple) } label: { label() }
+        } else {
+            Menu {
+                Section(l10n.t("directions_choose")) {
+                    Button(l10n.t("maps_apple")) { ExternalMaps.directions(to: to, name: name, app: .apple) }
+                    if others.contains(.google) { Button(l10n.t("maps_google")) { ExternalMaps.directions(to: to, name: name, app: .google) } }
+                    if others.contains(.waze) { Button(l10n.t("maps_waze")) { ExternalMaps.directions(to: to, name: name, app: .waze) } }
+                }
+            } label: { label() }
+        }
     }
 }
 

@@ -16,6 +16,7 @@ import sys
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SRC = os.path.join(ROOT, "shared", "i18n", "strings.json")
 IOS_OUT = os.path.join(ROOT, "ios", "App", "Resources", "Localizable.xcstrings")
+IOS_TV_INFOPLIST = os.path.join(ROOT, "ios", "TV", "Resources", "InfoPlist.xcstrings")
 ANDROID_RES = os.path.join(ROOT, "android", "app", "src", "main", "res")
 LANGS_SRC = os.path.join(ROOT, "shared", "i18n", "languages.json")
 LANGUAGES = [l for l in json.load(open(LANGS_SRC, encoding="utf-8"))["languages"] if l["enabled"]]
@@ -99,11 +100,13 @@ def build_android(data, lang):
     return "\n".join(lines) + "\n"
 
 
-def build_ios_infoplist(data):
-    """InfoPlist.xcstrings: localized display name and permission purpose strings."""
+def build_ios_infoplist(data, tv=False):
+    """InfoPlist.xcstrings: localized display name and permission purpose strings (the Apple TV app's own)."""
     # NSLocationUsageDescription: the same purpose string for the Mac app (macOS reads this key).
     keys = {"CFBundleDisplayName": "app_name", "NSLocationWhenInUseUsageDescription": "permission_location_ios",
             "NSLocationUsageDescription": "permission_location_ios"}
+    if tv:
+        keys = {"CFBundleDisplayName": "app_name", "NSLocationWhenInUseUsageDescription": "permission_location_tv"}
     out = {"sourceLanguage": "en", "version": "1.0", "strings": {}}
     for plist_key, src in keys.items():
         entry = data["strings"][src]
@@ -227,7 +230,8 @@ def main():
     if errors:
         print("\n".join(errors))
         sys.exit(1)
-    outputs = {IOS_OUT: build_ios(data), IOS_OUT.replace("Localizable.xcstrings", "InfoPlist.xcstrings"): build_ios_infoplist(data)}
+    outputs = {IOS_OUT: build_ios(data), IOS_OUT.replace("Localizable.xcstrings", "InfoPlist.xcstrings"): build_ios_infoplist(data),
+               IOS_TV_INFOPLIST: build_ios_infoplist(data, tv=True)}
     for lang, d in ANDROID_DIR.items():
         outputs[os.path.join(ANDROID_RES, d, "strings.xml")] = build_android(data, lang)
     outputs[LOCALES_OUT] = build_locales_config()

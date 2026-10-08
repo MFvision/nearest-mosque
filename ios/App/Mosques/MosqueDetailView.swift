@@ -5,6 +5,7 @@ struct MosqueDetailView: View {
     @Environment(\.l10n) private var l10n
     @Environment(\.colorScheme) private var scheme
     @Environment(\.openURL) private var openURL
+    @Environment(\.dismiss) private var dismiss
     let ranked: RankedMosque
     @State var favorite: Bool
     /// Only downloaded records can be favorites (live results have no stable record on the phone).
@@ -43,6 +44,12 @@ struct MosqueDetailView: View {
                     }
                     .accessibilityLabel(l10n.t(favorite ? "favorite_remove" : "favorite_add"))
                     }
+                    // A visible way out: on the Mac a sheet has no swipe-down, and clicking outside does nothing.
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark").font(.body.weight(.semibold)).foregroundStyle(.secondary).frame(width: 44, height: 44)
+                    }
+                    .keyboardShortcut(.cancelAction)
+                    .accessibilityLabel(l10n.t("close"))
                 }
                 Text(l10n.t(m.category == .prayer_space ? "category_prayer_space" : "category_mosque") + " · " + l10n.t("straight_line", Format.distance(ranked.distanceMeters, l10n: l10n)))
                 if let route {

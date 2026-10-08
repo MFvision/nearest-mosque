@@ -271,6 +271,7 @@
     <string name="pack_kind_library">لائبریری: %1$s</string>
     <string name="pack_kind_mosques">مساجد: %1$s</string>
     <string name="permission_location_ios">آپ کا مقام اسی فون پر نماز کے اوقات، قبلہ اور قریبی مساجد کے لیے استعمال ہوتا ہے۔ صرف تقریبی مقام بھیجا جاتا ہے، اور صرف جب آن لائن مسجد تلاش آن ہو۔</string>
+    <string name="permission_location_tv">آپ کا مقام اسی Apple TV پر نماز کے اوقات، قبلہ اور قریبی مساجد کے لیے استعمال ہوتا ہے۔ صرف تقریبی مقام بھیجا جاتا ہے، اور صرف جب آن لائن مسجد تلاش آن ہو۔</string>
     <string name="polar_nearest">قریب ترین عرض بلد (48.5°)</string>
     <string name="polar_none">دستیاب نہیں دکھائیں</string>
     <string name="polar_rule">جب سورج طلوع یا غروب نہ ہو</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">آج کے اوقاتِ نماز</string>
     <string name="tomorrow_times">کل کے اوقاتِ نماز</string>
     <string name="translation_by">ترجمہ: %1$s</string>
+    <string name="tv_alert">نماز کے وقت پوری اسکرین پر اطلاع</string>
+    <string name="tv_alert_note">جب ایپ اس ٹی وی پر کھلی ہو تب دکھائی دیتی ہے۔</string>
+    <string name="tv_choose_city_body">اوقات اسی Apple TV پر شمار ہوتے ہیں۔ شہر منتخب کریں یا اپنا مقام استعمال کریں، انٹرنیٹ کی ضرورت نہیں۔</string>
+    <string name="tv_keep_awake">اوقات کا بورڈ اسکرین پر رکھیں</string>
+    <string name="tv_keep_awake_note">جب تک اوقات کا بورڈ کھلا ہے، اسکرین سیور شروع نہیں ہوگا۔</string>
+    <string name="tv_scan_directions">راستے کے لیے اپنے فون سے اسکین کریں</string>
     <string name="upcoming">آنے والی</string>
     <string name="use_device_language">آلے کی زبان استعمال کریں</string>
     <string name="use_my_location">میرا مقام استعمال کریں</string>

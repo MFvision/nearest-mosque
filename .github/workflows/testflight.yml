@@ -1,6 +1,6 @@
 name: Nearest Mosque TestFlight
 
-# Builds the iPhone and iPad app, and the Mac app (Mac Catalyst), signs them with the App Store Connect
+# Builds the iPhone and iPad app, the Mac app (Mac Catalyst) and the Apple TV app, signs them with the App Store Connect
 # API key (Xcode automatic signing, cloud-managed distribution certificate) and uploads them to TestFlight.
 # Start it from the Actions tab (Run workflow) or by pushing a tag such as `ios-v1`.
 # Needs three repository secrets (see docs/07-testflight.md):
@@ -13,7 +13,11 @@ on:
   workflow_dispatch:
     inputs:
       mac_only:
-        description: "Only the Mac app (skip the iPhone and iPad upload)"
+        description: "Only the Mac app (skip the iPhone, iPad and Apple TV uploads)"
+        type: boolean
+        default: false
+      tv_only:
+        description: "Only the Apple TV app (skip the iPhone, iPad and Mac uploads)"
         type: boolean
         default: false
 
@@ -28,7 +32,7 @@ jobs:
   testflight:
     name: Archive and upload to TestFlight
     runs-on: macos-15
-    timeout-minutes: 60
+    timeout-minutes: 90
     outputs:
       build: ${{ steps.number.outputs.build }}
     defaults:
@@ -76,7 +80,7 @@ jobs:
           echo "build=$(( 100 + ${{ github.run_number }} ))" >> "$GITHUB_OUTPUT"
 
       - name: Archive (Release, automatic signing)
-        if: ${{ !inputs.mac_only }}
+        if: ${{ !inputs.mac_only && !inputs.tv_only }}
         run: |
           set -o pipefail
           xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
@@ -107,7 +111,7 @@ jobs:
           EOF
 
       - name: Export and upload to App Store Connect
-        if: ${{ !inputs.mac_only }}
+        if: ${{ !inputs.mac_only && !inputs.tv_only }}
         run: |
           set -o pipefail
           xcodebuild -exportArchive -archivePath build/NearMosque.xcarchive -exportOptionsPlist ExportOptions.plist \
@@ -123,6 +127,7 @@ jobs:
       # archive time would need a development profile, hence a registered Mac, and CI's Macs are throwaway.
       - name: Archive the Mac app (Mac Catalyst)
         id: mac_archive
+        if: ${{ !inputs.tv_only }}
         continue-on-error: true
         run: |
           set -o pipefail
@@ -145,6 +150,50 @@ jobs:
           grep -q "EXPORT SUCCEEDED" mac-export.log
           echo "Uploaded Mac build $BUILD_NUMBER of $BUNDLE_ID."
 
+      # The Apple TV app (same bundle id, so one App Store listing): allowed to fail on its own like the Mac
+      # app. App Store Connect takes tvOS builds only once the app record has the tvOS platform.
+      - name: Add the Apple TV platform to the app record (first time only)
+        if: ${{ !inputs.mac_only }}
+        continue-on-error: true
+        run: |
+          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
+          VERSION=$(sed -nE 's/^ +MARKETING_VERSION: "(.*)"/\1/p' project.yml | head -1)
+          VERSION="$VERSION" /tmp/asc/bin/python ../tools/asc_testflight.py --ensure-platform TV_OS
+
+      - name: Archive the Apple TV app
+        id: tv_archive
+        if: ${{ !inputs.mac_only }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          tv_archive() {
+            xcodebuild -project NearMosque.xcodeproj -scheme NearMosqueTV -configuration Release \
+              -destination 'generic/platform=tvOS' -archivePath build/NearMosque-tv.xcarchive \
+              DEVELOPMENT_TEAM="$APPLE_TEAM_ID" APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" "$@" \
+              archive 2>&1 | tee -a tv-archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
+          }
+          # Automatic signing first; without a registered Apple TV that needs a development profile Apple
+          # will not make, so then the archive is signed ad hoc and the export re-signs it (as for the Mac).
+          tv_archive CODE_SIGN_STYLE=Automatic -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+          if ! grep -q "ARCHIVE SUCCEEDED" tv-archive.log; then
+            echo "Automatic signing did not archive; signing ad hoc for the export to re-sign."
+            tv_archive CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="-" PROVISIONING_PROFILE_SPECIFIER=""
+          fi
+          grep -q "ARCHIVE SUCCEEDED" tv-archive.log
+
+      - name: Export and upload the Apple TV app
+        if: steps.tv_archive.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          xcodebuild -exportArchive -archivePath build/NearMosque-tv.xcarchive -exportOptionsPlist ExportOptions.plist \
+            -exportPath build/export-tv -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            2>&1 | tee tv-export.log | grep -E "error|Upload|EXPORT (SUCCEEDED|FAILED)" || true
+          grep -q "EXPORT SUCCEEDED" tv-export.log
+          echo "Uploaded Apple TV build $BUILD_NUMBER of $BUNDLE_ID."
+
       - name: Remove the API key
         if: always()
         run: rm -rf ~/.appstoreconnect/private_keys
@@ -158,6 +207,8 @@ jobs:
             ios/export.log
             ios/mac-archive.log
             ios/mac-export.log
+            ios/tv-archive.log
+            ios/tv-export.log
 
   # Waiting for Apple's processing runs on Linux: the repository is private, and macOS minutes count
   # several times against the Actions allowance.
@@ -177,7 +228,7 @@ jobs:
       - name: Wait, answer export compliance, add the build to internal groups
         run: |
           python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
-          WAIT_MINUTES=60 PLATFORMS=${{ inputs.mac_only && 'MAC_OS' || 'IOS,MAC_OS' }} /tmp/asc/bin/python tools/asc_testflight.py
+          WAIT_MINUTES=60 PLATFORMS=${{ inputs.mac_only && 'MAC_OS' || inputs.tv_only && 'TV_OS' || 'IOS,MAC_OS,TV_OS' }} /tmp/asc/bin/python tools/asc_testflight.py
 
   # The archive step's automatic signing creates a development certificate on each fresh machine; it is
   # useless once the machine is gone and Apple caps how many an account holds, so revoke this run's.

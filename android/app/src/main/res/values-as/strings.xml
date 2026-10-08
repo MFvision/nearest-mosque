@@ -271,6 +271,7 @@
     <string name="pack_kind_library">লাইব্ৰেৰী: %1$s</string>
     <string name="pack_kind_mosques">মছজিদ: %1$s</string>
     <string name="permission_location_ios">আপোনাৰ অৱস্থান এই ফোনতে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।</string>
+    <string name="permission_location_tv">আপোনাৰ অৱস্থান এই Apple TV-তে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।</string>
     <string name="polar_nearest">ওচৰৰ অক্ষাংশ (48.5°)</string>
     <string name="polar_none">উপলব্ধ নহয় বুলি দেখুৱাওক</string>
     <string name="polar_rule">যেতিয়া সূৰ্য উদয় বা অস্ত নাযায়</string>
@@ -383,6 +384,12 @@
     <string name="todays_times">আজিৰ নামাজৰ সময়</string>
     <string name="tomorrow_times">কাইলৈৰ নামাজৰ সময়</string>
     <string name="translation_by">অনুবাদ: %1$s</string>
+    <string name="tv_alert">নামাজৰ সময়ত সম্পূৰ্ণ স্ক্ৰীণ সতৰ্কবাণী</string>
+    <string name="tv_alert_note">এপটো এই টিভিত খোলা থাকিলে দেখা যায়।</string>
+    <string name="tv_choose_city_body">নামাজৰ সময় এই Apple TV-তে গণনা কৰা হয়। এখন চহৰ বাছক বা আপোনাৰ অৱস্থান ব্যৱহাৰ কৰক। ইণ্টাৰনেটৰ প্ৰয়োজন নাই।</string>
+    <string name="tv_keep_awake">নামাজৰ সময়ৰ ব\'ৰ্ড স্ক্ৰীণত ৰাখক</string>
+    <string name="tv_keep_awake_note">নামাজৰ সময়ৰ ব\'ৰ্ড খোলা থাকোঁতে স্ক্ৰীণ ছেভাৰ আৰম্ভ নহয়।</string>
+    <string name="tv_scan_directions">দিশৰ বাবে আপোনাৰ ফোনেৰে স্কেন কৰক</string>
     <string name="upcoming">আগন্তুক</string>
     <string name="use_device_language">ডিভাইচৰ ভাষা ব্যৱহাৰ কৰক</string>
     <string name="use_my_location">মোৰ অৱস্থান ব্যৱহাৰ কৰক</string>
