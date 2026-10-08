@@ -96,6 +96,7 @@ struct QiblaNorthDial: View {
 
     /// The point at `radius` from `c`, `angle` radians clockwise from north (up).
     private func point(_ c: CGPoint, _ radius: CGFloat, _ angle: Double) -> CGPoint {
-        CGPoint(x: c.x + radius * sin(angle), y: c.y - radius * cos(angle))
+        let dx: Double = sin(angle), dy: Double = cos(angle)
+        return CGPoint(x: c.x + radius * CGFloat(dx), y: c.y - radius * CGFloat(dy))
     }
 }
