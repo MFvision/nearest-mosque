@@ -130,7 +130,7 @@ struct SettingsView: View {
             }
             .navigationTitle(l10n.t("settings"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() }.keyboardShortcut(.cancelAction) } }
             .onAppear(perform: reload)
             .alert(confirmRemove.map { l10n.t("remove_pack_confirm", $0.manifest.coverage?.name ?? $0.manifest.title(l10n.language)) } ?? "",
                    isPresented: Binding(get: { confirmRemove != nil }, set: { if !$0 { confirmRemove = nil } })) {

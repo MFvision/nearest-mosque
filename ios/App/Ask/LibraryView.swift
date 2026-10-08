@@ -30,7 +30,7 @@ struct LibraryView: View {
             .background(Color(hex: 0x0B1220).ignoresSafeArea())
             .navigationTitle(l10n.t("library_title"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) } }
         }
     }
 }

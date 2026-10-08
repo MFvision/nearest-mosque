@@ -50,7 +50,7 @@ struct CityPickerView: View {
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: l10n.t("search_city"))
             .navigationTitle(l10n.t("choose_city_title"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("cancel")) { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("cancel")) { dismiss() }.keyboardShortcut(.cancelAction) } }
         }
     }
 }
@@ -111,7 +111,7 @@ struct CalculationView: View {
             }
             .navigationTitle(l10n.t("calculation"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() }.keyboardShortcut(.cancelAction) } }
             .onDisappear { Task { await model.rescheduleReminders() } }
         }
     }

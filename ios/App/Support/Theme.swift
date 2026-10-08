@@ -215,6 +215,10 @@ struct GlassIconButton: View {
         .buttonStyle(.plain)
         .glass(Circle())
         .accessibilityLabel(label)
+        // ✕ closes with Esc too: on the Mac an open panel greys the window's close button and holds Quit.
+        #if !os(tvOS)
+        .keyboardShortcut(systemImage == "xmark" ? .cancelAction : nil)
+        #endif
     }
 }
 
