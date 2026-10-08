@@ -78,6 +78,7 @@ Legend: **Done** = implemented and covered by automated tests or rendered screen
 | `NearestMosqueKit` `swift test` (adds online parser/merge and time-zone cases) | Linux Swift 6.1 (local + CI) and macOS (CI) | 21 tests, 0 failures |
 | iOS app `xcodebuild` and launch in the iOS 26 Simulator (iPhone, Xcode 26.3) | GitHub macOS runner | Builds, installs, launches; screenshots of onboarding, Prayer (en/ar), compass, Mosques (compass, live map), Ask (en/ar) |
 | Strings / fixtures / tokens drift | CI | pass |
+| Apple TV app (`ios/TV`) build, launch and screenshots in the tvOS 26 simulator (board en/ar, Qibla, mosques, settings, alert, Top Shelf banner) | GitHub macOS runner | Builds, launches, stays up; TestFlight build 125 VALID. Not yet run on a physical Apple TV |
 
 Screenshots (Robolectric, rendered from the real database and calculations at 2026-10-03 05:30 SAST,
 Cape Town, MWL) are produced by `./gradlew :app:recordRoborazziDebug` and uploaded by CI as an artifact.
