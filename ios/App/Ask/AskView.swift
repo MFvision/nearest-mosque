@@ -134,8 +134,8 @@ final class AskModel {
 /// Ask AI, opened full screen from the floating pill. The conversation (AskModel) lives in the root, so
 /// closing and reopening keeps it; saved chats open from the history button.
 struct AskView: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     let vm: AskModel
     var onClose: () -> Void
     @State private var input = ""
@@ -337,7 +337,7 @@ struct AskView: View {
 }
 
 struct AnswerCard: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.colorScheme) private var scheme
     let turn: Turn
     let answer: Answer
@@ -474,7 +474,7 @@ struct FlowLayout: Layout {
 
 /// Sites the app links to but does not copy: each opens its own search for the question when tapped.
 struct OtherSourcesRow: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.openURL) private var openURL
     let question: String
     private static let labels = ["islamqa": "site_islamqa", "dorar": "site_dorar", "binothaimeen": "site_binothaimeen", "alifta": "site_alifta"]

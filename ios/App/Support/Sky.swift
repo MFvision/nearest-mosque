@@ -287,7 +287,7 @@ struct Ridge: Shape {
 /// Wraps a tab's content: the sky for the current prayer period behind it (re-evaluated each minute)
 /// and the sky in the environment for glass tints.
 struct SkyBackground: ViewModifier {
-    @Environment(AppModel.self) private var model
+    @Environment(\.appModel) private var model
     @Environment(\.colorScheme) private var scheme
     var horizon: CGFloat = 0.64
     var skyline = false

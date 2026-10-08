@@ -8,8 +8,8 @@ import UIKit
 /// to the top of the phone; when the phone faces it the logo glows. Without a live heading both are
 /// north-up. Tapping anywhere on the arc opens the full Qibla view. Below: the nearest mosque.
 struct PrayerHero: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorScheme) private var scheme
     @Environment(\.layoutDirection) private var direction
@@ -102,7 +102,7 @@ struct PrayerHero: View {
 
 /// Glass capsule with the prayer location; opens the city picker.
 struct LocationPill: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let name: String
     var action: () -> Void
     var body: some View {
@@ -141,7 +141,7 @@ struct QiblaArc<Content: View>: View {
     var nearest: String?
     var onNearest: (() -> Void)?
     @ViewBuilder var content: Content
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown: Double = 0
     @State private var width: CGFloat = 0
@@ -255,7 +255,7 @@ private struct ArcLayer: View, Animatable {
 /// (full width, on the sky, so the page never shows through). The logo's arrow keeps pointing to the
 /// Qibla. Tapping it scrolls back up to the big header.
 struct CompactPrayerBar: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.colorScheme) private var scheme
     let snap: PrayerSnapshot
     let compass: CompassState
@@ -320,7 +320,7 @@ struct TurningLogo: View {
 
 /// Live: arrow to the Qibla relative to the phone. No heading: north-up diagram (north tick) with the bearing.
 struct MiniQiblaIndicator: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let bearing: Double
     let compass: CompassState
 

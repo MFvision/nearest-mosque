@@ -12,8 +12,8 @@ func referenceLabel(_ c: SourceChunk, l10n: Localization) -> String {
 /// A citation: reference, exact original quote in its own direction, labelled translation, and
 /// actions to read in context offline or open the original link.
 struct SourceCard: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @Environment(\.colorScheme) private var scheme
     @Environment(\.openURL) private var openURL
     let index: Int?
@@ -90,8 +90,8 @@ struct OriginalText: View {
 
 /// Offline reader: the cited passage with its surrounding verses.
 struct ReaderView: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     let citation: ResolvedCitation
 

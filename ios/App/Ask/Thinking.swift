@@ -20,7 +20,7 @@ enum AskStage: Int, CaseIterable, Comparable {
 /// The waiting card: the logo breathing inside a turning gold ring, the current step shimmering, and the
 /// steps already done with a check. Under Reduce Motion the ring and logo stay still.
 struct ThinkingView: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let stage: AskStage
     let done: [AskStage]

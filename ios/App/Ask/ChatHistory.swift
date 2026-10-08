@@ -49,7 +49,7 @@ final class ChatHistory {
 
 /// List of saved chats; tap one to open it again, swipe to delete.
 struct ChatHistoryView: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     let history: ChatHistory
     var onOpen: (SavedChat) -> Void

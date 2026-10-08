@@ -4,8 +4,8 @@ import SwiftUI
 
 /// The library on its own: saved items, every installed collection to browse and search, downloaded books.
 struct LibraryView: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @State private var tab = 0
 
@@ -41,8 +41,8 @@ private struct EmptyNote: View {
 }
 
 private struct SavedList: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     var body: some View {
         let items = (try? app.ask?.resolve(app.bookmarks.sorted())) ?? []
         if items.isEmpty { EmptyNote(text: l10n.t("library_saved_empty")) } else {
@@ -52,8 +52,8 @@ private struct SavedList: View {
 }
 
 private struct CollectionsList: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     var body: some View {
         let packs = (try? app.ask?.libraryPacks()) ?? []
         if packs.isEmpty { EmptyNote(text: l10n.t("library_installing")) } else {
@@ -78,8 +78,8 @@ private struct CollectionsList: View {
 }
 
 private struct CollectionView: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     let pack: AskRepository.LibraryPack
     @State private var query = ""
     @State private var pages = 1
@@ -114,8 +114,8 @@ private struct CollectionView: View {
 }
 
 private struct DownloadsList: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @State private var version = 0
 
     var body: some View {

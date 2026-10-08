@@ -3,7 +3,7 @@ import UIKit
 
 @main
 struct NearMosqueApp: App {
-    @State private var model = AppModel()
+    @State private var model = AppModel.shared
     /// "system", "light" or "dark" (Settings → Appearance).
     @AppStorage("appearance") private var appearance = "system"
 
@@ -12,6 +12,8 @@ struct NearMosqueApp: App {
             rootView
                 .environment(model)
                 .environment(model.l10n)
+                .environment(\.appModel, model)
+                .environment(\.l10n, model.l10n)
                 .environment(\.locale, model.l10n.locale)
                 .environment(\.layoutDirection, model.l10n.layoutDirection)
                 // Follows the phone unless Settings → Appearance picks light or dark.
@@ -66,8 +68,8 @@ enum AppTab: Hashable { case prayer, mosques, ask }
 /// above it that opens the chat full screen. Settings, downloads and sources sit behind the gear on
 /// each tab. First launch shows the animated tour.
 struct RootView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @State private var tab: AppTab = Self.initialTab == .mosques ? .mosques : .prayer
     @State private var showSettings = false
     @State private var showAsk = Self.initialTab == .ask
@@ -198,7 +200,7 @@ private struct AskAccessory: ViewModifier {
 }
 
 private struct AskPill: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     var open: () -> Void
     var body: some View {
         Button(action: open) {
@@ -225,7 +227,7 @@ private struct AskPill: View {
 /// Gear button shown at the top trailing edge of each tab.
 struct SettingsButton: View {
     @Binding var show: Bool
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     var body: some View {
         GlassIconButton(systemImage: "gearshape", label: l10n.t("settings")) { show = true }
     }

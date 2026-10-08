@@ -5,8 +5,8 @@ import SwiftUI
 /// for language and prayer location. Swipe or use the glass buttons; the language menu is on every page and Skip goes to setup.
 /// Under Reduce Motion every illustration shows its final, still frame.
 struct OnboardingView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @State private var page = min(5, max(0, UserDefaults.standard.integer(forKey: "demoOnboardingPage")))
     private let count = 6
@@ -80,7 +80,7 @@ struct OnboardingView: View {
 }
 
 private struct PageDots: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let count: Int
     let index: Int
     var body: some View {
@@ -159,7 +159,7 @@ private struct WelcomeArt: View {
 }
 
 private struct PrayerArt: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     var body: some View {
         Loop(period: 6) { p in
             VStack(spacing: 14) {
@@ -251,7 +251,7 @@ private struct MosqueArt: View {
 }
 
 private struct AskArt: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     var body: some View {
         Loop(period: 6) { p in
             VStack(alignment: .leading, spacing: 12) {
@@ -291,7 +291,7 @@ private struct AskArt: View {
 
 /// Language choice on every page of the tour: the device language or any supported language.
 struct LanguageMenu: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
 
     var body: some View {
         @Bindable var l10n = l10n
@@ -318,8 +318,8 @@ struct LanguageMenu: View {
 
 /// Last page: language and prayer location, both changeable later in Settings.
 private struct SetupPage: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @State private var showCity = false
     @State private var locating = false
     @State private var error: String?

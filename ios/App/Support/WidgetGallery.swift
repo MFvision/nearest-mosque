@@ -8,7 +8,7 @@ import WidgetKit
 /// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask|qibla|actions -demoWidgetLook cream|green|night`).
 /// Uses the city and settings chosen in the app, like the widgets themselves.
 struct WidgetGalleryView: View {
-    @Environment(AppModel.self) private var model
+    @Environment(\.appModel) private var model
 
     private var kind: PrayerWidgetKind {
         switch UserDefaults.standard.string(forKey: "demoWidgetKind") {

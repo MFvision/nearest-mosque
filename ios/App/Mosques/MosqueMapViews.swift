@@ -97,7 +97,7 @@ struct MosquePin: View {
 
 /// Live street map (Apple Maps; needs internet for the map images, pins always show).
 struct MosqueMap: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let items: [RankedMosque]
     let center: LatLng
     let route: WalkingRoute?
@@ -171,7 +171,7 @@ struct MosqueMap: View {
 /// root scaled) distance. With a live heading the dial turns so the top is where the phone points
 /// and "Mosque ahead" appears when the nearest one is in front. Without heading it is north-up.
 struct MosqueRadar: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let items: [RankedMosque]
     let center: LatLng

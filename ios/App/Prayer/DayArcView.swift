@@ -5,7 +5,7 @@ import SwiftUI
 /// its path; at night the moon moves from Maghrib to the next sunrise. Dhuhr and Asr (or Isha and Fajr)
 /// are marked where they fall. Time runs in the reading direction (right to left in Arabic and Urdu).
 struct DayArcView: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.colorScheme) private var scheme
     @Environment(\.layoutDirection) private var direction
     let arc: DayArc

@@ -100,13 +100,13 @@ enum LibraryFiles {
 
 /// An IslamHouse library item: type, title, authors, excerpt, and the item itself opened inside the app.
 struct LibraryCard: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.openURL) private var openURL
     let item: ResolvedCitation
     let question: String
     /// The [n] an on-device answer uses for this record, if it cites it.
     var index: Int? = nil
-    @Environment(AppModel.self) private var app
+    @Environment(\.appModel) private var app
     @State private var reading = false
 
     var body: some View {
@@ -182,7 +182,7 @@ struct LibraryCard: View {
 
 /// Full-screen reader for an IslamHouse item: the book itself (PDF), the video or audio, or the article page.
 struct LibraryReaderView: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
     let chunk: SourceChunk
@@ -214,7 +214,7 @@ struct LibraryReaderView: View {
 }
 
 private struct PDFReader: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let url: URL
     let itemKey: String
     let question: String

@@ -52,6 +52,9 @@ struct StoredSettings: Codable, Equatable {
 @MainActor
 @Observable
 final class AppModel {
+    /// The one model of the app (the environment's fallback, see AppEnvironment.swift).
+    static let shared = AppModel()
+
     let l10n = Localization()
     let location = LocationService()
     let calculator = PrayerCalculator()

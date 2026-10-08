@@ -47,8 +47,8 @@ struct PrayerSnapshot {
 /// a bar across the top that keeps the next prayer and the Qibla arrow; tapping the big header opens the
 /// full Qibla view with its guiding light. Below: the sun's path and today's times on glass.
 struct PrayerView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @Binding var showSettings: Bool
     var onMosques: () -> Void = {}
     @State private var scrollOffset: CGFloat = 0
@@ -216,8 +216,8 @@ struct PrayerView: View {
 }
 
 private struct ChooseLocationCard: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     var onPickCity: () -> Void
     @State private var locating = false
     @State private var error: String?
@@ -256,8 +256,8 @@ private struct ChooseLocationCard: View {
 }
 
 private struct ZoneConfirmCard: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     let location: PrayerLocation
     var onChange: () -> Void
     var body: some View {
@@ -275,8 +275,8 @@ private struct ZoneConfirmCard: View {
 }
 
 private struct PolarCard: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Label(l10n.t("polar_unavailable_title"), systemImage: "exclamationmark.triangle").font(.headline)
@@ -290,8 +290,8 @@ private struct PolarCard: View {
 
 /// Today's times on glass. The upcoming prayer sits in a gold glass pill with an "Upcoming" badge.
 struct ScheduleCard: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     let snap: PrayerSnapshot
     let today: DaySchedule
 
@@ -357,8 +357,8 @@ struct ScheduleCard: View {
 }
 
 private struct DatesCard: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     let snap: PrayerSnapshot
     var onCalculation: () -> Void
 

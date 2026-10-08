@@ -2,8 +2,8 @@ import NMCore
 import SwiftUI
 
 struct CityPickerView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @State private var query = ""
     @State private var locating = false
@@ -56,8 +56,8 @@ struct CityPickerView: View {
 }
 
 struct CalculationView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

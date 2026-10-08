@@ -80,8 +80,8 @@ final class MosquesModel {
 }
 
 struct MosquesView: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @Binding var showSettings: Bool
     @State private var vm = MosquesModel()
     @State private var mode = UserDefaults.standard.integer(forKey: "demoMosqueMode")
@@ -344,7 +344,7 @@ struct MosqueCard: View {
         return parts.joined(separator: ". ")
     }
 
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let ranked: RankedMosque
     let nearest: Bool
     let favorite: Bool
@@ -458,7 +458,7 @@ enum ExternalMaps {
 
 /// "Get directions": a menu to choose Apple Maps, Google Maps or Waze.
 struct DirectionsMenu<MenuLabel: View>: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     let to: LatLng
     let name: String?
     @ViewBuilder var label: () -> MenuLabel
@@ -478,8 +478,8 @@ struct DirectionsMenu<MenuLabel: View>: View {
 /// the cards flies the map to that mosque; tapping a pin brings its card. Each card has the name, address,
 /// distance, walking time and the next prayer, with Go, Call and Website; tapping it opens the full page.
 struct FullScreenMosqueMap: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     let vm: MosquesModel
     let center: LatLng
@@ -557,7 +557,7 @@ struct FullScreenMosqueMap: View {
 
 /// One mosque on the full-screen map: who, where and how far, the next prayer, and what to do.
 struct MosqueMapCard: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.openURL) private var openURL
     let ranked: RankedMosque
     let nearest: Bool

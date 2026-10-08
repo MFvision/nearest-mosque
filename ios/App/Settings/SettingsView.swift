@@ -6,8 +6,8 @@ import UniformTypeIdentifiers
 /// Everything that is not one of the three tabs: language, location, calculation, downloads,
 /// sources & licenses, privacy, about.
 struct SettingsView: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @State private var installed: [InstalledPack] = []
     @State private var confirmRemove: InstalledPack?

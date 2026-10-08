@@ -45,8 +45,8 @@ func libraryWebLabel(_ c: SourceChunk, _ l10n: Localization) -> String {
 /// label and in its own direction; the Arabic verse above a QuranEnc translation (from the Quran pack); grade
 /// and source; the required attribution; and the page for the full text when shortened.
 struct PartsReader: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     let chunk: SourceChunk
     @State private var full = false
 

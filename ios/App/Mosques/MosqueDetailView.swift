@@ -2,7 +2,7 @@ import NMCore
 import SwiftUI
 
 struct MosqueDetailView: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.colorScheme) private var scheme
     @Environment(\.openURL) private var openURL
     let ranked: RankedMosque

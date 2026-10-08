@@ -25,7 +25,7 @@ struct BrandArrow: Shape {
 /// how far to turn. Plain words below the arrow; the distance to the Kaaba small along the left side,
 /// the nearest mosque along the right (it opens the mosque). No north, no angles.
 struct QiblaRing: View {
-    @Environment(Localization.self) private var l10n
+    @Environment(\.l10n) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorScheme) private var scheme
     /// Degrees clockwise from the top of the phone to the Qibla (north-up bearing without a compass).
@@ -158,8 +158,8 @@ struct QiblaLightBeam: View {
 /// The full Qibla view (opened by tapping the big header): city and calculation method, the Qibla
 /// ring in warm light, then today's date and prayer times. Heading runs only while visible.
 struct QiblaCompassView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @State private var detector = AlignmentDetector()
     @State private var aligned = false

@@ -5,8 +5,8 @@ import SwiftUI
 /// bundled for it. Nothing is downloaded until the reader taps the button; nothing shows when there is
 /// nothing to download. `onSky` = the onboarding style (glass on the sky) instead of a Settings row.
 struct ContentDownloadCard: View {
-    @Environment(AppModel.self) private var app
-    @Environment(Localization.self) private var l10n
+    @Environment(\.appModel) private var app
+    @Environment(\.l10n) private var l10n
     let lang: String
     var onSky = false
 
