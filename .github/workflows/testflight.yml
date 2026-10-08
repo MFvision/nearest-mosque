@@ -172,15 +172,37 @@ jobs:
               DEVELOPMENT_TEAM="$APPLE_TEAM_ID" APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" "$@" \
               archive 2>&1 | tee -a tv-archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
           }
-          # Automatic signing first; without a registered Apple TV that needs a development profile Apple
-          # will not make, so then the archive is signed ad hoc and the export re-signs it (as for the Mac).
+          # Automatic signing works once the team has an Apple TV registered (it needs a development profile).
           tv_archive CODE_SIGN_STYLE=Automatic -allowProvisioningUpdates \
             -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID"
-          if ! grep -q "ARCHIVE SUCCEEDED" tv-archive.log; then
-            echo "Automatic signing did not archive; signing ad hoc for the export to re-sign."
-            tv_archive CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="-" PROVISIONING_PROFILE_SPECIFIER=""
-          fi
+          if grep -q "ARCHIVE SUCCEEDED" tv-archive.log; then exit 0; fi
+          # Without one: archive unsigned (Xcode refuses ad hoc signing for tvOS), then sign the bundle here with
+          # its entitlements, so the export keeps them (the shared keychain group the Top Shelf reads) when it
+          # re-signs everything with the cloud distribution certificate.
+          echo "Automatic signing did not archive; archiving unsigned for the export to sign."
+          rm -rf build/NearMosque-tv.xcarchive
+          PREFIX="$APPLE_TEAM_ID."
+          tv_archive CODE_SIGNING_ALLOWED=NO AppIdentifierPrefix="$PREFIX"
           grep -q "ARCHIVE SUCCEEDED" tv-archive.log
+          ents() {  # $1 bundle id
+            cat <<XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>application-identifier</key><string>${PREFIX}$1</string>
+            <key>com.apple.developer.team-identifier</key><string>${APPLE_TEAM_ID}</string>
+            <key>keychain-access-groups</key><array><string>${PREFIX}${BUNDLE_ID}.shared</string></array>
+          </dict></plist>
+          XML
+          }
+          ents "$BUNDLE_ID" > /tmp/tv-app.entitlements
+          ents "$BUNDLE_ID.topshelf" > /tmp/tv-shelf.entitlements
+          APP=$(ls -d build/NearMosque-tv.xcarchive/Products/Applications/*.app)
+          find "$APP" \( -name "*.framework" -o -name "*.dylib" \) -prune -exec codesign -f -s - {} \;
+          for x in "$APP"/PlugIns/*.appex; do codesign -f -s - --entitlements /tmp/tv-shelf.entitlements "$x"; done
+          codesign -f -s - --entitlements /tmp/tv-app.entitlements "$APP"
+          codesign -d --entitlements - "$APP" 2>/dev/null | grep -c "keychain-access-groups"
+          plutil -extract SharedKeychainGroup raw "$APP/Info.plist"
 
       - name: Export and upload the Apple TV app
         if: steps.tv_archive.outcome == 'success'
