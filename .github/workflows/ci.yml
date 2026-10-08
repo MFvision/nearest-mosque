@@ -349,3 +349,73 @@ jobs:
         with:
           name: mac-build-log
           path: ios/mac.log
+
+  # The Mac app as a tester first meets it: macOS 26, a Release build in the App Sandbox, launched with
+  # no saved settings at all (so the welcome screens open). It must still be running after a while;
+  # otherwise the crash report is printed.
+  mac-first-launch:
+    name: Mac app first launch (macOS 26, Release, sandbox)
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
+    runs-on: macos-26
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select newest Xcode
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          sw_vers
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Build (Release, Mac Catalyst) and sign ad hoc with the sandbox
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
+            -destination 'generic/platform=macOS,variant=Mac Catalyst' -derivedDataPath ddrel \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee macrel.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" macrel.log
+          cat > /tmp/sandbox.entitlements <<'XML'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>com.apple.security.app-sandbox</key><true/>
+            <key>com.apple.security.network.client</key><true/>
+            <key>com.apple.security.personal-information.location</key><true/>
+          </dict></plist>
+          XML
+          APP="$PWD/ddrel/Build/Products/Release-maccatalyst/NearMosque.app"
+          find "$APP/Contents" \( -name "*.framework" -o -name "*.dylib" \) -prune -exec codesign -f -s - {} \; 2>/dev/null || true
+          for x in "$APP"/Contents/PlugIns/*.appex; do codesign -f -s - --entitlements /tmp/sandbox.entitlements "$x"; done
+          codesign -f -s - --entitlements /tmp/sandbox.entitlements "$APP"
+          echo "APP=$APP" >> "$GITHUB_ENV"
+      - name: First launch with no saved settings stays up
+        run: |
+          defaults delete sa.zood.nearmosque 2>/dev/null || true
+          rm -rf ~/Library/Containers/sa.zood.nearmosque ~/Library/Preferences/sa.zood.nearmosque.plist ~/Library/Logs/DiagnosticReports/NearMosque* 2>/dev/null || true
+          mkdir -p shots-mac26
+          open -n "$APP"
+          sleep 8; screencapture -x shots-mac26/01-after-8s.png || true
+          sleep 22
+          if pgrep -x NearMosque >/dev/null; then
+            echo "The Mac app is running after its first launch."
+            screencapture -x shots-mac26/02-after-30s.png || true
+            pkill -x NearMosque || true
+          else
+            echo "::error::The Mac app quit within 30 seconds of its first launch."
+            for f in ~/Library/Logs/DiagnosticReports/NearMosque*; do echo "== $f"; head -150 "$f"; done
+            log show --last 3m --predicate 'process == "NearMosque"' --style compact 2>/dev/null | grep -iE "fault|error|exception|terminat|assert" | tail -60 || true
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mac26-first-launch
+          path: ios/shots-mac26/

@@ -24,15 +24,16 @@ struct OnboardingView: View {
             .frame(height: 48)
             .padding(.horizontal, 20)
 
+            #if targetEnvironment(macCatalyst)
+            // The Mac turns pages with the buttons below (no swipe pager there).
+            ZStack { pageView(page).id(page).transition(.opacity) }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            #else
             TabView(selection: $page) {
-                OnboardingPage(title: l10n.t("onb_welcome_title"), message: l10n.t("onb_welcome_body")) { WelcomeArt() }.tag(0)
-                OnboardingPage(title: l10n.t("onb_prayer_title"), message: l10n.t("onb_prayer_body")) { PrayerArt() }.tag(1)
-                OnboardingPage(title: l10n.t("onb_qibla_title"), message: l10n.t("onb_qibla_body")) { QiblaArt() }.tag(2)
-                OnboardingPage(title: l10n.t("onb_mosque_title"), message: l10n.t("onb_mosque_body")) { MosqueArt() }.tag(3)
-                OnboardingPage(title: l10n.t("onb_ask_title"), message: l10n.t("onb_ask_body")) { AskArt() }.tag(4)
-                SetupPage().tag(5)
+                ForEach(0..<count, id: \.self) { i in pageView(i).tag(i) }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
+            #endif
 
             HStack {
                 if page > 0 {
@@ -59,6 +60,17 @@ struct OnboardingView: View {
         }
         .foregroundStyle(Theme.ink)
         .skyBackground(horizon: 0.8)
+    }
+
+    @ViewBuilder private func pageView(_ i: Int) -> some View {
+        switch i {
+        case 0: OnboardingPage(title: l10n.t("onb_welcome_title"), message: l10n.t("onb_welcome_body")) { WelcomeArt() }
+        case 1: OnboardingPage(title: l10n.t("onb_prayer_title"), message: l10n.t("onb_prayer_body")) { PrayerArt() }
+        case 2: OnboardingPage(title: l10n.t("onb_qibla_title"), message: l10n.t("onb_qibla_body")) { QiblaArt() }
+        case 3: OnboardingPage(title: l10n.t("onb_mosque_title"), message: l10n.t("onb_mosque_body")) { MosqueArt() }
+        case 4: OnboardingPage(title: l10n.t("onb_ask_title"), message: l10n.t("onb_ask_body")) { AskArt() }
+        default: SetupPage()
+        }
     }
 
     private func finish() {

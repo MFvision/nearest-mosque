@@ -162,7 +162,7 @@ extension RootView {
 /// iOS 26: the Liquid Glass tab bar minimizes while scrolling down.
 private struct TabBarMinimize: ViewModifier {
     func body(content: Content) -> some View {
-        #if compiler(>=6.2)
+        #if compiler(>=6.2) && !targetEnvironment(macCatalyst)
         if #available(iOS 26.0, *) { content.tabBarMinimizeBehavior(.onScrollDown) } else { content }
         #else
         content
@@ -175,7 +175,8 @@ private struct TabBarMinimize: ViewModifier {
 private struct AskAccessory: ViewModifier {
     var open: () -> Void
     func body(content: Content) -> some View {
-        #if compiler(>=6.2)
+        // The Mac keeps the floating pill (the tab bar accessory is a phone and tablet feature).
+        #if compiler(>=6.2) && !targetEnvironment(macCatalyst)
         if #available(iOS 26.0, *) {
             content.tabViewBottomAccessory { AskPill(open: open) }
         } else {
