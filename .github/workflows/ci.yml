@@ -486,7 +486,9 @@ jobs:
           shot 09-alert-ar -demoCity Cairo -demoAlert YES -languageOverride ar
           shot 10-top-shelf -demoCity London -demoTopShelf YES -languageOverride en
           shot 11-top-shelf-ar -demoCity Cairo -demoTopShelf YES -languageOverride ar
-          if ! xcrun simctl spawn "$UDID" launchctl list | grep -q "sa.zood.nearmosque"; then
+          # Read the list first: grep -q in a pipe ends early and pipefail reports the broken pipe.
+          running=$(xcrun simctl spawn "$UDID" launchctl list || true)
+          if ! grep -q "sa.zood.nearmosque" <<<"$running"; then
             echo "::error::The Apple TV app is not running after the last screenshot."; exit 1
           fi
       - uses: actions/upload-artifact@v4
