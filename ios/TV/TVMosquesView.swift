@@ -14,7 +14,7 @@ final class TVMosquesModel {
     private(set) var online: Online = .off
     private(set) var loading = false
     private var key: String?
-    static let radius = 25_000.0
+    nonisolated static let radius = 25_000.0
 
     func load(_ model: TVModel) async {
         guard let repo = model.mosques, let loc = model.settings.location else { return }
@@ -209,6 +209,7 @@ struct TVMosqueCard: View {
                     Text(l10n.t("tv_scan_directions"))
                         .font(.system(size: 22))
                         .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(width: 230)
                 }
                 .accessibilityElement(children: .ignore)

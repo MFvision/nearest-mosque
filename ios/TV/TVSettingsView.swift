@@ -11,7 +11,7 @@ struct TVSetupView: View {
             HStack(spacing: 80) {
                 LogoDisc(size: 320, glow: true)
                 VStack(alignment: .leading, spacing: 28) {
-                    Text(l10n.t("onb_welcome_title")).font(.system(size: 72, weight: .bold))
+                    Text(l10n.t("onb_welcome_title")).font(.system(size: 72, weight: .bold)).foregroundStyle(.white)
                     Text(l10n.t("tv_choose_city_body")).font(.system(size: 34)).foregroundStyle(.white.opacity(0.85))
                     TVLocateButton()
                     NavigationLink {
@@ -27,7 +27,7 @@ struct TVSetupView: View {
                 }
                 .frame(maxWidth: 900, alignment: .leading)
             }
-            .foregroundStyle(.white)
+            // Buttons keep the system colours: dark text when focused (white on white otherwise).
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background { SkyBackdrop(sky: Sky.of(.fajr), horizon: 0.8, skyline: true).ignoresSafeArea() }
         }

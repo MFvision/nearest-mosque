@@ -37,7 +37,7 @@ struct BoardView: View {
                 .padding(.horizontal, 90)
                 .padding(.vertical, 50)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background { SkyBackdrop(sky: sky, horizon: 0.7).ignoresSafeArea() }
+                .background { SkyBackdrop(sky: sky, horizon: 0.86).ignoresSafeArea() }
                 .environment(\.sky, sky)
                 .animation(.easeInOut(duration: 1.2), value: sky)
         }
@@ -109,6 +109,8 @@ struct BoardView: View {
             }
         }
         .foregroundStyle(.white)
+        // White text stays readable where the horizon glow is bright.
+        .shadow(color: .black.opacity(0.35), radius: 8, y: 2)
     }
 }
 
