@@ -319,6 +319,8 @@
     <string name="qibla_go_right">కుడివైపు తిరగండి</string>
     <string name="qibla_go_right_little">కొంచెం కుడివైపు తిరగండి</string>
     <string name="qibla_hold_flat">మీ ఫోన్‌ను సమతలంగా పట్టుకోండి</string>
+    <string name="qibla_island">డైనమిక్ ఐలాండ్‌లో ఖిబ్లా</string>
+    <string name="qibla_island_note">డైనమిక్ ఐలాండ్‌లో రెండు నిమిషాల పాటు లైవ్ ఖిబ్లా దిక్సూచి.</string>
     <string name="qibla_location_needed">ఖిబ్లాను కనుగొనడానికి ఒక లొకేషన్ ఎంచుకోండి.</string>
     <string name="qibla_move_phone">ఫోన్‌ను ఖిబ్లా వైపు తిప్పండి</string>
     <string name="qibla_no_sensor">లైవ్ దిక్సూచి అందుబాటులో లేదు. ఉత్తరం నుండి సవ్యదిశలో %1$s° వైపు తిరగండి.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">ఈరోజు నమాజ్‌లు</string>
     <string name="widget_kind_today_desc">మీ నగరానికి ఐదు నమాజ్‌లు, తేదీ మరియు తదుపరి నమాజ్‌తో.</string>
     <string name="widget_next_description">కౌంట్‌డౌన్‌తో తదుపరి నమాజ్</string>
+    <string name="widget_qibla_island">డైనమిక్ ఐలాండ్‌లో లైవ్ దిక్సూచి కోసం డయల్‌ను నొక్కండి</string>
     <string name="widget_qibla_left">ఉత్తరం నుండి ఎడమకు %1$s° తిరగండి</string>
     <string name="widget_qibla_live">లైవ్ కంపాస్ కోసం నొక్కండి</string>
     <string name="widget_qibla_right">ఉత్తరం నుండి కుడికి %1$s° తిరగండి</string>

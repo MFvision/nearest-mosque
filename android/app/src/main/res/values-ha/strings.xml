@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Juya dama</string>
     <string name="qibla_go_right_little">Juya dama kaɗan</string>
     <string name="qibla_hold_flat">Riƙe wayarku a kwance</string>
+    <string name="qibla_island">Alƙibla a Dynamic Island</string>
+    <string name="qibla_island_note">Kamfas na Alƙibla kai tsaye a Dynamic Island na minti biyu.</string>
     <string name="qibla_location_needed">Zaɓi wuri don nemo Alƙibla.</string>
     <string name="qibla_move_phone">Juya wayar zuwa Alƙibla</string>
     <string name="qibla_no_sensor">Babu kamfas mai aiki kai tsaye. Fuskanci %1$s° bisa jujjuyawar agogo daga arewa.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Sallolin yau</string>
     <string name="widget_kind_today_desc">Salloli biyar na garinku, tare da kwanan wata da sallah ta gaba.</string>
     <string name="widget_next_description">Sallah ta gaba tare da ƙidaya</string>
+    <string name="widget_qibla_island">Danna fuskar don kamfas kai tsaye a Dynamic Island</string>
     <string name="widget_qibla_left">Daga arewa, juya hagu %1$s°</string>
     <string name="widget_qibla_live">Taɓa don kamfas kai tsaye</string>
     <string name="widget_qibla_right">Daga arewa, juya dama %1$s°</string>

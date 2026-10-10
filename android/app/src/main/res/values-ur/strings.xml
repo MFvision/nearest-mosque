@@ -319,6 +319,8 @@
     <string name="qibla_go_right">دائیں مڑیں</string>
     <string name="qibla_go_right_little">تھوڑا دائیں مڑیں</string>
     <string name="qibla_hold_flat">فون کو سیدھا افقی رکھیں</string>
+    <string name="qibla_island">ڈائنامک آئی لینڈ میں قبلہ</string>
+    <string name="qibla_island_note">ڈائنامک آئی لینڈ میں دو منٹ کے لیے زندہ قبلہ نما۔</string>
     <string name="qibla_location_needed">قبلہ معلوم کرنے کے لیے مقام منتخب کریں۔</string>
     <string name="qibla_move_phone">فون کو قبلہ کی طرف گھمائیں</string>
     <string name="qibla_no_sensor">زندہ قطب نما دستیاب نہیں۔ شمال سے گھڑی کی سمت %1$s° رخ کریں۔</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">آج کی نمازیں</string>
     <string name="widget_kind_today_desc">آپ کے شہر کی پانچوں نمازیں، تاریخ اور اگلی نماز کے ساتھ۔</string>
     <string name="widget_next_description">اگلی نماز اور الٹی گنتی</string>
+    <string name="widget_qibla_island">ڈائنامک آئی لینڈ میں زندہ قطب نما کے لیے ڈائل دبائیں</string>
     <string name="widget_qibla_left">شمال سے بائیں %1$s° مڑیں</string>
     <string name="widget_qibla_live">زندہ قطب نما کے لیے تھپتھپائیں</string>
     <string name="widget_qibla_right">شمال سے دائیں %1$s° مڑیں</string>

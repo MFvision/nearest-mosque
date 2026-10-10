@@ -696,7 +696,7 @@ extension PrayerWidgetView {
             #endif
             case .systemSmall:
                 VStack(spacing: 4) {
-                    QiblaDial(bearing: b, north: north, palette: p, look: entry.look)
+                    QiblaIslandButton { QiblaDial(bearing: b, north: north, palette: p, look: entry.look) }
                     Text("\(num(deg))° · \(s.name)").font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(1).minimumScaleFactor(0.7)
                 }
                 .accessibilityElement(children: .ignore)
@@ -711,13 +711,17 @@ extension PrayerWidgetView {
                             .fixedSize(horizontal: false, vertical: true)
                         Text(s.t("qibla_distance", s.distance(Qibla.distanceMeters(from: here)))).font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
                         Spacer(minLength: 0)
-                        Label(s.t("widget_qibla_live"), systemImage: "hand.tap").font(.caption2.weight(.semibold)).foregroundStyle(p.accent).lineLimit(1)
-                            .minimumScaleFactor(0.7)
+                        QiblaIslandButton {
+                            Label(s.t(QiblaIslandSupport.available ? "widget_qibla_island" : "widget_qibla_live"), systemImage: "hand.tap")
+                                .font(.caption2.weight(.semibold)).foregroundStyle(p.accent).lineLimit(2).minimumScaleFactor(0.7)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    QiblaHalfDial(bearing: b, north: north, palette: p, look: entry.look)
-                        .frame(maxWidth: 150)
-                        .accessibilityHidden(true)
+                    QiblaIslandButton {
+                        QiblaHalfDial(bearing: b, north: north, palette: p, look: entry.look)
+                    }
+                    .frame(maxWidth: 150)
+                    .accessibilityHidden(true)
                 }
                 .accessibilityElement(children: .combine)
             }
@@ -913,4 +917,28 @@ extension SharedState {
                                      reminders: ["fajr", "maghrib"],
                                      mosques: [SharedMosque(id: "preview-1", name: "Masjid an-Nabawi", meters: 450, bearing: 40)],
                                      questions: ["What is Islam?", "How do I pray?", "What are the five pillars?"])
+}
+
+/// On iPhone and iPad, a tap on the Qibla dial starts the live compass in the Dynamic Island (experimental);
+/// elsewhere (the Mac) the content is shown as is and a tap opens the app.
+enum QiblaIslandSupport {
+    static var available: Bool {
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        return true
+        #else
+        return false
+        #endif
+    }
+}
+
+struct QiblaIslandButton<Content: View>: View {
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        Button(intent: StartQiblaIslandIntent()) { content }.buttonStyle(.plain)
+        #else
+        content
+        #endif
+    }
 }

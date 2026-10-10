@@ -319,6 +319,8 @@
     <string name="qibla_go_right">به راست بچرخید</string>
     <string name="qibla_go_right_little">کمی به راست بچرخید</string>
     <string name="qibla_hold_flat">موبایل را صاف نگه دارید</string>
+    <string name="qibla_island">قبله در Dynamic Island</string>
+    <string name="qibla_island_note">قطب‌نمای زندهٔ قبله در Dynamic Island به مدت دو دقیقه.</string>
     <string name="qibla_location_needed">برای یافتن قبله یک موقعیت انتخاب کنید.</string>
     <string name="qibla_move_phone">موبایل را به سمت قبله بچرخانید</string>
     <string name="qibla_no_sensor">قطب‌نمای زنده در دسترس نیست. %1$s° از شمال در جهت عقربه‌های ساعت بایستید.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">نمازهای امروز</string>
     <string name="widget_kind_today_desc">هر پنج نماز شهر شما، همراه با تاریخ و نماز بعدی.</string>
     <string name="widget_next_description">نماز بعدی با شمارش معکوس</string>
+    <string name="widget_qibla_island">برای قطب‌نمای زنده در Dynamic Island روی صفحه بزنید</string>
     <string name="widget_qibla_left">از شمال، %1$s° به چپ بچرخید</string>
     <string name="widget_qibla_live">برای قطب‌نمای زنده ضربه بزنید</string>
     <string name="widget_qibla_right">از شمال، %1$s° به راست بچرخید</string>

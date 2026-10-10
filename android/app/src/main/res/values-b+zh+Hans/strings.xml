@@ -318,6 +318,8 @@
     <string name="qibla_go_right">向右转</string>
     <string name="qibla_go_right_little">稍微向右转</string>
     <string name="qibla_hold_flat">将手机平放</string>
+    <string name="qibla_island">灵动岛中的朝向</string>
+    <string name="qibla_island_note">在灵动岛中显示两分钟的实时朝向指南针。</string>
     <string name="qibla_location_needed">请选择一个位置以找到朝向。</string>
     <string name="qibla_move_phone">将手机转向朝向</string>
     <string name="qibla_no_sensor">没有可用的实时指南针。请从北方顺时针转 %1$s°。</string>
@@ -441,6 +443,7 @@
     <string name="widget_kind_today">今日礼拜</string>
     <string name="widget_kind_today_desc">你所在城市的五次礼拜，附日期和下一次礼拜。</string>
     <string name="widget_next_description">下一次礼拜及倒计时</string>
+    <string name="widget_qibla_island">点按表盘，在灵动岛中显示实时指南针</string>
     <string name="widget_qibla_left">从正北向左转 %1$s°</string>
     <string name="widget_qibla_live">轻点打开实时指南针</string>
     <string name="widget_qibla_right">从正北向右转 %1$s°</string>

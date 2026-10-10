@@ -319,6 +319,8 @@
     <string name="qibla_go_right">მოუხვიეთ მარჯვნივ</string>
     <string name="qibla_go_right_little">მოუხვიეთ ოდნავ მარჯვნივ</string>
     <string name="qibla_hold_flat">დაიჭირეთ ტელეფონი ჰორიზონტალურად</string>
+    <string name="qibla_island">ყიბლა Dynamic Island-ში</string>
+    <string name="qibla_island_note">ცოცხალი ყიბლის კომპასი Dynamic Island-ში ორი წუთით.</string>
     <string name="qibla_location_needed">ყიბლის საპოვნელად აირჩიეთ მდებარეობა.</string>
     <string name="qibla_move_phone">მიაბრუნეთ ტელეფონი ყიბლისკენ</string>
     <string name="qibla_no_sensor">ცოცხალი კომპასი მიუწვდომელია. მიბრუნდით %1$s°-ით საათის ისრის მიმართულებით ჩრდილოეთიდან.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">დღევანდელი ლოცვები</string>
     <string name="widget_kind_today_desc">თქვენი ქალაქის ხუთივე ლოცვა, თარიღით და შემდეგი ლოცვით.</string>
     <string name="widget_next_description">შემდეგი ლოცვა უკუთვლით</string>
+    <string name="widget_qibla_island">შეეხეთ ციფერბლატს ცოცხალი კომპასისთვის Dynamic Island-ში</string>
     <string name="widget_qibla_left">ჩრდილოეთიდან მოუხვიეთ მარცხნივ %1$s°</string>
     <string name="widget_qibla_live">შეეხეთ ცოცხალი კომპასისთვის</string>
     <string name="widget_qibla_right">ჩრდილოეთიდან მოუხვიეთ მარჯვნივ %1$s°</string>

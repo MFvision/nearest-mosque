@@ -320,6 +320,8 @@
     <string name="qibla_go_right">Vire à direita</string>
     <string name="qibla_go_right_little">Vire um pouco à direita</string>
     <string name="qibla_hold_flat">Segure o celular na horizontal</string>
+    <string name="qibla_island">Qibla na Dynamic Island</string>
+    <string name="qibla_island_note">Uma bússola de Qibla ao vivo na Dynamic Island por dois minutos.</string>
     <string name="qibla_location_needed">Escolha uma localização para encontrar a Qibla.</string>
     <string name="qibla_move_phone">Gire o celular em direção à Qibla</string>
     <string name="qibla_no_sensor">Bússola ao vivo indisponível. Volte-se %1$s° no sentido horário a partir do norte.</string>
@@ -443,6 +445,7 @@
     <string name="widget_kind_today">Orações de hoje</string>
     <string name="widget_kind_today_desc">As cinco orações da sua cidade, com a data e a próxima oração.</string>
     <string name="widget_next_description">A próxima oração com contagem regressiva</string>
+    <string name="widget_qibla_island">Toque no mostrador para uma bússola ao vivo na Dynamic Island</string>
     <string name="widget_qibla_left">A partir do norte, vire à esquerda %1$s°</string>
     <string name="widget_qibla_live">Toque para a bússola ao vivo</string>
     <string name="widget_qibla_right">A partir do norte, vire à direita %1$s°</string>

@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Lumiko pakanan</string>
     <string name="qibla_go_right_little">Lumiko nang kaunti pakanan</string>
     <string name="qibla_hold_flat">Hawakan nang pahiga ang iyong telepono</string>
+    <string name="qibla_island">Qibla sa Dynamic Island</string>
+    <string name="qibla_island_note">Live na compass ng Qibla sa Dynamic Island nang dalawang minuto.</string>
     <string name="qibla_location_needed">Pumili ng lokasyon para mahanap ang Qibla.</string>
     <string name="qibla_move_phone">Iharap ang telepono sa Qibla</string>
     <string name="qibla_no_sensor">Walang live na compass. Humarap nang %1$s° pakanan mula sa hilaga.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Mga dasal ngayon</string>
     <string name="widget_kind_today_desc">Lahat ng limang dasal para sa iyong lungsod, kasama ang petsa at ang susunod na dasal.</string>
     <string name="widget_next_description">Ang susunod na dasal na may countdown</string>
+    <string name="widget_qibla_island">I-tap ang dial para sa live na compass sa Dynamic Island</string>
     <string name="widget_qibla_left">Mula sa hilaga, kumaliwa ng %1$s°</string>
     <string name="widget_qibla_live">I-tap para sa live na compass</string>
     <string name="widget_qibla_right">Mula sa hilaga, kumanan ng %1$s°</string>

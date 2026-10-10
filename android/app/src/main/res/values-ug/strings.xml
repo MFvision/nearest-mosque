@@ -319,6 +319,8 @@
     <string name="qibla_go_right">ئوڭغا بۇرۇلۇڭ</string>
     <string name="qibla_go_right_little">سەل ئوڭغا بۇرۇلۇڭ</string>
     <string name="qibla_hold_flat">تېلېفونىڭىزنى تۈز تۇتۇڭ</string>
+    <string name="qibla_island">Dynamic Island دىكى قىبلە</string>
+    <string name="qibla_island_note">Dynamic Island دا ئىككى مىنۇت جانلىق قىبلە كومپاسى.</string>
     <string name="qibla_location_needed">قىبلىنى تېپىش ئۈچۈن بىر ئورۇن تاللاڭ.</string>
     <string name="qibla_move_phone">تېلېفوننى قىبلە تەرەپكە بۇراڭ</string>
     <string name="qibla_no_sensor">جانلىق كومپاس يوق. شىمالدىن سائەت ئىسترېلكىسى يۆنىلىشى بويىچە %1$s° تەرەپكە يۈزلىنىڭ.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">بۈگۈنكى نامازلار</string>
     <string name="widget_kind_today_desc">شەھىرىڭىزدىكى بەش ۋاخ ناماز، چېسلا ۋە كېيىنكى ناماز بىلەن بىرگە.</string>
     <string name="widget_next_description">تەتۈر ساناقلىق كېيىنكى ناماز</string>
+    <string name="widget_qibla_island">Dynamic Island دىكى جانلىق كومپاس ئۈچۈن سىفىرلىق تاختىنى بېسىڭ</string>
     <string name="widget_qibla_left">شىمالدىن سولغا %1$s° بۇرۇلۇڭ</string>
     <string name="widget_qibla_live">جانلىق كومپاس ئۈچۈن چېكىڭ</string>
     <string name="widget_qibla_right">شىمالدىن ئوڭغا %1$s° بۇرۇلۇڭ</string>

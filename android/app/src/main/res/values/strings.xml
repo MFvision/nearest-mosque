@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Turn right</string>
     <string name="qibla_go_right_little">Turn right a little</string>
     <string name="qibla_hold_flat">Hold your phone flat</string>
+    <string name="qibla_island">Qibla in the Dynamic Island</string>
+    <string name="qibla_island_note">A live Qibla compass in the Dynamic Island for two minutes.</string>
     <string name="qibla_location_needed">Choose a location to find the Qibla.</string>
     <string name="qibla_move_phone">Turn the phone toward the Qibla</string>
     <string name="qibla_no_sensor">No live compass available. Face %1$s° clockwise from north.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Today\'s prayers</string>
     <string name="widget_kind_today_desc">All five prayers for your city, with the date and the next prayer.</string>
     <string name="widget_next_description">The next prayer with a countdown</string>
+    <string name="widget_qibla_island">Tap the dial for a live compass in the Dynamic Island</string>
     <string name="widget_qibla_left">From north, turn left %1$s°</string>
     <string name="widget_qibla_live">Tap for the live compass</string>
     <string name="widget_qibla_right">From north, turn right %1$s°</string>

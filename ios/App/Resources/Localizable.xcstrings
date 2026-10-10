@@ -70073,6 +70073,448 @@
         }
       }
     },
+    "qibla_island": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla in the Dynamic Island"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "القبلة في الجزيرة التفاعلية"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈائنامک آئی لینڈ میں قبلہ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island'da kıble"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kiblat di Dynamic Island"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La qibla dans la Dynamic Island"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La alquibla en la Dynamic Island"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кибла в Dynamic Island"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাইনামিক আইল্যান্ডে কিবলা"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبله در Dynamic Island"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبله در Dynamic Island"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "灵动岛中的朝向"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायनैमिक आइलैंड में क़िबला"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla na Dynamic Island"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alƙibla a Dynamic Island"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla kwenye Dynamic Island"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla sa Dynamic Island"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla trên Dynamic Island"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กิบลัตใน Dynamic Island"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "គិបឡាត់ក្នុង Dynamic Island"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island دىكى قىبلە"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قیبلە لە Dynamic Island"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla u Dynamic Islandu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кибла у Dynamic Island-у"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кибла во Dynamic Island"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kibla a Dynamic Islandben"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qibla in het Dynamic Island"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყიბლა Dynamic Island-ში"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island හි කිබ්ලා"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డైనమిక్ ఐలాండ్‌లో ఖిబ్లా"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಕಿಬ್ಲಾ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൈനാമിക് ഐലൻഡിൽ ഖിബ്‌ല"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायनॅमिक आयलंडमध्ये किब्ला"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાયનેમિક આઇલેન્ડમાં કિબ્લા"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਕਿਬਲਾ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডায়নামিক আইলেণ্ডত কিবলা"
+          }
+        }
+      }
+    },
+    "qibla_island_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A live Qibla compass in the Dynamic Island for two minutes."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بوصلة قبلة حيّة في الجزيرة التفاعلية لمدة دقيقتين."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈائنامک آئی لینڈ میں دو منٹ کے لیے زندہ قبلہ نما۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island'da iki dakika boyunca canlı kıble pusulası."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kompas kiblat langsung di Dynamic Island selama dua menit."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une boussole de qibla en direct dans la Dynamic Island pendant deux minutes."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una brújula de alquibla en vivo en la Dynamic Island durante dos minutos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Живой компас киблы в Dynamic Island на две минуты."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাইনামিক আইল্যান্ডে দুই মিনিটের জন্য লাইভ কিবলা কম্পাস।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قطب‌نمای زندهٔ قبله در Dynamic Island به مدت دو دقیقه."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قطب‌نمای زندهٔ قبله در Dynamic Island به مدت دو دقیقه."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在灵动岛中显示两分钟的实时朝向指南针。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायनैमिक आइलैंड में दो मिनट के लिए लाइव क़िबला कम्पास।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma bússola de Qibla ao vivo na Dynamic Island por dois minutos."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamfas na Alƙibla kai tsaye a Dynamic Island na minti biyu."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dira hai ya Kibla kwenye Dynamic Island kwa dakika mbili."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live na compass ng Qibla sa Dynamic Island nang dalawang minuto."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La bàn Qibla trực tiếp trên Dynamic Island trong hai phút."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เข็มทิศกิบลัตแบบสดใน Dynamic Island นานสองนาที"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ត្រីវិស័យគិបឡាត់ផ្ទាល់ក្នុង Dynamic Island រយៈពេលពីរនាទី។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island دا ئىككى مىنۇت جانلىق قىبلە كومپاسى."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قیبلەنمای ڕاستەوخۆ لە Dynamic Island بۆ ماوەی دوو خولەک."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kompas za kiblu uživo u Dynamic Islandu dvije minute."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Компас за киблу уживо у Dynamic Island-у два минута."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Компас за кибла во живо во Dynamic Island две минути."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Élő kibla-iránytű a Dynamic Islandben két percig."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een live qibla-kompas in het Dynamic Island, twee minuten lang."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ცოცხალი ყიბლის კომპასი Dynamic Island-ში ორი წუთით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island හි මිනිත්තු දෙකක් සජීවී කිබ්ලා මාලිමාවක්."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డైనమిక్ ఐలాండ్‌లో రెండు నిమిషాల పాటు లైవ్ ఖిబ్లా దిక్సూచి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಎರಡು ನಿಮಿಷ ಲೈವ್ ಕಿಬ್ಲಾ ದಿಕ್ಸೂಚಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൈനാമിക് ഐലൻഡിൽ രണ്ട് മിനിറ്റ് ലൈവ് ഖിബ്‌ല കോമ്പസ്."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायनॅमिक आयलंडमध्ये दोन मिनिटांसाठी लाइव्ह किब्ला होकायंत्र."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાયનેમિક આઇલેન્ડમાં બે મિનિટ માટે લાઇવ કિબ્લા હોકાયંત્ર."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਦੋ ਮਿੰਟ ਲਈ ਲਾਈਵ ਕਿਬਲਾ ਕੰਪਾਸ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডায়নামিক আইলেণ্ডত দুই মিনিটৰ বাবে লাইভ কিবলা কম্পাছ।"
+          }
+        }
+      }
+    },
     "qibla_location_needed": {
       "extractionState": "manual",
       "localizations": {
@@ -97252,6 +97694,227 @@
           "stringUnit": {
             "state": "translated",
             "value": "কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ"
+          }
+        }
+      }
+    },
+    "widget_qibla_island": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the dial for a live compass in the Dynamic Island"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط على القرص لبوصلة حيّة في الجزيرة التفاعلية"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈائنامک آئی لینڈ میں زندہ قطب نما کے لیے ڈائل دبائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island'da canlı pusula için kadrana dokunun"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketuk dial untuk kompas langsung di Dynamic Island"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le cadran pour une boussole en direct dans la Dynamic Island"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca la esfera para una brújula en vivo en la Dynamic Island"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите на циферблат — живой компас в Dynamic Island"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাইনামিক আইল্যান্ডে লাইভ কম্পাসের জন্য ডায়ালে চাপুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای قطب‌نمای زنده در Dynamic Island روی صفحه بزنید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای قطب‌نمای زنده در Dynamic Island روی صفحه بزنید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按表盘，在灵动岛中显示实时指南针"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायनैमिक आइलैंड में लाइव कम्पास के लिए डायल दबाएँ"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque no mostrador para uma bússola ao vivo na Dynamic Island"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Danna fuskar don kamfas kai tsaye a Dynamic Island"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gusa dira upate dira hai kwenye Dynamic Island"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-tap ang dial para sa live na compass sa Dynamic Island"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm vào mặt la bàn để có la bàn trực tiếp trên Dynamic Island"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะหน้าปัดเพื่อดูเข็มทิศสดใน Dynamic Island"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចុចផ្ទាំងត្រីវិស័យ ដើម្បីបានត្រីវិស័យផ្ទាល់ក្នុង Dynamic Island"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island دىكى جانلىق كومپاس ئۈچۈن سىفىرلىق تاختىنى بېسىڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۆ قیبلەنمای ڕاستەوخۆ لە Dynamic Island ڕووکارەکە دابگرە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodirnite brojčanik za kompas uživo u Dynamic Islandu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додирните бројчаник за компас уживо у Dynamic Island-у"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Допрете го бројчаникот за компас во живо во Dynamic Island"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppints a számlapra az élő iránytűhöz a Dynamic Islandben"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tik op de wijzerplaat voor een live kompas in het Dynamic Island"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შეეხეთ ციფერბლატს ცოცხალი კომპასისთვის Dynamic Island-ში"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island හි සජීවී මාලිමාවක් සඳහා ඩයලය තට්ටු කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డైనమిక్ ఐలాండ్‌లో లైవ్ దిక్సూచి కోసం డయల్‌ను నొక్కండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಡಯಲ್ ಒತ್ತಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൈനാമിക് ഐലൻഡിൽ ലൈവ് കോമ്പസിന് ഡയലിൽ തട്ടുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायनॅमिक आयलंडमधील लाइव्ह होकायंत्रासाठी डायल दाबा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાયનેમિક આઇલેન્ડમાં લાઇવ હોકાયંત્ર માટે ડાયલ દબાવો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਡਾਇਲ ਦਬਾਓ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডায়নামিক আইলেণ্ডত লাইভ কম্পাছৰ বাবে ডায়েলত টিপক"
           }
         }
       }

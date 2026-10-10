@@ -318,6 +318,8 @@
     <string name="qibla_go_right">បត់ស្ដាំ</string>
     <string name="qibla_go_right_little">បត់ស្ដាំបន្តិច</string>
     <string name="qibla_hold_flat">កាន់ទូរសព្ទឱ្យរាបស្មើ</string>
+    <string name="qibla_island">គិបឡាត់ក្នុង Dynamic Island</string>
+    <string name="qibla_island_note">ត្រីវិស័យគិបឡាត់ផ្ទាល់ក្នុង Dynamic Island រយៈពេលពីរនាទី។</string>
     <string name="qibla_location_needed">ជ្រើសរើសទីតាំង ដើម្បីរកគិបឡាត់។</string>
     <string name="qibla_move_phone">បង្វិលទូរសព្ទទៅរកគិបឡាត់</string>
     <string name="qibla_no_sensor">គ្មានត្រីវិស័យផ្ទាល់ទេ។ សូមបែរ %1$s° តាមទិសទ្រនិចនាឡិកាពីទិសខាងជើង។</string>
@@ -441,6 +443,7 @@
     <string name="widget_kind_today">សឡាតថ្ងៃនេះ</string>
     <string name="widget_kind_today_desc">សឡាតទាំងប្រាំសម្រាប់ទីក្រុងរបស់អ្នក ព្រមទាំងកាលបរិច្ឆេទ និងសឡាតបន្ទាប់។</string>
     <string name="widget_next_description">សឡាតបន្ទាប់ ជាមួយការរាប់ថយក្រោយ</string>
+    <string name="widget_qibla_island">ចុចផ្ទាំងត្រីវិស័យ ដើម្បីបានត្រីវិស័យផ្ទាល់ក្នុង Dynamic Island</string>
     <string name="widget_qibla_left">ពីទិសខាងជើង បត់ឆ្វេង %1$s°</string>
     <string name="widget_qibla_live">ចុចដើម្បីបើកត្រីវិស័យផ្ទាល់</string>
     <string name="widget_qibla_right">ពីទិសខាងជើង បត់ស្ដាំ %1$s°</string>

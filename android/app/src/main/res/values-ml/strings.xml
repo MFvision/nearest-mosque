@@ -319,6 +319,8 @@
     <string name="qibla_go_right">വലത്തോട്ട് തിരിയുക</string>
     <string name="qibla_go_right_little">അൽപം വലത്തോട്ട് തിരിയുക</string>
     <string name="qibla_hold_flat">ഫോൺ നിരപ്പായി പിടിക്കുക</string>
+    <string name="qibla_island">ഡൈനാമിക് ഐലൻഡിൽ ഖിബ്‌ല</string>
+    <string name="qibla_island_note">ഡൈനാമിക് ഐലൻഡിൽ രണ്ട് മിനിറ്റ് ലൈവ് ഖിബ്‌ല കോമ്പസ്.</string>
     <string name="qibla_location_needed">ഖിബ്‌ല കണ്ടെത്താൻ ഒരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക.</string>
     <string name="qibla_move_phone">ഫോൺ ഖിബ്‌ലയുടെ നേരെ തിരിക്കുക</string>
     <string name="qibla_no_sensor">ലൈവ് കോമ്പസ് ലഭ്യമല്ല. വടക്കിൽ നിന്ന് ഘടികാരദിശയിൽ %1$s° നേരെ തിരിയുക.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">ഇന്നത്തെ നമസ്കാരങ്ങൾ</string>
     <string name="widget_kind_today_desc">നിങ്ങളുടെ നഗരത്തിലെ അഞ്ച് നമസ്കാരങ്ങളും, തീയതിയും അടുത്ത നമസ്കാരവും സഹിതം.</string>
     <string name="widget_next_description">കൗണ്ട്ഡൗണോടെ അടുത്ത നമസ്കാരം</string>
+    <string name="widget_qibla_island">ഡൈനാമിക് ഐലൻഡിൽ ലൈവ് കോമ്പസിന് ഡയലിൽ തട്ടുക</string>
     <string name="widget_qibla_left">വടക്കുനിന്ന് ഇടത്തോട്ട് %1$s° തിരിയുക</string>
     <string name="widget_qibla_live">ലൈവ് കോമ്പസിനായി ടാപ്പ് ചെയ്യുക</string>
     <string name="widget_qibla_right">വടക്കുനിന്ന് വലത്തോട്ട് %1$s° തിരിയുക</string>

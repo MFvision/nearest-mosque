@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Fordulj jobbra</string>
     <string name="qibla_go_right_little">Kicsit jobbra</string>
     <string name="qibla_hold_flat">Tartsd vízszintesen a telefont</string>
+    <string name="qibla_island">Kibla a Dynamic Islandben</string>
+    <string name="qibla_island_note">Élő kibla-iránytű a Dynamic Islandben két percig.</string>
     <string name="qibla_location_needed">Válassz helyet a kibla meghatározásához.</string>
     <string name="qibla_move_phone">Fordítsd a telefont a kibla felé</string>
     <string name="qibla_no_sensor">Nincs élő iránytű. Fordulj északtól az óramutató járásával megegyezően %1$s°-ot.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Mai imák</string>
     <string name="widget_kind_today_desc">Városod mind az öt imája, a dátummal és a következő imával.</string>
     <string name="widget_next_description">A következő ima visszaszámlálással</string>
+    <string name="widget_qibla_island">Koppints a számlapra az élő iránytűhöz a Dynamic Islandben</string>
     <string name="widget_qibla_left">Északtól fordulj balra %1$s°-ot</string>
     <string name="widget_qibla_live">Koppintson az élő iránytűért</string>
     <string name="widget_qibla_right">Északtól fordulj jobbra %1$s°-ot</string>

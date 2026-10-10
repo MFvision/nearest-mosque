@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Draai naar rechts</string>
     <string name="qibla_go_right_little">Draai iets naar rechts</string>
     <string name="qibla_hold_flat">Houd je telefoon plat</string>
+    <string name="qibla_island">Qibla in het Dynamic Island</string>
+    <string name="qibla_island_note">Een live qibla-kompas in het Dynamic Island, twee minuten lang.</string>
     <string name="qibla_location_needed">Kies een locatie om de qibla te vinden.</string>
     <string name="qibla_move_phone">Draai de telefoon naar de qibla</string>
     <string name="qibla_no_sensor">Geen live kompas beschikbaar. Richt je %1$s° met de klok mee vanaf het noorden.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Gebeden van vandaag</string>
     <string name="widget_kind_today_desc">Alle vijf gebeden voor je stad, met de datum en het volgende gebed.</string>
     <string name="widget_next_description">Het volgende gebed met een aftelling</string>
+    <string name="widget_qibla_island">Tik op de wijzerplaat voor een live kompas in het Dynamic Island</string>
     <string name="widget_qibla_left">Vanaf het noorden %1$s° naar links</string>
     <string name="widget_qibla_live">Tik voor het live kompas</string>
     <string name="widget_qibla_right">Vanaf het noorden %1$s° naar rechts</string>

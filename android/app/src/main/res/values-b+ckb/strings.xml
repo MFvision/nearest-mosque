@@ -319,6 +319,8 @@
     <string name="qibla_go_right">بەرەو ڕاست بسووڕێوە</string>
     <string name="qibla_go_right_little">کەمێک بەرەو ڕاست بسووڕێوە</string>
     <string name="qibla_hold_flat">مۆبایلەکەت بە ڕێکی ڕابگرە</string>
+    <string name="qibla_island">قیبلە لە Dynamic Island</string>
+    <string name="qibla_island_note">قیبلەنمای ڕاستەوخۆ لە Dynamic Island بۆ ماوەی دوو خولەک.</string>
     <string name="qibla_location_needed">شوێنێک هەڵبژێرە بۆ دۆزینەوەی قیبلە.</string>
     <string name="qibla_move_phone">مۆبایلەکە بەرەو قیبلە بسووڕێنە</string>
     <string name="qibla_no_sensor">قیبلەنمای ڕاستەوخۆ بەردەست نییە. %1$s° لە باکوورەوە بە ئاراستەی میلی کاتژمێر ڕوو بکە.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">نوێژەکانی ئەمڕۆ</string>
     <string name="widget_kind_today_desc">هەر پێنج نوێژی شارەکەت، لەگەڵ بەروار و نوێژی داهاتوو.</string>
     <string name="widget_next_description">نوێژی داهاتوو لەگەڵ ژمێرەری پێچەوانە</string>
+    <string name="widget_qibla_island">بۆ قیبلەنمای ڕاستەوخۆ لە Dynamic Island ڕووکارەکە دابگرە</string>
     <string name="widget_qibla_left">لە باکوورەوە، %1$s° بەرەو چەپ بسووڕێوە</string>
     <string name="widget_qibla_live">بۆ قیبلەنمای ڕاستەوخۆ دەستی لێ بدە</string>
     <string name="widget_qibla_right">لە باکوورەوە، %1$s° بەرەو ڕاست بسووڕێوە</string>

@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Sağa dönün</string>
     <string name="qibla_go_right_little">Biraz sağa dönün</string>
     <string name="qibla_hold_flat">Telefonu düz tutun</string>
+    <string name="qibla_island">Dynamic Island\'da kıble</string>
+    <string name="qibla_island_note">Dynamic Island\'da iki dakika boyunca canlı kıble pusulası.</string>
     <string name="qibla_location_needed">Kıbleyi bulmak için bir konum seçin.</string>
     <string name="qibla_move_phone">Telefonu kıbleye çevirin</string>
     <string name="qibla_no_sensor">Canlı pusula yok. Kuzeyden saat yönünde %1$s° dönün.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Bugünün namazları</string>
     <string name="widget_kind_today_desc">Şehriniz için beş vakit namaz, tarih ve sonraki namazla birlikte.</string>
     <string name="widget_next_description">Geri sayımla sıradaki namaz</string>
+    <string name="widget_qibla_island">Dynamic Island\'da canlı pusula için kadrana dokunun</string>
     <string name="widget_qibla_left">Kuzeyden sola %1$s° dönün</string>
     <string name="widget_qibla_live">Canlı pusula için dokunun</string>
     <string name="widget_qibla_right">Kuzeyden sağa %1$s° dönün</string>

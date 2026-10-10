@@ -319,6 +319,8 @@
     <string name="qibla_go_right">दाएँ मुड़ें</string>
     <string name="qibla_go_right_little">थोड़ा दाएँ मुड़ें</string>
     <string name="qibla_hold_flat">फ़ोन को समतल रखें</string>
+    <string name="qibla_island">डायनैमिक आइलैंड में क़िबला</string>
+    <string name="qibla_island_note">डायनैमिक आइलैंड में दो मिनट के लिए लाइव क़िबला कम्पास।</string>
     <string name="qibla_location_needed">क़िबला जानने के लिए कोई लोकेशन चुनें।</string>
     <string name="qibla_move_phone">फ़ोन को क़िबला की ओर घुमाएँ</string>
     <string name="qibla_no_sensor">लाइव कम्पास उपलब्ध नहीं। उत्तर से घड़ी की दिशा में %1$s° की ओर रुख़ करें।</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">आज की नमाज़ें</string>
     <string name="widget_kind_today_desc">आपके शहर की पाँचों नमाज़ें, तारीख़ और अगली नमाज़ के साथ।</string>
     <string name="widget_next_description">उलटी गिनती के साथ अगली नमाज़</string>
+    <string name="widget_qibla_island">डायनैमिक आइलैंड में लाइव कम्पास के लिए डायल दबाएँ</string>
     <string name="widget_qibla_left">उत्तर से बाएँ %1$s° मुड़ें</string>
     <string name="widget_qibla_live">लाइव कंपास के लिए टैप करें</string>
     <string name="widget_qibla_right">उत्तर से दाएँ %1$s° मुड़ें</string>

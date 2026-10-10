@@ -87,6 +87,9 @@ targets:
         NSAlarmKitUsageDescription: Rings the Fajr alarm you set in Settings.
         # The next-prayer countdown on the Lock Screen and in the Dynamic Island.
         NSSupportsLiveActivities: true
+        # Experimental Qibla compass in the Dynamic Island: the compass is read in the background for two minutes
+        # after a tap on the Qibla widget (iOS shows the location indicator meanwhile).
+        UIBackgroundModes: [location]
         NSLocationWhenInUseUsageDescription: Your location is used on this phone for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
         NSLocationUsageDescription: Your location is used on this device for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
         UILaunchScreen:

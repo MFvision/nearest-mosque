@@ -319,6 +319,8 @@
     <string name="qibla_go_right">সোঁফালে ঘূৰক</string>
     <string name="qibla_go_right_little">অলপ সোঁফালে ঘূৰক</string>
     <string name="qibla_hold_flat">ফোনটো সমানকৈ ধৰক</string>
+    <string name="qibla_island">ডায়নামিক আইলেণ্ডত কিবলা</string>
+    <string name="qibla_island_note">ডায়নামিক আইলেণ্ডত দুই মিনিটৰ বাবে লাইভ কিবলা কম্পাছ।</string>
     <string name="qibla_location_needed">কিবলা জানিবলৈ এটা অৱস্থান বাছক।</string>
     <string name="qibla_move_phone">ফোনটো কিবলাৰ ফালে ঘূৰাওক</string>
     <string name="qibla_no_sensor">লাইভ কম্পাছ উপলব্ধ নহয়। উত্তৰৰ পৰা ঘড়ীৰ কাঁটাৰ দিশত %1$s°লৈ মুখ কৰক।</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">আজিৰ নামাজ</string>
     <string name="widget_kind_today_desc">আপোনাৰ চহৰৰ পাঁচ ওৱাক্ত নামাজ, তাৰিখ আৰু পৰৱৰ্তী নামাজৰ সৈতে।</string>
     <string name="widget_next_description">কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ</string>
+    <string name="widget_qibla_island">ডায়নামিক আইলেণ্ডত লাইভ কম্পাছৰ বাবে ডায়েলত টিপক</string>
     <string name="widget_qibla_left">উত্তৰৰ পৰা বাওঁফালে %1$s° ঘূৰক</string>
     <string name="widget_qibla_live">লাইভ কম্পাছৰ বাবে টিপক</string>
     <string name="widget_qibla_right">উত্তৰৰ পৰা সোঁফালে %1$s° ঘূৰক</string>

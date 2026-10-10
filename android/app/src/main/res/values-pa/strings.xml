@@ -319,6 +319,8 @@
     <string name="qibla_go_right">ਸੱਜੇ ਮੁੜੋ</string>
     <string name="qibla_go_right_little">ਥੋੜ੍ਹਾ ਸੱਜੇ ਮੁੜੋ</string>
     <string name="qibla_hold_flat">ਆਪਣਾ ਫ਼ੋਨ ਪੱਧਰਾ ਫੜੋ</string>
+    <string name="qibla_island">ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਕਿਬਲਾ</string>
+    <string name="qibla_island_note">ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਦੋ ਮਿੰਟ ਲਈ ਲਾਈਵ ਕਿਬਲਾ ਕੰਪਾਸ।</string>
     <string name="qibla_location_needed">ਕਿਬਲਾ ਲੱਭਣ ਲਈ ਕੋਈ ਟਿਕਾਣਾ ਚੁਣੋ।</string>
     <string name="qibla_move_phone">ਫ਼ੋਨ ਨੂੰ ਕਿਬਲੇ ਵੱਲ ਘੁਮਾਓ</string>
     <string name="qibla_no_sensor">ਲਾਈਵ ਕੰਪਾਸ ਉਪਲਬਧ ਨਹੀਂ। ਉੱਤਰ ਤੋਂ ਘੜੀ ਦੀ ਦਿਸ਼ਾ ਵਿੱਚ %1$s° ਵੱਲ ਮੂੰਹ ਕਰੋ।</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ</string>
     <string name="widget_kind_today_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੀਆਂ ਪੰਜੇ ਨਮਾਜ਼ਾਂ, ਤਾਰੀਖ਼ ਅਤੇ ਅਗਲੀ ਨਮਾਜ਼ ਸਮੇਤ।</string>
     <string name="widget_next_description">ਉਲਟੀ ਗਿਣਤੀ ਨਾਲ ਅਗਲੀ ਨਮਾਜ਼</string>
+    <string name="widget_qibla_island">ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਡਾਇਲ ਦਬਾਓ</string>
     <string name="widget_qibla_left">ਉੱਤਰ ਤੋਂ ਖੱਬੇ %1$s° ਮੁੜੋ</string>
     <string name="widget_qibla_live">ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="widget_qibla_right">ਉੱਤਰ ਤੋਂ ਸੱਜੇ %1$s° ਮੁੜੋ</string>

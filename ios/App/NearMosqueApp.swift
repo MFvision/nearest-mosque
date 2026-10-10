@@ -12,6 +12,10 @@ struct NearMosqueApp: App {
     init() {
         // Before launch finishes, so a tap that opened the app is handled too.
         UNUserNotificationCenter.current().delegate = NotificationHandler.shared
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        // The Qibla widget's button starts the compass in the Dynamic Island through the app (in the background).
+        QiblaIslandRunner.start = { await QiblaIsland.shared.start() }
+        #endif
     }
 
     var body: some Scene {

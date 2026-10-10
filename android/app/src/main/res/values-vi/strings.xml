@@ -318,6 +318,8 @@
     <string name="qibla_go_right">Xoay phải</string>
     <string name="qibla_go_right_little">Xoay phải một chút</string>
     <string name="qibla_hold_flat">Giữ điện thoại nằm phẳng</string>
+    <string name="qibla_island">Qibla trên Dynamic Island</string>
+    <string name="qibla_island_note">La bàn Qibla trực tiếp trên Dynamic Island trong hai phút.</string>
     <string name="qibla_location_needed">Hãy chọn một vị trí để tìm hướng Qibla.</string>
     <string name="qibla_move_phone">Xoay điện thoại về hướng Qibla</string>
     <string name="qibla_no_sensor">Không có la bàn trực tiếp. Hãy quay %1$s° theo chiều kim đồng hồ từ hướng bắc.</string>
@@ -441,6 +443,7 @@
     <string name="widget_kind_today">Cầu nguyện hôm nay</string>
     <string name="widget_kind_today_desc">Cả năm lần cầu nguyện tại thành phố của bạn, kèm ngày và lần cầu nguyện tiếp theo.</string>
     <string name="widget_next_description">Giờ cầu nguyện tiếp theo kèm đếm ngược</string>
+    <string name="widget_qibla_island">Chạm vào mặt la bàn để có la bàn trực tiếp trên Dynamic Island</string>
     <string name="widget_qibla_left">Từ hướng bắc, quay trái %1$s°</string>
     <string name="widget_qibla_live">Chạm để mở la bàn trực tiếp</string>
     <string name="widget_qibla_right">Từ hướng bắc, quay phải %1$s°</string>

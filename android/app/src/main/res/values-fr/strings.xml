@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Tournez à droite</string>
     <string name="qibla_go_right_little">Tournez un peu à droite</string>
     <string name="qibla_hold_flat">Tenez le téléphone à plat</string>
+    <string name="qibla_island">La qibla dans la Dynamic Island</string>
+    <string name="qibla_island_note">Une boussole de qibla en direct dans la Dynamic Island pendant deux minutes.</string>
     <string name="qibla_location_needed">Choisissez un lieu pour trouver la qibla.</string>
     <string name="qibla_move_phone">Tournez le téléphone vers la qibla</string>
     <string name="qibla_no_sensor">Pas de boussole en direct. Orientez-vous à %1$s° dans le sens horaire depuis le nord.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Prières du jour</string>
     <string name="widget_kind_today_desc">Les cinq prières de votre ville, avec la date et la prochaine prière.</string>
     <string name="widget_next_description">La prochaine prière avec un compte à rebours</string>
+    <string name="widget_qibla_island">Touchez le cadran pour une boussole en direct dans la Dynamic Island</string>
     <string name="widget_qibla_left">Depuis le nord, tournez à gauche de %1$s°</string>
     <string name="widget_qibla_live">Touchez pour la boussole en direct</string>
     <string name="widget_qibla_right">Depuis le nord, tournez à droite de %1$s°</string>

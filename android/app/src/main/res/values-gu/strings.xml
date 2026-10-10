@@ -319,6 +319,8 @@
     <string name="qibla_go_right">જમણે વળો</string>
     <string name="qibla_go_right_little">થોડું જમણે વળો</string>
     <string name="qibla_hold_flat">ફોનને સપાટ રાખો</string>
+    <string name="qibla_island">ડાયનેમિક આઇલેન્ડમાં કિબ્લા</string>
+    <string name="qibla_island_note">ડાયનેમિક આઇલેન્ડમાં બે મિનિટ માટે લાઇવ કિબ્લા હોકાયંત્ર.</string>
     <string name="qibla_location_needed">કિબ્લા શોધવા માટે કોઈ લોકેશન પસંદ કરો.</string>
     <string name="qibla_move_phone">ફોનને કિબ્લા તરફ ફેરવો</string>
     <string name="qibla_no_sensor">લાઇવ હોકાયંત્ર ઉપલબ્ધ નથી. ઉત્તરથી ઘડિયાળની દિશામાં %1$s° તરફ મોં કરો.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">આજની નમાઝ</string>
     <string name="widget_kind_today_desc">તમારા શહેરની પાંચેય નમાઝ, તારીખ અને આગામી નમાઝ સાથે.</string>
     <string name="widget_next_description">કાઉન્ટડાઉન સાથે આગામી નમાઝ</string>
+    <string name="widget_qibla_island">ડાયનેમિક આઇલેન્ડમાં લાઇવ હોકાયંત્ર માટે ડાયલ દબાવો</string>
     <string name="widget_qibla_left">ઉત્તરથી ડાબે %1$s° વળો</string>
     <string name="widget_qibla_live">લાઇવ હોકાયંત્ર માટે ટૅપ કરો</string>
     <string name="widget_qibla_right">ઉત્તરથી જમણે %1$s° વળો</string>

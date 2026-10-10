@@ -319,6 +319,8 @@
     <string name="qibla_go_right">ಬಲಕ್ಕೆ ತಿರುಗಿ</string>
     <string name="qibla_go_right_little">ಸ್ವಲ್ಪ ಬಲಕ್ಕೆ ತಿರುಗಿ</string>
     <string name="qibla_hold_flat">ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ಸಮತಟ್ಟಾಗಿ ಹಿಡಿಯಿರಿ</string>
+    <string name="qibla_island">ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಕಿಬ್ಲಾ</string>
+    <string name="qibla_island_note">ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಎರಡು ನಿಮಿಷ ಲೈವ್ ಕಿಬ್ಲಾ ದಿಕ್ಸೂಚಿ.</string>
     <string name="qibla_location_needed">ಕಿಬ್ಲಾವನ್ನು ಕಂಡುಹಿಡಿಯಲು ಒಂದು ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
     <string name="qibla_move_phone">ಫೋನ್ ಅನ್ನು ಕಿಬ್ಲಾ ಕಡೆಗೆ ತಿರುಗಿಸಿ</string>
     <string name="qibla_no_sensor">ಲೈವ್ ದಿಕ್ಸೂಚಿ ಲಭ್ಯವಿಲ್ಲ. ಉತ್ತರದಿಂದ ಪ್ರದಕ್ಷಿಣಾಕಾರವಾಗಿ %1$s° ಕಡೆಗೆ ಮುಖ ಮಾಡಿ.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">ಇಂದಿನ ನಮಾಜ್‌ಗಳು</string>
     <string name="widget_kind_today_desc">ನಿಮ್ಮ ನಗರದ ಎಲ್ಲಾ ಐದು ನಮಾಜ್‌ಗಳು, ದಿನಾಂಕ ಮತ್ತು ಮುಂದಿನ ನಮಾಜ್‌ನೊಂದಿಗೆ.</string>
     <string name="widget_next_description">ಕ್ಷಣಗಣನೆಯೊಂದಿಗೆ ಮುಂದಿನ ನಮಾಜ್</string>
+    <string name="widget_qibla_island">ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಡಯಲ್ ಒತ್ತಿ</string>
     <string name="widget_qibla_left">ಉತ್ತರದಿಂದ ಎಡಕ್ಕೆ %1$s° ತಿರುಗಿ</string>
     <string name="widget_qibla_live">ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <string name="widget_qibla_right">ಉತ್ತರದಿಂದ ಬಲಕ್ಕೆ %1$s° ತಿರುಗಿ</string>

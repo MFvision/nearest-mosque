@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Geuka kulia</string>
     <string name="qibla_go_right_little">Geuka kulia kidogo</string>
     <string name="qibla_hold_flat">Shika simu yako ikiwa imelala sawa</string>
+    <string name="qibla_island">Kibla kwenye Dynamic Island</string>
+    <string name="qibla_island_note">Dira hai ya Kibla kwenye Dynamic Island kwa dakika mbili.</string>
     <string name="qibla_location_needed">Chagua mahali ili kupata Kibla.</string>
     <string name="qibla_move_phone">Geuza simu kuelekea Kibla</string>
     <string name="qibla_no_sensor">Hakuna dira hai. Elekea %1$s° kwa mwelekeo wa saa kutoka kaskazini.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Sala za leo</string>
     <string name="widget_kind_today_desc">Sala zote tano za mji wako, pamoja na tarehe na sala ijayo.</string>
     <string name="widget_next_description">Sala ijayo pamoja na hesabu ya kurudi nyuma</string>
+    <string name="widget_qibla_island">Gusa dira upate dira hai kwenye Dynamic Island</string>
     <string name="widget_qibla_left">Kutoka kaskazini, geuka kushoto %1$s°</string>
     <string name="widget_qibla_live">Gusa kwa dira hai</string>
     <string name="widget_qibla_right">Kutoka kaskazini, geuka kulia %1$s°</string>

@@ -320,6 +320,8 @@
     <string name="qibla_go_right">Окрените се удесно</string>
     <string name="qibla_go_right_little">Мало удесно</string>
     <string name="qibla_hold_flat">Држите телефон водоравно</string>
+    <string name="qibla_island">Кибла у Dynamic Island-у</string>
+    <string name="qibla_island_note">Компас за киблу уживо у Dynamic Island-у два минута.</string>
     <string name="qibla_location_needed">Изаберите локацију да бисте пронашли киблу.</string>
     <string name="qibla_move_phone">Окрените телефон ка кибли</string>
     <string name="qibla_no_sensor">Компас уживо није доступан. Окрените се %1$s° у смеру казаљке на сату од севера.</string>
@@ -443,6 +445,7 @@
     <string name="widget_kind_today">Данашњи намази</string>
     <string name="widget_kind_today_desc">Свих пет намаза за ваш град, са датумом и следећим намазом.</string>
     <string name="widget_next_description">Следећи намаз са одбројавањем</string>
+    <string name="widget_qibla_island">Додирните бројчаник за компас уживо у Dynamic Island-у</string>
     <string name="widget_qibla_left">Од севера, окрените се лево %1$s°</string>
     <string name="widget_qibla_live">Додирните за компас уживо</string>
     <string name="widget_qibla_right">Од севера, окрените се десно %1$s°</string>

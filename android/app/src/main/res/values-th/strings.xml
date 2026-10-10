@@ -318,6 +318,8 @@
     <string name="qibla_go_right">หันขวา</string>
     <string name="qibla_go_right_little">หันขวาเล็กน้อย</string>
     <string name="qibla_hold_flat">วางโทรศัพท์ให้ราบ</string>
+    <string name="qibla_island">กิบลัตใน Dynamic Island</string>
+    <string name="qibla_island_note">เข็มทิศกิบลัตแบบสดใน Dynamic Island นานสองนาที</string>
     <string name="qibla_location_needed">เลือกตำแหน่งเพื่อหาทิศกิบลัต</string>
     <string name="qibla_move_phone">หันโทรศัพท์ไปทางกิบลัต</string>
     <string name="qibla_no_sensor">ไม่มีเข็มทิศแบบเรียลไทม์ ให้หันไป %1$s° ตามเข็มนาฬิกาจากทิศเหนือ</string>
@@ -441,6 +443,7 @@
     <string name="widget_kind_today">ละหมาดวันนี้</string>
     <string name="widget_kind_today_desc">ละหมาดทั้งห้าเวลาของเมืองคุณ พร้อมวันที่และละหมาดถัดไป</string>
     <string name="widget_next_description">ละหมาดถัดไปพร้อมการนับถอยหลัง</string>
+    <string name="widget_qibla_island">แตะหน้าปัดเพื่อดูเข็มทิศสดใน Dynamic Island</string>
     <string name="widget_qibla_left">จากทิศเหนือ หันซ้าย %1$s°</string>
     <string name="widget_qibla_live">แตะเพื่อเปิดเข็มทิศสด</string>
     <string name="widget_qibla_right">จากทิศเหนือ หันขวา %1$s°</string>

@@ -319,6 +319,8 @@
     <string name="qibla_go_right">දකුණට හැරෙන්න</string>
     <string name="qibla_go_right_little">ටිකක් දකුණට හැරෙන්න</string>
     <string name="qibla_hold_flat">ඔබේ දුරකථනය තිරස්ව අල්ලන්න</string>
+    <string name="qibla_island">Dynamic Island හි කිබ්ලා</string>
+    <string name="qibla_island_note">Dynamic Island හි මිනිත්තු දෙකක් සජීවී කිබ්ලා මාලිමාවක්.</string>
     <string name="qibla_location_needed">කිබ්ලා සොයා ගැනීමට ස්ථානයක් තෝරන්න.</string>
     <string name="qibla_move_phone">දුරකථනය කිබ්ලා දෙසට හරවන්න</string>
     <string name="qibla_no_sensor">සජීවී මාලිමාවක් නැත. උතුරේ සිට දක්ෂිණාවර්තව %1$s° දෙසට මුහුණලන්න.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">අද සලාත</string>
     <string name="widget_kind_today_desc">ඔබේ නගරයේ සලාත පහම, දිනය සහ ඊළඟ සලාතය සමඟ.</string>
     <string name="widget_next_description">ගණන් කිරීමක් සහිත ඊළඟ සලාතය</string>
+    <string name="widget_qibla_island">Dynamic Island හි සජීවී මාලිමාවක් සඳහා ඩයලය තට්ටු කරන්න</string>
     <string name="widget_qibla_left">උතුරේ සිට වමට %1$s° හැරෙන්න</string>
     <string name="widget_qibla_live">සජීවී මාලිමාව සඳහා තට්ටු කරන්න</string>
     <string name="widget_qibla_right">උතුරේ සිට දකුණට %1$s° හැරෙන්න</string>

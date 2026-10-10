@@ -318,6 +318,8 @@
     <string name="qibla_go_right">Belok kanan</string>
     <string name="qibla_go_right_little">Belok kanan sedikit</string>
     <string name="qibla_hold_flat">Pegang ponsel mendatar</string>
+    <string name="qibla_island">Kiblat di Dynamic Island</string>
+    <string name="qibla_island_note">Kompas kiblat langsung di Dynamic Island selama dua menit.</string>
     <string name="qibla_location_needed">Pilih lokasi untuk menemukan kiblat.</string>
     <string name="qibla_move_phone">Putar ponsel ke arah kiblat</string>
     <string name="qibla_no_sensor">Kompas langsung tidak tersedia. Hadap %1$s° searah jarum jam dari utara.</string>
@@ -441,6 +443,7 @@
     <string name="widget_kind_today">Salat hari ini</string>
     <string name="widget_kind_today_desc">Lima waktu salat untuk kota Anda, dengan tanggal dan salat berikutnya.</string>
     <string name="widget_next_description">Salat berikutnya dengan hitung mundur</string>
+    <string name="widget_qibla_island">Ketuk dial untuk kompas langsung di Dynamic Island</string>
     <string name="widget_qibla_left">Dari utara, putar ke kiri %1$s°</string>
     <string name="widget_qibla_live">Ketuk untuk kompas langsung</string>
     <string name="widget_qibla_right">Dari utara, putar ke kanan %1$s°</string>

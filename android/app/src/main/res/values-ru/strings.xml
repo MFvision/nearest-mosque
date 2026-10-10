@@ -321,6 +321,8 @@
     <string name="qibla_go_right">Поверните вправо</string>
     <string name="qibla_go_right_little">Чуть вправо</string>
     <string name="qibla_hold_flat">Держите телефон горизонтально</string>
+    <string name="qibla_island">Кибла в Dynamic Island</string>
+    <string name="qibla_island_note">Живой компас киблы в Dynamic Island на две минуты.</string>
     <string name="qibla_location_needed">Выберите местоположение, чтобы определить киблу.</string>
     <string name="qibla_move_phone">Поверните телефон к кибле</string>
     <string name="qibla_no_sensor">Компас недоступен. Повернитесь на %1$s° по часовой стрелке от севера.</string>
@@ -444,6 +446,7 @@
     <string name="widget_kind_today">Намазы на сегодня</string>
     <string name="widget_kind_today_desc">Все пять намазов для вашего города, с датой и следующим намазом.</string>
     <string name="widget_next_description">Следующий намаз с обратным отсчётом</string>
+    <string name="widget_qibla_island">Нажмите на циферблат — живой компас в Dynamic Island</string>
     <string name="widget_qibla_left">От севера поверните налево на %1$s°</string>
     <string name="widget_qibla_live">Нажмите для компаса</string>
     <string name="widget_qibla_right">От севера поверните направо на %1$s°</string>

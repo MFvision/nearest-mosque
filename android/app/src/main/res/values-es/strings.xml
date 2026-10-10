@@ -319,6 +319,8 @@
     <string name="qibla_go_right">Gire a la derecha</string>
     <string name="qibla_go_right_little">Gire un poco a la derecha</string>
     <string name="qibla_hold_flat">Sostén el teléfono en horizontal</string>
+    <string name="qibla_island">La alquibla en la Dynamic Island</string>
+    <string name="qibla_island_note">Una brújula de alquibla en vivo en la Dynamic Island durante dos minutos.</string>
     <string name="qibla_location_needed">Elige una ubicación para encontrar la alquibla.</string>
     <string name="qibla_move_phone">Gira el teléfono hacia la alquibla</string>
     <string name="qibla_no_sensor">No hay brújula en vivo. Oriéntate %1$s° en sentido horario desde el norte.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">Oraciones de hoy</string>
     <string name="widget_kind_today_desc">Las cinco oraciones de tu ciudad, con la fecha y la próxima oración.</string>
     <string name="widget_next_description">La próxima oración con cuenta atrás</string>
+    <string name="widget_qibla_island">Toca la esfera para una brújula en vivo en la Dynamic Island</string>
     <string name="widget_qibla_left">Desde el norte, gira a la izquierda %1$s°</string>
     <string name="widget_qibla_live">Toca para la brújula en vivo</string>
     <string name="widget_qibla_right">Desde el norte, gira a la derecha %1$s°</string>

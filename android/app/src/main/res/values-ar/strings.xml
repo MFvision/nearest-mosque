@@ -323,6 +323,8 @@
     <string name="qibla_go_right">انعطف يمينًا</string>
     <string name="qibla_go_right_little">انعطف يمينًا قليلًا</string>
     <string name="qibla_hold_flat">أمسك الهاتف بشكل أفقي</string>
+    <string name="qibla_island">القبلة في الجزيرة التفاعلية</string>
+    <string name="qibla_island_note">بوصلة قبلة حيّة في الجزيرة التفاعلية لمدة دقيقتين.</string>
     <string name="qibla_location_needed">اختر موقعًا لمعرفة القبلة.</string>
     <string name="qibla_move_phone">حرّك الهاتف باتجاه القبلة</string>
     <string name="qibla_no_sensor">لا تتوفر بوصلة حيّة. اتجه %1$s° باتجاه عقارب الساعة من الشمال.</string>
@@ -446,6 +448,7 @@
     <string name="widget_kind_today">صلوات اليوم</string>
     <string name="widget_kind_today_desc">الصلوات الخمس لمدينتك مع التاريخ والصلاة القادمة.</string>
     <string name="widget_next_description">الصلاة القادمة مع العد التنازلي</string>
+    <string name="widget_qibla_island">اضغط على القرص لبوصلة حيّة في الجزيرة التفاعلية</string>
     <string name="widget_qibla_left">من الشمال، انعطف يسارًا %1$s°</string>
     <string name="widget_qibla_live">اضغط للبوصلة الحية</string>
     <string name="widget_qibla_right">من الشمال، انعطف يمينًا %1$s°</string>

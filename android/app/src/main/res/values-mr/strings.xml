@@ -319,6 +319,8 @@
     <string name="qibla_go_right">उजवीकडे वळा</string>
     <string name="qibla_go_right_little">थोडे उजवीकडे वळा</string>
     <string name="qibla_hold_flat">फोन सपाट धरा</string>
+    <string name="qibla_island">डायनॅमिक आयलंडमध्ये किब्ला</string>
+    <string name="qibla_island_note">डायनॅमिक आयलंडमध्ये दोन मिनिटांसाठी लाइव्ह किब्ला होकायंत्र.</string>
     <string name="qibla_location_needed">किब्ला शोधण्यासाठी एखादे लोकेशन निवडा.</string>
     <string name="qibla_move_phone">फोन किब्लाकडे फिरवा</string>
     <string name="qibla_no_sensor">लाइव्ह होकायंत्र उपलब्ध नाही. उत्तरेपासून घड्याळाच्या दिशेने %1$s° कडे तोंड करा.</string>
@@ -442,6 +444,7 @@
     <string name="widget_kind_today">आजच्या नमाज</string>
     <string name="widget_kind_today_desc">तुमच्या शहरातील पाचही नमाज, तारीख आणि पुढच्या नमाजसह.</string>
     <string name="widget_next_description">काउंटडाउनसह पुढची नमाज</string>
+    <string name="widget_qibla_island">डायनॅमिक आयलंडमधील लाइव्ह होकायंत्रासाठी डायल दाबा</string>
     <string name="widget_qibla_left">उत्तरेपासून डावीकडे %1$s° वळा</string>
     <string name="widget_qibla_live">थेट होकायंत्रासाठी टॅप करा</string>
     <string name="widget_qibla_right">उत्तरेपासून उजवीकडे %1$s° वळा</string>
