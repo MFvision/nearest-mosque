@@ -40,8 +40,8 @@ struct TasbihView: View {
         let count = TasbihStore.count
         TasbihFace(count: count, palette: entry.palette, family: family, locale: entry.state?.locale ?? .current,
                    a11y: entry.state?.t("tasbih_count_a11y", count) ?? "\(count)", resetLabel: entry.state?.t("tasbih_reset") ?? "Reset",
-                   wrapTap: { AnyView(Button(intent: TasbihTapIntent()) { $0 }.buttonStyle(.plain)) },
-                   wrapReset: { AnyView(Button(intent: TasbihResetIntent()) { $0 }.buttonStyle(.plain)) })
+                   wrapTap: { label in AnyView(Button(intent: TasbihTapIntent()) { label }.buttonStyle(.plain)) },
+                   wrapReset: { label in AnyView(Button(intent: TasbihResetIntent()) { label }.buttonStyle(.plain)) })
     }
 }
 
