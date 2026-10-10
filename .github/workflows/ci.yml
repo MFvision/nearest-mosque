@@ -100,7 +100,8 @@ jobs:
     needs: changes
     if: needs.changes.outputs.ios == 'true'
     runs-on: macos-15
-    timeout-minutes: 60
+    # The widget and island screenshots made the job longer than an hour.
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
       - name: Select newest Xcode
