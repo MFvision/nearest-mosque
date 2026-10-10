@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Durdurana kadar alarm gibi çalar; telefon izin verirse sessizde de.</string>
     <string name="alerts_friday">Cuma namazı hatırlatması</string>
     <string name="alerts_friday_note">Cuma günleri öğleden 45 dakika önce.</string>
+    <string name="alerts_kahf">Cuma: Kehf Suresi</string>
+    <string name="alerts_kahf_note">Cuma sabahı 9:00\'da, ilk ayetiyle.</string>
     <string name="alerts_minutes">%1$d dk önce</string>
     <string name="alerts_off">Kapalı</string>
     <string name="alerts_ramadan">Ramazan: sahur ve iftar</string>
     <string name="alerts_ramadan_note">Sahur imsaktan 45 dk önce, iftar akşam ezanında. Yalnızca Ramazan\'da.</string>
     <string name="alerts_section">Hatırlatıcılar ve alarmlar</string>
+    <string name="alerts_sleep">Uyumadan önce bir ayet</string>
+    <string name="alerts_sleep_note">Ayetü\'l-Kürsi veya Bakara Suresi\'nin son iki ayeti, seçtiğiniz saatte.</string>
+    <string name="alerts_sleep_time">Yatma saati</string>
     <string name="allow_location">Konuma izin ver</string>
     <string name="answer_common_reviewed">Sık verilen cevap, inceleyen: %1$s</string>
     <string name="answer_common_unreviewed">Sık verilen cevap, âlim incelemesi bekleniyor</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">Eşleşen şehir yok. Başka bir yazım deneyin.</string>
     <string name="no_records_body">%1$s için indirilen veride bu noktaya %2$s içinde cami yok. Veri eksik olabilir.</string>
     <string name="no_records_title">Yakında kayıtlı cami yok</string>
+    <string name="notif_kahf_title">Cuma: Kehf Suresi</string>
+    <string name="notif_prayed">Kıldım</string>
+    <string name="notif_sleep_title">Uyumadan önce</string>
+    <string name="notif_snooze">5 dk sonra hatırlat</string>
     <string name="notifications_denied">Bu uygulamanın bildirimleri kapalı. Hatırlatıcılar için Ayarlar’dan açın.</string>
     <string name="on_device_ai">Cihaz içi yapay zekâ</string>
     <string name="onb_ask_body">Cevaplar Kur’an’dan ayet numarasıyla alıntı yapar; kaynağı her zaman kontrol edebilirsiniz.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Sor</string>
     <string name="tab_mosques">En Yakın Cami</string>
     <string name="tab_prayer">Namaz ve Kıble</string>
+    <string name="tasbih_count_a11y">Sayı %1$d. Bir eklemek için dokunun.</string>
+    <string name="tasbih_reset">Sıfırla</string>
     <string name="time_progress_a11y">%2$s vaktine kalan sürenin %%%1$d kadarı geçti</string>
     <string name="time_zone_label">Saat dilimi: %1$s</string>
     <string name="todays_times">Bugünün namaz vakitleri</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">Şehriniz için kuzeyden kıble yönü. Canlı pusula için dokunun.</string>
     <string name="widget_kind_ring">Namaz halkası</string>
     <string name="widget_kind_ring_desc">Sonraki namaza kalan süre bir halkada, bugünün tüm vakitleriyle.</string>
+    <string name="widget_kind_tasbih">Tesbih sayacı</string>
+    <string name="widget_kind_tasbih_desc">Zikrinizi saymak için daireye dokunun. Halka her 33\'te dolar.</string>
     <string name="widget_kind_today">Bugünün namazları</string>
     <string name="widget_kind_today_desc">Şehriniz için beş vakit namaz, tarih ve sonraki namazla birlikte.</string>
     <string name="widget_next_description">Geri sayımla sıradaki namaz</string>

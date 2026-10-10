@@ -19,6 +19,7 @@ struct WidgetGalleryView: View {
         case "ask": return .ask
         case "qibla": return .qibla
         case "actions": return .actions
+        case "tasbih": return .tasbih
         default: return .next
         }
     }
@@ -35,6 +36,7 @@ struct WidgetGalleryView: View {
         case .today: return [(.systemMedium, medium), (.systemLarge, large)] + xl
         case .mosque, .ask, .qibla: return [(.systemSmall, small), (.systemMedium, medium)]
         case .actions: return [(.systemMedium, medium)]
+        case .tasbih: return [(.systemSmall, small), (.systemMedium, medium)]
         }
     }
 
@@ -54,7 +56,13 @@ struct WidgetGalleryView: View {
         ScrollView {
             VStack(spacing: 18) {
                 ForEach(Array(sizes.enumerated()), id: \.offset) { _, item in
-                    PrayerWidgetView(entry: entry, kind: kind, family: item.0)
+                    Group {
+                        if kind == .tasbih {
+                            TasbihFace(count: 6366, palette: p, family: item.0, locale: state.locale, a11y: "", resetLabel: "")
+                        } else {
+                            PrayerWidgetView(entry: entry, kind: kind, family: item.0)
+                        }
+                    }
                         .padding(16)
                         .frame(width: item.1.width, height: item.1.height)
                         .background(p.background)

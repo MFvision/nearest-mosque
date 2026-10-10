@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Tana ƙara kamar ƙararrawa har sai kun dakatar da ita, ko da a yanayin shiru idan wayar ta yarda.</string>
     <string name="alerts_friday">Tunatarwar ranar Juma\'a</string>
     <string name="alerts_friday_note">Minti 45 kafin Azahar a ranar Juma\'a.</string>
+    <string name="alerts_kahf">Juma\'a: Suratul Kahf</string>
+    <string name="alerts_kahf_note">Ranar Juma\'a ƙarfe 9:00 na safe, tare da ayarta ta farko.</string>
     <string name="alerts_minutes">Minti %1$d kafin</string>
     <string name="alerts_off">A kashe</string>
     <string name="alerts_ramadan">Ramadan: sahur da buɗa baki</string>
     <string name="alerts_ramadan_note">Sahur minti 45 kafin Asuba, buɗa baki a Magariba. A lokacin Ramadan kawai.</string>
     <string name="alerts_section">Tunatarwa da ƙararrawa</string>
+    <string name="alerts_sleep">Aya kafin barci</string>
+    <string name="alerts_sleep_note">Ayatul Kursiyyu ko ayoyi biyu na ƙarshe na Suratul Baƙara, a lokacin da ka zaɓa.</string>
+    <string name="alerts_sleep_time">Lokacin barci</string>
     <string name="allow_location">Ba da izinin wuri</string>
     <string name="answer_common_reviewed">Amsar da aka saba, %1$s ya duba</string>
     <string name="answer_common_unreviewed">Amsar da aka saba, tana jiran malami ya duba</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">Ba a sami gari ba. Gwada wani rubutun sunan.</string>
     <string name="no_records_body">Bayanan da aka sauke na %1$s ba su da masallatai a cikin %2$s daga wannan wuri. Bayanan ƙila ba su cika ba.</string>
     <string name="no_records_title">Babu masallatan da aka rubuta a kusa</string>
+    <string name="notif_kahf_title">Juma\'a: Suratul Kahf</string>
+    <string name="notif_prayed">Na yi sallah</string>
+    <string name="notif_sleep_title">Kafin barci</string>
+    <string name="notif_snooze">Tunatar da ni bayan minti 5</string>
     <string name="notifications_denied">An kashe sanarwa don wannan manhaja. Kunna su a Saituna don samun tunatarwa.</string>
     <string name="on_device_ai">AI a cikin na\'ura</string>
     <string name="onb_ask_body">Amsoshi suna ɗauko daga Alƙur\'ani tare da lambar aya, don ku iya duba tushen a kowane lokaci.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Tambaya</string>
     <string name="tab_mosques">Masallaci mafi kusa</string>
     <string name="tab_prayer">Sallah da Alƙibla</string>
+    <string name="tasbih_count_a11y">Ƙidaya %1$d. Danna don ƙara ɗaya.</string>
+    <string name="tasbih_reset">Sake saitawa</string>
     <string name="time_progress_a11y">%1$d%% na lokacin zuwa %2$s ya wuce</string>
     <string name="time_zone_label">Yankin lokaci: %1$s</string>
     <string name="todays_times">Lokutan sallah na yau</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">Hanyar alƙibla daga arewa a garinku. Taɓa don kamfas kai tsaye.</string>
     <string name="widget_kind_ring">Zoben sallah</string>
     <string name="widget_kind_ring_desc">Lokacin da ya rage zuwa sallah ta gaba a kan zobe, tare da dukan lokutan yau.</string>
+    <string name="widget_kind_tasbih">Ma\'aunin tasbihi</string>
+    <string name="widget_kind_tasbih_desc">Danna da\'irar don ƙirga zikirinka. Zobe yana cika duk 33.</string>
     <string name="widget_kind_today">Sallolin yau</string>
     <string name="widget_kind_today_desc">Salloli biyar na garinku, tare da kwanan wata da sallah ta gaba.</string>
     <string name="widget_next_description">Sallah ta gaba tare da ƙidaya</string>

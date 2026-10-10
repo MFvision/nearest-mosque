@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Звонит как будильник, пока вы его не выключите, даже в беззвучном режиме, если телефон позволяет.</string>
     <string name="alerts_friday">Напоминание о пятнице (джума)</string>
     <string name="alerts_friday_note">За 45 минут до зухра по пятницам.</string>
+    <string name="alerts_kahf">Пятница: сура «Аль-Кахф»</string>
+    <string name="alerts_kahf_note">В пятницу в 9:00 утра, с её первым аятом.</string>
     <string name="alerts_minutes">За %1$d мин</string>
     <string name="alerts_off">Выкл.</string>
     <string name="alerts_ramadan">Рамадан: сухур и ифтар</string>
     <string name="alerts_ramadan_note">Сухур за 45 минут до фаджра, ифтар в магриб. Только в Рамадан.</string>
     <string name="alerts_section">Напоминания и будильники</string>
+    <string name="alerts_sleep">Аят перед сном</string>
+    <string name="alerts_sleep_note">Аят аль-Курси или два последних аята суры «Аль-Бакара» в выбранное вами время.</string>
+    <string name="alerts_sleep_time">Время сна</string>
     <string name="allow_location">Разрешить геолокацию</string>
     <string name="answer_common_reviewed">Частый ответ, проверено: %1$s</string>
     <string name="answer_common_unreviewed">Частый ответ, ожидает проверки учёным</string>
@@ -244,6 +249,10 @@
     <string name="no_city_results">Город не найден. Попробуйте другое написание.</string>
     <string name="no_records_body">В загруженных данных (%1$s) нет мечетей в радиусе %2$s от этой точки. Данные могут быть неполными.</string>
     <string name="no_records_title">Поблизости мечети не найдены</string>
+    <string name="notif_kahf_title">Пятница: сура «Аль-Кахф»</string>
+    <string name="notif_prayed">Совершил намаз</string>
+    <string name="notif_sleep_title">Перед сном</string>
+    <string name="notif_snooze">Напомнить через 5 мин</string>
     <string name="notifications_denied">Уведомления для этого приложения выключены. Включите их в настройках, чтобы получать напоминания.</string>
     <string name="on_device_ai">ИИ на устройстве</string>
     <string name="onb_ask_body">Ответы цитируют Коран со ссылкой на аят, поэтому источник всегда можно проверить.</string>
@@ -390,6 +399,8 @@
     <string name="tab_ask_short">Спросить</string>
     <string name="tab_mosques">Ближайшая мечеть</string>
     <string name="tab_prayer">Намаз и кибла</string>
+    <string name="tasbih_count_a11y">Счёт %1$d. Нажмите, чтобы добавить один.</string>
+    <string name="tasbih_reset">Сбросить</string>
     <string name="time_progress_a11y">Прошло %1$d%% времени до %2$s</string>
     <string name="time_zone_label">Часовой пояс: %1$s</string>
     <string name="todays_times">Время намазов на сегодня</string>
@@ -428,6 +439,8 @@
     <string name="widget_kind_qibla_desc">Направление киблы от севера для вашего города. Нажмите, чтобы открыть компас.</string>
     <string name="widget_kind_ring">Кольцо молитв</string>
     <string name="widget_kind_ring_desc">Время до следующей молитвы на кольце и всё расписание на сегодня.</string>
+    <string name="widget_kind_tasbih">Счётчик тасбиха</string>
+    <string name="widget_kind_tasbih_desc">Нажимайте на круг, чтобы считать зикр. Кольцо заполняется каждые 33.</string>
     <string name="widget_kind_today">Намазы на сегодня</string>
     <string name="widget_kind_today_desc">Все пять намазов для вашего города, с датой и следующим намазом.</string>
     <string name="widget_next_description">Следующий намаз с обратным отсчётом</string>

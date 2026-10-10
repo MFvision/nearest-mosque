@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">រោទ៍ដូចម៉ោងរោទ៍ រហូតដល់អ្នកបញ្ឈប់វា សូម្បីតែនៅពេលបិទសំឡេង ប្រសិនបើទូរសព្ទអនុញ្ញាត។</string>
     <string name="alerts_friday">ការរំលឹកថ្ងៃសុក្រ (ជុមអាត់)</string>
     <string name="alerts_friday_note">45 នាទីមុនហ្សូហ៊ួរ នៅថ្ងៃសុក្រ។</string>
+    <string name="alerts_kahf">ថ្ងៃសុក្រ៖ ស៊ូរ៉ោះ អាល់កះហ្វ</string>
+    <string name="alerts_kahf_note">ថ្ងៃសុក្រ ម៉ោង ៩ ព្រឹក ជាមួយអាយ៉ាត់ទីមួយ។</string>
     <string name="alerts_minutes">មុន %1$d នាទី</string>
     <string name="alerts_off">បិទ</string>
     <string name="alerts_ramadan">រ៉ាម៉ាដន៖ សាហួរ និងអ៊ីហ្វតារ</string>
     <string name="alerts_ramadan_note">សាហួរ 45 នាទីមុនស៊ូពុហ៍ អ៊ីហ្វតារនៅម៉ាហ្គ្រិប។ តែក្នុងខែរ៉ាម៉ាដនប៉ុណ្ណោះ។</string>
     <string name="alerts_section">ការរំលឹក និងម៉ោងរោទ៍</string>
+    <string name="alerts_sleep">អាយ៉ាត់មុនពេលគេង</string>
+    <string name="alerts_sleep_note">អាយ៉ាតុលគួរស៊ី ឬអាយ៉ាត់ពីរចុងក្រោយនៃស៊ូរ៉ោះអាល់បាការ៉ោះ តាមម៉ោងដែលអ្នកជ្រើស។</string>
+    <string name="alerts_sleep_time">ម៉ោងគេង</string>
     <string name="allow_location">អនុញ្ញាតទីតាំង</string>
     <string name="answer_common_reviewed">ចម្លើយទូទៅ ពិនិត្យដោយ %1$s</string>
     <string name="answer_common_unreviewed">ចម្លើយទូទៅ កំពុងរង់ចាំអ្នកប្រាជ្ញពិនិត្យ</string>
@@ -241,6 +246,10 @@
     <string name="no_city_results">រកមិនឃើញទីក្រុងដែលត្រូវគ្នា។ សូមសាកល្បងប្រកបតាមរបៀបផ្សេង។</string>
     <string name="no_records_body">ទិន្នន័យដែលបានទាញយកសម្រាប់ %1$s គ្មានម៉ាស្ជិតក្នុងចម្ងាយ %2$s ពីចំណុចនេះទេ។ ទិន្នន័យអាចមិនពេញលេញ។</string>
     <string name="no_records_title">គ្មានម៉ាស្ជិតដែលបានកត់ត្រានៅក្បែរនេះទេ</string>
+    <string name="notif_kahf_title">ថ្ងៃសុក្រ៖ ស៊ូរ៉ោះ អាល់កះហ្វ</string>
+    <string name="notif_prayed">បានសឡាតហើយ</string>
+    <string name="notif_sleep_title">មុនពេលគេង</string>
+    <string name="notif_snooze">រំលឹកខ្ញុំក្នុង ៥ នាទី</string>
     <string name="notifications_denied">ការជូនដំណឹងសម្រាប់កម្មវិធីនេះត្រូវបានបិទ។ សូមបើកវានៅក្នុងការកំណត់ ដើម្បីទទួលបានការរំលឹក។</string>
     <string name="on_device_ai">AI លើឧបករណ៍</string>
     <string name="onb_ask_body">ចម្លើយដកស្រង់ពីគម្ពីរគូរ៉ាន ជាមួយលេខយោងអាយ៉ាត់ ដូច្នេះអ្នកអាចពិនិត្យប្រភពបានជានិច្ច។</string>
@@ -387,6 +396,8 @@
     <string name="tab_ask_short">សួរ</string>
     <string name="tab_mosques">ម៉ាស្ជិតជិតបំផុត</string>
     <string name="tab_prayer">សឡាត និងគិបឡាត់</string>
+    <string name="tasbih_count_a11y">ចំនួន %1$d។ ចុចដើម្បីបន្ថែមមួយ។</string>
+    <string name="tasbih_reset">កំណត់ឡើងវិញ</string>
     <string name="time_progress_a11y">ពេលវេលារហូតដល់ %2$s បានកន្លងផុតទៅ %1$d%%</string>
     <string name="time_zone_label">ល្វែងម៉ោង៖ %1$s</string>
     <string name="todays_times">ម៉ោងសឡាតថ្ងៃនេះ</string>
@@ -425,6 +436,8 @@
     <string name="widget_kind_qibla_desc">ទិសគិបឡាតពីទិសខាងជើងសម្រាប់ទីក្រុងរបស់អ្នក។ ចុចដើម្បីបើកត្រីវិស័យផ្ទាល់។</string>
     <string name="widget_kind_ring">រង្វង់សឡាត</string>
     <string name="widget_kind_ring_desc">ពេលនៅសល់ដល់សឡាតបន្ទាប់លើរង្វង់ ជាមួយម៉ោងទាំងអស់ថ្ងៃនេះ។</string>
+    <string name="widget_kind_tasbih">ឧបករណ៍រាប់តាសប៊ីហ៍</string>
+    <string name="widget_kind_tasbih_desc">ចុចរង្វង់ដើម្បីរាប់ការរំលឹក។ រង្វង់ពេញរៀងរាល់ ៣៣។</string>
     <string name="widget_kind_today">សឡាតថ្ងៃនេះ</string>
     <string name="widget_kind_today_desc">សឡាតទាំងប្រាំសម្រាប់ទីក្រុងរបស់អ្នក ព្រមទាំងកាលបរិច្ឆេទ និងសឡាតបន្ទាប់។</string>
     <string name="widget_next_description">សឡាតបន្ទាប់ ជាមួយការរាប់ថយក្រោយ</string>

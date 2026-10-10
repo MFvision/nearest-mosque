@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Ébresztőként szól, amíg le nem állítod, néma módban is, ha a telefon engedi.</string>
     <string name="alerts_friday">Pénteki (dzsuma) emlékeztető</string>
     <string name="alerts_friday_note">Pénteken 45 perccel a zuhr előtt.</string>
+    <string name="alerts_kahf">Péntek: al-Kahf szúra</string>
+    <string name="alerts_kahf_note">Pénteken reggel 9-kor, az első versével.</string>
     <string name="alerts_minutes">%1$d perccel előtte</string>
     <string name="alerts_off">Ki</string>
     <string name="alerts_ramadan">Ramadán: szahúr és iftár</string>
     <string name="alerts_ramadan_note">Szahúr 45 perccel a fadzsr előtt, iftár maghribkor. Csak ramadánban.</string>
     <string name="alerts_section">Emlékeztetők és ébresztők</string>
+    <string name="alerts_sleep">Egy vers alvás előtt</string>
+    <string name="alerts_sleep_note">Az Ájat al-Kurszi vagy az al-Baqara szúra utolsó két verse, az általad választott időben.</string>
+    <string name="alerts_sleep_time">Lefekvés ideje</string>
     <string name="allow_location">Hely engedélyezése</string>
     <string name="answer_common_reviewed">Gyakori válasz, ellenőrizte: %1$s</string>
     <string name="answer_common_unreviewed">Gyakori válasz, tudós általi ellenőrzésre vár</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">Nincs ilyen város. Próbáld más írásmóddal.</string>
     <string name="no_records_body">A(z) %1$s letöltött adataiban nincs mecset ettől a ponttól %2$s távolságon belül. Az adatok hiányosak lehetnek.</string>
     <string name="no_records_title">Nincs rögzített mecset a közelben</string>
+    <string name="notif_kahf_title">Péntek: al-Kahf szúra</string>
+    <string name="notif_prayed">Imádkoztam</string>
+    <string name="notif_sleep_title">Alvás előtt</string>
+    <string name="notif_snooze">Emlékeztess 5 perc múlva</string>
     <string name="notifications_denied">Az alkalmazás értesítései ki vannak kapcsolva. Kapcsold be őket a Beállításokban, hogy emlékeztetőket kapj.</string>
     <string name="on_device_ai">Eszközön futó MI</string>
     <string name="onb_ask_body">A válaszok a Koránból idéznek, versszámmal, így a forrást mindig ellenőrizheted.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Kérdezz</string>
     <string name="tab_mosques">Legközelebbi mecset</string>
     <string name="tab_prayer">Ima és kibla</string>
+    <string name="tasbih_count_a11y">Szám: %1$d. Koppints eggyel növeléshez.</string>
+    <string name="tasbih_reset">Nullázás</string>
     <string name="time_progress_a11y">%2$s: az addig tartó idő %1$d%%-a eltelt</string>
     <string name="time_zone_label">Időzóna: %1$s</string>
     <string name="todays_times">Mai imaidők</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">A kibla iránya északtól a városában. Koppintson az élő iránytűért.</string>
     <string name="widget_kind_ring">Imagyűrű</string>
     <string name="widget_kind_ring_desc">A következő imáig hátralévő idő egy gyűrűn, a mai összes időponttal.</string>
+    <string name="widget_kind_tasbih">Tasbih-számláló</string>
+    <string name="widget_kind_tasbih_desc">Koppints a körre a dzikr számolásához. A gyűrű minden 33-nál megtelik.</string>
     <string name="widget_kind_today">Mai imák</string>
     <string name="widget_kind_today_desc">Városod mind az öt imája, a dátummal és a következő imával.</string>
     <string name="widget_next_description">A következő ima visszaszámlálással</string>

@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">जब तक आप बंद न करें, अलार्म की तरह बजता है, और जहाँ फ़ोन अनुमति दे वहाँ साइलेंट पर भी।</string>
     <string name="alerts_friday">जुमे का रिमाइंडर</string>
     <string name="alerts_friday_note">जुमे के दिन ज़ुहर से 45 मिनट पहले।</string>
+    <string name="alerts_kahf">जुमा: सूरह अल-कहफ़</string>
+    <string name="alerts_kahf_note">जुमा को सुबह 9 बजे, उसकी पहली आयत के साथ।</string>
     <string name="alerts_minutes">%1$d मिनट पहले</string>
     <string name="alerts_off">बंद</string>
     <string name="alerts_ramadan">रमज़ान: सहरी और इफ़्तार</string>
     <string name="alerts_ramadan_note">सहरी फ़ज्र से 45 मिनट पहले, इफ़्तार मग़रिब पर। सिर्फ़ रमज़ान में।</string>
     <string name="alerts_section">रिमाइंडर और अलार्म</string>
+    <string name="alerts_sleep">सोने से पहले एक आयत</string>
+    <string name="alerts_sleep_note">आयतुल कुर्सी या सूरह अल-बक़रा की आख़िरी दो आयतें, आपके चुने समय पर।</string>
+    <string name="alerts_sleep_time">सोने का समय</string>
     <string name="allow_location">लोकेशन की अनुमति दें</string>
     <string name="answer_common_reviewed">आम जवाब, %1$s द्वारा समीक्षित</string>
     <string name="answer_common_unreviewed">आम जवाब, आलिम की समीक्षा बाक़ी</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">कोई मिलता-जुलता शहर नहीं मिला। दूसरी स्पेलिंग आज़माएँ।</string>
     <string name="no_records_body">%1$s के डाउनलोड किए गए डेटा में इस जगह से %2$s के अंदर कोई मस्जिद नहीं है। डेटा अधूरा हो सकता है।</string>
     <string name="no_records_title">आसपास कोई मस्जिद दर्ज नहीं</string>
+    <string name="notif_kahf_title">जुमा: सूरह अल-कहफ़</string>
+    <string name="notif_prayed">नमाज़ पढ़ ली</string>
+    <string name="notif_sleep_title">सोने से पहले</string>
+    <string name="notif_snooze">5 मिनट में याद दिलाएँ</string>
     <string name="notifications_denied">इस ऐप के नोटिफ़िकेशन बंद हैं। रिमाइंडर पाने के लिए सेटिंग्स में इन्हें चालू करें।</string>
     <string name="on_device_ai">ऑन-डिवाइस AI</string>
     <string name="onb_ask_body">जवाबों में क़ुरआन का उद्धरण आयत के हवाले के साथ होता है, ताकि आप हमेशा स्रोत जाँच सकें।</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">पूछें</string>
     <string name="tab_mosques">नज़दीकी मस्जिद</string>
     <string name="tab_prayer">नमाज़ और क़िबला</string>
+    <string name="tasbih_count_a11y">गिनती %1$d। एक जोड़ने के लिए दबाएँ।</string>
+    <string name="tasbih_reset">रीसेट</string>
     <string name="time_progress_a11y">%2$s तक के समय का %1$d%% बीत चुका है</string>
     <string name="time_zone_label">टाइम ज़ोन: %1$s</string>
     <string name="todays_times">आज की नमाज़ों के समय</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">आपके शहर के लिए उत्तर से क़िबला की दिशा। लाइव कंपास के लिए टैप करें।</string>
     <string name="widget_kind_ring">नमाज़ रिंग</string>
     <string name="widget_kind_ring_desc">अगली नमाज़ तक बाकी समय एक रिंग पर, आज के सभी समय के साथ।</string>
+    <string name="widget_kind_tasbih">तस्बीह काउंटर</string>
+    <string name="widget_kind_tasbih_desc">ज़िक्र गिनने के लिए गोला दबाएँ। हर 33 पर घेरा पूरा होता है।</string>
     <string name="widget_kind_today">आज की नमाज़ें</string>
     <string name="widget_kind_today_desc">आपके शहर की पाँचों नमाज़ें, तारीख़ और अगली नमाज़ के साथ।</string>
     <string name="widget_next_description">उलटी गिनती के साथ अगली नमाज़</string>

@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">നിങ്ങൾ നിർത്തുന്നതുവരെ അലാറം പോലെ മുഴങ്ങും, ഫോൺ അനുവദിക്കുമെങ്കിൽ സൈലന്റിലും.</string>
     <string name="alerts_friday">വെള്ളിയാഴ്ച (ജുമുഅ) ഓർമ്മപ്പെടുത്തൽ</string>
     <string name="alerts_friday_note">വെള്ളിയാഴ്ചകളിൽ ളുഹ്റിന് 45 മിനിറ്റ് മുമ്പ്.</string>
+    <string name="alerts_kahf">വെള്ളിയാഴ്ച: സൂറത്തുൽ കഹ്ഫ്</string>
+    <string name="alerts_kahf_note">വെള്ളിയാഴ്ച രാവിലെ 9 മണിക്ക്, അതിലെ ആദ്യ ആയത്തോടെ.</string>
     <string name="alerts_minutes">%1$d മിനിറ്റ് മുമ്പ്</string>
     <string name="alerts_off">ഓഫ്</string>
     <string name="alerts_ramadan">റമദാൻ: അത്താഴവും നോമ്പുതുറയും</string>
     <string name="alerts_ramadan_note">സുബ്ഹിന് 45 മിനിറ്റ് മുമ്പ് അത്താഴം, മഗ്‌രിബിന് നോമ്പുതുറ. റമദാനിൽ മാത്രം.</string>
     <string name="alerts_section">ഓർമ്മപ്പെടുത്തലുകളും അലാറങ്ങളും</string>
+    <string name="alerts_sleep">ഉറങ്ങുംമുമ്പ് ഒരു ആയത്ത്</string>
+    <string name="alerts_sleep_note">ആയത്തുൽ കുർസിയോ സൂറത്തുൽ ബഖറയിലെ അവസാന രണ്ട് ആയത്തുകളോ, നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന സമയത്ത്.</string>
+    <string name="alerts_sleep_time">ഉറക്കസമയം</string>
     <string name="allow_location">ലൊക്കേഷൻ അനുവദിക്കുക</string>
     <string name="answer_common_reviewed">സാധാരണ ഉത്തരം, %1$s പരിശോധിച്ചത്</string>
     <string name="answer_common_unreviewed">സാധാരണ ഉത്തരം, പണ്ഡിത പരിശോധന കാത്തിരിക്കുന്നു</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">യോജിക്കുന്ന നഗരമില്ല. മറ്റൊരു സ്പെല്ലിംഗ് ശ്രമിക്കുക.</string>
     <string name="no_records_body">%1$s-നായി ഡൗൺലോഡ് ചെയ്ത ഡാറ്റയിൽ ഈ സ്ഥലത്തുനിന്ന് %2$s-നുള്ളിൽ പള്ളികളൊന്നുമില്ല. ഡാറ്റ അപൂർണ്ണമായിരിക്കാം.</string>
     <string name="no_records_title">സമീപത്ത് രേഖപ്പെടുത്തിയ പള്ളികളില്ല</string>
+    <string name="notif_kahf_title">വെള്ളിയാഴ്ച: സൂറത്തുൽ കഹ്ഫ്</string>
+    <string name="notif_prayed">നമസ്കരിച്ചു</string>
+    <string name="notif_sleep_title">ഉറങ്ങുംമുമ്പ്</string>
+    <string name="notif_snooze">5 മിനിറ്റിൽ ഓർമിപ്പിക്കുക</string>
     <string name="notifications_denied">ഈ ആപ്പിന്റെ അറിയിപ്പുകൾ ഓഫാണ്. ഓർമ്മപ്പെടുത്തലുകൾ ലഭിക്കാൻ ക്രമീകരണങ്ങളിൽ അവ ഓണാക്കുക.</string>
     <string name="on_device_ai">ഉപകരണത്തിലെ AI</string>
     <string name="onb_ask_body">ഉത്തരങ്ങൾ ആയത്ത് നമ്പർ സഹിതം ഖുർആൻ ഉദ്ധരിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് എപ്പോഴും ഉറവിടം പരിശോധിക്കാം.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">ചോദിക്കൂ</string>
     <string name="tab_mosques">ഏറ്റവും അടുത്ത പള്ളി</string>
     <string name="tab_prayer">നമസ്കാരം &amp; ഖിബ്‌ല</string>
+    <string name="tasbih_count_a11y">എണ്ണം %1$d. ഒന്ന് കൂട്ടാൻ തട്ടുക.</string>
+    <string name="tasbih_reset">പുനഃസജ്ജമാക്കുക</string>
     <string name="time_progress_a11y">%2$s വരെയുള്ള സമയത്തിന്റെ %1$d%% കഴിഞ്ഞു</string>
     <string name="time_zone_label">സമയ മേഖല: %1$s</string>
     <string name="todays_times">ഇന്നത്തെ നമസ്കാര സമയങ്ങൾ</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">നിങ്ങളുടെ നഗരത്തിന് വടക്കുനിന്നുള്ള ഖിബ്‌ല ദിശ. ലൈവ് കോമ്പസിനായി ടാപ്പ് ചെയ്യുക.</string>
     <string name="widget_kind_ring">നമസ്കാര വളയം</string>
     <string name="widget_kind_ring_desc">അടുത്ത നമസ്കാരം വരെ ശേഷിക്കുന്ന സമയം ഒരു വളയത്തിൽ, ഇന്നത്തെ എല്ലാ സമയങ്ങളോടും കൂടി.</string>
+    <string name="widget_kind_tasbih">തസ്ബീഹ് കൗണ്ടർ</string>
+    <string name="widget_kind_tasbih_desc">ദിക്ർ എണ്ണാൻ വൃത്തത്തിൽ തട്ടുക. ഓരോ 33-നും വളയം നിറയും.</string>
     <string name="widget_kind_today">ഇന്നത്തെ നമസ്കാരങ്ങൾ</string>
     <string name="widget_kind_today_desc">നിങ്ങളുടെ നഗരത്തിലെ അഞ്ച് നമസ്കാരങ്ങളും, തീയതിയും അടുത്ത നമസ്കാരവും സഹിതം.</string>
     <string name="widget_next_description">കൗണ്ട്ഡൗണോടെ അടുത്ത നമസ്കാരം</string>

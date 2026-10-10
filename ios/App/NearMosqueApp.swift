@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import UserNotifications
 
 @main
 struct NearMosqueApp: App {
@@ -7,6 +8,11 @@ struct NearMosqueApp: App {
     /// "system", "light" or "dark" (Settings → Appearance).
     @AppStorage("appearance") private var appearance = "system"
     @Environment(\.scenePhase) private var phase
+
+    init() {
+        // Before launch finishes, so a tap that opened the app is handled too.
+        UNUserNotificationCenter.current().delegate = NotificationHandler.shared
+    }
 
     var body: some Scene {
         WindowGroup {

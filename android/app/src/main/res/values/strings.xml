@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Rings like an alarm until you stop it, even on silent where the phone allows.</string>
     <string name="alerts_friday">Friday (Jumu\'ah) reminder</string>
     <string name="alerts_friday_note">45 minutes before Dhuhr on Fridays.</string>
+    <string name="alerts_kahf">Friday: Surat Al-Kahf</string>
+    <string name="alerts_kahf_note">Friday at 9:00 in the morning, with its first verse.</string>
     <string name="alerts_minutes">%1$d min before</string>
     <string name="alerts_off">Off</string>
     <string name="alerts_ramadan">Ramadan: suhoor and iftar</string>
     <string name="alerts_ramadan_note">Suhoor 45 minutes before Fajr, iftar at Maghrib. Only during Ramadan.</string>
     <string name="alerts_section">Reminders and alarms</string>
+    <string name="alerts_sleep">A verse before sleep</string>
+    <string name="alerts_sleep_note">Ayat al-Kursi or the last two verses of Al-Baqarah, at the time you choose.</string>
+    <string name="alerts_sleep_time">Bedtime</string>
     <string name="allow_location">Allow location</string>
     <string name="answer_common_reviewed">Common answer, reviewed by %1$s</string>
     <string name="answer_common_unreviewed">Common answer, awaiting scholar review</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">No matching city. Try another spelling.</string>
     <string name="no_records_body">The downloaded data for %1$s has no mosques within %2$s of this point. The data may be incomplete.</string>
     <string name="no_records_title">No mosques recorded nearby</string>
+    <string name="notif_kahf_title">Jumu\'ah: Surat Al-Kahf</string>
+    <string name="notif_prayed">Prayed</string>
+    <string name="notif_sleep_title">Before you sleep</string>
+    <string name="notif_snooze">Remind me in 5 min</string>
     <string name="notifications_denied">Notifications are off for this app. Turn them on in Settings to get reminders.</string>
     <string name="on_device_ai">On-device AI</string>
     <string name="onb_ask_body">Answers quote the Qur’an with the verse reference, so you can always check the source.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Ask</string>
     <string name="tab_mosques">Nearest Mosque</string>
     <string name="tab_prayer">Prayer &amp; Qibla</string>
+    <string name="tasbih_count_a11y">Count %1$d. Tap to add one.</string>
+    <string name="tasbih_reset">Reset</string>
     <string name="time_progress_a11y">%1$d%% of the time until %2$s has passed</string>
     <string name="time_zone_label">Time zone: %1$s</string>
     <string name="todays_times">Today’s prayer times</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">The Qibla direction from north for your city. Tap for the live compass.</string>
     <string name="widget_kind_ring">Prayer ring</string>
     <string name="widget_kind_ring_desc">Time left to the next prayer on a ring, with all of today\'s times.</string>
+    <string name="widget_kind_tasbih">Tasbih counter</string>
+    <string name="widget_kind_tasbih_desc">Tap the circle to count your dhikr. The ring fills every 33.</string>
     <string name="widget_kind_today">Today\'s prayers</string>
     <string name="widget_kind_today_desc">All five prayers for your city, with the date and the next prayer.</string>
     <string name="widget_next_description">The next prayer with a countdown</string>

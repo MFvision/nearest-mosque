@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Tumutunog na parang alarm hanggang ihinto mo, kahit naka-silent kung pinapayagan ng telepono.</string>
     <string name="alerts_friday">Paalala sa Biyernes (Jumu\'ah)</string>
     <string name="alerts_friday_note">45 minuto bago ang Dhuhr tuwing Biyernes.</string>
+    <string name="alerts_kahf">Biyernes: Surah Al-Kahf</string>
+    <string name="alerts_kahf_note">Tuwing Biyernes, 9:00 ng umaga, kasama ang unang talata nito.</string>
     <string name="alerts_minutes">%1$d min bago</string>
     <string name="alerts_off">Naka-off</string>
     <string name="alerts_ramadan">Ramadan: suhoor at iftar</string>
     <string name="alerts_ramadan_note">Suhoor 45 minuto bago ang Fajr, iftar sa Maghrib. Tuwing Ramadan lang.</string>
     <string name="alerts_section">Mga paalala at alarm</string>
+    <string name="alerts_sleep">Isang talata bago matulog</string>
+    <string name="alerts_sleep_note">Ayat al-Kursi o ang huling dalawang talata ng Al-Baqarah, sa oras na pipiliin mo.</string>
+    <string name="alerts_sleep_time">Oras ng pagtulog</string>
     <string name="allow_location">Payagan ang lokasyon</string>
     <string name="answer_common_reviewed">Karaniwang sagot, sinuri ni %1$s</string>
     <string name="answer_common_unreviewed">Karaniwang sagot, hinihintay ang pagsusuri ng isang iskolar</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">Walang tugmang lungsod. Subukan ang ibang baybay.</string>
     <string name="no_records_body">Walang masjid sa na-download na datos para sa %1$s sa loob ng %2$s mula sa puntong ito. Maaaring kulang ang datos.</string>
     <string name="no_records_title">Walang naitalang masjid sa malapit</string>
+    <string name="notif_kahf_title">Biyernes: Surah Al-Kahf</string>
+    <string name="notif_prayed">Nakapagdasal na</string>
+    <string name="notif_sleep_title">Bago matulog</string>
+    <string name="notif_snooze">Paalalahanan ako sa loob ng 5 min</string>
     <string name="notifications_denied">Naka-off ang mga notification para sa app na ito. I-on ang mga ito sa Mga Setting para makatanggap ng mga paalala.</string>
     <string name="on_device_ai">AI sa device</string>
     <string name="onb_ask_body">Sinisipi ng mga sagot ang Qur\'an kasama ang sanggunian ng talata, kaya lagi mong masusuri ang pinagmulan.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Magtanong</string>
     <string name="tab_mosques">Pinakamalapit na masjid</string>
     <string name="tab_prayer">Dasal at Qibla</string>
+    <string name="tasbih_count_a11y">Bilang %1$d. I-tap para magdagdag ng isa.</string>
+    <string name="tasbih_reset">I-reset</string>
     <string name="time_progress_a11y">Lumipas na ang %1$d%% ng oras hanggang %2$s</string>
     <string name="time_zone_label">Time zone: %1$s</string>
     <string name="todays_times">Mga oras ng dasal ngayong araw</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">Ang direksyon ng qibla mula sa hilaga para sa iyong lungsod. I-tap para sa live na compass.</string>
     <string name="widget_kind_ring">Singsing ng salah</string>
     <string name="widget_kind_ring_desc">Ang natitirang oras bago ang susunod na salah sa isang singsing, kasama ang lahat ng oras ngayon.</string>
+    <string name="widget_kind_tasbih">Pambilang ng tasbih</string>
+    <string name="widget_kind_tasbih_desc">I-tap ang bilog para bilangin ang iyong dhikr. Napupuno ang singsing tuwing 33.</string>
     <string name="widget_kind_today">Mga dasal ngayon</string>
     <string name="widget_kind_today_desc">Lahat ng limang dasal para sa iyong lungsod, kasama ang petsa at ang susunod na dasal.</string>
     <string name="widget_next_description">Ang susunod na dasal na may countdown</string>

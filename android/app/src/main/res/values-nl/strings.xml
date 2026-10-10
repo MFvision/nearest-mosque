@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Gaat af als een wekker tot je hem stopt, ook op stil waar de telefoon dat toestaat.</string>
     <string name="alerts_friday">Herinnering voor vrijdag (Jumu\'ah)</string>
     <string name="alerts_friday_note">45 minuten voor Dhuhr op vrijdag.</string>
+    <string name="alerts_kahf">Vrijdag: soera Al-Kahf</string>
+    <string name="alerts_kahf_note">Op vrijdag om 9:00 uur, met het eerste vers.</string>
     <string name="alerts_minutes">%1$d min van tevoren</string>
     <string name="alerts_off">Uit</string>
     <string name="alerts_ramadan">Ramadan: suhoor en iftar</string>
     <string name="alerts_ramadan_note">Suhoor 45 minuten voor Fajr, iftar bij Maghrib. Alleen tijdens de ramadan.</string>
     <string name="alerts_section">Herinneringen en wekkers</string>
+    <string name="alerts_sleep">Een vers voor het slapen</string>
+    <string name="alerts_sleep_note">Ayat al-Koersi of de laatste twee verzen van Al-Baqara, op het tijdstip dat je kiest.</string>
+    <string name="alerts_sleep_time">Bedtijd</string>
     <string name="allow_location">Locatie toestaan</string>
     <string name="answer_common_reviewed">Standaardantwoord, gecontroleerd door %1$s</string>
     <string name="answer_common_unreviewed">Standaardantwoord, wacht op controle door een geleerde</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">Geen stad gevonden. Probeer een andere spelling.</string>
     <string name="no_records_body">De gedownloade gegevens voor %1$s bevatten geen moskeeën binnen %2$s van dit punt. De gegevens zijn mogelijk onvolledig.</string>
     <string name="no_records_title">Geen moskeeën in de buurt bekend</string>
+    <string name="notif_kahf_title">Vrijdag: soera Al-Kahf</string>
+    <string name="notif_prayed">Gebeden</string>
+    <string name="notif_sleep_title">Voor het slapen</string>
+    <string name="notif_snooze">Herinner me over 5 min</string>
     <string name="notifications_denied">Meldingen staan uit voor deze app. Zet ze aan in Instellingen om herinneringen te krijgen.</string>
     <string name="on_device_ai">AI op het apparaat</string>
     <string name="onb_ask_body">Antwoorden citeren de Koran met de versverwijzing, zodat je de bron altijd kunt controleren.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Vragen</string>
     <string name="tab_mosques">Dichtstbijzijnde moskee</string>
     <string name="tab_prayer">Gebed &amp; qibla</string>
+    <string name="tasbih_count_a11y">Telling %1$d. Tik om er één toe te voegen.</string>
+    <string name="tasbih_reset">Terugzetten</string>
     <string name="time_progress_a11y">%1$d%% van de tijd tot %2$s is verstreken</string>
     <string name="time_zone_label">Tijdzone: %1$s</string>
     <string name="todays_times">Gebedstijden van vandaag</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">De qibla-richting vanaf het noorden voor uw stad. Tik voor het live kompas.</string>
     <string name="widget_kind_ring">Gebedsring</string>
     <string name="widget_kind_ring_desc">De tijd tot het volgende gebed op een ring, met alle tijden van vandaag.</string>
+    <string name="widget_kind_tasbih">Tasbih-teller</string>
+    <string name="widget_kind_tasbih_desc">Tik op de cirkel om je dhikr te tellen. De ring vult zich elke 33.</string>
     <string name="widget_kind_today">Gebeden van vandaag</string>
     <string name="widget_kind_today_desc">Alle vijf gebeden voor je stad, met de datum en het volgende gebed.</string>
     <string name="widget_next_description">Het volgende gebed met een aftelling</string>

@@ -169,10 +169,12 @@ enum LockScreen {
     static let next: [WidgetFamily] = []
     static let countdown: [WidgetFamily] = []
     static let qibla: [WidgetFamily] = []
+    static let tasbih: [WidgetFamily] = []
     #else
     static let next: [WidgetFamily] = [.accessoryCircular, .accessoryRectangular, .accessoryInline]
     static let countdown: [WidgetFamily] = [.accessoryRectangular]
     static let qibla: [WidgetFamily] = [.accessoryCircular]
+    static let tasbih: [WidgetFamily] = [.accessoryCircular]
     #endif
 }
 
@@ -202,6 +204,7 @@ struct NearMosqueWidgets: WidgetBundle {
         AskWidget()
         QiblaWidget()
         ActionsWidget()
+        TasbihWidget()
         #if !targetEnvironment(macCatalyst)
         QiblaControl()
         PrayerLiveActivity()

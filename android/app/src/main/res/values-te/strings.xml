@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">మీరు ఆపే వరకు అలారంలా మోగుతుంది, ఫోన్ అనుమతిస్తే సైలెంట్‌లో ఉన్నా కూడా.</string>
     <string name="alerts_friday">శుక్రవారం (జుమా) రిమైండర్</string>
     <string name="alerts_friday_note">శుక్రవారాల్లో జుహర్‌కు 45 నిమిషాల ముందు.</string>
+    <string name="alerts_kahf">శుక్రవారం: సూరా అల్-కహఫ్</string>
+    <string name="alerts_kahf_note">శుక్రవారం ఉదయం 9 గంటలకు, దాని మొదటి ఆయత్‌తో.</string>
     <string name="alerts_minutes">%1$d ని. ముందు</string>
     <string name="alerts_off">ఆఫ్</string>
     <string name="alerts_ramadan">రంజాన్: సహరీ మరియు ఇఫ్తార్</string>
     <string name="alerts_ramadan_note">ఫజ్ర్‌కు 45 నిమిషాల ముందు సహరీ, మగ్రిబ్‌కు ఇఫ్తార్. రంజాన్‌లో మాత్రమే.</string>
     <string name="alerts_section">రిమైండర్‌లు మరియు అలారాలు</string>
+    <string name="alerts_sleep">నిద్రకు ముందు ఒక ఆయత్</string>
+    <string name="alerts_sleep_note">ఆయతుల్ కుర్సీ లేదా సూరా అల్-బఖరా చివరి రెండు ఆయతులు, మీరు ఎంచుకున్న సమయంలో.</string>
+    <string name="alerts_sleep_time">నిద్ర సమయం</string>
     <string name="allow_location">లొకేషన్ అనుమతించు</string>
     <string name="answer_common_reviewed">సాధారణ సమాధానం, %1$s సమీక్షించారు</string>
     <string name="answer_common_unreviewed">సాధారణ సమాధానం, పండితుల సమీక్ష కోసం వేచి ఉంది</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">సరిపోలే నగరం లేదు. వేరే స్పెల్లింగ్ ప్రయత్నించండి.</string>
     <string name="no_records_body">%1$s కోసం డౌన్‌లోడ్ చేసిన డేటాలో ఈ ప్రదేశం నుండి %2$s లోపు మసీదులు లేవు. డేటా అసంపూర్ణంగా ఉండవచ్చు.</string>
     <string name="no_records_title">దగ్గరలో నమోదైన మసీదులు లేవు</string>
+    <string name="notif_kahf_title">శుక్రవారం: సూరా అల్-కహఫ్</string>
+    <string name="notif_prayed">నమాజ్ చేశాను</string>
+    <string name="notif_sleep_title">నిద్రకు ముందు</string>
+    <string name="notif_snooze">5 నిమిషాల్లో గుర్తు చేయి</string>
     <string name="notifications_denied">ఈ యాప్‌కు నోటిఫికేషన్‌లు ఆఫ్‌లో ఉన్నాయి. రిమైండర్‌లు పొందడానికి సెట్టింగ్‌లలో వాటిని ఆన్ చేయండి.</string>
     <string name="on_device_ai">ఆన్-డివైస్ AI</string>
     <string name="onb_ask_body">సమాధానాలు ఖురాన్‌ను ఆయత్ సూచనతో ఉటంకిస్తాయి, కాబట్టి మీరు ఎప్పుడైనా మూలాన్ని సరిచూసుకోవచ్చు.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">అడగండి</string>
     <string name="tab_mosques">దగ్గరి మసీదు</string>
     <string name="tab_prayer">నమాజ్ &amp; ఖిబ్లా</string>
+    <string name="tasbih_count_a11y">లెక్క %1$d. ఒకటి జోడించడానికి నొక్కండి.</string>
+    <string name="tasbih_reset">రీసెట్</string>
     <string name="time_progress_a11y">%2$s వరకు ఉన్న సమయంలో %1$d%% గడిచింది</string>
     <string name="time_zone_label">టైమ్ జోన్: %1$s</string>
     <string name="todays_times">ఈరోజు నమాజ్ సమయాలు</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">మీ నగరానికి ఉత్తరం నుండి ఖిబ్లా దిశ. లైవ్ కంపాస్ కోసం నొక్కండి.</string>
     <string name="widget_kind_ring">నమాజ్ రింగ్</string>
     <string name="widget_kind_ring_desc">తదుపరి నమాజ్‌కు మిగిలిన సమయం ఒక రింగ్‌పై, ఈరోజు అన్ని సమయాలతో.</string>
+    <string name="widget_kind_tasbih">తస్బీహ్ లెక్కింపు</string>
+    <string name="widget_kind_tasbih_desc">జిక్ర్ లెక్కించడానికి వృత్తాన్ని నొక్కండి. ప్రతి 33కి వలయం నిండుతుంది.</string>
     <string name="widget_kind_today">ఈరోజు నమాజ్‌లు</string>
     <string name="widget_kind_today_desc">మీ నగరానికి ఐదు నమాజ్‌లు, తేదీ మరియు తదుపరి నమాజ్‌తో.</string>
     <string name="widget_next_description">కౌంట్‌డౌన్‌తో తదుపరి నమాజ్</string>

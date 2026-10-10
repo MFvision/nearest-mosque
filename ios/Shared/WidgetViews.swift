@@ -29,7 +29,7 @@ enum WidgetLook: String, AppEnum {
 /// Which widget: the next prayer, the countdown bar, the ring, today's five prayers, the nearest mosques, Ask,
 /// the Qibla, or the three quick actions.
 enum PrayerWidgetKind {
-    case next, countdown, ring, today, mosque, ask, qibla, actions
+    case next, countdown, ring, today, mosque, ask, qibla, actions, tasbih
 
     /// Where a tap on the widget (outside its own links) goes.
     func url(_ state: SharedState?) -> URL? {
@@ -168,7 +168,7 @@ struct PrayerWidgetView: View {
                 case .next: nextView(s, next, p)
                 case .countdown: countdownView(s, next, p)
                 case .ring: ringView(s, next, p)
-                case .today, .mosque, .ask, .qibla, .actions: todayView(s, next, p)
+                case .today, .mosque, .ask, .qibla, .actions, .tasbih: todayView(s, next, p)
                 }
             } else {
                 VStack(spacing: 6) {

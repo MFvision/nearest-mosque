@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਬੰਦ ਨਾ ਕਰੋ ਅਲਾਰਮ ਵਾਂਗ ਵੱਜਦਾ ਹੈ, ਜਿੱਥੇ ਫ਼ੋਨ ਇਜਾਜ਼ਤ ਦੇਵੇ ਉੱਥੇ ਸਾਈਲੈਂਟ ’ਤੇ ਵੀ।</string>
     <string name="alerts_friday">ਜੁੰਮੇ ਦੀ ਯਾਦ-ਦਹਾਨੀ</string>
     <string name="alerts_friday_note">ਜੁੰਮੇ ਵਾਲੇ ਦਿਨ ਜ਼ੁਹਰ ਤੋਂ 45 ਮਿੰਟ ਪਹਿਲਾਂ।</string>
+    <string name="alerts_kahf">ਜੁਮਾ: ਸੂਰਾ ਅਲ-ਕਹਫ਼</string>
+    <string name="alerts_kahf_note">ਜੁਮੇ ਨੂੰ ਸਵੇਰੇ 9 ਵਜੇ, ਇਸਦੀ ਪਹਿਲੀ ਆਇਤ ਨਾਲ।</string>
     <string name="alerts_minutes">%1$d ਮਿੰਟ ਪਹਿਲਾਂ</string>
     <string name="alerts_off">ਬੰਦ</string>
     <string name="alerts_ramadan">ਰਮਜ਼ਾਨ: ਸਹਿਰੀ ਅਤੇ ਇਫ਼ਤਾਰ</string>
     <string name="alerts_ramadan_note">ਸਹਿਰੀ ਫ਼ਜਰ ਤੋਂ 45 ਮਿੰਟ ਪਹਿਲਾਂ, ਇਫ਼ਤਾਰ ਮਗ਼ਰਿਬ ’ਤੇ। ਸਿਰਫ਼ ਰਮਜ਼ਾਨ ਦੌਰਾਨ।</string>
     <string name="alerts_section">ਯਾਦ-ਦਹਾਨੀਆਂ ਅਤੇ ਅਲਾਰਮ</string>
+    <string name="alerts_sleep">ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਆਇਤ</string>
+    <string name="alerts_sleep_note">ਆਇਤੁਲ ਕੁਰਸੀ ਜਾਂ ਸੂਰਾ ਅਲ-ਬਕ਼ਰਾ ਦੀਆਂ ਆਖ਼ਰੀ ਦੋ ਆਇਤਾਂ, ਤੁਹਾਡੇ ਚੁਣੇ ਸਮੇਂ ’ਤੇ।</string>
+    <string name="alerts_sleep_time">ਸੌਣ ਦਾ ਸਮਾਂ</string>
     <string name="allow_location">ਟਿਕਾਣੇ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
     <string name="answer_common_reviewed">ਆਮ ਜਵਾਬ, %1$s ਵੱਲੋਂ ਨਜ਼ਰਸਾਨੀ ਕੀਤੀ ਗਈ</string>
     <string name="answer_common_unreviewed">ਆਮ ਜਵਾਬ, ਆਲਿਮ ਦੀ ਨਜ਼ਰਸਾਨੀ ਬਾਕੀ</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">ਕੋਈ ਮਿਲਦਾ ਸ਼ਹਿਰ ਨਹੀਂ। ਕੋਈ ਹੋਰ ਸ਼ਬਦ-ਜੋੜ ਅਜ਼ਮਾਓ।</string>
     <string name="no_records_body">%1$s ਦੇ ਡਾਊਨਲੋਡ ਕੀਤੇ ਡਾਟਾ ਵਿੱਚ ਇਸ ਥਾਂ ਤੋਂ %2$s ਦੇ ਅੰਦਰ ਕੋਈ ਮਸਜਿਦ ਨਹੀਂ। ਡਾਟਾ ਅਧੂਰਾ ਹੋ ਸਕਦਾ ਹੈ।</string>
     <string name="no_records_title">ਨੇੜੇ ਕੋਈ ਮਸਜਿਦ ਦਰਜ ਨਹੀਂ</string>
+    <string name="notif_kahf_title">ਜੁਮਾ: ਸੂਰਾ ਅਲ-ਕਹਫ਼</string>
+    <string name="notif_prayed">ਨਮਾਜ਼ ਪੜ੍ਹ ਲਈ</string>
+    <string name="notif_sleep_title">ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ</string>
+    <string name="notif_snooze">5 ਮਿੰਟ ਬਾਅਦ ਯਾਦ ਕਰਾਓ</string>
     <string name="notifications_denied">ਇਸ ਐਪ ਲਈ ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ। ਯਾਦ-ਦਹਾਨੀਆਂ ਲਈ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਨ੍ਹਾਂ ਨੂੰ ਚਾਲੂ ਕਰੋ।</string>
     <string name="on_device_ai">ਫ਼ੋਨ ’ਤੇ AI</string>
     <string name="onb_ask_body">ਜਵਾਬ ਆਇਤ ਦੇ ਹਵਾਲੇ ਸਮੇਤ ਕੁਰਆਨ ਦਾ ਹਵਾਲਾ ਦਿੰਦੇ ਹਨ, ਤਾਂ ਜੋ ਤੁਸੀਂ ਹਮੇਸ਼ਾ ਸਰੋਤ ਜਾਂਚ ਸਕੋ।</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">ਪੁੱਛੋ</string>
     <string name="tab_mosques">ਸਭ ਤੋਂ ਨੇੜਲੀ ਮਸਜਿਦ</string>
     <string name="tab_prayer">ਨਮਾਜ਼ ਅਤੇ ਕਿਬਲਾ</string>
+    <string name="tasbih_count_a11y">ਗਿਣਤੀ %1$d। ਇੱਕ ਵਧਾਉਣ ਲਈ ਦਬਾਓ।</string>
+    <string name="tasbih_reset">ਰੀਸੈੱਟ</string>
     <string name="time_progress_a11y">%2$s ਤੱਕ ਦੇ ਵਕਤ ਦਾ %1$d%% ਬੀਤ ਗਿਆ ਹੈ</string>
     <string name="time_zone_label">ਸਮਾਂ ਖੇਤਰ: %1$s</string>
     <string name="todays_times">ਅੱਜ ਦੇ ਨਮਾਜ਼ ਦੇ ਵਕਤ</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਲਈ ਉੱਤਰ ਤੋਂ ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ। ਲਾਈਵ ਕੰਪਾਸ ਲਈ ਟੈਪ ਕਰੋ।</string>
     <string name="widget_kind_ring">ਨਮਾਜ਼ ਰਿੰਗ</string>
     <string name="widget_kind_ring_desc">ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਬਾਕੀ ਸਮਾਂ ਇੱਕ ਰਿੰਗ ’ਤੇ, ਅੱਜ ਦੇ ਸਾਰੇ ਸਮਿਆਂ ਨਾਲ।</string>
+    <string name="widget_kind_tasbih">ਤਸਬੀਹ ਗਿਣਤੀ</string>
+    <string name="widget_kind_tasbih_desc">ਜ਼ਿਕਰ ਗਿਣਨ ਲਈ ਚੱਕਰ ਦਬਾਓ। ਹਰ 33 ’ਤੇ ਘੇਰਾ ਪੂਰਾ ਹੁੰਦਾ ਹੈ।</string>
     <string name="widget_kind_today">ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ</string>
     <string name="widget_kind_today_desc">ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੀਆਂ ਪੰਜੇ ਨਮਾਜ਼ਾਂ, ਤਾਰੀਖ਼ ਅਤੇ ਅਗਲੀ ਨਮਾਜ਼ ਸਮੇਤ।</string>
     <string name="widget_next_description">ਉਲਟੀ ਗਿਣਤੀ ਨਾਲ ਅਗਲੀ ਨਮਾਜ਼</string>

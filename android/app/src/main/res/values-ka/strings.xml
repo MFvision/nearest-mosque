@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">რეკავს მაღვიძარასავით, სანამ არ გამორთავთ, ჩუმ რეჟიმშიც, თუ ტელეფონი ამის საშუალებას იძლევა.</string>
     <string name="alerts_friday">პარასკევის (ჯუმა) შეხსენება</string>
     <string name="alerts_friday_note">ზუჰრამდე 45 წუთით ადრე, პარასკევობით.</string>
+    <string name="alerts_kahf">პარასკევი: სურა ალ-ქაჰფ</string>
+    <string name="alerts_kahf_note">პარასკევს დილის 9:00-ზე, მისი პირველი აიათით.</string>
     <string name="alerts_minutes">%1$d წთ-ით ადრე</string>
     <string name="alerts_off">გამორთული</string>
     <string name="alerts_ramadan">რამადანი: სუჰური და იფთარი</string>
     <string name="alerts_ramadan_note">სუჰური ფაჯრამდე 45 წუთით ადრე, იფთარი მაღრიბზე. მხოლოდ რამადანის დროს.</string>
     <string name="alerts_section">შეხსენებები და მაღვიძარები</string>
+    <string name="alerts_sleep">აიათი ძილის წინ</string>
+    <string name="alerts_sleep_note">აიათ ალ-ქურსი ან სურა ალ-ბაყარას ბოლო ორი აიათი, თქვენ მიერ არჩეულ დროს.</string>
+    <string name="alerts_sleep_time">ძილის დრო</string>
     <string name="allow_location">მდებარეობის დაშვება</string>
     <string name="answer_common_reviewed">ხშირი პასუხი, შეამოწმა: %1$s</string>
     <string name="answer_common_unreviewed">ხშირი პასუხი, ელოდება სწავლულის შემოწმებას</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">შესაბამისი ქალაქი ვერ მოიძებნა. სცადეთ სხვა მართლწერა.</string>
     <string name="no_records_body">%1$s-ის ჩამოტვირთულ მონაცემებში ამ წერტილიდან %2$s-ის რადიუსში მეჩეთები არ არის. მონაცემები შეიძლება არასრული იყოს.</string>
     <string name="no_records_title">ახლოს მეჩეთები არ არის აღრიცხული</string>
+    <string name="notif_kahf_title">პარასკევი: სურა ალ-ქაჰფ</string>
+    <string name="notif_prayed">ვილოცე</string>
+    <string name="notif_sleep_title">ძილის წინ</string>
+    <string name="notif_snooze">შემახსენე 5 წუთში</string>
     <string name="notifications_denied">ამ აპის შეტყობინებები გამორთულია. შეხსენებების მისაღებად ჩართეთ ისინი პარამეტრებში.</string>
     <string name="on_device_ai">მოწყობილობაზე AI</string>
     <string name="onb_ask_body">პასუხები ყურანს ციტირებს აიათის მითითებით, ასე რომ წყაროს ყოველთვის შეამოწმებთ.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">კითხვა</string>
     <string name="tab_mosques">უახლოესი მეჩეთი</string>
     <string name="tab_prayer">ლოცვა და ყიბლა</string>
+    <string name="tasbih_count_a11y">რაოდენობა %1$d. შეეხეთ ერთის დასამატებლად.</string>
+    <string name="tasbih_reset">განულება</string>
     <string name="time_progress_a11y">%2$s-მდე დროის %1$d%% გავიდა</string>
     <string name="time_zone_label">სასაათო სარტყელი: %1$s</string>
     <string name="todays_times">დღევანდელი ლოცვის დროები</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">ყიბლის მიმართულება ჩრდილოეთიდან თქვენი ქალაქისთვის. შეეხეთ ცოცხალი კომპასისთვის.</string>
     <string name="widget_kind_ring">ლოცვის რგოლი</string>
     <string name="widget_kind_ring_desc">შემდეგ ლოცვამდე დარჩენილი დრო რგოლზე, დღევანდელი ყველა დროით.</string>
+    <string name="widget_kind_tasbih">თასბიჰის მთვლელი</string>
+    <string name="widget_kind_tasbih_desc">შეეხეთ წრეს ზიქრის დასათვლელად. რგოლი ყოველ 33-ზე ივსება.</string>
     <string name="widget_kind_today">დღევანდელი ლოცვები</string>
     <string name="widget_kind_today_desc">თქვენი ქალაქის ხუთივე ლოცვა, თარიღით და შემდეგი ლოცვით.</string>
     <string name="widget_next_description">შემდეგი ლოცვა უკუთვლით</string>

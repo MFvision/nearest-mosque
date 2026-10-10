@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Berbunyi seperti alarm sampai Anda hentikan, bahkan saat senyap jika ponsel mengizinkan.</string>
     <string name="alerts_friday">Pengingat salat Jumat</string>
     <string name="alerts_friday_note">45 menit sebelum Zuhur pada hari Jumat.</string>
+    <string name="alerts_kahf">Jumat: Surah Al-Kahf</string>
+    <string name="alerts_kahf_note">Jumat pukul 09.00 pagi, dengan ayat pertamanya.</string>
     <string name="alerts_minutes">%1$d menit sebelum</string>
     <string name="alerts_off">Mati</string>
     <string name="alerts_ramadan">Ramadan: sahur dan iftar</string>
     <string name="alerts_ramadan_note">Sahur 45 menit sebelum Subuh, iftar saat Magrib. Hanya selama Ramadan.</string>
     <string name="alerts_section">Pengingat dan alarm</string>
+    <string name="alerts_sleep">Ayat sebelum tidur</string>
+    <string name="alerts_sleep_note">Ayat Kursi atau dua ayat terakhir Al-Baqarah, pada waktu yang Anda pilih.</string>
+    <string name="alerts_sleep_time">Waktu tidur</string>
     <string name="allow_location">Izinkan lokasi</string>
     <string name="answer_common_reviewed">Jawaban umum, ditinjau oleh %1$s</string>
     <string name="answer_common_unreviewed">Jawaban umum, menunggu tinjauan ulama</string>
@@ -241,6 +246,10 @@
     <string name="no_city_results">Kota tidak ditemukan. Coba ejaan lain.</string>
     <string name="no_records_body">Data %1$s yang diunduh tidak memuat masjid dalam %2$s dari titik ini. Data mungkin belum lengkap.</string>
     <string name="no_records_title">Tidak ada masjid tercatat di dekat sini</string>
+    <string name="notif_kahf_title">Jumat: Surah Al-Kahf</string>
+    <string name="notif_prayed">Sudah salat</string>
+    <string name="notif_sleep_title">Sebelum tidur</string>
+    <string name="notif_snooze">Ingatkan 5 menit lagi</string>
     <string name="notifications_denied">Notifikasi aplikasi ini mati. Nyalakan di Pengaturan untuk menerima pengingat.</string>
     <string name="on_device_ai">AI di perangkat</string>
     <string name="onb_ask_body">Jawaban mengutip Al-Qur’an beserta nomor ayatnya, sehingga Anda selalu bisa memeriksa sumbernya.</string>
@@ -387,6 +396,8 @@
     <string name="tab_ask_short">Tanya</string>
     <string name="tab_mosques">Masjid Terdekat</string>
     <string name="tab_prayer">Salat &amp; Kiblat</string>
+    <string name="tasbih_count_a11y">Hitungan %1$d. Ketuk untuk menambah satu.</string>
+    <string name="tasbih_reset">Atur ulang</string>
     <string name="time_progress_a11y">%1$d%% waktu menuju %2$s telah berlalu</string>
     <string name="time_zone_label">Zona waktu: %1$s</string>
     <string name="todays_times">Jadwal salat hari ini</string>
@@ -425,6 +436,8 @@
     <string name="widget_kind_qibla_desc">Arah kiblat dari utara untuk kota Anda. Ketuk untuk kompas langsung.</string>
     <string name="widget_kind_ring">Lingkar salat</string>
     <string name="widget_kind_ring_desc">Sisa waktu menuju salat berikutnya dalam lingkaran, dengan semua jadwal hari ini.</string>
+    <string name="widget_kind_tasbih">Penghitung tasbih</string>
+    <string name="widget_kind_tasbih_desc">Ketuk lingkaran untuk menghitung zikir. Cincin penuh setiap 33.</string>
     <string name="widget_kind_today">Salat hari ini</string>
     <string name="widget_kind_today_desc">Lima waktu salat untuk kota Anda, dengan tanggal dan salat berikutnya.</string>
     <string name="widget_next_description">Salat berikutnya dengan hitung mundur</string>

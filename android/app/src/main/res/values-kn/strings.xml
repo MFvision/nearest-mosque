@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">ನೀವು ನಿಲ್ಲಿಸುವವರೆಗೆ ಅಲಾರಂನಂತೆ ರಿಂಗ್ ಆಗುತ್ತದೆ, ಫೋನ್ ಅನುಮತಿಸಿದರೆ ಸೈಲೆಂಟ್‌ನಲ್ಲಿದ್ದರೂ ಸಹ.</string>
     <string name="alerts_friday">ಶುಕ್ರವಾರ (ಜುಮಾ) ಜ್ಞಾಪನೆ</string>
     <string name="alerts_friday_note">ಶುಕ್ರವಾರಗಳಂದು ಝುಹರ್‌ಗೆ 45 ನಿಮಿಷ ಮೊದಲು.</string>
+    <string name="alerts_kahf">ಶುಕ್ರವಾರ: ಸೂರಾ ಅಲ್-ಕಹ್ಫ್</string>
+    <string name="alerts_kahf_note">ಶುಕ್ರವಾರ ಬೆಳಗ್ಗೆ 9 ಗಂಟೆಗೆ, ಅದರ ಮೊದಲ ಆಯತ್‌ನೊಂದಿಗೆ.</string>
     <string name="alerts_minutes">%1$d ನಿಮಿಷ ಮೊದಲು</string>
     <string name="alerts_off">ಆಫ್</string>
     <string name="alerts_ramadan">ರಮಝಾನ್: ಸಹರಿ ಮತ್ತು ಇಫ್ತಾರ್</string>
     <string name="alerts_ramadan_note">ಫಜ್ರ್‌ಗೆ 45 ನಿಮಿಷ ಮೊದಲು ಸಹರಿ, ಮಗ್ರಿಬ್‌ಗೆ ಇಫ್ತಾರ್. ರಮಝಾನ್‌ನಲ್ಲಿ ಮಾತ್ರ.</string>
     <string name="alerts_section">ಜ್ಞಾಪನೆಗಳು ಮತ್ತು ಅಲಾರಂಗಳು</string>
+    <string name="alerts_sleep">ಮಲಗುವ ಮುನ್ನ ಒಂದು ಆಯತ್</string>
+    <string name="alerts_sleep_note">ಆಯತುಲ್ ಕುರ್ಸಿ ಅಥವಾ ಸೂರಾ ಅಲ್-ಬಕರಾದ ಕೊನೆಯ ಎರಡು ಆಯತ್‌ಗಳು, ನೀವು ಆಯ್ಕೆಮಾಡಿದ ಸಮಯದಲ್ಲಿ.</string>
+    <string name="alerts_sleep_time">ಮಲಗುವ ಸಮಯ</string>
     <string name="allow_location">ಸ್ಥಳವನ್ನು ಅನುಮತಿಸಿ</string>
     <string name="answer_common_reviewed">ಸಾಮಾನ್ಯ ಉತ್ತರ, %1$s ಪರಿಶೀಲಿಸಿದ್ದಾರೆ</string>
     <string name="answer_common_unreviewed">ಸಾಮಾನ್ಯ ಉತ್ತರ, ವಿದ್ವಾಂಸರ ಪರಿಶೀಲನೆಗಾಗಿ ಕಾಯುತ್ತಿದೆ</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">ಹೊಂದುವ ನಗರವಿಲ್ಲ. ಬೇರೆ ಕಾಗುಣಿತ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="no_records_body">%1$s ಗಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಡೇಟಾದಲ್ಲಿ ಈ ಸ್ಥಳದಿಂದ %2$s ಒಳಗೆ ಯಾವುದೇ ಮಸೀದಿಗಳಿಲ್ಲ. ಡೇಟಾ ಅಪೂರ್ಣವಾಗಿರಬಹುದು.</string>
     <string name="no_records_title">ಹತ್ತಿರದಲ್ಲಿ ದಾಖಲಾದ ಮಸೀದಿಗಳಿಲ್ಲ</string>
+    <string name="notif_kahf_title">ಶುಕ್ರವಾರ: ಸೂರಾ ಅಲ್-ಕಹ್ಫ್</string>
+    <string name="notif_prayed">ನಮಾಜ್ ಮಾಡಿದೆ</string>
+    <string name="notif_sleep_title">ಮಲಗುವ ಮುನ್ನ</string>
+    <string name="notif_snooze">5 ನಿಮಿಷದಲ್ಲಿ ನೆನಪಿಸು</string>
     <string name="notifications_denied">ಈ ಆ್ಯಪ್‌ಗೆ ಅಧಿಸೂಚನೆಗಳು ಆಫ್ ಆಗಿವೆ. ಜ್ಞಾಪನೆಗಳನ್ನು ಪಡೆಯಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅವುಗಳನ್ನು ಆನ್ ಮಾಡಿ.</string>
     <string name="on_device_ai">ಸಾಧನದಲ್ಲೇ AI</string>
     <string name="onb_ask_body">ಉತ್ತರಗಳು ಕುರ್‌ಆನ್ ಅನ್ನು ಆಯತ್ ಉಲ್ಲೇಖದೊಂದಿಗೆ ಉದ್ಧರಿಸುತ್ತವೆ, ಆದ್ದರಿಂದ ನೀವು ಯಾವಾಗಲೂ ಮೂಲವನ್ನು ಪರಿಶೀಲಿಸಬಹುದು.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">ಕೇಳಿ</string>
     <string name="tab_mosques">ಅತಿ ಹತ್ತಿರದ ಮಸೀದಿ</string>
     <string name="tab_prayer">ನಮಾಜ್ &amp; ಕಿಬ್ಲಾ</string>
+    <string name="tasbih_count_a11y">ಎಣಿಕೆ %1$d. ಒಂದನ್ನು ಸೇರಿಸಲು ಒತ್ತಿ.</string>
+    <string name="tasbih_reset">ಮರುಹೊಂದಿಸಿ</string>
     <string name="time_progress_a11y">%2$s ವರೆಗಿನ ಸಮಯದಲ್ಲಿ %1$d%% ಕಳೆದಿದೆ</string>
     <string name="time_zone_label">ಸಮಯ ವಲಯ: %1$s</string>
     <string name="todays_times">ಇಂದಿನ ನಮಾಜ್ ಸಮಯಗಳು</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">ನಿಮ್ಮ ನಗರಕ್ಕೆ ಉತ್ತರದಿಂದ ಕಿಬ್ಲಾ ದಿಕ್ಕು. ಲೈವ್ ದಿಕ್ಸೂಚಿಗಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="widget_kind_ring">ನಮಾಜ್ ರಿಂಗ್</string>
     <string name="widget_kind_ring_desc">ಮುಂದಿನ ನಮಾಜ್‌ವರೆಗೆ ಉಳಿದ ಸಮಯ ಒಂದು ರಿಂಗ್‌ನಲ್ಲಿ, ಇಂದಿನ ಎಲ್ಲ ಸಮಯಗಳೊಂದಿಗೆ.</string>
+    <string name="widget_kind_tasbih">ತಸ್ಬೀಹ್ ಎಣಿಕೆ</string>
+    <string name="widget_kind_tasbih_desc">ಜಿಕ್ರ್ ಎಣಿಸಲು ವೃತ್ತವನ್ನು ಒತ್ತಿ. ಪ್ರತಿ 33ಕ್ಕೆ ಉಂಗುರ ತುಂಬುತ್ತದೆ.</string>
     <string name="widget_kind_today">ಇಂದಿನ ನಮಾಜ್‌ಗಳು</string>
     <string name="widget_kind_today_desc">ನಿಮ್ಮ ನಗರದ ಎಲ್ಲಾ ಐದು ನಮಾಜ್‌ಗಳು, ದಿನಾಂಕ ಮತ್ತು ಮುಂದಿನ ನಮಾಜ್‌ನೊಂದಿಗೆ.</string>
     <string name="widget_next_description">ಕ್ಷಣಗಣನೆಯೊಂದಿಗೆ ಮುಂದಿನ ನಮಾಜ್</string>

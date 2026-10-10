@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">像闹钟一样响铃，直到你关闭它；在手机允许的情况下，静音时也会响。</string>
     <string name="alerts_friday">主麻日提醒</string>
     <string name="alerts_friday_note">每周五晌礼前 45 分钟。</string>
+    <string name="alerts_kahf">周五：山洞章</string>
+    <string name="alerts_kahf_note">每周五上午 9:00，附第一节经文。</string>
     <string name="alerts_minutes">提前 %1$d 分钟</string>
     <string name="alerts_off">关闭</string>
     <string name="alerts_ramadan">斋月：封斋饭与开斋</string>
     <string name="alerts_ramadan_note">封斋饭在晨礼前 45 分钟，开斋在昏礼时。仅限斋月期间。</string>
     <string name="alerts_section">提醒与闹钟</string>
+    <string name="alerts_sleep">睡前一节经文</string>
+    <string name="alerts_sleep_note">在你选择的时间推送宝座经，或黄牛章最后两节。</string>
+    <string name="alerts_sleep_time">就寝时间</string>
     <string name="allow_location">允许使用位置</string>
     <string name="answer_common_reviewed">常见回答，已由 %1$s 审阅</string>
     <string name="answer_common_unreviewed">常见回答，等待学者审阅</string>
@@ -241,6 +246,10 @@
     <string name="no_city_results">没有匹配的城市，请换一种拼写试试。</string>
     <string name="no_records_body">%1$s 的已下载数据中，此地点 %2$s 范围内没有清真寺。数据可能不完整。</string>
     <string name="no_records_title">附近没有记录的清真寺</string>
+    <string name="notif_kahf_title">主麻日：山洞章</string>
+    <string name="notif_prayed">已礼拜</string>
+    <string name="notif_sleep_title">睡前</string>
+    <string name="notif_snooze">5 分钟后提醒我</string>
     <string name="notifications_denied">此应用的通知已关闭。请在设置中开启以接收提醒。</string>
     <string name="on_device_ai">设备端 AI</string>
     <string name="onb_ask_body">回答会引用古兰经并注明经文出处，你随时可以核对来源。</string>
@@ -387,6 +396,8 @@
     <string name="tab_ask_short">提问</string>
     <string name="tab_mosques">最近清真寺</string>
     <string name="tab_prayer">礼拜与朝向</string>
+    <string name="tasbih_count_a11y">计数 %1$d。点按加一。</string>
+    <string name="tasbih_reset">清零</string>
     <string name="time_progress_a11y">距 %2$s 的时间已过去 %1$d%%</string>
     <string name="time_zone_label">时区：%1$s</string>
     <string name="todays_times">今日礼拜时间</string>
@@ -425,6 +436,8 @@
     <string name="widget_kind_qibla_desc">您所在城市从正北算起的朝向。轻点打开实时指南针。</string>
     <string name="widget_kind_ring">礼拜圆环</string>
     <string name="widget_kind_ring_desc">圆环显示距下次礼拜的剩余时间，并列出今天的全部时间。</string>
+    <string name="widget_kind_tasbih">赞念计数器</string>
+    <string name="widget_kind_tasbih_desc">点按圆圈计数你的记主词，每满 33 圆环填满一圈。</string>
     <string name="widget_kind_today">今日礼拜</string>
     <string name="widget_kind_today_desc">你所在城市的五次礼拜，附日期和下一次礼拜。</string>
     <string name="widget_next_description">下一次礼拜及倒计时</string>

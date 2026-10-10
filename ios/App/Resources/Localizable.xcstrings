@@ -2875,6 +2875,448 @@
         }
       }
     },
+    "alerts_kahf": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Friday: Surat Al-Kahf"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الجمعة: سورة الكهف"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعہ: سورۃ الکہف"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuma: Kehf Suresi"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jumat: Surah Al-Kahf"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vendredi : sourate Al-Kahf"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viernes: sura Al-Kahf"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пятница: сура «Аль-Кахф»"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জুমা: সূরা আল-কাহফ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعه: سورهٔ کهف"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعه: سورهٔ کهف"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周五：山洞章"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जुमा: सूरह अल-कहफ़"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sexta-feira: surata Al-Kahf"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Juma'a: Suratul Kahf"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ijumaa: Surat Al-Kahf"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biyernes: Surah Al-Kahf"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thứ Sáu: chương Al-Kahf"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วันศุกร์: ซูเราะฮ์อัลกะฮ์ฟี"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃសុក្រ៖ ស៊ូរ៉ោះ អាល់កះហ្វ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جۈمە: كەھف سۈرىسى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هەینی: سورەتی کەهف"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petak: sura El-Kehf"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Петак: сура Ел-Кехф"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Петок: сура Ел-Кехф"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Péntek: al-Kahf szúra"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vrijdag: soera Al-Kahf"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "პარასკევი: სურა ალ-ქაჰფ"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සිකුරාදා: සූරා අල්-කහ්ෆ්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "శుక్రవారం: సూరా అల్-కహఫ్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಶುಕ್ರವಾರ: ಸೂರಾ ಅಲ್-ಕಹ್ಫ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വെള്ളിയാഴ്ച: സൂറത്തുൽ കഹ്ഫ്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जुमा: सूरह अल-कहफ"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જુમ્આ: સૂરહ અલ-કહફ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜੁਮਾ: ਸੂਰਾ ਅਲ-ਕਹਫ਼"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জুমা: ছূৰা আল-কাহফ"
+          }
+        }
+      }
+    },
+    "alerts_kahf_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Friday at 9:00 in the morning, with its first verse."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يوم الجمعة الساعة ٩ صباحًا، مع أول آية منها."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعہ کو صبح ۹ بجے، اس کی پہلی آیت کے ساتھ۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuma sabahı 9:00'da, ilk ayetiyle."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jumat pukul 09.00 pagi, dengan ayat pertamanya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le vendredi à 9 h, avec son premier verset."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El viernes a las 9:00, con su primer versículo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В пятницу в 9:00 утра, с её первым аятом."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শুক্রবার সকাল ৯টায়, এর প্রথম আয়াতসহ।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعه‌ها ساعت ۹ صبح، همراه با آیهٔ نخست آن."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روز جمعه ساعت ۹ صبح، همراه با آیهٔ نخست آن."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周五上午 9:00，附第一节经文。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जुमा को सुबह 9 बजे, उसकी पहली आयत के साथ।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na sexta às 9h, com o primeiro versículo."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ranar Juma'a ƙarfe 9:00 na safe, tare da ayarta ta farko."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ijumaa saa 3:00 asubuhi, pamoja na aya yake ya kwanza."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuwing Biyernes, 9:00 ng umaga, kasama ang unang talata nito."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thứ Sáu lúc 9:00 sáng, kèm câu đầu tiên của chương."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วันศุกร์ 09:00 น. พร้อมอายะฮ์แรก"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃសុក្រ ម៉ោង ៩ ព្រឹក ជាមួយអាយ៉ាត់ទីមួយ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جۈمە كۈنى ئەتىگەن سائەت 9 دا، تۇنجى ئايىتى بىلەن."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڕۆژی هەینی کاتژمێر ٩ی بەیانی، لەگەڵ یەکەم ئایەتی."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petkom u 9:00 ujutro, s njenim prvim ajetom."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Петком у 9:00 ујутру, са њеним првим ајетом."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Во петок во 9:00 наутро, со нејзиниот прв ајет."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pénteken reggel 9-kor, az első versével."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op vrijdag om 9:00 uur, met het eerste vers."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "პარასკევს დილის 9:00-ზე, მისი პირველი აიათით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සිකුරාදා උදේ 9:00ට, එහි පළමු ආයතය සමඟ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "శుక్రవారం ఉదయం 9 గంటలకు, దాని మొదటి ఆయత్‌తో."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಶುಕ್ರವಾರ ಬೆಳಗ್ಗೆ 9 ಗಂಟೆಗೆ, ಅದರ ಮೊದಲ ಆಯತ್‌ನೊಂದಿಗೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വെള്ളിയാഴ്ച രാവിലെ 9 മണിക്ക്, അതിലെ ആദ്യ ആയത്തോടെ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जुम्याला सकाळी 9 वाजता, तिच्या पहिल्या आयतीसह."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જુમ્આના દિવસે સવારે 9 વાગ્યે, તેની પહેલી આયત સાથે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜੁਮੇ ਨੂੰ ਸਵੇਰੇ 9 ਵਜੇ, ਇਸਦੀ ਪਹਿਲੀ ਆਇਤ ਨਾਲ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শুক্ৰবাৰে পুৱা ৯ বজাত, ইয়াৰ প্ৰথম আয়াতৰ সৈতে।"
+          }
+        }
+      }
+    },
     "alerts_minutes": {
       "extractionState": "manual",
       "localizations": {
@@ -3976,6 +4418,669 @@
           "stringUnit": {
             "state": "translated",
             "value": "সোঁৱৰণী আৰু এলাৰ্ম"
+          }
+        }
+      }
+    },
+    "alerts_sleep": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A verse before sleep"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آية قبل النوم"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سونے سے پہلے ایک آیت"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyumadan önce bir ayet"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat sebelum tidur"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un verset avant de dormir"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un versículo antes de dormir"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аят перед сном"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমানোর আগে একটি আয়াত"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یک آیه پیش از خواب"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یک آیه پیش از خواب"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡前一节经文"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने से पहले एक आयत"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um versículo antes de dormir"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aya kafin barci"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aya kabla ya kulala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isang talata bago matulog"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Một câu kinh trước khi ngủ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อายะฮ์ก่อนนอน"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "អាយ៉ាត់មុនពេលគេង"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئۇخلاشتىن بۇرۇن بىر ئايەت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئایەتێک پێش خەوتن"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajet prije spavanja"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ајет пре спавања"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ајет пред спиење"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egy vers alvás előtt"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een vers voor het slapen"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "აიათი ძილის წინ"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට පෙර ආයතයක්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రకు ముందు ఒక ఆయత్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮಲಗುವ ಮುನ್ನ ಒಂದು ಆಯತ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങുംമുമ്പ് ഒരു ആയത്ത്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोपण्यापूर्वी एक आयत"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂતાં પહેલાં એક આયત"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਆਇਤ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শোৱাৰ আগতে এটা আয়াত"
+          }
+        }
+      }
+    },
+    "alerts_sleep_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Kursi or the last two verses of Al-Baqarah, at the time you choose."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آية الكرسي أو آخر آيتين من سورة البقرة، في الوقت الذي تختاره."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آیت الکرسی یا سورۃ البقرہ کی آخری دو آیات، آپ کے چنے ہوئے وقت پر۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayetü'l-Kürsi veya Bakara Suresi'nin son iki ayeti, seçtiğiniz saatte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat Kursi atau dua ayat terakhir Al-Baqarah, pada waktu yang Anda pilih."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Kursi ou les deux derniers versets d’Al-Baqara, à l’heure de votre choix."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Kursi o los dos últimos versículos de Al-Baqara, a la hora que elijas."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аят аль-Курси или два последних аята суры «Аль-Бакара» в выбранное вами время."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আয়াতুল কুরসি বা সূরা আল-বাকারার শেষ দুই আয়াত, আপনার বেছে নেওয়া সময়ে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آیت‌الکرسی یا دو آیهٔ پایانی سورهٔ بقره، در ساعتی که انتخاب می‌کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آیت‌الکرسی یا دو آیهٔ آخر سورهٔ بقره، در وقتی که انتخاب می‌کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在你选择的时间推送宝座经，或黄牛章最后两节。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आयतुल कुर्सी या सूरह अल-बक़रा की आख़िरी दो आयतें, आपके चुने समय पर।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Kursi ou os dois últimos versículos de Al-Baqara, no horário que você escolher."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayatul Kursiyyu ko ayoyi biyu na ƙarshe na Suratul Baƙara, a lokacin da ka zaɓa."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayatul Kursi au aya mbili za mwisho za Al-Baqara, wakati utakaochagua."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Kursi o ang huling dalawang talata ng Al-Baqarah, sa oras na pipiliin mo."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Kursi hoặc hai câu cuối của chương Al-Baqarah, vào giờ bạn chọn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อายะตุลกุรซีย์ หรือสองอายะฮ์สุดท้ายของอัลบะเกาะเราะฮ์ ตามเวลาที่คุณเลือก"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "អាយ៉ាតុលគួរស៊ី ឬអាយ៉ាត់ពីរចុងក្រោយនៃស៊ូរ៉ោះអាល់បាការ៉ោះ តាមម៉ោងដែលអ្នកជ្រើស។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئايەتۇلكۇرسى ياكى بەقەرە سۈرىسىنىڭ ئاخىرقى ئىككى ئايىتى، سىز تاللىغان ۋاقىتتا."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئایەتولکورسی یان دوو ئایەتی کۆتایی سورەتی بەقەرە، لەو کاتەی هەڵیدەبژێریت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajetul-kursija ili posljednja dva ajeta sure El-Bekara, u vrijeme koje odaberete."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ајетул-курсија или последња два ајета суре Ел-Бекара, у време које изаберете."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ајетул-курсија или последните два ајета од Ел-Бекара, во времето што ќе го изберете."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az Ájat al-Kurszi vagy az al-Baqara szúra utolsó két verse, az általad választott időben."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayat al-Koersi of de laatste twee verzen van Al-Baqara, op het tijdstip dat je kiest."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "აიათ ალ-ქურსი ან სურა ალ-ბაყარას ბოლო ორი აიათი, თქვენ მიერ არჩეულ დროს."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ආයතුල් කුර්සී හෝ සූරා අල්-බකරාහ් හි අවසන් ආයත දෙක, ඔබ තෝරන වේලාවට."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆయతుల్ కుర్సీ లేదా సూరా అల్-బఖరా చివరి రెండు ఆయతులు, మీరు ఎంచుకున్న సమయంలో."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆಯತುಲ್ ಕುರ್ಸಿ ಅಥವಾ ಸೂರಾ ಅಲ್-ಬಕರಾದ ಕೊನೆಯ ಎರಡು ಆಯತ್‌ಗಳು, ನೀವು ಆಯ್ಕೆಮಾಡಿದ ಸಮಯದಲ್ಲಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ആയത്തുൽ കുർസിയോ സൂറത്തുൽ ബഖറയിലെ അവസാന രണ്ട് ആയത്തുകളോ, നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന സമയത്ത്."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आयतुल कुर्सी किंवा सूरह अल-बकराच्या शेवटच्या दोन आयती, तुम्ही निवडलेल्या वेळी."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આયતુલ કુર્સી અથવા સૂરહ અલ-બકરાની છેલ્લી બે આયતો, તમે પસંદ કરેલા સમયે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਇਤੁਲ ਕੁਰਸੀ ਜਾਂ ਸੂਰਾ ਅਲ-ਬਕ਼ਰਾ ਦੀਆਂ ਆਖ਼ਰੀ ਦੋ ਆਇਤਾਂ, ਤੁਹਾਡੇ ਚੁਣੇ ਸਮੇਂ ’ਤੇ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আয়াতুল কুৰছী বা ছূৰা আল-বাক্বাৰাৰ শেষৰ দুটা আয়াত, আপুনি বাছনি কৰা সময়ত।"
+          }
+        }
+      }
+    },
+    "alerts_sleep_time": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bedtime"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقت النوم"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سونے کا وقت"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma saati"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waktu tidur"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heure du coucher"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de dormir"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Время сна"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমের সময়"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقت خواب"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقت خواب"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就寝时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने का समय"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de dormir"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokacin barci"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wakati wa kulala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oras ng pagtulog"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giờ đi ngủ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เวลานอน"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងគេង"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئۇخلاش ۋاقتى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتی خەوتن"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vrijeme za spavanje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Време за спавање"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Време за спиење"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lefekvés ideje"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bedtijd"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ძილის დრო"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දේ වේලාව"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్ర సమయం"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮಲಗುವ ಸಮಯ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറക്കസമയം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोपेची वेळ"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂવાનો સમય"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਦਾ ਸਮਾਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শোৱাৰ সময়"
           }
         }
       }
@@ -53056,6 +54161,890 @@
         }
       }
     },
+    "notif_kahf_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jumu'ah: Surat Al-Kahf"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعة مباركة: سورة الكهف"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعہ: سورۃ الکہف"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuma: Kehf Suresi"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jumat: Surah Al-Kahf"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vendredi : sourate Al-Kahf"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viernes: sura Al-Kahf"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пятница: сура «Аль-Кахф»"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জুমা: সূরা আল-কাহফ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعه: سورهٔ کهف"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جمعه: سورهٔ کهف"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主麻日：山洞章"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जुमा: सूरह अल-कहफ़"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sexta-feira: surata Al-Kahf"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Juma'a: Suratul Kahf"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ijumaa: Surat Al-Kahf"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biyernes: Surah Al-Kahf"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thứ Sáu: chương Al-Kahf"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วันศุกร์: ซูเราะฮ์อัลกะฮ์ฟี"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃសុក្រ៖ ស៊ូរ៉ោះ អាល់កះហ្វ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جۈمە: كەھف سۈرىسى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هەینی: سورەتی کەهف"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petak: sura El-Kehf"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Петак: сура Ел-Кехф"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Петок: сура Ел-Кехф"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Péntek: al-Kahf szúra"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vrijdag: soera Al-Kahf"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "პარასკევი: სურა ალ-ქაჰფ"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සිකුරාදා: සූරා අල්-කහ්ෆ්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "శుక్రవారం: సూరా అల్-కహఫ్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಶುಕ್ರವಾರ: ಸೂರಾ ಅಲ್-ಕಹ್ಫ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വെള്ളിയാഴ്ച: സൂറത്തുൽ കഹ്ഫ്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जुमा: सूरह अल-कहफ"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જુમ્આ: સૂરહ અલ-કહફ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜੁਮਾ: ਸੂਰਾ ਅਲ-ਕਹਫ਼"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জুমা: ছূৰা আল-কাহফ"
+          }
+        }
+      }
+    },
+    "notif_prayed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prayed"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صلّيت"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز پڑھ لی"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kıldım"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sudah salat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J’ai prié"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya recé"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совершил намаз"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজ পড়েছি"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز خواندم"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز خواندم"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已礼拜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ पढ़ ली"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já rezei"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na yi sallah"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nimeswali"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nakapagdasal na"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã cầu nguyện"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดแล้ว"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានសឡាតហើយ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز ئوقۇدۇم"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژم کرد"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klanjao sam"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Клањао сам"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Клањав"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imádkoztam"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebeden"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ვილოცე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සලාත් කළා"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ చేశాను"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಮಾಡಿದೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കരിച്ചു"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज पढली"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝ પઢી લીધી"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਪੜ੍ਹ ਲਈ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজ পঢ়িলোঁ"
+          }
+        }
+      }
+    },
+    "notif_sleep_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before you sleep"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبل النوم"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سونے سے پہلے"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyumadan önce"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sebelum tidur"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avant de dormir"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes de dormir"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перед сном"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমানোর আগে"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پیش از خواب"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پیش از خواب"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡前"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने से पहले"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes de dormir"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kafin barci"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kabla ya kulala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bago matulog"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trước khi ngủ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ก่อนนอน"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "មុនពេលគេង"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئۇخلاشتىن بۇرۇن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پێش خەوتن"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prije spavanja"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пре спавања"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пред спиење"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alvás előtt"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voor het slapen"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ძილის წინ"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට පෙර"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రకు ముందు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮಲಗುವ ಮುನ್ನ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങുംമുമ്പ്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोपण्यापूर्वी"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂતાં પહેલાં"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শোৱাৰ আগতে"
+          }
+        }
+      }
+    },
+    "notif_snooze": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remind me in 5 min"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ذكّرني بعد ٥ دقائق"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "۵ منٹ بعد یاد دلائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 dk sonra hatırlat"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingatkan 5 menit lagi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me le rappeler dans 5 min"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recuérdame en 5 min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Напомнить через 5 мин"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "৫ মিনিট পরে মনে করাও"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "۵ دقیقهٔ دیگر یادآوری کن"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "۵ دقیقهٔ دیگر یادآوری کن"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 分钟后提醒我"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 मिनट में याद दिलाएँ"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lembrar em 5 min"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tunatar da ni bayan minti 5"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nikumbushe baada ya dk 5"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paalalahanan ako sa loob ng 5 min"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhắc lại sau 5 phút"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เตือนอีกครั้งใน 5 นาที"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រំលឹកខ្ញុំក្នុង ៥ នាទី"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 مىنۇتتىن كېيىن ئەسكەرت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دوای ٥ خولەک بیرم بخەرەوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podsjeti me za 5 min"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подсети ме за 5 мин"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Потсети ме за 5 мин"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emlékeztess 5 perc múlva"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herinner me over 5 min"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შემახსენე 5 წუთში"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "විනාඩි 5කින් මතක් කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 నిమిషాల్లో గుర్తు చేయి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 ನಿಮಿಷದಲ್ಲಿ ನೆನಪಿಸು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 മിനിറ്റിൽ ഓർമിപ്പിക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 मिनिटांनी आठवण करा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 મિનિટ પછી યાદ અપાવો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 ਮਿੰਟ ਬਾਅਦ ਯਾਦ ਕਰਾਓ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "৫ মিনিট পিছত মনত পেলাওক"
+          }
+        }
+      }
+    },
     "notifications_denied": {
       "extractionState": "manual",
       "localizations": {
@@ -85322,6 +87311,448 @@
         }
       }
     },
+    "tasbih_count_a11y": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count %1$lld. Tap to add one."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "العدد %1$lld. اضغط لإضافة واحدة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمار %1$lld۔ ایک بڑھانے کے لیے دبائیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sayı %1$lld. Bir eklemek için dokunun."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hitungan %1$lld. Ketuk untuk menambah satu."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte %1$lld. Touchez pour ajouter un."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta %1$lld. Toca para sumar uno."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Счёт %1$lld. Нажмите, чтобы добавить один."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গণনা %1$lld। একটি যোগ করতে চাপুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمار %1$lld. برای افزودن یکی بزنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمار %1$lld. برای افزودن یکی بزنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "计数 %1$lld。点按加一。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गिनती %1$lld। एक जोड़ने के लिए दबाएँ।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contagem %1$lld. Toque para somar um."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ƙidaya %1$lld. Danna don ƙara ɗaya."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesabu %1$lld. Gusa kuongeza moja."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bilang %1$lld. I-tap para magdagdag ng isa."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đếm %1$lld. Chạm để thêm một."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "จำนวน %1$lld แตะเพื่อเพิ่มหนึ่ง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចំនួន %1$lld។ ចុចដើម្បីបន្ថែមមួយ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سان %1$lld. بىرنى قوشۇش ئۈچۈن بېسىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ژمارە %1$lld. دابگرە بۆ زیادکردنی یەک."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broj %1$lld. Dodirnite da dodate jedan."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Број %1$lld. Додирните да додате један."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Број %1$lld. Допрете за да додадете еден."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szám: %1$lld. Koppints eggyel növeléshez."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telling %1$lld. Tik om er één toe te voegen."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "რაოდენობა %1$lld. შეეხეთ ერთის დასამატებლად."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ගණන %1$lld. එකක් එක් කිරීමට තට්ටු කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లెక్క %1$lld. ఒకటి జోడించడానికి నొక్కండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಣಿಕೆ %1$lld. ಒಂದನ್ನು ಸೇರಿಸಲು ಒತ್ತಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "എണ്ണം %1$lld. ഒന്ന് കൂട്ടാൻ തട്ടുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मोजणी %1$lld. एक वाढवण्यासाठी दाबा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ગણતરી %1$lld. એક ઉમેરવા દબાવો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਿਣਤੀ %1$lld। ਇੱਕ ਵਧਾਉਣ ਲਈ ਦਬਾਓ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গণনা %1$lld। এটা যোগ কৰিবলৈ টিপক।"
+          }
+        }
+      }
+    },
+    "tasbih_reset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصفير"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صفر کریں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sıfırla"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atur ulang"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remettre à zéro"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reiniciar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сбросить"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "রিসেট"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صفر کردن"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صفر کردن"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清零"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रीसेट"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zerar"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sake saitawa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weka upya"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-reset"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đặt lại"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รีเซ็ต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "កំណត់ឡើងវិញ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نۆللەش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سفرکردنەوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resetuj"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ресетуј"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ресетирај"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nullázás"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terugzetten"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "განულება"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "යළි සකසන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "రీసెట్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮರುಹೊಂದಿಸಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പുനഃസജ്ജമാക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रीसेट"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "રીસેટ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੀਸੈੱਟ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ৰিছেট"
+          }
+        }
+      }
+    },
     "time_progress_a11y": {
       "extractionState": "manual",
       "localizations": {
@@ -93716,6 +96147,448 @@
           "stringUnit": {
             "state": "translated",
             "value": "পৰৱৰ্তী নামাজলৈ বাকী সময় এটা ৰিঙত, আজিৰ সকলো সময়ৰ সৈতে।"
+          }
+        }
+      }
+    },
+    "widget_kind_tasbih": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasbih counter"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عدّاد التسبيح"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسبیح شمار"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tesbih sayacı"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penghitung tasbih"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compteur de tasbih"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contador de tasbih"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Счётчик тасбиха"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তাসবিহ কাউন্টার"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمارندهٔ تسبیح"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمارندهٔ تسبیح"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "赞念计数器"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तस्बीह काउंटर"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contador de tasbih"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ma'aunin tasbihi"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kihesabu tasbihi"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pambilang ng tasbih"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bộ đếm tasbih"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตัวนับตัสบีห์"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ឧបករណ៍រាប់តាសប៊ីហ៍"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تەسبىھ سانىغۇچ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ژمێرەری تەسبیح"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brojač tesbiha"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бројач тесбиха"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бројач за тесбих"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasbih-számláló"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasbih-teller"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თასბიჰის მთვლელი"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "තස්බීහ් ගණකය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తస్బీహ్ లెక్కింపు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ತಸ್ಬೀಹ್ ಎಣಿಕೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "തസ്ബീഹ് കൗണ്ടർ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तस्बीह मोजणी"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તસ્બીહ કાઉન્ટર"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤਸਬੀਹ ਗਿਣਤੀ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তছবীহ গণক"
+          }
+        }
+      }
+    },
+    "widget_kind_tasbih_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the circle to count your dhikr. The ring fills every 33."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط الدائرة لتعدّ أذكارك، وتكتمل الحلقة كل ٣٣."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ذکر گننے کے لیے دائرہ دبائیں۔ ہر ۳۳ پر حلقہ مکمل ہوتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zikrinizi saymak için daireye dokunun. Halka her 33'te dolar."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketuk lingkaran untuk menghitung zikir. Cincin penuh setiap 33."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le cercle pour compter votre dhikr. L’anneau se remplit tous les 33."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca el círculo para contar tu dhikr. El anillo se llena cada 33."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажимайте на круг, чтобы считать зикр. Кольцо заполняется каждые 33."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জিকির গুনতে বৃত্তে চাপুন। প্রতি ৩৩-এ বলয় পূর্ণ হয়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای شمردن ذکر روی دایره بزنید. حلقه هر ۳۳ بار پر می‌شود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای شمردن ذکر روی دایره بزنید. حلقه هر ۳۳ بار پر می‌شود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按圆圈计数你的记主词，每满 33 圆环填满一圈。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़िक्र गिनने के लिए गोला दबाएँ। हर 33 पर घेरा पूरा होता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque no círculo para contar seu dhikr. O anel se completa a cada 33."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Danna da'irar don ƙirga zikirinka. Zobe yana cika duk 33."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gusa duara kuhesabu dhikri zako. Pete hujaa kila 33."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-tap ang bilog para bilangin ang iyong dhikr. Napupuno ang singsing tuwing 33."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm vào vòng tròn để đếm lời dhikr. Vòng đầy sau mỗi 33 lần."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะวงกลมเพื่อนับซิกร์ วงแหวนจะเต็มทุก 33 ครั้ง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចុចរង្វង់ដើម្បីរាប់ការរំលឹក។ រង្វង់ពេញរៀងរាល់ ៣៣។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زىكرىڭىزنى ساناش ئۈچۈن چەمبەرنى بېسىڭ. ھالقا ھەر 33 دە تولىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بازنەکە دابگرە بۆ ژماردنی زیکرەکانت. ئەڵقەکە هەموو ٣٣ جارێک پڕ دەبێت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodirnite krug da brojite zikr. Prsten se popuni na svakih 33."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додирните круг да бројите зикр. Прстен се попуни на сваких 33."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Допрете го кругот за да го броите зикрот. Прстенот се полни на секои 33."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppints a körre a dzikr számolásához. A gyűrű minden 33-nál megtelik."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tik op de cirkel om je dhikr te tellen. De ring vult zich elke 33."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შეეხეთ წრეს ზიქრის დასათვლელად. რგოლი ყოველ 33-ზე ივსება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ ධික්ර් ගණන් කිරීමට කවය තට්ටු කරන්න. සෑම 33කටම වළල්ල පිරේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "జిక్ర్ లెక్కించడానికి వృత్తాన్ని నొక్కండి. ప్రతి 33కి వలయం నిండుతుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಜಿಕ್ರ್ ಎಣಿಸಲು ವೃತ್ತವನ್ನು ಒತ್ತಿ. ಪ್ರತಿ 33ಕ್ಕೆ ಉಂಗುರ ತುಂಬುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ദിക്ർ എണ്ണാൻ വൃത്തത്തിൽ തട്ടുക. ഓരോ 33-നും വളയം നിറയും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जिक्र मोजण्यासाठी वर्तुळ दाबा. प्रत्येक 33 वर कडी पूर्ण होते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઝિક્ર ગણવા માટે વર્તુળ દબાવો. દર 33 પર વલય પૂરું થાય છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜ਼ਿਕਰ ਗਿਣਨ ਲਈ ਚੱਕਰ ਦਬਾਓ। ਹਰ 33 ’ਤੇ ਘੇਰਾ ਪੂਰਾ ਹੁੰਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জিকিৰ গণিবলৈ বৃত্তটো টিপক। প্ৰতি ৩৩ ত বলয় পূৰ্ণ হয়।"
           }
         }
       }

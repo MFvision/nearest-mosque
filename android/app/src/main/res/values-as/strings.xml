@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">আপুনি বন্ধ নকৰালৈকে এলাৰ্মৰ দৰে বাজে, ফোনে অনুমতি দিলে ছাইলেণ্টতো।</string>
     <string name="alerts_friday">জুমাৰ সোঁৱৰণী</string>
     <string name="alerts_friday_note">শুকুৰবাৰে যোহৰৰ 45 মিনিট আগতে।</string>
+    <string name="alerts_kahf">জুমা: ছূৰা আল-কাহফ</string>
+    <string name="alerts_kahf_note">শুক্ৰবাৰে পুৱা ৯ বজাত, ইয়াৰ প্ৰথম আয়াতৰ সৈতে।</string>
     <string name="alerts_minutes">%1$d মিনিট আগতে</string>
     <string name="alerts_off">অফ</string>
     <string name="alerts_ramadan">ৰমজান: ছেহৰী আৰু ইফতাৰ</string>
     <string name="alerts_ramadan_note">ছেহৰী ফজৰৰ 45 মিনিট আগতে, ইফতাৰ মাগৰিবত। কেৱল ৰমজানৰ সময়ত।</string>
     <string name="alerts_section">সোঁৱৰণী আৰু এলাৰ্ম</string>
+    <string name="alerts_sleep">শোৱাৰ আগতে এটা আয়াত</string>
+    <string name="alerts_sleep_note">আয়াতুল কুৰছী বা ছূৰা আল-বাক্বাৰাৰ শেষৰ দুটা আয়াত, আপুনি বাছনি কৰা সময়ত।</string>
+    <string name="alerts_sleep_time">শোৱাৰ সময়</string>
     <string name="allow_location">অৱস্থানৰ অনুমতি দিয়ক</string>
     <string name="answer_common_reviewed">সাধাৰণ উত্তৰ, %1$s-এ পৰ্যালোচনা কৰিছে</string>
     <string name="answer_common_unreviewed">সাধাৰণ উত্তৰ, আলিমৰ পৰ্যালোচনাৰ অপেক্ষাত</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">মিল থকা কোনো চহৰ পোৱা নগ\'ল। আন বানানেৰে চেষ্টা কৰক।</string>
     <string name="no_records_body">%1$sৰ ডাউনলোড কৰা তথ্যত এই ঠাইৰ পৰা %2$sৰ ভিতৰত কোনো মছজিদ নাই। তথ্য অসম্পূৰ্ণ হ\'ব পাৰে।</string>
     <string name="no_records_title">ওচৰত কোনো মছজিদ নথিভুক্ত নাই</string>
+    <string name="notif_kahf_title">জুমা: ছূৰা আল-কাহফ</string>
+    <string name="notif_prayed">নামাজ পঢ়িলোঁ</string>
+    <string name="notif_sleep_title">শোৱাৰ আগতে</string>
+    <string name="notif_snooze">৫ মিনিট পিছত মনত পেলাওক</string>
     <string name="notifications_denied">এই এপৰ জাননী অফ আছে। সোঁৱৰণী পাবলৈ ছেটিংছত সেইবোৰ অন কৰক।</string>
     <string name="on_device_ai">অন-ডিভাইচ AI</string>
     <string name="onb_ask_body">উত্তৰত আয়াতৰ উল্লেখসহ কোৰআনৰ উদ্ধৃতি থাকে, যাতে আপুনি সদায় উৎস পৰীক্ষা কৰিব পাৰে।</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">সোধক</string>
     <string name="tab_mosques">ওচৰৰ মছজিদ</string>
     <string name="tab_prayer">নামাজ আৰু কিবলা</string>
+    <string name="tasbih_count_a11y">গণনা %1$d। এটা যোগ কৰিবলৈ টিপক।</string>
+    <string name="tasbih_reset">ৰিছেট</string>
     <string name="time_progress_a11y">%2$s লৈকে সময়ৰ %1$d%% পাৰ হৈছে</string>
     <string name="time_zone_label">সময় অঞ্চল: %1$s</string>
     <string name="todays_times">আজিৰ নামাজৰ সময়</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">আপোনাৰ চহৰৰ বাবে উত্তৰৰ পৰা কিবলাৰ দিশ। লাইভ কম্পাছৰ বাবে টিপক।</string>
     <string name="widget_kind_ring">নামাজ ৰিং</string>
     <string name="widget_kind_ring_desc">পৰৱৰ্তী নামাজলৈ বাকী সময় এটা ৰিঙত, আজিৰ সকলো সময়ৰ সৈতে।</string>
+    <string name="widget_kind_tasbih">তছবীহ গণক</string>
+    <string name="widget_kind_tasbih_desc">জিকিৰ গণিবলৈ বৃত্তটো টিপক। প্ৰতি ৩৩ ত বলয় পূৰ্ণ হয়।</string>
     <string name="widget_kind_today">আজিৰ নামাজ</string>
     <string name="widget_kind_today_desc">আপোনাৰ চহৰৰ পাঁচ ওৱাক্ত নামাজ, তাৰিখ আৰু পৰৱৰ্তী নামাজৰ সৈতে।</string>
     <string name="widget_next_description">কাউণ্টডাউনসহ পৰৱৰ্তী নামাজ</string>

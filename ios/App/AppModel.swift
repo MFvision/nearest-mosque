@@ -275,7 +275,16 @@ final class AppModel {
     }
 
     func rescheduleReminders() async {
-        await Reminders.reschedule(location: settings.location, settings: settings.prayer, enabled: settings.reminders, alerts: settings.alerts, l10n: l10n)
+        let lang = l10n.language
+        let ask = ask
+        let mosqueLine = nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) }
+        await Reminders.reschedule(location: settings.location, settings: settings.prayer, enabled: settings.reminders, alerts: settings.alerts,
+                                   l10n: l10n, mosqueLine: mosqueLine) { id in
+            // The Qur'an text on the phone; English readers also get the translation in the pack.
+            guard let c = (try? ask?.resolve([id]))?.first?.chunk else { return nil }
+            let en = lang == "en" ? c.allTranslations.first { $0.lang == "en" }?.text : nil
+            return [c.original.text, en].compactMap { $0 }.joined(separator: "\n")
+        }
     }
 
     /// Sky for the prayer period in progress (night when no location is chosen yet).

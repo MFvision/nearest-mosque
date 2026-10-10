@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">سىز توختاتمىغۇچە ئويغاتقۇچتەك جىرىڭلايدۇ، تېلېفون يول قويسا ئۈنسىز ھالەتتىمۇ.</string>
     <string name="alerts_friday">جۈمە نامىزى ئەسكەرتىشى</string>
     <string name="alerts_friday_note">جۈمە كۈنى پېشىندىن 45 مىنۇت بۇرۇن.</string>
+    <string name="alerts_kahf">جۈمە: كەھف سۈرىسى</string>
+    <string name="alerts_kahf_note">جۈمە كۈنى ئەتىگەن سائەت 9 دا، تۇنجى ئايىتى بىلەن.</string>
     <string name="alerts_minutes">%1$d مىنۇت بۇرۇن</string>
     <string name="alerts_off">تاقاق</string>
     <string name="alerts_ramadan">رامىزان: سەھەرلىك ۋە ئىپتار</string>
     <string name="alerts_ramadan_note">سەھەرلىك بامداتتىن 45 مىنۇت بۇرۇن، ئىپتار شام ۋاقتىدا. پەقەت رامىزاندىلا.</string>
     <string name="alerts_section">ئەسكەرتىش ۋە ئويغاتقۇچلار</string>
+    <string name="alerts_sleep">ئۇخلاشتىن بۇرۇن بىر ئايەت</string>
+    <string name="alerts_sleep_note">ئايەتۇلكۇرسى ياكى بەقەرە سۈرىسىنىڭ ئاخىرقى ئىككى ئايىتى، سىز تاللىغان ۋاقىتتا.</string>
+    <string name="alerts_sleep_time">ئۇخلاش ۋاقتى</string>
     <string name="allow_location">ئورۇنغا ئىجازەت بېرىش</string>
     <string name="answer_common_reviewed">ئومۇمىي جاۋاب، %1$s تەكشۈرگەن</string>
     <string name="answer_common_unreviewed">ئومۇمىي جاۋاب، ئۆلىما تەكشۈرۈشىنى كۈتمەكتە</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">ماس شەھەر تېپىلمىدى. باشقىچە يېزىپ سىناڭ.</string>
     <string name="no_records_body">%1$s نىڭ چۈشۈرۈلگەن سانلىق مەلۇماتىدا بۇ نۇقتىدىن %2$s دائىرىدە مەسچىت يوق. سانلىق مەلۇمات تولۇق بولماسلىقى مۇمكىن.</string>
     <string name="no_records_title">ئەتراپتا خاتىرىلەنگەن مەسچىت يوق</string>
+    <string name="notif_kahf_title">جۈمە: كەھف سۈرىسى</string>
+    <string name="notif_prayed">ناماز ئوقۇدۇم</string>
+    <string name="notif_sleep_title">ئۇخلاشتىن بۇرۇن</string>
+    <string name="notif_snooze">5 مىنۇتتىن كېيىن ئەسكەرت</string>
     <string name="notifications_denied">بۇ ئەپنىڭ ئۇقتۇرۇشلىرى تاقاق. ئەسكەرتىش تاپشۇرۇۋېلىش ئۈچۈن تەڭشەكتە ئېچىڭ.</string>
     <string name="on_device_ai">ئۈسكۈنىدىكى سۈنئىي ئەقىل</string>
     <string name="onb_ask_body">جاۋابلار قۇرئاندىن ئايەت نومۇرى بىلەن نەقىل كەلتۈرىدۇ، شۇڭا مەنبەنى ھەمىشە تەكشۈرەلەيسىز.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">سوراش</string>
     <string name="tab_mosques">ئەڭ يېقىن مەسچىت</string>
     <string name="tab_prayer">ناماز ۋە قىبلە</string>
+    <string name="tasbih_count_a11y">سان %1$d. بىرنى قوشۇش ئۈچۈن بېسىڭ.</string>
+    <string name="tasbih_reset">نۆللەش</string>
     <string name="time_progress_a11y">%2$s گىچە بولغان ۋاقىتنىڭ %1$d%% ى ئۆتتى</string>
     <string name="time_zone_label">ۋاقىت رايونى: %1$s</string>
     <string name="todays_times">بۈگۈنكى ناماز ۋاقىتلىرى</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">شەھىرىڭىز ئۈچۈن شىمالدىن قىبلە يۆنىلىشى. جانلىق كومپاس ئۈچۈن چېكىڭ.</string>
     <string name="widget_kind_ring">ناماز ھالقىسى</string>
     <string name="widget_kind_ring_desc">كېيىنكى نامازغىچە قالغان ۋاقىت ھالقىدا، بۈگۈنكى بارلىق ۋاقىتلار بىلەن.</string>
+    <string name="widget_kind_tasbih">تەسبىھ سانىغۇچ</string>
+    <string name="widget_kind_tasbih_desc">زىكرىڭىزنى ساناش ئۈچۈن چەمبەرنى بېسىڭ. ھالقا ھەر 33 دە تولىدۇ.</string>
     <string name="widget_kind_today">بۈگۈنكى نامازلار</string>
     <string name="widget_kind_today_desc">شەھىرىڭىزدىكى بەش ۋاخ ناماز، چېسلا ۋە كېيىنكى ناماز بىلەن بىرگە.</string>
     <string name="widget_next_description">تەتۈر ساناقلىق كېيىنكى ناماز</string>

@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Toca como um alarme até você desligar, mesmo no silencioso quando o celular permite.</string>
     <string name="alerts_friday">Lembrete de sexta-feira (Jumu\'ah)</string>
     <string name="alerts_friday_note">45 minutos antes do Dhuhr às sextas-feiras.</string>
+    <string name="alerts_kahf">Sexta-feira: surata Al-Kahf</string>
+    <string name="alerts_kahf_note">Na sexta às 9h, com o primeiro versículo.</string>
     <string name="alerts_minutes">%1$d min antes</string>
     <string name="alerts_off">Desativado</string>
     <string name="alerts_ramadan">Ramadã: suhoor e iftar</string>
     <string name="alerts_ramadan_note">Suhoor 45 minutos antes do Fajr, iftar no Maghrib. Só durante o Ramadã.</string>
     <string name="alerts_section">Lembretes e alarmes</string>
+    <string name="alerts_sleep">Um versículo antes de dormir</string>
+    <string name="alerts_sleep_note">Ayat al-Kursi ou os dois últimos versículos de Al-Baqara, no horário que você escolher.</string>
+    <string name="alerts_sleep_time">Hora de dormir</string>
     <string name="allow_location">Permitir localização</string>
     <string name="answer_common_reviewed">Resposta comum, revisada por %1$s</string>
     <string name="answer_common_unreviewed">Resposta comum, aguardando revisão de um sábio</string>
@@ -243,6 +248,10 @@
     <string name="no_city_results">Nenhuma cidade encontrada. Tente outra grafia.</string>
     <string name="no_records_body">Os dados baixados de %1$s não têm mesquitas a até %2$s deste ponto. Os dados podem estar incompletos.</string>
     <string name="no_records_title">Nenhuma mesquita registrada por perto</string>
+    <string name="notif_kahf_title">Sexta-feira: surata Al-Kahf</string>
+    <string name="notif_prayed">Já rezei</string>
+    <string name="notif_sleep_title">Antes de dormir</string>
+    <string name="notif_snooze">Lembrar em 5 min</string>
     <string name="notifications_denied">As notificações estão desativadas para este app. Ative-as em Configurações para receber lembretes.</string>
     <string name="on_device_ai">IA no aparelho</string>
     <string name="onb_ask_body">As respostas citam o Alcorão com a referência do versículo, para você sempre poder conferir a fonte.</string>
@@ -389,6 +398,8 @@
     <string name="tab_ask_short">Perguntar</string>
     <string name="tab_mosques">Mesquita mais próxima</string>
     <string name="tab_prayer">Oração e Qibla</string>
+    <string name="tasbih_count_a11y">Contagem %1$d. Toque para somar um.</string>
+    <string name="tasbih_reset">Zerar</string>
     <string name="time_progress_a11y">%1$d%% do tempo até %2$s já passou</string>
     <string name="time_zone_label">Fuso horário: %1$s</string>
     <string name="todays_times">Horários de oração de hoje</string>
@@ -427,6 +438,8 @@
     <string name="widget_kind_qibla_desc">A direção da qibla a partir do norte para a sua cidade. Toque para a bússola ao vivo.</string>
     <string name="widget_kind_ring">Anel de oração</string>
     <string name="widget_kind_ring_desc">O tempo até a próxima oração num anel, com todos os horários de hoje.</string>
+    <string name="widget_kind_tasbih">Contador de tasbih</string>
+    <string name="widget_kind_tasbih_desc">Toque no círculo para contar seu dhikr. O anel se completa a cada 33.</string>
     <string name="widget_kind_today">Orações de hoje</string>
     <string name="widget_kind_today_desc">As cinco orações da sua cidade, com a data e a próxima oração.</string>
     <string name="widget_next_description">A próxima oração com contagem regressiva</string>

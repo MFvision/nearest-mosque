@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">الارم کی طرح بجتا ہے جب تک آپ بند نہ کریں، فون اجازت دے تو خاموش موڈ میں بھی۔</string>
     <string name="alerts_friday">جمعہ کی یاددہانی</string>
     <string name="alerts_friday_note">جمعہ کو ظہر سے 45 منٹ پہلے۔</string>
+    <string name="alerts_kahf">جمعہ: سورۃ الکہف</string>
+    <string name="alerts_kahf_note">جمعہ کو صبح ۹ بجے، اس کی پہلی آیت کے ساتھ۔</string>
     <string name="alerts_minutes">%1$d منٹ پہلے</string>
     <string name="alerts_off">بند</string>
     <string name="alerts_ramadan">رمضان: سحری اور افطار</string>
     <string name="alerts_ramadan_note">سحری فجر سے 45 منٹ پہلے، افطار مغرب پر۔ صرف رمضان میں۔</string>
     <string name="alerts_section">یاددہانیاں اور الارم</string>
+    <string name="alerts_sleep">سونے سے پہلے ایک آیت</string>
+    <string name="alerts_sleep_note">آیت الکرسی یا سورۃ البقرہ کی آخری دو آیات، آپ کے چنے ہوئے وقت پر۔</string>
+    <string name="alerts_sleep_time">سونے کا وقت</string>
     <string name="allow_location">مقام کی اجازت دیں</string>
     <string name="answer_common_reviewed">عام جواب، نظرثانی: %1$s</string>
     <string name="answer_common_unreviewed">عام جواب، عالم کی نظرثانی باقی</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">کوئی شہر نہیں ملا۔ دوسرا ہجّا آزمائیں۔</string>
     <string name="no_records_body">%1$s کے ڈاؤن لوڈ شدہ ڈیٹا میں اس مقام سے %2$s کے اندر کوئی مسجد نہیں۔ ڈیٹا نامکمل ہو سکتا ہے۔</string>
     <string name="no_records_title">قریب کوئی مسجد درج نہیں</string>
+    <string name="notif_kahf_title">جمعہ: سورۃ الکہف</string>
+    <string name="notif_prayed">نماز پڑھ لی</string>
+    <string name="notif_sleep_title">سونے سے پہلے</string>
+    <string name="notif_snooze">۵ منٹ بعد یاد دلائیں</string>
     <string name="notifications_denied">اس ایپ کی اطلاعات بند ہیں۔ یاد دہانیوں کے لیے ترتیبات میں انہیں آن کریں۔</string>
     <string name="on_device_ai">فون پر AI</string>
     <string name="onb_ask_body">جوابات قرآن سے آیت کے حوالے کے ساتھ اقتباس دیتے ہیں تاکہ آپ ہمیشہ ماخذ دیکھ سکیں۔</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">پوچھیں</string>
     <string name="tab_mosques">قریب ترین مسجد</string>
     <string name="tab_prayer">نماز اور قبلہ</string>
+    <string name="tasbih_count_a11y">شمار %1$d۔ ایک بڑھانے کے لیے دبائیں۔</string>
+    <string name="tasbih_reset">صفر کریں</string>
     <string name="time_progress_a11y">%2$s تک کا %1$d%% وقت گزر چکا</string>
     <string name="time_zone_label">ٹائم زون: %1$s</string>
     <string name="todays_times">آج کے اوقاتِ نماز</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">آپ کے شہر کے لیے شمال سے قبلہ کی سمت۔ زندہ قطب نما کے لیے تھپتھپائیں۔</string>
     <string name="widget_kind_ring">نماز رنگ</string>
     <string name="widget_kind_ring_desc">اگلی نماز تک باقی وقت ایک دائرے پر، آج کے تمام اوقات کے ساتھ۔</string>
+    <string name="widget_kind_tasbih">تسبیح شمار</string>
+    <string name="widget_kind_tasbih_desc">ذکر گننے کے لیے دائرہ دبائیں۔ ہر ۳۳ پر حلقہ مکمل ہوتا ہے۔</string>
     <string name="widget_kind_today">آج کی نمازیں</string>
     <string name="widget_kind_today_desc">آپ کے شہر کی پانچوں نمازیں، تاریخ اور اگلی نماز کے ساتھ۔</string>
     <string name="widget_next_description">اگلی نماز اور الٹی گنتی</string>

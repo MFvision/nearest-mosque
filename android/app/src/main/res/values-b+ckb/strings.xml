@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">وەک ئەلارم لێدەدات تا ڕایدەگریت، تەنانەت لە دۆخی بێدەنگیشدا ئەگەر مۆبایلەکە ڕێگە بدات.</string>
     <string name="alerts_friday">بیرخەرەوەی نوێژی هەینی</string>
     <string name="alerts_friday_note">٤٥ خولەک پێش نوێژی نیوەڕۆ لە ڕۆژانی هەینی.</string>
+    <string name="alerts_kahf">هەینی: سورەتی کەهف</string>
+    <string name="alerts_kahf_note">ڕۆژی هەینی کاتژمێر ٩ی بەیانی، لەگەڵ یەکەم ئایەتی.</string>
     <string name="alerts_minutes">%1$d خولەک پێشتر</string>
     <string name="alerts_off">ناچالاک</string>
     <string name="alerts_ramadan">ڕەمەزان: پارشێو و بەربانگ</string>
     <string name="alerts_ramadan_note">پارشێو ٤٥ خولەک پێش بەیانی، بەربانگ لە کاتی ئێوارە. تەنها لە ڕەمەزاندا.</string>
     <string name="alerts_section">بیرخەرەوە و ئەلارمەکان</string>
+    <string name="alerts_sleep">ئایەتێک پێش خەوتن</string>
+    <string name="alerts_sleep_note">ئایەتولکورسی یان دوو ئایەتی کۆتایی سورەتی بەقەرە، لەو کاتەی هەڵیدەبژێریت.</string>
+    <string name="alerts_sleep_time">کاتی خەوتن</string>
     <string name="allow_location">ڕێگەدان بە شوێن</string>
     <string name="answer_common_reviewed">وەڵامی باو، پێداچوونەوەی بۆ کراوە لەلایەن %1$s</string>
     <string name="answer_common_unreviewed">وەڵامی باو، چاوەڕوانی پێداچوونەوەی زانا</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">هیچ شارێک نەدۆزرایەوە. ڕێنووسێکی تر تاقی بکەرەوە.</string>
     <string name="no_records_body">زانیارییە داگیراوەکانی %1$s هیچ مزگەوتێکیان لە ماوەی %2$s لەم خاڵەوە تێدا نییە. لەوانەیە زانیارییەکان تەواو نەبن.</string>
     <string name="no_records_title">هیچ مزگەوتێک لەم نزیکانە تۆمار نەکراوە</string>
+    <string name="notif_kahf_title">هەینی: سورەتی کەهف</string>
+    <string name="notif_prayed">نوێژم کرد</string>
+    <string name="notif_sleep_title">پێش خەوتن</string>
+    <string name="notif_snooze">دوای ٥ خولەک بیرم بخەرەوە</string>
     <string name="notifications_denied">ئاگادارکردنەوەکان بۆ ئەم ئەپە کوژاونەتەوە. لە ڕێکخستنەکان هەڵیانبکە بۆ وەرگرتنی بیرخەرەوەکان.</string>
     <string name="on_device_ai">زیرەکی دەستکردی سەر ئامێر</string>
     <string name="onb_ask_body">وەڵامەکان لە قورئانەوە وەردەگیرێن لەگەڵ ئاماژە بە ئایەتەکە، بۆ ئەوەی هەمیشە بتوانیت سەرچاوەکە بپشکنیت.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">بپرسە</string>
     <string name="tab_mosques">نزیکترین مزگەوت</string>
     <string name="tab_prayer">نوێژ و قیبلە</string>
+    <string name="tasbih_count_a11y">ژمارە %1$d. دابگرە بۆ زیادکردنی یەک.</string>
+    <string name="tasbih_reset">سفرکردنەوە</string>
     <string name="time_progress_a11y">%1$d%%ی ماوەی تا %2$s تێپەڕیوە</string>
     <string name="time_zone_label">ناوچەی کات: %1$s</string>
     <string name="todays_times">کاتەکانی نوێژی ئەمڕۆ</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">ئاراستەی قیبلە لە باکوورەوە بۆ شارەکەت. بۆ قیبلەنمای ڕاستەوخۆ دەستی لێ بدە.</string>
     <string name="widget_kind_ring">ئەڵقەی نوێژ</string>
     <string name="widget_kind_ring_desc">کاتی ماوە بۆ نوێژی داهاتوو لەسەر ئەڵقەیەک، لەگەڵ هەموو کاتەکانی ئەمڕۆ.</string>
+    <string name="widget_kind_tasbih">ژمێرەری تەسبیح</string>
+    <string name="widget_kind_tasbih_desc">بازنەکە دابگرە بۆ ژماردنی زیکرەکانت. ئەڵقەکە هەموو ٣٣ جارێک پڕ دەبێت.</string>
     <string name="widget_kind_today">نوێژەکانی ئەمڕۆ</string>
     <string name="widget_kind_today_desc">هەر پێنج نوێژی شارەکەت، لەگەڵ بەروار و نوێژی داهاتوو.</string>
     <string name="widget_next_description">نوێژی داهاتوو لەگەڵ ژمێرەری پێچەوانە</string>

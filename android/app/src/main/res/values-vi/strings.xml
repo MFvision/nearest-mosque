@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Đổ chuông như báo thức cho đến khi bạn tắt, kể cả khi ở chế độ im lặng nếu điện thoại cho phép.</string>
     <string name="alerts_friday">Nhắc nhở thứ Sáu (Jumu\'ah)</string>
     <string name="alerts_friday_note">45 phút trước Dhuhr vào thứ Sáu.</string>
+    <string name="alerts_kahf">Thứ Sáu: chương Al-Kahf</string>
+    <string name="alerts_kahf_note">Thứ Sáu lúc 9:00 sáng, kèm câu đầu tiên của chương.</string>
     <string name="alerts_minutes">Trước %1$d phút</string>
     <string name="alerts_off">Tắt</string>
     <string name="alerts_ramadan">Ramadan: suhoor và iftar</string>
     <string name="alerts_ramadan_note">Suhoor 45 phút trước Fajr, iftar vào giờ Maghrib. Chỉ trong tháng Ramadan.</string>
     <string name="alerts_section">Nhắc nhở và báo thức</string>
+    <string name="alerts_sleep">Một câu kinh trước khi ngủ</string>
+    <string name="alerts_sleep_note">Ayat al-Kursi hoặc hai câu cuối của chương Al-Baqarah, vào giờ bạn chọn.</string>
+    <string name="alerts_sleep_time">Giờ đi ngủ</string>
     <string name="allow_location">Cho phép vị trí</string>
     <string name="answer_common_reviewed">Câu trả lời phổ biến, đã được %1$s xem xét</string>
     <string name="answer_common_unreviewed">Câu trả lời phổ biến, đang chờ học giả xem xét</string>
@@ -241,6 +246,10 @@
     <string name="no_city_results">Không có thành phố phù hợp. Hãy thử cách viết khác.</string>
     <string name="no_records_body">Dữ liệu đã tải về cho %1$s không có thánh đường nào trong phạm vi %2$s từ điểm này. Dữ liệu có thể chưa đầy đủ.</string>
     <string name="no_records_title">Không có thánh đường nào được ghi nhận gần đây</string>
+    <string name="notif_kahf_title">Thứ Sáu: chương Al-Kahf</string>
+    <string name="notif_prayed">Đã cầu nguyện</string>
+    <string name="notif_sleep_title">Trước khi ngủ</string>
+    <string name="notif_snooze">Nhắc lại sau 5 phút</string>
     <string name="notifications_denied">Thông báo của ứng dụng này đang tắt. Hãy bật trong Cài đặt để nhận nhắc nhở.</string>
     <string name="on_device_ai">AI trên thiết bị</string>
     <string name="onb_ask_body">Câu trả lời trích dẫn Qur’an kèm số câu kinh, để bạn luôn có thể kiểm tra nguồn.</string>
@@ -387,6 +396,8 @@
     <string name="tab_ask_short">Hỏi</string>
     <string name="tab_mosques">Thánh đường gần nhất</string>
     <string name="tab_prayer">Cầu nguyện &amp; Qibla</string>
+    <string name="tasbih_count_a11y">Đếm %1$d. Chạm để thêm một.</string>
+    <string name="tasbih_reset">Đặt lại</string>
     <string name="time_progress_a11y">Đã qua %1$d%% thời gian đến %2$s</string>
     <string name="time_zone_label">Múi giờ: %1$s</string>
     <string name="todays_times">Giờ cầu nguyện hôm nay</string>
@@ -425,6 +436,8 @@
     <string name="widget_kind_qibla_desc">Hướng Qibla tính từ hướng bắc cho thành phố của bạn. Chạm để mở la bàn trực tiếp.</string>
     <string name="widget_kind_ring">Vòng giờ cầu nguyện</string>
     <string name="widget_kind_ring_desc">Thời gian còn lại đến giờ cầu nguyện tiếp theo trên một vòng tròn, kèm mọi giờ hôm nay.</string>
+    <string name="widget_kind_tasbih">Bộ đếm tasbih</string>
+    <string name="widget_kind_tasbih_desc">Chạm vào vòng tròn để đếm lời dhikr. Vòng đầy sau mỗi 33 lần.</string>
     <string name="widget_kind_today">Cầu nguyện hôm nay</string>
     <string name="widget_kind_today_desc">Cả năm lần cầu nguyện tại thành phố của bạn, kèm ngày và lần cầu nguyện tiếp theo.</string>
     <string name="widget_next_description">Giờ cầu nguyện tiếp theo kèm đếm ngược</string>

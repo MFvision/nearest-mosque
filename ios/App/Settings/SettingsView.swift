@@ -84,6 +84,21 @@ struct SettingsView: View {
                     } label: {
                         VStack(alignment: .leading) { Text(l10n.t("alerts_fajr_alarm")); Text(l10n.t("alerts_fajr_alarm_note")).font(.caption).foregroundStyle(.secondary) }
                     }
+                    Toggle(isOn: alertBinding(\.kahf)) {
+                        VStack(alignment: .leading) { Text(l10n.t("alerts_kahf")); Text(l10n.t("alerts_kahf_note")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                    Toggle(isOn: Binding(get: { app.settings.alerts.bedtimeMinutes != nil },
+                                         set: { var a = app.settings.alerts; a.bedtimeMinutes = $0 ? AlertSettings.defaultBedtimeMinutes : nil; app.setAlerts(a) })) {
+                        VStack(alignment: .leading) { Text(l10n.t("alerts_sleep")); Text(l10n.t("alerts_sleep_note")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                    if let minutes = app.settings.alerts.bedtimeMinutes {
+                        DatePicker(l10n.t("alerts_sleep_time"), selection: Binding(
+                            get: { Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: Date()) ?? Date() },
+                            set: { d in
+                                let c = Calendar.current.dateComponents([.hour, .minute], from: d)
+                                var a = app.settings.alerts; a.bedtimeMinutes = (c.hour ?? 22) * 60 + (c.minute ?? 30); app.setAlerts(a)
+                            }), displayedComponents: .hourAndMinute)
+                    }
                     #if !targetEnvironment(macCatalyst)
                     Toggle(isOn: Binding(get: { app.settings.liveCountdown }, set: { app.settings.liveCountdown = $0 })) {
                         VStack(alignment: .leading) { Text(l10n.t("live_countdown")); Text(l10n.t("live_countdown_note")).font(.caption).foregroundStyle(.secondary) }

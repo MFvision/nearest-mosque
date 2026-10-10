@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Звони као аларм док га не зауставите, чак и у нечујном режиму где телефон то дозвољава.</string>
     <string name="alerts_friday">Подсетник за петак (џума)</string>
     <string name="alerts_friday_note">45 минута пре подне-намаза петком.</string>
+    <string name="alerts_kahf">Петак: сура Ел-Кехф</string>
+    <string name="alerts_kahf_note">Петком у 9:00 ујутру, са њеним првим ајетом.</string>
     <string name="alerts_minutes">%1$d мин раније</string>
     <string name="alerts_off">Искључено</string>
     <string name="alerts_ramadan">Рамазан: сехур и ифтар</string>
     <string name="alerts_ramadan_note">Сехур 45 минута пре сабаха, ифтар у време акшама. Само током рамазана.</string>
     <string name="alerts_section">Подсетници и аларми</string>
+    <string name="alerts_sleep">Ајет пре спавања</string>
+    <string name="alerts_sleep_note">Ајетул-курсија или последња два ајета суре Ел-Бекара, у време које изаберете.</string>
+    <string name="alerts_sleep_time">Време за спавање</string>
     <string name="allow_location">Дозволи локацију</string>
     <string name="answer_common_reviewed">Чест одговор, прегледао: %1$s</string>
     <string name="answer_common_unreviewed">Чест одговор, чека преглед учењака</string>
@@ -243,6 +248,10 @@
     <string name="no_city_results">Нема таквог града. Покушајте другачије да га напишете.</string>
     <string name="no_records_body">Преузети подаци (%1$s) немају џамија у кругу од %2$s од ове тачке. Подаци можда нису потпуни.</string>
     <string name="no_records_title">Нема забележених џамија у близини</string>
+    <string name="notif_kahf_title">Петак: сура Ел-Кехф</string>
+    <string name="notif_prayed">Клањао сам</string>
+    <string name="notif_sleep_title">Пре спавања</string>
+    <string name="notif_snooze">Подсети ме за 5 мин</string>
     <string name="notifications_denied">Обавештења су искључена за ову апликацију. Укључите их у подешавањима да бисте добијали подсетнике.</string>
     <string name="on_device_ai">AI на уређају</string>
     <string name="onb_ask_body">Одговори цитирају Кур\'ан са ознаком ајета, па увек можете проверити извор.</string>
@@ -389,6 +398,8 @@
     <string name="tab_ask_short">Питај</string>
     <string name="tab_mosques">Најближа џамија</string>
     <string name="tab_prayer">Намаз и кибла</string>
+    <string name="tasbih_count_a11y">Број %1$d. Додирните да додате један.</string>
+    <string name="tasbih_reset">Ресетуј</string>
     <string name="time_progress_a11y">Прошло је %1$d%% времена до следећег термина (%2$s)</string>
     <string name="time_zone_label">Временска зона: %1$s</string>
     <string name="todays_times">Данашња намаска времена</string>
@@ -427,6 +438,8 @@
     <string name="widget_kind_qibla_desc">Смер кибле од севера за ваш град. Додирните за компас уживо.</string>
     <string name="widget_kind_ring">Прстен молитви</string>
     <string name="widget_kind_ring_desc">Преостало време до следеће молитве на прстену, са свим данашњим временима.</string>
+    <string name="widget_kind_tasbih">Бројач тесбиха</string>
+    <string name="widget_kind_tasbih_desc">Додирните круг да бројите зикр. Прстен се попуни на сваких 33.</string>
     <string name="widget_kind_today">Данашњи намази</string>
     <string name="widget_kind_today_desc">Свих пет намаза за ваш град, са датумом и следећим намазом.</string>
     <string name="widget_next_description">Следећи намаз са одбројавањем</string>

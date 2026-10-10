@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">ඔබ නවත්වන තුරු එලාමයක් මෙන් නාද වේ, දුරකථනය ඉඩ දෙන තැන්වල නිහඬ ප්‍රකාරයේදී පවා.</string>
     <string name="alerts_friday">සිකුරාදා (ජුම්ආ) සිහිකැඳවීම</string>
     <string name="alerts_friday_note">සිකුරාදා දිනවල ළුහර්ට මිනිත්තු 45 කට පෙර.</string>
+    <string name="alerts_kahf">සිකුරාදා: සූරා අල්-කහ්ෆ්</string>
+    <string name="alerts_kahf_note">සිකුරාදා උදේ 9:00ට, එහි පළමු ආයතය සමඟ.</string>
     <string name="alerts_minutes">මිනි. %1$d කට පෙර</string>
     <string name="alerts_off">අක්‍රිය</string>
     <string name="alerts_ramadan">රමළාන්: සහර් සහ ඉෆ්තාර්</string>
     <string name="alerts_ramadan_note">ෆජ්ර්ට මිනිත්තු 45 කට පෙර සහර්, මග්රිබ්හිදී ඉෆ්තාර්. රමළාන් කාලයේ පමණි.</string>
     <string name="alerts_section">සිහිකැඳවීම් සහ එලාම්</string>
+    <string name="alerts_sleep">නින්දට පෙර ආයතයක්</string>
+    <string name="alerts_sleep_note">ආයතුල් කුර්සී හෝ සූරා අල්-බකරාහ් හි අවසන් ආයත දෙක, ඔබ තෝරන වේලාවට.</string>
+    <string name="alerts_sleep_time">නින්දේ වේලාව</string>
     <string name="allow_location">ස්ථානයට ඉඩ දෙන්න</string>
     <string name="answer_common_reviewed">පොදු පිළිතුර, %1$s විසින් සමාලෝචනය කළා</string>
     <string name="answer_common_unreviewed">පොදු පිළිතුර, විද්වත් සමාලෝචනය බලාපොරොත්තුවෙන්</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">ගැළපෙන නගරයක් නැත. වෙනත් අක්ෂර වින්‍යාසයක් උත්සාහ කරන්න.</string>
     <string name="no_records_body">%1$s සඳහා බාගත කළ දත්තවල මෙම ස්ථානයේ සිට %2$s ඇතුළත පල්ලි කිසිවක් නැත. දත්ත අසම්පූර්ණ විය හැක.</string>
     <string name="no_records_title">අසල පල්ලි කිසිවක් වාර්තා වී නැත</string>
+    <string name="notif_kahf_title">සිකුරාදා: සූරා අල්-කහ්ෆ්</string>
+    <string name="notif_prayed">සලාත් කළා</string>
+    <string name="notif_sleep_title">නින්දට පෙර</string>
+    <string name="notif_snooze">විනාඩි 5කින් මතක් කරන්න</string>
     <string name="notifications_denied">මෙම යෙදුමට දැනුම්දීම් අක්‍රියයි. සිහිකැඳවීම් ලබා ගැනීමට සැකසීම්වල ඒවා සක්‍රිය කරන්න.</string>
     <string name="on_device_ai">උපාංගයේ AI</string>
     <string name="onb_ask_body">පිළිතුරු ආයත් යොමුව සමඟ කුර්ආනය උපුටා දක්වයි, එබැවින් ඔබට සැමවිටම මූලාශ්‍රය පරීක්ෂා කළ හැක.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">අහන්න</string>
     <string name="tab_mosques">ළඟම පල්ලිය</string>
     <string name="tab_prayer">සලාතය සහ කිබ්ලා</string>
+    <string name="tasbih_count_a11y">ගණන %1$d. එකක් එක් කිරීමට තට්ටු කරන්න.</string>
+    <string name="tasbih_reset">යළි සකසන්න</string>
     <string name="time_progress_a11y">%2$s දක්වා කාලයෙන් %1$d%% ගත වී ඇත</string>
     <string name="time_zone_label">වේලා කලාපය: %1$s</string>
     <string name="todays_times">අද සලාත වේලාවන්</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">ඔබේ නගරයට උතුරේ සිට කිබ්ලා දිශාව. සජීවී මාලිමාව සඳහා තට්ටු කරන්න.</string>
     <string name="widget_kind_ring">සලාත් වළල්ල</string>
     <string name="widget_kind_ring_desc">ඊළඟ සලාතයට ඉතිරි කාලය වළල්ලක, අද සියලු වේලාවන් සමඟ.</string>
+    <string name="widget_kind_tasbih">තස්බීහ් ගණකය</string>
+    <string name="widget_kind_tasbih_desc">ඔබේ ධික්ර් ගණන් කිරීමට කවය තට්ටු කරන්න. සෑම 33කටම වළල්ල පිරේ.</string>
     <string name="widget_kind_today">අද සලාත</string>
     <string name="widget_kind_today_desc">ඔබේ නගරයේ සලාත පහම, දිනය සහ ඊළඟ සලාතය සමඟ.</string>
     <string name="widget_next_description">ගණන් කිරීමක් සහිත ඊළඟ සලාතය</string>

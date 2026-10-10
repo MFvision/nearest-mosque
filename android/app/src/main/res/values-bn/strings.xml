@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">আপনি বন্ধ না করা পর্যন্ত অ্যালার্মের মতো বাজে, ফোন অনুমতি দিলে সাইলেন্টেও।</string>
     <string name="alerts_friday">জুমার রিমাইন্ডার</string>
     <string name="alerts_friday_note">শুক্রবার যোহরের 45 মিনিট আগে।</string>
+    <string name="alerts_kahf">জুমা: সূরা আল-কাহফ</string>
+    <string name="alerts_kahf_note">শুক্রবার সকাল ৯টায়, এর প্রথম আয়াতসহ।</string>
     <string name="alerts_minutes">%1$d মিনিট আগে</string>
     <string name="alerts_off">বন্ধ</string>
     <string name="alerts_ramadan">রমজান: সেহরি ও ইফতার</string>
     <string name="alerts_ramadan_note">সেহরি ফজরের 45 মিনিট আগে, ইফতার মাগরিবে। শুধু রমজানে।</string>
     <string name="alerts_section">রিমাইন্ডার ও অ্যালার্ম</string>
+    <string name="alerts_sleep">ঘুমানোর আগে একটি আয়াত</string>
+    <string name="alerts_sleep_note">আয়াতুল কুরসি বা সূরা আল-বাকারার শেষ দুই আয়াত, আপনার বেছে নেওয়া সময়ে।</string>
+    <string name="alerts_sleep_time">ঘুমের সময়</string>
     <string name="allow_location">লোকেশনের অনুমতি দিন</string>
     <string name="answer_common_reviewed">সাধারণ উত্তর, %1$s পর্যালোচনা করেছেন</string>
     <string name="answer_common_unreviewed">সাধারণ উত্তর, আলেমের পর্যালোচনার অপেক্ষায়</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">মিলে যায় এমন কোনো শহর পাওয়া যায়নি। অন্য বানানে চেষ্টা করুন।</string>
     <string name="no_records_body">%1$s-এর ডাউনলোড করা ডেটায় এই জায়গা থেকে %2$s-এর মধ্যে কোনো মসজিদ নেই। ডেটা অসম্পূর্ণ হতে পারে।</string>
     <string name="no_records_title">কাছে কোনো মসজিদের তথ্য নেই</string>
+    <string name="notif_kahf_title">জুমা: সূরা আল-কাহফ</string>
+    <string name="notif_prayed">নামাজ পড়েছি</string>
+    <string name="notif_sleep_title">ঘুমানোর আগে</string>
+    <string name="notif_snooze">৫ মিনিট পরে মনে করাও</string>
     <string name="notifications_denied">এই অ্যাপের নোটিফিকেশন বন্ধ আছে। রিমাইন্ডার পেতে সেটিংসে এগুলো চালু করুন।</string>
     <string name="on_device_ai">অন-ডিভাইস AI</string>
     <string name="onb_ask_body">উত্তরে আয়াতের রেফারেন্সসহ কুরআন থেকে উদ্ধৃতি থাকে, তাই আপনি সবসময় উৎস যাচাই করতে পারেন।</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">জিজ্ঞেস</string>
     <string name="tab_mosques">নিকটতম মসজিদ</string>
     <string name="tab_prayer">নামাজ ও কিবলা</string>
+    <string name="tasbih_count_a11y">গণনা %1$d। একটি যোগ করতে চাপুন।</string>
+    <string name="tasbih_reset">রিসেট</string>
     <string name="time_progress_a11y">%2$s পর্যন্ত সময়ের %1$d%% পার হয়েছে</string>
     <string name="time_zone_label">টাইম জোন: %1$s</string>
     <string name="todays_times">আজকের নামাজের সময়</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">আপনার শহরের জন্য উত্তর থেকে কিবলার দিক। লাইভ কম্পাসের জন্য ট্যাপ করুন।</string>
     <string name="widget_kind_ring">নামাজ রিং</string>
     <string name="widget_kind_ring_desc">পরের নামাজ পর্যন্ত বাকি সময় একটি রিংয়ে, আজকের সব সময়সহ।</string>
+    <string name="widget_kind_tasbih">তাসবিহ কাউন্টার</string>
+    <string name="widget_kind_tasbih_desc">জিকির গুনতে বৃত্তে চাপুন। প্রতি ৩৩-এ বলয় পূর্ণ হয়।</string>
     <string name="widget_kind_today">আজকের নামাজ</string>
     <string name="widget_kind_today_desc">আপনার শহরের পাঁচ ওয়াক্ত নামাজ, তারিখ ও পরবর্তী নামাজসহ।</string>
     <string name="widget_next_description">কাউন্টডাউনসহ পরবর্তী নামাজ</string>

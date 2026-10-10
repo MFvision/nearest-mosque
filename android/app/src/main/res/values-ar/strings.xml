@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">يرنّ كالمنبّه حتى توقفه، حتى في الوضع الصامت إن سمح الهاتف.</string>
     <string name="alerts_friday">تذكير صلاة الجمعة</string>
     <string name="alerts_friday_note">قبل الظهر بـ45 دقيقة يوم الجمعة.</string>
+    <string name="alerts_kahf">الجمعة: سورة الكهف</string>
+    <string name="alerts_kahf_note">يوم الجمعة الساعة ٩ صباحًا، مع أول آية منها.</string>
     <string name="alerts_minutes">قبل %1$d دقيقة</string>
     <string name="alerts_off">إيقاف</string>
     <string name="alerts_ramadan">رمضان: السحور والإفطار</string>
     <string name="alerts_ramadan_note">السحور قبل الفجر بـ45 دقيقة والإفطار عند المغرب، في رمضان فقط.</string>
     <string name="alerts_section">التنبيهات والمنبّه</string>
+    <string name="alerts_sleep">آية قبل النوم</string>
+    <string name="alerts_sleep_note">آية الكرسي أو آخر آيتين من سورة البقرة، في الوقت الذي تختاره.</string>
+    <string name="alerts_sleep_time">وقت النوم</string>
     <string name="allow_location">السماح بالموقع</string>
     <string name="answer_common_reviewed">إجابة شائعة، راجعها %1$s</string>
     <string name="answer_common_unreviewed">إجابة شائعة، بانتظار مراجعة عالم</string>
@@ -246,6 +251,10 @@
     <string name="no_city_results">لا توجد مدينة مطابقة. جرّب كتابة أخرى.</string>
     <string name="no_records_body">لا تحتوي بيانات %1$s المحمّلة على مساجد ضمن %2$s من هذه النقطة. قد تكون البيانات ناقصة.</string>
     <string name="no_records_title">لا توجد مساجد مسجّلة قريبة</string>
+    <string name="notif_kahf_title">جمعة مباركة: سورة الكهف</string>
+    <string name="notif_prayed">صلّيت</string>
+    <string name="notif_sleep_title">قبل النوم</string>
+    <string name="notif_snooze">ذكّرني بعد ٥ دقائق</string>
     <string name="notifications_denied">الإشعارات متوقفة لهذا التطبيق. فعّلها من الإعدادات لتصلك التذكيرات.</string>
     <string name="on_device_ai">الذكاء على الجهاز</string>
     <string name="onb_ask_body">تقتبس الإجابات من القرآن مع رقم الآية، لتتحقق من المصدر دائمًا.</string>
@@ -392,6 +401,8 @@
     <string name="tab_ask_short">اسأل</string>
     <string name="tab_mosques">أقرب مسجد</string>
     <string name="tab_prayer">الصلاة والقبلة</string>
+    <string name="tasbih_count_a11y">العدد %1$d. اضغط لإضافة واحدة.</string>
+    <string name="tasbih_reset">تصفير</string>
     <string name="time_progress_a11y">مضى %1$d%% من الوقت حتى %2$s</string>
     <string name="time_zone_label">المنطقة الزمنية: %1$s</string>
     <string name="todays_times">مواقيت اليوم</string>
@@ -430,6 +441,8 @@
     <string name="widget_kind_qibla_desc">اتجاه القبلة من الشمال لمدينتك. اضغط لفتح البوصلة الحية.</string>
     <string name="widget_kind_ring">حلقة الصلاة</string>
     <string name="widget_kind_ring_desc">الوقت المتبقي للصلاة القادمة على حلقة، مع مواقيت اليوم كلها.</string>
+    <string name="widget_kind_tasbih">عدّاد التسبيح</string>
+    <string name="widget_kind_tasbih_desc">اضغط الدائرة لتعدّ أذكارك، وتكتمل الحلقة كل ٣٣.</string>
     <string name="widget_kind_today">صلوات اليوم</string>
     <string name="widget_kind_today_desc">الصلوات الخمس لمدينتك مع التاريخ والصلاة القادمة.</string>
     <string name="widget_next_description">الصلاة القادمة مع العد التنازلي</string>

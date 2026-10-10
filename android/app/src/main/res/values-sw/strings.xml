@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">Inalia kama kengele hadi uizime, hata simu ikiwa kimya pale simu inaporuhusu.</string>
     <string name="alerts_friday">Kikumbusho cha Ijumaa</string>
     <string name="alerts_friday_note">Dakika 45 kabla ya Adhuhuri siku ya Ijumaa.</string>
+    <string name="alerts_kahf">Ijumaa: Surat Al-Kahf</string>
+    <string name="alerts_kahf_note">Ijumaa saa 3:00 asubuhi, pamoja na aya yake ya kwanza.</string>
     <string name="alerts_minutes">Dakika %1$d kabla</string>
     <string name="alerts_off">Imezimwa</string>
     <string name="alerts_ramadan">Ramadhani: daku na futari</string>
     <string name="alerts_ramadan_note">Daku dakika 45 kabla ya Alfajiri, futari wakati wa Magharibi. Wakati wa Ramadhani tu.</string>
     <string name="alerts_section">Vikumbusho na kengele</string>
+    <string name="alerts_sleep">Aya kabla ya kulala</string>
+    <string name="alerts_sleep_note">Ayatul Kursi au aya mbili za mwisho za Al-Baqara, wakati utakaochagua.</string>
+    <string name="alerts_sleep_time">Wakati wa kulala</string>
     <string name="allow_location">Ruhusu mahali</string>
     <string name="answer_common_reviewed">Jibu la kawaida, limekaguliwa na %1$s</string>
     <string name="answer_common_unreviewed">Jibu la kawaida, linasubiri kukaguliwa na mwanachuoni</string>
@@ -242,6 +247,10 @@
     <string name="no_city_results">Hakuna mji unaolingana. Jaribu tahajia nyingine.</string>
     <string name="no_records_body">Data iliyopakuliwa ya %1$s haina misikiti ndani ya %2$s kutoka mahali hapa. Huenda data haijakamilika.</string>
     <string name="no_records_title">Hakuna misikiti iliyorekodiwa karibu</string>
+    <string name="notif_kahf_title">Ijumaa: Surat Al-Kahf</string>
+    <string name="notif_prayed">Nimeswali</string>
+    <string name="notif_sleep_title">Kabla ya kulala</string>
+    <string name="notif_snooze">Nikumbushe baada ya dk 5</string>
     <string name="notifications_denied">Arifa zimezimwa kwa programu hii. Ziwashe kwenye Mipangilio ili upate vikumbusho.</string>
     <string name="on_device_ai">AI ya kwenye kifaa</string>
     <string name="onb_ask_body">Majibu yananukuu Qur\'ani pamoja na namba ya aya, ili uweze kukagua chanzo kila wakati.</string>
@@ -388,6 +397,8 @@
     <string name="tab_ask_short">Uliza</string>
     <string name="tab_mosques">Msikiti wa karibu zaidi</string>
     <string name="tab_prayer">Sala na Kibla</string>
+    <string name="tasbih_count_a11y">Hesabu %1$d. Gusa kuongeza moja.</string>
+    <string name="tasbih_reset">Weka upya</string>
     <string name="time_progress_a11y">%1$d%% ya muda hadi %2$s umepita</string>
     <string name="time_zone_label">Saa za eneo: %1$s</string>
     <string name="todays_times">Nyakati za sala za leo</string>
@@ -426,6 +437,8 @@
     <string name="widget_kind_qibla_desc">Mwelekeo wa kibla kutoka kaskazini kwa mji wako. Gusa kwa dira hai.</string>
     <string name="widget_kind_ring">Mduara wa sala</string>
     <string name="widget_kind_ring_desc">Muda uliobaki hadi sala inayofuata kwenye mduara, pamoja na nyakati zote za leo.</string>
+    <string name="widget_kind_tasbih">Kihesabu tasbihi</string>
+    <string name="widget_kind_tasbih_desc">Gusa duara kuhesabu dhikri zako. Pete hujaa kila 33.</string>
     <string name="widget_kind_today">Sala za leo</string>
     <string name="widget_kind_today_desc">Sala zote tano za mji wako, pamoja na tarehe na sala ijayo.</string>
     <string name="widget_next_description">Sala ijayo pamoja na hesabu ya kurudi nyuma</string>

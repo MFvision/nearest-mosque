@@ -14,11 +14,16 @@
     <string name="alerts_fajr_alarm_note">ดังเหมือนนาฬิกาปลุกจนกว่าคุณจะหยุด แม้ในโหมดเงียบหากโทรศัพท์อนุญาต</string>
     <string name="alerts_friday">เตือนวันศุกร์ (ญุมอะฮ์)</string>
     <string name="alerts_friday_note">45 นาทีก่อนซุฮ์รีในวันศุกร์</string>
+    <string name="alerts_kahf">วันศุกร์: ซูเราะฮ์อัลกะฮ์ฟี</string>
+    <string name="alerts_kahf_note">วันศุกร์ 09:00 น. พร้อมอายะฮ์แรก</string>
     <string name="alerts_minutes">ก่อน %1$d นาที</string>
     <string name="alerts_off">ปิด</string>
     <string name="alerts_ramadan">รอมฎอน: สะฮูรและอิฟฏอร์</string>
     <string name="alerts_ramadan_note">สะฮูร 45 นาทีก่อนซุบฮิ อิฟฏอร์เมื่อถึงมัฆริบ เฉพาะช่วงรอมฎอน</string>
     <string name="alerts_section">การเตือนและนาฬิกาปลุก</string>
+    <string name="alerts_sleep">อายะฮ์ก่อนนอน</string>
+    <string name="alerts_sleep_note">อายะตุลกุรซีย์ หรือสองอายะฮ์สุดท้ายของอัลบะเกาะเราะฮ์ ตามเวลาที่คุณเลือก</string>
+    <string name="alerts_sleep_time">เวลานอน</string>
     <string name="allow_location">อนุญาตตำแหน่ง</string>
     <string name="answer_common_reviewed">คำตอบทั่วไป ตรวจสอบโดย %1$s</string>
     <string name="answer_common_unreviewed">คำตอบทั่วไป รอผู้รู้ตรวจสอบ</string>
@@ -241,6 +246,10 @@
     <string name="no_city_results">ไม่พบเมืองที่ตรงกัน ลองสะกดแบบอื่น</string>
     <string name="no_records_body">ข้อมูลที่ดาวน์โหลดของ %1$s ไม่มีมัสยิดในระยะ %2$s จากจุดนี้ ข้อมูลอาจไม่ครบถ้วน</string>
     <string name="no_records_title">ไม่มีมัสยิดที่บันทึกไว้ในบริเวณใกล้เคียง</string>
+    <string name="notif_kahf_title">วันศุกร์: ซูเราะฮ์อัลกะฮ์ฟี</string>
+    <string name="notif_prayed">ละหมาดแล้ว</string>
+    <string name="notif_sleep_title">ก่อนนอน</string>
+    <string name="notif_snooze">เตือนอีกครั้งใน 5 นาที</string>
     <string name="notifications_denied">การแจ้งเตือนของแอปนี้ปิดอยู่ เปิดได้ในการตั้งค่าเพื่อรับการเตือน</string>
     <string name="on_device_ai">AI ในเครื่อง</string>
     <string name="onb_ask_body">คำตอบยกข้อความจากอัลกุรอานพร้อมเลขอายะฮ์ คุณจึงตรวจสอบแหล่งที่มาได้เสมอ</string>
@@ -387,6 +396,8 @@
     <string name="tab_ask_short">ถาม</string>
     <string name="tab_mosques">มัสยิดใกล้ที่สุด</string>
     <string name="tab_prayer">ละหมาดและกิบลัต</string>
+    <string name="tasbih_count_a11y">จำนวน %1$d แตะเพื่อเพิ่มหนึ่ง</string>
+    <string name="tasbih_reset">รีเซ็ต</string>
     <string name="time_progress_a11y">ผ่านไปแล้ว %1$d%% ของเวลาจนถึง %2$s</string>
     <string name="time_zone_label">เขตเวลา: %1$s</string>
     <string name="todays_times">เวลาละหมาดวันนี้</string>
@@ -425,6 +436,8 @@
     <string name="widget_kind_qibla_desc">ทิศกิบลัตจากทิศเหนือสำหรับเมืองของคุณ แตะเพื่อเปิดเข็มทิศสด</string>
     <string name="widget_kind_ring">วงเวลาละหมาด</string>
     <string name="widget_kind_ring_desc">เวลาที่เหลือถึงละหมาดถัดไปบนวงแหวน พร้อมเวลาทั้งหมดของวันนี้</string>
+    <string name="widget_kind_tasbih">ตัวนับตัสบีห์</string>
+    <string name="widget_kind_tasbih_desc">แตะวงกลมเพื่อนับซิกร์ วงแหวนจะเต็มทุก 33 ครั้ง</string>
     <string name="widget_kind_today">ละหมาดวันนี้</string>
     <string name="widget_kind_today_desc">ละหมาดทั้งห้าเวลาของเมืองคุณ พร้อมวันที่และละหมาดถัดไป</string>
     <string name="widget_next_description">ละหมาดถัดไปพร้อมการนับถอยหลัง</string>
