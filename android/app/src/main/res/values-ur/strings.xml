@@ -194,6 +194,8 @@
     <string name="library_watch">دیکھیں</string>
     <string name="library_web">IslamHouse پر</string>
     <string name="library_web_site">%1$s کھولیں</string>
+    <string name="live_countdown">لاک اسکرین پر الٹی گنتی</string>
+    <string name="live_countdown_note">اگلی نماز کی الٹی گنتی لاک اسکرین اور ڈائنامک آئی لینڈ میں دکھتی ہے۔ یہ ایپ کھولنے پر شروع ہوتی ہے اور ۸ گھنٹے تک رہتی ہے۔</string>
     <string name="locating">آپ کا مقام معلوم کیا جا رہا ہے…</string>
     <string name="location_age">%1$s پہلے کا مقام، ±%2$s میٹر</string>
     <string name="location_current">موجودہ مقام</string>

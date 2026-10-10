@@ -194,6 +194,8 @@
     <string name="library_watch">చూడండి</string>
     <string name="library_web">IslamHouse లో</string>
     <string name="library_web_site">%1$s తెరువు</string>
+    <string name="live_countdown">లాక్ స్క్రీన్‌పై కౌంట్‌డౌన్</string>
+    <string name="live_countdown_note">తదుపరి నమాజ్ కౌంట్‌డౌన్ లాక్ స్క్రీన్ మరియు డైనమిక్ ఐలాండ్‌లో కనిపిస్తుంది. యాప్ తెరిచినప్పుడు మొదలై 8 గంటల వరకు ఉంటుంది.</string>
     <string name="locating">మీ లొకేషన్ కనుగొంటోంది…</string>
     <string name="location_age">%1$s క్రితం లొకేషన్, ±%2$s మీ</string>
     <string name="location_current">ప్రస్తుత లొకేషన్</string>

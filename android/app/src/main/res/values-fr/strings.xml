@@ -194,6 +194,8 @@
     <string name="library_watch">Regarder</string>
     <string name="library_web">Sur IslamHouse</string>
     <string name="library_web_site">Ouvrir %1$s</string>
+    <string name="live_countdown">Compte à rebours sur l’écran verrouillé</string>
+    <string name="live_countdown_note">La prochaine prière s’affiche avec un compte à rebours sur l’écran verrouillé et dans la Dynamic Island. Il démarre à l’ouverture de l’app et dure jusqu’à 8 heures.</string>
     <string name="locating">Recherche de votre position…</string>
     <string name="location_age">Position d’il y a %1$s, ±%2$s m</string>
     <string name="location_current">Position actuelle</string>

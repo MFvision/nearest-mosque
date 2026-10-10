@@ -84,6 +84,11 @@ struct SettingsView: View {
                     } label: {
                         VStack(alignment: .leading) { Text(l10n.t("alerts_fajr_alarm")); Text(l10n.t("alerts_fajr_alarm_note")).font(.caption).foregroundStyle(.secondary) }
                     }
+                    #if !targetEnvironment(macCatalyst)
+                    Toggle(isOn: Binding(get: { app.settings.liveCountdown }, set: { app.settings.liveCountdown = $0 })) {
+                        VStack(alignment: .leading) { Text(l10n.t("live_countdown")); Text(l10n.t("live_countdown_note")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                    #endif
                 } header: { Text(l10n.t("alerts_section")) } footer: { Text(l10n.t("alerts_bells_note")) }
 
                 Section {

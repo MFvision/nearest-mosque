@@ -194,6 +194,8 @@
     <string name="library_watch">Xem</string>
     <string name="library_web">Trên IslamHouse</string>
     <string name="library_web_site">Mở %1$s</string>
+    <string name="live_countdown">Đếm ngược trên Màn hình khóa</string>
+    <string name="live_countdown_note">Giờ cầu nguyện tiếp theo được đếm ngược trên Màn hình khóa và Dynamic Island. Bắt đầu khi bạn mở ứng dụng và kéo dài tối đa 8 giờ.</string>
     <string name="locating">Đang tìm vị trí của bạn…</string>
     <string name="location_age">Vị trí từ %1$s trước, ±%2$s m</string>
     <string name="location_current">Vị trí hiện tại</string>

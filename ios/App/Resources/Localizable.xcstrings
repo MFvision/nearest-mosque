@@ -42655,6 +42655,448 @@
         }
       }
     },
+    "live_countdown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Countdown on the Lock Screen"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "العدّ التنازلي على شاشة القفل"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لاک اسکرین پر الٹی گنتی"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit ekranında geri sayım"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hitung mundur di Layar Kunci"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte à rebours sur l’écran verrouillé"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta atrás en la pantalla bloqueada"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обратный отсчёт на экране блокировки"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লক স্ক্রিনে কাউন্টডাউন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمارش معکوس روی صفحهٔ قفل"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شمارش معکوس روی صفحهٔ قفل"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "锁屏倒计时"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लॉक स्क्रीन पर उलटी गिनती"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contagem regressiva na Tela Bloqueada"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ƙirgawa a allon kulle"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuhesabu kwenye Skrini Iliyofungwa"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Countdown sa Lock Screen"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đếm ngược trên Màn hình khóa"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นับถอยหลังบนหน้าจอล็อก"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រាប់ថយក្រោយលើអេក្រង់ចាក់សោ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قۇلۇپ ئېكرانىدا تەتۈر ساناش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ژماردنی پێچەوانە لەسەر شاشەی داخراو"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odbrojavanje na zaključanom ekranu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Одбројавање на закључаном екрану"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Одбројување на заклучен екран"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visszaszámlálás a zárolási képernyőn"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aftellen op het toegangsscherm"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "უკუთვლა ჩაკეტილ ეკრანზე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අගුළු තිරයේ ගණන් කිරීම"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లాక్ స్క్రీన్‌పై కౌంట్‌డౌన్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಕೌಂಟ್‌ಡೌನ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ലോക്ക് സ്ക്രീനിൽ കൗണ്ട്ഡൗൺ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लॉक स्क्रीनवर उलटी गिनती"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "લૉક સ્ક્રીન પર ઊલટી ગણતરી"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਕ ਸਕਰੀਨ ’ਤੇ ਉਲਟੀ ਗਿਣਤੀ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লক স্ক্ৰীণত কাউণ্টডাউন"
+          }
+        }
+      }
+    },
+    "live_countdown_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The next prayer counts down on the Lock Screen and in the Dynamic Island. It starts when you open the app and lasts up to 8 hours."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تظهر الصلاة القادمة مع العدّ التنازلي على شاشة القفل وفي الجزيرة التفاعلية. يبدأ عند فتح التطبيق ويستمر حتى ٨ ساعات."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگلی نماز کی الٹی گنتی لاک اسکرین اور ڈائنامک آئی لینڈ میں دکھتی ہے۔ یہ ایپ کھولنے پر شروع ہوتی ہے اور ۸ گھنٹے تک رہتی ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki namazın geri sayımı kilit ekranında ve Dynamic Island'da görünür. Uygulamayı açınca başlar, en fazla 8 saat sürer."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salat berikutnya dihitung mundur di Layar Kunci dan Dynamic Island. Dimulai saat Anda membuka aplikasi dan bertahan hingga 8 jam."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La prochaine prière s’affiche avec un compte à rebours sur l’écran verrouillé et dans la Dynamic Island. Il démarre à l’ouverture de l’app et dure jusqu’à 8 heures."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El próximo rezo aparece con cuenta atrás en la pantalla bloqueada y en la Dynamic Island. Empieza al abrir la app y dura hasta 8 horas."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следующий намаз с обратным отсчётом показывается на экране блокировки и в Dynamic Island. Отсчёт начинается при открытии приложения и длится до 8 часов."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরের নামাজের কাউন্টডাউন লক স্ক্রিন ও ডাইনামিক আইল্যান্ডে দেখা যায়। অ্যাপ খুললে শুরু হয় এবং ৮ ঘণ্টা পর্যন্ত থাকে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی با شمارش معکوس روی صفحهٔ قفل و در Dynamic Island نمایش داده می‌شود. با باز کردن برنامه شروع می‌شود و تا ۸ ساعت می‌ماند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی با شمارش معکوس روی صفحهٔ قفل و در Dynamic Island نمایش داده می‌شود. با باز کردن برنامه شروع می‌شود و تا ۸ ساعت می‌ماند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一次礼拜会在锁屏和灵动岛上倒计时。打开应用时开始，最长持续 8 小时。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगली नमाज़ की उलटी गिनती लॉक स्क्रीन और डायनैमिक आइलैंड में दिखती है। यह ऐप खोलने पर शुरू होती है और 8 घंटे तक रहती है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A próxima oração aparece em contagem regressiva na Tela Bloqueada e na Dynamic Island. Começa ao abrir o app e dura até 8 horas."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ana ƙirga sallah mai zuwa a allon kulle da kuma Dynamic Island. Yana farawa idan ka buɗe manhajar kuma yana ɗaukar har awa 8."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sala inayofuata inahesabiwa kwenye Skrini Iliyofungwa na kwenye Dynamic Island. Inaanza unapofungua programu na hudumu hadi saa 8."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ipinapakita ang countdown ng susunod na dasal sa Lock Screen at sa Dynamic Island. Nagsisimula ito pagbukas mo ng app at tumatagal nang hanggang 8 oras."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giờ cầu nguyện tiếp theo được đếm ngược trên Màn hình khóa và Dynamic Island. Bắt đầu khi bạn mở ứng dụng và kéo dài tối đa 8 giờ."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดถัดไปจะนับถอยหลังบนหน้าจอล็อกและ Dynamic Island เริ่มเมื่อเปิดแอปและอยู่ได้นานสูงสุด 8 ชั่วโมง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតបន្ទាប់រាប់ថយក្រោយលើអេក្រង់ចាក់សោ និង Dynamic Island។ ចាប់ផ្ដើមពេលអ្នកបើកកម្មវិធី ហើយមានរយៈពេលរហូតដល់ ៨ ម៉ោង។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كېيىنكى نامازنىڭ تەتۈر سانىشى قۇلۇپ ئېكرانى ۋە Dynamic Island دا كۆرۈنىدۇ. ئەپنى ئاچقاندا باشلىنىپ، ئەڭ كۆپ 8 سائەت داۋاملىشىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژی داهاتوو بە ژماردنی پێچەوانە لەسەر شاشەی داخراو و Dynamic Island دەردەکەوێت. کاتێک ئەپەکە دەکەیتەوە دەست پێدەکات و تا ٨ کاتژمێر دەمێنێت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sljedeći namaz se odbrojava na zaključanom ekranu i u Dynamic Islandu. Počinje kad otvorite aplikaciju i traje do 8 sati."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следећи намаз се одбројава на закључаном екрану и у Dynamic Island-у. Почиње кад отворите апликацију и траје до 8 сати."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следниот намаз се одбројува на заклучениот екран и во Dynamic Island. Почнува кога ќе ја отворите апликацијата и трае до 8 часа."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A következő ima visszaszámlálása a zárolási képernyőn és a Dynamic Islandben látszik. Az alkalmazás megnyitásakor indul, és legfeljebb 8 óráig tart."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het volgende gebed telt af op het toegangsscherm en in het Dynamic Island. Het begint als je de app opent en duurt tot 8 uur."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შემდეგი ლოცვის უკუთვლა ჩანს ჩაკეტილ ეკრანზე და Dynamic Island-ში. იწყება აპის გახსნისას და გრძელდება 8 საათამდე."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඊළඟ සලාතය අගුළු තිරයේ සහ Dynamic Island හි ගණන් කරනු ලැබේ. යෙදුම විවෘත කළ විට ආරම්භ වී පැය 8ක් දක්වා පවතී."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తదుపరి నమాజ్ కౌంట్‌డౌన్ లాక్ స్క్రీన్ మరియు డైనమిక్ ఐలాండ్‌లో కనిపిస్తుంది. యాప్ తెరిచినప్పుడు మొదలై 8 గంటల వరకు ఉంటుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮುಂದಿನ ನಮಾಜ್‌ನ ಕೌಂಟ್‌ಡೌನ್ ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ. ಆ್ಯಪ್ ತೆರೆದಾಗ ಆರಂಭವಾಗಿ 8 ಗಂಟೆಗಳವರೆಗೆ ಇರುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്ത നമസ്കാരത്തിന്റെ കൗണ്ട്ഡൗൺ ലോക്ക് സ്ക്രീനിലും ഡൈനാമിക് ഐലൻഡിലും കാണാം. ആപ്പ് തുറക്കുമ്പോൾ തുടങ്ങി 8 മണിക്കൂർ വരെ നിലനിൽക്കും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुढच्या नमाजची उलटी गिनती लॉक स्क्रीन आणि डायनॅमिक आयलंडमध्ये दिसते. ती ॲप उघडल्यावर सुरू होते आणि 8 तासांपर्यंत राहते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આગામી નમાઝની ઊલટી ગણતરી લૉક સ્ક્રીન અને ડાયનેમિક આઇલેન્ડમાં દેખાય છે. તે ઍપ ખોલતાં શરૂ થાય છે અને 8 કલાક સુધી રહે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਗਲੀ ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਲੌਕ ਸਕਰੀਨ ਅਤੇ ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਦਿਖਦੀ ਹੈ। ਇਹ ਐਪ ਖੋਲ੍ਹਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ ਅਤੇ 8 ਘੰਟਿਆਂ ਤੱਕ ਰਹਿੰਦੀ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পিছৰ নামাজৰ কাউণ্টডাউন লক স্ক্ৰীণ আৰু ডায়নামিক আইলেণ্ডত দেখা যায়। এপ খুলিলে আৰম্ভ হয় আৰু ৮ ঘণ্টালৈকে থাকে।"
+          }
+        }
+      }
+    },
     "locating": {
       "extractionState": "manual",
       "localizations": {

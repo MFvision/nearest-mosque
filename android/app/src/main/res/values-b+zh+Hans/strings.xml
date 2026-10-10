@@ -194,6 +194,8 @@
     <string name="library_watch">观看</string>
     <string name="library_web">在 IslamHouse 上</string>
     <string name="library_web_site">打开 %1$s</string>
+    <string name="live_countdown">锁屏倒计时</string>
+    <string name="live_countdown_note">下一次礼拜会在锁屏和灵动岛上倒计时。打开应用时开始，最长持续 8 小时。</string>
     <string name="locating">正在获取你的位置…</string>
     <string name="location_age">%1$s 前的位置，±%2$s 米</string>
     <string name="location_current">当前位置</string>

@@ -194,6 +194,8 @@
     <string name="library_watch">İzle</string>
     <string name="library_web">IslamHouse’ta</string>
     <string name="library_web_site">Sitede aç: %1$s</string>
+    <string name="live_countdown">Kilit ekranında geri sayım</string>
+    <string name="live_countdown_note">Sonraki namazın geri sayımı kilit ekranında ve Dynamic Island\'da görünür. Uygulamayı açınca başlar, en fazla 8 saat sürer.</string>
     <string name="locating">Konumunuz bulunuyor…</string>
     <string name="location_age">%1$s önceki konum, ±%2$s m</string>
     <string name="location_current">Mevcut konum</string>

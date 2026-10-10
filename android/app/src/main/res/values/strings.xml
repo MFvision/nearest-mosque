@@ -194,6 +194,8 @@
     <string name="library_watch">Watch</string>
     <string name="library_web">On IslamHouse</string>
     <string name="library_web_site">Open %1$s</string>
+    <string name="live_countdown">Countdown on the Lock Screen</string>
+    <string name="live_countdown_note">The next prayer counts down on the Lock Screen and in the Dynamic Island. It starts when you open the app and lasts up to 8 hours.</string>
     <string name="locating">Finding your location…</string>
     <string name="location_age">Location from %1$s ago, ±%2$s m</string>
     <string name="location_current">Current location</string>

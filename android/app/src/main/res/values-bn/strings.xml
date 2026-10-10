@@ -194,6 +194,8 @@
     <string name="library_watch">দেখুন</string>
     <string name="library_web">IslamHouse-এ</string>
     <string name="library_web_site">%1$s খুলুন</string>
+    <string name="live_countdown">লক স্ক্রিনে কাউন্টডাউন</string>
+    <string name="live_countdown_note">পরের নামাজের কাউন্টডাউন লক স্ক্রিন ও ডাইনামিক আইল্যান্ডে দেখা যায়। অ্যাপ খুললে শুরু হয় এবং ৮ ঘণ্টা পর্যন্ত থাকে।</string>
     <string name="locating">আপনার লোকেশন খোঁজা হচ্ছে…</string>
     <string name="location_age">%1$s আগের লোকেশন, ±%2$s মিটার</string>
     <string name="location_current">বর্তমান লোকেশন</string>

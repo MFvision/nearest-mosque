@@ -194,6 +194,8 @@
     <string name="library_watch">Bekijken</string>
     <string name="library_web">Op IslamHouse</string>
     <string name="library_web_site">%1$s openen</string>
+    <string name="live_countdown">Aftellen op het toegangsscherm</string>
+    <string name="live_countdown_note">Het volgende gebed telt af op het toegangsscherm en in het Dynamic Island. Het begint als je de app opent en duurt tot 8 uur.</string>
     <string name="locating">Je locatie wordt bepaald…</string>
     <string name="location_age">Locatie van %1$s geleden, ±%2$s m</string>
     <string name="location_current">Huidige locatie</string>

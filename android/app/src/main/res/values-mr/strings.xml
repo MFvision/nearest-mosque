@@ -194,6 +194,8 @@
     <string name="library_watch">पाहा</string>
     <string name="library_web">IslamHouse वर</string>
     <string name="library_web_site">%1$s उघडा</string>
+    <string name="live_countdown">लॉक स्क्रीनवर उलटी गिनती</string>
+    <string name="live_countdown_note">पुढच्या नमाजची उलटी गिनती लॉक स्क्रीन आणि डायनॅमिक आयलंडमध्ये दिसते. ती ॲप उघडल्यावर सुरू होते आणि 8 तासांपर्यंत राहते.</string>
     <string name="locating">तुमचे लोकेशन शोधत आहोत…</string>
     <string name="location_age">%1$s पूर्वीचे लोकेशन, ±%2$s मी</string>
     <string name="location_current">सध्याचे लोकेशन</string>

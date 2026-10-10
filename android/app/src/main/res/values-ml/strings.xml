@@ -194,6 +194,8 @@
     <string name="library_watch">കാണുക</string>
     <string name="library_web">IslamHouse-ൽ</string>
     <string name="library_web_site">%1$s തുറക്കുക</string>
+    <string name="live_countdown">ലോക്ക് സ്ക്രീനിൽ കൗണ്ട്ഡൗൺ</string>
+    <string name="live_countdown_note">അടുത്ത നമസ്കാരത്തിന്റെ കൗണ്ട്ഡൗൺ ലോക്ക് സ്ക്രീനിലും ഡൈനാമിക് ഐലൻഡിലും കാണാം. ആപ്പ് തുറക്കുമ്പോൾ തുടങ്ങി 8 മണിക്കൂർ വരെ നിലനിൽക്കും.</string>
     <string name="locating">നിങ്ങളുടെ ലൊക്കേഷൻ കണ്ടെത്തുന്നു…</string>
     <string name="location_age">%1$s മുമ്പുള്ള ലൊക്കേഷൻ, ±%2$s മീ</string>
     <string name="location_current">നിലവിലെ ലൊക്കേഷൻ</string>

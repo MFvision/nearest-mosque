@@ -194,6 +194,8 @@
     <string name="library_watch">જુઓ</string>
     <string name="library_web">IslamHouse પર</string>
     <string name="library_web_site">%1$s ખોલો</string>
+    <string name="live_countdown">લૉક સ્ક્રીન પર ઊલટી ગણતરી</string>
+    <string name="live_countdown_note">આગામી નમાઝની ઊલટી ગણતરી લૉક સ્ક્રીન અને ડાયનેમિક આઇલેન્ડમાં દેખાય છે. તે ઍપ ખોલતાં શરૂ થાય છે અને 8 કલાક સુધી રહે છે.</string>
     <string name="locating">તમારું લોકેશન શોધી રહ્યા છીએ…</string>
     <string name="location_age">%1$s પહેલાંનું લોકેશન, ±%2$s મી</string>
     <string name="location_current">હાલનું લોકેશન</string>

@@ -194,6 +194,8 @@
     <string name="library_watch">تماشا</string>
     <string name="library_web">در IslamHouse</string>
     <string name="library_web_site">باز کردن %1$s</string>
+    <string name="live_countdown">شمارش معکوس روی صفحهٔ قفل</string>
+    <string name="live_countdown_note">نماز بعدی با شمارش معکوس روی صفحهٔ قفل و در Dynamic Island نمایش داده می‌شود. با باز کردن برنامه شروع می‌شود و تا ۸ ساعت می‌ماند.</string>
     <string name="locating">در حال یافتن موقعیت شما…</string>
     <string name="location_age">موقعیت مربوط به %1$s پیش، ±%2$s متر</string>
     <string name="location_current">موقعیت فعلی</string>

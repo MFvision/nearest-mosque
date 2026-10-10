@@ -194,6 +194,8 @@
     <string name="library_watch">Panoorin</string>
     <string name="library_web">Sa IslamHouse</string>
     <string name="library_web_site">Buksan ang %1$s</string>
+    <string name="live_countdown">Countdown sa Lock Screen</string>
+    <string name="live_countdown_note">Ipinapakita ang countdown ng susunod na dasal sa Lock Screen at sa Dynamic Island. Nagsisimula ito pagbukas mo ng app at tumatagal nang hanggang 8 oras.</string>
     <string name="locating">Hinahanap ang iyong lokasyon…</string>
     <string name="location_age">Lokasyon mula %1$s ang nakalipas, ±%2$s m</string>
     <string name="location_current">Kasalukuyang lokasyon</string>

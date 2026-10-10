@@ -194,6 +194,8 @@
     <string name="library_watch">Tonton</string>
     <string name="library_web">Di IslamHouse</string>
     <string name="library_web_site">Buka %1$s</string>
+    <string name="live_countdown">Hitung mundur di Layar Kunci</string>
+    <string name="live_countdown_note">Salat berikutnya dihitung mundur di Layar Kunci dan Dynamic Island. Dimulai saat Anda membuka aplikasi dan bertahan hingga 8 jam.</string>
     <string name="locating">Mencari lokasi Anda…</string>
     <string name="location_age">Lokasi %1$s lalu, ±%2$s m</string>
     <string name="location_current">Lokasi saat ini</string>

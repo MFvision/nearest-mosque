@@ -194,6 +194,8 @@
     <string name="library_watch">চাওক</string>
     <string name="library_web">IslamHouseত</string>
     <string name="library_web_site">%1$s খোলক</string>
+    <string name="live_countdown">লক স্ক্ৰীণত কাউণ্টডাউন</string>
+    <string name="live_countdown_note">পিছৰ নামাজৰ কাউণ্টডাউন লক স্ক্ৰীণ আৰু ডায়নামিক আইলেণ্ডত দেখা যায়। এপ খুলিলে আৰম্ভ হয় আৰু ৮ ঘণ্টালৈকে থাকে।</string>
     <string name="locating">আপোনাৰ অৱস্থান বিচৰা হৈছে…</string>
     <string name="location_age">%1$s আগৰ অৱস্থান, ±%2$s মিটাৰ</string>
     <string name="location_current">বৰ্তমানৰ অৱস্থান</string>

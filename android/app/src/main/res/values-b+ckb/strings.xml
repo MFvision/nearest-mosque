@@ -194,6 +194,8 @@
     <string name="library_watch">سەیرکردن</string>
     <string name="library_web">لەسەر IslamHouse</string>
     <string name="library_web_site">کردنەوەی %1$s</string>
+    <string name="live_countdown">ژماردنی پێچەوانە لەسەر شاشەی داخراو</string>
+    <string name="live_countdown_note">نوێژی داهاتوو بە ژماردنی پێچەوانە لەسەر شاشەی داخراو و Dynamic Island دەردەکەوێت. کاتێک ئەپەکە دەکەیتەوە دەست پێدەکات و تا ٨ کاتژمێر دەمێنێت.</string>
     <string name="locating">دۆزینەوەی شوێنەکەت…</string>
     <string name="location_age">شوێن لە %1$s لەمەوبەر، ±%2$s م</string>
     <string name="location_current">شوێنی ئێستا</string>

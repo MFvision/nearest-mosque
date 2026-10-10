@@ -194,6 +194,8 @@
     <string name="library_watch">ਵੇਖੋ</string>
     <string name="library_web">IslamHouse ’ਤੇ</string>
     <string name="library_web_site">%1$s ਖੋਲ੍ਹੋ</string>
+    <string name="live_countdown">ਲੌਕ ਸਕਰੀਨ ’ਤੇ ਉਲਟੀ ਗਿਣਤੀ</string>
+    <string name="live_countdown_note">ਅਗਲੀ ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ ਲੌਕ ਸਕਰੀਨ ਅਤੇ ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਵਿੱਚ ਦਿਖਦੀ ਹੈ। ਇਹ ਐਪ ਖੋਲ੍ਹਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ ਅਤੇ 8 ਘੰਟਿਆਂ ਤੱਕ ਰਹਿੰਦੀ ਹੈ।</string>
     <string name="locating">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
     <string name="location_age">%1$s ਪਹਿਲਾਂ ਦਾ ਟਿਕਾਣਾ, ±%2$s ਮੀ.</string>
     <string name="location_current">ਮੌਜੂਦਾ ਟਿਕਾਣਾ</string>

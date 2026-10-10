@@ -194,6 +194,8 @@
     <string name="library_watch">Megtekintés</string>
     <string name="library_web">Az IslamHouse-on</string>
     <string name="library_web_site">%1$s megnyitása</string>
+    <string name="live_countdown">Visszaszámlálás a zárolási képernyőn</string>
+    <string name="live_countdown_note">A következő ima visszaszámlálása a zárolási képernyőn és a Dynamic Islandben látszik. Az alkalmazás megnyitásakor indul, és legfeljebb 8 óráig tart.</string>
     <string name="locating">Helyzeted meghatározása…</string>
     <string name="location_age">%1$s előtti helyzet, ±%2$s m</string>
     <string name="location_current">Jelenlegi hely</string>

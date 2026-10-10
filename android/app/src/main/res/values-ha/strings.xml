@@ -194,6 +194,8 @@
     <string name="library_watch">Kalla</string>
     <string name="library_web">A IslamHouse</string>
     <string name="library_web_site">Buɗe %1$s</string>
+    <string name="live_countdown">Ƙirgawa a allon kulle</string>
+    <string name="live_countdown_note">Ana ƙirga sallah mai zuwa a allon kulle da kuma Dynamic Island. Yana farawa idan ka buɗe manhajar kuma yana ɗaukar har awa 8.</string>
     <string name="locating">Ana neman wurinku…</string>
     <string name="location_age">Wuri daga %1$s da suka wuce, ±%2$s m</string>
     <string name="location_current">Wurin da kuke yanzu</string>

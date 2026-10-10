@@ -194,6 +194,8 @@
     <string name="library_watch">كۆرۈش</string>
     <string name="library_web">IslamHouse تور بېكىتىدە</string>
     <string name="library_web_site">%1$s نى ئېچىش</string>
+    <string name="live_countdown">قۇلۇپ ئېكرانىدا تەتۈر ساناش</string>
+    <string name="live_countdown_note">كېيىنكى نامازنىڭ تەتۈر سانىشى قۇلۇپ ئېكرانى ۋە Dynamic Island دا كۆرۈنىدۇ. ئەپنى ئاچقاندا باشلىنىپ، ئەڭ كۆپ 8 سائەت داۋاملىشىدۇ.</string>
     <string name="locating">ئورنىڭىز ئېنىقلىنىۋاتىدۇ…</string>
     <string name="location_age">%1$s ئىلگىرىكى ئورۇن، ±%2$s م</string>
     <string name="location_current">نۆۋەتتىكى ئورۇن</string>

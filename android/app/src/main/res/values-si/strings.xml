@@ -194,6 +194,8 @@
     <string name="library_watch">නරඹන්න</string>
     <string name="library_web">IslamHouse හි</string>
     <string name="library_web_site">%1$s විවෘත කරන්න</string>
+    <string name="live_countdown">අගුළු තිරයේ ගණන් කිරීම</string>
+    <string name="live_countdown_note">ඊළඟ සලාතය අගුළු තිරයේ සහ Dynamic Island හි ගණන් කරනු ලැබේ. යෙදුම විවෘත කළ විට ආරම්භ වී පැය 8ක් දක්වා පවතී.</string>
     <string name="locating">ඔබේ ස්ථානය සොයමින්…</string>
     <string name="location_age">%1$s කට පෙර ස්ථානය, ±මී. %2$s</string>
     <string name="location_current">වත්මන් ස්ථානය</string>

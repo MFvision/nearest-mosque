@@ -33,6 +33,8 @@ struct StoredSettings: Codable, Equatable {
     var onlineSearch = true
     /// Style of the widgets set to "Same as app" (WidgetLook raw value).
     var widgetLook = "cream"
+    /// The next-prayer countdown on the Lock Screen and in the Dynamic Island.
+    var liveCountdown = true
 
     init() {}
 
@@ -47,6 +49,7 @@ struct StoredSettings: Codable, Equatable {
         onboarded = try c.decodeIfPresent(Bool.self, forKey: .onboarded) ?? false
         onlineSearch = try c.decodeIfPresent(Bool.self, forKey: .onlineSearch) ?? true
         widgetLook = try c.decodeIfPresent(String.self, forKey: .widgetLook) ?? "cream"
+        liveCountdown = try c.decodeIfPresent(Bool.self, forKey: .liveCountdown) ?? true
     }
 }
 
@@ -103,6 +106,7 @@ final class AppModel {
     private func save() {
         if let data = try? JSONEncoder().encode(settings) { UserDefaults.standard.set(data, forKey: "settings") }
         shareWithWidgets()
+        Task { await LiveCountdown.refresh(self) }
     }
 
     /// Gives the widgets and Siri the city, method and language (shared keychain), and refreshes the widgets.

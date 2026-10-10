@@ -194,6 +194,8 @@
     <string name="library_watch">Tazama</string>
     <string name="library_web">Kwenye IslamHouse</string>
     <string name="library_web_site">Fungua %1$s</string>
+    <string name="live_countdown">Kuhesabu kwenye Skrini Iliyofungwa</string>
+    <string name="live_countdown_note">Sala inayofuata inahesabiwa kwenye Skrini Iliyofungwa na kwenye Dynamic Island. Inaanza unapofungua programu na hudumu hadi saa 8.</string>
     <string name="locating">Inatafuta mahali ulipo…</string>
     <string name="location_age">Mahali kutoka %1$s zilizopita, ±%2$s m</string>
     <string name="location_current">Mahali ulipo sasa</string>

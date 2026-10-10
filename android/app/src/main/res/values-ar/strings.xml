@@ -194,6 +194,8 @@
     <string name="library_watch">شاهد</string>
     <string name="library_web">على موقع دار الإسلام</string>
     <string name="library_web_site">افتح %1$s</string>
+    <string name="live_countdown">العدّ التنازلي على شاشة القفل</string>
+    <string name="live_countdown_note">تظهر الصلاة القادمة مع العدّ التنازلي على شاشة القفل وفي الجزيرة التفاعلية. يبدأ عند فتح التطبيق ويستمر حتى ٨ ساعات.</string>
     <string name="locating">جارٍ تحديد موقعك…</string>
     <string name="location_age">الموقع منذ %1$s، ±%2$s م</string>
     <string name="location_current">الموقع الحالي</string>

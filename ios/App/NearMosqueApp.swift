@@ -6,6 +6,7 @@ struct NearMosqueApp: App {
     @State private var model = AppModel.shared
     /// "system", "light" or "dark" (Settings → Appearance).
     @AppStorage("appearance") private var appearance = "system"
+    @Environment(\.scenePhase) private var phase
 
     var body: some Scene {
         WindowGroup {
@@ -19,6 +20,10 @@ struct NearMosqueApp: App {
                 // Follows the phone unless Settings → Appearance picks light or dark.
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .task { await model.start() }
+                // The Lock Screen countdown moves on to the next prayer each time the app comes to the screen.
+                .onChange(of: phase, initial: true) { _, p in
+                    if p == .active { Task { await LiveCountdown.refresh(model) } }
+                }
         }
         .commands {
             // Mac menu bar and iPad keyboard shortcuts (⌘1, ⌘2, ⌘K, ⌘,).

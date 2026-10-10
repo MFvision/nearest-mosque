@@ -194,6 +194,8 @@
     <string name="library_watch">Смотреть</string>
     <string name="library_web">На IslamHouse</string>
     <string name="library_web_site">Открыть %1$s</string>
+    <string name="live_countdown">Обратный отсчёт на экране блокировки</string>
+    <string name="live_countdown_note">Следующий намаз с обратным отсчётом показывается на экране блокировки и в Dynamic Island. Отсчёт начинается при открытии приложения и длится до 8 часов.</string>
     <string name="locating">Определяем местоположение…</string>
     <string name="location_age">Местоположение %1$s назад, ±%2$s м</string>
     <string name="location_current">Текущее местоположение</string>

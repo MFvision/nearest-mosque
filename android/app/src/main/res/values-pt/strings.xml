@@ -194,6 +194,8 @@
     <string name="library_watch">Assistir</string>
     <string name="library_web">Na IslamHouse</string>
     <string name="library_web_site">Abrir %1$s</string>
+    <string name="live_countdown">Contagem regressiva na Tela Bloqueada</string>
+    <string name="live_countdown_note">A próxima oração aparece em contagem regressiva na Tela Bloqueada e na Dynamic Island. Começa ao abrir o app e dura até 8 horas.</string>
     <string name="locating">Obtendo sua localização…</string>
     <string name="location_age">Localização de %1$s atrás, ±%2$s m</string>
     <string name="location_current">Localização atual</string>

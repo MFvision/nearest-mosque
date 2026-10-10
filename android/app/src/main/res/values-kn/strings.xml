@@ -194,6 +194,8 @@
     <string name="library_watch">ವೀಕ್ಷಿಸಿ</string>
     <string name="library_web">IslamHouse ನಲ್ಲಿ</string>
     <string name="library_web_site">%1$s ತೆರೆಯಿರಿ</string>
+    <string name="live_countdown">ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಕೌಂಟ್‌ಡೌನ್</string>
+    <string name="live_countdown_note">ಮುಂದಿನ ನಮಾಜ್‌ನ ಕೌಂಟ್‌ಡೌನ್ ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ. ಆ್ಯಪ್ ತೆರೆದಾಗ ಆರಂಭವಾಗಿ 8 ಗಂಟೆಗಳವರೆಗೆ ಇರುತ್ತದೆ.</string>
     <string name="locating">ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಪತ್ತೆಹಚ್ಚಲಾಗುತ್ತಿದೆ…</string>
     <string name="location_age">%1$s ಹಿಂದಿನ ಸ್ಥಳ, ±%2$s ಮೀ</string>
     <string name="location_current">ಪ್ರಸ್ತುತ ಸ್ಥಳ</string>

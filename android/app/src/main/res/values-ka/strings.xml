@@ -194,6 +194,8 @@
     <string name="library_watch">ყურება</string>
     <string name="library_web">IslamHouse-ზე</string>
     <string name="library_web_site">გახსნა: %1$s</string>
+    <string name="live_countdown">უკუთვლა ჩაკეტილ ეკრანზე</string>
+    <string name="live_countdown_note">შემდეგი ლოცვის უკუთვლა ჩანს ჩაკეტილ ეკრანზე და Dynamic Island-ში. იწყება აპის გახსნისას და გრძელდება 8 საათამდე.</string>
     <string name="locating">თქვენი მდებარეობის ძიება…</string>
     <string name="location_age">მდებარეობა %1$s წინ, ±%2$s მ</string>
     <string name="location_current">მიმდინარე მდებარეობა</string>

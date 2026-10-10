@@ -194,6 +194,8 @@
     <string name="library_watch">Ver</string>
     <string name="library_web">En IslamHouse</string>
     <string name="library_web_site">Abrir %1$s</string>
+    <string name="live_countdown">Cuenta atrás en la pantalla bloqueada</string>
+    <string name="live_countdown_note">El próximo rezo aparece con cuenta atrás en la pantalla bloqueada y en la Dynamic Island. Empieza al abrir la app y dura hasta 8 horas.</string>
     <string name="locating">Buscando tu ubicación…</string>
     <string name="location_age">Ubicación de hace %1$s, ±%2$s m</string>
     <string name="location_current">Ubicación actual</string>

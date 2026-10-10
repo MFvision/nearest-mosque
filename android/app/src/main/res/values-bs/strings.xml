@@ -194,6 +194,8 @@
     <string name="library_watch">Gledaj</string>
     <string name="library_web">Na IslamHouse-u</string>
     <string name="library_web_site">Otvori %1$s</string>
+    <string name="live_countdown">Odbrojavanje na zaključanom ekranu</string>
+    <string name="live_countdown_note">Sljedeći namaz se odbrojava na zaključanom ekranu i u Dynamic Islandu. Počinje kad otvorite aplikaciju i traje do 8 sati.</string>
     <string name="locating">Tražimo vašu lokaciju…</string>
     <string name="location_age">Lokacija od prije %1$s, ±%2$s m</string>
     <string name="location_current">Trenutna lokacija</string>

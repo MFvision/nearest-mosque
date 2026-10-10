@@ -194,6 +194,8 @@
     <string name="library_watch">देखें</string>
     <string name="library_web">IslamHouse पर</string>
     <string name="library_web_site">%1$s खोलें</string>
+    <string name="live_countdown">लॉक स्क्रीन पर उलटी गिनती</string>
+    <string name="live_countdown_note">अगली नमाज़ की उलटी गिनती लॉक स्क्रीन और डायनैमिक आइलैंड में दिखती है। यह ऐप खोलने पर शुरू होती है और 8 घंटे तक रहती है।</string>
     <string name="locating">आपकी लोकेशन ढूँढी जा रही है…</string>
     <string name="location_age">%1$s पहले की लोकेशन, ±%2$s मी</string>
     <string name="location_current">मौजूदा लोकेशन</string>

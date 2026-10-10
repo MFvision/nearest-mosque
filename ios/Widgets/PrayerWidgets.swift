@@ -204,6 +204,7 @@ struct NearMosqueWidgets: WidgetBundle {
         ActionsWidget()
         #if !targetEnvironment(macCatalyst)
         QiblaControl()
+        PrayerLiveActivity()
         #endif
     }
 }

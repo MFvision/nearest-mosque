@@ -194,6 +194,8 @@
     <string name="library_watch">មើល</string>
     <string name="library_web">នៅលើ IslamHouse</string>
     <string name="library_web_site">បើក %1$s</string>
+    <string name="live_countdown">រាប់ថយក្រោយលើអេក្រង់ចាក់សោ</string>
+    <string name="live_countdown_note">សឡាតបន្ទាប់រាប់ថយក្រោយលើអេក្រង់ចាក់សោ និង Dynamic Island។ ចាប់ផ្ដើមពេលអ្នកបើកកម្មវិធី ហើយមានរយៈពេលរហូតដល់ ៨ ម៉ោង។</string>
     <string name="locating">កំពុងស្វែងរកទីតាំងរបស់អ្នក…</string>
     <string name="location_age">ទីតាំងពី %1$s មុន ±%2$s ម.</string>
     <string name="location_current">ទីតាំងបច្ចុប្បន្ន</string>
