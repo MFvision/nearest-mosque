@@ -78,7 +78,10 @@ enum CompanionLog {
     /// The prayer to mark at `now` (Fajr until Dhuhr) and the date it belongs to (Isha after midnight is the
     /// previous day's); nil before the day's first prayer is known.
     static func markable(today: DaySchedule?, current: PrayerEvent?, now: Date) -> (PrayerEvent, CivilDate)? {
-        guard let today, var e = current else { return nil }
+        guard let today else { return nil }
+        // After midnight, before Fajr: last night's Isha.
+        if current == nil, let fajr = today[.fajr], now < fajr { return (.isha, today.date.adding(days: -1)) }
+        guard var e = current else { return nil }
         if e == .sunrise { e = .fajr }
         let date = (today[e].map { $0 <= now } ?? false) ? today.date : today.date.adding(days: -1)
         return (e, date)

@@ -178,7 +178,7 @@ struct PrayerView: View {
                     let card = UserDefaults.standard.bool(forKey: "demoCompanionCard")
                     guard card || UserDefaults.standard.bool(forKey: "demoCompact") else { return }
                     try? await Task.sleep(for: .seconds(2))
-                    proxy.scrollTo(card ? "companion" : "schedule", anchor: .top)
+                    proxy.scrollTo(card ? "companion" : "schedule", anchor: card ? .center : .top)
                 }
                 #endif
             }
