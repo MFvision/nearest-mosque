@@ -60,7 +60,11 @@ public final class PackManager: @unchecked Sendable {
         let removed = Set(defaults.stringArray(forKey: Self.removedKey) ?? [])
         let current = Dictionary(uniqueKeysWithValues: ((try? installed()) ?? []).map { ($0.id, $0.version) })
         var failed: [String] = []
-        for (dir, m) in bundledManifests() where !removed.contains(m.id) && include(m) {
+        // Smallest first: the books shelf and hadith appear within a minute or two while the large fatwa pack
+        // is still being indexed.
+        func size(_ m: PackManifest) -> Int { m.files.reduce(0) { total, f in total + f.bytes } }
+        let ordered = bundledManifests().sorted { a, b in size(a.1) < size(b.1) }
+        for (dir, m) in ordered where !removed.contains(m.id) && include(m) {
             if let v = current[m.id], v >= m.version { continue }
             // Memory-mapped: bundled packs can be tens of MB.
             do { try install(m, builtin: true) { try? Data(contentsOf: dir.appendingPathComponent($0), options: .mappedIfSafe) } } catch { failed.append(m.id) }
