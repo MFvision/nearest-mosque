@@ -207,6 +207,8 @@ struct AskView: View {
                   let q = try? app.ask?.commonQuestions().first else { return }
             vm.ask(app, common: q, displayed: q.question[l10n.language] ?? q.question["en"] ?? q.id)
         }
+        // `-demoLibrary YES` opens the library (step-by-step screenshots of reading a book).
+        .onAppear { if UserDefaults.standard.bool(forKey: "demoLibrary") { showLibrary = true } }
         #endif
     }
 

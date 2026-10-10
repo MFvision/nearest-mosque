@@ -1,0 +1,73 @@
+name: Library walkthrough screenshots
+
+# Step-by-step screenshots of reading a book from the library in the iOS Simulator (Debug build):
+# Ask → Library → a collection → a book opened in the reader (downloaded) → Downloads. Run from the
+# Actions tab; the screenshots are uploaded as the `library-walkthrough` artifact.
+on:
+  workflow_dispatch:
+    inputs:
+      language:
+        description: "Interface language (ar, en, ...)"
+        default: "ar"
+
+permissions:
+  contents: read
+
+jobs:
+  walkthrough:
+    runs-on: macos-15
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select newest Xcode
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Build, run and capture each step
+        env:
+          LANG_UI: ${{ inputs.language }}
+        run: |
+          set -euo pipefail
+          UDID=$(xcrun simctl list devices available -j | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)['devices']
+          rts=sorted([k for k in d if 'iOS' in k], key=lambda k: [int(x) for x in k.split('iOS-')[-1].split('-')])
+          for rt in reversed(rts):
+              for dev in d[rt]:
+                  if dev['name'].startswith('iPhone') and 'Pro' in dev['name'] and 'Max' not in dev['name']:
+                      print(dev['udid']); sys.exit()
+          ")
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Debug \
+            -destination "platform=iOS Simulator,id=$UDID" -derivedDataPath dd CODE_SIGNING_ALLOWED=NO build -quiet
+          xcrun simctl install "$UDID" dd/Build/Products/Debug-iphonesimulator/NearMosque.app
+          xcrun simctl status_bar "$UDID" override --time 9:41 --batteryLevel 100 --cellularBars 4 || true
+          xcrun simctl ui "$UDID" appearance dark || true
+          mkdir -p shots
+          run() { wait=$1; shift
+            xcrun simctl terminate "$UDID" sa.zood.nearmosque 2>/dev/null || true
+            xcrun simctl launch "$UDID" sa.zood.nearmosque -demoCity Riyadh -languageOverride "$LANG_UI" "$@"
+            sleep "$wait"
+          }
+          shot() { xcrun simctl io "$UDID" screenshot "shots/$1.png"; }
+          # First launch installs the libraries in the background: give it time.
+          run 150 -demoTab ask; shot 01-ask
+          run 15 -demoTab ask -demoLibrary YES -demoLibraryTab 1; shot 02-library-collections
+          run 20 -demoTab ask -demoLibrary YES -demoLibraryPack "sources.islamhouse-$LANG_UI"; shot 03-collection-books
+          run 6 -demoTab ask -demoLibrary YES -demoOpenBook "ih:$LANG_UI:2846818"; shot 04-book-downloading
+          sleep 50; shot 05-book-open
+          run 15 -demoTab ask -demoLibrary YES -demoLibraryTab 2; shot 06-downloads
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: library-walkthrough
+          path: ios/shots/

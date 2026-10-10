@@ -8,9 +8,13 @@ struct LibraryView: View {
     @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
     @State private var tab = 0
+    @State private var path: [String] = []
+    #if DEBUG
+    @State private var demoBook: ResolvedCitation?
+    #endif
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             VStack(spacing: 0) {
                 Picker("", selection: $tab) {
                     Text(l10n.t("library_saved")).tag(0)
@@ -31,7 +35,25 @@ struct LibraryView: View {
             .navigationTitle(l10n.t("library_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) } }
+            .navigationDestination(for: String.self) { id in
+                if let p = ((try? app.ask?.libraryPacks()) ?? []).first(where: { $0.id == id }) { CollectionView(pack: p) }
+            }
         }
+        #if DEBUG
+        // CI screenshots: `-demoLibraryTab 0|1|2`, `-demoLibraryPack <pack id>` opens a collection,
+        // `-demoOpenBook <item id>` opens that item in the reader (downloading a book first).
+        .task(id: app.ready) {
+            guard app.ready else { return }
+            let d = UserDefaults.standard
+            if d.object(forKey: "demoLibraryTab") != nil { tab = d.integer(forKey: "demoLibraryTab") }
+            for _ in 0..<60 where ((try? app.ask?.libraryPacks()) ?? []).isEmpty { try? await Task.sleep(for: .seconds(2)) }
+            if let pack = d.string(forKey: "demoLibraryPack") { tab = 1; path = [pack] }
+            if let id = d.string(forKey: "demoOpenBook") { demoBook = (try? app.ask?.resolve([id]))?.first }
+        }
+        .fullScreenCover(item: $demoBook) { b in
+            if let mode = LibraryMode(b.chunk) { LibraryReaderView(chunk: b.chunk, mode: mode, question: "") }
+        }
+        #endif
     }
 }
 
