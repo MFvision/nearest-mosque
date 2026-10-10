@@ -30,11 +30,13 @@ struct CompanionFace: View {
     var body: some View {
         let p = entry.palette
         switch family {
+        #if !targetEnvironment(macCatalyst)
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
                 CompanionFigure(kind: kind, level: level).padding(6)
             }
+        #endif
         case .systemMedium:
             HStack(spacing: 14) {
                 figure.frame(maxWidth: 120)
