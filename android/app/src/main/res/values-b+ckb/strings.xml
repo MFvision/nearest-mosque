@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">ناچالاک. پرسیارەکان هەرگیز لە مۆبایلەکەت دەرناچن.</string>
     <string name="collapse">بچووککردنەوە</string>
     <string name="common_questions">پرسیارە باوەکان</string>
+    <string name="companion_happy">ئەمڕۆ ڕووناک و پڕە.</string>
+    <string name="companion_heart">دڵ</string>
+    <string name="companion_lantern">فانۆس</string>
+    <string name="companion_mark">%1$sم کرد</string>
+    <string name="companion_marked">%1$s نیشان کرا</string>
+    <string name="companion_none">هیچ</string>
+    <string name="companion_note">کاتێک نوێژێک نیشان دەکەیت یان خولێکی ٣٣ تەواو دەکەیت ڕووناکتر دەبێت. تەنها ئەوە دەزانێت کە نیشانی دەکەیت، و لەسەر ئەم مۆبایلە دەمێنێتەوە.</string>
+    <string name="companion_quiet">نوێژێک نیشان بکە بۆ پڕکردنەوەی.</string>
+    <string name="companion_sad">بیری کردیت. یەک نوێژ دووبارە ڕووناکی دەکاتەوە.</string>
+    <string name="companion_title">هاوڕێ</string>
     <string name="compass_north">ب</string>
     <string name="confirm_time_zone_body">ئەم خاڵە لەو شارانەی دەیانناسین دوورە، بۆیە دڵنیا نین لە ناوچەی کاتەکەی. کاتەکانی نوێژ %1$s بەکاردەهێنن.</string>
     <string name="confirm_time_zone_title">ناوچەی کات پشتڕاست بکەرەوە</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">پرسیار، نزیکترین مزگەوت، و کاتەکانی نوێژ لەگەڵ قیبلە، هەر یەکە بە یەک دەستلێدان.</string>
     <string name="widget_kind_ask">دەربارەی ئیسلام بپرسە</string>
     <string name="widget_kind_ask_desc">پرسیارێک بکە، یان دەست بنێ بە یەکێک لە پێشنیارەکانی ئەمڕۆ.</string>
+    <string name="widget_kind_companion">هاوڕێ</string>
+    <string name="widget_kind_companion_desc">فانۆس یان دڵێک کە بە نیشانکردنی نوێژەکانت ڕووناکتر دەبێت.</string>
     <string name="widget_kind_countdown">ژمێرەری پێچەوانەی نوێژ</string>
     <string name="widget_kind_countdown_desc">شریتێک کە تا نوێژی داهاتوو پڕ دەبێتەوە.</string>
     <string name="widget_kind_mosque">نزیکترین مزگەوت</string>

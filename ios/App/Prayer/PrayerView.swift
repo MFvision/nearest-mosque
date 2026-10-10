@@ -173,10 +173,12 @@ struct PrayerView: View {
                 .onChange(of: model.location.compass) { _, c in updateAlignment(c, snap.qiblaBearing) }
                 #if DEBUG
                 .task {
-                    // CI screenshots: `-demoCompact YES` scrolls down so the header shrinks into the bar.
-                    guard UserDefaults.standard.bool(forKey: "demoCompact") else { return }
+                    // CI screenshots: `-demoCompact YES` scrolls down so the header shrinks into the bar;
+                    // `-demoCompanionCard YES` scrolls to the companion.
+                    let card = UserDefaults.standard.bool(forKey: "demoCompanionCard")
+                    guard card || UserDefaults.standard.bool(forKey: "demoCompact") else { return }
                     try? await Task.sleep(for: .seconds(2))
-                    proxy.scrollTo("schedule", anchor: .top)
+                    proxy.scrollTo(card ? "companion" : "schedule", anchor: .top)
                 }
                 #endif
             }
@@ -210,6 +212,7 @@ struct PrayerView: View {
         if let arc = snap.arc {
             DayArcView(arc: arc, period: snap.sky, zone: loc.zone).padding(6).glassCard(padding: 0)
         }
+        if model.settings.companion != CompanionKind.none.rawValue, snap.today?.status != .unavailable { CompanionCard(snap: snap).id("companion") }
         if let today = snap.today, today.status != .unavailable { ScheduleCard(snap: snap, today: today).id("schedule") }
         DatesCard(snap: snap, onCalculation: { showCalc = true })
     }

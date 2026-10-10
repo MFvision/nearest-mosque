@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">A kashe. Tambayoyi ba sa barin wayarku.</string>
     <string name="collapse">Naɗe</string>
     <string name="common_questions">Tambayoyin da aka saba yi</string>
+    <string name="companion_happy">Yau yana haske kuma cike.</string>
+    <string name="companion_heart">Zuciya</string>
+    <string name="companion_lantern">Fitila</string>
+    <string name="companion_mark">Na yi %1$s</string>
+    <string name="companion_marked">An yi alamar %1$s</string>
+    <string name="companion_none">Babu</string>
+    <string name="companion_note">Yana ƙara haske idan ka yi alamar sallah ko ka kammala zagaye na 33. Abin da ka yi alama kawai yake sani, kuma yana zama a wannan wayar.</string>
+    <string name="companion_quiet">Yi alamar sallah don cika shi.</string>
+    <string name="companion_sad">Ya yi kewarka. Sallah ɗaya tana sake kunna shi.</string>
+    <string name="companion_title">Abokin tafiya</string>
     <string name="compass_north">A</string>
     <string name="confirm_time_zone_body">Wannan wuri yana nesa da garuruwan da muka sani, don haka ba mu da tabbacin yankin lokacinsa. Lokutan sallah za su yi amfani da %1$s.</string>
     <string name="confirm_time_zone_title">Tabbatar da yankin lokaci</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Tambaya, masallaci mafi kusa, da lokutan sallah tare da alƙibla, kowanne da taɓawa ɗaya.</string>
     <string name="widget_kind_ask">Tambaya game da Musulunci</string>
     <string name="widget_kind_ask_desc">Yi tambaya, ko ka taɓa ɗaya daga cikin shawarwarin yau.</string>
+    <string name="widget_kind_companion">Abokin tafiya</string>
+    <string name="widget_kind_companion_desc">Fitila ko zuciya da ke haskakawa idan ka yi alamar sallolinka.</string>
     <string name="widget_kind_countdown">Ƙidayar sallah</string>
     <string name="widget_kind_countdown_desc">Sandar da ke cika har zuwa sallah ta gaba.</string>
     <string name="widget_kind_mosque">Masallaci mafi kusa</string>

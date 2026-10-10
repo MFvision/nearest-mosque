@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">ಆಫ್. ಪ್ರಶ್ನೆಗಳು ಎಂದಿಗೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಗೆ ಹೋಗುವುದಿಲ್ಲ.</string>
     <string name="collapse">ಕುಗ್ಗಿಸಿ</string>
     <string name="common_questions">ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳು</string>
+    <string name="companion_happy">ಇಂದು ಪ್ರಕಾಶಮಾನ ಮತ್ತು ತುಂಬಿದೆ.</string>
+    <string name="companion_heart">ಹೃದಯ</string>
+    <string name="companion_lantern">ಲಾಟೀನು</string>
+    <string name="companion_mark">ನಾನು %1$s ಮಾಡಿದೆ</string>
+    <string name="companion_marked">%1$s ಗುರುತಿಸಲಾಗಿದೆ</string>
+    <string name="companion_none">ಯಾವುದೂ ಬೇಡ</string>
+    <string name="companion_note">ನೀವು ನಮಾಜ್ ಗುರುತಿಸಿದಾಗ ಅಥವಾ 33 ರ ಒಂದು ಸುತ್ತು ಮುಗಿಸಿದಾಗ ಇದು ಹೊಳೆಯುತ್ತದೆ. ನೀವು ಗುರುತಿಸಿದ್ದನ್ನು ಮಾತ್ರ ಇದು ತಿಳಿದಿರುತ್ತದೆ, ಮತ್ತು ಈ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ.</string>
+    <string name="companion_quiet">ಇದನ್ನು ತುಂಬಲು ನಮಾಜ್ ಗುರುತಿಸಿ.</string>
+    <string name="companion_sad">ಇದು ನಿಮ್ಮನ್ನು ನೆನೆಯಿತು. ಒಂದು ನಮಾಜ್ ಇದನ್ನು ಮತ್ತೆ ಬೆಳಗಿಸುತ್ತದೆ.</string>
+    <string name="companion_title">ಸಂಗಾತಿ</string>
     <string name="compass_north">ಉ</string>
     <string name="confirm_time_zone_body">ಈ ಸ್ಥಳವು ನಮಗೆ ತಿಳಿದಿರುವ ನಗರಗಳಿಂದ ದೂರದಲ್ಲಿದೆ, ಆದ್ದರಿಂದ ಅದರ ಸಮಯ ವಲಯದ ಬಗ್ಗೆ ಖಚಿತವಾಗಿ ಹೇಳಲಾಗದು. ನಮಾಜ್ ಸಮಯಗಳು %1$s ಅನ್ನು ಬಳಸುತ್ತವೆ.</string>
     <string name="confirm_time_zone_title">ಸಮಯ ವಲಯವನ್ನು ದೃಢೀಕರಿಸಿ</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">ಕೇಳಿ, ಹತ್ತಿರದ ಮಸೀದಿ, ಮತ್ತು ಕಿಬ್ಲಾ ಸಹಿತ ನಮಾಜ್ ಸಮಯಗಳು, ಒಂದೊಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ.</string>
     <string name="widget_kind_ask">ಇಸ್ಲಾಂ ಬಗ್ಗೆ ಕೇಳಿ</string>
     <string name="widget_kind_ask_desc">ಪ್ರಶ್ನೆ ಕೇಳಿ, ಅಥವಾ ಇಂದಿನ ಸಲಹೆಗಳಲ್ಲಿ ಒಂದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="widget_kind_companion">ಸಂಗಾತಿ</string>
+    <string name="widget_kind_companion_desc">ನಮಾಜ್ ಗುರುತಿಸಿದಂತೆ ಹೊಳೆಯುವ ಲಾಟೀನು ಅಥವಾ ಹೃದಯ.</string>
     <string name="widget_kind_countdown">ನಮಾಜ್ ಕ್ಷಣಗಣನೆ</string>
     <string name="widget_kind_countdown_desc">ಮುಂದಿನ ನಮಾಜ್‌ವರೆಗೆ ತುಂಬುವ ಒಂದು ಪಟ್ಟಿ.</string>
     <string name="widget_kind_mosque">ಅತಿ ಹತ್ತಿರದ ಮಸೀದಿ</string>

@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">გამორთულია. კითხვები არასოდეს ტოვებს თქვენს ტელეფონს.</string>
     <string name="collapse">აკეცვა</string>
     <string name="common_questions">ხშირი კითხვები</string>
+    <string name="companion_happy">დღეს ნათელი და სავსეა.</string>
+    <string name="companion_heart">გული</string>
+    <string name="companion_lantern">ფარანი</string>
+    <string name="companion_mark">%1$s შევასრულე</string>
+    <string name="companion_marked">%1$s მონიშნულია</string>
+    <string name="companion_none">არცერთი</string>
+    <string name="companion_note">ნათდება, როცა ლოცვას მონიშნავთ ან 33-იან წრეს დაასრულებთ. მხოლოდ იმას იცის, რასაც მონიშნავთ, და ამ ტელეფონზე რჩება.</string>
+    <string name="companion_quiet">მონიშნეთ ლოცვა, რომ აავსოთ.</string>
+    <string name="companion_sad">მოენატრეთ. ერთი ლოცვა ისევ აანთებს.</string>
+    <string name="companion_title">თანამგზავრი</string>
     <string name="compass_north">ჩ</string>
     <string name="confirm_time_zone_body">ეს წერტილი შორსაა ჩვენთვის ცნობილი ქალაქებისგან, ამიტომ მისი სასაათო სარტყელი ზუსტად ვერ განისაზღვრება. ლოცვის დროებისთვის გამოყენებული იქნება %1$s.</string>
     <string name="confirm_time_zone_title">დაადასტურეთ სასაათო სარტყელი</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">კითხვა, უახლოესი მეჩეთი და ლოცვის დრო ყიბლასთან ერთად, თითო შეხებით.</string>
     <string name="widget_kind_ask">კითხვა ისლამზე</string>
     <string name="widget_kind_ask_desc">დასვით კითხვა ან შეეხეთ დღის ერთ-ერთ შეთავაზებას.</string>
+    <string name="widget_kind_companion">თანამგზავრი</string>
+    <string name="widget_kind_companion_desc">ფარანი ან გული, რომელიც ნათდება ლოცვების მონიშვნისას.</string>
     <string name="widget_kind_countdown">ლოცვის უკუთვლა</string>
     <string name="widget_kind_countdown_desc">ზოლი, რომელიც შემდეგ ლოცვამდე ივსება.</string>
     <string name="widget_kind_mosque">უახლოესი მეჩეთი</string>

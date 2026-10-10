@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">ปิด คำถามไม่เคยออกจากโทรศัพท์ของคุณ</string>
     <string name="collapse">ย่อ</string>
     <string name="common_questions">คำถามที่พบบ่อย</string>
+    <string name="companion_happy">วันนี้สว่างและเต็มเปี่ยม</string>
+    <string name="companion_heart">หัวใจ</string>
+    <string name="companion_lantern">โคมไฟ</string>
+    <string name="companion_mark">ฉันละหมาด%1$sแล้ว</string>
+    <string name="companion_marked">ทำเครื่องหมาย%1$sแล้ว</string>
+    <string name="companion_none">ไม่มี</string>
+    <string name="companion_note">จะสว่างขึ้นเมื่อคุณทำเครื่องหมายการละหมาดหรือครบรอบ 33 ครั้ง รู้เฉพาะสิ่งที่คุณทำเครื่องหมาย และอยู่ในโทรศัพท์เครื่องนี้เท่านั้น</string>
+    <string name="companion_quiet">ทำเครื่องหมายการละหมาดเพื่อเติมให้เต็ม</string>
+    <string name="companion_sad">มันคิดถึงคุณ ละหมาดหนึ่งครั้งจุดให้สว่างอีก</string>
+    <string name="companion_title">เพื่อนคู่ใจ</string>
     <string name="compass_north">น</string>
     <string name="confirm_time_zone_body">จุดนี้อยู่ไกลจากเมืองที่เรารู้จัก จึงไม่แน่ใจเรื่องเขตเวลา เวลาละหมาดจะใช้ %1$s</string>
     <string name="confirm_time_zone_title">ยืนยันเขตเวลา</string>
@@ -428,6 +438,8 @@
     <string name="widget_kind_actions_desc">ถามคำถาม มัสยิดใกล้ที่สุด และเวลาละหมาดพร้อมกิบลัต แตะครั้งเดียว</string>
     <string name="widget_kind_ask">ถามเรื่องอิสลาม</string>
     <string name="widget_kind_ask_desc">ถามคำถาม หรือแตะคำถามแนะนำของวันนี้</string>
+    <string name="widget_kind_companion">เพื่อนคู่ใจ</string>
+    <string name="widget_kind_companion_desc">โคมไฟหรือหัวใจที่สว่างขึ้นเมื่อคุณทำเครื่องหมายการละหมาด</string>
     <string name="widget_kind_countdown">นับถอยหลังละหมาด</string>
     <string name="widget_kind_countdown_desc">แถบที่ค่อยๆ เต็มจนถึงละหมาดถัดไป</string>
     <string name="widget_kind_mosque">มัสยิดใกล้ที่สุด</string>

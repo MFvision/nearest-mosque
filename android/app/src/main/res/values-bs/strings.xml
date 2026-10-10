@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Isključeno. Pitanja nikad ne napuštaju vaš telefon.</string>
     <string name="collapse">Skupi</string>
     <string name="common_questions">Česta pitanja</string>
+    <string name="companion_happy">Danas svijetao i pun.</string>
+    <string name="companion_heart">Srce</string>
+    <string name="companion_lantern">Fenjer</string>
+    <string name="companion_mark">Klanjao sam %1$s</string>
+    <string name="companion_marked">%1$s označen</string>
+    <string name="companion_none">Nijedan</string>
+    <string name="companion_note">Postaje svjetliji kad označite namaz ili završite krug od 33. Zna samo ono što označite i ostaje na ovom telefonu.</string>
+    <string name="companion_quiet">Označite namaz da ga napunite.</string>
+    <string name="companion_sad">Nedostajali ste mu. Jedan namaz ga ponovo pali.</string>
+    <string name="companion_title">Pratilac</string>
     <string name="compass_north">S</string>
     <string name="confirm_time_zone_body">Ova tačka je daleko od gradova koje poznajemo, pa ne možemo biti sigurni u njenu vremensku zonu. Namaska vremena će koristiti %1$s.</string>
     <string name="confirm_time_zone_title">Potvrdite vremensku zonu</string>
@@ -430,6 +440,8 @@
     <string name="widget_kind_actions_desc">Pitaj, najbliža džamija i vaktija s kiblom, svako jednim dodirom.</string>
     <string name="widget_kind_ask">Pitaj o islamu</string>
     <string name="widget_kind_ask_desc">Postavite pitanje ili dodirnite jedan od današnjih prijedloga.</string>
+    <string name="widget_kind_companion">Pratilac</string>
+    <string name="widget_kind_companion_desc">Fenjer ili srce koje svijetli kad označite namaze.</string>
     <string name="widget_kind_countdown">Odbrojavanje do namaza</string>
     <string name="widget_kind_countdown_desc">Traka koja se puni do sljedećeg namaza.</string>
     <string name="widget_kind_mosque">Najbliža džamija</string>

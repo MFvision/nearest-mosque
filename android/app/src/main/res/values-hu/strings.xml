@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Kikapcsolva. A kérdések soha nem hagyják el a telefonodat.</string>
     <string name="collapse">Összecsukás</string>
     <string name="common_questions">Gyakori kérdések</string>
+    <string name="companion_happy">Ma fényes és teli.</string>
+    <string name="companion_heart">Szív</string>
+    <string name="companion_lantern">Lámpás</string>
+    <string name="companion_mark">Elimádkoztam: %1$s</string>
+    <string name="companion_marked">%1$s megjelölve</string>
+    <string name="companion_none">Nincs</string>
+    <string name="companion_note">Fényesebb lesz, ha megjelölsz egy imát vagy befejezel egy 33-as kört. Csak azt tudja, amit megjelölsz, és ezen a telefonon marad.</string>
+    <string name="companion_quiet">Jelölj meg egy imát, hogy megteljen.</string>
+    <string name="companion_sad">Hiányoztál neki. Egy ima újra meggyújtja.</string>
+    <string name="companion_title">Társ</string>
     <string name="compass_north">É</string>
     <string name="confirm_time_zone_body">Ez a pont messze van az általunk ismert városoktól, ezért nem lehetünk biztosak az időzónájában. Az imaidők a(z) %1$s időzónát használják.</string>
     <string name="confirm_time_zone_title">Erősítsd meg az időzónát</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Kérdezés, a legközelebbi mecset, és az imaidők a kiblával, egy-egy koppintással.</string>
     <string name="widget_kind_ask">Kérdezz az iszlámról</string>
     <string name="widget_kind_ask_desc">Tegyél fel egy kérdést, vagy koppints a mai javaslatok egyikére.</string>
+    <string name="widget_kind_companion">Társ</string>
+    <string name="widget_kind_companion_desc">Lámpás vagy szív, amely fényesedik, ahogy megjelölöd az imáidat.</string>
     <string name="widget_kind_countdown">Ima-visszaszámláló</string>
     <string name="widget_kind_countdown_desc">Sáv, amely a következő imáig fokozatosan megtelik.</string>
     <string name="widget_kind_mosque">Legközelebbi mecset</string>

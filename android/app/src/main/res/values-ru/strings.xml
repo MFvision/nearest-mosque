@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Выключен. Вопросы не покидают ваш телефон.</string>
     <string name="collapse">Свернуть</string>
     <string name="common_questions">Частые вопросы</string>
+    <string name="companion_happy">Сегодня яркий и полный.</string>
+    <string name="companion_heart">Сердце</string>
+    <string name="companion_lantern">Фонарь</string>
+    <string name="companion_mark">Я совершил %1$s</string>
+    <string name="companion_marked">%1$s отмечен</string>
+    <string name="companion_none">Нет</string>
+    <string name="companion_note">Становится ярче, когда вы отмечаете намаз или завершаете круг из 33. Знает только то, что вы отметили, и остаётся на этом телефоне.</string>
+    <string name="companion_quiet">Отметьте намаз, чтобы наполнить его.</string>
+    <string name="companion_sad">Он скучал по вам. Один намаз снова зажжёт его.</string>
+    <string name="companion_title">Спутник</string>
     <string name="compass_north">С</string>
     <string name="confirm_time_zone_body">Эта точка далеко от известных нам городов, поэтому мы не уверены в её часовом поясе. Время намазов будет рассчитано по %1$s.</string>
     <string name="confirm_time_zone_title">Подтвердите часовой пояс</string>
@@ -431,6 +441,8 @@
     <string name="widget_kind_actions_desc">Вопрос, ближайшая мечеть и время молитв с киблой — одним касанием.</string>
     <string name="widget_kind_ask">Спросить об исламе</string>
     <string name="widget_kind_ask_desc">Задайте вопрос или нажмите на одну из подсказок дня.</string>
+    <string name="widget_kind_companion">Спутник</string>
+    <string name="widget_kind_companion_desc">Фонарь или сердце, которые светлеют, когда вы отмечаете намазы.</string>
     <string name="widget_kind_countdown">Отсчёт до намаза</string>
     <string name="widget_kind_countdown_desc">Полоса, которая заполняется до следующего намаза.</string>
     <string name="widget_kind_mosque">Ближайшая мечеть</string>

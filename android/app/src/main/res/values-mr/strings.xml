@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">बंद. प्रश्न कधीही तुमच्या फोनबाहेर जात नाहीत.</string>
     <string name="collapse">लहान करा</string>
     <string name="common_questions">नेहमीचे प्रश्न</string>
+    <string name="companion_happy">आज उजळ आणि भरलेला.</string>
+    <string name="companion_heart">हृदय</string>
+    <string name="companion_lantern">कंदील</string>
+    <string name="companion_mark">मी %1$s पढलो</string>
+    <string name="companion_marked">%1$s नोंदवली</string>
+    <string name="companion_none">काहीही नाही</string>
+    <string name="companion_note">तुम्ही नमाज नोंदवता किंवा ३३ ची फेरी पूर्ण करता तेव्हा तो उजळतो. तुम्ही नोंदवलेलेच त्याला कळते, आणि तो याच फोनवर राहतो.</string>
+    <string name="companion_quiet">तो भरण्यासाठी नमाज नोंदवा.</string>
+    <string name="companion_sad">त्याला तुमची आठवण आली. एक नमाज त्याला पुन्हा उजळवते.</string>
+    <string name="companion_title">सोबती</string>
     <string name="compass_north">उ</string>
     <string name="confirm_time_zone_body">हे ठिकाण आम्हाला माहीत असलेल्या शहरांपासून दूर आहे, त्यामुळे त्याच्या टाइम झोनबद्दल आम्हाला खात्री नाही. नमाजच्या वेळा %1$s नुसार असतील.</string>
     <string name="confirm_time_zone_title">टाइम झोनची खात्री करा</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">विचारा, जवळची मशीद, आणि किब्लासह नमाजाच्या वेळा, प्रत्येकी एका टॅपमध्ये.</string>
     <string name="widget_kind_ask">इस्लामबद्दल विचारा</string>
     <string name="widget_kind_ask_desc">प्रश्न विचारा, किंवा आजच्या सूचनांपैकी एकावर टॅप करा.</string>
+    <string name="widget_kind_companion">सोबती</string>
+    <string name="widget_kind_companion_desc">नमाज नोंदवल्यावर उजळणारा कंदील किंवा हृदय.</string>
     <string name="widget_kind_countdown">नमाज काउंटडाउन</string>
     <string name="widget_kind_countdown_desc">पुढच्या नमाजपर्यंत भरत जाणारी पट्टी.</string>
     <string name="widget_kind_mosque">जवळची मशीद</string>

@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Désactivée. Vos questions ne quittent jamais le téléphone.</string>
     <string name="collapse">Réduire</string>
     <string name="common_questions">Questions courantes</string>
+    <string name="companion_happy">Lumineux et plein aujourd’hui.</string>
+    <string name="companion_heart">Cœur</string>
+    <string name="companion_lantern">Lanterne</string>
+    <string name="companion_mark">J’ai prié %1$s</string>
+    <string name="companion_marked">%1$s marquée</string>
+    <string name="companion_none">Aucun</string>
+    <string name="companion_note">Il s’illumine quand vous marquez une prière ou terminez une série de 33. Il ne connaît que ce que vous marquez et reste sur ce téléphone.</string>
+    <string name="companion_quiet">Marquez une prière pour le remplir.</string>
+    <string name="companion_sad">Vous lui avez manqué. Une prière le rallume.</string>
+    <string name="companion_title">Compagnon</string>
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">Ce point est loin des villes connues : son fuseau est incertain. Les horaires utiliseront %1$s.</string>
     <string name="confirm_time_zone_title">Confirmez le fuseau horaire</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Demander, la mosquée la plus proche, et les horaires avec la qibla, d’une seule touche.</string>
     <string name="widget_kind_ask">Questions sur l\'islam</string>
     <string name="widget_kind_ask_desc">Posez une question ou touchez l\'une des suggestions du jour.</string>
+    <string name="widget_kind_companion">Compagnon</string>
+    <string name="widget_kind_companion_desc">Une lanterne ou un cœur qui s’illumine quand vous marquez vos prières.</string>
     <string name="widget_kind_countdown">Compte à rebours</string>
     <string name="widget_kind_countdown_desc">Une barre qui se remplit jusqu\'à la prochaine prière.</string>
     <string name="widget_kind_mosque">Mosquée la plus proche</string>

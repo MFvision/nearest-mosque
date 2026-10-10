@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">متوقف. لا تغادر أسئلتك هاتفك.</string>
     <string name="collapse">تصغير</string>
     <string name="common_questions">أسئلة شائعة</string>
+    <string name="companion_happy">مُشرق وممتلئ اليوم.</string>
+    <string name="companion_heart">القلب</string>
+    <string name="companion_lantern">الفانوس</string>
+    <string name="companion_mark">صلّيت %1$s</string>
+    <string name="companion_marked">سُجّلت %1$s</string>
+    <string name="companion_none">بلا</string>
+    <string name="companion_note">يزداد إشراقًا كلما سجّلت صلاة أو أتممت ٣٣ تسبيحة. لا يعرف إلا ما تسجّله، ويبقى على هذا الجهاز.</string>
+    <string name="companion_quiet">سجّل صلاة ليمتلئ نورًا.</string>
+    <string name="companion_sad">اشتاق إليك. صلاة واحدة تعيد إليه النور.</string>
+    <string name="companion_title">الرفيق</string>
     <string name="compass_north">ش</string>
     <string name="confirm_time_zone_body">هذه النقطة بعيدة عن المدن المعروفة لدينا، لذا لا نستطيع الجزم بمنطقتها الزمنية. ستُستخدم %1$s للمواقيت.</string>
     <string name="confirm_time_zone_title">أكّد المنطقة الزمنية</string>
@@ -433,6 +443,8 @@
     <string name="widget_kind_actions_desc">اسأل، وأقرب مسجد، ومواقيت الصلاة مع القبلة، كلٌّ بلمسة واحدة.</string>
     <string name="widget_kind_ask">اسأل عن الإسلام</string>
     <string name="widget_kind_ask_desc">اطرح سؤالك، أو اضغط أحد اقتراحات اليوم.</string>
+    <string name="widget_kind_companion">الرفيق</string>
+    <string name="widget_kind_companion_desc">فانوس أو قلب يزداد إشراقًا كلما سجّلت صلواتك.</string>
     <string name="widget_kind_countdown">العد التنازلي للصلاة</string>
     <string name="widget_kind_countdown_desc">شريط يمتلئ حتى الصلاة القادمة.</string>
     <string name="widget_kind_mosque">أقرب مسجد</string>

@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Imezimwa. Maswali hayatoki kamwe kwenye simu yako.</string>
     <string name="collapse">Kunja</string>
     <string name="common_questions">Maswali ya kawaida</string>
+    <string name="companion_happy">Leo inang\'aa na imejaa.</string>
+    <string name="companion_heart">Moyo</string>
+    <string name="companion_lantern">Taa</string>
+    <string name="companion_mark">Nimeswali %1$s</string>
+    <string name="companion_marked">%1$s imewekwa alama</string>
+    <string name="companion_none">Hakuna</string>
+    <string name="companion_note">Hung\'aa zaidi unapoweka alama ya swala au kumaliza mzunguko wa 33. Hujua tu unachoweka alama, na hubaki kwenye simu hii.</string>
+    <string name="companion_quiet">Weka alama ya swala ili kuijaza.</string>
+    <string name="companion_sad">Ilikukumbuka. Swala moja inaiwasha tena.</string>
+    <string name="companion_title">Mwenzi</string>
     <string name="compass_north">K</string>
     <string name="confirm_time_zone_body">Mahali hapa ni mbali na miji tunayoijua, kwa hivyo hatuna uhakika wa saa zake za eneo. Nyakati za sala zitatumia %1$s.</string>
     <string name="confirm_time_zone_title">Thibitisha saa za eneo</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Uliza, msikiti wa karibu, na nyakati za sala pamoja na kibla, kila kimoja kwa mguso mmoja.</string>
     <string name="widget_kind_ask">Uliza kuhusu Uislamu</string>
     <string name="widget_kind_ask_desc">Uliza swali, au gusa mojawapo ya mapendekezo ya leo.</string>
+    <string name="widget_kind_companion">Mwenzi</string>
+    <string name="widget_kind_companion_desc">Taa au moyo unaong\'aa unapoweka alama swala zako.</string>
     <string name="widget_kind_countdown">Muda hadi sala</string>
     <string name="widget_kind_countdown_desc">Upau unaojaa hadi sala ijayo.</string>
     <string name="widget_kind_mosque">Msikiti wa karibu zaidi</string>

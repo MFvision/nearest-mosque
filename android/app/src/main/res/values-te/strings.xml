@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">ఆఫ్. ప్రశ్నలు మీ ఫోన్ నుండి ఎప్పుడూ బయటకు వెళ్లవు.</string>
     <string name="collapse">కుదించు</string>
     <string name="common_questions">సాధారణ ప్రశ్నలు</string>
+    <string name="companion_happy">ఈరోజు ప్రకాశవంతంగా, నిండుగా.</string>
+    <string name="companion_heart">హృదయం</string>
+    <string name="companion_lantern">లాంతరు</string>
+    <string name="companion_mark">నేను %1$s చేశాను</string>
+    <string name="companion_marked">%1$s గుర్తించబడింది</string>
+    <string name="companion_none">ఏదీ వద్దు</string>
+    <string name="companion_note">మీరు నమాజ్‌ను గుర్తించినప్పుడు లేదా 33 రౌండ్ పూర్తి చేసినప్పుడు ఇది ప్రకాశిస్తుంది. మీరు గుర్తించినదే దీనికి తెలుసు, ఇది ఈ ఫోన్‌లోనే ఉంటుంది.</string>
+    <string name="companion_quiet">దీన్ని నింపడానికి నమాజ్‌ను గుర్తించండి.</string>
+    <string name="companion_sad">ఇది మిమ్మల్ని మిస్ అయింది. ఒక్క నమాజ్ దీన్ని మళ్లీ వెలిగిస్తుంది.</string>
+    <string name="companion_title">సహచరుడు</string>
     <string name="compass_north">ఉ</string>
     <string name="confirm_time_zone_body">ఈ ప్రదేశం మాకు తెలిసిన నగరాలకు దూరంగా ఉంది, కాబట్టి దాని టైమ్ జోన్ గురించి ఖచ్చితంగా చెప్పలేం. నమాజ్ సమయాలు %1$s ను ఉపయోగిస్తాయి.</string>
     <string name="confirm_time_zone_title">టైమ్ జోన్‌ను నిర్ధారించండి</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">అడగండి, దగ్గరి మసీదు, ఖిబ్లాతో నమాజ్ సమయాలు, ఒక్కో ట్యాప్‌తో.</string>
     <string name="widget_kind_ask">ఇస్లాం గురించి అడగండి</string>
     <string name="widget_kind_ask_desc">ఒక ప్రశ్న అడగండి, లేదా ఈరోజు సూచనల్లో ఒకదానిపై నొక్కండి.</string>
+    <string name="widget_kind_companion">సహచరుడు</string>
+    <string name="widget_kind_companion_desc">నమాజ్‌లను గుర్తించేకొద్దీ ప్రకాశించే లాంతరు లేదా హృదయం.</string>
     <string name="widget_kind_countdown">నమాజ్ కౌంట్‌డౌన్</string>
     <string name="widget_kind_countdown_desc">తదుపరి నమాజ్ వరకు నిండే ఒక బార్.</string>
     <string name="widget_kind_mosque">దగ్గరి మసీదు</string>

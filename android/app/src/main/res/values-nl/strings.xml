@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Uit. Vragen verlaten je telefoon nooit.</string>
     <string name="collapse">Samenvouwen</string>
     <string name="common_questions">Veelgestelde vragen</string>
+    <string name="companion_happy">Vandaag helder en vol.</string>
+    <string name="companion_heart">Hart</string>
+    <string name="companion_lantern">Lantaarn</string>
+    <string name="companion_mark">Ik heb %1$s gebeden</string>
+    <string name="companion_marked">%1$s gemarkeerd</string>
+    <string name="companion_none">Geen</string>
+    <string name="companion_note">Wordt helderder als je een gebed markeert of een ronde van 33 afmaakt. Het weet alleen wat jij markeert en blijft op deze telefoon.</string>
+    <string name="companion_quiet">Markeer een gebed om het te vullen.</string>
+    <string name="companion_sad">Het heeft je gemist. Eén gebed steekt het weer aan.</string>
+    <string name="companion_title">Metgezel</string>
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">Dit punt ligt ver van de steden die we kennen, dus we weten de tijdzone niet zeker. De gebedstijden gebruiken %1$s.</string>
     <string name="confirm_time_zone_title">Bevestig de tijdzone</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Vragen, de dichtstbijzijnde moskee en gebedstijden met de qibla, elk met één tik.</string>
     <string name="widget_kind_ask">Vraag over de islam</string>
     <string name="widget_kind_ask_desc">Stel een vraag of tik op een van de suggesties van vandaag.</string>
+    <string name="widget_kind_companion">Metgezel</string>
+    <string name="widget_kind_companion_desc">Een lantaarn of hart dat oplicht als je je gebeden markeert.</string>
     <string name="widget_kind_countdown">Aftellen tot gebed</string>
     <string name="widget_kind_countdown_desc">Een balk die zich vult tot het volgende gebed.</string>
     <string name="widget_kind_mosque">Dichtstbijzijnde moskee</string>

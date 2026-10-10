@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">ഓഫ്. ചോദ്യങ്ങൾ ഒരിക്കലും നിങ്ങളുടെ ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
     <string name="collapse">ചുരുക്കുക</string>
     <string name="common_questions">സാധാരണ ചോദ്യങ്ങൾ</string>
+    <string name="companion_happy">ഇന്ന് തിളക്കവും നിറവും.</string>
+    <string name="companion_heart">ഹൃദയം</string>
+    <string name="companion_lantern">റാന്തൽ</string>
+    <string name="companion_mark">ഞാൻ %1$s നമസ്കരിച്ചു</string>
+    <string name="companion_marked">%1$s അടയാളപ്പെടുത്തി</string>
+    <string name="companion_none">ഒന്നുമില്ല</string>
+    <string name="companion_note">നിങ്ങൾ ഒരു നമസ്കാരം അടയാളപ്പെടുത്തുമ്പോഴോ 33-ന്റെ ഒരു റൗണ്ട് പൂർത്തിയാക്കുമ്പോഴോ ഇത് തിളങ്ങും. നിങ്ങൾ അടയാളപ്പെടുത്തുന്നത് മാത്രമേ ഇതിന് അറിയൂ, ഇത് ഈ ഫോണിൽ തന്നെ നിൽക്കും.</string>
+    <string name="companion_quiet">ഇത് നിറയ്ക്കാൻ ഒരു നമസ്കാരം അടയാളപ്പെടുത്തൂ.</string>
+    <string name="companion_sad">ഇത് നിങ്ങളെ മിസ് ചെയ്തു. ഒരു നമസ്കാരം ഇതിനെ വീണ്ടും തെളിയിക്കും.</string>
+    <string name="companion_title">കൂട്ടുകാരൻ</string>
     <string name="compass_north">വ</string>
     <string name="confirm_time_zone_body">ഈ സ്ഥലം ഞങ്ങൾക്ക് അറിയാവുന്ന നഗരങ്ങളിൽ നിന്ന് അകലെയാണ്, അതിനാൽ അതിന്റെ സമയ മേഖല ഉറപ്പിച്ച് പറയാനാവില്ല. നമസ്കാര സമയങ്ങൾ %1$s ഉപയോഗിക്കും.</string>
     <string name="confirm_time_zone_title">സമയ മേഖല സ്ഥിരീകരിക്കുക</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">ചോദിക്കുക, അടുത്തുള്ള പള്ളി, ഖിബ്‌ലയോടൊപ്പം നമസ്കാര സമയങ്ങൾ, ഓരോന്നും ഒറ്റ ടാപ്പിൽ.</string>
     <string name="widget_kind_ask">ഇസ്‌ലാമിനെക്കുറിച്ച് ചോദിക്കൂ</string>
     <string name="widget_kind_ask_desc">ഒരു ചോദ്യം ചോദിക്കൂ, അല്ലെങ്കിൽ ഇന്നത്തെ നിർദ്ദേശങ്ങളിൽ ഒന്നിൽ ടാപ്പ് ചെയ്യൂ.</string>
+    <string name="widget_kind_companion">കൂട്ടുകാരൻ</string>
+    <string name="widget_kind_companion_desc">നമസ്കാരങ്ങൾ അടയാളപ്പെടുത്തുമ്പോൾ തിളങ്ങുന്ന റാന്തലോ ഹൃദയമോ.</string>
     <string name="widget_kind_countdown">നമസ്കാര കൗണ്ട്ഡൗൺ</string>
     <string name="widget_kind_countdown_desc">അടുത്ത നമസ്കാരം വരെ നിറയുന്ന ഒരു ബാർ.</string>
     <string name="widget_kind_mosque">ഏറ്റവും അടുത്ത പള്ളി</string>

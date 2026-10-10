@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">已关闭。问题绝不会离开你的手机。</string>
     <string name="collapse">收起</string>
     <string name="common_questions">常见问题</string>
+    <string name="companion_happy">今天明亮又饱满。</string>
+    <string name="companion_heart">心</string>
+    <string name="companion_lantern">灯笼</string>
+    <string name="companion_mark">我已礼 %1$s</string>
+    <string name="companion_marked">已标记 %1$s</string>
+    <string name="companion_none">无</string>
+    <string name="companion_note">当你标记一次礼拜或完成一轮 33 次时，它会变亮。它只知道你标记的内容，并且只保存在这部手机上。</string>
+    <string name="companion_quiet">标记一次礼拜，让它满起来。</string>
+    <string name="companion_sad">它想你了。一次礼拜就能让它重新亮起。</string>
+    <string name="companion_title">伙伴</string>
     <string name="compass_north">北</string>
     <string name="confirm_time_zone_body">此地点离我们已知的城市较远，无法确定其时区。礼拜时间将使用 %1$s。</string>
     <string name="confirm_time_zone_title">确认时区</string>
@@ -428,6 +438,8 @@
     <string name="widget_kind_actions_desc">提问、最近的清真寺、礼拜时间与朝向，一键直达。</string>
     <string name="widget_kind_ask">伊斯兰教问答</string>
     <string name="widget_kind_ask_desc">提出问题，或点按今日推荐的问题之一。</string>
+    <string name="widget_kind_companion">伙伴</string>
+    <string name="widget_kind_companion_desc">随着你标记礼拜而变亮的灯笼或心。</string>
     <string name="widget_kind_countdown">礼拜倒计时</string>
     <string name="widget_kind_countdown_desc">一条进度条，随时间填满，直到下一次礼拜。</string>
     <string name="widget_kind_mosque">最近的清真寺</string>

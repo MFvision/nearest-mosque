@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">બંધ. સવાલો ક્યારેય તમારા ફોનની બહાર જતા નથી.</string>
     <string name="collapse">સંકેલો</string>
     <string name="common_questions">સામાન્ય સવાલો</string>
+    <string name="companion_happy">આજે ઝળહળતું અને ભરેલું.</string>
+    <string name="companion_heart">હૃદય</string>
+    <string name="companion_lantern">ફાનસ</string>
+    <string name="companion_mark">મેં %1$s પઢી</string>
+    <string name="companion_marked">%1$s નોંધાઈ</string>
+    <string name="companion_none">કોઈ નહીં</string>
+    <string name="companion_note">તમે નમાઝ નોંધો અથવા 33નો એક રાઉન્ડ પૂરો કરો ત્યારે તે ઝળહળે છે. તમે જે નોંધો તે જ તે જાણે છે, અને તે આ ફોન પર જ રહે છે.</string>
+    <string name="companion_quiet">તેને ભરવા માટે નમાઝ નોંધો.</string>
+    <string name="companion_sad">તેને તમારી યાદ આવી. એક નમાઝ તેને ફરી પ્રગટાવે છે.</string>
+    <string name="companion_title">સાથી</string>
     <string name="compass_north">ઉ</string>
     <string name="confirm_time_zone_body">આ જગ્યા અમે જાણીએ છીએ તે શહેરોથી દૂર છે, તેથી તેના ટાઇમ ઝોન વિશે અમને ખાતરી નથી. નમાઝના સમય %1$s મુજબ રહેશે.</string>
     <string name="confirm_time_zone_title">ટાઇમ ઝોનની પુષ્ટિ કરો</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">પૂછો, નજીકની મસ્જિદ, અને કિબ્લા સાથે નમાઝના સમય, દરેક એક ટૅપમાં.</string>
     <string name="widget_kind_ask">ઇસ્લામ વિશે પૂછો</string>
     <string name="widget_kind_ask_desc">સવાલ પૂછો, અથવા આજનાં સૂચનોમાંથી કોઈ એક પર ટૅપ કરો.</string>
+    <string name="widget_kind_companion">સાથી</string>
+    <string name="widget_kind_companion_desc">નમાઝ નોંધો તેમ ઝળહળતું ફાનસ કે હૃદય.</string>
     <string name="widget_kind_countdown">નમાઝ કાઉન્ટડાઉન</string>
     <string name="widget_kind_countdown_desc">આગામી નમાઝ સુધી ભરાતી એક પટ્ટી.</string>
     <string name="widget_kind_mosque">નજીકની મસ્જિદ</string>

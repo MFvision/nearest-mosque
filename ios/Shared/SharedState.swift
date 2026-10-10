@@ -28,6 +28,8 @@ struct SharedState: Codable, Equatable {
     var questions: [String]?
     /// The widget style picked in the app (WidgetLook raw value), used by widgets set to "Same as app".
     var widgetLook: String?
+    /// The companion picked in the app (CompanionKind raw value) for its widget.
+    var companion: String?
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }

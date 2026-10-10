@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">बंद। सवाल कभी आपके फ़ोन से बाहर नहीं जाते।</string>
     <string name="collapse">समेटें</string>
     <string name="common_questions">आम सवाल</string>
+    <string name="companion_happy">आज रोशन और भरा हुआ।</string>
+    <string name="companion_heart">दिल</string>
+    <string name="companion_lantern">लालटेन</string>
+    <string name="companion_mark">मैंने %1$s पढ़ ली</string>
+    <string name="companion_marked">%1$s दर्ज</string>
+    <string name="companion_none">कोई नहीं</string>
+    <string name="companion_note">जब आप नमाज़ दर्ज करते हैं या 33 का एक चक्र पूरा करते हैं, तो यह चमकता है। यह केवल वही जानता है जो आप दर्ज करते हैं, और इसी फ़ोन पर रहता है।</string>
+    <string name="companion_quiet">इसे भरने के लिए नमाज़ दर्ज करें।</string>
+    <string name="companion_sad">इसे आपकी याद आई। एक नमाज़ इसे फिर रोशन कर देती है।</string>
+    <string name="companion_title">साथी</string>
     <string name="compass_north">उ</string>
     <string name="confirm_time_zone_body">यह जगह हमारे जाने-पहचाने शहरों से दूर है, इसलिए हम इसके टाइम ज़ोन के बारे में पक्के नहीं हो सकते। नमाज़ के समय %1$s के अनुसार होंगे।</string>
     <string name="confirm_time_zone_title">टाइम ज़ोन की पुष्टि करें</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">पूछें, सबसे नज़दीकी मस्जिद, और क़िबला के साथ नमाज़ के समय, हर एक एक टैप में।</string>
     <string name="widget_kind_ask">इस्लाम के बारे में पूछें</string>
     <string name="widget_kind_ask_desc">सवाल पूछें, या आज के सुझावों में से किसी एक पर टैप करें।</string>
+    <string name="widget_kind_companion">साथी</string>
+    <string name="widget_kind_companion_desc">लालटेन या दिल जो नमाज़ें दर्ज करने पर रोशन होता है।</string>
     <string name="widget_kind_countdown">नमाज़ की उलटी गिनती</string>
     <string name="widget_kind_countdown_desc">एक पट्टी जो अगली नमाज़ तक भरती जाती है।</string>
     <string name="widget_kind_mosque">नज़दीकी मस्जिद</string>

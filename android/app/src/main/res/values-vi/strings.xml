@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Tắt. Câu hỏi không bao giờ rời khỏi điện thoại của bạn.</string>
     <string name="collapse">Thu gọn</string>
     <string name="common_questions">Câu hỏi thường gặp</string>
+    <string name="companion_happy">Hôm nay sáng và đầy.</string>
+    <string name="companion_heart">Trái tim</string>
+    <string name="companion_lantern">Đèn lồng</string>
+    <string name="companion_mark">Tôi đã cầu nguyện %1$s</string>
+    <string name="companion_marked">Đã đánh dấu %1$s</string>
+    <string name="companion_none">Không</string>
+    <string name="companion_note">Sáng hơn khi bạn đánh dấu một lần cầu nguyện hoặc hoàn thành một vòng 33. Nó chỉ biết những gì bạn đánh dấu và chỉ ở trên điện thoại này.</string>
+    <string name="companion_quiet">Đánh dấu một lần cầu nguyện để làm đầy.</string>
+    <string name="companion_sad">Nó nhớ bạn. Một lần cầu nguyện thắp sáng nó lại.</string>
+    <string name="companion_title">Bạn đồng hành</string>
     <string name="compass_north">B</string>
     <string name="confirm_time_zone_body">Điểm này ở xa các thành phố chúng tôi biết, nên không thể chắc chắn về múi giờ. Giờ cầu nguyện sẽ dùng %1$s.</string>
     <string name="confirm_time_zone_title">Xác nhận múi giờ</string>
@@ -428,6 +438,8 @@
     <string name="widget_kind_actions_desc">Hỏi, nhà thờ Hồi giáo gần nhất, và giờ cầu nguyện kèm hướng Qibla, mỗi thứ một chạm.</string>
     <string name="widget_kind_ask">Hỏi về Hồi giáo</string>
     <string name="widget_kind_ask_desc">Đặt câu hỏi hoặc chạm vào một gợi ý hôm nay.</string>
+    <string name="widget_kind_companion">Bạn đồng hành</string>
+    <string name="widget_kind_companion_desc">Đèn lồng hoặc trái tim sáng lên khi bạn đánh dấu các lần cầu nguyện.</string>
     <string name="widget_kind_countdown">Đếm ngược cầu nguyện</string>
     <string name="widget_kind_countdown_desc">Thanh đầy dần cho đến lần cầu nguyện tiếp theo.</string>
     <string name="widget_kind_mosque">Thánh đường gần nhất</string>

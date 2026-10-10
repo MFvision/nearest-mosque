@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">අක්‍රියයි. ප්‍රශ්න කිසි විටෙක ඔබේ දුරකථනයෙන් පිටතට නොයයි.</string>
     <string name="collapse">හකුළන්න</string>
     <string name="common_questions">පොදු ප්‍රශ්න</string>
+    <string name="companion_happy">අද දීප්තිමත්ව පිරී ඇත.</string>
+    <string name="companion_heart">හදවත</string>
+    <string name="companion_lantern">ලන්තෑරුම</string>
+    <string name="companion_mark">මම %1$s කළා</string>
+    <string name="companion_marked">%1$s සලකුණු කළා</string>
+    <string name="companion_none">කිසිවක් නැත</string>
+    <string name="companion_note">ඔබ සලාතයක් සලකුණු කළ විට හෝ 33 වටයක් අවසන් කළ විට එය දීප්තිමත් වේ. ඔබ සලකුණු කරන දේ පමණක් එය දනී, එය මෙම දුරකථනයේම රැඳේ.</string>
+    <string name="companion_quiet">එය පුරවන්න සලාතයක් සලකුණු කරන්න.</string>
+    <string name="companion_sad">එය ඔබව මතක් කළා. එක් සලාතයක් එය නැවත දල්වයි.</string>
+    <string name="companion_title">සහකරු</string>
     <string name="compass_north">උ</string>
     <string name="confirm_time_zone_body">මෙම ස්ථානය අප දන්නා නගරවලින් දුරයි, එබැවින් එහි වේලා කලාපය ගැන අපට විශ්වාස කළ නොහැක. සලාත වේලාවන් %1$s භාවිත කරයි.</string>
     <string name="confirm_time_zone_title">වේලා කලාපය තහවුරු කරන්න</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">අසන්න, ළඟම පල්ලිය, සහ කිබ්ලා සමඟ සලාත් වේලාවන්, එක් තට්ටුවකින්.</string>
     <string name="widget_kind_ask">ඉස්ලාමය ගැන අහන්න</string>
     <string name="widget_kind_ask_desc">ප්‍රශ්නයක් අහන්න, නැතහොත් අද යෝජනාවලින් එකක් තට්ටු කරන්න.</string>
+    <string name="widget_kind_companion">සහකරු</string>
+    <string name="widget_kind_companion_desc">සලාත සලකුණු කරන විට දීප්තිමත් වන ලන්තෑරුමක් හෝ හදවතක්.</string>
     <string name="widget_kind_countdown">සලාතයට ඉතිරි කාලය</string>
     <string name="widget_kind_countdown_desc">ඊළඟ සලාතය තෙක් පිරෙන තීරුවක්.</string>
     <string name="widget_kind_mosque">ළඟම පල්ලිය</string>

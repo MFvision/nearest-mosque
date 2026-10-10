@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Naka-off. Hindi kailanman lumalabas sa iyong telepono ang mga tanong.</string>
     <string name="collapse">Itago</string>
     <string name="common_questions">Mga karaniwang tanong</string>
+    <string name="companion_happy">Maliwanag at puno ngayon.</string>
+    <string name="companion_heart">Puso</string>
+    <string name="companion_lantern">Parol</string>
+    <string name="companion_mark">Nag-salah na ako ng %1$s</string>
+    <string name="companion_marked">Naka-markahan ang %1$s</string>
+    <string name="companion_none">Wala</string>
+    <string name="companion_note">Lumiliwanag ito kapag minarkahan mo ang isang salah o natapos ang isang ikot ng 33. Alam lang nito ang minarkahan mo, at nananatili ito sa teleponong ito.</string>
+    <string name="companion_quiet">Markahan ang isang salah para mapuno ito.</string>
+    <string name="companion_sad">Na-miss ka nito. Isang salah ang muling magpapailaw dito.</string>
+    <string name="companion_title">Kasama</string>
     <string name="compass_north">H</string>
     <string name="confirm_time_zone_body">Malayo ang puntong ito sa mga lungsod na alam namin, kaya hindi kami sigurado sa time zone nito. Gagamitin ng mga oras ng dasal ang %1$s.</string>
     <string name="confirm_time_zone_title">Kumpirmahin ang time zone</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Magtanong, ang pinakamalapit na masjid, at oras ng salah kasama ang qibla, tig-isang tap.</string>
     <string name="widget_kind_ask">Magtanong tungkol sa Islam</string>
     <string name="widget_kind_ask_desc">Magtanong, o i-tap ang isa sa mga mungkahi ngayong araw.</string>
+    <string name="widget_kind_companion">Kasama</string>
+    <string name="widget_kind_companion_desc">Parol o puso na lumiliwanag habang minamarkahan mo ang iyong salah.</string>
     <string name="widget_kind_countdown">Countdown sa dasal</string>
     <string name="widget_kind_countdown_desc">Isang bar na napupuno hanggang sa susunod na dasal.</string>
     <string name="widget_kind_mosque">Pinakamalapit na masjid</string>

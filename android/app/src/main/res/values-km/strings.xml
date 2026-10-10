@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">បិទ។ សំណួរមិនដែលចាកចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
     <string name="collapse">បង្រួម</string>
     <string name="common_questions">សំណួរទូទៅ</string>
+    <string name="companion_happy">ថ្ងៃនេះភ្លឺ និងពេញ។</string>
+    <string name="companion_heart">បេះដូង</string>
+    <string name="companion_lantern">ចង្កៀង</string>
+    <string name="companion_mark">ខ្ញុំបានសឡាត %1$s</string>
+    <string name="companion_marked">បានសម្គាល់ %1$s</string>
+    <string name="companion_none">គ្មាន</string>
+    <string name="companion_note">វាភ្លឺឡើងនៅពេលអ្នកសម្គាល់ការសឡាត ឬបញ្ចប់មួយជុំ 33។ វាដឹងតែអ្វីដែលអ្នកសម្គាល់ ហើយនៅតែលើទូរស័ព្ទនេះ។</string>
+    <string name="companion_quiet">សម្គាល់ការសឡាតដើម្បីបំពេញវា។</string>
+    <string name="companion_sad">វានឹករលឹកអ្នក។ សឡាតមួយដងធ្វើឱ្យវាភ្លឺឡើងវិញ។</string>
+    <string name="companion_title">មិត្តរួមដំណើរ</string>
     <string name="compass_north">ជ</string>
     <string name="confirm_time_zone_body">ចំណុចនេះនៅឆ្ងាយពីទីក្រុងដែលយើងស្គាល់ ដូច្នេះយើងមិនអាចប្រាកដអំពីល្វែងម៉ោងរបស់វាបានទេ។ ម៉ោងសឡាតនឹងប្រើ %1$s។</string>
     <string name="confirm_time_zone_title">បញ្ជាក់ល្វែងម៉ោង</string>
@@ -428,6 +438,8 @@
     <string name="widget_kind_actions_desc">សួរ វិហារឥស្លាមជិតបំផុត និងម៉ោងសឡាតជាមួយគិបឡាត ចុចតែម្ដង។</string>
     <string name="widget_kind_ask">សួរអំពីសាសនាឥស្លាម</string>
     <string name="widget_kind_ask_desc">សួរសំណួរ ឬចុចលើសំណួរណែនាំមួយសម្រាប់ថ្ងៃនេះ។</string>
+    <string name="widget_kind_companion">មិត្តរួមដំណើរ</string>
+    <string name="widget_kind_companion_desc">ចង្កៀង ឬបេះដូងដែលភ្លឺឡើងនៅពេលអ្នកសម្គាល់ការសឡាត។</string>
     <string name="widget_kind_countdown">រាប់ថយក្រោយសឡាត</string>
     <string name="widget_kind_countdown_desc">របារដែលពេញបន្តិចម្ដងៗ រហូតដល់សឡាតបន្ទាប់។</string>
     <string name="widget_kind_mosque">ម៉ាស្ជិតជិតបំផុត</string>

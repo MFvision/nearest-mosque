@@ -35,6 +35,8 @@ struct StoredSettings: Codable, Equatable {
     var widgetLook = "cream"
     /// The next-prayer countdown on the Lock Screen and in the Dynamic Island.
     var liveCountdown = true
+    /// The companion on the Prayer screen and its widget (CompanionKind raw value).
+    var companion = "lantern"
 
     init() {}
 
@@ -50,6 +52,7 @@ struct StoredSettings: Codable, Equatable {
         onlineSearch = try c.decodeIfPresent(Bool.self, forKey: .onlineSearch) ?? true
         widgetLook = try c.decodeIfPresent(String.self, forKey: .widgetLook) ?? "cream"
         liveCountdown = try c.decodeIfPresent(Bool.self, forKey: .liveCountdown) ?? true
+        companion = try c.decodeIfPresent(String.self, forKey: .companion) ?? "lantern"
     }
 }
 
@@ -131,7 +134,7 @@ final class AppModel {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
                         reminders: settings.reminders.map(\.rawValue).sorted(),
-                        mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook)
+                        mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion)
         }
         guard s != lastShared else { return }
         lastShared = s

@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">ਬੰਦ। ਸਵਾਲ ਕਦੇ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦੇ।</string>
     <string name="collapse">ਸਮੇਟੋ</string>
     <string name="common_questions">ਆਮ ਸਵਾਲ</string>
+    <string name="companion_happy">ਅੱਜ ਰੌਸ਼ਨ ਅਤੇ ਭਰਿਆ।</string>
+    <string name="companion_heart">ਦਿਲ</string>
+    <string name="companion_lantern">ਲਾਲਟੈਣ</string>
+    <string name="companion_mark">ਮੈਂ %1$s ਪੜ੍ਹ ਲਈ</string>
+    <string name="companion_marked">%1$s ਦਰਜ</string>
+    <string name="companion_none">ਕੋਈ ਨਹੀਂ</string>
+    <string name="companion_note">ਜਦੋਂ ਤੁਸੀਂ ਨਮਾਜ਼ ਦਰਜ ਕਰਦੇ ਹੋ ਜਾਂ 33 ਦਾ ਇੱਕ ਗੇੜ ਪੂਰਾ ਕਰਦੇ ਹੋ ਤਾਂ ਇਹ ਚਮਕਦਾ ਹੈ। ਇਹ ਸਿਰਫ਼ ਉਹੀ ਜਾਣਦਾ ਹੈ ਜੋ ਤੁਸੀਂ ਦਰਜ ਕਰਦੇ ਹੋ, ਅਤੇ ਇਸੇ ਫ਼ੋਨ \'ਤੇ ਰਹਿੰਦਾ ਹੈ।</string>
+    <string name="companion_quiet">ਇਸਨੂੰ ਭਰਨ ਲਈ ਨਮਾਜ਼ ਦਰਜ ਕਰੋ।</string>
+    <string name="companion_sad">ਇਸਨੂੰ ਤੁਹਾਡੀ ਯਾਦ ਆਈ। ਇੱਕ ਨਮਾਜ਼ ਇਸਨੂੰ ਮੁੜ ਰੌਸ਼ਨ ਕਰਦੀ ਹੈ।</string>
+    <string name="companion_title">ਸਾਥੀ</string>
     <string name="compass_north">ਉ</string>
     <string name="confirm_time_zone_body">ਇਹ ਥਾਂ ਸਾਡੇ ਜਾਣੇ-ਪਛਾਣੇ ਸ਼ਹਿਰਾਂ ਤੋਂ ਦੂਰ ਹੈ, ਇਸ ਲਈ ਇਸ ਦੇ ਸਮਾਂ ਖੇਤਰ ਬਾਰੇ ਪੱਕਾ ਨਹੀਂ ਕਹਿ ਸਕਦੇ। ਨਮਾਜ਼ ਦੇ ਵਕਤ %1$s ਵਰਤਣਗੇ।</string>
     <string name="confirm_time_zone_title">ਸਮਾਂ ਖੇਤਰ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">ਪੁੱਛੋ, ਨੇੜਲੀ ਮਸਜਿਦ, ਅਤੇ ਕਿਬਲੇ ਨਾਲ ਨਮਾਜ਼ ਦੇ ਸਮੇਂ, ਹਰ ਇੱਕ ਇੱਕ ਟੈਪ ਵਿੱਚ।</string>
     <string name="widget_kind_ask">ਇਸਲਾਮ ਬਾਰੇ ਪੁੱਛੋ</string>
     <string name="widget_kind_ask_desc">ਸਵਾਲ ਪੁੱਛੋ, ਜਾਂ ਅੱਜ ਦੇ ਸੁਝਾਵਾਂ ਵਿੱਚੋਂ ਕਿਸੇ ਇੱਕ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
+    <string name="widget_kind_companion">ਸਾਥੀ</string>
+    <string name="widget_kind_companion_desc">ਲਾਲਟੈਣ ਜਾਂ ਦਿਲ ਜੋ ਨਮਾਜ਼ਾਂ ਦਰਜ ਕਰਨ \'ਤੇ ਚਮਕਦਾ ਹੈ।</string>
     <string name="widget_kind_countdown">ਨਮਾਜ਼ ਦੀ ਉਲਟੀ ਗਿਣਤੀ</string>
     <string name="widget_kind_countdown_desc">ਇੱਕ ਪੱਟੀ ਜੋ ਅਗਲੀ ਨਮਾਜ਼ ਤੱਕ ਭਰਦੀ ਜਾਂਦੀ ਹੈ।</string>
     <string name="widget_kind_mosque">ਸਭ ਤੋਂ ਨੇੜਲੀ ਮਸਜਿਦ</string>

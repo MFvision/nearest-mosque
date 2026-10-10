@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">خاموش. سؤال‌ها هرگز از گوشی شما خارج نمی‌شوند.</string>
     <string name="collapse">بستن</string>
     <string name="common_questions">سؤال‌های رایج</string>
+    <string name="companion_happy">امروز روشن و پُر.</string>
+    <string name="companion_heart">قلب</string>
+    <string name="companion_lantern">فانوس</string>
+    <string name="companion_mark">%1$s را خواندم</string>
+    <string name="companion_marked">%1$s ثبت شد</string>
+    <string name="companion_none">هیچ</string>
+    <string name="companion_note">وقتی نمازی را علامت بزنید یا یک دور ۳۳تایی را تمام کنید روشن‌تر می‌شود. فقط همان را می‌داند که علامت می‌زنید و روی همین گوشی می‌ماند.</string>
+    <string name="companion_quiet">نمازی را علامت بزنید تا پر شود.</string>
+    <string name="companion_sad">دلش برایتان تنگ شده بود. یک نماز دوباره روشنش می‌کند.</string>
+    <string name="companion_title">همراه</string>
     <string name="compass_north">ش</string>
     <string name="confirm_time_zone_body">این نقطه از شهرهایی که می‌شناسیم دور است، پس از منطقه زمانی آن مطمئن نیستیم. اوقات نماز با %1$s محاسبه می‌شود.</string>
     <string name="confirm_time_zone_title">منطقه زمانی را تأیید کنید</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">پرسیدن، نزدیک‌ترین مسجد، و اوقات نماز با قبله، هر کدام با یک ضربه.</string>
     <string name="widget_kind_ask">دربارهٔ اسلام بپرسید</string>
     <string name="widget_kind_ask_desc">سؤال خود را بپرسید یا روی یکی از پیشنهادهای امروز بزنید.</string>
+    <string name="widget_kind_companion">همراه</string>
+    <string name="widget_kind_companion_desc">فانوس یا قلبی که با علامت زدن نمازهایتان روشن‌تر می‌شود.</string>
     <string name="widget_kind_countdown">شمارش معکوس نماز</string>
     <string name="widget_kind_countdown_desc">نواری که تا نماز بعدی پر می‌شود.</string>
     <string name="widget_kind_mosque">نزدیک‌ترین مسجد</string>

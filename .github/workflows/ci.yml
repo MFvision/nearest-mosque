@@ -203,6 +203,9 @@ jobs:
           shot 28f-widgets-tasbih-teal -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind tasbih -demoWidgetLook teal -languageOverride ar
           shot 28g-island-gold-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind island -demoWidgetLook cream -languageOverride ar
           shot 28h-island-teal-en -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind island -demoWidgetLook teal -languageOverride en
+          shot 28i-widgets-lantern-full-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind companion -demoCompanion lantern -demoCompanionLevel 1 -demoWidgetLook cream -languageOverride ar
+          shot 28j-widgets-heart-low-en -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind companion -demoCompanion heart -demoCompanionLevel 0.15 -demoWidgetLook night -languageOverride en
+          shot 28k-companion-card-heart-en -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion heart -demoCompanionLevel 0.6 -languageOverride en
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 11b-compact-bar-dark -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en

@@ -48,6 +48,10 @@ struct SettingsView: View {
                     WidgetStylePicker(selection: Binding(get: { app.settings.widgetLook }, set: { app.settings.widgetLook = $0 }))
                 } header: { Text(l10n.t("widget_style_title")) } footer: { Text(l10n.t("widget_style_note")) }
 
+                Section {
+                    CompanionPicker(selection: Binding(get: { app.settings.companion }, set: { app.settings.companion = $0 }))
+                } header: { Text(l10n.t("companion_title")) } footer: { Text(l10n.t("companion_note")) }
+
                 Section(l10n.t("location_section")) {
                     if let loc = app.settings.location {
                         Text(loc.name)
@@ -231,5 +235,40 @@ struct WidgetStylePicker: View {
             }
             .padding(.vertical, 8)
         }
+    }
+}
+
+/// Lantern, heart or none, each shown as it looks today.
+private struct CompanionPicker: View {
+    @Environment(\.l10n) private var l10n
+    @Binding var selection: String
+
+    var body: some View {
+        let level = CompanionLog.level()
+        HStack(spacing: 12) {
+            ForEach(CompanionKind.allCases, id: \.self) { k in
+                let on = selection == k.rawValue
+                Button { selection = k.rawValue } label: {
+                    VStack(spacing: 8) {
+                        Group {
+                            if k == .none {
+                                Image(systemName: "circle.slash").font(.system(size: 30)).foregroundStyle(.secondary)
+                            } else {
+                                CompanionFigure(kind: k, level: level)
+                            }
+                        }
+                        .frame(width: 56, height: 60)
+                        Text(l10n.t("companion_" + k.rawValue)).font(.footnote.weight(on ? .semibold : .regular))
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 104)
+                    .background(RoundedRectangle(cornerRadius: 16, style: .continuous).fill(Theme.gold.opacity(on ? 0.16 : 0)))
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(on ? Theme.gold : Color.secondary.opacity(0.3), lineWidth: on ? 2 : 1))
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityAddTraits(on ? .isSelected : [])
+            }
+        }
+        .padding(.vertical, 4)
     }
 }

@@ -1,4 +1,5 @@
 import AppIntents
+import NMCore
 import SwiftUI
 import WidgetKit
 
@@ -17,6 +18,11 @@ struct TasbihTapIntent: AppIntent {
 
     func perform() async throws -> some IntentResult {
         TasbihStore.count += 1
+        // A round of 33 is a check-in for the companion (the lantern or the heart).
+        if TasbihStore.count % 33 == 0 {
+            CompanionLog.checkIn("dhikr", on: CivilDate.of(Date(), in: SharedStore.read()?.zone ?? .current))
+            WidgetCenter.shared.reloadTimelines(ofKind: "Companion")
+        }
         return .result()
     }
 }

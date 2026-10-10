@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">বন্ধ। প্রশ্ন কখনো আপনার ফোনের বাইরে যায় না।</string>
     <string name="collapse">ছোট করুন</string>
     <string name="common_questions">সাধারণ প্রশ্ন</string>
+    <string name="companion_happy">আজ উজ্জ্বল আর পূর্ণ।</string>
+    <string name="companion_heart">হৃদয়</string>
+    <string name="companion_lantern">লণ্ঠন</string>
+    <string name="companion_mark">আমি %1$s পড়েছি</string>
+    <string name="companion_marked">%1$s চিহ্নিত</string>
+    <string name="companion_none">কোনোটি নয়</string>
+    <string name="companion_note">আপনি নামাজ চিহ্নিত করলে বা ৩৩-এর একটি চক্র শেষ করলে এটি উজ্জ্বল হয়। আপনি যা চিহ্নিত করেন শুধু তাই জানে, আর এই ফোনেই থাকে।</string>
+    <string name="companion_quiet">এটি ভরাতে একটি নামাজ চিহ্নিত করুন।</string>
+    <string name="companion_sad">এটি আপনাকে মিস করেছে। একটি নামাজ একে আবার জ্বালায়।</string>
+    <string name="companion_title">সঙ্গী</string>
     <string name="compass_north">উ</string>
     <string name="confirm_time_zone_body">এই জায়গাটি আমাদের জানা শহরগুলো থেকে দূরে, তাই এর টাইম জোন সম্পর্কে আমরা নিশ্চিত হতে পারছি না। নামাজের সময় %1$s অনুযায়ী হবে।</string>
     <string name="confirm_time_zone_title">টাইম জোন নিশ্চিত করুন</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">জিজ্ঞাসা, কাছের মসজিদ, এবং কিবলাসহ নামাজের সময়, প্রতিটি এক ট্যাপে।</string>
     <string name="widget_kind_ask">ইসলাম নিয়ে প্রশ্ন করুন</string>
     <string name="widget_kind_ask_desc">প্রশ্ন করুন, অথবা আজকের পরামর্শগুলোর একটিতে ট্যাপ করুন।</string>
+    <string name="widget_kind_companion">সঙ্গী</string>
+    <string name="widget_kind_companion_desc">নামাজ চিহ্নিত করলে উজ্জ্বল হওয়া লণ্ঠন বা হৃদয়।</string>
     <string name="widget_kind_countdown">নামাজের কাউন্টডাউন</string>
     <string name="widget_kind_countdown_desc">পরবর্তী নামাজ পর্যন্ত ভরতে থাকা একটি বার।</string>
     <string name="widget_kind_mosque">নিকটতম মসজিদ</string>

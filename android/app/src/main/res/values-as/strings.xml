@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">অফ। প্ৰশ্নবোৰ কেতিয়াও আপোনাৰ ফোনৰ বাহিৰলৈ নাযায়।</string>
     <string name="collapse">সংকুচিত কৰক</string>
     <string name="common_questions">সাধাৰণ প্ৰশ্ন</string>
+    <string name="companion_happy">আজি উজ্জ্বল আৰু পূৰ্ণ।</string>
+    <string name="companion_heart">হৃদয়</string>
+    <string name="companion_lantern">লণ্ঠন</string>
+    <string name="companion_mark">মই %1$s পঢ়িলোঁ</string>
+    <string name="companion_marked">%1$s চিহ্নিত</string>
+    <string name="companion_none">একো নহয়</string>
+    <string name="companion_note">আপুনি নামাজ চিহ্নিত কৰিলে বা ৩৩ৰ এটা চক্ৰ সম্পূৰ্ণ কৰিলে ই উজ্জ্বল হয়। আপুনি যি চিহ্নিত কৰে কেৱল সেয়াহে জানে, আৰু এই ফোনতে থাকে।</string>
+    <string name="companion_quiet">ইয়াক ভৰাবলৈ এটা নামাজ চিহ্নিত কৰক।</string>
+    <string name="companion_sad">ই আপোনাক মনত পেলাইছিল। এটা নামাজে ইয়াক পুনৰ জ্বলায়।</string>
+    <string name="companion_title">সংগী</string>
     <string name="compass_north">উ</string>
     <string name="confirm_time_zone_body">এই ঠাইখন আমি জনা চহৰবোৰৰ পৰা দূৰত, সেয়েহে ইয়াৰ সময় অঞ্চলৰ বিষয়ে আমি নিশ্চিত হ\'ব নোৱাৰোঁ। নামাজৰ সময় %1$s অনুসৰি হ\'ব।</string>
     <string name="confirm_time_zone_title">সময় অঞ্চল নিশ্চিত কৰক</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">সোধক, ওচৰৰ মছজিদ, আৰু কিবলাৰ সৈতে নামাজৰ সময়, প্ৰতিটো এটা টিপত।</string>
     <string name="widget_kind_ask">ইছলামৰ বিষয়ে সোধক</string>
     <string name="widget_kind_ask_desc">প্ৰশ্ন সোধক, নাইবা আজিৰ পৰামৰ্শবোৰৰ এটাত টেপ কৰক।</string>
+    <string name="widget_kind_companion">সংগী</string>
+    <string name="widget_kind_companion_desc">নামাজ চিহ্নিত কৰিলে উজ্জ্বল হোৱা লণ্ঠন বা হৃদয়।</string>
     <string name="widget_kind_countdown">নামাজৰ কাউণ্টডাউন</string>
     <string name="widget_kind_countdown_desc">পৰৱৰ্তী নামাজলৈকে ভৰি অহা এডাল বাৰ।</string>
     <string name="widget_kind_mosque">ওচৰৰ মছজিদ</string>

@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Desactivada. Tus preguntas nunca salen del teléfono.</string>
     <string name="collapse">Contraer</string>
     <string name="common_questions">Preguntas comunes</string>
+    <string name="companion_happy">Brillante y lleno hoy.</string>
+    <string name="companion_heart">Corazón</string>
+    <string name="companion_lantern">Farol</string>
+    <string name="companion_mark">Recé %1$s</string>
+    <string name="companion_marked">%1$s marcada</string>
+    <string name="companion_none">Ninguno</string>
+    <string name="companion_note">Brilla más cuando marcas una oración o terminas una ronda de 33. Solo sabe lo que marcas y se queda en este teléfono.</string>
+    <string name="companion_quiet">Marca una oración para llenarlo.</string>
+    <string name="companion_sad">Te echó de menos. Una oración lo vuelve a encender.</string>
+    <string name="companion_title">Compañero</string>
     <string name="compass_north">N</string>
     <string name="confirm_time_zone_body">Este punto está lejos de las ciudades conocidas y su zona horaria es incierta. Se usará %1$s.</string>
     <string name="confirm_time_zone_title">Confirma la zona horaria</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Preguntar, la mezquita más cercana y los horarios con la alquibla, con un toque cada uno.</string>
     <string name="widget_kind_ask">Pregunta sobre el islam</string>
     <string name="widget_kind_ask_desc">Haz una pregunta o toca una de las sugerencias de hoy.</string>
+    <string name="widget_kind_companion">Compañero</string>
+    <string name="widget_kind_companion_desc">Un farol o un corazón que brilla al marcar tus oraciones.</string>
     <string name="widget_kind_countdown">Cuenta atrás</string>
     <string name="widget_kind_countdown_desc">Una barra que se llena hasta la próxima oración.</string>
     <string name="widget_kind_mosque">Mezquita más cercana</string>

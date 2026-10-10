@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">تاقاق. سوئاللار ھەرگىز تېلېفونىڭىزدىن چىقمايدۇ.</string>
     <string name="collapse">يىغىش</string>
     <string name="common_questions">كۆپ سورالغان سوئاللار</string>
+    <string name="companion_happy">بۈگۈن يورۇق ۋە تولۇق.</string>
+    <string name="companion_heart">يۈرەك</string>
+    <string name="companion_lantern">پانۇس</string>
+    <string name="companion_mark">%1$s نى ئوقۇدۇم</string>
+    <string name="companion_marked">%1$s بەلگىلەندى</string>
+    <string name="companion_none">يوق</string>
+    <string name="companion_note">بىر نامازنى بەلگىلىسىڭىز ياكى 33 لىك بىر قېتىمنى تاماملىسىڭىز يورۇيدۇ. پەقەت سىز بەلگىلىگەننىلا بىلىدۇ ۋە مۇشۇ تېلېفوندا قالىدۇ.</string>
+    <string name="companion_quiet">تولدۇرۇش ئۈچۈن بىر نامازنى بەلگىلەڭ.</string>
+    <string name="companion_sad">ئۇ سىزنى سېغىندى. بىر ناماز ئۇنى قايتا يورۇتىدۇ.</string>
+    <string name="companion_title">ھەمراھ</string>
     <string name="compass_north">ش</string>
     <string name="confirm_time_zone_body">بۇ نۇقتا بىز بىلىدىغان شەھەرلەردىن يىراق، شۇڭا ئۇنىڭ ۋاقىت رايونىغا جەزم قىلالمايمىز. ناماز ۋاقىتلىرى %1$s نى ئىشلىتىدۇ.</string>
     <string name="confirm_time_zone_title">ۋاقىت رايونىنى جەزملەڭ</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">سوراش، ئەڭ يېقىن مەسچىت ۋە قىبلە بىلەن ناماز ۋاقىتلىرى، ھەر بىرى بىر چېكىشتە.</string>
     <string name="widget_kind_ask">ئىسلام توغرىسىدا سوراش</string>
     <string name="widget_kind_ask_desc">سوئال سوراڭ ياكى بۈگۈنكى تەۋسىيەلەرنىڭ بىرىنى بېسىڭ.</string>
+    <string name="widget_kind_companion">ھەمراھ</string>
+    <string name="widget_kind_companion_desc">نامازلىرىڭىزنى بەلگىلىگەنسېرى يورۇيدىغان پانۇس ياكى يۈرەك.</string>
     <string name="widget_kind_countdown">ناماز تەتۈر ساناقلىقى</string>
     <string name="widget_kind_countdown_desc">كېيىنكى نامازغىچە تولۇپ بارىدىغان بالداق.</string>
     <string name="widget_kind_mosque">ئەڭ يېقىن مەسچىت</string>

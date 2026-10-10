@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Kapalı. Sorular telefonunuzdan çıkmaz.</string>
     <string name="collapse">Daralt</string>
     <string name="common_questions">Sık sorulan sorular</string>
+    <string name="companion_happy">Bugün parlak ve dolu.</string>
+    <string name="companion_heart">Kalp</string>
+    <string name="companion_lantern">Fener</string>
+    <string name="companion_mark">%1$s kıldım</string>
+    <string name="companion_marked">%1$s işaretlendi</string>
+    <string name="companion_none">Yok</string>
+    <string name="companion_note">Bir namazı işaretlediğinizde veya 33\'lük bir turu bitirdiğinizde parlar. Yalnızca işaretlediğinizi bilir ve bu telefonda kalır.</string>
+    <string name="companion_quiet">Doldurmak için bir namazı işaretleyin.</string>
+    <string name="companion_sad">Sizi özledi. Bir namaz onu yeniden yakar.</string>
+    <string name="companion_title">Arkadaş</string>
     <string name="compass_north">K</string>
     <string name="confirm_time_zone_body">Bu nokta bildiğimiz şehirlerden uzak, saat dilimi kesin değil. Vakitler için %1$s kullanılacak.</string>
     <string name="confirm_time_zone_title">Saat dilimini onaylayın</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Sor, en yakın cami ve kıbleyle namaz vakitleri, her biri tek dokunuşla.</string>
     <string name="widget_kind_ask">İslam hakkında sor</string>
     <string name="widget_kind_ask_desc">Bir soru sorun veya bugünün önerilerinden birine dokunun.</string>
+    <string name="widget_kind_companion">Arkadaş</string>
+    <string name="widget_kind_companion_desc">Namazlarınızı işaretledikçe parlayan bir fener ya da kalp.</string>
     <string name="widget_kind_countdown">Namaz geri sayımı</string>
     <string name="widget_kind_countdown_desc">Sonraki namaza kadar dolan bir çubuk.</string>
     <string name="widget_kind_mosque">En yakın cami</string>

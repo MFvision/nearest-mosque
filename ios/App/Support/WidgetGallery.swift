@@ -5,7 +5,7 @@ import UIKit
 import WidgetKit
 
 /// Debug builds only: the home-screen widgets drawn at their real sizes, for CI screenshots
-/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask|qibla|actions -demoWidgetLook cream|green|night|teal|sky`).
+/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask|qibla|actions|tasbih|companion|island -demoWidgetLook cream|green|night|teal|sky`).
 /// Uses the city and settings chosen in the app, like the widgets themselves.
 struct WidgetGalleryView: View {
     @Environment(\.appModel) private var model
@@ -20,6 +20,7 @@ struct WidgetGalleryView: View {
         case "qibla": return .qibla
         case "actions": return .actions
         case "tasbih": return .tasbih
+        case "companion": return .companion
         default: return .next
         }
     }
@@ -36,7 +37,7 @@ struct WidgetGalleryView: View {
         case .today: return [(.systemMedium, medium), (.systemLarge, large)] + xl
         case .mosque, .ask, .qibla: return [(.systemSmall, small), (.systemMedium, medium)]
         case .actions: return [(.systemMedium, medium)]
-        case .tasbih: return [(.systemSmall, small), (.systemMedium, medium)]
+        case .tasbih, .companion: return [(.systemSmall, small), (.systemMedium, medium)]
         }
     }
 
@@ -61,7 +62,8 @@ struct WidgetGalleryView: View {
                             SharedMosque(id: r.id, name: r.mosque.displayName(model.l10n.language) ?? "", meters: r.distanceMeters,
                                          bearing: Geo.initialBearing(from: loc.location, to: r.mosque.location))
                         },
-                        questions: ((try? model.ask?.commonQuestions()) ?? []).compactMap { $0.question[model.l10n.language] ?? $0.question["en"] })
+                        questions: ((try? model.ask?.commonQuestions()) ?? []).compactMap { $0.question[model.l10n.language] ?? $0.question["en"] },
+                        companion: UserDefaults.standard.string(forKey: "demoCompanion") ?? model.settings.companion)
         } ?? SharedState.preview
         let entry = PrayerEntry.make(Date(), look: look, state: state)
         let p = entry.palette
@@ -71,6 +73,8 @@ struct WidgetGalleryView: View {
                     Group {
                         if kind == .tasbih {
                             TasbihFace(count: 6366, palette: p, family: item.0, locale: state.locale, a11y: "", resetLabel: "")
+                        } else if kind == .companion {
+                            CompanionFace(entry: entry, family: item.0)
                         } else {
                             PrayerWidgetView(entry: entry, kind: kind, family: item.0)
                         }

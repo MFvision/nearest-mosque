@@ -2,6 +2,7 @@ import Foundation
 import NMCore
 import SwiftUI
 import UserNotifications
+import WidgetKit
 #if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
 import AlarmKit
 #endif
@@ -154,16 +155,15 @@ enum Reminders {
             identifier: "snooze-\(UUID().uuidString)", content: copy, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 5 * 60, repeats: false)))
     }
 
-    /// "Prayed": that prayer's remaining alerts today are cancelled, and the day is noted on the phone (for the
-    /// lantern). Nothing leaves the phone.
-    static func markPrayed(event: String, date: String) {
+    /// "Prayed": that prayer's remaining alerts today are cancelled, and the companion (the lantern or the heart)
+    /// is told. Nothing leaves the phone.
+    static func markPrayed(event: String, date: String, delivered: Date) {
         let center = UNUserNotificationCenter.current()
         let ids = AlertKind.allIdentifiers.map { "alert-\($0)-\(date)-\(event)" }
         center.removePendingNotificationRequests(withIdentifiers: ids)
         center.removeDeliveredNotifications(withIdentifiers: ids)
-        var log = UserDefaults.standard.stringArray(forKey: "prayedLog") ?? []
-        log.append("\(date):\(event)")
-        UserDefaults.standard.set(Array(log.suffix(200)), forKey: "prayedLog")
+        CompanionLog.checkIn(event, on: CivilDate.of(delivered, in: SharedStore.read()?.zone ?? .current))
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 
@@ -184,7 +184,7 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         let event = content.userInfo["event"] as? String ?? ""
         let date = content.userInfo["date"] as? String ?? ""
         switch Reminders.Action(rawValue: response.actionIdentifier) {
-        case .prayed: Reminders.markPrayed(event: event, date: date)
+        case .prayed: Reminders.markPrayed(event: event, date: date, delivered: response.notification.date)
         case .snooze: await Reminders.snooze(content)
         case .qibla: await MainActor.run { PendingRoute.open(URL(string: "nearmosque://qibla")!) }
         case .mosques: await MainActor.run { PendingRoute.open(URL(string: "nearmosque://mosques")!) }

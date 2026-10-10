@@ -76,6 +76,16 @@
     <string name="cloud_ai_off">Исклучено. Прашањата никогаш не го напуштаат вашиот телефон.</string>
     <string name="collapse">Собери</string>
     <string name="common_questions">Чести прашања</string>
+    <string name="companion_happy">Денес светол и полн.</string>
+    <string name="companion_heart">Срце</string>
+    <string name="companion_lantern">Фенер</string>
+    <string name="companion_mark">Го клањав %1$s</string>
+    <string name="companion_marked">%1$s означен</string>
+    <string name="companion_none">Ништо</string>
+    <string name="companion_note">Посветлува кога ќе означите намаз или ќе завршите круг од 33. Го знае само она што го означувате и останува на овој телефон.</string>
+    <string name="companion_quiet">Означете намаз за да го наполните.</string>
+    <string name="companion_sad">Ви недостигавте. Еден намаз повторно го пали.</string>
+    <string name="companion_title">Придружник</string>
     <string name="compass_north">С</string>
     <string name="confirm_time_zone_body">Оваа точка е далеку од градовите што ги знаеме, па не можеме да бидеме сигурни во нејзината временска зона. Времињата за намаз ќе користат %1$s.</string>
     <string name="confirm_time_zone_title">Потврдете ја временската зона</string>
@@ -429,6 +439,8 @@
     <string name="widget_kind_actions_desc">Прашај, најблиската џамија и времињата за молитва со киблата, секое со еден допир.</string>
     <string name="widget_kind_ask">Прашај за исламот</string>
     <string name="widget_kind_ask_desc">Поставете прашање или допрете еден од денешните предлози.</string>
+    <string name="widget_kind_companion">Придружник</string>
+    <string name="widget_kind_companion_desc">Фенер или срце што посветлува кога ги означувате намазите.</string>
     <string name="widget_kind_countdown">Одбројување до намаз</string>
     <string name="widget_kind_countdown_desc">Лента што се полни до следниот намаз.</string>
     <string name="widget_kind_mosque">Најблиска џамија</string>
