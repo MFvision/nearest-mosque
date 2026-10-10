@@ -27,7 +27,9 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
         let l10n = model.l10n
         bearing = Qibla.bearing(from: loc.location)
         let attributes = QiblaActivityAttributes(city: loc.name, title: l10n.t("qibla"),
-                                                 bearingText: l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale)), rtl: l10n.isRTL)
+                                                 bearingText: Format.degrees(bearing, locale: l10n.locale) + "°",
+                                                 fromNorth: l10n.t("qibla_bearing", Format.degrees(bearing, locale: l10n.locale)),
+                                                 rtl: l10n.isRTL, style: model.settings.widgetLook)
         let initial = QiblaActivityAttributes.ContentState(turn: nil, facing: false, hint: l10n.t("qibla_move_phone"))
         activity = try? Activity.request(attributes: attributes,
                                          content: ActivityContent(state: initial, staleDate: Date().addingTimeInterval(Self.seconds + 30)), pushType: nil)

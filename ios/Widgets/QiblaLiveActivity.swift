@@ -3,80 +3,71 @@ import ActivityKit
 import SwiftUI
 import WidgetKit
 
-/// The Qibla compass in the Dynamic Island (experimental): an arrow that turns with the phone towards the
-/// Qibla, gold when you face it.
+/// The Qibla compass in the Dynamic Island (experimental), drawn like the Qibla ring in the app: the Kaaba fixed
+/// at the top of an arc, a gold dot on the arc where the Qibla is, a glowing stretch from the dot to the Kaaba
+/// (how far to turn), and the logo's arrow in the middle turning with the phone. Everything glows gold when you
+/// face the Qibla. Content sits in Apple's island regions, which keep clear of the camera on every iPhone.
 struct QiblaLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: QiblaActivityAttributes.self) { context in
-            QiblaIslandCard(attributes: context.attributes, state: context.state)
-                .padding(16)
-                .activityBackgroundTint(Color(red: 0.03, green: 0.07, blue: 0.12))
+            QiblaLockCard(attributes: context.attributes, state: context.state)
+                .activityBackgroundTint(.clear)
                 .activitySystemActionForegroundColor(.white)
                 .widgetURL(URL(string: "nearmosque://qibla"))
         } dynamicIsland: { context in
             let s = context.state, a = context.attributes
-            let gold = Color(red: 0.89, green: 0.75, blue: 0.39)
+            let tint = IslandTint.of(a.style)
             return DynamicIsland {
-                DynamicIslandExpandedRegion(.center) {
-                    QiblaIslandCard(attributes: a, state: s)
+                DynamicIslandExpandedRegion(.leading) {
+                    HStack(spacing: 8) {
+                        WidgetKaaba().frame(width: 26, height: 26)
+                            .shadow(color: s.facing ? tint.opacity(0.9) : .clear, radius: 8)
+                        Text(a.title).font(.headline).foregroundStyle(.white).lineLimit(1)
+                    }
+                    .padding(.leading, 6)
+                }
+                DynamicIslandExpandedRegion(.trailing) {
+                    VStack(alignment: .trailing, spacing: 0) {
+                        Text(a.bearingText).font(.system(.title3, design: .rounded).weight(.bold).monospacedDigit()).foregroundStyle(tint)
+                        Text(a.city).font(.caption2).foregroundStyle(.white.opacity(0.6)).lineLimit(1)
+                    }
+                    .padding(.trailing, 6)
+                }
+                DynamicIslandExpandedRegion(.bottom) {
+                    VStack(spacing: 4) {
+                        QiblaArcDial(turn: s.turn, facing: s.facing, tint: tint, onDark: true)
+                            .frame(height: 92)
+                        Text(s.hint)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(s.facing ? tint : .white)
+                            .lineLimit(1).minimumScaleFactor(0.7)
+                    }
+                    .environment(\.layoutDirection, a.rtl ? .rightToLeft : .leftToRight)
                 }
             } compactLeading: {
-                QiblaArrow(turn: s.turn, facing: s.facing, size: 20)
+                IslandArrow(turn: s.turn, facing: s.facing, tint: tint, size: 22)
+                    .padding(.leading, 2)
             } compactTrailing: {
-                Text(s.turn.map { "\(Int(abs($0).rounded()))°" } ?? "–")
-                    .font(.caption.monospacedDigit().weight(.semibold))
-                    .foregroundStyle(s.facing ? gold : .white)
+                if s.facing {
+                    WidgetKaaba().frame(width: 20, height: 20).shadow(color: tint, radius: 6)
+                } else {
+                    HStack(spacing: 2) {
+                        Image(systemName: (s.turn ?? 0) >= 0 ? "arrow.turn.up.right" : "arrow.turn.up.left")
+                            .font(.system(size: 10, weight: .bold))
+                        Text(s.turn.map { "\(Int(abs($0).rounded()))°" } ?? "–")
+                            .font(.system(.caption, design: .rounded).weight(.bold).monospacedDigit())
+                    }
+                    .foregroundStyle(tint)
+                }
             } minimal: {
-                QiblaArrow(turn: s.turn, facing: s.facing, size: 18)
+                ZStack {
+                    Circle().stroke(s.facing ? tint : Color.white.opacity(0.35), lineWidth: 2)
+                    IslandArrow(turn: s.turn, facing: s.facing, tint: tint, size: 14)
+                }
             }
             .widgetURL(URL(string: "nearmosque://qibla"))
-            .keylineTint(gold)
+            .keylineTint(tint)
         }
-    }
-}
-
-/// The arrow: straight up means you face the Qibla; it points the way to turn.
-struct QiblaArrow: View {
-    let turn: Double?
-    let facing: Bool
-    let size: CGFloat
-
-    var body: some View {
-        let gold = Color(red: 0.89, green: 0.75, blue: 0.39)
-        Image(systemName: facing ? "location.north.circle.fill" : "location.north.fill")
-            .font(.system(size: size * 0.8, weight: .bold))
-            .foregroundStyle(facing ? gold : .white)
-            .rotationEffect(.degrees(turn ?? 0))
-            .opacity(turn == nil ? 0.5 : 1)
-            .frame(width: size, height: size)
-            .accessibilityHidden(true)
-    }
-}
-
-/// The expanded view and Lock Screen card: a dial with the arrow, and what to do in words.
-struct QiblaIslandCard: View {
-    let attributes: QiblaActivityAttributes
-    let state: QiblaActivityAttributes.ContentState
-
-    var body: some View {
-        let gold = Color(red: 0.89, green: 0.75, blue: 0.39)
-        HStack(spacing: 16) {
-            ZStack {
-                Circle().stroke(Color.white.opacity(0.25), lineWidth: 3)
-                if state.facing { Circle().fill(gold.opacity(0.2)) }
-                QiblaArrow(turn: state.turn, facing: state.facing, size: 46)
-            }
-            .frame(width: 72, height: 72)
-            .environment(\.layoutDirection, .leftToRight)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(attributes.title + " · " + attributes.city).font(.caption).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
-                Text(state.hint).font(.title3.weight(.semibold)).foregroundStyle(state.facing ? gold : .white).lineLimit(2).minimumScaleFactor(0.8)
-                Text(attributes.bearingText).font(.caption).foregroundStyle(.white.opacity(0.7))
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .environment(\.layoutDirection, attributes.rtl ? .rightToLeft : .leftToRight)
-        .accessibilityElement(children: .combine)
     }
 }
 #endif

@@ -29,6 +29,8 @@ struct PrayerActivityAttributes: ActivityAttributes {
     }
 
     var rtl: Bool
+    /// The widget style picked in the app (WidgetLook raw value): the island's accent colour follows it.
+    var style: String
     var nextLabel: String
     var qiblaLabel: String
     var mosqueLabel: String

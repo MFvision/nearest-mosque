@@ -14,7 +14,7 @@ struct PrayerLiveActivity: Widget {
                 .widgetURL(URL(string: "nearmosque://prayer"))
         } dynamicIsland: { context in
             let s = context.state, a = context.attributes
-            let gold = Color(red: 0.89, green: 0.75, blue: 0.39)
+            let gold = IslandTint.of(a.style)
             return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
                     Label {
@@ -87,66 +87,6 @@ struct PrayerLiveActivity: Widget {
             .widgetURL(URL(string: "nearmosque://prayer"))
             .keylineTint(gold)
         }
-    }
-}
-
-/// The Lock Screen card: the sky of the hour, the next prayer with a live countdown and progress bar, and
-/// today's prayers along the bottom with the next one lit.
-struct PrayerLockScreenView: View {
-    let attributes: PrayerActivityAttributes
-    let state: PrayerActivityAttributes.ContentState
-    let stale: Bool
-
-    var body: some View {
-        let p = WidgetPalette.of(.sky, period: PrayerEvent(rawValue: state.period))
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Label(state.city, systemImage: "mappin.and.ellipse").font(.caption.weight(.semibold)).foregroundStyle(p.secondary).lineLimit(1)
-                Spacer()
-                Text(state.timeText).font(.caption.weight(.semibold).monospacedDigit()).foregroundStyle(p.secondary)
-            }
-            HStack(alignment: .firstTextBaseline) {
-                Label {
-                    Text(stale ? state.nowTitle : state.prayer).font(.title2.weight(.bold)).lineLimit(1).minimumScaleFactor(0.7)
-                } icon: {
-                    Image(systemName: state.symbol).foregroundStyle(p.accent)
-                }
-                .foregroundStyle(p.ink)
-                Spacer(minLength: 8)
-                if !stale {
-                    Text(timerInterval: state.start...max(state.start, state.at), countsDown: true)
-                        .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
-                        .foregroundStyle(p.accent)
-                        .multilineTextAlignment(.trailing)
-                        .environment(\.layoutDirection, .leftToRight)
-                        .frame(maxWidth: 140, alignment: .trailing)
-                }
-            }
-            if !stale {
-                ProgressView(timerInterval: state.start...max(state.start.addingTimeInterval(1), state.at), countsDown: false) {
-                    EmptyView()
-                } currentValueLabel: {
-                    EmptyView()
-                }
-                .tint(p.accent)
-            }
-            HStack(spacing: 4) {
-                ForEach(Array(state.slots.enumerated()), id: \.offset) { i, slot in
-                    let on = i == state.nextIndex
-                    VStack(spacing: 2) {
-                        Text(slot.name).font(.caption2.weight(on ? .bold : .regular)).lineLimit(1).minimumScaleFactor(0.7)
-                        Text(slot.time).font(.caption2.monospacedDigit().weight(on ? .bold : .regular)).lineLimit(1).minimumScaleFactor(0.7)
-                    }
-                    .foregroundStyle(on ? p.onPill : p.ink.opacity(0.85))
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 4)
-                    .background(on ? p.pill : Color.clear, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                }
-            }
-        }
-        .padding(16)
-        .background(p.background)
-        .environment(\.layoutDirection, attributes.rtl ? .rightToLeft : .leftToRight)
     }
 }
 #endif

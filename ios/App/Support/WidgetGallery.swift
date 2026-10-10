@@ -41,6 +41,18 @@ struct WidgetGalleryView: View {
     }
 
     var body: some View {
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        if UserDefaults.standard.string(forKey: "demoWidgetKind") == "island" {
+            IslandGalleryView(style: look.rawValue)
+        } else {
+            widgets
+        }
+        #else
+        widgets
+        #endif
+    }
+
+    @ViewBuilder private var widgets: some View {
         let state = model.settings.location.map { loc in
             SharedState(name: loc.name, latitude: loc.latitude, longitude: loc.longitude, zoneId: loc.zoneId, prayer: model.settings.prayer,
                         language: model.l10n.language, hijriAdjustmentDays: model.settings.prayer.hijriAdjustmentDays,

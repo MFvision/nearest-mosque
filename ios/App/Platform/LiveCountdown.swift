@@ -35,7 +35,7 @@ enum LiveCountdown {
             nowTitle: l10n.t("reminder_title", name), slots: slots,
             nextIndex: next.isTomorrow ? -1 : (PrayerEvent.prayers.firstIndex(of: next.event) ?? -1),
             period: current?.rawValue ?? "")
-        let attributes = PrayerActivityAttributes(rtl: l10n.isRTL, nextLabel: l10n.t("next_prayer"), qiblaLabel: l10n.t("qibla"),
+        let attributes = PrayerActivityAttributes(rtl: l10n.isRTL, style: model.settings.widgetLook, nextLabel: l10n.t("next_prayer"), qiblaLabel: l10n.t("qibla"),
                                                   mosqueLabel: l10n.t("tab_mosques"))
         // Stale a quarter of an hour after the prayer time: the views then say "Time for …".
         let content = ActivityContent(state: state, staleDate: next.at.addingTimeInterval(15 * 60))
@@ -53,7 +53,7 @@ enum LiveCountdown {
 #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
 extension PrayerActivityAttributes: Equatable {
     static func == (a: Self, b: Self) -> Bool {
-        a.rtl == b.rtl && a.nextLabel == b.nextLabel && a.qiblaLabel == b.qiblaLabel && a.mosqueLabel == b.mosqueLabel
+        a.rtl == b.rtl && a.style == b.style && a.nextLabel == b.nextLabel && a.qiblaLabel == b.qiblaLabel && a.mosqueLabel == b.mosqueLabel
     }
 }
 #endif

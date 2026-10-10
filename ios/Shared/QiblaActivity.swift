@@ -17,9 +17,12 @@ struct QiblaActivityAttributes: ActivityAttributes {
 
     var city: String
     var title: String
-    /// The Qibla from north, as text ("243°").
+    /// The Qibla from north, as text ("243°"), and "from north" in the reader's language.
     var bearingText: String
+    var fromNorth: String
     var rtl: Bool
+    /// The widget style picked in the app (WidgetLook raw value): the island's accent colour follows it.
+    var style: String
 }
 
 /// The widget's button: starts the compass in the Dynamic Island. Runs in the app (in the background).
