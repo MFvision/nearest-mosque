@@ -61,13 +61,13 @@ jobs:
           shot() { xcrun simctl io "$UDID" screenshot "shots/$1.png"; }
           # First launch installs the libraries in the background (minutes for the Arabic fatwa pack): leave the
           # app running until done, so a relaunch does not interrupt an install.
-          run 600 -demoTab ask -demoLibrary YES -demoLibraryTab 1; shot 00-library-ready-check
+          run 600 -demoTab ask -demoLibrary YES -demoLibraryTab browse; shot 00-library-ready-check
           run 15 -demoTab ask; shot 01-ask
-          run 15 -demoTab ask -demoLibrary YES -demoLibraryTab 1; shot 02-library-collections
+          run 15 -demoTab ask -demoLibrary YES -demoLibraryTab books; shot 02-library-books
           run 20 -demoTab ask -demoLibrary YES -demoLibraryPack "sources.islamhouse-$LANG_UI"; shot 03-collection-books
           run 6 -demoTab ask -demoLibrary YES -demoOpenBook "ih:$LANG_UI:2846818"; shot 04-book-downloading
           sleep 50; shot 05-book-open
-          run 15 -demoTab ask -demoLibrary YES -demoLibraryTab 2; shot 06-downloads
+          run 15 -demoTab ask -demoLibrary YES -demoLibraryTab downloads; shot 06-downloads
       - uses: actions/upload-artifact@v4
         if: always()
         with:

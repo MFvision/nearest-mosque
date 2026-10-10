@@ -11,7 +11,7 @@ struct PrayerWidgetIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "widget_style_title"
     static var description = IntentDescription("widget_kind_next_desc")
 
-    @Parameter(title: "widget_style_title", default: .cream)
+    @Parameter(title: "widget_style_title", default: .auto)
     var look: WidgetLook
 }
 
@@ -62,7 +62,7 @@ struct WidgetFrame: View {
     let kind: PrayerWidgetKind
 
     var body: some View {
-        let p = WidgetPalette.of(entry.look)
+        let p = entry.palette
         PrayerWidgetView(entry: entry, kind: kind, family: family)
             .containerBackground(for: .widget) {
                 ZStack(alignment: .bottomTrailing) {

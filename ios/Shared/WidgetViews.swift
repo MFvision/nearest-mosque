@@ -5,14 +5,25 @@ import WidgetKit
 
 // Shared by the widget extension and, in debug builds, the app's widget gallery (CI screenshots).
 
-/// The look of a widget, chosen when editing it (long-press → Edit Widget).
+/// The look of a widget, chosen when editing it (long-press → Edit Widget). "Same as app" follows the style
+/// picked in the app's Settings; "Time of day" follows the prayer period like the app's sky.
 enum WidgetLook: String, AppEnum {
-    case cream, green, night
+    case auto, cream, green, night, teal, sky
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "widget_style_title"
     static var caseDisplayRepresentations: [WidgetLook: DisplayRepresentation] = [
-        .cream: "style_cream", .green: "style_green", .night: "style_night",
+        .auto: "style_auto", .cream: "style_cream", .green: "style_green", .night: "style_night", .teal: "style_teal", .sky: "style_sky",
     ]
+
+    /// The styles offered in the app's Settings (everything but "Same as app").
+    static let choices: [WidgetLook] = [.cream, .green, .night, .teal, .sky]
+
+    /// "Same as app" resolved to the style chosen in the app (Gold and cream until one is chosen).
+    func resolved(_ state: SharedState?) -> WidgetLook {
+        guard self == .auto else { return self }
+        let chosen = state?.widgetLook.flatMap(WidgetLook.init(rawValue:)) ?? .cream
+        return chosen == .auto ? .cream : chosen
+    }
 }
 
 /// Which widget: the next prayer, the countdown bar, the ring, today's five prayers, the nearest mosques, Ask,
@@ -40,7 +51,8 @@ struct PrayerEntry: TimelineEntry {
     let today: DaySchedule?
     let next: Upcoming?
 
-    static func make(_ date: Date, look: WidgetLook, state: SharedState?) -> PrayerEntry {
+    static func make(_ date: Date, look requested: WidgetLook, state: SharedState?) -> PrayerEntry {
+        let look = requested.resolved(state)
         guard let state else { return PrayerEntry(date: date, look: look, state: nil, today: nil, next: nil) }
         let days = state.days(date)
         return PrayerEntry(date: date, look: look, state: state, today: days.count == 3 ? days[1] : nil,
@@ -58,6 +70,9 @@ struct PrayerEntry: TimelineEntry {
     var current: PrayerEvent? {
         PrayerEvent.allCases.last { e in today?[e].map { $0 <= date } ?? false }
     }
+
+    /// Colours for this entry ("Time of day" depends on the period in effect).
+    var palette: WidgetPalette { WidgetPalette.of(look, period: current, after: today?[.sunrise].map { date.timeIntervalSince($0) }) }
 
     func isPast(_ e: PrayerEvent) -> Bool {
         guard let at = today?[e] else { return false }
@@ -94,9 +109,9 @@ struct WidgetPalette {
         Color(red: Double((hex >> 16) & 0xFF) / 255, green: Double((hex >> 8) & 0xFF) / 255, blue: Double(hex & 0xFF) / 255).opacity(opacity)
     }
 
-    static func of(_ look: WidgetLook) -> WidgetPalette {
+    static func of(_ look: WidgetLook, period: PrayerEvent? = nil, after sunrise: TimeInterval? = nil) -> WidgetPalette {
         switch look {
-        case .cream:
+        case .auto, .cream:
             return WidgetPalette(background: LinearGradient(colors: [c(0xFFF8EC), c(0xF3E3C3)], startPoint: .top, endPoint: .bottom),
                                  ink: c(0x1F3B57), secondary: c(0x5B6470), accent: c(0x8A6A1C), card: Color.white.opacity(0.78),
                                  pill: c(0xC99A3A), onPill: .white)
@@ -108,6 +123,25 @@ struct WidgetPalette {
             return WidgetPalette(background: LinearGradient(colors: [c(0x081B29), c(0x1A4D6E)], startPoint: .top, endPoint: .bottom),
                                  ink: .white, secondary: Color.white.opacity(0.75), accent: c(0xD4A843), card: Color.white.opacity(0.10),
                                  pill: c(0xD4A843), onPill: c(0x081B29))
+        case .teal:
+            return WidgetPalette(background: LinearGradient(colors: [c(0x5E9C95), c(0x3E7D78)], startPoint: .topLeading, endPoint: .bottomTrailing),
+                                 ink: .white, secondary: Color.white.opacity(0.82), accent: c(0xF2D27A), card: Color.white.opacity(0.16),
+                                 pill: c(0xF2D27A), onPill: c(0x123F3B))
+        case .sky:
+            // The app's dark skies (shared/design/tokens.json "sky"): top, middle and low colour of each period.
+            let k: [UInt32]
+            switch period {
+            case .fajr: k = [0x141E3C, 0x3A3566, 0x6B4A6E]
+            case .sunrise where (sunrise ?? .infinity) < 3600: k = [0x1C3F7A, 0x345A99, 0x7A6A7A]
+            case .sunrise, .dhuhr: k = [0x1C3F7A, 0x2F5590, 0x3E6AA8]
+            case .asr: k = [0x173F5A, 0x23606F, 0x3C7B74]
+            case .maghrib: k = [0x1B1F45, 0x4A2F5E, 0x8A4A5A]
+            case .isha: k = [0x0A1430, 0x16264D, 0x22356A]
+            case nil: k = [0x081B29, 0x12304A, 0x1A3F60]
+            }
+            return WidgetPalette(background: LinearGradient(colors: k.map { c($0) }, startPoint: .top, endPoint: .bottom),
+                                 ink: .white, secondary: Color.white.opacity(0.78), accent: c(0xF2D27A), card: Color.white.opacity(0.12),
+                                 pill: c(0xF2D27A), onPill: c(0x0B1530))
         }
     }
 }
@@ -119,7 +153,7 @@ struct PrayerWidgetView: View {
     let family: WidgetFamily
 
     var body: some View {
-        let p = WidgetPalette.of(entry.look)
+        let p = entry.palette
         Group {
             if kind == .actions {
                 actionsView(entry.state, p)
@@ -190,23 +224,26 @@ struct PrayerWidgetView: View {
         }
     }
 
-    /// Today's times as rows: past ones faded, the current period highlighted.
-    private func rows(_ s: SharedState, _ p: WidgetPalette, events: [PrayerEvent], font: Font, icons: Bool, bells: Bool) -> some View {
-        VStack(spacing: 2) {
+    /// Today's times as rows: past ones faded, the current period highlighted. With `fill`, the rows share the
+    /// height they are given evenly and their text shrinks to fit, so six rows never spill out of a medium widget.
+    /// The time always shows in full; the name gives way first.
+    private func rows(_ s: SharedState, _ p: WidgetPalette, events: [PrayerEvent], font: Font, icons: Bool, bells: Bool, fill: Bool = false) -> some View {
+        VStack(spacing: fill ? 0 : 2) {
             ForEach(events, id: \.self) { e in
                 if let at = entry.today?[e] {
                     let now = entry.current == e
                     HStack(spacing: 6) {
-                        if icons { Image(systemName: e.symbol).frame(width: 18) }
-                        Text(name(s, e)).lineLimit(1)
+                        if icons { Image(systemName: e.symbol).frame(width: 16) }
+                        Text(name(s, e)).lineLimit(1).minimumScaleFactor(0.6)
                         Spacer(minLength: 4)
-                        Text(s.time(at)).monospacedDigit().lineLimit(1)
+                        Text(s.time(at)).monospacedDigit().lineLimit(1).minimumScaleFactor(0.7).layoutPriority(1)
                         if bells && e.isPrayer { bell(s, e, p).font(.caption) } else if bells { Image(systemName: "bell").hidden().font(.caption) }
                     }
                     .font(font.weight(now ? .semibold : .regular))
                     .foregroundStyle(now ? p.onPill : p.ink)
                     .opacity(entry.isPast(e) ? 0.45 : 1)
-                    .padding(.horizontal, 8).padding(.vertical, 3)
+                    .padding(.horizontal, 8).padding(.vertical, fill ? 1 : 3)
+                    .frame(maxHeight: fill ? .infinity : nil)
                     .background(now ? p.pill : .clear, in: Capsule())
                 }
             }
@@ -245,7 +282,7 @@ struct PrayerWidgetView: View {
                 nextCard(s, next, p, timeSize: 28, showDay: true)
                     .padding(10)
                     .background(p.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-                rows(s, p, events: PrayerEvent.allCases, font: .caption, icons: false, bells: false)
+                rows(s, p, events: PrayerEvent.allCases, font: .caption, icons: false, bells: false, fill: true)
                     .frame(maxWidth: .infinity)
             }
         default:
@@ -289,7 +326,7 @@ struct PrayerWidgetView: View {
             HStack(spacing: 4) {
                 bell(s, next.event, p).font(.caption)
                 if showDay {
-                    Text("\(s.weekday(entry.date)) · \(s.dayMonth(entry.date))").font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
+                    Text(s.weekdayDayMonth(entry.date)).font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
                         .minimumScaleFactor(0.7)
                 }
             }
@@ -335,7 +372,7 @@ struct PrayerWidgetView: View {
                 HStack {
                     Text(s.t("next_prayer")).font(.headline).foregroundStyle(p.ink)
                     Spacer()
-                    Text("\(s.weekday(entry.date)), \(s.dayMonth(entry.date))").font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
+                    Text(s.weekdayDayMonth(entry.date)).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
                 }
                 VStack(spacing: 10) {
                     HStack {
@@ -368,7 +405,7 @@ struct PrayerWidgetView: View {
 
     /// Time left to the next prayer on a ring that fills clockwise from the top, with a dot at its end.
     private func ring(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette, line: CGFloat, nameFont: Font, timeSize: CGFloat, label: Bool) -> some View {
-        let track = entry.look == .cream ? Color.white : p.ink.opacity(0.16)
+        let track = entry.look == .cream ? Color.white : p.ink.opacity(0.18)
         let arc = entry.look == .cream ? p.pill : p.accent
         return ZStack {
             // Clockwise from the top in every language (right-to-left would mirror the arc).
@@ -416,7 +453,7 @@ struct PrayerWidgetView: View {
         case .systemMedium:
             HStack(spacing: 12) {
                 ring(s, next, p, line: 6, nameFont: .subheadline.weight(.semibold), timeSize: 19, label: true)
-                rows(s, p, events: PrayerEvent.allCases, font: .caption, icons: true, bells: false)
+                rows(s, p, events: PrayerEvent.allCases, font: .caption, icons: true, bells: false, fill: true)
                     .frame(maxWidth: .infinity)
             }
         case .systemExtraLarge:
@@ -665,21 +702,24 @@ extension PrayerWidgetView {
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(s.t("qibla_bearing", num(deg)))
             default:
-                HStack(spacing: 14) {
-                    QiblaHalfDial(bearing: b, north: north, palette: p, look: entry.look)
-                        .accessibilityHidden(true)
+                HStack(spacing: 12) {
                     VStack(alignment: .leading, spacing: 3) {
                         Label(s.t("widget_kind_qibla"), systemImage: "location.north.line.fill").font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
                         Text("\(num(deg))°").font(.system(size: 34, weight: .semibold)).monospacedDigit().foregroundStyle(p.ink)
                         Text(deg <= 180 ? s.t("widget_qibla_right", num(deg)) : s.t("widget_qibla_left", num(360 - deg)))
-                            .font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(2).minimumScaleFactor(0.8)
+                            .font(.caption.weight(.semibold)).foregroundStyle(p.ink).lineLimit(2).minimumScaleFactor(0.75)
+                            .fixedSize(horizontal: false, vertical: true)
                         Text(s.t("qibla_distance", s.distance(Qibla.distanceMeters(from: here)))).font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
                         Spacer(minLength: 0)
                         Label(s.t("widget_qibla_live"), systemImage: "hand.tap").font(.caption2.weight(.semibold)).foregroundStyle(p.accent).lineLimit(1)
                             .minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    QiblaHalfDial(bearing: b, north: north, palette: p, look: entry.look)
+                        .frame(maxWidth: 150)
+                        .accessibilityHidden(true)
                 }
+                .accessibilityElement(children: .combine)
             }
         }
     }
@@ -730,7 +770,8 @@ private func tick(_ center: CGPoint, _ inner: CGFloat, _ outer: CGFloat, _ degre
     return p
 }
 
-/// A north-up dial: ticks, N at the top, and a gold arrow to the Qibla with a glow and the Kaaba where it points.
+/// A north-up dial: ticks, N at the top, and an arrow from the centre to the Kaaba on the rim (the direction
+/// of the Qibla from north; a widget cannot read the compass).
 struct QiblaDial: View {
     let bearing: Double
     let north: String
@@ -742,25 +783,35 @@ struct QiblaDial: View {
             let d: CGFloat = min(g.size.width, g.size.height)
             let r: CGFloat = d / 2
             let c = CGPoint(x: g.size.width / 2, y: g.size.height / 2)
-            let tip: CGPoint = dialPoint(c, r - 28, bearing)
-            let lineEnd: CGPoint = dialPoint(c, r - 39, bearing)
+            let kaabaSize: CGFloat = max(16, d * 0.17)
+            let rim: CGPoint = dialPoint(c, r - kaabaSize * 0.62, bearing)
+            let tip: CGPoint = dialPoint(c, r - kaabaSize * 1.25, bearing)
+            let head: CGFloat = max(6, d * 0.06)
             ZStack {
                 Canvas { ctx, _ in
                     ctx.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: d, height: d)), with: .color(palette.card))
                     for i in 0..<36 {
                         let long = i % 9 == 0
-                        let inner: CGFloat = r - (long ? 9 : 5)
-                        ctx.stroke(tick(c, inner, r - 2, Double(i) * 10), with: .color(palette.secondary.opacity(long ? 0.8 : 0.4)), lineWidth: long ? 1.5 : 1)
+                        let inner: CGFloat = r - (long ? 8 : 4)
+                        ctx.stroke(tick(c, inner, r - 1.5, Double(i) * 10), with: .color(palette.secondary.opacity(long ? 0.8 : 0.35)), lineWidth: long ? 1.5 : 1)
                     }
+                    // Glow under the Kaaba.
+                    ctx.fill(Path(ellipseIn: CGRect(x: rim.x - kaabaSize * 0.8, y: rim.y - kaabaSize * 0.8, width: kaabaSize * 1.6, height: kaabaSize * 1.6)),
+                             with: .color(palette.pill.opacity(0.28)))
+                    var shaft = Path()
+                    shaft.move(to: c)
+                    shaft.addLine(to: tip)
+                    ctx.stroke(shaft, with: .color(palette.pill), style: StrokeStyle(lineWidth: max(2.5, d * 0.025), lineCap: .round))
                     var arrow = Path()
-                    arrow.move(to: c)
-                    arrow.addLine(to: lineEnd)
-                    ctx.stroke(arrow, with: .color(palette.pill), style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                    ctx.fill(Path(ellipseIn: CGRect(x: c.x - 4, y: c.y - 4, width: 8, height: 8)), with: .color(palette.pill))
-                    ctx.fill(Path(ellipseIn: CGRect(x: tip.x - 13, y: tip.y - 13, width: 26, height: 26)), with: .color(palette.pill.opacity(0.3)))
+                    arrow.move(to: dialPoint(tip, head * 1.2, bearing))
+                    arrow.addLine(to: dialPoint(tip, head, bearing + 130))
+                    arrow.addLine(to: dialPoint(tip, head, bearing - 130))
+                    arrow.closeSubpath()
+                    ctx.fill(arrow, with: .color(palette.pill))
+                    ctx.fill(Path(ellipseIn: CGRect(x: c.x - 3, y: c.y - 3, width: 6, height: 6)), with: .color(palette.ink.opacity(0.7)))
                 }
-                Text(north).font(.system(size: 10, weight: .bold)).foregroundStyle(palette.accent).position(x: c.x, y: c.y - r + 11)
-                WidgetKaaba().frame(width: 18, height: 18).position(tip)
+                Text(north).font(.system(size: max(9, d * 0.08), weight: .bold)).foregroundStyle(palette.accent).position(x: c.x, y: c.y - r + max(14, d * 0.13))
+                WidgetKaaba().frame(width: kaabaSize, height: kaabaSize).position(rim)
             }
         }
         .environment(\.layoutDirection, .leftToRight)

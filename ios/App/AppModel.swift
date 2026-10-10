@@ -31,6 +31,8 @@ struct StoredSettings: Codable, Equatable {
     var onboarded = false
     /// Live mosque results (Apple Maps search) added to downloaded data; disclosed in onboarding and Settings.
     var onlineSearch = true
+    /// Style of the widgets set to "Same as app" (WidgetLook raw value).
+    var widgetLook = "cream"
 
     init() {}
 
@@ -44,6 +46,7 @@ struct StoredSettings: Codable, Equatable {
         alerts = (try? c.decodeIfPresent(AlertSettings.self, forKey: .alerts)) ?? AlertSettings()
         onboarded = try c.decodeIfPresent(Bool.self, forKey: .onboarded) ?? false
         onlineSearch = try c.decodeIfPresent(Bool.self, forKey: .onlineSearch) ?? true
+        widgetLook = try c.decodeIfPresent(String.self, forKey: .widgetLook) ?? "cream"
     }
 }
 
@@ -124,7 +127,7 @@ final class AppModel {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
                         reminders: settings.reminders.map(\.rawValue).sorted(),
-                        mosques: sharedMosques(), questions: sharedQuestions())
+                        mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook)
         }
         guard s != lastShared else { return }
         lastShared = s

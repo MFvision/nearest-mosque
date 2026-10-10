@@ -195,6 +195,10 @@ jobs:
           shot 26-widgets-qibla -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind qibla -demoWidgetLook green -languageOverride en
           shot 27-widgets-qibla-ar -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind qibla -demoWidgetLook cream -languageOverride ar
           shot 28-widgets-actions -demoCity "Cape Town" -demoWidgets YES -demoWidgetKind actions -demoWidgetLook night -languageOverride en
+          shot 28b-widgets-qibla-teal-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind qibla -demoWidgetLook teal -languageOverride ar
+          shot 28c-widgets-ring-sky-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind ring -demoWidgetLook sky -languageOverride ar
+          shot 28d-widgets-next-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind next -demoWidgetLook cream -languageOverride ar
+          shot 28e-widgets-countdown-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind countdown -demoWidgetLook cream -languageOverride ar
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 11b-compact-bar-dark -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en

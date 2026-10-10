@@ -7,6 +7,14 @@ import SwiftUI
 
 /// How a library item opens inside the app.
 enum LibraryMode: Equatable {
+    /// The book, audio or video file, which can be downloaded for offline use.
+    var file: URL? {
+        switch self {
+        case .pdf(let u), .media(let u, _): return u
+        default: return nil
+        }
+    }
+
     case pdf(URL)
     case media(URL, video: Bool)
     case web(URL)
@@ -52,6 +60,12 @@ enum LibraryFiles {
     }
 
     static func delete(_ url: URL) { try? FileManager.default.removeItem(at: url) }
+
+    /// The item's file is already on the phone.
+    static func isDownloaded(_ itemKey: String, _ url: URL) -> Bool {
+        guard let target = try? local(itemKey, url) else { return false }
+        return ((try? target.resourceValues(forKeys: [.fileSizeKey]).fileSize) ?? 0) > 0
+    }
 
     static func fileName(_ itemKey: String, _ url: URL) -> String {
         let ext = url.pathExtension.lowercased().filter { $0.isLetter || $0.isNumber }.prefix(5)
@@ -108,6 +122,10 @@ struct LibraryCard: View {
     var index: Int? = nil
     @Environment(\.appModel) private var app
     @State private var reading = false
+    /// nil: not downloading; 0...1 while a download runs.
+    @State private var progress: Double?
+    @State private var saved = false
+    @State private var failed = false
 
     var body: some View {
         let c = item.chunk
@@ -139,7 +157,9 @@ struct LibraryCard: View {
                     Button { reading = true } label: { Label(actionTitle(mode, c), systemImage: actionIcon(mode)) }
                         .foregroundStyle(Theme.accent)
                 }
-                if let u = c.url.flatMap(URL.init(string:)) {
+                if let file = mode?.file {
+                    downloadButton(file, c)
+                } else if let u = c.url.flatMap(URL.init(string:)) {
                     Button { openURL(u) } label: { Label(libraryWebLabel(c, l10n), systemImage: "safari") }
                         .foregroundStyle(Color(hex: 0x8CC0DE))
                 }
@@ -156,6 +176,41 @@ struct LibraryCard: View {
         .glassCard(padding: 14, cornerRadius: 20, tint: Color.white.opacity(0.04))
         .fullScreenCover(isPresented: $reading) {
             if let mode { LibraryReaderView(chunk: c, mode: mode, question: question) }
+        }
+    }
+
+    /// Download (or "Downloaded") for a book, audio or video file: saved on the phone for offline reading, and
+    /// listed under Downloads.
+    @ViewBuilder private func downloadButton(_ file: URL, _ c: SourceChunk) -> some View {
+        let done = saved || LibraryFiles.isDownloaded(c.id, file)
+        Group {
+            if let progress {
+                HStack(spacing: 8) {
+                    ProgressView(value: progress).frame(width: 64).tint(Theme.gold)
+                    Text(progress.formatted(.percent.precision(.fractionLength(0)).locale(l10n.locale))).font(.caption.monospacedDigit())
+                }
+                .frame(minHeight: 44)
+            } else if done {
+                Label(l10n.t("library_downloaded"), systemImage: "checkmark.circle.fill").foregroundStyle(Color(hex: 0x7FD1A8)).frame(minHeight: 44)
+            } else {
+                Button {
+                    failed = false
+                    progress = 0
+                    Task {
+                        do {
+                            _ = try await LibraryFiles.fetch(file, itemKey: c.id) { progress = $0 }
+                            saved = true
+                        } catch {
+                            failed = true
+                        }
+                        progress = nil
+                    }
+                } label: {
+                    Label(failed ? l10n.t("library_retry") : l10n.t("library_download"), systemImage: failed ? "arrow.clockwise" : "arrow.down.circle")
+                        .frame(minHeight: 44)
+                }
+                .foregroundStyle(Color(hex: 0x8CC0DE))
+            }
         }
     }
 

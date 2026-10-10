@@ -123,7 +123,7 @@ struct IntentSnippet: View {
 
     var body: some View {
         if show {
-            let p = WidgetPalette.of(entry.look)
+            let p = entry.palette
             PrayerWidgetView(entry: entry, kind: kind, family: .systemMedium)
                 .padding(16)
                 .frame(maxWidth: .infinity, minHeight: 150)

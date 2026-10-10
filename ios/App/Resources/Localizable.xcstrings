@@ -30279,6 +30279,227 @@
         }
       }
     },
+    "library_books": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Books"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الكتب"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کتابیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kitaplar"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buku"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livres"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Libros"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Книги"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বই"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کتاب‌ها"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کتاب‌ها"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "书籍"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किताबें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livros"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Littattafai"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitabu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mga aklat"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sách"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หนังสือ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សៀវភៅ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كىتابلار"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کتێبەکان"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Knjige"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Књиге"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Книги"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Könyvek"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boeken"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "წიგნები"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පොත්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పుస్తకాలు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪುಸ್ತಕಗಳು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പുസ്തകങ്ങൾ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुस्तके"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "પુસ્તકો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਿਤਾਬਾਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিতাপ"
+          }
+        }
+      }
+    },
     "library_browse": {
       "extractionState": "manual",
       "localizations": {
@@ -31384,6 +31605,227 @@
         }
       }
     },
+    "library_download": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تنزيل"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈاؤن لوڈ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndir"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unduh"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скачать"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixar"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauke"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pakua"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-download"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tải xuống"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดาวน์โหลด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទាញយក"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چۈشۈرۈش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داگرتن"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preuzmi"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преузми"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преземи"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letöltés"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloaden"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩამოტვირთვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බාගන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డౌన్‌లోడ్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೌನ್‌ಲೋಡ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൗൺലോഡ്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાઉનલોડ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਊਨਲੋਡ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড"
+          }
+        }
+      }
+    },
     "library_download_failed": {
       "extractionState": "manual",
       "localizations": {
@@ -31601,6 +32043,227 @@
           "stringUnit": {
             "state": "translated",
             "value": "লোড কৰিব পৰা নগ'ল। আপোনাৰ সংযোগ পৰীক্ষা কৰি পুনৰ চেষ্টা কৰক।"
+          }
+        }
+      }
+    },
+    "library_downloaded": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloaded"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم التنزيل"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڈاؤن لوڈ ہو گئی"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndirildi"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sudah diunduh"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Téléchargé"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скачано"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড হয়েছে"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود شد"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دانلود شد"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已下载"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड हो गई"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixado"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An sauke"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imepakuliwa"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na-download"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã tải"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดาวน์โหลดแล้ว"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានទាញយក"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چۈشۈرۈلدى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داگیرا"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preuzeto"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преузето"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преземено"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letöltve"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gedownload"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩამოტვირთულია"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බාගත්තා"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డౌన్‌లోడ్ అయింది"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡൗൺലോഡ് ചെയ്തു"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डाउनलोड झाले"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ડાઉનલોડ થયું"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡਾਊਨਲੋਡ ਹੋ ਗਈ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ডাউনলোড হ'ল"
           }
         }
       }
@@ -32053,217 +32716,217 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Books you open are kept here for reading offline."
+            "value": "Tap Download on a book, or open it, to keep it here for reading offline."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الكتب التي تفتحها تُحفظ هنا لقراءتها دون إنترنت."
+            "value": "اضغط «تنزيل» على أي كتاب، أو افتحه، ليُحفظ هنا لقراءته دون إنترنت."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "جو کتابیں آپ کھولتے ہیں وہ آف لائن پڑھنے کے لیے یہاں رہتی ہیں۔"
+            "value": "کسی کتاب پر «ڈاؤن لوڈ» دبائیں یا اسے کھولیں، تاکہ وہ یہاں آف لائن پڑھنے کے لیے محفوظ ہو جائے۔"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Açtığınız kitaplar çevrimdışı okumak için burada tutulur."
+            "value": "Bir kitapta İndir'e dokunun ya da kitabı açın; çevrimdışı okumak için burada saklanır."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buku yang Anda buka disimpan di sini untuk dibaca offline."
+            "value": "Ketuk Unduh pada buku, atau buka bukunya, agar tersimpan di sini untuk dibaca offline."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les livres ouverts sont gardés ici pour une lecture hors ligne."
+            "value": "Touchez Télécharger sur un livre, ou ouvrez-le, pour le garder ici et le lire hors ligne."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los libros que abres se guardan aquí para leer sin conexión."
+            "value": "Toca Descargar en un libro, o ábrelo, para guardarlo aquí y leerlo sin conexión."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Открытые книги хранятся здесь для чтения без интернета."
+            "value": "Нажмите «Скачать» у книги или откройте её — она сохранится здесь для чтения без интернета."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "আপনার খোলা বইগুলো অফলাইনে পড়ার জন্য এখানে রাখা হয়।"
+            "value": "কোনো বইয়ে ডাউনলোড চাপুন বা বইটি খুলুন, তাহলে এটি এখানে অফলাইনে পড়ার জন্য থাকবে।"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "کتاب‌هایی که باز می‌کنید برای خواندن آفلاین اینجا نگه داشته می‌شوند."
+            "value": "روی «دانلود» یک کتاب بزنید یا آن را باز کنید تا برای خواندن بدون اینترنت اینجا بماند."
           }
         },
         "fa-AF": {
           "stringUnit": {
             "state": "translated",
-            "value": "کتاب‌هایی که باز می‌کنید برای خواندن آفلاین اینجا نگه داشته می‌شوند."
+            "value": "روی «دانلود» یک کتاب بزنید یا آن را باز کنید تا برای خواندن بدون انترنت اینجا بماند."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你打开的书籍会保存在这里，供离线阅读。"
+            "value": "在书上点“下载”或打开它，即可保存在这里离线阅读。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपकी खोली गई किताबें ऑफ़लाइन पढ़ने के लिए यहाँ रखी जाती हैं।"
+            "value": "किसी किताब पर डाउनलोड दबाएँ या उसे खोलें, ताकि वह यहाँ ऑफ़लाइन पढ़ने के लिए रहे।"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Os livros que você abre ficam aqui para ler offline."
+            "value": "Toque em Baixar em um livro, ou abra-o, para guardá-lo aqui e ler sem internet."
           }
         },
         "ha": {
           "stringUnit": {
             "state": "translated",
-            "value": "Littattafan da kuka buɗe ana ajiye su a nan don karantawa ba tare da intanet ba."
+            "value": "Danna Sauke a kan littafi, ko buɗe shi, don a ajiye shi nan a karanta ba tare da intanet ba."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitabu unavyofungua vinawekwa hapa ili usome bila intaneti."
+            "value": "Gusa Pakua kwenye kitabu, au kifungue, ili kihifadhiwe hapa usome bila intaneti."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dito itinatago ang mga aklat na binubuksan mo para mabasa offline."
+            "value": "I-tap ang I-download sa isang aklat, o buksan ito, para manatili rito at mabasa offline."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sách bạn mở được giữ ở đây để đọc ngoại tuyến."
+            "value": "Chạm Tải xuống trên một cuốn sách, hoặc mở nó, để lưu ở đây và đọc ngoại tuyến."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "หนังสือที่คุณเปิดจะเก็บไว้ที่นี่เพื่ออ่านแบบออฟไลน์"
+            "value": "แตะดาวน์โหลดที่หนังสือ หรือเปิดอ่าน เพื่อเก็บไว้ที่นี่และอ่านแบบออฟไลน์"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "សៀវភៅដែលអ្នកបើកត្រូវបានរក្សាទុកនៅទីនេះ សម្រាប់អានក្រៅបណ្ដាញ។"
+            "value": "ចុច ទាញយក លើសៀវភៅ ឬបើកវា ដើម្បីរក្សាទុកនៅទីនេះ សម្រាប់អានដោយគ្មានអ៊ីនធឺណិត។"
           }
         },
         "ug": {
           "stringUnit": {
             "state": "translated",
-            "value": "سىز ئاچقان كىتابلار تورسىز ئوقۇش ئۈچۈن بۇ يەردە ساقلىنىدۇ."
+            "value": "كىتابتىكى «چۈشۈرۈش» نى بېسىڭ ياكى ئۇنى ئېچىڭ، شۇندا تورسىز ئوقۇش ئۈچۈن بۇ يەردە ساقلىنىدۇ."
           }
         },
         "ckb": {
           "stringUnit": {
             "state": "translated",
-            "value": "ئەو کتێبانەی دەیانکەیتەوە لێرە دەمێننەوە بۆ خوێندنەوەی ئۆفلاین."
+            "value": "لەسەر کتێبێک «داگرتن» دابگرە یان بیکەرەوە، تا لێرە بمێنێتەوە بۆ خوێندنەوە بەبێ ئینتەرنێت."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Knjige koje otvorite čuvaju se ovdje za čitanje bez interneta."
+            "value": "Dodirnite Preuzmi kod knjige, ili je otvorite, da bi se čuvala ovdje za čitanje bez interneta."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Књиге које отворите чувају се овде за читање ван мреже."
+            "value": "Додирните Преузми код књиге, или је отворите, да би се чувала овде за читање без интернета."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Книгите што ги отворате се чуваат овде за читање без интернет."
+            "value": "Допрете Преземи кај книга, или отворете ја, за да се чува тука за читање без интернет."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A megnyitott könyveid itt maradnak offline olvasásra."
+            "value": "Koppints a Letöltés gombra egy könyvnél, vagy nyisd meg, és itt marad offline olvasásra."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boeken die je opent worden hier bewaard om offline te lezen."
+            "value": "Tik op Downloaden bij een boek, of open het, om het hier offline te bewaren."
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "თქვენ მიერ გახსნილი წიგნები აქ ინახება ოფლაინ წასაკითხად."
+            "value": "წიგნზე დააჭირეთ ჩამოტვირთვას ან გახსენით, რომ აქ შეინახოს ინტერნეტის გარეშე წასაკითხად."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ඔබ විවෘත කරන පොත් නොබැඳිව කියවීම සඳහා මෙහි තබා ගැනේ."
+            "value": "පොතක ඇති බාගන්න ඔබන්න, නැතහොත් එය විවෘත කරන්න; එවිට අන්තර්ජාලය නැතිව කියවීමට එය මෙහි ඇත."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "మీరు తెరిచే పుస్తకాలు ఆఫ్‌లైన్ పఠనం కోసం ఇక్కడ ఉంచబడతాయి."
+            "value": "పుస్తకంపై డౌన్‌లోడ్ నొక్కండి లేదా దాన్ని తెరవండి, అప్పుడు అది ఆఫ్‌లైన్‌లో చదవడానికి ఇక్కడ ఉంటుంది."
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನೀವು ತೆರೆಯುವ ಪುಸ್ತಕಗಳನ್ನು ಆಫ್‌ಲೈನ್ ಓದುವಿಕೆಗಾಗಿ ಇಲ್ಲಿ ಇರಿಸಲಾಗುತ್ತದೆ."
+            "value": "ಪುಸ್ತಕದ ಮೇಲೆ ಡೌನ್‌ಲೋಡ್ ಒತ್ತಿ ಅಥವಾ ಅದನ್ನು ತೆರೆಯಿರಿ, ಆಗ ಅದು ಆಫ್‌ಲೈನ್ ಓದಲು ಇಲ್ಲಿ ಇರುತ್ತದೆ."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നിങ്ങൾ തുറക്കുന്ന പുസ്തകങ്ങൾ ഓഫ്‌ലൈൻ വായനയ്ക്കായി ഇവിടെ സൂക്ഷിക്കും."
+            "value": "ഒരു പുസ്തകത്തിൽ ഡൗൺലോഡ് അമർത്തുക, അല്ലെങ്കിൽ തുറക്കുക; ഓഫ്‌ലൈനായി വായിക്കാൻ അത് ഇവിടെ ഉണ്ടാകും."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुम्ही उघडलेली पुस्तके ऑफलाइन वाचण्यासाठी इथे ठेवली जातात."
+            "value": "पुस्तकावर डाउनलोड दाबा किंवा ते उघडा, म्हणजे ते इथे ऑफलाइन वाचण्यासाठी राहील."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "તમે ખોલેલાં પુસ્તકો ઑફલાઇન વાંચવા માટે અહીં રખાય છે."
+            "value": "પુસ્તક પર ડાઉનલોડ દબાવો અથવા તેને ખોલો, જેથી તે અહીં ઑફલાઇન વાંચવા માટે રહે."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਜੋ ਕਿਤਾਬਾਂ ਤੁਸੀਂ ਖੋਲ੍ਹਦੇ ਹੋ ਉਹ ਆਫ਼ਲਾਈਨ ਪੜ੍ਹਨ ਲਈ ਇੱਥੇ ਰਹਿੰਦੀਆਂ ਹਨ।"
+            "value": "ਕਿਸੇ ਕਿਤਾਬ ’ਤੇ ਡਾਊਨਲੋਡ ਦਬਾਓ ਜਾਂ ਉਸਨੂੰ ਖੋਲ੍ਹੋ, ਤਾਂ ਜੋ ਉਹ ਇੱਥੇ ਆਫ਼ਲਾਈਨ ਪੜ੍ਹਨ ਲਈ ਰਹੇ।"
           }
         },
         "as": {
           "stringUnit": {
             "state": "translated",
-            "value": "আপুনি খোলা কিতাপবোৰ অফলাইনত পঢ়িবলৈ ইয়াত ৰখা হয়।"
+            "value": "কিতাপত ডাউনলোড টিপক বা কিতাপখন খোলক, তেতিয়া ই অফলাইনত পঢ়িবলৈ ইয়াত থাকিব।"
           }
         }
       }
@@ -32485,6 +33148,227 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "library_filter_all": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الكل"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سب"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tümü"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semua"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সব"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "همه"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "همه"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全部"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सब"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tudo"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duka"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vyote"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lahat"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tất cả"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทั้งหมด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទាំងអស់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ھەممىسى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هەموو"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sve"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Све"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сè"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mind"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყველა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සියල්ල"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అన్నీ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಲ್ಲ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "എല്ലാം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्व"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "બધું"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਰੇ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সকলো"
           }
         }
       }
@@ -80681,6 +81565,227 @@
         }
       }
     },
+    "style_auto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Same as app"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مثل التطبيق"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ایپ جیسا"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamayla aynı"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sama seperti aplikasi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comme l’app"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Igual que la app"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Как в приложении"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যাপের মতো"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مانند برنامه"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مانند برنامه"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与应用相同"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऐप जैसा"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Igual ao app"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamar manhajar"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sawa na programu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapareho ng app"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giống ứng dụng"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เหมือนแอป"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដូចកម្មវិធី"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەپ بىلەن ئوخشاش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وەک ئەپەکە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isto kao aplikacija"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Исто као апликација"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Исто како апликацијата"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mint az alkalmazás"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoals de app"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "როგორც აპში"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "යෙදුම මෙන්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "యాప్ లాగే"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆ್ಯಪ್‌ನಂತೆಯೇ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ആപ്പ് പോലെ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ॲपप्रमाणे"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઍપ જેવું"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਐਪ ਵਾਂਗ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এপৰ দৰে"
+          }
+        }
+      }
+    },
     "style_cream": {
       "extractionState": "manual",
       "localizations": {
@@ -81340,6 +82445,448 @@
           "stringUnit": {
             "state": "translated",
             "value": "ৰাতিৰ আকাশ"
+          }
+        }
+      }
+    },
+    "style_sky": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time of day"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حسب الوقت"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقت کے مطابق"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günün saatine göre"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesuai waktu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selon l’heure"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según la hora"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "По времени суток"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সময় অনুযায়ী"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بر اساس وقت"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نظر به وقت"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "随时段变化"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समय के अनुसार"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conforme a hora"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bisa lokaci"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kulingana na wakati"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayon sa oras"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theo thời điểm"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตามช่วงเวลา"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "តាមពេលវេលា"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ۋاقىتقا قاراپ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بەپێی کات"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prema dobu dana"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Према добу дана"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Според времето"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Napszak szerint"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naar tijdstip"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დღის დროის მიხედვით"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "වේලාව අනුව"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సమయాన్ని బట్టి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಮಯಕ್ಕೆ ತಕ್ಕಂತೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സമയമനുസരിച്ച്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वेळेनुसार"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સમય મુજબ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਮੇਂ ਮੁਤਾਬਕ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সময় অনুসৰি"
+          }
+        }
+      }
+    },
+    "style_teal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teal"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أخضر مزرق"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فیروزی"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camgöbeği"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hijau toska"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleu canard"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde azulado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бирюзовый"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সবুজাভ নীল"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سبزآبی"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سبزآبی"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "青绿"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हरा-नीला"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde-azulado"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shuɗi-kore"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kijani-bluu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teal"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xanh mòng két"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เขียวอมฟ้า"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ខៀវបៃតង"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يېشىل كۆك"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سەوزی شین"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tirkizna"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тиркизна"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тиркизна"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kékeszöld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petrol"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ზღვისფერი"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නිල් කොළ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నీలి ఆకుపచ్చ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನೀಲಿ ಹಸಿರು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നീലപ്പച്ച"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हिरवट निळा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "લીલો-વાદળી"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਰਾ-ਨੀਲਾ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সেউজীয়া নীলা"
           }
         }
       }
@@ -93274,6 +94821,227 @@
           "stringUnit": {
             "state": "translated",
             "value": "বাকী সময়"
+          }
+        }
+      }
+    },
+    "widget_style_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets set to “Same as app” use this style. To give one widget its own style, long-press it and choose Edit Widget."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تستخدم الأدوات المضبوطة على «مثل التطبيق» هذا النمط. لتغيير نمط أداة بعينها، اضغط عليها مطولاً واختر «تعديل الأداة»."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جو ویجٹس «ایپ جیسا» پر ہیں وہ یہ انداز استعمال کرتے ہیں۔ کسی ایک ویجٹ کا الگ انداز رکھنے کے لیے اسے دیر تک دبائیں اور «ویجٹ میں ترمیم» چنیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Uygulamayla aynı” olarak ayarlı widget'lar bu stili kullanır. Bir widget'a ayrı stil vermek için ona uzun basıp Widget'ı Düzenle'yi seçin."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widget yang diatur ke “Sama seperti aplikasi” memakai gaya ini. Untuk memberi gaya sendiri pada satu widget, tekan lama lalu pilih Edit Widget."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les widgets réglés sur « Comme l’app » utilisent ce style. Pour donner un style propre à un widget, touchez-le longuement et choisissez Modifier le widget."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los widgets en «Igual que la app» usan este estilo. Para dar a un widget su propio estilo, mantenlo pulsado y elige Editar widget."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Виджеты с вариантом «Как в приложении» используют этот стиль. Чтобы задать стиль одному виджету, нажмите на него и удерживайте, затем выберите «Изменить виджет»."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“অ্যাপের মতো” সেট করা উইজেট এই স্টাইল ব্যবহার করে। একটি উইজেটকে আলাদা স্টাইল দিতে সেটি চেপে ধরে উইজেট সম্পাদনা বেছে নিন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابزارک‌هایی که روی «مانند برنامه» هستند از این سبک استفاده می‌کنند. برای سبک جداگانهٔ یک ابزارک، آن را نگه دارید و «ویرایش ابزارک» را بزنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابزارک‌هایی که روی «مانند برنامه» هستند از این سبک استفاده می‌کنند. برای سبک جداگانهٔ یک ابزارک، آن را نگه دارید و «ویرایش ابزارک» را بزنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设为“与应用相同”的小组件使用此样式。要为某个小组件单独设置样式，请长按它并选择“编辑小组件”。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ऐप जैसा” पर सेट विजेट यह स्टाइल इस्तेमाल करते हैं। किसी एक विजेट को अलग स्टाइल देने के लिए उसे देर तक दबाएँ और विजेट संपादित करें चुनें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets em “Igual ao app” usam este estilo. Para dar um estilo próprio a um widget, toque e segure nele e escolha Editar widget."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widget ɗin da aka saita zuwa “Kamar manhajar” suna amfani da wannan salo. Don ba widget ɗaya salonsa, danna shi na ɗan lokaci ka zaɓi Gyara Widget."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wijeti zilizowekwa “Sawa na programu” zinatumia mtindo huu. Ili kuipa wijeti moja mtindo wake, ibonyeze kwa muda kisha uchague Hariri Wijeti."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang mga widget na nakatakda sa “Kapareho ng app” ay gumagamit ng istilong ito. Para bigyan ng sariling istilo ang isang widget, pindutin ito nang matagal at piliin ang Edit Widget."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiện ích đặt “Giống ứng dụng” dùng kiểu này. Để đặt kiểu riêng cho một tiện ích, chạm và giữ rồi chọn Sửa tiện ích."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วิดเจ็ตที่ตั้งเป็น “เหมือนแอป” จะใช้สไตล์นี้ หากต้องการให้วิดเจ็ตใดมีสไตล์ของตัวเอง ให้กดค้างแล้วเลือกแก้ไขวิดเจ็ต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "វិដជិតដែលកំណត់ «ដូចកម្មវិធី» ប្រើរចនាប័ទ្មនេះ។ ដើម្បីឱ្យវិដជិតមួយមានរចនាប័ទ្មផ្ទាល់ខ្លួន សូមចុចសង្កត់វា ហើយជ្រើស កែវិដជិត។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«ئەپ بىلەن ئوخشاش» قىلىپ تەڭشەلگەن ۋىجېتلار بۇ ئۇسلۇبنى ئىشلىتىدۇ. بىر ۋىجېتقا ئايرىم ئۇسلۇب بېرىش ئۈچۈن ئۇنى ئۇزۇن بېسىپ «ۋىجېتنى تەھرىرلەش» نى تاللاڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەو ویجێتانەی لەسەر «وەک ئەپەکە»ن ئەم شێوازە بەکاردێنن. بۆ شێوازی تایبەت بە یەک ویجێت، دەستی پێوە بگرە و «دەستکاریی ویجێت» هەڵبژێرە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vidžeti postavljeni na „Isto kao aplikacija“ koriste ovaj stil. Za poseban stil jednog vidžeta, držite ga pritisnutim i odaberite Uredi vidžet."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Виџети подешени на „Исто као апликација“ користе овај стил. За посебан стил једног виџета, држите га притиснутим и изаберите Измени виџет."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Виџетите поставени на „Исто како апликацијата“ го користат овој стил. За посебен стил на еден виџет, држете го притиснат и изберете Уреди виџет."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A „Mint az alkalmazás” beállítású widgetek ezt a stílust használják. Egy widget saját stílusához nyomd meg hosszan, és válaszd a Widget szerkesztése lehetőséget."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets op ‘Zoals de app’ gebruiken deze stijl. Wil je één widget een eigen stijl geven, houd hem ingedrukt en kies Wijzig widget."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ვიჯეტები, რომლებიც „როგორც აპში“-ზეა, ამ სტილს იყენებენ. ერთი ვიჯეტისთვის ცალკე სტილისთვის ხანგრძლივად დააჭირეთ და აირჩიეთ ვიჯეტის რედაქტირება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“යෙදුම මෙන්” ලෙස සැකසූ විජට් මෙම විලාසය භාවිත කරයි. එක් විජට් එකකට වෙනම විලාසයක් දීමට එය දිගු එබීමෙන් විජට් සංස්කරණය තෝරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“యాప్ లాగే” అని సెట్ చేసిన విడ్జెట్‌లు ఈ శైలిని వాడతాయి. ఒక విడ్జెట్‌కు వేరే శైలి ఇవ్వాలంటే దాన్ని నొక్కి పట్టుకుని విడ్జెట్‌ను సవరించు ఎంచుకోండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ಆ್ಯಪ್‌ನಂತೆಯೇ” ಗೆ ಹೊಂದಿಸಿದ ವಿಜೆಟ್‌ಗಳು ಈ ಶೈಲಿಯನ್ನು ಬಳಸುತ್ತವೆ. ಒಂದು ವಿಜೆಟ್‌ಗೆ ಬೇರೆ ಶೈಲಿ ನೀಡಲು ಅದನ್ನು ಒತ್ತಿ ಹಿಡಿದು ವಿಜೆಟ್ ಸಂಪಾದಿಸಿ ಆಯ್ಕೆಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ആപ്പ് പോലെ” എന്ന് സജ്ജമാക്കിയ വിജറ്റുകൾ ഈ ശൈലി ഉപയോഗിക്കുന്നു. ഒരു വിജറ്റിന് വേറെ ശൈലി നൽകാൻ അതിൽ അമർത്തിപ്പിടിച്ച് വിജറ്റ് എഡിറ്റ് ചെയ്യുക തിരഞ്ഞെടുക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ॲपप्रमाणे” वर सेट केलेली विजेट ही शैली वापरतात. एका विजेटला वेगळी शैली देण्यासाठी त्यावर दीर्घ दाबा आणि विजेट संपादित करा निवडा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ઍપ જેવું” પર સેટ વિજેટ આ શૈલી વાપરે છે. એક વિજેટને અલગ શૈલી આપવા તેને લાંબું દબાવો અને વિજેટ સંપાદિત કરો પસંદ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ਐਪ ਵਾਂਗ” ’ਤੇ ਸੈੱਟ ਵਿਜੇਟ ਇਹ ਸ਼ੈਲੀ ਵਰਤਦੇ ਹਨ। ਕਿਸੇ ਇੱਕ ਵਿਜੇਟ ਨੂੰ ਵੱਖਰੀ ਸ਼ੈਲੀ ਦੇਣ ਲਈ ਉਸਨੂੰ ਦਬਾ ਕੇ ਰੱਖੋ ਅਤੇ ਵਿਜੇਟ ਸੋਧੋ ਚੁਣੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“এপৰ দৰে” ছেট কৰা ৱিজেটে এই শৈলী ব্যৱহাৰ কৰে। এটা ৱিজেটক বেলেগ শৈলী দিবলৈ সেইটো হেঁচি ধৰি ৱিজেট সম্পাদনা বাছক।"
           }
         }
       }

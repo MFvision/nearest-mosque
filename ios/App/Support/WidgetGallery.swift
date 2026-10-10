@@ -5,7 +5,7 @@ import UIKit
 import WidgetKit
 
 /// Debug builds only: the home-screen widgets drawn at their real sizes, for CI screenshots
-/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask|qibla|actions -demoWidgetLook cream|green|night`).
+/// (`-demoWidgets YES -demoWidgetKind next|countdown|ring|today|mosque|ask|qibla|actions -demoWidgetLook cream|green|night|teal|sky`).
 /// Uses the city and settings chosen in the app, like the widgets themselves.
 struct WidgetGalleryView: View {
     @Environment(\.appModel) private var model
@@ -50,7 +50,7 @@ struct WidgetGalleryView: View {
                         questions: ((try? model.ask?.commonQuestions()) ?? []).compactMap { $0.question[model.l10n.language] ?? $0.question["en"] })
         } ?? SharedState.preview
         let entry = PrayerEntry.make(Date(), look: look, state: state)
-        let p = WidgetPalette.of(look)
+        let p = entry.palette
         ScrollView {
             VStack(spacing: 18) {
                 ForEach(Array(sizes.enumerated()), id: \.offset) { _, item in

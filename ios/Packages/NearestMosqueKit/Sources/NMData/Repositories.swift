@@ -379,12 +379,26 @@ public final class AskRepository: @unchecked Sendable {
             .sorted { ($0.language, $0.id) < ($1.language, $1.id) }
     }
 
-    /// Items of one collection in its own order, a page at a time.
-    public func browse(_ packId: String, offset: Int, limit: Int) throws -> [ResolvedCitation] {
+    /// Items of one collection in its own order, a page at a time; `type` keeps one kind (books, audios, videos,
+    /// articles, fatwa).
+    public func browse(_ packId: String, type: String? = nil, offset: Int, limit: Int) throws -> [ResolvedCitation] {
         let ids = try db.writer.read { db in
-            try String.fetchAll(db, sql: "SELECT id FROM source_chunk WHERE packId = ? ORDER BY seq LIMIT ? OFFSET ?", arguments: [packId, limit, offset])
+            if let type {
+                return try String.fetchAll(db, sql: "SELECT id FROM source_chunk WHERE packId = ? AND json_extract(json, '$.section.type') = ? ORDER BY seq LIMIT ? OFFSET ?",
+                                           arguments: [packId, type, limit, offset])
+            }
+            return try String.fetchAll(db, sql: "SELECT id FROM source_chunk WHERE packId = ? ORDER BY seq LIMIT ? OFFSET ?", arguments: [packId, limit, offset])
         }
         return try resolve(ids)
+    }
+
+    /// How many items of each kind a collection holds (books, audios...), for its filters.
+    public func typeCounts(_ packId: String) throws -> [String: Int] {
+        try db.writer.read { db in
+            let rows = try Row.fetchAll(db, sql: "SELECT json_extract(json, '$.section.type') AS t, COUNT(*) AS n FROM source_chunk WHERE packId = ? GROUP BY t",
+                                        arguments: [packId])
+            return Dictionary(uniqueKeysWithValues: rows.compactMap { r -> (String, Int)? in (r["t"] as String?).map { ($0, r["n"]) } })
+        }
     }
 
     public static let searchInResults = 30

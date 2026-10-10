@@ -44,6 +44,10 @@ struct SettingsView: View {
                     .pickerStyle(.segmented)
                 }
 
+                Section {
+                    WidgetStylePicker(selection: Binding(get: { app.settings.widgetLook }, set: { app.settings.widgetLook = $0 }))
+                } header: { Text(l10n.t("widget_style_title")) } footer: { Text(l10n.t("widget_style_note")) }
+
                 Section(l10n.t("location_section")) {
                     if let loc = app.settings.location {
                         Text(loc.name)
@@ -177,4 +181,35 @@ struct SettingsView: View {
         Binding(get: { app.settings.alerts[keyPath: path] }, set: { v in var a = app.settings.alerts; a[keyPath: path] = v; app.setAlerts(a) })
     }
 
+}
+
+/// The widget styles as swatches; the chosen one is ringed in gold.
+struct WidgetStylePicker: View {
+    @Environment(\.l10n) private var l10n
+    @Binding var selection: String
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 16) {
+                ForEach(WidgetLook.choices, id: \.rawValue) { look in
+                    let on = selection == look.rawValue
+                    Button { selection = look.rawValue } label: {
+                        VStack(spacing: 8) {
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(WidgetPalette.of(look, period: .maghrib).background)
+                                .overlay(Image(systemName: "moon.stars").foregroundStyle(WidgetPalette.of(look, period: .maghrib).accent))
+                                .frame(width: 56, height: 56)
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(on ? Theme.gold : Color.secondary.opacity(0.3), lineWidth: on ? 3 : 1))
+                            Text(l10n.t("style_\(look.rawValue)")).font(.caption).lineLimit(2).multilineTextAlignment(.center).frame(width: 72)
+                        }
+                        .frame(minWidth: 44, minHeight: 44)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(l10n.t("style_\(look.rawValue)"))
+                    .accessibilityAddTraits(on ? .isSelected : [])
+                }
+            }
+            .padding(.vertical, 8)
+        }
+    }
 }

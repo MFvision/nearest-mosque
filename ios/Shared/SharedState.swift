@@ -26,6 +26,8 @@ struct SharedState: Codable, Equatable {
     /// The nearest mosques (up to three) and suggested questions in the reader's language.
     var mosques: [SharedMosque]?
     var questions: [String]?
+    /// The widget style picked in the app (WidgetLook raw value), used by widgets set to "Same as app".
+    var widgetLook: String?
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
@@ -92,6 +94,11 @@ struct SharedState: Codable, Equatable {
     /// Gregorian date, numeric in the reader's locale.
     func gregorian(_ d: Date) -> String {
         d.formatted(Date.FormatStyle(date: .numeric, time: .omitted, locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone))
+    }
+
+    /// Weekday, day and month as one phrase in the reader's language ("Saturday, 10 October", "السبت، ١٠ أكتوبر").
+    func weekdayDayMonth(_ d: Date) -> String {
+        d.formatted(Date.FormatStyle(locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone).weekday(.wide).day().month(.wide))
     }
 
     /// Day and month, short ("6 Oct").
