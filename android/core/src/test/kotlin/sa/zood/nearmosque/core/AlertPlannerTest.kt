@@ -68,8 +68,9 @@ class AlertPlannerTest {
     }
 
     @Test
-    fun noMadinahFajrRecordingMeansNoFajrAdhan() {
-        assertTrue(!AlertSettings(fajrAdhan = true, fajrAdhanSource = AdhanSource.MADINAH).adhanPlays(PrayerEvent.FAJR))
+    fun fajrAdhanFromEitherMosque() {
+        assertTrue(AlertSettings(fajrAdhan = true, fajrAdhanSource = AdhanSource.MADINAH).adhanPlays(PrayerEvent.FAJR))
+        assertTrue(!AlertSettings(fajrAdhan = false, fajrAdhanSource = AdhanSource.MADINAH).adhanPlays(PrayerEvent.FAJR))
     }
 
     @Test

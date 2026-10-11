@@ -8,8 +8,8 @@ import java.time.LocalDate
 enum class AdhanSource {
     MAKKAH, MADINAH;
 
-    /** Fajr has a Makkah recording only (no Madinah Fajr Adhan yet; see shared/audio/CREDITS.md). */
-    val hasFajr: Boolean get() = this == MAKKAH
+    /** Both mosques have a Fajr recording (shared/audio/CREDITS.md); kept so a future source without one can say so. */
+    val hasFajr: Boolean get() = true
 }
 
 /** The language of the spoken reminders ("Ten minutes remain until the call to Maghrib prayer"). */

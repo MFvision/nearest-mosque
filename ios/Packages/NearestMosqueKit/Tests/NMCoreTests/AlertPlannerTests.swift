@@ -59,10 +59,12 @@ final class AlertPlannerTests: XCTestCase {
         XCTAssertEqual(p.map(\.event), [.fajr, .maghrib])
     }
 
-    func testNoMadinahFajrRecordingMeansNoFajrAdhan() {
+    func testFajrAdhanFromEitherMosque() {
         var a = AlertSettings()
         a.fajrAdhan = true
         a.fajrAdhanSource = .madinah
+        XCTAssertTrue(a.adhanPlays(.fajr))
+        a.fajrAdhan = false
         XCTAssertFalse(a.adhanPlays(.fajr))
     }
 
