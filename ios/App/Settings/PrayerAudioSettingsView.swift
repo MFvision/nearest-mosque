@@ -26,6 +26,7 @@ struct PrayerAudioSettingsView: View {
             }
         }
         .navigationTitle(l10n.t("audio_title"))
+        .navigationBarTitleDisplayMode(.inline)
         .onDisappear { if !AdhanPlayer.shared.isAdhan { AdhanPlayer.shared.stop() } }
         #if DEBUG
         .task {
@@ -191,7 +192,8 @@ struct PrayerAudioSettingsView: View {
 
     /// A per-prayer switch that works only while the same reminder is on for all prayers above.
     private func gated(_ title: String, on: Bool, master: Bool, set: @escaping (Bool) -> Void) -> some View {
-        Toggle(isOn: Binding(get: { on }, set: set)) {
+        // While the reminder is off above, the switch shows off (nothing plays); its own choice is kept.
+        Toggle(isOn: Binding(get: { on && master }, set: set)) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                 if !master { Text(l10n.t("off_above")).font(.caption).foregroundStyle(.secondary) }

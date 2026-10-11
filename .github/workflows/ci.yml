@@ -220,6 +220,7 @@ jobs:
             kill -INT $rec 2>/dev/null || true
             for i in $(seq 1 20); do kill -0 $rec 2>/dev/null || break; sleep 1; done
             kill -9 $rec 2>/dev/null || true
+            sleep 3
           }
           clip 28l-companion-heart-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion heart -demoCompanionLevel 0.7 -demoCompanionMotion YES -languageOverride en
           clip 28m-companion-lantern-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion lantern -demoCompanionLevel 0.9 -demoCompanionMotion YES -languageOverride ar

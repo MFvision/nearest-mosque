@@ -283,7 +283,8 @@ private fun SubSwitch(title: String, on: Boolean, master: Boolean, onChange: (Bo
             Text(title, style = MaterialTheme.typography.bodyMedium, color = if (master) MaterialTheme.colorScheme.onSurface else LocalExtraColors.current.textSecondary)
             if (!master) Text(stringResource(R.string.off_above), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
         }
-        Switch(checked = on, onCheckedChange = onChange, enabled = master)
+        // While the reminder is off above, the switch shows off (nothing plays); its own choice is kept.
+        Switch(checked = on && master, onCheckedChange = onChange, enabled = master)
     }
 }
 
