@@ -211,9 +211,15 @@ jobs:
             xcrun simctl terminate "$UDID" sa.zood.nearmosque 2>/dev/null || true
             xcrun simctl launch "$UDID" sa.zood.nearmosque "$@"
             sleep 9
+            # Job control on, so the recorder gets the interrupt (non-interactive shells make background jobs
+            # ignore SIGINT); a hard stop after 20 s in any case.
+            set -m
             xcrun simctl io "$UDID" recordVideo --codec h264 --force "shots/$name.mp4" & rec=$!
+            set +m
             sleep 7
-            kill -INT $rec; wait $rec || true
+            kill -INT $rec 2>/dev/null || true
+            for i in $(seq 1 20); do kill -0 $rec 2>/dev/null || break; sleep 1; done
+            kill -9 $rec 2>/dev/null || true
           }
           clip 28l-companion-heart-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion heart -demoCompanionLevel 0.7 -demoCompanionMotion YES -languageOverride en
           clip 28m-companion-lantern-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion lantern -demoCompanionLevel 0.9 -demoCompanionMotion YES -languageOverride ar
