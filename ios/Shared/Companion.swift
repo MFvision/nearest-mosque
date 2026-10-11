@@ -412,11 +412,17 @@ final class CompanionPhysics {
             return p
         }
         // Spring toward hanging straight down (lantern) or level with the ground (liquid).
-        let target = -max(-0.8, min(0.8, roll))
+        // The lantern swings at most about 25 degrees (it stays in its card); the liquid follows the phone further.
+        let limit = kind == .lantern ? 0.45 : 0.8
+        let target = -max(-limit, min(limit, roll))
         let (k, c, push): (Double, Double, Double) = kind == .lantern ? (16, 1.6, 9) : (28, 3.2, 14)
         let accel = -k * (p.swing - target) - c * angularVelocity - jolt * push
         angularVelocity += accel * dt
         p.swing += angularVelocity * dt
+        if kind == .lantern, abs(p.swing) > 0.55 {
+            p.swing = 0.55 * (p.swing < 0 ? -1 : 1)
+            angularVelocity *= -0.3
+        }
         p.energy += (min(1, abs(angularVelocity) * 0.5 + abs(jolt) * 1.5) - p.energy) * (1 - exp(-dt * 4))
         p.flare *= exp(-dt * 1.4)
         // Heartbeat: lub-dub after a tap, a gentle resting beat when full.

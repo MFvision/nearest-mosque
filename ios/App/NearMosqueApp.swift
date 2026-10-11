@@ -92,7 +92,12 @@ struct RootView: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     @State private var tab: AppTab = Self.initialTab == .mosques ? .mosques : .prayer
+    #if DEBUG
+    /// CI screenshots: `-demoAudioSettings YES` opens Settings (and then Prayer & Audio).
+    @State private var showSettings = UserDefaults.standard.bool(forKey: "demoAudioSettings")
+    #else
     @State private var showSettings = false
+    #endif
     @State private var showAsk = Self.initialTab == .ask
     /// Kept here so closing Ask and opening it again keeps the conversation.
     @State private var ask = AskModel()

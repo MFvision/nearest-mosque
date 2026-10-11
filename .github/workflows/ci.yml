@@ -223,8 +223,8 @@ jobs:
           }
           clip 28l-companion-heart-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion heart -demoCompanionLevel 0.7 -demoCompanionMotion YES -languageOverride en
           clip 28m-companion-lantern-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion lantern -demoCompanionLevel 0.9 -demoCompanionMotion YES -languageOverride ar
-          shot 28n-audio-settings-en -demoCity "Riyadh" -demoTab settings -demoAudioSettings YES -languageOverride en
-          shot 28o-audio-settings-maghrib-ar -demoCity "Riyadh" -demoTab settings -demoAudioSettings YES -demoAudioExpand maghrib -languageOverride ar
+          shot 28n-audio-settings-en -demoCity "Riyadh" -demoTab prayer -demoAudioSettings YES -languageOverride en
+          shot 28o-audio-settings-maghrib-ar -demoCity "Riyadh" -demoTab prayer -demoAudioSettings YES -demoAudioExpand maghrib -languageOverride ar
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 11b-compact-bar-dark -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en
