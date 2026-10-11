@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">ಅಲ್ಲಾಹನ ಪ್ರವಾದಿ ﷺ ಮೇಲೆ ದರೂದ್ ಹೇಳಿ</string>
     <string name="notif_sleep_title">ಮಲಗುವ ಮುನ್ನ</string>
     <string name="notif_snooze">5 ನಿಮಿಷದಲ್ಲಿ ನೆನಪಿಸು</string>
+    <string name="notif_sunrise_title">ಸೂರ್ಯೋದಯ: ಫಜ್ರ್ ಸಮಯ ಮುಗಿದಿದೆ</string>
     <string name="notifications_denied">ಈ ಆ್ಯಪ್‌ಗೆ ಅಧಿಸೂಚನೆಗಳು ಆಫ್ ಆಗಿವೆ. ಜ್ಞಾಪನೆಗಳನ್ನು ಪಡೆಯಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅವುಗಳನ್ನು ಆನ್ ಮಾಡಿ.</string>
     <string name="off_above">ಮೇಲೆ ಆಫ್ ಆಗಿದೆ</string>
     <string name="on_device_ai">ಸಾಧನದಲ್ಲೇ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">ನೀವು ಇದನ್ನೂ ಕೇಳಬಹುದು</string>
     <string name="summary_label">ಸಾರಾಂಶ</string>
     <string name="sunrise_not_prayer_note">ಸೂರ್ಯೋದಯವು ಫಜ್ರ್ ಸಮಯದ ಅಂತ್ಯವನ್ನು ಸೂಚಿಸುತ್ತದೆ; ಅದು ನಮಾಜ್ ಅಲ್ಲ.</string>
+    <string name="sunrise_notify">ಸೂರ್ಯೋದಯ (ಫಜ್ರ್ ಸಮಯದ ಅಂತ್ಯ)</string>
     <string name="supporting_passage">ಆಧಾರ ಭಾಗ</string>
     <string name="surrounding_context">ಸುತ್ತಲಿನ ಆಯತ್‌ಗಳು</string>
     <string name="tab_ask">ಕೇಳಿ</string>

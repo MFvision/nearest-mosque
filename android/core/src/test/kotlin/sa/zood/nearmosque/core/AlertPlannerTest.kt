@@ -98,4 +98,12 @@ class AlertPlannerTest {
         assertEquals(AlertSettings(before10 = true), AlertSettings(minutesBefore = 10).migrated())
         assertEquals(AlertSettings(near = true, nearMinutes = 20), AlertSettings(minutesBefore = 20).migrated())
     }
+
+    @Test
+    fun sunriseBellGivesANotificationAtSunrise() {
+        val d = days[0]
+        val p = AlertPlanner.plan(listOf(d), now, setOf(PrayerEvent.SUNRISE), AlertSettings()) { false }
+        assertEquals(listOf(PrayerEvent.SUNRISE), p.map { it.event })
+        assertEquals(d[PrayerEvent.SUNRISE], p[0].at)
+    }
 }

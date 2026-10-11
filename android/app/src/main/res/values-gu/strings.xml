@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">અલ્લાહના રસૂલ ﷺ પર દરૂદ મોકલો</string>
     <string name="notif_sleep_title">સૂતાં પહેલાં</string>
     <string name="notif_snooze">5 મિનિટ પછી યાદ અપાવો</string>
+    <string name="notif_sunrise_title">સૂર્યોદય: ફજરનો સમય પૂરો થયો</string>
     <string name="notifications_denied">આ ઍપના નોટિફિકેશન બંધ છે. રિમાઇન્ડર મેળવવા માટે સેટિંગ્સમાં તેને ચાલુ કરો.</string>
     <string name="off_above">ઉપર બંધ છે</string>
     <string name="on_device_ai">ઑન-ડિવાઇસ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">તમે આ પણ પૂછી શકો</string>
     <string name="summary_label">સારાંશ</string>
     <string name="sunrise_not_prayer_note">સૂર્યોદય ફજરના સમયનો અંત છે; તે નમાઝ નથી.</string>
+    <string name="sunrise_notify">સૂર્યોદય (ફજરના સમયનો અંત)</string>
     <string name="supporting_passage">સમર્થન આપતો અંશ</string>
     <string name="surrounding_context">આસપાસની આયતો</string>
     <string name="tab_ask">પૂછો</string>

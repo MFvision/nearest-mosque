@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Zend zegeningen over de Boodschapper van Allah ﷺ</string>
     <string name="notif_sleep_title">Voor het slapen</string>
     <string name="notif_snooze">Herinner me over 5 min</string>
+    <string name="notif_sunrise_title">Zonsopgang: de tijd van Fajr is voorbij</string>
     <string name="notifications_denied">Meldingen staan uit voor deze app. Zet ze aan in Instellingen om herinneringen te krijgen.</string>
     <string name="off_above">Hierboven uit</string>
     <string name="on_device_ai">AI op het apparaat</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Je kunt ook vragen</string>
     <string name="summary_label">Samenvatting</string>
     <string name="sunrise_not_prayer_note">Zonsopgang markeert het einde van de Fajr-tijd; het is geen gebed.</string>
+    <string name="sunrise_notify">Zonsopgang (einde van Fajr)</string>
     <string name="supporting_passage">Onderbouwende passage</string>
     <string name="surrounding_context">Omliggende verzen</string>
     <string name="tab_ask">Vraag</string>

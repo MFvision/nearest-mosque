@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Magpadala ng salawat sa Sugo ng Allah ﷺ</string>
     <string name="notif_sleep_title">Bago matulog</string>
     <string name="notif_snooze">Paalalahanan ako sa loob ng 5 min</string>
+    <string name="notif_sunrise_title">Pagsikat ng araw: tapos na ang oras ng Fajr</string>
     <string name="notifications_denied">Naka-off ang mga notification para sa app na ito. I-on ang mga ito sa Mga Setting para makatanggap ng mga paalala.</string>
     <string name="off_above">Naka-off sa itaas</string>
     <string name="on_device_ai">AI sa device</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Maaari mo ring itanong</string>
     <string name="summary_label">Buod</string>
     <string name="sunrise_not_prayer_note">Ang pagsikat ng araw ang hudyat ng pagtatapos ng oras ng Fajr; hindi ito isang dasal.</string>
+    <string name="sunrise_notify">Pagsikat ng araw (katapusan ng Fajr)</string>
     <string name="supporting_passage">Sumusuportang sipi</string>
     <string name="surrounding_context">Mga nakapaligid na talata</string>
     <string name="tab_ask">Magtanong</string>

@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">رسول اللہ ﷺ پر درود بھیجیں</string>
     <string name="notif_sleep_title">سونے سے پہلے</string>
     <string name="notif_snooze">۵ منٹ بعد یاد دلائیں</string>
+    <string name="notif_sunrise_title">طلوعِ آفتاب: فجر کا وقت ختم ہو گیا</string>
     <string name="notifications_denied">اس ایپ کی اطلاعات بند ہیں۔ یاد دہانیوں کے لیے ترتیبات میں انہیں آن کریں۔</string>
     <string name="off_above">اوپر بند ہے</string>
     <string name="on_device_ai">فون پر AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">آپ یہ بھی پوچھ سکتے ہیں</string>
     <string name="summary_label">خلاصہ</string>
     <string name="sunrise_not_prayer_note">طلوعِ آفتاب فجر کے وقت کا اختتام ہے، یہ نماز نہیں۔</string>
+    <string name="sunrise_notify">طلوعِ آفتاب (فجر کے وقت کا اختتام)</string>
     <string name="supporting_passage">معاون اقتباس</string>
     <string name="surrounding_context">سیاق کی آیات</string>
     <string name="tab_ask">پوچھیں</string>

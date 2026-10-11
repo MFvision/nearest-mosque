@@ -63222,6 +63222,227 @@
         }
       }
     },
+    "notif_sunrise_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunrise: Fajr time has ended"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الشروق: انتهى وقت الفجر"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طلوعِ آفتاب: فجر کا وقت ختم ہو گیا"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güneş doğdu: sabah namazı vakti bitti"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matahari terbit: waktu Subuh telah berakhir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lever du soleil : l’heure du Fajr est terminée"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanecer: terminó el tiempo de Fajr"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восход: время фаджра закончилось"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সূর্যোদয়: ফজরের সময় শেষ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طلوع آفتاب: وقت نماز صبح تمام شد"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طلوع آفتاب: وقت نماز بامداد تمام شد"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日出：晨礼时间已结束"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सूर्योदय: फ़ज्र का समय समाप्त"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nascer do sol: terminou o tempo do Fajr"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitowar rana: lokacin Asuba ya ƙare"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Macheo: muda wa Alfajiri umekwisha"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagsikat ng araw: tapos na ang oras ng Fajr"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mặt trời mọc: đã hết giờ Fajr"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดวงอาทิตย์ขึ้น: หมดเวลาซุบฮิแล้ว"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃរះ៖ ពេលសឡាតហ្វាជរ៍បានចប់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كۈن چىقتى: بامدات ۋاقتى ئاخىرلاشتى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خۆرهەڵات: کاتی بەیانی کۆتایی هات"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izlazak sunca: vrijeme sabaha je isteklo"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Излазак сунца: време сабаха је истекло"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изгрејсонце: времето за сабах истече"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Napkelte: a fadzsr ideje lejárt"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zonsopgang: de tijd van Fajr is voorbij"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მზის ამოსვლა: ფაჯრის დრო დასრულდა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "හිරු උදාව: ෆජ්ර් කාලය අවසන්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సూర్యోదయం: ఫజ్ర్ సమయం ముగిసింది"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸೂರ್ಯೋದಯ: ಫಜ್ರ್ ಸಮಯ ಮುಗಿದಿದೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സൂര്യോദയം: സുബ്ഹിയുടെ സമയം കഴിഞ്ഞു"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सूर्योदय: फजरची वेळ संपली"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂર્યોદય: ફજરનો સમય પૂરો થયો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਰਜ ਚੜ੍ਹਨਾ: ਫ਼ਜਰ ਦਾ ਸਮਾਂ ਖ਼ਤਮ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সূৰ্যোদয়: ফজৰৰ সময় শেষ"
+          }
+        }
+      }
+    },
     "notifications_denied": {
       "extractionState": "manual",
       "localizations": {
@@ -98578,6 +98799,227 @@
           "stringUnit": {
             "state": "translated",
             "value": "সূৰ্যোদয়ে ফজৰৰ সময়ৰ শেষ বুজায়; ই কোনো নামাজ নহয়।"
+          }
+        }
+      }
+    },
+    "sunrise_notify": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunrise (end of Fajr time)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الشروق (نهاية وقت الفجر)"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طلوعِ آفتاب (فجر کے وقت کا اختتام)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güneş doğuşu (sabah vaktinin sonu)"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matahari terbit (akhir waktu Subuh)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lever du soleil (fin du Fajr)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanecer (fin del tiempo de Fajr)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восход (конец времени фаджра)"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সূর্যোদয় (ফজরের সময়ের শেষ)"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طلوع آفتاب (پایان وقت صبح)"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طلوع آفتاب (پایان وقت بامداد)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日出（晨礼时间结束）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सूर्योदय (फ़ज्र के समय का अंत)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nascer do sol (fim do Fajr)"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitowar rana (ƙarshen lokacin Asuba)"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Macheo (mwisho wa muda wa Alfajiri)"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagsikat ng araw (katapusan ng Fajr)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mặt trời mọc (hết giờ Fajr)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดวงอาทิตย์ขึ้น (สิ้นสุดเวลาซุบฮิ)"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃរះ (ចប់ពេលហ្វាជរ៍)"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كۈن چىقىش (بامدات ۋاقتىنىڭ ئاخىرى)"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خۆرهەڵات (کۆتایی کاتی بەیانی)"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izlazak sunca (kraj sabaha)"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Излазак сунца (крај сабаха)"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изгрејсонце (крај на сабах)"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Napkelte (a fadzsr vége)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zonsopgang (einde van Fajr)"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მზის ამოსვლა (ფაჯრის დასასრული)"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "හිරු උදාව (ෆජ්ර් කාලයේ අවසානය)"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సూర్యోదయం (ఫజ్ర్ సమయం ముగింపు)"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸೂರ್ಯೋದಯ (ಫಜ್ರ್ ಸಮಯದ ಅಂತ್ಯ)"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സൂര്യോദയം (സുബ്ഹി സമയത്തിന്റെ അവസാനം)"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सूर्योदय (फजरच्या वेळेचा शेवट)"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂર્યોદય (ફજરના સમયનો અંત)"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਰਜ ਚੜ੍ਹਨਾ (ਫ਼ਜਰ ਦੇ ਸਮੇਂ ਦਾ ਅੰਤ)"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সূৰ্যোদয় (ফজৰৰ সময়ৰ শেষ)"
           }
         }
       }

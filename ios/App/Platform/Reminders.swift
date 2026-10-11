@@ -80,6 +80,10 @@ enum Reminders {
             content.userInfo = ["event": a.event.rawValue, "date": "\(a.date)", "kind": a.kind.rawValue]
             content.sound = .default
             switch a.kind {
+            case .atPrayer where a.event == .sunrise:
+                content.title = l10n.t("notif_sunrise_title")
+                content.body = l10n.t("reminder_body", loc.name, time)
+                content.categoryIdentifier = Category.before.rawValue
             case .atPrayer, .fajrAlarm, .adhan:
                 content.title = l10n.t("reminder_title", name)
                 content.body = l10n.t("reminder_body", loc.name, time)

@@ -107,4 +107,12 @@ final class AlertPlannerTests: XCTestCase {
         let round = try JSONDecoder().decode(AlertSettings.self, from: JSONEncoder().encode(twenty))
         XCTAssertEqual(round, twenty)
     }
+
+    func testSunriseBellGivesANotificationAtSunrise() {
+        let d = days[0]
+        let p = AlertPlanner.plan([d], now: now, atPrayer: [.sunrise], alerts: AlertSettings()) { _ in false }
+        XCTAssertEqual(p.map(\.event), [.sunrise])
+        XCTAssertEqual(p[0].at, d[.sunrise])
+        XCTAssertEqual(p[0].kind, .atPrayer)
+    }
 }

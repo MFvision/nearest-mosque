@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">سەڵاوات بدەن لەسەر پێغەمبەری خوا ﷺ</string>
     <string name="notif_sleep_title">پێش خەوتن</string>
     <string name="notif_snooze">دوای ٥ خولەک بیرم بخەرەوە</string>
+    <string name="notif_sunrise_title">خۆرهەڵات: کاتی بەیانی کۆتایی هات</string>
     <string name="notifications_denied">ئاگادارکردنەوەکان بۆ ئەم ئەپە کوژاونەتەوە. لە ڕێکخستنەکان هەڵیانبکە بۆ وەرگرتنی بیرخەرەوەکان.</string>
     <string name="off_above">لە سەرەوە ناچالاکە</string>
     <string name="on_device_ai">زیرەکی دەستکردی سەر ئامێر</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">دەشتوانیت ئەمانە بپرسیت</string>
     <string name="summary_label">کورتە</string>
     <string name="sunrise_not_prayer_note">خۆرهەڵاتن کۆتایی کاتی نوێژی بەیانییە؛ خۆی نوێژ نییە.</string>
+    <string name="sunrise_notify">خۆرهەڵات (کۆتایی کاتی بەیانی)</string>
     <string name="supporting_passage">دەقی پشتگیر</string>
     <string name="surrounding_context">ئایەتەکانی دەوروبەر</string>
     <string name="tab_ask">بپرسە</string>

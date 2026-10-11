@@ -189,6 +189,8 @@ public enum AlertPlanner {
                 if alerts.before5, s.before5 { add(.before5, e, at.addingTimeInterval(-300), d) }
                 if alerts.near, s.near { add(.near, e, at.addingTimeInterval(-Double(alerts.nearMinutes) * 60), d) }
             }
+            // Sunrise (the end of Fajr time): a plain notification when its bell is on.
+            if atPrayer.contains(.sunrise), let s = d[.sunrise] { add(.atPrayer, .sunrise, s, d) }
             if alerts.friday, d.date.isFriday, let dhuhr = d[.dhuhr] {
                 add(.friday, .dhuhr, dhuhr.addingTimeInterval(-Double(AlertSettings.fridayLeadMinutes) * 60), d)
             }

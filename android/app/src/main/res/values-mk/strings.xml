@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Испратете салават на Аллаховиот Пратеник ﷺ</string>
     <string name="notif_sleep_title">Пред спиење</string>
     <string name="notif_snooze">Потсети ме за 5 мин</string>
+    <string name="notif_sunrise_title">Изгрејсонце: времето за сабах истече</string>
     <string name="notifications_denied">Известувањата за оваа апликација се исклучени. Вклучете ги во поставките за да добивате потсетници.</string>
     <string name="off_above">Исклучено горе</string>
     <string name="on_device_ai">AI на уредот</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Може да прашате и</string>
     <string name="summary_label">Резиме</string>
     <string name="sunrise_not_prayer_note">Изгрејсонцето го означува крајот на времето за сабах; тоа не е намаз.</string>
+    <string name="sunrise_notify">Изгрејсонце (крај на сабах)</string>
     <string name="supporting_passage">Одломка како доказ</string>
     <string name="surrounding_context">Околни ајети</string>
     <string name="tab_ask">Прашај</string>

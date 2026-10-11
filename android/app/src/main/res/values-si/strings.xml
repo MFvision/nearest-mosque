@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">අල්ලාහ්ගේ රසූල්තුමාණන් ﷺ මත සලවාත් පවසන්න</string>
     <string name="notif_sleep_title">නින්දට පෙර</string>
     <string name="notif_snooze">විනාඩි 5කින් මතක් කරන්න</string>
+    <string name="notif_sunrise_title">හිරු උදාව: ෆජ්ර් කාලය අවසන්</string>
     <string name="notifications_denied">මෙම යෙදුමට දැනුම්දීම් අක්‍රියයි. සිහිකැඳවීම් ලබා ගැනීමට සැකසීම්වල ඒවා සක්‍රිය කරන්න.</string>
     <string name="off_above">ඉහතින් අක්‍රියයි</string>
     <string name="on_device_ai">උපාංගයේ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">ඔබට මෙයද ඇසිය හැක</string>
     <string name="summary_label">සාරාංශය</string>
     <string name="sunrise_not_prayer_note">හිරු උදාව ෆජ්ර් වේලාවේ අවසානය සලකුණු කරයි; එය සලාතයක් නොවේ.</string>
+    <string name="sunrise_notify">හිරු උදාව (ෆජ්ර් කාලයේ අවසානය)</string>
     <string name="supporting_passage">සහාය ඡේදය</string>
     <string name="surrounding_context">අවට ආයත්</string>
     <string name="tab_ask">අහන්න</string>

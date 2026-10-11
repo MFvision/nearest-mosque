@@ -65,6 +65,7 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
             val time = Format.time(context, prayerAt, loc.zoneId)
             val minutes = ((prayerAt.epochSecond - a.at.epochSecond) / 60).toInt()
             val (title, body) = when (a.kind) {
+                AlertKind.AT_PRAYER if a.event == PrayerEvent.SUNRISE -> context.getString(R.string.notif_sunrise_title) to context.getString(R.string.reminder_body, loc.name, time)
                 AlertKind.AT_PRAYER, AlertKind.FAJR_ALARM, AlertKind.ADHAN -> context.getString(R.string.reminder_title, name) to context.getString(R.string.reminder_body, loc.name, time)
                 AlertKind.BEFORE -> context.getString(R.string.reminder_before_title, name, settings.alerts.minutesBefore) to context.getString(R.string.reminder_body, loc.name, time)
                 AlertKind.BEFORE_10, AlertKind.BEFORE_5 -> context.getString(R.string.notif_minutes_until, minutes, name) to context.getString(R.string.reminder_body, loc.name, time)

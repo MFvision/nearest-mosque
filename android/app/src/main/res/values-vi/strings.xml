@@ -287,6 +287,7 @@
     <string name="notif_salawat_title">Hãy gửi salawat đến Thiên sứ của Allah ﷺ</string>
     <string name="notif_sleep_title">Trước khi ngủ</string>
     <string name="notif_snooze">Nhắc lại sau 5 phút</string>
+    <string name="notif_sunrise_title">Mặt trời mọc: đã hết giờ Fajr</string>
     <string name="notifications_denied">Thông báo của ứng dụng này đang tắt. Hãy bật trong Cài đặt để nhận nhắc nhở.</string>
     <string name="off_above">Đã tắt ở trên</string>
     <string name="on_device_ai">AI trên thiết bị</string>
@@ -447,6 +448,7 @@
     <string name="suggested_questions">Bạn cũng có thể hỏi</string>
     <string name="summary_label">Tóm tắt</string>
     <string name="sunrise_not_prayer_note">Mặt trời mọc đánh dấu hết giờ Fajr; đây không phải là một lần cầu nguyện.</string>
+    <string name="sunrise_notify">Mặt trời mọc (hết giờ Fajr)</string>
     <string name="supporting_passage">Đoạn trích hỗ trợ</string>
     <string name="surrounding_context">Các câu kinh xung quanh</string>
     <string name="tab_ask">Hỏi</string>

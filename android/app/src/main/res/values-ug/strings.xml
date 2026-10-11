@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">رەسۇلۇللاھقا ﷺ دۇرۇت ئېيتىڭ</string>
     <string name="notif_sleep_title">ئۇخلاشتىن بۇرۇن</string>
     <string name="notif_snooze">5 مىنۇتتىن كېيىن ئەسكەرت</string>
+    <string name="notif_sunrise_title">كۈن چىقتى: بامدات ۋاقتى ئاخىرلاشتى</string>
     <string name="notifications_denied">بۇ ئەپنىڭ ئۇقتۇرۇشلىرى تاقاق. ئەسكەرتىش تاپشۇرۇۋېلىش ئۈچۈن تەڭشەكتە ئېچىڭ.</string>
     <string name="off_above">يۇقىرىدا تاقاق</string>
     <string name="on_device_ai">ئۈسكۈنىدىكى سۈنئىي ئەقىل</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">بۇلارنىمۇ سورىسىڭىز بولىدۇ</string>
     <string name="summary_label">خۇلاسە</string>
     <string name="sunrise_not_prayer_note">كۈن چىقىش بامدات ۋاقتىنىڭ ئاخىرلاشقانلىقىنى بىلدۈرىدۇ؛ ئۇ ناماز ئەمەس.</string>
+    <string name="sunrise_notify">كۈن چىقىش (بامدات ۋاقتىنىڭ ئاخىرى)</string>
     <string name="supporting_passage">دەلىل ئۈزۈندە</string>
     <string name="surrounding_context">ئەتراپتىكى ئايەتلەر</string>
     <string name="tab_ask">سوراش</string>

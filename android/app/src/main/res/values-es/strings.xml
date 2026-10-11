@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Bendice al Mensajero de Allah ﷺ</string>
     <string name="notif_sleep_title">Antes de dormir</string>
     <string name="notif_snooze">Recuérdame en 5 min</string>
+    <string name="notif_sunrise_title">Amanecer: terminó el tiempo de Fajr</string>
     <string name="notifications_denied">Las notificaciones están desactivadas. Actívalas en Ajustes para recibir recordatorios.</string>
     <string name="off_above">Desactivado arriba</string>
     <string name="on_device_ai">IA en el dispositivo</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">También puede preguntar</string>
     <string name="summary_label">Resumen</string>
     <string name="sunrise_not_prayer_note">El amanecer marca el fin de Fajr; no es una oración.</string>
+    <string name="sunrise_notify">Amanecer (fin del tiempo de Fajr)</string>
     <string name="supporting_passage">Pasaje de apoyo</string>
     <string name="surrounding_context">Versículos cercanos</string>
     <string name="tab_ask">Preguntar</string>

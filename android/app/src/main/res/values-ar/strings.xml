@@ -292,6 +292,7 @@
     <string name="notif_salawat_title">صلّوا على رسول الله ﷺ</string>
     <string name="notif_sleep_title">قبل النوم</string>
     <string name="notif_snooze">ذكّرني بعد ٥ دقائق</string>
+    <string name="notif_sunrise_title">الشروق: انتهى وقت الفجر</string>
     <string name="notifications_denied">الإشعارات متوقفة لهذا التطبيق. فعّلها من الإعدادات لتصلك التذكيرات.</string>
     <string name="off_above">متوقف في الأعلى</string>
     <string name="on_device_ai">الذكاء على الجهاز</string>
@@ -452,6 +453,7 @@
     <string name="suggested_questions">يمكنك أن تسأل أيضًا</string>
     <string name="summary_label">خلاصة</string>
     <string name="sunrise_not_prayer_note">الشروق نهاية وقت الفجر، وليس صلاة.</string>
+    <string name="sunrise_notify">الشروق (نهاية وقت الفجر)</string>
     <string name="supporting_passage">نص داعم</string>
     <string name="surrounding_context">الآيات المحيطة</string>
     <string name="tab_ask">اسأل</string>

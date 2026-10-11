@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Ku yi salati ga Manzon Allah ﷺ</string>
     <string name="notif_sleep_title">Kafin barci</string>
     <string name="notif_snooze">Tunatar da ni bayan minti 5</string>
+    <string name="notif_sunrise_title">Fitowar rana: lokacin Asuba ya ƙare</string>
     <string name="notifications_denied">An kashe sanarwa don wannan manhaja. Kunna su a Saituna don samun tunatarwa.</string>
     <string name="off_above">A kashe a sama</string>
     <string name="on_device_ai">AI a cikin na\'ura</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Kuna iya tambaya kuma</string>
     <string name="summary_label">Taƙaitawa</string>
     <string name="sunrise_not_prayer_note">Fitowar rana ita ce ƙarshen lokacin Asuba; ba sallah ba ce.</string>
+    <string name="sunrise_notify">Fitowar rana (ƙarshen lokacin Asuba)</string>
     <string name="supporting_passage">Nassi mai goyon baya</string>
     <string name="surrounding_context">Ayoyin da ke kewaye</string>
     <string name="tab_ask">Tambaya</string>

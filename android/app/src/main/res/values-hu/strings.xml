@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Kérjen áldást Allah Küldöttére ﷺ</string>
     <string name="notif_sleep_title">Alvás előtt</string>
     <string name="notif_snooze">Emlékeztess 5 perc múlva</string>
+    <string name="notif_sunrise_title">Napkelte: a fadzsr ideje lejárt</string>
     <string name="notifications_denied">Az alkalmazás értesítései ki vannak kapcsolva. Kapcsold be őket a Beállításokban, hogy emlékeztetőket kapj.</string>
     <string name="off_above">Fent kikapcsolva</string>
     <string name="on_device_ai">Eszközön futó MI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Ezt is kérdezheted</string>
     <string name="summary_label">Összefoglaló</string>
     <string name="sunrise_not_prayer_note">A napkelte a fadzsr idejének végét jelzi; nem ima.</string>
+    <string name="sunrise_notify">Napkelte (a fadzsr vége)</string>
     <string name="supporting_passage">Alátámasztó részlet</string>
     <string name="surrounding_context">Környező versek</string>
     <string name="tab_ask">Kérdezz</string>

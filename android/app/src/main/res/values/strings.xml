@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Salli Ala Rasulillah ﷺ</string>
     <string name="notif_sleep_title">Before you sleep</string>
     <string name="notif_snooze">Remind me in 5 min</string>
+    <string name="notif_sunrise_title">Sunrise: Fajr time has ended</string>
     <string name="notifications_denied">Notifications are off for this app. Turn them on in Settings to get reminders.</string>
     <string name="off_above">Off above</string>
     <string name="on_device_ai">On-device AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">You could also ask</string>
     <string name="summary_label">Summary</string>
     <string name="sunrise_not_prayer_note">Sunrise marks the end of Fajr time; it is not a prayer.</string>
+    <string name="sunrise_notify">Sunrise (end of Fajr time)</string>
     <string name="supporting_passage">Supporting passage</string>
     <string name="surrounding_context">Surrounding verses</string>
     <string name="tab_ask">Ask AI</string>

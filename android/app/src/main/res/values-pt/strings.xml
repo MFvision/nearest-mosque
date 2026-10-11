@@ -289,6 +289,7 @@
     <string name="notif_salawat_title">Envie bênçãos ao Mensageiro de Allah ﷺ</string>
     <string name="notif_sleep_title">Antes de dormir</string>
     <string name="notif_snooze">Lembrar em 5 min</string>
+    <string name="notif_sunrise_title">Nascer do sol: terminou o tempo do Fajr</string>
     <string name="notifications_denied">As notificações estão desativadas para este app. Ative-as em Configurações para receber lembretes.</string>
     <string name="off_above">Desativado acima</string>
     <string name="on_device_ai">IA no aparelho</string>
@@ -449,6 +450,7 @@
     <string name="suggested_questions">Você também pode perguntar</string>
     <string name="summary_label">Resumo</string>
     <string name="sunrise_not_prayer_note">O nascer do sol marca o fim do horário do Fajr; não é uma oração.</string>
+    <string name="sunrise_notify">Nascer do sol (fim do Fajr)</string>
     <string name="supporting_passage">Trecho de apoio</string>
     <string name="surrounding_context">Versículos ao redor</string>
     <string name="tab_ask">Perguntar</string>

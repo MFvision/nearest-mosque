@@ -290,6 +290,7 @@
     <string name="notif_salawat_title">Благословляйте Посланника Аллаха ﷺ</string>
     <string name="notif_sleep_title">Перед сном</string>
     <string name="notif_snooze">Напомнить через 5 мин</string>
+    <string name="notif_sunrise_title">Восход: время фаджра закончилось</string>
     <string name="notifications_denied">Уведомления для этого приложения выключены. Включите их в настройках, чтобы получать напоминания.</string>
     <string name="off_above">Выключено выше</string>
     <string name="on_device_ai">ИИ на устройстве</string>
@@ -450,6 +451,7 @@
     <string name="suggested_questions">Можно также спросить</string>
     <string name="summary_label">Кратко</string>
     <string name="sunrise_not_prayer_note">Восход отмечает конец времени фаджра; это не намаз.</string>
+    <string name="sunrise_notify">Восход (конец времени фаджра)</string>
     <string name="supporting_passage">Подтверждающий фрагмент</string>
     <string name="surrounding_context">Соседние аяты</string>
     <string name="tab_ask">Спросить</string>

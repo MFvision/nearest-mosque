@@ -287,6 +287,7 @@
     <string name="notif_salawat_title">จงกล่าวเศาะละวาตแด่ท่านรอซูลุลลอฮ์ ﷺ</string>
     <string name="notif_sleep_title">ก่อนนอน</string>
     <string name="notif_snooze">เตือนอีกครั้งใน 5 นาที</string>
+    <string name="notif_sunrise_title">ดวงอาทิตย์ขึ้น: หมดเวลาซุบฮิแล้ว</string>
     <string name="notifications_denied">การแจ้งเตือนของแอปนี้ปิดอยู่ เปิดได้ในการตั้งค่าเพื่อรับการเตือน</string>
     <string name="off_above">ปิดอยู่ด้านบน</string>
     <string name="on_device_ai">AI ในเครื่อง</string>
@@ -447,6 +448,7 @@
     <string name="suggested_questions">คุณอาจถามเพิ่มได้ว่า</string>
     <string name="summary_label">สรุป</string>
     <string name="sunrise_not_prayer_note">ดวงอาทิตย์ขึ้นเป็นเครื่องหมายสิ้นสุดเวลาซุบฮิ ไม่ใช่เวลาละหมาด</string>
+    <string name="sunrise_notify">ดวงอาทิตย์ขึ้น (สิ้นสุดเวลาซุบฮิ)</string>
     <string name="supporting_passage">ข้อความสนับสนุน</string>
     <string name="surrounding_context">อายะฮ์รอบข้าง</string>
     <string name="tab_ask">ถาม</string>

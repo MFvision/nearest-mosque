@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Mswalieni Mtume wa Allah ﷺ</string>
     <string name="notif_sleep_title">Kabla ya kulala</string>
     <string name="notif_snooze">Nikumbushe baada ya dk 5</string>
+    <string name="notif_sunrise_title">Macheo: muda wa Alfajiri umekwisha</string>
     <string name="notifications_denied">Arifa zimezimwa kwa programu hii. Ziwashe kwenye Mipangilio ili upate vikumbusho.</string>
     <string name="off_above">Imezimwa hapo juu</string>
     <string name="on_device_ai">AI ya kwenye kifaa</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Unaweza pia kuuliza</string>
     <string name="summary_label">Muhtasari</string>
     <string name="sunrise_not_prayer_note">Macheo ni mwisho wa wakati wa Alfajiri; si sala.</string>
+    <string name="sunrise_notify">Macheo (mwisho wa muda wa Alfajiri)</string>
     <string name="supporting_passage">Kifungu kinachounga mkono</string>
     <string name="surrounding_context">Aya zinazozunguka</string>
     <string name="tab_ask">Uliza</string>

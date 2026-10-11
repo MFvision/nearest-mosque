@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">അല്ലാഹുവിന്റെ റസൂലിന്റെ ﷺ മേൽ സ്വലാത്ത് ചൊല്ലുക</string>
     <string name="notif_sleep_title">ഉറങ്ങുംമുമ്പ്</string>
     <string name="notif_snooze">5 മിനിറ്റിൽ ഓർമിപ്പിക്കുക</string>
+    <string name="notif_sunrise_title">സൂര്യോദയം: സുബ്ഹിയുടെ സമയം കഴിഞ്ഞു</string>
     <string name="notifications_denied">ഈ ആപ്പിന്റെ അറിയിപ്പുകൾ ഓഫാണ്. ഓർമ്മപ്പെടുത്തലുകൾ ലഭിക്കാൻ ക്രമീകരണങ്ങളിൽ അവ ഓണാക്കുക.</string>
     <string name="off_above">മുകളിൽ ഓഫാണ്</string>
     <string name="on_device_ai">ഉപകരണത്തിലെ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">നിങ്ങൾക്ക് ഇതും ചോദിക്കാം</string>
     <string name="summary_label">സംഗ്രഹം</string>
     <string name="sunrise_not_prayer_note">സൂര്യോദയം സുബ്ഹിന്റെ സമയത്തിന്റെ അവസാനമാണ്; അതൊരു നമസ്കാരമല്ല.</string>
+    <string name="sunrise_notify">സൂര്യോദയം (സുബ്ഹി സമയത്തിന്റെ അവസാനം)</string>
     <string name="supporting_passage">പിന്തുണയ്ക്കുന്ന ഭാഗം</string>
     <string name="surrounding_context">ചുറ്റുമുള്ള ആയത്തുകൾ</string>
     <string name="tab_ask">ചോദിക്കൂ</string>

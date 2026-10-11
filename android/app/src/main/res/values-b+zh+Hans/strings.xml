@@ -287,6 +287,7 @@
     <string name="notif_salawat_title">为安拉的使者 ﷺ 祝福</string>
     <string name="notif_sleep_title">睡前</string>
     <string name="notif_snooze">5 分钟后提醒我</string>
+    <string name="notif_sunrise_title">日出：晨礼时间已结束</string>
     <string name="notifications_denied">此应用的通知已关闭。请在设置中开启以接收提醒。</string>
     <string name="off_above">上方已关闭</string>
     <string name="on_device_ai">设备端 AI</string>
@@ -447,6 +448,7 @@
     <string name="suggested_questions">你还可以问</string>
     <string name="summary_label">摘要</string>
     <string name="sunrise_not_prayer_note">日出标志着晨礼时间结束，它本身不是一次礼拜。</string>
+    <string name="sunrise_notify">日出（晨礼时间结束）</string>
     <string name="supporting_passage">佐证段落</string>
     <string name="surrounding_context">前后经文</string>
     <string name="tab_ask">提问</string>

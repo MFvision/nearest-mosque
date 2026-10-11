@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">ਅੱਲ੍ਹਾ ਦੇ ਰਸੂਲ ﷺ \'ਤੇ ਦਰੂਦ ਭੇਜੋ</string>
     <string name="notif_sleep_title">ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ</string>
     <string name="notif_snooze">5 ਮਿੰਟ ਬਾਅਦ ਯਾਦ ਕਰਾਓ</string>
+    <string name="notif_sunrise_title">ਸੂਰਜ ਚੜ੍ਹਨਾ: ਫ਼ਜਰ ਦਾ ਸਮਾਂ ਖ਼ਤਮ</string>
     <string name="notifications_denied">ਇਸ ਐਪ ਲਈ ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ। ਯਾਦ-ਦਹਾਨੀਆਂ ਲਈ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਨ੍ਹਾਂ ਨੂੰ ਚਾਲੂ ਕਰੋ।</string>
     <string name="off_above">ਉੱਪਰ ਬੰਦ ਹੈ</string>
     <string name="on_device_ai">ਫ਼ੋਨ ’ਤੇ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">ਤੁਸੀਂ ਇਹ ਵੀ ਪੁੱਛ ਸਕਦੇ ਹੋ</string>
     <string name="summary_label">ਸਾਰ</string>
     <string name="sunrise_not_prayer_note">ਸੂਰਜ ਚੜ੍ਹਨਾ ਫ਼ਜਰ ਦੇ ਵਕਤ ਦਾ ਅੰਤ ਹੈ; ਇਹ ਨਮਾਜ਼ ਨਹੀਂ ਹੈ।</string>
+    <string name="sunrise_notify">ਸੂਰਜ ਚੜ੍ਹਨਾ (ਫ਼ਜਰ ਦੇ ਸਮੇਂ ਦਾ ਅੰਤ)</string>
     <string name="supporting_passage">ਸਹਾਇਕ ਅੰਸ਼</string>
     <string name="surrounding_context">ਆਲੇ-ਦੁਆਲੇ ਦੀਆਂ ਆਇਤਾਂ</string>
     <string name="tab_ask">ਪੁੱਛੋ</string>

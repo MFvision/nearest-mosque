@@ -132,6 +132,8 @@ object AlertPlanner {
                 if (alerts.before5 && s.before5) add(AlertKind.BEFORE_5, e, at.minusSeconds(300))
                 if (alerts.near && s.near) add(AlertKind.NEAR, e, at.minusSeconds(alerts.nearMinutes * 60L))
             }
+            // Sunrise (the end of Fajr time): a plain notification when its bell is on.
+            if (PrayerEvent.SUNRISE in atPrayer) d[PrayerEvent.SUNRISE]?.let { add(AlertKind.AT_PRAYER, PrayerEvent.SUNRISE, it) }
             val friday = d.date.dayOfWeek == DayOfWeek.FRIDAY
             if (alerts.friday && friday) {
                 d[PrayerEvent.DHUHR]?.let { add(AlertKind.FRIDAY, PrayerEvent.DHUHR, it.minusSeconds(AlertSettings.FRIDAY_LEAD_MIN * 60L)) }

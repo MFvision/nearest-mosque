@@ -289,6 +289,7 @@
     <string name="notif_salawat_title">Донесите салават на Аллаховог Посланика ﷺ</string>
     <string name="notif_sleep_title">Пре спавања</string>
     <string name="notif_snooze">Подсети ме за 5 мин</string>
+    <string name="notif_sunrise_title">Излазак сунца: време сабаха је истекло</string>
     <string name="notifications_denied">Обавештења су искључена за ову апликацију. Укључите их у подешавањима да бисте добијали подсетнике.</string>
     <string name="off_above">Искључено изнад</string>
     <string name="on_device_ai">AI на уређају</string>
@@ -449,6 +450,7 @@
     <string name="suggested_questions">Можете питати и</string>
     <string name="summary_label">Сажетак</string>
     <string name="sunrise_not_prayer_note">Излазак сунца означава крај времена сабаха; то није намаз.</string>
+    <string name="sunrise_notify">Излазак сунца (крај сабаха)</string>
     <string name="supporting_passage">Одломак као доказ</string>
     <string name="surrounding_context">Околни ајети</string>
     <string name="tab_ask">Питај</string>

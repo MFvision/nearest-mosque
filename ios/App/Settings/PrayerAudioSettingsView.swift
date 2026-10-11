@@ -93,6 +93,9 @@ struct PrayerAudioSettingsView: View {
                 }
                 .id(e)
             }
+            Toggle(isOn: Binding(get: { app.settings.reminders.contains(.sunrise) }, set: { on in Task { await app.setReminder(.sunrise, on) } })) {
+                Label(l10n.t("sunrise_notify"), systemImage: Theme.icon(.sunrise))
+            }
         } header: { Text(l10n.t("per_prayer_section")) } footer: { Text(l10n.t("per_prayer_note")) }
     }
 

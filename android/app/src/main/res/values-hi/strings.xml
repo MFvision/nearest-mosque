@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">रसूलुल्लाह ﷺ पर दुरूद भेजें</string>
     <string name="notif_sleep_title">सोने से पहले</string>
     <string name="notif_snooze">5 मिनट में याद दिलाएँ</string>
+    <string name="notif_sunrise_title">सूर्योदय: फ़ज्र का समय समाप्त</string>
     <string name="notifications_denied">इस ऐप के नोटिफ़िकेशन बंद हैं। रिमाइंडर पाने के लिए सेटिंग्स में इन्हें चालू करें।</string>
     <string name="off_above">ऊपर बंद है</string>
     <string name="on_device_ai">ऑन-डिवाइस AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">आप यह भी पूछ सकते हैं</string>
     <string name="summary_label">सारांश</string>
     <string name="sunrise_not_prayer_note">सूर्योदय फ़ज्र के वक़्त का अंत है; यह कोई नमाज़ नहीं है।</string>
+    <string name="sunrise_notify">सूर्योदय (फ़ज्र के समय का अंत)</string>
     <string name="supporting_passage">समर्थन करने वाला अंश</string>
     <string name="surrounding_context">आसपास की आयतें</string>
     <string name="tab_ask">पूछें</string>

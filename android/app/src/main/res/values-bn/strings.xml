@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">রাসূলুল্লাহ ﷺ-এর ওপর দরুদ পড়ুন</string>
     <string name="notif_sleep_title">ঘুমানোর আগে</string>
     <string name="notif_snooze">৫ মিনিট পরে মনে করাও</string>
+    <string name="notif_sunrise_title">সূর্যোদয়: ফজরের সময় শেষ</string>
     <string name="notifications_denied">এই অ্যাপের নোটিফিকেশন বন্ধ আছে। রিমাইন্ডার পেতে সেটিংসে এগুলো চালু করুন।</string>
     <string name="off_above">উপরে বন্ধ</string>
     <string name="on_device_ai">অন-ডিভাইস AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">আপনি এটাও জিজ্ঞেস করতে পারেন</string>
     <string name="summary_label">সারসংক্ষেপ</string>
     <string name="sunrise_not_prayer_note">সূর্যোদয় ফজরের সময়ের শেষ নির্দেশ করে; এটি কোনো নামাজ নয়।</string>
+    <string name="sunrise_notify">সূর্যোদয় (ফজরের সময়ের শেষ)</string>
     <string name="supporting_passage">সমর্থক অংশ</string>
     <string name="surrounding_context">আশেপাশের আয়াত</string>
     <string name="tab_ask">প্রশ্ন করুন</string>

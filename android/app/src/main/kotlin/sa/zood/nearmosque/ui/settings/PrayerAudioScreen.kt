@@ -203,6 +203,7 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
 
                 Header(stringResource(R.string.per_prayer_section))
                 PrayerEvent.prayers.forEach { e -> PrayerRows(e, alerts, e in reminders, { setBell(e, it) }) { set(alerts.withSounds(e, it)) } }
+                Toggle(stringResource(R.string.sunrise_notify), null, PrayerEvent.SUNRISE in reminders) { setBell(PrayerEvent.SUNRISE, it) }
                 Note(stringResource(R.string.per_prayer_note))
 
                 Header(stringResource(R.string.dhikr_section))

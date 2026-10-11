@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">అల్లాహ్ ప్రవక్త ﷺ పై దరూద్ పంపండి</string>
     <string name="notif_sleep_title">నిద్రకు ముందు</string>
     <string name="notif_snooze">5 నిమిషాల్లో గుర్తు చేయి</string>
+    <string name="notif_sunrise_title">సూర్యోదయం: ఫజ్ర్ సమయం ముగిసింది</string>
     <string name="notifications_denied">ఈ యాప్‌కు నోటిఫికేషన్‌లు ఆఫ్‌లో ఉన్నాయి. రిమైండర్‌లు పొందడానికి సెట్టింగ్‌లలో వాటిని ఆన్ చేయండి.</string>
     <string name="off_above">పైన ఆఫ్‌లో ఉంది</string>
     <string name="on_device_ai">ఆన్-డివైస్ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">మీరు ఇది కూడా అడగవచ్చు</string>
     <string name="summary_label">సారాంశం</string>
     <string name="sunrise_not_prayer_note">సూర్యోదయం ఫజ్ర్ సమయం ముగింపును సూచిస్తుంది; అది నమాజ్ కాదు.</string>
+    <string name="sunrise_notify">సూర్యోదయం (ఫజ్ర్ సమయం ముగింపు)</string>
     <string name="supporting_passage">ఆధార భాగం</string>
     <string name="surrounding_context">చుట్టుపక్కల ఆయతులు</string>
     <string name="tab_ask">అడగండి</string>

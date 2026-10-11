@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">আল্লাহৰ ৰাছুল ﷺ-ৰ ওপৰত দৰূদ পঠিয়াওক</string>
     <string name="notif_sleep_title">শোৱাৰ আগতে</string>
     <string name="notif_snooze">৫ মিনিট পিছত মনত পেলাওক</string>
+    <string name="notif_sunrise_title">সূৰ্যোদয়: ফজৰৰ সময় শেষ</string>
     <string name="notifications_denied">এই এপৰ জাননী অফ আছে। সোঁৱৰণী পাবলৈ ছেটিংছত সেইবোৰ অন কৰক।</string>
     <string name="off_above">ওপৰত বন্ধ আছে</string>
     <string name="on_device_ai">অন-ডিভাইচ AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">আপুনি এইটোও সুধিব পাৰে</string>
     <string name="summary_label">সাৰাংশ</string>
     <string name="sunrise_not_prayer_note">সূৰ্যোদয়ে ফজৰৰ সময়ৰ শেষ বুজায়; ই কোনো নামাজ নহয়।</string>
+    <string name="sunrise_notify">সূৰ্যোদয় (ফজৰৰ সময়ৰ শেষ)</string>
     <string name="supporting_passage">সমৰ্থনকাৰী অংশ</string>
     <string name="surrounding_context">আশে-পাশৰ আয়াত</string>
     <string name="tab_ask">সোধক</string>

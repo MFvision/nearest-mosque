@@ -282,7 +282,7 @@ internal fun ScheduleCard(ui: PrayerUi, reminders: Set<PrayerEvent>, onToggleRem
                     style = MaterialTheme.typography.titleMedium.copy(fontFeatureSettings = "tnum"),
                     fontWeight = if (isNext) FontWeight.SemiBold else FontWeight.Normal, color = fg,
                 )
-                if (e.isPrayer && onToggleReminder != null) {
+                if (onToggleReminder != null) {
                     val on = e in reminders
                     val label = stringResource(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, name)
                     Box(

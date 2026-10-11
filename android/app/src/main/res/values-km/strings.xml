@@ -287,6 +287,7 @@
     <string name="notif_salawat_title">សូមសឡាវ៉ាតលើរ៉សូលុលឡោះ ﷺ</string>
     <string name="notif_sleep_title">មុនពេលគេង</string>
     <string name="notif_snooze">រំលឹកខ្ញុំក្នុង ៥ នាទី</string>
+    <string name="notif_sunrise_title">ថ្ងៃរះ៖ ពេលសឡាតហ្វាជរ៍បានចប់</string>
     <string name="notifications_denied">ការជូនដំណឹងសម្រាប់កម្មវិធីនេះត្រូវបានបិទ។ សូមបើកវានៅក្នុងការកំណត់ ដើម្បីទទួលបានការរំលឹក។</string>
     <string name="off_above">បិទនៅខាងលើ</string>
     <string name="on_device_ai">AI លើឧបករណ៍</string>
@@ -447,6 +448,7 @@
     <string name="suggested_questions">អ្នកក៏អាចសួរផងដែរ</string>
     <string name="summary_label">សេចក្ដីសង្ខេប</string>
     <string name="sunrise_not_prayer_note">ថ្ងៃរះជាសញ្ញាបញ្ចប់ពេលស៊ូពុហ៍ វាមិនមែនជាសឡាតទេ។</string>
+    <string name="sunrise_notify">ថ្ងៃរះ (ចប់ពេលហ្វាជរ៍)</string>
     <string name="supporting_passage">អត្ថបទគាំទ្រ</string>
     <string name="surrounding_context">អាយ៉ាត់ជុំវិញ</string>
     <string name="tab_ask">សួរ</string>

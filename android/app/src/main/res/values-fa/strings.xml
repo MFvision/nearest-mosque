@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">بر رسول خدا ﷺ صلوات بفرستید</string>
     <string name="notif_sleep_title">پیش از خواب</string>
     <string name="notif_snooze">۵ دقیقهٔ دیگر یادآوری کن</string>
+    <string name="notif_sunrise_title">طلوع آفتاب: وقت نماز صبح تمام شد</string>
     <string name="notifications_denied">اعلان‌های این برنامه خاموش است. برای دریافت یادآورها آن‌ها را در تنظیمات روشن کنید.</string>
     <string name="off_above">در بالا خاموش است</string>
     <string name="on_device_ai">هوش مصنوعی روی گوشی</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">این را هم می‌توانید بپرسید</string>
     <string name="summary_label">خلاصه</string>
     <string name="sunrise_not_prayer_note">طلوع آفتاب پایان وقت نماز صبح است و خودش نماز نیست.</string>
+    <string name="sunrise_notify">طلوع آفتاب (پایان وقت صبح)</string>
     <string name="supporting_passage">متن پشتیبان</string>
     <string name="surrounding_context">آیات پیرامون</string>
     <string name="tab_ask">بپرسید</string>

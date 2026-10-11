@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Priez sur le Messager d\'Allah ﷺ</string>
     <string name="notif_sleep_title">Avant de dormir</string>
     <string name="notif_snooze">Me le rappeler dans 5 min</string>
+    <string name="notif_sunrise_title">Lever du soleil : l’heure du Fajr est terminée</string>
     <string name="notifications_denied">Les notifications sont désactivées. Activez-les dans Réglages pour recevoir les rappels.</string>
     <string name="off_above">Désactivé plus haut</string>
     <string name="on_device_ai">IA sur l’appareil</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Vous pourriez aussi demander</string>
     <string name="summary_label">Résumé</string>
     <string name="sunrise_not_prayer_note">Le lever du soleil marque la fin du Fajr ; ce n’est pas une prière.</string>
+    <string name="sunrise_notify">Lever du soleil (fin du Fajr)</string>
     <string name="supporting_passage">Passage à l’appui</string>
     <string name="surrounding_context">Versets voisins</string>
     <string name="tab_ask">Demander</string>

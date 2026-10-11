@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">Peygamberimize ﷺ salavat getirin</string>
     <string name="notif_sleep_title">Uyumadan önce</string>
     <string name="notif_snooze">5 dk sonra hatırlat</string>
+    <string name="notif_sunrise_title">Güneş doğdu: sabah namazı vakti bitti</string>
     <string name="notifications_denied">Bu uygulamanın bildirimleri kapalı. Hatırlatıcılar için Ayarlar’dan açın.</string>
     <string name="off_above">Yukarıda kapalı</string>
     <string name="on_device_ai">Cihaz içi yapay zekâ</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">Şunu da sorabilirsiniz</string>
     <string name="summary_label">Özet</string>
     <string name="sunrise_not_prayer_note">Güneşin doğuşu imsak vaktinin sonudur; bir namaz değildir.</string>
+    <string name="sunrise_notify">Güneş doğuşu (sabah vaktinin sonu)</string>
     <string name="supporting_passage">Destekleyen pasaj</string>
     <string name="surrounding_context">Çevredeki ayetler</string>
     <string name="tab_ask">Sor</string>

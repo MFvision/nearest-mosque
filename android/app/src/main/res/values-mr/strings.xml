@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">अल्लाहच्या रसूल ﷺ यांच्यावर दरूद पाठवा</string>
     <string name="notif_sleep_title">झोपण्यापूर्वी</string>
     <string name="notif_snooze">5 मिनिटांनी आठवण करा</string>
+    <string name="notif_sunrise_title">सूर्योदय: फजरची वेळ संपली</string>
     <string name="notifications_denied">या ॲपच्या सूचना बंद आहेत. रिमाइंडर मिळवण्यासाठी सेटिंग्जमध्ये त्या चालू करा.</string>
     <string name="off_above">वर बंद आहे</string>
     <string name="on_device_ai">ऑन-डिव्हाइस AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">तुम्ही हेही विचारू शकता</string>
     <string name="summary_label">सारांश</string>
     <string name="sunrise_not_prayer_note">सूर्योदयाला फजरची वेळ संपते; ही नमाज नाही.</string>
+    <string name="sunrise_notify">सूर्योदय (फजरच्या वेळेचा शेवट)</string>
     <string name="supporting_passage">आधार देणारा उतारा</string>
     <string name="surrounding_context">आजूबाजूच्या आयती</string>
     <string name="tab_ask">विचारा</string>

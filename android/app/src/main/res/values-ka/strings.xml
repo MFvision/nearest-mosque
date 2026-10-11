@@ -288,6 +288,7 @@
     <string name="notif_salawat_title">წარმოთქვით სალავათი ალლაჰის შუამავალზე ﷺ</string>
     <string name="notif_sleep_title">ძილის წინ</string>
     <string name="notif_snooze">შემახსენე 5 წუთში</string>
+    <string name="notif_sunrise_title">მზის ამოსვლა: ფაჯრის დრო დასრულდა</string>
     <string name="notifications_denied">ამ აპის შეტყობინებები გამორთულია. შეხსენებების მისაღებად ჩართეთ ისინი პარამეტრებში.</string>
     <string name="off_above">ზემოთ გამორთულია</string>
     <string name="on_device_ai">მოწყობილობაზე AI</string>
@@ -448,6 +449,7 @@
     <string name="suggested_questions">ასევე შეგიძლიათ იკითხოთ</string>
     <string name="summary_label">შეჯამება</string>
     <string name="sunrise_not_prayer_note">მზის ამოსვლა ფაჯრის დროის დასასრულს ნიშნავს; ეს ლოცვა არ არის.</string>
+    <string name="sunrise_notify">მზის ამოსვლა (ფაჯრის დასასრული)</string>
     <string name="supporting_passage">დამადასტურებელი ფრაგმენტი</string>
     <string name="surrounding_context">მიმდებარე აიათები</string>
     <string name="tab_ask">კითხვა</string>

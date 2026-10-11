@@ -334,18 +334,15 @@ struct ScheduleCard: View {
             Text(Format.time(at, zone: today.zone, locale: l10n.locale) + (nextDay ? " (\(l10n.t("next_day")))" : ""))
                 .font(.title3.weight(isNext ? .semibold : .regular)).monospacedDigit()
                 .foregroundStyle(isNext ? Theme.accent : Theme.ink)
-            if e.isPrayer {
-                let on = model.settings.reminders.contains(e)
-                Button { Task { await model.setReminder(e, !on) } } label: {
-                    Image(systemName: on ? "bell.fill" : "bell.slash").font(.subheadline)
-                        .foregroundStyle(on ? Theme.accent : Theme.ink.opacity(0.55))
-                        .frame(width: 44, height: 44).contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(l10n.t(on ? "reminder_on_a11y" : "reminder_off_a11y", name))
-            } else {
-                Color.clear.frame(width: 44, height: 44)
+            // Every row has a bell, Sunrise too (a notification that Fajr time has ended).
+            let on = model.settings.reminders.contains(e)
+            Button { Task { await model.setReminder(e, !on) } } label: {
+                Image(systemName: on ? "bell.fill" : "bell.slash").font(.subheadline)
+                    .foregroundStyle(on ? Theme.accent : Theme.ink.opacity(0.55))
+                    .frame(width: 44, height: 44).contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
+            .accessibilityLabel(l10n.t(on ? "reminder_on_a11y" : "reminder_off_a11y", name))
         }
         .padding(.leading, 10)
         .frame(minHeight: 52)

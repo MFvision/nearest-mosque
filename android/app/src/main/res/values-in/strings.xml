@@ -287,6 +287,7 @@
     <string name="notif_salawat_title">Berselawatlah kepada Rasulullah ﷺ</string>
     <string name="notif_sleep_title">Sebelum tidur</string>
     <string name="notif_snooze">Ingatkan 5 menit lagi</string>
+    <string name="notif_sunrise_title">Matahari terbit: waktu Subuh telah berakhir</string>
     <string name="notifications_denied">Notifikasi aplikasi ini mati. Nyalakan di Pengaturan untuk menerima pengingat.</string>
     <string name="off_above">Nonaktif di atas</string>
     <string name="on_device_ai">AI di perangkat</string>
@@ -447,6 +448,7 @@
     <string name="suggested_questions">Anda juga bisa bertanya</string>
     <string name="summary_label">Ringkasan</string>
     <string name="sunrise_not_prayer_note">Terbit menandai akhir waktu Subuh; bukan waktu salat.</string>
+    <string name="sunrise_notify">Matahari terbit (akhir waktu Subuh)</string>
     <string name="supporting_passage">Kutipan pendukung</string>
     <string name="surrounding_context">Ayat di sekitarnya</string>
     <string name="tab_ask">Tanya</string>
