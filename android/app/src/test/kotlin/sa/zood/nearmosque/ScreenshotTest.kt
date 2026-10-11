@@ -253,7 +253,7 @@ class ScreenshotTest {
         compose.onRoot().captureRoboImage("build/screenshots/prayer_audio_en.png")
         compose.onNodeWithText("Maghrib").performScrollTo().performClick()
         compose.waitForIdle()
-        compose.onNodeWithText("Maghrib").performScrollTo()
+        compose.onNodeWithText("Off above").performScrollTo()
         compose.waitForIdle()
         compose.onRoot().captureRoboImage("build/screenshots/prayer_audio_maghrib_en.png")
     }
