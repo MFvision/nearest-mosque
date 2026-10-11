@@ -12,6 +12,7 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AsrMadhab
 import sa.zood.nearmosque.core.HighLatRule
 import sa.zood.nearmosque.core.LatLng
@@ -19,6 +20,9 @@ import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.core.PolarRule
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerSettings
+import sa.zood.nearmosque.core.PrayerSounds
+import sa.zood.nearmosque.core.Reciter
+import sa.zood.nearmosque.core.VoiceLanguage
 import java.time.ZoneId
 
 /** The location prayer times are calculated for. Separate from the device position and map centre. */
@@ -79,6 +83,25 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val alertRamadan = booleanPreferencesKey("alert_ramadan")
         /** Minutes before Fajr for the alarm; -1 (or missing) = off. */
         val alertFajr = intPreferencesKey("alert_fajr_alarm")
+        val alertKahf = booleanPreferencesKey("alert_kahf")
+        /** Minutes after midnight; -1 (or missing) = off. */
+        val alertBedtime = intPreferencesKey("alert_bedtime")
+        val adhan = booleanPreferencesKey("audio_adhan")
+        val adhanSource = stringPreferencesKey("audio_adhan_source")
+        val fajrAdhan = booleanPreferencesKey("audio_fajr_adhan")
+        val fajrAdhanSource = stringPreferencesKey("audio_fajr_adhan_source")
+        val before10 = booleanPreferencesKey("audio_before10")
+        val before5 = booleanPreferencesKey("audio_before5")
+        val near = booleanPreferencesKey("audio_near")
+        val nearMinutes = intPreferencesKey("audio_near_minutes")
+        val voice = stringPreferencesKey("audio_voice")
+        /** "FAJR:1011,DHUHR:1111": adhan, 10 min, 5 min, approaching for each prayer listed. */
+        val perPrayer = stringPreferencesKey("audio_per_prayer")
+        val salawat = booleanPreferencesKey("audio_salawat")
+        val salawatMinutes = intPreferencesKey("audio_salawat_minutes")
+        val quran = booleanPreferencesKey("audio_quran")
+        val quranMinutes = intPreferencesKey("audio_quran_minutes")
+        val reciter = stringPreferencesKey("audio_reciter")
         fun offset(e: PrayerEvent) = intPreferencesKey("offset_${e.name}")
     }
 
@@ -118,7 +141,24 @@ class SettingsStore(private val store: DataStore<Preferences>) {
                 friday = p[K.alertFriday] ?: false,
                 ramadan = p[K.alertRamadan] ?: false,
                 fajrAlarmMinutesBefore = p[K.alertFajr]?.takeIf { it >= 0 },
-            ),
+                kahf = p[K.alertKahf] ?: false,
+                bedtimeMinutes = p[K.alertBedtime]?.takeIf { it >= 0 },
+                adhan = p[K.adhan] ?: false,
+                adhanSource = enumOr(p[K.adhanSource], AdhanSource.MAKKAH),
+                fajrAdhan = p[K.fajrAdhan] ?: false,
+                fajrAdhanSource = enumOr(p[K.fajrAdhanSource], AdhanSource.MAKKAH),
+                before10 = p[K.before10] ?: false,
+                before5 = p[K.before5] ?: false,
+                near = p[K.near] ?: false,
+                nearMinutes = p[K.nearMinutes] ?: 15,
+                voice = p[K.voice]?.let { v -> VoiceLanguage.entries.firstOrNull { it.name == v } },
+                perPrayer = decodePerPrayer(p[K.perPrayer]),
+                salawat = p[K.salawat] ?: false,
+                salawatMinutes = p[K.salawatMinutes] ?: (11 * 60),
+                quran = p[K.quran] ?: false,
+                quranMinutes = p[K.quranMinutes] ?: (20 * 60 + 30),
+                reciter = enumOr(p[K.reciter], Reciter.ALAFASY),
+            ).migrated(),
         )
     }
 
@@ -127,6 +167,41 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         p[K.alertFriday] = a.friday
         p[K.alertRamadan] = a.ramadan
         p[K.alertFajr] = a.fajrAlarmMinutesBefore ?: -1
+        p[K.alertKahf] = a.kahf
+        p[K.alertBedtime] = a.bedtimeMinutes ?: -1
+        p[K.adhan] = a.adhan
+        p[K.adhanSource] = a.adhanSource.name
+        p[K.fajrAdhan] = a.fajrAdhan
+        p[K.fajrAdhanSource] = a.fajrAdhanSource.name
+        p[K.before10] = a.before10
+        p[K.before5] = a.before5
+        p[K.near] = a.near
+        p[K.nearMinutes] = a.nearMinutes
+        a.voice?.let { p[K.voice] = it.name } ?: p.remove(K.voice)
+        p[K.perPrayer] = encodePerPrayer(a.perPrayer)
+        p[K.salawat] = a.salawat
+        p[K.salawatMinutes] = a.salawatMinutes
+        p[K.quran] = a.quran
+        p[K.quranMinutes] = a.quranMinutes
+        p[K.reciter] = a.reciter.name
+    }
+
+    companion object {
+        private inline fun <reified T : Enum<T>> enumOr(name: String?, fallback: T): T =
+            enumValues<T>().firstOrNull { it.name == name } ?: fallback
+
+        private fun bit(b: Boolean) = if (b) '1' else '0'
+
+        fun encodePerPrayer(m: Map<PrayerEvent, PrayerSounds>): String = m.entries.joinToString(",") { (e, s) ->
+            e.name + ":" + bit(s.adhan) + bit(s.before10) + bit(s.before5) + bit(s.near)
+        }
+
+        fun decodePerPrayer(v: String?): Map<PrayerEvent, PrayerSounds> = v.orEmpty().split(",").mapNotNull { part ->
+            val (name, bits) = part.split(":").takeIf { it.size == 2 } ?: return@mapNotNull null
+            val e = PrayerEvent.entries.firstOrNull { it.name == name } ?: return@mapNotNull null
+            if (bits.length != 4) return@mapNotNull null
+            e to PrayerSounds(bits[0] == '1', bits[1] == '1', bits[2] == '1', bits[3] == '1')
+        }.toMap()
     }
 
     suspend fun setPrayerLocation(loc: PrayerLocation, follow: Boolean) = store.edit { p ->

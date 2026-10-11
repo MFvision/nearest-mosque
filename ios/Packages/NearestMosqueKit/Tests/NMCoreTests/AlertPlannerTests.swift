@@ -37,4 +37,74 @@ final class AlertPlannerTests: XCTestCase {
         XCTAssertEqual(p.count, 1)
         XCTAssertEqual(p[0].at, d[2][.fajr]!.addingTimeInterval(-20 * 60))
     }
+
+    // Every reminder and sound is independent: one on, the others stay off.
+    func testAdhanAndRemindersAreIndependent() {
+        var a = AlertSettings()
+        a.adhan = true               // Dhuhr to Isha; the Fajr Adhan stays off
+        a.before10 = true            // 10 minutes on, 5 minutes off
+        a.setSounds(.maghrib, PrayerSounds(adhan: false, before10: true, before5: true, near: true))
+        let p = AlertPlanner.plan([days[0]], now: now, atPrayer: [], alerts: a) { _ in false }
+        let adhans = p.filter { $0.kind == .adhan }.map(\.event)
+        XCTAssertEqual(adhans, [.dhuhr, .asr, .isha])
+        XCTAssertEqual(p.filter { $0.kind == .before10 }.count, 5)
+        XCTAssertTrue(p.allSatisfy { $0.kind != .before5 && $0.kind != .near && $0.kind != .atPrayer })
+    }
+
+    func testBellWithoutAdhanAndAdhanWithoutBell() {
+        var a = AlertSettings()
+        a.fajrAdhan = true
+        let p = AlertPlanner.plan([days[0]], now: now, atPrayer: [.maghrib], alerts: a) { _ in false }
+        XCTAssertEqual(p.map(\.kind), [.adhan, .atPrayer])
+        XCTAssertEqual(p.map(\.event), [.fajr, .maghrib])
+    }
+
+    func testNoMadinahFajrRecordingMeansNoFajrAdhan() {
+        var a = AlertSettings()
+        a.fajrAdhan = true
+        a.fajrAdhanSource = .madinah
+        XCTAssertFalse(a.adhanPlays(.fajr))
+    }
+
+    func testRemindersBeforeThePrayer() {
+        var a = AlertSettings()
+        a.before5 = true
+        a.near = true
+        a.nearMinutes = 20
+        let d = days[0]
+        let p = AlertPlanner.plan([d], now: now, atPrayer: [], alerts: a) { _ in false }.filter { $0.event == .asr }
+        XCTAssertEqual(p.map(\.kind), [.near, .before5])
+        XCTAssertEqual(d[.asr]!.timeIntervalSince(p[0].at), 1200)
+        XCTAssertEqual(d[.asr]!.timeIntervalSince(p[1].at), 300)
+    }
+
+    func testSalawatAndKahfOnFridayOnlyQuranAndSleepDaily() {
+        var a = AlertSettings()
+        a.salawat = true
+        a.salawatMinutes = 11 * 60
+        a.kahf = true
+        a.quran = true
+        a.bedtimeMinutes = 22 * 60
+        let p = AlertPlanner.plan(days, now: now, atPrayer: [], alerts: a) { _ in false }
+        XCTAssertEqual(p.filter { $0.kind == .salawat }.map(\.date), [start.adding(days: 1)])
+        XCTAssertTrue(p.filter { $0.kind == .salawat || $0.kind == .kahf }.allSatisfy { $0.date.isFriday })
+        XCTAssertEqual(p.filter { $0.kind == .quran }.count, 3)
+        XCTAssertEqual(p.filter { $0.kind == .sleep }.count, 3)
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = zone
+        let s = p.first { $0.kind == .salawat }!
+        XCTAssertEqual(cal.component(.hour, from: s.at), 11)
+    }
+
+    func testOldEarlyReminderMovesToTheNewOnes() throws {
+        let ten = try JSONDecoder().decode(AlertSettings.self, from: Data(#"{"minutesBefore":10}"#.utf8))
+        XCTAssertTrue(ten.before10)
+        XCTAssertFalse(ten.before5)
+        XCTAssertEqual(ten.minutesBefore, 0)
+        let twenty = try JSONDecoder().decode(AlertSettings.self, from: Data(#"{"minutesBefore":20}"#.utf8))
+        XCTAssertTrue(twenty.near)
+        XCTAssertEqual(twenty.nearMinutes, 20)
+        let round = try JSONDecoder().decode(AlertSettings.self, from: JSONEncoder().encode(twenty))
+        XCTAssertEqual(round, twenty)
+    }
 }

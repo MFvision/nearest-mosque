@@ -48,4 +48,54 @@ class AlertPlannerTest {
         assertEquals(1, p.size)
         assertEquals(days[2][PrayerEvent.FAJR]!!.minusSeconds(20 * 60), p[0].at)
     }
+
+    // Every reminder and sound is independent: one on, the others stay off.
+    @Test
+    fun adhanAndRemindersAreIndependent() {
+        val a = AlertSettings(adhan = true, before10 = true)
+            .withSounds(PrayerEvent.MAGHRIB, PrayerSounds(adhan = false))
+        val p = AlertPlanner.plan(listOf(days[0]), now, emptySet(), a) { false }
+        assertEquals(listOf(PrayerEvent.DHUHR, PrayerEvent.ASR, PrayerEvent.ISHA), p.filter { it.kind == AlertKind.ADHAN }.map { it.event })
+        assertEquals(5, p.count { it.kind == AlertKind.BEFORE_10 })
+        assertTrue(p.none { it.kind == AlertKind.BEFORE_5 || it.kind == AlertKind.NEAR || it.kind == AlertKind.AT_PRAYER })
+    }
+
+    @Test
+    fun bellWithoutAdhanAndAdhanWithoutBell() {
+        val p = AlertPlanner.plan(listOf(days[0]), now, setOf(PrayerEvent.MAGHRIB), AlertSettings(fajrAdhan = true)) { false }
+        assertEquals(listOf(AlertKind.ADHAN, AlertKind.AT_PRAYER), p.map { it.kind })
+        assertEquals(listOf(PrayerEvent.FAJR, PrayerEvent.MAGHRIB), p.map { it.event })
+    }
+
+    @Test
+    fun noMadinahFajrRecordingMeansNoFajrAdhan() {
+        assertTrue(!AlertSettings(fajrAdhan = true, fajrAdhanSource = AdhanSource.MADINAH).adhanPlays(PrayerEvent.FAJR))
+    }
+
+    @Test
+    fun remindersBeforeThePrayer() {
+        val d = days[0]
+        val p = AlertPlanner.plan(listOf(d), now, emptySet(), AlertSettings(before5 = true, near = true, nearMinutes = 20)) { false }
+            .filter { it.event == PrayerEvent.ASR }
+        assertEquals(listOf(AlertKind.NEAR, AlertKind.BEFORE_5), p.map { it.kind })
+        assertEquals(d[PrayerEvent.ASR]!!.minusSeconds(1200), p[0].at)
+        assertEquals(d[PrayerEvent.ASR]!!.minusSeconds(300), p[1].at)
+    }
+
+    @Test
+    fun salawatAndKahfOnFridayOnlyQuranAndSleepDaily() {
+        val a = AlertSettings(salawat = true, salawatMinutes = 11 * 60, kahf = true, quran = true, bedtimeMinutes = 22 * 60)
+        val p = AlertPlanner.plan(days, now, emptySet(), a) { false }
+        assertEquals(listOf(start.plusDays(1)), p.filter { it.kind == AlertKind.SALAWAT }.map { it.date })
+        assertTrue(p.filter { it.kind == AlertKind.SALAWAT || it.kind == AlertKind.KAHF }.all { it.date.dayOfWeek == DayOfWeek.FRIDAY })
+        assertEquals(3, p.count { it.kind == AlertKind.QURAN })
+        assertEquals(3, p.count { it.kind == AlertKind.SLEEP })
+        assertEquals(11, p.first { it.kind == AlertKind.SALAWAT }.at.atZone(zone).hour)
+    }
+
+    @Test
+    fun oldEarlyReminderMovesToTheNewOnes() {
+        assertEquals(AlertSettings(before10 = true), AlertSettings(minutesBefore = 10).migrated())
+        assertEquals(AlertSettings(near = true, nearMinutes = 20), AlertSettings(minutesBefore = 20).migrated())
+    }
 }

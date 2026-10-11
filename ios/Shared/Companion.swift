@@ -92,129 +92,275 @@ enum CompanionLog {
     static func mood(_ level: Double) -> CompanionMood { level >= 0.75 ? .happy : level >= 0.4 ? .quiet : .sad }
 }
 
-/// The companion drawn at one moment: `level` 0...1, `phase` for the flame flicker and the liquid's wave,
-/// `tilt` (radians) for the heart's liquid surface, `blink` to close the eyes. The app animates these; widgets
-/// draw a still frame (and animate between frames when the level changes).
+/// One frame of the companion. The app steps a `CompanionPhysics` every frame (motion, taps, particles); widgets
+/// and Settings draw a still pose from the level alone.
+struct CompanionPose {
+    /// How full, 0...1 (eased in the app, so changes flow).
+    var level: Double
+    /// Seconds; drives the flame's flicker and the liquid's waves.
+    var time: Double = 0
+    /// Radians: the lantern's swing on its ring, or the tilt of the heart's liquid surface.
+    var swing: Double = 0
+    /// 0...1: how stirred it is (bigger waves, livelier flame).
+    var energy: Double = 0
+    /// 0...1 after a tap: the flame flares, the liquid splashes.
+    var flare: Double = 0
+    /// 0...1: the heart's beat (scale).
+    var pulse: Double = 0
+    /// -1...1: where the eyes look.
+    var gaze: Double = 0
+    var blink = false
+    /// Embers (lantern) or bubbles (heart), in unit coordinates of the figure.
+    var particles: [CompanionParticle] = []
+}
+
+struct CompanionParticle {
+    var x: Double
+    var y: Double
+    var vx: Double
+    var vy: Double
+    var age: Double
+    var life: Double
+    var size: Double
+}
+
+/// The companion drawn at one moment. The simple form (`level`, `phase`, `tilt`, `blink`) is for still frames.
 struct CompanionFigure: View {
     let kind: CompanionKind
-    let level: Double
-    var phase: Double = 0
-    var tilt: Double = 0
-    var blink = false
+    let pose: CompanionPose
+
+    init(kind: CompanionKind, pose: CompanionPose) {
+        self.kind = kind
+        self.pose = pose
+    }
+
+    init(kind: CompanionKind, level: Double, phase: Double = 0, tilt: Double = 0, blink: Bool = false) {
+        self.kind = kind
+        self.pose = CompanionPose(level: level, time: phase, swing: tilt, blink: blink)
+    }
 
     var body: some View {
         switch kind {
-        case .lantern: LanternFigure(level: level, phase: phase, blink: blink)
-        case .heart: HeartFigure(level: level, phase: phase, tilt: tilt, blink: blink)
-        case .none: EmptyView()
+        case .lantern:
+            Canvas { ctx, size in LanternPainter.draw(&ctx, size, pose) }
+                .aspectRatio(0.8, contentMode: .fit)
+                .accessibilityHidden(true)
+        case .heart:
+            Canvas { ctx, size in HeartPainter.draw(&ctx, size, pose) }
+                .aspectRatio(1, contentMode: .fit)
+                .accessibilityHidden(true)
+        case .none:
+            EmptyView()
         }
     }
 }
 
-private struct Face: View {
-    let mood: CompanionMood
-    let blink: Bool
-    let ink: Color
-    let size: CGFloat
-
-    var body: some View {
-        Canvas { ctx, s in
-            let eyeY = s.height * 0.36, dx = s.width * 0.2, r = s.width * 0.055
-            for x in [s.width / 2 - dx, s.width / 2 + dx] {
-                if blink || mood == .sad {
-                    var p = Path()
-                    p.move(to: CGPoint(x: x - r * 1.3, y: eyeY))
-                    p.addQuadCurve(to: CGPoint(x: x + r * 1.3, y: eyeY), control: CGPoint(x: x, y: eyeY + (mood == .sad ? r * 1.6 : r * 0.6)))
-                    ctx.stroke(p, with: .color(ink), style: StrokeStyle(lineWidth: r * 0.8, lineCap: .round))
-                } else {
-                    ctx.fill(Path(ellipseIn: CGRect(x: x - r, y: eyeY - r, width: 2 * r, height: 2 * r)), with: .color(ink))
-                }
+/// The face shared by both: eyes that look with `gaze` and blink, and a mouth that bends smoothly with the level
+/// (a smile when full, flat in between, a small frown when low; never more than that).
+enum CompanionEyes {
+    static func draw(_ ctx: inout GraphicsContext, center c: CGPoint, scale u: CGFloat, level: Double, gaze: Double, blink: Bool, ink: Color) {
+        let r = u * 0.06
+        let dx = u * 0.17
+        let look = CGFloat(max(-1, min(1, gaze))) * r * 0.55
+        let sleepy = level < 0.35
+        for side in [-1.0, 1.0] {
+            let x = c.x + CGFloat(side) * dx
+            if blink || sleepy {
+                var p = Path()
+                p.move(to: CGPoint(x: x - r * 1.2 + look, y: c.y))
+                p.addQuadCurve(to: CGPoint(x: x + r * 1.2 + look, y: c.y), control: CGPoint(x: x + look, y: c.y + r * (sleepy && !blink ? 1.3 : 0.5)))
+                ctx.stroke(p, with: .color(ink), style: StrokeStyle(lineWidth: r * 0.75, lineCap: .round))
+            } else {
+                ctx.fill(Path(ellipseIn: CGRect(x: x - r + look, y: c.y - r * 1.15, width: 2 * r, height: 2.3 * r)), with: .color(ink))
+                // A catch-light.
+                ctx.fill(Path(ellipseIn: CGRect(x: x - r * 0.35 + look, y: c.y - r * 0.8, width: r * 0.7, height: r * 0.7)), with: .color(.white.opacity(0.85)))
             }
-            let my = s.height * 0.58, mw = s.width * 0.18
-            var m = Path()
-            m.move(to: CGPoint(x: s.width / 2 - mw, y: my))
-            let bend: CGFloat = mood == .happy ? s.height * 0.12 : mood == .quiet ? 0 : -s.height * 0.09
-            m.addQuadCurve(to: CGPoint(x: s.width / 2 + mw, y: my), control: CGPoint(x: s.width / 2, y: my + bend))
-            ctx.stroke(m, with: .color(ink), style: StrokeStyle(lineWidth: r * 0.8, lineCap: .round))
         }
-        .frame(width: size, height: size)
+        // Mouth: bend from -0.6 (low) to +1 (full), continuous.
+        let bend = CGFloat(max(-0.6, min(1, (level - 0.45) * 2.2)))
+        let my = c.y + u * 0.15, mw = u * 0.11
+        var m = Path()
+        m.move(to: CGPoint(x: c.x - mw, y: my))
+        m.addQuadCurve(to: CGPoint(x: c.x + mw, y: my), control: CGPoint(x: c.x, y: my + bend * u * 0.1))
+        ctx.stroke(m, with: .color(ink), style: StrokeStyle(lineWidth: r * 0.75, lineCap: .round))
+        if level > 0.8 {
+            // Rosy cheeks when full.
+            for side in [-1.0, 1.0] {
+                let x = c.x + CGFloat(side) * dx * 1.45
+                ctx.fill(Path(ellipseIn: CGRect(x: x - r * 1.1, y: my - r * 1.4, width: r * 2.2, height: r * 1.3)), with: .color(Color(red: 1, green: 0.5, blue: 0.45).opacity(0.35)))
+            }
+        }
     }
 }
 
-/// The lantern: brass frame, warm glass, a flame that grows with the level and flickers with the phase.
-private struct LanternFigure: View {
-    let level: Double
-    let phase: Double
-    let blink: Bool
+/// Smooth pseudo-noise from layered sines (no randomness, so still frames are stable).
+private func wobble(_ t: Double, _ seed: Double) -> Double {
+    let a: Double = sin(t * 7.3 + seed) * 0.5
+    let b: Double = sin(t * 13.1 + seed * 2.1) * 0.3
+    let c: Double = sin(t * 23.7 + seed * 3.7) * 0.2
+    return a + b + c
+}
 
-    var body: some View {
-        GeometryReader { g in
-            let w = g.size.width, h = g.size.height
-            let mood = CompanionLog.mood(level)
-            let brass = level > 0.2 ? Color(red: 0.72, green: 0.57, blue: 0.18) : Color(red: 0.45, green: 0.43, blue: 0.39)
-            let glass = Color(red: 1, green: 0.95, blue: 0.77).opacity(0.25 + 0.6 * level)
-            let flicker: Double = 1 + 0.06 * sin(phase * 7) + 0.03 * sin(phase * 13)
-            let flameH: CGFloat = h * CGFloat((0.08 + 0.26 * level) * flicker)
-            let sway: CGFloat = w * 0.015 * CGFloat(sin(phase * 5))
-            ZStack {
-                // Halo: stronger as the lantern fills.
-                Circle().fill(RadialGradient(colors: [Color(red: 1, green: 0.85, blue: 0.5).opacity(0.55 * level), .clear], center: .center,
-                                             startRadius: 0, endRadius: w * 0.6))
-                    .frame(width: w * 1.2, height: w * 1.2).position(x: w / 2, y: h * 0.55)
-                // Handle and cap.
-                Path { p in
-                    p.addArc(center: CGPoint(x: w / 2, y: h * 0.12), radius: w * 0.12, startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
-                }
-                .stroke(brass, lineWidth: w * 0.035)
-                Path { p in
-                    p.move(to: CGPoint(x: w * 0.3, y: h * 0.24)); p.addLine(to: CGPoint(x: w * 0.7, y: h * 0.24))
-                    p.addLine(to: CGPoint(x: w * 0.6, y: h * 0.13)); p.addLine(to: CGPoint(x: w * 0.4, y: h * 0.13)); p.closeSubpath()
-                }
-                .fill(brass)
-                // Body.
-                RoundedRectangle(cornerRadius: w * 0.1, style: .continuous).fill(brass).frame(width: w * 0.5, height: h * 0.6).position(x: w / 2, y: h * 0.55)
-                RoundedRectangle(cornerRadius: w * 0.07, style: .continuous).fill(glass).frame(width: w * 0.38, height: h * 0.5).position(x: w / 2, y: h * 0.55)
-                // Flame.
-                Ellipse()
-                    .fill(LinearGradient(colors: [Color(red: 1, green: 0.93, blue: 0.6), Color(red: 0.96, green: 0.6, blue: 0.2)], startPoint: .top, endPoint: .bottom))
-                    .frame(width: w * 0.12 + w * 0.06 * level, height: flameH)
-                    .position(x: w / 2 + sway, y: h * 0.74 - flameH / 2)
-                    .opacity(level > 0.05 ? 1 : 0)
-                Face(mood: mood, blink: blink, ink: Color(red: 0.3, green: 0.22, blue: 0.08), size: w * 0.36)
-                    .position(x: w / 2, y: h * 0.45)
-                RoundedRectangle(cornerRadius: w * 0.03).fill(brass.opacity(0.85)).frame(width: w * 0.42, height: h * 0.06).position(x: w / 2, y: h * 0.88)
-            }
+/// The lantern: brass ring, dome and frame, warm glass, and a living flame that is the character's face. It
+/// hangs from its ring and swings with the phone; the flame stays upright and flickers.
+enum LanternPainter {
+    static func draw(_ ctx: inout GraphicsContext, _ size: CGSize, _ p: CompanionPose) {
+        let w = size.width, h = size.height
+        let level = max(0, min(1, p.level))
+        let lit = level > 0.15
+        let brass = lit ? Color(red: 0.76, green: 0.59, blue: 0.19) : Color(red: 0.5, green: 0.47, blue: 0.42)
+        let brassDark = lit ? Color(red: 0.52, green: 0.38, blue: 0.09) : Color(red: 0.36, green: 0.34, blue: 0.3)
+        let glow: Double = min(1, level * 0.9 + p.flare * 0.6)
+
+        // Halo (not swung): warmer and wider as it fills.
+        let haloR = w * (0.45 + 0.25 * CGFloat(glow))
+        let haloCenter = CGPoint(x: w / 2, y: h * 0.58)
+        ctx.fill(Path(ellipseIn: CGRect(x: haloCenter.x - haloR, y: haloCenter.y - haloR, width: haloR * 2, height: haloR * 2)),
+                 with: .radialGradient(Gradient(colors: [Color(red: 1, green: 0.8, blue: 0.4).opacity(0.55 * glow), .clear]),
+                                       center: haloCenter, startRadius: 0, endRadius: haloR))
+
+        var body = ctx
+        let pivot = CGPoint(x: w / 2, y: h * 0.05)
+        body.translateBy(x: pivot.x, y: pivot.y)
+        body.rotate(by: .radians(p.swing))
+        body.translateBy(x: -pivot.x, y: -pivot.y)
+
+        // Ring and dome.
+        var ring = Path()
+        ring.addEllipse(in: CGRect(x: w / 2 - w * 0.07, y: h * 0.01, width: w * 0.14, height: h * 0.09))
+        body.stroke(ring, with: .color(brass), lineWidth: w * 0.03)
+        var dome = Path()
+        dome.move(to: CGPoint(x: w * 0.26, y: h * 0.24))
+        dome.addQuadCurve(to: CGPoint(x: w * 0.74, y: h * 0.24), control: CGPoint(x: w / 2, y: h * 0.02))
+        dome.closeSubpath()
+        body.fill(dome, with: .linearGradient(Gradient(colors: [brass, brassDark]), startPoint: CGPoint(x: w * 0.3, y: h * 0.1), endPoint: CGPoint(x: w * 0.7, y: h * 0.24)))
+        body.fill(Path(roundedRect: CGRect(x: w * 0.22, y: h * 0.23, width: w * 0.56, height: h * 0.045), cornerRadius: w * 0.02), with: .color(brassDark))
+
+        // Glass, glowing with the flame.
+        let glass = CGRect(x: w * 0.27, y: h * 0.275, width: w * 0.46, height: h * 0.53)
+        body.fill(Path(roundedRect: glass, cornerRadius: w * 0.06),
+                  with: .linearGradient(Gradient(colors: [Color(red: 1, green: 0.96, blue: 0.82).opacity(0.25 + 0.55 * glow),
+                                                          Color(red: 1, green: 0.84, blue: 0.55).opacity(0.2 + 0.6 * glow)]),
+                                        startPoint: CGPoint(x: glass.midX, y: glass.minY), endPoint: CGPoint(x: glass.midX, y: glass.maxY)))
+
+        // The flame stays upright while the lantern swings (counter-rotated about its base).
+        let base = CGPoint(x: w / 2, y: h * 0.72)
+        var flameCtx = body
+        flameCtx.translateBy(x: base.x, y: base.y)
+        flameCtx.rotate(by: .radians(-p.swing * 0.85 + sin(p.time * 2.1) * 0.04 * (1 + p.energy)))
+        flameCtx.translateBy(x: -base.x, y: -base.y)
+        drawFlame(&flameCtx, base: base, w: w, h: h, p: p, level: level)
+
+        body.stroke(Path(roundedRect: glass, cornerRadius: w * 0.06), with: .color(brass), lineWidth: w * 0.03)
+        // Glass shine.
+        body.fill(Path(roundedRect: CGRect(x: glass.minX + w * 0.05, y: glass.minY + h * 0.03, width: w * 0.04, height: glass.height * 0.55), cornerRadius: w * 0.02),
+                  with: .color(.white.opacity(0.35)))
+        // Base.
+        body.fill(Path(roundedRect: CGRect(x: w * 0.22, y: h * 0.795, width: w * 0.56, height: h * 0.06), cornerRadius: w * 0.025), with: .color(brassDark))
+        body.fill(Path(roundedRect: CGRect(x: w * 0.3, y: h * 0.85, width: w * 0.4, height: h * 0.05), cornerRadius: w * 0.02), with: .color(brass))
+
+        // Embers rise from the flame.
+        for e in p.particles {
+            let a = max(0, 1 - e.age / e.life)
+            let r = CGFloat(e.size) * w
+            ctx.fill(Path(ellipseIn: CGRect(x: CGFloat(e.x) * w - r, y: CGFloat(e.y) * h - r, width: 2 * r, height: 2 * r)),
+                     with: .color(Color(red: 1, green: 0.72 + 0.2 * a, blue: 0.3).opacity(a)))
         }
-        .aspectRatio(0.8, contentMode: .fit)
-        .accessibilityHidden(true)
+    }
+
+    private static func drawFlame(_ ctx: inout GraphicsContext, base: CGPoint, w: CGFloat, h: CGFloat, p: CompanionPose, level: Double) {
+        let t = p.time
+        let flick: Double = 1 + (0.10 + 0.12 * p.energy) * wobble(t, 0.3)
+        let height = h * CGFloat((0.07 + 0.30 * level) * (1 + 0.45 * p.flare) * flick)
+        let width = max(w * 0.1, height * 0.62)
+        let lean = CGFloat(wobble(t * 0.7, 1.9)) * width * 0.18 * CGFloat(1 + p.energy)
+
+        func tear(_ scale: CGFloat, _ seed: Double) -> Path {
+            let hh = height * scale, ww = width * scale
+            let tip = CGPoint(x: base.x + lean * scale + CGFloat(wobble(t * 1.3, seed)) * ww * 0.08, y: base.y - hh)
+            var path = Path()
+            path.move(to: CGPoint(x: base.x, y: base.y + ww * 0.08))
+            path.addCurve(to: tip, control1: CGPoint(x: base.x - ww * 0.62, y: base.y - hh * 0.05), control2: CGPoint(x: base.x - ww * 0.18, y: base.y - hh * 0.62))
+            path.addCurve(to: CGPoint(x: base.x, y: base.y + ww * 0.08), control1: CGPoint(x: base.x + ww * 0.18, y: base.y - hh * 0.62), control2: CGPoint(x: base.x + ww * 0.62, y: base.y - hh * 0.05))
+            return path
+        }
+        // Soft glow behind the flame.
+        var glow = ctx
+        glow.addFilter(.blur(radius: width * 0.35))
+        glow.fill(tear(1.25, 0), with: .color(Color(red: 1, green: 0.6, blue: 0.15).opacity(0.55)))
+        ctx.fill(tear(1, 0.5), with: .linearGradient(Gradient(colors: [Color(red: 1, green: 0.45, blue: 0.12), Color(red: 1, green: 0.66, blue: 0.2)]),
+                                                     startPoint: CGPoint(x: base.x, y: base.y - height), endPoint: base))
+        ctx.fill(tear(0.74, 1.7), with: .linearGradient(Gradient(colors: [Color(red: 1, green: 0.78, blue: 0.3), Color(red: 1, green: 0.9, blue: 0.5)]),
+                                                        startPoint: CGPoint(x: base.x, y: base.y - height * 0.74), endPoint: base))
+        ctx.fill(tear(0.42, 2.9), with: .color(Color(red: 1, green: 0.98, blue: 0.86)))
+        // The face sits on the flame's body, so the flame is the character.
+        let faceCenter = CGPoint(x: base.x + lean * 0.3, y: base.y - max(height * 0.32, h * 0.06))
+        CompanionEyes.draw(&ctx, center: faceCenter, scale: w * 0.5, level: level, gaze: p.gaze, blink: p.blink,
+                           ink: Color(red: 0.35, green: 0.16, blue: 0.04))
     }
 }
 
-/// The heart: a vessel of light filled to the level, its surface waving with the phase and tilting with the phone.
-private struct HeartFigure: View {
-    let level: Double
-    let phase: Double
-    let tilt: Double
-    let blink: Bool
+/// The heart: a glass vessel of light, filled to the level. The liquid keeps level as the phone tilts, sloshes
+/// when moved, and bubbles; a tap makes it beat.
+enum HeartPainter {
+    static func draw(_ ctx: inout GraphicsContext, _ size: CGSize, _ p: CompanionPose) {
+        let s = min(size.width, size.height)
+        let level = max(0, min(1, p.level))
+        let warm = level > 0.15
+        let beat = 1 + 0.09 * CGFloat(p.pulse)
+        let rect = CGRect(x: (size.width - s * beat) / 2, y: (size.height - s * beat) / 2, width: s * beat, height: s * beat)
+        let heart = HeartShape().path(in: rect)
+        let red = warm ? Color(red: 0.88, green: 0.3, blue: 0.32) : Color(red: 0.72, green: 0.6, blue: 0.6)
+        let deep = warm ? Color(red: 0.66, green: 0.14, blue: 0.2) : Color(red: 0.55, green: 0.45, blue: 0.45)
 
-    var body: some View {
-        GeometryReader { g in
-            let w = g.size.width, h = g.size.height
-            let mood = CompanionLog.mood(level)
-            let red = level > 0.2 ? Color(red: 0.85, green: 0.33, blue: 0.31) : Color(red: 0.72, green: 0.62, blue: 0.6)
-            ZStack {
-                Circle().fill(RadialGradient(colors: [Color(red: 0.95, green: 0.6, blue: 0.56).opacity(0.5 * level), .clear], center: .center,
-                                             startRadius: 0, endRadius: w * 0.6))
-                    .frame(width: w * 1.2, height: w * 1.2).position(x: w / 2, y: h / 2)
-                HeartShape().fill(Color(red: 0.97, green: 0.88, blue: 0.86))
-                LiquidShape(level: level, phase: phase, tilt: tilt).fill(red).clipShape(HeartShape())
-                HeartShape().stroke(Color.white.opacity(0.6), lineWidth: w * 0.015)
-                Face(mood: mood, blink: blink, ink: Color(red: 0.35, green: 0.08, blue: 0.08), size: w * 0.46)
-                    .position(x: w / 2, y: h * 0.42)
+        // Halo.
+        let haloR = s * (0.5 + 0.18 * CGFloat(level))
+        let c = CGPoint(x: rect.midX, y: rect.midY)
+        ctx.fill(Path(ellipseIn: CGRect(x: c.x - haloR, y: c.y - haloR, width: 2 * haloR, height: 2 * haloR)),
+                 with: .radialGradient(Gradient(colors: [Color(red: 1, green: 0.55, blue: 0.55).opacity(0.45 * level + 0.25 * p.flare), .clear]),
+                                       center: c, startRadius: 0, endRadius: haloR))
+        ctx.fill(heart, with: .color(Color(red: 0.99, green: 0.92, blue: 0.91)))
+
+        var inside = ctx
+        inside.clip(to: heart)
+        // The heart's inside runs from about 0.12 to 0.9 of its height.
+        let top = rect.minY + rect.height * CGFloat(0.9 - 0.78 * level)
+        let slope = CGFloat(tan(max(-0.7, min(0.7, p.swing))))
+        let amp = rect.height * CGFloat(0.012 + 0.045 * p.energy + 0.05 * p.flare)
+        func surface(_ phase: Double, _ k: Double, _ a: CGFloat) -> Path {
+            var path = Path()
+            path.move(to: CGPoint(x: rect.minX - 4, y: rect.maxY + 4))
+            for i in 0...32 {
+                let fx = Double(i) / 32
+                let x = rect.minX + rect.width * CGFloat(fx)
+                let wave: Double = sin(phase + fx * .pi * k) + 0.5 * sin(phase * 1.7 - fx * .pi * k * 1.6)
+                path.addLine(to: CGPoint(x: x, y: top + slope * (x - rect.midX) + a * CGFloat(wave)))
             }
+            path.addLine(to: CGPoint(x: rect.maxX + 4, y: rect.maxY + 4))
+            path.closeSubpath()
+            return path
         }
-        .aspectRatio(1, contentMode: .fit)
-        .accessibilityHidden(true)
+        inside.fill(surface(p.time * 2.6 + 1.3, 2.2, amp * 1.2), with: .color(deep.opacity(0.55)))
+        inside.fill(surface(p.time * 3.1, 1.8, amp),
+                    with: .linearGradient(Gradient(colors: [red, deep]), startPoint: CGPoint(x: rect.midX, y: top), endPoint: CGPoint(x: rect.midX, y: rect.maxY)))
+        // Bubbles rise inside the liquid.
+        for b in p.particles {
+            let y = rect.minY + CGFloat(b.y) * rect.height
+            guard y > top + 2 else { continue }
+            let a = max(0, 1 - b.age / b.life)
+            let r = CGFloat(b.size) * s
+            inside.stroke(Path(ellipseIn: CGRect(x: rect.minX + CGFloat(b.x) * rect.width - r, y: y - r, width: 2 * r, height: 2 * r)),
+                          with: .color(.white.opacity(0.7 * a)), lineWidth: max(1, r * 0.35))
+        }
+        // Gloss and rim.
+        var gloss = Path()
+        gloss.addArc(center: CGPoint(x: rect.minX + rect.width * 0.3, y: rect.minY + rect.height * 0.32), radius: rect.width * 0.12,
+                     startAngle: .degrees(190), endAngle: .degrees(260), clockwise: false)
+        ctx.stroke(gloss, with: .color(.white.opacity(0.75)), style: StrokeStyle(lineWidth: s * 0.03, lineCap: .round))
+        ctx.stroke(heart, with: .color(warm ? deep.opacity(0.55) : .gray.opacity(0.5)), lineWidth: s * 0.02)
+
+        CompanionEyes.draw(&ctx, center: CGPoint(x: rect.midX, y: rect.minY + rect.height * 0.45), scale: rect.width * 0.62,
+                           level: level, gaze: p.gaze, blink: p.blink, ink: Color(red: 0.32, green: 0.05, blue: 0.08))
     }
 }
 
@@ -233,33 +379,86 @@ struct HeartShape: Shape {
     }
 }
 
-/// The liquid inside the heart: filled from the bottom to `level`, a gentle wave on top, tilted by `tilt`.
-struct LiquidShape: Shape {
-    var level: Double
-    var phase: Double
-    var tilt: Double
+/// Moves the companion: a damped spring for the lantern's swing or the liquid's surface (driven by the phone's
+/// roll and sideways jolts), a tap's flare and heartbeat, eased level changes, random blinks, and particles.
+/// Stepped once per frame by the app; nothing is stored.
+final class CompanionPhysics {
+    private(set) var pose = CompanionPose(level: 0.55)
+    private var last: Double?
+    private var angularVelocity = 0.0
+    private var beatAge = 9.0
+    private var nextBlink = 2.0
+    private var blinkUntil = 0.0
+    private var spawn = 0.0
+    private var seed: UInt64 = 0x9E37_79B9_7F4A_7C15
 
-    var animatableData: AnimatablePair<Double, AnimatablePair<Double, Double>> {
-        get { AnimatablePair(level, AnimatablePair(phase, tilt)) }
-        set { level = newValue.first; phase = newValue.second.first; tilt = newValue.second.second }
+    private func random() -> Double {
+        seed = seed &* 6_364_136_223_846_793_005 &+ 1_442_695_040_888_963_407
+        return Double(seed >> 11) / Double(1 << 53)
     }
 
-    func path(in r: CGRect) -> Path {
-        // The heart's inside runs from about 0.12 to 0.9 of its height.
-        let top: CGFloat = r.minY + r.height * CGFloat(0.9 - 0.78 * min(1, max(0, level)))
-        let slope: Double = tan(max(-0.6, min(0.6, tilt)))
-        var p = Path()
-        p.move(to: CGPoint(x: r.minX, y: r.maxY))
-        let steps = 24
-        for i in 0...steps {
-            let x = r.minX + r.width * CGFloat(i) / CGFloat(steps)
-            let angle: Double = phase * 3 + Double(i) / Double(steps) * .pi * 2
-            let wave: CGFloat = r.height * 0.025 * CGFloat(sin(angle))
-            let y: CGFloat = top + CGFloat(slope) * (x - r.midX) + wave
-            p.addLine(to: CGPoint(x: x, y: y))
+    /// One frame. `roll` is the phone's roll (radians, 0 upright), `jolt` its sideways acceleration (g).
+    func step(time: Double, kind: CompanionKind, level: Double, roll: Double, jolt: Double, still: Bool) -> CompanionPose {
+        let dt = min(1.0 / 20, max(0, time - (last ?? time)))
+        last = time
+        var p = pose
+        p.time = time
+        // Level eases toward the target (about a second).
+        p.level += (level - p.level) * (1 - exp(-dt * 2.5))
+        if still {
+            p.swing = 0; p.energy = 0; p.particles = []; p.blink = false; p.gaze = 0
+            p.flare *= exp(-dt * 3); p.pulse = 0
+            pose = p
+            return p
         }
-        p.addLine(to: CGPoint(x: r.maxX, y: r.maxY))
-        p.closeSubpath()
+        // Spring toward hanging straight down (lantern) or level with the ground (liquid).
+        let target = -max(-0.8, min(0.8, roll))
+        let (k, c, push): (Double, Double, Double) = kind == .lantern ? (16, 1.6, 9) : (28, 3.2, 14)
+        let accel = -k * (p.swing - target) - c * angularVelocity - jolt * push
+        angularVelocity += accel * dt
+        p.swing += angularVelocity * dt
+        p.energy += (min(1, abs(angularVelocity) * 0.5 + abs(jolt) * 1.5) - p.energy) * (1 - exp(-dt * 4))
+        p.flare *= exp(-dt * 1.4)
+        // Heartbeat: lub-dub after a tap, a gentle resting beat when full.
+        beatAge += dt
+        let lub = exp(-pow((beatAge - 0.08) / 0.07, 2)), dub = 0.7 * exp(-pow((beatAge - 0.36) / 0.08, 2))
+        let resting: Double = p.level > 0.75 ? 0.25 * exp(-pow(time.truncatingRemainder(dividingBy: 1.1) / 0.12, 2)) : 0
+        p.pulse = max(lub + dub, resting)
+        // Eyes follow the tilt, then drift back.
+        p.gaze += ((-p.swing * 2.2) - p.gaze) * (1 - exp(-dt * 6))
+        // Blinks at random, every 2.5 to 6 seconds.
+        if time > nextBlink { blinkUntil = time + 0.14; nextBlink = time + 2.5 + random() * 3.5 }
+        p.blink = time < blinkUntil
+        // Particles.
+        p.particles = p.particles.compactMap { (old: CompanionParticle) -> CompanionParticle? in
+            var q = old
+            q.age += dt
+            q.x += q.vx * dt
+            q.y += q.vy * dt
+            return q.age < q.life ? q : nil
+        }
+        let rate = kind == .lantern ? (p.level > 0.2 ? 0.6 + 2.5 * p.level : 0.2) + 14 * p.flare : 0.8 + 6 * p.energy + 10 * p.flare
+        spawn += rate * dt
+        while spawn >= 1, p.particles.count < 40 {
+            spawn -= 1
+            if kind == .lantern {
+                let flameTop = 0.72 - (0.07 + 0.3 * p.level) * 0.8
+                p.particles.append(CompanionParticle(x: 0.5 + (random() - 0.5) * 0.08, y: flameTop, vx: (random() - 0.5) * 0.08 - p.swing * 0.1,
+                                                     vy: -0.18 - random() * 0.2, age: 0, life: 0.8 + random() * 0.8, size: 0.008 + random() * 0.012))
+            } else {
+                p.particles.append(CompanionParticle(x: 0.3 + random() * 0.4, y: 0.86, vx: (random() - 0.5) * 0.03,
+                                                     vy: -0.12 - random() * 0.15, age: 0, life: 1.6 + random() * 1.4, size: 0.01 + random() * 0.015))
+            }
+        }
+        if spawn >= 1 { spawn = 0 }
+        pose = p
         return p
+    }
+
+    /// A tap: the flame flares and throws embers, or the heart beats and splashes.
+    func tap(kind: CompanionKind) {
+        pose.flare = 1
+        beatAge = 0
+        angularVelocity += kind == .lantern ? 1.4 : 2.2
     }
 }

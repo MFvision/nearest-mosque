@@ -26,14 +26,16 @@ import sa.zood.nearmosque.core.AlertPlanner
 import sa.zood.nearmosque.core.HijriCalendar
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.core.VoiceLanguage
 import sa.zood.nearmosque.data.AppSettings
 import sa.zood.nearmosque.ui.Format
 import java.time.Instant
 
 /**
  * Local prayer reminders: a bounded horizon (7 days) of one-shot alarms, rebuilt whenever settings
- * change, the app opens, the device reboots, or the time/zone changes. Nothing runs in the background
- * otherwise, and no audio is kept alive. Respects notification and exact-alarm permissions.
+ * change, the app opens, the device reboots, the time/zone changes, or one of them fires. The Adhan and spoken
+ * reminders are played by [PrayerAudioService] while their notification shows, then it stops. Respects
+ * notification and exact-alarm permissions, the ringer and Do Not Disturb.
  */
 class ReminderScheduler(private val context: Context, private val calculator: PrayerCalculator = PrayerCalculator()) {
     private val alarms = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -56,22 +58,32 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
         val plan = AlertPlanner.plan(days, now, settings.reminders, settings.alerts) {
             HijriCalendar.isRamadan(it, settings.prayer.hijriAdjustmentDays)
         }.take(MAX_ALERTS)
+        val voice = settings.alerts.voice ?: VoiceLanguage.forInterface(Format.languageCode(context))
         plan.forEachIndexed { code, a ->
             val name = context.getString(Format.prayerName(a.event))
             val prayerAt = days.firstOrNull { it.date == a.date }?.get(a.event) ?: a.at
             val time = Format.time(context, prayerAt, loc.zoneId)
+            val minutes = ((prayerAt.epochSecond - a.at.epochSecond) / 60).toInt()
             val (title, body) = when (a.kind) {
-                AlertKind.AT_PRAYER, AlertKind.FAJR_ALARM -> context.getString(R.string.reminder_title, name) to context.getString(R.string.reminder_body, loc.name, time)
+                AlertKind.AT_PRAYER, AlertKind.FAJR_ALARM, AlertKind.ADHAN -> context.getString(R.string.reminder_title, name) to context.getString(R.string.reminder_body, loc.name, time)
                 AlertKind.BEFORE -> context.getString(R.string.reminder_before_title, name, settings.alerts.minutesBefore) to context.getString(R.string.reminder_body, loc.name, time)
+                AlertKind.BEFORE_10, AlertKind.BEFORE_5 -> context.getString(R.string.notif_minutes_until, minutes, name) to context.getString(R.string.reminder_body, loc.name, time)
+                AlertKind.NEAR -> context.getString(R.string.notif_near_title, name) to context.getString(R.string.reminder_body, loc.name, time)
                 AlertKind.FRIDAY -> context.getString(R.string.reminder_friday_title) to context.getString(R.string.reminder_friday_body, time)
                 AlertKind.SUHOOR -> context.getString(R.string.reminder_suhoor_title) to context.getString(R.string.reminder_suhoor_body, time)
                 AlertKind.IFTAR -> context.getString(R.string.reminder_iftar_title) to context.getString(R.string.reminder_body, loc.name, time)
+                AlertKind.SALAWAT -> context.getString(R.string.notif_salawat_title) to context.getString(R.string.salawat_note)
+                AlertKind.QURAN -> context.getString(R.string.notif_quran_title) to context.getString(R.string.notif_quran_body)
+                AlertKind.SLEEP -> context.getString(R.string.notif_sleep_title) to context.getString(R.string.alerts_sleep_note)
+                AlertKind.KAHF -> context.getString(R.string.notif_kahf_title) to context.getString(R.string.alerts_kahf_note)
             }
+            val sound = AudioCatalog.sound(a.kind, a.event, settings.alerts, voice)
             val alarm = a.kind == AlertKind.FAJR_ALARM
             val pi = PendingIntent.getBroadcast(
                 context, code,
                 Intent(context, ReminderReceiver::class.java).putExtra(EXTRA_TITLE, title).putExtra(EXTRA_BODY, body)
-                    .putExtra(EXTRA_ID, code).putExtra(EXTRA_ALARM, alarm),
+                    .putExtra(EXTRA_ID, code).putExtra(EXTRA_ALARM, alarm).putExtra(EXTRA_SOUND, sound)
+                    .putExtra(EXTRA_ADHAN, a.kind == AlertKind.ADHAN),
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
             val at = a.at.toEpochMilli()
@@ -130,6 +142,9 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
         const val EXTRA_TITLE = "title"
         const val EXTRA_BODY = "body"
         const val EXTRA_ID = "id"
+        /** A recording in res/raw (AudioCatalog) played by PrayerAudioService; absent = the channel's sound. */
+        const val EXTRA_SOUND = "sound"
+        const val EXTRA_ADHAN = "adhan"
     }
 }
 
@@ -141,6 +156,11 @@ class ReminderReceiver : BroadcastReceiver() {
         }
         val alarm = intent.getBooleanExtra(ReminderScheduler.EXTRA_ALARM, false)
         val id = intent.getIntExtra(ReminderScheduler.EXTRA_ID, 0)
+        // The Adhan and the spoken reminders: the app plays the recording (with Stop on the notification).
+        if (!alarm && intent.getStringExtra(ReminderScheduler.EXTRA_SOUND) != null && PrayerAudioService.start(context, intent)) {
+            RescheduleReceiver.rescheduleAsync(context, goAsync())
+            return
+        }
         val open = PendingIntent.getActivity(
             context, 0, Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             PendingIntent.FLAG_IMMUTABLE,

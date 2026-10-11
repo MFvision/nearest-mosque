@@ -16,11 +16,17 @@ struct NearMosqueApp: App {
         // The Qibla widget's button starts the compass in the Dynamic Island through the app (in the background).
         QiblaIslandRunner.start = { await QiblaIsland.shared.start() }
         #endif
+        // Reminders reach only a few days ahead (iOS keeps 64); this tops them up while the app is closed.
+        ReminderRefresh.register()
     }
 
     var body: some Scene {
         WindowGroup {
             rootView
+                // The whole Adhan, while it plays (with Stop).
+                .overlay(alignment: .top) {
+                    AdhanNowPlayingBar().animation(Theme.spring, value: AdhanPlayer.shared.isAdhan)
+                }
                 .environment(model)
                 .environment(model.l10n)
                 .environment(\.appModel, model)

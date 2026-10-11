@@ -206,6 +206,19 @@ jobs:
           shot 28i-widgets-lantern-full-ar -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind companion -demoCompanion lantern -demoCompanionLevel 1 -demoWidgetLook cream -languageOverride ar
           shot 28j-widgets-heart-low-en -demoCity "Riyadh" -demoWidgets YES -demoWidgetKind companion -demoCompanion heart -demoCompanionLevel 0.15 -demoWidgetLook night -languageOverride en
           shot 28k-companion-card-heart-en -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion heart -demoCompanionLevel 0.6 -languageOverride en
+          # The companion moving (synthetic tilt, since the simulator has no motion sensor): short videos.
+          clip() { name=$1; shift
+            xcrun simctl terminate "$UDID" sa.zood.nearmosque 2>/dev/null || true
+            xcrun simctl launch "$UDID" sa.zood.nearmosque "$@"
+            sleep 9
+            xcrun simctl io "$UDID" recordVideo --codec h264 --force "shots/$name.mp4" & rec=$!
+            sleep 7
+            kill -INT $rec; wait $rec || true
+          }
+          clip 28l-companion-heart-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion heart -demoCompanionLevel 0.7 -demoCompanionMotion YES -languageOverride en
+          clip 28m-companion-lantern-motion -demoCity "Riyadh" -demoTab prayer -demoCompanionCard YES -demoCompanion lantern -demoCompanionLevel 0.9 -demoCompanionMotion YES -languageOverride ar
+          shot 28n-audio-settings-en -demoCity "Riyadh" -demoTab settings -demoAudioSettings YES -languageOverride en
+          shot 28o-audio-settings-maghrib-ar -demoCity "Riyadh" -demoTab settings -demoAudioSettings YES -demoAudioExpand maghrib -languageOverride ar
           xcrun simctl ui "$UDID" appearance dark || true
           shot 11-prayer-dark -demoCity "Cape Town" -demoTab prayer -languageOverride en
           shot 11b-compact-bar-dark -demoCity "Cape Town" -demoTab prayer -demoCompact YES -languageOverride en

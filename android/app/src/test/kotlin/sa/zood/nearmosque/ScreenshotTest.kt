@@ -238,4 +238,23 @@ class ScreenshotTest {
 
     @Test fun mapCards() = shootMapCards("map_cards_en", dark = false)
     @Test fun mapCardsDark() = shootMapCards("map_cards_en_dark", dark = true)
+
+    /** Prayer & Audio with a mix of switches on, and Maghrib's own settings open. */
+    @Test fun prayerAudioSettings() {
+        val c = container()
+        val alerts = sa.zood.nearmosque.core.AlertSettings(adhan = true, before10 = true, near = true, salawat = true, quran = true)
+            .withSounds(sa.zood.nearmosque.core.PrayerEvent.MAGHRIB, sa.zood.nearmosque.core.PrayerSounds(adhan = false))
+        compose.setContent {
+            NearMosqueTheme(dark = true) {
+                sa.zood.nearmosque.ui.settings.PrayerAudioScreen(c, alerts, setOf(sa.zood.nearmosque.core.PrayerEvent.FAJR)) {}
+            }
+        }
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/prayer_audio_en.png")
+        compose.onNodeWithText("Maghrib").performScrollTo().performClick()
+        compose.waitForIdle()
+        compose.onNodeWithText("Maghrib").performScrollTo()
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/prayer_audio_maghrib_en.png")
+    }
 }

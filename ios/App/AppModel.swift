@@ -278,6 +278,7 @@ final class AppModel {
     }
 
     func rescheduleReminders() async {
+        ReminderRefresh.submit()
         let lang = l10n.language
         let ask = ask
         let mosqueLine = nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) }

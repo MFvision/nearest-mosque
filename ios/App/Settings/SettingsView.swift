@@ -16,6 +16,10 @@ struct SettingsView: View {
     @State private var showCity = false
     @State private var showCalc = false
     @AppStorage("appearance") private var appearance = "system"
+    #if DEBUG
+    /// CI screenshots: `-demoAudioSettings YES` opens Prayer & Audio.
+    @State private var demoAudio = UserDefaults.standard.bool(forKey: "demoAudioSettings")
+    #endif
 
     var body: some View {
         @Bindable var l10n = l10n
@@ -69,39 +73,17 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Picker(l10n.t("alerts_before"), selection: alertBinding(\.minutesBefore)) {
-                        ForEach(AlertSettings.beforeChoices, id: \.self) { m in
-                            Text(m == 0 ? l10n.t("alerts_off") : l10n.t("alerts_minutes", m)).tag(m)
-                        }
-                    }
-                    Toggle(isOn: alertBinding(\.friday)) {
-                        VStack(alignment: .leading) { Text(l10n.t("alerts_friday")); Text(l10n.t("alerts_friday_note")).font(.caption).foregroundStyle(.secondary) }
-                    }
-                    Toggle(isOn: alertBinding(\.ramadan)) {
-                        VStack(alignment: .leading) { Text(l10n.t("alerts_ramadan")); Text(l10n.t("alerts_ramadan_note")).font(.caption).foregroundStyle(.secondary) }
-                    }
-                    Picker(selection: alertBinding(\.fajrAlarmMinutesBefore)) {
-                        Text(l10n.t("alerts_off")).tag(Int?.none)
-                        ForEach(AlertSettings.fajrAlarmChoices, id: \.self) { m in
-                            Text(m == 0 ? l10n.t("alerts_at_fajr") : l10n.t("alerts_minutes", m)).tag(Int?.some(m))
-                        }
+                    NavigationLink {
+                        PrayerAudioSettingsView()
                     } label: {
-                        VStack(alignment: .leading) { Text(l10n.t("alerts_fajr_alarm")); Text(l10n.t("alerts_fajr_alarm_note")).font(.caption).foregroundStyle(.secondary) }
-                    }
-                    Toggle(isOn: alertBinding(\.kahf)) {
-                        VStack(alignment: .leading) { Text(l10n.t("alerts_kahf")); Text(l10n.t("alerts_kahf_note")).font(.caption).foregroundStyle(.secondary) }
-                    }
-                    Toggle(isOn: Binding(get: { app.settings.alerts.bedtimeMinutes != nil },
-                                         set: { var a = app.settings.alerts; a.bedtimeMinutes = $0 ? AlertSettings.defaultBedtimeMinutes : nil; app.setAlerts(a) })) {
-                        VStack(alignment: .leading) { Text(l10n.t("alerts_sleep")); Text(l10n.t("alerts_sleep_note")).font(.caption).foregroundStyle(.secondary) }
-                    }
-                    if let minutes = app.settings.alerts.bedtimeMinutes {
-                        DatePicker(l10n.t("alerts_sleep_time"), selection: Binding(
-                            get: { Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: Date()) ?? Date() },
-                            set: { d in
-                                let c = Calendar.current.dateComponents([.hour, .minute], from: d)
-                                var a = app.settings.alerts; a.bedtimeMinutes = (c.hour ?? 22) * 60 + (c.minute ?? 30); app.setAlerts(a)
-                            }), displayedComponents: .hourAndMinute)
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(l10n.t("audio_title"))
+                                Text(l10n.t("audio_row_note")).font(.caption).foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "speaker.wave.2.fill").foregroundStyle(Theme.accent)
+                        }
                     }
                     #if !targetEnvironment(macCatalyst)
                     Toggle(isOn: Binding(get: { app.settings.liveCountdown }, set: { app.settings.liveCountdown = $0 })) {
@@ -157,6 +139,9 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(l10n.t("settings"))
+            #if DEBUG
+            .navigationDestination(isPresented: $demoAudio) { PrayerAudioSettingsView() }
+            #endif
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() }.keyboardShortcut(.cancelAction) } }
             .onAppear(perform: reload)
@@ -201,9 +186,6 @@ struct SettingsView: View {
         }
     }
 
-    private func alertBinding<T>(_ path: WritableKeyPath<AlertSettings, T>) -> Binding<T> {
-        Binding(get: { app.settings.alerts[keyPath: path] }, set: { v in var a = app.settings.alerts; a[keyPath: path] = v; app.setAlerts(a) })
-    }
 
 }
 

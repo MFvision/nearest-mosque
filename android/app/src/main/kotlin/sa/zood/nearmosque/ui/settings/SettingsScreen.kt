@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -36,6 +38,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -96,6 +99,14 @@ fun SettingsScreen(
             }
         }
     }
+    var showAudio by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf(false) }
+    if (showAudio) {
+        PrayerAudioScreen(
+            container, prayer.settings?.alerts ?: sa.zood.nearmosque.core.AlertSettings(), prayer.settings?.reminders.orEmpty(),
+            onClose = { showAudio = false },
+        )
+        return
+    }
     val current = AppCompatDelegate.getApplicationLocales().takeIf { !it.isEmpty }?.get(0)?.let { sa.zood.nearmosque.core.Languages.code(it.language, it.country, it.script) }
 
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
@@ -142,7 +153,17 @@ fun SettingsScreen(
                 OutlinedButton(onClick = onOpenCalculation, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.calculation)) }
 
                 Section(stringResource(R.string.alerts_section))
-                AlertsSettings(container, prayer.settings?.alerts ?: sa.zood.nearmosque.core.AlertSettings())
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 64.dp).clickable { showAudio = true },
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(Modifier.weight(1f)) {
+                        Text(stringResource(R.string.audio_title), style = MaterialTheme.typography.bodyLarge)
+                        Text(stringResource(R.string.audio_row_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
+                    }
+                    Icon(androidx.compose.material.icons.Icons.Filled.KeyboardArrowDown, contentDescription = null, modifier = Modifier.graphicsLayer(rotationZ = if (androidx.compose.ui.platform.LocalLayoutDirection.current == androidx.compose.ui.unit.LayoutDirection.Rtl) 90f else -90f))
+                }
+                Text(stringResource(R.string.alerts_bells_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
 
                 Section(stringResource(R.string.downloads))
                 Text(stringResource(R.string.downloads_body), style = MaterialTheme.typography.bodyMedium)
@@ -230,60 +251,5 @@ private fun PackRow(title: String, m: PackManifest, records: Int, bytes: Long, b
             )
         }
         if (onRemove != null) TextButton(onClick = onRemove, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.remove)) }
-    }
-}
-
-/** Early, Friday and Ramadan reminders and the Fajr alarm; changes reschedule everything. */
-@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
-@Composable
-private fun AlertsSettings(container: AppContainer, alerts: sa.zood.nearmosque.core.AlertSettings) {
-    val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
-    fun set(a: sa.zood.nearmosque.core.AlertSettings) {
-        if (android.os.Build.VERSION.SDK_INT >= 33) permission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-        scope.launch {
-            container.settings.setAlerts(a)
-            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
-                sa.zood.nearmosque.platform.ReminderScheduler(context).reschedule(container.settings.settings.first())
-            }
-        }
-    }
-    Text(stringResource(R.string.alerts_before), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(top = 4.dp))
-    androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        sa.zood.nearmosque.core.AlertSettings.beforeChoices.forEach { m ->
-            androidx.compose.material3.FilterChip(
-                selected = alerts.minutesBefore == m, onClick = { set(alerts.copy(minutesBefore = m)) },
-                label = { Text(if (m == 0) stringResource(R.string.alerts_off) else stringResource(R.string.alerts_minutes, m)) },
-            )
-        }
-    }
-    SwitchRow(stringResource(R.string.alerts_friday), stringResource(R.string.alerts_friday_note), alerts.friday) { set(alerts.copy(friday = it)) }
-    SwitchRow(stringResource(R.string.alerts_ramadan), stringResource(R.string.alerts_ramadan_note), alerts.ramadan) { set(alerts.copy(ramadan = it)) }
-    Text(stringResource(R.string.alerts_fajr_alarm), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(top = 8.dp))
-    Text(stringResource(R.string.alerts_fajr_alarm_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
-    androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        androidx.compose.material3.FilterChip(
-            selected = alerts.fajrAlarmMinutesBefore == null, onClick = { set(alerts.copy(fajrAlarmMinutesBefore = null)) },
-            label = { Text(stringResource(R.string.alerts_off)) },
-        )
-        sa.zood.nearmosque.core.AlertSettings.fajrAlarmChoices.forEach { m ->
-            androidx.compose.material3.FilterChip(
-                selected = alerts.fajrAlarmMinutesBefore == m, onClick = { set(alerts.copy(fajrAlarmMinutesBefore = m)) },
-                label = { Text(if (m == 0) stringResource(R.string.alerts_at_fajr) else stringResource(R.string.alerts_minutes, m)) },
-            )
-        }
-    }
-    Text(stringResource(R.string.alerts_bells_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary, modifier = Modifier.padding(top = 6.dp))
-}
-
-@Composable
-private fun SwitchRow(title: String, note: String, on: Boolean, onChange: (Boolean) -> Unit) {
-    Row(Modifier.fillMaxWidth().heightIn(min = 56.dp), verticalAlignment = Alignment.CenterVertically) {
-        Column(Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.bodyLarge)
-            Text(note, style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
-        }
-        androidx.compose.material3.Switch(checked = on, onCheckedChange = onChange)
     }
 }
