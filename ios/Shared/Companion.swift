@@ -284,10 +284,12 @@ enum LanternPainter {
             path.addCurve(to: CGPoint(x: base.x, y: base.y + ww * 0.08), control1: CGPoint(x: base.x + ww * 0.18, y: base.y - hh * 0.62), control2: CGPoint(x: base.x + ww * 0.62, y: base.y - hh * 0.05))
             return path
         }
-        // Soft glow behind the flame.
-        var glow = ctx
-        glow.addFilter(.blur(radius: width * 0.35))
-        glow.fill(tear(1.25, 0), with: .color(Color(red: 1, green: 0.6, blue: 0.15).opacity(0.55)))
+        // Soft glow behind the flame (a gradient: cheap to draw every frame).
+        let glowR = max(width, height) * 0.85
+        let glowC = CGPoint(x: base.x + lean * 0.5, y: base.y - height * 0.45)
+        ctx.fill(Path(ellipseIn: CGRect(x: glowC.x - glowR, y: glowC.y - glowR, width: glowR * 2, height: glowR * 2)),
+                 with: .radialGradient(Gradient(colors: [Color(red: 1, green: 0.62, blue: 0.18).opacity(0.5), .clear]),
+                                       center: glowC, startRadius: 0, endRadius: glowR))
         ctx.fill(tear(1, 0.5), with: .linearGradient(Gradient(colors: [Color(red: 1, green: 0.45, blue: 0.12), Color(red: 1, green: 0.66, blue: 0.2)]),
                                                      startPoint: CGPoint(x: base.x, y: base.y - height), endPoint: base))
         ctx.fill(tear(0.74, 1.7), with: .linearGradient(Gradient(colors: [Color(red: 1, green: 0.78, blue: 0.3), Color(red: 1, green: 0.9, blue: 0.5)]),
@@ -398,30 +400,34 @@ final class CompanionPhysics {
     }
 
     /// One frame. `roll` is the phone's roll (radians, 0 upright), `jolt` its sideways acceleration (g).
-    func step(time: Double, kind: CompanionKind, level: Double, roll: Double, jolt: Double, still: Bool) -> CompanionPose {
-        let dt = min(1.0 / 20, max(0, time - (last ?? time)))
+    /// One frame. `roll` is the phone's roll (radians, 0 upright), `jolt` its sideways acceleration (g). `gentle`
+    /// (Reduce Motion) keeps it following the phone, with smaller movement and no embers or bubbles.
+    func step(time: Double, kind: CompanionKind, level: Double, roll: Double, jolt: Double, gentle: Bool) -> CompanionPose {
+        // A dropped frame never slows the motion down: the spring is integrated in small steps over the real time.
+        let dt = min(0.1, max(0, time - (last ?? time)))
         last = time
         var p = pose
         p.time = time
         // Level eases toward the target (about a second).
         p.level += (level - p.level) * (1 - exp(-dt * 2.5))
-        if still {
-            p.swing = 0; p.energy = 0; p.particles = []; p.blink = false; p.gaze = 0
-            p.flare *= exp(-dt * 3); p.pulse = 0
-            pose = p
-            return p
-        }
         // Spring toward hanging straight down (lantern) or level with the ground (liquid).
         // The lantern swings at most about 25 degrees (it stays in its card); the liquid follows the phone further.
-        let limit = kind == .lantern ? 0.45 : 0.8
-        let target = -max(-limit, min(limit, roll))
+        let scale = gentle ? 0.6 : 1
+        let limit = (kind == .lantern ? 0.45 : 0.8) * scale
+        let target = -max(-limit, min(limit, roll * scale))
         let (k, c, push): (Double, Double, Double) = kind == .lantern ? (16, 1.6, 9) : (28, 3.2, 14)
-        let accel = -k * (p.swing - target) - c * angularVelocity - jolt * push
-        angularVelocity += accel * dt
-        p.swing += angularVelocity * dt
-        if kind == .lantern, abs(p.swing) > 0.55 {
-            p.swing = 0.55 * (p.swing < 0 ? -1 : 1)
-            angularVelocity *= -0.3
+        let damping = gentle ? c * 2 : c
+        var remaining = dt
+        while remaining > 0 {
+            let h = min(remaining, 1.0 / 240)
+            remaining -= h
+            let accel = -k * (p.swing - target) - damping * angularVelocity - jolt * push * scale
+            angularVelocity += accel * h
+            p.swing += angularVelocity * h
+            if kind == .lantern, abs(p.swing) > 0.55 {
+                p.swing = 0.55 * (p.swing < 0 ? -1 : 1)
+                angularVelocity *= -0.3
+            }
         }
         p.energy += (min(1, abs(angularVelocity) * 0.5 + abs(jolt) * 1.5) - p.energy) * (1 - exp(-dt * 4))
         p.flare *= exp(-dt * 1.4)
@@ -444,7 +450,7 @@ final class CompanionPhysics {
             return q.age < q.life ? q : nil
         }
         let rate = kind == .lantern ? (p.level > 0.2 ? 0.6 + 2.5 * p.level : 0.2) + 14 * p.flare : 0.8 + 6 * p.energy + 10 * p.flare
-        spawn += rate * dt
+        spawn += gentle ? 0 : rate * dt
         while spawn >= 1, p.particles.count < 40 {
             spawn -= 1
             if kind == .lantern {

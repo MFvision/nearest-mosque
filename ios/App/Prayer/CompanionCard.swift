@@ -8,7 +8,8 @@ import WidgetKit
 /// The companion on the Prayer screen, alive: the lantern swings on its ring as the phone tilts and its flame
 /// flickers and throws embers; the heart's liquid stays level, sloshes and bubbles. A tap makes the flame flare or
 /// the heart beat. "I prayed" marks the prayer in effect now (once); the companion brightens. It only knows what
-/// you mark. Without a motion sensor it sways gently on its own; with Reduce Motion it stays still.
+/// you mark. Without a motion sensor it sways gently on its own; with Reduce Motion it still follows the phone,
+/// more gently and without embers or bubbles.
 struct CompanionCard: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
@@ -17,7 +18,8 @@ struct CompanionCard: View {
     let snap: PrayerSnapshot
     @State private var level = 0.55
     @State private var bounce = false
-    @State private var motion = CompanionMotion()
+    /// One motion reader for the app (Apple advises a single CMMotionManager; this view is re-created every second).
+    private var motion: CompanionMotion { .shared }
     @State private var physics = CompanionPhysics()
     @State private var taps = 0
 
@@ -33,10 +35,10 @@ struct CompanionCard: View {
     var body: some View {
         let mood = CompanionLog.mood(level)
         HStack(spacing: 16) {
-            TimelineView(.animation(minimumInterval: reduceMotion ? 0.5 : 1 / 60, paused: scenePhase != .active)) { ctx in
+            TimelineView(.animation(minimumInterval: 1 / 60, paused: scenePhase != .active)) { ctx in
                 let t = ctx.date.timeIntervalSinceReferenceDate
                 let m = motion.sample(time: t)
-                CompanionFigure(kind: kind, pose: physics.step(time: t, kind: kind, level: level, roll: m.roll, jolt: m.jolt, still: reduceMotion))
+                CompanionFigure(kind: kind, pose: physics.step(time: t, kind: kind, level: level, roll: m.roll, jolt: m.jolt, gentle: reduceMotion))
             }
             .frame(width: 112, height: 124)
             .contentShape(Rectangle())
@@ -80,13 +82,13 @@ struct CompanionCard: View {
         .glassCard()
         .onAppear {
             level = CompanionLog.level(zone: snap.location?.zone ?? .current)
-            if !reduceMotion { motion.start() }
+            motion.start()
         }
         .onDisappear { motion.stop() }
         .onChange(of: scenePhase) { _, p in
             if p == .active {
                 level = CompanionLog.level(zone: snap.location?.zone ?? .current)
-                if !reduceMotion { motion.start() }
+                motion.start()
             } else {
                 motion.stop()
             }
@@ -98,6 +100,7 @@ struct CompanionCard: View {
 /// The phone's roll and sideways jolts, read each frame while the card is on screen (nothing is stored). With
 /// no motion sensor (simulator, Mac) the companion sways a little on its own so it never looks frozen.
 final class CompanionMotion {
+    static let shared = CompanionMotion()
     #if canImport(CoreMotion) && !os(macOS)
     private let manager = CMMotionManager()
     #endif
