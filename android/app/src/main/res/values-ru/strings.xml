@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Показать киблу</string>
     <string name="intent_show_qibla_desc">Открывает Near Mosque на направлении киблы.</string>
     <string name="language">Язык</string>
+    <string name="language_search">Поиск языка</string>
     <string name="library_answer">Ответ</string>
     <string name="library_bookmark">Сохранить</string>
     <string name="library_books">Книги</string>
@@ -413,6 +414,8 @@
     <string name="searching_from_point">Мечети рядом с выбранной точкой</string>
     <string name="searching_from_you">Мечети рядом с вами</string>
     <string name="settings">Настройки</string>
+    <string name="settings_general">Общие</string>
+    <string name="settings_personalize">Оформление</string>
     <string name="show_less_detail">Свернуть</string>
     <string name="show_more_detail">Подробнее</string>
     <string name="siri_nearest_mosque">Ближайшая мечеть: %1$s, в %2$s.</string>

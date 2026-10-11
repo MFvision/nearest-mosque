@@ -321,28 +321,28 @@ private struct SetupPage: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     @State private var showCity = false
+    @State private var showLanguages = false
     @State private var locating = false
     @State private var error: String?
 
     var body: some View {
-        @Bindable var l10n = l10n
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 Text(l10n.t("onb_setup_title")).font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
                 Text(l10n.t("onb_setup_body")).font(.body).foregroundStyle(Theme.ink.opacity(0.88))
                 Text(l10n.t("language")).font(.headline)
-                // One button that opens the list (36 languages no longer fit as chips), so the content offer
-                // below stays in view right after the choice.
-                Menu {
-                    Picker(l10n.t("language"), selection: $l10n.override) {
-                        ForEach(Localization.supported, id: \.self) { code in
-                            Text(Localization.nativeNames[code] ?? code).tag(Optional(code))
-                        }
+                // One button that opens the searchable list (36 languages), so the content offer below stays in
+                // view right after the choice.
+                Button { showLanguages = true } label: {
+                    HStack {
+                        Label(Localization.nativeNames[l10n.language] ?? l10n.language, systemImage: "globe")
+                            .font(.body.weight(.semibold))
+                        Spacer()
+                        Image(systemName: "chevron.forward").font(.footnote.weight(.semibold)).opacity(0.6)
                     }
-                } label: {
-                    Label(Localization.nativeNames[l10n.language] ?? l10n.language, systemImage: "globe")
-                        .font(.body.weight(.semibold)).frame(maxWidth: .infinity, minHeight: 50)
-                        .contentShape(Capsule())
+                    .padding(.horizontal, 20)
+                    .frame(maxWidth: .infinity, minHeight: 50)
+                    .contentShape(Capsule())
                 }
                 .buttonStyle(.plain)
                 .glass(Capsule())
@@ -384,5 +384,12 @@ private struct SetupPage: View {
             .padding(.top, 8)
         }
         .sheet(isPresented: $showCity) { CityPickerView() }
+        .sheet(isPresented: $showLanguages) {
+            NavigationStack {
+                LanguagePickerView()
+                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { showLanguages = false } } }
+            }
+            .environment(\.layoutDirection, l10n.layoutDirection)
+        }
     }
 }

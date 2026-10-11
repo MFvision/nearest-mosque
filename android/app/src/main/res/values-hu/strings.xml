@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Kibla mutatása</string>
     <string name="intent_show_qibla_desc">Megnyitja az Near Mosque alkalmazást a kibla irányánál.</string>
     <string name="language">Nyelv</string>
+    <string name="language_search">Nyelv keresése</string>
     <string name="library_answer">Válasz</string>
     <string name="library_bookmark">Mentés</string>
     <string name="library_books">Könyvek</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">Mecsetek a kiválasztott pont közelében</string>
     <string name="searching_from_you">Mecsetek a közeledben</string>
     <string name="settings">Beállítások</string>
+    <string name="settings_general">Általános</string>
+    <string name="settings_personalize">Személyre szabás</string>
     <string name="show_less_detail">Kevesebb</string>
     <string name="show_more_detail">Több részlet</string>
     <string name="siri_nearest_mosque">A legközelebbi mecset: %1$s, %2$s távolságra.</string>

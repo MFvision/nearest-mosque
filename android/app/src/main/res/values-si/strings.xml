@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">කිබ්ලාව පෙන්වන්න</string>
     <string name="intent_show_qibla_desc">Near Mosque කිබ්ලා දිශාවෙන් විවෘත කරයි.</string>
     <string name="language">භාෂාව</string>
+    <string name="language_search">භාෂාව සොයන්න</string>
     <string name="library_answer">පිළිතුර</string>
     <string name="library_bookmark">සුරකින්න</string>
     <string name="library_books">පොත්</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">තෝරාගත් ස්ථානය අසල පල්ලි පෙන්වමින්</string>
     <string name="searching_from_you">ඔබ අසල පල්ලි පෙන්වමින්</string>
     <string name="settings">සැකසීම්</string>
+    <string name="settings_general">සාමාන්‍ය</string>
+    <string name="settings_personalize">පුද්ගලීකරණය</string>
     <string name="show_less_detail">අඩුවෙන් පෙන්වන්න</string>
     <string name="show_more_detail">වැඩි විස්තර පෙන්වන්න</string>
     <string name="siri_nearest_mosque">ළඟම පල්ලිය %1$s, %2$s ක් දුරින්.</string>

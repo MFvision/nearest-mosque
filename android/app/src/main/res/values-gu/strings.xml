@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">કિબ્લા બતાવો</string>
     <string name="intent_show_qibla_desc">Near Mosque ને કિબ્લાની દિશા પર ખોલે છે.</string>
     <string name="language">ભાષા</string>
+    <string name="language_search">ભાષા શોધો</string>
     <string name="library_answer">જવાબ</string>
     <string name="library_bookmark">સેવ કરો</string>
     <string name="library_books">પુસ્તકો</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">પસંદ કરેલી જગ્યા પાસેની મસ્જિદો બતાવી રહ્યા છીએ</string>
     <string name="searching_from_you">તમારી પાસેની મસ્જિદો બતાવી રહ્યા છીએ</string>
     <string name="settings">સેટિંગ્સ</string>
+    <string name="settings_general">સામાન્ય</string>
+    <string name="settings_personalize">વ્યક્તિગત બનાવો</string>
     <string name="show_less_detail">ઓછું બતાવો</string>
     <string name="show_more_detail">વધુ વિગત બતાવો</string>
     <string name="siri_nearest_mosque">સૌથી નજીકની મસ્જિદ %1$s છે, %2$s દૂર.</string>

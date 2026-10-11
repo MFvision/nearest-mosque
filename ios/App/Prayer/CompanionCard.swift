@@ -9,7 +9,7 @@ import WidgetKit
 /// flickers and throws embers; the heart's liquid stays level, sloshes and bubbles. A tap makes the flame flare or
 /// the heart beat. "I prayed" marks the prayer in effect now (once); the companion brightens. It only knows what
 /// you mark. Without a motion sensor it sways gently on its own; with Reduce Motion it still follows the phone,
-/// more gently and without embers or bubbles.
+/// more gently, with its bubbles and embers.
 struct CompanionCard: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n

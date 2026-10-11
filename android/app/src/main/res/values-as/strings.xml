@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">কিবলা দেখুৱাওক</string>
     <string name="intent_show_qibla_desc">Near Mosque কিবলাৰ দিশত খোলে।</string>
     <string name="language">ভাষা</string>
+    <string name="language_search">ভাষা বিচাৰক</string>
     <string name="library_answer">উত্তৰ</string>
     <string name="library_bookmark">ছেভ কৰক</string>
     <string name="library_books">কিতাপ</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">বাছি লোৱা ঠাইৰ ওচৰৰ মছজিদ দেখুওৱা হৈছে</string>
     <string name="searching_from_you">আপোনাৰ ওচৰৰ মছজিদ দেখুওৱা হৈছে</string>
     <string name="settings">ছেটিংছ</string>
+    <string name="settings_general">সাধাৰণ</string>
+    <string name="settings_personalize">ব্যক্তিগতকৰণ</string>
     <string name="show_less_detail">কম দেখুৱাওক</string>
     <string name="show_more_detail">অধিক বিৱৰণ দেখুৱাওক</string>
     <string name="siri_nearest_mosque">আটাইতকৈ ওচৰৰ মছজিদ %1$s, %2$s দূৰত।</string>

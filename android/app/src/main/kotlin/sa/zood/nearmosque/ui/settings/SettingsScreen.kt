@@ -100,6 +100,7 @@ fun SettingsScreen(
         }
     }
     var showAudio by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf(false) }
+    var showLanguages by remember { mutableStateOf(false) }
     if (showAudio) {
         PrayerAudioScreen(
             container, prayer.settings?.alerts ?: sa.zood.nearmosque.core.AlertSettings(), prayer.settings?.reminders.orEmpty(),
@@ -117,11 +118,16 @@ fun SettingsScreen(
             }
             Column(Modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
                 Section(stringResource(R.string.language))
-                RadioRow(stringResource(R.string.use_device_language), current == null) {
-                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.getEmptyLocaleList())
-                }
-                LANGUAGES.forEach { (code, name) ->
-                    RadioRow(name, current == code) { setAppLanguage(code) }
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 56.dp).clickable { showLanguages = true },
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(stringResource(R.string.language), Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        current?.let { c -> LANGUAGES.firstOrNull { it.first == c }?.second } ?: stringResource(R.string.use_device_language),
+                        style = MaterialTheme.typography.bodyLarge, color = LocalExtraColors.current.accentText,
+                    )
+                    Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null)
                 }
                 Text(stringResource(R.string.draft_translations_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
                 ContentDownloadCard(sa.zood.nearmosque.ui.Format.languageCode(context), Modifier.padding(top = 12.dp))
@@ -218,6 +224,7 @@ fun SettingsScreen(
             }
         }
     }
+    if (showLanguages) LanguageDialog(current, onDismiss = { showLanguages = false })
     confirmRemove?.let { p ->
         val m = PackJson.decodeFromString(PackManifest.serializer(), p.manifestJson)
         AlertDialog(
@@ -251,5 +258,39 @@ private fun PackRow(title: String, m: PackManifest, records: Int, bytes: Long, b
             )
         }
         if (onRemove != null) TextButton(onClick = onRemove, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.remove)) }
+    }
+}
+
+/** The app's language: the device's language, then each language by its own name, with a search field. */
+@Composable
+private fun LanguageDialog(current: String?, onDismiss: () -> Unit) {
+    var query by remember { mutableStateOf("") }
+    val q = query.trim().lowercase()
+    val shown = LANGUAGES.filter { (code, name) ->
+        q.isEmpty() || name.lowercase().contains(q) || code.contains(q) ||
+            java.util.Locale.forLanguageTag(code).getDisplayLanguage(java.util.Locale.ENGLISH).lowercase().contains(q)
+    }
+    androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss) {
+        Surface(shape = MaterialTheme.shapes.extraLarge, color = MaterialTheme.colorScheme.surface) {
+            Column(Modifier.padding(vertical = 16.dp).heightIn(max = 560.dp)) {
+                Text(stringResource(R.string.language), Modifier.padding(horizontal = 24.dp).semantics { heading() }, style = MaterialTheme.typography.titleLarge)
+                androidx.compose.material3.OutlinedTextField(
+                    value = query, onValueChange = { query = it }, singleLine = true,
+                    placeholder = { Text(stringResource(R.string.language_search)) },
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+                androidx.compose.foundation.lazy.LazyColumn(Modifier.weight(1f, fill = false)) {
+                    if (q.isEmpty()) item {
+                        RadioRow(stringResource(R.string.use_device_language), current == null) {
+                            AppCompatDelegate.setApplicationLocales(LocaleListCompat.getEmptyLocaleList()); onDismiss()
+                        }
+                    }
+                    items(shown.size) { i ->
+                        val (code, name) = shown[i]
+                        RadioRow(name, current == code) { setAppLanguage(code); onDismiss() }
+                    }
+                }
+            }
+        }
     }
 }

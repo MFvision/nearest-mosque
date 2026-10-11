@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Onyesha kibla</string>
     <string name="intent_show_qibla_desc">Hufungua Near Mosque kwenye mwelekeo wa kibla.</string>
     <string name="language">Lugha</string>
+    <string name="language_search">Tafuta lugha</string>
     <string name="library_answer">Jibu</string>
     <string name="library_bookmark">Hifadhi</string>
     <string name="library_books">Vitabu</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">Inaonyesha misikiti karibu na mahali ulipochagua</string>
     <string name="searching_from_you">Inaonyesha misikiti karibu nawe</string>
     <string name="settings">Mipangilio</string>
+    <string name="settings_general">Jumla</string>
+    <string name="settings_personalize">Binafsisha</string>
     <string name="show_less_detail">Onyesha machache</string>
     <string name="show_more_detail">Onyesha maelezo zaidi</string>
     <string name="siri_nearest_mosque">Msikiti wa karibu zaidi ni %1$s, umbali wa %2$s.</string>

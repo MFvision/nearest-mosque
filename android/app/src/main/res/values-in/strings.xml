@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Tampilkan kiblat</string>
     <string name="intent_show_qibla_desc">Membuka Near Mosque pada arah kiblat.</string>
     <string name="language">Bahasa</string>
+    <string name="language_search">Cari bahasa</string>
     <string name="library_answer">Jawaban</string>
     <string name="library_bookmark">Simpan</string>
     <string name="library_books">Buku</string>
@@ -410,6 +411,8 @@
     <string name="searching_from_point">Masjid di dekat titik yang dipilih</string>
     <string name="searching_from_you">Masjid di dekat Anda</string>
     <string name="settings">Pengaturan</string>
+    <string name="settings_general">Umum</string>
+    <string name="settings_personalize">Personalisasi</string>
     <string name="show_less_detail">Tampilkan lebih sedikit</string>
     <string name="show_more_detail">Tampilkan detail</string>
     <string name="siri_nearest_mosque">Masjid terdekat adalah %1$s, berjarak %2$s.</string>

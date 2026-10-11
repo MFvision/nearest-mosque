@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Mostrar a qibla</string>
     <string name="intent_show_qibla_desc">Abre o Near Mosque na direção da qibla.</string>
     <string name="language">Idioma</string>
+    <string name="language_search">Pesquisar idioma</string>
     <string name="library_answer">Resposta</string>
     <string name="library_bookmark">Salvar</string>
     <string name="library_books">Livros</string>
@@ -412,6 +413,8 @@
     <string name="searching_from_point">Mostrando mesquitas perto do ponto selecionado</string>
     <string name="searching_from_you">Mostrando mesquitas perto de você</string>
     <string name="settings">Configurações</string>
+    <string name="settings_general">Geral</string>
+    <string name="settings_personalize">Personalizar</string>
     <string name="show_less_detail">Mostrar menos</string>
     <string name="show_more_detail">Mostrar mais detalhes</string>
     <string name="siri_nearest_mosque">A mesquita mais próxima é %1$s, a %2$s.</string>

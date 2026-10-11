@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Toon de qibla</string>
     <string name="intent_show_qibla_desc">Opent Near Mosque op de qibla-richting.</string>
     <string name="language">Taal</string>
+    <string name="language_search">Taal zoeken</string>
     <string name="library_answer">Antwoord</string>
     <string name="library_bookmark">Bewaren</string>
     <string name="library_books">Boeken</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">Moskeeën bij het gekozen punt</string>
     <string name="searching_from_you">Moskeeën bij jou in de buurt</string>
     <string name="settings">Instellingen</string>
+    <string name="settings_general">Algemeen</string>
+    <string name="settings_personalize">Personaliseren</string>
     <string name="show_less_detail">Minder tonen</string>
     <string name="show_more_detail">Meer details tonen</string>
     <string name="siri_nearest_mosque">De dichtstbijzijnde moskee is %1$s, op %2$s.</string>

@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">ყიბლის ჩვენება</string>
     <string name="intent_show_qibla_desc">ხსნის Near Mosque-ს ყიბლის მიმართულებაზე.</string>
     <string name="language">ენა</string>
+    <string name="language_search">ენის ძებნა</string>
     <string name="library_answer">პასუხი</string>
     <string name="library_bookmark">შენახვა</string>
     <string name="library_books">წიგნები</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">ნაჩვენებია მეჩეთები არჩეულ წერტილთან ახლოს</string>
     <string name="searching_from_you">ნაჩვენებია მეჩეთები თქვენ ახლოს</string>
     <string name="settings">პარამეტრები</string>
+    <string name="settings_general">ზოგადი</string>
+    <string name="settings_personalize">პერსონალიზაცია</string>
     <string name="show_less_detail">ნაკლების ჩვენება</string>
     <string name="show_more_detail">მეტი დეტალის ჩვენება</string>
     <string name="siri_nearest_mosque">უახლოესი მეჩეთია %1$s, %2$s-ში.</string>

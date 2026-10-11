@@ -25,6 +25,11 @@ final class Localization {
         reload()
     }
 
+    /// The phone's own language, when the app supports it.
+    static var deviceLanguage: String? {
+        Bundle.main.preferredLocalizations.first.flatMap(Languages.code(identifier:)) ?? bestMatch()
+    }
+
     private func reload() {
         let device = Bundle.main.preferredLocalizations.first.flatMap(Languages.code(identifier:))
         let lang = override.flatMap { Self.supported.contains($0) ? $0 : nil } ?? device ?? Self.bestMatch() ?? "en"

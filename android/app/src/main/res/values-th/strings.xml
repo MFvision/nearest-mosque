@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">แสดงกิบลัต</string>
     <string name="intent_show_qibla_desc">เปิด Near Mosque ที่ทิศกิบลัต</string>
     <string name="language">ภาษา</string>
+    <string name="language_search">ค้นหาภาษา</string>
     <string name="library_answer">คำตอบ</string>
     <string name="library_bookmark">บันทึก</string>
     <string name="library_books">หนังสือ</string>
@@ -410,6 +411,8 @@
     <string name="searching_from_point">แสดงมัสยิดใกล้จุดที่เลือก</string>
     <string name="searching_from_you">แสดงมัสยิดใกล้คุณ</string>
     <string name="settings">การตั้งค่า</string>
+    <string name="settings_general">ทั่วไป</string>
+    <string name="settings_personalize">ปรับแต่ง</string>
     <string name="show_less_detail">แสดงน้อยลง</string>
     <string name="show_more_detail">แสดงรายละเอียดเพิ่ม</string>
     <string name="siri_nearest_mosque">มัสยิดที่ใกล้ที่สุดคือ %1$s ห่าง %2$s</string>

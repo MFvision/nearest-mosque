@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">Kıbleyi göster</string>
     <string name="intent_show_qibla_desc">Near Mosque’u kıble yönünde açar.</string>
     <string name="language">Dil</string>
+    <string name="language_search">Dil ara</string>
     <string name="library_answer">Cevap</string>
     <string name="library_bookmark">Kaydet</string>
     <string name="library_books">Kitaplar</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">Seçilen noktanın yakınındaki camiler</string>
     <string name="searching_from_you">Yakınınızdaki camiler</string>
     <string name="settings">Ayarlar</string>
+    <string name="settings_general">Genel</string>
+    <string name="settings_personalize">Kişiselleştir</string>
     <string name="show_less_detail">Daha az</string>
     <string name="show_more_detail">Daha fazla ayrıntı</string>
     <string name="siri_nearest_mosque">En yakın cami %1$s, %2$s uzaklıkta.</string>

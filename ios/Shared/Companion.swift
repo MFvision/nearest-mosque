@@ -401,7 +401,7 @@ final class CompanionPhysics {
 
     /// One frame. `roll` is the phone's roll (radians, 0 upright), `jolt` its sideways acceleration (g).
     /// One frame. `roll` is the phone's roll (radians, 0 upright), `jolt` its sideways acceleration (g). `gentle`
-    /// (Reduce Motion) keeps it following the phone, with smaller movement and no embers or bubbles.
+    /// (Reduce Motion) keeps it following the phone, with smaller movement and a few less embers and bubbles.
     func step(time: Double, kind: CompanionKind, level: Double, roll: Double, jolt: Double, gentle: Bool) -> CompanionPose {
         // A dropped frame never slows the motion down: the spring is integrated in small steps over the real time.
         let dt = min(0.1, max(0, time - (last ?? time)))
@@ -450,7 +450,7 @@ final class CompanionPhysics {
             return q.age < q.life ? q : nil
         }
         let rate = kind == .lantern ? (p.level > 0.2 ? 0.6 + 2.5 * p.level : 0.2) + 14 * p.flare : 0.8 + 6 * p.energy + 10 * p.flare
-        spawn += gentle ? 0 : rate * dt
+        spawn += rate * dt * (gentle ? 0.6 : 1)
         while spawn >= 1, p.particles.count < 40 {
             spawn -= 1
             if kind == .lantern {

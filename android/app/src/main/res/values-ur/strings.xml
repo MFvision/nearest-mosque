@@ -168,6 +168,7 @@
     <string name="intent_show_qibla">قبلہ دکھائیں</string>
     <string name="intent_show_qibla_desc">قریبی مسجد ایپ کو قبلہ کی سمت پر کھولتا ہے۔</string>
     <string name="language">زبان</string>
+    <string name="language_search">زبان تلاش کریں</string>
     <string name="library_answer">جواب</string>
     <string name="library_bookmark">محفوظ کریں</string>
     <string name="library_books">کتابیں</string>
@@ -411,6 +412,8 @@
     <string name="searching_from_point">منتخب مقام کے قریب مساجد</string>
     <string name="searching_from_you">آپ کے قریب مساجد</string>
     <string name="settings">ترتیبات</string>
+    <string name="settings_general">عمومی</string>
+    <string name="settings_personalize">ذاتی ترتیب</string>
     <string name="show_less_detail">کم دکھائیں</string>
     <string name="show_more_detail">مزید تفصیل</string>
     <string name="siri_nearest_mosque">قریب ترین مسجد %1$s ہے، %2$s دور۔</string>
