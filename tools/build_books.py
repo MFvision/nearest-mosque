@@ -73,6 +73,11 @@ INLINE_PAGE = re.compile(r"^\[ص: ?\d+\]$")
 HADITH_NO = re.compile(r"^\d+\s*-\s*$")
 
 
+# Markup the converter does not draw: the editors' "PageEndV03P064" page ends (Tafsir al-Tabari) and the
+# biography field tags "--- teachers/students #" (Tarikh al-Islam). The words around them are kept.
+SOURCE_TAG = re.compile(r"PageEndV\d+P\d+|---\s*(?:teachers/students|teachers|students|misc)\b\s*#?")
+
+
 def repair(blocks):
     """Fixes the source's markup slips without touching the words: a "heading" that is really the rest of a sentence
     (an open quotation, a line starting with ":") goes back into its paragraph; a lone hadith number heads the next
@@ -80,7 +85,10 @@ def repair(blocks):
     out = []
     pending_number = None
     for kind, text in blocks:
-        text = NOTE_MARK.sub("", text).strip()
+        text = SOURCE_TAG.sub(" ", NOTE_MARK.sub("", text))
+        text = re.sub(r"\s{2,}", " ", text).strip()
+        if not text:
+            continue
         if kind != "p":
             t = text.strip()
             if not t or INLINE_PAGE.match(t):
