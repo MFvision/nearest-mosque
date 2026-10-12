@@ -32,10 +32,10 @@
   "askLanguages": ["ar", "en", "es", "fr", "id", "tr", "ur"],
   "screens": {
     "prayer":   {"title": "Prayer times", "shows": "Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day.", "city": "Riyadh", "args": ["-demoTab", "prayer"]},
-    "qibla":    {"title": "Qibla compass", "shows": "Full Qibla compass: the dial turns with the phone, the Kaaba sits at the Qibla bearing, with bearing and distance to Makkah.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoCompass", "YES"]},
+    "qibla":    {"title": "Qibla compass", "shows": "The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoCompass", "YES"]},
     "mosques-map": {"title": "Nearest mosques on the map", "shows": "Mosques around the person on the map, with the list of the nearest ones and their distance.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoMosqueMode", "1"]},
     "mosques-radar": {"title": "Mosque compass", "shows": "The mosque compass: the nearest mosques placed around the person by direction and distance.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoMosqueMode", "0"]},
-    "ask":      {"title": "Ask with cited sources", "shows": "Ask: an answer to 'Is the Quran a miracle?' built from the app's offline library, every part with its source.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoAsk", "YES", "-demoAskId", "quran-miracle"], "fallbackArgs": ["-demoTab", "ask"]},
+    "ask":      {"title": "Ask with cited sources", "shows": "Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoAsk", "YES", "-demoAskId", "quran-miracle"], "fallbackArgs": ["-demoTab", "ask"]},
     "classics": {"title": "Classical books", "shows": "The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoLibrary", "YES", "-demoClassics", "YES"]},
     "widgets":  {"title": "Home Screen widgets", "shows": "The Today widget (all prayers of the day) in its sizes, in the app's style.", "city": "Riyadh", "args": ["-demoWidgets", "YES", "-demoWidgetKind", "today", "-demoWidgetLook", "cream"]},
     "widgets-qibla": {"title": "Qibla and ring widgets", "shows": "The Qibla widget and the prayer ring widget in the teal style.", "city": "Riyadh", "args": ["-demoWidgets", "YES", "-demoWidgetKind", "qibla", "-demoWidgetLook", "teal"]},
@@ -53,12 +53,12 @@
   },
   "platforms": {
     "iphone": {
-      "displayType": "APP_IPHONE_67", "label": "iPhone 6.9\" display", "simulator": "iPhone Pro Max", "scheme": "NearMosque",
+      "displayType": "APP_IPHONE_67", "label": "iPhone 6.9\" display", "simulator": "^iPhone \\d+ Pro Max$", "scheme": "NearMosque",
       "sizes": [[1320, 2868], [1290, 2796], [1260, 2736]],
       "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "island", "audio", "mosques-radar", "prayer-dark"]
     },
     "ipad": {
-      "displayType": "APP_IPAD_PRO_3GEN_129", "label": "iPad 13\" display", "simulator": "iPad Pro 13-inch", "scheme": "NearMosque",
+      "displayType": "APP_IPAD_PRO_3GEN_129", "label": "iPad 13\" display", "simulator": "^iPad Pro 13-inch", "scheme": "NearMosque",
       "sizes": [[2064, 2752], [2048, 2732]],
       "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding", "prayer-landscape"]
     },
@@ -68,12 +68,12 @@
       "order": ["prayer", "mosques-map", "ask", "classics", "widgets", "audio", "qibla"]
     },
     "tv": {
-      "displayType": "APP_APPLE_TV", "label": "Apple TV", "simulator": "Apple TV 4K", "scheme": "NearMosqueTV",
+      "displayType": "APP_APPLE_TV", "label": "Apple TV", "simulator": "^Apple TV 4K", "scheme": "NearMosqueTV",
       "sizes": [[3840, 2160], [1920, 1080]],
       "order": ["tv-board", "tv-qibla", "tv-mosques", "tv-alert", "tv-top-shelf", "tv-settings"]
     },
     "vision": {
-      "displayType": "APP_APPLE_VISION_PRO", "label": "Apple Vision Pro", "simulator": "Apple Vision Pro", "scheme": "NearMosqueVision",
+      "displayType": "APP_APPLE_VISION_PRO", "label": "Apple Vision Pro", "simulator": "^Apple Vision Pro", "scheme": "NearMosqueVision",
       "sizes": [[3840, 2160]],
       "order": ["prayer", "mosques-map", "ask", "classics", "audio", "onboarding"]
     }

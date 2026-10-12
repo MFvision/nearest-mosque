@@ -10,6 +10,7 @@ manifest that says where each file goes in App Store Connect.
 """
 import json
 import pathlib
+import re
 import subprocess
 import sys
 import time
@@ -30,8 +31,8 @@ def simctl(*args, check=False):
     return run("xcrun", "simctl", *args, check=check)
 
 
-def find_simulator(name, family):
-    """Newest-runtime simulator whose name starts with `name` (created when the runtime has none)."""
+def find_simulator(pattern, family):
+    """Newest-runtime simulator whose name matches `pattern`, the newest model first (created when none exists)."""
     devices = json.loads(simctl("list", "devices", "available", "-j", check=True).stdout)["devices"]
 
     def version(rt):
@@ -40,12 +41,13 @@ def find_simulator(name, family):
 
     runtimes = sorted([rt for rt in devices if any(f in rt for f in family)], key=version)
     for rt in reversed(runtimes):
-        for d in devices[rt]:
-            if d["name"].startswith(name):
+        for d in sorted(devices[rt], key=lambda d: d["name"], reverse=True):
+            if re.search(pattern, d["name"]):
                 return d["udid"]
     # No device of that kind yet (e.g. a freshly downloaded visionOS runtime): create one.
     types = json.loads(simctl("list", "devicetypes", "-j", check=True).stdout)["devicetypes"]
-    kind = next(t["identifier"] for t in reversed(types) if t["name"].startswith(name))
+    kind = next(t for t in reversed(types) if re.search(pattern, t["name"]))
+    name, kind = kind["name"], kind["identifier"]
     rts = json.loads(simctl("list", "runtimes", "available", "-j", check=True).stdout)["runtimes"]
     runtime = [r for r in rts if any(f in r["identifier"] for f in family)][-1]["identifier"]
     return simctl("create", name, kind, runtime, check=True).stdout.strip()

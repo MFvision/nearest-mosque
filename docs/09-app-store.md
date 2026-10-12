@@ -59,9 +59,9 @@ The exact size of every file is in the manifest.
 | # | File | Title | What it shows |
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
-| 2 | `02-qibla.png` | Qibla compass | Full Qibla compass: the dial turns with the phone, the Kaaba sits at the Qibla bearing, with bearing and distance to Makkah. |
+| 2 | `02-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
 | 3 | `03-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 4 | `04-ask.png` | Ask with cited sources | Ask: an answer to 'Is the Quran a miracle?' built from the app's offline library, every part with its source. |
+| 4 | `04-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
 | 5 | `05-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
 | 6 | `06-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
 | 7 | `07-island.png` | Dynamic Island and Lock Screen | The next-prayer Live Activity in the Dynamic Island and on the Lock Screen. |
@@ -74,9 +74,9 @@ The exact size of every file is in the manifest.
 | # | File | Title | What it shows |
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
-| 2 | `02-qibla.png` | Qibla compass | Full Qibla compass: the dial turns with the phone, the Kaaba sits at the Qibla bearing, with bearing and distance to Makkah. |
+| 2 | `02-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
 | 3 | `03-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 4 | `04-ask.png` | Ask with cited sources | Ask: an answer to 'Is the Quran a miracle?' built from the app's offline library, every part with its source. |
+| 4 | `04-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
 | 5 | `05-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
 | 6 | `06-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
 | 7 | `07-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
@@ -90,11 +90,11 @@ The exact size of every file is in the manifest.
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
 | 2 | `02-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 3 | `03-ask.png` | Ask with cited sources | Ask: an answer to 'Is the Quran a miracle?' built from the app's offline library, every part with its source. |
+| 3 | `03-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
 | 4 | `04-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
 | 5 | `05-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
 | 6 | `06-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
-| 7 | `07-qibla.png` | Qibla compass | Full Qibla compass: the dial turns with the phone, the Kaaba sits at the Qibla bearing, with bearing and distance to Makkah. |
+| 7 | `07-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
 
 ### Apple TV: `APP_APPLE_TV`
 
@@ -113,7 +113,7 @@ The exact size of every file is in the manifest.
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
 | 2 | `02-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 3 | `03-ask.png` | Ask with cited sources | Ask: an answer to 'Is the Quran a miracle?' built from the app's offline library, every part with its source. |
+| 3 | `03-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
 | 4 | `04-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
 | 5 | `05-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
 | 6 | `06-onboarding.png` | Welcome | The first page of the welcome tour. |
