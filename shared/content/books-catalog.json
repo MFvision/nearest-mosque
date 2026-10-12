@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "baseUrl": "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/a00367b7b54b35bd8cb5ee9e5a64a411a5ce1432/books/",
+ "baseUrl": "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/197bcd33f251f54bf3c1a0b7961342a9b42aa7ad/books/",
  "source": "OpenITI (KITAB), CC BY-NC-SA 4.0 · doi:10.5281/zenodo.3082463",
  "books": [
   {
@@ -13,9 +13,9 @@
     {
      "file": "tawhid-v01.pdf",
      "volume": 1,
-     "pages": 173,
-     "bytes": 801024,
-     "sha256": "d8dd476ded5286d3af7ed23c3cd51da500f2ea892aa22b9816462249bc12d8cc"
+     "pages": 167,
+     "bytes": 791466,
+     "sha256": "36239b0e3a00c675ec534cc298b9e366928e6f4ff0fc24e64b2d4a5b7b3f49bc"
     }
    ]
   },
@@ -30,8 +30,8 @@
      "file": "thalathat-usul-v01.pdf",
      "volume": 1,
      "pages": 24,
-     "bytes": 150046,
-     "sha256": "5f302d9d91444b323415137f38ab183756fba4791c70a8ee7bc950d5cdc97e61"
+     "bytes": 149985,
+     "sha256": "f245f6afd7a7568cf29220a5615257841a326f9e75e4d7c9dce2807661c8b684"
     }
    ]
   },
@@ -46,8 +46,8 @@
      "file": "qawaid-arba-v01.pdf",
      "volume": 1,
      "pages": 8,
-     "bytes": 88047,
-     "sha256": "cff0b57698119cd2c0b3f8591938ec0561e3a9013e1086aa9397017d18539a2a"
+     "bytes": 88074,
+     "sha256": "bac01b5c8aa07b9fd0abb78867fa34f520e0df33385b9a2bd8aad68a06282d09"
     }
    ]
   },
@@ -62,8 +62,8 @@
      "file": "kashf-shubuhat-v01.pdf",
      "volume": 1,
      "pages": 52,
-     "bytes": 262861,
-     "sha256": "ac13cd14dd08221b8ef8368c61c0cb624c085d2ae392e6e67460ce5b8785748f"
+     "bytes": 262337,
+     "sha256": "1d1a0e0c253b5c691e1f9ab16ff9f9ad6b69c06ac84928db989b76f41df0292d"
     }
    ]
   },
@@ -77,9 +77,9 @@
     {
      "file": "fath-majid-v01.pdf",
      "volume": 1,
-     "pages": 956,
-     "bytes": 4087559,
-     "sha256": "8617b4cc57b9c0d4cbfd21263578b10d6ba850e2331fa9f17eb3ba6e29df771d"
+     "pages": 941,
+     "bytes": 4057378,
+     "sha256": "f27d57ab7eabe8c39c12e6bec1e759e43cbecddb4f51fcaf715b74530288bd28"
     }
    ]
   },
@@ -93,9 +93,9 @@
     {
      "file": "taysir-aziz-v01.pdf",
      "volume": 1,
-     "pages": 1305,
-     "bytes": 4697708,
-     "sha256": "12fffde2befe95f9c524ec8aefd730c62fe75f4635d583d46beb9cc4f256820a"
+     "pages": 1275,
+     "bytes": 4669797,
+     "sha256": "846bc2b8f4fb7d81d36fabe07b4fbf47bbd7d8ed5c5924825b09a3df51d86a61"
     }
    ]
   },
@@ -110,8 +110,8 @@
      "file": "wasitiyya-v01.pdf",
      "volume": 1,
      "pages": 47,
-     "bytes": 220819,
-     "sha256": "d2d3b877b3a0c3698fb0db773607d1f2a4727e48b7e1d62cdcc490ef5dc9cb25"
+     "bytes": 220048,
+     "sha256": "8e8e06ce6b671c05ac17c90c5708f42a27a5d06072b022b04c2603d7e56478dc"
     }
    ]
   },
@@ -125,9 +125,9 @@
     {
      "file": "hamawiyya-v01.pdf",
      "volume": 1,
-     "pages": 372,
-     "bytes": 1153911,
-     "sha256": "9bb87d5ead3769591e27131dd7934c1650bf8482b468f82b241c637fc5a40ae7"
+     "pages": 371,
+     "bytes": 1137916,
+     "sha256": "eb482f309d6c8c504c93c1e8335dc9b9b74cf2059d0d7a898da77fc2c44f2151"
     }
    ]
   },
@@ -141,9 +141,9 @@
     {
      "file": "tadmuriyya-v01.pdf",
      "volume": 1,
-     "pages": 249,
-     "bytes": 1073131,
-     "sha256": "1e2aab33391a2e8296f415f0fe8236ac3fd2769d5e84a8e0208a4908277a6a29"
+     "pages": 246,
+     "bytes": 1062926,
+     "sha256": "cbd62035ac026bd04cb72484758a97f33d70da17fb6a7d609b50610982b1febf"
     }
    ]
   },
@@ -157,9 +157,9 @@
     {
      "file": "ubudiyya-v01.pdf",
      "volume": 1,
-     "pages": 134,
-     "bytes": 651328,
-     "sha256": "c9f4cc561fab2a36ee8b1b105e763758a8889511c2d4513878f69f199e6bf8e5"
+     "pages": 129,
+     "bytes": 643841,
+     "sha256": "5f67ff5d0c2fa3432f733dd4d315d9cc970fd7b768655961c6b31729671d915e"
     }
    ]
   },
@@ -173,9 +173,9 @@
     {
      "file": "iqtida-v01.pdf",
      "volume": 1,
-     "pages": 901,
-     "bytes": 3611572,
-     "sha256": "068ed90a5caee43473679610c7b92ec1227da17488ba5e5e608159dda9abf734"
+     "pages": 895,
+     "bytes": 3599277,
+     "sha256": "dd5935fcad8e10873c52ff38d5c5578df0ba2230cf0d6c4ce7ad6a0d89fbbec1"
     }
    ]
   },
@@ -190,8 +190,8 @@
      "file": "tahawiyya-v01.pdf",
      "volume": 1,
      "pages": 47,
-     "bytes": 188824,
-     "sha256": "1946e2e02c0fc6980802e3d7af573c34c222f625af6de76e3052177656505537"
+     "bytes": 188241,
+     "sha256": "9b1b3cdfd030c0a9b9b8a2f91db5794b07a9d2c5c64e3c96d6f0ccb06d68cdcf"
     }
    ]
   },
@@ -205,9 +205,9 @@
     {
      "file": "sharh-tahawiyya-v01.pdf",
      "volume": 1,
-     "pages": 971,
-     "bytes": 3485426,
-     "sha256": "d8e78afde5dbf6e0d3579ea8ea243aef0165091f550043ebce4d21ed2fd77c18"
+     "pages": 928,
+     "bytes": 3447844,
+     "sha256": "7bb07a07b09eed6a7ba40ed68982a1c9aa45d50c13406def23584b969ab5aed1"
     }
    ]
   },
@@ -221,9 +221,9 @@
     {
      "file": "lumca-v01.pdf",
      "volume": 1,
-     "pages": 36,
-     "bytes": 200876,
-     "sha256": "35a28527e4b02a64d1a632e21c67acc4e37d1a536cec0d126c464ea8b4791e9a"
+     "pages": 35,
+     "bytes": 199150,
+     "sha256": "94508237478092708c6b07a8fcde608b20cab9d33b3fbbdd2966a87caf8436ae"
     }
    ]
   },
@@ -238,8 +238,8 @@
      "file": "usul-sunna-v01.pdf",
      "volume": 1,
      "pages": 52,
-     "bytes": 169597,
-     "sha256": "b70df65999ec6e57cc0020f4bf0fd2a35b61965a3dafd9ca75186f25129ace1e"
+     "bytes": 168537,
+     "sha256": "505789596cc5c641c8bd89f71fe2d8de44494990a3cd94be94267489808a1cde"
     }
    ]
   },
@@ -253,9 +253,9 @@
     {
      "file": "sharh-sunna-v01.pdf",
      "volume": 1,
-     "pages": 56,
-     "bytes": 276388,
-     "sha256": "267c59435346a7dcdacb8a1bfc83ded8d64144dd2a373cf87b736e7084c90952"
+     "pages": 50,
+     "bytes": 272482,
+     "sha256": "fa70713cb3c73d7c1d91379da68b5e8cff0b6e317817d87260110815b9f8b010"
     }
    ]
   },
@@ -269,16 +269,16 @@
     {
      "file": "tawhid-khuzayma-v01.pdf",
      "volume": 1,
-     "pages": 416,
-     "bytes": 1571593,
-     "sha256": "d05ff9fe8bd9fb270ae8be5bd4038b43677ce9ea95ab21fb5602efcd324ac10c"
+     "pages": 409,
+     "bytes": 1549997,
+     "sha256": "2504e9bc665d7e38de9a3857b22f7031d17f0a274b94b886d81e9d62a63fedc0"
     },
     {
      "file": "tawhid-khuzayma-v02.pdf",
      "volume": 2,
-     "pages": 528,
-     "bytes": 1929024,
-     "sha256": "ca46cd1ed2b686d0aaa78e96c7ff5d8ea6e5aba659eb369e253516ca088da943"
+     "pages": 525,
+     "bytes": 1905985,
+     "sha256": "6cefe755140f32cd18c341ffc9ccc92801c33140c1dd31b186ada68e60f59fb9"
     }
    ]
   },
@@ -292,37 +292,37 @@
     {
      "file": "sharica-v01.pdf",
      "volume": 1,
-     "pages": 326,
-     "bytes": 1348556,
-     "sha256": "0ce3a72e670a9b2e854cc5b30c91d601b9bcbb386e2c528de010ed89724f779d"
+     "pages": 316,
+     "bytes": 1332179,
+     "sha256": "8488e488f3ae50cb8b9dd32fcd99538a82cbb9c645d2945989a980df95f28841"
     },
     {
      "file": "sharica-v02.pdf",
      "volume": 2,
-     "pages": 617,
-     "bytes": 2643358,
-     "sha256": "e3b9043b4982b9b1666aafb4cc90b580f8130c7f9cb1e5d118be9f002705a24f"
+     "pages": 606,
+     "bytes": 2617265,
+     "sha256": "67680803b944457446050126224adb4b21ebe2052e816b6787a9363bf7faa5de"
     },
     {
      "file": "sharica-v03.pdf",
      "volume": 3,
-     "pages": 638,
-     "bytes": 2750144,
-     "sha256": "3f1b58ff2dbe4fa1c6b2eb3ba9e87e5eefc740fd9e13a9318bc2862333074ca3"
+     "pages": 628,
+     "bytes": 2723543,
+     "sha256": "e79241f03685d9be90a24032c155707b604bf17b3fc6e02b368b2ab2dacfe91a"
     },
     {
      "file": "sharica-v04.pdf",
      "volume": 4,
-     "pages": 799,
-     "bytes": 3416784,
-     "sha256": "9681aa2e98c9274e6a1fac613871a2ea322ba97bc597b532e95b8cb888fc71e9"
+     "pages": 778,
+     "bytes": 3384198,
+     "sha256": "ef3d636a435b10e4bb16d3fe974f935410633d3c2e87ab33e6f074f5a57ab96b"
     },
     {
      "file": "sharica-v05.pdf",
      "volume": 5,
-     "pages": 666,
-     "bytes": 2855722,
-     "sha256": "9905c8745e74a6349b35d1ed7198342c7c090e27e3a6f63fd641f628635bb2bf"
+     "pages": 651,
+     "bytes": 2825785,
+     "sha256": "57cb7d3640570426131c1e4e10eac9e4cc9c945c9d42f4ff176cb05dc8010014"
     }
    ]
   },
@@ -336,58 +336,58 @@
     {
      "file": "lalakai-v01.pdf",
      "volume": 1,
-     "pages": 243,
-     "bytes": 991387,
-     "sha256": "b0ee372e89eaf4a6d92816c9ff8fbaa3d42302407655920b9012544e229530af"
+     "pages": 234,
+     "bytes": 982153,
+     "sha256": "52c05139981fba0d1c993803bf7edd4cdbb5156c0d562f1776e08a9176c57272"
     },
     {
      "file": "lalakai-v02.pdf",
      "volume": 2,
-     "pages": 220,
-     "bytes": 911654,
-     "sha256": "3ca0e52feb0042041d3141feff6398fa1474170a5ce7f5062c7ec7027c3ff491"
+     "pages": 216,
+     "bytes": 906514,
+     "sha256": "22d8cc7cafeb671900f099d743f94082d59d8d27891d18593fb3ea832d4b2f5a"
     },
     {
      "file": "lalakai-v03.pdf",
      "volume": 3,
-     "pages": 260,
-     "bytes": 1088547,
-     "sha256": "950b9f5fb7c919e54031c15afaa6155b1c4e5f7b26d19c9b3b1f09a6504ba19e"
+     "pages": 248,
+     "bytes": 1078788,
+     "sha256": "15a5784e3967926d4491ec3c64ffa12cb35812271b3aa903d21e75f02e723bc9"
     },
     {
      "file": "lalakai-v04.pdf",
      "volume": 4,
-     "pages": 390,
-     "bytes": 1616318,
-     "sha256": "505b1d7022c7924eac67f31df28ef2d16230036092d142aeaa02f29eee685344"
+     "pages": 367,
+     "bytes": 1596920,
+     "sha256": "9601c393b0ea7e131ae8f89c58083a6dd14be31833d09be8b00745ae97cac857"
     },
     {
      "file": "lalakai-v05.pdf",
      "volume": 5,
-     "pages": 150,
-     "bytes": 636689,
-     "sha256": "ef015b8f50b22532c20edcb26020d6c052e9ed3f32f1c76702b2e7b7e0b1209e"
+     "pages": 148,
+     "bytes": 632851,
+     "sha256": "efb17a8b8f2f6ca58de21ba7b3f94d0775a04b0ee84f676dee25783effac9ceb"
     },
     {
      "file": "lalakai-v06.pdf",
      "volume": 6,
-     "pages": 247,
-     "bytes": 1003715,
-     "sha256": "ccdf258128e9df9f04b42a6d175d504f3e852a835a62729137066bf77a2a05c7"
+     "pages": 238,
+     "bytes": 991993,
+     "sha256": "0c9565648bcf91aa9f32f690dde5bf9d5cc85d60dcdc80f55605b301f1dbf202"
     },
     {
      "file": "lalakai-v07.pdf",
      "volume": 7,
-     "pages": 203,
-     "bytes": 821423,
-     "sha256": "da197efbbaad5a630a963a3e13fd8cfabc8dc5dacbfc18ede60bcf6f414b3a83"
+     "pages": 195,
+     "bytes": 811009,
+     "sha256": "412f8251ce4752cdba2184177675f29760266fb6d5901016b145770e202a5c74"
     },
     {
      "file": "lalakai-v08.pdf",
      "volume": 8,
-     "pages": 137,
-     "bytes": 595806,
-     "sha256": "cd6125e07d7901eab69056fc43209239d563cf1d30853165c640b6cba439d71b"
+     "pages": 132,
+     "bytes": 590350,
+     "sha256": "5056b6bb9c160214e115249e25acad56c0f5ac0cc41212c11922791dc490a783"
     }
    ]
   },
@@ -401,58 +401,58 @@
     {
      "file": "ibn-kathir-v01.pdf",
      "volume": 1,
-     "pages": 1630,
-     "bytes": 7856859,
-     "sha256": "2128f26bd953aa5b152501c1bbbeebc26ae5f283597a8dff7e5ac4ee51d34bd4"
+     "pages": 1584,
+     "bytes": 7798385,
+     "sha256": "04c1ccf3f5b5d4d38008e60b233fa2b815828ef31549c44c83ce81dd4e6e95c4"
     },
     {
      "file": "ibn-kathir-v02.pdf",
      "volume": 2,
-     "pages": 1100,
-     "bytes": 5345922,
-     "sha256": "f25fd9cab2a98653cc4d4eed2c41d43e05d14ae1b4784cafb88fd06be4dae151"
+     "pages": 1064,
+     "bytes": 5305319,
+     "sha256": "61652c5f24f590b01586655a1cd25036515f4b7a026a15a4a3fc80fc4c482826"
     },
     {
      "file": "ibn-kathir-v03.pdf",
      "volume": 3,
-     "pages": 1164,
-     "bytes": 5807228,
-     "sha256": "d04f36627606ce573ec6db7bc5c6e41585bf284609c9862143748e77d28402c8"
+     "pages": 1125,
+     "bytes": 5761114,
+     "sha256": "3f1895b1fd1c6833a948c4e668ecdda7a867d9a0ba35aa1561f6affbb4942123"
     },
     {
      "file": "ibn-kathir-v04.pdf",
      "volume": 4,
-     "pages": 1262,
-     "bytes": 6607271,
-     "sha256": "7e8c56cf43d6c1fa9eaa89f4df55f5b84e654f1db7116d9d42adb186bd5319e1"
+     "pages": 1243,
+     "bytes": 6569978,
+     "sha256": "859e4af56c9a5be128ef0db77b18e15a5b5a1a8b672f34353e21b9eeacaee3a1"
     },
     {
      "file": "ibn-kathir-v05.pdf",
      "volume": 5,
-     "pages": 1070,
-     "bytes": 5466260,
-     "sha256": "5266e9f9220b438f3d049b860461dee9655a5c1dd3bb03ba6ba8b462e146ff61"
+     "pages": 1043,
+     "bytes": 5427405,
+     "sha256": "1d53a3f91f0525ffcb2a8ccdd1371d91f5be5fe49d3b4cd7daeace7cb4acb8e3"
     },
     {
      "file": "ibn-kathir-v06.pdf",
      "volume": 6,
-     "pages": 1331,
-     "bytes": 6680111,
-     "sha256": "1f25f81b6040008240dd8e4fcd1ed57fe50b6ce4527ba9b785f22cacc1cbbd97"
+     "pages": 1280,
+     "bytes": 6622459,
+     "sha256": "0ba8e87d82ef6abbf2757f11af1ac0f5e47b90d9fb8de9ca3d28cd2bd3f90ef2"
     },
     {
      "file": "ibn-kathir-v07.pdf",
      "volume": 7,
-     "pages": 1174,
-     "bytes": 6028916,
-     "sha256": "a7d016c237111e364603129ce93466de638e1ca72036f4628ffcce8d8af5f506"
+     "pages": 1141,
+     "bytes": 5985766,
+     "sha256": "23e579985cd45a61961f1703decd92f14ffd7957ee3ea942fbb6d6d547ba9452"
     },
     {
      "file": "ibn-kathir-v08.pdf",
      "volume": 8,
-     "pages": 1138,
-     "bytes": 5647046,
-     "sha256": "79740f076ab4d03664ab03681a41bd5457fdbacc5518eb480340e89594d10107"
+     "pages": 1112,
+     "bytes": 5608409,
+     "sha256": "6433fc5117d8b7a34d423796e684cde60714158ce89214e11130037f2d7194d6"
     }
    ]
   },
@@ -466,58 +466,58 @@
     {
      "file": "baghawi-v01.pdf",
      "volume": 1,
-     "pages": 693,
-     "bytes": 3099191,
-     "sha256": "282ee80c6d7c04da0aefe9efd2180af049f2de91530039eb173a8957e7c3a502"
+     "pages": 680,
+     "bytes": 3077780,
+     "sha256": "7f83d2baeea6f0226b5321f691dc3dfac638935582eb191c0658266e3487673a"
     },
     {
      "file": "baghawi-v02.pdf",
      "volume": 2,
-     "pages": 668,
-     "bytes": 2991309,
-     "sha256": "5948a1e77860d41b6d1ade8c370f3be23ed0429cd0a69dbf182cfbacef8990e0"
+     "pages": 662,
+     "bytes": 2975297,
+     "sha256": "28f7c2b55e6c459c0fd21d672baff969a1c6b704952ab9e6847916da325ac2ec"
     },
     {
      "file": "baghawi-v03.pdf",
      "volume": 3,
-     "pages": 759,
-     "bytes": 3329755,
-     "sha256": "b7b047b2154d0aa8219712fae44c2f78c7f16fca85bc61db23b2e56eb5eb0545"
+     "pages": 753,
+     "bytes": 3307997,
+     "sha256": "25f68b30a2a9294123cf188767f2d6d0c106196b357a1aa01d791afe3fcb2d1d"
     },
     {
      "file": "baghawi-v04.pdf",
      "volume": 4,
-     "pages": 755,
-     "bytes": 3313776,
-     "sha256": "4ad4173841a43c011f903bdd93203687adf42b240e6d587730673214cd826577"
+     "pages": 746,
+     "bytes": 3292355,
+     "sha256": "01d22d280b6b29f6e915b6b5c53dae29eef97dc4e934c944d3d30d44197b3db9"
     },
     {
      "file": "baghawi-v05.pdf",
      "volume": 5,
-     "pages": 800,
-     "bytes": 3459426,
-     "sha256": "eac14197d06b3ce738189b76311f26f80212413961bf0c0feccb7a0c1024816a"
+     "pages": 795,
+     "bytes": 3438323,
+     "sha256": "7d155606c43b81152f049c5e5fc2e2a460eb65a6656b681c6760f6d7a336f66a"
     },
     {
      "file": "baghawi-v06.pdf",
      "volume": 6,
-     "pages": 770,
-     "bytes": 3226510,
-     "sha256": "6393e8caecb671ea0b60587775ab3e14f6b83081d84fd4d40219289c3a3ceb15"
+     "pages": 768,
+     "bytes": 3208911,
+     "sha256": "4a7e499bcf0e82cf5af597b50770f2c6c674a6f10053b1b73a0b9b2931f5566d"
     },
     {
      "file": "baghawi-v07.pdf",
      "volume": 7,
-     "pages": 826,
-     "bytes": 3625232,
-     "sha256": "2b364dff573cbe68850e5bf052d6a765bbccc204bd1e7bd1502db914f779cb13"
+     "pages": 820,
+     "bytes": 3604341,
+     "sha256": "7cb4b89520c10c5bfb6d8e4c8e302a7882ea13a923c346383992277666bbd217"
     },
     {
      "file": "baghawi-v08.pdf",
      "volume": 8,
-     "pages": 834,
-     "bytes": 3471440,
-     "sha256": "2221354f4f0f6697eb459ff404b64d648470d69f4023769968b4a5b84b19a1b5"
+     "pages": 824,
+     "bytes": 3445844,
+     "sha256": "67faa4c0cb8760d29c218435a5a46b203a05cf4f9f442c9625d7d4eac4ef5b16"
     }
    ]
   },
@@ -532,8 +532,8 @@
      "file": "sacdi-v01.pdf",
      "volume": 1,
      "pages": 2720,
-     "bytes": 14153425,
-     "sha256": "06de16b7bba4283627aa9996a0a50fba691a16e22512bdfd782725f41bc6a21b"
+     "bytes": 14153559,
+     "sha256": "52b41901d9f2c845db8ae61c008453580e54074bab04130d13c80e2570ef0c43"
     }
    ]
   },
@@ -547,9 +547,9 @@
     {
      "file": "usul-tafsir-v01.pdf",
      "volume": 1,
-     "pages": 81,
-     "bytes": 371228,
-     "sha256": "bed2ce785ce5051b78d2f6dbc5f25298fedef1db216617fc3a7a5007c3bfa5c1"
+     "pages": 79,
+     "bytes": 368828,
+     "sha256": "2fec4720d9a2d34294f440f5f144feb008a8d691a7b779dd696775ddda8abf48"
     }
    ]
   },
@@ -563,65 +563,65 @@
     {
      "file": "bukhari-v01.pdf",
      "volume": 1,
-     "pages": 819,
-     "bytes": 2943294,
-     "sha256": "9e3d37e3245c77d70c8243f8e0da11bb6b579ad0d9defe6efc0ef07ac15057e3"
+     "pages": 820,
+     "bytes": 2956684,
+     "sha256": "57ebbe191c0ee4db57dc02a5aa679816a748201fb13360cb621a0d48560d8f0a"
     },
     {
      "file": "bukhari-v02.pdf",
      "volume": 2,
-     "pages": 811,
-     "bytes": 2941341,
-     "sha256": "47dd9c0386609f6c4f468d981e8ab2a42e386b3c5d5691230ab6a473017337c2"
+     "pages": 813,
+     "bytes": 2956184,
+     "sha256": "79ca098f1bd50bb4b73f1f499a81f7180b4b70c6683a8c71579ae9a524e99ff6"
     },
     {
      "file": "bukhari-v03.pdf",
      "volume": 3,
-     "pages": 914,
-     "bytes": 3274330,
-     "sha256": "f3cc859bb604f919332a47f7edfa72c66b5b05682a57587e57136c335be4e0cc"
+     "pages": 917,
+     "bytes": 3288871,
+     "sha256": "0cce0681a63860d65cd85d673c00065a26f2e94ee2f23f489d1f88fedb88d201"
     },
     {
      "file": "bukhari-v04.pdf",
      "volume": 4,
-     "pages": 701,
-     "bytes": 2722826,
-     "sha256": "a67dd8cdd92fccc90a9e38b1876e4bb990a4537348793478d8e28616c1f0ec60"
+     "pages": 700,
+     "bytes": 2728233,
+     "sha256": "4b85989cec9b4a16a893ac950f0599957014169014e4ca7869e1d7d48cb3bf96"
     },
     {
      "file": "bukhari-v05.pdf",
      "volume": 5,
-     "pages": 463,
-     "bytes": 2007157,
-     "sha256": "c21bf4c742f40c53756d5e0f905afa1789dd789332643b15b5eec4294b7d268f"
+     "pages": 462,
+     "bytes": 2008143,
+     "sha256": "8257780fa032c82ec7573841b332ceaeb597c5a35503275200a96292ad16556c"
     },
     {
      "file": "bukhari-v06.pdf",
      "volume": 6,
-     "pages": 891,
-     "bytes": 3140256,
-     "sha256": "4173fee891a4c03bff956108b42dc05a09a8d2d454a35826840de2febff2d09f"
+     "pages": 890,
+     "bytes": 3128858,
+     "sha256": "a6f2798465c89f901cf587b0fc094a2328ee4fc722e7c12178a57cb719cf274a"
     },
     {
      "file": "bukhari-v07.pdf",
      "volume": 7,
-     "pages": 754,
-     "bytes": 2762203,
-     "sha256": "a5bcf4f7eea3552887f5ced40a82cdd970982bd737cca38565dcaeef6c8459b0"
+     "pages": 759,
+     "bytes": 2778053,
+     "sha256": "89b965c9fea0b1cc0a277e660f960b0a2054df000ff1219adf372b7fb0e9c642"
     },
     {
      "file": "bukhari-v08.pdf",
      "volume": 8,
-     "pages": 706,
-     "bytes": 2643076,
-     "sha256": "b289515f5e328562161ae631fcc5ea0cb3a91e89933f214145e4d77a10632c77"
+     "pages": 710,
+     "bytes": 2654054,
+     "sha256": "78dd62c2cbd8174f0bf7fc21f3f229b0d2989965365e332ae8957471a12dd2c6"
     },
     {
      "file": "bukhari-v09.pdf",
      "volume": 9,
      "pages": 552,
-     "bytes": 2178369,
-     "sha256": "701cab234f358d451a5900b6576c4cae3202b490d318c5c047867a3ef6c69327"
+     "bytes": 2183794,
+     "sha256": "54c04c8e7b9ce36fd0d04088b097fe137c88bf09a283f4cfd595885275b52cde"
     }
    ]
   },
@@ -635,30 +635,30 @@
     {
      "file": "muslim-v01.pdf",
      "volume": 1,
-     "pages": 964,
-     "bytes": 3672565,
-     "sha256": "0aa598b7488cd99e989912e7538a3ec901f178d3c7374eb4fafa1eb12b076a88"
+     "pages": 926,
+     "bytes": 3636827,
+     "sha256": "58a6d407e405049650fb182e28c8971bd799216959386a005ee193d56e2e1de7"
     },
     {
      "file": "muslim-v02.pdf",
      "volume": 2,
-     "pages": 916,
-     "bytes": 3504922,
-     "sha256": "8e663abc2ed0e203480627381074335d6a1ce2353688bf97f1dce9d569a28b03"
+     "pages": 883,
+     "bytes": 3472408,
+     "sha256": "d838fbf3abadaf05ed8f62a45f688753af5e6a1d5c649021b2ea8abc1d9c4c6f"
     },
     {
      "file": "muslim-v03.pdf",
      "volume": 3,
-     "pages": 883,
-     "bytes": 3398031,
-     "sha256": "46cd82df5745fd789c99326b33de354ced54f44404c8121ad2116b24e1b405ca"
+     "pages": 850,
+     "bytes": 3364380,
+     "sha256": "2ed222cb6fb572f91e08588f78755f2cdf8d33c71acf9ebb010cd22eb0673d94"
     },
     {
      "file": "muslim-v04.pdf",
      "volume": 4,
-     "pages": 983,
-     "bytes": 3781306,
-     "sha256": "515e4986526af914ec47e955840176859fd6119cf956f3c89dfb578a16a30a54"
+     "pages": 943,
+     "bytes": 3740232,
+     "sha256": "ef24cb3e38a60f5e15f1b62278f44097e2486326656934efd694823dff5f2b6c"
     }
    ]
   },
@@ -672,30 +672,30 @@
     {
      "file": "abu-dawud-v01.pdf",
      "volume": 1,
-     "pages": 586,
-     "bytes": 2300622,
-     "sha256": "ac0c9c347723a26ce730bc3e2f83d1a4df7aea01e0e3e20ddea447784847d062"
+     "pages": 579,
+     "bytes": 2291902,
+     "sha256": "a748d74c66a39644958915089253b57610f37f4430f54b6f11410f0019bc4de7"
     },
     {
      "file": "abu-dawud-v02.pdf",
      "volume": 2,
-     "pages": 633,
-     "bytes": 2518515,
-     "sha256": "825f0feffec27499acaa609d2819b108e6172503f4db59444a096de1c652fd68"
+     "pages": 624,
+     "bytes": 2503427,
+     "sha256": "100ff52fbd30e65d1214dcd14e6528c38493a7b9530c10a081a7fb5f71a1600a"
     },
     {
      "file": "abu-dawud-v03.pdf",
      "volume": 3,
-     "pages": 691,
-     "bytes": 2713757,
-     "sha256": "c20ac0f06591dbc7e87e3088a6572e2b17ed600f5a34b620e69dcef4599888ad"
+     "pages": 671,
+     "bytes": 2688451,
+     "sha256": "050203c3a85c4fb96dce1831842797ddcb9a147f50e722f32f0b497722fc2409"
     },
     {
      "file": "abu-dawud-v04.pdf",
      "volume": 4,
-     "pages": 687,
-     "bytes": 2642665,
-     "sha256": "7b4c51426f02a8b4ddd66189fbb59bdd0b3d12896743856069f889e0bc0d948b"
+     "pages": 668,
+     "bytes": 2625866,
+     "sha256": "ce88ed31d678259b4256f7a0cb5373bf8d630abe304ca5d81f573f3d815f5514"
     }
    ]
   },
@@ -710,36 +710,36 @@
      "file": "tirmidhi-v01.pdf",
      "volume": 1,
      "pages": 410,
-     "bytes": 1389671,
-     "sha256": "16f465085a60fcd8526f3e77364ebedfdef1d49a7315d022fbb1ae66a346f831"
+     "bytes": 1378867,
+     "sha256": "2ad0ba17c1d5a5cb24399274a3c61ed2cc78405a96b3bfedb264dad53be744e7"
     },
     {
      "file": "tirmidhi-v02.pdf",
      "volume": 2,
      "pages": 498,
-     "bytes": 1849345,
-     "sha256": "8e90d915094302f3c1c0c3042120cf9a0b3cca3048ee8eed02f142743d9658da"
+     "bytes": 1835085,
+     "sha256": "1989ce44865657c9e5b8c15f69b549a594eb6aaf05d3289b8077e51dbf737304"
     },
     {
      "file": "tirmidhi-v03.pdf",
      "volume": 3,
-     "pages": 699,
-     "bytes": 3096612,
-     "sha256": "beb5787fbf78f2a644e81b65201adf65d6fd93062b3a54882c320214646858f8"
+     "pages": 685,
+     "bytes": 3067441,
+     "sha256": "7d66d11a5e33853d139d002bf1ab12e053c844ad742a40423cc3cea0b787a943"
     },
     {
      "file": "tirmidhi-v04.pdf",
      "volume": 4,
-     "pages": 936,
-     "bytes": 4253226,
-     "sha256": "0e9ef9317bc21835bb9248743a1dbae118b2e98f451d8f2862f6dca1ceee942c"
+     "pages": 892,
+     "bytes": 4201824,
+     "sha256": "e6b478fa0e567331c49c1bcef9a2fdab906fbf5a7ad7d36c747e84be96e725ad"
     },
     {
      "file": "tirmidhi-v05.pdf",
      "volume": 5,
-     "pages": 1057,
-     "bytes": 4539954,
-     "sha256": "331459849e9ffe3d9c1015803b52df5798e689d999c3994abfaeb9cdf7144908"
+     "pages": 1001,
+     "bytes": 4481709,
+     "sha256": "dda248be63f45486a93fc9d7b5fa03c324807f9e36b086236b921b233b6a6450"
     }
    ]
   },
@@ -754,57 +754,57 @@
      "file": "nasai-v01.pdf",
      "volume": 1,
      "pages": 520,
-     "bytes": 1527427,
-     "sha256": "0a4c198d1f85fbb583b4cd602c2b406d2df32001893058d8952a6763d5c9def9"
+     "bytes": 1517171,
+     "sha256": "10b3fd32315aefed2e9dbb8ffe63410947ab4cae1d2636cc789244d695b7a5c8"
     },
     {
      "file": "nasai-v02.pdf",
      "volume": 2,
-     "pages": 709,
-     "bytes": 2080777,
-     "sha256": "85cef03e44b4436d18696deeb01443d65f9cf911a0de0009e04e130da67bb8e9"
+     "pages": 708,
+     "bytes": 2065068,
+     "sha256": "4c00bb73cefe1b94552d84812d543da1098037cae5ef01d9a9f838cf5d2ae37f"
     },
     {
      "file": "nasai-v03.pdf",
      "volume": 3,
-     "pages": 665,
-     "bytes": 1933909,
-     "sha256": "f3e3fb71e95a20389a1cad8c1c0a8498b8b53d64fe7c12b82ed566eb0a899fbd"
+     "pages": 664,
+     "bytes": 1922782,
+     "sha256": "f071cbda024ceb75eeffa050418e76d8762384de9204b082911b15fe58064859"
     },
     {
      "file": "nasai-v04.pdf",
      "volume": 4,
      "pages": 844,
-     "bytes": 2383497,
-     "sha256": "38c943b3992bac46b0bf81980fee2eeb5e591452f0949e1a7091a1519b5848e7"
+     "bytes": 2365826,
+     "sha256": "de80e0b1dbcdd4620dc24c75de8ce6aa45e3e62ccf2daf513c00bf23a618d974"
     },
     {
      "file": "nasai-v05.pdf",
      "volume": 5,
-     "pages": 827,
-     "bytes": 2379442,
-     "sha256": "0e6ac98f0a5dbf5e4fb95305000c54835708fc16257f2a127932b267c1a76140"
+     "pages": 826,
+     "bytes": 2361890,
+     "sha256": "ade7c1496ce1dece9b7b70c7095a6cb7a1179d5af6ef77f09f2c20fbad0b165e"
     },
     {
      "file": "nasai-v06.pdf",
      "volume": 6,
-     "pages": 959,
-     "bytes": 2727780,
-     "sha256": "a7b5b06a38dcaebed054a6230762bbf02732200ef115dabddb7b7deecd235741"
+     "pages": 958,
+     "bytes": 2703730,
+     "sha256": "87502b4393adcbf9ec5a01625df3913b7fd1fa327586b9405195acfeee356e42"
     },
     {
      "file": "nasai-v07.pdf",
      "volume": 7,
-     "pages": 935,
-     "bytes": 2566603,
-     "sha256": "7949f13b6cadadfd369313d4b497ace5b99285f969c0f311de5a470b6f9fcf10"
+     "pages": 932,
+     "bytes": 2542502,
+     "sha256": "d9e9ea65b498b7bf260ea10d7b617edca39d1284219ad27b616c0607a34ff83b"
     },
     {
      "file": "nasai-v08.pdf",
      "volume": 8,
      "pages": 750,
-     "bytes": 2055012,
-     "sha256": "de64f665b504c156e691140b8911a9bf417363a6b2869016ce18882eddf34741"
+     "bytes": 2037942,
+     "sha256": "d52a2175b0b73bc06e4fb9514f35a6e975974ae91d2aa42034ee11d4343d40af"
     }
    ]
   },
@@ -818,16 +818,16 @@
     {
      "file": "ibn-majah-v01.pdf",
      "volume": 1,
-     "pages": 901,
-     "bytes": 3685897,
-     "sha256": "18bc02f4be379939fbe23054a81ec8c21dd75e2efdd5fa1a68e7f90433a9472a"
+     "pages": 832,
+     "bytes": 3620601,
+     "sha256": "4198dd200ee8602a82dd666dfea54a173bc3c83d006422dd2e04d48554c9548a"
     },
     {
      "file": "ibn-majah-v02.pdf",
      "volume": 2,
-     "pages": 970,
-     "bytes": 3925385,
-     "sha256": "e0c930f957f62818398e3123d1f0c9a74aaa884037388305aae0b54638f06f62"
+     "pages": 919,
+     "bytes": 3875675,
+     "sha256": "021d9d3b991942fc43fefb0ad7e5e1d2d91362c863065f8b121b8cd347372fdf"
     }
    ]
   },
@@ -841,9 +841,9 @@
     {
      "file": "muwatta-v01.pdf",
      "volume": 1,
-     "pages": 1638,
-     "bytes": 7458325,
-     "sha256": "dff2be4c862aad3aaded42da6fc26afda8988bafae99ee4e3e31026764f607a3"
+     "pages": 1609,
+     "bytes": 7423006,
+     "sha256": "e9c65851576a6b3a090576d185fa22749b1c2e8c5aca2f8f0dcf959a0fb8ef30"
     }
    ]
   },
@@ -857,317 +857,317 @@
     {
      "file": "musnad-v01.pdf",
      "volume": 1,
-     "pages": 271,
-     "bytes": 1335547,
-     "sha256": "0018500a7041aa228c216d7dbd821e8ee7c144f81cbde5f206852e01fbee818d"
+     "pages": 269,
+     "bytes": 1333195,
+     "sha256": "786ffc0dac55b16f1debf0e3b96dc28d19cff1d56a82592d2a8c3063f893f765"
     },
     {
      "file": "musnad-v02.pdf",
      "volume": 2,
-     "pages": 258,
-     "bytes": 1253643,
-     "sha256": "90850858d85f470ed7c806c93a3d6056ad437c4d92b2ceb0bc2f3e9202263507"
+     "pages": 255,
+     "bytes": 1250848,
+     "sha256": "c35e072bd825c69364657bd284efa22123b06858def6b2c1b6da45101ae2caee"
     },
     {
      "file": "musnad-v03.pdf",
      "volume": 3,
-     "pages": 258,
-     "bytes": 1258027,
-     "sha256": "d09c4252903c83fb594ad2983fdfb6f1cacf361fc06684629ba2f50154b99f77"
+     "pages": 257,
+     "bytes": 1256508,
+     "sha256": "feec529a92a17b55363ea81c8930defc7b527a53fd9d4f3c6a309c4c8938ea51"
     },
     {
      "file": "musnad-v04.pdf",
      "volume": 4,
-     "pages": 271,
-     "bytes": 1241001,
-     "sha256": "870b1ec1f1f4c8b055223192acbe21fe7545480e5f553a50eea63baa19721d6e"
+     "pages": 269,
+     "bytes": 1238161,
+     "sha256": "f08c3eabee3d2d7d8c7eefd73183282fd8d790d9e4669260c8fae767f775416a"
     },
     {
      "file": "musnad-v05.pdf",
      "volume": 5,
-     "pages": 268,
-     "bytes": 1194452,
-     "sha256": "057c17a891df8ebed219ee92c7ddad6b7b06f0b0fcef8a89aef76a823711f0ea"
+     "pages": 265,
+     "bytes": 1190078,
+     "sha256": "78d5552d8870b3920110119c5f6b9410d31ecbd1a9bb70d055c9b2e93643224b"
     },
     {
      "file": "musnad-v06.pdf",
      "volume": 6,
-     "pages": 194,
-     "bytes": 757188,
-     "sha256": "ebcd66ec51d42ea5f4480aae012ddaf2b45a58178cc3d4f4c11ced81148b157c"
+     "pages": 190,
+     "bytes": 749980,
+     "sha256": "f5b017813d9e1a1300ed89ab97b004a7fb7dc6d3621a2fd2ad94fb1e35b784ef"
     },
     {
      "file": "musnad-v07.pdf",
      "volume": 7,
-     "pages": 228,
-     "bytes": 1023049,
-     "sha256": "004831bd8f0fd1ead9f2ef328d368e5614e927639e6f8d37efe3d0db409d3177"
+     "pages": 226,
+     "bytes": 1019275,
+     "sha256": "7c5b6c774d007ff86a58c14ea18b70d6fd6dffa9c7c426fc036be3028372c79d"
     },
     {
      "file": "musnad-v08.pdf",
      "volume": 8,
-     "pages": 203,
-     "bytes": 787554,
-     "sha256": "b6c7babc8d4f76ec84fed471c9d0755e5b20e494a56dae58d6f4ae6a45c45d98"
+     "pages": 201,
+     "bytes": 782828,
+     "sha256": "46ebc7b456be48d73712576d4aaada22db8a35e31c42dc863c3178e25a9bc823"
     },
     {
      "file": "musnad-v09.pdf",
      "volume": 9,
-     "pages": 227,
-     "bytes": 1053132,
-     "sha256": "8d88987730539ad91232280a1d88bb09375140cd876006adb1aa25bfd635c3db"
+     "pages": 226,
+     "bytes": 1051108,
+     "sha256": "cc2b13b2257f99ed0d1b060860b570065c2ef905d937d8fad21ae94b38f7491b"
     },
     {
      "file": "musnad-v10.pdf",
      "volume": 10,
-     "pages": 209,
-     "bytes": 974623,
-     "sha256": "c9b7cbd027a90194fc569b9c4804e924c32718e965c0af6d6f175ff23ba02450"
+     "pages": 208,
+     "bytes": 973347,
+     "sha256": "66bbc153dd0dbfc708af0a1dc3a8207a3bd9cd98594bb9d7186415d23c075a8b"
     },
     {
      "file": "musnad-v11.pdf",
      "volume": 11,
-     "pages": 365,
-     "bytes": 1435542,
-     "sha256": "5e7a8279caef282f5b3f0743ee6bbe493ac46caa8cdf02941211b4318564ffa4"
+     "pages": 358,
+     "bytes": 1425669,
+     "sha256": "8d6d19bec7670c4d2c65bef1952f870df9c687d569c2656c98f2f4ff50d8966a"
     },
     {
      "file": "musnad-v12.pdf",
      "volume": 12,
      "pages": 195,
-     "bytes": 756378,
-     "sha256": "4fa276c6f12287b2b5d601e985a7daab3b0ee5d83d4d0da8ab75ed06a88e439f"
+     "bytes": 752941,
+     "sha256": "397cf75e7346e5a2de0db94a23c68204004a8569234f5682fe20fbf91479fd2c"
     },
     {
      "file": "musnad-v13.pdf",
      "volume": 13,
      "pages": 242,
-     "bytes": 1056219,
-     "sha256": "f3ad8a85c80d09208d40ad507979ebc4b7cf1747d0d76b14dbc9cdca6f38bbcf"
+     "bytes": 1054041,
+     "sha256": "efa29d07c983c9444d7c8c69aca39e684d113e9611626d75491c9250699b2e41"
     },
     {
      "file": "musnad-v14.pdf",
      "volume": 14,
-     "pages": 243,
-     "bytes": 1150137,
-     "sha256": "afcec9e7871c9e5790f76e83caac2ddcb3cbfd07558bceb4b862787b3b594d8c"
+     "pages": 242,
+     "bytes": 1148078,
+     "sha256": "cde6dbb6d4a4806e03b31b3f3e72f4afe379711f91a4408ee607dc486b447b50"
     },
     {
      "file": "musnad-v15.pdf",
      "volume": 15,
-     "pages": 258,
-     "bytes": 1220264,
-     "sha256": "74984ec0fb8249f79144f7cf432021ea6885b2bf4589739d97127461ae48c6ca"
+     "pages": 257,
+     "bytes": 1218839,
+     "sha256": "0a666eaf71975ddd813b77a1bb7c8cd1dc038e050c231cc2ab91de3cbd163c26"
     },
     {
      "file": "musnad-v16.pdf",
      "volume": 16,
      "pages": 291,
-     "bytes": 1399076,
-     "sha256": "58bbba4e1504c77a1bc7031bfa289702d6cbcb1d6b3678b434697835e7d10832"
+     "bytes": 1398657,
+     "sha256": "7e373c61e66d0b732f2310d285aa1306d1fc27d599383f0ca0c43ed5fe533680"
     },
     {
      "file": "musnad-v17.pdf",
      "volume": 17,
-     "pages": 227,
-     "bytes": 885584,
-     "sha256": "0a9b192dc5dfade9a84d889b6c3770285b8d588d90a5067e4b4400710173bfa4"
+     "pages": 225,
+     "bytes": 881891,
+     "sha256": "25723cc6d56e1e5062eaf1f67bd16d0b6fa525f2874a5c82f36e0d5d169bcbc0"
     },
     {
      "file": "musnad-v18.pdf",
      "volume": 18,
-     "pages": 203,
-     "bytes": 940167,
-     "sha256": "bf59cfa76cc0cadb62022cc8f93f221c125cdf350003b5685a4231e826a1a772"
+     "pages": 200,
+     "bytes": 936997,
+     "sha256": "977609b3da47bdbcb1b7dc0727516e05205db9dea2eee4e2e6d5d98f9c7c1959"
     },
     {
      "file": "musnad-v19.pdf",
      "volume": 19,
-     "pages": 207,
-     "bytes": 935283,
-     "sha256": "f040ce8a659d31976f0386f325dbd5384e016216fef35b16440828d5efd9ea62"
+     "pages": 205,
+     "bytes": 932231,
+     "sha256": "3c6058c7a3b8b8c6aa6b60d2757b27a1b06838a336e30132f36f62f7483a3d56"
     },
     {
      "file": "musnad-v20.pdf",
      "volume": 20,
      "pages": 216,
-     "bytes": 1026269,
-     "sha256": "b2c3cd0b523d0a597f6ace987226993c3944bfdc880e6c3846f1af544b4cd852"
+     "bytes": 1025442,
+     "sha256": "822c77c12ab521269f02b799e18aea3b9b6ff3c61ec150e98ff20de69513aa6b"
     },
     {
      "file": "musnad-v21.pdf",
      "volume": 21,
      "pages": 256,
-     "bytes": 1242180,
-     "sha256": "9d19ee7bf48b682edf0c32248c0f23dc0a9ea966f967ca41554429944d43fe11"
+     "bytes": 1241447,
+     "sha256": "d2051e9bcb004a8877eae46fcf6ea035417b68309bcb74c3f3ed480879413e89"
     },
     {
      "file": "musnad-v22.pdf",
      "volume": 22,
-     "pages": 185,
-     "bytes": 816686,
-     "sha256": "d3b56b392b3296ba72c5196d161eab191de0e3a07f8ddeb0af63e4dc6ad0cbeb"
+     "pages": 184,
+     "bytes": 814342,
+     "sha256": "b9dcf70274bc4954a26d6378a80a7f8b888dc6d512bc73d21049d01182436e04"
     },
     {
      "file": "musnad-v23.pdf",
      "volume": 23,
-     "pages": 247,
-     "bytes": 1142217,
-     "sha256": "14a3618a658ae757e92b74a2424634e92948dacc7db3441cb67ec12773360ac3"
+     "pages": 246,
+     "bytes": 1140730,
+     "sha256": "1f6f9f8fb6ffd9f55400498573e253b02673682e42d2013a592c002877c52a42"
     },
     {
      "file": "musnad-v24.pdf",
      "volume": 24,
      "pages": 230,
-     "bytes": 993009,
-     "sha256": "590a7a8273093b2f0d5efe60a2ca229828c8fe8b783df3bb86cbddfcda515bc5"
+     "bytes": 990680,
+     "sha256": "997c189542273d589cfa14826ce57ab6271604d01d856a5c00c514db2461c9fc"
     },
     {
      "file": "musnad-v25.pdf",
      "volume": 25,
-     "pages": 255,
-     "bytes": 1047778,
-     "sha256": "d409ed0673c0affbf146d26dee385abe0c9491b2f19d9069d0cc28eaae3b0067"
+     "pages": 253,
+     "bytes": 1042261,
+     "sha256": "82be0a0e2324b504555ce97a08d8dafadd978dfc6ccba9a6bf0f1412e6f62da3"
     },
     {
      "file": "musnad-v26.pdf",
      "volume": 26,
-     "pages": 196,
-     "bytes": 847491,
-     "sha256": "b93b9349282396eed01bc440c49b0508c0ce0a7f4a786842749abd5d2c1e2b39"
+     "pages": 194,
+     "bytes": 843854,
+     "sha256": "424dd1022392adb226db6138f03072e7513c49ea2097c7d09988f6cc527a0b3f"
     },
     {
      "file": "musnad-v27.pdf",
      "volume": 27,
-     "pages": 183,
-     "bytes": 860493,
-     "sha256": "2afdbafba88bef812a9dc1da57b1a16dde2fd617a074e1d7175e49e507186ee9"
+     "pages": 180,
+     "bytes": 856055,
+     "sha256": "1cdc3900faca447c5af9bb1903451c78c5412b19e37b4c79b50c04560953e641"
     },
     {
      "file": "musnad-v28.pdf",
      "volume": 28,
-     "pages": 313,
-     "bytes": 1338424,
-     "sha256": "4e523f3523aa8c0c356bb07d38e0dfabf988bab2367de9a61b91119dc466b547"
+     "pages": 312,
+     "bytes": 1334096,
+     "sha256": "a1be0aa5c8685579df4441f8953c1504134c5e180138a72a16c6567f63c9da29"
     },
     {
      "file": "musnad-v29.pdf",
      "volume": 29,
-     "pages": 317,
-     "bytes": 1424751,
-     "sha256": "19142209fa72529c3d0ab3ce9414ef96818b0f3bcf494ef1de8a466b0320a44e"
+     "pages": 316,
+     "bytes": 1421053,
+     "sha256": "edf0a3cbf15cc739b40ed864abd963ad4b874899a0b79127e8af84000cc164dd"
     },
     {
      "file": "musnad-v30.pdf",
      "volume": 30,
-     "pages": 311,
-     "bytes": 1272934,
-     "sha256": "bb584bc8db2d65a8d7332da6a9532c27c82a7f0e624a197e38ea479c7b41e67e"
+     "pages": 310,
+     "bytes": 1268164,
+     "sha256": "564b57456135c44280926b0d0b2612cebb102f42c689295a971d4ec00f8c6b8d"
     },
     {
      "file": "musnad-v31.pdf",
      "volume": 31,
-     "pages": 248,
-     "bytes": 1100635,
-     "sha256": "c42232dc78df8a41bf96fedf7e1cd84f4e4364bb6f7cf5417e1d7e061ba4072f"
+     "pages": 245,
+     "bytes": 1095187,
+     "sha256": "594caa29b374228b046288cd2684e09830a4d8baf1f739983d6d3b7cfabfc0b1"
     },
     {
      "file": "musnad-v32.pdf",
      "volume": 32,
-     "pages": 264,
-     "bytes": 1070747,
-     "sha256": "977e478876912a994c795b4e7c96e6da37deffc0058551df7adbd449c21bb189"
+     "pages": 262,
+     "bytes": 1065218,
+     "sha256": "8e0b82789d7ea8757b867478f7735d4880b88e824b8d96d7e4f6115930df7dca"
     },
     {
      "file": "musnad-v33.pdf",
      "volume": 33,
      "pages": 221,
-     "bytes": 1042861,
-     "sha256": "f79b757cc327510c5402281ee63be605e2daf7bd417c294703a274911747b56a"
+     "bytes": 1041525,
+     "sha256": "9ba22cbc3422853f2d36b02d47d33711a743f991c5f7dcd6248452cb75699a28"
     },
     {
      "file": "musnad-v34.pdf",
      "volume": 34,
-     "pages": 271,
-     "bytes": 1262300,
-     "sha256": "12ac0723d26a99e43713fededd144e96c7abd9af198da7b67dce3efa06f88111"
+     "pages": 269,
+     "bytes": 1258913,
+     "sha256": "b9c45939f33b4ba4484249b55a76a0f2b845715842ea06fbd13971bb2c335d4f"
     },
     {
      "file": "musnad-v35.pdf",
      "volume": 35,
-     "pages": 273,
-     "bytes": 1247780,
-     "sha256": "88b687643b6a5a5d21cfad1dc0a77442df7a12cbab9a7074f4023d553c6ae1a7"
+     "pages": 271,
+     "bytes": 1243388,
+     "sha256": "daa63e4c179f8dc02a13c2190f3c26d6bdb83d311351a77dee5b9f4678f1b9ab"
     },
     {
      "file": "musnad-v36.pdf",
      "volume": 36,
-     "pages": 334,
-     "bytes": 1365421,
-     "sha256": "a3b44986f64a27715793dd27eaefb4db9626ad6e4c958db2e8c6881e3346dea5"
+     "pages": 329,
+     "bytes": 1358074,
+     "sha256": "b817b70ee184869a65be13fbd9d66b01bef3ed5e6f18158c17659cba532a3d95"
     },
     {
      "file": "musnad-v37.pdf",
      "volume": 37,
-     "pages": 276,
-     "bytes": 1223033,
-     "sha256": "2c8d963b676c2ba1aa8cc5789b6113f052abf2aacfef006bed180d314bf64ec9"
+     "pages": 275,
+     "bytes": 1219870,
+     "sha256": "52aa903201cc8599a01a89d57ae8eed8be37d8b8b38be6234dbd654f2ab32fbe"
     },
     {
      "file": "musnad-v38.pdf",
      "volume": 38,
      "pages": 272,
-     "bytes": 1243630,
-     "sha256": "fb593dd150510f3d2b835986274ff16c7bf881af861ae311d0451d582fa9d14c"
+     "bytes": 1241246,
+     "sha256": "1006cf4ceddf06bf48ea982cd4fbb6fb7d9158561c57c00acbcf0c73b4cfed20"
     },
     {
      "file": "musnad-v39.pdf",
      "volume": 39,
-     "pages": 338,
-     "bytes": 1326782,
-     "sha256": "1442f6ba4d8fd97b815e3890e52b27e8b0b2d9a900e91427cf41e38314c13ddc"
+     "pages": 336,
+     "bytes": 1320470,
+     "sha256": "03397c41a37105715f654031db15b75781014dabb5391b1eb38baa5ef5afeaf9"
     },
     {
      "file": "musnad-v40.pdf",
      "volume": 40,
-     "pages": 209,
-     "bytes": 817837,
-     "sha256": "53fdea184f6d9fb53577d2987de9789c6b4da50fd42de85c481e08efb7387b18"
+     "pages": 207,
+     "bytes": 813276,
+     "sha256": "3292b66b173f145ca0573c2aea0450d520f1fcfae1ab1fe97ddb13ba7d061da1"
     },
     {
      "file": "musnad-v41.pdf",
      "volume": 41,
-     "pages": 223,
-     "bytes": 991358,
-     "sha256": "94a7263a2270c8317c291112b99deff99698ee76207c245b3d197d42180bc1fb"
+     "pages": 222,
+     "bytes": 988869,
+     "sha256": "73a30e2232bfcc45823a5bb9731471fb55648bba8561341c7aaf6ca9a72a58b1"
     },
     {
      "file": "musnad-v42.pdf",
      "volume": 42,
-     "pages": 263,
-     "bytes": 1147327,
-     "sha256": "a19ecfc9dfe47a1e5652f1651c7b60114b4afd62df4ce3cd6dca8a92a1be96b8"
+     "pages": 261,
+     "bytes": 1143656,
+     "sha256": "67a3963adfbef3541c99896e81f1f28c272976c5a1473850637d1baac4a543a8"
     },
     {
      "file": "musnad-v43.pdf",
      "volume": 43,
-     "pages": 202,
-     "bytes": 962575,
-     "sha256": "2deff51851207a8f4637a049977f51a687fe474fc2bbb4ffa9f4360b18041d2b"
+     "pages": 201,
+     "bytes": 961222,
+     "sha256": "bfa23d119c0b2c7b035269ea4dd2f053fc15db57e9ad6f41b287b2041dc319a1"
     },
     {
      "file": "musnad-v44.pdf",
      "volume": 44,
-     "pages": 297,
-     "bytes": 1283647,
-     "sha256": "fe154bcc51f0083255fbf560c328f373db0865278bb596713f1b9545b3d283c6"
+     "pages": 293,
+     "bytes": 1277439,
+     "sha256": "820a1da7c97b1d4c3aec476b67053a4982cdd2b9540177e909d0bc0989150642"
     },
     {
      "file": "musnad-v45.pdf",
      "volume": 45,
-     "pages": 322,
-     "bytes": 1347860,
-     "sha256": "428f741ff2046ad40d6acbe403d459c710e506d91bfef3c6b8ebb461e9a108a5"
+     "pages": 319,
+     "bytes": 1340552,
+     "sha256": "ec927ca6a7320b6aadae36187a0833a632712afb38c670f8a3523db3e83e6834"
     }
    ]
   },
@@ -1181,16 +1181,16 @@
     {
      "file": "darimi-v01.pdf",
      "volume": 1,
-     "pages": 673,
-     "bytes": 2686424,
-     "sha256": "aaf08529911322c2460b4b517345e31553553c4011f9d96f4c9adfe44c46ed25"
+     "pages": 653,
+     "bytes": 2656812,
+     "sha256": "368390c6bd2ce6b5cc38b157474e582ba9a3b0e71b63fd3df61826fd5507e97c"
     },
     {
      "file": "darimi-v02.pdf",
      "volume": 2,
-     "pages": 697,
-     "bytes": 2942971,
-     "sha256": "6403c528a375ee15a0a49941555ecf9303dd8fa7074eecebc3097c1bf32a4c5f"
+     "pages": 672,
+     "bytes": 2906820,
+     "sha256": "5c01611be70f53de5e7f0cc29bc857e8c039c9760618483c0108548912315904"
     }
    ]
   },
@@ -1204,9 +1204,9 @@
     {
      "file": "adab-mufrad-v01.pdf",
      "volume": 1,
-     "pages": 609,
-     "bytes": 2478159,
-     "sha256": "2dcd46a53467d6919fd92a780b7a71841c54761ba825b0b54a8e28fcf7b4f6eb"
+     "pages": 571,
+     "bytes": 2440151,
+     "sha256": "aa5589171bdb8908ba56598a5ca7bff36f5be8ef473aa1fcad53f3615a00efab"
     }
    ]
   },
@@ -1221,8 +1221,8 @@
      "file": "shamail-v01.pdf",
      "volume": 1,
      "pages": 331,
-     "bytes": 1101302,
-     "sha256": "84373749ad290707160ba813e4571165c95a54d04a816017afc23c6a17782d7c"
+     "bytes": 1090814,
+     "sha256": "e9862a0ba35eb1f7b904d8be3d0b4d42976d1dbbdb722e6567cd3273b6eb6ee0"
     }
    ]
   },
@@ -1237,8 +1237,8 @@
      "file": "zad-mustaqni-v01.pdf",
      "volume": 1,
      "pages": 240,
-     "bytes": 987932,
-     "sha256": "9473732202f3102aa8a419f31984822da41ea7e43c28bbdfc84183b67e3dfc92"
+     "bytes": 980670,
+     "sha256": "070cbadeee73e4bc9b0e6edd16bf9f48fa9df2dcd64b650ae359f0eab72862a7"
     }
    ]
   },
@@ -1252,23 +1252,23 @@
     {
      "file": "rawd-murbi-v01.pdf",
      "volume": 1,
-     "pages": 555,
-     "bytes": 2099647,
-     "sha256": "709d1c1cceea0d3724aa70882b58ef765848d06f7159aa6bac6f6eda7406b548"
+     "pages": 550,
+     "bytes": 2071647,
+     "sha256": "ef6809f7b0b9e182ac10508499fd6e22975e134654828fff2463893f6a295ace"
     },
     {
      "file": "rawd-murbi-v02.pdf",
      "volume": 2,
      "pages": 496,
-     "bytes": 1498023,
-     "sha256": "bd78e74b9fb46448d3e83098b68ecd14b0996e2b47950be5eb41cb7f0eea7ec6"
+     "bytes": 1479766,
+     "sha256": "2732c74cfffa427011f87d07e34d64d5f64446c7eb419fd7542795a0538f9845"
     },
     {
      "file": "rawd-murbi-v03.pdf",
      "volume": 3,
-     "pages": 495,
-     "bytes": 1834312,
-     "sha256": "228227d1ff9f9541a539f95c979a7e2fc284448d65a46654fc1c8aa4be5c0e24"
+     "pages": 485,
+     "bytes": 1807242,
+     "sha256": "c6535d1693405b100e6038af34aca71262a3b201ab7d19800cff616a4f1208cf"
     }
    ]
   },
@@ -1282,9 +1282,9 @@
     {
      "file": "umdat-fiqh-v01.pdf",
      "volume": 1,
-     "pages": 237,
-     "bytes": 956691,
-     "sha256": "9aad3a25badc1a837bf3d62d806830e2edc7c2c71d6f76168b1e501cb80fb669"
+     "pages": 232,
+     "bytes": 951843,
+     "sha256": "96a1c429e991b3a7edf1e5f4ef58e480a4e1de11e013b8eff6a6b01f7a474f1a"
     }
    ]
   },
@@ -1298,72 +1298,72 @@
     {
      "file": "mughni-v01.pdf",
      "volume": 1,
-     "pages": 1466,
-     "bytes": 6990361,
-     "sha256": "a419cf83bb54676139797746f1b4b6a83c011519c22294d8c8af868dae02ace3"
+     "pages": 1449,
+     "bytes": 6967893,
+     "sha256": "29ea7f2105fef44f3506eb6ad8dcd49acb21993c442717d63b5c4ac53637835c"
     },
     {
      "file": "mughni-v02.pdf",
      "volume": 2,
-     "pages": 1113,
-     "bytes": 5198846,
-     "sha256": "5cf2781e3e032799eb4fe76422821b4d51b4c2ad368acf84516f3cb250a5aa17"
+     "pages": 1104,
+     "bytes": 5182248,
+     "sha256": "01ea610d55d27004a61a0fc7065549096bbb914605b3a7fb4be1b71442306043"
     },
     {
      "file": "mughni-v03.pdf",
      "volume": 3,
-     "pages": 946,
-     "bytes": 4533782,
-     "sha256": "c58168065fe7a3f3c9fdb83671119f442f128383ebc7a70cb27d8b9075eb8da2"
+     "pages": 932,
+     "bytes": 4516067,
+     "sha256": "0ae1dc9142021a9cb7be1a73cf3a782691b7769b6f0fb500b5219c7ec942e5f6"
     },
     {
      "file": "mughni-v04.pdf",
      "volume": 4,
-     "pages": 1336,
-     "bytes": 6619609,
-     "sha256": "8fb59a7aa33f8e28b6927e7e2826279d8ee8af405b634e9958b39bd729f33ddc"
+     "pages": 1326,
+     "bytes": 6603251,
+     "sha256": "ae48807effbde8a69cef9d5a6c3ad5ee7415609ffa7bcd6d32ce410b2ee6ead1"
     },
     {
      "file": "mughni-v05.pdf",
      "volume": 5,
-     "pages": 1262,
-     "bytes": 5659108,
-     "sha256": "bf65d514301067e29619cddaa54809aaf4bd550381984c2fc6e0bf906a283faa"
+     "pages": 1242,
+     "bytes": 5636516,
+     "sha256": "5a59dc92cfcd9f136fed46ed50b4624596e4460e0159624c5d1db3683300b52d"
     },
     {
      "file": "mughni-v06.pdf",
      "volume": 6,
-     "pages": 975,
-     "bytes": 4157558,
-     "sha256": "b368f36cf0cb70f94bdd95952343ab4069f82f4228705a3e4c6999ecca39107a"
+     "pages": 964,
+     "bytes": 4142156,
+     "sha256": "672533d0f5f6ec8991514cca0c69a7e9f05c9ca6d3e0fdb38f5f44b80e55adb6"
     },
     {
      "file": "mughni-v07.pdf",
      "volume": 7,
-     "pages": 1271,
-     "bytes": 5397899,
-     "sha256": "4929b8200ae8b605399feeaf9d35952cd7224138e2637f587e06e4117b09aa0c"
+     "pages": 1253,
+     "bytes": 5373693,
+     "sha256": "08384b352e96015073135c3d86033d22088b81ea161314d8bd7eb535c8b00346"
     },
     {
      "file": "mughni-v08.pdf",
      "volume": 8,
-     "pages": 1181,
-     "bytes": 4936698,
-     "sha256": "28057415a9d6bcaa30acd403df319b7db79e31d563be18abedb4a3879ecb1e47"
+     "pages": 1168,
+     "bytes": 4917335,
+     "sha256": "360d6d5baa06a1e9dd71f6a7aba87600ee6f012a10c86b845ab11b42763dc594"
     },
     {
      "file": "mughni-v09.pdf",
      "volume": 9,
-     "pages": 1205,
-     "bytes": 5119388,
-     "sha256": "d386edbcc6cbfdb8a3700083a958c3bc06af73784bb016d03b2caa821316f5ed"
+     "pages": 1190,
+     "bytes": 5098410,
+     "sha256": "26fe1e71e61f6c8c00edc33f3203d9568cdc54676c3b4ff0c9689561325c57ee"
     },
     {
      "file": "mughni-v10.pdf",
      "volume": 10,
-     "pages": 1211,
-     "bytes": 5044855,
-     "sha256": "56d4352ca01559cf9186ce1f4a61626d895dbc90383eaf3f25c131707381fce5"
+     "pages": 1183,
+     "bytes": 5015873,
+     "sha256": "c28c09782a207cb10800324f9b5bff23b8cc885023e699d5c1f64275711cfe70"
     }
    ]
   },
@@ -1377,9 +1377,9 @@
     {
      "file": "rawdat-nazir-v01.pdf",
      "volume": 1,
-     "pages": 621,
-     "bytes": 2443660,
-     "sha256": "9a0211fcee96f6aff344b69bb2f5fa1b7fb1f00aef6aa1a2249261ce489cae40"
+     "pages": 608,
+     "bytes": 2427450,
+     "sha256": "70d0adde2445349312e91fe22c2e4dd52976cbe9b39926f4cd953e2ce559093b"
     }
    ]
   },
@@ -1393,9 +1393,9 @@
     {
      "file": "adab-mashy-v01.pdf",
      "volume": 1,
-     "pages": 84,
-     "bytes": 365608,
-     "sha256": "f84efc4101d240d2b503284f7ee243916c909f5a030edc3c3776d113f464df11"
+     "pages": 77,
+     "bytes": 360819,
+     "sha256": "142e852739cbd158688530715dc9cf18fb271104da016236e73df513a03ac2b1"
     }
    ]
   },
@@ -1409,37 +1409,37 @@
     {
      "file": "zad-maad-v01.pdf",
      "volume": 1,
-     "pages": 659,
-     "bytes": 2686033,
-     "sha256": "996d3cd70e1776209aaacd9c1ec3aedf61e1b3e34a5947c683a9a9c6db16add8"
+     "pages": 626,
+     "bytes": 2654042,
+     "sha256": "1db7e17c16b215a27baf967c29151a0530f4c23347b9cec8356ebf3d10ca4827"
     },
     {
      "file": "zad-maad-v02.pdf",
      "volume": 2,
-     "pages": 632,
-     "bytes": 2547504,
-     "sha256": "008e51c128aaf888b1877db45dcb68537607c382f2682c38355e5d753477029c"
+     "pages": 615,
+     "bytes": 2526619,
+     "sha256": "ecd4d86a9dda6fb1770ae4885a62bf8c7f2acee983594ccad2fc1417baba5301"
     },
     {
      "file": "zad-maad-v03.pdf",
      "volume": 3,
-     "pages": 1059,
-     "bytes": 4104025,
-     "sha256": "63eb54479b5ef2c569f63ef84d3b77637d0eb0c9400a2829da05dce2c4b097c2"
+     "pages": 1016,
+     "bytes": 4060863,
+     "sha256": "61e57c367c6bbcf4ec84a05743831ef7e03f9f63dc4fa3086475c75d68fe9c2a"
     },
     {
      "file": "zad-maad-v04.pdf",
      "volume": 4,
-     "pages": 643,
-     "bytes": 2553029,
-     "sha256": "355ab5f791d4efb565c9e5a8760e69b84d0f9b42c9a87998ada825430fb74384"
+     "pages": 605,
+     "bytes": 2519175,
+     "sha256": "5d780264e2057c10a25c68b4fcf94329ed67dafe701824a8af7a2a4058dda2c2"
     },
     {
      "file": "zad-maad-v05.pdf",
      "volume": 5,
-     "pages": 1422,
-     "bytes": 5284605,
-     "sha256": "ab14dd0fea581e3405f9b8861c009f38b71aa7198d8113cd82374c137b033d40"
+     "pages": 1361,
+     "bytes": 5229371,
+     "sha256": "66ad04c22e248107437b0362324e822a430b0a14fef01e798abfe08ae16eaf7c"
     }
    ]
   },
@@ -1453,16 +1453,16 @@
     {
      "file": "ibn-hisham-v01.pdf",
      "volume": 1,
-     "pages": 1072,
-     "bytes": 4466777,
-     "sha256": "1f25a38396e85dba14f77d529c6a1f4f1f8e2e9a6f218088a3cae041b53ab6d6"
+     "pages": 1028,
+     "bytes": 4408262,
+     "sha256": "09df2faf8b3192a98c63aea9c192f786c47e0efdc14c90720a66d50e85dc4aaf"
     },
     {
      "file": "ibn-hisham-v02.pdf",
      "volume": 2,
-     "pages": 944,
-     "bytes": 3610845,
-     "sha256": "6e0101d93a0a3eae017e2832a2ae98d28d6b5ca31c6d2fc3d13cc8f69fd929fa"
+     "pages": 910,
+     "bytes": 3566426,
+     "sha256": "9f2d6e46f8bd61af99e4242dc06cf675d7db48bed381c78288e0d81f98160c74"
     }
    ]
   },
@@ -1476,9 +1476,9 @@
     {
      "file": "fusul-sira-v01.pdf",
      "volume": 1,
-     "pages": 302,
-     "bytes": 1244483,
-     "sha256": "6b8fa14c08c04b8f01ff330a26be2b92f6d88e30c20e693fac66df14b9f10ccd"
+     "pages": 284,
+     "bytes": 1229769,
+     "sha256": "1643784d47eea5d70ba504b7f014dadda8f1a7931cbf58ebc8431eec2faa4c58"
     }
    ]
   },
@@ -1492,9 +1492,9 @@
     {
      "file": "kalim-tayyib-v01.pdf",
      "volume": 1,
-     "pages": 122,
-     "bytes": 608186,
-     "sha256": "9fa31200ecf79a32335b7765d85a9987c190ac6493023758e7c31952de93476d"
+     "pages": 118,
+     "bytes": 601680,
+     "sha256": "e8ccc58dac1589f8bbcba279fa19062042e7f40c101b1fb1e0e049a6ce3ef420"
     }
    ]
   },
@@ -1508,9 +1508,9 @@
     {
      "file": "wabil-sayyib-v01.pdf",
      "volume": 1,
-     "pages": 342,
-     "bytes": 1300734,
-     "sha256": "2a4b9c8f9020e33a350a41bebea15be2add5695402ae76c3276a4d2a207c5b4d"
+     "pages": 334,
+     "bytes": 1293413,
+     "sha256": "51f1f64820c55a0849e8d02f5bd2ed8cb597e1f94f95bc37b8c4481dfe94bf40"
     }
    ]
   },
@@ -1524,9 +1524,9 @@
     {
      "file": "daa-dawa-v01.pdf",
      "volume": 1,
-     "pages": 352,
-     "bytes": 1694245,
-     "sha256": "b1ed972333a0fe307804ca196dec9865a4dc41338469841478c92928fbee2ca1"
+     "pages": 351,
+     "bytes": 1690306,
+     "sha256": "14b388949e9e27c0f71c24e48b9ee875cfd1bf9c4fef99b089914b97e102b3e6"
     }
    ]
   },
@@ -1540,9 +1540,9 @@
     {
      "file": "mukhtasar-minhaj-v01.pdf",
      "volume": 1,
-     "pages": 784,
-     "bytes": 3701074,
-     "sha256": "1ad4d5b6fb575f3bc4112d16b1bd4ef87226a57b7df6046fc21f49edce740616"
+     "pages": 782,
+     "bytes": 3688945,
+     "sha256": "59232b0a24cc5754f9605d7dbc9edcecb857d60c2c7add8346e7c7c2d165bf34"
     }
    ]
   },
@@ -1556,9 +1556,9 @@
     {
      "file": "riyad-salihin-v01.pdf",
      "volume": 1,
-     "pages": 973,
-     "bytes": 5033501,
-     "sha256": "ed16cb09a898409c6ec48b859f19064dc58b34e3f93fa2520e48025b80d89ebd"
+     "pages": 966,
+     "bytes": 5016949,
+     "sha256": "c97680eef1e17b0721b9831d2d9a895e91dbda6da56401335324f594a081b4f4"
     }
    ]
   },
@@ -1572,9 +1572,9 @@
     {
      "file": "arbain-nawawiyya-v01.pdf",
      "volume": 1,
-     "pages": 47,
-     "bytes": 237786,
-     "sha256": "73b7366514893234abb6204f13c969b44e3d72e05017b47eb41a981da9101798"
+     "pages": 46,
+     "bytes": 236475,
+     "sha256": "5fb9f18625625362ce74a1080ce8ab221fa05eaf9a82f2701753e5b8c556cc37"
     }
    ]
   },
@@ -1589,8 +1589,8 @@
      "file": "bulugh-maram-v01.pdf",
      "volume": 1,
      "pages": 310,
-     "bytes": 1623438,
-     "sha256": "0e3adcf3e8fcc649869142e08b10401d2c8635ec53e52dcb0ac44fa2dc88b217"
+     "bytes": 1623268,
+     "sha256": "47c4cd82f43c599b372ba6481ee906ae5ad350c24e94dc51e932910ece3e728f"
     }
    ]
   },
@@ -1604,9 +1604,9 @@
     {
      "file": "nuzhat-nazar-v01.pdf",
      "volume": 1,
-     "pages": 181,
-     "bytes": 859846,
-     "sha256": "d7062276e7f4a2b4f55ba8525de7f1d1925c979742b33415fb2d50ccc864424a"
+     "pages": 177,
+     "bytes": 851711,
+     "sha256": "e700c3cb5e4b5bda62c22db7204ff768198e078d12d4390323a6f219a861695a"
     }
    ]
   },
@@ -1620,170 +1620,170 @@
     {
      "file": "tabari-v01.pdf",
      "volume": 1,
-     "pages": 1007,
-     "bytes": 3719396,
-     "sha256": "3aa46de26b9c05dccd4b6de19a4ef3c6623b4d1828e610315a21243de86c86f0"
+     "pages": 978,
+     "bytes": 3622245,
+     "sha256": "c238d8bfd24a77d8d8c835a98cb0c4912e62a38f70e880b5bf38a9cd97d92d6d"
     },
     {
      "file": "tabari-v02.pdf",
      "volume": 2,
-     "pages": 1270,
-     "bytes": 4354340,
-     "sha256": "2c1a52dc43cd0c8c51d9e5749ff5c25a8cd8219ea2d11e4212db5998e46ed67a"
+     "pages": 1247,
+     "bytes": 4226961,
+     "sha256": "3c69a4e35925b9a207eb2f735ce3ed706e48bdc906087d965689d7ec5c789988"
     },
     {
      "file": "tabari-v03.pdf",
      "volume": 3,
-     "pages": 1065,
-     "bytes": 3879356,
-     "sha256": "48307822dcc3d6568be1baccabc508f07ee926c069f0067706923410f26faae7"
+     "pages": 1041,
+     "bytes": 3807381,
+     "sha256": "4deb69554c7301d915f1660117870d5e3a13900cf58f8ec100e2e6c7274e732d"
     },
     {
      "file": "tabari-v04.pdf",
      "volume": 4,
-     "pages": 962,
-     "bytes": 3592391,
-     "sha256": "a0ce3fdc5e8857c8d5c993775f650a35e96cd028c680934980296bf185b05603"
+     "pages": 932,
+     "bytes": 3501960,
+     "sha256": "e3e2a239c8f0505309212811cd067ece8db6540e057037781e6909cfa223f46d"
     },
     {
      "file": "tabari-v05.pdf",
      "volume": 5,
-     "pages": 1091,
-     "bytes": 3939855,
-     "sha256": "508067fc64eb66ba9d7aeb529c91e63df10b0ef7b04f1d1e5fc6437717742b3f"
+     "pages": 1066,
+     "bytes": 3845059,
+     "sha256": "c71a2383475260bfc44fb03ab7ea9fd018524ba2659231a7d0ba862aee4bf540"
     },
     {
      "file": "tabari-v06.pdf",
      "volume": 6,
-     "pages": 1049,
-     "bytes": 3846798,
-     "sha256": "f25d255d2d04839f13e912e92c4520de5df20c5869ff534c5c3396a6e69d225a"
+     "pages": 1033,
+     "bytes": 3758854,
+     "sha256": "ab2680403bb27301be7ca8fe2d1a699dd50ba8d36bc511b4d034e496da9effd2"
     },
     {
      "file": "tabari-v07.pdf",
      "volume": 7,
-     "pages": 943,
-     "bytes": 3503085,
-     "sha256": "b1dc7e2233c77ed08343ac2c2ae3e1bc24ce7ad2538dd28c3176bd7603253398"
+     "pages": 908,
+     "bytes": 3414123,
+     "sha256": "0360839a5ab5e4196e6adf5ad7834987266d6fffdb40731a37b8031e1686eb60"
     },
     {
      "file": "tabari-v08.pdf",
      "volume": 8,
-     "pages": 1032,
-     "bytes": 3861368,
-     "sha256": "0ee9d838b62ed2b08ecb53802f96e09abbe3dd7ce7c483a139dbf020e4c8b603"
+     "pages": 1005,
+     "bytes": 3775781,
+     "sha256": "ba345e1be3d478bdc3de1e1b34ac3e62c944845dc8eda2ec99033f2b0b9e893f"
     },
     {
      "file": "tabari-v09.pdf",
      "volume": 9,
-     "pages": 1096,
-     "bytes": 3901694,
-     "sha256": "750da4a0ee3a22bc254c6625b75f49638c519b25bc26d79acbf0c3028ce5b1bc"
+     "pages": 1078,
+     "bytes": 3815958,
+     "sha256": "b5fe1ffcb2791a9d6dd58313c3e6d9f65fd8b51bb051b1fa7409bd423ab3ba2e"
     },
     {
      "file": "tabari-v10.pdf",
      "volume": 10,
-     "pages": 1052,
-     "bytes": 3702982,
-     "sha256": "367d3880d854ceaccd26dc73a859281f4ad7548dda53f9964cc8ffe1cb4ba9ce"
+     "pages": 1037,
+     "bytes": 3617080,
+     "sha256": "2f6261b141f0f07ddf1c19f578a2a7398ee036d79f11b3a10437b0ff384d500f"
     },
     {
      "file": "tabari-v11.pdf",
      "volume": 11,
-     "pages": 1090,
-     "bytes": 3850616,
-     "sha256": "28c2b09319fb74442cd20f563e47f156df99eb661002ae447a24fdf872b92701"
+     "pages": 1071,
+     "bytes": 3755948,
+     "sha256": "d5663f64ccbcaa46641e2c761c4ec950a8f9e451ef44e907544cfed953e69a53"
     },
     {
      "file": "tabari-v12.pdf",
      "volume": 12,
-     "pages": 825,
-     "bytes": 3123418,
-     "sha256": "d42061dd410caedb40f4541ee401a8a6125053d7f1780dd0ca2e2112184784c1"
+     "pages": 811,
+     "bytes": 3049162,
+     "sha256": "202601748fe19c4978d3c0fa9848586f270fcef42f03ebbf14bdfa77acfd81e7"
     },
     {
      "file": "tabari-v13.pdf",
      "volume": 13,
-     "pages": 1155,
-     "bytes": 3927822,
-     "sha256": "fdd8c302224523ea41af36c90363efab802dd9286767dc6c2ce636746b092729"
+     "pages": 1138,
+     "bytes": 3828766,
+     "sha256": "70c4921cbecef86bc0e3ce4da89710799cecc68b284a7147e03d7b8e4c6a4cf4"
     },
     {
      "file": "tabari-v14.pdf",
      "volume": 14,
-     "pages": 1021,
-     "bytes": 3631218,
-     "sha256": "85274f8dc7473ca30175561be96c4d2738327c2ecb714e7fbffaefa95670331a"
+     "pages": 1007,
+     "bytes": 3542543,
+     "sha256": "b4c8a1b2345d219d79a677687b01975ce938d768cc4bb227785ce7911528c6f1"
     },
     {
      "file": "tabari-v15.pdf",
      "volume": 15,
-     "pages": 1045,
-     "bytes": 3538732,
-     "sha256": "0398cfb5f37504c777acf064939a76a91597b8e58ac1de2dc4935b37f0fb2d19"
+     "pages": 1019,
+     "bytes": 3469829,
+     "sha256": "4af8782c5959b5000250c6a6926275c470268988002d6ede25746e0fe0b7cdf8"
     },
     {
      "file": "tabari-v16.pdf",
      "volume": 16,
-     "pages": 1229,
-     "bytes": 3983247,
-     "sha256": "4825104761c7bf71d381549a3b602a8addb4a824a0322b4cdaabe0b6263fadb3"
+     "pages": 1219,
+     "bytes": 3887595,
+     "sha256": "39db50f05ded63d8ceb31c99146e8cd36fca5820f027b6882143f21f5cb2f499"
     },
     {
      "file": "tabari-v17.pdf",
      "volume": 17,
-     "pages": 1322,
-     "bytes": 4201494,
-     "sha256": "29ad67f9c60b9f2c5ea40277e55bfbc73179d568b9eb3ca93ed8a2d244dea63a"
+     "pages": 1300,
+     "bytes": 4115806,
+     "sha256": "3a4b709cc6d9debb4942601e26a2c4b37981fdcdc9369c2e83427c808f6426b1"
     },
     {
      "file": "tabari-v18.pdf",
      "volume": 18,
-     "pages": 1398,
-     "bytes": 4283135,
-     "sha256": "fe17528bbadb0c44d80ec0ddbe9a2ce92b884f66546b811107391e1063a1fdad"
+     "pages": 1388,
+     "bytes": 4143044,
+     "sha256": "0d5ef37e0cbf19600cb9ba5be2c3335dd7dd57e2d4afb84c5f991d2c229d528e"
     },
     {
      "file": "tabari-v19.pdf",
      "volume": 19,
-     "pages": 1399,
-     "bytes": 4305244,
-     "sha256": "b62a378ecbfcaebac82197ca6b2eb9f1af76c4d41feded7781188650de918c94"
+     "pages": 1386,
+     "bytes": 4195475,
+     "sha256": "578825bcb7214b69e6433139b8da4d3e245c84c192cea1b2280a09df6603ce32"
     },
     {
      "file": "tabari-v20.pdf",
      "volume": 20,
-     "pages": 1534,
-     "bytes": 4649107,
-     "sha256": "5e653dc6716664680d6492b6488b3f1b0869a9edc17c7b4743bb33a037565bb5"
+     "pages": 1524,
+     "bytes": 4530290,
+     "sha256": "20b002779387c4a4b5acc727c307c0e571548dfe9bec820689859493ee073b80"
     },
     {
      "file": "tabari-v21.pdf",
      "volume": 21,
-     "pages": 1278,
-     "bytes": 3977647,
-     "sha256": "5c2696e790bb871a5667d6a916beea9a45ebc256e8fb0040408c88eb87288cf8"
+     "pages": 1265,
+     "bytes": 3881103,
+     "sha256": "ec7a64ba07e4bc0c3042015d8801a5a1d63af9969b3da3f0a50f30a78bcb61fc"
     },
     {
      "file": "tabari-v22.pdf",
      "volume": 22,
-     "pages": 1399,
-     "bytes": 4279021,
-     "sha256": "a55c19d5634f3ce09ffd79424e252157194120288db6a7d58309d1a5a9e6d836"
+     "pages": 1384,
+     "bytes": 4138290,
+     "sha256": "dd73754b30f232a7fd78bd81c4a4639f33fcdfddb562e8c3345f3781d8298b0d"
     },
     {
      "file": "tabari-v23.pdf",
      "volume": 23,
-     "pages": 1300,
-     "bytes": 3858484,
-     "sha256": "8119b3500ce5972a05de7a84b50a8c7b966cda80eb48794a332f1beebc3aa371"
+     "pages": 1293,
+     "bytes": 3763608,
+     "sha256": "b2b9b43802c573873c7a30e8d89c6da83d655152f7d1bc93d82e1405070461f1"
     },
     {
      "file": "tabari-v24.pdf",
      "volume": 24,
-     "pages": 1410,
-     "bytes": 4286683,
-     "sha256": "1d01797ddc9e84bed4780ae68d5dc193107ee0430fb4200b2c7e2def3181790e"
+     "pages": 1394,
+     "bytes": 4204721,
+     "sha256": "335d3a375777d18fb6623103f6c4347d51198669953aa4e2d9c3d57cb52e79db"
     }
    ]
   },
@@ -1797,142 +1797,142 @@
     {
      "file": "bidaya-v01.pdf",
      "volume": 1,
-     "pages": 723,
-     "bytes": 2998763,
-     "sha256": "1b9820568462c0a0ceda436085de0a8fa471fd18e79fb32c95298f2c73fc0e16"
+     "pages": 688,
+     "bytes": 2954446,
+     "sha256": "225a94b0a4a5f9a4a9bc41acfc7739c5d8c2049687b9e682c245a527fdcb80ca"
     },
     {
      "file": "bidaya-v02.pdf",
      "volume": 2,
-     "pages": 789,
-     "bytes": 3284199,
-     "sha256": "c7a86a5df6ca13d3c83cd142121ea11e3040541f563e61d72734c17d7469e84e"
+     "pages": 727,
+     "bytes": 3219906,
+     "sha256": "426dcd1f6b39bcfdc37a0e927bfc5b41a49d5058dadf0563a34ab6848fbd73bd"
     },
     {
      "file": "bidaya-v03.pdf",
      "volume": 3,
-     "pages": 668,
-     "bytes": 3131778,
-     "sha256": "8e15321ab0d880d2c921c5ed46abfc169e29803e78e257f90e89bf8dd06ed846"
+     "pages": 645,
+     "bytes": 3095083,
+     "sha256": "f5b896fcd004cd8cb13513b03f98f9d8477263333f7e208361538ae8f9307003"
     },
     {
      "file": "bidaya-v04.pdf",
      "volume": 4,
-     "pages": 688,
-     "bytes": 3094685,
-     "sha256": "c355bf3dee4b309f96fd091319e2559490849931a0dde5b112c705f2c21c5851"
+     "pages": 639,
+     "bytes": 3041749,
+     "sha256": "4c8d264fab44997701d6041a261ddb87f13dd48f4b4a6ed0d3358c4ce0b7cadc"
     },
     {
      "file": "bidaya-v05.pdf",
      "volume": 5,
-     "pages": 615,
-     "bytes": 2883685,
-     "sha256": "c5bd92d1fd36631d81c5c259d80158277cfea52fc43922079087aab76f2bb7b9"
+     "pages": 598,
+     "bytes": 2853735,
+     "sha256": "d792ee67c37cd0b356acad40e972e20bf2f11548efa21e45d5e884b92625c9cc"
     },
     {
      "file": "bidaya-v06.pdf",
      "volume": 6,
-     "pages": 719,
-     "bytes": 3232153,
-     "sha256": "70836862ffdf55e07d03caeb950225bccc0f0303108ceb79e38c6cb724e77923"
+     "pages": 681,
+     "bytes": 3187418,
+     "sha256": "e3b1e732bc6aa14bb60c461722b91fac4acf3692ef0e42bcb10f05a127815a96"
     },
     {
      "file": "bidaya-v07.pdf",
      "volume": 7,
-     "pages": 824,
-     "bytes": 3682915,
-     "sha256": "a8602583f687e126eac35d9702be4c3135098ad9a0fa693c3484bf7badb1c69d"
+     "pages": 771,
+     "bytes": 3626480,
+     "sha256": "966c5566a0a70541c3a5199c845db6ac8b6d8483f6a392f74aa913ee9b5e9b27"
     },
     {
      "file": "bidaya-v08.pdf",
      "volume": 8,
-     "pages": 858,
-     "bytes": 3724952,
-     "sha256": "ee4204a91e4d89c0626e5201330878c350bf61a201edfa219ca5c145e3f67995"
+     "pages": 812,
+     "bytes": 3674990,
+     "sha256": "e50d52710e11d4f0ab3dea38affb74c14d35649c62635730b5a406f5efc1223f"
     },
     {
      "file": "bidaya-v09.pdf",
      "volume": 9,
-     "pages": 883,
-     "bytes": 3785671,
-     "sha256": "a3f5bc7a4705e47dbfd568d076257eab8733435e9659948d6d50b1ceb02f6756"
+     "pages": 802,
+     "bytes": 3714955,
+     "sha256": "949820203605a7df1574c7f05cba208405034df41c42be5cce313fcb48956d87"
     },
     {
      "file": "bidaya-v10.pdf",
      "volume": 10,
-     "pages": 764,
-     "bytes": 3493629,
-     "sha256": "086c4bfaeab67460109261362945fcc135d571974d33ff5d61a54a40a5a106ee"
+     "pages": 728,
+     "bytes": 3447690,
+     "sha256": "793887055298a882980edc7ccbd8c162ddc97dffecb821d74a3f462c08684daa"
     },
     {
      "file": "bidaya-v11.pdf",
      "volume": 11,
-     "pages": 924,
-     "bytes": 3949846,
-     "sha256": "754ae67b77e12da4a6f73b8b772e6e83ac5989e1e2e8b91fb681a4982780c49f"
+     "pages": 856,
+     "bytes": 3890415,
+     "sha256": "15f07ad13243b5ac7974776f327a552dab86975c04bf1e7ece8edfca1eb6658f"
     },
     {
      "file": "bidaya-v12.pdf",
      "volume": 12,
-     "pages": 843,
-     "bytes": 3839949,
-     "sha256": "a0c2d7e3e7dac389350709814b727295a808675954ff3363e80aae4b934c397c"
+     "pages": 797,
+     "bytes": 3788808,
+     "sha256": "8c9447e82e17117c0a8a89763ab5902e8aaf852aeb1013193c97cc4a7bbb5d5a"
     },
     {
      "file": "bidaya-v13.pdf",
      "volume": 13,
-     "pages": 869,
-     "bytes": 3733863,
-     "sha256": "2c648e17a93a3b4b69445a6f90d5f0f57eb9d37935e3287fd1598e5ed6467ee0"
+     "pages": 813,
+     "bytes": 3682040,
+     "sha256": "5d9236aacaac2451016e02d8d6e7962767c047a85bd150156376421afc16c96d"
     },
     {
      "file": "bidaya-v14.pdf",
      "volume": 14,
-     "pages": 1002,
-     "bytes": 4425990,
-     "sha256": "d39cd622b26fa97f4c1fa227b781d82f8f77c7fbfee3c04a4fd459a33d0cd01d"
+     "pages": 941,
+     "bytes": 4360936,
+     "sha256": "5d1ce64518236ada9ead44ce012cc4aca1945753d76be0b6fb5095c7ceb74bc9"
     },
     {
      "file": "bidaya-v15.pdf",
      "volume": 15,
-     "pages": 984,
-     "bytes": 4422701,
-     "sha256": "60f6e356deab3c32884b229d1fa620f0e05fa0947f747c46eecb173092ffe5f6"
+     "pages": 934,
+     "bytes": 4364085,
+     "sha256": "66e73e5583e8f68ac78a3dbbc6d2034653520bfdc63030acde37a22f3a7fed6e"
     },
     {
      "file": "bidaya-v16.pdf",
      "volume": 16,
-     "pages": 1018,
-     "bytes": 4389653,
-     "sha256": "057511b88b1202bac43e6f951c9b4fe04ee08c3683fe0f28156cfd7606b36f0f"
+     "pages": 960,
+     "bytes": 4327906,
+     "sha256": "a1bf29feb01d2d12160ae89e608d2383c368d5639a49286dba7a5d46166ac99f"
     },
     {
      "file": "bidaya-v17.pdf",
      "volume": 17,
-     "pages": 986,
-     "bytes": 4225748,
-     "sha256": "014b39db0ff4d0c6d9a034250f560000294c3168978ef5a0c128aff9ed0717bf"
+     "pages": 922,
+     "bytes": 4162127,
+     "sha256": "421fc74ecb65299b0d0711506d618171bbbe3b41458893a751bd8b7a1bebbe95"
     },
     {
      "file": "bidaya-v18.pdf",
      "volume": 18,
-     "pages": 969,
-     "bytes": 3963259,
-     "sha256": "d8158afa59277a360eccae090797ef46fe6f3a536a98a2ad0f06c11466e4f59b"
+     "pages": 901,
+     "bytes": 3900953,
+     "sha256": "efb014bb30b3585df587aa8b8f4e98654b1198655aff50ca1ada81545cad284f"
     },
     {
      "file": "bidaya-v19.pdf",
      "volume": 19,
-     "pages": 659,
-     "bytes": 2968577,
-     "sha256": "7051b0bd38959b3aa6e2a856ce269a472426a4fc1a70553955a8368784b97127"
+     "pages": 611,
+     "bytes": 2919551,
+     "sha256": "f12554162c505bc2c2cb2b6c0cbd6c29fbb0138df7c3ecc214158e94e9e68e8d"
     },
     {
      "file": "bidaya-v20.pdf",
      "volume": 20,
-     "pages": 542,
-     "bytes": 2502691,
-     "sha256": "d0ad33712677a1ced266866a93aed486f01f4e7097593ad9bfd8cec7c73c2360"
+     "pages": 508,
+     "bytes": 2462035,
+     "sha256": "d733236e494d56137af865d916a69ef55a86e3ea794df2535ecf7b20a2fe68d0"
     }
    ]
   },
@@ -1946,163 +1946,163 @@
     {
      "file": "siyar-v01.pdf",
      "volume": 1,
-     "pages": 2347,
-     "bytes": 11425812,
-     "sha256": "0334a0431e8e109e122ac1e08c538de185dfc69b7dd9593399ad7c3e1856faf0"
+     "pages": 2317,
+     "bytes": 11390478,
+     "sha256": "57ea564ac5162c8e23465a7ddc1152f17351e90a03ec58db0a6090f8c2d2e0e3"
     },
     {
      "file": "siyar-v02.pdf",
      "volume": 2,
-     "pages": 964,
-     "bytes": 4172897,
-     "sha256": "9be17671a8a87f8063c03266e844b144a77fea37e3867612d9b5945f13f409b4"
+     "pages": 928,
+     "bytes": 4130118,
+     "sha256": "3a996cad18d0b3f75bc96930c9e9769d8897547b51899c7ff05fccc9d5422bbc"
     },
     {
      "file": "siyar-v03.pdf",
      "volume": 3,
-     "pages": 898,
-     "bytes": 3911700,
-     "sha256": "970393184eb3fe9a75bb23f5b12d0d0533dda9796f214e38a2d4b3ce679a8bd3"
+     "pages": 873,
+     "bytes": 3881574,
+     "sha256": "e232f1e38a69afaf7f3552d2cd0efefc0f31f5a3a708ff0a651b2e891905e3ae"
     },
     {
      "file": "siyar-v04.pdf",
      "volume": 4,
-     "pages": 1094,
-     "bytes": 4773666,
-     "sha256": "92ff352c46802aca9269b7f88c4df2dd4f5ad719fbec4198b2c853b0f7db07c9"
+     "pages": 1064,
+     "bytes": 4739343,
+     "sha256": "564face0d344f1563e0264307f35501e5b79a72476fb81fc28b34bc09a8dd8e6"
     },
     {
      "file": "siyar-v05.pdf",
      "volume": 5,
-     "pages": 898,
-     "bytes": 3997810,
-     "sha256": "d1d466fc22a1912035dc8d8ab963e1a575ed08fffeb0b1afd49fd755230fcc79"
+     "pages": 889,
+     "bytes": 3981049,
+     "sha256": "a1977d86c713ff7db84200b154e669dd3f02d93ad1a93da0578aa0a89eaa87df"
     },
     {
      "file": "siyar-v06.pdf",
      "volume": 6,
-     "pages": 754,
-     "bytes": 3393512,
-     "sha256": "df41cf14e766921fcab4bfa2b8fa24c4fb9d607ef7e08a5daea7635a9aa93b79"
+     "pages": 745,
+     "bytes": 3374246,
+     "sha256": "15b77b96936ea1d9cb9df6dd8d9100a15c8f1df9123666a893d71a6e3846b7a2"
     },
     {
      "file": "siyar-v07.pdf",
      "volume": 7,
-     "pages": 808,
-     "bytes": 3521573,
-     "sha256": "a7db6c6651a341d82c285e09b3b5e8e8e63cc917da980bb8e8fadbc1af97f97d"
+     "pages": 787,
+     "bytes": 3495391,
+     "sha256": "51d9abdc183f880977b858d6e404385bd915d82de82a8116bdbe53b703647f11"
     },
     {
      "file": "siyar-v08.pdf",
      "volume": 8,
-     "pages": 896,
-     "bytes": 3846382,
-     "sha256": "1b4163ce9c55ebaf07ca1f8a19038d65843d9e8f472a283afdf26faa360d36ea"
+     "pages": 865,
+     "bytes": 3809729,
+     "sha256": "b154d2fe55f3a9976ed83c87d6fad105a2065c54c3a8c7f9c8ebaf02210eeb14"
     },
     {
      "file": "siyar-v09.pdf",
      "volume": 9,
-     "pages": 874,
-     "bytes": 3776263,
-     "sha256": "a89ecd89a2faedd04bd63f61bc7cd63b178da8b4945f748d2a6f2a6ef4685225"
+     "pages": 840,
+     "bytes": 3737259,
+     "sha256": "1338c97e8cd7f878c883fa98994d476903861cad9c24ccccd30878bb117ec8be"
     },
     {
      "file": "siyar-v10.pdf",
      "volume": 10,
-     "pages": 966,
-     "bytes": 4259593,
-     "sha256": "2295db5f27bc2a861fc9bda29e56a9a309741039cd908b318d0227b8c954c09f"
+     "pages": 939,
+     "bytes": 4224207,
+     "sha256": "5f3d953adb943206ee51ba2fc7391e75a6efe52bce92a14387914d2da4ef60bb"
     },
     {
      "file": "siyar-v11.pdf",
      "volume": 11,
-     "pages": 957,
-     "bytes": 4203190,
-     "sha256": "3859698c6d5db83c5b3cdd0f0408e0b444e24d6dde816b3ef81dd9f68568a2f4"
+     "pages": 940,
+     "bytes": 4178208,
+     "sha256": "7da1e8dfa50f6214d0f149f5d2e46ef2ecc597d2350d8cfbde92277feb9c1a15"
     },
     {
      "file": "siyar-v12.pdf",
      "volume": 12,
-     "pages": 884,
-     "bytes": 3888954,
-     "sha256": "c731e27a7fa7e91d237f0b77a7d38993cdead880e6280f62c0cdbe5c5e8995d9"
+     "pages": 852,
+     "bytes": 3850029,
+     "sha256": "881d662a468fb88656af57e6b438f0898f6e3b9719355366bb8374dd5e34b827"
     },
     {
      "file": "siyar-v13.pdf",
      "volume": 13,
-     "pages": 823,
-     "bytes": 3586933,
-     "sha256": "dad741f33c984a91e1c65928b394d49b9d92f011c948e2e7dbb66ee3b5d5bea0"
+     "pages": 801,
+     "bytes": 3557555,
+     "sha256": "5a88a7a6704d7222820533e4db83337c089232c0f18430e46c342728d6d7062f"
     },
     {
      "file": "siyar-v14.pdf",
      "volume": 14,
-     "pages": 841,
-     "bytes": 3712287,
-     "sha256": "d69d4a601418e65b891a90a6ae8a549441cf356da54c4cfdbae38a899e366a95"
+     "pages": 820,
+     "bytes": 3682066,
+     "sha256": "382e8fadc2203a3eaf1f93f69f279b96bfc034cb876f104b75545e7351da389b"
     },
     {
      "file": "siyar-v15.pdf",
      "volume": 15,
-     "pages": 771,
-     "bytes": 3490898,
-     "sha256": "c03008c96e143ea6b94f593f50dfb61b8a1b8a16ce3615bec94e26a505813300"
+     "pages": 743,
+     "bytes": 3451537,
+     "sha256": "dc090b9f603117d51d8f69d0512cacfa688abada22584af5f3d7f77d751f506a"
     },
     {
      "file": "siyar-v16.pdf",
      "volume": 16,
-     "pages": 812,
-     "bytes": 3516136,
-     "sha256": "97a765701f30428acbf45b81c97a0ffd2c3e7f1201bff0bca5635026b900298b"
+     "pages": 777,
+     "bytes": 3477364,
+     "sha256": "0c7915566f328fa88bd56fa5d7c5e3858bb201e2cee7fb1f59a4fd467353caac"
     },
     {
      "file": "siyar-v17.pdf",
      "volume": 17,
-     "pages": 820,
-     "bytes": 3673077,
-     "sha256": "290ccf96531341a3e594f460f7770bb7cbd68a301204e5e48f7327e15db4dff2"
+     "pages": 792,
+     "bytes": 3635344,
+     "sha256": "66fa6c64b49caea93ce7738c7882102d2e0cd48532acf48cb40cc118be6ccb5d"
     },
     {
      "file": "siyar-v18.pdf",
      "volume": 18,
-     "pages": 786,
-     "bytes": 3465700,
-     "sha256": "d9e70a487f50612eb5fedd26bc2f48e02bf7cbff77d2a070aa96cda0bc2dcfa7"
+     "pages": 767,
+     "bytes": 3434390,
+     "sha256": "e0ab5b033e621ee24a0f4025e1159ba2401a79085f9751377cc6b63132455481"
     },
     {
      "file": "siyar-v19.pdf",
      "volume": 19,
-     "pages": 765,
-     "bytes": 3346237,
-     "sha256": "820d9bd931ee78cb0b50b13805987badcf0f0af96be024b7c4f2a5c29d541203"
+     "pages": 742,
+     "bytes": 3315862,
+     "sha256": "c9de35eeedb3eded2b23f95646c7ee31ad19f51344686ced4428a9d4de9d9b7e"
     },
     {
      "file": "siyar-v20.pdf",
      "volume": 20,
-     "pages": 763,
-     "bytes": 3429917,
-     "sha256": "8b5acd36f5a53cf9c3284ac2708bd6268a5ccb3b6b7fd81a5769f6d5af82d8c7"
+     "pages": 743,
+     "bytes": 3397223,
+     "sha256": "c4bd0e425960ed1833bb06b1df69c21301744080db1c516a0adfbed75f0d58b5"
     },
     {
      "file": "siyar-v21.pdf",
      "volume": 21,
-     "pages": 656,
-     "bytes": 2869216,
-     "sha256": "7af951bcc0e8bf3e55192eadeda8413612cb65c4f37f4b531a0a74458a776fbd"
+     "pages": 635,
+     "bytes": 2841579,
+     "sha256": "d0a137e3e5383e1a7655c49d1bb3cd6b55507c87cf8251bfe618c41159df7aed"
     },
     {
      "file": "siyar-v22.pdf",
      "volume": 22,
-     "pages": 560,
-     "bytes": 2444092,
-     "sha256": "44fe816008f23416db6554ba8da6ab817121e8d3dc1d2429020f9dfaea9f08af"
+     "pages": 540,
+     "bytes": 2420511,
+     "sha256": "bf4e12344837f8fa63582bf4f86f679d23fe20148d5d7d657d86d3582611d3df"
     },
     {
      "file": "siyar-v23.pdf",
      "volume": 23,
-     "pages": 530,
-     "bytes": 2314491,
-     "sha256": "d08318c58e6a2ce6de1c800f1a30a674efcd67eadb8ae7951a4878232313af87"
+     "pages": 507,
+     "bytes": 2288898,
+     "sha256": "5cfd8933f640769124a696e1d0172273933ec3fb596e893a0193cf2cb3bb50fd"
     }
    ]
   },
@@ -2116,23 +2116,1931 @@
     {
      "file": "madarij-v01.pdf",
      "volume": 1,
-     "pages": 1005,
-     "bytes": 3866431,
-     "sha256": "85568a9f0fa3878c3826397fd4c01fc068fcfac942cf44a80879f1f2d03ccb44"
+     "pages": 992,
+     "bytes": 3844272,
+     "sha256": "a6bf044c867c04bfb7c555e53a25583ea17abf27c152c480b0349008f980d369"
     },
     {
      "file": "madarij-v02.pdf",
      "volume": 2,
-     "pages": 998,
-     "bytes": 3810301,
-     "sha256": "f484441b2816ad97fca64c8ef0d435dfe91a04cd290ffa2256c961180a9b28e3"
+     "pages": 983,
+     "bytes": 3787631,
+     "sha256": "691d5b70bcf9523027b83a11a8b5f4ae1befd42df05f8c41457105bf38cf91f3"
     },
     {
      "file": "madarij-v03.pdf",
      "volume": 3,
-     "pages": 1026,
-     "bytes": 4085817,
-     "sha256": "081302daea45dedfd14a4d1c4d3d452718af031e87d4e60467ee7442a0814931"
+     "pages": 1025,
+     "bytes": 4071579,
+     "sha256": "98c3791e921e1ef64391dfb7be3539349f8f45fcf759845dd3b62f6c68f819fe"
+    }
+   ]
+  },
+  {
+   "id": "majmu-fatawa",
+   "group": "aqidah",
+   "title": "مجموع الفتاوى",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "عبد الرحمن بن محمد بن قاسم ، 1416هـ/1995م ، مجمع الملك فهد لطباعة المصحف الشريف، المدينة النبوية، المملكة العربية السعودية",
+   "volumes": [
+    {
+     "file": "majmu-fatawa-v01.pdf",
+     "volume": 1,
+     "pages": 518,
+     "bytes": 2185812,
+     "sha256": "bc7a5e21638effdfa6592e4012572e633bd6a53591e3515fb007b4695cdd43d8"
+    },
+    {
+     "file": "majmu-fatawa-v02.pdf",
+     "volume": 2,
+     "pages": 518,
+     "bytes": 2443314,
+     "sha256": "ed668cc4d78ac4f99eb2bd88adf1cc2a7f91eec3e0121174ab2eea5b61179d09"
+    },
+    {
+     "file": "majmu-fatawa-v03.pdf",
+     "volume": 3,
+     "pages": 450,
+     "bytes": 2146019,
+     "sha256": "8c6de14641093e5853666f82556f4dedfd96da9cf21c2c1c578e0d7a0f9df77b"
+    },
+    {
+     "file": "majmu-fatawa-v04.pdf",
+     "volume": 4,
+     "pages": 557,
+     "bytes": 2648370,
+     "sha256": "6e8d4f78dfd75695f54712c35b03be96912003d5de62ceff8515d0f273f9ea14"
+    },
+    {
+     "file": "majmu-fatawa-v05.pdf",
+     "volume": 5,
+     "pages": 598,
+     "bytes": 2846755,
+     "sha256": "e4cba26e8f3f764aceaf7916b7d854bc62bf39dd7c11009cc127af4fb9ac5718"
+    },
+    {
+     "file": "majmu-fatawa-v06.pdf",
+     "volume": 6,
+     "pages": 626,
+     "bytes": 2940210,
+     "sha256": "4705fa3b14faa2b5de3120583c813e1462cb380e0fb7d6cf95832d61ec1bf438"
+    },
+    {
+     "file": "majmu-fatawa-v07.pdf",
+     "volume": 7,
+     "pages": 823,
+     "bytes": 3665582,
+     "sha256": "11497ceae0c744e4e057e5e5c33c0a5696eb5bb9c8097a09aa1f72370e78f381"
+    },
+    {
+     "file": "majmu-fatawa-v08.pdf",
+     "volume": 8,
+     "pages": 586,
+     "bytes": 2783238,
+     "sha256": "272b226cf261958d85fa4bbba70d9a43d396c0e0cadb0d1bee63cc246caaca3f"
+    },
+    {
+     "file": "majmu-fatawa-v09.pdf",
+     "volume": 9,
+     "pages": 328,
+     "bytes": 1584799,
+     "sha256": "2e2e22822759ed7c4db6065ec78202e1994f575e837a11c96e31b047102108bb"
+    },
+    {
+     "file": "majmu-fatawa-v10.pdf",
+     "volume": 10,
+     "pages": 772,
+     "bytes": 3651713,
+     "sha256": "3fd3a13756a79343316d02357efa9fbdf49e978da665fda26c1cffd14f603b09"
+    },
+    {
+     "file": "majmu-fatawa-v11.pdf",
+     "volume": 11,
+     "pages": 701,
+     "bytes": 3276600,
+     "sha256": "a2cafe08b8fc6b3f6e60318d3cd79ec9b89e604c8499d890a86268712a20c7eb"
+    },
+    {
+     "file": "majmu-fatawa-v12.pdf",
+     "volume": 12,
+     "pages": 600,
+     "bytes": 2829433,
+     "sha256": "e73a52bbf1835153e2d0e93cfc0b1fccb5c40aa2de407007779bf12ecef9e6cb"
+    },
+    {
+     "file": "majmu-fatawa-v13.pdf",
+     "volume": 13,
+     "pages": 422,
+     "bytes": 2040217,
+     "sha256": "e6b88a5db59767afeabba5f7c5b85f0f7df19ed90bf053e3a360ed5473688533"
+    },
+    {
+     "file": "majmu-fatawa-v14.pdf",
+     "volume": 14,
+     "pages": 499,
+     "bytes": 2273599,
+     "sha256": "dc12ef314bc5e9db304db1de707d00838a081dbf932e0a83047180ab5da65c46"
+    },
+    {
+     "file": "majmu-fatawa-v15.pdf",
+     "volume": 15,
+     "pages": 451,
+     "bytes": 2127748,
+     "sha256": "2a4978fed576bb1c4b50d042f61014b7a241fde8c0ec42cb7224f3a59bba3baf"
+    },
+    {
+     "file": "majmu-fatawa-v16.pdf",
+     "volume": 16,
+     "pages": 600,
+     "bytes": 2669135,
+     "sha256": "2f0772f9e79b3008a8ab2ba49d2985f7f643b0df2a1947d25cd66f55f12d5149"
+    },
+    {
+     "file": "majmu-fatawa-v17.pdf",
+     "volume": 17,
+     "pages": 534,
+     "bytes": 2594276,
+     "sha256": "e3f83d063dd30212036025067a26f5e1de58696f7f21d8eb0a6cfb9137c8a7de"
+    },
+    {
+     "file": "majmu-fatawa-v18.pdf",
+     "volume": 18,
+     "pages": 391,
+     "bytes": 1841184,
+     "sha256": "567e7a523de88c98cd86959b49ce1f6c88e8cd79ab9bd964a92010fe1c6d9c70"
+    },
+    {
+     "file": "majmu-fatawa-v19.pdf",
+     "volume": 19,
+     "pages": 310,
+     "bytes": 1499133,
+     "sha256": "00732757d18a883c96ec519af3424baabc29657c9dfb3142e313863e94e31da8"
+    },
+    {
+     "file": "majmu-fatawa-v20.pdf",
+     "volume": 20,
+     "pages": 592,
+     "bytes": 2754895,
+     "sha256": "c1456aa74eb2e13a401d5c9a55be231f785bb27d8ff0f6ecd0199e9f9f6ef004"
+    },
+    {
+     "file": "majmu-fatawa-v21.pdf",
+     "volume": 21,
+     "pages": 637,
+     "bytes": 2943504,
+     "sha256": "c35441574c7d8df00748b7db5080a99f9cc4e6a09581039ec07bf6d57804c02b"
+    },
+    {
+     "file": "majmu-fatawa-v22.pdf",
+     "volume": 22,
+     "pages": 625,
+     "bytes": 2921809,
+     "sha256": "6781388eebff83121aa43a48c83799052312872b78f409f69f8d03e27cfdaabe"
+    },
+    {
+     "file": "majmu-fatawa-v23.pdf",
+     "volume": 23,
+     "pages": 417,
+     "bytes": 1935292,
+     "sha256": "2de533da08d4652b9d70131c158c8c254ba5aee07154295a5cfd07c4eb836135"
+    },
+    {
+     "file": "majmu-fatawa-v24.pdf",
+     "volume": 24,
+     "pages": 382,
+     "bytes": 1813824,
+     "sha256": "6a0d2a33d4dfd4591b877359afbd9734489c0556d2359dd0dbccc23e19c71225"
+    },
+    {
+     "file": "majmu-fatawa-v25.pdf",
+     "volume": 25,
+     "pages": 331,
+     "bytes": 1500939,
+     "sha256": "4a3bf7dcee68fdc00d7704c1418aff706d09029d450b3bc06715e737931097c0"
+    },
+    {
+     "file": "majmu-fatawa-v26.pdf",
+     "volume": 26,
+     "pages": 309,
+     "bytes": 1474899,
+     "sha256": "6189d9cac2ec3b15a5ccb80f98ff34c35d033785b76ca07d99478aea857d1fcc"
+    },
+    {
+     "file": "majmu-fatawa-v27.pdf",
+     "volume": 27,
+     "pages": 510,
+     "bytes": 2454247,
+     "sha256": "cf9928f1644b4db9b995ac952b76b2d378e6b0fa4e3696af6379649b0d880ccb"
+    },
+    {
+     "file": "majmu-fatawa-v28.pdf",
+     "volume": 28,
+     "pages": 670,
+     "bytes": 3210228,
+     "sha256": "edebd6cce0022412dc2b9114c50cad55422a73d92abc41bac03b76407fd11e9d"
+    },
+    {
+     "file": "majmu-fatawa-v29.pdf",
+     "volume": 29,
+     "pages": 557,
+     "bytes": 2656954,
+     "sha256": "0fddafe1970163271b548a4f681f26ef4aa4b691924deda03648f907ed3010f2"
+    },
+    {
+     "file": "majmu-fatawa-v30.pdf",
+     "volume": 30,
+     "pages": 435,
+     "bytes": 2053251,
+     "sha256": "f91b2fbc3c2d2a978ea725c5cf06c8f631f7469cf2441ffab93e7880599c89fe"
+    },
+    {
+     "file": "majmu-fatawa-v31.pdf",
+     "volume": 31,
+     "pages": 430,
+     "bytes": 1988105,
+     "sha256": "ac4016ed1bbb8ac20bae5f8efa2fb933743bb1dea37f03fa95feba7ca22cc22c"
+    },
+    {
+     "file": "majmu-fatawa-v32.pdf",
+     "volume": 32,
+     "pages": 419,
+     "bytes": 1969993,
+     "sha256": "e1bad758c24b84a6a75c5edd5939555be38876ae36afde378aa37388242f066a"
+    },
+    {
+     "file": "majmu-fatawa-v33.pdf",
+     "volume": 33,
+     "pages": 270,
+     "bytes": 1305944,
+     "sha256": "9b45aa5259449c1fcae68a4a54f2693e9f46fc7c389790efc26efef5de1ea12d"
+    },
+    {
+     "file": "majmu-fatawa-v34.pdf",
+     "volume": 34,
+     "pages": 273,
+     "bytes": 1312910,
+     "sha256": "efb9a5ff39ed515a9e45321d628cd7b90ffb194bf9122a39c0f8aee6fd73a921"
+    },
+    {
+     "file": "majmu-fatawa-v35.pdf",
+     "volume": 35,
+     "pages": 448,
+     "bytes": 2174974,
+     "sha256": "0b43cb021d1609f4422ec46d88ae88ec6f8cee46fe596e2eb112afb4fbf08b2b"
+    }
+   ]
+  },
+  {
+   "id": "minhaj-sunna",
+   "group": "aqidah",
+   "title": "منهاج السنة النبوية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "د. محمد رشاد سالم ، 1406 ، مؤسسة قرطبة",
+   "volumes": [
+    {
+     "file": "minhaj-sunna-v01.pdf",
+     "volume": 1,
+     "pages": 579,
+     "bytes": 2563746,
+     "sha256": "8d3d0fd7e60a00e10b39c6c9ce6f81d9107549ec6ba84286eab09b7fdf5f6303"
+    },
+    {
+     "file": "minhaj-sunna-v02.pdf",
+     "volume": 2,
+     "pages": 698,
+     "bytes": 2948662,
+     "sha256": "87ec699668947355a1f32f998894f6066d619aea477d5f5ee62b391335225401"
+    },
+    {
+     "file": "minhaj-sunna-v03.pdf",
+     "volume": 3,
+     "pages": 512,
+     "bytes": 2245433,
+     "sha256": "5c482427d316f66d23c034e8a13717586c68152e5e7072a9d660ac350c72dbf0"
+    },
+    {
+     "file": "minhaj-sunna-v04.pdf",
+     "volume": 4,
+     "pages": 610,
+     "bytes": 2657348,
+     "sha256": "ffeddc114d84c148f2ae32616236e6ddd94c11afe0ca5bc2aa1788888efc4910"
+    },
+    {
+     "file": "minhaj-sunna-v05.pdf",
+     "volume": 5,
+     "pages": 565,
+     "bytes": 2509855,
+     "sha256": "2abd07dd5cd93aba389f0627d38dd64437278d1a2f7bc564e35d5eaba53a481f"
+    },
+    {
+     "file": "minhaj-sunna-v06.pdf",
+     "volume": 6,
+     "pages": 505,
+     "bytes": 2320667,
+     "sha256": "716f05ac74f005435552926c7e319a4b1802de52076f4df9293dfea8b85b2699"
+    },
+    {
+     "file": "minhaj-sunna-v07.pdf",
+     "volume": 7,
+     "pages": 583,
+     "bytes": 2618957,
+     "sha256": "5c4ccf9bcab0adb25f8354492509ceb0f8142c92ccdb38d5991473d276af56c2"
+    },
+    {
+     "file": "minhaj-sunna-v08.pdf",
+     "volume": 8,
+     "pages": 629,
+     "bytes": 2894169,
+     "sha256": "cdf9e7ee0d7225ab45e1c0519eeb85e2b9d99d283e4b42f9b8a04202f35e9328"
+    }
+   ]
+  },
+  {
+   "id": "istiqama",
+   "group": "aqidah",
+   "title": "الاستقامة",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "د. محمد رشاد سالم ، المدينة المنورة ، 1403 ، جامعة الإمام محمد بن سعود",
+   "volumes": [
+    {
+     "file": "istiqama-v01.pdf",
+     "volume": 1,
+     "pages": 498,
+     "bytes": 2258072,
+     "sha256": "b10cd584161c3be4b1f459639535285bea47f95dd123f2a83edbb07320e7be92"
+    },
+    {
+     "file": "istiqama-v02.pdf",
+     "volume": 2,
+     "pages": 350,
+     "bytes": 1475758,
+     "sha256": "93b81c4e46724607f31288291de27c85b4e72202c8d28bd122db50e760367874"
+    }
+   ]
+  },
+  {
+   "id": "siyasa-sharciyya",
+   "group": "fiqh",
+   "title": "السياسة الشرعية في إصلاح الراعي والرعية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "دار المعرفة",
+   "volumes": [
+    {
+     "file": "siyasa-sharciyya-v01.pdf",
+     "volume": 1,
+     "pages": 165,
+     "bytes": 742267,
+     "sha256": "dcd6d9b765905deb0281936270c3d0c11c100bed3b8416a420cecc0ce2ef4b8d"
+    }
+   ]
+  },
+  {
+   "id": "furqan-awliya",
+   "group": "aqidah",
+   "title": "الفرقان بين أولياء الرحمن وأولياء الشيطان",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "عبد القادر الأرناؤوط ، 1405 هـ - 1985 م ، مكتبة دار البيان، دمشق",
+   "volumes": [
+    {
+     "file": "furqan-awliya-v01.pdf",
+     "volume": 1,
+     "pages": 232,
+     "bytes": 1143211,
+     "sha256": "4c05b98c5357b2e8eefcb5851f0838b8a4ca8abee24fc5cdf509207e04c5591e"
+    }
+   ]
+  },
+  {
+   "id": "tawassul",
+   "group": "aqidah",
+   "title": "قاعدة جليلة في التوسل والوسيلة",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "زهير الشاويش ، بيروت ، 1390 - 1970 ، المكتب الإسلامي",
+   "volumes": [
+    {
+     "file": "tawassul-v01.pdf",
+     "volume": 1,
+     "pages": 308,
+     "bytes": 1277622,
+     "sha256": "a1d4907b223c9e0102a4e6c9b8dc0a751b00d10a66f7e9a8c00d0dfbd2150c73"
+    }
+   ]
+  },
+  {
+   "id": "sarim-maslul",
+   "group": "aqidah",
+   "title": "الصارم المسلول على شاتم الرسول",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "محمد عبد الله عمر الحلواني , محمد كبير أحمد شودري ، بيروت ، 1417 ، دار ابن حزم",
+   "volumes": [
+    {
+     "file": "sarim-maslul-v01.pdf",
+     "volume": 1,
+     "pages": 549,
+     "bytes": 2282645,
+     "sha256": "d07803a50dba8dd898d6ddfa631fbd43cb1db94b214aa447b4344197d291d020"
+    },
+    {
+     "file": "sarim-maslul-v02.pdf",
+     "volume": 2,
+     "pages": 589,
+     "bytes": 2325707,
+     "sha256": "313eccda754a6c22e4fff8f68bead56e3b6dde850c20e59422b63656f5b48daf"
+    }
+   ]
+  },
+  {
+   "id": "rafc-malam",
+   "group": "fiqh",
+   "title": "رفع الملام عن الأئمة الأعلام",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "عبد الله بن ابرهيم الأنصاري ، المكتبة العصرية، بيروت، لبنان",
+   "volumes": [
+    {
+     "file": "rafc-malam-v01.pdf",
+     "volume": 1,
+     "pages": 78,
+     "bytes": 408476,
+     "sha256": "530da4e5760744b586ef973a3caed638def3b9bb38a60255c4fc0cc314a0c6ac"
+    }
+   ]
+  },
+  {
+   "id": "iman",
+   "group": "aqidah",
+   "title": "كتاب الإيمان",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "محمد ناصر الدين الألباني ، المكتب الإسلامي، عمان، الأردن",
+   "volumes": [
+    {
+     "file": "iman-v01.pdf",
+     "volume": 1,
+     "pages": 710,
+     "bytes": 2909137,
+     "sha256": "2a6d4761ac304c202e8e97b3815294dc8845b717db6f069b342ee2dc8896c783"
+    }
+   ]
+  },
+  {
+   "id": "aclam-muwaqqicin",
+   "group": "fiqh",
+   "title": "إعلام الموقعين عن رب العالمين",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "طه عبد الرؤوف سعد ، بيروت ، 1973 ، دار الجيل",
+   "volumes": [
+    {
+     "file": "aclam-muwaqqicin-v01.pdf",
+     "volume": 1,
+     "pages": 764,
+     "bytes": 2943889,
+     "sha256": "7bb0b2abf8542119b1b9ce7b66f7fb91213b6ab023b64bf58159872066db3d8b"
+    },
+    {
+     "file": "aclam-muwaqqicin-v02.pdf",
+     "volume": 2,
+     "pages": 844,
+     "bytes": 3288453,
+     "sha256": "bfd4e08bd5f6bb4866c07ba4ecb0f4ce011af0b67d7edb67fca3d69a2dd5c533"
+    },
+    {
+     "file": "aclam-muwaqqicin-v03.pdf",
+     "volume": 3,
+     "pages": 801,
+     "bytes": 3126873,
+     "sha256": "027dc7e0996b789c4e2d2fc9de1da2475eac1ebc6cabe968654e1221e80f0b0e"
+    },
+    {
+     "file": "aclam-muwaqqicin-v04.pdf",
+     "volume": 4,
+     "pages": 823,
+     "bytes": 3299697,
+     "sha256": "2baa7dbe74c8f0bc89bdee2ed12881a1f97fa0274b7e97c45395f12aa1dc47bb"
+    }
+   ]
+  },
+  {
+   "id": "ighathat-lahfan",
+   "group": "raqaiq",
+   "title": "إغاثة اللهفان من مصائد الشيطان",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "محمد حامد الفقي ، بيروت ، 1395 - 1975 ، دار المعرفة",
+   "volumes": [
+    {
+     "file": "ighathat-lahfan-v01.pdf",
+     "volume": 1,
+     "pages": 745,
+     "bytes": 3168615,
+     "sha256": "489d000d9ab64b82e83f89e38f27525c5395aab993d33a201e73769657c4f73a"
+    },
+    {
+     "file": "ighathat-lahfan-v02.pdf",
+     "volume": 2,
+     "pages": 667,
+     "bytes": 2787065,
+     "sha256": "638a3be7f326070e108816c3adc57ce55dcb4976d51e74f19f4c72326652d17e"
+    }
+   ]
+  },
+  {
+   "id": "hadi-arwah",
+   "group": "raqaiq",
+   "title": "حادي الأرواح إلى بلاد الأفراح",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "بيروت ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "hadi-arwah-v01.pdf",
+     "volume": 1,
+     "pages": 585,
+     "bytes": 2555512,
+     "sha256": "b6277e8459722b053dd42ca99a2f71f26bee9195c20d6ce721bec0360a03e2fe"
+    }
+   ]
+  },
+  {
+   "id": "tariq-hijratayn",
+   "group": "raqaiq",
+   "title": "طريق الهجرتين وباب السعادتين",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "عمر بن محمود أبو عمر ، الدمام ، 1414 - 1994 ، دار ابن القيم",
+   "volumes": [
+    {
+     "file": "tariq-hijratayn-v01.pdf",
+     "volume": 1,
+     "pages": 962,
+     "bytes": 3771787,
+     "sha256": "4deeba84a80bf2d2b39ac5aa1accfc21d467e7cee87dba07b07e9ed8c1421a81"
+    }
+   ]
+  },
+  {
+   "id": "miftah-dar-sacada",
+   "group": "raqaiq",
+   "title": "مفتاح دار السعادة",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "بيروت ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "miftah-dar-sacada-v01.pdf",
+     "volume": 1,
+     "pages": 613,
+     "bytes": 2961450,
+     "sha256": "c6358b32cca88f007c9cd2076b0fa97bba70336d57e1dfac1fd2283f9a04de23"
+    },
+    {
+     "file": "miftah-dar-sacada-v02.pdf",
+     "volume": 2,
+     "pages": 582,
+     "bytes": 2791985,
+     "sha256": "1e2168b5bd15be28097782598c73e57e6d727e38d262d02040d2230fcd3a3354"
+    }
+   ]
+  },
+  {
+   "id": "badaic-fawaid",
+   "group": "raqaiq",
+   "title": "بدائع الفوائد",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "هشام عبد العزيز عطا - عادل عبد الحميد العدوي - أشرف أحمد الج ، مكة المكرمة ، 1416 - 1996 ، مكتبة نزار مصطفى الباز",
+   "volumes": [
+    {
+     "file": "badaic-fawaid-v01.pdf",
+     "volume": 1,
+     "pages": 426,
+     "bytes": 1980532,
+     "sha256": "ed0547c669a9f5a0863a3d4449c0fabcb93732989e5ef67007fdc4161c72abda"
+    },
+    {
+     "file": "badaic-fawaid-v02.pdf",
+     "volume": 2,
+     "pages": 510,
+     "bytes": 2356210,
+     "sha256": "7eef8b0b7735466fbd4d0a438ac7723b18c06d134789907662f2d0facf418acd"
+    },
+    {
+     "file": "badaic-fawaid-v03.pdf",
+     "volume": 3,
+     "pages": 529,
+     "bytes": 2392179,
+     "sha256": "65c99f1e738be97502600b76b1a1e92feaefda15d5955a12f1abea425618d823"
+    },
+    {
+     "file": "badaic-fawaid-v04.pdf",
+     "volume": 4,
+     "pages": 399,
+     "bytes": 1770134,
+     "sha256": "0422dc3daa1d4f867c00bae27cc00dfa77153e7a237e5597056228d6179d2fd4"
+    }
+   ]
+  },
+  {
+   "id": "ijtimac-juyush",
+   "group": "aqidah",
+   "title": "اجتماع الجيوش الإسلامية",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "بيروت ، 1404 - 1984 ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "ijtimac-juyush-v01.pdf",
+     "volume": 1,
+     "pages": 408,
+     "bytes": 1647475,
+     "sha256": "e268fc10ff46b0407add9e6286b931cedeb05a994b4a34bafb43552e794c8106"
+    }
+   ]
+  },
+  {
+   "id": "turuq-hukmiyya",
+   "group": "fiqh",
+   "title": "الطرق الحكمية في السياسة الشرعية",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "د. محمد جميل غازي ، القاهرة ، مطبعة المدني",
+   "volumes": [
+    {
+     "file": "turuq-hukmiyya-v01.pdf",
+     "volume": 1,
+     "pages": 759,
+     "bytes": 2998941,
+     "sha256": "d831287078b40acc9160330833e94befd8e32f0f496a2b666fbd7bb6bbe32414"
+    }
+   ]
+  },
+  {
+   "id": "shifa-calil",
+   "group": "aqidah",
+   "title": "شفاء العليل في مسائل القضاء والقدر",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "محمد بدر الدين أبو فراس النعساني الحلبي ، بيروت ، 1398 ، دار الفكر",
+   "volumes": [
+    {
+     "file": "shifa-calil-v01.pdf",
+     "volume": 1,
+     "pages": 912,
+     "bytes": 3861373,
+     "sha256": "24cd6bf91221f7aa1cc8214bcae04fb91c2e27e09326853835440f42eeaa5aab"
+    }
+   ]
+  },
+  {
+   "id": "jamic-culum",
+   "group": "hadith",
+   "title": "جامع العلوم والحكم",
+   "author": "ابن رجب الحنبلي (ت ٧٩٥هـ)",
+   "edition": "شعيب الأرناؤوط / إبراهيم باجس ، بيروت ، 1417هـ - 1997م ، مؤسسة الرسالة",
+   "volumes": [
+    {
+     "file": "jamic-culum-v01.pdf",
+     "volume": 1,
+     "pages": 911,
+     "bytes": 4028822,
+     "sha256": "4f3f61ffe3d6b09cbcfab4ebe1d11e88b32d977dda4a41e1a1aa75798b8d6f89"
+    }
+   ]
+  },
+  {
+   "id": "lataif-macarif",
+   "group": "raqaiq",
+   "title": "لطائف المعارف",
+   "author": "ابن رجب الحنبلي (ت ٧٩٥هـ)",
+   "edition": "دار ابن حزم للطبتعة والنشر",
+   "volumes": [
+    {
+     "file": "lataif-macarif-v01.pdf",
+     "volume": 1,
+     "pages": 686,
+     "bytes": 3304745,
+     "sha256": "86f014ea0de8004da825cee2259c9f649f822ddc4eee29430fea12fc805592cf"
+    }
+   ]
+  },
+  {
+   "id": "kabair-wahhab",
+   "group": "aqidah",
+   "title": "كتاب الكبائر",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "قابله على أصوله الخطية : إسماعيل الأنصاري ، محمد عيد ، عبد العزيز بن إبراهيم الفريح . وحققه : إسماعيل الأنصاري . ورقم الآيات : صالح بن محمد الحسن . ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "kabair-wahhab-v01.pdf",
+     "volume": 1,
+     "pages": 84,
+     "bytes": 435167,
+     "sha256": "122881742bf1149a82ea3689fdaca96e512851b12962c2c2f6cceefdd797b95f"
+    }
+   ]
+  },
+  {
+   "id": "masail-jahiliyya",
+   "group": "aqidah",
+   "title": "مسائل الجاهلية",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "محمود شكري الألوسي ، المدينة المنورة ، 1396 ، الجامعة الإسلامية",
+   "volumes": [
+    {
+     "file": "masail-jahiliyya-v01.pdf",
+     "volume": 1,
+     "pages": 131,
+     "bytes": 692311,
+     "sha256": "a7c8c27b0f36f5613cb79173ffc92e9bfd65fb6ef20488220acf333f226536a6"
+    }
+   ]
+  },
+  {
+   "id": "fadl-islam",
+   "group": "aqidah",
+   "title": "فضل الإسلام",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "إسماعيل الأنصاري ، محمد عيد ، عبد العزيز بن إبراهيم الفريح . وراجع نصوص أحاديثه الشيخ إسماعيل الأنصاري ورقم الآيات صالح المحمد الحسن ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "fadl-islam-v01.pdf",
+     "volume": 1,
+     "pages": 88,
+     "bytes": 420725,
+     "sha256": "1037a5cc41d1a4dad688cced94544eeeffaf84119d147cdbadb189d8b643fd98"
+    }
+   ]
+  },
+  {
+   "id": "mukhtasar-sira",
+   "group": "sira",
+   "title": "مختصر سيرة الرسول ﷺ",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "عبد العزيز بن زيد الرومي ، د . محمد بلتاجي ، د . سيد حجاب . ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "mukhtasar-sira-v01.pdf",
+     "volume": 1,
+     "pages": 568,
+     "bytes": 2228609,
+     "sha256": "d88c4e5e9864cafa066b5a5d10e0781f6e56e043f485317ed298631eeffc2a69"
+    }
+   ]
+  },
+  {
+   "id": "kabair-dhahabi",
+   "group": "raqaiq",
+   "title": "الكبائر",
+   "author": "الذهبي (ت ٧٤٨هـ)",
+   "edition": "بيروت ، دار الندوة الجديدة",
+   "volumes": [
+    {
+     "file": "kabair-dhahabi-v01.pdf",
+     "volume": 1,
+     "pages": 358,
+     "bytes": 1454112,
+     "sha256": "7f4c6b141e8b5b7c165016d7f9f911b20fc6a8b738f17506df92c5f44b71a6e3"
+    }
+   ]
+  },
+  {
+   "id": "culuww",
+   "group": "aqidah",
+   "title": "العلو للعلي الغفار",
+   "author": "الذهبي (ت ٧٤٨هـ)",
+   "edition": "أبو محمد أشرف بن عبد المقصود ، مكتبة أضواء السلف - الرياض",
+   "volumes": [
+    {
+     "file": "culuww-v01.pdf",
+     "volume": 1,
+     "pages": 464,
+     "bytes": 1932368,
+     "sha256": "9b3d316923ddb20d400d182722f3ffc168598b9bed46a6f607f85aa3c141a49f"
+    }
+   ]
+  },
+  {
+   "id": "durar-saniyya",
+   "group": "aqidah",
+   "title": "الدرر السنية في الأجوبة النجدية",
+   "author": "علماء نجد، جمع ابن قاسم (ت ١٣٩٢هـ)",
+   "edition": "عبد الرحمن بن محمد بن قاسم",
+   "volumes": [
+    {
+     "file": "durar-saniyya-v01.pdf",
+     "volume": 1,
+     "pages": 809,
+     "bytes": 3544135,
+     "sha256": "4b8eb2383f968766ec38cfd7099757f706a2799f09c9fb86b7d727c003d32e49"
+    },
+    {
+     "file": "durar-saniyya-v02.pdf",
+     "volume": 2,
+     "pages": 522,
+     "bytes": 2273866,
+     "sha256": "9a0b435e2dec75c2452e524351de6b15d1be578062cbc5d24578769912700d75"
+    },
+    {
+     "file": "durar-saniyya-v03.pdf",
+     "volume": 3,
+     "pages": 534,
+     "bytes": 2296194,
+     "sha256": "4058c58247bf0a6ec42ec8a67a61e532406386d1d04727571490b8087b6f20a7"
+    },
+    {
+     "file": "durar-saniyya-v04.pdf",
+     "volume": 4,
+     "pages": 543,
+     "bytes": 2493631,
+     "sha256": "de225dccd33272a7ae7992dcfde1387736dff304381c850d02675496bf5d8938"
+    },
+    {
+     "file": "durar-saniyya-v05.pdf",
+     "volume": 5,
+     "pages": 559,
+     "bytes": 2407115,
+     "sha256": "7a7eb056c7fe101e5cd9114f4aa0a2bdb90e8e02eb5cf0fe618677c0b1018bde"
+    },
+    {
+     "file": "durar-saniyya-v06.pdf",
+     "volume": 6,
+     "pages": 644,
+     "bytes": 2800985,
+     "sha256": "7897ff08d5d1230e33d80b83b7e125169b8abe37410512f3df4d54ef196e0b16"
+    },
+    {
+     "file": "durar-saniyya-v07.pdf",
+     "volume": 7,
+     "pages": 678,
+     "bytes": 3321362,
+     "sha256": "a92734ab2d669eb39357c7ee02da6cbeae47b5405ef0acf956d8192c16e49e14"
+    },
+    {
+     "file": "durar-saniyya-v08.pdf",
+     "volume": 8,
+     "pages": 616,
+     "bytes": 2892390,
+     "sha256": "475e86bcecc811b3ef0c1b1eca9bfbcc9a2be510ff9f047cac87c07410423680"
+    },
+    {
+     "file": "durar-saniyya-v09.pdf",
+     "volume": 9,
+     "pages": 529,
+     "bytes": 2558126,
+     "sha256": "6037d9f8678b10f8174037626828d559991e757fdb44bf02a555c5c4d3e752ff"
+    },
+    {
+     "file": "durar-saniyya-v10.pdf",
+     "volume": 10,
+     "pages": 574,
+     "bytes": 2898760,
+     "sha256": "04496ca56a2d5e160221b5afea68903202a0c6b713c980cb6770b4044f88700c"
+    },
+    {
+     "file": "durar-saniyya-v11.pdf",
+     "volume": 11,
+     "pages": 743,
+     "bytes": 3447695,
+     "sha256": "03acd922c0c1da6a3a9d1b5ec623a571cea6fc5c86ada9db9be171d6652c6050"
+    },
+    {
+     "file": "durar-saniyya-v12.pdf",
+     "volume": 12,
+     "pages": 933,
+     "bytes": 3759268,
+     "sha256": "30ee11efaf3022bb0981b494b98d5c35d41c86aadd057664ae17b728ce112fb9"
+    },
+    {
+     "file": "durar-saniyya-v13.pdf",
+     "volume": 13,
+     "pages": 793,
+     "bytes": 3497748,
+     "sha256": "6043b3a793a9ac294854760afcadd4374c294cd56d501d9ffb58f3510ecdc882"
+    },
+    {
+     "file": "durar-saniyya-v14.pdf",
+     "volume": 14,
+     "pages": 834,
+     "bytes": 3569700,
+     "sha256": "1abf976dd5537dd255cea7705168a5b4c66bcd9cc2260cf78d3665cd21d0039f"
+    },
+    {
+     "file": "durar-saniyya-v15.pdf",
+     "volume": 15,
+     "pages": 665,
+     "bytes": 3007782,
+     "sha256": "c88a04631a662037be35933e19d20fb27673bb71a0535782885a9785a32d6e1e"
+    },
+    {
+     "file": "durar-saniyya-v16.pdf",
+     "volume": 16,
+     "pages": 601,
+     "bytes": 3005797,
+     "sha256": "950b8f345ec4dd6879024ad3ea892e35dc965a73b4435a8b5afd02f7e341c377"
+    }
+   ]
+  },
+  {
+   "id": "sahih-khuzayma",
+   "group": "hadith",
+   "title": "صحيح ابن خزيمة",
+   "author": "ابن خزيمة (ت ٣١١هـ)",
+   "edition": "د. محمد مصطفى الأعظمي ، بيروت ، 1390 - 1970 ، المكتب الإسلامي",
+   "volumes": [
+    {
+     "file": "sahih-khuzayma-v01.pdf",
+     "volume": 1,
+     "pages": 557,
+     "bytes": 2304415,
+     "sha256": "fce7b0df4157e85232e494fa3db254c7cb474f8e9a5a576d4ebbe0fabc824d85"
+    },
+    {
+     "file": "sahih-khuzayma-v02.pdf",
+     "volume": 2,
+     "pages": 494,
+     "bytes": 2115469,
+     "sha256": "cef035f45e5d50298c9628df024b392718450bda8830cae71133093a1caf9b8f"
+    },
+    {
+     "file": "sahih-khuzayma-v03.pdf",
+     "volume": 3,
+     "pages": 528,
+     "bytes": 2181228,
+     "sha256": "4b53eac285c0289046387791238f9bfa2f4f4b2a302bb124d4c7460058525a56"
+    },
+    {
+     "file": "sahih-khuzayma-v04.pdf",
+     "volume": 4,
+     "pages": 589,
+     "bytes": 2422092,
+     "sha256": "1b37d6de4ad3e52d5a3516cb459e5772cb26c8f42cd4d1bc845f1e0812ffc632"
+    }
+   ]
+  },
+  {
+   "id": "mustadrak",
+   "group": "hadith",
+   "title": "المستدرك على الصحيحين",
+   "author": "الحاكم النيسابوري (ت ٤٠٥هـ)",
+   "edition": "مصطفى عبد القادر عطا ، بيروت ، 1411هـ - 1990م ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "mustadrak-v01.pdf",
+     "volume": 1,
+     "pages": 1304,
+     "bytes": 4998192,
+     "sha256": "615e8f3dc63304e7588625056ee2585c8577550de35f558e4685da3f92770e75"
+    },
+    {
+     "file": "mustadrak-v02.pdf",
+     "volume": 2,
+     "pages": 1297,
+     "bytes": 5140317,
+     "sha256": "a4890d8e38ac28889406138bdde1b53c79c4e815d7f3cca9bc288078232d6bee"
+    },
+    {
+     "file": "mustadrak-v03.pdf",
+     "volume": 3,
+     "pages": 1413,
+     "bytes": 5720162,
+     "sha256": "6a270857305d38323bddda47bed8fbe138a13a6894e7d800cf3866a2dd556592"
+    },
+    {
+     "file": "mustadrak-v04.pdf",
+     "volume": 4,
+     "pages": 1260,
+     "bytes": 5010822,
+     "sha256": "7a6fc8b195f9e08645267fcd0657db33128cb4d86a172239e80fca5dc4e4aa1b"
+    }
+   ]
+  },
+  {
+   "id": "musannaf-shayba",
+   "group": "hadith",
+   "title": "المصنف",
+   "author": "ابن أبي شيبة (ت ٢٣٥هـ)",
+   "edition": "كمال يوسف الحوت ، الرياض ، 1409 ، مكتبة الرشد",
+   "volumes": [
+    {
+     "file": "musannaf-shayba-v01.pdf",
+     "volume": 1,
+     "pages": 1109,
+     "bytes": 5486978,
+     "sha256": "48639d28e7922e7449923256b9698401c8e3d60f257a1e12b933e1e31f1aa142"
+    },
+    {
+     "file": "musannaf-shayba-v02.pdf",
+     "volume": 2,
+     "pages": 1147,
+     "bytes": 5630148,
+     "sha256": "77e14783ad3ce00ef8f4719ccd1159145273783909211c84b816f79783fdf6d0"
+    },
+    {
+     "file": "musannaf-shayba-v03.pdf",
+     "volume": 3,
+     "pages": 1174,
+     "bytes": 5819961,
+     "sha256": "f800bd61820bcf2f3c4882c34372d0a92142477e1f8bd35b748a8aeb2eb491e6"
+    },
+    {
+     "file": "musannaf-shayba-v04.pdf",
+     "volume": 4,
+     "pages": 1225,
+     "bytes": 6192862,
+     "sha256": "f87174e9cf4abcb8f55eff56446b0d2124e857cc11b2abfba473c3a227d90b65"
+    },
+    {
+     "file": "musannaf-shayba-v05.pdf",
+     "volume": 5,
+     "pages": 1238,
+     "bytes": 6158507,
+     "sha256": "c396feedeca0f95b577b522f2520c54cb415ad5beeacb43266c6a4b00b26bb26"
+    },
+    {
+     "file": "musannaf-shayba-v06.pdf",
+     "volume": 6,
+     "pages": 1299,
+     "bytes": 6212616,
+     "sha256": "21ad6de16922a7346b0dcc20ed062b16f902e7a53cb49febc3f030a31bf0c077"
+    },
+    {
+     "file": "musannaf-shayba-v07.pdf",
+     "volume": 7,
+     "pages": 1302,
+     "bytes": 5797470,
+     "sha256": "1e19ed1de80db46ea053cfa5356acaca4ff2107e39b5ef4343ac2f6e26185f66"
+    }
+   ]
+  },
+  {
+   "id": "musannaf-razzaq",
+   "group": "hadith",
+   "title": "المصنف",
+   "author": "عبد الرزاق الصنعاني (ت ٢١١هـ)",
+   "edition": "حبيب الرحمن الأعظمي ، المجلس العلمي- الهند",
+   "volumes": [
+    {
+     "file": "musannaf-razzaq-v01.pdf",
+     "volume": 1,
+     "pages": 627,
+     "bytes": 2768729,
+     "sha256": "e50264ee77dd163a9f6a46eec6face3d33d5c504a8a4a68e453c49df2c51c7be"
+    },
+    {
+     "file": "musannaf-razzaq-v02.pdf",
+     "volume": 2,
+     "pages": 732,
+     "bytes": 3367466,
+     "sha256": "7a21efa980e3cd37b9239fa803b2484e6f81f1dace59da748f71f557b4e8d262"
+    },
+    {
+     "file": "musannaf-razzaq-v03.pdf",
+     "volume": 3,
+     "pages": 756,
+     "bytes": 3422440,
+     "sha256": "89c1e72b03bb009db2a2983b3c7ef6002fe35afd358a57274ed864107167c312"
+    },
+    {
+     "file": "musannaf-razzaq-v04.pdf",
+     "volume": 4,
+     "pages": 676,
+     "bytes": 3054335,
+     "sha256": "a7bc999676b0d671f9af78a3871b5f521db1c6436c44d4eeff4a05e442d2a31e"
+    },
+    {
+     "file": "musannaf-razzaq-v05.pdf",
+     "volume": 5,
+     "pages": 527,
+     "bytes": 2444308,
+     "sha256": "efe00ef3b44d8118f532da539d891a3004274fdbf250b1c750bbce37c96ffc1c"
+    },
+    {
+     "file": "musannaf-razzaq-v06.pdf",
+     "volume": 6,
+     "pages": 700,
+     "bytes": 3173907,
+     "sha256": "b2bc8271e9593f8e647b2983927a3c3d7bab25868623fbc3f12c9a9d503271e7"
+    },
+    {
+     "file": "musannaf-razzaq-v07.pdf",
+     "volume": 7,
+     "pages": 723,
+     "bytes": 3257140,
+     "sha256": "37fd381338acb73dc0132cf96956c3e56b9233f9cd32fb2fbad01252dfc5bf99"
+    },
+    {
+     "file": "musannaf-razzaq-v08.pdf",
+     "volume": 8,
+     "pages": 687,
+     "bytes": 3115560,
+     "sha256": "175f78268e444b27893b91f3edeae142c5a1f09f322ce4f2320e052f69225182"
+    },
+    {
+     "file": "musannaf-razzaq-v09.pdf",
+     "volume": 9,
+     "pages": 634,
+     "bytes": 2886197,
+     "sha256": "df70e33cf12a6f23d54da53604f4b33352fbf10851a81c6237231a0e382b20e4"
+    },
+    {
+     "file": "musannaf-razzaq-v10.pdf",
+     "volume": 10,
+     "pages": 439,
+     "bytes": 2047208,
+     "sha256": "6650a8dcbf225cc8eb5f2d67abed1fb612e5a392b4ee1632c9cc83a5cc864469"
+    }
+   ]
+  },
+  {
+   "id": "kafi",
+   "group": "fiqh",
+   "title": "الكافي في فقه الإمام أحمد",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "edition": "بيروت ، المكتب الاسلامي",
+   "volumes": [
+    {
+     "file": "kafi-v01.pdf",
+     "volume": 1,
+     "pages": 968,
+     "bytes": 3700190,
+     "sha256": "821e1327f4d9b93638be06ecad971719e514e3671fbd9b5e2a53229332e001f9"
+    },
+    {
+     "file": "kafi-v02.pdf",
+     "volume": 2,
+     "pages": 661,
+     "bytes": 3223687,
+     "sha256": "8477c09a95645e83ca19ff346c8a91ebbf326c3524c9755488e78933e78fe931"
+    },
+    {
+     "file": "kafi-v03.pdf",
+     "volume": 3,
+     "pages": 409,
+     "bytes": 2024041,
+     "sha256": "484f4b858ccb97ae3baeb2c6b7b61caf82d33960aeb213045504471f1a56a678"
+    },
+    {
+     "file": "kafi-v04.pdf",
+     "volume": 4,
+     "pages": 626,
+     "bytes": 3050014,
+     "sha256": "b48e9df1b9da455b06678e5e356c5df1defc87d14b8b9a443c98bcee2bd048e8"
+    }
+   ]
+  },
+  {
+   "id": "muqnic",
+   "group": "fiqh",
+   "title": "المقنع",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "edition": "بيروت ، 1400 ، المكتب الإسلامي",
+   "volumes": [
+    {
+     "file": "muqnic-v01.pdf",
+     "volume": 1,
+     "pages": 461,
+     "bytes": 937781,
+     "sha256": "158938d43cb1edd494614d466f2747d662d141e33818b1262a95b92865f59db3"
+    },
+    {
+     "file": "muqnic-v02.pdf",
+     "volume": 2,
+     "pages": 412,
+     "bytes": 924873,
+     "sha256": "2c9716b7361d6a3f9738003eb7465876432a4545c6b7b287e9036c4109050a2e"
+    },
+    {
+     "file": "muqnic-v03.pdf",
+     "volume": 3,
+     "pages": 412,
+     "bytes": 877521,
+     "sha256": "3778f7688dbb3edae8d6abb61e18786b8a90c800672021371802216a15e491df"
+    },
+    {
+     "file": "muqnic-v04.pdf",
+     "volume": 4,
+     "pages": 748,
+     "bytes": 2800852,
+     "sha256": "1aa9c2c1d115026736f692622077831861d425e1e482458279b5be4e4ef46fd7"
+    },
+    {
+     "file": "muqnic-v05.pdf",
+     "volume": 5,
+     "pages": 393,
+     "bytes": 954118,
+     "sha256": "0140fe7df75cbc07aab3ccc94770dc679c84c0648f8bd12bc91c90848eb3579c"
+    },
+    {
+     "file": "muqnic-v06.pdf",
+     "volume": 6,
+     "pages": 341,
+     "bytes": 831709,
+     "sha256": "aaef5be7cf533d2f2b39a9dd0ab9b21143862a3ce06541c533bf62b7600cf108"
+    },
+    {
+     "file": "muqnic-v07.pdf",
+     "volume": 7,
+     "pages": 639,
+     "bytes": 2237474,
+     "sha256": "1cf5ee96c085846657a3d3509ee041c1fc8ad2a41950c53f240ae380a26b0f73"
+    },
+    {
+     "file": "muqnic-v08.pdf",
+     "volume": 8,
+     "pages": 385,
+     "bytes": 1000656,
+     "sha256": "d8616d86031341397c2f209907c614118f405c9fd098c74d45f63528cf17fed3"
+    },
+    {
+     "file": "muqnic-v09.pdf",
+     "volume": 9,
+     "pages": 629,
+     "bytes": 2340648,
+     "sha256": "901fc68fc79df75395b7d1f5f1fef04f47e230700e28dfae94acee30fd1c30b1"
+    },
+    {
+     "file": "muqnic-v10.pdf",
+     "volume": 10,
+     "pages": 353,
+     "bytes": 852244,
+     "sha256": "901b2dddd464922b54ba973a7cc681cdf14edd5831531e1cac0a3772fe90b042"
+    }
+   ]
+  },
+  {
+   "id": "kashshaf",
+   "group": "fiqh",
+   "title": "كشاف القناع عن متن الإقناع",
+   "author": "البهوتي (ت ١٠٥١هـ)",
+   "edition": "هلال مصيلحي مصطفى هلال ، بيروت ، 1402 ، دار الفكر",
+   "volumes": [
+    {
+     "file": "kashshaf-v01.pdf",
+     "volume": 1,
+     "pages": 1252,
+     "bytes": 5730455,
+     "sha256": "23580338c41c207d694263a3944f0d6ec11536e76df96fe1fdef34318a01e0ce"
+    },
+    {
+     "file": "kashshaf-v02.pdf",
+     "volume": 2,
+     "pages": 1560,
+     "bytes": 7665240,
+     "sha256": "5babc660bb048cac7e9e001c3d80dfd6ba02fc44a3d64dad6b607a395894b168"
+    },
+    {
+     "file": "kashshaf-v03.pdf",
+     "volume": 3,
+     "pages": 1645,
+     "bytes": 7939722,
+     "sha256": "813df75edf2c946dd5ba78f14d186adbee2fd7f85e0965e32f6ec44fe34f3e8e"
+    },
+    {
+     "file": "kashshaf-v04.pdf",
+     "volume": 4,
+     "pages": 1353,
+     "bytes": 6237897,
+     "sha256": "29fa48ac6c2df937c56e00a589c2d659a0e7b916bb5a654ba750506461fc75d4"
+    },
+    {
+     "file": "kashshaf-v05.pdf",
+     "volume": 5,
+     "pages": 1504,
+     "bytes": 7040014,
+     "sha256": "08783dd5dbeef0d10875603ec54650f6f8701b1ea854a11035edeeceb62e9c7e"
+    },
+    {
+     "file": "kashshaf-v06.pdf",
+     "volume": 6,
+     "pages": 995,
+     "bytes": 4589433,
+     "sha256": "99e307ab3287eea2330415d0fa749bcc869c92cdb5dc43924fd4f441c4c056e2"
+    }
+   ]
+  },
+  {
+   "id": "nayl-maarib",
+   "group": "fiqh",
+   "title": "نيل المآرب بشرح دليل الطالب",
+   "author": "التغلبي (ت ١١٣٥هـ)",
+   "edition": "الدكتور محمد سليمان عبد الله الأشقر - رحمه الله - ، مكتبة الفلاح، الكويت",
+   "volumes": [
+    {
+     "file": "nayl-maarib-v01.pdf",
+     "volume": 1,
+     "pages": 798,
+     "bytes": 3401291,
+     "sha256": "a0f83eb02e058b1872983474a61c8a2c5eba9560fb0154990d0021abf770fe1b"
+    },
+    {
+     "file": "nayl-maarib-v02.pdf",
+     "volume": 2,
+     "pages": 857,
+     "bytes": 3645653,
+     "sha256": "164561c061bd81bb0c2fda8a21c41869f43c9266942512ce00cee667e7077203"
+    }
+   ]
+  },
+  {
+   "id": "adab-sharciyya",
+   "group": "raqaiq",
+   "title": "الآداب الشرعية",
+   "author": "ابن مفلح (ت ٧٦٣هـ)",
+   "edition": "شعيب الأرنؤوط / عمر القيام ، بيروت ، 1417هـ - 1996م ، مؤسسة الرسالة",
+   "volumes": [
+    {
+     "file": "adab-sharciyya-v01.pdf",
+     "volume": 1,
+     "pages": 904,
+     "bytes": 3706974,
+     "sha256": "ee2fd6fbcfda86a70b8c93c5ac1e072cb32c726d95c827a0c9fddfde9f2c21a4"
+    },
+    {
+     "file": "adab-sharciyya-v02.pdf",
+     "volume": 2,
+     "pages": 863,
+     "bytes": 3495219,
+     "sha256": "699c524337130be990832391ed80ed1ec810e3e0a62f5d696fcdaf4259cfb8cb"
+    },
+    {
+     "file": "adab-sharciyya-v03.pdf",
+     "volume": 3,
+     "pages": 1132,
+     "bytes": 4740591,
+     "sha256": "f5f6eae77f075a0ff4309a0a57a080f68fb36f27edbc64951ec5f163b3ed1bab"
+    }
+   ]
+  },
+  {
+   "id": "jamic-bayan-cilm",
+   "group": "hadith",
+   "title": "جامع بيان العلم وفضله",
+   "author": "ابن عبد البر (ت ٤٦٣هـ)",
+   "edition": "بيروت ، 1398 ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "jamic-bayan-cilm-v01.pdf",
+     "volume": 1,
+     "pages": 348,
+     "bytes": 1379141,
+     "sha256": "2d23b29ad57c651276495c3e12536d91a98ac448682531f4a38525149faddc6b"
+    },
+    {
+     "file": "jamic-bayan-cilm-v02.pdf",
+     "volume": 2,
+     "pages": 402,
+     "bytes": 1633417,
+     "sha256": "8d2f8733cc890c4e34076a6265a06143dfdb3b3b2c7dba8bb049095cb37e490c"
+    }
+   ]
+  },
+  {
+   "id": "isticab",
+   "group": "tarikh",
+   "title": "الاستيعاب في معرفة الأصحاب",
+   "author": "ابن عبد البر (ت ٤٦٣هـ)",
+   "edition": "علي محمد البجاوي ، بيروت ، 1412 ، دار الجيل",
+   "volumes": [
+    {
+     "file": "isticab-v01.pdf",
+     "volume": 1,
+     "pages": 439,
+     "bytes": 2084958,
+     "sha256": "1771424bff298144c214d9decc239da5ec689b7221cb1fc50f67f2d4e3124a51"
+    },
+    {
+     "file": "isticab-v02.pdf",
+     "volume": 2,
+     "pages": 511,
+     "bytes": 2390807,
+     "sha256": "03bfac7fc7eeefc35523671d35afbc6184813a426d9491aef3bace3e335d2c78"
+    },
+    {
+     "file": "isticab-v03.pdf",
+     "volume": 3,
+     "pages": 712,
+     "bytes": 3172583,
+     "sha256": "ed1d64cc7d8a4311afe59f43c9511012ec49c835bf258862a5d6da661ed14a67"
+    },
+    {
+     "file": "isticab-v04.pdf",
+     "volume": 4,
+     "pages": 697,
+     "bytes": 3219484,
+     "sha256": "03f0d01902c0d205323a2bd302da8d7fe9b8dbeff676f27233c9793b4b35a916"
+    }
+   ]
+  },
+  {
+   "id": "tarikh-tabari",
+   "group": "tarikh",
+   "title": "تاريخ الرسل والملوك (تاريخ الطبري)",
+   "author": "ابن جرير الطبري (ت ٣١٠هـ)",
+   "edition": "دار التراث - بيروت",
+   "volumes": [
+    {
+     "file": "tarikh-tabari-v01.pdf",
+     "volume": 1,
+     "pages": 1186,
+     "bytes": 4622491,
+     "sha256": "befd4261ee1dfd3d8b660a6a249638d70f27c80eba453bd89a2b030ab42f9cf3"
+    },
+    {
+     "file": "tarikh-tabari-v02.pdf",
+     "volume": 2,
+     "pages": 1213,
+     "bytes": 4776256,
+     "sha256": "e9b5f156e9ce4d3b94dcc96427d809b657cd3b4c5855fe49b8dd1aa2e10d0755"
+    },
+    {
+     "file": "tarikh-tabari-v03.pdf",
+     "volume": 3,
+     "pages": 1199,
+     "bytes": 4783715,
+     "sha256": "58d527f052b4990eff21489abadb747f594e59145d3b6a05c1e5508e8d74e558"
+    },
+    {
+     "file": "tarikh-tabari-v04.pdf",
+     "volume": 4,
+     "pages": 1124,
+     "bytes": 4695605,
+     "sha256": "d1a5b59c7932138ab5b1685c3424985f9927c432c6a36da5bb2bd9bde54a56bc"
+    },
+    {
+     "file": "tarikh-tabari-v05.pdf",
+     "volume": 5,
+     "pages": 1210,
+     "bytes": 5027804,
+     "sha256": "41420768cc9201e64d8dbced86b58a33ae2aa7285773f8068a1a1bbae2325058"
+    },
+    {
+     "file": "tarikh-tabari-v06.pdf",
+     "volume": 6,
+     "pages": 1201,
+     "bytes": 5021430,
+     "sha256": "5eec76753d932c082a66dfbd56312b8f87a7935cee5cb90c5b0ffc87c43f9df0"
+    },
+    {
+     "file": "tarikh-tabari-v07.pdf",
+     "volume": 7,
+     "pages": 1274,
+     "bytes": 5404786,
+     "sha256": "2874be0ac5d4de688411aaaedf2533f8a3ba37a35184c0a40cf7768c8e86faf4"
+    },
+    {
+     "file": "tarikh-tabari-v08.pdf",
+     "volume": 8,
+     "pages": 1164,
+     "bytes": 4614950,
+     "sha256": "a6a4e2a9971498d880fb9b923343875089645ff24d145efb2c55cf0e0ec9b264"
+    },
+    {
+     "file": "tarikh-tabari-v09.pdf",
+     "volume": 9,
+     "pages": 1210,
+     "bytes": 4432889,
+     "sha256": "24783b1440624801fa3555dfca77b31206c9cb5fbd920b5fb67b0454ed1603c2"
+    },
+    {
+     "file": "tarikh-tabari-v10.pdf",
+     "volume": 10,
+     "pages": 251,
+     "bytes": 977301,
+     "sha256": "d3291043665e4b12fd7d9b1cf029dd489d5540d3243e433cd121e6e7a2e88385"
+    }
+   ]
+  },
+  {
+   "id": "tarikh-islam",
+   "group": "tarikh",
+   "title": "تاريخ الإسلام",
+   "author": "الذهبي (ت ٧٤٨هـ)",
+   "edition": "oclc@793504062 ، الدكتور بشار عواد معروف ، دار الغرب الإسلامي",
+   "volumes": [
+    {
+     "file": "tarikh-islam-v01.pdf",
+     "volume": 1,
+     "pages": 1640,
+     "bytes": 6591801,
+     "sha256": "29c96318dfb2bc915fd1313c29d3e96c5114024a718fa7c0e75cf5bfd22275e0"
+    },
+    {
+     "file": "tarikh-islam-v02.pdf",
+     "volume": 2,
+     "pages": 2439,
+     "bytes": 10201848,
+     "sha256": "0cd62a3a3bba28fc1ad847415d2d10b5c276f8363e2a07302b94c42288b871ae"
+    },
+    {
+     "file": "tarikh-islam-v03.pdf",
+     "volume": 3,
+     "pages": 2636,
+     "bytes": 9523802,
+     "sha256": "da8307b573e73f1228b775097cd1917f34c631c66af2b33039259ef3eca52de8"
+    },
+    {
+     "file": "tarikh-islam-v04.pdf",
+     "volume": 4,
+     "pages": 3071,
+     "bytes": 11814598,
+     "sha256": "c0c93a893a6c1ef53ad52b052ca82aeabf87974bac8764c79a6fa27f1679a986"
+    },
+    {
+     "file": "tarikh-islam-v05.pdf",
+     "volume": 5,
+     "pages": 3215,
+     "bytes": 10146880,
+     "sha256": "cb0ef03e9b19f2c704187d751c18a294799cb35025280692033fb20661e28f49"
+    },
+    {
+     "file": "tarikh-islam-v06.pdf",
+     "volume": 6,
+     "pages": 3312,
+     "bytes": 9297250,
+     "sha256": "d012fac18e023dae56d46b5d8152123801b0c69e0271d3bb7b8ce4fe8d75b0d9"
+    },
+    {
+     "file": "tarikh-islam-v07.pdf",
+     "volume": 7,
+     "pages": 3058,
+     "bytes": 8213750,
+     "sha256": "a979df05485bf4b4525b6c58b6c1c0f04ddef643331db09b866f3e352d9eddce"
+    },
+    {
+     "file": "tarikh-islam-v08.pdf",
+     "volume": 8,
+     "pages": 2601,
+     "bytes": 7295796,
+     "sha256": "1df8b72a70cea758c72c2fc876ee6854a44e2d19fcfd7144fa457c956b9650d4"
+    },
+    {
+     "file": "tarikh-islam-v09.pdf",
+     "volume": 9,
+     "pages": 2346,
+     "bytes": 6600265,
+     "sha256": "535d32e836ab1ac3133275556151332603a7ae71145b190f02970d750b08a661"
+    },
+    {
+     "file": "tarikh-islam-v10.pdf",
+     "volume": 10,
+     "pages": 2328,
+     "bytes": 7055071,
+     "sha256": "a44f5c325f6fa09f06c123dc64fc88f073b403107822601742a0445693b326cd"
+    },
+    {
+     "file": "tarikh-islam-v11.pdf",
+     "volume": 11,
+     "pages": 2882,
+     "bytes": 8646331,
+     "sha256": "cd4ef055d918750a788103d61f503aec308fbfd0151272011ff5aa0e023f4066"
+    },
+    {
+     "file": "tarikh-islam-v12.pdf",
+     "volume": 12,
+     "pages": 3078,
+     "bytes": 9692099,
+     "sha256": "701ce4c425216b8d0738b32ad5d760009e0229a695162ad8a94c20f243d319b8"
+    },
+    {
+     "file": "tarikh-islam-v13.pdf",
+     "volume": 13,
+     "pages": 2418,
+     "bytes": 7413795,
+     "sha256": "163348151b85b7a9e8c72ff485fe9af102f6d9aa76c4b52c235a7098517a9486"
+    },
+    {
+     "file": "tarikh-islam-v14.pdf",
+     "volume": 14,
+     "pages": 2428,
+     "bytes": 7595968,
+     "sha256": "e20a8c95640beb4b965360716c2ad5f8301c51a605eb881a6788a5679f48f3ec"
+    },
+    {
+     "file": "tarikh-islam-v15.pdf",
+     "volume": 15,
+     "pages": 2959,
+     "bytes": 8674959,
+     "sha256": "24c2d5d3b658f63837669a62f2e66e9077ef7ec2145393b71f9830860f8f9eef"
+    }
+   ]
+  },
+  {
+   "id": "isaba",
+   "group": "tarikh",
+   "title": "الإصابة في تمييز الصحابة",
+   "author": "ابن حجر العسقلاني (ت ٨٥٢هـ)",
+   "edition": "علي محمد البجاوي ، بيروت ، 1412 - 1992 ، دار الجيل",
+   "volumes": [
+    {
+     "file": "isaba-v01.pdf",
+     "volume": 1,
+     "pages": 783,
+     "bytes": 4563650,
+     "sha256": "5e764017ac02916849d0045890fd1bde175b9f9cf9611df878c3040860354b3e"
+    },
+    {
+     "file": "isaba-v02.pdf",
+     "volume": 2,
+     "pages": 777,
+     "bytes": 4460246,
+     "sha256": "9dd1f772d2a1596c6bffd0449290c4b7543b179cacea32b23f1d8e177909491c"
+    },
+    {
+     "file": "isaba-v03.pdf",
+     "volume": 3,
+     "pages": 730,
+     "bytes": 4224640,
+     "sha256": "07784435f5f2a37fc93262d12c631c0978be42cebd456752c4cec67863467c46"
+    },
+    {
+     "file": "isaba-v04.pdf",
+     "volume": 4,
+     "pages": 901,
+     "bytes": 5194951,
+     "sha256": "ff939d7b9d0249190fe7f9ec14211f750084ca1bda6efd32feb79e81144546f6"
+    },
+    {
+     "file": "isaba-v05.pdf",
+     "volume": 5,
+     "pages": 865,
+     "bytes": 4973898,
+     "sha256": "de141b71148d8498456deefe022e60195614033a67f3851b426336f4d5a66efa"
+    },
+    {
+     "file": "isaba-v06.pdf",
+     "volume": 6,
+     "pages": 818,
+     "bytes": 4916178,
+     "sha256": "940b1c7696a241e0f464590cddcf2b6929ae7bc7f0d7816354ee2789a4d6904d"
+    },
+    {
+     "file": "isaba-v07.pdf",
+     "volume": 7,
+     "pages": 886,
+     "bytes": 5149215,
+     "sha256": "a4be10c55d5a582d0dd41a51166a44a7482c9c66e40d12d3a915d12c8b6896ac"
+    },
+    {
+     "file": "isaba-v08.pdf",
+     "volume": 8,
+     "pages": 394,
+     "bytes": 2305627,
+     "sha256": "656b9c47b6eb40f5c99ff2e272586a0194fb25af27a1b7f87b208a42ee6f6669"
+    }
+   ]
+  },
+  {
+   "id": "ibn-abi-hatim",
+   "group": "tafsir",
+   "title": "تفسير القرآن العظيم",
+   "author": "ابن أبي حاتم الرازي (ت ٣٢٧هـ)",
+   "edition": "أسعد محمد الطيب ، صيدا ، المكتبة العصرية",
+   "volumes": [
+    {
+     "file": "ibn-abi-hatim-v01.pdf",
+     "volume": 1,
+     "pages": 660,
+     "bytes": 2834375,
+     "sha256": "2884285c5d8bacd4eb586d602a366f9593376842a4a4f3e041d1100ec822ce01"
+    },
+    {
+     "file": "ibn-abi-hatim-v02.pdf",
+     "volume": 2,
+     "pages": 700,
+     "bytes": 2962062,
+     "sha256": "c3cfdba9e56fc5b2881bb6ac0fa9f66630feedf9fd6b3268571a4da50d9ff19d"
+    },
+    {
+     "file": "ibn-abi-hatim-v03.pdf",
+     "volume": 3,
+     "pages": 698,
+     "bytes": 2941396,
+     "sha256": "5797a97e3444ca214aa6ed1ea0c83b43e493ab8b047fd245ae9d240d558214bb"
+    },
+    {
+     "file": "ibn-abi-hatim-v04.pdf",
+     "volume": 4,
+     "pages": 684,
+     "bytes": 2992229,
+     "sha256": "59acf98aec90cc8c322c6a7047805cfdd027d38861706a552ca180c57beaa111"
+    },
+    {
+     "file": "ibn-abi-hatim-v05.pdf",
+     "volume": 5,
+     "pages": 704,
+     "bytes": 3087897,
+     "sha256": "1a1bcc645bbe4e17c7849814fcb2050762b2e57603cd23a648298734ccdbd938"
+    },
+    {
+     "file": "ibn-abi-hatim-v06.pdf",
+     "volume": 6,
+     "pages": 707,
+     "bytes": 3065033,
+     "sha256": "10e306590f11e7a725064d0d08db0f154862226a5885c84e51b24fed79a6d3a0"
+    },
+    {
+     "file": "ibn-abi-hatim-v07.pdf",
+     "volume": 7,
+     "pages": 272,
+     "bytes": 1244673,
+     "sha256": "933a3ba9a5151d588be17f14e0be15a47ab9756c9fe11ec455455744a018c50f"
+    },
+    {
+     "file": "ibn-abi-hatim-v08.pdf",
+     "volume": 8,
+     "pages": 572,
+     "bytes": 2529315,
+     "sha256": "f4fcb957d2e02c2fb493ef48fd5f7d2e849fa9c09014c9416aabb03a7873421b"
+    },
+    {
+     "file": "ibn-abi-hatim-v09.pdf",
+     "volume": 9,
+     "pages": 590,
+     "bytes": 2691958,
+     "sha256": "9af05b5519eb9bf4446cd26ba1bfea3a26f6e813064a7d23c0a15f9cb9fec557"
+    },
+    {
+     "file": "ibn-abi-hatim-v10.pdf",
+     "volume": 10,
+     "pages": 681,
+     "bytes": 3088341,
+     "sha256": "7c9409e0bd6f4b0a66e0e5eefb2477c9f724c34f8caed5d05757749c8e9ecb9d"
+    }
+   ]
+  },
+  {
+   "id": "tuhfat-ahwadhi",
+   "group": "hadith",
+   "title": "تحفة الأحوذي بشرح جامع الترمذي",
+   "author": "المباركفوري (ت ١٣٥٣هـ)",
+   "edition": "بيروت ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "tuhfat-ahwadhi-v01.pdf",
+     "volume": 1,
+     "pages": 1148,
+     "bytes": 5139860,
+     "sha256": "e775f17070d5e3f9a809a121ba2f0aea56d227eb932eb3bf449966e829e1ba83"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v02.pdf",
+     "volume": 2,
+     "pages": 1072,
+     "bytes": 4791912,
+     "sha256": "af52550f5dc30a92f5a8a706938cade29745bf92fd7a27481d14f98f83baf894"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v03.pdf",
+     "volume": 3,
+     "pages": 1179,
+     "bytes": 5208180,
+     "sha256": "d1bd5805f7704397f04e08363525d1e688a997f6c9a486e3617206ddc2c2808d"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v04.pdf",
+     "volume": 4,
+     "pages": 1322,
+     "bytes": 6177685,
+     "sha256": "5294bbbc6b39fef5463a41e48a36adf0df3df9c00bea2d16c51556e9f9b0b5a6"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v05.pdf",
+     "volume": 5,
+     "pages": 1044,
+     "bytes": 4662856,
+     "sha256": "f6c23ba2b482fe6f3bdb55d4894c941a145093394bc4073ac6e91adfc4c7ad47"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v06.pdf",
+     "volume": 6,
+     "pages": 1069,
+     "bytes": 4860013,
+     "sha256": "88c66d9cf8e55e5a88ff849e69ba366f1f7aa1d07222fc9dd4f18fca34abffca"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v07.pdf",
+     "volume": 7,
+     "pages": 861,
+     "bytes": 3794852,
+     "sha256": "71d5ae08b899522fdf8563b11db3637377b91fc056748d9657a17c8f92c85991"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v08.pdf",
+     "volume": 8,
+     "pages": 939,
+     "bytes": 4081693,
+     "sha256": "466500d0ccf2fcaaae72b89609b37985c18370a6ce4e258ee16a4106d4abe5cd"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v09.pdf",
+     "volume": 9,
+     "pages": 740,
+     "bytes": 3236777,
+     "sha256": "083be2d9994e48cf350ea852ed00d8f5970b5500f4c849cf8b446a88e9183e38"
+    },
+    {
+     "file": "tuhfat-ahwadhi-v10.pdf",
+     "volume": 10,
+     "pages": 651,
+     "bytes": 2856053,
+     "sha256": "7db55c884d89d693334312afd37d2a3000112d8cc1603310fcd80196e419ff38"
+    }
+   ]
+  },
+  {
+   "id": "cawn-macbud",
+   "group": "hadith",
+   "title": "عون المعبود شرح سنن أبي داود",
+   "author": "العظيم آبادي (ت ١٣٢٩هـ)",
+   "edition": "بيروت ، 1995م ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "cawn-macbud-v01.pdf",
+     "volume": 1,
+     "pages": 724,
+     "bytes": 3235275,
+     "sha256": "1c01e61c85840de7f208a708a5c9e52e8677dc6321ee6becb135c917ed6ce0b4"
+    },
+    {
+     "file": "cawn-macbud-v02.pdf",
+     "volume": 2,
+     "pages": 719,
+     "bytes": 3279354,
+     "sha256": "aaee5ac22a2abb021ab56c32367f4dc624259ba2db3ff213be3685fe5d8b946d"
+    },
+    {
+     "file": "cawn-macbud-v03.pdf",
+     "volume": 3,
+     "pages": 728,
+     "bytes": 3275311,
+     "sha256": "7ba007194b8cabcd4b56e0f860a49322df2f8d6e42d4123c91b0bcdfc98174ed"
+    },
+    {
+     "file": "cawn-macbud-v04.pdf",
+     "volume": 4,
+     "pages": 679,
+     "bytes": 3049652,
+     "sha256": "a3e82f330c9234f331af903e69d019a13ab9ca44c32ea48ffeedb44b6e0b5488"
+    },
+    {
+     "file": "cawn-macbud-v05.pdf",
+     "volume": 5,
+     "pages": 648,
+     "bytes": 2910349,
+     "sha256": "260bdba7ab2e81e2e8b3da1cbfe493a61b63c094d27603c732b2a4cfed54de62"
+    },
+    {
+     "file": "cawn-macbud-v06.pdf",
+     "volume": 6,
+     "pages": 616,
+     "bytes": 2716162,
+     "sha256": "99ac53e7e6c0447cb2690da1776efbd4060e7777ce2403d8a249686c827bac48"
+    },
+    {
+     "file": "cawn-macbud-v07.pdf",
+     "volume": 7,
+     "pages": 606,
+     "bytes": 2699064,
+     "sha256": "5b40d57c0ea04f5d06eb6da47b0d2cf2f757d4ecc71f80d0d924bb2ab41215bc"
+    },
+    {
+     "file": "cawn-macbud-v08.pdf",
+     "volume": 8,
+     "pages": 681,
+     "bytes": 3143703,
+     "sha256": "22a7c226baf62f12f0ad90228f9c56d35e44e2539bbddbcf918669a30ed45ca6"
+    },
+    {
+     "file": "cawn-macbud-v09.pdf",
+     "volume": 9,
+     "pages": 639,
+     "bytes": 2859807,
+     "sha256": "c92bb43cbb62204905c0107e39acc6672962f3b1cbdadd88a3f1feee1becdfe6"
+    },
+    {
+     "file": "cawn-macbud-v10.pdf",
+     "volume": 10,
+     "pages": 672,
+     "bytes": 2994258,
+     "sha256": "11858d933491a53382d8089fd26618d2e6b84f3d4d299f1a3cddf6302e9b8e6a"
+    },
+    {
+     "file": "cawn-macbud-v11.pdf",
+     "volume": 11,
+     "pages": 703,
+     "bytes": 3211306,
+     "sha256": "e90d52f7aac03df4f7369e49a1755fadaa40302deffe081a62fe5900aa80077b"
+    },
+    {
+     "file": "cawn-macbud-v12.pdf",
+     "volume": 12,
+     "pages": 590,
+     "bytes": 2623910,
+     "sha256": "ade9759809f8c92ed8392ddd4f3b0c211718e3815693845223f935dce2a2116c"
+    },
+    {
+     "file": "cawn-macbud-v13.pdf",
+     "volume": 13,
+     "pages": 506,
+     "bytes": 2180319,
+     "sha256": "32482810e7b3a59fb81f4a29b8bcbec878f28ab871573e9d2ff8da3a40503cd0"
+    },
+    {
+     "file": "cawn-macbud-v14.pdf",
+     "volume": 14,
+     "pages": 240,
+     "bytes": 1093202,
+     "sha256": "075cb1453ef9b37030976aeae5c053739aff4742583241404f2bf7f2c84ab8aa"
     }
    ]
   }

@@ -22,7 +22,7 @@ bundle ID `sa.zood.nearmosque`, plus Android and Windows. There is no Apple Watc
 | Calculation methods | 11 |
 | Recordings | 38 (4 Adhans, 2 salawat, 2 evening verses, 30 spoken reminders) |
 | Common questions | 25, in the 22 store languages (all awaiting scholar review; translations other than English and Arabic are drafts) |
-| Classical books in the download catalogue | 55 books in 234 volumes (Arabic, from OpenITI) |
+| Classical books in the download catalogue | 99 books in 450 volumes (Arabic, from OpenITI) |
 | Built-in cities | 13,090 (GeoNames) |
 | Built-in mosque areas | Cairo (519), London (255), Cape Town (69) (OpenStreetMap) |
 | Onboarding pages | 6 |
@@ -91,8 +91,8 @@ bundle ID `sa.zood.nearmosque`, plus Android and Windows. There is no Apple Watc
 * Browse starts with **Classical books**, then the installed collections (IslamHouse, HadeethEnc, Quran
   translations and tafsir, Ibn Baz fatwas), each with filters (All, Books, Audio, Video, Article, Fatwa,
   Hadith, Tafsir, Qur'an translation), search and "Load more".
-* **Classical books**: 55 Sunni books in Arabic grouped as Creed (19), Hadith (15), Fiqh (6), Tafsir (5),
-  Softening the heart (5), Sirah (3), History and biographies (2). Each volume downloads only when tapped,
+* **Classical books**: 99 Sunni books in Arabic grouped as Creed (33), Hadith (23), Fiqh (14), Softening
+  the heart (13), Tafsir (6), History and biographies (6), Sirah (4). Each volume downloads only when tapped,
   is checked against its SHA-256, and is read offline. Source OpenITI (CC BY-NC-SA 4.0).
 * Reader: PDF (opening at the page matching the question), audio, video, articles, and stored records.
 * Saved: bookmarks. Downloads: downloaded files with Delete and Delete all.
