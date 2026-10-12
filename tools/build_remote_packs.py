@@ -27,7 +27,7 @@ import build_enc_packs as enc  # noqa: E402
 import build_islamhouse_pack as ih  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-BASE_URL = "https://github.com/MFvision/nearest-mosque/releases/download/content-v1/"
+BASE_URL = "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/5ee1e912539f79a2c2129cf5fb9fcc4ca110378f/packs/"
 # Source codes where they differ from the app's (Sorani Kurdish is "ku" on IslamHouse and HadeethEnc).
 SOURCE_CODE = {"ckb": "ku"}
 # One downloadable QuranEnc translation per language (none for ru, bn, hu, ka, mr). Dari readers get the

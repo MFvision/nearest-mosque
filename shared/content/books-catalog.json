@@ -1,1 +1,1550 @@
-{"schemaVersion": 1, "baseUrl": "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/books-v1/books/", "source": "OpenITI (KITAB), CC BY-NC-SA 4.0 · doi:10.5281/zenodo.3082463", "books": []}
+{
+ "schemaVersion": 1,
+ "baseUrl": "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/5ee1e912539f79a2c2129cf5fb9fcc4ca110378f/books/",
+ "source": "OpenITI (KITAB), CC BY-NC-SA 4.0 · doi:10.5281/zenodo.3082463",
+ "books": [
+  {
+   "id": "tawhid",
+   "group": "aqidah",
+   "title": "كتاب التوحيد",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "عبد العزيز بن زيد الرومي ، د . محمد بلتاجي ، د . سيد حجاب ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "tawhid-v01.pdf",
+     "volume": 1,
+     "pages": 173,
+     "bytes": 801024,
+     "sha256": "d8dd476ded5286d3af7ed23c3cd51da500f2ea892aa22b9816462249bc12d8cc"
+    }
+   ]
+  },
+  {
+   "id": "thalathat-usul",
+   "group": "aqidah",
+   "title": "ثلاثة الأصول",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "ناصر بن عبد الله الطريم ، سعود بن محمد البشر ، عبد الكريم بن محمد اللاحم ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "thalathat-usul-v01.pdf",
+     "volume": 1,
+     "pages": 24,
+     "bytes": 150046,
+     "sha256": "5f302d9d91444b323415137f38ab183756fba4791c70a8ee7bc950d5cdc97e61"
+    }
+   ]
+  },
+  {
+   "id": "qawaid-arba",
+   "group": "aqidah",
+   "title": "القواعد الأربع",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "الدكتور عبد العزيز بن عبد الرحمن السعيد ، الدكتور أحمد كحيل ، الدكتور لبيب السعيد . ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "qawaid-arba-v01.pdf",
+     "volume": 1,
+     "pages": 8,
+     "bytes": 88047,
+     "sha256": "cff0b57698119cd2c0b3f8591938ec0561e3a9013e1086aa9397017d18539a2a"
+    }
+   ]
+  },
+  {
+   "id": "kashf-shubuhat",
+   "group": "aqidah",
+   "title": "كشف الشبهات",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "ناصر بن عبد الله الطريم ، سعود بن محمد البشر ، عبد الكريم اللاحم ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "kashf-shubuhat-v01.pdf",
+     "volume": 1,
+     "pages": 52,
+     "bytes": 262861,
+     "sha256": "ac13cd14dd08221b8ef8368c61c0cb624c085d2ae392e6e67460ce5b8785748f"
+    }
+   ]
+  },
+  {
+   "id": "fath-majid",
+   "group": "aqidah",
+   "title": "فتح المجيد شرح كتاب التوحيد",
+   "author": "عبد الرحمن بن حسن آل الشيخ (ت ١٢٨٥هـ)",
+   "edition": "محمد حامد الفقي ، مطبعة السنة المحمدية، القاهرة، مصر",
+   "volumes": [
+    {
+     "file": "fath-majid-v01.pdf",
+     "volume": 1,
+     "pages": 956,
+     "bytes": 4087559,
+     "sha256": "8617b4cc57b9c0d4cbfd21263578b10d6ba850e2331fa9f17eb3ba6e29df771d"
+    }
+   ]
+  },
+  {
+   "id": "taysir-aziz",
+   "group": "aqidah",
+   "title": "تيسير العزيز الحميد في شرح كتاب التوحيد",
+   "author": "سليمان بن عبد الله بن محمد بن عبد الوهاب (ت ١٢٣٣هـ)",
+   "edition": "الرياض ، مكتبة الرياض الحديثة",
+   "volumes": [
+    {
+     "file": "taysir-aziz-v01.pdf",
+     "volume": 1,
+     "pages": 1305,
+     "bytes": 4697708,
+     "sha256": "12fffde2befe95f9c524ec8aefd730c62fe75f4635d583d46beb9cc4f256820a"
+    }
+   ]
+  },
+  {
+   "id": "wasitiyya",
+   "group": "aqidah",
+   "title": "العقيدة الواسطية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "محمد بن عبد العزيز بم مانع ، الرياض ، 1412هـ ، الرئاسة العامة لإدارات البحوث والإفتاء",
+   "volumes": [
+    {
+     "file": "wasitiyya-v01.pdf",
+     "volume": 1,
+     "pages": 47,
+     "bytes": 220819,
+     "sha256": "d2d3b877b3a0c3698fb0db773607d1f2a4727e48b7e1d62cdcc490ef5dc9cb25"
+    }
+   ]
+  },
+  {
+   "id": "hamawiyya",
+   "group": "aqidah",
+   "title": "الفتوى الحموية الكبرى",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "د. حمد بن عبد المحسن التويجري ، دار الصميعي - الرياض",
+   "volumes": [
+    {
+     "file": "hamawiyya-v01.pdf",
+     "volume": 1,
+     "pages": 372,
+     "bytes": 1153911,
+     "sha256": "9bb87d5ead3769591e27131dd7934c1650bf8482b468f82b241c637fc5a40ae7"
+    }
+   ]
+  },
+  {
+   "id": "tadmuriyya",
+   "group": "aqidah",
+   "title": "التدمرية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "د. محمد بن عودة السعوي ، مكتبة العبيكان - الرياض",
+   "volumes": [
+    {
+     "file": "tadmuriyya-v01.pdf",
+     "volume": 1,
+     "pages": 249,
+     "bytes": 1073131,
+     "sha256": "1e2aab33391a2e8296f415f0fe8236ac3fd2769d5e84a8e0208a4908277a6a29"
+    }
+   ]
+  },
+  {
+   "id": "ubudiyya",
+   "group": "aqidah",
+   "title": "العبودية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "محمد زهير الشاويش ، المكتب الإسلامي - بيروت",
+   "volumes": [
+    {
+     "file": "ubudiyya-v01.pdf",
+     "volume": 1,
+     "pages": 134,
+     "bytes": 651328,
+     "sha256": "c9f4cc561fab2a36ee8b1b105e763758a8889511c2d4513878f69f199e6bf8e5"
+    }
+   ]
+  },
+  {
+   "id": "iqtida",
+   "group": "aqidah",
+   "title": "اقتضاء الصراط المستقيم لمخالفة أصحاب الجحيم",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "محمد حامد الفقي ، القاهرة ، 1369 ، مطبعة السنة المحمدية",
+   "volumes": [
+    {
+     "file": "iqtida-v01.pdf",
+     "volume": 1,
+     "pages": 901,
+     "bytes": 3611572,
+     "sha256": "068ed90a5caee43473679610c7b92ec1227da17488ba5e5e608159dda9abf734"
+    }
+   ]
+  },
+  {
+   "id": "tahawiyya",
+   "group": "aqidah",
+   "title": "متن العقيدة الطحاوية",
+   "author": "أبو جعفر الطحاوي (ت ٣٢١هـ)",
+   "edition": "محمد ناصر الدين الألباني ، بيروت ، 1398هـ - 1978م ، المكتب الإسلامي",
+   "volumes": [
+    {
+     "file": "tahawiyya-v01.pdf",
+     "volume": 1,
+     "pages": 47,
+     "bytes": 188824,
+     "sha256": "1946e2e02c0fc6980802e3d7af573c34c222f625af6de76e3052177656505537"
+    }
+   ]
+  },
+  {
+   "id": "sharh-tahawiyya",
+   "group": "aqidah",
+   "title": "شرح العقيدة الطحاوية",
+   "author": "ابن أبي العز الحنفي (ت ٧٩٢هـ)",
+   "edition": "بيروت ، 1391 ، المكتب الإسلامي",
+   "volumes": [
+    {
+     "file": "sharh-tahawiyya-v01.pdf",
+     "volume": 1,
+     "pages": 971,
+     "bytes": 3485426,
+     "sha256": "d8e78afde5dbf6e0d3579ea8ea243aef0165091f550043ebce4d21ed2fd77c18"
+    }
+   ]
+  },
+  {
+   "id": "lumca",
+   "group": "aqidah",
+   "title": "لمعة الاعتقاد",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "edition": "بدر بن عبد الله البدر ، الكويت ، 1406 ، الدار السلفية",
+   "volumes": [
+    {
+     "file": "lumca-v01.pdf",
+     "volume": 1,
+     "pages": 36,
+     "bytes": 200876,
+     "sha256": "35a28527e4b02a64d1a632e21c67acc4e37d1a536cec0d126c464ea8b4791e9a"
+    }
+   ]
+  },
+  {
+   "id": "usul-sunna",
+   "group": "aqidah",
+   "title": "أصول السنة",
+   "author": "الإمام أحمد بن حنبل (ت ٢٤١هـ)",
+   "edition": "الخرج - السعودية ، 1411هـ ، دار المنار",
+   "volumes": [
+    {
+     "file": "usul-sunna-v01.pdf",
+     "volume": 1,
+     "pages": 52,
+     "bytes": 169597,
+     "sha256": "b70df65999ec6e57cc0020f4bf0fd2a35b61965a3dafd9ca75186f25129ace1e"
+    }
+   ]
+  },
+  {
+   "id": "sharh-sunna",
+   "group": "aqidah",
+   "title": "شرح السنة",
+   "author": "البربهاري (ت ٣٢٩هـ)",
+   "edition": "د. محمد سعيد سالم القحطاني ، الدمام ، 1408 ، دار ابن القيم",
+   "volumes": [
+    {
+     "file": "sharh-sunna-v01.pdf",
+     "volume": 1,
+     "pages": 56,
+     "bytes": 276388,
+     "sha256": "267c59435346a7dcdacb8a1bfc83ded8d64144dd2a373cf87b736e7084c90952"
+    }
+   ]
+  },
+  {
+   "id": "tawhid-khuzayma",
+   "group": "aqidah",
+   "title": "كتاب التوحيد وإثبات صفات الرب",
+   "author": "ابن خزيمة (ت ٣١١هـ)",
+   "edition": "عبد العزيز بن إبراهيم الشهوان ، السعودية - الرياض ، 1414هـ - 1994م ، مكتبة الرشد",
+   "volumes": [
+    {
+     "file": "tawhid-khuzayma-v01.pdf",
+     "volume": 1,
+     "pages": 416,
+     "bytes": 1571593,
+     "sha256": "d05ff9fe8bd9fb270ae8be5bd4038b43677ce9ea95ab21fb5602efcd324ac10c"
+    },
+    {
+     "file": "tawhid-khuzayma-v02.pdf",
+     "volume": 2,
+     "pages": 528,
+     "bytes": 1929024,
+     "sha256": "ca46cd1ed2b686d0aaa78e96c7ff5d8ea6e5aba659eb369e253516ca088da943"
+    }
+   ]
+  },
+  {
+   "id": "sharica",
+   "group": "aqidah",
+   "title": "الشريعة",
+   "author": "أبو بكر الآجري (ت ٣٦٠هـ)",
+   "edition": "الدكتور عبد الله بن عمر بن سليمان الدميجي ، الرياض / السعودية ، 1420 هـ - 1999 م ، دار الوطن",
+   "volumes": [
+    {
+     "file": "sharica-v01.pdf",
+     "volume": 1,
+     "pages": 326,
+     "bytes": 1348556,
+     "sha256": "0ce3a72e670a9b2e854cc5b30c91d601b9bcbb386e2c528de010ed89724f779d"
+    },
+    {
+     "file": "sharica-v02.pdf",
+     "volume": 2,
+     "pages": 617,
+     "bytes": 2643358,
+     "sha256": "e3b9043b4982b9b1666aafb4cc90b580f8130c7f9cb1e5d118be9f002705a24f"
+    },
+    {
+     "file": "sharica-v03.pdf",
+     "volume": 3,
+     "pages": 638,
+     "bytes": 2750144,
+     "sha256": "3f1b58ff2dbe4fa1c6b2eb3ba9e87e5eefc740fd9e13a9318bc2862333074ca3"
+    },
+    {
+     "file": "sharica-v04.pdf",
+     "volume": 4,
+     "pages": 799,
+     "bytes": 3416784,
+     "sha256": "9681aa2e98c9274e6a1fac613871a2ea322ba97bc597b532e95b8cb888fc71e9"
+    },
+    {
+     "file": "sharica-v05.pdf",
+     "volume": 5,
+     "pages": 666,
+     "bytes": 2855722,
+     "sha256": "9905c8745e74a6349b35d1ed7198342c7c090e27e3a6f63fd641f628635bb2bf"
+    }
+   ]
+  },
+  {
+   "id": "lalakai",
+   "group": "aqidah",
+   "title": "شرح أصول اعتقاد أهل السنة والجماعة",
+   "author": "اللالكائي (ت ٤١٨هـ)",
+   "edition": "د. أحمد سعد حمدان ، الرياض ، 1402 ، دار طيبة",
+   "volumes": [
+    {
+     "file": "lalakai-v01.pdf",
+     "volume": 1,
+     "pages": 243,
+     "bytes": 991387,
+     "sha256": "b0ee372e89eaf4a6d92816c9ff8fbaa3d42302407655920b9012544e229530af"
+    },
+    {
+     "file": "lalakai-v02.pdf",
+     "volume": 2,
+     "pages": 220,
+     "bytes": 911654,
+     "sha256": "3ca0e52feb0042041d3141feff6398fa1474170a5ce7f5062c7ec7027c3ff491"
+    },
+    {
+     "file": "lalakai-v03.pdf",
+     "volume": 3,
+     "pages": 260,
+     "bytes": 1088547,
+     "sha256": "950b9f5fb7c919e54031c15afaa6155b1c4e5f7b26d19c9b3b1f09a6504ba19e"
+    },
+    {
+     "file": "lalakai-v04.pdf",
+     "volume": 4,
+     "pages": 390,
+     "bytes": 1616318,
+     "sha256": "505b1d7022c7924eac67f31df28ef2d16230036092d142aeaa02f29eee685344"
+    },
+    {
+     "file": "lalakai-v05.pdf",
+     "volume": 5,
+     "pages": 150,
+     "bytes": 636689,
+     "sha256": "ef015b8f50b22532c20edcb26020d6c052e9ed3f32f1c76702b2e7b7e0b1209e"
+    },
+    {
+     "file": "lalakai-v06.pdf",
+     "volume": 6,
+     "pages": 247,
+     "bytes": 1003715,
+     "sha256": "ccdf258128e9df9f04b42a6d175d504f3e852a835a62729137066bf77a2a05c7"
+    },
+    {
+     "file": "lalakai-v07.pdf",
+     "volume": 7,
+     "pages": 203,
+     "bytes": 821423,
+     "sha256": "da197efbbaad5a630a963a3e13fd8cfabc8dc5dacbfc18ede60bcf6f414b3a83"
+    },
+    {
+     "file": "lalakai-v08.pdf",
+     "volume": 8,
+     "pages": 137,
+     "bytes": 595806,
+     "sha256": "cd6125e07d7901eab69056fc43209239d563cf1d30853165c640b6cba439d71b"
+    }
+   ]
+  },
+  {
+   "id": "ibn-kathir",
+   "group": "tafsir",
+   "title": "تفسير القرآن العظيم",
+   "author": "ابن كثير (ت ٧٧٤هـ)",
+   "edition": "سامي بن محمد سلامة ، دار طيبة للنشر والتوزيع",
+   "volumes": [
+    {
+     "file": "ibn-kathir-v01.pdf",
+     "volume": 1,
+     "pages": 1630,
+     "bytes": 7856859,
+     "sha256": "2128f26bd953aa5b152501c1bbbeebc26ae5f283597a8dff7e5ac4ee51d34bd4"
+    },
+    {
+     "file": "ibn-kathir-v02.pdf",
+     "volume": 2,
+     "pages": 1100,
+     "bytes": 5345922,
+     "sha256": "f25fd9cab2a98653cc4d4eed2c41d43e05d14ae1b4784cafb88fd06be4dae151"
+    },
+    {
+     "file": "ibn-kathir-v03.pdf",
+     "volume": 3,
+     "pages": 1164,
+     "bytes": 5807228,
+     "sha256": "d04f36627606ce573ec6db7bc5c6e41585bf284609c9862143748e77d28402c8"
+    },
+    {
+     "file": "ibn-kathir-v04.pdf",
+     "volume": 4,
+     "pages": 1262,
+     "bytes": 6607271,
+     "sha256": "7e8c56cf43d6c1fa9eaa89f4df55f5b84e654f1db7116d9d42adb186bd5319e1"
+    },
+    {
+     "file": "ibn-kathir-v05.pdf",
+     "volume": 5,
+     "pages": 1070,
+     "bytes": 5466260,
+     "sha256": "5266e9f9220b438f3d049b860461dee9655a5c1dd3bb03ba6ba8b462e146ff61"
+    },
+    {
+     "file": "ibn-kathir-v06.pdf",
+     "volume": 6,
+     "pages": 1331,
+     "bytes": 6680111,
+     "sha256": "1f25f81b6040008240dd8e4fcd1ed57fe50b6ce4527ba9b785f22cacc1cbbd97"
+    },
+    {
+     "file": "ibn-kathir-v07.pdf",
+     "volume": 7,
+     "pages": 1174,
+     "bytes": 6028916,
+     "sha256": "a7d016c237111e364603129ce93466de638e1ca72036f4628ffcce8d8af5f506"
+    },
+    {
+     "file": "ibn-kathir-v08.pdf",
+     "volume": 8,
+     "pages": 1138,
+     "bytes": 5647046,
+     "sha256": "79740f076ab4d03664ab03681a41bd5457fdbacc5518eb480340e89594d10107"
+    }
+   ]
+  },
+  {
+   "id": "baghawi",
+   "group": "tafsir",
+   "title": "معالم التنزيل (تفسير البغوي)",
+   "author": "البغوي (ت ٥١٠هـ)",
+   "edition": "حققه وخرج أحاديثه محمد عبد الله النمر - عثمان جمعة ضميرية - سليمان مسلم الحرش ، دار طيبة للنشر والتوزيع",
+   "volumes": [
+    {
+     "file": "baghawi-v01.pdf",
+     "volume": 1,
+     "pages": 693,
+     "bytes": 3099191,
+     "sha256": "282ee80c6d7c04da0aefe9efd2180af049f2de91530039eb173a8957e7c3a502"
+    },
+    {
+     "file": "baghawi-v02.pdf",
+     "volume": 2,
+     "pages": 668,
+     "bytes": 2991309,
+     "sha256": "5948a1e77860d41b6d1ade8c370f3be23ed0429cd0a69dbf182cfbacef8990e0"
+    },
+    {
+     "file": "baghawi-v03.pdf",
+     "volume": 3,
+     "pages": 759,
+     "bytes": 3329755,
+     "sha256": "b7b047b2154d0aa8219712fae44c2f78c7f16fca85bc61db23b2e56eb5eb0545"
+    },
+    {
+     "file": "baghawi-v04.pdf",
+     "volume": 4,
+     "pages": 755,
+     "bytes": 3313776,
+     "sha256": "4ad4173841a43c011f903bdd93203687adf42b240e6d587730673214cd826577"
+    },
+    {
+     "file": "baghawi-v05.pdf",
+     "volume": 5,
+     "pages": 800,
+     "bytes": 3459426,
+     "sha256": "eac14197d06b3ce738189b76311f26f80212413961bf0c0feccb7a0c1024816a"
+    },
+    {
+     "file": "baghawi-v06.pdf",
+     "volume": 6,
+     "pages": 770,
+     "bytes": 3226510,
+     "sha256": "6393e8caecb671ea0b60587775ab3e14f6b83081d84fd4d40219289c3a3ceb15"
+    },
+    {
+     "file": "baghawi-v07.pdf",
+     "volume": 7,
+     "pages": 826,
+     "bytes": 3625232,
+     "sha256": "2b364dff573cbe68850e5bf052d6a765bbccc204bd1e7bd1502db914f779cb13"
+    },
+    {
+     "file": "baghawi-v08.pdf",
+     "volume": 8,
+     "pages": 834,
+     "bytes": 3471440,
+     "sha256": "2221354f4f0f6697eb459ff404b64d648470d69f4023769968b4a5b84b19a1b5"
+    }
+   ]
+  },
+  {
+   "id": "sacdi",
+   "group": "tafsir",
+   "title": "تيسير الكريم الرحمن في تفسير كلام المنان",
+   "author": "عبد الرحمن بن ناصر السعدي (ت ١٣٧٦هـ)",
+   "edition": "غير مذكورة في المصدر",
+   "volumes": [
+    {
+     "file": "sacdi-v01.pdf",
+     "volume": 1,
+     "pages": 2720,
+     "bytes": 14153425,
+     "sha256": "06de16b7bba4283627aa9996a0a50fba691a16e22512bdfd782725f41bc6a21b"
+    }
+   ]
+  },
+  {
+   "id": "usul-tafsir",
+   "group": "tafsir",
+   "title": "مقدمة في أصول التفسير",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "دار مكتبة الحياة، بيروت، لبنان",
+   "volumes": [
+    {
+     "file": "usul-tafsir-v01.pdf",
+     "volume": 1,
+     "pages": 81,
+     "bytes": 371228,
+     "sha256": "bed2ce785ce5051b78d2f6dbc5f25298fedef1db216617fc3a7a5007c3bfa5c1"
+    }
+   ]
+  },
+  {
+   "id": "bukhari",
+   "group": "hadith",
+   "title": "صحيح البخاري",
+   "author": "الإمام البخاري (ت ٢٥٦هـ)",
+   "edition": "محمد زهير بن ناصر الناصر ، دار طوق النجاة (مصورة عن السلطانية بإضافة ترقيم ترقيم محمد فؤاد عبد الباقي)",
+   "volumes": [
+    {
+     "file": "bukhari-v01.pdf",
+     "volume": 1,
+     "pages": 819,
+     "bytes": 2943294,
+     "sha256": "9e3d37e3245c77d70c8243f8e0da11bb6b579ad0d9defe6efc0ef07ac15057e3"
+    },
+    {
+     "file": "bukhari-v02.pdf",
+     "volume": 2,
+     "pages": 811,
+     "bytes": 2941341,
+     "sha256": "47dd9c0386609f6c4f468d981e8ab2a42e386b3c5d5691230ab6a473017337c2"
+    },
+    {
+     "file": "bukhari-v03.pdf",
+     "volume": 3,
+     "pages": 914,
+     "bytes": 3274330,
+     "sha256": "f3cc859bb604f919332a47f7edfa72c66b5b05682a57587e57136c335be4e0cc"
+    },
+    {
+     "file": "bukhari-v04.pdf",
+     "volume": 4,
+     "pages": 701,
+     "bytes": 2722826,
+     "sha256": "a67dd8cdd92fccc90a9e38b1876e4bb990a4537348793478d8e28616c1f0ec60"
+    },
+    {
+     "file": "bukhari-v05.pdf",
+     "volume": 5,
+     "pages": 463,
+     "bytes": 2007157,
+     "sha256": "c21bf4c742f40c53756d5e0f905afa1789dd789332643b15b5eec4294b7d268f"
+    },
+    {
+     "file": "bukhari-v06.pdf",
+     "volume": 6,
+     "pages": 891,
+     "bytes": 3140256,
+     "sha256": "4173fee891a4c03bff956108b42dc05a09a8d2d454a35826840de2febff2d09f"
+    },
+    {
+     "file": "bukhari-v07.pdf",
+     "volume": 7,
+     "pages": 754,
+     "bytes": 2762203,
+     "sha256": "a5bcf4f7eea3552887f5ced40a82cdd970982bd737cca38565dcaeef6c8459b0"
+    },
+    {
+     "file": "bukhari-v08.pdf",
+     "volume": 8,
+     "pages": 706,
+     "bytes": 2643076,
+     "sha256": "b289515f5e328562161ae631fcc5ea0cb3a91e89933f214145e4d77a10632c77"
+    },
+    {
+     "file": "bukhari-v09.pdf",
+     "volume": 9,
+     "pages": 552,
+     "bytes": 2178369,
+     "sha256": "701cab234f358d451a5900b6576c4cae3202b490d318c5c047867a3ef6c69327"
+    }
+   ]
+  },
+  {
+   "id": "muslim",
+   "group": "hadith",
+   "title": "صحيح مسلم",
+   "author": "الإمام مسلم (ت ٢٦١هـ)",
+   "edition": "محمد فؤاد عبد الباقي ، بيروت ، دار إحياء التراث العربي",
+   "volumes": [
+    {
+     "file": "muslim-v01.pdf",
+     "volume": 1,
+     "pages": 964,
+     "bytes": 3672565,
+     "sha256": "0aa598b7488cd99e989912e7538a3ec901f178d3c7374eb4fafa1eb12b076a88"
+    },
+    {
+     "file": "muslim-v02.pdf",
+     "volume": 2,
+     "pages": 916,
+     "bytes": 3504922,
+     "sha256": "8e663abc2ed0e203480627381074335d6a1ce2353688bf97f1dce9d569a28b03"
+    },
+    {
+     "file": "muslim-v03.pdf",
+     "volume": 3,
+     "pages": 883,
+     "bytes": 3398031,
+     "sha256": "46cd82df5745fd789c99326b33de354ced54f44404c8121ad2116b24e1b405ca"
+    },
+    {
+     "file": "muslim-v04.pdf",
+     "volume": 4,
+     "pages": 983,
+     "bytes": 3781306,
+     "sha256": "515e4986526af914ec47e955840176859fd6119cf956f3c89dfb578a16a30a54"
+    }
+   ]
+  },
+  {
+   "id": "abu-dawud",
+   "group": "hadith",
+   "title": "سنن أبي داود",
+   "author": "أبو داود السجستاني (ت ٢٧٥هـ)",
+   "edition": "محمد محيي الدين عبد الحميد ، - ، دار الفكر",
+   "volumes": [
+    {
+     "file": "abu-dawud-v01.pdf",
+     "volume": 1,
+     "pages": 586,
+     "bytes": 2300622,
+     "sha256": "ac0c9c347723a26ce730bc3e2f83d1a4df7aea01e0e3e20ddea447784847d062"
+    },
+    {
+     "file": "abu-dawud-v02.pdf",
+     "volume": 2,
+     "pages": 633,
+     "bytes": 2518515,
+     "sha256": "825f0feffec27499acaa609d2819b108e6172503f4db59444a096de1c652fd68"
+    },
+    {
+     "file": "abu-dawud-v03.pdf",
+     "volume": 3,
+     "pages": 691,
+     "bytes": 2713757,
+     "sha256": "c20ac0f06591dbc7e87e3088a6572e2b17ed600f5a34b620e69dcef4599888ad"
+    },
+    {
+     "file": "abu-dawud-v04.pdf",
+     "volume": 4,
+     "pages": 687,
+     "bytes": 2642665,
+     "sha256": "7b4c51426f02a8b4ddd66189fbb59bdd0b3d12896743856069f889e0bc0d948b"
+    }
+   ]
+  },
+  {
+   "id": "tirmidhi",
+   "group": "hadith",
+   "title": "سنن الترمذي",
+   "author": "الترمذي (ت ٢٧٩هـ)",
+   "edition": "أحمد محمد شاكر وآخرون ، بيروت ، - ، دار إحياء التراث العربي",
+   "volumes": [
+    {
+     "file": "tirmidhi-v01.pdf",
+     "volume": 1,
+     "pages": 410,
+     "bytes": 1389671,
+     "sha256": "16f465085a60fcd8526f3e77364ebedfdef1d49a7315d022fbb1ae66a346f831"
+    },
+    {
+     "file": "tirmidhi-v02.pdf",
+     "volume": 2,
+     "pages": 498,
+     "bytes": 1849345,
+     "sha256": "8e90d915094302f3c1c0c3042120cf9a0b3cca3048ee8eed02f142743d9658da"
+    },
+    {
+     "file": "tirmidhi-v03.pdf",
+     "volume": 3,
+     "pages": 699,
+     "bytes": 3096612,
+     "sha256": "beb5787fbf78f2a644e81b65201adf65d6fd93062b3a54882c320214646858f8"
+    },
+    {
+     "file": "tirmidhi-v04.pdf",
+     "volume": 4,
+     "pages": 936,
+     "bytes": 4253226,
+     "sha256": "0e9ef9317bc21835bb9248743a1dbae118b2e98f451d8f2862f6dca1ceee942c"
+    },
+    {
+     "file": "tirmidhi-v05.pdf",
+     "volume": 5,
+     "pages": 1057,
+     "bytes": 4539954,
+     "sha256": "331459849e9ffe3d9c1015803b52df5798e689d999c3994abfaeb9cdf7144908"
+    }
+   ]
+  },
+  {
+   "id": "nasai",
+   "group": "hadith",
+   "title": "سنن النسائي (المجتبى)",
+   "author": "النسائي (ت ٣٠٣هـ)",
+   "edition": "مركز البحوث وتقنية المعلومات بدار التأصيل ، الأولى، 1433 ه - 2012 م ، دار التأصيل - القاهرة",
+   "volumes": [
+    {
+     "file": "nasai-v01.pdf",
+     "volume": 1,
+     "pages": 520,
+     "bytes": 1527427,
+     "sha256": "0a4c198d1f85fbb583b4cd602c2b406d2df32001893058d8952a6763d5c9def9"
+    },
+    {
+     "file": "nasai-v02.pdf",
+     "volume": 2,
+     "pages": 709,
+     "bytes": 2080777,
+     "sha256": "85cef03e44b4436d18696deeb01443d65f9cf911a0de0009e04e130da67bb8e9"
+    },
+    {
+     "file": "nasai-v03.pdf",
+     "volume": 3,
+     "pages": 665,
+     "bytes": 1933909,
+     "sha256": "f3e3fb71e95a20389a1cad8c1c0a8498b8b53d64fe7c12b82ed566eb0a899fbd"
+    },
+    {
+     "file": "nasai-v04.pdf",
+     "volume": 4,
+     "pages": 844,
+     "bytes": 2383497,
+     "sha256": "38c943b3992bac46b0bf81980fee2eeb5e591452f0949e1a7091a1519b5848e7"
+    },
+    {
+     "file": "nasai-v05.pdf",
+     "volume": 5,
+     "pages": 827,
+     "bytes": 2379442,
+     "sha256": "0e6ac98f0a5dbf5e4fb95305000c54835708fc16257f2a127932b267c1a76140"
+    },
+    {
+     "file": "nasai-v06.pdf",
+     "volume": 6,
+     "pages": 959,
+     "bytes": 2727780,
+     "sha256": "a7b5b06a38dcaebed054a6230762bbf02732200ef115dabddb7b7deecd235741"
+    },
+    {
+     "file": "nasai-v07.pdf",
+     "volume": 7,
+     "pages": 935,
+     "bytes": 2566603,
+     "sha256": "7949f13b6cadadfd369313d4b497ace5b99285f969c0f311de5a470b6f9fcf10"
+    },
+    {
+     "file": "nasai-v08.pdf",
+     "volume": 8,
+     "pages": 750,
+     "bytes": 2055012,
+     "sha256": "de64f665b504c156e691140b8911a9bf417363a6b2869016ce18882eddf34741"
+    }
+   ]
+  },
+  {
+   "id": "ibn-majah",
+   "group": "hadith",
+   "title": "سنن ابن ماجه",
+   "author": "ابن ماجه (ت ٢٧٣هـ)",
+   "edition": "محمد فؤاد عبد الباقي ، بيروت ، - ، دار الفكر",
+   "volumes": [
+    {
+     "file": "ibn-majah-v01.pdf",
+     "volume": 1,
+     "pages": 901,
+     "bytes": 3685897,
+     "sha256": "18bc02f4be379939fbe23054a81ec8c21dd75e2efdd5fa1a68e7f90433a9472a"
+    },
+    {
+     "file": "ibn-majah-v02.pdf",
+     "volume": 2,
+     "pages": 970,
+     "bytes": 3925385,
+     "sha256": "e0c930f957f62818398e3123d1f0c9a74aaa884037388305aae0b54638f06f62"
+    }
+   ]
+  },
+  {
+   "id": "muwatta",
+   "group": "hadith",
+   "title": "الموطأ",
+   "author": "الإمام مالك بن أنس (ت ١٧٩هـ)",
+   "edition": "محمد مصطفى الأعظمي ، مؤسسة زايد بن سلطان آل نهيان للأعمال الخيرية والإنسانية - أبو ظبي - الإمارات",
+   "volumes": [
+    {
+     "file": "muwatta-v01.pdf",
+     "volume": 1,
+     "pages": 1638,
+     "bytes": 7458325,
+     "sha256": "dff2be4c862aad3aaded42da6fc26afda8988bafae99ee4e3e31026764f607a3"
+    }
+   ]
+  },
+  {
+   "id": "musnad",
+   "group": "hadith",
+   "title": "المسند",
+   "author": "الإمام أحمد بن حنبل (ت ٢٤١هـ)",
+   "edition": "شعيب الأرنؤوط - عادل مرشد، وآخرون ، مؤسسة الرسالة",
+   "volumes": [
+    {
+     "file": "musnad-v01.pdf",
+     "volume": 1,
+     "pages": 271,
+     "bytes": 1335547,
+     "sha256": "0018500a7041aa228c216d7dbd821e8ee7c144f81cbde5f206852e01fbee818d"
+    },
+    {
+     "file": "musnad-v02.pdf",
+     "volume": 2,
+     "pages": 258,
+     "bytes": 1253643,
+     "sha256": "90850858d85f470ed7c806c93a3d6056ad437c4d92b2ceb0bc2f3e9202263507"
+    },
+    {
+     "file": "musnad-v03.pdf",
+     "volume": 3,
+     "pages": 258,
+     "bytes": 1258027,
+     "sha256": "d09c4252903c83fb594ad2983fdfb6f1cacf361fc06684629ba2f50154b99f77"
+    },
+    {
+     "file": "musnad-v04.pdf",
+     "volume": 4,
+     "pages": 271,
+     "bytes": 1241001,
+     "sha256": "870b1ec1f1f4c8b055223192acbe21fe7545480e5f553a50eea63baa19721d6e"
+    },
+    {
+     "file": "musnad-v05.pdf",
+     "volume": 5,
+     "pages": 268,
+     "bytes": 1194452,
+     "sha256": "057c17a891df8ebed219ee92c7ddad6b7b06f0b0fcef8a89aef76a823711f0ea"
+    },
+    {
+     "file": "musnad-v06.pdf",
+     "volume": 6,
+     "pages": 194,
+     "bytes": 757188,
+     "sha256": "ebcd66ec51d42ea5f4480aae012ddaf2b45a58178cc3d4f4c11ced81148b157c"
+    },
+    {
+     "file": "musnad-v07.pdf",
+     "volume": 7,
+     "pages": 228,
+     "bytes": 1023049,
+     "sha256": "004831bd8f0fd1ead9f2ef328d368e5614e927639e6f8d37efe3d0db409d3177"
+    },
+    {
+     "file": "musnad-v08.pdf",
+     "volume": 8,
+     "pages": 203,
+     "bytes": 787554,
+     "sha256": "b6c7babc8d4f76ec84fed471c9d0755e5b20e494a56dae58d6f4ae6a45c45d98"
+    },
+    {
+     "file": "musnad-v09.pdf",
+     "volume": 9,
+     "pages": 227,
+     "bytes": 1053132,
+     "sha256": "8d88987730539ad91232280a1d88bb09375140cd876006adb1aa25bfd635c3db"
+    },
+    {
+     "file": "musnad-v10.pdf",
+     "volume": 10,
+     "pages": 209,
+     "bytes": 974623,
+     "sha256": "c9b7cbd027a90194fc569b9c4804e924c32718e965c0af6d6f175ff23ba02450"
+    },
+    {
+     "file": "musnad-v11.pdf",
+     "volume": 11,
+     "pages": 365,
+     "bytes": 1435542,
+     "sha256": "5e7a8279caef282f5b3f0743ee6bbe493ac46caa8cdf02941211b4318564ffa4"
+    },
+    {
+     "file": "musnad-v12.pdf",
+     "volume": 12,
+     "pages": 195,
+     "bytes": 756378,
+     "sha256": "4fa276c6f12287b2b5d601e985a7daab3b0ee5d83d4d0da8ab75ed06a88e439f"
+    },
+    {
+     "file": "musnad-v13.pdf",
+     "volume": 13,
+     "pages": 242,
+     "bytes": 1056219,
+     "sha256": "f3ad8a85c80d09208d40ad507979ebc4b7cf1747d0d76b14dbc9cdca6f38bbcf"
+    },
+    {
+     "file": "musnad-v14.pdf",
+     "volume": 14,
+     "pages": 243,
+     "bytes": 1150137,
+     "sha256": "afcec9e7871c9e5790f76e83caac2ddcb3cbfd07558bceb4b862787b3b594d8c"
+    },
+    {
+     "file": "musnad-v15.pdf",
+     "volume": 15,
+     "pages": 258,
+     "bytes": 1220264,
+     "sha256": "74984ec0fb8249f79144f7cf432021ea6885b2bf4589739d97127461ae48c6ca"
+    },
+    {
+     "file": "musnad-v16.pdf",
+     "volume": 16,
+     "pages": 291,
+     "bytes": 1399076,
+     "sha256": "58bbba4e1504c77a1bc7031bfa289702d6cbcb1d6b3678b434697835e7d10832"
+    },
+    {
+     "file": "musnad-v17.pdf",
+     "volume": 17,
+     "pages": 227,
+     "bytes": 885584,
+     "sha256": "0a9b192dc5dfade9a84d889b6c3770285b8d588d90a5067e4b4400710173bfa4"
+    },
+    {
+     "file": "musnad-v18.pdf",
+     "volume": 18,
+     "pages": 203,
+     "bytes": 940167,
+     "sha256": "bf59cfa76cc0cadb62022cc8f93f221c125cdf350003b5685a4231e826a1a772"
+    },
+    {
+     "file": "musnad-v19.pdf",
+     "volume": 19,
+     "pages": 207,
+     "bytes": 935283,
+     "sha256": "f040ce8a659d31976f0386f325dbd5384e016216fef35b16440828d5efd9ea62"
+    },
+    {
+     "file": "musnad-v20.pdf",
+     "volume": 20,
+     "pages": 216,
+     "bytes": 1026269,
+     "sha256": "b2c3cd0b523d0a597f6ace987226993c3944bfdc880e6c3846f1af544b4cd852"
+    },
+    {
+     "file": "musnad-v21.pdf",
+     "volume": 21,
+     "pages": 256,
+     "bytes": 1242180,
+     "sha256": "9d19ee7bf48b682edf0c32248c0f23dc0a9ea966f967ca41554429944d43fe11"
+    },
+    {
+     "file": "musnad-v22.pdf",
+     "volume": 22,
+     "pages": 185,
+     "bytes": 816686,
+     "sha256": "d3b56b392b3296ba72c5196d161eab191de0e3a07f8ddeb0af63e4dc6ad0cbeb"
+    },
+    {
+     "file": "musnad-v23.pdf",
+     "volume": 23,
+     "pages": 247,
+     "bytes": 1142217,
+     "sha256": "14a3618a658ae757e92b74a2424634e92948dacc7db3441cb67ec12773360ac3"
+    },
+    {
+     "file": "musnad-v24.pdf",
+     "volume": 24,
+     "pages": 230,
+     "bytes": 993009,
+     "sha256": "590a7a8273093b2f0d5efe60a2ca229828c8fe8b783df3bb86cbddfcda515bc5"
+    },
+    {
+     "file": "musnad-v25.pdf",
+     "volume": 25,
+     "pages": 255,
+     "bytes": 1047778,
+     "sha256": "d409ed0673c0affbf146d26dee385abe0c9491b2f19d9069d0cc28eaae3b0067"
+    },
+    {
+     "file": "musnad-v26.pdf",
+     "volume": 26,
+     "pages": 196,
+     "bytes": 847491,
+     "sha256": "b93b9349282396eed01bc440c49b0508c0ce0a7f4a786842749abd5d2c1e2b39"
+    },
+    {
+     "file": "musnad-v27.pdf",
+     "volume": 27,
+     "pages": 183,
+     "bytes": 860493,
+     "sha256": "2afdbafba88bef812a9dc1da57b1a16dde2fd617a074e1d7175e49e507186ee9"
+    },
+    {
+     "file": "musnad-v28.pdf",
+     "volume": 28,
+     "pages": 313,
+     "bytes": 1338424,
+     "sha256": "4e523f3523aa8c0c356bb07d38e0dfabf988bab2367de9a61b91119dc466b547"
+    },
+    {
+     "file": "musnad-v29.pdf",
+     "volume": 29,
+     "pages": 317,
+     "bytes": 1424751,
+     "sha256": "19142209fa72529c3d0ab3ce9414ef96818b0f3bcf494ef1de8a466b0320a44e"
+    },
+    {
+     "file": "musnad-v30.pdf",
+     "volume": 30,
+     "pages": 311,
+     "bytes": 1272934,
+     "sha256": "bb584bc8db2d65a8d7332da6a9532c27c82a7f0e624a197e38ea479c7b41e67e"
+    },
+    {
+     "file": "musnad-v31.pdf",
+     "volume": 31,
+     "pages": 248,
+     "bytes": 1100635,
+     "sha256": "c42232dc78df8a41bf96fedf7e1cd84f4e4364bb6f7cf5417e1d7e061ba4072f"
+    },
+    {
+     "file": "musnad-v32.pdf",
+     "volume": 32,
+     "pages": 264,
+     "bytes": 1070747,
+     "sha256": "977e478876912a994c795b4e7c96e6da37deffc0058551df7adbd449c21bb189"
+    },
+    {
+     "file": "musnad-v33.pdf",
+     "volume": 33,
+     "pages": 221,
+     "bytes": 1042861,
+     "sha256": "f79b757cc327510c5402281ee63be605e2daf7bd417c294703a274911747b56a"
+    },
+    {
+     "file": "musnad-v34.pdf",
+     "volume": 34,
+     "pages": 271,
+     "bytes": 1262300,
+     "sha256": "12ac0723d26a99e43713fededd144e96c7abd9af198da7b67dce3efa06f88111"
+    },
+    {
+     "file": "musnad-v35.pdf",
+     "volume": 35,
+     "pages": 273,
+     "bytes": 1247780,
+     "sha256": "88b687643b6a5a5d21cfad1dc0a77442df7a12cbab9a7074f4023d553c6ae1a7"
+    },
+    {
+     "file": "musnad-v36.pdf",
+     "volume": 36,
+     "pages": 334,
+     "bytes": 1365421,
+     "sha256": "a3b44986f64a27715793dd27eaefb4db9626ad6e4c958db2e8c6881e3346dea5"
+    },
+    {
+     "file": "musnad-v37.pdf",
+     "volume": 37,
+     "pages": 276,
+     "bytes": 1223033,
+     "sha256": "2c8d963b676c2ba1aa8cc5789b6113f052abf2aacfef006bed180d314bf64ec9"
+    },
+    {
+     "file": "musnad-v38.pdf",
+     "volume": 38,
+     "pages": 272,
+     "bytes": 1243630,
+     "sha256": "fb593dd150510f3d2b835986274ff16c7bf881af861ae311d0451d582fa9d14c"
+    },
+    {
+     "file": "musnad-v39.pdf",
+     "volume": 39,
+     "pages": 338,
+     "bytes": 1326782,
+     "sha256": "1442f6ba4d8fd97b815e3890e52b27e8b0b2d9a900e91427cf41e38314c13ddc"
+    },
+    {
+     "file": "musnad-v40.pdf",
+     "volume": 40,
+     "pages": 209,
+     "bytes": 817837,
+     "sha256": "53fdea184f6d9fb53577d2987de9789c6b4da50fd42de85c481e08efb7387b18"
+    },
+    {
+     "file": "musnad-v41.pdf",
+     "volume": 41,
+     "pages": 223,
+     "bytes": 991358,
+     "sha256": "94a7263a2270c8317c291112b99deff99698ee76207c245b3d197d42180bc1fb"
+    },
+    {
+     "file": "musnad-v42.pdf",
+     "volume": 42,
+     "pages": 263,
+     "bytes": 1147327,
+     "sha256": "a19ecfc9dfe47a1e5652f1651c7b60114b4afd62df4ce3cd6dca8a92a1be96b8"
+    },
+    {
+     "file": "musnad-v43.pdf",
+     "volume": 43,
+     "pages": 202,
+     "bytes": 962575,
+     "sha256": "2deff51851207a8f4637a049977f51a687fe474fc2bbb4ffa9f4360b18041d2b"
+    },
+    {
+     "file": "musnad-v44.pdf",
+     "volume": 44,
+     "pages": 297,
+     "bytes": 1283647,
+     "sha256": "fe154bcc51f0083255fbf560c328f373db0865278bb596713f1b9545b3d283c6"
+    },
+    {
+     "file": "musnad-v45.pdf",
+     "volume": 45,
+     "pages": 322,
+     "bytes": 1347860,
+     "sha256": "428f741ff2046ad40d6acbe403d459c710e506d91bfef3c6b8ebb461e9a108a5"
+    }
+   ]
+  },
+  {
+   "id": "darimi",
+   "group": "hadith",
+   "title": "سنن الدارمي",
+   "author": "الدارمي (ت ٢٥٥هـ)",
+   "edition": "فواز أحمد زمرلي , خالد السبع العلمي ، بيروت ، 1407 ، دار الكتاب العربي",
+   "volumes": [
+    {
+     "file": "darimi-v01.pdf",
+     "volume": 1,
+     "pages": 673,
+     "bytes": 2686424,
+     "sha256": "aaf08529911322c2460b4b517345e31553553c4011f9d96f4c9adfe44c46ed25"
+    },
+    {
+     "file": "darimi-v02.pdf",
+     "volume": 2,
+     "pages": 697,
+     "bytes": 2942971,
+     "sha256": "6403c528a375ee15a0a49941555ecf9303dd8fa7074eecebc3097c1bf32a4c5f"
+    }
+   ]
+  },
+  {
+   "id": "adab-mufrad",
+   "group": "hadith",
+   "title": "الأدب المفرد",
+   "author": "الإمام البخاري (ت ٢٥٦هـ)",
+   "edition": "محمد فؤاد عبدالباقي ، بيروت ، 1409 - 1989 ، دار البشائر الإسلامية",
+   "volumes": [
+    {
+     "file": "adab-mufrad-v01.pdf",
+     "volume": 1,
+     "pages": 609,
+     "bytes": 2478159,
+     "sha256": "2dcd46a53467d6919fd92a780b7a71841c54761ba825b0b54a8e28fcf7b4f6eb"
+    }
+   ]
+  },
+  {
+   "id": "shamail",
+   "group": "hadith",
+   "title": "الشمائل المحمدية",
+   "author": "الترمذي (ت ٢٧٩هـ)",
+   "edition": "سيد عباس الجليمي ، بيروت ، 1412 ، مؤسسة الكتب الثقافية",
+   "volumes": [
+    {
+     "file": "shamail-v01.pdf",
+     "volume": 1,
+     "pages": 331,
+     "bytes": 1101302,
+     "sha256": "84373749ad290707160ba813e4571165c95a54d04a816017afc23c6a17782d7c"
+    }
+   ]
+  },
+  {
+   "id": "zad-mustaqni",
+   "group": "fiqh",
+   "title": "زاد المستقنع في اختصار المقنع",
+   "author": "الحجاوي (ت ٩٦٨هـ)",
+   "edition": "علي محمد عبد العزيز الهندي ، مكة المكرمة ، مكتبة النهضة الحديثة",
+   "volumes": [
+    {
+     "file": "zad-mustaqni-v01.pdf",
+     "volume": 1,
+     "pages": 240,
+     "bytes": 987932,
+     "sha256": "9473732202f3102aa8a419f31984822da41ea7e43c28bbdfc84183b67e3dfc92"
+    }
+   ]
+  },
+  {
+   "id": "rawd-murbi",
+   "group": "fiqh",
+   "title": "الروض المربع شرح زاد المستقنع",
+   "author": "البهوتي (ت ١٠٥١هـ)",
+   "edition": "الرياض ، 1390 ، مكتبة الرياض الحديثة",
+   "volumes": [
+    {
+     "file": "rawd-murbi-v01.pdf",
+     "volume": 1,
+     "pages": 555,
+     "bytes": 2099647,
+     "sha256": "709d1c1cceea0d3724aa70882b58ef765848d06f7159aa6bac6f6eda7406b548"
+    },
+    {
+     "file": "rawd-murbi-v02.pdf",
+     "volume": 2,
+     "pages": 496,
+     "bytes": 1498023,
+     "sha256": "bd78e74b9fb46448d3e83098b68ecd14b0996e2b47950be5eb41cb7f0eea7ec6"
+    },
+    {
+     "file": "rawd-murbi-v03.pdf",
+     "volume": 3,
+     "pages": 495,
+     "bytes": 1834312,
+     "sha256": "228227d1ff9f9541a539f95c979a7e2fc284448d65a46654fc1c8aa4be5c0e24"
+    }
+   ]
+  },
+  {
+   "id": "umdat-fiqh",
+   "group": "fiqh",
+   "title": "عمدة الفقه",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "edition": "عبد الله سفر العبدلي , محمد دغيليب العتيبي ، الطائف ، مكتبة الطرفين",
+   "volumes": [
+    {
+     "file": "umdat-fiqh-v01.pdf",
+     "volume": 1,
+     "pages": 237,
+     "bytes": 956691,
+     "sha256": "9aad3a25badc1a837bf3d62d806830e2edc7c2c71d6f76168b1e501cb80fb669"
+    }
+   ]
+  },
+  {
+   "id": "mughni",
+   "group": "fiqh",
+   "title": "المغني",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "edition": "بيروت ، 1405 ، دار الفكر",
+   "volumes": [
+    {
+     "file": "mughni-v01.pdf",
+     "volume": 1,
+     "pages": 1466,
+     "bytes": 6990361,
+     "sha256": "a419cf83bb54676139797746f1b4b6a83c011519c22294d8c8af868dae02ace3"
+    },
+    {
+     "file": "mughni-v02.pdf",
+     "volume": 2,
+     "pages": 1113,
+     "bytes": 5198846,
+     "sha256": "5cf2781e3e032799eb4fe76422821b4d51b4c2ad368acf84516f3cb250a5aa17"
+    },
+    {
+     "file": "mughni-v03.pdf",
+     "volume": 3,
+     "pages": 946,
+     "bytes": 4533782,
+     "sha256": "c58168065fe7a3f3c9fdb83671119f442f128383ebc7a70cb27d8b9075eb8da2"
+    },
+    {
+     "file": "mughni-v04.pdf",
+     "volume": 4,
+     "pages": 1336,
+     "bytes": 6619609,
+     "sha256": "8fb59a7aa33f8e28b6927e7e2826279d8ee8af405b634e9958b39bd729f33ddc"
+    },
+    {
+     "file": "mughni-v05.pdf",
+     "volume": 5,
+     "pages": 1262,
+     "bytes": 5659108,
+     "sha256": "bf65d514301067e29619cddaa54809aaf4bd550381984c2fc6e0bf906a283faa"
+    },
+    {
+     "file": "mughni-v06.pdf",
+     "volume": 6,
+     "pages": 975,
+     "bytes": 4157558,
+     "sha256": "b368f36cf0cb70f94bdd95952343ab4069f82f4228705a3e4c6999ecca39107a"
+    },
+    {
+     "file": "mughni-v07.pdf",
+     "volume": 7,
+     "pages": 1271,
+     "bytes": 5397899,
+     "sha256": "4929b8200ae8b605399feeaf9d35952cd7224138e2637f587e06e4117b09aa0c"
+    },
+    {
+     "file": "mughni-v08.pdf",
+     "volume": 8,
+     "pages": 1181,
+     "bytes": 4936698,
+     "sha256": "28057415a9d6bcaa30acd403df319b7db79e31d563be18abedb4a3879ecb1e47"
+    },
+    {
+     "file": "mughni-v09.pdf",
+     "volume": 9,
+     "pages": 1205,
+     "bytes": 5119388,
+     "sha256": "d386edbcc6cbfdb8a3700083a958c3bc06af73784bb016d03b2caa821316f5ed"
+    },
+    {
+     "file": "mughni-v10.pdf",
+     "volume": 10,
+     "pages": 1211,
+     "bytes": 5044855,
+     "sha256": "56d4352ca01559cf9186ce1f4a61626d895dbc90383eaf3f25c131707381fce5"
+    }
+   ]
+  },
+  {
+   "id": "rawdat-nazir",
+   "group": "fiqh",
+   "title": "روضة الناظر وجنة المناظر",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "edition": "د. عبد العزيز عبد الرحمن السعيد ، الرياض ، 1399 ، جامعة الإمام محمد بن سعود",
+   "volumes": [
+    {
+     "file": "rawdat-nazir-v01.pdf",
+     "volume": 1,
+     "pages": 621,
+     "bytes": 2443660,
+     "sha256": "9a0211fcee96f6aff344b69bb2f5fa1b7fb1f00aef6aa1a2249261ce489cae40"
+    }
+   ]
+  },
+  {
+   "id": "adab-mashy",
+   "group": "fiqh",
+   "title": "آداب المشي إلى الصلاة",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "edition": "عبد الكريم بن محمد اللاحم ، ناصر بن عبد الله الطريم ، سعود بن محمد البشر . ، الرياض ، مطابع الرياض",
+   "volumes": [
+    {
+     "file": "adab-mashy-v01.pdf",
+     "volume": 1,
+     "pages": 84,
+     "bytes": 365608,
+     "sha256": "f84efc4101d240d2b503284f7ee243916c909f5a030edc3c3776d113f464df11"
+    }
+   ]
+  },
+  {
+   "id": "zad-maad",
+   "group": "sira",
+   "title": "زاد المعاد في هدي خير العباد",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "شعيب الأرناؤوط - عبد القادر الأرناؤوط ، بيروت - الكويت ، 1407 - 1986 ، مؤسسة الرسالة - مكتبة المنار الإسلامية",
+   "volumes": [
+    {
+     "file": "zad-maad-v01.pdf",
+     "volume": 1,
+     "pages": 659,
+     "bytes": 2686033,
+     "sha256": "996d3cd70e1776209aaacd9c1ec3aedf61e1b3e34a5947c683a9a9c6db16add8"
+    },
+    {
+     "file": "zad-maad-v02.pdf",
+     "volume": 2,
+     "pages": 632,
+     "bytes": 2547504,
+     "sha256": "008e51c128aaf888b1877db45dcb68537607c382f2682c38355e5d753477029c"
+    },
+    {
+     "file": "zad-maad-v03.pdf",
+     "volume": 3,
+     "pages": 1059,
+     "bytes": 4104025,
+     "sha256": "63eb54479b5ef2c569f63ef84d3b77637d0eb0c9400a2829da05dce2c4b097c2"
+    },
+    {
+     "file": "zad-maad-v04.pdf",
+     "volume": 4,
+     "pages": 643,
+     "bytes": 2553029,
+     "sha256": "355ab5f791d4efb565c9e5a8760e69b84d0f9b42c9a87998ada825430fb74384"
+    },
+    {
+     "file": "zad-maad-v05.pdf",
+     "volume": 5,
+     "pages": 1422,
+     "bytes": 5284605,
+     "sha256": "ab14dd0fea581e3405f9b8861c009f38b71aa7198d8113cd82374c137b033d40"
+    }
+   ]
+  },
+  {
+   "id": "ibn-hisham",
+   "group": "sira",
+   "title": "السيرة النبوية",
+   "author": "ابن هشام (ت ٢١٣هـ)",
+   "edition": "مصطفى السقا وإبراهيم الأبياري وعبد الحفيظ الشلبي ، شركة مكتبة ومطبعة مصطفى البابي الحلبي وأولاده بمصر",
+   "volumes": [
+    {
+     "file": "ibn-hisham-v01.pdf",
+     "volume": 1,
+     "pages": 1072,
+     "bytes": 4466777,
+     "sha256": "1f25a38396e85dba14f77d529c6a1f4f1f8e2e9a6f218088a3cae041b53ab6d6"
+    },
+    {
+     "file": "ibn-hisham-v02.pdf",
+     "volume": 2,
+     "pages": 944,
+     "bytes": 3610845,
+     "sha256": "6e0101d93a0a3eae017e2832a2ae98d28d6b5ca31c6d2fc3d13cc8f69fd929fa"
+    }
+   ]
+  },
+  {
+   "id": "fusul-sira",
+   "group": "sira",
+   "title": "الفصول في السيرة",
+   "author": "ابن كثير (ت ٧٧٤هـ)",
+   "edition": "غير مذكورة في المصدر",
+   "volumes": [
+    {
+     "file": "fusul-sira-v01.pdf",
+     "volume": 1,
+     "pages": 302,
+     "bytes": 1244483,
+     "sha256": "6b8fa14c08c04b8f01ff330a26be2b92f6d88e30c20e693fac66df14b9f10ccd"
+    }
+   ]
+  },
+  {
+   "id": "kalim-tayyib",
+   "group": "raqaiq",
+   "title": "الكلم الطيب",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "edition": "محمد ناصر الدين الألباني ، المكتب الإسلامي - بيروت",
+   "volumes": [
+    {
+     "file": "kalim-tayyib-v01.pdf",
+     "volume": 1,
+     "pages": 122,
+     "bytes": 608186,
+     "sha256": "9fa31200ecf79a32335b7765d85a9987c190ac6493023758e7c31952de93476d"
+    }
+   ]
+  },
+  {
+   "id": "wabil-sayyib",
+   "group": "raqaiq",
+   "title": "الوابل الصيب من الكلم الطيب",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "محمد عبد الرحمن عوض ، بيروت ، 1405 - 1985 ، دار الكتاب العربي",
+   "volumes": [
+    {
+     "file": "wabil-sayyib-v01.pdf",
+     "volume": 1,
+     "pages": 342,
+     "bytes": 1300734,
+     "sha256": "2a4b9c8f9020e33a350a41bebea15be2add5695402ae76c3276a4d2a207c5b4d"
+    }
+   ]
+  },
+  {
+   "id": "daa-dawa",
+   "group": "raqaiq",
+   "title": "الداء والدواء (الجواب الكافي)",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "بيروت ، دار الكتب العلمية",
+   "volumes": [
+    {
+     "file": "daa-dawa-v01.pdf",
+     "volume": 1,
+     "pages": 352,
+     "bytes": 1694245,
+     "sha256": "b1ed972333a0fe307804ca196dec9865a4dc41338469841478c92928fbee2ca1"
+    }
+   ]
+  },
+  {
+   "id": "mukhtasar-minhaj",
+   "group": "raqaiq",
+   "title": "مختصر منهاج القاصدين",
+   "author": "ابن قدامة المقدسي (أحمد بن عبد الرحمن) (ت ٦٨٩هـ)",
+   "edition": "1398 هـ - 1978 م ، مكتبة دار البيان، دمشق",
+   "volumes": [
+    {
+     "file": "mukhtasar-minhaj-v01.pdf",
+     "volume": 1,
+     "pages": 784,
+     "bytes": 3701074,
+     "sha256": "1ad4d5b6fb575f3bc4112d16b1bd4ef87226a57b7df6046fc21f49edce740616"
+    }
+   ]
+  }
+ ]
+}

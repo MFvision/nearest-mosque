@@ -1,5 +1,9 @@
 name: Content packs
 
+# The apps download packs (and the classical books) from MFvision/nearest-mosque-content, a public repository
+# with no app code, pinned to one commit: add new assets to its packs/ folder and build with
+# --base-url https://raw.githubusercontent.com/MFvision/nearest-mosque-content/<commit>/packs/.
+#
 # Builds the downloadable content packs (hadith, Quran translation, tafsir, IslamHouse library) for the
 # interface languages that have no bundled content, and publishes them as the assets of one GitHub
 # release. remote-packs.json in that release is the catalog: copy it to shared/content/ so the apps
