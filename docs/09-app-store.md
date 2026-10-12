@@ -41,7 +41,8 @@ entry in `screenshots` says:
 | `sameFileAs` | Set for locale variants (e.g. `en-GB`): the file is the same as that locale's |
 | `title`, `shows` | What the screen is, for captions or review notes |
 
-`missing` lists any capture that failed. Do not upload a set for a locale that has missing files
+`skipped` lists Apple Vision Pro captures left out because the window was still loading; that locale's
+set is one shorter and the positions close up. `missing` lists any capture that failed. Do not upload a set for a locale that has missing files
 without telling the owner.
 
 ## The slots

@@ -20,7 +20,7 @@ import pathlib
 import shutil
 import sys
 
-from PIL import Image, ImageFilter, ImageEnhance
+from PIL import Image, ImageEnhance, ImageFilter, ImageStat
 
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent
@@ -41,6 +41,14 @@ def fit_on_canvas(im, size):
     front = im.convert("RGBA").resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
     back.paste(front, ((w - front.width) // 2, (h - front.height) // 2), front)
     return back
+
+
+def loading_screen(im):
+    """True when an Apple Vision Pro capture shows the window still loading (the logo on blank glass):
+    the middle of the picture then has almost no edges."""
+    w, h = im.size
+    mid = im.convert("L").crop((int(w * .25), int(h * .25), int(w * .75), int(h * .70))).resize((480, 270))
+    return ImageStat.Stat(mid.filter(ImageFilter.FIND_EDGES)).mean[0] < 7
 
 
 def accepted(im, sizes):
@@ -118,7 +126,7 @@ def icons(out):
 def main():
     raw, out, commit = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]), sys.argv[3]
     out.mkdir(parents=True, exist_ok=True)
-    entries, missing, sheets = [], [], {}
+    entries, missing, skipped, sheets = [], [], [], {}
     for platform, conf in SPEC["platforms"].items():
         rows = []
         for lang in SPEC["languages"]:
@@ -130,6 +138,9 @@ def main():
                     missing.append(f"{platform}/{lang['app']}/{src.name}")
                     continue
                 im = Image.open(src)
+                if platform == "vision" and loading_screen(im):
+                    skipped.append(f"{platform}/{lang['app']}/{src.name}: still loading when captured")
+                    continue
                 if not accepted(im, conf["sizes"]):
                     im = fit_on_canvas(im, target_size(im, conf["sizes"]))
                 dest = out / conf["displayType"] / primary / src.name
@@ -168,10 +179,13 @@ def main():
         "contactSheets": sheets,
         "icons": icons(out),
         "missing": missing,
+        "skipped": skipped,
         "screenshots": entries,
     }
     (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n")
-    print(f"{len(entries)} screenshot entries, {len(missing)} missing")
+    print(f"{len(entries)} screenshot entries, {len(missing)} missing, {len(skipped)} left out")
+    for k in skipped:
+        print(f"::notice::left out {k}")
     for m in missing:
         print(f"::warning::missing {m}")
 
