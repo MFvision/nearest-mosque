@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (ჯერ მიუწვდომელია)</string>
     <string name="sources">წყაროები</string>
     <string name="sources_licenses">წყაროები და ლიცენზიები</string>
+    <string name="start_at_login">Windows-თან ერთად გაშვება</string>
+    <string name="start_at_login_note">შესვლისას იხსნება შეტყობინებების არეში, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს.</string>
+    <string name="start_at_login_store_note">რომ Near Mosque შესვლისას გაიშვას, ჩართეთ Windows-ის პარამეტრებში → აპები → გაშვება.</string>
     <string name="stop">შეჩერება</string>
     <string name="straight_line">%1$s პირდაპირი ხაზით</string>
     <string name="style_auto">როგორც აპში</string>

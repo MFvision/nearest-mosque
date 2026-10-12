@@ -223,8 +223,16 @@ motion (it sways on its own) and Liquid Glass (a material look instead).
 
 * **Android**: the same tabs and Ask; 8 widget kinds (Next prayer, Countdown, Ring, Today, Mosque, Ask,
   Qibla, Actions) in 16 size variants, 3 styles (cream, green, night); app shortcuts Qibla, Mosques, Ask.
-* **Windows**: Prayer, Qibla (from north), Classical books (opened in the PC's PDF reader) and Settings;
-  stays in the notification area and plays the Adhan and reminders while running. No mosques or Ask yet.
+* **Windows**: Prayer, Qibla (from north), Nearest Mosque, Ask, Classical books (opened in the PC's PDF
+  reader) and Settings; stays in the notification area and plays the Adhan and reminders while running.
+  * Nearest Mosque: around the chosen city (a PC has no GPS), from the mosque data that comes with the app
+    and, with "Search online for mosques" on, OpenStreetMap (the city centre is sent, rounded to about 1 km);
+    walking directions open in the browser.
+  * Ask: the common questions and the Qur'an (Arabic with Pickthall's English) and HadeethEnc hadith (Arabic
+    and English) that come with the app, searched on the PC, every passage with its source.
+  * Start with Windows: the installed app (MSI) opens in the notification area at sign-in (on by default, a
+    switch in Settings); the Microsoft Store version has a startup task the person turns on in Windows
+    Settings → Apps → Startup.
 
 ## Privacy (what stays and what goes)
 

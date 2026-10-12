@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (not available yet)</string>
     <string name="sources">Sources</string>
     <string name="sources_licenses">Sources and licenses</string>
+    <string name="start_at_login">Start with Windows</string>
+    <string name="start_at_login_note">Opens in the notification area when you sign in, so the Adhan and reminders come without opening the app.</string>
+    <string name="start_at_login_store_note">To start Near Mosque when you sign in, turn it on in Windows Settings → Apps → Startup.</string>
     <string name="stop">Stop</string>
     <string name="straight_line">%1$s straight-line</string>
     <string name="style_auto">Same as app</string>

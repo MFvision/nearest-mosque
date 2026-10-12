@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (hindi pa available)</string>
     <string name="sources">Mga sanggunian</string>
     <string name="sources_licenses">Mga sanggunian at lisensya</string>
+    <string name="start_at_login">Simulan kasabay ng Windows</string>
+    <string name="start_at_login_note">Bumubukas sa notification area pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app.</string>
+    <string name="start_at_login_store_note">Para magsimula ang Near Mosque pag-sign in mo, i-on ito sa Windows Settings → Apps → Startup.</string>
     <string name="stop">Ihinto</string>
     <string name="straight_line">%1$s nang tuwiran</string>
     <string name="style_auto">Kapareho ng app</string>

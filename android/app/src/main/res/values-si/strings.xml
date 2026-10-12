@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (තවම ලබා ගත නොහැක)</string>
     <string name="sources">මූලාශ්‍ර</string>
     <string name="sources_licenses">මූලාශ්‍ර සහ බලපත්‍ර</string>
+    <string name="start_at_login">Windows සමඟ ආරම්භ කරන්න</string>
+    <string name="start_at_login_note">ඔබ පුරනය වන විට දැනුම්දීම් ප්‍රදේශයේ විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ.</string>
+    <string name="start_at_login_store_note">ඔබ පුරනය වන විට Near Mosque ආරම්භ වීමට, Windows සැකසීම් → යෙදුම් → ආරම්භය තුළ එය සක්‍රිය කරන්න.</string>
     <string name="stop">නවත්වන්න</string>
     <string name="straight_line">සරල රේඛාවෙන් %1$s</string>
     <string name="style_auto">යෙදුම මෙන්</string>

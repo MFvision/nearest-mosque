@@ -44,6 +44,16 @@ val sharedResources by tasks.registering(Copy::class) {
     from("../shared/i18n/strings.json")
     from("../shared/i18n/languages.json")
     from("src/main/sounds") { into("sounds") }
+    // Ask: the Qur'an, the HadeethEnc hadith in Arabic and English, and the common questions (searched on the PC).
+    from("../packs/sources/quran-tanzil-pickthall/chunks.jsonl") { into("books"); rename { "quran.jsonl" } }
+    from("../packs/sources/quran-tanzil-pickthall/common-questions.json") { into("books") }
+    from("../packs/sources/hadeethenc-en/chunks.jsonl") { into("books"); rename { "hadith-en.jsonl" } }
+    from("../packs/sources/hadeethenc-ar/chunks.jsonl") { into("books"); rename { "hadith-ar.jsonl" } }
+    from("../shared/content/stopwords.json") { into("books") }
+    // Mosques that come with the app.
+    listOf("eg-cairo", "gb-london", "za-cape-town").forEach { pack ->
+        from("../packs/mosques/$pack/mosques.jsonl") { into("mosques"); rename { "$pack.jsonl" } }
+    }
     into(layout.buildDirectory.dir("shared-resources"))
 }
 tasks.named("processResources") { dependsOn(sharedResources) }
@@ -55,7 +65,7 @@ compose.desktop {
             targetFormats(TargetFormat.Msi, TargetFormat.AppImage)
             packageName = "Near Mosque"
             packageVersion = "0.5.0"
-            description = "Prayer times, Adhan, Qibla and classical books"
+            description = "Prayer times, Adhan, Qibla, nearby mosques, Ask and classical books"
             vendor = "Near Mosque"
             modules("java.prefs", "java.desktop", "java.net.http")
             windows {

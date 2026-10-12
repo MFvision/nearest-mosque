@@ -458,6 +458,9 @@
     <string name="source_unavailable">%1$s (ยังไม่พร้อมใช้งาน)</string>
     <string name="sources">แหล่งที่มา</string>
     <string name="sources_licenses">แหล่งที่มาและสัญญาอนุญาต</string>
+    <string name="start_at_login">เริ่มพร้อม Windows</string>
+    <string name="start_at_login_note">เปิดในพื้นที่แจ้งเตือนเมื่อคุณลงชื่อเข้าใช้ เพื่อให้เสียงอะซานและการเตือนมาโดยไม่ต้องเปิดแอป</string>
+    <string name="start_at_login_store_note">หากต้องการให้ Near Mosque เริ่มเมื่อคุณลงชื่อเข้าใช้ ให้เปิดใน การตั้งค่า Windows → แอป → การเริ่มต้นระบบ</string>
     <string name="stop">หยุด</string>
     <string name="straight_line">%1$s แบบเส้นตรง</string>
     <string name="style_auto">เหมือนแอป</string>

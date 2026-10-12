@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (ഇതുവരെ ലഭ്യമല്ല)</string>
     <string name="sources">ഉറവിടങ്ങൾ</string>
     <string name="sources_licenses">ഉറവിടങ്ങളും ലൈസൻസുകളും</string>
+    <string name="start_at_login">Windows-നൊപ്പം ആരംഭിക്കുക</string>
+    <string name="start_at_login_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ അറിയിപ്പ് ഭാഗത്ത് തുറക്കും, ആപ്പ് തുറക്കാതെ തന്നെ ബാങ്കും ഓർമ്മപ്പെടുത്തലുകളും വരും.</string>
+    <string name="start_at_login_store_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ Near Mosque ആരംഭിക്കാൻ, Windows ക്രമീകരണങ്ങൾ → ആപ്പുകൾ → സ്റ്റാർട്ടപ്പിൽ അത് ഓണാക്കുക.</string>
     <string name="stop">നിർത്തുക</string>
     <string name="straight_line">നേർരേഖയിൽ %1$s</string>
     <string name="style_auto">ആപ്പ് പോലെ</string>

@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (এখনো পাওয়া যাচ্ছে না)</string>
     <string name="sources">উৎস</string>
     <string name="sources_licenses">উৎস ও লাইসেন্স</string>
+    <string name="start_at_login">Windows-এর সাথে চালু করুন</string>
+    <string name="start_at_login_note">সাইন ইন করলেই নোটিফিকেশন এরিয়ায় চালু হয়, তাই অ্যাপ না খুলেই আজান ও রিমাইন্ডার আসে।</string>
+    <string name="start_at_login_store_note">সাইন ইন করলে Near Mosque চালু করতে Windows সেটিংস → অ্যাপস → স্টার্টআপে এটি চালু করুন।</string>
     <string name="stop">থামান</string>
     <string name="straight_line">সরলরেখায় %1$s</string>
     <string name="style_auto">অ্যাপের মতো</string>

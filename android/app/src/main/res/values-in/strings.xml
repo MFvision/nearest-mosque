@@ -458,6 +458,9 @@
     <string name="source_unavailable">%1$s (belum tersedia)</string>
     <string name="sources">Sumber</string>
     <string name="sources_licenses">Sumber dan lisensi</string>
+    <string name="start_at_login">Mulai bersama Windows</string>
+    <string name="start_at_login_note">Terbuka di area notifikasi saat Anda masuk, sehingga azan dan pengingat datang tanpa membuka aplikasi.</string>
+    <string name="start_at_login_store_note">Agar Near Mosque mulai saat Anda masuk, aktifkan di Pengaturan Windows → Aplikasi → Startup.</string>
     <string name="stop">Berhenti</string>
     <string name="straight_line">%1$s garis lurus</string>
     <string name="style_auto">Sama seperti aplikasi</string>

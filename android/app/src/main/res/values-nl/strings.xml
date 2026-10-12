@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (nog niet beschikbaar)</string>
     <string name="sources">Bronnen</string>
     <string name="sources_licenses">Bronnen en licenties</string>
+    <string name="start_at_login">Starten met Windows</string>
+    <string name="start_at_login_note">Opent in het systeemvak wanneer je je aanmeldt, zodat de adhan en herinneringen komen zonder de app te openen.</string>
+    <string name="start_at_login_store_note">Wil je Near Mosque laten starten wanneer je je aanmeldt, zet het dan aan in Windows-instellingen → Apps → Opstarten.</string>
     <string name="stop">Stoppen</string>
     <string name="straight_line">%1$s hemelsbreed</string>
     <string name="style_auto">Zoals de app</string>

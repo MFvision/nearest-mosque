@@ -74,26 +74,29 @@ import java.time.Instant
 import kotlin.math.roundToInt
 
 internal val Navy = Color(0xFF0B1220)
-private val Card = Color(0xFF16213A)
-private val Gold = Color(0xFFE2C275)
-private val Ink = Color(0xFFF2F4F8)
-private val Muted = Color(0xFFAEB7C7)
+internal val Card = Color(0xFF16213A)
+internal val Gold = Color(0xFFE2C275)
+internal val Ink = Color(0xFFF2F4F8)
+internal val Muted = Color(0xFFAEB7C7)
 
-private enum class Screen { PRAYER, QIBLA, BOOKS, SETTINGS }
+private enum class Screen { PRAYER, QIBLA, MOSQUES, ASK, BOOKS, SETTINGS }
 
 /**
  * Near Mosque for Windows. Closing the window keeps the app in the notification area so the Adhan and reminders
  * still come; Quit in the tray menu ends it.
  */
-fun main() = application {
+fun main(args: Array<String>) = application {
     var settings by remember { mutableStateOf(Store.load().also { Strings.language = it.language }) }
     var city by remember { mutableStateOf(Cities.byId(settings.cityId) ?: Cities.guess()) }
-    var visible by remember { mutableStateOf(true) }
+    // Started by Windows at sign-in: stay in the notification area until the person opens the window.
+    var visible by remember { mutableStateOf("--minimized" !in args) }
     val clock = remember(city, settings) { city?.let { Clock(it, settings) } }
     val tray = rememberTrayState()
     val reminders = remember { Reminders { title, body -> tray.sendNotification(Notification(title, body)) } }
     var now by remember { mutableStateOf(Instant.now()) }
 
+    // Keep the "Start with Windows" entry in step with the setting (the installer may have moved the app).
+    LaunchedEffect(Unit) { Startup.set(settings.startAtLogin) }
     LaunchedEffect(Unit) {
         while (true) {
             now = Instant.now()
@@ -104,6 +107,7 @@ fun main() = application {
 
     fun update(s: DesktopSettings) {
         Strings.language = s.language
+        if (s.startAtLogin != settings.startAtLogin) Startup.set(s.startAtLogin)
         settings = s
         Store.save(s)
     }
@@ -150,7 +154,10 @@ internal fun AppScreen(settings: DesktopSettings, city: City?, clock: Clock?, no
     Row(Modifier.fillMaxSize().background(Navy)) {
         NavigationRail(containerColor = Card) {
             Spacer(Modifier.height(12.dp))
-            listOf(Screen.PRAYER to "tab_prayer", Screen.QIBLA to "qibla", Screen.BOOKS to "classics_title", Screen.SETTINGS to "settings").forEach { (s, key) ->
+            listOf(
+                Screen.PRAYER to "tab_prayer", Screen.QIBLA to "qibla", Screen.MOSQUES to "tab_mosques",
+                Screen.ASK to "tab_ask", Screen.BOOKS to "classics_title", Screen.SETTINGS to "settings",
+            ).forEach { (s, key) ->
                 NavigationRailItem(selected = screen == s, onClick = { screen = s }, icon = { Text(railIcon(s), fontSize = 20.sp) }, label = { Text(t(key), fontSize = 11.sp) })
             }
         }
@@ -159,6 +166,8 @@ internal fun AppScreen(settings: DesktopSettings, city: City?, clock: Clock?, no
                 picking || clock == null -> CityPicker(onPick = { onCity(it); picking = false })
                 screen == Screen.PRAYER -> PrayerScreen(clock, now, onChangeCity = { picking = true })
                 screen == Screen.QIBLA -> QiblaScreen(clock.city)
+                screen == Screen.MOSQUES -> MosquesScreen(clock.city, settings.onlineSearch)
+                screen == Screen.ASK -> AskScreen()
                 screen == Screen.BOOKS -> BooksScreen()
                 else -> SettingsScreen(settings, clock, onSettings, onChangeCity = { picking = true })
             }
@@ -169,6 +178,8 @@ internal fun AppScreen(settings: DesktopSettings, city: City?, clock: Clock?, no
 private fun railIcon(s: Screen) = when (s) {
     Screen.PRAYER -> "🕌"
     Screen.QIBLA -> "🧭"
+    Screen.MOSQUES -> "📍"
+    Screen.ASK -> "✦"
     Screen.BOOKS -> "📚"
     Screen.SETTINGS -> "⚙"
 }
@@ -293,6 +304,15 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
         }
         Toggle(t("before10"), s.before10) { onChange(s.copy(before10 = it)) }
         Toggle(t("sunrise_notify"), s.sunrise) { onChange(s.copy(sunrise = it)) }
+        Text(t("tab_mosques"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        Toggle(t("online_search"), s.onlineSearch) { onChange(s.copy(onlineSearch = it)) }
+        Text(t("online_search_body"), color = Muted, fontSize = 13.sp)
+        if (Startup.available) {
+            Toggle(t("start_at_login"), s.startAtLogin) { onChange(s.copy(startAtLogin = it)) }
+            Text(t("start_at_login_note"), color = Muted, fontSize = 13.sp)
+        } else if (Startup.isStorePackage) {
+            Text(t("start_at_login_store_note"), color = Muted, fontSize = 13.sp)
+        }
     }
 }
 

@@ -458,6 +458,9 @@
     <string name="source_unavailable">%1$s (chưa có)</string>
     <string name="sources">Nguồn</string>
     <string name="sources_licenses">Nguồn và giấy phép</string>
+    <string name="start_at_login">Khởi động cùng Windows</string>
+    <string name="start_at_login_note">Mở trong khu vực thông báo khi bạn đăng nhập, để tiếng Adhan và lời nhắc đến mà không cần mở ứng dụng.</string>
+    <string name="start_at_login_store_note">Để Near Mosque khởi động khi bạn đăng nhập, hãy bật nó trong Cài đặt Windows → Ứng dụng → Khởi động.</string>
     <string name="stop">Dừng</string>
     <string name="straight_line">%1$s theo đường thẳng</string>
     <string name="style_auto">Giống ứng dụng</string>

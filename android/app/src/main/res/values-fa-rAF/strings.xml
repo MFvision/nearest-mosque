@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (هنوز موجود نیست)</string>
     <string name="sources">منابع</string>
     <string name="sources_licenses">منابع و مجوزها</string>
+    <string name="start_at_login">اجرا همراه با ویندوز</string>
+    <string name="start_at_login_note">هنگام ورود در ناحیهٔ اعلان باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند.</string>
+    <string name="start_at_login_store_note">برای اجرای Near Mosque هنگام ورود، آن را در تنظیمات ویندوز ← برنامه‌ها ← راه‌اندازی روشن کنید.</string>
     <string name="stop">توقف</string>
     <string name="straight_line">%1$s در خط مستقیم</string>
     <string name="style_auto">مانند برنامه</string>

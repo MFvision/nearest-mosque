@@ -101013,6 +101013,669 @@
         }
       }
     },
+    "start_at_login": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start with Windows"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التشغيل مع ويندوز"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ونڈوز کے ساتھ شروع کریں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows ile başlat"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai bersama Windows"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer avec Windows"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar con Windows"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запускать вместе с Windows"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows-এর সাথে চালু করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اجرا همراه با ویندوز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اجرا همراه با ویندوز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "随 Windows 启动"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows के साथ शुरू करें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar com o Windows"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fara tare da Windows"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anza pamoja na Windows"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulan kasabay ng Windows"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khởi động cùng Windows"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เริ่มพร้อม Windows"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចាប់ផ្ដើមជាមួយ Windows"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows بىلەن بىللە قوزغات"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دەستپێکردن لەگەڵ ویندۆز"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokreni s Windowsom"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Покрени са Windows-ом"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стартувај со Windows"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indítás a Windowszal"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starten met Windows"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows-თან ერთად გაშვება"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows සමඟ ආරම්භ කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windowsతో ప్రారంభించు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows ಜೊತೆ ಪ್ರಾರಂಭಿಸಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows-നൊപ്പം ആരംഭിക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows सोबत सुरू करा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows સાથે શરૂ કરો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows-ৰ সৈতে আৰম্ভ কৰক"
+          }
+        }
+      }
+    },
+    "start_at_login_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens in the notification area when you sign in, so the Adhan and reminders come without opening the app."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يعمل في منطقة الإشعارات عند تسجيل الدخول، فيصلك الأذان والتذكير دون فتح التطبيق."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سائن ان کرتے ہی نوٹیفکیشن ایریا میں کھل جاتی ہے، تاکہ ایپ کھولے بغیر اذان اور یاد دہانیاں آئیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oturum açtığınızda bildirim alanında açılır; ezan ve hatırlatmalar uygulamayı açmadan gelir."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terbuka di area notifikasi saat Anda masuk, sehingga azan dan pengingat datang tanpa membuka aplikasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S’ouvre dans la zone de notification à la connexion : l’adhan et les rappels arrivent sans ouvrir l’app."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se abre en el área de notificaciones al iniciar sesión, así el adhan y los recordatorios llegan sin abrir la app."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открывается в области уведомлений при входе в систему, чтобы азан и напоминания приходили без запуска приложения."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সাইন ইন করলেই নোটিফিকেশন এরিয়ায় চালু হয়, তাই অ্যাপ না খুলেই আজান ও রিমাইন্ডার আসে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هنگام ورود در ناحیهٔ اعلان باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هنگام ورود در ناحیهٔ اعلان باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "登录时在通知区域打开，无需打开应用也能收到宣礼和提醒。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साइन इन करते ही नोटिफ़िकेशन एरिया में खुलता है, ताकि ऐप खोले बिना अज़ान और रिमाइंडर आएँ।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre na área de notificação quando você entra, para o adhan e os lembretes chegarem sem abrir o app."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana buɗewa a wurin sanarwa idan ka shiga, don kiran salla da tunatarwa su zo ba tare da buɗe manhajar ba."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hufunguka kwenye eneo la arifa unapoingia, ili adhana na vikumbusho vije bila kufungua programu."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bumubukas sa notification area pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở trong khu vực thông báo khi bạn đăng nhập, để tiếng Adhan và lời nhắc đến mà không cần mở ứng dụng."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดในพื้นที่แจ้งเตือนเมื่อคุณลงชื่อเข้าใช้ เพื่อให้เสียงอะซานและการเตือนมาโดยไม่ต้องเปิดแอป"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើកនៅតំបន់ជូនដំណឹងពេលអ្នកចូល ដើម្បីឱ្យអាហ្សាន និងការរំលឹកមកដល់ដោយមិនចាំបាច់បើកកម្មវិធី។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كىرگەندە ئۇقتۇرۇش رايونىدا ئېچىلىدۇ، ئەپنى ئاچمايلا ئەزان ۋە ئەسكەرتىشلەر كېلىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتێک دەچیتە ژوورەوە لە ناوچەی ئاگادارکردنەوە دەکرێتەوە، بۆ ئەوەی بانگ و بیرخستنەوەکان بێ کردنەوەی ئەپ بێن."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvara se u području obavijesti kad se prijavite, pa ezan i podsjetnici stižu bez otvaranja aplikacije."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвара се у области обавештења када се пријавите, па езан и подсетници стижу без отварања апликације."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Се отвора во областа за известувања кога ќе се најавите, па езанот и потсетниците пристигнуваат без да ја отворите апликацијата."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bejelentkezéskor az értesítési területen indul, így az ezán és az emlékeztetők az alkalmazás megnyitása nélkül is jönnek."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opent in het systeemvak wanneer je je aanmeldt, zodat de adhan en herinneringen komen zonder de app te openen."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შესვლისას იხსნება შეტყობინებების არეში, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ පුරනය වන විට දැනුම්දීම් ප්‍රදේශයේ විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు సైన్ ఇన్ చేయగానే నోటిఫికేషన్ ప్రాంతంలో తెరుచుకుంటుంది, యాప్ తెరవకుండానే అజాన్, రిమైండర్‌లు వస్తాయి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಅಧಿಸೂಚನೆ ಪ್ರದೇಶದಲ್ಲಿ ತೆರೆಯುತ್ತದೆ, ಆ್ಯಪ್ ತೆರೆಯದೆಯೇ ಅಜಾನ್ ಮತ್ತು ಜ್ಞಾಪನೆಗಳು ಬರುತ್ತವೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സൈൻ ഇൻ ചെയ്യുമ്പോൾ അറിയിപ്പ് ഭാഗത്ത് തുറക്കും, ആപ്പ് തുറക്കാതെ തന്നെ ബാങ്കും ഓർമ്മപ്പെടുത്തലുകളും വരും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साइन इन करताच सूचना क्षेत्रात उघडते, त्यामुळे अ‍ॅप न उघडता अजान आणि आठवणी येतात."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સાઇન ઇન કરતાં જ સૂચના વિસ્તારમાં ખૂલે છે, જેથી ઍપ ખોલ્યા વગર અઝાન અને યાદ અપાવણી આવે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਈਨ ਇਨ ਕਰਦੇ ਹੀ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਖੁੱਲ੍ਹਦੀ ਹੈ, ਤਾਂ ਜੋ ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਅਜ਼ਾਨ ਅਤੇ ਯਾਦ-ਦਹਾਨੀਆਂ ਆਉਣ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ছাইন ইন কৰাৰ লগে লগে জাননী অঞ্চলত খোল খায়, যাতে এপ নোখোলাকৈ আজান আৰু সোঁৱৰণি আহে।"
+          }
+        }
+      }
+    },
+    "start_at_login_store_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To start Near Mosque when you sign in, turn it on in Windows Settings → Apps → Startup."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لتشغيل «أقرب مسجد» عند تسجيل الدخول، فعّله من إعدادات ويندوز ← التطبيقات ← بدء التشغيل."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سائن ان پر قریبی مسجد شروع کرنے کے لیے اسے ونڈوز کی ترتیبات ← ایپس ← اسٹارٹ اپ میں آن کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oturum açınca Near Mosque'un başlaması için Windows Ayarlar → Uygulamalar → Başlangıç'tan açın."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agar Near Mosque mulai saat Anda masuk, aktifkan di Pengaturan Windows → Aplikasi → Startup."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour lancer Near Mosque à la connexion, activez-le dans Paramètres Windows → Applications → Démarrage."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que Near Mosque se inicie al iniciar sesión, actívalo en Configuración de Windows → Aplicaciones → Inicio."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтобы Near Mosque запускался при входе, включите его в «Параметры Windows» → «Приложения» → «Автозагрузка»."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সাইন ইন করলে Near Mosque চালু করতে Windows সেটিংস → অ্যাপস → স্টার্টআপে এটি চালু করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای اجرای Near Mosque هنگام ورود، آن را در تنظیمات ویندوز ← برنامه‌ها ← راه‌اندازی روشن کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای اجرای Near Mosque هنگام ورود، آن را در تنظیمات ویندوز ← برنامه‌ها ← راه‌اندازی روشن کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如需登录时启动 Near Mosque，请在 Windows“设置”→“应用”→“启动”中打开它。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साइन इन पर Near Mosque शुरू करने के लिए इसे Windows सेटिंग → ऐप्स → स्टार्टअप में चालू करें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para o Near Mosque iniciar quando você entrar, ative-o em Configurações do Windows → Aplicativos → Inicialização."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Don Near Mosque ya fara idan ka shiga, kunna shi a Saitunan Windows → Manhajoji → Farawa."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ili Near Mosque ianze unapoingia, iwashe katika Mipangilio ya Windows → Programu → Uanzishaji."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para magsimula ang Near Mosque pag-sign in mo, i-on ito sa Windows Settings → Apps → Startup."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Để Near Mosque khởi động khi bạn đăng nhập, hãy bật nó trong Cài đặt Windows → Ứng dụng → Khởi động."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หากต้องการให้ Near Mosque เริ่มเมื่อคุณลงชื่อเข้าใช้ ให้เปิดใน การตั้งค่า Windows → แอป → การเริ่มต้นระบบ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដើម្បីឱ្យ Near Mosque ចាប់ផ្ដើមពេលអ្នកចូល សូមបើកវានៅក្នុង ការកំណត់ Windows → កម្មវិធី → ការចាប់ផ្ដើម។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كىرگەندە Near Mosque قوزغىلىشى ئۈچۈن، Windows تەڭشىكى ← ئەپلەر ← قوزغىلىشتا ئېچىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۆ ئەوەی Near Mosque لە کاتی چوونەژوورەوە دەست پێبکات، لە ڕێکخستنەکانی ویندۆز ← ئەپەکان ← دەستپێکردن چالاکی بکە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da se Near Mosque pokrene kad se prijavite, uključite ga u Windows postavkama → Aplikacije → Pokretanje."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да би се Near Mosque покренуо када се пријавите, укључите га у Windows подешавањима → Апликације → Покретање."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За Near Mosque да стартува кога ќе се најавите, вклучете го во Windows поставки → Апликации → Стартување."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha azt szeretné, hogy a Near Mosque bejelentkezéskor induljon, kapcsolja be a Windows Gépház → Alkalmazások → Indítás menüben."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wil je Near Mosque laten starten wanneer je je aanmeldt, zet het dan aan in Windows-instellingen → Apps → Opstarten."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "რომ Near Mosque შესვლისას გაიშვას, ჩართეთ Windows-ის პარამეტრებში → აპები → გაშვება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ පුරනය වන විට Near Mosque ආරම්භ වීමට, Windows සැකසීම් → යෙදුම් → ආරම්භය තුළ එය සක්‍රිය කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సైన్ ఇన్ చేసినప్పుడు Near Mosque ప్రారంభం కావాలంటే, Windows సెట్టింగ్‌లు → యాప్‌లు → స్టార్టప్‌లో దాన్ని ఆన్ చేయండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ Near Mosque ಪ್ರಾರಂಭವಾಗಲು, Windows ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ಆ್ಯಪ್‌ಗಳು → ಸ್ಟಾರ್ಟ್‌ಅಪ್‌ನಲ್ಲಿ ಅದನ್ನು ಆನ್ ಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സൈൻ ഇൻ ചെയ്യുമ്പോൾ Near Mosque ആരംഭിക്കാൻ, Windows ക്രമീകരണങ്ങൾ → ആപ്പുകൾ → സ്റ്റാർട്ടപ്പിൽ അത് ഓണാക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साइन इन करताना Near Mosque सुरू होण्यासाठी, Windows सेटिंग्ज → अ‍ॅप्स → स्टार्टअप मध्ये ते चालू करा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સાઇન ઇન કરતી વખતે Near Mosque શરૂ થાય તે માટે, Windows સેટિંગ → ઍપ્સ → સ્ટાર્ટઅપમાં તેને ચાલુ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਈਨ ਇਨ ਕਰਨ 'ਤੇ Near Mosque ਸ਼ੁਰੂ ਕਰਨ ਲਈ, ਇਸਨੂੰ Windows ਸੈਟਿੰਗਾਂ → ਐਪਾਂ → ਸਟਾਰਟਅੱਪ ਵਿੱਚ ਚਾਲੂ ਕਰੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ছাইন ইন কৰোঁতে Near Mosque আৰম্ভ কৰিবলৈ, Windows ছেটিংছ → এপ → ষ্টাৰ্টআপত ইয়াক অন কৰক।"
+          }
+        }
+      }
+    },
     "stop": {
       "extractionState": "manual",
       "localizations": {

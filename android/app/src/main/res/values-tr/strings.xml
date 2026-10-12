@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (henüz mevcut değil)</string>
     <string name="sources">Kaynaklar</string>
     <string name="sources_licenses">Kaynaklar ve lisanslar</string>
+    <string name="start_at_login">Windows ile başlat</string>
+    <string name="start_at_login_note">Oturum açtığınızda bildirim alanında açılır; ezan ve hatırlatmalar uygulamayı açmadan gelir.</string>
+    <string name="start_at_login_store_note">Oturum açınca Near Mosque\'un başlaması için Windows Ayarlar → Uygulamalar → Başlangıç\'tan açın.</string>
     <string name="stop">Durdur</string>
     <string name="straight_line">Kuş uçuşu %1$s</string>
     <string name="style_auto">Uygulamayla aynı</string>

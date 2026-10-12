@@ -458,6 +458,9 @@
     <string name="source_unavailable">%1$s (មិនទាន់មាននៅឡើយ)</string>
     <string name="sources">ប្រភព</string>
     <string name="sources_licenses">ប្រភព និងអាជ្ញាប័ណ្ណ</string>
+    <string name="start_at_login">ចាប់ផ្ដើមជាមួយ Windows</string>
+    <string name="start_at_login_note">បើកនៅតំបន់ជូនដំណឹងពេលអ្នកចូល ដើម្បីឱ្យអាហ្សាន និងការរំលឹកមកដល់ដោយមិនចាំបាច់បើកកម្មវិធី។</string>
+    <string name="start_at_login_store_note">ដើម្បីឱ្យ Near Mosque ចាប់ផ្ដើមពេលអ្នកចូល សូមបើកវានៅក្នុង ការកំណត់ Windows → កម្មវិធី → ការចាប់ផ្ដើម។</string>
     <string name="stop">បញ្ឈប់</string>
     <string name="straight_line">%1$s តាមបន្ទាត់ត្រង់</string>
     <string name="style_auto">ដូចកម្មវិធី</string>

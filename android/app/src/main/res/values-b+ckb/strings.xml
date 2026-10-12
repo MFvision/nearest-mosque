@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (هێشتا بەردەست نییە)</string>
     <string name="sources">سەرچاوەکان</string>
     <string name="sources_licenses">سەرچاوەکان و مۆڵەتەکان</string>
+    <string name="start_at_login">دەستپێکردن لەگەڵ ویندۆز</string>
+    <string name="start_at_login_note">کاتێک دەچیتە ژوورەوە لە ناوچەی ئاگادارکردنەوە دەکرێتەوە، بۆ ئەوەی بانگ و بیرخستنەوەکان بێ کردنەوەی ئەپ بێن.</string>
+    <string name="start_at_login_store_note">بۆ ئەوەی Near Mosque لە کاتی چوونەژوورەوە دەست پێبکات، لە ڕێکخستنەکانی ویندۆز ← ئەپەکان ← دەستپێکردن چالاکی بکە.</string>
     <string name="stop">ڕاگرتن</string>
     <string name="straight_line">%1$s بە هێڵی ڕاست</string>
     <string name="style_auto">وەک ئەپەکە</string>

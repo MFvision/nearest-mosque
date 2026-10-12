@@ -21,6 +21,10 @@ data class DesktopSettings(
     val sunrise: Boolean = false,
     /** Prayers whose Adhan is off (the notification still shows). */
     val silent: Set<PrayerEvent> = emptySet(),
+    /** OpenStreetMap results added to the mosques that come with the app (the city's centre is sent, rounded). */
+    val onlineSearch: Boolean = true,
+    /** Open in the notification area when the person signs in to Windows. */
+    val startAtLogin: Boolean = true,
 )
 
 object Store {
@@ -38,6 +42,8 @@ object Store {
         before10 = prefs.getBoolean("before10", false),
         sunrise = prefs.getBoolean("sunrise", false),
         silent = prefs.get("silent", "").split(',').mapNotNull { runCatching { PrayerEvent.valueOf(it) }.getOrNull() }.toSet(),
+        onlineSearch = prefs.getBoolean("onlineSearch", true),
+        startAtLogin = prefs.getBoolean("startAtLogin", true),
     )
 
     fun save(s: DesktopSettings) {
@@ -52,6 +58,8 @@ object Store {
         prefs.putBoolean("before10", s.before10)
         prefs.putBoolean("sunrise", s.sunrise)
         prefs.put("silent", s.silent.joinToString(",") { it.name })
+        prefs.putBoolean("onlineSearch", s.onlineSearch)
+        prefs.putBoolean("startAtLogin", s.startAtLogin)
         prefs.flush()
     }
 

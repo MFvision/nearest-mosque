@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (ابھی دستیاب نہیں)</string>
     <string name="sources">ماخذ</string>
     <string name="sources_licenses">ماخذ اور لائسنس</string>
+    <string name="start_at_login">ونڈوز کے ساتھ شروع کریں</string>
+    <string name="start_at_login_note">سائن ان کرتے ہی نوٹیفکیشن ایریا میں کھل جاتی ہے، تاکہ ایپ کھولے بغیر اذان اور یاد دہانیاں آئیں۔</string>
+    <string name="start_at_login_store_note">سائن ان پر قریبی مسجد شروع کرنے کے لیے اسے ونڈوز کی ترتیبات ← ایپس ← اسٹارٹ اپ میں آن کریں۔</string>
     <string name="stop">روکیں</string>
     <string name="straight_line">%1$s سیدھی لکیر میں</string>
     <string name="style_auto">ایپ جیسا</string>

@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (ఇంకా అందుబాటులో లేదు)</string>
     <string name="sources">మూలాలు</string>
     <string name="sources_licenses">మూలాలు మరియు లైసెన్సులు</string>
+    <string name="start_at_login">Windowsతో ప్రారంభించు</string>
+    <string name="start_at_login_note">మీరు సైన్ ఇన్ చేయగానే నోటిఫికేషన్ ప్రాంతంలో తెరుచుకుంటుంది, యాప్ తెరవకుండానే అజాన్, రిమైండర్‌లు వస్తాయి.</string>
+    <string name="start_at_login_store_note">సైన్ ఇన్ చేసినప్పుడు Near Mosque ప్రారంభం కావాలంటే, Windows సెట్టింగ్‌లు → యాప్‌లు → స్టార్టప్‌లో దాన్ని ఆన్ చేయండి.</string>
     <string name="stop">ఆపు</string>
     <string name="straight_line">సరళ రేఖలో %1$s</string>
     <string name="style_auto">యాప్ లాగే</string>

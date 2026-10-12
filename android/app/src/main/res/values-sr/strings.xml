@@ -460,6 +460,9 @@
     <string name="source_unavailable">%1$s (још није доступно)</string>
     <string name="sources">Извори</string>
     <string name="sources_licenses">Извори и лиценце</string>
+    <string name="start_at_login">Покрени са Windows-ом</string>
+    <string name="start_at_login_note">Отвара се у области обавештења када се пријавите, па езан и подсетници стижу без отварања апликације.</string>
+    <string name="start_at_login_store_note">Да би се Near Mosque покренуо када се пријавите, укључите га у Windows подешавањима → Апликације → Покретање.</string>
     <string name="stop">Заустави</string>
     <string name="straight_line">%1$s ваздушном линијом</string>
     <string name="style_auto">Исто као апликација</string>

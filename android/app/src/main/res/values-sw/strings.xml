@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (bado haipatikani)</string>
     <string name="sources">Vyanzo</string>
     <string name="sources_licenses">Vyanzo na leseni</string>
+    <string name="start_at_login">Anza pamoja na Windows</string>
+    <string name="start_at_login_note">Hufunguka kwenye eneo la arifa unapoingia, ili adhana na vikumbusho vije bila kufungua programu.</string>
+    <string name="start_at_login_store_note">Ili Near Mosque ianze unapoingia, iwashe katika Mipangilio ya Windows → Programu → Uanzishaji.</string>
     <string name="stop">Simamisha</string>
     <string name="straight_line">%1$s kwa mstari ulionyooka</string>
     <string name="style_auto">Sawa na programu</string>

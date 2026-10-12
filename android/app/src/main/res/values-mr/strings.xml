@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (अद्याप उपलब्ध नाही)</string>
     <string name="sources">स्रोत</string>
     <string name="sources_licenses">स्रोत आणि परवाने</string>
+    <string name="start_at_login">Windows सोबत सुरू करा</string>
+    <string name="start_at_login_note">साइन इन करताच सूचना क्षेत्रात उघडते, त्यामुळे अ‍ॅप न उघडता अजान आणि आठवणी येतात.</string>
+    <string name="start_at_login_store_note">साइन इन करताना Near Mosque सुरू होण्यासाठी, Windows सेटिंग्ज → अ‍ॅप्स → स्टार्टअप मध्ये ते चालू करा.</string>
     <string name="stop">थांबवा</string>
     <string name="straight_line">%1$s सरळ अंतर</string>
     <string name="style_auto">ॲपप्रमाणे</string>

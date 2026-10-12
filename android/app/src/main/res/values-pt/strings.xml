@@ -460,6 +460,9 @@
     <string name="source_unavailable">%1$s (ainda não disponível)</string>
     <string name="sources">Fontes</string>
     <string name="sources_licenses">Fontes e licenças</string>
+    <string name="start_at_login">Iniciar com o Windows</string>
+    <string name="start_at_login_note">Abre na área de notificação quando você entra, para o adhan e os lembretes chegarem sem abrir o app.</string>
+    <string name="start_at_login_store_note">Para o Near Mosque iniciar quando você entrar, ative-o em Configurações do Windows → Aplicativos → Inicialização.</string>
     <string name="stop">Parar</string>
     <string name="straight_line">%1$s em linha reta</string>
     <string name="style_auto">Igual ao app</string>

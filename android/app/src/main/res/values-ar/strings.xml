@@ -463,6 +463,9 @@
     <string name="source_unavailable">%1$s (غير متوفر بعد)</string>
     <string name="sources">المصادر</string>
     <string name="sources_licenses">المصادر والتراخيص</string>
+    <string name="start_at_login">التشغيل مع ويندوز</string>
+    <string name="start_at_login_note">يعمل في منطقة الإشعارات عند تسجيل الدخول، فيصلك الأذان والتذكير دون فتح التطبيق.</string>
+    <string name="start_at_login_store_note">لتشغيل «أقرب مسجد» عند تسجيل الدخول، فعّله من إعدادات ويندوز ← التطبيقات ← بدء التشغيل.</string>
     <string name="stop">إيقاف</string>
     <string name="straight_line">%1$s بخط مستقيم</string>
     <string name="style_auto">مثل التطبيق</string>

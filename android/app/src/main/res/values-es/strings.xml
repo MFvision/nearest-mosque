@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (aún no disponible)</string>
     <string name="sources">Fuentes</string>
     <string name="sources_licenses">Fuentes y licencias</string>
+    <string name="start_at_login">Iniciar con Windows</string>
+    <string name="start_at_login_note">Se abre en el área de notificaciones al iniciar sesión, así el adhan y los recordatorios llegan sin abrir la app.</string>
+    <string name="start_at_login_store_note">Para que Near Mosque se inicie al iniciar sesión, actívalo en Configuración de Windows → Aplicaciones → Inicio.</string>
     <string name="stop">Detener</string>
     <string name="straight_line">%1$s en línea recta</string>
     <string name="style_auto">Igual que la app</string>

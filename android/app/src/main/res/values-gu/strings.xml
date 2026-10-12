@@ -459,6 +459,9 @@
     <string name="source_unavailable">%1$s (હજી ઉપલબ્ધ નથી)</string>
     <string name="sources">સ્રોતો</string>
     <string name="sources_licenses">સ્રોતો અને લાઇસન્સ</string>
+    <string name="start_at_login">Windows સાથે શરૂ કરો</string>
+    <string name="start_at_login_note">સાઇન ઇન કરતાં જ સૂચના વિસ્તારમાં ખૂલે છે, જેથી ઍપ ખોલ્યા વગર અઝાન અને યાદ અપાવણી આવે.</string>
+    <string name="start_at_login_store_note">સાઇન ઇન કરતી વખતે Near Mosque શરૂ થાય તે માટે, Windows સેટિંગ → ઍપ્સ → સ્ટાર્ટઅપમાં તેને ચાલુ કરો.</string>
     <string name="stop">રોકો</string>
     <string name="straight_line">%1$s સીધું અંતર</string>
     <string name="style_auto">ઍપ જેવું</string>
