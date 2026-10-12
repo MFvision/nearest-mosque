@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">الرقائق والأذكار</string>
     <string name="classics_group_sira">السيرة</string>
     <string name="classics_group_tafsir">التفسير</string>
+    <string name="classics_group_tarikh">التاريخ والتراجم</string>
     <string name="classics_note">نص المؤلفين كما كتبوه، من أمهات كتب أهل السنة. يُنزَّل كل جزء مرة واحدة، ثم يُفتح دون إنترنت.</string>
     <string name="classics_open">فتح</string>
     <string name="classics_pages">عدد الصفحات: %1$d</string>

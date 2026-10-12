@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">හදවත මෘදු කිරීම</string>
     <string name="classics_group_sira">සීරා</string>
     <string name="classics_group_tafsir">තෆ්සීර්</string>
+    <string name="classics_group_tarikh">ඉතිහාසය සහ චරිතාපදාන</string>
     <string name="classics_note">කතුවරුන්ගේ මුල් පාඨය, අහ්ලුස් සුන්නාහ්හි සම්භාව්‍ය ග්‍රන්ථවලින්. සෑම වෙළුමක්ම එක් වරක් බාගත වන අතර, පසුව අන්තර්ජාලය නොමැතිව විවෘත වේ.</string>
     <string name="classics_open">විවෘත කරන්න</string>
     <string name="classics_pages">පිටු: %1$d</string>

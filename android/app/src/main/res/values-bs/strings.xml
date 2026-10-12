@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">Omekšavanje srca</string>
     <string name="classics_group_sira">Sira</string>
     <string name="classics_group_tafsir">Tefsir</string>
+    <string name="classics_group_tarikh">Historija i životopisi</string>
     <string name="classics_note">Izvorni tekst autora, iz klasičnih djela ehli-sunneta. Svaki tom se preuzima jednom, a zatim se otvara bez interneta.</string>
     <string name="classics_open">Otvori</string>
     <string name="classics_pages">Broj stranica: %1$d</string>

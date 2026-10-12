@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">दिल की नरमी</string>
     <string name="classics_group_sira">सीरत</string>
     <string name="classics_group_tafsir">तफ़सीर</string>
+    <string name="classics_group_tarikh">इतिहास और जीवनियाँ</string>
     <string name="classics_note">लेखकों का मूल पाठ, अहले सुन्नत की क्लासिकी किताबों से। हर खंड एक बार डाउनलोड होता है, फिर बिना इंटरनेट के खुलता है।</string>
     <string name="classics_open">खोलें</string>
     <string name="classics_pages">पृष्ठ: %1$d</string>

@@ -31,7 +31,7 @@ public struct BookCatalog: Codable, Sendable {
 
     public static let empty = BookCatalog(schemaVersion: 1, baseUrl: "https://invalid/", source: "", books: [])
     /// The order the library shows the groups in.
-    public static let groups = ["aqidah", "tafsir", "hadith", "fiqh", "sira", "raqaiq"]
+    public static let groups = ["aqidah", "tafsir", "hadith", "fiqh", "sira", "tarikh", "raqaiq"]
 
     public func url(_ v: BookVolume) -> URL? { URL(string: baseUrl + v.file) }
 

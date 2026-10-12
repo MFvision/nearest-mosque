@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">修心</string>
     <string name="classics_group_sira">先知传记</string>
     <string name="classics_group_tafsir">经注</string>
+    <string name="classics_group_tarikh">历史与传记</string>
     <string name="classics_note">作者原文，选自逊尼派经典典籍。每卷只需下载一次，之后无需联网即可打开。</string>
     <string name="classics_open">打开</string>
     <string name="classics_pages">共 %1$d 页</string>

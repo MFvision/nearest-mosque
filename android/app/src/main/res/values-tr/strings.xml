@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">Rekâik ve zikir</string>
     <string name="classics_group_sira">Siyer</string>
     <string name="classics_group_tafsir">Tefsir</string>
+    <string name="classics_group_tarikh">Tarih ve biyografiler</string>
     <string name="classics_note">Yazarların kendi metni, Ehl-i Sünnet’in temel klasik eserlerinden. Her cilt bir kez indirilir, sonra internetsiz açılır.</string>
     <string name="classics_open">Aç</string>
     <string name="classics_pages">%1$d sayfa</string>

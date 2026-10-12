@@ -34,7 +34,7 @@ data class BookCatalog(val schemaVersion: Int, val baseUrl: String, val source: 
     companion object {
         val EMPTY = BookCatalog(1, "https://invalid/")
         /** The order the library shows the groups in. */
-        val GROUPS = listOf("aqidah", "tafsir", "hadith", "fiqh", "sira", "raqaiq")
+        val GROUPS = listOf("aqidah", "tafsir", "hadith", "fiqh", "sira", "tarikh", "raqaiq")
 
         fun parse(json: String): BookCatalog {
             val c = try {

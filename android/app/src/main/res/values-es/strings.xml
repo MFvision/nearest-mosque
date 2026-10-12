@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">Ablandar el corazón</string>
     <string name="classics_group_sira">Sira</string>
     <string name="classics_group_tafsir">Tafsir</string>
+    <string name="classics_group_tarikh">Historia y biografías</string>
     <string name="classics_note">El texto original de los autores, de las obras clásicas de Ahl al-Sunnah. Cada volumen se descarga una vez y luego se abre sin internet.</string>
     <string name="classics_open">Abrir</string>
     <string name="classics_pages">Páginas: %1$d</string>

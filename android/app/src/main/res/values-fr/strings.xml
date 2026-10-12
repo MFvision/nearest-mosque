@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">Adoucir les cœurs</string>
     <string name="classics_group_sira">Sîra</string>
     <string name="classics_group_tafsir">Tafsir</string>
+    <string name="classics_group_tarikh">Histoire et biographies</string>
     <string name="classics_note">Le texte même des auteurs, tiré des ouvrages classiques d’Ahl al-Sunnah. Chaque volume se télécharge une fois, puis s’ouvre sans internet.</string>
     <string name="classics_open">Ouvrir</string>
     <string name="classics_pages">Pages : %1$d</string>

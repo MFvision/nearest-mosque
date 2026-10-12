@@ -470,6 +470,86 @@
    "version": "0689AhmadIbnCabdRahmanIbnQudama.MukhtasarMinhajQasidin.Shamela0098087-ara1",
    "edition": "1398 هـ - 1978 م ، مكتبة دار البيان، دمشق",
    "words": 105233
+  },
+  {
+   "id": "riyad-salihin",
+   "group": "hadith",
+   "title": "رياض الصالحين",
+   "author": "النووي (ت ٦٧٦هـ)",
+   "died": 676,
+   "version": "0676Nawawi.RiyadSalihin.Shamela0012014-ara1",
+   "edition": "شعيب الأرنؤوط ، مؤسسة الرسالة، بيروت، لبنان",
+   "words": 119900
+  },
+  {
+   "id": "arbain-nawawiyya",
+   "group": "hadith",
+   "title": "الأربعون النووية",
+   "author": "النووي (ت ٦٧٦هـ)",
+   "died": 676,
+   "version": "0676Nawawi.ArbacunaNawawiyya.Shamela0012836-ara1",
+   "edition": "دار المنهاج للنشر والتوزيع، لبنان - بيروت",
+   "words": 3464
+  },
+  {
+   "id": "bulugh-maram",
+   "group": "hadith",
+   "title": "بلوغ المرام من أدلة الأحكام",
+   "author": "ابن حجر العسقلاني (ت ٨٥٢هـ)",
+   "died": 852,
+   "version": "0852IbnHajarCasqalani.BulughMaram.Shamela0009111-ara1",
+   "edition": "سمير بن أمين الزهري ، دار الفلق - الرياض",
+   "words": 54328
+  },
+  {
+   "id": "nuzhat-nazar",
+   "group": "hadith",
+   "title": "نزهة النظر في توضيح نخبة الفكر",
+   "author": "ابن حجر العسقلاني (ت ٨٥٢هـ)",
+   "died": 852,
+   "version": "0852IbnHajarCasqalani.NuzhatNazar.Shamela0001565-ara1",
+   "edition": "مطبعة الصباح، دمشق",
+   "words": 17613
+  },
+  {
+   "id": "tabari",
+   "group": "tafsir",
+   "title": "جامع البيان عن تأويل آي القرآن (تفسير الطبري)",
+   "author": "ابن جرير الطبري (ت ٣١٠هـ)",
+   "died": 310,
+   "version": "0310Tabari.JamicBayan.Shamela0007798-ara1",
+   "edition": "الدكتور عبد الله بن عبد المحسن التركي ، دار هجر للطباعة والنشر والتوزيع والإعلان",
+   "words": 2910593
+  },
+  {
+   "id": "bidaya",
+   "group": "tarikh",
+   "title": "البداية والنهاية",
+   "author": "ابن كثير (ت ٧٧٤هـ)",
+   "died": 774,
+   "version": "0774IbnKathir.Bidaya.Shamela0004445-ara1",
+   "edition": "عبد الله بن عبد المحسن التركي ، 1424هـ / 2003م ، دار هجر للطباعة والنشر والتوزيع والإعلان",
+   "words": 2193224
+  },
+  {
+   "id": "siyar",
+   "group": "tarikh",
+   "title": "سير أعلام النبلاء",
+   "author": "الذهبي (ت ٧٤٨هـ)",
+   "died": 748,
+   "version": "0748Dhahabi.SiyarAclamNubala.Shamela0010906-ara1",
+   "edition": "مجموعة من المحققين بإشراف الشيخ شعيب الأرناؤوط ، مؤسسة الرسالة",
+   "words": 2186412
+  },
+  {
+   "id": "madarij",
+   "group": "raqaiq",
+   "title": "مدارج السالكين بين منازل إياك نعبد وإياك نستعين",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "died": 751,
+   "version": "0751IbnQayyimJawziyya.MadarijSalikin.JK000081-ara1",
+   "edition": "محمد حامد الفقي ، بيروت ، 1393 - 1973 ، دار الكتاب العربي",
+   "words": 367142
   }
  ]
 }

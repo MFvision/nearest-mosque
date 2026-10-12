@@ -135,6 +135,7 @@ private fun groupLabel(group: String): String = stringResource(
         "hadith" -> R.string.classics_group_hadith
         "fiqh" -> R.string.classics_group_fiqh
         "sira" -> R.string.classics_group_sira
+        "tarikh" -> R.string.classics_group_tarikh
         else -> R.string.classics_group_raqaiq
     },
 )

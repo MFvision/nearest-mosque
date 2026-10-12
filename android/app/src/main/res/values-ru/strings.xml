@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">Смягчение сердец</string>
     <string name="classics_group_sira">Сира</string>
     <string name="classics_group_tafsir">Тафсир</string>
+    <string name="classics_group_tarikh">История и жизнеописания</string>
     <string name="classics_note">Подлинный текст авторов из классических книг ахль ас-сунны. Каждый том загружается один раз, затем открывается без интернета.</string>
     <string name="classics_open">Открыть</string>
     <string name="classics_pages">Страниц: %1$d</string>

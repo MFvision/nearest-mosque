@@ -95,6 +95,7 @@
     <string name="classics_group_raqaiq">ขัดเกลาจิตใจ</string>
     <string name="classics_group_sira">ซีเราะฮ์</string>
     <string name="classics_group_tafsir">ตัฟซีร</string>
+    <string name="classics_group_tarikh">ประวัติศาสตร์และชีวประวัติ</string>
     <string name="classics_note">ต้นฉบับของผู้แต่ง จากตำราคลาสสิกของอะฮ์ลุสซุนนะฮ์ แต่ละเล่มดาวน์โหลดครั้งเดียว จากนั้นเปิดได้โดยไม่ต้องใช้อินเทอร์เน็ต</string>
     <string name="classics_open">เปิด</string>
     <string name="classics_pages">%1$d หน้า</string>
