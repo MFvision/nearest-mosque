@@ -18,6 +18,12 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
     private var lastSent = Date.distantPast
     private var lastState: QiblaActivityAttributes.ContentState?
     private var stopTask: Task<Void, Never>?
+    /// One update at a time, always the newest: updates sent side by side could land late or out of order.
+    private var pending: QiblaActivityAttributes.ContentState?
+    private var updating = false
+
+    /// The compass outranks the next-prayer countdown for the Dynamic Island while it runs (two minutes).
+    static let relevance = 100.0
 
     func start() async {
         let model = AppModel.shared
@@ -32,7 +38,8 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
                                                  rtl: l10n.isRTL, style: model.settings.widgetLook)
         let initial = QiblaActivityAttributes.ContentState(turn: nil, facing: false, hint: l10n.t("qibla_move_phone"))
         activity = try? Activity.request(attributes: attributes,
-                                         content: ActivityContent(state: initial, staleDate: Date().addingTimeInterval(Self.seconds + 30)), pushType: nil)
+                                         content: ActivityContent(state: initial, staleDate: Date().addingTimeInterval(Self.seconds + 30),
+                                                                  relevanceScore: Self.relevance), pushType: nil)
         guard activity != nil else { return }
         background = CLBackgroundActivitySession()
         manager.delegate = self
@@ -59,6 +66,7 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
         for a in Activity<QiblaActivityAttributes>.activities { await a.end(nil, dismissalPolicy: .immediate) }
         activity = nil
         lastState = nil
+        pending = nil
     }
 
     private func send(heading: Double) {
@@ -73,8 +81,21 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
         guard state.facing != lastState?.facing || Date().timeIntervalSince(lastSent) >= 1 else { return }
         lastSent = Date()
         lastState = state
-        let content = ActivityContent(state: state, staleDate: Date().addingTimeInterval(Self.seconds + 30))
-        Task { await activity?.update(content) }
+        pending = state
+        flush()
+    }
+
+    /// Sends the newest state; while an update is on its way, later ones wait and only the last is sent.
+    private func flush() {
+        guard !updating, let state = pending, let activity else { return }
+        pending = nil
+        updating = true
+        let content = ActivityContent(state: state, staleDate: Date().addingTimeInterval(Self.seconds + 30), relevanceScore: Self.relevance)
+        Task {
+            await activity.update(content)
+            updating = false
+            flush()
+        }
     }
 
     nonisolated func locationManager(_ m: CLLocationManager, didUpdateHeading h: CLHeading) {

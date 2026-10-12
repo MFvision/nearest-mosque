@@ -90,6 +90,8 @@ targets:
         NSAlarmKitUsageDescription: Rings the Fajr alarm you set in Settings.
         # The next-prayer countdown on the Lock Screen and in the Dynamic Island.
         NSSupportsLiveActivities: true
+        # The Qibla compass in the Dynamic Island updates about once a second for two minutes.
+        NSSupportsLiveActivitiesFrequentUpdates: true
         # Experimental Qibla compass in the Dynamic Island: the compass is read in the background for two minutes
         # after a tap on the Qibla widget (iOS shows the location indicator meanwhile).
         # fetch: a background refresh tops up the prayer reminders (ReminderRefresh); nothing is downloaded.

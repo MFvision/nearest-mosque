@@ -38,7 +38,10 @@ enum LiveCountdown {
         let attributes = PrayerActivityAttributes(rtl: l10n.isRTL, style: model.settings.widgetLook, nextLabel: l10n.t("next_prayer"), qiblaLabel: l10n.t("qibla"),
                                                   mosqueLabel: l10n.t("tab_mosques"))
         // Stale a quarter of an hour after the prayer time: the views then say "Time for …".
-        let content = ActivityContent(state: state, staleDate: next.at.addingTimeInterval(15 * 60))
+        // Lower relevance than the Qibla compass, which takes the Dynamic Island for its two minutes.
+        let content = ActivityContent(state: state, staleDate: next.at.addingTimeInterval(15 * 60), relevanceScore: 10)
+        // While the Qibla compass runs (the app may be woken in the background for it), leave the countdown alone.
+        if !Activity<QiblaActivityAttributes>.activities.isEmpty, !running.isEmpty { return }
         if let a = running.first, a.attributes == attributes {
             for extra in running.dropFirst() { await extra.end(nil, dismissalPolicy: .immediate) }
             if a.content.state != state { await a.update(content) }
