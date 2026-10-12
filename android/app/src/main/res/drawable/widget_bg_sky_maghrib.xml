@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Time of day" widgets: the app's maghrib sky. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:angle="270" android:startColor="#FF1B1F45" android:centerColor="#FF4A2F5E" android:endColor="#FF8A4A5A" />
+    <corners android:radius="24dp" />
+</shape>

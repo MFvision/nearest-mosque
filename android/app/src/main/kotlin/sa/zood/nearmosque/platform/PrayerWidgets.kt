@@ -31,19 +31,41 @@ import sa.zood.nearmosque.ui.prayer.prayerIcon
 import java.time.Duration
 import java.time.Instant
 
-/** Widget looks (chosen when the widget is added, changeable by reconfiguring it). */
+/** Widget looks. Each widget follows the app's style ("Same as app", the default) or keeps its own, chosen when the
+ *  widget is added or reconfigured. [SKY] ("Time of day") follows the prayer period like the app's sky. */
 enum class WidgetStyle(
+    val key: String,
     val background: Int, val ink: Int, val secondary: Int, val accent: Int,
     /** Inner cards, chips and tiles; the highlighted row or tile and the text on it; the countdown bar. */
     val card: Int, val pill: Int, val onPill: Int, val progress: Int,
     val label: Int,
 ) {
-    CREAM(R.drawable.widget_bg_cream, 0xFF1F3B57.toInt(), 0xFF5B6470.toInt(), 0xFF8A6A1C.toInt(),
+    CREAM("cream", R.drawable.widget_bg_cream, 0xFF1F3B57.toInt(), 0xFF5B6470.toInt(), 0xFF8A6A1C.toInt(),
         R.drawable.widget_card_light, R.drawable.widget_pill_cream, 0xFFFFFFFF.toInt(), R.id.progress_cream, R.string.style_cream),
-    GREEN(R.drawable.widget_bg_green, 0xFFFFF8EC.toInt(), 0xFFCFE3D6.toInt(), 0xFFE7B65A.toInt(),
+    GREEN("green", R.drawable.widget_bg_green, 0xFFFFF8EC.toInt(), 0xFFCFE3D6.toInt(), 0xFFE7B65A.toInt(),
         R.drawable.widget_card_green, R.drawable.widget_pill_green, 0xFF0F3D2E.toInt(), R.id.progress_green, R.string.style_green),
-    NIGHT(R.drawable.widget_bg_night, 0xFFFFFFFF.toInt(), 0xBFFFFFFF.toInt(), 0xFFD4A843.toInt(),
+    NIGHT("night", R.drawable.widget_bg_night, 0xFFFFFFFF.toInt(), 0xBFFFFFFF.toInt(), 0xFFD4A843.toInt(),
         R.drawable.widget_card_night, R.drawable.widget_pill_night, 0xFF081B29.toInt(), R.id.progress_night, R.string.style_night),
+    TEAL("teal", R.drawable.widget_bg_teal, 0xFFFFFFFF.toInt(), 0xD1FFFFFF.toInt(), 0xFFF2D27A.toInt(),
+        R.drawable.widget_card_teal, R.drawable.widget_pill_teal, 0xFF123F3B.toInt(), R.id.progress_teal, R.string.style_teal),
+    SKY("sky", R.drawable.widget_bg_sky_night, 0xFFFFFFFF.toInt(), 0xC7FFFFFF.toInt(), 0xFFF2D27A.toInt(),
+        R.drawable.widget_card_sky, R.drawable.widget_pill_sky, 0xFF0B1530.toInt(), R.id.progress_sky, R.string.style_sky),
+    ;
+
+    /** The background; for [SKY] the app's dark sky of the prayer period [current] (the last one begun). */
+    fun backgroundAt(current: PrayerEvent?, sinceSunrise: Duration?): Int = if (this != SKY) background else when (current) {
+        PrayerEvent.FAJR -> R.drawable.widget_bg_sky_fajr
+        PrayerEvent.SUNRISE -> if (sinceSunrise != null && sinceSunrise < Duration.ofHours(1)) R.drawable.widget_bg_sky_sunrise else R.drawable.widget_bg_sky_day
+        PrayerEvent.DHUHR -> R.drawable.widget_bg_sky_day
+        PrayerEvent.ASR -> R.drawable.widget_bg_sky_asr
+        PrayerEvent.MAGHRIB -> R.drawable.widget_bg_sky_maghrib
+        PrayerEvent.ISHA -> R.drawable.widget_bg_sky_isha
+        null -> R.drawable.widget_bg_sky_night
+    }
+
+    companion object {
+        fun of(key: String?): WidgetStyle? = entries.firstOrNull { it.key == key }
+    }
 }
 
 /** The widgets: next prayer (small, medium, large), the countdown bar, the ring (small, medium, large), today's prayers
@@ -131,9 +153,14 @@ object PrayerWidgets {
     private val tileBells = listOf(R.id.tile0_bell, R.id.tile1_bell, R.id.tile2_bell, R.id.tile3_bell, R.id.tile4_bell, R.id.tile5_bell)
 
     private fun prefs(c: Context) = c.getSharedPreferences("widgets", Context.MODE_PRIVATE)
-    fun style(c: Context, id: Int): WidgetStyle = WidgetStyle.entries.getOrElse(prefs(c).getInt("style_$id", 0)) { WidgetStyle.CREAM }
-    fun setStyle(c: Context, id: Int, s: WidgetStyle) = prefs(c).edit().putInt("style_$id", s.ordinal).apply()
-    fun forget(c: Context, ids: IntArray) = prefs(c).edit().apply { ids.forEach { remove("style_$it") } }.apply()
+    /** The widget's own look, or null for "Same as app" (the default; looks chosen before there was an app style
+     *  were kept under "style_<id>" and are left behind, so every widget starts out following the app). */
+    fun ownStyle(c: Context, id: Int): WidgetStyle? = WidgetStyle.of(prefs(c).getString("look_$id", null))
+    fun style(c: Context, id: Int): WidgetStyle = ownStyle(c, id) ?: sa.zood.nearmosque.AppStyle.widgetStyle(c)
+    fun setStyle(c: Context, id: Int, s: WidgetStyle?) = prefs(c).edit().apply {
+        if (s == null) remove("look_$id") else putString("look_$id", s.key)
+    }.apply()
+    fun forget(c: Context, ids: IntArray) = prefs(c).edit().apply { ids.forEach { remove("look_$it"); remove("style_$it") } }.apply()
 
     /** Redraws every widget now (off the main thread). */
     fun refresh(context: Context, done: () -> Unit = {}) {
@@ -193,7 +220,8 @@ object PrayerWidgets {
         val next = if (days.isEmpty()) null else c.calculator.nextPrayer(days, now)
         val v = RemoteViews(context.packageName, kind.layout)
         // Views a layout does not have are skipped by RemoteViews, so every widget is filled the same way.
-        v.setInt(R.id.widget_root, "setBackgroundResource", st.background)
+        val begun = days.flatMap { d -> PrayerEvent.entries.mapNotNull { e -> d[e]?.let { e to it } } }.filter { !it.second.isAfter(now) }.maxByOrNull { it.second }
+        v.setInt(R.id.widget_root, "setBackgroundResource", st.backgroundAt(begun?.first, begun?.let { Duration.between(it.second, now) }))
         v.setInt(R.id.widget_mark, "setColorFilter", st.accent)
         v.setOnClickPendingIntent(R.id.widget_root, link(context, 0, "nearmosque://prayer"))
         when (kind) {
@@ -386,6 +414,7 @@ object PrayerWidgets {
         WidgetStyle.CREAM -> 0xFFC99A3A.toInt()
         WidgetStyle.GREEN -> 0xFFD9E6C8.toInt()
         WidgetStyle.NIGHT -> 0xFFD4A843.toInt()
+        WidgetStyle.TEAL, WidgetStyle.SKY -> 0xFFF2D27A.toInt()
     }
 
     /** A dark cube with its gold band, centred on ([cx], [cy]). */
@@ -411,6 +440,8 @@ object PrayerWidgets {
         WidgetStyle.CREAM -> 0xC7FFFFFF.toInt()
         WidgetStyle.GREEN -> 0x38000000
         WidgetStyle.NIGHT -> 0x1AFFFFFF
+        WidgetStyle.TEAL -> 0x29FFFFFF
+        WidgetStyle.SKY -> 0x1FFFFFFF
     }
 
     /** North-up dial: ticks, N at the top, a gold arrow to the Qibla with a glow and the Kaaba where it points. */

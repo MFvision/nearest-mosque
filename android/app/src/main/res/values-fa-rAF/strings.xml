@@ -47,6 +47,7 @@
     <string name="answer_searching">در حال جستجو در کتاب‌های شما…</string>
     <string name="app_name">نزدیک‌ترین مسجد</string>
     <string name="app_style_note">یک سبک برای دکمه‌ها و رنگ‌های برجستهٔ برنامه، همهٔ ابزارک‌ها، صفحهٔ قفل و Dynamic Island. برای سبک جداگانهٔ یک ابزارک، آن را نگه دارید و «ویرایش ابزارک» را بزنید.</string>
+    <string name="app_style_note_android">یک سبک برای دکمه‌ها و رنگ‌های برجستهٔ برنامه و همهٔ ابزارک‌ها. برای سبک جداگانهٔ یک ابزارک، آن را لمس کنید و نگه دارید، سپس تنظیماتش را باز کنید.</string>
     <string name="app_style_title">سبک برنامه و ابزارک‌ها</string>
     <string name="appearance">ظاهر</string>
     <string name="appearance_dark">تاریک</string>

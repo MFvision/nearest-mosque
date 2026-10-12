@@ -47,6 +47,7 @@
     <string name="answer_searching">گەڕان لە کتێبەکانت…</string>
     <string name="app_name">نزیکترین مزگەوت</string>
     <string name="app_style_note">یەک شێواز بۆ دوگمە و ڕەنگە دیارەکانی ئەپەکە، هەموو ویجێتەکان، شاشەی داخراو و Dynamic Island. بۆ شێوازی تایبەت بە یەک ویجێت، دەستی پێوە بگرە و «دەستکاریی ویجێت» هەڵبژێرە.</string>
+    <string name="app_style_note_android">یەک شێواز بۆ دوگمە و ڕەنگە دیارەکانی ئەپ و هەموو ویجێتەکان. بۆ ئەوەی ویجێتێک شێوازی خۆی هەبێت، دەستی لێ بدە و ڕایگرە، پاشان ڕێکخستنەکانی بکەرەوە.</string>
     <string name="app_style_title">شێوازی ئەپ و ویجێتەکان</string>
     <string name="appearance">ڕووکار</string>
     <string name="appearance_dark">تاریک</string>

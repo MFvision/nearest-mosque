@@ -74,6 +74,24 @@
                 android:max="1000"
                 android:progressDrawable="@drawable/widget_progress_night"
                 android:visibility="gone" />
+            <ProgressBar
+                android:id="@+id/progress_teal"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="10dp"
+                android:max="1000"
+                android:progressDrawable="@drawable/widget_progress_teal"
+                android:visibility="gone" />
+            <ProgressBar
+                android:id="@+id/progress_sky"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="10dp"
+                android:max="1000"
+                android:progressDrawable="@drawable/widget_progress_sky"
+                android:visibility="gone" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

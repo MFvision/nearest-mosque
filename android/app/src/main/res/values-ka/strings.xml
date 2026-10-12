@@ -47,6 +47,7 @@
     <string name="answer_searching">ვეძებთ თქვენს წიგნებში…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">ერთი სტილი აპის ღილაკებისა და აქცენტებისთვის, ყველა ვიჯეტისთვის, ჩაკეტილი ეკრანისა და Dynamic Island-ისთვის. ერთი ვიჯეტისთვის ცალკე სტილისთვის ხანგრძლივად დააჭირეთ და აირჩიეთ ვიჯეტის რედაქტირება.</string>
+    <string name="app_style_note_android">ერთი სტილი აპის ღილაკებისთვის, აქცენტებისა და ყველა ვიჯეტისთვის. ერთი ვიჯეტისთვის საკუთარი სტილის მისაცემად შეეხეთ და დააყოვნეთ, შემდეგ გახსენით მისი პარამეტრები.</string>
     <string name="app_style_title">აპისა და ვიჯეტების სტილი</string>
     <string name="appearance">იერსახე</string>
     <string name="appearance_dark">მუქი</string>

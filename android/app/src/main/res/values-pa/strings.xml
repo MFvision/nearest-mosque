@@ -47,6 +47,7 @@
     <string name="answer_searching">ਤੁਹਾਡੀਆਂ ਕਿਤਾਬਾਂ ਵਿੱਚ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">ਐਪ ਦੇ ਬਟਨਾਂ ਅਤੇ ਹਾਈਲਾਈਟਾਂ, ਹਰ ਵਿਜੇਟ, ਲੌਕ ਸਕਰੀਨ ਅਤੇ ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ ਲਈ ਇੱਕੋ ਸ਼ੈਲੀ। ਕਿਸੇ ਇੱਕ ਵਿਜੇਟ ਨੂੰ ਵੱਖਰੀ ਸ਼ੈਲੀ ਦੇਣ ਲਈ ਉਸਨੂੰ ਦਬਾ ਕੇ ਰੱਖੋ ਅਤੇ ਵਿਜੇਟ ਸੋਧੋ ਚੁਣੋ।</string>
+    <string name="app_style_note_android">ਐਪ ਦੇ ਬਟਨਾਂ, ਹਾਈਲਾਈਟਾਂ ਅਤੇ ਹਰ ਵਿਜੇਟ ਲਈ ਇੱਕੋ ਸ਼ੈਲੀ। ਕਿਸੇ ਇੱਕ ਵਿਜੇਟ ਨੂੰ ਆਪਣੀ ਸ਼ੈਲੀ ਦੇਣ ਲਈ, ਉਸਨੂੰ ਛੂਹ ਕੇ ਫੜੀ ਰੱਖੋ, ਫਿਰ ਉਸਦੀਆਂ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ।</string>
     <string name="app_style_title">ਐਪ ਅਤੇ ਵਿਜੇਟ ਦੀ ਸ਼ੈਲੀ</string>
     <string name="appearance">ਦਿੱਖ</string>
     <string name="appearance_dark">ਗੂੜ੍ਹੀ</string>

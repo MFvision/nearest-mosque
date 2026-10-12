@@ -67,6 +67,11 @@ class WidgetScreenshotTest {
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
     fun todayLargeArabic() = shoot("widget_today_large_cream_ar", WidgetKind.TODAY_LARGE, WidgetStyle.CREAM)
     @Test fun todayGreen() = shoot("widget_today_green", WidgetKind.TODAY, WidgetStyle.GREEN)
+    @Test fun countdownTeal() = shoot("widget_countdown_teal", WidgetKind.COUNTDOWN, WidgetStyle.TEAL)
+    @Test fun largeTeal() = shoot("widget_large_teal", WidgetKind.LARGE, WidgetStyle.TEAL)
+    // 14:10 in Cape Town is after Dhuhr: the time-of-day look shows the day sky.
+    @Test fun largeSky() = shoot("widget_large_sky", WidgetKind.LARGE, WidgetStyle.SKY)
+    @Test fun todaySky() = shoot("widget_today_sky", WidgetKind.TODAY, WidgetStyle.SKY)
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
     fun mediumArabic() = shoot("widget_medium_cream_ar", WidgetKind.MEDIUM, WidgetStyle.CREAM)

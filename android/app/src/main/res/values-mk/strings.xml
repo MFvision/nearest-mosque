@@ -47,6 +47,7 @@
     <string name="answer_searching">Пребаруваме во вашите книги…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Еден стил за копчињата и истакнувањата во апликацијата, секој виџет, заклучениот екран и Dynamic Island. За посебен стил на еден виџет, држете го притиснат и изберете Уреди виџет.</string>
+    <string name="app_style_note_android">Еден стил за копчињата и истакнатите бои на апликацијата и за секој виџет. За еден виџет да има свој стил, допрете го и задржете, па отворете ги неговите поставки.</string>
     <string name="app_style_title">Стил на апликацијата и виџетите</string>
     <string name="appearance">Изглед</string>
     <string name="appearance_dark">Темно</string>

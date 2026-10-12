@@ -47,6 +47,7 @@
     <string name="answer_searching">กำลังค้นหาในหนังสือของคุณ…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">สไตล์เดียวสำหรับปุ่มและสีเน้นของแอป วิดเจ็ตทุกตัว หน้าจอล็อค และ Dynamic Island หากต้องการให้วิดเจ็ตใดมีสไตล์ของตัวเอง ให้กดค้างแล้วเลือกแก้ไขวิดเจ็ต</string>
+    <string name="app_style_note_android">สไตล์เดียวสำหรับปุ่มและสีเน้นของแอปและวิดเจ็ตทุกตัว หากต้องการให้วิดเจ็ตใดมีสไตล์ของตัวเอง ให้แตะค้างที่วิดเจ็ตนั้น แล้วเปิดการตั้งค่าของมัน</string>
     <string name="app_style_title">สไตล์แอปและวิดเจ็ต</string>
     <string name="appearance">รูปลักษณ์</string>
     <string name="appearance_dark">มืด</string>

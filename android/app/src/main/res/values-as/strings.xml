@@ -47,6 +47,7 @@
     <string name="answer_searching">আপোনাৰ কিতাপবোৰত বিচৰা হৈছে…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">এপৰ বুটাম আৰু হাইলাইট, প্ৰতিটো ৱিজেট, লক স্ক্ৰীণ আৰু ডায়নামিক আইলেণ্ডৰ বাবে একেটা শৈলী। এটা ৱিজেটক বেলেগ শৈলী দিবলৈ সেইটো হেঁচি ধৰি ৱিজেট সম্পাদনা বাছক।</string>
+    <string name="app_style_note_android">এপৰ বুটাম, হাইলাইট আৰু প্ৰতিটো ৱিজেটৰ বাবে এটাই শৈলী। কোনো এটা ৱিজেটক নিজা শৈলী দিবলৈ ইয়াক স্পৰ্শ কৰি ধৰি ৰাখক, তাৰ পিছত ইয়াৰ ছেটিংছ খোলক।</string>
     <string name="app_style_title">এপ আৰু ৱিজেটৰ শৈলী</string>
     <string name="appearance">ৰূপ</string>
     <string name="appearance_dark">আন্ধাৰ</string>

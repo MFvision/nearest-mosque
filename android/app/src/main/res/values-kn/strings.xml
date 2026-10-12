@@ -47,6 +47,7 @@
     <string name="answer_searching">ನಿಮ್ಮ ಪುಸ್ತಕಗಳಲ್ಲಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">ಆ್ಯಪ್‌ನ ಬಟನ್‌ಗಳು ಮತ್ತು ಹೈಲೈಟ್‌ಗಳು, ಪ್ರತಿ ವಿಜೆಟ್, ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಡೈನಾಮಿಕ್ ಐಲ್ಯಾಂಡ್‌ಗೆ ಒಂದೇ ಶೈಲಿ. ಒಂದು ವಿಜೆಟ್‌ಗೆ ಬೇರೆ ಶೈಲಿ ನೀಡಲು ಅದನ್ನು ಒತ್ತಿ ಹಿಡಿದು ವಿಜೆಟ್ ಸಂಪಾದಿಸಿ ಆಯ್ಕೆಮಾಡಿ.</string>
+    <string name="app_style_note_android">ಆ್ಯಪ್‌ನ ಬಟನ್‌ಗಳು, ಹೈಲೈಟ್‌ಗಳು ಮತ್ತು ಪ್ರತಿಯೊಂದು ವಿಜೆಟ್‌ಗೆ ಒಂದೇ ಶೈಲಿ. ಒಂದು ವಿಜೆಟ್‌ಗೆ ತನ್ನದೇ ಶೈಲಿ ನೀಡಲು, ಅದನ್ನು ಸ್ಪರ್ಶಿಸಿ ಹಿಡಿದುಕೊಳ್ಳಿ, ನಂತರ ಅದರ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ.</string>
     <string name="app_style_title">ಆ್ಯಪ್ ಮತ್ತು ವಿಜೆಟ್ ಶೈಲಿ</string>
     <string name="appearance">ನೋಟ</string>
     <string name="appearance_dark">ಡಾರ್ಕ್</string>

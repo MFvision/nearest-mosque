@@ -47,6 +47,7 @@
     <string name="answer_searching">آپ کی کتابوں میں تلاش جاری ہے…</string>
     <string name="app_name">قریبی مسجد</string>
     <string name="app_style_note">ایپ کے بٹنوں اور نمایاں رنگوں، ہر ویجٹ، لاک اسکرین اور ڈائنامک آئی لینڈ کے لیے ایک ہی انداز۔ کسی ایک ویجٹ کا الگ انداز رکھنے کے لیے اسے دیر تک دبائیں اور «ویجٹ میں ترمیم» چنیں۔</string>
+    <string name="app_style_note_android">ایپ کے بٹنوں اور نمایاں رنگوں اور ہر ویجٹ کے لیے ایک ہی انداز۔ کسی ایک ویجٹ کا الگ انداز رکھنے کے لیے اسے دیر تک دبائیں، پھر اس کی ترتیبات کھولیں۔</string>
     <string name="app_style_title">ایپ اور ویجٹ کا انداز</string>
     <string name="appearance">ظاہری شکل</string>
     <string name="appearance_dark">گہرا</string>

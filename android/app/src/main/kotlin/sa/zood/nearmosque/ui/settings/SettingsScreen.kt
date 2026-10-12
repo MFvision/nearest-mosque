@@ -43,6 +43,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -143,6 +149,30 @@ fun SettingsScreen(
                 ).forEach { (mode, label) ->
                     RadioRow(stringResource(label), appearance == mode) { sa.zood.nearmosque.Appearance.set(context, mode) }
                 }
+
+                Section(stringResource(R.string.app_style_title))
+                androidx.compose.foundation.layout.FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    sa.zood.nearmosque.platform.WidgetStyle.entries.forEach { st ->
+                        val on = sa.zood.nearmosque.AppStyle.current == st.key
+                        val (a, b) = sa.zood.nearmosque.ui.styleSwatch(st)
+                        Column(
+                            Modifier.width(76.dp).clickable(role = androidx.compose.ui.semantics.Role.RadioButton) { sa.zood.nearmosque.AppStyle.set(context, st.key) }
+                                .semantics(mergeDescendants = true) { selected = on },
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            androidx.compose.foundation.layout.Box(
+                                Modifier.size(52.dp)
+                                    .border(if (on) 3.dp else 1.dp, if (on) sa.zood.nearmosque.ui.theme.Tokens.gold else Color(0x33888888), androidx.compose.foundation.shape.CircleShape)
+                                    .padding(4.dp)
+                                    .background(androidx.compose.ui.graphics.Brush.verticalGradient(listOf(a, b)), androidx.compose.foundation.shape.CircleShape),
+                            )
+                            Text(stringResource(st.label), style = MaterialTheme.typography.bodySmall, textAlign = androidx.compose.ui.text.style.TextAlign.Center, modifier = Modifier.padding(top = 4.dp))
+                        }
+                    }
+                }
+                Text(stringResource(R.string.app_style_note_android), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary, modifier = Modifier.padding(top = 6.dp))
 
                 Section(stringResource(R.string.location_section))
                 Text(prayer.location?.name ?: "—", style = MaterialTheme.typography.bodyLarge)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Time of day" widgets: the app's fajr sky. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:angle="270" android:startColor="#FF141E3C" android:centerColor="#FF3A3566" android:endColor="#FF6B4A6E" />
+    <corners android:radius="24dp" />
+</shape>

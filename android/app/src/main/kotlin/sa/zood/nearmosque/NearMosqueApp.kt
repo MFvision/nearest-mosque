@@ -32,6 +32,7 @@ class NearMosqueApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Appearance.apply(this)
+        AppStyle.load(this)
         container = AppContainer(this)
         container.start()
         // Widgets follow the city, the calculation settings and the reminders (bells).
@@ -143,6 +144,44 @@ object Appearance {
         context.getSharedPreferences("ui", Context.MODE_PRIVATE).edit().putInt(KEY, mode).apply()
         androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(mode)
     }
+}
+
+/**
+ * One style for everything (Settings → App and widget style): the app's accent colour and every widget left on
+ * "Same as app". The same five styles and colours as on iPhone (ios/Shared/StyleAccent.swift).
+ */
+object AppStyle {
+    val all = listOf("cream", "green", "night", "teal", "sky")
+    private const val KEY = "app_style"
+
+    /** The chosen style; Compose reads it, so the accent changes at once. */
+    private val state = androidx.compose.runtime.mutableStateOf("cream")
+    val current: String get() = state.value
+
+    fun load(context: Context) { state.value = read(context) }
+
+    fun read(context: Context): String =
+        context.getSharedPreferences("ui", Context.MODE_PRIVATE).getString(KEY, null)?.takeIf { it in all } ?: "cream"
+
+    fun set(context: Context, style: String) {
+        if (style !in all) return
+        context.getSharedPreferences("ui", Context.MODE_PRIVATE).edit().putString(KEY, style).apply()
+        state.value = style
+        sa.zood.nearmosque.platform.PrayerWidgets.refresh(context)
+    }
+
+    /** Widgets read the saved choice (they may draw before the app has run). */
+    fun widgetStyle(context: Context) = sa.zood.nearmosque.platform.WidgetStyle.of(read(context)) ?: sa.zood.nearmosque.platform.WidgetStyle.CREAM
+
+    /** Accent on dark backgrounds (and the bright swatch). */
+    fun dark(style: String): androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color(
+        when (style) { "green" -> 0xFF5FCB93; "night" -> 0xFF8FB8EA; "teal" -> 0xFF8CD9CC; "sky" -> 0xFF9CCDEB; else -> 0xFFD4A843 },
+    )
+
+    /** Accent for text on light backgrounds (4.5:1). */
+    fun light(style: String): androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color(
+        when (style) { "green" -> 0xFF1E6B45; "night" -> 0xFF1F4F80; "teal" -> 0xFF1F6A62; "sky" -> 0xFF22618A; else -> 0xFF6E5414 },
+    )
 }
 
 val Context.container: AppContainer get() = (applicationContext as NearMosqueApp).container

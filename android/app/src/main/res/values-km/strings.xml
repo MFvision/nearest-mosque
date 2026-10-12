@@ -47,6 +47,7 @@
     <string name="answer_searching">កំពុងស្វែងរកក្នុងសៀវភៅរបស់អ្នក…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">រចនាប័ទ្មតែមួយសម្រាប់ប៊ូតុង និងពណ៌បន្លិចរបស់កម្មវិធី វិដជិតទាំងអស់ អេក្រង់ចាក់សោ និង Dynamic Island។ ដើម្បីឱ្យវិដជិតមួយមានរចនាប័ទ្មផ្ទាល់ខ្លួន សូមចុចសង្កត់វា ហើយជ្រើស កែវិដជិត។</string>
+    <string name="app_style_note_android">រចនាប័ទ្មតែមួយសម្រាប់ប៊ូតុង និងពណ៌សង្កត់ធ្ងន់របស់កម្មវិធី និងគ្រប់ធាតុក្រាហ្វិក។ ដើម្បីឱ្យធាតុក្រាហ្វិកមួយមានរចនាប័ទ្មផ្ទាល់ខ្លួន សូមចុចសង្កត់លើវា រួចបើកការកំណត់របស់វា។</string>
     <string name="app_style_title">រចនាប័ទ្មកម្មវិធី និងវិដជិត</string>
     <string name="appearance">រូបរាង</string>
     <string name="appearance_dark">ងងឹត</string>

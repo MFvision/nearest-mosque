@@ -47,6 +47,7 @@
     <string name="answer_searching">Hinahanap sa iyong mga aklat…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Iisang istilo para sa mga button at highlight ng app, bawat widget, ang Lock Screen, at ang Dynamic Island. Para bigyan ng sariling istilo ang isang widget, pindutin ito nang matagal at piliin ang Edit Widget.</string>
+    <string name="app_style_note_android">Iisang istilo para sa mga button at highlight ng app at sa bawat widget. Para bigyan ng sariling istilo ang isang widget, pindutin ito nang matagal, saka buksan ang settings nito.</string>
     <string name="app_style_title">Istilo ng app at widget</string>
     <string name="appearance">Hitsura</string>
     <string name="appearance_dark">Madilim</string>

@@ -47,6 +47,7 @@
     <string name="answer_searching">Ana bincika littattafanku…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Salo ɗaya don maɓallan manhajar da launukan haskakawa, kowane widget, allon kulle da Dynamic Island. Don ba widget ɗaya salonsa, danna shi na ɗan lokaci ka zaɓi Gyara Widget.</string>
+    <string name="app_style_note_android">Salo ɗaya ga maɓallan manhajar da launukanta da kowace widget. Don ba wa widget ɗaya salonta, taɓa ta ka riƙe, sannan ka buɗe saitunanta.</string>
     <string name="app_style_title">Salon manhaja da widget</string>
     <string name="appearance">Kamanni</string>
     <string name="appearance_dark">Duhu</string>

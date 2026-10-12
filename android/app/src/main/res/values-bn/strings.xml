@@ -47,6 +47,7 @@
     <string name="answer_searching">আপনার বইগুলোতে খোঁজা হচ্ছে…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">অ্যাপের বোতাম ও হাইলাইট, প্রতিটি উইজেট, লক স্ক্রিন ও ডাইনামিক আইল্যান্ডের জন্য একটিই স্টাইল। একটি উইজেটকে আলাদা স্টাইল দিতে সেটি চেপে ধরে উইজেট সম্পাদনা বেছে নিন।</string>
+    <string name="app_style_note_android">অ্যাপের বোতাম ও হাইলাইট এবং প্রতিটি উইজেটের জন্য একটি স্টাইল। কোনো উইজেটকে আলাদা স্টাইল দিতে সেটি স্পর্শ করে ধরে রাখুন, তারপর এর সেটিংস খুলুন।</string>
     <string name="app_style_title">অ্যাপ ও উইজেটের স্টাইল</string>
     <string name="appearance">চেহারা</string>
     <string name="appearance_dark">ডার্ক</string>

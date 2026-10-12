@@ -47,6 +47,7 @@
     <string name="answer_searching">Inatafuta kwenye vitabu vyako…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Mtindo mmoja kwa vitufe na rangi za kuangazia za programu, kila wijeti, Skrini Iliyofungwa na Dynamic Island. Ili kuipa wijeti moja mtindo wake, ibonyeze kwa muda kisha uchague Hariri Wijeti.</string>
+    <string name="app_style_note_android">Mtindo mmoja kwa vitufe na rangi kuu za programu na kila wijeti. Ili wijeti moja iwe na mtindo wake, iguse na ushikilie, kisha fungua mipangilio yake.</string>
     <string name="app_style_title">Mtindo wa programu na wijeti</string>
     <string name="appearance">Mwonekano</string>
     <string name="appearance_dark">Giza</string>

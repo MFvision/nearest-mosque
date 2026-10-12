@@ -47,6 +47,7 @@
     <string name="answer_searching">Je boeken worden doorzocht…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Eén stijl voor de knoppen en accenten van de app, elke widget, het toegangsscherm en het Dynamic Island. Wil je één widget een eigen stijl geven, houd hem ingedrukt en kies Wijzig widget.</string>
+    <string name="app_style_note_android">Eén stijl voor de knoppen en accenten van de app en voor elke widget. Wil je één widget een eigen stijl geven, houd hem dan ingedrukt en open zijn instellingen.</string>
     <string name="app_style_title">Stijl van app en widgets</string>
     <string name="appearance">Weergave</string>
     <string name="appearance_dark">Donker</string>

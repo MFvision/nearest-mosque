@@ -47,6 +47,7 @@
     <string name="answer_searching">Đang tìm trong sách của bạn…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Một kiểu chung cho nút và điểm nhấn của ứng dụng, mọi tiện ích, Màn hình khóa và Dynamic Island. Để đặt kiểu riêng cho một tiện ích, chạm và giữ rồi chọn Sửa tiện ích.</string>
+    <string name="app_style_note_android">Một kiểu cho các nút, màu nhấn của ứng dụng và mọi tiện ích. Để một tiện ích có kiểu riêng, hãy chạm và giữ tiện ích đó rồi mở phần cài đặt của nó.</string>
     <string name="app_style_title">Kiểu ứng dụng và tiện ích</string>
     <string name="appearance">Giao diện</string>
     <string name="appearance_dark">Tối</string>

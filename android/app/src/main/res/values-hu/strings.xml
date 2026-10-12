@@ -47,6 +47,7 @@
     <string name="answer_searching">Keresés a könyveidben…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Egyetlen stílus az alkalmazás gombjaihoz és kiemeléseihez, minden widgethez, a zárolási képernyőhöz és a Dynamic Islandhez. Egy widget saját stílusához nyomd meg hosszan, és válaszd a Widget szerkesztése lehetőséget.</string>
+    <string name="app_style_note_android">Egy stílus az alkalmazás gombjaihoz, kiemeléseihez és minden widgethez. Ha egy widgetnek saját stílust szeretne, tartsa rajta az ujját, majd nyissa meg a beállításait.</string>
     <string name="app_style_title">Az alkalmazás és a widgetek stílusa</string>
     <string name="appearance">Megjelenés</string>
     <string name="appearance_dark">Sötét</string>

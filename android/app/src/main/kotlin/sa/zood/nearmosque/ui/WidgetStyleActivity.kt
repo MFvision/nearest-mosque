@@ -38,7 +38,16 @@ import sa.zood.nearmosque.platform.PrayerWidgets
 import sa.zood.nearmosque.platform.WidgetStyle
 import sa.zood.nearmosque.ui.theme.NearMosqueTheme
 
-/** Shown when a prayer widget is added (or reconfigured): pick its look. */
+/** The two colours of a style's swatch (its widget background, top to bottom). */
+internal fun styleSwatch(s: WidgetStyle): Pair<Color, Color> = when (s) {
+    WidgetStyle.CREAM -> Color(0xFFFFF8EC) to Color(0xFFF3E3C3)
+    WidgetStyle.GREEN -> Color(0xFF0F3D2E) to Color(0xFF1D6B47)
+    WidgetStyle.NIGHT -> Color(0xFF081B29) to Color(0xFF1A4D6E)
+    WidgetStyle.TEAL -> Color(0xFF5E9C95) to Color(0xFF3E7D78)
+    WidgetStyle.SKY -> Color(0xFF1C3F7A) to Color(0xFF8A4A5A)
+}
+
+/** Shown when a prayer widget is added (or reconfigured): "Same as app" (the default) or a look of its own. */
 class WidgetStyleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +56,8 @@ class WidgetStyleActivity : AppCompatActivity() {
         // Only this app's own widgets (another app could pass any widget id).
         val ours = AppWidgetManager.getInstance(this).getAppWidgetInfo(id)?.provider?.packageName == packageName
         if (id == AppWidgetManager.INVALID_APPWIDGET_ID || !ours) { finish(); return }
-        val current = PrayerWidgets.style(this, id)
+        val current = PrayerWidgets.ownStyle(this, id)
+        val app = sa.zood.nearmosque.AppStyle.widgetStyle(this)
         setContent {
             NearMosqueTheme {
                 Column(
@@ -55,7 +65,7 @@ class WidgetStyleActivity : AppCompatActivity() {
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     Text(stringResource(R.string.widget_style_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
-                    WidgetStyle.entries.forEach { s ->
+                    (listOf<WidgetStyle?>(null) + WidgetStyle.entries).forEach { s ->
                         Row(
                             Modifier.fillMaxWidth().heightIn(min = 64.dp)
                                 .border(if (s == current) 2.dp else 1.dp, if (s == current) Color(0xFFD4A843) else Color(0x33888888), RoundedCornerShape(18.dp))
@@ -63,14 +73,10 @@ class WidgetStyleActivity : AppCompatActivity() {
                                 .padding(12.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            val (a, b) = when (s) {
-                                WidgetStyle.CREAM -> Color(0xFFFFF8EC) to Color(0xFFF3E3C3)
-                                WidgetStyle.GREEN -> Color(0xFF0F3D2E) to Color(0xFF1D6B47)
-                                WidgetStyle.NIGHT -> Color(0xFF081B29) to Color(0xFF1A4D6E)
-                            }
+                            val (a, b) = styleSwatch(s ?: app)
                             Box(Modifier.size(48.dp).background(Brush.verticalGradient(listOf(a, b)), RoundedCornerShape(12.dp)))
                             Spacer(Modifier.width(14.dp))
-                            Text(stringResource(s.label), style = MaterialTheme.typography.titleMedium)
+                            Text(stringResource(s?.label ?: R.string.style_auto), style = MaterialTheme.typography.titleMedium)
                         }
                     }
                 }
@@ -78,7 +84,7 @@ class WidgetStyleActivity : AppCompatActivity() {
         }
     }
 
-    private fun choose(id: Int, s: WidgetStyle) {
+    private fun choose(id: Int, s: WidgetStyle?) {
         PrayerWidgets.setStyle(this, id, s)
         PrayerWidgets.refresh(this)
         setResult(Activity.RESULT_OK, Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id))

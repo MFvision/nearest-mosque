@@ -10168,6 +10168,227 @@
         }
       }
     },
+    "app_style_note_android": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One style for the app's buttons and highlights and every widget. To give one widget its own style, touch and hold it, then open its settings."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نمط واحد لأزرار التطبيق وألوانه ولكل الأدوات. لتمييز أداة بنمط خاص، المسها مطولاً ثم افتح إعداداتها."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ایپ کے بٹنوں اور نمایاں رنگوں اور ہر ویجٹ کے لیے ایک ہی انداز۔ کسی ایک ویجٹ کا الگ انداز رکھنے کے لیے اسے دیر تک دبائیں، پھر اس کی ترتیبات کھولیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamanın düğmeleri, vurguları ve tüm widget'lar için tek bir stil. Bir widget'a kendi stilini vermek için ona basılı tutun, sonra ayarlarını açın."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satu gaya untuk tombol dan sorotan aplikasi serta setiap widget. Agar satu widget punya gayanya sendiri, sentuh lama widget itu lalu buka setelannya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un seul style pour les boutons et les accents de l’app et pour chaque widget. Pour donner un style propre à un widget, appuyez longuement dessus, puis ouvrez ses réglages."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un solo estilo para los botones y los acentos de la app y para cada widget. Para dar a un widget su propio estilo, mantenlo pulsado y abre sus ajustes."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один стиль для кнопок и акцентов приложения и всех виджетов. Чтобы задать виджету свой стиль, нажмите на него и удерживайте, затем откройте его настройки."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যাপের বোতাম ও হাইলাইট এবং প্রতিটি উইজেটের জন্য একটি স্টাইল। কোনো উইজেটকে আলাদা স্টাইল দিতে সেটি স্পর্শ করে ধরে রাখুন, তারপর এর সেটিংস খুলুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یک سبک برای دکمه‌ها و رنگ‌های برجستهٔ برنامه و همهٔ ابزارک‌ها. برای سبک جداگانهٔ یک ابزارک، آن را لمس کنید و نگه دارید، سپس تنظیماتش را باز کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یک سبک برای دکمه‌ها و رنگ‌های برجستهٔ برنامه و همهٔ ابزارک‌ها. برای سبک جداگانهٔ یک ابزارک، آن را لمس کنید و نگه دارید، سپس تنظیماتش را باز کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用的按钮、强调色和所有小组件使用同一种风格。要为某个小组件单独设置风格，请长按它，然后打开其设置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऐप के बटनों, हाइलाइट और हर विजेट के लिए एक ही स्टाइल। किसी एक विजेट को अलग स्टाइल देने के लिए उसे दबाकर रखें, फिर उसकी सेटिंग खोलें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um só estilo para os botões e destaques do app e para todos os widgets. Para dar a um widget o seu próprio estilo, toque nele sem soltar e abra as configurações dele."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salo ɗaya ga maɓallan manhajar da launukanta da kowace widget. Don ba wa widget ɗaya salonta, taɓa ta ka riƙe, sannan ka buɗe saitunanta."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mtindo mmoja kwa vitufe na rangi kuu za programu na kila wijeti. Ili wijeti moja iwe na mtindo wake, iguse na ushikilie, kisha fungua mipangilio yake."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iisang istilo para sa mga button at highlight ng app at sa bawat widget. Para bigyan ng sariling istilo ang isang widget, pindutin ito nang matagal, saka buksan ang settings nito."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Một kiểu cho các nút, màu nhấn của ứng dụng và mọi tiện ích. Để một tiện ích có kiểu riêng, hãy chạm và giữ tiện ích đó rồi mở phần cài đặt của nó."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สไตล์เดียวสำหรับปุ่มและสีเน้นของแอปและวิดเจ็ตทุกตัว หากต้องการให้วิดเจ็ตใดมีสไตล์ของตัวเอง ให้แตะค้างที่วิดเจ็ตนั้น แล้วเปิดการตั้งค่าของมัน"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រចនាប័ទ្មតែមួយសម្រាប់ប៊ូតុង និងពណ៌សង្កត់ធ្ងន់របស់កម្មវិធី និងគ្រប់ធាតុក្រាហ្វិក។ ដើម្បីឱ្យធាតុក្រាហ្វិកមួយមានរចនាប័ទ្មផ្ទាល់ខ្លួន សូមចុចសង្កត់លើវា រួចបើកការកំណត់របស់វា។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەپنىڭ كۇنۇپكىلىرى، گەۋدىلىك رەڭلىرى ۋە بارلىق كىچىك قوراللار ئۈچۈن بىر خىل ئۇسلۇب. بىر كىچىك قورالغا ئايرىم ئۇسلۇب بېرىش ئۈچۈن، ئۇنى بېسىپ تۇرۇڭ، ئاندىن تەڭشىكىنى ئېچىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یەک شێواز بۆ دوگمە و ڕەنگە دیارەکانی ئەپ و هەموو ویجێتەکان. بۆ ئەوەی ویجێتێک شێوازی خۆی هەبێت، دەستی لێ بدە و ڕایگرە، پاشان ڕێکخستنەکانی بکەرەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jedan stil za dugmad i istaknute boje aplikacije i za svaki widget. Da jedan widget dobije svoj stil, dodirnite ga i držite, pa otvorite njegove postavke."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Један стил за дугмад и истакнуте боје апликације и за сваки виџет. Да би један виџет имао свој стил, додирните га и задржите, па отворите његова подешавања."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Еден стил за копчињата и истакнатите бои на апликацијата и за секој виџет. За еден виџет да има свој стил, допрете го и задржете, па отворете ги неговите поставки."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egy stílus az alkalmazás gombjaihoz, kiemeléseihez és minden widgethez. Ha egy widgetnek saját stílust szeretne, tartsa rajta az ujját, majd nyissa meg a beállításait."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eén stijl voor de knoppen en accenten van de app en voor elke widget. Wil je één widget een eigen stijl geven, houd hem dan ingedrukt en open zijn instellingen."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ერთი სტილი აპის ღილაკებისთვის, აქცენტებისა და ყველა ვიჯეტისთვის. ერთი ვიჯეტისთვის საკუთარი სტილის მისაცემად შეეხეთ და დააყოვნეთ, შემდეგ გახსენით მისი პარამეტრები."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "යෙදුමේ බොත්තම්, උද්දීපන සහ සෑම විජට් එකක් සඳහාම එක් විලාසයක්. එක් විජට් එකකට වෙනම විලාසයක් දීමට, එය ස්පර්ශ කර අල්ලාගෙන, ඉන්පසු එහි සැකසීම් විවෘත කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "యాప్ బటన్‌లు, హైలైట్‌లు మరియు ప్రతి విడ్జెట్‌కు ఒకే శైలి. ఒక విడ్జెట్‌కు దాని సొంత శైలి ఇవ్వాలంటే, దాన్ని తాకి పట్టుకుని, ఆపై దాని సెట్టింగ్‌లను తెరవండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆ್ಯಪ್‌ನ ಬಟನ್‌ಗಳು, ಹೈಲೈಟ್‌ಗಳು ಮತ್ತು ಪ್ರತಿಯೊಂದು ವಿಜೆಟ್‌ಗೆ ಒಂದೇ ಶೈಲಿ. ಒಂದು ವಿಜೆಟ್‌ಗೆ ತನ್ನದೇ ಶೈಲಿ ನೀಡಲು, ಅದನ್ನು ಸ್ಪರ್ಶಿಸಿ ಹಿಡಿದುಕೊಳ್ಳಿ, ನಂತರ ಅದರ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ആപ്പിന്റെ ബട്ടണുകൾക്കും ഹൈലൈറ്റുകൾക്കും എല്ലാ വിജറ്റുകൾക്കും ഒരേ ശൈലി. ഒരു വിജറ്റിന് സ്വന്തം ശൈലി നൽകാൻ, അതിൽ തൊട്ടുപിടിച്ച് അതിന്റെ ക്രമീകരണങ്ങൾ തുറക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अ‍ॅपची बटणे, हायलाइट आणि प्रत्येक विजेटसाठी एकच शैली. एखाद्या विजेटला स्वतःची शैली देण्यासाठी त्याला स्पर्श करून धरून ठेवा, मग त्याची सेटिंग्ज उघडा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઍપનાં બટન, હાઇલાઇટ અને દરેક વિજેટ માટે એક જ શૈલી. કોઈ એક વિજેટને તેની પોતાની શૈલી આપવા, તેને સ્પર્શ કરીને પકડી રાખો, પછી તેનાં સેટિંગ ખોલો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਐਪ ਦੇ ਬਟਨਾਂ, ਹਾਈਲਾਈਟਾਂ ਅਤੇ ਹਰ ਵਿਜੇਟ ਲਈ ਇੱਕੋ ਸ਼ੈਲੀ। ਕਿਸੇ ਇੱਕ ਵਿਜੇਟ ਨੂੰ ਆਪਣੀ ਸ਼ੈਲੀ ਦੇਣ ਲਈ, ਉਸਨੂੰ ਛੂਹ ਕੇ ਫੜੀ ਰੱਖੋ, ਫਿਰ ਉਸਦੀਆਂ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এপৰ বুটাম, হাইলাইট আৰু প্ৰতিটো ৱিজেটৰ বাবে এটাই শৈলী। কোনো এটা ৱিজেটক নিজা শৈলী দিবলৈ ইয়াক স্পৰ্শ কৰি ধৰি ৰাখক, তাৰ পিছত ইয়াৰ ছেটিংছ খোলক।"
+          }
+        }
+      }
+    },
     "app_style_title": {
       "extractionState": "manual",
       "localizations": {

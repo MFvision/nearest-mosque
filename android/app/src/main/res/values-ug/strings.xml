@@ -47,6 +47,7 @@
     <string name="answer_searching">كىتابلىرىڭىزدىن ئىزدەۋاتىدۇ…</string>
     <string name="app_name">ئەڭ يېقىن مەسچىت</string>
     <string name="app_style_note">ئەپنىڭ كۇنۇپكىلىرى ۋە گەۋدىلەندۈرۈش رەڭلىرى، بارلىق ۋىجېتلار، قۇلۇپ ئېكرانى ۋە Dynamic Island ئۈچۈن بىرلا ئۇسلۇب. بىر ۋىجېتقا ئايرىم ئۇسلۇب بېرىش ئۈچۈن ئۇنى ئۇزۇن بېسىپ «ۋىجېتنى تەھرىرلەش» نى تاللاڭ.</string>
+    <string name="app_style_note_android">ئەپنىڭ كۇنۇپكىلىرى، گەۋدىلىك رەڭلىرى ۋە بارلىق كىچىك قوراللار ئۈچۈن بىر خىل ئۇسلۇب. بىر كىچىك قورالغا ئايرىم ئۇسلۇب بېرىش ئۈچۈن، ئۇنى بېسىپ تۇرۇڭ، ئاندىن تەڭشىكىنى ئېچىڭ.</string>
     <string name="app_style_title">ئەپ ۋە ۋىجېت ئۇسلۇبى</string>
     <string name="appearance">كۆرۈنۈش</string>
     <string name="appearance_dark">قاراڭغۇ</string>

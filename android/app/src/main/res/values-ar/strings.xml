@@ -47,6 +47,7 @@
     <string name="answer_searching">جارٍ البحث في كتبك…</string>
     <string name="app_name">أقرب مسجد</string>
     <string name="app_style_note">نمط واحد لأزرار التطبيق وألوانه، ولكل الأدوات، وشاشة القفل، والجزيرة الديناميكية. لتمييز أداة بنمط خاص، اضغط عليها مطولاً واختر «تعديل الأداة».</string>
+    <string name="app_style_note_android">نمط واحد لأزرار التطبيق وألوانه ولكل الأدوات. لتمييز أداة بنمط خاص، المسها مطولاً ثم افتح إعداداتها.</string>
     <string name="app_style_title">نمط التطبيق والأدوات</string>
     <string name="appearance">المظهر</string>
     <string name="appearance_dark">داكن</string>

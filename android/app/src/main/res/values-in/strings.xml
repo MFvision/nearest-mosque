@@ -47,6 +47,7 @@
     <string name="answer_searching">Mencari di buku Anda…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Satu gaya untuk tombol dan sorotan aplikasi, setiap widget, Layar Terkunci, dan Dynamic Island. Untuk memberi gaya sendiri pada satu widget, tekan lama lalu pilih Edit Widget.</string>
+    <string name="app_style_note_android">Satu gaya untuk tombol dan sorotan aplikasi serta setiap widget. Agar satu widget punya gayanya sendiri, sentuh lama widget itu lalu buka setelannya.</string>
     <string name="app_style_title">Gaya aplikasi dan widget</string>
     <string name="appearance">Tampilan</string>
     <string name="appearance_dark">Gelap</string>

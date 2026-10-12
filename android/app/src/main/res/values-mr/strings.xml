@@ -47,6 +47,7 @@
     <string name="answer_searching">तुमच्या पुस्तकांमध्ये शोधत आहोत…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">ॲपची बटणे आणि हायलाइट, प्रत्येक विजेट, लॉक स्क्रीन आणि डायनॅमिक आयलंड यांसाठी एकच शैली. एका विजेटला वेगळी शैली देण्यासाठी त्यावर दीर्घ दाबा आणि विजेट संपादित करा निवडा.</string>
+    <string name="app_style_note_android">अ‍ॅपची बटणे, हायलाइट आणि प्रत्येक विजेटसाठी एकच शैली. एखाद्या विजेटला स्वतःची शैली देण्यासाठी त्याला स्पर्श करून धरून ठेवा, मग त्याची सेटिंग्ज उघडा.</string>
     <string name="app_style_title">ॲप आणि विजेटची शैली</string>
     <string name="appearance">स्वरूप</string>
     <string name="appearance_dark">डार्क</string>

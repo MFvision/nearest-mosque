@@ -47,6 +47,7 @@
     <string name="answer_searching">ඔබේ පොත්වල සොයමින්…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">යෙදුමේ බොත්තම් සහ ඉස්මතු කිරීම්, සෑම විජට් එකක්ම, අගුළු තිරය සහ Dynamic Island සඳහා එකම විලාසයක්. එක් විජට් එකකට වෙනම විලාසයක් දීමට එය දිගු එබීමෙන් විජට් සංස්කරණය තෝරන්න.</string>
+    <string name="app_style_note_android">යෙදුමේ බොත්තම්, උද්දීපන සහ සෑම විජට් එකක් සඳහාම එක් විලාසයක්. එක් විජට් එකකට වෙනම විලාසයක් දීමට, එය ස්පර්ශ කර අල්ලාගෙන, ඉන්පසු එහි සැකසීම් විවෘත කරන්න.</string>
     <string name="app_style_title">යෙදුමේ සහ විජට්වල විලාසය</string>
     <string name="appearance">පෙනුම</string>
     <string name="appearance_dark">අඳුරු</string>

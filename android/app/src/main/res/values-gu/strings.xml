@@ -47,6 +47,7 @@
     <string name="answer_searching">તમારાં પુસ્તકોમાં શોધી રહ્યા છીએ…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">ઍપનાં બટન અને હાઇલાઇટ, દરેક વિજેટ, લૉક સ્ક્રીન અને ડાયનેમિક આઇલેન્ડ માટે એક જ શૈલી. એક વિજેટને અલગ શૈલી આપવા તેને લાંબું દબાવો અને વિજેટ સંપાદિત કરો પસંદ કરો.</string>
+    <string name="app_style_note_android">ઍપનાં બટન, હાઇલાઇટ અને દરેક વિજેટ માટે એક જ શૈલી. કોઈ એક વિજેટને તેની પોતાની શૈલી આપવા, તેને સ્પર્શ કરીને પકડી રાખો, પછી તેનાં સેટિંગ ખોલો.</string>
     <string name="app_style_title">ઍપ અને વિજેટની શૈલી</string>
     <string name="appearance">દેખાવ</string>
     <string name="appearance_dark">ડાર્ક</string>

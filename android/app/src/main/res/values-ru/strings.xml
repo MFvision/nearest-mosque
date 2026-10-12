@@ -47,6 +47,7 @@
     <string name="answer_searching">Ищем в ваших книгах…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Единый стиль для кнопок и акцентов приложения, всех виджетов, экрана блокировки и Dynamic Island. Чтобы задать стиль одному виджету, нажмите на него и удерживайте, затем выберите «Изменить виджет».</string>
+    <string name="app_style_note_android">Один стиль для кнопок и акцентов приложения и всех виджетов. Чтобы задать виджету свой стиль, нажмите на него и удерживайте, затем откройте его настройки.</string>
     <string name="app_style_title">Стиль приложения и виджетов</string>
     <string name="appearance">Оформление</string>
     <string name="appearance_dark">Тёмное</string>

@@ -18,11 +18,14 @@ object Tokens {
     val navy = Color(0xFF1A4D6E)
     val navyDeep = Color(0xFF0E2F45)
     val navyNight = Color(0xFF081B29)
-    val gold = Color(0xFFD4A843)
-    val goldDeep = Color(0xFFB8922F)
-    val goldText = Color(0xFF8A6A1C)
-    /** Gold text on the light skies (goldText is below 4.5:1 on some of them). */
-    val goldInk = Color(0xFF6E5414)
+    /** The accent follows the app's style (AppStyle): gold for Gold and cream, green, blue or teal otherwise. */
+    val gold: Color get() = sa.zood.nearmosque.AppStyle.dark(sa.zood.nearmosque.AppStyle.current)
+    val goldDeep: Color get() = sa.zood.nearmosque.AppStyle.current.let {
+        if (it == "cream") Color(0xFFB8922F) else androidx.compose.ui.graphics.lerp(sa.zood.nearmosque.AppStyle.dark(it), sa.zood.nearmosque.AppStyle.light(it), 0.5f)
+    }
+    val goldText: Color get() = sa.zood.nearmosque.AppStyle.current.let { if (it == "cream") Color(0xFF8A6A1C) else sa.zood.nearmosque.AppStyle.light(it) }
+    /** Accent text on the light skies (goldText is below 4.5:1 on some of them). */
+    val goldInk: Color get() = sa.zood.nearmosque.AppStyle.light(sa.zood.nearmosque.AppStyle.current)
     val moonlight = Color(0xFFC9D8FF)
     val sand = Color(0xFFF4EEDF)
     val surfaceLight = Color(0xFFF2F2F7)

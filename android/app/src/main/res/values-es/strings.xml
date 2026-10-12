@@ -47,6 +47,7 @@
     <string name="answer_searching">Buscando en tus libros…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Un solo estilo para los botones y resaltes de la app, cada widget, la pantalla bloqueada y la Dynamic Island. Para dar a un widget su propio estilo, mantenlo pulsado y elige Editar widget.</string>
+    <string name="app_style_note_android">Un solo estilo para los botones y los acentos de la app y para cada widget. Para dar a un widget su propio estilo, mantenlo pulsado y abre sus ajustes.</string>
     <string name="app_style_title">Estilo de la app y los widgets</string>
     <string name="appearance">Apariencia</string>
     <string name="appearance_dark">Oscuro</string>

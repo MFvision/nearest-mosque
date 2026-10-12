@@ -47,6 +47,7 @@
     <string name="answer_searching">Kitaplarınızda aranıyor…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Uygulamanın düğmeleri ve vurguları, tüm widget\'lar, kilitli ekran ve Dynamic Island için tek bir stil. Bir widget\'a ayrı stil vermek için ona uzun basıp Widget\'ı Düzenle\'yi seçin.</string>
+    <string name="app_style_note_android">Uygulamanın düğmeleri, vurguları ve tüm widget\'lar için tek bir stil. Bir widget\'a kendi stilini vermek için ona basılı tutun, sonra ayarlarını açın.</string>
     <string name="app_style_title">Uygulama ve widget stili</string>
     <string name="appearance">Görünüm</string>
     <string name="appearance_dark">Koyu</string>

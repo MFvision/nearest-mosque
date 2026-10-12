@@ -47,6 +47,7 @@
     <string name="answer_searching">Претражујемо ваше књиге…</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Један стил за дугмад и истицања у апликацији, сваки виџет, закључани екран и Dynamic Island. За посебан стил једног виџета, држите га притиснутим и изаберите Измени виџет.</string>
+    <string name="app_style_note_android">Један стил за дугмад и истакнуте боје апликације и за сваки виџет. Да би један виџет имао свој стил, додирните га и задржите, па отворите његова подешавања.</string>
     <string name="app_style_title">Стил апликације и виџета</string>
     <string name="appearance">Изглед</string>
     <string name="appearance_dark">Тамно</string>
