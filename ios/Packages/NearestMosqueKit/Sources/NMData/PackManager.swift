@@ -109,7 +109,7 @@ public final class PackManager: @unchecked Sendable {
     public func install(_ m: PackManifest, builtin: Bool, read readAny: (String) -> Data?) throws {
         // Only files the manifest lists (and so hash-checks) are ever read.
         let listed = Set(m.files.map(\.path))
-        let read = { (path: String) -> Data? in listed.contains(path) ? readAny(path) : nil }
+        func read(_ path: String) -> Data? { listed.contains(path) ? readAny(path) : nil }
         try PackVerifier.verify(m, read: read)
         let bytes = m.files.reduce(0) { $0 + $1.bytes }
         let now = Date().timeIntervalSince1970
