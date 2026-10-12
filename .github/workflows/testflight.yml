@@ -1,6 +1,6 @@
 name: Nearest Mosque TestFlight
 
-# Builds the iPhone and iPad app, the Mac app (Mac Catalyst) and the Apple TV app, signs them with the App Store Connect
+# Builds the iPhone and iPad app, the Mac app (Mac Catalyst), the Apple TV app and the Apple Vision Pro app, signs them with the App Store Connect
 # API key (Xcode automatic signing, cloud-managed distribution certificate) and uploads them to TestFlight.
 # Start it from the Actions tab (Run workflow) or by pushing a tag such as `ios-v1`.
 # Needs three repository secrets (see docs/07-testflight.md):
@@ -227,6 +227,64 @@ jobs:
           grep -q "EXPORT SUCCEEDED" tv-export.log
           echo "Uploaded Apple TV build $BUILD_NUMBER of $BUNDLE_ID."
 
+      # The Apple Vision Pro app (same bundle id, so one App Store listing; no extensions): allowed to fail on its
+      # own like the Mac and Apple TV apps.
+      - name: Add the Apple Vision Pro platform to the app record (first time only)
+        if: ${{ !inputs.mac_only && !inputs.tv_only }}
+        continue-on-error: true
+        env:
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        run: |
+          VERSION=$(sed -nE 's/^ +MARKETING_VERSION: "(.*)"/\1/p' project.yml | head -1)
+          VERSION="$VERSION" /tmp/asc/bin/python ../tools/asc_testflight.py --ensure-platform VISION_OS
+
+      - name: Archive the Apple Vision Pro app
+        id: vision_archive
+        if: ${{ !inputs.mac_only && !inputs.tv_only }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          vision_archive() {
+            xcodebuild -project NearMosque.xcodeproj -scheme NearMosqueVision -configuration Release \
+              -destination 'generic/platform=visionOS' -archivePath build/NearMosque-vision.xcarchive \
+              DEVELOPMENT_TEAM="$APPLE_TEAM_ID" APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" "$@" \
+              archive 2>&1 | tee -a vision-archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
+          }
+          vision_archive CODE_SIGN_STYLE=Automatic -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+          if grep -q "ARCHIVE SUCCEEDED" vision-archive.log; then exit 0; fi
+          # Automatic signing needs a registered Vision Pro for its development profile; without one, archive
+          # unsigned and sign here with the entitlements, so the export keeps them when it re-signs.
+          echo "Automatic signing did not archive; archiving unsigned for the export to sign."
+          rm -rf build/NearMosque-vision.xcarchive
+          PREFIX="$APPLE_TEAM_ID."
+          vision_archive CODE_SIGNING_ALLOWED=NO AppIdentifierPrefix="$PREFIX"
+          grep -q "ARCHIVE SUCCEEDED" vision-archive.log
+          cat > /tmp/vision-app.entitlements <<XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>application-identifier</key><string>${PREFIX}${BUNDLE_ID}</string>
+            <key>com.apple.developer.team-identifier</key><string>${APPLE_TEAM_ID}</string>
+            <key>keychain-access-groups</key><array><string>${PREFIX}${BUNDLE_ID}.shared</string></array>
+          </dict></plist>
+          XML
+          APP=$(ls -d build/NearMosque-vision.xcarchive/Products/Applications/*.app)
+          find "$APP" \( -name "*.framework" -o -name "*.dylib" \) -prune -exec codesign -f -s - {} \;
+          codesign -f -s - --entitlements /tmp/vision-app.entitlements "$APP"
+
+      - name: Export and upload the Apple Vision Pro app
+        if: steps.vision_archive.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          xcodebuild -exportArchive -archivePath build/NearMosque-vision.xcarchive -exportOptionsPlist ExportOptions.plist \
+            -exportPath build/export-vision -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            2>&1 | tee vision-export.log | grep -E "error|Upload|EXPORT (SUCCEEDED|FAILED)" || true
+          grep -q "EXPORT SUCCEEDED" vision-export.log
+          echo "Uploaded Apple Vision Pro build $BUILD_NUMBER of $BUNDLE_ID."
+
       - name: Remove the API key
         if: always()
         run: rm -rf ~/.appstoreconnect/private_keys
@@ -236,7 +294,7 @@ jobs:
       - name: Scrub the logs
         if: failure()
         run: |
-          for f in archive.log export.log mac-archive.log mac-export.log tv-archive.log tv-export.log; do
+          for f in archive.log export.log mac-archive.log mac-export.log tv-archive.log tv-export.log vision-archive.log vision-export.log; do
             [ -f "$f" ] || continue
             sed -i '' -E -e "s/${ASC_KEY_ID:-NO_KEY_ID}/[key id]/g" -e "s/${ASC_ISSUER_ID:-NO_ISSUER}/[issuer id]/g" \
               -e 's/AuthKey_[A-Za-z0-9]+\.p8/AuthKey_[key id].p8/g' -e '/Command line invocation:/,/^$/d' "$f"
@@ -253,6 +311,8 @@ jobs:
             ios/mac-export.log
             ios/tv-archive.log
             ios/tv-export.log
+            ios/vision-archive.log
+            ios/vision-export.log
 
   # Waiting for Apple's processing runs on Linux (macOS minutes count several times against the Actions
   # allowance).
@@ -273,7 +333,7 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
         run: |
-          WAIT_MINUTES=60 PLATFORMS=${{ inputs.mac_only && 'MAC_OS' || inputs.tv_only && 'TV_OS' || 'IOS,MAC_OS,TV_OS' }} /tmp/asc/bin/python tools/asc_testflight.py
+          WAIT_MINUTES=60 PLATFORMS=${{ inputs.mac_only && 'MAC_OS' || inputs.tv_only && 'TV_OS' || 'IOS,MAC_OS,TV_OS,VISION_OS' }} /tmp/asc/bin/python tools/asc_testflight.py
 
   # The archive step's automatic signing creates a development certificate on each fresh machine; it is
   # useless once the machine is gone and Apple caps how many an account holds, so revoke this run's.

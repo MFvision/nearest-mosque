@@ -7,7 +7,7 @@ internal TestFlight group access to the build.
 
 Environment: ASC_KEY_ID, ASC_ISSUER_ID, ASC_PRIVATE_KEY (.p8 contents), BUNDLE_ID,
 optional BUILD_NUMBER (default: newest build), WAIT_MINUTES (default 0), PLATFORMS (default IOS; e.g.
-IOS,MAC_OS,TV_OS — next to the iPhone build, the Mac and Apple TV builds are optional and waited for at
+IOS,MAC_OS,TV_OS,VISION_OS — next to the iPhone build, the Mac, Apple TV and Vision Pro builds are optional and waited for at
 most 20 minutes).
 
   asc_testflight.py --ensure-platform TV_OS   # before the first upload for a platform (VERSION env)
@@ -133,7 +133,7 @@ def main() -> int:
 
 def handle(app_id: str, platform: str, want: str | None, wait: int) -> int:
     """Waits for this platform's build, answers export compliance and gives the internal groups access."""
-    print(f"--- {({'MAC_OS': 'Mac', 'TV_OS': 'Apple TV'}).get(platform, 'iPhone and iPad')} ({platform})")
+    print(f"--- {({'MAC_OS': 'Mac', 'TV_OS': 'Apple TV', 'VISION_OS': 'Apple Vision Pro'}).get(platform, 'iPhone and iPad')} ({platform})")
     deadline = time.time() + wait * 60
     while True:
         builds = api("GET", "/builds", {

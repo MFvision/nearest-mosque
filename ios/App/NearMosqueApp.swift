@@ -41,6 +41,10 @@ struct NearMosqueApp: App {
                     if p == .active { Task { await LiveCountdown.refresh(model) } }
                 }
         }
+        #if os(visionOS)
+        // A comfortable reading window in the room; people can resize it.
+        .defaultSize(width: 980, height: 720)
+        #endif
         .commands {
             // Mac menu bar and iPad keyboard shortcuts (⌘1, ⌘2, ⌘K, ⌘,).
             CommandGroup(replacing: .appSettings) {
