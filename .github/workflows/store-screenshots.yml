@@ -134,6 +134,9 @@ jobs:
       # layout the manifest describes.
       - name: Keep the full set as a release
         if: inputs.languages == '' && inputs.platforms == 'iphone ipad mac tv vision'
+        # Needs "Read and write permissions" under Settings → Actions → General → Workflow permissions;
+        # without it the set is still in the run's artifact.
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

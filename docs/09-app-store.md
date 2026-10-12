@@ -12,7 +12,8 @@ already at a size App Store Connect accepts for that slot.
 2. When it finishes, take the files from either place:
    * the repository's **Releases** page, release `store-screenshots-<commit>` (made by a full run: all
      devices, all languages; it does not expire): one zip per device type plus
-     `manifest-sheets-icons.zip`. Unzip all of them into one folder.
+     `manifest-sheets-icons.zip`. Unzip all of them into one folder. The workflow can make the release
+     only when Settings → Actions → General → Workflow permissions is "Read and write permissions".
    * or the run's artifact **app-store-screenshots** (every run; kept 30 days).
 
    To redo only the sorting (after a change to `tools/store/screens.json`), run it with **from_run** set to
