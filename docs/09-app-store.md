@@ -9,16 +9,16 @@ already at a size App Store Connect accepts for that slot.
 
 1. GitHub → Actions → **App Store screenshots** → **Run workflow**. Leave the inputs empty for every
    device in all 22 store languages, or name some (e.g. `iphone ipad`, `ar en`).
-2. When it finishes, take the files from either place:
-   * the repository's **Releases** page, release `store-screenshots-<commit>` (made by a full run: all
-     devices, all languages; it does not expire): one zip per device type plus
-     `manifest-sheets-icons.zip`. Unzip all of them into one folder. The workflow can make the release
-     only when Settings → Actions → General → Workflow permissions is "Read and write permissions".
-   * or the run's artifact **app-store-screenshots** (every run; kept 30 days).
+2. When it finishes, download the run's artifact **app-store-screenshots** (kept 30 days) and unzip it.
+3. A full run also makes a release, `store-screenshots-<commit>`, that does not expire (one zip per
+   device type plus `manifest-sheets-icons.zip`; unzip them all into one folder). The workflow can make
+   it only when Settings → Actions → General → Workflow permissions is "Read and write permissions".
 
-   To redo only the sorting (after a change to `tools/store/screens.json`), run it with **from_run** set to
-   the ID of the run that captured the pictures; nothing is captured again.
-3. The layout is:
+To redo a few captures, run it with **only** (e.g. `ar/01-prayer en/05-audio`) and **from_run** (the ID of
+the run that has the rest). To redo only the sorting after a change to `tools/store/screens.json`, run it
+with **from_run** and **capture** off; nothing is captured again.
+
+The layout of the files:
 
 ```
 <display type>/<App Store locale>/<NN>-<screen>.png   for example APP_IPHONE_67/ar-SA/01-prayer.png
