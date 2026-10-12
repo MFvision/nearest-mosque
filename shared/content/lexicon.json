@@ -3655,6 +3655,81 @@
     "nacimiento",
     "recién nacido"
    ]
+  },
+  {
+   "en": [
+    "miracle",
+    "miracles",
+    "miraculous",
+    "inimitability"
+   ],
+   "ar": [
+    "معجزة",
+    "معجزات",
+    "إعجاز",
+    "اعجاز",
+    "المعجز"
+   ],
+   "ur": [
+    "معجزہ",
+    "معجزات",
+    "اعجاز"
+   ],
+   "tr": [
+    "mucize",
+    "mucizeler",
+    "icaz",
+    "mucizevi"
+   ],
+   "id": [
+    "mukjizat",
+    "kemukjizatan",
+    "keajaiban"
+   ],
+   "fr": [
+    "miracle",
+    "miracles",
+    "miraculeux",
+    "inimitabilité"
+   ],
+   "es": [
+    "milagro",
+    "milagros",
+    "milagroso",
+    "inimitabilidad"
+   ]
+  },
+  {
+   "en": [
+    "scientific",
+    "science"
+   ],
+   "ar": [
+    "علمي",
+    "العلمية",
+    "علمية"
+   ],
+   "ur": [
+    "سائنسی",
+    "سائنس"
+   ],
+   "tr": [
+    "bilimsel",
+    "bilim"
+   ],
+   "id": [
+    "ilmiah",
+    "sains"
+   ],
+   "fr": [
+    "scientifique",
+    "science"
+   ],
+   "es": [
+    "científico",
+    "científica",
+    "ciencia"
+   ]
   }
  ]
 }
