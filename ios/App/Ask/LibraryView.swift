@@ -40,7 +40,13 @@ struct LibraryView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) } }
             .navigationDestination(for: String.self) { id in
-                if let p = ((try? app.ask?.libraryPacks()) ?? []).first(where: { $0.id == id }) { CollectionView(pack: p) }
+                if id == "classics" {
+                    ClassicsView()
+                } else if id.hasPrefix("book:"), let b = Classics.catalog.books.first(where: { "book:" + $0.id == id }) {
+                    BookView(book: b)
+                } else if let p = ((try? app.ask?.libraryPacks()) ?? []).first(where: { $0.id == id }) {
+                    CollectionView(pack: p)
+                }
             }
         }
         // The library keeps its dark reading-room look in either appearance: its navy background is fixed, so its
@@ -53,6 +59,13 @@ struct LibraryView: View {
             guard app.ready else { return }
             let d = UserDefaults.standard
             if let t = d.string(forKey: "demoLibraryTab").flatMap(Shelf.init(rawValue:)) { tab = t }
+            // `-demoClassics YES` opens the classical books; `-demoClassicsBook tawhid` also that book. They come with
+            // the app, so this does not wait for the language's library packs.
+            if d.bool(forKey: "demoClassics") {
+                tab = .browse
+                path = ["classics"] + (d.string(forKey: "demoClassicsBook").map { ["book:" + $0] } ?? [])
+                return
+            }
             for _ in 0..<60 where ((try? app.ask?.libraryPacks()) ?? []).isEmpty { try? await Task.sleep(for: .seconds(2)) }
             if let pack = d.string(forKey: "demoLibraryPack") { tab = .browse; path = [pack] }
             if let id = d.string(forKey: "demoOpenBook") { demoBook = (try? app.ask?.resolve([id]))?.first }

@@ -1,0 +1,122 @@
+name: App Store screenshots
+
+# Captures the App Store screenshots of every Apple device type in every store language (tools/store/screens.json)
+# from Debug builds in the simulators and on the Mac runner, then sorts them into App Store Connect slots with a
+# manifest (tools/store/finish.py; how to use it: docs/09-app-store.md). Started by hand; uploads nothing to Apple.
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: "Devices (any of: iphone ipad mac tv vision)"
+        default: "iphone ipad mac tv vision"
+      languages:
+        description: "App language codes, space-separated (empty: all 22 store languages)"
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-screenshots
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      platforms: ${{ steps.p.outputs.platforms }}
+    steps:
+      - id: p
+        env:
+          WANTED: ${{ inputs.platforms }}
+        run: |
+          python3 -c "
+          import json, os
+          ok = ['iphone', 'ipad', 'mac', 'tv', 'vision']
+          want = [p for p in os.environ['WANTED'].split() if p in ok] or ok
+          print('platforms=' + json.dumps(want))" >> "$GITHUB_OUTPUT"
+
+  shoot:
+    name: Screenshots (${{ matrix.platform }})
+    needs: plan
+    runs-on: macos-26
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: ${{ fromJSON(needs.plan.outputs.platforms) }}
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Select newest Xcode
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+      - name: visionOS SDK and simulator
+        if: matrix.platform == 'vision'
+        run: |
+          xcrun simctl list runtimes | grep -qi -e xros -e visionos || xcodebuild -downloadPlatform visionOS
+          xcrun simctl list runtimes
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Debug build
+        env:
+          PLATFORM: ${{ matrix.platform }}
+        run: |
+          set -o pipefail
+          case "$PLATFORM" in
+            iphone|ipad) SCHEME=NearMosque; DEST='generic/platform=iOS Simulator' ;;
+            mac) SCHEME=NearMosque; DEST='generic/platform=macOS,variant=Mac Catalyst' ;;
+            tv) SCHEME=NearMosqueTV; DEST='generic/platform=tvOS Simulator' ;;
+            vision) SCHEME=NearMosqueVision; DEST='generic/platform=visionOS Simulator' ;;
+          esac
+          xcodebuild -project NearMosque.xcodeproj -scheme "$SCHEME" -configuration Debug -destination "$DEST" \
+            -derivedDataPath dd CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" build.log
+          APP=$(find dd/Build/Products -maxdepth 2 -name "$SCHEME.app" -type d | head -1)
+          echo "APP=$PWD/$APP" >> "$GITHUB_ENV"
+      - name: Capture
+        env:
+          PLATFORM: ${{ matrix.platform }}
+          LANGS: ${{ inputs.languages }}
+        # shellcheck disable=SC2086 # the language list is meant to split into arguments
+        run: python3 ../tools/store/shoot.py "$PLATFORM" "$APP" raw $LANGS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: raw-${{ matrix.platform }}
+          path: |
+            ios/raw/
+            ios/build.log
+          retention-days: 3
+
+  finish:
+    name: Sort into App Store Connect slots
+    needs: shoot
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: raw-*
+          path: downloaded
+      - name: Sort, check sizes, write the manifest
+        run: |
+          mkdir -p raw
+          for d in downloaded/raw-*; do [ -d "$d/raw" ] && cp -R "$d/raw/." raw/; done
+          python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet pillow
+          /tmp/venv/bin/python tools/store/finish.py raw store "$GITHUB_SHA"
+          du -sh store
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: app-store-screenshots
+          path: store/
+          retention-days: 30

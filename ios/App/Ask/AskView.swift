@@ -204,9 +204,11 @@ struct AskView: View {
         .task(id: l10n.language) { if app.ready { app.ensureLibraries(for: l10n.language) } }
         #if DEBUG
         .task(id: app.ready) {
-            // CI screenshots: `-demoAsk YES` asks the first common question.
+            // CI screenshots: `-demoAsk YES` asks the first common question (`-demoAskId quran-miracle`: that one).
+            let wanted = UserDefaults.standard.string(forKey: "demoAskId")
             guard app.ready, vm.turns.isEmpty, UserDefaults.standard.bool(forKey: "demoAsk"),
-                  let q = try? app.ask?.commonQuestions().first else { return }
+                  let all = try? app.ask?.commonQuestions(),
+                  let q = all.first(where: { $0.id == wanted }) ?? all.first else { return }
             vm.ask(app, common: q, displayed: q.question[l10n.language] ?? q.question["en"] ?? q.id)
         }
         // `-demoLibrary YES` opens the library (step-by-step screenshots of reading a book).

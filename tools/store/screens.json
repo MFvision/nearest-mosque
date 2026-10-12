@@ -1,0 +1,81 @@
+{
+  "_about": "The App Store screenshots: which screens each device gets, in which order, and how each is produced (the app's DEBUG demo launch arguments). Read by tools/store/shoot.py (capture), tools/store/finish.py (manifest) and docs/09-app-store.md (guide). App Store Connect takes at most 10 screenshots per device type and locale; the order here is the order on the store page.",
+  "cities": {
+    "Riyadh": [24.7136, 46.6753],
+    "Cairo": [30.0444, 31.2357]
+  },
+  "languages": [
+    {"app": "ar", "system": "ar", "asc": ["ar-SA"]},
+    {"app": "en", "system": "en", "asc": ["en-US", "en-GB", "en-AU", "en-CA"]},
+    {"app": "fr", "system": "fr", "asc": ["fr-FR", "fr-CA"]},
+    {"app": "es", "system": "es", "asc": ["es-ES", "es-MX"]},
+    {"app": "pt", "system": "pt-BR", "asc": ["pt-BR", "pt-PT"]},
+    {"app": "tr", "system": "tr", "asc": ["tr"]},
+    {"app": "id", "system": "id", "asc": ["id"]},
+    {"app": "ur", "system": "ur", "asc": ["ur-PK"]},
+    {"app": "ru", "system": "ru", "asc": ["ru"]},
+    {"app": "nl", "system": "nl", "asc": ["nl-NL"]},
+    {"app": "hu", "system": "hu", "asc": ["hu"]},
+    {"app": "zh", "system": "zh-Hans", "asc": ["zh-Hans"]},
+    {"app": "hi", "system": "hi", "asc": ["hi"]},
+    {"app": "bn", "system": "bn", "asc": ["bn-BD"]},
+    {"app": "gu", "system": "gu", "asc": ["gu-IN"]},
+    {"app": "kn", "system": "kn", "asc": ["kn-IN"]},
+    {"app": "ml", "system": "ml", "asc": ["ml-IN"]},
+    {"app": "mr", "system": "mr", "asc": ["mr-IN"]},
+    {"app": "pa", "system": "pa", "asc": ["pa-IN"]},
+    {"app": "te", "system": "te", "asc": ["te-IN"]},
+    {"app": "th", "system": "th", "asc": ["th"]},
+    {"app": "vi", "system": "vi", "asc": ["vi"]}
+  ],
+  "_ask": "Common questions (and so the Ask answer screen) exist in these languages; other languages show the Ask screen with its question list instead of an answer.",
+  "askLanguages": ["ar", "en", "es", "fr", "id", "tr", "ur"],
+  "screens": {
+    "prayer":   {"title": "Prayer times", "shows": "Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day.", "city": "Riyadh", "args": ["-demoTab", "prayer"]},
+    "qibla":    {"title": "Qibla compass", "shows": "Full Qibla compass: the dial turns with the phone, the Kaaba sits at the Qibla bearing, with bearing and distance to Makkah.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoCompass", "YES"]},
+    "mosques-map": {"title": "Nearest mosques on the map", "shows": "Mosques around the person on the map, with the list of the nearest ones and their distance.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoMosqueMode", "1"]},
+    "mosques-radar": {"title": "Mosque compass", "shows": "The mosque compass: the nearest mosques placed around the person by direction and distance.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoMosqueMode", "0"]},
+    "ask":      {"title": "Ask with cited sources", "shows": "Ask: an answer to 'Is the Quran a miracle?' built from the app's offline library, every part with its source.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoAsk", "YES", "-demoAskId", "quran-miracle"], "fallbackArgs": ["-demoTab", "ask"]},
+    "classics": {"title": "Classical books", "shows": "The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoLibrary", "YES", "-demoClassics", "YES"]},
+    "widgets":  {"title": "Home Screen widgets", "shows": "The Today widget (all prayers of the day) in its sizes, in the app's style.", "city": "Riyadh", "args": ["-demoWidgets", "YES", "-demoWidgetKind", "today", "-demoWidgetLook", "cream"]},
+    "widgets-qibla": {"title": "Qibla and ring widgets", "shows": "The Qibla widget and the prayer ring widget in the teal style.", "city": "Riyadh", "args": ["-demoWidgets", "YES", "-demoWidgetKind", "qibla", "-demoWidgetLook", "teal"]},
+    "island":   {"title": "Dynamic Island and Lock Screen", "shows": "The next-prayer Live Activity in the Dynamic Island and on the Lock Screen.", "city": "Riyadh", "args": ["-demoWidgets", "YES", "-demoWidgetKind", "island", "-demoWidgetLook", "cream"]},
+    "audio":    {"title": "Adhan and reminders", "shows": "Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoAudioSettings", "YES"]},
+    "onboarding": {"title": "Welcome", "shows": "The first page of the welcome tour.", "args": ["-demoOnboarding", "YES", "-demoOnboardingPage", "0"]},
+    "prayer-dark": {"title": "Prayer times in dark mode", "shows": "The prayer screen in dark mode.", "city": "Riyadh", "appearance": "dark", "args": ["-demoTab", "prayer"]},
+    "prayer-landscape": {"title": "Prayer times, landscape", "shows": "The prayer screen with the iPad turned sideways.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoLandscape", "YES"]},
+    "tv-board": {"title": "Prayer board", "shows": "The prayer board for the living room or the mosque hall: today's times and the time left to the next prayer.", "city": "Riyadh", "args": []},
+    "tv-qibla": {"title": "Qibla", "shows": "The Qibla direction and distance for the chosen city.", "city": "Riyadh", "args": ["-demoTab", "qibla"]},
+    "tv-mosques": {"title": "Nearby mosques", "shows": "Mosques near the chosen city.", "city": "Cairo", "args": ["-demoTab", "mosques"]},
+    "tv-alert": {"title": "Prayer alert", "shows": "The full-screen alert when a prayer time comes.", "city": "Riyadh", "args": ["-demoAlert", "YES"]},
+    "tv-top-shelf": {"title": "Top Shelf", "shows": "The Top Shelf on the Apple TV Home Screen: the next prayer without opening the app.", "city": "Riyadh", "args": ["-demoTopShelf", "YES"]},
+    "tv-settings": {"title": "Settings", "shows": "City, calculation method and Adhan settings.", "city": "Riyadh", "args": ["-demoTab", "settings"]}
+  },
+  "platforms": {
+    "iphone": {
+      "displayType": "APP_IPHONE_67", "label": "iPhone 6.9\" display", "simulator": "iPhone Pro Max", "scheme": "NearMosque",
+      "sizes": [[1320, 2868], [1290, 2796], [1260, 2736]],
+      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "island", "audio", "mosques-radar", "prayer-dark"]
+    },
+    "ipad": {
+      "displayType": "APP_IPAD_PRO_3GEN_129", "label": "iPad 13\" display", "simulator": "iPad Pro 13-inch", "scheme": "NearMosque",
+      "sizes": [[2064, 2752], [2048, 2732]],
+      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding", "prayer-landscape"]
+    },
+    "mac": {
+      "displayType": "APP_DESKTOP", "label": "Mac", "scheme": "NearMosque",
+      "sizes": [[2880, 1800], [2560, 1600], [1440, 900], [1280, 800]],
+      "order": ["prayer", "mosques-map", "ask", "classics", "widgets", "audio", "qibla"]
+    },
+    "tv": {
+      "displayType": "APP_APPLE_TV", "label": "Apple TV", "simulator": "Apple TV 4K", "scheme": "NearMosqueTV",
+      "sizes": [[3840, 2160], [1920, 1080]],
+      "order": ["tv-board", "tv-qibla", "tv-mosques", "tv-alert", "tv-top-shelf", "tv-settings"]
+    },
+    "vision": {
+      "displayType": "APP_APPLE_VISION_PRO", "label": "Apple Vision Pro", "simulator": "Apple Vision Pro", "scheme": "NearMosqueVision",
+      "sizes": [[3840, 2160]],
+      "order": ["prayer", "mosques-map", "ask", "classics", "audio", "onboarding"]
+    }
+  }
+}
