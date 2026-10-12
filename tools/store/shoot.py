@@ -9,6 +9,7 @@ Files land in <output>/<platform>/<app language>/<NN>-<screen>.png; finish.py ch
 manifest that says where each file goes in App Store Connect.
 """
 import json
+import os
 import pathlib
 import re
 import subprocess
@@ -21,6 +22,19 @@ SPEC = json.loads((HERE / "screens.json").read_text())
 
 # Seconds to wait after launch, per screen (maps and answers take longer to settle).
 WAIT = {"mosques-map": 16, "mosques-radar": 14, "ask": 18, "classics": 12, "tv-mosques": 14}
+# The Apple Vision Pro simulator renders a whole room and opens windows slowly: extra seconds, more for sheets.
+EXTRA = {"vision": 10}
+EXTRA_SCREEN = {("vision", "audio"): 14}
+# ONLY="ar/01-prayer en/05-audio" captures just those (to redo a few); empty captures everything.
+ONLY = set(os.environ.get("ONLY", "").split())
+
+
+def wanted(lang, n, screen):
+    return not ONLY or f"{lang['app']}/{n:02d}-{screen}" in ONLY
+
+
+def wait(platform, screen):
+    return WAIT.get(screen, 11) + EXTRA.get(platform, 0) + EXTRA_SCREEN.get((platform, screen), 0)
 
 
 def run(*cmd, check=False):
@@ -80,6 +94,8 @@ def shoot_simulator(platform, app, out, langs):
         folder = out / platform / lang["app"]
         folder.mkdir(parents=True, exist_ok=True)
         for n, screen in enumerate(conf["order"], 1):
+            if not wanted(lang, n, screen):
+                continue
             spec = SPEC["screens"][screen]
             want = spec.get("appearance", "light")
             if platform in ("iphone", "ipad") and want != look:
@@ -93,7 +109,7 @@ def shoot_simulator(platform, app, out, langs):
             if r.returncode:
                 print(f"::warning::{platform}/{lang['app']}/{screen}: launch failed", flush=True)
                 continue
-            time.sleep(WAIT.get(screen, 11))
+            time.sleep(wait(platform, screen))
             target = folder / f"{n:02d}-{screen}.png"
             simctl("io", udid, "screenshot", str(target))
             print(f"{platform}/{lang['app']}/{target.name}", flush=True)
@@ -124,10 +140,12 @@ def shoot_mac(app, out, langs):
         folder = out / "mac" / lang["app"]
         folder.mkdir(parents=True, exist_ok=True)
         for n, screen in enumerate(conf["order"], 1):
+            if not wanted(lang, n, screen):
+                continue
             run("pkill", "-x", "NearMosque")
             time.sleep(2)
             run("open", "-n", app, "--args", *launch_args(screen, lang))
-            time.sleep(WAIT.get(screen, 11) + 4)
+            time.sleep(wait("mac", screen) + 4)
             pid = run("pgrep", "-nx", "NearMosque").stdout.strip()
             wid = run("swift", str(script), pid).stdout.strip() if pid else ""
             target = folder / f"{n:02d}-{screen}.png"
