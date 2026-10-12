@@ -104,7 +104,9 @@ def shoot_simulator(platform, app, out, langs):
 MAC_WINDOW = r'''
 import CoreGraphics
 let all = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
-let mine = all.filter { ($0[kCGWindowOwnerName as String] as? String) == "NearMosque" && ($0[kCGWindowLayer as String] as? Int) == 0 }
+// The app's process (its windows are owned by the display name "Near Mosque", so match the process ID).
+let pid = Int(CommandLine.arguments.dropFirst().first ?? "") ?? -1
+let mine = all.filter { ($0[kCGWindowOwnerPID as String] as? Int) == pid && ($0[kCGWindowLayer as String] as? Int) == 0 }
 let big = mine.max { a, b in
     let ra = a[kCGWindowBounds as String] as? [String: Double] ?? [:], rb = b[kCGWindowBounds as String] as? [String: Double] ?? [:]
     return (ra["Width"] ?? 0) * (ra["Height"] ?? 0) < (rb["Width"] ?? 0) * (rb["Height"] ?? 0)
@@ -126,7 +128,8 @@ def shoot_mac(app, out, langs):
             time.sleep(2)
             run("open", "-n", app, "--args", *launch_args(screen, lang))
             time.sleep(WAIT.get(screen, 11) + 4)
-            wid = run("swift", str(script)).stdout.strip()
+            pid = run("pgrep", "-nx", "NearMosque").stdout.strip()
+            wid = run("swift", str(script), pid).stdout.strip() if pid else ""
             target = folder / f"{n:02d}-{screen}.png"
             # The app's window alone (with its shadow); finish.py places it on a store-sized canvas.
             if wid:
