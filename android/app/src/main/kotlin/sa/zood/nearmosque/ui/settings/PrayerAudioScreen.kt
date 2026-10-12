@@ -65,7 +65,6 @@ import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AlertKind
 import sa.zood.nearmosque.core.AlertSettings
 import sa.zood.nearmosque.core.PrayerEvent
-import sa.zood.nearmosque.core.PrayerSounds
 import sa.zood.nearmosque.core.Reciter
 import sa.zood.nearmosque.core.VoiceLanguage
 import sa.zood.nearmosque.platform.AudioCatalog
@@ -202,7 +201,7 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
                 Note(stringResource(R.string.before_note))
 
                 Header(stringResource(R.string.per_prayer_section))
-                PrayerEvent.prayers.forEach { e -> PrayerRows(e, alerts, e in reminders, { setBell(e, it) }) { set(alerts.withSounds(e, it)) } }
+                PrayerEvent.prayers.forEach { e -> PrayerRows(e, alerts, e in reminders, { setBell(e, it) }) { sound, on -> set(alerts.withPrayer(e, sound, on)) } }
                 Toggle(stringResource(R.string.sunrise_notify), null, PrayerEvent.SUNRISE in reminders) { setBell(PrayerEvent.SUNRISE, it) }
                 Note(stringResource(R.string.per_prayer_note))
 
@@ -252,9 +251,8 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
 
 /** One prayer, collapsed to its name and what is on; expanded to its own switches. */
 @Composable
-private fun PrayerRows(e: PrayerEvent, alerts: AlertSettings, bell: Boolean, onBell: (Boolean) -> Unit, onChange: (PrayerSounds) -> Unit) {
+private fun PrayerRows(e: PrayerEvent, alerts: AlertSettings, bell: Boolean, onBell: (Boolean) -> Unit, onChange: (AlertSettings.PrayerSound, Boolean) -> Unit) {
     var open by rememberSaveable(e) { mutableStateOf(false) }
-    val s = alerts.sounds(e)
     val name = stringResource(Format.prayerName(e))
     Row(
         Modifier.fillMaxWidth().heightIn(min = 56.dp).clickable { open = !open },
@@ -266,26 +264,22 @@ private fun PrayerRows(e: PrayerEvent, alerts: AlertSettings, bell: Boolean, onB
     }
     AnimatedVisibility(open) {
         Column(Modifier.padding(start = 16.dp)) {
-            SubSwitch(stringResource(R.string.at_prayer_notify), bell, true, onBell)
-            SubSwitch(stringResource(R.string.play_adhan), s.adhan, if (e == PrayerEvent.FAJR) alerts.fajrAdhan else alerts.adhan) { onChange(s.copy(adhan = it)) }
-            SubSwitch(stringResource(R.string.notif_minutes_until, 10, name), s.before10, alerts.before10) { onChange(s.copy(before10 = it)) }
-            SubSwitch(stringResource(R.string.notif_minutes_until, 5, name), s.before5, alerts.before5) { onChange(s.copy(before5 = it)) }
-            SubSwitch(stringResource(R.string.near) + " · " + stringResource(R.string.alerts_minutes, alerts.nearMinutes), s.near, alerts.near) { onChange(s.copy(near = it)) }
+            SubSwitch(stringResource(R.string.at_prayer_notify), bell, onBell)
+            SubSwitch(stringResource(R.string.play_adhan), alerts.isOn(e, AlertSettings.PrayerSound.ADHAN)) { onChange(AlertSettings.PrayerSound.ADHAN, it) }
+            SubSwitch(stringResource(R.string.notif_minutes_until, 10, name), alerts.isOn(e, AlertSettings.PrayerSound.BEFORE_10)) { onChange(AlertSettings.PrayerSound.BEFORE_10, it) }
+            SubSwitch(stringResource(R.string.notif_minutes_until, 5, name), alerts.isOn(e, AlertSettings.PrayerSound.BEFORE_5)) { onChange(AlertSettings.PrayerSound.BEFORE_5, it) }
+            SubSwitch(stringResource(R.string.near) + " · " + stringResource(R.string.alerts_minutes, alerts.nearMinutes), alerts.isOn(e, AlertSettings.PrayerSound.NEAR)) { onChange(AlertSettings.PrayerSound.NEAR, it) }
         }
     }
     HorizontalDivider()
 }
 
-/** A per-prayer switch; it works only while the same reminder is on for all prayers above. */
+/** A per-prayer switch, always usable: on here while the reminder is off above turns it on for this prayer only. */
 @Composable
-private fun SubSwitch(title: String, on: Boolean, master: Boolean, onChange: (Boolean) -> Unit) {
+private fun SubSwitch(title: String, on: Boolean, onChange: (Boolean) -> Unit) {
     Row(Modifier.fillMaxWidth().heightIn(min = 52.dp), verticalAlignment = Alignment.CenterVertically) {
-        Column(Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.bodyMedium, color = if (master) MaterialTheme.colorScheme.onSurface else LocalExtraColors.current.textSecondary)
-            if (!master) Text(stringResource(R.string.off_above), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
-        }
-        // While the reminder is off above, the switch shows off (nothing plays); its own choice is kept.
-        Switch(checked = on && master, onCheckedChange = onChange, enabled = master)
+        Text(title, Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
+        Switch(checked = on, onCheckedChange = onChange)
     }
 }
 

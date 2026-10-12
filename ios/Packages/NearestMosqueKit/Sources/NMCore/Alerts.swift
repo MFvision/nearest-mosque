@@ -105,6 +105,45 @@ public struct AlertSettings: Codable, Hashable, Sendable {
 
     public mutating func setSounds(_ e: PrayerEvent, _ s: PrayerSounds) { perPrayer[e.rawValue] = s }
 
+    public enum PrayerSound: Sendable { case adhan, before10, before5, near }
+
+    /// Whether this sound is on for this prayer (its own switch and the switch for all prayers).
+    public func isOn(_ e: PrayerEvent, _ sound: PrayerSound) -> Bool {
+        let s = sounds(e)
+        switch sound {
+        case .adhan: return adhanPlays(e)
+        case .before10: return before10 && s.before10
+        case .before5: return before5 && s.before5
+        case .near: return near && s.near
+        }
+    }
+
+    /// Turns a sound on or off for one prayer. Turning it on while it is off for all prayers turns it on for this
+    /// prayer only (the others in the same group are set off), so one switch is all it takes.
+    public mutating func setPrayer(_ e: PrayerEvent, _ sound: PrayerSound, _ on: Bool) {
+        func flag(_ p: PrayerEvent) -> WritableKeyPath<PrayerSounds, Bool> {
+            switch sound { case .adhan: return \.adhan; case .before10: return \.before10; case .before5: return \.before5; case .near: return \.near }
+        }
+        let master: WritableKeyPath<AlertSettings, Bool>
+        switch sound {
+        case .adhan: master = e == .fajr ? \.fajrAdhan : \.adhan
+        case .before10: master = \.before10
+        case .before5: master = \.before5
+        case .near: master = \.near
+        }
+        if on, !self[keyPath: master] {
+            self[keyPath: master] = true
+            // The Fajr Adhan has its own switch; the other Adhan switch covers Dhuhr to Isha.
+            let group = sound == .adhan ? (e == .fajr ? [PrayerEvent.fajr] : PrayerEvent.prayers.filter { $0 != .fajr }) : PrayerEvent.prayers
+            for p in group where p != e {
+                var s = sounds(p); s[keyPath: flag(p)] = false; setSounds(p, s)
+            }
+        }
+        var s = sounds(e)
+        s[keyPath: flag(e)] = on
+        setSounds(e, s)
+    }
+
     /// The Adhan plays at this prayer (its switch, the prayer's own switch, and a recording for it).
     public func adhanPlays(_ e: PrayerEvent) -> Bool {
         guard e.isPrayer, sounds(e).adhan else { return false }

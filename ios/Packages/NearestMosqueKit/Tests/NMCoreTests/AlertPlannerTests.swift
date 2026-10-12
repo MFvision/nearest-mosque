@@ -117,4 +117,19 @@ final class AlertPlannerTests: XCTestCase {
         XCTAssertEqual(p[0].at, d[.sunrise])
         XCTAssertEqual(p[0].kind, .atPrayer)
     }
+
+    func testOneSwitchForOnePrayer() {
+        var a = AlertSettings()
+        a.setPrayer(.maghrib, .before10, true)
+        XCTAssertTrue(a.before10)
+        XCTAssertEqual(PrayerEvent.prayers.filter { a.isOn($0, .before10) }, [.maghrib])
+        var b = AlertSettings()
+        b.setPrayer(.asr, .adhan, true)
+        XCTAssertEqual(PrayerEvent.prayers.filter { b.isOn($0, .adhan) }, [.asr])
+        XCTAssertFalse(b.fajrAdhan)
+        var c = AlertSettings()
+        c.before5 = true
+        c.setPrayer(.isha, .before5, false)
+        XCTAssertEqual(PrayerEvent.prayers.filter { c.isOn($0, .before5) }.count, 4)
+    }
 }

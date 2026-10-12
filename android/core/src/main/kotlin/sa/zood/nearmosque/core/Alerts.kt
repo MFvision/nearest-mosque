@@ -81,6 +81,53 @@ data class AlertSettings(
 
     fun withSounds(e: PrayerEvent, s: PrayerSounds) = copy(perPrayer = perPrayer + (e to s))
 
+    enum class PrayerSound { ADHAN, BEFORE_10, BEFORE_5, NEAR }
+
+    /** Whether this sound is on for this prayer (its own switch and the switch for all prayers). */
+    fun isOn(e: PrayerEvent, sound: PrayerSound): Boolean {
+        val s = sounds(e)
+        return when (sound) {
+            PrayerSound.ADHAN -> adhanPlays(e)
+            PrayerSound.BEFORE_10 -> before10 && s.before10
+            PrayerSound.BEFORE_5 -> before5 && s.before5
+            PrayerSound.NEAR -> near && s.near
+        }
+    }
+
+    /**
+     * Turns a sound on or off for one prayer. Turning it on while it is off for all prayers turns it on for this
+     * prayer only (the others in the same group are set off), so one switch is all it takes.
+     */
+    fun withPrayer(e: PrayerEvent, sound: PrayerSound, on: Boolean): AlertSettings {
+        fun PrayerSounds.with(v: Boolean) = when (sound) {
+            PrayerSound.ADHAN -> copy(adhan = v)
+            PrayerSound.BEFORE_10 -> copy(before10 = v)
+            PrayerSound.BEFORE_5 -> copy(before5 = v)
+            PrayerSound.NEAR -> copy(near = v)
+        }
+        val masterOn = when (sound) {
+            PrayerSound.ADHAN -> if (e == PrayerEvent.FAJR) fajrAdhan else adhan
+            PrayerSound.BEFORE_10 -> before10
+            PrayerSound.BEFORE_5 -> before5
+            PrayerSound.NEAR -> near
+        }
+        var a = this
+        if (on && !masterOn) {
+            a = when (sound) {
+                PrayerSound.ADHAN -> if (e == PrayerEvent.FAJR) a.copy(fajrAdhan = true) else a.copy(adhan = true)
+                PrayerSound.BEFORE_10 -> a.copy(before10 = true)
+                PrayerSound.BEFORE_5 -> a.copy(before5 = true)
+                PrayerSound.NEAR -> a.copy(near = true)
+            }
+            // The Fajr Adhan has its own switch; the other Adhan switch covers Dhuhr to Isha.
+            val group = if (sound == PrayerSound.ADHAN) {
+                if (e == PrayerEvent.FAJR) listOf(PrayerEvent.FAJR) else PrayerEvent.prayers.filter { it != PrayerEvent.FAJR }
+            } else PrayerEvent.prayers
+            for (p in group) if (p != e) a = a.withSounds(p, a.sounds(p).with(false))
+        }
+        return a.withSounds(e, a.sounds(e).with(on))
+    }
+
     /** The Adhan plays at this prayer (its switch, the prayer's own switch, and a recording for it). */
     fun adhanPlays(e: PrayerEvent): Boolean {
         if (!e.isPrayer || !sounds(e).adhan) return false

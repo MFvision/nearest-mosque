@@ -100,16 +100,13 @@ struct PrayerAudioSettingsView: View {
     }
 
     @ViewBuilder private func prayerRows(_ e: PrayerEvent) -> some View {
-        let s = a.sounds(e)
         let name = l10n.t(Format.prayerKey(e))
         Toggle(l10n.t("at_prayer_notify"), isOn: Binding(get: { app.settings.reminders.contains(e) },
                                                        set: { on in Task { await app.setReminder(e, on) } }))
-        gated(l10n.t("play_adhan"), on: s.adhan, master: e == .fajr ? a.fajrAdhan : a.adhan) { v in update { $0.setSounds(e, with(s) { $0.adhan = v }) } }
-        gated(l10n.t("notif_minutes_until", 10, name), on: s.before10, master: a.before10) { v in update { $0.setSounds(e, with(s) { $0.before10 = v }) } }
-        gated(l10n.t("notif_minutes_until", 5, name), on: s.before5, master: a.before5) { v in update { $0.setSounds(e, with(s) { $0.before5 = v }) } }
-        gated(l10n.t("near") + " · " + l10n.t("alerts_minutes", a.nearMinutes), on: s.near, master: a.near) { v in
-            update { $0.setSounds(e, with(s) { $0.near = v }) }
-        }
+        prayerToggle(l10n.t("play_adhan"), e, .adhan)
+        prayerToggle(l10n.t("notif_minutes_until", 10, name), e, .before10)
+        prayerToggle(l10n.t("notif_minutes_until", 5, name), e, .before5)
+        prayerToggle(l10n.t("near") + " · " + l10n.t("alerts_minutes", a.nearMinutes), e, .near)
     }
 
     private var dhikrSection: some View {
@@ -193,16 +190,9 @@ struct PrayerAudioSettingsView: View {
         .padding(.leading, 8)
     }
 
-    /// A per-prayer switch that works only while the same reminder is on for all prayers above.
-    private func gated(_ title: String, on: Bool, master: Bool, set: @escaping (Bool) -> Void) -> some View {
-        // While the reminder is off above, the switch shows off (nothing plays); its own choice is kept.
-        Toggle(isOn: Binding(get: { on && master }, set: set)) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                if !master { Text(l10n.t("off_above")).font(.caption).foregroundStyle(.secondary) }
-            }
-        }
-        .disabled(!master)
+    /// A per-prayer switch, always usable: on here while the reminder is off above turns it on for this prayer only.
+    private func prayerToggle(_ title: String, _ e: PrayerEvent, _ sound: AlertSettings.PrayerSound) -> some View {
+        Toggle(title, isOn: Binding(get: { a.isOn(e, sound) }, set: { v in update { $0.setPrayer(e, sound, v) } }))
     }
 
     @ViewBuilder private func timedToggle(_ title: String, note: String, on: Binding<Bool>, minutes: Binding<Int>, preview: String) -> some View {
@@ -251,12 +241,6 @@ struct PrayerAudioSettingsView: View {
 
     private func bind<T>(_ path: WritableKeyPath<AlertSettings, T>) -> Binding<T> {
         Binding(get: { app.settings.alerts[keyPath: path] }, set: { v in update { $0[keyPath: path] = v } })
-    }
-
-    private func with(_ s: PrayerSounds, _ change: (inout PrayerSounds) -> Void) -> PrayerSounds {
-        var copy = s
-        change(&copy)
-        return copy
     }
 }
 

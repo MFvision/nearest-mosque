@@ -12,9 +12,10 @@ The source packs are not kept in the repository (see shared/audio/CREDITS.md for
 from). Outputs:
 
   ios/App/Resources/Sounds/   full Adhans as AAC (.m4a, played by the app) and every notification sound as
-                              IMA4 .caf, at most 29.5 s (iOS plays the default sound for anything longer)
+                              16-bit PCM .caf, at most 29.5 s (iOS plays the default sound for anything longer)
   android/app/src/main/res/raw/  everything as AAC (.m4a), played by the app's audio service
 """
+import json
 import os
 import subprocess
 import sys
@@ -46,8 +47,19 @@ def recordings(assets, clean):
     }
 
 FULL = {"adhan_makkah", "adhan_madinah", "fajr_makkah", "fajr_madinah"}
-# DC offset removed, then one loudness for every recording (EBU R128, -16 LUFS, peaks under -1.5 dBTP).
-CLEAN = "highpass=f=40,loudnorm=I=-16:TP=-1.5:LRA=11"
+# DC offset removed, then one loudness for every recording (EBU R128, -16 LUFS, peaks under -1.5 dBTP). The gain
+# is linear (two-pass loudnorm): dynamic levelling would lift the pauses between phrases and their hiss with them.
+HIGHPASS = "highpass=f=40"
+
+
+def clean_filter(src, start, length):
+    """The filter for one recording: high-pass, then one fixed gain measured on the same span."""
+    args = ["ffmpeg", "-hide_banner", "-nostats", "-ss", str(start)] + (["-t", str(length)] if length else []) + [
+        "-i", src, "-map", "0:a:0", "-vn", "-af", HIGHPASS + ",loudnorm=I=-16:TP=-1.5:LRA=20:print_format=json", "-f", "null", "-"]
+    out = subprocess.run(args, capture_output=True, text=True).stderr
+    m = json.loads(out[out.rindex("{"):out.rindex("}") + 1])
+    return (HIGHPASS + ",loudnorm=I=-16:TP=-1.5:LRA=20:linear=true:measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s"
+            % (m["input_i"], m["input_tp"], m["input_lra"], m["input_thresh"], m["target_offset"]))
 
 
 def ff(*args):
@@ -55,15 +67,16 @@ def ff(*args):
 
 
 def caf(src, dst, start=0.0, end=None):
-    """A notification sound: mono IMA4, at most 29.5 s, faded out when cut."""
+    """A notification sound: mono 16-bit PCM at 24 kHz (IMA4 would add hiss), at most 29.5 s, faded out when cut."""
     length = 29.5 if end is None else min(29.5, end - start)
-    af = CLEAN + ("," + "afade=t=out:st=%.2f:d=1.5" % (length - 1.5) if end is None else "")
-    ff("-ss", str(start), "-t", str(length), "-i", src, "-map", "0:a:0", "-vn", "-af", af, "-ac", "1", "-ar", "22050", "-c:a", "adpcm_ima_qt", dst)
+    af = clean_filter(src, start, length) + ("," + "afade=t=out:st=%.2f:d=1.5" % (length - 1.5) if end is None else "")
+    ff("-ss", str(start), "-t", str(length), "-i", src, "-map", "0:a:0", "-vn", "-af", af, "-ac", "1", "-ar", "24000", "-c:a", "pcm_s16le", dst)
 
 
 def m4a(src, dst, start=0.0, end=None, kbps=64, clean=True):
     args = ["-ss", str(start)] + (["-t", str(end - start)] if end else []) + ["-i", src]
-    ff(*args, "-map", "0:a:0", "-vn", *(["-af", CLEAN] if clean else []), "-ac", "1", "-ar", "44100", "-c:a", "aac", "-b:a", "%dk" % kbps, "-movflags", "+faststart", dst)
+    af = clean_filter(src, start, (end - start) if end else None)
+    ff(*args, "-map", "0:a:0", "-vn", *(["-af", af] if clean else []), "-ac", "1", "-ar", "44100", "-c:a", "aac", "-b:a", "%dk" % kbps, "-movflags", "+faststart", dst)
 
 
 def main(assets, voices, clean):
@@ -71,9 +84,10 @@ def main(assets, voices, clean):
     os.makedirs(ANDROID, exist_ok=True)
     for name, (src, start, end) in recordings(assets, clean).items():
         caf(src, os.path.join(IOS, name + ".caf"), start, end)
+        # The whole Adhan at 96 kbps (lower rates smear the reverberant voice).
         if name in FULL:
-            m4a(src, os.path.join(IOS, name + ".m4a"), start, end)
-        m4a(src, os.path.join(ANDROID, name + ".m4a"), start, end)
+            m4a(src, os.path.join(IOS, name + ".m4a"), start, end, kbps=96)
+        m4a(src, os.path.join(ANDROID, name + ".m4a"), start, end, kbps=96 if name in FULL else 64)
     for lang, folder in (("en", "01_English"), ("ar", "02_Arabic")):
         for p in PRAYERS:
             for variant, short in VARIANTS.items():

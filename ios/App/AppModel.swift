@@ -310,6 +310,7 @@ final class AppModel {
         guard key != nearestKey else { return }
         nearestKey = key
         let lang = l10n.language
+        let useOnline = settings.onlineSearch
         Task {
             let r = try? await Task.detached { try repo.nearest(center, radiusMeters: 25_000, lang: lang) }.value
             switch r {
@@ -319,6 +320,12 @@ final class AppModel {
                 nearestMosque = nil; nearestMosques = []; nearestCovered = true
             default:
                 nearestMosque = nil; nearestMosques = []; nearestCovered = false
+            }
+            // Nothing on the phone for this area: the live Apple Maps results (when online search is on), as on
+            // the Nearest Mosque tab, so the Qibla ring can still show the nearest mosque.
+            if nearestMosque == nil, useOnline, let live = await AppleMosqueSearch.search(center: center, radiusMeters: 10_000), !live.isEmpty {
+                let merged = OnlineMosques.merge(center: center, offline: [], online: live, radiusMeters: 25_000)
+                if !merged.isEmpty { nearestMosque = merged.first; nearestMosques = Array(merged.prefix(3)); nearestCovered = true }
             }
             nearestCenter = center
             shareWithWidgets()

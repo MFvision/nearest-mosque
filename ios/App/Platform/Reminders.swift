@@ -284,7 +284,8 @@ enum ReminderRefresh {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: id, using: nil) { task in
             submit()
             let work = Task { @MainActor in
-                await AppModel.shared.rescheduleReminders()
+                // Never rebuild from defaults: if the saved settings cannot be read now, leave the reminders as they are.
+                if UserDefaults.standard.data(forKey: "settings") != nil { await AppModel.shared.rescheduleReminders() }
                 task.setTaskCompleted(success: true)
             }
             task.expirationHandler = { work.cancel() }

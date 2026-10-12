@@ -107,4 +107,19 @@ class AlertPlannerTest {
         assertEquals(listOf(PrayerEvent.SUNRISE), p.map { it.event })
         assertEquals(d[PrayerEvent.SUNRISE], p[0].at)
     }
+
+    @Test
+    fun oneSwitchForOnePrayer() {
+        // Off for all prayers; turning on Maghrib's 10-minute reminder turns it on for Maghrib only.
+        val a = AlertSettings().withPrayer(PrayerEvent.MAGHRIB, AlertSettings.PrayerSound.BEFORE_10, true)
+        assertTrue(a.before10)
+        assertEquals(listOf(PrayerEvent.MAGHRIB), PrayerEvent.prayers.filter { a.isOn(it, AlertSettings.PrayerSound.BEFORE_10) })
+        // The Fajr Adhan is separate from the Dhuhr to Isha Adhan.
+        val b = AlertSettings().withPrayer(PrayerEvent.ASR, AlertSettings.PrayerSound.ADHAN, true)
+        assertEquals(listOf(PrayerEvent.ASR), PrayerEvent.prayers.filter { b.isOn(it, AlertSettings.PrayerSound.ADHAN) })
+        assertTrue(!b.fajrAdhan)
+        // Turning one off leaves the others as they were.
+        val c = AlertSettings(before5 = true).withPrayer(PrayerEvent.ISHA, AlertSettings.PrayerSound.BEFORE_5, false)
+        assertEquals(4, PrayerEvent.prayers.count { c.isOn(it, AlertSettings.PrayerSound.BEFORE_5) })
+    }
 }
