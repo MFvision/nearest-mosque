@@ -46,8 +46,8 @@
     <string name="answer_search_more_note">ඔබේ ප්‍රශ්නය සමඟ අඩවිය ඔබේ බ්‍රවුසරයේ විවෘත කරයි.</string>
     <string name="answer_searching">ඔබේ පොත්වල සොයමින්…</string>
     <string name="app_name">Near Mosque</string>
-    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
-    <string name="app_style_title">App and widget style</string>
+    <string name="app_style_note">යෙදුමේ බොත්තම් සහ ඉස්මතු කිරීම්, සෑම විජට් එකක්ම, අගුළු තිරය සහ Dynamic Island සඳහා එකම විලාසයක්. එක් විජට් එකකට වෙනම විලාසයක් දීමට එය දිගු එබීමෙන් විජට් සංස්කරණය තෝරන්න.</string>
+    <string name="app_style_title">යෙදුමේ සහ විජට්වල විලාසය</string>
     <string name="appearance">පෙනුම</string>
     <string name="appearance_dark">අඳුරු</string>
     <string name="appearance_light">ආලෝක</string>

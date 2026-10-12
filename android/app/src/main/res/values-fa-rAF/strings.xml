@@ -46,8 +46,8 @@
     <string name="answer_search_more_note">سایت را با سوال شما در براوزر باز می‌کند.</string>
     <string name="answer_searching">در حال جستجو در کتاب‌های شما…</string>
     <string name="app_name">نزدیک‌ترین مسجد</string>
-    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
-    <string name="app_style_title">App and widget style</string>
+    <string name="app_style_note">یک سبک برای دکمه‌ها و رنگ‌های برجستهٔ برنامه، همهٔ ابزارک‌ها، صفحهٔ قفل و Dynamic Island. برای سبک جداگانهٔ یک ابزارک، آن را نگه دارید و «ویرایش ابزارک» را بزنید.</string>
+    <string name="app_style_title">سبک برنامه و ابزارک‌ها</string>
     <string name="appearance">ظاهر</string>
     <string name="appearance_dark">تاریک</string>
     <string name="appearance_light">روشن</string>

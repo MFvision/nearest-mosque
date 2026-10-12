@@ -46,8 +46,8 @@
     <string name="answer_search_more_note">आपके सवाल के साथ साइट को आपके ब्राउज़र में खोलता है।</string>
     <string name="answer_searching">आपकी किताबों में खोज रहे हैं…</string>
     <string name="app_name">Near Mosque</string>
-    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
-    <string name="app_style_title">App and widget style</string>
+    <string name="app_style_note">ऐप के बटन और हाइलाइट, हर विजेट, लॉक स्क्रीन और डायनैमिक आइलैंड के लिए एक ही स्टाइल। किसी एक विजेट को अलग स्टाइल देने के लिए उसे देर तक दबाएँ और विजेट संपादित करें चुनें।</string>
+    <string name="app_style_title">ऐप और विजेट स्टाइल</string>
     <string name="appearance">रूप-रंग</string>
     <string name="appearance_dark">डार्क</string>
     <string name="appearance_light">लाइट</string>

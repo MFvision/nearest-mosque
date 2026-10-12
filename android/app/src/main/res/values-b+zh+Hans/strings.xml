@@ -46,8 +46,8 @@
     <string name="answer_search_more_note">在浏览器中打开该网站并带上你的问题。</string>
     <string name="answer_searching">正在搜索你的书籍…</string>
     <string name="app_name">Near Mosque</string>
-    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
-    <string name="app_style_title">App and widget style</string>
+    <string name="app_style_note">应用的按钮和强调色、所有小组件、锁定屏幕和灵动岛使用同一种样式。要为某个小组件单独设置样式，请长按它并选择“编辑小组件”。</string>
+    <string name="app_style_title">应用和小组件样式</string>
     <string name="appearance">外观</string>
     <string name="appearance_dark">深色</string>
     <string name="appearance_light">浅色</string>

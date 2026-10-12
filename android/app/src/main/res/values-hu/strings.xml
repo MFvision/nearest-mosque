@@ -46,8 +46,8 @@
     <string name="answer_search_more_note">Megnyitja az oldalt a böngésződben a kérdéseddel.</string>
     <string name="answer_searching">Keresés a könyveidben…</string>
     <string name="app_name">Near Mosque</string>
-    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
-    <string name="app_style_title">App and widget style</string>
+    <string name="app_style_note">Egyetlen stílus az alkalmazás gombjaihoz és kiemeléseihez, minden widgethez, a zárolási képernyőhöz és a Dynamic Islandhez. Egy widget saját stílusához nyomd meg hosszan, és válaszd a Widget szerkesztése lehetőséget.</string>
+    <string name="app_style_title">Az alkalmazás és a widgetek stílusa</string>
     <string name="appearance">Megjelenés</string>
     <string name="appearance_dark">Sötét</string>
     <string name="appearance_light">Világos</string>

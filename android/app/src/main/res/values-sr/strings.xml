@@ -46,8 +46,8 @@
     <string name="answer_search_more_note">Отвара сајт у прегледачу са вашим питањем.</string>
     <string name="answer_searching">Претражујемо ваше књиге…</string>
     <string name="app_name">Near Mosque</string>
-    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
-    <string name="app_style_title">App and widget style</string>
+    <string name="app_style_note">Један стил за дугмад и истицања у апликацији, сваки виџет, закључани екран и Dynamic Island. За посебан стил једног виџета, држите га притиснутим и изаберите Измени виџет.</string>
+    <string name="app_style_title">Стил апликације и виџета</string>
     <string name="appearance">Изглед</string>
     <string name="appearance_dark">Тамно</string>
     <string name="appearance_light">Светло</string>
