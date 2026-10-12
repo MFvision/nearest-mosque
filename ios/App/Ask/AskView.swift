@@ -483,7 +483,7 @@ struct OtherSourcesRow: View {
     @Environment(\.l10n) private var l10n
     @Environment(\.openURL) private var openURL
     let question: String
-    private static let labels = ["islamqa": "site_islamqa", "dorar": "site_dorar", "binothaimeen": "site_binothaimeen", "alifta": "site_alifta", "shamela": "site_shamela"]
+    private static let labels = ["islamqa": "site_islamqa", "dorar": "site_dorar", "binothaimeen": "site_binothaimeen", "alifta": "site_alifta"]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {

@@ -214,7 +214,6 @@
     <string name="library_saved_empty">لەسەر نیشانەی هەر بابەتێک دەست بدە بۆ ئەوەی لێرە بمێنێتەوە.</string>
     <string name="library_search_in">گەڕان لە %1$s</string>
     <string name="library_section">لە کتێبخانەی IslamHouse</string>
-    <string name="library_shamela_note">ماڵپەڕەکەی دەکاتەوە، لەوێ دەتوانیت کتێبەکان بخوێنیتەوە و دایانبگریت.</string>
     <string name="library_source">سەرچاوە: %1$s</string>
     <string name="library_title">کتێبخانە</string>
     <string name="library_type_articles">وتار</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">ئیبن عوسەیمین</string>
     <string name="site_dorar">Dorar (فەرموودە)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">المکتبة الشاملة</string>
     <string name="sky_card_hint">دەست بدە بۆ قیبلە</string>
     <string name="sky_day_a11y">ڕێڕەوی خۆر: خۆرهەڵاتن %1$s، ئێوارە %2$s. %3$sی ڕۆژ تێپەڕیوە.</string>
     <string name="sky_night_a11y">شەو: ئێوارە %1$s، خۆرهەڵاتن %2$s. %3$sی شەو تێپەڕیوە.</string>

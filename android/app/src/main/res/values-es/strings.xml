@@ -214,7 +214,6 @@
     <string name="library_saved_empty">Toca el marcador de cualquier contenido para guardarlo aquí.</string>
     <string name="library_search_in">Buscar en %1$s</string>
     <string name="library_section">De la biblioteca IslamHouse</string>
-    <string name="library_shamela_note">Abre su sitio web, donde puede leer y descargar los libros.</string>
     <string name="library_source">Fuente: %1$s</string>
     <string name="library_title">Biblioteca</string>
     <string name="library_type_articles">Artículo</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">Ibn Uthaymin</string>
     <string name="site_dorar">Dorar (hadices)</string>
     <string name="site_islamqa">Islam Preguntas y Respuestas</string>
-    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Toque para la alquibla</string>
     <string name="sky_day_a11y">Recorrido del sol: salida %1$s, Magrib %2$s. Ha pasado el %3$s del día.</string>
     <string name="sky_night_a11y">Noche: Magrib %1$s, salida %2$s. Ha pasado el %3$s de la noche.</string>

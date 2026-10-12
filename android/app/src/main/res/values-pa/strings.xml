@@ -214,7 +214,6 @@
     <string name="library_saved_empty">ਕਿਸੇ ਵੀ ਚੀਜ਼ ਨੂੰ ਇੱਥੇ ਰੱਖਣ ਲਈ ਉਸ ਦੇ ਬੁੱਕਮਾਰਕ ’ਤੇ ਟੈਪ ਕਰੋ।</string>
     <string name="library_search_in">%1$s ਵਿੱਚ ਲੱਭੋ</string>
     <string name="library_section">IslamHouse ਲਾਇਬ੍ਰੇਰੀ ਤੋਂ</string>
-    <string name="library_shamela_note">ਇਸ ਦੀ ਵੈੱਬਸਾਈਟ ਖੋਲ੍ਹਦਾ ਹੈ, ਜਿੱਥੇ ਤੁਸੀਂ ਕਿਤਾਬਾਂ ਪੜ੍ਹ ਅਤੇ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <string name="library_source">ਸਰੋਤ: %1$s</string>
     <string name="library_title">ਲਾਇਬ੍ਰੇਰੀ</string>
     <string name="library_type_articles">ਲੇਖ</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (ਹਦੀਸ)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">ਅਲ-ਮਕਤਬਾ ਅਸ਼-ਸ਼ਾਮਿਲਾ</string>
     <string name="sky_card_hint">ਕਿਬਲੇ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="sky_day_a11y">ਸੂਰਜ ਦਾ ਰਾਹ: ਸੂਰਜ ਚੜ੍ਹਨਾ %1$s, ਮਗ਼ਰਿਬ %2$s। ਦਿਨ ਦਾ %3$s ਬੀਤ ਗਿਆ ਹੈ।</string>
     <string name="sky_night_a11y">ਰਾਤ: ਮਗ਼ਰਿਬ %1$s, ਸੂਰਜ ਚੜ੍ਹਨਾ %2$s। ਰਾਤ ਦਾ %3$s ਬੀਤ ਗਿਆ ਹੈ।</string>

@@ -214,7 +214,6 @@
     <string name="library_saved_empty">ඕනෑම අයිතමයක් මෙහි තබා ගැනීමට එහි පිටු සලකුණ තට්ටු කරන්න.</string>
     <string name="library_search_in">%1$s තුළ සොයන්න</string>
     <string name="library_section">IslamHouse පුස්තකාලයෙන්</string>
-    <string name="library_shamela_note">එහි වෙබ් අඩවිය විවෘත කරයි, එහි ඔබට පොත් කියවීමට සහ බාගත කිරීමට හැකිය.</string>
     <string name="library_source">මූලාශ්‍රය: %1$s</string>
     <string name="library_title">පුස්තකාලය</string>
     <string name="library_type_articles">ලිපිය</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (හදීස්)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">අල්-මක්තබා අෂ්-ෂාමිලා</string>
     <string name="sky_card_hint">කිබ්ලා සඳහා තට්ටු කරන්න</string>
     <string name="sky_day_a11y">හිරුගේ ගමන් මඟ: හිරු උදාව %1$s, මග්රිබ් %2$s. දහවලෙන් %3$s ගත වී ඇත.</string>
     <string name="sky_night_a11y">රාත්‍රිය: මග්රිබ් %1$s, හිරු උදාව %2$s. රාත්‍රියෙන් %3$s ගත වී ඇත.</string>

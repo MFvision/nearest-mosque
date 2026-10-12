@@ -214,7 +214,6 @@
     <string name="library_saved_empty">Допрете го обележувачот на кој било материјал за да го чувате овде.</string>
     <string name="library_search_in">Пребарај: %1$s</string>
     <string name="library_section">Од библиотеката IslamHouse</string>
-    <string name="library_shamela_note">Ја отвора нејзината веб-страница, каде што можете да ги читате и преземате книгите.</string>
     <string name="library_source">Извор: %1$s</string>
     <string name="library_title">Библиотека</string>
     <string name="library_type_articles">Статија</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">Ибн Усејмин</string>
     <string name="site_dorar">Dorar (хадис)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">Ал-Мактаба аш-Шамила</string>
     <string name="sky_card_hint">Допрете за киблата</string>
     <string name="sky_day_a11y">Патека на сонцето: изгрев %1$s, акшам %2$s. Поминато е %3$s од денот.</string>
     <string name="sky_night_a11y">Ноќ: акшам %1$s, изгрев %2$s. Поминато е %3$s од ноќта.</string>

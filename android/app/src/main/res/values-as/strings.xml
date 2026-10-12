@@ -214,7 +214,6 @@
     <string name="library_saved_empty">যিকোনো সমল ইয়াত ৰাখিবলৈ তাৰ বুকমাৰ্কত টেপ কৰক।</string>
     <string name="library_search_in">%1$sত বিচাৰক</string>
     <string name="library_section">IslamHouse লাইব্ৰেৰীৰ পৰা</string>
-    <string name="library_shamela_note">ইয়াৰ ৱেবছাইট খোলে, য’ত আপুনি কিতাপ পঢ়িব আৰু ডাউনলোড কৰিব পাৰে।</string>
     <string name="library_source">উৎস: %1$s</string>
     <string name="library_title">লাইব্ৰেৰী</string>
     <string name="library_type_articles">প্ৰবন্ধ</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">ইবনে উছাইমীন</string>
     <string name="site_dorar">Dorar (হাদীছ)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">আল-মাকতাবা আশ-শামিলা</string>
     <string name="sky_card_hint">কিবলাৰ বাবে টেপ কৰক</string>
     <string name="sky_day_a11y">সূৰ্যৰ পথ: সূৰ্যোদয় %1$s, মাগৰিব %2$s। দিনৰ পোহৰৰ %3$s পাৰ হৈছে।</string>
     <string name="sky_night_a11y">ৰাতি: মাগৰিব %1$s, সূৰ্যোদয় %2$s। ৰাতিৰ %3$s পাৰ হৈছে।</string>

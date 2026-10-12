@@ -214,7 +214,6 @@
     <string name="library_saved_empty">اضغط على علامة الحفظ في أي مادة لتجدها هنا.</string>
     <string name="library_search_in">ابحث في %1$s</string>
     <string name="library_section">من مكتبة دار الإسلام</string>
-    <string name="library_shamela_note">يفتح موقعها، وفيه تقرأ الكتب وتنزّلها.</string>
     <string name="library_source">المصدر: %1$s</string>
     <string name="library_title">المكتبة</string>
     <string name="library_type_articles">مقال</string>
@@ -431,7 +430,6 @@
     <string name="site_binothaimeen">موقع ابن عثيمين</string>
     <string name="site_dorar">الدرر السنية</string>
     <string name="site_islamqa">الإسلام سؤال وجواب</string>
-    <string name="site_shamela">المكتبة الشاملة</string>
     <string name="sky_card_hint">اضغط لاتجاه القبلة</string>
     <string name="sky_day_a11y">مسار الشمس: الشروق %1$s، المغرب %2$s. مضى %3$s من النهار.</string>
     <string name="sky_night_a11y">الليل: المغرب %1$s، الشروق %2$s. مضى %3$s من الليل.</string>

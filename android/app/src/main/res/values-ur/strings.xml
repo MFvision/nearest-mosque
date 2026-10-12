@@ -214,7 +214,6 @@
     <string name="library_saved_empty">کسی بھی مواد پر بک مارک دبائیں تاکہ وہ یہاں محفوظ رہے۔</string>
     <string name="library_search_in">%1$s میں تلاش کریں</string>
     <string name="library_section">IslamHouse لائبریری سے</string>
-    <string name="library_shamela_note">اس کی ویب سائٹ کھلتی ہے، جہاں آپ کتابیں پڑھ اور ڈاؤن لوڈ کر سکتے ہیں۔</string>
     <string name="library_source">ماخذ: %1$s</string>
     <string name="library_title">لائبریری</string>
     <string name="library_type_articles">مضمون</string>
@@ -427,7 +426,6 @@
     <string name="site_binothaimeen">ابن عثیمین</string>
     <string name="site_dorar">الدرر السنیہ</string>
     <string name="site_islamqa">اسلام سوال و جواب</string>
-    <string name="site_shamela">المکتبۃ الشاملہ</string>
     <string name="sky_card_hint">قبلہ کے لیے تھپتھپائیں</string>
     <string name="sky_day_a11y">سورج کا راستہ: طلوع %1$s، مغرب %2$s۔ دن کا %3$s گزر چکا ہے۔</string>
     <string name="sky_night_a11y">رات: مغرب %1$s، طلوع %2$s۔ رات کا %3$s گزر چکا ہے۔</string>

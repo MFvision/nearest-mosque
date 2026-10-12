@@ -227,7 +227,6 @@ object OtherSources {
             Link("dorar", "https://dorar.net/hadith/search?q=$q"),
             Link("binothaimeen", site("binothaimeen.net")),
             Link("alifta", site("alifta.gov.sa")),
-            Link("shamela", site("shamela.ws")),
         )
     }
 }

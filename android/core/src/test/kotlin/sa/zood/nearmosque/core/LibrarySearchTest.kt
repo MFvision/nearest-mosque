@@ -7,7 +7,6 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.long
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Test
 
 /** Library search matches tools/library_search.py on shared/fixtures/library-retrieval.json. */
@@ -64,7 +63,6 @@ class OtherSourcesTest {
     @Test
     fun linksCarryTheQuestionAndLanguage() {
         val l = OtherSources.links("ما حكم تارك الصلاة؟", "ar").associate { it.id to it.url }
-        assertTrue(l.getValue("shamela").startsWith("https://www.google.com/search?q=site%3Ashamela.ws%20"))
         assertEquals("https://islamqa.info/ar/search?q=%D9%85%D8%A7%20%D8%AD%D9%83%D9%85%20%D8%AA%D8%A7%D8%B1%D9%83%20%D8%A7%D9%84%D8%B5%D9%84%D8%A7%D8%A9%D8%9F", l["islamqa"])
         assertEquals(true, l["binothaimeen"]!!.startsWith("https://www.google.com/search?q=site%3Abinothaimeen.net%20"))
         assertEquals("https://islamqa.info/en/search?q=prayer", OtherSources.links("prayer", "xx").first().url)

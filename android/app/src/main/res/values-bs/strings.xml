@@ -214,7 +214,6 @@
     <string name="library_saved_empty">Dodirnite oznaku na bilo kojem sadržaju da ga sačuvate ovdje.</string>
     <string name="library_search_in">Pretraži: %1$s</string>
     <string name="library_section">Iz biblioteke IslamHouse</string>
-    <string name="library_shamela_note">Otvara njenu stranicu, gdje možete čitati i preuzimati knjige.</string>
     <string name="library_source">Izvor: %1$s</string>
     <string name="library_title">Biblioteka</string>
     <string name="library_type_articles">Članak</string>
@@ -428,7 +427,6 @@
     <string name="site_binothaimeen">Ibn Usejmin</string>
     <string name="site_dorar">Dorar (hadis)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">El-Mektebe eš-Šamila</string>
     <string name="sky_card_hint">Dodirnite za kiblu</string>
     <string name="sky_day_a11y">Putanja sunca: izlazak %1$s, akšam %2$s. Prošlo je %3$s dana.</string>
     <string name="sky_night_a11y">Noć: akšam %1$s, izlazak sunca %2$s. Prošlo je %3$s noći.</string>

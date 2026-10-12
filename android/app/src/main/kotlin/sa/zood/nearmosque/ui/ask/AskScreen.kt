@@ -296,7 +296,6 @@ private fun OtherSourcesRow(question: String, lang: String) {
     val labels = mapOf(
         "islamqa" to R.string.site_islamqa, "dorar" to R.string.site_dorar,
         "binothaimeen" to R.string.site_binothaimeen, "alifta" to R.string.site_alifta,
-        "shamela" to R.string.site_shamela,
     )
     Column(Modifier.padding(top = 6.dp)) {
         Text(stringResource(R.string.answer_search_more), style = MaterialTheme.typography.labelMedium, color = Accent)

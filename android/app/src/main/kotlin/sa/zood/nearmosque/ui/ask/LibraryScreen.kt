@@ -114,19 +114,6 @@ private fun BrowseTab() {
                 Text(stringResource(R.string.library_items_count, p.count), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
             }
         }
-        // Al-Maktaba al-Shamela is not copied into the app (its terms leave the books' rights with their owners):
-        // this opens its own website, where the person reads and downloads as the site allows.
-        item(key = "shamela") {
-            val context = androidx.compose.ui.platform.LocalContext.current
-            Column(
-                Modifier.fillMaxWidth().glass(RoundedCornerShape(18.dp), tint = Ink.copy(alpha = 0.04f))
-                    .clickable(role = androidx.compose.ui.semantics.Role.Button) { sa.zood.nearmosque.platform.ExternalActions.open(context, "https://shamela.ws/") }
-                    .semantics(mergeDescendants = true) {}.padding(16.dp),
-            ) {
-                Text(stringResource(R.string.site_shamela) + "  ↗", color = Ink, style = MaterialTheme.typography.titleSmall)
-                Text(stringResource(R.string.library_shamela_note), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
-            }
-        }
     }
 }
 

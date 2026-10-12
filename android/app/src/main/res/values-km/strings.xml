@@ -214,7 +214,6 @@
     <string name="library_saved_empty">ចុចចំណាំលើធាតុណាមួយ ដើម្បីរក្សាវាទុកនៅទីនេះ។</string>
     <string name="library_search_in">ស្វែងរកក្នុង %1$s</string>
     <string name="library_section">ពីបណ្ណាល័យ IslamHouse</string>
-    <string name="library_shamela_note">បើកគេហទំព័ររបស់វា ដែលអ្នកអាចអាន និងទាញយកសៀវភៅបាន។</string>
     <string name="library_source">ប្រភព៖ %1$s</string>
     <string name="library_title">បណ្ណាល័យ</string>
     <string name="library_type_articles">អត្ថបទ</string>
@@ -426,7 +425,6 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (ហាឌីស)</string>
     <string name="site_islamqa">IslamQA</string>
-    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">ចុចដើម្បីមើលគិបឡាត់</string>
     <string name="sky_day_a11y">គន្លងព្រះអាទិត្យ៖ ថ្ងៃរះ %1$s ម៉ាហ្គ្រិប %2$s។ ពេលថ្ងៃបានកន្លងផុត %3$s។</string>
     <string name="sky_night_a11y">ពេលយប់៖ ម៉ាហ្គ្រិប %1$s ថ្ងៃរះ %2$s។ ពេលយប់បានកន្លងផុត %3$s។</string>
