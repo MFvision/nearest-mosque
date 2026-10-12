@@ -14,6 +14,9 @@ already at a size App Store Connect accepts for that slot.
      devices, all languages; it does not expire): one zip per device type plus
      `manifest-sheets-icons.zip`. Unzip all of them into one folder.
    * or the run's artifact **app-store-screenshots** (every run; kept 30 days).
+
+   To redo only the sorting (after a change to `tools/store/screens.json`), run it with **from_run** set to
+   the ID of the run that captured the pictures; nothing is captured again.
 3. The layout is:
 
 ```
@@ -49,7 +52,7 @@ iPads). At most 10 screenshots per set.
 | Device | `displayType` | App Store version | Sizes the files have (pixels) |
 |---|---|---|---|
 | iPhone 6.9" | `APP_IPHONE_67` | iOS | 1320 × 2868 (portrait) |
-| iPad 13" | `APP_IPAD_PRO_3GEN_129` | iOS | 2064 × 2752 (portrait), one landscape 2752 × 2064 |
+| iPad 13" | `APP_IPAD_PRO_3GEN_129` | iOS | 2064 × 2752 (portrait) |
 | Mac | `APP_DESKTOP` | macOS | 1280 × 800, 1440 × 900, 2560 × 1600 or 2880 × 1800 (the app window on a blurred copy of itself) |
 | Apple TV | `APP_APPLE_TV` | tvOS | 1920 × 1080 or 3840 × 2160 |
 | Apple Vision Pro | `APP_APPLE_VISION_PRO` | visionOS | 3840 × 2160 |
@@ -86,7 +89,6 @@ The exact size of every file is in the manifest.
 | 7 | `07-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
 | 8 | `08-widgets-qibla.png` | Qibla and ring widgets | The Qibla widget and the prayer ring widget in the teal style. |
 | 9 | `09-onboarding.png` | Welcome | The first page of the welcome tour. |
-| 10 | `10-prayer-landscape.png` | Prayer times, landscape | The prayer screen with the iPad turned sideways. |
 
 ### Mac: `APP_DESKTOP`
 
