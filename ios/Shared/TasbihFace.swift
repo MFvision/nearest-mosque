@@ -22,7 +22,7 @@ struct TasbihFace: View {
         let number = count.formatted(.number.locale(locale).grouping(.never))
         Group {
             switch family {
-            #if !targetEnvironment(macCatalyst)
+            #if !targetEnvironment(macCatalyst) && !os(visionOS)
             case .accessoryCircular:
                 wrapTap(AnyView(
                     ZStack {

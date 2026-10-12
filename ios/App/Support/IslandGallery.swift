@@ -1,4 +1,4 @@
-#if DEBUG && canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+#if DEBUG && canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
 import NMCore
 import SwiftUI
 

@@ -4,7 +4,7 @@ import NMCore
 import SwiftUI
 import UserNotifications
 import WidgetKit
-#if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
+#if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
 import AlarmKit
 #endif
 
@@ -237,7 +237,7 @@ enum FajrAlarms {
     /// True when AlarmKit took the alarms (so no notification is needed for them).
     @discardableResult
     static func reschedule(_ alarms: [PlannedAlert], l10n: Localization) async -> Bool {
-        #if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
+        #if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if #available(iOS 26.0, *) {
             let manager = AlarmManager.shared
             for s in UserDefaults.standard.stringArray(forKey: key) ?? [] {
@@ -270,7 +270,7 @@ enum FajrAlarms {
     }
 }
 
-#if canImport(AlarmKit) && !targetEnvironment(macCatalyst)
+#if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
 @available(iOS 26.0, *)
 struct FajrAlarmMetadata: AlarmMetadata {}
 #endif

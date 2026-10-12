@@ -1,6 +1,6 @@
 import Foundation
 import NMCore
-#if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+#if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
 import ActivityKit
 #endif
 
@@ -11,7 +11,7 @@ import ActivityKit
 @MainActor
 enum LiveCountdown {
     static func refresh(_ model: AppModel, now: Date = Date()) async {
-        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         let running = Activity<PrayerActivityAttributes>.activities
         guard model.settings.liveCountdown, ActivityAuthorizationInfo().areActivitiesEnabled, let loc = model.settings.location else {
             for a in running { await a.end(nil, dismissalPolicy: .immediate) }
@@ -50,7 +50,7 @@ enum LiveCountdown {
     }
 }
 
-#if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+#if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
 extension PrayerActivityAttributes: Equatable {
     static func == (a: Self, b: Self) -> Bool {
         a.rtl == b.rtl && a.style == b.style && a.nextLabel == b.nextLabel && a.qiblaLabel == b.qiblaLabel && a.mosqueLabel == b.mosqueLabel

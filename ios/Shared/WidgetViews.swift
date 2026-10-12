@@ -254,7 +254,7 @@ struct PrayerWidgetView: View {
 
     @ViewBuilder private func nextView(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette) -> some View {
         switch family {
-        #if !targetEnvironment(macCatalyst)
+        #if !targetEnvironment(macCatalyst) && !os(visionOS)
         case .accessoryInline:
             Label("\(name(s, next.event)) \(s.time(next.at))", systemImage: next.event.symbol)
         case .accessoryCircular:
@@ -341,7 +341,7 @@ struct PrayerWidgetView: View {
 
     @ViewBuilder private func countdownView(_ s: SharedState, _ next: Upcoming, _ p: WidgetPalette) -> some View {
         switch family {
-        #if !targetEnvironment(macCatalyst)
+        #if !targetEnvironment(macCatalyst) && !os(visionOS)
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 3) {
                 HStack {
@@ -683,7 +683,7 @@ extension PrayerWidgetView {
             let num = { (n: Int) in n.formatted(.number.locale(s.locale)) }
             let north = s.t("compass_north")
             switch family {
-            #if !targetEnvironment(macCatalyst)
+            #if !targetEnvironment(macCatalyst) && !os(visionOS)
             case .accessoryCircular:
                 ZStack {
                     AccessoryWidgetBackground()
@@ -923,7 +923,7 @@ extension SharedState {
 /// elsewhere (the Mac) the content is shown as is and a tap opens the app.
 enum QiblaIslandSupport {
     static var available: Bool {
-        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         return true
         #else
         return false
@@ -935,7 +935,7 @@ struct QiblaIslandButton<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         Button(intent: StartQiblaIslandIntent()) { content }.buttonStyle(.plain)
         #else
         content

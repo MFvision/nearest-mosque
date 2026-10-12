@@ -101,7 +101,7 @@ struct CompanionCard: View {
 /// no motion sensor (simulator, Mac) the companion sways a little on its own so it never looks frozen.
 final class CompanionMotion {
     static let shared = CompanionMotion()
-    #if canImport(CoreMotion) && !os(macOS)
+    #if canImport(CoreMotion) && !os(macOS) && !os(visionOS)
     private let manager = CMMotionManager()
     #endif
     /// CI recordings: `-demoCompanionMotion YES` tilts it back and forth with a jolt now and then.
@@ -112,7 +112,7 @@ final class CompanionMotion {
     #endif
 
     func start() {
-        #if canImport(CoreMotion) && !os(macOS)
+        #if canImport(CoreMotion) && !os(macOS) && !os(visionOS)
         guard manager.isDeviceMotionAvailable, !manager.isDeviceMotionActive else { return }
         manager.deviceMotionUpdateInterval = 1 / 60
         manager.startDeviceMotionUpdates()
@@ -120,7 +120,7 @@ final class CompanionMotion {
     }
 
     func stop() {
-        #if canImport(CoreMotion) && !os(macOS)
+        #if canImport(CoreMotion) && !os(macOS) && !os(visionOS)
         manager.stopDeviceMotionUpdates()
         #endif
     }
@@ -131,7 +131,7 @@ final class CompanionMotion {
             let jolt: Double = t.truncatingRemainder(dividingBy: 4) < 0.08 ? 0.6 : 0
             return (roll, jolt)
         }
-        #if canImport(CoreMotion) && !os(macOS)
+        #if canImport(CoreMotion) && !os(macOS) && !os(visionOS)
         if let m = manager.deviceMotion {
             // Sideways tilt, upright or lying flat.
             return (asin(max(-1, min(1, m.gravity.x))), m.userAcceleration.x)

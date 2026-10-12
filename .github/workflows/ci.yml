@@ -531,3 +531,39 @@ jobs:
             ios/shots-tv/
             ios/tvrel.log
             ios/tvsim.log
+
+  visionos:
+    name: Apple Vision Pro app (visionOS build)
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
+    runs-on: macos-26
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Select newest Xcode
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          # The visionOS SDK may be an optional download on the runner image.
+          xcodebuild -showsdks | grep -q xros || xcodebuild -downloadPlatform visionOS
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Release build for Apple Vision Pro (unsigned, same configuration TestFlight uses)
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosqueVision -configuration Release \
+            -destination 'generic/platform=visionOS' CODE_SIGNING_ALLOWED=NO build 2>&1 | tee visionrel.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" visionrel.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: failure()
+        with:
+          name: visionos-build-log
+          path: ios/visionrel.log
+          retention-days: 3

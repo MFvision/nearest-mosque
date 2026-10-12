@@ -30,7 +30,7 @@ struct CompanionFace: View {
     var body: some View {
         let p = entry.palette
         switch family {
-        #if !targetEnvironment(macCatalyst)
+        #if !targetEnvironment(macCatalyst) && !os(visionOS)
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()

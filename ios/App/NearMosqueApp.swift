@@ -12,7 +12,7 @@ struct NearMosqueApp: App {
     init() {
         // Before launch finishes, so a tap that opened the app is handled too.
         UNUserNotificationCenter.current().delegate = NotificationHandler.shared
-        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         // The Qibla widget's button starts the compass in the Dynamic Island through the app (in the background).
         QiblaIslandRunner.start = { await QiblaIsland.shared.start() }
         #endif
@@ -73,7 +73,7 @@ extension NearMosqueApp {
             // CI screenshots on iPad: `-demoLandscape YES` turns the window to landscape.
             guard UserDefaults.standard.bool(forKey: "demoLandscape"),
                   let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            #if !targetEnvironment(macCatalyst)
+            #if !targetEnvironment(macCatalyst) && !os(visionOS)
             scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { _ in }
             #endif
         }
@@ -198,7 +198,7 @@ extension RootView {
 /// iOS 26: the Liquid Glass tab bar minimizes while scrolling down.
 private struct TabBarMinimize: ViewModifier {
     func body(content: Content) -> some View {
-        #if compiler(>=6.2) && !targetEnvironment(macCatalyst)
+        #if compiler(>=6.2) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if #available(iOS 26.0, *) { content.tabBarMinimizeBehavior(.onScrollDown) } else { content }
         #else
         content
@@ -212,7 +212,7 @@ private struct AskAccessory: ViewModifier {
     var open: () -> Void
     func body(content: Content) -> some View {
         // The Mac keeps the floating pill (the tab bar accessory is a phone and tablet feature).
-        #if compiler(>=6.2) && !targetEnvironment(macCatalyst)
+        #if compiler(>=6.2) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if #available(iOS 26.0, *) {
             content.tabViewBottomAccessory { AskPill(open: open) }
         } else {

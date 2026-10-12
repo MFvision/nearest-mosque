@@ -42,7 +42,7 @@ struct WidgetGalleryView: View {
     }
 
     var body: some View {
-        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst)
+        #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if UserDefaults.standard.string(forKey: "demoWidgetKind") == "island" {
             IslandGalleryView(style: look.rawValue)
         } else {

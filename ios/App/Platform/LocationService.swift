@@ -27,7 +27,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        #if !targetEnvironment(macCatalyst)
+        #if !targetEnvironment(macCatalyst) && !os(visionOS)
         manager.headingFilter = 1
         #endif
         authorization = manager.authorizationStatus
@@ -36,9 +36,9 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     var isDenied: Bool { authorization == .denied || authorization == .restricted }
     var isAuthorized: Bool { authorization == .authorizedWhenInUse || authorization == .authorizedAlways }
-    /// Macs have no compass: the Qibla is shown from north.
+    /// Macs and Apple Vision Pro have no compass: the Qibla is shown from north.
     var headingAvailable: Bool {
-        #if targetEnvironment(macCatalyst)
+        #if targetEnvironment(macCatalyst) || os(visionOS)
         false
         #else
         CLLocationManager.headingAvailable()
@@ -72,7 +72,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         guard headingUsers == 1, headingAvailable else { return }
         smoother.reset()
         updateOrientation()
-        #if !targetEnvironment(macCatalyst)
+        #if !targetEnvironment(macCatalyst) && !os(visionOS)
         manager.startUpdatingHeading()
         #endif
     }
@@ -80,7 +80,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     func endHeading() {
         headingUsers = max(0, headingUsers - 1)
         if headingUsers == 0 {
-            #if !targetEnvironment(macCatalyst)
+            #if !targetEnvironment(macCatalyst) && !os(visionOS)
             manager.stopUpdatingHeading()
             #endif
             compass = .bearingOnly
@@ -88,6 +88,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     func updateOrientation() {
+        #if !os(visionOS)
         switch UIDevice.current.orientation {
         case .landscapeLeft: manager.headingOrientation = .landscapeLeft
         case .landscapeRight: manager.headingOrientation = .landscapeRight
@@ -95,6 +96,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         case .faceUp: manager.headingOrientation = .faceUp
         default: manager.headingOrientation = .portrait
         }
+        #endif
     }
 
     nonisolated func locationManagerDidChangeAuthorization(_ m: CLLocationManager) {
@@ -115,7 +117,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in self.finish(nil) }
     }
 
-    #if !targetEnvironment(macCatalyst)
+    #if !targetEnvironment(macCatalyst) && !os(visionOS)
     nonisolated func locationManager(_ m: CLLocationManager, didUpdateHeading h: CLHeading) {
         let trueHeading = h.trueHeading
         let accuracy = h.headingAccuracy

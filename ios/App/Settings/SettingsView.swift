@@ -53,7 +53,7 @@ struct SettingsView: View {
                     NavigationLink { PrayerAudioSettingsView() } label: {
                         SettingsRow(icon: "speaker.wave.2.fill", tint: .red, title: l10n.t("audio_title"), subtitle: l10n.t("audio_row_note"))
                     }
-                    #if !targetEnvironment(macCatalyst)
+                    #if !targetEnvironment(macCatalyst) && !os(visionOS)
                     Toggle(isOn: Binding(get: { app.settings.liveCountdown }, set: { app.settings.liveCountdown = $0 })) {
                         SettingsRow(icon: "lock.iphone", tint: .purple, title: l10n.t("live_countdown"), subtitle: l10n.t("live_countdown_note"))
                     }
