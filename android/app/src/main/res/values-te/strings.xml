@@ -46,6 +46,8 @@
     <string name="answer_search_more_note">మీ ప్రశ్నతో సైట్‌ను మీ బ్రౌజర్‌లో తెరుస్తుంది.</string>
     <string name="answer_searching">మీ పుస్తకాల్లో వెతుకుతోంది…</string>
     <string name="app_name">Near Mosque</string>
+    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
+    <string name="app_style_title">App and widget style</string>
     <string name="appearance">రూపం</string>
     <string name="appearance_dark">డార్క్</string>
     <string name="appearance_light">లైట్</string>

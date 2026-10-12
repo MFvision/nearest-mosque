@@ -9,15 +9,7 @@ import WidgetKit
 /// The accent colour of the island, from the widget style chosen in the app (gold for Gold and cream, Green and
 /// Night sky; a lighter gold for Teal and Time of day): bright enough on the island's black.
 enum IslandTint {
-    static func of(_ style: String) -> Color {
-        switch style {
-        case "green": return Color(red: 0.91, green: 0.71, blue: 0.35)
-        case "night": return Color(red: 0.83, green: 0.66, blue: 0.26)
-        case "teal": return Color(red: 0.55, green: 0.85, blue: 0.80)
-        case "sky": return Color(red: 0.95, green: 0.82, blue: 0.48)
-        default: return Color(red: 0.89, green: 0.75, blue: 0.39)
-        }
-    }
+    static func of(_ style: String) -> Color { StyleAccent.dark(style) }
 }
 
 /// The logo's arrow (white body, coloured facet) turned the way to go; straight up means facing the Qibla.

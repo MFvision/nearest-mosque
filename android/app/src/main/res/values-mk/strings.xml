@@ -46,6 +46,8 @@
     <string name="answer_search_more_note">Ја отвора страницата во прелистувачот со вашето прашање.</string>
     <string name="answer_searching">Пребаруваме во вашите книги…</string>
     <string name="app_name">Near Mosque</string>
+    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
+    <string name="app_style_title">App and widget style</string>
     <string name="appearance">Изглед</string>
     <string name="appearance_dark">Темно</string>
     <string name="appearance_light">Светло</string>

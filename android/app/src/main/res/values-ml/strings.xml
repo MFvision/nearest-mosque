@@ -46,6 +46,8 @@
     <string name="answer_search_more_note">നിങ്ങളുടെ ചോദ്യവുമായി സൈറ്റ് ബ്രൗസറിൽ തുറക്കുന്നു.</string>
     <string name="answer_searching">നിങ്ങളുടെ പുസ്തകങ്ങളിൽ തിരയുന്നു…</string>
     <string name="app_name">Near Mosque</string>
+    <string name="app_style_note">One style for the app\'s buttons and highlights, every widget, the Lock Screen and the Dynamic Island. To give one widget its own style, long-press it and choose Edit Widget.</string>
+    <string name="app_style_title">App and widget style</string>
     <string name="appearance">രൂപം</string>
     <string name="appearance_dark">ഡാർക്ക്</string>
     <string name="appearance_light">ലൈറ്റ്</string>

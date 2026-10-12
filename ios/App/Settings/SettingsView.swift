@@ -77,12 +77,12 @@ struct SettingsView: View {
                         Form {
                             Section {
                                 WidgetStylePicker(selection: Binding(get: { app.settings.widgetLook }, set: { app.settings.widgetLook = $0 }))
-                            } footer: { Text(l10n.t("widget_style_note")) }
+                            } footer: { Text(l10n.t("app_style_note")) }
                         }
-                        .navigationTitle(l10n.t("widget_style_title"))
+                        .navigationTitle(l10n.t("app_style_title"))
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
-                        SettingsRow(icon: "square.grid.2x2.fill", tint: .teal, title: l10n.t("widget_style_title"), value: l10n.t("style_" + app.settings.widgetLook))
+                        SettingsRow(icon: "paintpalette.fill", tint: .teal, title: l10n.t("app_style_title"), value: l10n.t("style_" + app.settings.widgetLook))
                     }
                 } header: { Text(l10n.t("settings_personalize")) }
 

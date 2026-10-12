@@ -11,8 +11,10 @@ struct PrayerWidgetIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "widget_style_title"
     static var description = IntentDescription("widget_kind_next_desc")
 
+    /// Named `style` (it was `look`): widgets added before "Same as app" became the default had saved Gold and
+    /// cream, so they ignored the app's style; the new name starts every widget on "Same as app".
     @Parameter(title: "widget_style_title", default: .auto)
-    var look: WidgetLook
+    var style: WidgetLook
 }
 
 // MARK: - Timeline
@@ -26,14 +28,14 @@ struct PrayerProvider: AppIntentTimelineProvider {
     }
 
     func snapshot(for configuration: PrayerWidgetIntent, in context: Context) async -> PrayerEntry {
-        PrayerEntry.make(Date(), look: configuration.look, state: SharedStore.read() ?? (context.isPreview ? SharedState.preview : nil))
+        PrayerEntry.make(Date(), look: configuration.style, state: SharedStore.read() ?? (context.isPreview ? SharedState.preview : nil))
     }
 
     /// One entry now and one at each prayer time in the next day (countdowns and bars move on their own).
     func timeline(for configuration: PrayerWidgetIntent, in context: Context) async -> Timeline<PrayerEntry> {
         let now = Date()
         let state = SharedStore.read()
-        var entries = [PrayerEntry.make(now, look: configuration.look, state: state)]
+        var entries = [PrayerEntry.make(now, look: configuration.style, state: state)]
         if let state {
             let horizon = now.addingTimeInterval(26 * 3600)
             let times = state.days(now).flatMap { d in PrayerEvent.allCases.compactMap { d[$0] } }
@@ -45,7 +47,7 @@ struct PrayerProvider: AppIntentTimelineProvider {
             let steps = fine ? (1...48).map { now.addingTimeInterval(Double($0) * 300) } : []
             let end = fine ? now.addingTimeInterval(4 * 3600 + 1) : horizon
             for t in Set(times.map { $0.addingTimeInterval(1) } + [midnight.addingTimeInterval(1)] + steps).sorted() where t > now && t < end {
-                entries.append(PrayerEntry.make(t, look: configuration.look, state: state))
+                entries.append(PrayerEntry.make(t, look: configuration.style, state: state))
             }
         }
         let next = entries.count > 1 ? entries.last!.date : now.addingTimeInterval(3600)

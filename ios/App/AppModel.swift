@@ -111,10 +111,13 @@ final class AppModel {
             if let data { UserDefaults.standard.set(data, forKey: "settings.unreadable") }
             settings = StoredSettings()
         }
+        ThemeStore.shared.style = settings.widgetLook
     }
 
     private func save() {
         if let data = try? JSONEncoder().encode(settings) { UserDefaults.standard.set(data, forKey: "settings") }
+        // One style for everything: the app's accent follows the style that colours the widgets and the island.
+        if ThemeStore.shared.style != settings.widgetLook { ThemeStore.shared.style = settings.widgetLook }
         shareWithWidgets()
         Task { await LiveCountdown.refresh(self) }
     }

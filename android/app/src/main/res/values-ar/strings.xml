@@ -46,6 +46,8 @@
     <string name="answer_search_more_note">يفتح الموقع في المتصفح مع سؤالك.</string>
     <string name="answer_searching">جارٍ البحث في كتبك…</string>
     <string name="app_name">أقرب مسجد</string>
+    <string name="app_style_note">نمط واحد لأزرار التطبيق وألوانه، ولكل الأدوات، وشاشة القفل، والجزيرة الديناميكية. لتمييز أداة بنمط خاص، اضغط عليها مطولاً واختر «تعديل الأداة».</string>
+    <string name="app_style_title">نمط التطبيق والأدوات</string>
     <string name="appearance">المظهر</string>
     <string name="appearance_dark">داكن</string>
     <string name="appearance_light">فاتح</string>

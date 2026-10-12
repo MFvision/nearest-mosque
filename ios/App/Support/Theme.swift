@@ -2,12 +2,22 @@ import NMCore
 import SwiftUI
 import UIKit
 
+/// The style chosen in Settings, observed so every view that uses Theme.gold or Theme.accent redraws when it changes.
+@Observable
+final class ThemeStore {
+    static let shared = ThemeStore()
+    var style: String = UserDefaults.standard.string(forKey: "themeStyle") ?? "cream" {
+        didSet { UserDefaults.standard.set(style, forKey: "themeStyle") }
+    }
+}
+
 /// Values mirror shared/design/tokens.json.
 enum Theme {
     static let navy = Color(hex: 0x1A4D6E)
     static let navyDeep = Color(hex: 0x0E2F45)
     static let navyNight = Color(hex: 0x081B29)
-    static let gold = Color(hex: 0xD4A843)
+    /// The accent of the style chosen in Settings (brand gold for Gold and cream); see StyleAccent.
+    static var gold: Color { StyleAccent.dark(ThemeStore.shared.style) }
     static let goldDeep = Color(hex: 0xB8922F)
     static let goldText = Color(hex: 0x8A6A1C)
     /// Gold text on the light skies (goldText is below 4.5:1 on some of them).
@@ -19,7 +29,10 @@ enum Theme {
     /// Text and icons on the sky and on glass: white in dark mode, ink on the light skies.
     static let ink = dynamic(dark: .white, light: textLight)
     /// Gold for text and icons: brand gold in dark mode, goldInk on the light skies (4.5:1).
-    static let accent = dynamic(dark: gold, light: goldInk)
+    static var accent: Color {
+        let style = ThemeStore.shared.style
+        return dynamic(dark: StyleAccent.dark(style), light: StyleAccent.light(style))
+    }
     /// Opaque card when Reduce Transparency is on.
     static let solidCard = dynamic(dark: solidSurface, light: cardLight)
 

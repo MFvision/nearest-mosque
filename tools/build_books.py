@@ -166,7 +166,7 @@ section.page:first-of-type { break-before: auto; }
 p { margin: 0 0 0.45em; text-align: justify; }
 h1, h2, h3 { font-weight: bold; color: #0f4c5c; margin: 0.6em 0 0.35em; line-height: 1.5; }
 h1 { font-size: 1.25em; } h2 { font-size: 1.12em; } h3 { font-size: 1.04em; }
-.folio { text-align: center; font-size: 0.72em; color: #777; margin-top: 0.8em; }
+.folio { font-size: 0.72em; color: #8a8a8a; white-space: nowrap; }
 .title { break-after: page; text-align: center; padding-top: 30mm; }
 .title .t { font-size: 1.9em; font-weight: bold; color: #0f4c5c; line-height: 1.4; }
 .title .a { font-size: 1.2em; margin-top: 0.8em; }
@@ -193,10 +193,15 @@ def volume_html(book: dict, vol: int, vol_count: int, pages) -> str:
     )
     for page, blocks in pages:
         out.append("<section class='page'>")
-        for kind, text in blocks:
-            out.append(f"<{kind}>{e(text)}</{kind}>")
         folio = (f"ج {str(vol).translate(ARABIC_DIGITS)} - " if vol_count > 1 else "") + f"ص {str(page).translate(ARABIC_DIGITS)}"
-        out.append(f"<div class='folio'>{folio}</div></section>")
+        # The printed page number closes the page's last paragraph, so it can never sit alone on a page of its own.
+        last = len(blocks) - 1 if blocks and blocks[-1][0] == "p" else -1
+        for i, (kind, text) in enumerate(blocks):
+            mark = f" <span class='folio'>[{folio}]</span>" if i == last else ""
+            out.append(f"<{kind}>{e(text)}{mark}</{kind}>")
+        if last < 0:
+            out.append(f"<p><span class='folio'>[{folio}]</span></p>")
+        out.append("</section>")
     out.append("</body></html>")
     return "".join(out)
 
