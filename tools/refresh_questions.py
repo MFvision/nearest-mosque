@@ -17,7 +17,9 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SRC = os.path.join(ROOT, "shared", "content", "common-questions.json")
 PACK = os.path.join(ROOT, "packs", "sources", "quran-tanzil-pickthall")
 HADITH_PACKS = ["hadeethenc-ar", "hadeethenc-en"]
-LANGS = {"en", "ar", "ur", "tr", "id", "fr", "es"}
+# The App Store languages (tools/store/screens.json); translations other than English and Arabic are drafts,
+# and every answer stays "awaiting scholar review" until a named scholar has reviewed it.
+LANGS = {"en", "ar", "ur", "tr", "id", "fr", "es", "pt", "ru", "nl", "hu", "zh", "vi", "hi", "bn", "th", "gu", "mr", "pa", "kn", "ml", "te"}
 
 
 def ids(path, key):

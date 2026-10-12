@@ -21,7 +21,7 @@ bundle ID `sa.zood.nearmosque`, plus Android and Windows. There is no Apple Watc
 | App and widget styles | 5 (cream, green, night, teal, sky), plus "Same as app" in widgets |
 | Calculation methods | 11 |
 | Recordings | 38 (4 Adhans, 2 salawat, 2 evening verses, 30 spoken reminders) |
-| Common questions | 25, in 7 languages (ar, en, es, fr, id, tr, ur) |
+| Common questions | 25, in the 22 store languages (all awaiting scholar review; translations other than English and Arabic are drafts) |
 | Classical books in the download catalogue | 55 books in 234 volumes (Arabic, from OpenITI) |
 | Built-in cities | 13,090 (GeoNames) |
 | Built-in mosque areas | Cairo (519), London (255), Cape Town (69) (OpenStreetMap) |
@@ -74,7 +74,7 @@ bundle ID `sa.zood.nearmosque`, plus Android and Windows. There is no Apple Watc
 ### Ask (`ios/App/Ask/`)
 
 * Top bar: close, New conversation, Chats (history), Library.
-* Start screen: "Ask anything about Islam", **Common questions** (25), "You could also ask".
+* Start screen: "Ask anything about Islam", **Common questions** (25, in 22 languages), "You could also ask".
 * **Answer**: a scholar's fatwa first when one matches; otherwise the reviewed answer to a common
   question, an answer written on the device from the cited passages, or the passages themselves; or
   "not enough in the library". Every answer lists its sources, related passages and library items, can be

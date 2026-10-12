@@ -2,7 +2,7 @@
   "id": "sources.quran-tanzil-pickthall",
   "kind": "sources",
   "schemaVersion": 1,
-  "version": 3,
+  "version": 4,
   "title": {
     "en": "Quran with English translation (Pickthall)",
     "ar": "القرآن الكريم مع ترجمة إنجليزية (بكثال)"
@@ -36,8 +36,8 @@
     },
     {
       "path": "common-questions.json",
-      "bytes": 151299,
-      "sha256": "97aec2c63849d2b9efb4838522974c36cc4a797611f8ee9dd18b2366b372b5c9"
+      "bytes": 644452,
+      "sha256": "55c2388b72dd7fff77e90381adf7882820cddf8aa6f1071628b1c8a62721a2ab"
     },
     {
       "path": "LICENSE-tanzil-quran-text.txt",

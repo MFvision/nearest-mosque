@@ -29,7 +29,7 @@
     {"app": "vi", "system": "vi", "asc": ["vi"]}
   ],
   "_ask": "Common questions (and so the Ask answer screen) exist in these languages; other languages show the Ask screen with its question list instead of an answer.",
-  "askLanguages": ["ar", "en", "es", "fr", "id", "tr", "ur"],
+  "askLanguages": ["ar", "en", "es", "fr", "id", "tr", "ur", "pt", "ru", "nl", "hu", "zh", "vi", "hi", "bn", "th", "gu", "mr", "pa", "kn", "ml", "te"],
   "screens": {
     "prayer":   {"title": "Prayer times", "shows": "Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day.", "city": "Riyadh", "args": ["-demoTab", "prayer"]},
     "qibla":    {"title": "Qibla compass", "shows": "The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoCompass", "YES"]},

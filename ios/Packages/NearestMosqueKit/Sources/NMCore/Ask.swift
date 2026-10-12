@@ -165,7 +165,9 @@ public final class Retriever: @unchecked Sendable {
         self.prepared = commonQuestions.map { q in
             Prepared(
                 q: q,
-                triggers: (q.triggers ?? [:]).keys.sorted().flatMap { q.triggers![$0]! }.map(TextNormalizer.tokens).filter { !$0.isEmpty },
+                // Each distinct trigger counts once (many languages share a word such as "islam").
+                triggers: (q.triggers ?? [:]).keys.sorted().flatMap { q.triggers![$0]! }.map(TextNormalizer.tokens).filter { !$0.isEmpty }
+                    .reduce(into: [[String]]()) { if !$0.contains($1) { $0.append($1) } },
                 questions: q.question.values.map { Set(TextNormalizer.tokens($0)) },
                 expansion: (q.expansion ?? []).flatMap(TextNormalizer.tokens)
             )

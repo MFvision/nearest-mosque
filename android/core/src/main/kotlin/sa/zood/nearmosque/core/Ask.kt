@@ -136,7 +136,8 @@ class Retriever(
     private val prepared = commonQuestions.map { q ->
         PreparedQuestion(
             q,
-            q.triggers.values.flatten().map { TextNormalizer.tokens(it) }.filter { it.isNotEmpty() },
+            // Each distinct trigger counts once (many languages share a word such as "islam").
+            q.triggers.values.flatten().map { TextNormalizer.tokens(it) }.filter { it.isNotEmpty() }.distinct(),
             q.question.values.map { TextNormalizer.tokens(it).toSet() },
             q.expansion.flatMap { TextNormalizer.tokens(it) },
         )

@@ -130,7 +130,13 @@ class Corpus:
             triggers = [normalize(t) for lang in q["triggers"].values() for t in lang]
             questions = [set(normalize(t)) for t in q["question"].values()]
             expansion = [t for e in q["expansion"] for t in normalize(e)]
-            self.questions.append(dict(id=q["id"], citations=q["citations"], triggers=[t for t in triggers if t],
+            # Each distinct trigger counts once: many languages share a word ("islam", "kaaba"), and counting it
+            # per language would let a broad question outscore the specific one.
+            distinct = []
+            for t in triggers:
+                if t and t not in distinct:
+                    distinct.append(t)
+            self.questions.append(dict(id=q["id"], citations=q["citations"], triggers=distinct,
                                        questions=questions, expansion=expansion))
         sw = json.load(open(os.path.join(ROOT, "shared", "content", "stopwords.json"), encoding="utf-8"))
         self.stop = {t for k, v in sw.items() if not k.startswith("_") for w in v for t in normalize(w)}

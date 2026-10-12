@@ -130,9 +130,9 @@ Cities: prayer, Qibla and settings screens use Riyadh. Mosque screens use Cairo,
 mosque data that comes with the app covers Cairo, London and Cape Town. The status bar reads 9:41 with
 full battery. The prayer times shown are those computed for the moment of capture.
 
-The Ask answer exists in the 7 languages that have the common questions (ar, en, es, fr, id, tr, ur).
-In the other languages the Ask screenshot shows the Ask screen with its question list, and its `shows`
-field says so.
+The common questions, and so the Ask answer, exist in all 22 store languages. In the screenshot set made
+before they were translated (October 2026), the Ask screenshot of the 15 languages other than ar, en, es, fr,
+id, tr and ur shows the question list instead of an answer; its `shows` field says so. A new run fixes that.
 
 ## Languages
 
