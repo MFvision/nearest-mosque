@@ -45,7 +45,7 @@ final class MosquesModel {
             if case let .found(list, _) = r { offline = list }
             items = offline
             loading = false
-            guard useOnline else { online = .off; await loadRoutes(app, gen); return }
+            guard useOnline else { online = .off; return }
             online = .searching
             let live = await AppleMosqueSearch.search(center: center, radiusMeters: 10_000)
             guard !Task.isCancelled, generation.isCurrent(gen) else { return }
@@ -59,9 +59,16 @@ final class MosquesModel {
         }
     }
 
+    /// Where walking routes start: the phone's position rounded to about 100 m, and only with online search on
+    /// (Apple Maps computes the route; the exact position never leaves the phone).
+    private func routeStart(_ app: AppModel) -> LatLng? {
+        guard app.settings.onlineSearch, origin == .device, let p = app.location.position?.location else { return nil }
+        return LatLng((p.latitude * 1000).rounded() / 1000, (p.longitude * 1000).rounded() / 1000)
+    }
+
     /// Walking routes for the closest few (online; silently skipped when unavailable).
     private func loadRoutes(_ app: AppModel, _ gen: Int) async {
-        guard let from = app.location.position?.location, origin == .device else { return }
+        guard let from = routeStart(app) else { return }
         for r in items.prefix(3) where r.distanceMeters < 6_000 {
             if let route = await routeService.walking(from: from, to: r.mosque), generation.isCurrent(gen) {
                 routes[r.id] = route
@@ -73,7 +80,7 @@ final class MosquesModel {
 
     /// The walking route to one mosque, on demand (the card in view on the full-screen map).
     func loadRoute(_ app: AppModel, _ r: RankedMosque) async {
-        guard routes[r.id] == nil, r.distanceMeters < 6_000, let from = app.location.position?.location, origin == .device else { return }
+        guard routes[r.id] == nil, r.distanceMeters < 6_000, let from = routeStart(app) else { return }
         let searched = center
         if let route = await routeService.walking(from: from, to: r.mosque), center == searched { routes[r.id] = route }
     }
@@ -84,7 +91,11 @@ struct MosquesView: View {
     @Environment(\.l10n) private var l10n
     @Binding var showSettings: Bool
     @State private var vm = MosquesModel()
+    #if DEBUG
     @State private var mode = UserDefaults.standard.integer(forKey: "demoMosqueMode")
+    #else
+    @State private var mode = 0
+    #endif
     @State private var favoritesOnly = false
     @State private var selected: RankedMosque?
     @State private var mapSelection: String?
@@ -662,6 +673,6 @@ struct MosqueMapCard: View {
     }
 
     private func web(_ site: String?) {
-        if let w = site, let u = URL(string: w.hasPrefix("http") ? w : "https://" + w) { openURL(u) }
+        if let w = site, let u = WebLink.url(w) { openURL(u) }
     }
 }

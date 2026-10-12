@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">ফাইলটো ক্ষতিগ্ৰস্ত (চেকছাম মিল নাখায়)</string>
     <string name="error_pack_format">এইটো সমৰ্থিত পেক নহয়</string>
     <string name="error_pack_newer">ইয়াৰ বাবে এপৰ নতুন সংস্কৰণ লাগে</string>
+    <string name="error_pack_reserved">ইয়াৰ নাম এপটোৰ নিজৰ এটা পেকৰ নামৰ সৈতে একে, সেয়েহে ই সেইটোৰ ঠাই ল\'ব নোৱাৰে</string>
     <string name="estimated_badge">আনুমানিক: ওচৰৰ অক্ষাংশৰ নিয়ম</string>
     <string name="exact_alarm_needed">ঠিক সময়ত বাজিবলৈ এই এপক “এলাৰ্ম আৰু সোঁৱৰণী”ৰ অনুমতি দিয়ক।</string>
     <string name="exact_quote">হুবহু উদ্ধৃতি</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">আচ্ছালামু আলাইকুম</string>
     <string name="online_offline_note">আপুনি অফলাইন আছে। কেৱল ডাউনলোড কৰা মছজিদ দেখুওৱা হৈছে।</string>
     <string name="online_search">অনলাইনত মছজিদ বিচাৰক</string>
-    <string name="online_search_body">আপোনাৰ ডাউনলোড কৰা তথ্যত লাইভ ফলাফল যোগ কৰে। আপোনাৰ আনুমানিক অৱস্থান (প্ৰায় 1 কিমি) মেপ সেৱালৈ পঠিওৱা হয়। লাইভ মানচিত্ৰই আপুনি চোৱা অঞ্চলৰ মানচিত্ৰৰ ছবিও লোড কৰে।</string>
+    <string name="online_search_body">আপুনি ডাউনল\'ড কৰা ডেটাত লাইভ ফলাফল আৰু খোজকাঢ়ি যোৱাৰ সময় যোগ কৰে। সন্ধানৰ বাবে আপোনাৰ আনুমানিক অৱস্থান (প্ৰায় 1 কিমি) মানচিত্ৰ সেৱালৈ পঠিওৱা হয়; খোজকাঢ়ি যোৱাৰ সময়ৰ বাবে প্ৰায় 100 মিটাৰলৈ ৰাউণ্ড কৰা এটা অৱস্থান পঠিওৱা হয়। আপুনি চোৱা অঞ্চলৰ ছবি মানচিত্ৰই সদায় লোড কৰে।</string>
     <string name="online_searching">অনলাইনত আৰু মছজিদ বিচৰা হৈছে…</string>
     <string name="open_settings">ছেটিংছ খোলক</string>
     <string name="pack_builtin">আগৰে পৰা অন্তৰ্ভুক্ত</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">সূৰ্যোদয়</string>
     <string name="preview_play">%1$s বজাওক</string>
     <string name="privacy">গোপনীয়তা</string>
-    <string name="privacy_body">কোনো একাউণ্ট নাই। নামাজৰ সময়, কিবলা আৰু আপোনাৰ প্ৰশ্নবোৰ এই ফোনতে সমাধান কৰা হয়। অনলাইন সন্ধান অন থাকিলে মছজিদ বিচাৰিবলৈ আনুমানিক অৱস্থান (প্ৰায় 1 কিমি) পঠিওৱা হয়, আৰু লাইভ মানচিত্ৰই আপুনি চোৱা অঞ্চলৰ ছবি লোড কৰে। ইয়াৰ বাহিৰে একো ফোনৰ বাহিৰলৈ নাযায়।</string>
+    <string name="privacy_body">কোনো একাউণ্টৰ প্ৰয়োজন নাই। নামাজৰ সময়, কিবলা আৰু আপোনাৰ প্ৰশ্নৰ উত্তৰ এই ফোনতে গণনা কৰা হয়। অনলাইন সন্ধান অন থাকিলে মছজিদ বিচাৰিবলৈ এটা আনুমানিক অৱস্থান (প্ৰায় 1 কিমি) পঠিওৱা হয়, আৰু খোজকাঢ়ি যোৱাৰ সময়ৰ বাবে প্ৰায় 100 মিটাৰলৈ ৰাউণ্ড কৰা এটা অৱস্থান পঠিওৱা হয়। আপুনি চোৱা অঞ্চলৰ ছবি মানচিত্ৰই লোড কৰে। ইয়াৰ বাহিৰে আন একোৱেই ফোনৰ পৰা বাহিৰলৈ নাযায়।</string>
     <string name="publisher_binbaz">শ্বেইখ ইবনে বাজৰ চৰকাৰী ৱেবছাইট (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, সংস্কৰণ %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, সংস্কৰণ %2$s</string>

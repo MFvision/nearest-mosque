@@ -57,7 +57,7 @@ struct SourceCard: View {
                 if c.id.hasPrefix("quran:") {
                     Button { tafsir = tafsirOf(c) } label: { Label(l10n.t("library_type_tafsir"), systemImage: "text.quote") }
                 }
-                if let u = c.url.flatMap({ URL(string: $0) }) {
+                if let u = c.url.flatMap(WebLink.url) {
                     Button { openURL(u) } label: { Label(l10n.t("source_original_link"), systemImage: "arrow.up.right.square") }
                 }
             }

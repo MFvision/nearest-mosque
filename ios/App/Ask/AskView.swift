@@ -24,6 +24,8 @@ final class AskModel {
     var stage: AskStage = .searching
     var stagesDone: [AskStage] = []
     let history = ChatHistory()
+    /// A question from a link outside the app: put in the box, not sent.
+    var draft: String?
     private(set) var chatId = UUID()
     private var task: Task<Void, Never>?
 
@@ -315,6 +317,8 @@ struct AskView: View {
         GlassGroup(spacing: 10) {
             HStack(spacing: 10) {
                 TextField(l10n.t(vm.turns.isEmpty ? "ask_placeholder" : "ask_follow_up_placeholder"), text: $input, axis: .vertical)
+                    // A question from a link outside the app waits in the box for the person to send it.
+                    .onChange(of: vm.draft, initial: true) { _, d in if let d { input = d; vm.draft = nil } }
                     .lineLimit(1...4)
                     .focused($focused)
                     .submitLabel(.send)

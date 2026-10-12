@@ -30,7 +30,12 @@ object ExternalActions {
     }
 
     fun open(context: Context, url: String) {
-        val u = if (url.startsWith("http://") || url.startsWith("https://")) url else "https://$url"
+        // Web pages only, always over HTTPS.
+        val u = when {
+            url.startsWith("https://") -> url
+            url.startsWith("http://") -> "https://" + url.removePrefix("http://")
+            else -> "https://$url"
+        }
         start(context, Intent(Intent.ACTION_VIEW, Uri.parse(u)))
     }
 

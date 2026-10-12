@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">فایلەکە تێکچووە (checksum ناگونجێت)</string>
     <string name="error_pack_format">پاکێجێکی پشتگیریکراو نییە</string>
     <string name="error_pack_newer">پێویستی بە وەشانێکی نوێتری ئەپەکە هەیە</string>
+    <string name="error_pack_reserved">ناوی یەکێک لە پاکێجەکانی خودی ئەپەکەی هەیە، بۆیە ناتوانێت جێگەی بگرێتەوە</string>
     <string name="estimated_badge">خەمڵێنراو: یاسای نزیکترین پانی</string>
     <string name="exact_alarm_needed">بۆ ئەوەی لە کاتی خۆیدا لێبدات، ڕێگە بە «ئەلارم و بیرخەرەوەکان» بدە بۆ ئەم ئەپە.</string>
     <string name="exact_quote">دەقی وەک خۆی</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">ئەلسەلامو عەلەیکوم</string>
     <string name="online_offline_note">تۆ ئۆفلاینیت. تەنها مزگەوتە داگیراوەکان پیشان دەدرێن.</string>
     <string name="online_search">گەڕانی ئۆنلاین بۆ مزگەوت</string>
-    <string name="online_search_body">ئەنجامی ڕاستەوخۆ بۆ زانیارییە داگیراوەکانت زیاد دەکات. شوێنی نزیکەییت (نزیکەی ١ کم) بۆ خزمەتگوزاری نەخشە دەنێردرێت. نەخشەی ڕاستەوخۆش وێنەی نەخشەی ئەو ناوچەیە بار دەکات کە سەیری دەکەیت.</string>
+    <string name="online_search_body">ئەنجامی ڕاستەوخۆ و کاتی ڕۆیشتن بە پێ زیاد دەکات بۆ ئەو داتایانەی دابەزاندووتە. بۆ گەڕان، شوێنی نزیکەییت (نزیکەی 1 کیلۆمەتر) دەنێردرێت بۆ خزمەتگوزاریی نەخشە؛ بۆ کاتی ڕۆیشتن بە پێ، شوێنێک کە بۆ نزیکەی 100 مەتر خڕ کراوەتەوە. نەخشەکە هەمیشە وێنەی ئەو ناوچەیە بار دەکات کە سەیری دەکەیت.</string>
     <string name="online_searching">گەڕانی ئۆنلاین بۆ مزگەوتی زیاتر…</string>
     <string name="open_settings">کردنەوەی ڕێکخستنەکان</string>
     <string name="pack_builtin">ناوخۆیی</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">خۆرهەڵاتن</string>
     <string name="preview_play">لێدانی %1$s</string>
     <string name="privacy">تایبەتمەندی</string>
-    <string name="privacy_body">بێ هەژمار. کاتەکانی نوێژ، قیبلە و پرسیارەکانت لەسەر ئەم مۆبایلە ئەنجام دەدرێن. کاتێک گەڕانی ئۆنلاین چالاکە، شوێنێکی نزیکەیی (نزیکەی ١ کم) دەنێردرێت بۆ دۆزینەوەی مزگەوتەکان، و نەخشەی ڕاستەوخۆ وێنەی ئەو ناوچەیە بار دەکات کە سەیری دەکەیت. هیچ شتێکی تر لە مۆبایلەکە دەرناچێت.</string>
+    <string name="privacy_body">بێ هەژمار. کاتەکانی نوێژ، قیبلە و وەڵامی پرسیارەکانت لەسەر ئەم مۆبایلە دەژمێردرێن. کاتێک گەڕانی ئۆنلاین چالاکە، شوێنێکی نزیکەیی (نزیکەی 1 کیلۆمەتر) دەنێردرێت بۆ دۆزینەوەی مزگەوت، و شوێنێک کە بۆ نزیکەی 100 مەتر خڕ کراوەتەوە بۆ کاتی ڕۆیشتن بە پێ. نەخشەکە وێنەی ئەو ناوچەیە بار دەکات کە سەیری دەکەیت. جگە لەمە هیچ شتێکی تر لە مۆبایلەکە دەرناچێت.</string>
     <string name="publisher_binbaz">ماڵپەڕی فەرمی شێخ ئیبن باز (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com، وەشانی %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s، وەشانی %2$s</string>

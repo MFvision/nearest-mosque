@@ -80,7 +80,7 @@ class PrayerAudioService : Service() {
         val sound = intent?.getStringExtra(ReminderScheduler.EXTRA_SOUND)
         val res = sound?.let { AudioCatalog.rawId(this, it) } ?: 0
         stopPlayer()
-        shownId = intent?.getIntExtra(ReminderScheduler.EXTRA_ID, 0) ?: 0
+        shownId = (intent?.getIntExtra(ReminderScheduler.EXTRA_ID, 0) ?: 0).coerceAtLeast(1)
         val builder = notification(intent, withStop = true)
         shown = builder
         if (Build.VERSION.SDK_INT >= 29) {

@@ -83,7 +83,7 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
             val pi = PendingIntent.getBroadcast(
                 context, code,
                 Intent(context, ReminderReceiver::class.java).putExtra(EXTRA_TITLE, title).putExtra(EXTRA_BODY, body)
-                    .putExtra(EXTRA_ID, code).putExtra(EXTRA_ALARM, alarm).putExtra(EXTRA_SOUND, sound)
+                    .putExtra(EXTRA_ID, NOTIFICATION_ID_BASE + code).putExtra(EXTRA_ALARM, alarm).putExtra(EXTRA_SOUND, sound)
                     .putExtra(EXTRA_ADHAN, a.kind == AlertKind.ADHAN),
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
@@ -143,6 +143,8 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
         const val EXTRA_TITLE = "title"
         const val EXTRA_BODY = "body"
         const val EXTRA_ID = "id"
+        /** Notification ids start here (a foreground service may not use 0). */
+        const val NOTIFICATION_ID_BASE = 1000
         /** A recording in res/raw (AudioCatalog) played by PrayerAudioService; absent = the channel's sound. */
         const val EXTRA_SOUND = "sound"
         const val EXTRA_ADHAN = "adhan"

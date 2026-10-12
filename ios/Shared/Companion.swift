@@ -38,7 +38,7 @@ enum CompanionLog {
     private static func save(_ list: [String]) {
         guard let data = try? JSONEncoder().encode(list) else { return }
         let q = query()
-        let attrs: [String: Any] = [kSecValueData as String: data, kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
+        let attrs: [String: Any] = [kSecValueData as String: data, kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]
         if SecItemUpdate(q as CFDictionary, attrs as CFDictionary) != errSecSuccess {
             SecItemAdd(q.merging(attrs) { $1 } as CFDictionary, nil)
         }

@@ -27,6 +27,8 @@ public struct PackManifest: Codable, Sendable {
 
 public enum PackError: Error, Equatable {
     case format(String)
+    /// The pack uses the id of one of the app's own packs.
+    case reserved(String)
     case checksum(String)
     case newerSchema(Int)
 }
@@ -39,6 +41,9 @@ public enum PackVerifier {
         let m: PackManifest
         do { m = try JSONDecoder().decode(PackManifest.self, from: data) } catch { throw PackError.format("manifest") }
         guard kinds.contains(m.kind) else { throw PackError.format("kind \(m.kind)") }
+        // The id becomes part of file names: letters, digits, dot, dash, underscore only.
+        guard !m.id.isEmpty, m.id.count <= 100, m.id.allSatisfy({ $0.isASCII && ($0.isLetter || $0.isNumber || ".-_".contains($0)) }),
+              !m.id.hasPrefix(".") else { throw PackError.format("id") }
         guard m.schemaVersion <= supportedSchema else { throw PackError.newerSchema(m.schemaVersion) }
         guard !m.files.contains(where: { $0.path.contains("..") || $0.path.hasPrefix("/") }) else { throw PackError.format("unsafe path") }
         return m

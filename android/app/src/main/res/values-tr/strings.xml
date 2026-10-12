@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">dosya bozuk (sağlama toplamı uyuşmuyor)</string>
     <string name="error_pack_format">desteklenen bir paket değil</string>
     <string name="error_pack_newer">uygulamanın daha yeni bir sürümü gerekir</string>
+    <string name="error_pack_reserved">uygulamanın kendi paketlerinden birinin adını taşıyor, bu yüzden onun yerini alamaz</string>
     <string name="estimated_badge">Tahmini: en yakın enlem kuralı</string>
     <string name="exact_alarm_needed">Tam vaktinde çalması için bu uygulamaya “Alarmlar ve hatırlatıcılar” izni verin.</string>
     <string name="exact_quote">Birebir alıntı</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Esselâmü aleyküm</string>
     <string name="online_offline_note">Çevrimdışısınız. Yalnızca indirilen camiler gösteriliyor.</string>
     <string name="online_search">Camileri çevrimiçi ara</string>
-    <string name="online_search_body">İndirilen verilere canlı sonuçlar ekler. Yaklaşık konumunuz (yaklaşık 1 km) harita hizmetine gönderilir. Canlı harita, baktığınız bölgenin görüntülerini de yükler.</string>
+    <string name="online_search_body">İndirdiğiniz verilere canlı sonuçlar ve yürüme süreleri ekler. Arama için yaklaşık konumunuz (yaklaşık 1 km) harita hizmetine gönderilir; yürüme süreleri için yaklaşık 100 m\'ye yuvarlanmış bir konum gönderilir. Harita, görüntülediğiniz bölgenin görsellerini her zaman yükler.</string>
     <string name="online_searching">Çevrimiçi daha fazla cami aranıyor…</string>
     <string name="open_settings">Ayarları aç</string>
     <string name="pack_builtin">Yerleşik</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Güneş</string>
     <string name="preview_play">%1$s çal</string>
     <string name="privacy">Gizlilik</string>
-    <string name="privacy_body">Hesap yok. Namaz vakitleri, kıble ve sorularınız bu telefonda işlenir. Çevrimiçi arama açıkken camileri bulmak için yaklaşık konum (yaklaşık 1 km) gönderilir ve canlı harita baktığınız bölgenin görüntülerini yükler. Başka hiçbir şey telefondan çıkmaz.</string>
+    <string name="privacy_body">Hesap yok. Namaz vakitleri, kıble ve sorularınızın yanıtları bu telefonda hesaplanır. Çevrim içi arama açıkken camileri bulmak için yaklaşık bir konum (yaklaşık 1 km), yürüme süreleri için de yaklaşık 100 m\'ye yuvarlanmış bir konum gönderilir. Harita, görüntülediğiniz bölgenin görsellerini yükler. Bunun dışında hiçbir şey telefondan çıkmaz.</string>
     <string name="publisher_binbaz">Şeyh İbn Baz’ın resmî sitesi (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, sürüm %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, sürüm %2$s</string>

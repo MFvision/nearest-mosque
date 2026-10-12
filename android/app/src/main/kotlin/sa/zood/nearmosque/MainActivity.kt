@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private val route = MutableStateFlow<String?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) route.value = intent?.data?.toString()
+        if (savedInstanceState == null) route.value = routeOf(intent)
         // Status and navigation bar icons follow light and dark mode (dark icons on the light skies).
         enableEdgeToEdge(
             statusBarStyle = androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
@@ -30,7 +30,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: android.content.Intent) {
         super.onNewIntent(intent)
-        route.value = intent.data?.toString()
+        route.value = routeOf(intent)
+    }
+
+    /**
+     * Only nearmosque:// links. A question (ask?q=…) runs at once only from the app's own widgets (they carry this
+     * install's private token); from anywhere else it is only put in the box, for the user to send or not.
+     */
+    private fun routeOf(intent: android.content.Intent?): String? {
+        val uri = intent?.data ?: return null
+        if (uri.scheme != "nearmosque") return null
+        if (uri.host != "ask" || uri.getQueryParameter("q") == null) return uri.toString()
+        val q = uri.getQueryParameter("q").orEmpty().take(500)
+        val trusted = intent.getStringExtra(sa.zood.nearmosque.platform.LinkToken.EXTRA) == sa.zood.nearmosque.platform.LinkToken.get(this)
+        return "nearmosque://ask?" + (if (trusted) "q=" else "draft=") + android.net.Uri.encode(q)
     }
 
     override fun onResume() {

@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">فائل خراب ہے (چیک سم میل نہیں کھاتا)</string>
     <string name="error_pack_format">یہ معاون پیک نہیں</string>
     <string name="error_pack_newer">اس کے لیے ایپ کا نیا ورژن درکار ہے</string>
+    <string name="error_pack_reserved">اس کا نام ایپ کے اپنے کسی پیک جیسا ہے، اس لیے یہ اس کی جگہ نہیں لے سکتا</string>
     <string name="estimated_badge">تخمینی: قریب ترین عرض بلد کا اصول</string>
     <string name="exact_alarm_needed">وقت پر اطلاع کے لیے اس ایپ کو “الارم اور یاد دہانیاں” کی اجازت دیں۔</string>
     <string name="exact_quote">بعینہٖ اقتباس</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">السلام علیکم</string>
     <string name="online_offline_note">آپ آف لائن ہیں۔ صرف ڈاؤن لوڈ کردہ مساجد دکھائی جا رہی ہیں۔</string>
     <string name="online_search">مساجد آن لائن تلاش کریں</string>
-    <string name="online_search_body">آپ کے ڈاؤن لوڈ کردہ ڈیٹا میں براہ راست نتائج شامل کرتا ہے۔ آپ کا تقریبی مقام (تقریباً 1 کلومیٹر) نقشہ سروس کو بھیجا جاتا ہے۔ لائیو نقشہ دیکھے جانے والے علاقے کی تصاویر بھی لوڈ کرتا ہے۔</string>
+    <string name="online_search_body">آپ کے ڈاؤن لوڈ کردہ ڈیٹا میں براہ راست نتائج اور پیدل وقت شامل کرتا ہے۔ تلاش کے لیے آپ کا تقریبی مقام (تقریباً 1 کلومیٹر) نقشہ سروس کو بھیجا جاتا ہے؛ پیدل وقت کے لیے تقریباً 100 میٹر تک گول کیا گیا مقام۔ نقشہ ہمیشہ اس علاقے کی تصاویر لوڈ کرتا ہے جسے آپ دیکھتے ہیں۔</string>
     <string name="online_searching">مزید مساجد آن لائن تلاش ہو رہی ہیں…</string>
     <string name="open_settings">ترتیبات کھولیں</string>
     <string name="pack_builtin">پہلے سے شامل</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">طلوعِ آفتاب</string>
     <string name="preview_play">%1$s چلائیں</string>
     <string name="privacy">رازداری</string>
-    <string name="privacy_body">کوئی اکاؤنٹ نہیں۔ نماز کے اوقات، قبلہ اور آپ کے سوالات اسی فون پر حل ہوتے ہیں۔ آن لائن تلاش آن ہو تو مساجد ڈھونڈنے کے لیے تقریبی مقام (تقریباً 1 کلومیٹر) بھیجا جاتا ہے، اور لائیو نقشہ دیکھے جانے والے علاقے کی تصاویر لوڈ کرتا ہے۔ اس کے علاوہ کچھ نہیں بھیجا جاتا۔</string>
+    <string name="privacy_body">کوئی اکاؤنٹ نہیں۔ نماز کے اوقات، قبلہ اور آپ کے سوالوں کے جواب اسی فون پر نکالے جاتے ہیں۔ آن لائن تلاش آن ہو تو مساجد ڈھونڈنے کے لیے تقریبی مقام (تقریباً 1 کلومیٹر) بھیجا جاتا ہے، اور پیدل وقت کے لیے تقریباً 100 میٹر تک گول کیا گیا مقام۔ نقشہ اس علاقے کی تصاویر لوڈ کرتا ہے جسے آپ دیکھتے ہیں۔ اس کے علاوہ کچھ بھی فون سے باہر نہیں جاتا۔</string>
     <string name="publisher_binbaz">شیخ ابن باز کی آفیشل ویب سائٹ (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com، ورژن %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s، ورژن %2$s</string>

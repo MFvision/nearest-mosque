@@ -29,7 +29,7 @@ enum LibraryMode: Equatable {
         case ("MP4", let f?), ("M4V", let f?): self = .media(f, video: true)
         case ("MP3", let f?), ("M4A", let f?), ("WAV", let f?): self = .media(f, video: false)
         default:
-            guard let u = c.url.flatMap(URL.init(string:)), LibraryFiles.isAllowed(u) else { return nil }
+            guard let u = c.url.flatMap(WebLink.url), LibraryFiles.isAllowed(u) else { return nil }
             self = .web(u)
         }
     }
@@ -159,7 +159,7 @@ struct LibraryCard: View {
                 }
                 if let file = mode?.file {
                     downloadButton(file, c)
-                } else if let u = c.url.flatMap(URL.init(string:)) {
+                } else if let u = c.url.flatMap(WebLink.url) {
                     Button { openURL(u) } label: { Label(libraryWebLabel(c, l10n), systemImage: "safari") }
                         .foregroundStyle(Color(hex: 0x8CC0DE))
                 }
@@ -258,7 +258,7 @@ struct LibraryReaderView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) }
-                if let u = chunk.url.flatMap(URL.init(string:)) {
+                if let u = chunk.url.flatMap(WebLink.url) {
                     ToolbarItem(placement: .primaryAction) {
                         Button { openURL(u) } label: { Label(libraryWebLabel(chunk, l10n), systemImage: "safari") }
                     }

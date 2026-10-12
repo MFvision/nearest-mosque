@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">o arquivo está danificado (checksum não confere)</string>
     <string name="error_pack_format">não é um pacote compatível</string>
     <string name="error_pack_newer">é preciso uma versão mais nova do app</string>
+    <string name="error_pack_reserved">ele tem o nome de um dos pacotes do próprio app, então não pode substituí-lo</string>
     <string name="estimated_badge">Estimado: regra da latitude mais próxima</string>
     <string name="exact_alarm_needed">Para tocar na hora certa, permita “Alarmes e lembretes” para este app.</string>
     <string name="exact_quote">Citação exata</string>
@@ -316,7 +317,7 @@
     <string name="onb_welcome_title">Assalamu alaikum</string>
     <string name="online_offline_note">Você está offline. Mostrando só as mesquitas baixadas.</string>
     <string name="online_search">Buscar mesquitas online</string>
-    <string name="online_search_body">Adiciona resultados ao vivo aos seus dados baixados. Sua localização aproximada (cerca de 1 km) é enviada ao serviço de mapas. O mapa ao vivo também carrega imagens da área que você vê.</string>
+    <string name="online_search_body">Adiciona resultados em tempo real e tempos de caminhada aos seus dados baixados. Para pesquisar, sua localização aproximada (cerca de 1 km) é enviada ao serviço de mapas; para os tempos de caminhada, uma localização arredondada para cerca de 100 m. O mapa sempre carrega imagens da área que você visualiza.</string>
     <string name="online_searching">Procurando mais mesquitas online…</string>
     <string name="open_settings">Abrir Configurações</string>
     <string name="pack_builtin">Integrado</string>
@@ -345,7 +346,7 @@
     <string name="prayer_sunrise">Nascer do sol</string>
     <string name="preview_play">Tocar %1$s</string>
     <string name="privacy">Privacidade</string>
-    <string name="privacy_body">Sem conta. Os horários de oração, a Qibla e suas perguntas são processados neste celular. Com a busca online ativada, uma localização aproximada (cerca de 1 km) é enviada para encontrar mesquitas, e o mapa ao vivo carrega imagens da área que você vê. Nada mais sai do celular.</string>
+    <string name="privacy_body">Sem conta. Os horários de oração, a qibla e as respostas às suas perguntas são calculados neste telefone. Com a pesquisa on-line ativada, uma localização aproximada (cerca de 1 km) é enviada para encontrar mesquitas, e uma localização arredondada para cerca de 100 m para os tempos de caminhada. O mapa carrega imagens da área que você visualiza. Nada mais sai do telefone.</string>
     <string name="publisher_binbaz">Site oficial do Sheikh Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, versão %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, versão %2$s</string>

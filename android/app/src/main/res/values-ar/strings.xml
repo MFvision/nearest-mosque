@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">الملف تالف (عدم تطابق البصمة)</string>
     <string name="error_pack_format">ليس حزمة مدعومة</string>
     <string name="error_pack_newer">يتطلب إصدارًا أحدث من التطبيق</string>
+    <string name="error_pack_reserved">يحمل اسم إحدى حزم التطبيق نفسه، فلا يمكنه أن يحلّ محلها</string>
     <string name="estimated_badge">تقديري: قاعدة أقرب عرض</string>
     <string name="exact_alarm_needed">ليصل التذكير في وقته، اسمح بـ«المنبّهات والتذكيرات» لهذا التطبيق.</string>
     <string name="exact_quote">نص حرفي</string>
@@ -319,7 +320,7 @@
     <string name="onb_welcome_title">السلام عليكم</string>
     <string name="online_offline_note">أنت غير متصل. تُعرض المساجد المحمّلة فقط.</string>
     <string name="online_search">البحث عن المساجد عبر الإنترنت</string>
-    <string name="online_search_body">يضيف نتائج مباشرة إلى بياناتك المحمّلة. يُرسل موقعك التقريبي (نحو 1 كم) إلى خدمة الخرائط. كما تحمّل الخريطة الحية صور المنطقة التي تشاهدها.</string>
+    <string name="online_search_body">يضيف نتائج مباشرة وأوقات المشي إلى بياناتك المحمّلة. للبحث يُرسل موقعك التقريبي (نحو كيلومتر) إلى خدمة الخرائط، ولأوقات المشي موقع مقرّب إلى نحو 100 متر. وتُحمّل الخريطة دائمًا صور المنطقة التي تعرضها.</string>
     <string name="online_searching">جارٍ البحث عن مساجد أخرى عبر الإنترنت…</string>
     <string name="open_settings">فتح الإعدادات</string>
     <string name="pack_builtin">مدمج</string>
@@ -348,7 +349,7 @@
     <string name="prayer_sunrise">الشروق</string>
     <string name="preview_play">تشغيل %1$s</string>
     <string name="privacy">الخصوصية</string>
-    <string name="privacy_body">بلا حساب. تُحسب المواقيت والقبلة وإجابات أسئلتك على هذا الهاتف. عند تفعيل البحث عبر الإنترنت يُرسل موقع تقريبي (نحو 1 كم) للعثور على المساجد، وتحمّل الخريطة الحية صور المنطقة التي تشاهدها. لا يُرسل شيء آخر.</string>
+    <string name="privacy_body">بلا حساب. تُحسب المواقيت والقبلة وإجابات أسئلتك على هذا الهاتف. عند تفعيل البحث عبر الإنترنت يُرسل موقع تقريبي (نحو كيلومتر) للبحث عن المساجد، وموقع مقرّب إلى نحو 100 متر لحساب أوقات المشي. وتُحمّل الخريطة صور المنطقة التي تعرضها. لا يغادر الهاتفَ شيء غير ذلك.</string>
     <string name="publisher_binbaz">الموقع الرسمي لسماحة الشيخ ابن باز (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">موسوعة الأحاديث النبوية المترجمة HadeethEnc.com، الإصدار %1$s</string>
     <string name="publisher_quranenc">موسوعة القرآن الكريم QuranEnc.com: %1$s، الإصدار %2$s</string>

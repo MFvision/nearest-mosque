@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">फ़ाइल ख़राब है (चेकसम मेल नहीं खाता)</string>
     <string name="error_pack_format">यह समर्थित पैक नहीं है</string>
     <string name="error_pack_newer">इसके लिए ऐप का नया वर्ज़न चाहिए</string>
+    <string name="error_pack_reserved">इसका नाम ऐप के अपने किसी पैक जैसा है, इसलिए यह उसकी जगह नहीं ले सकता</string>
     <string name="estimated_badge">अनुमानित: नज़दीकी अक्षांश का नियम</string>
     <string name="exact_alarm_needed">ठीक समय पर बजने के लिए इस ऐप को “अलार्म और रिमाइंडर” की अनुमति दें।</string>
     <string name="exact_quote">हूबहू उद्धरण</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">अस्सलामु अलैकुम</string>
     <string name="online_offline_note">आप ऑफ़लाइन हैं। सिर्फ़ डाउनलोड की गई मस्जिदें दिखाई जा रही हैं।</string>
     <string name="online_search">मस्जिदें ऑनलाइन खोजें</string>
-    <string name="online_search_body">आपके डाउनलोड किए गए डेटा में लाइव नतीजे जोड़ता है। आपकी अनुमानित लोकेशन (लगभग 1 किमी) मैप सेवा को भेजी जाती है। लाइव नक्शा आपके देखे जा रहे इलाक़े की नक्शा तस्वीरें भी लोड करता है।</string>
+    <string name="online_search_body">आपके डाउनलोड किए गए डेटा में लाइव नतीजे और पैदल समय जोड़ता है। खोजने के लिए आपकी अनुमानित लोकेशन (लगभग 1 किमी) मैप सेवा को भेजी जाती है; पैदल समय के लिए लगभग 100 मीटर तक राउंड की गई लोकेशन। मैप हमेशा उस इलाके की तस्वीरें लोड करता है जिसे आप देखते हैं।</string>
     <string name="online_searching">ऑनलाइन और मस्जिदें खोजी जा रही हैं…</string>
     <string name="open_settings">सेटिंग्स खोलें</string>
     <string name="pack_builtin">पहले से शामिल</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">सूर्योदय</string>
     <string name="preview_play">%1$s चलाएँ</string>
     <string name="privacy">निजता</string>
-    <string name="privacy_body">कोई अकाउंट नहीं। नमाज़ के समय, क़िबला और आपके सवाल इसी फ़ोन पर हल होते हैं। ऑनलाइन खोज चालू होने पर मस्जिदें खोजने के लिए अनुमानित लोकेशन (लगभग 1 किमी) भेजी जाती है, और लाइव नक्शा आपके देखे जा रहे इलाक़े की तस्वीरें लोड करता है। इसके अलावा कुछ भी फ़ोन से बाहर नहीं जाता।</string>
+    <string name="privacy_body">कोई खाता नहीं। नमाज़ के समय, क़िबला और आपके सवालों के जवाब इसी फ़ोन पर निकाले जाते हैं। ऑनलाइन खोज चालू होने पर मस्जिदें ढूँढने के लिए अनुमानित लोकेशन (लगभग 1 किमी) भेजी जाती है, और पैदल समय के लिए लगभग 100 मीटर तक राउंड की गई लोकेशन। मैप उस इलाके की तस्वीरें लोड करता है जिसे आप देखते हैं। इसके अलावा कुछ भी फ़ोन से बाहर नहीं जाता।</string>
     <string name="publisher_binbaz">शैख़ इब्न बाज़ की आधिकारिक वेबसाइट (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, वर्ज़न %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, वर्ज़न %2$s</string>

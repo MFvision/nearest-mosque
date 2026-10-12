@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">tệp bị hỏng (sai mã kiểm tra)</string>
     <string name="error_pack_format">đây không phải là gói được hỗ trợ</string>
     <string name="error_pack_newer">cần phiên bản ứng dụng mới hơn</string>
+    <string name="error_pack_reserved">gói này trùng tên với một gói riêng của ứng dụng nên không thể thay thế gói đó</string>
     <string name="estimated_badge">Ước tính: quy tắc vĩ độ gần nhất</string>
     <string name="exact_alarm_needed">Để đổ chuông đúng giờ, hãy cho phép “Báo thức và lời nhắc” cho ứng dụng này.</string>
     <string name="exact_quote">Trích dẫn nguyên văn</string>
@@ -314,7 +315,7 @@
     <string name="onb_welcome_title">Assalamu alaikum</string>
     <string name="online_offline_note">Bạn đang ngoại tuyến. Chỉ hiển thị các thánh đường đã tải về.</string>
     <string name="online_search">Tìm thánh đường trực tuyến</string>
-    <string name="online_search_body">Thêm kết quả trực tiếp vào dữ liệu bạn đã tải về. Vị trí gần đúng của bạn (khoảng 1 km) được gửi đến dịch vụ bản đồ. Bản đồ trực tiếp cũng tải hình ảnh bản đồ cho khu vực bạn xem.</string>
+    <string name="online_search_body">Thêm kết quả trực tiếp và thời gian đi bộ vào dữ liệu bạn đã tải xuống. Để tìm kiếm, vị trí gần đúng của bạn (khoảng 1 km) được gửi đến dịch vụ bản đồ; để tính thời gian đi bộ, một vị trí làm tròn đến khoảng 100 m được gửi đi. Bản đồ luôn tải hình ảnh của khu vực bạn đang xem.</string>
     <string name="online_searching">Đang tìm thêm thánh đường trực tuyến…</string>
     <string name="open_settings">Mở Cài đặt</string>
     <string name="pack_builtin">Có sẵn</string>
@@ -343,7 +344,7 @@
     <string name="prayer_sunrise">Mặt trời mọc</string>
     <string name="preview_play">Phát %1$s</string>
     <string name="privacy">Quyền riêng tư</string>
-    <string name="privacy_body">Không cần tài khoản. Giờ cầu nguyện, hướng Qibla và câu hỏi của bạn đều được xử lý trên điện thoại này. Khi bật tìm kiếm trực tuyến, một vị trí gần đúng (khoảng 1 km) được gửi đi để tìm thánh đường, và bản đồ trực tiếp tải hình ảnh của khu vực bạn xem. Ngoài ra không có gì rời khỏi điện thoại.</string>
+    <string name="privacy_body">Không cần tài khoản. Giờ cầu nguyện, hướng Qibla và câu trả lời cho các câu hỏi của bạn đều được tính trên điện thoại này. Khi bật tìm kiếm trực tuyến, một vị trí gần đúng (khoảng 1 km) được gửi đi để tìm nhà thờ Hồi giáo, cùng một vị trí làm tròn đến khoảng 100 m để tính thời gian đi bộ. Bản đồ tải hình ảnh của khu vực bạn đang xem. Không có gì khác rời khỏi điện thoại.</string>
     <string name="publisher_binbaz">Trang web chính thức của Sheikh Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, phiên bản %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, phiên bản %2$s</string>

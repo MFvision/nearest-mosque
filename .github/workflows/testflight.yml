@@ -38,16 +38,19 @@ jobs:
     defaults:
       run:
         working-directory: ios
+    # The private key is given only to the steps that need it (writing the key file, the API scripts), never to
+    # the job, so tool installs and builds cannot read it.
     env:
       APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID || 'AWV883QWPU' }}
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
       BUNDLE_ID: sa.zood.nearmosque
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
       - name: Check signing secrets
+        env:
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
         run: |
           missing=0
           for v in ASC_KEY_ID ASC_ISSUER_ID ASC_PRIVATE_KEY; do
@@ -69,6 +72,8 @@ jobs:
 
       - name: Install the API key
         id: number
+        env:
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
           KEY=~/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8
@@ -152,11 +157,17 @@ jobs:
 
       # The Apple TV app (same bundle id, so one App Store listing): allowed to fail on its own like the Mac
       # app. App Store Connect takes tvOS builds only once the app record has the tvOS platform.
+      - name: Install the App Store Connect script's dependencies (pinned)
+        if: ${{ !inputs.mac_only }}
+        continue-on-error: true
+        run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
+
       - name: Add the Apple TV platform to the app record (first time only)
         if: ${{ !inputs.mac_only }}
         continue-on-error: true
+        env:
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
         run: |
-          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
           VERSION=$(sed -nE 's/^ +MARKETING_VERSION: "(.*)"/\1/p' project.yml | head -1)
           VERSION="$VERSION" /tmp/asc/bin/python ../tools/asc_testflight.py --ensure-platform TV_OS
 
@@ -220,10 +231,21 @@ jobs:
         if: always()
         run: rm -rf ~/.appstoreconnect/private_keys
 
-      - uses: actions/upload-artifact@v4
-        if: always()
+      # Build logs only when something failed, for a few days, with the API key's identifiers and Xcode's
+      # command lines removed (artifacts are not masked like the console log).
+      - name: Scrub the logs
+        if: failure()
+        run: |
+          for f in archive.log export.log mac-archive.log mac-export.log tv-archive.log tv-export.log; do
+            [ -f "$f" ] || continue
+            sed -i '' -E -e "s/${ASC_KEY_ID:-NO_KEY_ID}/[key id]/g" -e "s/${ASC_ISSUER_ID:-NO_ISSUER}/[issuer id]/g" \
+              -e 's/AuthKey_[A-Za-z0-9]+\.p8/AuthKey_[key id].p8/g' -e '/Command line invocation:/,/^$/d' "$f"
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: failure()
         with:
           name: testflight-logs
+          retention-days: 3
           path: |
             ios/archive.log
             ios/export.log
@@ -232,24 +254,25 @@ jobs:
             ios/tv-archive.log
             ios/tv-export.log
 
-  # Waiting for Apple's processing runs on Linux: the repository is private, and macOS minutes count
-  # several times against the Actions allowance.
+  # Waiting for Apple's processing runs on Linux (macOS minutes count several times against the Actions
+  # allowance).
   testers:
     name: Wait for Apple processing and give internal testers access
     needs: testflight
     runs-on: ubuntu-latest
     timeout-minutes: 95
     env:
-      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
       BUNDLE_ID: sa.zood.nearmosque
       BUILD_NUMBER: ${{ needs.testflight.outputs.build }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
       - name: Wait, answer export compliance, add the build to internal groups
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
         run: |
-          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
           WAIT_MINUTES=60 PLATFORMS=${{ inputs.mac_only && 'MAC_OS' || inputs.tv_only && 'TV_OS' || 'IOS,MAC_OS,TV_OS' }} /tmp/asc/bin/python tools/asc_testflight.py
 
   # The archive step's automatic signing creates a development certificate on each fresh machine; it is
@@ -260,13 +283,13 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
       - name: Revoke development certificates created in the last hours by CI
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
         run: |
-          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet pyjwt cryptography
           /tmp/asc/bin/python tools/asc_certificates.py revoke-recent

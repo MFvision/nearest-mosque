@@ -30,6 +30,9 @@ struct SharedState: Codable, Equatable {
     var widgetLook: String?
     /// The companion picked in the app (CompanionKind raw value) for its widget.
     var companion: String?
+    /// A random value made once on this phone; the widgets' question links carry it, so the app runs those questions
+    /// at once, while a question in a link from anywhere else is only put in the box.
+    var linkToken: String?
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
@@ -145,7 +148,7 @@ enum SharedStore {
     static func write(_ state: SharedState?) -> Bool {
         let q = query()
         guard let state, let data = try? JSONEncoder().encode(state) else { return SecItemDelete(q as CFDictionary) == errSecSuccess }
-        let attrs: [String: Any] = [kSecValueData as String: data, kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
+        let attrs: [String: Any] = [kSecValueData as String: data, kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]
         if SecItemUpdate(q as CFDictionary, attrs as CFDictionary) == errSecSuccess { return true }
         return SecItemAdd(q.merging(attrs) { $1 } as CFDictionary, nil) == errSecSuccess
     }

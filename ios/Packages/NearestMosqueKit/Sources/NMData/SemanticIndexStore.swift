@@ -88,16 +88,19 @@ public final class SemanticIndexStore: @unchecked Sendable {
         func u32(_ p: Int) -> Int { Int(UInt32(b[p]) | UInt32(b[p + 1]) << 8 | UInt32(b[p + 2]) << 16 | UInt32(b[p + 3]) << 24) }
         guard b.count >= 12, u32(0) == Int(Self.magic) else { throw CocoaError(.fileReadCorruptFile) }
         let dim = u32(4), n = u32(8)
+        // A damaged or truncated file is refused, never read past its end.
+        guard dim > 0, dim <= 4096, n <= b.count else { throw CocoaError(.fileReadCorruptFile) }
         var ids: [String] = []
         ids.reserveCapacity(n)
         var p = 12
         for _ in 0..<n {
             var e = p
-            while b[e] != 0x0A { e += 1 }
+            while e < b.count, b[e] != 0x0A { e += 1 }
+            guard e < b.count else { throw CocoaError(.fileReadCorruptFile) }
             ids.append(String(decoding: b[p..<e], as: UTF8.self))
             p = e + 1
         }
-        guard b.count == p + n * dim else { throw CocoaError(.fileReadCorruptFile) }
+        guard n.multipliedReportingOverflow(by: dim).overflow == false, b.count == p + n * dim else { throw CocoaError(.fileReadCorruptFile) }
         return VectorIndex(ids: ids, vectors: b[p...].map { Int8(bitPattern: $0) }, dim: dim)
     }
 }

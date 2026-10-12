@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">文件已损坏（校验和不匹配）</string>
     <string name="error_pack_format">不是受支持的数据包</string>
     <string name="error_pack_newer">需要更新版本的应用</string>
+    <string name="error_pack_reserved">它与应用自带的某个数据包同名，因此无法替换该数据包</string>
     <string name="estimated_badge">估算：最近纬度规则</string>
     <string name="exact_alarm_needed">为了准时响铃，请为此应用允许“闹钟和提醒”。</string>
     <string name="exact_quote">原文引用</string>
@@ -314,7 +315,7 @@
     <string name="onb_welcome_title">安色俩目尔来坤</string>
     <string name="online_offline_note">你处于离线状态，仅显示已下载的清真寺。</string>
     <string name="online_search">在线搜索清真寺</string>
-    <string name="online_search_body">在你下载的数据中加入实时结果。你的大致位置（约 1 公里）会发送给地图服务。实时地图还会加载你所查看区域的地图图像。</string>
+    <string name="online_search_body">为您已下载的数据添加实时结果和步行时间。搜索时，您的大致位置（约 1 公里）会发送给地图服务；计算步行时间时，会发送取整到约 100 米的位置。地图始终会加载您所查看区域的图像。</string>
     <string name="online_searching">正在在线查找更多清真寺…</string>
     <string name="open_settings">打开设置</string>
     <string name="pack_builtin">内置</string>
@@ -343,7 +344,7 @@
     <string name="prayer_sunrise">日出</string>
     <string name="preview_play">播放%1$s</string>
     <string name="privacy">隐私</string>
-    <string name="privacy_body">无需账户。礼拜时间、朝向和你的问题都在此手机上处理。开启在线搜索后，会发送大致位置（约 1 公里）用于查找清真寺，实时地图会加载你所查看区域的图像。除此之外，没有任何信息离开手机。</string>
+    <string name="privacy_body">无需账号。礼拜时间、朝向（基卜拉）和问题解答都在本机计算。开启在线搜索后，会发送大致位置（约 1 公里）用于查找清真寺，并发送取整到约 100 米的位置用于计算步行时间。地图会加载您所查看区域的图像。除此之外，任何数据都不会离开手机。</string>
     <string name="publisher_binbaz">谢赫 Ibn Baz 的官方网站（binbaz.org.sa）</string>
     <string name="publisher_hadeethenc">HadeethEnc.com，版本 %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com：%1$s，版本 %2$s</string>

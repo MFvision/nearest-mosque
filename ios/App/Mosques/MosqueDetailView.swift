@@ -69,7 +69,7 @@ struct MosqueDetailView: View {
                         Label(l10n.t("call"), systemImage: "phone").frame(maxWidth: .infinity, minHeight: 44)
                     }
                     .disabled(m.phone == nil)
-                    Button { if let w = m.website, let u = URL(string: w.hasPrefix("http") ? w : "https://" + w) { openURL(u) } } label: {
+                    Button { if let w = m.website, let u = WebLink.url(w) { openURL(u) } } label: {
                         Label(l10n.t("website"), systemImage: "globe").frame(maxWidth: .infinity, minHeight: 44)
                     }
                     .disabled(m.website == nil)

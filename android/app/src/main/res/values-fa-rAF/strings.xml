@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">فایل آسیب دیده است (عدم تطابق checksum)</string>
     <string name="error_pack_format">بسته پشتیبانی‌شده‌ای نیست</string>
     <string name="error_pack_newer">به نسخه جدیدتری از برنامه نیاز دارد</string>
+    <string name="error_pack_reserved">نام آن با نام یکی از بسته‌های خود برنامه یکی است، بنابراین نمی‌تواند جای آن را بگیرد</string>
     <string name="estimated_badge">تخمینی: قاعده نزدیک‌ترین عرض</string>
     <string name="exact_alarm_needed">برای اینکه سر وقت زنگ بزند، «هشدارها و یادآورها» را برای این برنامه مجاز کنید.</string>
     <string name="exact_quote">نقل دقیق</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">السلام علیکم</string>
     <string name="online_offline_note">آفلاین هستید. فقط مساجد دانلودشده نمایش داده می‌شوند.</string>
     <string name="online_search">جستجوی آنلاین مساجد</string>
-    <string name="online_search_body">نتایج زنده را به معلومات دانلودشده شما اضافه می‌کند. موقعیت تقریبی شما (حدود ۱ کیلومتر) به خدمات نقشه فرستاده می‌شود. نقشه زنده هم تصاویر نقشه ساحه‌ای را که می‌بینید دانلود می‌کند.</string>
+    <string name="online_search_body">نتایج زنده و وقت پیاده‌روی را به معلومات دانلودشدهٔ شما اضافه می‌کند. برای جستجو، موقعیت تقریبی شما (حدود 1 کیلومتر) به خدمات نقشه فرستاده می‌شود؛ برای وقت پیاده‌روی، موقعیتی که تا حدود 100 متر گرد شده است. نقشه همیشه تصاویر ساحه‌ای را که می‌بینید بارگیری می‌کند.</string>
     <string name="online_searching">در حال جستجوی آنلاین مساجد بیشتر…</string>
     <string name="open_settings">باز کردن تنظیمات</string>
     <string name="pack_builtin">داخلی</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">طلوع آفتاب</string>
     <string name="preview_play">پخش %1$s</string>
     <string name="privacy">حریم شخصی</string>
-    <string name="privacy_body">بدون حساب کاربری. اوقات نماز، قبله و سوال‌های شما روی همین موبایل پردازش می‌شوند. وقتی جستجوی آنلاین روشن باشد، یک موقعیت تقریبی (حدود ۱ کیلومتر) برای یافتن مساجد فرستاده می‌شود و نقشه زنده تصاویر ساحه‌ای را که می‌بینید دانلود می‌کند. هیچ چیز دیگری از موبایل خارج نمی‌شود.</string>
+    <string name="privacy_body">بدون حساب. اوقات نماز، قبله و جواب سوال‌های شما در همین مبایل محاسبه می‌شود. وقتی جستجوی آنلاین روشن باشد، یک موقعیت تقریبی (حدود 1 کیلومتر) برای پیدا کردن مسجدها فرستاده می‌شود و یک موقعیت گردشده تا حدود 100 متر برای وقت پیاده‌روی. نقشه تصاویر ساحه‌ای را که می‌بینید بارگیری می‌کند. هیچ چیز دیگری از مبایل بیرون نمی‌رود.</string>
     <string name="publisher_binbaz">ویب‌سایت رسمی شیخ ابن باز (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com، نسخه %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s، نسخه %2$s</string>

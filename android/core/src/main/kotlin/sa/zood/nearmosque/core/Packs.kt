@@ -40,6 +40,8 @@ sealed class PackError(message: String) : Exception(message) {
     class Format(message: String) : PackError(message)
     class Checksum(val path: String) : PackError("checksum mismatch: $path")
     class NewerSchema(val schema: Int) : PackError("schema $schema not supported")
+    /** The pack uses the id of one of the app's own packs. */
+    class Reserved(val id: String) : PackError("reserved id $id")
 }
 
 object PackVerifier {
@@ -53,6 +55,10 @@ object PackVerifier {
             throw PackError.Format("manifest: ${e.message}")
         }
         if (m.kind !in KINDS) throw PackError.Format("unknown kind ${m.kind}")
+        // The id becomes part of file names: letters, digits, dot, dash, underscore only.
+        if (m.id.isEmpty() || m.id.length > 100 || m.id.startsWith(".") || !m.id.all { it.isLetterOrDigit() && it.code < 128 || it in ".-_" }) {
+            throw PackError.Format("id")
+        }
         if (m.schemaVersion > SUPPORTED_SCHEMA) throw PackError.NewerSchema(m.schemaVersion)
         if (m.files.any { it.path.contains("..") || it.path.startsWith("/") }) throw PackError.Format("unsafe path")
         return m

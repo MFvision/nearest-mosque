@@ -219,8 +219,16 @@ internal fun WebPage(url: String) {
         factory = { ctx ->
             WebView(ctx).apply {
                 settings.javaScriptEnabled = true
-                settings.domStorageEnabled = true
-                webViewClient = WebViewClient()
+                settings.allowFileAccess = false
+                // Only the library's own sites open in the app; any other link opens in the browser.
+                webViewClient = object : WebViewClient() {
+                    override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean {
+                        val target = request.url.toString()
+                        if (sa.zood.nearmosque.data.LibraryFiles.isAllowed(target)) return false
+                        sa.zood.nearmosque.platform.ExternalActions.open(view.context, target)
+                        return true
+                    }
+                }
                 loadUrl(url)
             }
         },

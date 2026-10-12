@@ -88,8 +88,10 @@ fun SettingsScreen(
     val importer = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) scope.launch {
             message = try {
-                val m = container.packs.importZip(uri)
+                val m = container.packs.importZip(uri, container.downloads.catalog.packs.map { it.id }.toSet())
                 context.getString(R.string.import_done, m.title(lang))
+            } catch (e: PackError.Reserved) {
+                context.getString(R.string.import_failed, context.getString(R.string.error_pack_reserved))
             } catch (e: PackError.Checksum) {
                 context.getString(R.string.import_failed, context.getString(R.string.error_pack_checksum))
             } catch (e: PackError.NewerSchema) {

@@ -88,6 +88,8 @@ fun AskScreen(vm: AskViewModel, onClose: () -> Unit) {
     val lang = Format.languageCode(context)
     val ui by vm.ui.collectAsStateWithLifecycle()
     var input by rememberSaveable { mutableStateOf("") }
+    val draft by vm.draft.collectAsStateWithLifecycle()
+    androidx.compose.runtime.LaunchedEffect(draft) { draft?.let { input = it; vm.draft.value = null } }
     var reading by remember { mutableStateOf<ResolvedCitation?>(null) }
     var library by remember { mutableStateOf(false) }
     var history by remember { mutableStateOf(false) }

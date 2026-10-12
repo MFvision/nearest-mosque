@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">het bestand is beschadigd (checksum komt niet overeen)</string>
     <string name="error_pack_format">het is geen ondersteund pakket</string>
     <string name="error_pack_newer">er is een nieuwere versie van de app nodig</string>
+    <string name="error_pack_reserved">het heeft de naam van een van de eigen pakketten van de app, dus het kan dat niet vervangen</string>
     <string name="estimated_badge">Geschat: regel dichtstbijzijnde breedtegraad</string>
     <string name="exact_alarm_needed">Sta „Wekkers en herinneringen” toe voor deze app, zodat hij op tijd afgaat.</string>
     <string name="exact_quote">Letterlijk citaat</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Assalamu alaikum</string>
     <string name="online_offline_note">Je bent offline. Alleen gedownloade moskeeën worden getoond.</string>
     <string name="online_search">Online naar moskeeën zoeken</string>
-    <string name="online_search_body">Voegt live resultaten toe aan je gedownloade gegevens. Je geschatte locatie (ongeveer 1 km) wordt naar de kaartdienst gestuurd. De live kaart laadt ook kaartafbeeldingen van het gebied dat je bekijkt.</string>
+    <string name="online_search_body">Voegt live resultaten en looptijden toe aan je gedownloade gegevens. Om te zoeken wordt je geschatte locatie (ongeveer 1 km) naar de kaartdienst verstuurd; voor looptijden een locatie afgerond op ongeveer 100 m. De kaart laadt altijd afbeeldingen van het gebied dat je bekijkt.</string>
     <string name="online_searching">Online naar meer moskeeën zoeken…</string>
     <string name="open_settings">Instellingen openen</string>
     <string name="pack_builtin">Ingebouwd</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Zonsopgang</string>
     <string name="preview_play">%1$s afspelen</string>
     <string name="privacy">Privacy</string>
-    <string name="privacy_body">Geen account. Gebedstijden, de qibla en je vragen worden op deze telefoon verwerkt. Met online zoeken aan wordt een geschatte locatie (ongeveer 1 km) verstuurd om moskeeën te vinden, en de live kaart laadt afbeeldingen van het gebied dat je bekijkt. Verder verlaat niets de telefoon.</string>
+    <string name="privacy_body">Geen account. Gebedstijden, de qibla en de antwoorden op je vragen worden op deze telefoon berekend. Als online zoeken aan staat, wordt een geschatte locatie (ongeveer 1 km) verstuurd om moskeeën te vinden, en een locatie afgerond op ongeveer 100 m voor looptijden. De kaart laadt afbeeldingen van het gebied dat je bekijkt. Verder verlaat niets de telefoon.</string>
     <string name="publisher_binbaz">Officiële website van sjeik Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, versie %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, versie %2$s</string>

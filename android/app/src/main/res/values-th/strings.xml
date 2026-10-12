@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">ไฟล์เสียหาย (checksum ไม่ตรงกัน)</string>
     <string name="error_pack_format">ไม่ใช่แพ็กที่รองรับ</string>
     <string name="error_pack_newer">ต้องใช้แอปเวอร์ชันใหม่กว่า</string>
+    <string name="error_pack_reserved">ชื่อของแพ็กนี้ตรงกับแพ็กหนึ่งของแอปเอง จึงไม่สามารถแทนที่ได้</string>
     <string name="estimated_badge">ประมาณการ: กฎละติจูดที่ใกล้ที่สุด</string>
     <string name="exact_alarm_needed">เพื่อให้ดังตรงเวลา โปรดอนุญาต “การปลุกและการเตือน” สำหรับแอปนี้</string>
     <string name="exact_quote">ข้อความต้นฉบับ</string>
@@ -314,7 +315,7 @@
     <string name="onb_welcome_title">อัสสลามุอะลัยกุม</string>
     <string name="online_offline_note">คุณออฟไลน์อยู่ แสดงเฉพาะมัสยิดที่ดาวน์โหลดไว้</string>
     <string name="online_search">ค้นหามัสยิดออนไลน์</string>
-    <string name="online_search_body">เพิ่มผลลัพธ์แบบเรียลไทม์ลงในข้อมูลที่คุณดาวน์โหลด ตำแหน่งโดยประมาณของคุณ (ราว 1 กม.) จะถูกส่งไปยังบริการแผนที่ แผนที่แบบเรียลไทม์ยังโหลดภาพแผนที่ของพื้นที่ที่คุณดูด้วย</string>
+    <string name="online_search_body">เพิ่มผลการค้นหาแบบเรียลไทม์และเวลาเดินลงในข้อมูลที่คุณดาวน์โหลดไว้ สำหรับการค้นหา ระบบจะส่งตำแหน่งโดยประมาณของคุณ (ราว 1 กม.) ไปยังบริการแผนที่ และสำหรับเวลาเดิน จะส่งตำแหน่งที่ปัดเศษเป็นราว 100 ม. แผนที่จะโหลดภาพของพื้นที่ที่คุณดูเสมอ</string>
     <string name="online_searching">กำลังหามัสยิดเพิ่มเติมทางออนไลน์…</string>
     <string name="open_settings">เปิดการตั้งค่า</string>
     <string name="pack_builtin">ติดตั้งมาในแอป</string>
@@ -343,7 +344,7 @@
     <string name="prayer_sunrise">ดวงอาทิตย์ขึ้น</string>
     <string name="preview_play">เล่น %1$s</string>
     <string name="privacy">ความเป็นส่วนตัว</string>
-    <string name="privacy_body">ไม่ต้องมีบัญชี เวลาละหมาด กิบลัต และคำถามของคุณถูกประมวลผลบนโทรศัพท์นี้ เมื่อเปิดการค้นหาออนไลน์ ระบบจะส่งตำแหน่งโดยประมาณ (ราว 1 กม.) เพื่อหามัสยิด และแผนที่แบบเรียลไทม์จะโหลดภาพของพื้นที่ที่คุณดู นอกจากนี้ไม่มีข้อมูลใดออกจากโทรศัพท์</string>
+    <string name="privacy_body">ไม่ต้องมีบัญชี เวลาละหมาด กิบลัต และคำตอบสำหรับคำถามของคุณคำนวณบนโทรศัพท์เครื่องนี้ เมื่อเปิดการค้นหาออนไลน์ ระบบจะส่งตำแหน่งโดยประมาณ (ราว 1 กม.) เพื่อค้นหามัสยิด และส่งตำแหน่งที่ปัดเศษเป็นราว 100 ม. เพื่อคำนวณเวลาเดิน แผนที่จะโหลดภาพของพื้นที่ที่คุณดู นอกจากนี้ไม่มีข้อมูลใดออกจากโทรศัพท์</string>
     <string name="publisher_binbaz">เว็บไซต์ทางการของเชค Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com เวอร์ชัน %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s เวอร์ชัน %2$s</string>

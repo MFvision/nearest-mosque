@@ -44,7 +44,13 @@ def api(method: str, path: str, params: dict | None = None, body: dict | None = 
             text = r.read()
             return json.loads(text) if text else {}
     except urllib.error.HTTPError as e:
-        print(f"App Store Connect API {method} {path}: HTTP {e.code}: {e.read().decode(errors='replace')[:800]}")
+        # Only Apple's error codes and titles: the detail text can echo back names or emails sent (logs are public).
+        try:
+            errors = json.loads(e.read() or b"{}").get("errors", [])
+            summary = "; ".join(f"{x.get('code', '')}: {x.get('title', '')}" for x in errors)
+        except ValueError:
+            summary = ""
+        print(f"App Store Connect API {method} {path}: HTTP {e.code} {summary}")
         raise
 
 

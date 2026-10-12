@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">sira ang file (hindi tugma ang checksum)</string>
     <string name="error_pack_format">hindi ito suportadong pack</string>
     <string name="error_pack_newer">kailangan nito ng mas bagong bersyon ng app</string>
+    <string name="error_pack_reserved">kapangalan nito ang isa sa sariling mga pack ng app, kaya hindi nito ito mapapalitan</string>
     <string name="estimated_badge">Tinantya: panuntunan ng pinakamalapit na latitude</string>
     <string name="exact_alarm_needed">Para tumunog sa tamang oras, payagan ang “Mga alarm at paalala” para sa app na ito.</string>
     <string name="exact_quote">Eksaktong sipi</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Assalamu alaikum</string>
     <string name="online_offline_note">Offline ka. Mga na-download na masjid lang ang ipinapakita.</string>
     <string name="online_search">Maghanap ng masjid online</string>
-    <string name="online_search_body">Nagdaragdag ng live na resulta sa iyong na-download na datos. Ipinapadala ang iyong tinatayang lokasyon (mga 1 km) sa serbisyo ng mapa. Naglo-load din ang live na mapa ng mga larawan ng mapa para sa lugar na tinitingnan mo.</string>
+    <string name="online_search_body">Nagdaragdag ng mga live na resulta at oras ng paglalakad sa iyong na-download na data. Para maghanap, ipinapadala sa map service ang iyong tinatayang lokasyon (mga 1 km); para sa oras ng paglalakad, ang lokasyong ni-round sa mga 100 m. Palaging naglo-load ang mapa ng mga larawan ng lugar na tinitingnan mo.</string>
     <string name="online_searching">Naghahanap ng iba pang masjid online…</string>
     <string name="open_settings">Buksan ang Mga Setting</string>
     <string name="pack_builtin">Kasama na</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Pagsikat ng araw</string>
     <string name="preview_play">Patugtugin ang %1$s</string>
     <string name="privacy">Privacy</string>
-    <string name="privacy_body">Walang account. Ang mga oras ng dasal, ang Qibla at ang iyong mga tanong ay pinoproseso sa teleponong ito. Kapag naka-on ang online na paghahanap, ipinapadala ang tinatayang lokasyon (mga 1 km) para makahanap ng mga masjid, at naglo-load ang live na mapa ng mga larawan ng lugar na tinitingnan mo. Wala nang ibang lumalabas sa telepono.</string>
+    <string name="privacy_body">Walang account. Kinakalkula sa phone na ito ang mga oras ng pagdarasal, ang Qibla, at ang mga sagot sa iyong mga tanong. Kapag naka-on ang online search, ipinapadala ang tinatayang lokasyon (mga 1 km) para maghanap ng mga moske, at ang lokasyong ni-round sa mga 100 m para sa oras ng paglalakad. Naglo-load ang mapa ng mga larawan ng lugar na tinitingnan mo. Wala nang ibang lumalabas sa phone.</string>
     <string name="publisher_binbaz">Opisyal na website ni Shaykh Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, bersyon %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, bersyon %2$s</string>

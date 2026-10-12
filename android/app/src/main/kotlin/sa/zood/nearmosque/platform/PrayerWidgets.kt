@@ -532,8 +532,11 @@ object PrayerWidgets {
     }
 
     private fun link(context: Context, code: Int, uri: String): PendingIntent =
-        PendingIntent.getActivity(context, code, Intent(Intent.ACTION_VIEW, Uri.parse(uri), context, MainActivity::class.java),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        PendingIntent.getActivity(
+            context, code,
+            Intent(Intent.ACTION_VIEW, Uri.parse(uri), context, MainActivity::class.java).putExtra(LinkToken.EXTRA, LinkToken.get(context)),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
 
     private fun mosqueViews(context: Context, v: RemoteViews, s: AppSettings, kind: WidgetKind, st: WidgetStyle, x: WidgetExtras) {
         v.setInt(R.id.mq_icon, "setColorFilter", st.accent)

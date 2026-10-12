@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">ਫ਼ਾਈਲ ਖ਼ਰਾਬ ਹੈ (ਚੈੱਕਸਮ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ)</string>
     <string name="error_pack_format">ਇਹ ਸਮਰਥਿਤ ਪੈਕ ਨਹੀਂ ਹੈ</string>
     <string name="error_pack_newer">ਇਸ ਲਈ ਐਪ ਦਾ ਨਵਾਂ ਵਰਜਨ ਚਾਹੀਦਾ ਹੈ</string>
+    <string name="error_pack_reserved">ਇਸਦਾ ਨਾਮ ਐਪ ਦੇ ਆਪਣੇ ਕਿਸੇ ਪੈਕ ਵਰਗਾ ਹੈ, ਇਸ ਲਈ ਇਹ ਉਸਦੀ ਥਾਂ ਨਹੀਂ ਲੈ ਸਕਦਾ</string>
     <string name="estimated_badge">ਅੰਦਾਜ਼ਨ: ਨੇੜਲੇ ਅਕਸ਼ਾਂਸ਼ ਦਾ ਨਿਯਮ</string>
     <string name="exact_alarm_needed">ਸਹੀ ਵਕਤ ’ਤੇ ਵੱਜਣ ਲਈ, ਇਸ ਐਪ ਨੂੰ “ਅਲਾਰਮ ਅਤੇ ਯਾਦ-ਦਹਾਨੀਆਂ” ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
     <string name="exact_quote">ਹੂ-ਬ-ਹੂ ਹਵਾਲਾ</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">ਅੱਸਲਾਮੁ ਅਲੈਕੁਮ</string>
     <string name="online_offline_note">ਤੁਸੀਂ ਆਫ਼ਲਾਈਨ ਹੋ। ਸਿਰਫ਼ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਮਸਜਿਦਾਂ ਦਿਖਾਈਆਂ ਜਾ ਰਹੀਆਂ ਹਨ।</string>
     <string name="online_search">ਮਸਜਿਦਾਂ ਆਨਲਾਈਨ ਲੱਭੋ</string>
-    <string name="online_search_body">ਤੁਹਾਡੇ ਡਾਊਨਲੋਡ ਕੀਤੇ ਡਾਟਾ ਵਿੱਚ ਲਾਈਵ ਨਤੀਜੇ ਜੋੜਦਾ ਹੈ। ਤੁਹਾਡਾ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ (ਲਗਭਗ 1 ਕਿ.ਮੀ.) ਨਕਸ਼ਾ ਸੇਵਾ ਨੂੰ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ। ਲਾਈਵ ਨਕਸ਼ਾ ਤੁਹਾਡੇ ਵੇਖੇ ਜਾ ਰਹੇ ਖੇਤਰ ਦੀਆਂ ਨਕਸ਼ਾ ਤਸਵੀਰਾਂ ਵੀ ਲੋਡ ਕਰਦਾ ਹੈ।</string>
+    <string name="online_search_body">ਤੁਹਾਡੇ ਡਾਊਨਲੋਡ ਕੀਤੇ ਡਾਟਾ ਵਿੱਚ ਲਾਈਵ ਨਤੀਜੇ ਅਤੇ ਪੈਦਲ ਸਮੇਂ ਜੋੜਦਾ ਹੈ। ਖੋਜ ਲਈ ਤੁਹਾਡਾ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ (ਲਗਭਗ 1 ਕਿ.ਮੀ.) ਨਕਸ਼ਾ ਸੇਵਾ ਨੂੰ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ; ਪੈਦਲ ਸਮੇਂ ਲਈ ਲਗਭਗ 100 ਮੀਟਰ ਤੱਕ ਰਾਊਂਡ ਕੀਤਾ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ। ਨਕਸ਼ਾ ਹਮੇਸ਼ਾ ਉਸ ਖੇਤਰ ਦੀਆਂ ਤਸਵੀਰਾਂ ਲੋਡ ਕਰਦਾ ਹੈ ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਦੇਖਦੇ ਹੋ।</string>
     <string name="online_searching">ਆਨਲਾਈਨ ਹੋਰ ਮਸਜਿਦਾਂ ਲੱਭੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ…</string>
     <string name="open_settings">ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ</string>
     <string name="pack_builtin">ਪਹਿਲਾਂ ਤੋਂ ਸ਼ਾਮਲ</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">ਸੂਰਜ ਚੜ੍ਹਨਾ</string>
     <string name="preview_play">%1$s ਚਲਾਓ</string>
     <string name="privacy">ਨਿੱਜਤਾ</string>
-    <string name="privacy_body">ਕੋਈ ਖਾਤਾ ਨਹੀਂ। ਨਮਾਜ਼ ਦੇ ਵਕਤ, ਕਿਬਲਾ ਅਤੇ ਤੁਹਾਡੇ ਸਵਾਲ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਹੱਲ ਹੁੰਦੇ ਹਨ। ਆਨਲਾਈਨ ਖੋਜ ਚਾਲੂ ਹੋਵੇ ਤਾਂ ਮਸਜਿਦਾਂ ਲੱਭਣ ਲਈ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ (ਲਗਭਗ 1 ਕਿ.ਮੀ.) ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਲਾਈਵ ਨਕਸ਼ਾ ਤੁਹਾਡੇ ਵੇਖੇ ਜਾ ਰਹੇ ਖੇਤਰ ਦੀਆਂ ਤਸਵੀਰਾਂ ਲੋਡ ਕਰਦਾ ਹੈ। ਇਸ ਤੋਂ ਇਲਾਵਾ ਕੁਝ ਵੀ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
+    <string name="privacy_body">ਕੋਈ ਖਾਤਾ ਨਹੀਂ। ਨਮਾਜ਼ ਦੇ ਸਮੇਂ, ਕਿਬਲਾ ਅਤੇ ਤੁਹਾਡੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਇਸੇ ਫ਼ੋਨ \'ਤੇ ਗਿਣੇ ਜਾਂਦੇ ਹਨ। ਆਨਲਾਈਨ ਖੋਜ ਚਾਲੂ ਹੋਣ \'ਤੇ ਮਸਜਿਦਾਂ ਲੱਭਣ ਲਈ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ (ਲਗਭਗ 1 ਕਿ.ਮੀ.) ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਪੈਦਲ ਸਮੇਂ ਲਈ ਲਗਭਗ 100 ਮੀਟਰ ਤੱਕ ਰਾਊਂਡ ਕੀਤਾ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ। ਨਕਸ਼ਾ ਉਸ ਖੇਤਰ ਦੀਆਂ ਤਸਵੀਰਾਂ ਲੋਡ ਕਰਦਾ ਹੈ ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਦੇਖਦੇ ਹੋ। ਇਸ ਤੋਂ ਇਲਾਵਾ ਕੁਝ ਵੀ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
     <string name="publisher_binbaz">ਸ਼ੇਖ਼ Ibn Baz ਦੀ ਅਧਿਕਾਰਤ ਵੈੱਬਸਾਈਟ (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, ਵਰਜਨ %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, ਵਰਜਨ %2$s</string>

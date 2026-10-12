@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">ఫైల్ పాడైంది (చెక్‌సమ్ సరిపోలలేదు)</string>
     <string name="error_pack_format">ఇది మద్దతు ఉన్న ప్యాక్ కాదు</string>
     <string name="error_pack_newer">దీనికి యాప్ యొక్క కొత్త వెర్షన్ అవసరం</string>
+    <string name="error_pack_reserved">దీనికి యాప్ సొంత ప్యాక్‌లలో ఒకదాని పేరు ఉంది, కాబట్టి ఇది దాని స్థానాన్ని భర్తీ చేయలేదు</string>
     <string name="estimated_badge">అంచనా: సమీప అక్షాంశ నియమం</string>
     <string name="exact_alarm_needed">సమయానికి మోగడానికి, ఈ యాప్‌కు “అలారాలు &amp; రిమైండర్‌లు” అనుమతించండి.</string>
     <string name="exact_quote">యథాతథ ఉల్లేఖన</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">అస్సలాము అలైకుమ్</string>
     <string name="online_offline_note">మీరు ఆఫ్‌లైన్‌లో ఉన్నారు. డౌన్‌లోడ్ చేసిన మసీదులను మాత్రమే చూపిస్తోంది.</string>
     <string name="online_search">మసీదుల కోసం ఆన్‌లైన్‌లో వెతకండి</string>
-    <string name="online_search_body">మీరు డౌన్‌లోడ్ చేసిన డేటాకు లైవ్ ఫలితాలను జోడిస్తుంది. మీ సుమారు లొకేషన్ (దాదాపు 1 కి.మీ) మ్యాప్ సేవకు పంపబడుతుంది. లైవ్ మ్యాప్ మీరు చూసే ప్రాంతం మ్యాప్ చిత్రాలను కూడా లోడ్ చేస్తుంది.</string>
+    <string name="online_search_body">మీరు డౌన్‌లోడ్ చేసిన డేటాకు లైవ్ ఫలితాలు మరియు నడక సమయాలను జోడిస్తుంది. శోధించడానికి, మీ సుమారు స్థానం (దాదాపు 1 కి.మీ.) మ్యాప్ సేవకు పంపబడుతుంది; నడక సమయాల కోసం, దాదాపు 100 మీ.కు రౌండ్ చేసిన స్థానం పంపబడుతుంది. మీరు చూసే ప్రాంతపు చిత్రాలను మ్యాప్ ఎల్లప్పుడూ లోడ్ చేస్తుంది.</string>
     <string name="online_searching">ఆన్‌లైన్‌లో మరిన్ని మసీదుల కోసం వెతుకుతోంది…</string>
     <string name="open_settings">సెట్టింగ్‌లు తెరవండి</string>
     <string name="pack_builtin">అంతర్నిర్మితం</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">సూర్యోదయం</string>
     <string name="preview_play">%1$s ప్లే చేయండి</string>
     <string name="privacy">గోప్యత</string>
-    <string name="privacy_body">ఖాతా అవసరం లేదు. నమాజ్ సమయాలు, ఖిబ్లా, మీ ప్రశ్నలు ఈ ఫోన్‌లోనే ప్రాసెస్ అవుతాయి. ఆన్‌లైన్ శోధన ఆన్‌లో ఉంటే, మసీదులను కనుగొనడానికి సుమారు లొకేషన్ (దాదాపు 1 కి.మీ) పంపబడుతుంది, మరియు లైవ్ మ్యాప్ మీరు చూసే ప్రాంతం చిత్రాలను లోడ్ చేస్తుంది. ఇంకేదీ ఫోన్ బయటకు వెళ్లదు.</string>
+    <string name="privacy_body">ఖాతా అవసరం లేదు. నమాజ్ సమయాలు, ఖిబ్లా మరియు మీ ప్రశ్నలకు సమాధానాలు ఈ ఫోన్‌లోనే లెక్కించబడతాయి. ఆన్‌లైన్ శోధన ఆన్‌లో ఉన్నప్పుడు, మసీదులను కనుగొనడానికి సుమారు స్థానం (దాదాపు 1 కి.మీ.) పంపబడుతుంది, అలాగే నడక సమయాల కోసం దాదాపు 100 మీ.కు రౌండ్ చేసిన స్థానం పంపబడుతుంది. మీరు చూసే ప్రాంతపు చిత్రాలను మ్యాప్ లోడ్ చేస్తుంది. ఇంకేదీ ఫోన్ నుండి బయటకు వెళ్లదు.</string>
     <string name="publisher_binbaz">షేఖ్ Ibn Baz అధికారిక వెబ్‌సైట్ (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, వెర్షన్ %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, వెర్షన్ %2$s</string>

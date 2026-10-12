@@ -105,7 +105,11 @@ final class CompanionMotion {
     private let manager = CMMotionManager()
     #endif
     /// CI recordings: `-demoCompanionMotion YES` tilts it back and forth with a jolt now and then.
+    #if DEBUG
     private let demo = UserDefaults.standard.bool(forKey: "demoCompanionMotion")
+    #else
+    private let demo = false
+    #endif
 
     func start() {
         #if canImport(CoreMotion) && !os(macOS)

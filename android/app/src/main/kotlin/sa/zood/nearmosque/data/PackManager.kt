@@ -67,7 +67,8 @@ class PackManager(
         for ((dir, manifest) in bundledManifests()) {
             if (manifest.id in removed || !include(manifest)) continue
             val have = current[manifest.id]
-            if (have != null && have.version >= manifest.version) continue
+            // A pack with a built-in id that did not come from the app (an old import) is always replaced.
+            if (have != null && have.version >= manifest.version && have.builtin) continue
             try {
                 install(manifest, builtin = true) { name -> openAsset("$dir/$name") }
             } catch (e: Exception) {
@@ -97,7 +98,12 @@ class PackManager(
     }
 
     /** Import a `.nmpack` (zip with manifest.json at its root) chosen by the user. */
-    suspend fun importZip(uri: Uri): PackManifest = withContext(Dispatchers.IO) {
+    /**
+     * Installs a pack the user chose. Hash-checked against its own manifest, so it proves the files are intact, not
+     * who made them: a pack may not take the id of one of the app's own packs (built in, or in the download
+     * catalog: [reserved]), so it can never replace the Qur'an, hadith, fatwas or mosques the app ships.
+     */
+    suspend fun importZip(uri: Uri, reserved: Set<String> = emptySet()): PackManifest = withContext(Dispatchers.IO) {
         val dir = File(context.cacheDir, "import-${System.nanoTime()}")
         dir.mkdirs()
         try {
@@ -126,6 +132,7 @@ class PackManager(
             if (!manifestFile.exists()) throw PackError.Format("no manifest")
             val manifest = PackVerifier.parseManifest(manifestFile.readText())
             if (manifest.kind == "cities") throw PackError.Format("cities are built in")
+            if (manifest.id in reserved || bundledManifests().any { it.second.id == manifest.id }) throw PackError.Reserved(manifest.id)
             install(manifest, builtin = false) { name -> File(dir, name).takeIf { it.exists() }?.inputStream() }
             prefs.edit().putStringSet(KEY_REMOVED, prefs.getStringSet(KEY_REMOVED, emptySet()).orEmpty() - manifest.id).apply()
             manifest
@@ -140,7 +147,10 @@ class PackManager(
         prefs.edit().putStringSet(KEY_REMOVED, prefs.getStringSet(KEY_REMOVED, emptySet()).orEmpty() - p.manifest.id).apply()
     }
 
-    suspend fun install(manifest: PackManifest, builtin: Boolean, open: (String) -> InputStream?) = withContext(Dispatchers.IO) {
+    suspend fun install(manifest: PackManifest, builtin: Boolean, openAny: (String) -> InputStream?) = withContext(Dispatchers.IO) {
+        // Only files the manifest lists (and so hash-checks) are ever read.
+        val listed = manifest.files.map { it.path }.toSet()
+        val open = { name: String -> if (name in listed) openAny(name) else null }
         _busy.value = true
         try {
             PackVerifier.verify(manifest, open)

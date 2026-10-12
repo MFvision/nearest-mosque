@@ -144,7 +144,7 @@ targets:
     sources:
       - path: TV
         # The banner view is shared with the Top Shelf extension (Debug screenshots draw it in the app).
-        excludes: [TopShelf/Info.plist, TopShelf/*.entitlements]
+        excludes: [TopShelf/Info.plist, TopShelf/*.entitlements, TopShelf/PrivacyInfo.xcprivacy]
       - path: Shared/SharedState.swift
       - path: App/Support/Localization.swift
       - path: App/Support/Format.swift

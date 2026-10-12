@@ -48,6 +48,8 @@ class AskViewModel(private val c: AppContainer) : ViewModel() {
     val ui: StateFlow<AskUi> = _ui.asStateFlow()
     val chats = c.chats.chats
     private var job: Job? = null
+    /** Text to put in the question box (a link from outside the app): shown, not sent. */
+    val draft = MutableStateFlow<String?>(null)
     private var nextId = 1L
     private var chatId = java.util.UUID.randomUUID().toString()
 

@@ -64,6 +64,8 @@ struct AskIslamIntent: AppIntent {
 struct NearestMosqueIntent: AppIntent {
     static var title: LocalizedStringResource = "widget_kind_mosque"
     static var description = IntentDescription("intent_nearest_desc")
+    /// It reveals where the phone has been: only when the phone is unlocked.
+    static var authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
 
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog & ReturnsValue<String> & ShowsSnippetView {
@@ -91,6 +93,8 @@ struct NearestMosqueIntent: AppIntent {
 struct NearestMosqueDirectionsIntent: AppIntent {
     static var title: LocalizedStringResource = "intent_directions"
     static var description = IntentDescription("intent_directions_desc")
+    /// It reveals where the phone has been: only when the phone is unlocked.
+    static var authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
 
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog & OpensIntent {

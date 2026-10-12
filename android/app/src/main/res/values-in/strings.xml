@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">file rusak (checksum tidak cocok)</string>
     <string name="error_pack_format">bukan paket yang didukung</string>
     <string name="error_pack_newer">memerlukan versi aplikasi yang lebih baru</string>
+    <string name="error_pack_reserved">namanya sama dengan salah satu paket bawaan aplikasi, jadi tidak dapat menggantikannya</string>
     <string name="estimated_badge">Perkiraan: aturan lintang terdekat</string>
     <string name="exact_alarm_needed">Agar tepat waktu, izinkan “Alarm &amp; pengingat” untuk aplikasi ini.</string>
     <string name="exact_quote">Kutipan persis</string>
@@ -314,7 +315,7 @@
     <string name="onb_welcome_title">Assalamualaikum</string>
     <string name="online_offline_note">Anda sedang offline. Hanya masjid yang diunduh yang ditampilkan.</string>
     <string name="online_search">Cari masjid secara online</string>
-    <string name="online_search_body">Menambahkan hasil langsung ke data unduhan Anda. Lokasi perkiraan Anda (sekitar 1 km) dikirim ke layanan peta. Peta langsung juga memuat gambar area yang Anda lihat.</string>
+    <string name="online_search_body">Menambahkan hasil langsung dan waktu berjalan kaki ke data yang telah Anda unduh. Untuk mencari, lokasi perkiraan Anda (sekitar 1 km) dikirim ke layanan peta; untuk waktu berjalan kaki, lokasi yang dibulatkan hingga sekitar 100 m. Peta selalu memuat gambar area yang Anda lihat.</string>
     <string name="online_searching">Mencari masjid lain secara online…</string>
     <string name="open_settings">Buka Pengaturan</string>
     <string name="pack_builtin">Bawaan</string>
@@ -343,7 +344,7 @@
     <string name="prayer_sunrise">Terbit</string>
     <string name="preview_play">Putar %1$s</string>
     <string name="privacy">Privasi</string>
-    <string name="privacy_body">Tanpa akun. Waktu salat, kiblat, dan pertanyaan Anda diproses di ponsel ini. Jika pencarian online aktif, lokasi perkiraan (sekitar 1 km) dikirim untuk mencari masjid, dan peta langsung memuat gambar area yang Anda lihat. Selain itu tidak ada yang dikirim.</string>
+    <string name="privacy_body">Tanpa akun. Waktu salat, arah kiblat, dan jawaban atas pertanyaan Anda dihitung di ponsel ini. Saat pencarian online aktif, lokasi perkiraan (sekitar 1 km) dikirim untuk mencari masjid, dan lokasi yang dibulatkan hingga sekitar 100 m untuk waktu berjalan kaki. Peta memuat gambar area yang Anda lihat. Tidak ada hal lain yang keluar dari ponsel.</string>
     <string name="publisher_binbaz">Situs resmi Syekh Ibnu Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, versi %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, versi %2$s</string>

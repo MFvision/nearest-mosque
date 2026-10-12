@@ -8,7 +8,11 @@ struct OnboardingView: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     @Environment(\.dismiss) private var dismiss
+    #if DEBUG
     @State private var page = min(5, max(0, UserDefaults.standard.integer(forKey: "demoOnboardingPage")))
+    #else
+    @State private var page = 0
+    #endif
     private let count = 6
 
     var body: some View {

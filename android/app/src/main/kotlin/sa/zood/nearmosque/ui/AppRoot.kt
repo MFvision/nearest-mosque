@@ -134,6 +134,7 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
                 tab = Tab.ASK
                 // A question from a widget or shortcut starts its own conversation (earlier turns would be mixed in).
                 uri.getQueryParameter("q")?.takeIf { it.isNotBlank() }?.let { askVm.newConversation(); askVm.ask(it, askLang) }
+                uri.getQueryParameter("draft")?.takeIf { it.isNotBlank() }?.let { askVm.draft.value = it }
             }
             "prayer" -> { tab = Tab.PRAYER; under = Tab.PRAYER }
         }

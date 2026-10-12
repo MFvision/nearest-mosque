@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Local-only by design: the database (favorites, packs, imported books) and preferences
-     (including the chosen location) are excluded from cloud backup and device transfer.
-     Built-in packs are reinstalled on first launch. -->
+<!-- Cloud backup: nothing from the database or app files (settings with the chosen location, downloads, saved
+     chats). Moving to a new phone of your own (device transfer) brings the settings and downloads along, but not the
+     database or saved Ask chats. Built-in packs are reinstalled on first launch. -->
 <data-extraction-rules>
     <cloud-backup>
         <exclude domain="database" path="." />

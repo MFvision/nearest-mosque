@@ -136,12 +136,21 @@ final class AppModel {
         return list
     }
 
+    /// See SharedState.linkToken.
+    static let linkToken: String = {
+        if let t = UserDefaults.standard.string(forKey: "linkToken") { return t }
+        let t = UUID().uuidString
+        UserDefaults.standard.set(t, forKey: "linkToken")
+        return t
+    }()
+
     func shareWithWidgets() {
         let s = settings.location.map {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
                         reminders: settings.reminders.map(\.rawValue).sorted(),
-                        mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion)
+                        mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion,
+                        linkToken: Self.linkToken)
         }
         guard s != lastShared else { return }
         lastShared = s
@@ -253,7 +262,9 @@ final class AppModel {
         let near = (z?.distanceMeters ?? .infinity) < 30_000 ? z?.nearestCity : nil
         settings.location = PrayerLocation(
             name: near?.displayName(l10n.language) ?? l10n.t("location_current"),
-            latitude: fix.location.latitude, longitude: fix.location.longitude,
+            // Kept to about 100 m: plenty for prayer times and the Qibla, and the saved settings never hold the
+            // exact position (they are in backups).
+            latitude: (fix.location.latitude * 1000).rounded() / 1000, longitude: (fix.location.longitude * 1000).rounded() / 1000,
             zoneId: (z?.zone ?? .current).identifier, countryCode: z?.nearestCity?.countryCode, source: .device,
             zoneConfirmed: !(z?.needsConfirmation ?? true)
         )

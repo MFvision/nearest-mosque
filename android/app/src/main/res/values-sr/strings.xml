@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">фајл је оштећен (контролни збир се не поклапа)</string>
     <string name="error_pack_format">није подржани пакет</string>
     <string name="error_pack_newer">потребна је новија верзија апликације</string>
+    <string name="error_pack_reserved">има назив једног од сопствених пакета апликације, па не може да га замени</string>
     <string name="estimated_badge">Процена: правило најближе ширине</string>
     <string name="exact_alarm_needed">Да би звонило на време, дозволите овој апликацији „Аларми и подсетници”.</string>
     <string name="exact_quote">Тачан цитат</string>
@@ -316,7 +317,7 @@
     <string name="onb_welcome_title">Есселаму алејкум</string>
     <string name="online_offline_note">Ван мреже сте. Приказују се само преузете џамије.</string>
     <string name="online_search">Тражи џамије на мрежи</string>
-    <string name="online_search_body">Додаје резултате уживо вашим преузетим подацима. Ваша приближна локација (око 1 км) шаље се услузи мапа. Мапа уживо такође учитава слике мапе за област коју гледате.</string>
+    <string name="online_search_body">Додаје резултате уживо и времена хода вашим преузетим подацима. За претрагу се ваша приближна локација (око 1 км) шаље услузи за мапе; за времена хода, локација заокружена на око 100 м. Мапа увек учитава слике области коју прегледате.</string>
     <string name="online_searching">Тражимо још џамија на мрежи…</string>
     <string name="open_settings">Отвори подешавања</string>
     <string name="pack_builtin">Уграђено</string>
@@ -345,7 +346,7 @@
     <string name="prayer_sunrise">Излазак сунца</string>
     <string name="preview_play">Пусти %1$s</string>
     <string name="privacy">Приватност</string>
-    <string name="privacy_body">Без налога. Намаска времена, кибла и ваша питања обрађују се на овом телефону. Кад је претрага на мрежи укључена, шаље се приближна локација (око 1 км) ради проналажења џамија, а мапа уживо учитава слике области коју гледате. Ништа друго не напушта телефон.</string>
+    <string name="privacy_body">Без налога. Времена намаза, смер кибле и одговори на ваша питања израчунавају се на овом телефону. Када је онлајн претрага укључена, шаље се приближна локација (око 1 км) ради проналажења џамија и локација заокружена на око 100 м ради израчунавања времена хода. Мапа учитава слике области коју прегледате. Ништа друго не напушта телефон.</string>
     <string name="publisher_binbaz">Званични сајт шејха Ибн База (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, верзија %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, верзија %2$s</string>

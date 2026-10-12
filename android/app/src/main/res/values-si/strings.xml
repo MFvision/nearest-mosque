@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">ගොනුව හානි වී ඇත (චෙක්සම් නොගැළපේ)</string>
     <string name="error_pack_format">මෙය සහාය දක්වන පැකේජයක් නොවේ</string>
     <string name="error_pack_newer">මෙයට යෙදුමේ නව අනුවාදයක් අවශ්‍යයි</string>
+    <string name="error_pack_reserved">එයට යෙදුමේම පැකේජයක නම ඇති නිසා, එයට එය ප්‍රතිස්ථාපනය කළ නොහැක</string>
     <string name="estimated_badge">ඇස්තමේන්තුගත: ළඟම අක්ෂාංශ නීතිය</string>
     <string name="exact_alarm_needed">නියමිත වේලාවට නාද වීමට, මෙම යෙදුමට “එලාම් සහ සිහිකැඳවීම්” ඉඩ දෙන්න.</string>
     <string name="exact_quote">නියම උපුටා දැක්වීම</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">අස්සලාමු අලෙයිකුම්</string>
     <string name="online_offline_note">ඔබ නොබැඳිව සිටී. බාගත කළ පල්ලි පමණක් පෙන්වමින්.</string>
     <string name="online_search">පල්ලි මාර්ගගතව සොයන්න</string>
-    <string name="online_search_body">ඔබ බාගත කළ දත්තවලට සජීවී ප්‍රතිඵල එක් කරයි. ඔබේ ආසන්න ස්ථානය (කි.මී. 1 ක් පමණ) සිතියම් සේවාවට යවනු ලැබේ. සජීවී සිතියම ඔබ බලන ප්‍රදේශයේ සිතියම් රූපද පූරණය කරයි.</string>
+    <string name="online_search_body">ඔබ බාගත කළ දත්තවලට සජීවී ප්‍රතිඵල සහ ඇවිදීමේ කාලය එක් කරයි. සෙවීමට, ඔබේ ආසන්න ස්ථානය (දළ වශයෙන් කි.මී. 1) සිතියම් සේවාවට යවනු ලැබේ; ඇවිදීමේ කාලය සඳහා, දළ වශයෙන් මීටර් 100කට වටයා ගත් ස්ථානයක් යවනු ලැබේ. සිතියම සැමවිටම ඔබ බලන ප්‍රදේශයේ රූප පූරණය කරයි.</string>
     <string name="online_searching">තවත් පල්ලි මාර්ගගතව සොයමින්…</string>
     <string name="open_settings">සැකසීම් විවෘත කරන්න</string>
     <string name="pack_builtin">ඇතුළත් කර ඇත</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">හිරු උදාව</string>
     <string name="preview_play">%1$s වාදනය කරන්න</string>
     <string name="privacy">පෞද්ගලිකත්වය</string>
-    <string name="privacy_body">ගිණුමක් නැත. සලාත වේලාවන්, කිබ්ලා සහ ඔබේ ප්‍රශ්න මෙම දුරකථනයේම සකසනු ලැබේ. මාර්ගගත සෙවුම සක්‍රිය නම්, පල්ලි සොයා ගැනීමට ආසන්න ස්ථානයක් (කි.මී. 1 ක් පමණ) යවනු ලබන අතර, සජීවී සිතියම ඔබ බලන ප්‍රදේශයේ රූප පූරණය කරයි. වෙන කිසිවක් දුරකථනයෙන් පිටතට නොයයි.</string>
+    <string name="privacy_body">ගිණුමක් නැත. සලාත් වේලාවන්, කිබ්ලාව සහ ඔබේ ප්‍රශ්නවලට පිළිතුරු මෙම දුරකථනයේම ගණනය කෙරේ. ඔන්ලයින් සෙවීම ක්‍රියාත්මක විට, මුස්ලිම් පල්ලි සොයා ගැනීමට ආසන්න ස්ථානයක් (දළ වශයෙන් කි.මී. 1) යවනු ලබන අතර, ඇවිදීමේ කාලය සඳහා දළ වශයෙන් මීටර් 100කට වටයා ගත් ස්ථානයක් යවනු ලැබේ. සිතියම ඔබ බලන ප්‍රදේශයේ රූප පූරණය කරයි. වෙනත් කිසිවක් දුරකථනයෙන් පිටතට නොයයි.</string>
     <string name="publisher_binbaz">ෂෙයික් Ibn Baz ගේ නිල වෙබ් අඩවිය (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, අනුවාදය %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, අනුවාදය %2$s</string>

@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">ফাইলটি নষ্ট (চেকসাম মেলেনি)</string>
     <string name="error_pack_format">এটি সমর্থিত প্যাক নয়</string>
     <string name="error_pack_newer">এর জন্য অ্যাপের নতুন ভার্সন লাগবে</string>
+    <string name="error_pack_reserved">এর নাম অ্যাপের নিজস্ব একটি প্যাকের নামের মতো, তাই এটি সেটির জায়গা নিতে পারে না</string>
     <string name="estimated_badge">আনুমানিক: নিকটতম অক্ষাংশের নিয়ম</string>
     <string name="exact_alarm_needed">ঠিক সময়ে বাজার জন্য এই অ্যাপকে “অ্যালার্ম ও রিমাইন্ডার” অনুমতি দিন।</string>
     <string name="exact_quote">হুবহু উদ্ধৃতি</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">আসসালামু আলাইকুম</string>
     <string name="online_offline_note">আপনি অফলাইনে আছেন। শুধু ডাউনলোড করা মসজিদ দেখানো হচ্ছে।</string>
     <string name="online_search">অনলাইনে মসজিদ খুঁজুন</string>
-    <string name="online_search_body">আপনার ডাউনলোড করা ডেটার সাথে লাইভ ফলাফল যোগ করে। আপনার আনুমানিক লোকেশন (প্রায় 1 কিমি) ম্যাপ সেবায় পাঠানো হয়। লাইভ মানচিত্র আপনি যে এলাকা দেখছেন তার মানচিত্রের ছবিও লোড করে।</string>
+    <string name="online_search_body">আপনার ডাউনলোড করা ডেটায় লাইভ ফলাফল ও হাঁটার সময় যোগ করে। সার্চ করতে আপনার আনুমানিক অবস্থান (প্রায় 1 কিমি) মানচিত্র সেবায় পাঠানো হয়; হাঁটার সময়ের জন্য প্রায় 100 মিটারে রাউন্ড করা একটি অবস্থান পাঠানো হয়। আপনি যে এলাকা দেখেন, মানচিত্র সবসময় সেই এলাকার ছবি লোড করে।</string>
     <string name="online_searching">অনলাইনে আরও মসজিদ খোঁজা হচ্ছে…</string>
     <string name="open_settings">সেটিংস খুলুন</string>
     <string name="pack_builtin">অন্তর্ভুক্ত</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">সূর্যোদয়</string>
     <string name="preview_play">%1$s বাজান</string>
     <string name="privacy">গোপনীয়তা</string>
-    <string name="privacy_body">কোনো অ্যাকাউন্ট নেই। নামাজের সময়, কিবলা ও আপনার প্রশ্ন এই ফোনেই হিসাব করা হয়। অনলাইন সার্চ চালু থাকলে মসজিদ খুঁজতে আনুমানিক লোকেশন (প্রায় 1 কিমি) পাঠানো হয়, আর লাইভ মানচিত্র আপনি যে এলাকা দেখছেন তার ছবি লোড করে। এ ছাড়া আর কিছুই ফোনের বাইরে যায় না।</string>
+    <string name="privacy_body">কোনো অ্যাকাউন্ট নেই। নামাজের সময়, কিবলা এবং আপনার প্রশ্নের উত্তর এই ফোনেই হিসাব করা হয়। অনলাইন সার্চ চালু থাকলে মসজিদ খুঁজতে একটি আনুমানিক অবস্থান (প্রায় 1 কিমি) পাঠানো হয়, আর হাঁটার সময়ের জন্য প্রায় 100 মিটারে রাউন্ড করা একটি অবস্থান পাঠানো হয়। আপনি যে এলাকা দেখেন, মানচিত্র সেই এলাকার ছবি লোড করে। এ ছাড়া আর কিছুই ফোন থেকে বাইরে যায় না।</string>
     <string name="publisher_binbaz">শায়খ ইবনে বাযের অফিশিয়াল ওয়েবসাইট (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, ভার্সন %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, ভার্সন %2$s</string>

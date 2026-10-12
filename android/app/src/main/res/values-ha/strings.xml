@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">fayil ɗin ya lalace (checksum bai dace ba)</string>
     <string name="error_pack_format">ba fakitin da ake tallafawa ba ne</string>
     <string name="error_pack_newer">yana buƙatar sabuwar sigar manhajar</string>
+    <string name="error_pack_reserved">yana da sunan ɗaya daga cikin fakitin manhajar kanta, don haka ba zai iya maye gurbinsa ba</string>
     <string name="estimated_badge">Ƙiyasi: ƙa\'idar latitude mafi kusa</string>
     <string name="exact_alarm_needed">Don ta yi ƙara a kan lokaci, ba da izinin “Ƙararrawa da tunatarwa” ga wannan manhaja.</string>
     <string name="exact_quote">Ainihin magana</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Assalamu alaikum</string>
     <string name="online_offline_note">Ba ku da intanet. Ana nuna masallatan da aka sauke kawai.</string>
     <string name="online_search">Nemi masallatai ta intanet</string>
-    <string name="online_search_body">Yana ƙara sakamako kai tsaye cikin bayanan da kuka sauke. Ana aika wurinku na ƙiyasi (kusan km 1) zuwa sabis ɗin taswira. Taswirar kai tsaye kuma tana loda hotunan taswira na yankin da kuke kallo.</string>
+    <string name="online_search_body">Yana ƙara sakamako kai tsaye da lokutan tafiya da ƙafa ga bayanan da kuka sauke. Don bincike, ana aika ƙiyasin wurinku (kusan kilomita 1) zuwa sabis ɗin taswira; don lokutan tafiya da ƙafa, wurin da aka zagaye zuwa kusan mita 100. Taswira tana loda hotunan yankin da kuke kallo a koyaushe.</string>
     <string name="online_searching">Ana neman ƙarin masallatai ta intanet…</string>
     <string name="open_settings">Buɗe Saituna</string>
     <string name="pack_builtin">Na ciki</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Fitowar rana</string>
     <string name="preview_play">Kunna %1$s</string>
     <string name="privacy">Sirri</string>
-    <string name="privacy_body">Babu asusu. Lokutan sallah, Alƙibla da tambayoyinku ana sarrafa su a wannan wayar. Idan an kunna binciken intanet, ana aika wuri na ƙiyasi (kusan km 1) don nemo masallatai, kuma taswirar kai tsaye tana loda hotunan yankin da kuke kallo. Babu wani abu kuma da ke barin wayar.</string>
+    <string name="privacy_body">Babu asusu. Ana lissafa lokutan sallah, alƙibla da amsoshin tambayoyinku a wannan wayar. Idan binciken intanet yana kunne, ana aika ƙiyasin wurinku (kusan kilomita 1) don nemo masallatai, da kuma wurin da aka zagaye zuwa kusan mita 100 don lokutan tafiya da ƙafa. Taswira tana loda hotunan yankin da kuke kallo. Babu wani abu dabam da ke barin wayar.</string>
     <string name="publisher_binbaz">Shafin yanar gizo na hukuma na Shaikh Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, siga %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, siga %2$s</string>

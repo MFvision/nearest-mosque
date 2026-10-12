@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">फाइल खराब आहे (चेकसम जुळत नाही)</string>
     <string name="error_pack_format">हा समर्थित पॅक नाही</string>
     <string name="error_pack_newer">यासाठी ॲपची नवीन आवृत्ती लागते</string>
+    <string name="error_pack_reserved">याचे नाव ॲपच्या स्वतःच्या एका पॅकसारखेच आहे, त्यामुळे ते त्याची जागा घेऊ शकत नाही</string>
     <string name="estimated_badge">अंदाजे: जवळच्या अक्षांशाचा नियम</string>
     <string name="exact_alarm_needed">वेळेवर वाजण्यासाठी या ॲपला “अलार्म आणि रिमाइंडर” ची परवानगी द्या.</string>
     <string name="exact_quote">जसाच्या तसा उतारा</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">अस्सलामु अलैकुम</string>
     <string name="online_offline_note">तुम्ही ऑफलाइन आहात. फक्त डाउनलोड केलेल्या मशिदी दाखवत आहोत.</string>
     <string name="online_search">मशिदी ऑनलाइन शोधा</string>
-    <string name="online_search_body">तुमच्या डाउनलोड केलेल्या डेटामध्ये लाइव्ह निकाल जोडते. तुमचे अंदाजे लोकेशन (सुमारे 1 किमी) मॅप सेवेला पाठवले जाते. लाइव्ह नकाशा तुम्ही पाहत असलेल्या भागाच्या नकाशा प्रतिमाही लोड करतो.</string>
+    <string name="online_search_body">तुमच्या डाउनलोड केलेल्या डेटामध्ये थेट निकाल आणि चालण्याच्या वेळा जोडते. शोधण्यासाठी तुमचे अंदाजे स्थान (सुमारे 1 किमी) नकाशा सेवेला पाठवले जाते; चालण्याच्या वेळांसाठी सुमारे 100 मीटरपर्यंत राउंड केलेले स्थान पाठवले जाते. तुम्ही पाहत असलेल्या भागाच्या प्रतिमा नकाशा नेहमी लोड करतो.</string>
     <string name="online_searching">ऑनलाइन आणखी मशिदी शोधत आहोत…</string>
     <string name="open_settings">सेटिंग्ज उघडा</string>
     <string name="pack_builtin">आधीपासून समाविष्ट</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">सूर्योदय</string>
     <string name="preview_play">%1$s वाजवा</string>
     <string name="privacy">गोपनीयता</string>
-    <string name="privacy_body">कोणतेही खाते नाही. नमाजच्या वेळा, किब्ला आणि तुमचे प्रश्न याच फोनवर सोडवले जातात. ऑनलाइन शोध चालू असताना मशिदी शोधण्यासाठी अंदाजे लोकेशन (सुमारे 1 किमी) पाठवले जाते, आणि लाइव्ह नकाशा तुम्ही पाहत असलेल्या भागाच्या प्रतिमा लोड करतो. याशिवाय काहीही फोनबाहेर जात नाही.</string>
+    <string name="privacy_body">खाते नाही. नमाजाच्या वेळा, किब्ला आणि तुमच्या प्रश्नांची उत्तरे याच फोनवर काढली जातात. ऑनलाइन शोध चालू असताना मशिदी शोधण्यासाठी अंदाजे स्थान (सुमारे 1 किमी) पाठवले जाते, आणि चालण्याच्या वेळेसाठी सुमारे 100 मीटरपर्यंत राउंड केलेले स्थान पाठवले जाते. तुम्ही पाहत असलेल्या भागाच्या प्रतिमा नकाशा लोड करतो. याशिवाय काहीही फोनबाहेर जात नाही.</string>
     <string name="publisher_binbaz">शेख इब्न बाज यांची अधिकृत वेबसाइट (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, आवृत्ती %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, आवृत्ती %2$s</string>

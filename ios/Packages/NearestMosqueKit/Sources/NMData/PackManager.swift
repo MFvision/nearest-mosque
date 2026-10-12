@@ -58,14 +58,17 @@ public final class PackManager: @unchecked Sendable {
     @discardableResult
     public func ensureBuiltins(include: (PackManifest) -> Bool = { _ in true }) -> [String] {
         let removed = Set(defaults.stringArray(forKey: Self.removedKey) ?? [])
-        let current = Dictionary(uniqueKeysWithValues: ((try? installed()) ?? []).map { ($0.id, $0.version) })
+        let installedNow = (try? installed()) ?? []
+        let current = Dictionary(uniqueKeysWithValues: installedNow.map { ($0.id, $0.version) })
+        // A pack with a built-in id that did not come from the app (an old import) is always replaced.
+        let notOurs = Set(installedNow.filter { !$0.builtin }.map(\.id))
         var failed: [String] = []
         // Smallest first: the books shelf and hadith appear within a minute or two while the large fatwa pack
         // is still being indexed.
         func size(_ m: PackManifest) -> Int { m.files.reduce(0) { total, f in total + f.bytes } }
         let ordered = bundledManifests().sorted { a, b in size(a.1) < size(b.1) }
         for (dir, m) in ordered where !removed.contains(m.id) && include(m) {
-            if let v = current[m.id], v >= m.version { continue }
+            if let v = current[m.id], v >= m.version, !notOurs.contains(m.id) { continue }
             // Memory-mapped: bundled packs can be tens of MB.
             do { try install(m, builtin: true) { try? Data(contentsOf: dir.appendingPathComponent($0), options: .mappedIfSafe) } } catch { failed.append(m.id) }
         }
@@ -89,17 +92,24 @@ public final class PackManager: @unchecked Sendable {
         }
     }
 
-    /// Install a pack from an unpacked folder chosen by the user (Files app). Hash-verified.
+    /// Install a pack from an unpacked folder chosen by the user (Files app). Hash-verified against its own manifest,
+    /// so it proves the files are intact, not who made them: a pack may not take the id of one of the app's own
+    /// packs (built in, or in the download catalog: `reserved`), so it can never replace the Qur'an, hadith,
+    /// fatwas or mosques the app ships.
     @discardableResult
-    public func importFolder(_ dir: URL) throws -> PackManifest {
+    public func importFolder(_ dir: URL, reserved: Set<String> = []) throws -> PackManifest {
         let m = try PackVerifier.parseManifest(Data(contentsOf: dir.appendingPathComponent("manifest.json")))
         guard m.kind != "cities" else { throw PackError.format("cities are built in") }
+        guard !reserved.contains(m.id), !bundledManifests().contains(where: { $0.1.id == m.id }) else { throw PackError.reserved(m.id) }
         try install(m, builtin: false) { try? Data(contentsOf: dir.appendingPathComponent($0)) }
         defaults.set((defaults.stringArray(forKey: Self.removedKey) ?? []).filter { $0 != m.id }, forKey: Self.removedKey)
         return m
     }
 
-    public func install(_ m: PackManifest, builtin: Bool, read: (String) -> Data?) throws {
+    public func install(_ m: PackManifest, builtin: Bool, read readAny: (String) -> Data?) throws {
+        // Only files the manifest lists (and so hash-checks) are ever read.
+        let listed = Set(m.files.map(\.path))
+        let read = { (path: String) -> Data? in listed.contains(path) ? readAny(path) : nil }
         try PackVerifier.verify(m, read: read)
         let bytes = m.files.reduce(0) { $0 + $1.bytes }
         let now = Date().timeIntervalSince1970

@@ -44,7 +44,9 @@ class WidgetStyleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val id = intent?.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
         setResult(Activity.RESULT_CANCELED, Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id))
-        if (id == AppWidgetManager.INVALID_APPWIDGET_ID) { finish(); return }
+        // Only this app's own widgets (another app could pass any widget id).
+        val ours = AppWidgetManager.getInstance(this).getAppWidgetInfo(id)?.provider?.packageName == packageName
+        if (id == AppWidgetManager.INVALID_APPWIDGET_ID || !ours) { finish(); return }
         val current = PrayerWidgets.style(this, id)
         setContent {
             NearMosqueTheme {

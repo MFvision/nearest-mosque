@@ -656,7 +656,7 @@ extension PrayerWidgetView {
                 Link(destination: URL(string: "nearmosque://ask")!) { bar }
                 Text(s.t("widget_ask_suggested")).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
                 ForEach(s.todaysQuestions(entry.date), id: \.self) { q in
-                    Link(destination: URL(string: "nearmosque://ask?q=\(PrayerWidgetKind.encode(q))")!) {
+                    Link(destination: URL(string: "nearmosque://ask?q=\(PrayerWidgetKind.encode(q))&t=\(PrayerWidgetKind.encode(s.linkToken ?? ""))")!) {
                         HStack(spacing: 6) {
                             Image(systemName: "questionmark.bubble").foregroundStyle(p.accent)
                             Text(q).font(.subheadline.weight(.medium)).foregroundStyle(p.ink).lineLimit(1)

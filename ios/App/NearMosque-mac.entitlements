@@ -10,6 +10,9 @@
 	<true/>
 	<key>com.apple.security.personal-information.location</key>
 	<true/>
+	<!-- Read only the folder the person picks in Settings, Import a pack. -->
+	<key>com.apple.security.files.user-selected.read-only</key>
+	<true/>
 	<!-- The app's identity, which the keychain group needs on macOS (signing for the App Store from an
 	     ad hoc archive does not always add it, and macOS stops an app without it at launch). -->
 	<key>com.apple.application-identifier</key>

@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">le fichier est endommagé (somme de contrôle incorrecte)</string>
     <string name="error_pack_format">ce n’est pas un paquet pris en charge</string>
     <string name="error_pack_newer">il faut une version plus récente de l’app</string>
+    <string name="error_pack_reserved">il porte le nom de l\'un des packs propres à l\'application, il ne peut donc pas le remplacer</string>
     <string name="estimated_badge">Estimé : règle de la latitude la plus proche</string>
     <string name="exact_alarm_needed">Pour sonner à l’heure, autorisez « Alarmes et rappels » pour cette app.</string>
     <string name="exact_quote">Citation exacte</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Assalamou alaykoum</string>
     <string name="online_offline_note">Vous êtes hors ligne. Seules les mosquées téléchargées sont affichées.</string>
     <string name="online_search">Rechercher des mosquées en ligne</string>
-    <string name="online_search_body">Ajoute des résultats en direct à vos données téléchargées. Votre position approximative (environ 1 km) est envoyée au service de cartes. La carte en direct charge aussi les images de la zone affichée.</string>
+    <string name="online_search_body">Ajoute des résultats en direct et des temps de marche à vos données téléchargées. Pour la recherche, votre position approximative (à environ 1 km près) est envoyée au service de cartographie, et pour les temps de marche, une position arrondie à environ 100 m. La carte charge toujours les images de la zone que vous consultez.</string>
     <string name="online_searching">Recherche d’autres mosquées en ligne…</string>
     <string name="open_settings">Ouvrir les réglages</string>
     <string name="pack_builtin">Intégré</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Lever du soleil</string>
     <string name="preview_play">Écouter %1$s</string>
     <string name="privacy">Confidentialité</string>
-    <string name="privacy_body">Aucun compte. Horaires, qibla et réponses sont calculés sur ce téléphone. Avec la recherche en ligne activée, une position approximative (environ 1 km) est envoyée pour trouver des mosquées, et la carte en direct charge les images de la zone affichée. Rien d’autre ne quitte le téléphone.</string>
+    <string name="privacy_body">Aucun compte. Les horaires de prière, la qibla et les réponses à vos questions sont calculés sur ce téléphone. Lorsque la recherche en ligne est activée, une position approximative (à environ 1 km près) est envoyée pour trouver des mosquées, ainsi qu\'une position arrondie à environ 100 m pour les temps de marche. La carte charge les images de la zone que vous consultez. Rien d\'autre ne quitte le téléphone.</string>
     <string name="publisher_binbaz">Site officiel du cheikh Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, version %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com : %1$s, version %2$s</string>

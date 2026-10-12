@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">a fájl sérült (az ellenőrzőösszeg nem egyezik)</string>
     <string name="error_pack_format">nem támogatott csomag</string>
     <string name="error_pack_newer">az alkalmazás újabb verziója kell hozzá</string>
+    <string name="error_pack_reserved">az alkalmazás egyik saját csomagjának nevét viseli, ezért nem cserélheti le azt</string>
     <string name="estimated_badge">Becsült: legközelebbi szélesség szabálya</string>
     <string name="exact_alarm_needed">A pontos jelzéshez engedélyezd az alkalmazásnak az „Ébresztések és emlékeztetők” funkciót.</string>
     <string name="exact_quote">Pontos idézet</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Asszalámu alejkum</string>
     <string name="online_offline_note">Nincs internetkapcsolat. Csak a letöltött mecsetek látszanak.</string>
     <string name="online_search">Mecsetek keresése online</string>
-    <string name="online_search_body">Élő találatokat ad a letöltött adataidhoz. A hozzávetőleges helyed (kb. 1 km) a térképszolgáltatáshoz kerül. Az élő térkép a megtekintett területről térképképeket is betölt.</string>
+    <string name="online_search_body">Élő találatokkal és gyaloglási időkkel egészíti ki a letöltött adatait. A kereséshez a hozzávetőleges helye (kb. 1 km) a térképszolgáltatáshoz kerül; a gyaloglási időkhöz egy kb. 100 m-re kerekített hely. A térkép mindig betölti az Ön által megtekintett terület képeit.</string>
     <string name="online_searching">További mecsetek keresése online…</string>
     <string name="open_settings">Beállítások megnyitása</string>
     <string name="pack_builtin">Beépített</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Napkelte</string>
     <string name="preview_play">%1$s lejátszása</string>
     <string name="privacy">Adatvédelem</string>
-    <string name="privacy_body">Nincs fiók. Az imaidőket, a kiblát és a kérdéseidet ez a telefon dolgozza fel. Ha az online keresés be van kapcsolva, egy hozzávetőleges hely (kb. 1 km) elküldésre kerül a mecsetek kereséséhez, az élő térkép pedig képeket tölt be a megtekintett területről. Semmi más nem hagyja el a telefont.</string>
+    <string name="privacy_body">Nincs fiók. Az imaidőket, a kibla irányát és a kérdéseire adott válaszokat ezen a telefonon számítja ki az alkalmazás. Ha az online keresés be van kapcsolva, a mecsetek kereséséhez egy hozzávetőleges helyet (kb. 1 km) küld, a gyaloglási időkhöz pedig egy kb. 100 m-re kerekített helyet. A térkép betölti az Ön által megtekintett terület képeit. Semmi más nem hagyja el a telefont.</string>
     <string name="publisher_binbaz">Ibn Baz sejk hivatalos weboldala (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, %1$s verzió</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, %2$s verzió</string>

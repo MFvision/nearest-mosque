@@ -211,8 +211,10 @@ struct DownloadsSettingsView: View {
             let ok = url.startAccessingSecurityScopedResource()
             defer { if ok { url.stopAccessingSecurityScopedResource() } }
             do {
-                let m = try app.packs?.importFolder(url)
+                let m = try app.packs?.importFolder(url, reserved: Set(app.downloads.catalog.packs.map(\.id)))
                 message = m.map { l10n.t("import_done", $0.title(l10n.language)) }
+            } catch PackError.reserved {
+                message = l10n.t("import_failed", l10n.t("error_pack_reserved"))
             } catch PackError.checksum {
                 message = l10n.t("import_failed", l10n.t("error_pack_checksum"))
             } catch PackError.newerSchema {

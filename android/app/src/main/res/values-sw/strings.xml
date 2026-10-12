@@ -130,6 +130,7 @@
     <string name="error_pack_checksum">faili imeharibika (checksum hailingani)</string>
     <string name="error_pack_format">si kifurushi kinachotumika</string>
     <string name="error_pack_newer">inahitaji toleo jipya zaidi la programu</string>
+    <string name="error_pack_reserved">kina jina la mojawapo ya vifurushi vya programu yenyewe, kwa hivyo hakiwezi kuchukua nafasi yake</string>
     <string name="estimated_badge">Makadirio: kanuni ya latitudo iliyo karibu</string>
     <string name="exact_alarm_needed">Ili ilie kwa wakati, ruhusu “Kengele na vikumbusho” kwa programu hii.</string>
     <string name="exact_quote">Nukuu halisi</string>
@@ -315,7 +316,7 @@
     <string name="onb_welcome_title">Assalamu alaikum</string>
     <string name="online_offline_note">Huna intaneti. Inaonyesha misikiti iliyopakuliwa tu.</string>
     <string name="online_search">Tafuta misikiti mtandaoni</string>
-    <string name="online_search_body">Inaongeza matokeo ya moja kwa moja kwenye data uliyopakua. Mahali ulipo kwa makadirio (takriban km 1) panatumwa kwa huduma ya ramani. Ramani hai pia inapakia picha za ramani za eneo unalotazama.</string>
+    <string name="online_search_body">Huongeza matokeo ya moja kwa moja na muda wa kutembea kwenye data uliyopakua. Ili kutafuta, eneo lako la takriban (karibu km 1) hutumwa kwa huduma ya ramani; kwa muda wa kutembea, eneo lililokadiriwa hadi takriban mita 100. Ramani hupakia picha za eneo unalotazama kila wakati.</string>
     <string name="online_searching">Inatafuta misikiti zaidi mtandaoni…</string>
     <string name="open_settings">Fungua Mipangilio</string>
     <string name="pack_builtin">Iliyojengwa ndani</string>
@@ -344,7 +345,7 @@
     <string name="prayer_sunrise">Macheo</string>
     <string name="preview_play">Cheza %1$s</string>
     <string name="privacy">Faragha</string>
-    <string name="privacy_body">Hakuna akaunti. Nyakati za sala, Kibla na maswali yako yanashughulikiwa kwenye simu hii. Utafutaji mtandaoni ukiwa umewashwa, mahali pa makadirio (takriban km 1) panatumwa ili kupata misikiti, na ramani hai inapakia picha za eneo unalotazama. Hakuna kingine kinachotoka kwenye simu.</string>
+    <string name="privacy_body">Hakuna akaunti. Nyakati za swala, Qibla na majibu ya maswali yako hukokotolewa kwenye simu hii. Utafutaji mtandaoni ukiwa umewashwa, eneo la takriban (karibu km 1) hutumwa ili kupata misikiti, na eneo lililokadiriwa hadi takriban mita 100 hutumwa kwa ajili ya muda wa kutembea. Ramani hupakia picha za eneo unalotazama. Hakuna kitu kingine kinachotoka kwenye simu.</string>
     <string name="publisher_binbaz">Tovuti rasmi ya Sheikh Ibn Baz (binbaz.org.sa)</string>
     <string name="publisher_hadeethenc">HadeethEnc.com, toleo %1$s</string>
     <string name="publisher_quranenc">QuranEnc.com: %1$s, toleo %2$s</string>

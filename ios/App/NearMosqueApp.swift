@@ -128,14 +128,14 @@ struct RootView: View {
         .modifier(TabBarMinimize())
         // Widgets: nearmosque://prayer, nearmosque://qibla, nearmosque://mosques, nearmosque://mosque?id=…,
         // nearmosque://ask (optionally ?q=… to ask a question). Shortcuts: PendingRoute; controls: openQibla.
-        .onOpenURL { open($0) }
-        .onReceive(NotificationCenter.default.publisher(for: .openRoute)) { _ in PendingRoute.take().map(open) }
+        .onOpenURL { open($0, trusted: false) }
+        .onReceive(NotificationCenter.default.publisher(for: .openRoute)) { _ in PendingRoute.take().map { open($0, trusted: true) } }
         .onChange(of: model.ready) { _, ready in
             // A question from Siri or a widget that arrived before the library was open.
             if ready, let q = pendingQuestion { pendingQuestion = nil; ask.reset(); ask.ask(model, q) }
         }
         .onReceive(NotificationCenter.default.publisher(for: .openQibla)) { _ in openQiblaIfAsked() }
-        .onAppear { openQiblaIfAsked(); PendingRoute.take().map(open); model.shareWithWidgets() }
+        .onAppear { openQiblaIfAsked(); PendingRoute.take().map { open($0, trusted: true) }; model.shareWithWidgets() }
         .onChange(of: l10n.language) { _, _ in model.shareWithWidgets() }
         .modifier(AskAccessory { showAsk = true })
         .fullScreenCover(isPresented: $showAsk) {
@@ -159,7 +159,10 @@ struct RootView: View {
 
 extension RootView {
     /// A Siri request or control run before the app was open leaves this flag.
-    fileprivate func open(_ url: URL) {
+    /// `trusted`: from the app itself (Siri, shortcuts, controls). A question arriving by link runs at once only when it
+    /// carries this phone's widget token; from any other app or web page it is only put in the box (at most 300
+    /// characters), for the person to send or not.
+    fileprivate func open(_ url: URL, trusted: Bool) {
         let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
         // A sheet on top would keep the requested screen from showing.
         if url.host != "settings" { showSettings = false }
@@ -171,9 +174,14 @@ extension RootView {
             tab = .mosques; showAsk = false
             model.requestMosqueId = query.first { $0.name == "id" }?.value
         case "ask":
-            if let q = query.first(where: { $0.name == "q" })?.value, !q.isEmpty {
-                // Its own conversation: earlier turns would be mixed into a short question.
-                if model.ready { ask.reset(); ask.ask(model, q) } else { pendingQuestion = q }
+            if let raw = query.first(where: { $0.name == "q" })?.value, !raw.isEmpty {
+                let q = String(raw.prefix(300))
+                if trusted || query.first(where: { $0.name == "t" })?.value == AppModel.linkToken {
+                    // Its own conversation: earlier turns would be mixed into a short question.
+                    if model.ready { ask.reset(); ask.ask(model, q) } else { pendingQuestion = q }
+                } else {
+                    ask.draft = q
+                }
             }
             showAsk = true
         default: tab = .prayer; showAsk = false
