@@ -1,6 +1,7 @@
 package sa.zood.nearmosque.ui.ask
 
 import sa.zood.nearmosque.ui.theme.Ink
+import sa.zood.nearmosque.ui.theme.LibraryAppearance
 
 import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
@@ -96,21 +97,23 @@ sealed class LibraryMode {
 fun LibraryReader(c: SourceChunk, mode: LibraryMode, onDismiss: () -> Unit) {
     val context = LocalContext.current
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
-        Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
-                Text(libraryTitle(c), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall, color = Ink, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                c.url?.let { url ->
-                    TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) {
-                        Text(libraryWebLabel(c), color = Color(0xFF8CC0DE))
+        LibraryAppearance {
+            Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
+                Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
+                    Text(libraryTitle(c), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall, color = Ink, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    c.url?.let { url ->
+                        TextButton(onClick = { ExternalActions.open(context, url) }, modifier = Modifier.heightIn(min = 48.dp)) {
+                            Text(libraryWebLabel(c), color = Color(0xFF8CC0DE))
+                        }
                     }
                 }
-            }
-            when (mode) {
-                is LibraryMode.Pdf -> PdfReader(c.id, mode.url)
-                is LibraryMode.Media -> MediaPlayer(mode.url)
-                is LibraryMode.Web -> WebPage(mode.url)
-                LibraryMode.Text -> PartsText(c)
+                when (mode) {
+                    is LibraryMode.Pdf -> PdfReader(c.id, mode.url)
+                    is LibraryMode.Media -> MediaPlayer(mode.url)
+                    is LibraryMode.Web -> WebPage(mode.url)
+                    LibraryMode.Text -> PartsText(c)
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ package sa.zood.nearmosque.ui.ask
 import sa.zood.nearmosque.ui.theme.Accent
 
 import sa.zood.nearmosque.ui.theme.Ink
+import sa.zood.nearmosque.ui.theme.LibraryAppearance
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -57,20 +58,22 @@ import sa.zood.nearmosque.ui.theme.Tokens
 fun LibraryScreen(onDismiss: () -> Unit) {
     var tab by remember { mutableIntStateOf(0) }
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
-        Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
-                Text(stringResource(R.string.library_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = Ink)
-            }
-            TabRow(selectedTabIndex = tab, containerColor = Color.Transparent, contentColor = Accent) {
-                listOf(R.string.library_saved, R.string.library_browse, R.string.library_downloads).forEachIndexed { i, label ->
-                    Tab(selected = tab == i, onClick = { tab = i }, text = { Text(stringResource(label), color = if (tab == i) Accent else Ink) })
+        LibraryAppearance {
+            Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
+                Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
+                    Text(stringResource(R.string.library_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = Ink)
                 }
-            }
-            when (tab) {
-                0 -> SavedTab()
-                1 -> BrowseTab()
-                else -> DownloadsTab()
+                TabRow(selectedTabIndex = tab, containerColor = Color.Transparent, contentColor = Accent) {
+                    listOf(R.string.library_saved, R.string.library_browse, R.string.library_downloads).forEachIndexed { i, label ->
+                        Tab(selected = tab == i, onClick = { tab = i }, text = { Text(stringResource(label), color = if (tab == i) Accent else Ink) })
+                    }
+                }
+                when (tab) {
+                    0 -> SavedTab()
+                    1 -> BrowseTab()
+                    else -> DownloadsTab()
+                }
             }
         }
     }

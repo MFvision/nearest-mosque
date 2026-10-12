@@ -278,6 +278,7 @@ struct LibraryReaderView: View {
                 }
             }
         }
+        .environment(\.colorScheme, .dark)
     }
 }
 

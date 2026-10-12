@@ -172,3 +172,14 @@ data class SkyLight(val color: Color, val angle: Float, val strength: Float) {
         }
     }
 }
+
+/**
+ * The library and its readers keep their dark reading-room look in either appearance: their navy background is
+ * fixed, so the text and controls on it must stay light too (otherwise light-appearance ink lands dark on navy).
+ */
+@Composable
+fun LibraryAppearance(content: @Composable () -> Unit) {
+    NearMosqueTheme(dark = true) {
+        androidx.compose.runtime.CompositionLocalProvider(LocalSky provides Sky.of(SkyPeriod.NIGHT, dark = true), content = content)
+    }
+}

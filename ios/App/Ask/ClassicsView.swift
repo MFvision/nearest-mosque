@@ -155,5 +155,6 @@ struct BookReaderView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) } }
         }
+        .environment(\.colorScheme, .dark)
     }
 }

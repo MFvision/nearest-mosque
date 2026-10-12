@@ -43,6 +43,9 @@ struct LibraryView: View {
                 if let p = ((try? app.ask?.libraryPacks()) ?? []).first(where: { $0.id == id }) { CollectionView(pack: p) }
             }
         }
+        // The library keeps its dark reading-room look in either appearance: its navy background is fixed, so its
+        // text (Theme.ink) must stay light too.
+        .environment(\.colorScheme, .dark)
         #if DEBUG
         // CI screenshots: `-demoLibraryTab books|browse|saved|downloads`, `-demoLibraryPack <pack id>` opens a collection,
         // `-demoOpenBook <item id>` opens that item in the reader (downloading a book first).

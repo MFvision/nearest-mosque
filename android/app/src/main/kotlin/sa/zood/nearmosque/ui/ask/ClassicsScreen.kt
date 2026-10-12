@@ -45,6 +45,7 @@ import sa.zood.nearmosque.data.LibraryFiles
 import sa.zood.nearmosque.ui.glass.glass
 import sa.zood.nearmosque.ui.theme.Accent
 import sa.zood.nearmosque.ui.theme.Ink
+import sa.zood.nearmosque.ui.theme.LibraryAppearance
 
 /**
  * The classical books (assets/books-catalog.json): the author's text of each book, one PDF per printed volume,
@@ -180,14 +181,16 @@ private fun BookScreen(book: ClassicBook, onBack: () -> Unit) {
     }
     reading?.let { v ->
         Dialog(onDismissRequest = { reading = null; version++ }, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
-            Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
-                Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-                    TextButton(onClick = { reading = null; version++ }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
-                    val title = if (book.volumes.size > 1) book.title + " · " + stringResource(R.string.classics_volume, v.volume) else book.title
-                    Text(title, Modifier.weight(1f), color = Ink, style = MaterialTheme.typography.titleSmall, maxLines = 1)
+        LibraryAppearance {
+                Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
+                    Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                        TextButton(onClick = { reading = null; version++ }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
+                        val title = if (book.volumes.size > 1) book.title + " · " + stringResource(R.string.classics_volume, v.volume) else book.title
+                        Text(title, Modifier.weight(1f), color = Ink, style = MaterialTheme.typography.titleSmall, maxLines = 1)
+                    }
+                    PdfReader(Classics.key(v), Classics.catalog(context).url(v), v.sha256)
                 }
-                PdfReader(Classics.key(v), Classics.catalog(context).url(v), v.sha256)
             }
-        }
+    }
     }
 }
