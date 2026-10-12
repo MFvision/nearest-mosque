@@ -32,3 +32,7 @@ GoogleService-Info.plist
 google-services.json
 *.xcarchive
 ExportOptions.plist
+# Windows (Compose Desktop)
+windows/build/
+windows/.gradle/
+windows/.kotlin/
