@@ -25,6 +25,8 @@ from PIL import Image, ImageFilter, ImageEnhance
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 SPEC = json.loads((HERE / "screens.json").read_text())
+# The App Store version (platform) whose localizations hold each device's screenshot sets.
+ASC_PLATFORM = {"iphone": "IOS", "ipad": "IOS", "mac": "MAC_OS", "tv": "TV_OS", "vision": "VISION_OS"}
 
 
 def fit_on_canvas(im, size):
@@ -57,6 +59,11 @@ def target_size(im, sizes):
 
 def sha256(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def md5(p):
+    # App Store Connect's upload commit asks for the file's MD5 (sourceFileChecksum).
+    return hashlib.md5(p.read_bytes()).hexdigest()
 
 
 def contact_sheet(rows, path, thumb=180):
@@ -137,10 +144,11 @@ def main():
                 for locale in lang["asc"]:
                     entries.append({
                         "displayType": conf["displayType"], "device": conf["label"], "platform": platform,
+                        "ascPlatform": ASC_PLATFORM[platform],
                         "locale": locale, "appLanguage": lang["app"], "position": len(files),
                         "screen": screen, "title": spec["title"], "shows": shows,
                         "file": str(dest.relative_to(out)), "width": w, "height": h,
-                        "bytes": dest.stat().st_size, "sha256": sha256(dest),
+                        "bytes": dest.stat().st_size, "md5": md5(dest), "sha256": sha256(dest),
                         "sameFileAs": None if locale == primary else primary,
                     })
             rows.append((primary, files))
@@ -153,7 +161,8 @@ def main():
         "bundleId": "sa.zood.nearmosque",
         "commit": commit,
         "generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "displayTypes": {c["displayType"]: {"device": c["label"], "platform": p, "acceptedSizes": c["sizes"],
+        "displayTypes": {c["displayType"]: {"device": c["label"], "platform": p, "ascPlatform": ASC_PLATFORM[p],
+                                            "acceptedSizes": c["sizes"],
                                             "screens": c["order"]} for p, c in SPEC["platforms"].items()},
         "locales": {l["asc"][0]: {"appLanguage": l["app"], "alsoFor": l["asc"][1:]} for l in SPEC["languages"]},
         "contactSheets": sheets,
