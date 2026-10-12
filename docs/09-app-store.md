@@ -191,6 +191,20 @@ list what a set holds and get the owner's confirmation. A deleted screenshot can
 By hand: App Store Connect → the app → the platform's version → **Previews and Screenshots** → pick
 the language at the top right → drag a locale folder's files onto the matching device box in order.
 
+## The listing text
+
+`shared/store/listing.json` holds the text for every App Store locale and every App Store version
+(`IOS`, `MAC_OS`, `VISION_OS`, `TV_OS`): `subtitle`, `promotionalText`, `keywords`, `description` and
+`whatsNew`. Each device gets its own description, because they differ: the Mac and Apple Vision Pro have
+no compass, Dynamic Island or Lock Screen, and the Apple TV app is a prayer board without Ask, library or
+widgets. It is built by `tools/store/listing.py` from one file per language in `shared/store/listing/`;
+edit those, never the output. CI fails when a field is over its limit.
+
+In App Store Connect (API: `appStoreVersionLocalizations`, fields `description`, `keywords`,
+`promotionalText`, `whatsNew`; the subtitle is on `appInfoLocalizations`), each locale's text goes into the
+same locale as its screenshots. The app's name is not in the file: keep the name the listing already has.
+English and Arabic are final; the other languages are drafts until a native speaker has read them.
+
 ## What has no screenshot slot
 
 * **App icons** come from the build, not from the listing. `icons/` holds them for reference (website,

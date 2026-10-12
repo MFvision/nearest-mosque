@@ -1,0 +1,66 @@
+{
+ "subtitle": "Namaz vakitleri, kıble, cami",
+ "promo": "Namaz vakitleri, kıble ve en yakın cami tek ve sakin bir uygulamada. Ezan, widget'lar ve güvenilir kitaplardan kaynaklarıyla cevaplar. Reklam yok, hesap yok.",
+ "promo_tv": "Bugünün namaz vakitleri televizyonunuzda, şehrinizin kıblesi ve yakındaki camiler. Her namazda tam ekran uyarı. Reklam yok, hesap yok.",
+ "keywords": "ezan,namaz,vakit,kible,cami,mescit,islam,musluman,kuran,hicri,dua,ramazan,mekke,tesbih,imsakiye",
+ "whats_new": "Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri, tüm widget'lar, kilitli ekran ve Dynamic Island ona uyar. Yeni widget görünümleri: camgöbeği ve günün saatine göre.",
+ "whats_new_other": "Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri ve vurguları ona uyar. Yeni görünümler: camgöbeği ve günün saatine göre.",
+ "intro": "Near Mosque şehriniz için bugünün namaz vakitlerini gösterir, kıbleyi bulur ve çevrenizdeki camileri listeler. Vakitler ve kıble cihazınızda hesaplanır, bu yüzden internetsiz de çalışır.",
+ "h_prayer": "NAMAZ VAKİTLERİ",
+ "prayer": [
+  "Sıradaki namaz ve kalan süre, günün saatine göre değişen bir gökyüzünde",
+  "11 hesaplama yöntemi, standart veya Hanefi ikindi, hicri tarih ve her vakit için dakika ayarı",
+  "Mescid-i Haram veya Mescid-i Nebevi ezanı, her namazdan önce hatırlatma ve sabah alarmı"
+ ],
+ "h_qibla": "KIBLE",
+ "qibla_live": [
+  "Telefonunuzla dönen ve Kâbe'ye döndüğünüzde haber veren bir pusula",
+  "Şehrinizden Mekke'ye yön ve mesafe"
+ ],
+ "qibla_north": [
+  "Şehriniz için kuzeyden kıble yönü",
+  "Mekke'ye mesafe"
+ ],
+ "h_mosques": "EN YAKIN CAMİ",
+ "mosques": [
+  "Çevrenizdeki camiler harita veya pusulada, mesafe ve yürüyüş yol tarifiyle",
+  "Camiler internetten aranır; uygulama ayrıca Kahire, Londra ve Cape Town camilerini içerir"
+ ],
+ "h_ask": "İSLAM HAKKINDA SORUN",
+ "ask": [
+  "Bir soru sorun ve cevabı uygulamanın kütüphanesinden, her bölümün kaynağıyla okuyun",
+  "Sorularınız cihazınızda kalır. Cevaplar kitaplardan alıntıdır, fetva değildir."
+ ],
+ "h_library": "KÜTÜPHANE",
+ "library": [
+  "Şeyh İbn Baz'ın fetvaları, hadisler, Kur'an meali ve tefsir, IslamHouse kitapları",
+  "Akide, hadis, fıkıh, tefsir ve siyer alanında klasik Arapça kitaplar; bir kez indirilir, çevrimdışı okunur"
+ ],
+ "h_widgets": "WIDGET'LAR VE SIRI",
+ "widgets_ios": [
+  "Ana ekran ve kilitli ekran için 10 widget, Dynamic Island'da geri sayım ve Denetim Merkezi'nde kıble düğmesi",
+  "Uygulama ve tüm widget'lar için tek stil: altın ve krem, yeşil, gece göğü, camgöbeği veya günün saatine göre",
+  "Siri'ye sıradaki namazı veya en yakın camiyi sorun"
+ ],
+ "widgets_mac": [
+  "Masaüstü ve Bildirim Merkezi için 10 widget",
+  "Uygulama ve tüm widget'lar için tek stil: altın ve krem, yeşil, gece göğü, camgöbeği veya günün saatine göre"
+ ],
+ "h_also": "AYRICA",
+ "also_ios": "iPad, Mac, Apple TV (eviniz veya cami salonu için namaz panosu) ve Apple Vision Pro.",
+ "also_mac": "iPhone, iPad, Apple TV ve Apple Vision Pro.",
+ "also_vision": "iPhone, iPad, Mac ve Apple TV.",
+ "h_privacy": "GİZLİLİK",
+ "privacy": "Hesap yok, reklam yok, takip yok. Uygulama yalnızca cami aramak (yuvarlanmış konumla), haritayı göstermek, istediğinizi indirmek ve seçtiğiniz bağlantıları açmak için internete bağlanır.",
+ "languages": "36 dil. İngilizce ve Arapça dışındaki çeviriler anadili konuşanlarca gözden geçiriliyor.",
+ "tv": {
+  "intro": "Near Mosque televizyonunuzu eviniz veya cami salonu için bir namaz panosuna çevirir: bugünün vakitleri, sıradaki namaz ve kalan süre, uzaktan okunur.",
+  "points": [
+   "Her namaz vakti girdiğinde tam ekran uyarı",
+   "Şehriniz için kıble yönü ve Mekke'ye mesafe",
+   "Şehrinize yakın camiler ve telefonunuzla yol tarifi için taranacak bir kod",
+   "Uygulamayı açmadan Top Shelf'te bugünün vakitleri",
+   "11 hesaplama yöntemi, standart veya Hanefi ikindi, hicri tarih ve dakika ayarı"
+  ]
+ }
+}

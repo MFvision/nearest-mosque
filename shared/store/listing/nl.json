@@ -1,0 +1,66 @@
+{
+ "subtitle": "Gebedstijden, qibla, moskee",
+ "promo": "Gebedstijden, de qibla en de dichtstbijzijnde moskee in één rustige app. Adhan, widgets en antwoorden uit betrouwbare boeken, met bron. Geen reclame, geen account.",
+ "promo_tv": "De gebedstijden van vandaag op je tv, de qibla voor je stad en moskeeën in de buurt. Een melding op het hele scherm bij elk gebed. Geen advertenties, geen account.",
+ "keywords": "adhan,azan,salah,gebed,gebedstijden,qibla,moskee,islam,moslim,koran,hijri,dua,ramadan,mekka,tasbih",
+ "whats_new": "Eén stijl voor alles. Kies hem in Instellingen en de knoppen van de app, elke widget, het toegangsscherm en het Dynamic Island volgen hem. Nieuwe widgetstijlen: petrol en naar tijdstip.",
+ "whats_new_other": "Eén stijl voor alles. Kies hem in Instellingen en de knoppen en accenten van de app volgen hem. Nieuwe stijlen: petrol en naar tijdstip.",
+ "intro": "Near Mosque toont de gebedstijden van vandaag voor je stad, wijst je de qibla en vindt de moskeeën om je heen. De tijden en de qibla worden op je apparaat berekend, dus ze werken zonder internet.",
+ "h_prayer": "GEBEDSTIJDEN",
+ "prayer": [
+  "Het volgende gebed en de resterende tijd, op een lucht die het tijdstip van de dag volgt",
+  "11 rekenmethoden, standaard of Hanafi asr, hidjri-datum en aanpassing in minuten voor elk gebed",
+  "Adhan van Masjid al-Haram of al-Masjid an-Nabawi, herinneringen voor elk gebed en een wekker voor fajr"
+ ],
+ "h_qibla": "QIBLA",
+ "qibla_live": [
+  "Een kompas dat met je telefoon meedraait en zegt wanneer je naar de Kaaba gericht bent",
+  "De richting en de afstand tot Mekka vanuit je stad"
+ ],
+ "qibla_north": [
+  "De richting van de qibla vanaf het noorden voor je stad",
+  "De afstand tot Mekka"
+ ],
+ "h_mosques": "DICHTSTBIJZIJNDE MOSKEE",
+ "mosques": [
+  "Moskeeën om je heen op een kaart of kompas, met afstand en looproute",
+  "Moskeeën worden online gezocht, en de app bevat ook de moskeeën van Caïro, Londen en Kaapstad"
+ ],
+ "h_ask": "VRAGEN OVER DE ISLAM",
+ "ask": [
+  "Stel een vraag en lees het antwoord uit de bibliotheek van de app, met de bron van elk fragment",
+  "Je vragen blijven op je apparaat. Antwoorden citeren boeken en zijn geen fatwa."
+ ],
+ "h_library": "BIBLIOTHEEK",
+ "library": [
+  "Fatwa's van sjeik Ibn Baz, hadith, Koranvertalingen en tafsir, en boeken van IslamHouse",
+  "Klassieke Arabische boeken over geloofsleer, hadith, fiqh, tafsir en sira, eenmaal gedownload en offline te lezen"
+ ],
+ "h_widgets": "WIDGETS EN SIRI",
+ "widgets_ios": [
+  "10 widgets voor het beginscherm en het toegangsscherm, een aftelling in het Dynamic Island en een qibla-knop in het bedieningspaneel",
+  "Eén stijl voor de app en elke widget: goud en crème, groen, nachthemel, petrol of naar tijdstip",
+  "Vraag Siri wanneer het volgende gebed is of waar de dichtstbijzijnde moskee is"
+ ],
+ "widgets_mac": [
+  "10 widgets voor het bureaublad en het berichtencentrum",
+  "Eén stijl voor de app en elke widget: goud en crème, groen, nachthemel, petrol of naar tijdstip"
+ ],
+ "h_also": "OOK OP",
+ "also_ios": "iPad, Mac, Apple TV (een gebedsbord voor thuis of de moskeezaal) en Apple Vision Pro.",
+ "also_mac": "iPhone, iPad, Apple TV en Apple Vision Pro.",
+ "also_vision": "iPhone, iPad, Mac en Apple TV.",
+ "h_privacy": "PRIVACY",
+ "privacy": "Geen account, geen advertenties, geen tracking. De app gaat alleen online om moskeeën te zoeken (met een afgeronde locatie), de kaart te tonen, te downloaden wat je vraagt en links te openen die je kiest.",
+ "languages": "36 talen. Vertalingen anders dan Engels en Arabisch worden nagekeken door moedertaalsprekers.",
+ "tv": {
+  "intro": "Near Mosque maakt van je tv een gebedsbord voor thuis of de moskeezaal: de tijden van vandaag, het volgende gebed en de resterende tijd, van ver te lezen.",
+  "points": [
+   "Een melding op het hele scherm wanneer een gebedstijd begint",
+   "De richting van de qibla en de afstand tot Mekka voor je stad",
+   "Moskeeën bij je stad, met een code om de route op je telefoon te openen",
+   "De tijden van vandaag in de Top Shelf, zonder de app te openen",
+   "11 rekenmethoden, standaard of Hanafi asr, hidjri-datum en aanpassing in minuten"
+  ]
+ }
+}

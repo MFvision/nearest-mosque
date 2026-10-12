@@ -1,0 +1,66 @@
+{
+ "subtitle": "Orações, qibla e mesquitas",
+ "promo": "Horários de oração, a qibla e a mesquita mais próxima num só app tranquilo. Adhan, widgets e respostas de livros confiáveis, com as fontes. Sem anúncios e sem conta.",
+ "promo_tv": "Os horários de oração de hoje na sua TV, a qibla da sua cidade e as mesquitas próximas. Um alerta em tela cheia em cada oração. Sem anúncios e sem conta.",
+ "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih",
+ "whats_new": "Um só estilo para tudo. Escolha nos Ajustes e os botões do app, cada widget, a tela bloqueada e a Dynamic Island passam a segui-lo. Novos estilos de widget: verde-azulado e conforme a hora.",
+ "whats_new_other": "Um só estilo para tudo. Escolha nos Ajustes e os botões e destaques do app passam a segui-lo. Novos estilos: verde-azulado e conforme a hora.",
+ "intro": "O Near Mosque mostra os horários de oração de hoje para a sua cidade, aponta a qibla e encontra as mesquitas ao seu redor. Os horários e a qibla são calculados no seu aparelho, então funcionam sem internet.",
+ "h_prayer": "HORÁRIOS DE ORAÇÃO",
+ "prayer": [
+  "A próxima oração e o tempo que falta, num céu que acompanha a hora do dia",
+  "11 métodos de cálculo, Asr padrão ou hanafi, data hijri e ajuste em minutos para cada oração",
+  "Adhan de Masjid al-Haram ou de al-Masjid an-Nabawi, lembretes antes de cada oração e alarme para o Fajr"
+ ],
+ "h_qibla": "QIBLA",
+ "qibla_live": [
+  "Uma bússola que gira com o seu telefone e avisa quando você está de frente para a Kaaba",
+  "A direção e a distância até Meca a partir da sua cidade"
+ ],
+ "qibla_north": [
+  "A direção da qibla a partir do norte para a sua cidade",
+  "A distância até Meca"
+ ],
+ "h_mosques": "MESQUITA MAIS PRÓXIMA",
+ "mosques": [
+  "As mesquitas ao seu redor num mapa ou numa bússola, com a distância e o caminho a pé",
+  "As mesquitas são buscadas online, e o app também traz as mesquitas do Cairo, de Londres e da Cidade do Cabo"
+ ],
+ "h_ask": "PERGUNTE SOBRE O ISLÃ",
+ "ask": [
+  "Faça uma pergunta e leia a resposta da biblioteca do app, com a fonte de cada trecho",
+  "Suas perguntas ficam no seu aparelho. As respostas citam livros e não são uma fatwa."
+ ],
+ "h_library": "BIBLIOTECA",
+ "library": [
+  "Fatwas do xeique Ibn Baz, hadiths, traduções do Alcorão e tafsir, e livros do IslamHouse",
+  "Livros clássicos em árabe (crença, hadith, fiqh, tafsir, sira), baixados uma vez e lidos offline"
+ ],
+ "h_widgets": "WIDGETS E SIRI",
+ "widgets_ios": [
+  "10 widgets para a tela de início e a tela bloqueada, uma contagem regressiva na Dynamic Island e um botão de qibla na central de controle",
+  "Um só estilo para o app e todos os widgets: dourado e creme, verde, céu noturno, verde-azulado ou conforme a hora",
+  "Pergunte à Siri quando é a próxima oração ou onde fica a mesquita mais próxima"
+ ],
+ "widgets_mac": [
+  "10 widgets para a mesa e a central de notificações",
+  "Um só estilo para o app e todos os widgets: dourado e creme, verde, céu noturno, verde-azulado ou conforme a hora"
+ ],
+ "h_also": "TAMBÉM NO",
+ "also_ios": "iPad, Mac, Apple TV (um painel de orações para casa ou o salão da mesquita) e Apple Vision Pro.",
+ "also_mac": "iPhone, iPad, Apple TV e Apple Vision Pro.",
+ "also_vision": "iPhone, iPad, Mac e Apple TV.",
+ "h_privacy": "PRIVACIDADE",
+ "privacy": "Sem conta, sem anúncios, sem rastreamento. O app só se conecta para buscar mesquitas (com sua localização arredondada), mostrar o mapa, baixar o que você pedir e abrir os links que você escolher.",
+ "languages": "36 idiomas. As traduções que não são em inglês ou árabe estão em revisão por falantes nativos.",
+ "tv": {
+  "intro": "O Near Mosque transforma a sua TV num painel de orações para casa ou o salão da mesquita: os horários de hoje, a próxima oração e o tempo que falta, legíveis de longe.",
+  "points": [
+   "Um alerta em tela cheia quando chega a hora de cada oração",
+   "A direção da qibla e a distância até Meca para a sua cidade",
+   "As mesquitas perto da sua cidade, com um código para ver o caminho no telefone",
+   "Os horários de hoje na Top Shelf, sem abrir o app",
+   "11 métodos de cálculo, Asr padrão ou hanafi, data hijri e ajuste em minutos"
+  ]
+ }
+}

@@ -1,0 +1,66 @@
+{
+ "subtitle": "Waktu salat, kiblat, masjid",
+ "promo": "Waktu salat, arah kiblat, dan masjid terdekat dalam satu aplikasi yang tenang. Azan, widget, dan jawaban dari kitab tepercaya beserta sumbernya. Tanpa iklan, tanpa akun.",
+ "promo_tv": "Waktu salat hari ini di TV Anda, kiblat untuk kota Anda, dan masjid di sekitar. Peringatan layar penuh di setiap waktu salat. Tanpa iklan, tanpa akun.",
+ "keywords": "azan,adzan,salat,sholat,jadwal,kiblat,masjid,islam,muslim,quran,hijriah,doa,ramadan,makkah,tasbih",
+ "whats_new": "Satu gaya untuk semuanya. Pilih di Pengaturan, lalu tombol aplikasi, setiap widget, layar kunci, dan Dynamic Island mengikutinya. Tampilan widget baru: hijau toska dan sesuai waktu.",
+ "whats_new_other": "Satu gaya untuk semuanya. Pilih di Pengaturan, lalu tombol dan sorotan aplikasi mengikutinya. Tampilan baru: hijau toska dan sesuai waktu.",
+ "intro": "Near Mosque menampilkan waktu salat hari ini untuk kota Anda, menunjukkan arah kiblat, dan menemukan masjid di sekitar Anda. Waktu salat dan kiblat dihitung di perangkat Anda, jadi tetap berfungsi tanpa internet.",
+ "h_prayer": "WAKTU SALAT",
+ "prayer": [
+  "Salat berikutnya dan sisa waktunya, di atas langit yang mengikuti waktu hari",
+  "11 metode perhitungan, Asar standar atau Hanafi, tanggal Hijriah, dan penyesuaian menit untuk setiap salat",
+  "Azan Masjidil Haram atau Masjid Nabawi, pengingat sebelum setiap salat, dan alarm Subuh"
+ ],
+ "h_qibla": "KIBLAT",
+ "qibla_live": [
+  "Kompas yang berputar mengikuti ponsel Anda dan memberi tahu saat Anda menghadap Kakbah",
+  "Arah dan jarak ke Makkah dari kota Anda"
+ ],
+ "qibla_north": [
+  "Arah kiblat dari utara untuk kota Anda",
+  "Jarak ke Makkah"
+ ],
+ "h_mosques": "MASJID TERDEKAT",
+ "mosques": [
+  "Masjid di sekitar Anda di peta atau kompas, dengan jarak dan petunjuk jalan kaki",
+  "Masjid dicari secara online, dan aplikasi juga memuat data masjid Kairo, London, dan Cape Town"
+ ],
+ "h_ask": "TANYA TENTANG ISLAM",
+ "ask": [
+  "Ajukan pertanyaan dan baca jawabannya dari perpustakaan aplikasi, dengan sumber setiap kutipan",
+  "Pertanyaan Anda tetap di perangkat Anda. Jawaban mengutip kitab dan bukan fatwa."
+ ],
+ "h_library": "PERPUSTAKAAN",
+ "library": [
+  "Fatwa Syaikh Ibnu Baz, hadis, terjemahan dan tafsir Al-Qur'an, serta buku IslamHouse",
+  "Kitab klasik berbahasa Arab tentang akidah, hadis, fikih, tafsir, dan sirah, diunduh sekali dan dibaca offline"
+ ],
+ "h_widgets": "WIDGET DAN SIRI",
+ "widgets_ios": [
+  "10 widget untuk Layar Utama dan Layar Kunci, hitung mundur di Dynamic Island, dan tombol kiblat di Pusat Kontrol",
+  "Satu gaya untuk aplikasi dan setiap widget: emas dan krem, hijau, langit malam, hijau toska, atau sesuai waktu",
+  "Tanyakan kepada Siri kapan salat berikutnya atau di mana masjid terdekat"
+ ],
+ "widgets_mac": [
+  "10 widget untuk desktop dan Pusat Pemberitahuan",
+  "Satu gaya untuk aplikasi dan setiap widget: emas dan krem, hijau, langit malam, hijau toska, atau sesuai waktu"
+ ],
+ "h_also": "TERSEDIA JUGA DI",
+ "also_ios": "iPad, Mac, Apple TV (papan jadwal salat untuk rumah atau ruang masjid), dan Apple Vision Pro.",
+ "also_mac": "iPhone, iPad, Apple TV, dan Apple Vision Pro.",
+ "also_vision": "iPhone, iPad, Mac, dan Apple TV.",
+ "h_privacy": "PRIVASI",
+ "privacy": "Tanpa akun, tanpa iklan, tanpa pelacakan. Aplikasi hanya terhubung ke internet untuk mencari masjid (dengan lokasi yang dibulatkan), menampilkan peta, mengunduh yang Anda minta, dan membuka tautan yang Anda pilih.",
+ "languages": "36 bahasa. Terjemahan selain bahasa Inggris dan Arab sedang ditinjau oleh penutur asli.",
+ "tv": {
+  "intro": "Near Mosque mengubah TV Anda menjadi papan jadwal salat untuk rumah atau ruang masjid: waktu salat hari ini, salat berikutnya, dan sisa waktunya, terbaca dari jauh.",
+  "points": [
+   "Peringatan layar penuh saat masuk waktu salat",
+   "Arah kiblat dan jarak ke Makkah untuk kota Anda",
+   "Masjid di dekat kota Anda, dengan kode untuk dipindai agar petunjuk jalan muncul di ponsel",
+   "Waktu salat hari ini di Top Shelf tanpa membuka aplikasi",
+   "11 metode perhitungan, Asar standar atau Hanafi, tanggal Hijriah, dan penyesuaian menit"
+  ]
+ }
+}

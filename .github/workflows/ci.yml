@@ -48,6 +48,8 @@ jobs:
           python-version: "3.12"
       - name: Strings generated from shared/i18n/strings.json
         run: python3 tools/gen_strings.py --check
+      - name: App Store listing text within App Store Connect's limits
+        run: python3 tools/store/listing.py --check
       - name: Design tokens (contrast, theme parity)
         run: python3 tools/check_tokens.py
       - name: Golden fixtures regenerate identically

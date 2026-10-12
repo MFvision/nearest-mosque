@@ -1,0 +1,66 @@
+{
+ "subtitle": "Giờ cầu nguyện, Qibla, mosque",
+ "promo": "Giờ cầu nguyện, hướng Qibla và thánh đường gần nhất trong một ứng dụng yên tĩnh. Adhan, tiện ích và câu trả lời từ sách uy tín kèm nguồn. Không quảng cáo.",
+ "promo_tv": "Giờ cầu nguyện hôm nay trên TV của bạn, hướng Qibla cho thành phố và các thánh đường gần đó. Thông báo toàn màn hình mỗi giờ cầu nguyện. Không quảng cáo, không tài khoản.",
+ "keywords": "adhan,azan,salah,namaz,cau nguyen,qibla,thanh duong,masjid,hoi giao,islam,muslim,quran,ramadan",
+ "whats_new": "Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút của ứng dụng, mọi tiện ích, màn hình khóa và Dynamic Island sẽ theo kiểu đó. Kiểu tiện ích mới: xanh mòng két và theo thời điểm.",
+ "whats_new_other": "Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút và màu nhấn của ứng dụng sẽ theo kiểu đó. Kiểu mới: xanh mòng két và theo thời điểm.",
+ "intro": "Near Mosque hiển thị giờ cầu nguyện hôm nay cho thành phố của bạn, chỉ hướng Qibla và tìm các thánh đường quanh bạn. Giờ cầu nguyện và Qibla được tính trên thiết bị, nên dùng được cả khi không có internet.",
+ "h_prayer": "GIỜ CẦU NGUYỆN",
+ "prayer": [
+  "Lần cầu nguyện tiếp theo và thời gian còn lại, trên bầu trời thay đổi theo giờ trong ngày",
+  "11 phương pháp tính, Asr thông thường hoặc Hanafi, ngày Hijri và chỉnh phút cho từng lần cầu nguyện",
+  "Adhan từ Masjid al-Haram hoặc Masjid an-Nabawi, nhắc trước mỗi lần cầu nguyện và báo thức Fajr"
+ ],
+ "h_qibla": "QIBLA",
+ "qibla_live": [
+  "La bàn xoay theo điện thoại và báo khi bạn hướng về Kaaba",
+  "Hướng và khoảng cách đến Makkah từ thành phố của bạn"
+ ],
+ "qibla_north": [
+  "Hướng Qibla tính từ phía bắc cho thành phố của bạn",
+  "Khoảng cách đến Makkah"
+ ],
+ "h_mosques": "THÁNH ĐƯỜNG GẦN NHẤT",
+ "mosques": [
+  "Các thánh đường quanh bạn trên bản đồ hoặc la bàn, kèm khoảng cách và đường đi bộ",
+  "Thánh đường được tìm trực tuyến, và ứng dụng còn có dữ liệu thánh đường ở Cairo, London và Cape Town"
+ ],
+ "h_ask": "HỎI VỀ HỒI GIÁO",
+ "ask": [
+  "Đặt câu hỏi và đọc câu trả lời từ thư viện của ứng dụng, kèm nguồn của từng đoạn",
+  "Câu hỏi của bạn chỉ ở trên thiết bị. Câu trả lời trích từ sách và không phải là fatwa."
+ ],
+ "h_library": "THƯ VIỆN",
+ "library": [
+  "Fatwa của Sheikh Ibn Baz, hadith, bản dịch và tafsir Qur'an, cùng sách của IslamHouse",
+  "Sách cổ điển tiếng Ả Rập về tín điều, hadith, fiqh, tafsir và sirah, tải một lần và đọc ngoại tuyến"
+ ],
+ "h_widgets": "TIỆN ÍCH VÀ SIRI",
+ "widgets_ios": [
+  "10 tiện ích cho Màn hình chính và Màn hình khóa, đếm ngược trên Dynamic Island và nút Qibla trong Trung tâm điều khiển",
+  "Một kiểu cho ứng dụng và mọi tiện ích: vàng và kem, xanh lá, bầu trời đêm, xanh mòng két hoặc theo thời điểm",
+  "Hỏi Siri khi nào đến giờ cầu nguyện tiếp theo hoặc thánh đường gần nhất ở đâu"
+ ],
+ "widgets_mac": [
+  "10 tiện ích cho màn hình nền và Trung tâm thông báo",
+  "Một kiểu cho ứng dụng và mọi tiện ích: vàng và kem, xanh lá, bầu trời đêm, xanh mòng két hoặc theo thời điểm"
+ ],
+ "h_also": "CÓ TRÊN",
+ "also_ios": "iPad, Mac, Apple TV (bảng giờ cầu nguyện cho gia đình hoặc sảnh thánh đường) và Apple Vision Pro.",
+ "also_mac": "iPhone, iPad, Apple TV và Apple Vision Pro.",
+ "also_vision": "iPhone, iPad, Mac và Apple TV.",
+ "h_privacy": "QUYỀN RIÊNG TƯ",
+ "privacy": "Không tài khoản, không quảng cáo, không theo dõi. Ứng dụng chỉ kết nối mạng để tìm thánh đường (với vị trí đã làm tròn), hiển thị bản đồ, tải những gì bạn yêu cầu và mở liên kết bạn chọn.",
+ "languages": "36 ngôn ngữ. Các bản dịch ngoài tiếng Anh và tiếng Ả Rập đang được người bản ngữ xem lại.",
+ "tv": {
+  "intro": "Near Mosque biến TV của bạn thành bảng giờ cầu nguyện cho gia đình hoặc sảnh thánh đường: giờ hôm nay, lần cầu nguyện tiếp theo và thời gian còn lại, đọc được từ xa.",
+  "points": [
+   "Thông báo toàn màn hình khi đến giờ cầu nguyện",
+   "Hướng Qibla và khoảng cách đến Makkah cho thành phố của bạn",
+   "Các thánh đường gần thành phố, kèm mã để quét xem đường đi trên điện thoại",
+   "Giờ hôm nay trên Top Shelf mà không cần mở ứng dụng",
+   "11 phương pháp tính, Asr thông thường hoặc Hanafi, ngày Hijri và chỉnh phút"
+  ]
+ }
+}

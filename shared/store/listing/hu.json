@@ -1,0 +1,66 @@
+{
+ "subtitle": "Imaidők, kibla, mecsetek",
+ "promo": "Imaidők, a kibla és a legközelebbi mecset egyetlen nyugodt alkalmazásban. Ezán, widgetek és válaszok megbízható könyvekből, forrásokkal. Hirdetés és fiók nélkül.",
+ "promo_tv": "A mai imaidők a tévén, a városod kiblája és a közeli mecsetek. Teljes képernyős értesítés minden imánál. Hirdetés és fiók nélkül.",
+ "keywords": "ezan,adhan,ima,imaido,kibla,mecset,iszlam,muszlim,korán,hidzsra,dua,ramadan,mekka,tasbih",
+ "whats_new": "Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai, minden widget, a zárolási képernyő és a Dynamic Island követi. Új widgetstílusok: kékeszöld és napszak szerint.",
+ "whats_new_other": "Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai és kiemelései követik. Új stílusok: kékeszöld és napszak szerint.",
+ "intro": "A Near Mosque megmutatja a városod mai imaidőit, a kibla irányát és a környező mecseteket. Az imaidők és a kibla a készülékeden számolódnak, így internet nélkül is működnek.",
+ "h_prayer": "IMAIDŐK",
+ "prayer": [
+  "A következő ima és a hátralévő idő, a napszakot követő égbolton",
+  "11 számítási mód, általános vagy hanafita aszr, hidzsra dátum és percnyi igazítás minden imához",
+  "Ezán a mekkai Szent Mecsetből vagy a Próféta Mecsetéből, emlékeztetők minden ima előtt és ébresztő a fadzsrhoz"
+ ],
+ "h_qibla": "KIBLA",
+ "qibla_live": [
+  "Iránytű, amely a telefonnal együtt fordul, és jelzi, amikor a Kába felé nézel",
+  "Az irány és a távolság Mekkáig a városodból"
+ ],
+ "qibla_north": [
+  "A kibla iránya északtól a városodhoz",
+  "A távolság Mekkáig"
+ ],
+ "h_mosques": "LEGKÖZELEBBI MECSET",
+ "mosques": [
+  "A környező mecsetek térképen vagy iránytűn, távolsággal és gyalogos útvonallal",
+  "A mecseteket online keresi, és az alkalmazás tartalmazza Kairó, London és Fokváros mecseteit is"
+ ],
+ "h_ask": "KÉRDEZZ AZ ISZLÁMRÓL",
+ "ask": [
+  "Kérdezz, és olvasd el a választ az alkalmazás könyvtárából, minden részlet forrásával",
+  "A kérdéseid a készülékeden maradnak. A válaszok könyveket idéznek, és nem fatvák."
+ ],
+ "h_library": "KÖNYVTÁR",
+ "library": [
+  "Ibn Báz sejk fatvái, hadíszok, Korán-fordítások és tafszír, IslamHouse-könyvek",
+  "Klasszikus arab könyvek hitről, hadíszról, fikhről, tafszírról és szíráról, egyszer letöltve, offline olvasva"
+ ],
+ "h_widgets": "WIDGETEK ÉS SIRI",
+ "widgets_ios": [
+  "10 widget a főképernyőre és a zárolási képernyőre, visszaszámlálás a Dynamic Islandben és kibla gomb a Vezérlőközpontban",
+  "Egy stílus az alkalmazásnak és minden widgetnek: arany és krém, zöld, éjszakai ég, kékeszöld vagy napszak szerint",
+  "Kérdezd meg Sirit, mikor lesz a következő ima, vagy hol a legközelebbi mecset"
+ ],
+ "widgets_mac": [
+  "10 widget az asztalra és az Értesítési központba",
+  "Egy stílus az alkalmazásnak és minden widgetnek: arany és krém, zöld, éjszakai ég, kékeszöld vagy napszak szerint"
+ ],
+ "h_also": "ELÉRHETŐ MÉG",
+ "also_ios": "iPaden, Macen, Apple TV-n (imatábla otthonra vagy a mecset termébe) és Apple Vision Prón.",
+ "also_mac": "iPhone-on, iPaden, Apple TV-n és Apple Vision Prón.",
+ "also_vision": "iPhone-on, iPaden, Macen és Apple TV-n.",
+ "h_privacy": "ADATVÉDELEM",
+ "privacy": "Nincs fiók, nincs hirdetés, nincs követés. Az alkalmazás csak mecsetkereséshez (kerekített helyzettel), a térképhez, a kért letöltésekhez és az általad választott linkekhez használ internetet.",
+ "languages": "36 nyelv. Az angol és arab nyelven kívüli fordításokat anyanyelvi beszélők nézik át.",
+ "tv": {
+  "intro": "A Near Mosque imatáblává teszi a tévédet otthonra vagy a mecset termébe: a mai imaidők, a következő ima és a hátralévő idő, messziről is olvashatóan.",
+  "points": [
+   "Teljes képernyős értesítés, amikor eljön az ima ideje",
+   "A kibla iránya és a távolság Mekkáig a városodhoz",
+   "A városodhoz közeli mecsetek, kóddal az útvonalhoz a telefonodon",
+   "A mai imaidők a Top Shelfen, az alkalmazás megnyitása nélkül",
+   "11 számítási mód, általános vagy hanafita aszr, hidzsra dátum és percnyi igazítás"
+  ]
+ }
+}
