@@ -35,7 +35,13 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     var isDenied: Bool { authorization == .denied || authorization == .restricted }
-    var isAuthorized: Bool { authorization == .authorizedWhenInUse || authorization == .authorizedAlways }
+    var isAuthorized: Bool {
+        #if os(visionOS)
+        authorization == .authorizedWhenInUse
+        #else
+        authorization == .authorizedWhenInUse || authorization == .authorizedAlways
+        #endif
+    }
     /// Macs and Apple Vision Pro have no compass: the Qibla is shown from north.
     var headingAvailable: Bool {
         #if targetEnvironment(macCatalyst) || os(visionOS)

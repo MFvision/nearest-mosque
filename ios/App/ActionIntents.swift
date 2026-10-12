@@ -173,7 +173,11 @@ final class OneShotLocation: NSObject, CLLocationManagerDelegate {
 
     func fix(timeout: Double) async -> LatLng? {
         let status = manager.authorizationStatus
+        #if os(visionOS)
+        guard status == .authorizedWhenInUse else { return nil }
+        #else
         guard status == .authorizedWhenInUse || status == .authorizedAlways else { return nil }
+        #endif
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         let fresh: CLLocation? = await withCheckedContinuation { c in

@@ -183,7 +183,7 @@ struct AskView: View {
                 .animation(Theme.spring, value: vm.turns.map(\.answer?.question))
             }
             .scrollIndicators(.hidden)
-            .scrollDismissesKeyboard(.interactively)
+            .dismissesKeyboardWhenScrolling()
             .onChange(of: vm.turns.last?.answer?.question) { _, _ in
                 if let id = vm.turns.last?.id { withAnimation { proxy.scrollTo(id, anchor: .top) } }
             }

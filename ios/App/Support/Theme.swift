@@ -70,7 +70,7 @@ struct GlassSurface<S: Shape>: ViewModifier {
                 .background(Theme.solidCard, in: shape)
                 .overlay(shape.stroke(Theme.ink.opacity(0.18), lineWidth: 1))
         } else {
-            #if compiler(>=6.2)
+            #if compiler(>=6.2) && !os(visionOS)
             if #available(iOS 26.0, tvOS 26.0, *) {
                 content.glassEffect(Self.glass(tint: tint, interactive: interactive), in: shape)
             } else {
@@ -82,7 +82,7 @@ struct GlassSurface<S: Shape>: ViewModifier {
         }
     }
 
-    #if compiler(>=6.2)
+    #if compiler(>=6.2) && !os(visionOS)
     @available(iOS 26.0, tvOS 26.0, *)
     static func glass(tint: Color?, interactive: Bool) -> Glass {
         var g = Glass.regular
@@ -129,7 +129,7 @@ struct GlassGroup<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        #if compiler(>=6.2)
+        #if compiler(>=6.2) && !os(visionOS)
         if #available(iOS 26.0, tvOS 26.0, *) {
             GlassEffectContainer(spacing: spacing) { content }
         } else {
@@ -171,13 +171,22 @@ extension View {
         modifier(GlassCard(padding: padding, cornerRadius: cornerRadius, tint: tint))
     }
 
+    /// The keyboard slides away as the list scrolls (Apple Vision Pro has no such keyboard).
+    @ViewBuilder func dismissesKeyboardWhenScrolling() -> some View {
+        #if os(visionOS)
+        self
+        #else
+        scrollDismissesKeyboard(.interactively)
+        #endif
+    }
+
     /// Kept for older call sites.
     func glassChrome(cornerRadius: CGFloat = 22) -> some View { glass(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)) }
 
     func card() -> some View { glassCard() }
 
     @ViewBuilder func glassButton() -> some View {
-        #if compiler(>=6.2)
+        #if compiler(>=6.2) && !os(visionOS)
         if #available(iOS 26.0, tvOS 26.0, *) { buttonStyle(.glass) } else { buttonStyle(FallbackGlassButtonStyle(prominent: false)) }
         #else
         buttonStyle(FallbackGlassButtonStyle(prominent: false))
@@ -186,7 +195,7 @@ extension View {
 
     /// Gold prominent glass button with a dark label (white on gold is below 4.5:1).
     @ViewBuilder func prominentButton() -> some View {
-        #if compiler(>=6.2)
+        #if compiler(>=6.2) && !os(visionOS)
         if #available(iOS 26.0, tvOS 26.0, *) {
             buttonStyle(.glassProminent).tint(Theme.gold).foregroundStyle(Theme.navyNight)
         } else {
