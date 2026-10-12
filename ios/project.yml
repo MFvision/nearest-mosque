@@ -37,6 +37,8 @@ targets:
         buildPhase: resources
       - path: ../shared/content/remote-packs.json
         buildPhase: resources
+      - path: ../shared/content/books-catalog.json
+        buildPhase: resources
       - path: ../shared/semantic/model.bin
         buildPhase: resources
     dependencies:

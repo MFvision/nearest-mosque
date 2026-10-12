@@ -82,23 +82,23 @@ private struct CollectionsList: View {
     @Environment(\.l10n) private var l10n
     var body: some View {
         let packs = (try? app.ask?.libraryPacks()) ?? []
-        if packs.isEmpty { EmptyNote(text: l10n.t("library_installing")) } else {
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(packs) { p in
-                        NavigationLink { CollectionView(pack: p) } label: {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(p.title[l10n.language] ?? p.title["en"] ?? p.id).font(.subheadline.weight(.semibold))
-                                Text(l10n.t("library_items_count", p.count)).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .glassCard(padding: 14, cornerRadius: 18, tint: Color.white.opacity(0.04))
+        ScrollView {
+            LazyVStack(spacing: 10) {
+                ClassicsCard()
+                if packs.isEmpty { EmptyNote(text: l10n.t("library_installing")) }
+                ForEach(packs) { p in
+                    NavigationLink { CollectionView(pack: p) } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(p.title[l10n.language] ?? p.title["en"] ?? p.id).font(.subheadline.weight(.semibold))
+                            Text(l10n.t("library_items_count", p.count)).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                         }
-                        .buttonStyle(.plain)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .glassCard(padding: 14, cornerRadius: 18, tint: Color.white.opacity(0.04))
                     }
+                    .buttonStyle(.plain)
                 }
-                .padding(16)
             }
+            .padding(16)
         }
     }
 }
@@ -248,7 +248,10 @@ private struct DownloadsList: View {
                         Button(l10n.t("library_delete_all")) { files.forEach { LibraryFiles.delete($0.url) }; version += 1 }.foregroundStyle(Color(hex: 0xE8A0A0))
                     }
                     ForEach(files, id: \.url) { f in
-                        if let r = resolved[f.id] { LibraryCard(item: r, question: "") } else { Text(f.url.lastPathComponent) }
+                        if let r = resolved[f.id] { LibraryCard(item: r, question: "") }
+                        else if let c = Classics.volume(forFile: f.url.lastPathComponent) {
+                            Text(c.book.volumes.count > 1 ? c.book.title + " · " + l10n.t("classics_volume", c.volume.volume) : c.book.title).font(.headline)
+                        } else { Text(f.url.lastPathComponent) }
                         HStack {
                             Text(ByteCountFormatter.string(fromByteCount: Int64(f.bytes), countStyle: .file)).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
                             Spacer()

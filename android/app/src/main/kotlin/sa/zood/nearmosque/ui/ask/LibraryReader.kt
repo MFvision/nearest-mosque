@@ -107,7 +107,7 @@ fun LibraryReader(c: SourceChunk, mode: LibraryMode, onDismiss: () -> Unit) {
                 }
             }
             when (mode) {
-                is LibraryMode.Pdf -> PdfReader(c, mode.url)
+                is LibraryMode.Pdf -> PdfReader(c.id, mode.url)
                 is LibraryMode.Media -> MediaPlayer(mode.url)
                 is LibraryMode.Web -> WebPage(mode.url)
                 LibraryMode.Text -> PartsText(c)
@@ -117,7 +117,7 @@ fun LibraryReader(c: SourceChunk, mode: LibraryMode, onDismiss: () -> Unit) {
 }
 
 @Composable
-private fun PdfReader(c: SourceChunk, url: String) {
+internal fun PdfReader(key: String, url: String, sha256: String? = null) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var file by remember { mutableStateOf<File?>(null) }
@@ -125,7 +125,7 @@ private fun PdfReader(c: SourceChunk, url: String) {
     var attempt by remember { mutableIntStateOf(0) }
     LaunchedEffect(url, attempt) {
         failed = false
-        file = runCatching { LibraryFiles(context).fetch(url, c.id) { progress = it } }.getOrNull()
+        file = runCatching { LibraryFiles(context).fetch(url, key, sha256) { progress = it } }.getOrNull()
         failed = file == null
     }
     val f = file

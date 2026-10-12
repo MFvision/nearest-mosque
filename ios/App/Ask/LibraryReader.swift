@@ -1,4 +1,5 @@
 import AVKit
+import CryptoKit
 import NMCore
 import NMData
 import PDFKit
@@ -40,8 +41,12 @@ enum LibraryMode: Equatable {
 enum LibraryFiles {
     static let hosts: Set<String> = ["islamhouse.com", "www.islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa", "hadeethenc.com", "quranenc.com"]
 
+    /// The classical books (and language packs) live in this public repository, which holds no app code.
+    static let contentPrefix = "/MFvision/nearest-mosque-content/"
+
     static func isAllowed(_ u: URL) -> Bool {
         guard u.scheme == "https", let h = u.host?.lowercased() else { return false }
+        if h == "raw.githubusercontent.com" { return u.path.hasPrefix(contentPrefix) }
         return hosts.contains(h) || h.hasSuffix(".islamhouse.com")
     }
 
@@ -85,7 +90,7 @@ enum LibraryFiles {
 
     /// Returns the local copy, downloading it first if needed. `progress` is called on the main actor.
     @MainActor
-    static func fetch(_ url: URL, itemKey: String, progress: @escaping (Double) -> Void) async throws -> URL {
+    static func fetch(_ url: URL, itemKey: String, sha256: String? = nil, progress: @escaping (Double) -> Void) async throws -> URL {
         guard isAllowed(url) else { throw URLError(.unsupportedURL) }
         let target = try local(itemKey, url)
         if let size = try? target.resourceValues(forKeys: [.fileSizeKey]).fileSize, size > 0 { return target }
@@ -105,6 +110,14 @@ enum LibraryFiles {
                 Task { @MainActor in progress(f) }
             }
             task.resume()
+        }
+        // A catalog book is kept only when it is exactly the file the app was built with.
+        if let sha256 {
+            let data = try Data(contentsOf: tmp, options: .mappedIfSafe)
+            guard SHA256.hash(data: data).map({ String(format: "%02x", $0) }).joined() == sha256 else {
+                try? FileManager.default.removeItem(at: tmp)
+                throw URLError(.cannotDecodeContentData)
+            }
         }
         try? FileManager.default.removeItem(at: target)
         try FileManager.default.moveItem(at: tmp, to: target)
@@ -268,11 +281,12 @@ struct LibraryReaderView: View {
     }
 }
 
-private struct PDFReader: View {
+struct PDFReader: View {
     @Environment(\.l10n) private var l10n
     let url: URL
     let itemKey: String
     let question: String
+    var sha256: String? = nil
     @State private var file: URL?
     @State private var progress = 0.0
     @State private var failed = false
@@ -317,7 +331,7 @@ private struct PDFReader: View {
         }
         .task(id: attempt) {
             failed = false
-            do { file = try await LibraryFiles.fetch(url, itemKey: itemKey) { progress = $0 } } catch { failed = true }
+            do { file = try await LibraryFiles.fetch(url, itemKey: itemKey, sha256: sha256) { progress = $0 } } catch { failed = true }
         }
     }
 

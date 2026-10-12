@@ -29,7 +29,7 @@ class LibraryFiles(private val context: Context) {
 
     fun deleteAll() { dir.listFiles()?.forEach { it.delete() } }
 
-    suspend fun fetch(url: String, itemKey: String, onProgress: (Float) -> Unit = {}): File = withContext(Dispatchers.IO) {
+    suspend fun fetch(url: String, itemKey: String, sha256: String? = null, onProgress: (Float) -> Unit = {}): File = withContext(Dispatchers.IO) {
         require(isAllowed(url)) { "Not an IslamHouse file" }
         val target = local(itemKey, url)
         if (target.isFile && target.length() > 0) return@withContext target
@@ -42,6 +42,7 @@ class LibraryFiles(private val context: Context) {
             if (conn.responseCode !in 200..299) throw IOException("HTTP ${conn.responseCode}")
             if (!isAllowed(conn.url.toString())) throw IOException("Redirected away from IslamHouse")
             val total = conn.contentLengthLong
+            val digest = java.security.MessageDigest.getInstance("SHA-256")
             conn.inputStream.use { input ->
                 tmp.outputStream().use { out ->
                     val buf = ByteArray(64 * 1024)
@@ -50,11 +51,14 @@ class LibraryFiles(private val context: Context) {
                         val n = input.read(buf)
                         if (n < 0) break
                         out.write(buf, 0, n)
+                        digest.update(buf, 0, n)
                         done += n
                         if (total > 0) onProgress((done.toFloat() / total).coerceIn(0f, 1f))
                     }
                 }
             }
+            // A catalog book is kept only when it is exactly the file the app was built with.
+            if (sha256 != null && digest.digest().joinToString("") { "%02x".format(it) } != sha256) throw IOException("Checksum mismatch")
             if (!tmp.renameTo(target)) throw IOException("Could not save the file")
             target
         } finally {
@@ -66,9 +70,15 @@ class LibraryFiles(private val context: Context) {
     companion object {
         private val HOSTS = setOf("islamhouse.com", "d1.islamhouse.com", "d2.islamhouse.com", "www.islamhouse.com", "binbaz.org.sa", "www.binbaz.org.sa", "hadeethenc.com", "quranenc.com")
 
+        /** The classical books (and language packs) live in this public repository, which holds no app code. */
+        const val CONTENT_PREFIX = "/MFvision/nearest-mosque-content/"
+
         fun isAllowed(url: String): Boolean = runCatching {
             val u = URI(url)
-            u.scheme == "https" && (u.host in HOSTS || u.host.endsWith(".islamhouse.com"))
+            u.scheme == "https" && when {
+                u.host == "raw.githubusercontent.com" -> u.path.startsWith(CONTENT_PREFIX)
+                else -> u.host in HOSTS || u.host.endsWith(".islamhouse.com")
+            }
         }.getOrDefault(false)
 
         /** Inverse of [fileName] for library ids ("ih:en:123" is stored as "ih_en_123.pdf"). */

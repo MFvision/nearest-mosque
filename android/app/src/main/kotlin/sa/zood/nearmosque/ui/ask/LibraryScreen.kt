@@ -99,11 +99,14 @@ private fun BrowseTab() {
     val lang = Format.languageCode(context)
     var packs by remember { mutableStateOf<List<AskRepository.LibraryPack>>(emptyList()) }
     var open by remember { mutableStateOf<AskRepository.LibraryPack?>(null) }
+    var classics by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { packs = c.ask.libraryPacks() }
     val selected = open
+    if (classics) { ClassicsList(onBack = { classics = false }); return }
     if (selected != null) { CollectionView(selected, lang, onBack = { open = null }); return }
-    if (packs.isEmpty()) { Empty(stringResource(R.string.library_installing)); return }
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        item(key = "classics") { ClassicsCard(onOpen = { classics = true }) }
+        if (packs.isEmpty()) item(key = "installing") { Empty(stringResource(R.string.library_installing)) }
         items(packs, key = { it.id }) { p ->
             Column(
                 Modifier.fillMaxWidth().glass(RoundedCornerShape(18.dp), tint = Ink.copy(alpha = 0.04f))
@@ -171,7 +174,15 @@ private fun DownloadsTab() {
         }
         items(items, key = { it.second.name }) { (r, f) ->
             Column {
-                if (r != null) LibraryCard(r) else Text(f.name, color = Ink)
+                val book = if (r == null) Classics.volumeForFile(context, f.name) else null
+                when {
+                    r != null -> LibraryCard(r)
+                    book != null -> Text(
+                        if (book.first.volumes.size > 1) book.first.title + " · " + stringResource(R.string.classics_volume, book.second.volume) else book.first.title,
+                        color = Ink, style = MaterialTheme.typography.titleSmall,
+                    )
+                    else -> Text(f.name, color = Ink)
+                }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(android.text.format.Formatter.formatShortFileSize(context, f.length()), Modifier.weight(1f), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
                     TextButton(onClick = { files.delete(f); version++ }, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.library_delete), color = Color(0xFFE8A0A0)) }

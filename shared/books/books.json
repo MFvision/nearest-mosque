@@ -1,0 +1,475 @@
+{
+ "source": "OpenITI 2025.1.9 (CC BY-NC-SA 4.0), doi:10.5281/zenodo.3082463",
+ "books": [
+  {
+   "id": "tawhid",
+   "group": "aqidah",
+   "title": "كتاب التوحيد",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "died": 1206,
+   "version": "1206IbnCabdWahhab.Tawhid.JK006870-ara1",
+   "edition": "عبد العزيز بن زيد الرومي ، د . محمد بلتاجي ، د . سيد حجاب ، الرياض ، مطابع الرياض",
+   "words": 16193
+  },
+  {
+   "id": "thalathat-usul",
+   "group": "aqidah",
+   "title": "ثلاثة الأصول",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "died": 1206,
+   "version": "1206IbnCabdWahhab.ThalathatUsul.JK006872-ara1",
+   "edition": "ناصر بن عبد الله الطريم ، سعود بن محمد البشر ، عبد الكريم بن محمد اللاحم ، الرياض ، مطابع الرياض",
+   "words": 2266
+  },
+  {
+   "id": "qawaid-arba",
+   "group": "aqidah",
+   "title": "القواعد الأربع",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "died": 1206,
+   "version": "1206IbnCabdWahhab.QawacidArbaca.JK006873-ara1",
+   "edition": "الدكتور عبد العزيز بن عبد الرحمن السعيد ، الدكتور أحمد كحيل ، الدكتور لبيب السعيد . ، الرياض ، مطابع الرياض",
+   "words": 698
+  },
+  {
+   "id": "kashf-shubuhat",
+   "group": "aqidah",
+   "title": "كشف الشبهات",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "died": 1206,
+   "version": "1206IbnCabdWahhab.KashfShubuhat.JK006871-ara1",
+   "edition": "ناصر بن عبد الله الطريم ، سعود بن محمد البشر ، عبد الكريم اللاحم ، الرياض ، مطابع الرياض",
+   "words": 5207
+  },
+  {
+   "id": "fath-majid",
+   "group": "aqidah",
+   "title": "فتح المجيد شرح كتاب التوحيد",
+   "author": "عبد الرحمن بن حسن آل الشيخ (ت ١٢٨٥هـ)",
+   "died": 1285,
+   "version": "1285IbnHasanAlShaykh.FathMajid.Shamela0002386-ara1",
+   "edition": "محمد حامد الفقي ، مطبعة السنة المحمدية، القاهرة، مصر",
+   "words": 120380
+  },
+  {
+   "id": "taysir-aziz",
+   "group": "aqidah",
+   "title": "تيسير العزيز الحميد في شرح كتاب التوحيد",
+   "author": "سليمان بن عبد الله بن محمد بن عبد الوهاب (ت ١٢٣٣هـ)",
+   "died": 1233,
+   "version": "1233SulaymanSibtIbnCabdWahhab.Taysir.JK000116-ara1",
+   "edition": "الرياض ، مكتبة الرياض الحديثة",
+   "words": 163675
+  },
+  {
+   "id": "wasitiyya",
+   "group": "aqidah",
+   "title": "العقيدة الواسطية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.CaqidaWasitiyya.JK000359-ara1",
+   "edition": "محمد بن عبد العزيز بم مانع ، الرياض ، 1412هـ ، الرئاسة العامة لإدارات البحوث والإفتاء",
+   "words": 4884
+  },
+  {
+   "id": "hamawiyya",
+   "group": "aqidah",
+   "title": "الفتوى الحموية الكبرى",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.HamawiyyaKubra.Shamela0018381-ara1",
+   "edition": "د. حمد بن عبد المحسن التويجري ، دار الصميعي - الرياض",
+   "words": 23205
+  },
+  {
+   "id": "tadmuriyya",
+   "group": "aqidah",
+   "title": "التدمرية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.RisalaTadmuriyya.Shamela0022666-ara1",
+   "edition": "د. محمد بن عودة السعوي ، مكتبة العبيكان - الرياض",
+   "words": 26005
+  },
+  {
+   "id": "ubudiyya",
+   "group": "aqidah",
+   "title": "العبودية",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.Cubudiyya.Shamela0022647-ara1",
+   "edition": "محمد زهير الشاويش ، المكتب الإسلامي - بيروت",
+   "words": 17725
+  },
+  {
+   "id": "iqtida",
+   "group": "aqidah",
+   "title": "اقتضاء الصراط المستقيم لمخالفة أصحاب الجحيم",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.IqtidaSirat.JK000367-ara1",
+   "edition": "محمد حامد الفقي ، القاهرة ، 1369 ، مطبعة السنة المحمدية",
+   "words": 115818
+  },
+  {
+   "id": "tahawiyya",
+   "group": "aqidah",
+   "title": "متن العقيدة الطحاوية",
+   "author": "أبو جعفر الطحاوي (ت ٣٢١هـ)",
+   "died": 321,
+   "version": "0321Tahawi.MatnCaqida.JK000126-ara1",
+   "edition": "محمد ناصر الدين الألباني ، بيروت ، 1398هـ - 1978م ، المكتب الإسلامي",
+   "words": 2274
+  },
+  {
+   "id": "sharh-tahawiyya",
+   "group": "aqidah",
+   "title": "شرح العقيدة الطحاوية",
+   "author": "ابن أبي العز الحنفي (ت ٧٩٢هـ)",
+   "died": 792,
+   "version": "0792SadrDinIbnAbiCizzAdhraci.SharhCaqidaTahawiyya.JK000146-ara1",
+   "edition": "بيروت ، 1391 ، المكتب الإسلامي",
+   "words": 122482
+  },
+  {
+   "id": "lumca",
+   "group": "aqidah",
+   "title": "لمعة الاعتقاد",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "died": 620,
+   "version": "0620IbnQudamaMaqdisi.LumcatIctiqad.JK000352-ara1",
+   "edition": "بدر بن عبد الله البدر ، الكويت ، 1406 ، الدار السلفية",
+   "words": 3611
+  },
+  {
+   "id": "usul-sunna",
+   "group": "aqidah",
+   "title": "أصول السنة",
+   "author": "الإمام أحمد بن حنبل (ت ٢٤١هـ)",
+   "died": 241,
+   "version": "0241IbnHanbal.UsulSunna.JK000354-ara1",
+   "edition": "الخرج - السعودية ، 1411هـ ، دار المنار",
+   "words": 1627
+  },
+  {
+   "id": "sharh-sunna",
+   "group": "aqidah",
+   "title": "شرح السنة",
+   "author": "البربهاري (ت ٣٢٩هـ)",
+   "died": 329,
+   "version": "0329Barbahari.SharhSunna.JK000752-ara1",
+   "edition": "د. محمد سعيد سالم القحطاني ، الدمام ، 1408 ، دار ابن القيم",
+   "words": 7047
+  },
+  {
+   "id": "tawhid-khuzayma",
+   "group": "aqidah",
+   "title": "كتاب التوحيد وإثبات صفات الرب",
+   "author": "ابن خزيمة (ت ٣١١هـ)",
+   "died": 311,
+   "version": "0311IbnKhuzaymaNaysaburi.Tawhid.JK009159-ara1",
+   "edition": "عبد العزيز بن إبراهيم الشهوان ، السعودية - الرياض ، 1414هـ - 1994م ، مكتبة الرشد",
+   "words": 87587
+  },
+  {
+   "id": "sharica",
+   "group": "aqidah",
+   "title": "الشريعة",
+   "author": "أبو بكر الآجري (ت ٣٦٠هـ)",
+   "died": 360,
+   "version": "0360AbuBakrAjurri.Sharica.JK009158-ara1",
+   "edition": "الدكتور عبد الله بن عمر بن سليمان الدميجي ، الرياض / السعودية ، 1420 هـ - 1999 م ، دار الوطن",
+   "words": 225554
+  },
+  {
+   "id": "lalakai",
+   "group": "aqidah",
+   "title": "شرح أصول اعتقاد أهل السنة والجماعة",
+   "author": "اللالكائي (ت ٤١٨هـ)",
+   "died": 418,
+   "version": "0418HibatAllahLalikai.SharhUsulIctiqad.JK000764-ara1",
+   "edition": "د. أحمد سعد حمدان ، الرياض ، 1402 ، دار طيبة",
+   "words": 219752
+  },
+  {
+   "id": "ibn-kathir",
+   "group": "tafsir",
+   "title": "تفسير القرآن العظيم",
+   "author": "ابن كثير (ت ٧٧٤هـ)",
+   "died": 774,
+   "version": "0774IbnKathir.TafsirQuran.Shamela0008473-ara1",
+   "edition": "سامي بن محمد سلامة ، دار طيبة للنشر والتوزيع",
+   "words": 1568356
+  },
+  {
+   "id": "baghawi",
+   "group": "tafsir",
+   "title": "معالم التنزيل (تفسير البغوي)",
+   "author": "البغوي (ت ٥١٠هـ)",
+   "died": 510,
+   "version": "0510IbnMascudBaghawi.Tafsir.Shamela0000041-ara1",
+   "edition": "حققه وخرج أحاديثه محمد عبد الله النمر - عثمان جمعة ضميرية - سليمان مسلم الحرش ، دار طيبة للنشر والتوزيع",
+   "words": 852374
+  },
+  {
+   "id": "sacdi",
+   "group": "tafsir",
+   "title": "تيسير الكريم الرحمن في تفسير كلام المنان",
+   "author": "عبد الرحمن بن ناصر السعدي (ت ١٣٧٦هـ)",
+   "died": 1376,
+   "version": "1376CabdRahmanSacdi.TaysirKarimRahman.Tafsir10098-ara1",
+   "edition": "غير مذكورة في المصدر",
+   "words": 517636
+  },
+  {
+   "id": "usul-tafsir",
+   "group": "tafsir",
+   "title": "مقدمة في أصول التفسير",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.MuqaddimaFiUsulTafsir.Shamela0012081-ara1",
+   "edition": "دار مكتبة الحياة، بيروت، لبنان",
+   "words": 8885
+  },
+  {
+   "id": "bukhari",
+   "group": "hadith",
+   "title": "صحيح البخاري",
+   "author": "الإمام البخاري (ت ٢٥٦هـ)",
+   "died": 256,
+   "version": "0256Bukhari.Sahih.Shamela0001681-ara1",
+   "edition": "محمد زهير بن ناصر الناصر ، دار طوق النجاة (مصورة عن السلطانية بإضافة ترقيم ترقيم محمد فؤاد عبد الباقي)",
+   "words": 611147
+  },
+  {
+   "id": "muslim",
+   "group": "hadith",
+   "title": "صحيح مسلم",
+   "author": "الإمام مسلم (ت ٢٦١هـ)",
+   "died": 261,
+   "version": "0261Muslim.Sahih.JK000109-ara1",
+   "edition": "محمد فؤاد عبد الباقي ، بيروت ، دار إحياء التراث العربي",
+   "words": 513017
+  },
+  {
+   "id": "abu-dawud",
+   "group": "hadith",
+   "title": "سنن أبي داود",
+   "author": "أبو داود السجستاني (ت ٢٧٥هـ)",
+   "died": 275,
+   "version": "0275AbuDawudSijistani.Sunan.JK000142-ara1",
+   "edition": "محمد محيي الدين عبد الحميد ، - ، دار الفكر",
+   "words": 356369
+  },
+  {
+   "id": "tirmidhi",
+   "group": "hadith",
+   "title": "سنن الترمذي",
+   "author": "الترمذي (ت ٢٧٩هـ)",
+   "died": 279,
+   "version": "0279Tirmidhi.Sunan.JK000140-ara1",
+   "edition": "أحمد محمد شاكر وآخرون ، بيروت ، - ، دار إحياء التراث العربي",
+   "words": 388889
+  },
+  {
+   "id": "nasai",
+   "group": "hadith",
+   "title": "سنن النسائي (المجتبى)",
+   "author": "النسائي (ت ٣٠٣هـ)",
+   "died": 303,
+   "version": "0303Nasai.SunanSughra.ShamAY0033998-ara1",
+   "edition": "مركز البحوث وتقنية المعلومات بدار التأصيل ، الأولى، 1433 ه - 2012 م ، دار التأصيل - القاهرة",
+   "words": 369562
+  },
+  {
+   "id": "ibn-majah",
+   "group": "hadith",
+   "title": "سنن ابن ماجه",
+   "author": "ابن ماجه (ت ٢٧٣هـ)",
+   "died": 273,
+   "version": "0273IbnMaja.Sunan.JK000141-ara1",
+   "edition": "محمد فؤاد عبد الباقي ، بيروت ، - ، دار الفكر",
+   "words": 263621
+  },
+  {
+   "id": "muwatta",
+   "group": "hadith",
+   "title": "الموطأ",
+   "author": "الإمام مالك بن أنس (ت ١٧٩هـ)",
+   "died": 179,
+   "version": "0179MalikIbnAnas.Muwatta.Shamela0028107-ara1",
+   "edition": "محمد مصطفى الأعظمي ، مؤسسة زايد بن سلطان آل نهيان للأعمال الخيرية والإنسانية - أبو ظبي - الإمارات",
+   "words": 245646
+  },
+  {
+   "id": "musnad",
+   "group": "hadith",
+   "title": "المسند",
+   "author": "الإمام أحمد بن حنبل (ت ٢٤١هـ)",
+   "died": 241,
+   "version": "0241IbnHanbal.Musnad.Shamela0025794-ara1",
+   "edition": "شعيب الأرنؤوط - عادل مرشد، وآخرون ، مؤسسة الرسالة",
+   "words": 1615923
+  },
+  {
+   "id": "darimi",
+   "group": "hadith",
+   "title": "سنن الدارمي",
+   "author": "الدارمي (ت ٢٥٥هـ)",
+   "died": 255,
+   "version": "0255CabdAllahDarimi.Sunan.JK000842-ara1",
+   "edition": "فواز أحمد زمرلي , خالد السبع العلمي ، بيروت ، 1407 ، دار الكتاب العربي",
+   "words": 179275
+  },
+  {
+   "id": "adab-mufrad",
+   "group": "hadith",
+   "title": "الأدب المفرد",
+   "author": "الإمام البخاري (ت ٢٥٦هـ)",
+   "died": 256,
+   "version": "0256Bukhari.AdabMufrad.JK000011-ara1",
+   "edition": "محمد فؤاد عبدالباقي ، بيروت ، 1409 - 1989 ، دار البشائر الإسلامية",
+   "words": 79655
+  },
+  {
+   "id": "shamail",
+   "group": "hadith",
+   "title": "الشمائل المحمدية",
+   "author": "الترمذي (ت ٢٧٩هـ)",
+   "died": 279,
+   "version": "0279Tirmidhi.ShamailMuhammadiyya.JK000139-ara1",
+   "edition": "سيد عباس الجليمي ، بيروت ، 1412 ، مؤسسة الكتب الثقافية",
+   "words": 24391
+  },
+  {
+   "id": "zad-mustaqni",
+   "group": "fiqh",
+   "title": "زاد المستقنع في اختصار المقنع",
+   "author": "الحجاوي (ت ٩٦٨هـ)",
+   "died": 968,
+   "version": "0968IbnAhmadAbuNajaHajjawi.ZadMustaqnic.JK000790-ara1",
+   "edition": "علي محمد عبد العزيز الهندي ، مكة المكرمة ، مكتبة النهضة الحديثة",
+   "words": 28921
+  },
+  {
+   "id": "rawd-murbi",
+   "group": "fiqh",
+   "title": "الروض المربع شرح زاد المستقنع",
+   "author": "البهوتي (ت ١٠٥١هـ)",
+   "died": 1051,
+   "version": "1051IbnYunusBuhutiHanbali.RawdMurbic.JK000190-ara1",
+   "edition": "الرياض ، 1390 ، مكتبة الرياض الحديثة",
+   "words": 150149
+  },
+  {
+   "id": "umdat-fiqh",
+   "group": "fiqh",
+   "title": "عمدة الفقه",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "died": 620,
+   "version": "0620IbnQudamaMaqdisi.CumdatFiqh.JK000287-ara1",
+   "edition": "عبد الله سفر العبدلي , محمد دغيليب العتيبي ، الطائف ، مكتبة الطرفين",
+   "words": 29388
+  },
+  {
+   "id": "mughni",
+   "group": "fiqh",
+   "title": "المغني",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "died": 620,
+   "version": "0620IbnQudamaMaqdisi.Mughni.JK000154-ara1",
+   "edition": "بيروت ، 1405 ، دار الفكر",
+   "words": 1747737
+  },
+  {
+   "id": "rawdat-nazir",
+   "group": "fiqh",
+   "title": "روضة الناظر وجنة المناظر",
+   "author": "ابن قدامة المقدسي (ت ٦٢٠هـ)",
+   "died": 620,
+   "version": "0620IbnQudamaMaqdisi.RawdatNazir.JK000156-ara1",
+   "edition": "د. عبد العزيز عبد الرحمن السعيد ، الرياض ، 1399 ، جامعة الإمام محمد بن سعود",
+   "words": 69635
+  },
+  {
+   "id": "adab-mashy",
+   "group": "fiqh",
+   "title": "آداب المشي إلى الصلاة",
+   "author": "محمد بن عبد الوهاب (ت ١٢٠٦هـ)",
+   "died": 1206,
+   "version": "1206IbnCabdWahhab.AdabMashyIlaSalat.JK006883-ara1",
+   "edition": "عبد الكريم بن محمد اللاحم ، ناصر بن عبد الله الطريم ، سعود بن محمد البشر . ، الرياض ، مطابع الرياض",
+   "words": 9730
+  },
+  {
+   "id": "zad-maad",
+   "group": "sira",
+   "title": "زاد المعاد في هدي خير العباد",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "died": 751,
+   "version": "0751IbnQayyimJawziyya.ZadMacad.JK000105-ara1",
+   "edition": "شعيب الأرناؤوط - عبد القادر الأرناؤوط ، بيروت - الكويت ، 1407 - 1986 ، مؤسسة الرسالة - مكتبة المنار الإسلامية",
+   "words": 552307
+  },
+  {
+   "id": "ibn-hisham",
+   "group": "sira",
+   "title": "السيرة النبوية",
+   "author": "ابن هشام (ت ٢١٣هـ)",
+   "died": 213,
+   "version": "0213IbnHisham.SiraNabawiyya.Shamela0023833-ara1",
+   "edition": "مصطفى السقا وإبراهيم الأبياري وعبد الحفيظ الشلبي ، شركة مكتبة ومطبعة مصطفى البابي الحلبي وأولاده بمصر",
+   "words": 278907
+  },
+  {
+   "id": "fusul-sira",
+   "group": "sira",
+   "title": "الفصول في السيرة",
+   "author": "ابن كثير (ت ٧٧٤هـ)",
+   "died": 774,
+   "version": "0774IbnKathir.FusulMinSira.JK000796-ara1",
+   "edition": "غير مذكورة في المصدر",
+   "words": 38809
+  },
+  {
+   "id": "kalim-tayyib",
+   "group": "raqaiq",
+   "title": "الكلم الطيب",
+   "author": "ابن تيمية (ت ٧٢٨هـ)",
+   "died": 728,
+   "version": "0728IbnTaymiyya.KalimTayyib.Shamela0000327-ara1",
+   "edition": "محمد ناصر الدين الألباني ، المكتب الإسلامي - بيروت",
+   "words": 12704
+  },
+  {
+   "id": "wabil-sayyib",
+   "group": "raqaiq",
+   "title": "الوابل الصيب من الكلم الطيب",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "died": 751,
+   "version": "0751IbnQayyimJawziyya.WabilSayyib.JK000069-ara1",
+   "edition": "محمد عبد الرحمن عوض ، بيروت ، 1405 - 1985 ، دار الكتاب العربي",
+   "words": 43576
+  },
+  {
+   "id": "daa-dawa",
+   "group": "raqaiq",
+   "title": "الداء والدواء (الجواب الكافي)",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "died": 751,
+   "version": "0751IbnQayyimJawziyya.DaWaDawa.JK000062-ara1",
+   "edition": "بيروت ، دار الكتب العلمية",
+   "words": 69313
+  },
+  {
+   "id": "mukhtasar-minhaj",
+   "group": "raqaiq",
+   "title": "مختصر منهاج القاصدين",
+   "author": "ابن قدامة المقدسي (أحمد بن عبد الرحمن) (ت ٦٨٩هـ)",
+   "died": 689,
+   "version": "0689AhmadIbnCabdRahmanIbnQudama.MukhtasarMinhajQasidin.Shamela0098087-ara1",
+   "edition": "1398 هـ - 1978 م ، مكتبة دار البيان، دمشق",
+   "words": 105233
+  }
+ ]
+}
