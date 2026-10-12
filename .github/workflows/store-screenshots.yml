@@ -19,6 +19,9 @@ on:
       only:
         description: "Capture only these, e.g. \"ar/01-prayer en/05-audio\" (to redo a few; give from_run for the rest)"
         default: ""
+      extra_wait:
+        description: "Extra seconds before each capture"
+        default: "0"
       capture:
         description: "Capture (false: sort the from_run captures only)"
         type: boolean
@@ -98,8 +101,14 @@ jobs:
           PLATFORM: ${{ matrix.platform }}
           LANGS: ${{ inputs.languages }}
           ONLY: ${{ inputs.only }}
+          EXTRA_WAIT: ${{ inputs.extra_wait }}
         # shellcheck disable=SC2086 # the language list is meant to split into arguments
-        run: python3 ../tools/store/shoot.py "$PLATFORM" "$APP" raw $LANGS
+        run: |
+          python3 ../tools/store/shoot.py "$PLATFORM" "$APP" raw $LANGS
+          # Crash reports of the app, if it crashed while being captured (kept with the raw captures).
+          mkdir -p crashes
+          find ~/Library/Logs/DiagnosticReports -name 'NearMosque*' -newer build.log -exec cp {} crashes/ \; 2>/dev/null || true
+          ls crashes
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
@@ -107,6 +116,7 @@ jobs:
           path: |
             ios/raw/
             ios/build.log
+            ios/crashes/
           retention-days: 3
 
   finish:

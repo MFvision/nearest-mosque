@@ -34,7 +34,8 @@ def wanted(lang, n, screen):
 
 
 def wait(platform, screen):
-    return WAIT.get(screen, 11) + EXTRA.get(platform, 0) + EXTRA_SCREEN.get((platform, screen), 0)
+    # EXTRA_WAIT adds seconds to every capture (to tell a slow screen from one that never appears).
+    return WAIT.get(screen, 11) + EXTRA.get(platform, 0) + EXTRA_SCREEN.get((platform, screen), 0) + int(os.environ.get("EXTRA_WAIT") or 0)
 
 
 def run(*cmd, check=False):
