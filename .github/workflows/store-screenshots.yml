@@ -102,6 +102,8 @@ jobs:
     needs: shoot
     if: always()
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
@@ -120,3 +122,21 @@ jobs:
           name: app-store-screenshots
           path: store/
           retention-days: 30
+      # The run's artifact expires; a full run (every language) is also kept as a release of this repository,
+      # one zip per device type plus the manifest, contact sheets and icons. Unzipped together they give the
+      # layout the manifest describes.
+      - name: Keep the full set as a release
+        if: inputs.languages == '' && inputs.platforms == 'iphone ipad mac tv vision'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd store
+          for d in APP_*; do zip -qr "../$d.zip" "$d"; done
+          zip -qr ../manifest-sheets-icons.zip manifest.json contact-sheets icons
+          cd ..
+          TAG="store-screenshots-${GITHUB_SHA::7}"
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "App Store screenshots ${GITHUB_SHA::7}" \
+            --notes "Every Apple device type in the 22 store languages, from run $GITHUB_RUN_ID. Unzip all files into one folder; manifest.json says where each screenshot goes (docs/09-app-store.md)." \
+            APP_*.zip manifest-sheets-icons.zip
+          echo "Release: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"

@@ -9,8 +9,12 @@ already at a size App Store Connect accepts for that slot.
 
 1. GitHub → Actions → **App Store screenshots** → **Run workflow**. Leave the inputs empty for every
    device in all 22 store languages, or name some (e.g. `iphone ipad`, `ar en`).
-2. When it finishes, download the artifact **app-store-screenshots** from the run page (kept 30 days).
-3. Unzip it. The layout is:
+2. When it finishes, take the files from either place:
+   * the repository's **Releases** page, release `store-screenshots-<commit>` (made by a full run: all
+     devices, all languages; it does not expire): one zip per device type plus
+     `manifest-sheets-icons.zip`. Unzip all of them into one folder.
+   * or the run's artifact **app-store-screenshots** (every run; kept 30 days).
+3. The layout is:
 
 ```
 <display type>/<App Store locale>/<NN>-<screen>.png   for example APP_IPHONE_67/ar-SA/01-prayer.png
