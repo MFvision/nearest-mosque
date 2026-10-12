@@ -40,19 +40,23 @@ struct StoredSettings: Codable, Equatable {
 
     init() {}
 
+    /// Each field is read on its own: one that cannot be read takes its default and the rest are kept (one bad
+    /// field used to reset everything, the prayer bells included).
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        location = try c.decodeIfPresent(PrayerLocation.self, forKey: .location)
-        followDevice = try c.decodeIfPresent(Bool.self, forKey: .followDevice) ?? false
-        prayer = try c.decodeIfPresent(PrayerSettings.self, forKey: .prayer) ?? PrayerSettings()
-        methodChosenByUser = try c.decodeIfPresent(Bool.self, forKey: .methodChosenByUser) ?? false
-        reminders = try c.decodeIfPresent(Set<PrayerEvent>.self, forKey: .reminders) ?? []
-        alerts = (try? c.decodeIfPresent(AlertSettings.self, forKey: .alerts)) ?? AlertSettings()
-        onboarded = try c.decodeIfPresent(Bool.self, forKey: .onboarded) ?? false
-        onlineSearch = try c.decodeIfPresent(Bool.self, forKey: .onlineSearch) ?? true
-        widgetLook = try c.decodeIfPresent(String.self, forKey: .widgetLook) ?? "cream"
-        liveCountdown = try c.decodeIfPresent(Bool.self, forKey: .liveCountdown) ?? true
-        companion = try c.decodeIfPresent(String.self, forKey: .companion) ?? "lantern"
+        func get<T: Decodable>(_ type: T.Type, _ key: CodingKeys) -> T? { (try? c.decodeIfPresent(type, forKey: key)) ?? nil }
+        location = get(PrayerLocation.self, .location)
+        followDevice = get(Bool.self, .followDevice) ?? false
+        prayer = get(PrayerSettings.self, .prayer) ?? PrayerSettings()
+        methodChosenByUser = get(Bool.self, .methodChosenByUser) ?? false
+        // Bells as names, so a value this version does not know is skipped rather than failing the set.
+        reminders = Set((get([String].self, .reminders) ?? []).compactMap(PrayerEvent.init(rawValue:)))
+        alerts = get(AlertSettings.self, .alerts) ?? AlertSettings()
+        onboarded = get(Bool.self, .onboarded) ?? false
+        onlineSearch = get(Bool.self, .onlineSearch) ?? true
+        widgetLook = get(String.self, .widgetLook) ?? "cream"
+        liveCountdown = get(Bool.self, .liveCountdown) ?? true
+        companion = get(String.self, .companion) ?? "lantern"
     }
 }
 
@@ -99,9 +103,12 @@ final class AppModel {
     }
 
     init() {
-        if let data = UserDefaults.standard.data(forKey: "settings"), let s = try? JSONDecoder().decode(StoredSettings.self, from: data) {
+        let data = UserDefaults.standard.data(forKey: "settings")
+        if let data, let s = try? JSONDecoder().decode(StoredSettings.self, from: data) {
             settings = s
         } else {
+            // Unreadable saved settings are kept aside, never silently replaced, so they can still be recovered.
+            if let data { UserDefaults.standard.set(data, forKey: "settings.unreadable") }
             settings = StoredSettings()
         }
     }
