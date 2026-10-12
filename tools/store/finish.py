@@ -134,7 +134,7 @@ def main():
                     im = fit_on_canvas(im, target_size(im, conf["sizes"]))
                 dest = out / conf["displayType"] / primary / src.name
                 dest.parent.mkdir(parents=True, exist_ok=True)
-                im.convert("RGB").save(dest, optimize=True)
+                im.convert("RGB").save(dest)
                 files.append(dest)
                 spec = SPEC["screens"][screen]
                 shows = spec["shows"]
