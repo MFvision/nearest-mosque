@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Bir öğeyi burada tutmak için yer işaretine dokunun.</string>
     <string name="library_search_in">%1$s içinde ara</string>
     <string name="library_section">IslamHouse kütüphanesinden</string>
+    <string name="library_shamela_note">Web sitesini açar; kitapları orada okuyup indirebilirsiniz.</string>
     <string name="library_source">Kaynak: %1$s</string>
     <string name="library_title">Kütüphane</string>
     <string name="library_type_articles">Makale</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">İbn Useymin</string>
     <string name="site_dorar">Dorar (hadis)</string>
     <string name="site_islamqa">İslam Soru Cevap</string>
+    <string name="site_shamela">el-Mektebetü\'ş-Şâmile</string>
     <string name="sky_card_hint">Kıble için dokunun</string>
     <string name="sky_day_a11y">Güneşin yolu: gün doğumu %1$s, akşam %2$s. Gündüzün %3$s geçti.</string>
     <string name="sky_night_a11y">Gece: akşam %1$s, gün doğumu %2$s. Gecenin %3$s geçti.</string>

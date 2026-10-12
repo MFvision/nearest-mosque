@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Gusa alama ya kuhifadhi kwenye kipengee chochote ili kukiweka hapa.</string>
     <string name="library_search_in">Tafuta katika %1$s</string>
     <string name="library_section">Kutoka maktaba ya IslamHouse</string>
+    <string name="library_shamela_note">Inafungua tovuti yake, ambapo unaweza kusoma na kupakua vitabu.</string>
     <string name="library_source">Chanzo: %1$s</string>
     <string name="library_title">Maktaba</string>
     <string name="library_type_articles">Makala</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadithi)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Gusa upate Kibla</string>
     <string name="sky_day_a11y">Njia ya jua: macheo %1$s, Magharibi %2$s. %3$s ya mchana imepita.</string>
     <string name="sky_night_a11y">Usiku: Magharibi %1$s, macheo %2$s. %3$s ya usiku imepita.</string>

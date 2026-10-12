@@ -214,6 +214,7 @@
     <string name="library_saved_empty">যেকোনো লেখা এখানে রাখতে তার বুকমার্কে ট্যাপ করুন।</string>
     <string name="library_search_in">%1$s-এ খুঁজুন</string>
     <string name="library_section">IslamHouse লাইব্রেরি থেকে</string>
+    <string name="library_shamela_note">এর ওয়েবসাইট খোলে, যেখানে আপনি বই পড়তে ও ডাউনলোড করতে পারেন।</string>
     <string name="library_source">উৎস: %1$s</string>
     <string name="library_title">লাইব্রেরি</string>
     <string name="library_type_articles">প্রবন্ধ</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">ইবনে উসাইমিন</string>
     <string name="site_dorar">Dorar (হাদিস)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">আল-মাকতাবা আশ-শামিলা</string>
     <string name="sky_card_hint">কিবলার জন্য ট্যাপ করুন</string>
     <string name="sky_day_a11y">সূর্যের পথ: সূর্যোদয় %1$s, মাগরিব %2$s। দিনের আলোর %3$s পার হয়েছে।</string>
     <string name="sky_night_a11y">রাত: মাগরিব %1$s, সূর্যোদয় %2$s। রাতের %3$s পার হয়েছে।</string>

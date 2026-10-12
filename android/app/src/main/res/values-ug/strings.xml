@@ -214,6 +214,7 @@
     <string name="library_saved_empty">ھەر قانداق مەزمۇننىڭ خەتكۈچىنى چېكىپ ئۇنى بۇ يەردە ساقلاڭ.</string>
     <string name="library_search_in">%1$s دىن ئىزدەش</string>
     <string name="library_section">IslamHouse كۈتۈپخانىسىدىن</string>
+    <string name="library_shamela_note">تور بېكىتىنى ئاچىدۇ، ئۇ يەردە كىتابلارنى ئوقۇيالايسىز ۋە چۈشۈرەلەيسىز.</string>
     <string name="library_source">مەنبە: %1$s</string>
     <string name="library_title">كۈتۈپخانا</string>
     <string name="library_type_articles">ماقالە</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">ئىبن ئۇسەيمىن</string>
     <string name="site_dorar">Dorar (ھەدىس)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">ئەل-مەكتەبە ئەش-شامىلە</string>
     <string name="sky_card_hint">قىبلە ئۈچۈن چېكىڭ</string>
     <string name="sky_day_a11y">قۇياش يولى: كۈن چىقىش %1$s، شام %2$s. كۈندۈزنىڭ %3$s ئۆتتى.</string>
     <string name="sky_night_a11y">كېچە: شام %1$s، كۈن چىقىش %2$s. كېچىنىڭ %3$s ئۆتتى.</string>

@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Tik op de bladwijzer bij een item om het hier te bewaren.</string>
     <string name="library_search_in">Zoeken in %1$s</string>
     <string name="library_section">Uit de IslamHouse-bibliotheek</string>
+    <string name="library_shamela_note">Opent de website, waar u de boeken kunt lezen en downloaden.</string>
     <string name="library_source">Bron: %1$s</string>
     <string name="library_title">Bibliotheek</string>
     <string name="library_type_articles">Artikel</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadith)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Tik voor de qibla</string>
     <string name="sky_day_a11y">Zonnebaan: zonsopgang %1$s, Maghrib %2$s. %3$s van het daglicht is verstreken.</string>
     <string name="sky_night_a11y">Nacht: Maghrib %1$s, zonsopgang %2$s. %3$s van de nacht is verstreken.</string>

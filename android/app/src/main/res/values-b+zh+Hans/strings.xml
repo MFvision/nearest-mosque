@@ -214,6 +214,7 @@
     <string name="library_saved_empty">点按任意内容上的书签，即可将其保存在这里。</string>
     <string name="library_search_in">在 %1$s 中搜索</string>
     <string name="library_section">来自 IslamHouse 图书馆</string>
+    <string name="library_shamela_note">打开其网站，可在那里阅读和下载书籍。</string>
     <string name="library_source">来源：%1$s</string>
     <string name="library_title">图书馆</string>
     <string name="library_type_articles">文章</string>
@@ -425,6 +426,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar（圣训）</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">沙米拉图书馆（Al-Shamela）</string>
     <string name="sky_card_hint">点按查看朝向</string>
     <string name="sky_day_a11y">太阳轨迹：日出 %1$s，昏礼 %2$s。白昼已过去 %3$s。</string>
     <string name="sky_night_a11y">夜晚：昏礼 %1$s，日出 %2$s。夜晚已过去 %3$s。</string>

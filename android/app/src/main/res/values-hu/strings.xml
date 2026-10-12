@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Koppints bármelyik anyag könyvjelzőjére, hogy itt megőrizd.</string>
     <string name="library_search_in">Keresés itt: %1$s</string>
     <string name="library_section">Az IslamHouse könyvtárából</string>
+    <string name="library_shamela_note">Megnyitja a honlapját, ahol olvashatja és letöltheti a könyveket.</string>
     <string name="library_source">Forrás: %1$s</string>
     <string name="library_title">Könyvtár</string>
     <string name="library_type_articles">Cikk</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadísz)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Koppints a kiblához</string>
     <string name="sky_day_a11y">A nap útja: napkelte %1$s, maghrib %2$s. A nappalból eltelt: %3$s.</string>
     <string name="sky_night_a11y">Éjszaka: maghrib %1$s, napkelte %2$s. Az éjszakából eltelt: %3$s.</string>

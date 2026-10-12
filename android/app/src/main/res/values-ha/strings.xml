@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Taɓa alamar ajiya a kan kowane abu don ajiye shi a nan.</string>
     <string name="library_search_in">Nemi a %1$s</string>
     <string name="library_section">Daga ɗakin karatu na IslamHouse</string>
+    <string name="library_shamela_note">Yana buɗe shafinta, inda za ku iya karanta littattafai ku sauke su.</string>
     <string name="library_source">Tushe: %1$s</string>
     <string name="library_title">Ɗakin karatu</string>
     <string name="library_type_articles">Maƙala</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadisi)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Taɓa don Alƙibla</string>
     <string name="sky_day_a11y">Hanyar rana: fitowar rana %1$s, Magariba %2$s. %3$s na hasken rana ya wuce.</string>
     <string name="sky_night_a11y">Dare: Magariba %1$s, fitowar rana %2$s. %3$s na dare ya wuce.</string>

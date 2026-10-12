@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Chạm vào dấu trang trên bất kỳ mục nào để giữ nó ở đây.</string>
     <string name="library_search_in">Tìm trong %1$s</string>
     <string name="library_section">Từ thư viện IslamHouse</string>
+    <string name="library_shamela_note">Mở trang web của thư viện, nơi bạn có thể đọc và tải sách.</string>
     <string name="library_source">Nguồn: %1$s</string>
     <string name="library_title">Thư viện</string>
     <string name="library_type_articles">Bài viết</string>
@@ -425,6 +426,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadith)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Chạm để xem Qibla</string>
     <string name="sky_day_a11y">Đường đi của mặt trời: mọc lúc %1$s, Maghrib lúc %2$s. Đã qua %3$s ban ngày.</string>
     <string name="sky_night_a11y">Ban đêm: Maghrib lúc %1$s, mặt trời mọc lúc %2$s. Đã qua %3$s ban đêm.</string>

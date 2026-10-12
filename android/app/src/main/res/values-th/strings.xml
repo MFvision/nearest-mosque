@@ -214,6 +214,7 @@
     <string name="library_saved_empty">แตะที่บุ๊กมาร์กของรายการใดก็ได้เพื่อเก็บไว้ที่นี่</string>
     <string name="library_search_in">ค้นหาใน %1$s</string>
     <string name="library_section">จากห้องสมุด IslamHouse</string>
+    <string name="library_shamela_note">เปิดเว็บไซต์ของห้องสมุด ซึ่งคุณอ่านและดาวน์โหลดหนังสือได้</string>
     <string name="library_source">ที่มา: %1$s</string>
     <string name="library_title">ห้องสมุด</string>
     <string name="library_type_articles">บทความ</string>
@@ -425,6 +426,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (หะดีษ)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">อัล-มักตะบะฮ์ อัช-ชามิละฮ์</string>
     <string name="sky_card_hint">แตะเพื่อดูกิบลัต</string>
     <string name="sky_day_a11y">เส้นทางดวงอาทิตย์: ขึ้น %1$s มัฆริบ %2$s เวลากลางวันผ่านไปแล้ว %3$s</string>
     <string name="sky_night_a11y">กลางคืน: มัฆริบ %1$s ดวงอาทิตย์ขึ้น %2$s เวลากลางคืนผ่านไปแล้ว %3$s</string>

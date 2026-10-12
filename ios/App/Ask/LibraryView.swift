@@ -96,10 +96,33 @@ private struct CollectionsList: View {
                         }
                         .buttonStyle(.plain)
                     }
+                    ShamelaRow()
                 }
                 .padding(16)
             }
         }
+    }
+}
+
+/// Al-Maktaba al-Shamela is not copied into the app (its terms leave the books' rights with their owners): this
+/// opens its own website, where the person reads and downloads as the site allows.
+private struct ShamelaRow: View {
+    @Environment(\.l10n) private var l10n
+    @Environment(\.openURL) private var openURL
+    var body: some View {
+        Button { openURL(URL(string: "https://shamela.ws/")!) } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(l10n.t("site_shamela")).font(.subheadline.weight(.semibold))
+                    Text(l10n.t("library_shamela_note")).font(.caption).foregroundStyle(Theme.ink.opacity(0.7))
+                }
+                Spacer()
+                Image(systemName: "arrow.up.right.square").foregroundStyle(Color(hex: 0x8CC0DE)).accessibilityHidden(true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .glassCard(padding: 14, cornerRadius: 18, tint: Color.white.opacity(0.04))
+        }
+        .buttonStyle(.plain)
     }
 }
 

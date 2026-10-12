@@ -214,6 +214,7 @@
     <string name="library_saved_empty">ఏదైనా అంశాన్ని ఇక్కడ ఉంచడానికి దానిపై ఉన్న బుక్‌మార్క్‌ను నొక్కండి.</string>
     <string name="library_search_in">%1$s లో వెతకండి</string>
     <string name="library_section">IslamHouse లైబ్రరీ నుండి</string>
+    <string name="library_shamela_note">దాని వెబ్‌సైట్‌ను తెరుస్తుంది, అక్కడ మీరు పుస్తకాలు చదవవచ్చు, డౌన్‌లోడ్ చేసుకోవచ్చు.</string>
     <string name="library_source">మూలం: %1$s</string>
     <string name="library_title">లైబ్రరీ</string>
     <string name="library_type_articles">వ్యాసం</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (హదీస్)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">అల్-మక్తబా అష్-షామిలా</string>
     <string name="sky_card_hint">ఖిబ్లా కోసం నొక్కండి</string>
     <string name="sky_day_a11y">సూర్య మార్గం: సూర్యోదయం %1$s, మగ్రిబ్ %2$s. పగటిలో %3$s గడిచింది.</string>
     <string name="sky_night_a11y">రాత్రి: మగ్రిబ్ %1$s, సూర్యోదయం %2$s. రాత్రిలో %3$s గడిచింది.</string>

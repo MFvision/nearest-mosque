@@ -214,6 +214,7 @@
     <string name="library_saved_empty">Tap the bookmark on any item to keep it here.</string>
     <string name="library_search_in">Search in %1$s</string>
     <string name="library_section">From the IslamHouse library</string>
+    <string name="library_shamela_note">Opens its website, where you can read and download the books.</string>
     <string name="library_source">Source: %1$s</string>
     <string name="library_title">Library</string>
     <string name="library_type_articles">Article</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadith)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">Tap for the Qibla</string>
     <string name="sky_day_a11y">Sun path: sunrise %1$s, Maghrib %2$s. %3$s of daylight has passed.</string>
     <string name="sky_night_a11y">Night: Maghrib %1$s, sunrise %2$s. %3$s of the night has passed.</string>

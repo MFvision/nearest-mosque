@@ -214,6 +214,7 @@
     <string name="library_saved_empty">I-tap ang bookmark sa anumang item para itago ito rito.</string>
     <string name="library_search_in">Maghanap sa %1$s</string>
     <string name="library_section">Mula sa aklatan ng IslamHouse</string>
+    <string name="library_shamela_note">Binubuksan ang website nito, kung saan mababasa at mada-download mo ang mga aklat.</string>
     <string name="library_source">Pinagmulan: %1$s</string>
     <string name="library_title">Aklatan</string>
     <string name="library_type_articles">Artikulo</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (hadith)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">Al-Maktaba al-Shamela</string>
     <string name="sky_card_hint">I-tap para sa Qibla</string>
     <string name="sky_day_a11y">Daan ng araw: pagsikat ng araw %1$s, Maghrib %2$s. Lumipas na ang %3$s ng liwanag ng araw.</string>
     <string name="sky_night_a11y">Gabi: Maghrib %1$s, pagsikat ng araw %2$s. Lumipas na ang %3$s ng gabi.</string>

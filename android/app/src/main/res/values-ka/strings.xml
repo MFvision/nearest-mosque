@@ -214,6 +214,7 @@
     <string name="library_saved_empty">შეეხეთ სანიშნეს ნებისმიერ მასალაზე, რომ აქ შეინახოთ.</string>
     <string name="library_search_in">ძიება: %1$s</string>
     <string name="library_section">IslamHouse-ის ბიბლიოთეკიდან</string>
+    <string name="library_shamela_note">ხსნის მის ვებსაიტს, სადაც შეგიძლიათ წიგნების კითხვა და ჩამოტვირთვა.</string>
     <string name="library_source">წყარო: %1$s</string>
     <string name="library_title">ბიბლიოთეკა</string>
     <string name="library_type_articles">სტატია</string>
@@ -426,6 +427,7 @@
     <string name="site_binothaimeen">Ibn Uthaymeen</string>
     <string name="site_dorar">Dorar (ჰადისი)</string>
     <string name="site_islamqa">IslamQA</string>
+    <string name="site_shamela">ალ-მაქთაბა აშ-შამილა</string>
     <string name="sky_card_hint">შეეხეთ ყიბლის სანახავად</string>
     <string name="sky_day_a11y">მზის გზა: ამოსვლა %1$s, მაღრიბი %2$s. დღის სინათლიდან გავიდა %3$s.</string>
     <string name="sky_night_a11y">ღამე: მაღრიბი %1$s, მზის ამოსვლა %2$s. ღამიდან გავიდა %3$s.</string>

@@ -269,7 +269,7 @@ public enum OtherSources {
         let qa = islamQaLanguages.contains(lang) ? lang : "en"
         func site(_ host: String) -> String { "https://www.google.com/search?q=" + encode("site:\(host) ") + q }
         return [("islamqa", "https://islamqa.info/\(qa)/search?q=\(q)"), ("dorar", "https://dorar.net/hadith/search?q=\(q)"),
-                ("binothaimeen", site("binothaimeen.net")), ("alifta", site("alifta.gov.sa"))]
+                ("binothaimeen", site("binothaimeen.net")), ("alifta", site("alifta.gov.sa")), ("shamela", site("shamela.ws"))]
             .compactMap { id, u in URL(string: u).map { Link(id: id, url: $0) } }
     }
 }
