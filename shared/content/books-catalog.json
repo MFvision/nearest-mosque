@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "baseUrl": "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/5ee1e912539f79a2c2129cf5fb9fcc4ca110378f/books/",
+ "baseUrl": "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/a00367b7b54b35bd8cb5ee9e5a64a411a5ce1432/books/",
  "source": "OpenITI (KITAB), CC BY-NC-SA 4.0 · doi:10.5281/zenodo.3082463",
  "books": [
   {
@@ -1543,6 +1543,596 @@
      "pages": 784,
      "bytes": 3701074,
      "sha256": "1ad4d5b6fb575f3bc4112d16b1bd4ef87226a57b7df6046fc21f49edce740616"
+    }
+   ]
+  },
+  {
+   "id": "riyad-salihin",
+   "group": "hadith",
+   "title": "رياض الصالحين",
+   "author": "النووي (ت ٦٧٦هـ)",
+   "edition": "شعيب الأرنؤوط ، مؤسسة الرسالة، بيروت، لبنان",
+   "volumes": [
+    {
+     "file": "riyad-salihin-v01.pdf",
+     "volume": 1,
+     "pages": 973,
+     "bytes": 5033501,
+     "sha256": "ed16cb09a898409c6ec48b859f19064dc58b34e3f93fa2520e48025b80d89ebd"
+    }
+   ]
+  },
+  {
+   "id": "arbain-nawawiyya",
+   "group": "hadith",
+   "title": "الأربعون النووية",
+   "author": "النووي (ت ٦٧٦هـ)",
+   "edition": "دار المنهاج للنشر والتوزيع، لبنان - بيروت",
+   "volumes": [
+    {
+     "file": "arbain-nawawiyya-v01.pdf",
+     "volume": 1,
+     "pages": 47,
+     "bytes": 237786,
+     "sha256": "73b7366514893234abb6204f13c969b44e3d72e05017b47eb41a981da9101798"
+    }
+   ]
+  },
+  {
+   "id": "bulugh-maram",
+   "group": "hadith",
+   "title": "بلوغ المرام من أدلة الأحكام",
+   "author": "ابن حجر العسقلاني (ت ٨٥٢هـ)",
+   "edition": "سمير بن أمين الزهري ، دار الفلق - الرياض",
+   "volumes": [
+    {
+     "file": "bulugh-maram-v01.pdf",
+     "volume": 1,
+     "pages": 310,
+     "bytes": 1623438,
+     "sha256": "0e3adcf3e8fcc649869142e08b10401d2c8635ec53e52dcb0ac44fa2dc88b217"
+    }
+   ]
+  },
+  {
+   "id": "nuzhat-nazar",
+   "group": "hadith",
+   "title": "نزهة النظر في توضيح نخبة الفكر",
+   "author": "ابن حجر العسقلاني (ت ٨٥٢هـ)",
+   "edition": "مطبعة الصباح، دمشق",
+   "volumes": [
+    {
+     "file": "nuzhat-nazar-v01.pdf",
+     "volume": 1,
+     "pages": 181,
+     "bytes": 859846,
+     "sha256": "d7062276e7f4a2b4f55ba8525de7f1d1925c979742b33415fb2d50ccc864424a"
+    }
+   ]
+  },
+  {
+   "id": "tabari",
+   "group": "tafsir",
+   "title": "جامع البيان عن تأويل آي القرآن (تفسير الطبري)",
+   "author": "ابن جرير الطبري (ت ٣١٠هـ)",
+   "edition": "الدكتور عبد الله بن عبد المحسن التركي ، دار هجر للطباعة والنشر والتوزيع والإعلان",
+   "volumes": [
+    {
+     "file": "tabari-v01.pdf",
+     "volume": 1,
+     "pages": 1007,
+     "bytes": 3719396,
+     "sha256": "3aa46de26b9c05dccd4b6de19a4ef3c6623b4d1828e610315a21243de86c86f0"
+    },
+    {
+     "file": "tabari-v02.pdf",
+     "volume": 2,
+     "pages": 1270,
+     "bytes": 4354340,
+     "sha256": "2c1a52dc43cd0c8c51d9e5749ff5c25a8cd8219ea2d11e4212db5998e46ed67a"
+    },
+    {
+     "file": "tabari-v03.pdf",
+     "volume": 3,
+     "pages": 1065,
+     "bytes": 3879356,
+     "sha256": "48307822dcc3d6568be1baccabc508f07ee926c069f0067706923410f26faae7"
+    },
+    {
+     "file": "tabari-v04.pdf",
+     "volume": 4,
+     "pages": 962,
+     "bytes": 3592391,
+     "sha256": "a0ce3fdc5e8857c8d5c993775f650a35e96cd028c680934980296bf185b05603"
+    },
+    {
+     "file": "tabari-v05.pdf",
+     "volume": 5,
+     "pages": 1091,
+     "bytes": 3939855,
+     "sha256": "508067fc64eb66ba9d7aeb529c91e63df10b0ef7b04f1d1e5fc6437717742b3f"
+    },
+    {
+     "file": "tabari-v06.pdf",
+     "volume": 6,
+     "pages": 1049,
+     "bytes": 3846798,
+     "sha256": "f25d255d2d04839f13e912e92c4520de5df20c5869ff534c5c3396a6e69d225a"
+    },
+    {
+     "file": "tabari-v07.pdf",
+     "volume": 7,
+     "pages": 943,
+     "bytes": 3503085,
+     "sha256": "b1dc7e2233c77ed08343ac2c2ae3e1bc24ce7ad2538dd28c3176bd7603253398"
+    },
+    {
+     "file": "tabari-v08.pdf",
+     "volume": 8,
+     "pages": 1032,
+     "bytes": 3861368,
+     "sha256": "0ee9d838b62ed2b08ecb53802f96e09abbe3dd7ce7c483a139dbf020e4c8b603"
+    },
+    {
+     "file": "tabari-v09.pdf",
+     "volume": 9,
+     "pages": 1096,
+     "bytes": 3901694,
+     "sha256": "750da4a0ee3a22bc254c6625b75f49638c519b25bc26d79acbf0c3028ce5b1bc"
+    },
+    {
+     "file": "tabari-v10.pdf",
+     "volume": 10,
+     "pages": 1052,
+     "bytes": 3702982,
+     "sha256": "367d3880d854ceaccd26dc73a859281f4ad7548dda53f9964cc8ffe1cb4ba9ce"
+    },
+    {
+     "file": "tabari-v11.pdf",
+     "volume": 11,
+     "pages": 1090,
+     "bytes": 3850616,
+     "sha256": "28c2b09319fb74442cd20f563e47f156df99eb661002ae447a24fdf872b92701"
+    },
+    {
+     "file": "tabari-v12.pdf",
+     "volume": 12,
+     "pages": 825,
+     "bytes": 3123418,
+     "sha256": "d42061dd410caedb40f4541ee401a8a6125053d7f1780dd0ca2e2112184784c1"
+    },
+    {
+     "file": "tabari-v13.pdf",
+     "volume": 13,
+     "pages": 1155,
+     "bytes": 3927822,
+     "sha256": "fdd8c302224523ea41af36c90363efab802dd9286767dc6c2ce636746b092729"
+    },
+    {
+     "file": "tabari-v14.pdf",
+     "volume": 14,
+     "pages": 1021,
+     "bytes": 3631218,
+     "sha256": "85274f8dc7473ca30175561be96c4d2738327c2ecb714e7fbffaefa95670331a"
+    },
+    {
+     "file": "tabari-v15.pdf",
+     "volume": 15,
+     "pages": 1045,
+     "bytes": 3538732,
+     "sha256": "0398cfb5f37504c777acf064939a76a91597b8e58ac1de2dc4935b37f0fb2d19"
+    },
+    {
+     "file": "tabari-v16.pdf",
+     "volume": 16,
+     "pages": 1229,
+     "bytes": 3983247,
+     "sha256": "4825104761c7bf71d381549a3b602a8addb4a824a0322b4cdaabe0b6263fadb3"
+    },
+    {
+     "file": "tabari-v17.pdf",
+     "volume": 17,
+     "pages": 1322,
+     "bytes": 4201494,
+     "sha256": "29ad67f9c60b9f2c5ea40277e55bfbc73179d568b9eb3ca93ed8a2d244dea63a"
+    },
+    {
+     "file": "tabari-v18.pdf",
+     "volume": 18,
+     "pages": 1398,
+     "bytes": 4283135,
+     "sha256": "fe17528bbadb0c44d80ec0ddbe9a2ce92b884f66546b811107391e1063a1fdad"
+    },
+    {
+     "file": "tabari-v19.pdf",
+     "volume": 19,
+     "pages": 1399,
+     "bytes": 4305244,
+     "sha256": "b62a378ecbfcaebac82197ca6b2eb9f1af76c4d41feded7781188650de918c94"
+    },
+    {
+     "file": "tabari-v20.pdf",
+     "volume": 20,
+     "pages": 1534,
+     "bytes": 4649107,
+     "sha256": "5e653dc6716664680d6492b6488b3f1b0869a9edc17c7b4743bb33a037565bb5"
+    },
+    {
+     "file": "tabari-v21.pdf",
+     "volume": 21,
+     "pages": 1278,
+     "bytes": 3977647,
+     "sha256": "5c2696e790bb871a5667d6a916beea9a45ebc256e8fb0040408c88eb87288cf8"
+    },
+    {
+     "file": "tabari-v22.pdf",
+     "volume": 22,
+     "pages": 1399,
+     "bytes": 4279021,
+     "sha256": "a55c19d5634f3ce09ffd79424e252157194120288db6a7d58309d1a5a9e6d836"
+    },
+    {
+     "file": "tabari-v23.pdf",
+     "volume": 23,
+     "pages": 1300,
+     "bytes": 3858484,
+     "sha256": "8119b3500ce5972a05de7a84b50a8c7b966cda80eb48794a332f1beebc3aa371"
+    },
+    {
+     "file": "tabari-v24.pdf",
+     "volume": 24,
+     "pages": 1410,
+     "bytes": 4286683,
+     "sha256": "1d01797ddc9e84bed4780ae68d5dc193107ee0430fb4200b2c7e2def3181790e"
+    }
+   ]
+  },
+  {
+   "id": "bidaya",
+   "group": "tarikh",
+   "title": "البداية والنهاية",
+   "author": "ابن كثير (ت ٧٧٤هـ)",
+   "edition": "عبد الله بن عبد المحسن التركي ، 1424هـ / 2003م ، دار هجر للطباعة والنشر والتوزيع والإعلان",
+   "volumes": [
+    {
+     "file": "bidaya-v01.pdf",
+     "volume": 1,
+     "pages": 723,
+     "bytes": 2998763,
+     "sha256": "1b9820568462c0a0ceda436085de0a8fa471fd18e79fb32c95298f2c73fc0e16"
+    },
+    {
+     "file": "bidaya-v02.pdf",
+     "volume": 2,
+     "pages": 789,
+     "bytes": 3284199,
+     "sha256": "c7a86a5df6ca13d3c83cd142121ea11e3040541f563e61d72734c17d7469e84e"
+    },
+    {
+     "file": "bidaya-v03.pdf",
+     "volume": 3,
+     "pages": 668,
+     "bytes": 3131778,
+     "sha256": "8e15321ab0d880d2c921c5ed46abfc169e29803e78e257f90e89bf8dd06ed846"
+    },
+    {
+     "file": "bidaya-v04.pdf",
+     "volume": 4,
+     "pages": 688,
+     "bytes": 3094685,
+     "sha256": "c355bf3dee4b309f96fd091319e2559490849931a0dde5b112c705f2c21c5851"
+    },
+    {
+     "file": "bidaya-v05.pdf",
+     "volume": 5,
+     "pages": 615,
+     "bytes": 2883685,
+     "sha256": "c5bd92d1fd36631d81c5c259d80158277cfea52fc43922079087aab76f2bb7b9"
+    },
+    {
+     "file": "bidaya-v06.pdf",
+     "volume": 6,
+     "pages": 719,
+     "bytes": 3232153,
+     "sha256": "70836862ffdf55e07d03caeb950225bccc0f0303108ceb79e38c6cb724e77923"
+    },
+    {
+     "file": "bidaya-v07.pdf",
+     "volume": 7,
+     "pages": 824,
+     "bytes": 3682915,
+     "sha256": "a8602583f687e126eac35d9702be4c3135098ad9a0fa693c3484bf7badb1c69d"
+    },
+    {
+     "file": "bidaya-v08.pdf",
+     "volume": 8,
+     "pages": 858,
+     "bytes": 3724952,
+     "sha256": "ee4204a91e4d89c0626e5201330878c350bf61a201edfa219ca5c145e3f67995"
+    },
+    {
+     "file": "bidaya-v09.pdf",
+     "volume": 9,
+     "pages": 883,
+     "bytes": 3785671,
+     "sha256": "a3f5bc7a4705e47dbfd568d076257eab8733435e9659948d6d50b1ceb02f6756"
+    },
+    {
+     "file": "bidaya-v10.pdf",
+     "volume": 10,
+     "pages": 764,
+     "bytes": 3493629,
+     "sha256": "086c4bfaeab67460109261362945fcc135d571974d33ff5d61a54a40a5a106ee"
+    },
+    {
+     "file": "bidaya-v11.pdf",
+     "volume": 11,
+     "pages": 924,
+     "bytes": 3949846,
+     "sha256": "754ae67b77e12da4a6f73b8b772e6e83ac5989e1e2e8b91fb681a4982780c49f"
+    },
+    {
+     "file": "bidaya-v12.pdf",
+     "volume": 12,
+     "pages": 843,
+     "bytes": 3839949,
+     "sha256": "a0c2d7e3e7dac389350709814b727295a808675954ff3363e80aae4b934c397c"
+    },
+    {
+     "file": "bidaya-v13.pdf",
+     "volume": 13,
+     "pages": 869,
+     "bytes": 3733863,
+     "sha256": "2c648e17a93a3b4b69445a6f90d5f0f57eb9d37935e3287fd1598e5ed6467ee0"
+    },
+    {
+     "file": "bidaya-v14.pdf",
+     "volume": 14,
+     "pages": 1002,
+     "bytes": 4425990,
+     "sha256": "d39cd622b26fa97f4c1fa227b781d82f8f77c7fbfee3c04a4fd459a33d0cd01d"
+    },
+    {
+     "file": "bidaya-v15.pdf",
+     "volume": 15,
+     "pages": 984,
+     "bytes": 4422701,
+     "sha256": "60f6e356deab3c32884b229d1fa620f0e05fa0947f747c46eecb173092ffe5f6"
+    },
+    {
+     "file": "bidaya-v16.pdf",
+     "volume": 16,
+     "pages": 1018,
+     "bytes": 4389653,
+     "sha256": "057511b88b1202bac43e6f951c9b4fe04ee08c3683fe0f28156cfd7606b36f0f"
+    },
+    {
+     "file": "bidaya-v17.pdf",
+     "volume": 17,
+     "pages": 986,
+     "bytes": 4225748,
+     "sha256": "014b39db0ff4d0c6d9a034250f560000294c3168978ef5a0c128aff9ed0717bf"
+    },
+    {
+     "file": "bidaya-v18.pdf",
+     "volume": 18,
+     "pages": 969,
+     "bytes": 3963259,
+     "sha256": "d8158afa59277a360eccae090797ef46fe6f3a536a98a2ad0f06c11466e4f59b"
+    },
+    {
+     "file": "bidaya-v19.pdf",
+     "volume": 19,
+     "pages": 659,
+     "bytes": 2968577,
+     "sha256": "7051b0bd38959b3aa6e2a856ce269a472426a4fc1a70553955a8368784b97127"
+    },
+    {
+     "file": "bidaya-v20.pdf",
+     "volume": 20,
+     "pages": 542,
+     "bytes": 2502691,
+     "sha256": "d0ad33712677a1ced266866a93aed486f01f4e7097593ad9bfd8cec7c73c2360"
+    }
+   ]
+  },
+  {
+   "id": "siyar",
+   "group": "tarikh",
+   "title": "سير أعلام النبلاء",
+   "author": "الذهبي (ت ٧٤٨هـ)",
+   "edition": "مجموعة من المحققين بإشراف الشيخ شعيب الأرناؤوط ، مؤسسة الرسالة",
+   "volumes": [
+    {
+     "file": "siyar-v01.pdf",
+     "volume": 1,
+     "pages": 2347,
+     "bytes": 11425812,
+     "sha256": "0334a0431e8e109e122ac1e08c538de185dfc69b7dd9593399ad7c3e1856faf0"
+    },
+    {
+     "file": "siyar-v02.pdf",
+     "volume": 2,
+     "pages": 964,
+     "bytes": 4172897,
+     "sha256": "9be17671a8a87f8063c03266e844b144a77fea37e3867612d9b5945f13f409b4"
+    },
+    {
+     "file": "siyar-v03.pdf",
+     "volume": 3,
+     "pages": 898,
+     "bytes": 3911700,
+     "sha256": "970393184eb3fe9a75bb23f5b12d0d0533dda9796f214e38a2d4b3ce679a8bd3"
+    },
+    {
+     "file": "siyar-v04.pdf",
+     "volume": 4,
+     "pages": 1094,
+     "bytes": 4773666,
+     "sha256": "92ff352c46802aca9269b7f88c4df2dd4f5ad719fbec4198b2c853b0f7db07c9"
+    },
+    {
+     "file": "siyar-v05.pdf",
+     "volume": 5,
+     "pages": 898,
+     "bytes": 3997810,
+     "sha256": "d1d466fc22a1912035dc8d8ab963e1a575ed08fffeb0b1afd49fd755230fcc79"
+    },
+    {
+     "file": "siyar-v06.pdf",
+     "volume": 6,
+     "pages": 754,
+     "bytes": 3393512,
+     "sha256": "df41cf14e766921fcab4bfa2b8fa24c4fb9d607ef7e08a5daea7635a9aa93b79"
+    },
+    {
+     "file": "siyar-v07.pdf",
+     "volume": 7,
+     "pages": 808,
+     "bytes": 3521573,
+     "sha256": "a7db6c6651a341d82c285e09b3b5e8e8e63cc917da980bb8e8fadbc1af97f97d"
+    },
+    {
+     "file": "siyar-v08.pdf",
+     "volume": 8,
+     "pages": 896,
+     "bytes": 3846382,
+     "sha256": "1b4163ce9c55ebaf07ca1f8a19038d65843d9e8f472a283afdf26faa360d36ea"
+    },
+    {
+     "file": "siyar-v09.pdf",
+     "volume": 9,
+     "pages": 874,
+     "bytes": 3776263,
+     "sha256": "a89ecd89a2faedd04bd63f61bc7cd63b178da8b4945f748d2a6f2a6ef4685225"
+    },
+    {
+     "file": "siyar-v10.pdf",
+     "volume": 10,
+     "pages": 966,
+     "bytes": 4259593,
+     "sha256": "2295db5f27bc2a861fc9bda29e56a9a309741039cd908b318d0227b8c954c09f"
+    },
+    {
+     "file": "siyar-v11.pdf",
+     "volume": 11,
+     "pages": 957,
+     "bytes": 4203190,
+     "sha256": "3859698c6d5db83c5b3cdd0f0408e0b444e24d6dde816b3ef81dd9f68568a2f4"
+    },
+    {
+     "file": "siyar-v12.pdf",
+     "volume": 12,
+     "pages": 884,
+     "bytes": 3888954,
+     "sha256": "c731e27a7fa7e91d237f0b77a7d38993cdead880e6280f62c0cdbe5c5e8995d9"
+    },
+    {
+     "file": "siyar-v13.pdf",
+     "volume": 13,
+     "pages": 823,
+     "bytes": 3586933,
+     "sha256": "dad741f33c984a91e1c65928b394d49b9d92f011c948e2e7dbb66ee3b5d5bea0"
+    },
+    {
+     "file": "siyar-v14.pdf",
+     "volume": 14,
+     "pages": 841,
+     "bytes": 3712287,
+     "sha256": "d69d4a601418e65b891a90a6ae8a549441cf356da54c4cfdbae38a899e366a95"
+    },
+    {
+     "file": "siyar-v15.pdf",
+     "volume": 15,
+     "pages": 771,
+     "bytes": 3490898,
+     "sha256": "c03008c96e143ea6b94f593f50dfb61b8a1b8a16ce3615bec94e26a505813300"
+    },
+    {
+     "file": "siyar-v16.pdf",
+     "volume": 16,
+     "pages": 812,
+     "bytes": 3516136,
+     "sha256": "97a765701f30428acbf45b81c97a0ffd2c3e7f1201bff0bca5635026b900298b"
+    },
+    {
+     "file": "siyar-v17.pdf",
+     "volume": 17,
+     "pages": 820,
+     "bytes": 3673077,
+     "sha256": "290ccf96531341a3e594f460f7770bb7cbd68a301204e5e48f7327e15db4dff2"
+    },
+    {
+     "file": "siyar-v18.pdf",
+     "volume": 18,
+     "pages": 786,
+     "bytes": 3465700,
+     "sha256": "d9e70a487f50612eb5fedd26bc2f48e02bf7cbff77d2a070aa96cda0bc2dcfa7"
+    },
+    {
+     "file": "siyar-v19.pdf",
+     "volume": 19,
+     "pages": 765,
+     "bytes": 3346237,
+     "sha256": "820d9bd931ee78cb0b50b13805987badcf0f0af96be024b7c4f2a5c29d541203"
+    },
+    {
+     "file": "siyar-v20.pdf",
+     "volume": 20,
+     "pages": 763,
+     "bytes": 3429917,
+     "sha256": "8b5acd36f5a53cf9c3284ac2708bd6268a5ccb3b6b7fd81a5769f6d5af82d8c7"
+    },
+    {
+     "file": "siyar-v21.pdf",
+     "volume": 21,
+     "pages": 656,
+     "bytes": 2869216,
+     "sha256": "7af951bcc0e8bf3e55192eadeda8413612cb65c4f37f4b531a0a74458a776fbd"
+    },
+    {
+     "file": "siyar-v22.pdf",
+     "volume": 22,
+     "pages": 560,
+     "bytes": 2444092,
+     "sha256": "44fe816008f23416db6554ba8da6ab817121e8d3dc1d2429020f9dfaea9f08af"
+    },
+    {
+     "file": "siyar-v23.pdf",
+     "volume": 23,
+     "pages": 530,
+     "bytes": 2314491,
+     "sha256": "d08318c58e6a2ce6de1c800f1a30a674efcd67eadb8ae7951a4878232313af87"
+    }
+   ]
+  },
+  {
+   "id": "madarij",
+   "group": "raqaiq",
+   "title": "مدارج السالكين بين منازل إياك نعبد وإياك نستعين",
+   "author": "ابن قيم الجوزية (ت ٧٥١هـ)",
+   "edition": "محمد حامد الفقي ، بيروت ، 1393 - 1973 ، دار الكتاب العربي",
+   "volumes": [
+    {
+     "file": "madarij-v01.pdf",
+     "volume": 1,
+     "pages": 1005,
+     "bytes": 3866431,
+     "sha256": "85568a9f0fa3878c3826397fd4c01fc068fcfac942cf44a80879f1f2d03ccb44"
+    },
+    {
+     "file": "madarij-v02.pdf",
+     "volume": 2,
+     "pages": 998,
+     "bytes": 3810301,
+     "sha256": "f484441b2816ad97fca64c8ef0d435dfe91a04cd290ffa2256c961180a9b28e3"
+    },
+    {
+     "file": "madarij-v03.pdf",
+     "volume": 3,
+     "pages": 1026,
+     "bytes": 4085817,
+     "sha256": "081302daea45dedfd14a4d1c4d3d452718af031e87d4e60467ee7442a0814931"
     }
    ]
   }

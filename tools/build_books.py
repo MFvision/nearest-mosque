@@ -223,7 +223,7 @@ def pdf_pages(path: str) -> int:
     return int(re.search(r"^Pages:\s+(\d+)", out, re.M).group(1))
 
 
-BASE_URL = "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/5ee1e912539f79a2c2129cf5fb9fcc4ca110378f/books/"
+BASE_URL = "https://raw.githubusercontent.com/MFvision/nearest-mosque-content/a00367b7b54b35bd8cb5ee9e5a64a411a5ce1432/books/"
 APP_CATALOG = os.path.join(ROOT, "shared", "content", "books-catalog.json")
 
 
