@@ -28,31 +28,37 @@ struct WatchSkyBackground: View {
             Color.black
         } else {
             TimelineView(.everyMinute) { tl in
-                let now = tl.date
-                let days = model.days(now: now)
-                let today = days.count == 3 ? days[1] : nil
-                let current = PrayerEvent.allCases.last { (today?[$0] ?? .distantFuture) <= now } ?? (days.first?[.isha] != nil ? .isha : nil)
-                var period = model.state == nil ? SkyPeriod.night : SkyPeriod.at(now, today: today, current: current)
-                let arc = model.state == nil ? nil : DayArc.at(now, days: days)
-                var fraction = arc?.fraction ?? 0.5
-                var isDay = arc?.isDay ?? false
-                #if DEBUG
-                // Screenshots: `-demoSky isha` (any SkyPeriod) draws that sky with its sun or moon.
-                if let demo = UserDefaults.standard.string(forKey: "demoSky").flatMap(SkyPeriod.init(rawValue:)) {
-                    period = demo
-                    isDay = [.sunrise, .day, .asr].contains(demo)
-                    fraction = isDay ? 0.62 : 0.3
-                }
-                #endif
-                let sky = Sky.of(period)
-                SkyBackdrop(sky: sky, horizon: 0.8, skyline: true, orb: AnyView(SkyOrb(fraction: fraction, isDay: isDay, sky: sky)))
+                let look = scene(tl.date)
+                SkyBackdrop(sky: look.sky, horizon: 0.8, skyline: true, orb: AnyView(SkyOrb(fraction: look.fraction, isDay: look.isDay, sky: look.sky)))
                     .overlay {
                         // Keeps text legible over the brightest part of the sky.
                         LinearGradient(colors: [.black.opacity(0.35), .clear, .black.opacity(0.25)], startPoint: .top, endPoint: .bottom)
                     }
-                    .animation(.easeInOut(duration: 1.2), value: sky)
+                    .animation(.easeInOut(duration: 1.2), value: look.sky)
             }
         }
+    }
+}
+
+extension WatchSkyBackground {
+    /// The sky of the period in effect at `now`, and where the sun or the moon is on its arc.
+    func scene(_ now: Date) -> (sky: Sky, fraction: Double, isDay: Bool) {
+        let days = model.days(now: now)
+        let today = days.count == 3 ? days[1] : nil
+        let current = PrayerEvent.allCases.last { (today?[$0] ?? .distantFuture) <= now } ?? (days.first?[.isha] != nil ? .isha : nil)
+        var period = model.state == nil ? SkyPeriod.night : SkyPeriod.at(now, today: today, current: current)
+        let arc = model.state == nil ? nil : DayArc.at(now, days: days)
+        var fraction = arc?.fraction ?? 0.5
+        var isDay = arc?.isDay ?? false
+        #if DEBUG
+        // Screenshots: `-demoSky isha` (any SkyPeriod) draws that sky with its sun or moon.
+        if let demo = UserDefaults.standard.string(forKey: "demoSky").flatMap(SkyPeriod.init(rawValue:)) {
+            period = demo
+            isDay = [.sunrise, .day, .asr].contains(demo)
+            fraction = isDay ? 0.62 : 0.3
+        }
+        #endif
+        return (Sky.of(period), fraction, isDay)
     }
 }
 
