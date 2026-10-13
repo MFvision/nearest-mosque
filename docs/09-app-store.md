@@ -235,6 +235,26 @@ with `dry_run` on to see what it would do, then again with it off.
 By hand: App Store Connect → the app → the platform's version → **Previews and Screenshots** → pick
 the language at the top right → drag a locale folder's files onto the matching device box in order.
 
+## App previews (videos)
+
+The **App Store previews** workflow (`.github/workflows/store-previews.yml`, started by hand) records two
+videos of the iPhone app in each store language, over 4 machines. The Debug build plays a scripted tour
+(`-demoPreview`, `ios/App/Support/DemoPreview.swift`) and `tools/store/record.py` records the simulator
+and converts the cut to Apple's preview format: 886 × 1920, H.264 High at 30 fps (about 11 Mbps), a silent
+stereo AAC track, 20 seconds (Apple accepts 15 to 30). The clips are listed under `previews` in
+`tools/store/screens.json`.
+
+| # | Clip | Shows |
+|---|------|-------|
+| 1 | `header` | The prayer header on the sky of the hour, scrolled into the slim bar and back, then the Qibla view, turning until it lights up on the Qibla. |
+| 2 | `search` | Ask: a question typed and sent, the thinking steps, the answer (labelled awaiting scholar review) and its sources. |
+
+The run's artifact `app-store-previews` holds `<app language>/<NN>-<clip>.mp4`. Upload them in App Store
+Connect under each language's **App Previews** for the iPhone 6.9" display; Apple's preview specification
+lists the same 886 × 1920 size for iPhone Duo, so the same files can go there. The poster frame defaults
+to 5 seconds and can be changed in App Store Connect. The upload tool (`asc_upload.py`) does not upload
+previews; they are added by hand.
+
 ## The listing text
 
 `shared/store/listing.json` holds the text for every App Store locale and every App Store version
@@ -256,7 +276,6 @@ English and Arabic are final; the other languages are drafts until a native spea
   two layers merged) and Top Shelf images, and the Apple Vision Pro icon with its three layers.
 * **Widgets, Live Activities, Siri shortcuts** have no fields of their own in App Store Connect; they
   appear in screenshots and in the description. See `10-features.md` for the full list.
-* **App previews** (videos) are not made by this workflow.
 
 ## Rules for the listing text
 
