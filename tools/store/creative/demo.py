@@ -20,8 +20,9 @@ import tempfile
 HERE = pathlib.Path(__file__).resolve().parent
 SPEC = json.loads((HERE.parent / "screens.json").read_text())
 # (clip, from second, to second): read from the tours' timings (DemoPreview, record.py's lead of 3 seconds).
-# The search cut runs long enough for the slower languages' answers to arrive.
-CUTS = [("01-header", 0.3, 8.9), ("01-header", 10.6, 17.6), ("02-mosques", 2.0, 6.0), ("03-search", 3.5, 14.5)]
+# Negative times count from the clip's end: the question typed and sent, then the clip's last seconds, which show
+# the answer and its sources however long a language takes to answer.
+CUTS = [("01-header", 0.3, 8.9), ("01-header", 10.6, 17.6), ("02-mosques", 2.0, 6.0), ("03-search", 3.5, 8.0), ("03-search", -6.5, 0)]
 FADE = 0.4
 
 
@@ -43,6 +44,10 @@ def main():
             continue
         inputs, chain, offset = [], [], 0.0
         for i, (c, a, b) in enumerate(CUTS):
+            if a < 0:
+                end = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(folder / f"{c}.mp4")],
+                                           capture_output=True, text=True, check=True).stdout)
+                a, b = end + a - 0.05, end + b - 0.05
             inputs += ["-ss", f"{a}", "-t", f"{b - a}", "-i", str(folder / f"{c}.mp4")]
             chain.append(f"[{i}:v]fps=30,format=yuv420p,setpts=PTS-STARTPTS[v{i}]")
         last = "v0"
