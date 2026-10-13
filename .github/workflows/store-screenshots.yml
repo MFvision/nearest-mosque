@@ -38,20 +38,28 @@ jobs:
   plan:
     runs-on: ubuntu-24.04
     outputs:
-      platforms: ${{ steps.p.outputs.platforms }}
+      shards: ${{ steps.p.outputs.shards }}
     steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      # Each device's languages are split over 4 machines that capture side by side (one simulator
+      # captures about 25 seconds a screenshot, so a device's 22 languages took over an hour on one).
       - id: p
         env:
           WANTED: ${{ inputs.platforms }}
+          LANGS: ${{ inputs.languages }}
         run: |
           python3 -c "
           import json, os
           ok = ['iphone', 'ipad', 'duo-outer', 'duo-inner', 'watch', 'mac', 'tv', 'vision']
           want = [p for p in os.environ['WANTED'].split() if p in ok] or ok
-          print('platforms=' + json.dumps(want))" >> "$GITHUB_OUTPUT"
+          langs = os.environ['LANGS'].split() or [l['app'] for l in json.load(open('tools/store/screens.json'))['languages']]
+          n = min(4, len(langs))
+          groups = [langs[i::n] for i in range(n)]
+          shards = [{'platform': p, 'shard': i + 1, 'langs': ' '.join(g)} for p in want for i, g in enumerate(groups)]
+          print('shards=' + json.dumps(shards))" >> "$GITHUB_OUTPUT"
 
   shoot:
-    name: Screenshots (${{ matrix.platform }})
+    name: Screenshots (${{ matrix.platform }} ${{ matrix.shard }})
     needs: plan
     if: inputs.capture
     # iPhone Duo needs Xcode 27.1 and its simulator (GitHub's Xcode 27 image).
@@ -60,7 +68,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: ${{ fromJSON(needs.plan.outputs.platforms) }}
+        include: ${{ fromJSON(needs.plan.outputs.shards) }}
     defaults:
       run:
         working-directory: ios
@@ -110,7 +118,7 @@ jobs:
       - name: Capture
         env:
           PLATFORM: ${{ matrix.platform }}
-          LANGS: ${{ inputs.languages }}
+          LANGS: ${{ matrix.langs }}
           ONLY: ${{ inputs.only }}
           EXTRA_WAIT: ${{ inputs.extra_wait }}
         # shellcheck disable=SC2086 # the language list is meant to split into arguments
@@ -123,7 +131,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
-          name: raw-${{ matrix.platform }}
+          name: raw-${{ matrix.platform }}-${{ matrix.shard }}
           path: |
             ios/raw/
             ios/build.log
