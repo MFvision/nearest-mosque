@@ -1,0 +1,50 @@
+name: App Store screenshots upload
+
+# Uploads screenshot sets made by the "App Store screenshots" workflow to App Store Connect
+# (tools/store/asc_upload.py). It only fills empty sets: anything already in App Store Connect is left as it is.
+# Started by hand.
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Run ID of the App Store screenshots workflow whose app-store-screenshots artifact to upload"
+        required: true
+      display_types:
+        description: "Screenshot sets to upload, space-separated (e.g. APP_WATCH_ULTRA)"
+        default: "APP_WATCH_ULTRA"
+      dry_run:
+        description: "Only report what would be uploaded"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: store-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Get the screenshots
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run_id }}
+        run: gh run download "$RUN_ID" -n app-store-screenshots -D store
+      - name: Install the script's dependencies (pinned)
+        run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
+      - name: Upload
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          BUNDLE_ID: sa.zood.nearmosque
+          DISPLAY_TYPES: ${{ inputs.display_types }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: /tmp/asc/bin/python tools/store/asc_upload.py store

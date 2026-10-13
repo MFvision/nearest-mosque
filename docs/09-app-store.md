@@ -207,6 +207,12 @@ authentication (an API key in the repository secrets `ASC_KEY_ID`, `ASC_ISSUER_I
 The listing already has screenshots (about 1,198 assets). Before deleting any existing screenshot,
 list what a set holds and get the owner's confirmation. A deleted screenshot cannot be brought back.
 
+The workflow **App Store screenshots upload** (`.github/workflows/store-upload.yml`, `tools/store/asc_upload.py`)
+does these steps for the sets named in `display_types` (e.g. `APP_WATCH_ULTRA`), from the
+`app-store-screenshots` artifact of a screenshots run (`run_id`). It only fills empty sets: a set that
+already holds screenshots is reported and left as it is, so it never replaces or deletes anything. Start it
+with `dry_run` on to see what it would do, then again with it off.
+
 By hand: App Store Connect → the app → the platform's version → **Previews and Screenshots** → pick
 the language at the top right → drag a locale folder's files onto the matching device box in order.
 
