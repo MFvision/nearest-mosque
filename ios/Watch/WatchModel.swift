@@ -157,9 +157,9 @@ final class WatchModel {
     func received(_ state: SharedState?, level: Double?, marks: [String]? = nil) {
         if let marks {
             let new = CompanionLog.merge(marks)
+            // Marks made on the iPhone count for the companion only: Apple Health gets sessions timed on the watch,
+            // never ones guessed from the prayer's time.
             if !new.isEmpty { marksVersion += 1 }
-            // Marks made on the iPhone: in Apple Health from the prayer's time (only the day is known).
-            if settings.healthOn { for m in new { recordHealth(m, at: nil) } }
         }
         if let state {
             phone = state
@@ -190,21 +190,10 @@ final class WatchModel {
         publish()
     }
 
-    /// A mindful session for `mark`, ending now (marked here) or from the prayer's time (marked on the iPhone).
-    private func recordHealth(_ mark: String, at end: Date?) {
+    /// A mindful session for `mark`, of the length chosen in Settings, ending when it was marked on the watch.
+    private func recordHealth(_ mark: String, at end: Date) {
         let minutes = settings.healthMinutes
-        let parts = mark.split(separator: ":")
-        guard parts.count == 2, let e = PrayerEvent(rawValue: String(parts[1])) else { return }
-        var start = end.map { $0.addingTimeInterval(-Double(minutes) * 60) }
-        if start == nil, let s = state, let here = s.location {
-            let d = parts[0].split(separator: "-").compactMap { Int($0) }
-            if d.count == 3 {
-                let day = calculator.schedule(here, date: CivilDate(year: d[0], month: d[1], day: d[2]), zone: s.zone, settings: s.prayer)
-                start = day[e]
-            }
-        }
-        guard let start, start < Date() else { return }
-        Task { await WatchHealth.record(mark, start: start, minutes: minutes) }
+        Task { await WatchHealth.record(mark, start: end.addingTimeInterval(-Double(minutes) * 60), minutes: minutes) }
     }
 
     /// Turns the Apple Health link on (asking permission) or off.

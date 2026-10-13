@@ -278,9 +278,9 @@ background is black.
 default) makes the watch set its own for the prayers you pick, ten days ahead, refreshed in the
 background, for when the iPhone stays behind.
 
-**Apple Health** (Settings on the watch, off by default): each prayer you mark adds mindful minutes to
-Apple Health (5 to 30 minutes, 10 unless changed), ending when you mark it, or from the prayer's time for
-a mark made on the iPhone. Only mindful sessions are written, nothing is read, and each prayer is written
+**Apple Health** (Settings on the watch, off by default): each prayer you mark on the watch adds mindful
+minutes to Apple Health (5 to 30 minutes, 10 unless changed), ending when you mark it. Marks made on the
+iPhone count for the companion but are not written to Health (their time is not known). Only mindful sessions are written, nothing is read, and each prayer is written
 once (a sync identifier per prayer). Apple Health has no spiritual category, so mindful minutes is where
 it goes. The watch app asks for Health permission only when this is turned on.
 

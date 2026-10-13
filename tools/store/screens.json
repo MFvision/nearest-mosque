@@ -49,7 +49,7 @@
     "tv-mosques": {"title": "Nearby mosques", "shows": "Mosques near the chosen city.", "city": "Cairo", "args": ["-demoTab", "mosques"]},
     "tv-alert": {"title": "Prayer alert", "shows": "The full-screen alert when a prayer time comes.", "city": "Riyadh", "args": ["-demoAlert", "YES"]},
     "tv-top-shelf": {"title": "Top Shelf", "shows": "The Top Shelf on the Apple TV Home Screen: the next prayer without opening the app.", "city": "Riyadh", "args": ["-demoTopShelf", "YES"]},
-    "tv-settings": {"title": "Settings", "shows": "City, calculation method and Adhan settings.", "city": "Riyadh", "args": ["-demoTab", "settings"]},
+    "tv-settings": {"title": "Settings", "shows": "City, calculation method and language.", "city": "Riyadh", "args": ["-demoTab", "settings"]},
     "watch-prayer": {"title": "Prayer times on the wrist", "shows": "Apple Watch: the next prayer, its time and a live countdown on the sky of the hour, then today's times with their reminder bells.", "city": "Riyadh", "args": ["-demoScreen", "prayer"]},
     "watch-qibla": {"title": "Qibla compass on the watch", "shows": "Apple Watch: the live Qibla compass, facing the Qibla (the watch taps the wrist when you face it).", "city": "Riyadh", "args": ["-demoScreen", "qibla", "-demoHeading", "241", "-demoSky", "maghrib"]},
     "watch-spirit": {"title": "Spiritual health", "shows": "Apple Watch: the companion bright or tired with the prayers you mark, today's five prayers, the last seven days and the days in a row with all five.", "city": "Riyadh", "args": ["-demoScreen", "spirit", "-demoMarks", "1", "-demoSky", "isha"]},

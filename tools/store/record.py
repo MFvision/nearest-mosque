@@ -25,7 +25,7 @@ MARKER = "Library/Caches/demoPreviewStart.txt"
 def convert(raw, start, seconds, size, target):
     w, h = size
     return run(
-        "ffmpeg", "-y", "-loglevel", "error", "-ss", f"{max(0, start):.2f}", "-i", str(raw),
+        "ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-ss", f"{max(0, start):.2f}", "-i", str(raw),
         "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000", "-t", str(seconds),
         "-vf", f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps=30,format=yuv420p",
         "-map", "0:v:0", "-map", "1:a:0",
