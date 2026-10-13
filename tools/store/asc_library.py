@@ -1,0 +1,245 @@
+#!/usr/bin/env python3
+"""Uploads App Store media through the App Asset Library (App Store Connect API, iOS 27 and later): the creative
+assets (product page header and search results videos) and screenshot sets the older API has no slot for (iPhone
+Duo). Each file is uploaded once and placed on every App Store Connect locale of its language.
+
+    asc_library.py discover                       # the placement types and groups Apple offers (changes nothing)
+    asc_library.py creative <folder>              # <folder>/header/<locale>.mp4, <folder>/search/<locale>.mp4
+    asc_library.py screenshots <folder> <group>   # <folder>/<locale>/NN-*.png into that APP_SCREENSHOT group
+
+Environment: ASC_KEY_ID, ASC_ISSUER_ID, ASC_PRIVATE_KEY, BUNDLE_ID, DRY_RUN ("true": report only).
+
+Like asc_upload.py it only fills empty places: a locale that already has a placement of that type and group is
+left as it is and reported; nothing is replaced or deleted. It uses the editable iOS version (Prepare for
+Submission or rejected); placements are reviewed with that version. Logs show locales and counts only.
+Needs PyJWT and cryptography.
+"""
+import json
+import os
+import pathlib
+import struct
+import sys
+import time
+import urllib.request
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from asc_upload import EDITABLE, all_pages, api  # noqa: E402
+
+SPEC = json.loads((pathlib.Path(__file__).resolve().parent / "screens.json").read_text())
+CREATIVE = {"header": "PRODUCT_PAGE_HEADER_ASSET", "search": "APP_STORE_SEARCH_RESULTS_ASSET"}
+DRY = os.environ.get("DRY_RUN", "").lower() == "true"
+
+
+def ref_data() -> dict:
+    return all_pages("/appAssetLibraryRefData")[0]["attributes"]
+
+
+def ios_groups(ref: dict) -> set:
+    return {g.get("id") or g.get("groupId") for g in ref.get("placementProfileGroups", []) if "IOS" in str(g.get("platform", "")).upper()}
+
+
+def groups_for(ref: dict, placement_type: str) -> dict:
+    """Group id -> the specs it accepts, for one placement type."""
+    for t in ref.get("placementTypes", []):
+        if (t.get("placementType") or t.get("id") or t.get("name")) == placement_type:
+            out = {}
+            for m in t.get("specMappings", []):
+                for g in m.get("groupIds") or [m.get("groupId")]:
+                    out.setdefault(g, set()).update(m.get("specs", []))
+            return out
+    return {}
+
+
+def spec_fits(ref: dict, spec_ids: set, width: int, height: int) -> bool:
+    for s in ref.get("videoSpecs", []) + ref.get("imageSpecs", []):
+        if s.get("specId") in spec_ids:
+            d = s.get("dimensions", {})
+            if d.get("minWidth", 0) <= width <= d.get("maxWidth", 10 ** 6) and d.get("minHeight", 0) <= height <= d.get("maxHeight", 10 ** 6):
+                return True
+    return False
+
+
+def media_size(path: pathlib.Path) -> tuple[int, int]:
+    if path.suffix == ".png":
+        with path.open("rb") as f:
+            head = f.read(24)
+        return struct.unpack(">II", head[16:24])
+    import subprocess
+    out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", str(path)],
+                         capture_output=True, text=True, check=True).stdout.strip()
+    w, h = out.split(",")
+    return int(w), int(h)
+
+
+def target():
+    app = api("GET", "/apps", {"filter[bundleId]": os.environ["BUNDLE_ID"]})["data"][0]
+    versions = all_pages(f"/apps/{app['id']}/appStoreVersions", {"filter[platform]": "IOS", "limit": "50"})
+    editable = [v for v in versions if (v["attributes"].get("appVersionState") or v["attributes"].get("appStoreState")) in EDITABLE]
+    if not editable:
+        raise SystemExit("::error::No editable iOS version (Prepare for Submission) to place assets on.")
+    version = editable[0]
+    print(f"iOS version {version['attributes']['versionString']}", flush=True)
+    locs = {l["attributes"]["locale"]: l["id"] for l in all_pages(f"/appStoreVersions/{version['id']}/appStoreVersionLocalizations", {"limit": "50"})}
+    library = api("GET", f"/apps/{app['id']}/assetLibrary")["data"]["id"]
+    return locs, library
+
+
+def asc_locales(folder_locale: str) -> list:
+    # A file named for a language's first App Store Connect locale serves all of that language's locales.
+    for lang in SPEC["languages"]:
+        if lang["asc"][0] == folder_locale:
+            return lang["asc"]
+    return [folder_locale]
+
+
+def upload(library: str, path: pathlib.Path, kind: str, category: str, name: str) -> str:
+    data = path.read_bytes()
+    attrs = {"fileName": path.name, "fileSize": len(data), "category": category, "referenceName": name}
+    if kind == "appAssetLibraryVideos":
+        attrs["previewFrameTimeCode"] = "00:00:05:00"
+    res = api("POST", f"/{kind}", body={"data": {"type": kind, "attributes": attrs,
+                                                  "relationships": {"assetLibrary": {"data": {"type": "appAssetLibraries", "id": library}}}}})["data"]
+    for op in res["attributes"]["uploadOperations"]:
+        part = data[op["offset"]: op["offset"] + op["length"]]
+        headers = {h["name"]: h["value"] for h in op.get("requestHeaders", [])}
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(op["url"], data=part, method=op["method"], headers=headers), timeout=600):
+                    break
+            except OSError:
+                if attempt == 2:
+                    raise
+                time.sleep(5)
+    api("PATCH", f"/{kind}/{res['id']}", body={"data": {"type": kind, "id": res["id"], "attributes": {"uploaded": True}}})
+    return res["id"]
+
+
+def wait_ready(kind: str, ids: list, minutes: int = 40) -> dict:
+    deadline, states = time.time() + minutes * 60, {}
+    while time.time() < deadline:
+        for i in ids:
+            if states.get(i) not in ("PREPARE_FOR_SUBMISSION", "FAILED"):
+                states[i] = api("GET", f"/{kind}/{i}")["data"]["attributes"].get("state")
+        if all(s in ("PREPARE_FOR_SUBMISSION", "FAILED") for s in states.values()):
+            break
+        time.sleep(15)
+    return states
+
+
+def existing(loc_id: str, placement_type: str, group: str) -> list:
+    return all_pages(f"/appStoreVersionLocalizations/{loc_id}/placements",
+                     {"filter[placementType]": placement_type, "filter[placementGroup]": group, "sort": "placementGroupPosition", "limit": "50"})
+
+
+def place(asset_kind: str, asset_id: str, loc_id: str, placement_type: str, group: str) -> str:
+    rel = "video" if asset_kind == "appAssetLibraryVideos" else "image"
+    return api("POST", "/appAssetLibraryPlacements", body={"data": {
+        "type": "appAssetLibraryPlacements", "attributes": {"placementType": placement_type, "placementGroup": group},
+        "relationships": {rel: {"data": {"type": asset_kind, "id": asset_id}},
+                          "appStoreVersionLocalization": {"data": {"type": "appStoreVersionLocalizations", "id": loc_id}}}}})["data"]["id"]
+
+
+def discover() -> int:
+    ref = ref_data()
+    # The shape first (reference data only: Apple's catalogue, nothing about the account).
+    for key, items in ref.items():
+        print(f"{key}: {len(items)} entries; first: {json.dumps(items[:2])[:900]}")
+    for t in ref.get("placementTypes", []):
+        print("placementType:", json.dumps(t)[:1500])
+    for g in ref.get("placementProfileGroups", []):
+        print("group:", json.dumps(g)[:300])
+    try:
+        print("iOS placement groups:", ", ".join(sorted(g for g in ios_groups(ref) if g)))
+    except Exception as e:  # the shape differs from what this script expects; the dump above shows it
+        print("could not list groups:", type(e).__name__)
+    # Whether the app has an asset library and an editable version (counts only).
+    locs, library = target()
+    print(f"asset library found; {len(locs)} localizations on the editable version")
+    return 0
+
+
+def creative(folder: pathlib.Path) -> int:
+    ref = ref_data()
+    locs, library = target()
+    placed = skipped = failed = 0
+    for sub, ptype in CREATIVE.items():
+        files = sorted((folder / sub).glob("*.mp4"))
+        if not files:
+            continue
+        w, h = media_size(files[0])
+        groups = [g for g, specs in groups_for(ref, ptype).items() if g in ios_groups(ref) and spec_fits(ref, specs, w, h)]
+        if not groups:
+            print(f"::error::{ptype}: no iOS placement group takes {w} x {h} videos (run discover).")
+            return 1
+        print(f"{ptype}: groups {', '.join(groups)}", flush=True)
+        for f in files:
+            todo = [(l, g) for l in asc_locales(f.stem) if l in locs for g in groups if not existing(locs[l], ptype, g)]
+            have = [l for l in asc_locales(f.stem) if l in locs and (l, groups[0]) not in todo]
+            skipped += len(have)
+            if not todo:
+                print(f"{sub} {f.stem}: already placed; left as it is.", flush=True)
+                continue
+            if DRY:
+                print(f"{sub} {f.stem}: would upload once and place on {len(todo)} locale group(s).", flush=True)
+                continue
+            vid = upload(library, f, "appAssetLibraryVideos", "CREATIVE_ASSETS", f"Near Mosque {sub} {f.stem}")
+            state = wait_ready("appAssetLibraryVideos", [vid])[vid]
+            if state != "PREPARE_FOR_SUBMISSION":
+                print(f"::warning::{sub} {f.stem}: processing ended in {state}.", flush=True)
+                failed += 1
+                continue
+            for l, g in todo:
+                place("appAssetLibraryVideos", vid, locs[l], ptype, g)
+                placed += 1
+            print(f"{sub} {f.stem}: placed on {len(todo)} locale group(s).", flush=True)
+    print(f"Done: {placed} placed, {skipped} left as they were, {failed} failed." + (" (dry run)" if DRY else ""))
+    return 1 if failed else 0
+
+
+def screenshots(folder: pathlib.Path, group: str) -> int:
+    ref = ref_data()
+    if group not in groups_for(ref, "APP_SCREENSHOT"):
+        print(f"::error::{group} is not an APP_SCREENSHOT group Apple offers (run discover).")
+        return 1
+    locs, library = target()
+    placed = skipped = failed = 0
+    for d in sorted(p for p in folder.iterdir() if p.is_dir()):
+        files = sorted(d.glob("*.png"))[:10]
+        targets = [l for l in asc_locales(d.name) if l in locs]
+        empty = [l for l in targets if not existing(locs[l], "APP_SCREENSHOT", group)]
+        skipped += len(targets) - len(empty)
+        if not files or not empty:
+            print(f"{d.name}: nothing to add.", flush=True)
+            continue
+        if DRY:
+            print(f"{d.name}: would upload {len(files)} and place them on {len(empty)} locale(s).", flush=True)
+            continue
+        ids = [upload(library, f, "appAssetLibraryImages", "APP_SCREENSHOTS_AND_PREVIEWS", f"Near Mosque {group} {d.name} {f.stem}") for f in files]
+        states = wait_ready("appAssetLibraryImages", ids, 20)
+        ready = [i for i in ids if states.get(i) == "PREPARE_FOR_SUBMISSION"]
+        failed += len(ids) - len(ready)
+        for l in empty:
+            order = [place("appAssetLibraryImages", i, locs[l], "APP_SCREENSHOT", group) for i in ready]
+            api("POST", "/appAssetLibraryPlacementOrderingRequests", body={"data": {
+                "type": "appAssetLibraryPlacementOrderingRequests", "attributes": {"placementGroup": group},
+                "relationships": {"orderedPlacements": {"data": [{"type": "appAssetLibraryPlacements", "id": p} for p in order]},
+                                  "appStoreVersionLocalization": {"data": {"type": "appStoreVersionLocalizations", "id": locs[l]}}}}})
+            placed += len(order)
+        print(f"{d.name}: {len(ready)} of {len(ids)} placed on {len(empty)} locale(s).", flush=True)
+    print(f"Done: {placed} placed, {skipped} locale(s) left as they were, {failed} failed." + (" (dry run)" if DRY else ""))
+    return 1 if failed else 0
+
+
+def main() -> int:
+    mode = sys.argv[1]
+    if mode == "discover":
+        return discover()
+    if mode == "creative":
+        return creative(pathlib.Path(sys.argv[2]))
+    if mode == "screenshots":
+        return screenshots(pathlib.Path(sys.argv[2]), sys.argv[3])
+    raise SystemExit(__doc__)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

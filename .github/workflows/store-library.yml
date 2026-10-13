@@ -1,0 +1,71 @@
+name: App Store asset library upload
+
+# Uploads App Store media through the App Asset Library (tools/store/asc_library.py): the creative assets (product
+# page header and search results videos) from an "App Store creative assets" run, or a screenshot folder (iPhone Duo)
+# from an "App Store screenshots" run. It only fills empty places: anything already in App Store Connect is left as
+# it is. Started by hand; "discover" lists what Apple offers and changes nothing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "discover, creative or screenshots"
+        default: "discover"
+      run_id:
+        description: "Run ID whose artifact to upload (creative: App Store creative assets; screenshots: App Store screenshots)"
+        default: ""
+      folder:
+        description: "screenshots: the folder in the app-store-screenshots artifact (e.g. IPHONE_DUO_OUTER)"
+        default: "IPHONE_DUO_OUTER"
+      group:
+        description: "screenshots: the APP_SCREENSHOT placement group (from discover)"
+        default: ""
+      dry_run:
+        description: "Only report what would be uploaded"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: store-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Get the files
+        if: inputs.mode != 'discover'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run_id }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          if [ "$MODE" = creative ]; then gh run download "$RUN_ID" -n app-store-creative -D media
+          else gh run download "$RUN_ID" -n app-store-screenshots -D media; fi
+      - name: Install the script's dependencies (pinned)
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0
+      - name: Upload
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          BUNDLE_ID: sa.zood.nearmosque
+          DRY_RUN: ${{ inputs.dry_run }}
+          MODE: ${{ inputs.mode }}
+          FOLDER: ${{ inputs.folder }}
+          GROUP: ${{ inputs.group }}
+        run: |
+          case "$MODE" in
+            discover) /tmp/asc/bin/python tools/store/asc_library.py discover ;;
+            creative) /tmp/asc/bin/python tools/store/asc_library.py creative media ;;
+            screenshots) /tmp/asc/bin/python tools/store/asc_library.py screenshots "media/$FOLDER" "$GROUP" ;;
+            *) echo "::error::mode must be discover, creative or screenshots"; exit 1 ;;
+          esac
