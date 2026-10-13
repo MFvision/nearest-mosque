@@ -268,11 +268,13 @@ function drawSky(ctx, w, h, t, opts = {}) {
 
   // The mosque on the horizon.
   const mh = h * (opts.mosque ?? 0.2);
-  skyline(ctx, w * 0.5 - mh * 1.1, horizon + 2, mh * 2.2, mh, css(mix(pal.low, [0, 0, 0], 0.35)));
+  // The mosque's centre (fraction of the width).
+  const mx0 = w * (opts.mosqueX ?? 0.5);
+  skyline(ctx, mx0 - mh * 1.1, horizon + 2, mh * 2.2, mh, css(mix(pal.low, [0, 0, 0], 0.35)));
   // Warm lit windows at night.
   if (night > 0.2) {
     ctx.fillStyle = `rgba(255,205,120,${0.55 * night})`;
-    for (let i = 0; i < 5; i++) ctx.fillRect(w * 0.5 - mh * 0.55 + i * mh * 0.25, horizon - mh * 0.16, mh * 0.06, mh * 0.1);
+    for (let i = 0; i < 5; i++) ctx.fillRect(mx0 - mh * 0.55 + i * mh * 0.25, horizon - mh * 0.16, mh * 0.06, mh * 0.1);
   }
 
   // The calm lake: the sky reflected, with a shimmering streak under the sun or the moon.
@@ -306,10 +308,10 @@ function drawSky(ctx, w, h, t, opts = {}) {
   ctx.translate(0, 2 * (horizon + 2));
   ctx.scale(1, -1);
   ctx.globalAlpha = 0.3;
-  skyline(ctx, w * 0.5 - mh * 1.1, horizon + 2, mh * 2.2, mh, css(mix(pal.low, [0, 0, 0], 0.45)));
+  skyline(ctx, mx0 - mh * 1.1, horizon + 2, mh * 2.2, mh, css(mix(pal.low, [0, 0, 0], 0.45)));
   if (night > 0.2) {
     ctx.fillStyle = `rgba(255,205,120,${0.5 * night})`;
-    for (let i = 0; i < 5; i++) ctx.fillRect(w * 0.5 - mh * 0.55 + i * mh * 0.25, horizon - mh * 0.16, mh * 0.06, mh * 0.1);
+    for (let i = 0; i < 5; i++) ctx.fillRect(mx0 - mh * 0.55 + i * mh * 0.25, horizon - mh * 0.16, mh * 0.06, mh * 0.1);
   }
   ctx.restore();
   // Ripples.
