@@ -34,18 +34,21 @@ def ref_data() -> dict:
     return all_pages("/appAssetLibraryRefData")[0]["attributes"]
 
 
+IOS_PLATFORMS = {"IPHONE_APP_STORE", "IPAD_APP_STORE", "ANY"}
+
+
 def ios_groups(ref: dict) -> set:
-    return {g.get("id") or g.get("groupId") for g in ref.get("placementProfileGroups", []) if "IOS" in str(g.get("platform", "")).upper()}
+    # iPhone and iPad groups, and DEFAULT_PROFILE (platform ANY), which the creative assets use.
+    return {g["placementProfileGroupId"] for g in ref.get("placementProfileGroups", []) if g.get("platform") in IOS_PLATFORMS}
 
 
 def groups_for(ref: dict, placement_type: str) -> dict:
     """Group id -> the specs it accepts, for one placement type."""
     for t in ref.get("placementTypes", []):
-        if (t.get("placementType") or t.get("id") or t.get("name")) == placement_type:
+        if t.get("placementTypeId") == placement_type:
             out = {}
             for m in t.get("specMappings", []):
-                for g in m.get("groupIds") or [m.get("groupId")]:
-                    out.setdefault(g, set()).update(m.get("specs", []))
+                out.setdefault(m["placementGroupId"], set()).update(m.get("specs", []))
             return out
     return {}
 
@@ -141,18 +144,18 @@ def place(asset_kind: str, asset_id: str, loc_id: str, placement_type: str, grou
 
 def discover() -> int:
     ref = ref_data()
-    # The shape first (reference data only: Apple's catalogue, nothing about the account).
-    for key, items in ref.items():
-        print(f"{key}: {len(items)} entries; first: {json.dumps(items[:2])[:900]}")
+    specs = {x["specId"]: x for x in ref.get("imageSpecs", []) + ref.get("videoSpecs", [])}
     for t in ref.get("placementTypes", []):
-        print("placementType:", json.dumps(t)[:1500])
-    for g in ref.get("placementProfileGroups", []):
-        print("group:", json.dumps(g)[:300])
-    try:
-        print("iOS placement groups:", ", ".join(sorted(g for g in ios_groups(ref) if g)))
-    except Exception as e:  # the shape differs from what this script expects; the dump above shows it
-        print("could not list groups:", type(e).__name__)
-    # Whether the app has an asset library and an editable version (counts only).
+        print(f"{t['placementTypeId']} (accepts {', '.join(t.get('acceptsAssetCategories', []))}):")
+        for g, ids in sorted(groups_for(ref, t["placementTypeId"]).items()):
+            if g in ios_groups(ref):
+                sizes = sorted({f"{specs[i]['dimensions']['minWidth']}~{specs[i]['dimensions']['maxWidth']}x"
+                                f"{specs[i]['dimensions']['minHeight']}~{specs[i]['dimensions']['maxHeight']}" for i in ids if i in specs})
+                print(f"  {g}: {', '.join(sizes)}")
+    for f in ref.get("features", []):
+        if f.get("featureId") == "APP_STORE_VERSIONS":
+            for p in f.get("placementPolicies", []):
+                print(f"limit {p['placementType']}: " + "; ".join(f"{l.get('maxCount')} per group" for l in p.get("groupLimits", [])[:1]))
     locs, library = target()
     print(f"asset library found; {len(locs)} localizations on the editable version")
     return 0
