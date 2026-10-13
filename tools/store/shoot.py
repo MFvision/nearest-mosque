@@ -50,7 +50,7 @@ def run(*cmd, check=False, timeout=600):
         return subprocess.CompletedProcess(cmd, 124, "", "timed out")
 
 
-def simctl(*args, check=False, timeout=180):
+def simctl(*args, check=False, timeout=60):
     return run("xcrun", "simctl", *args, check=check, timeout=timeout)
 
 
@@ -128,14 +128,16 @@ def shoot_simulator(platform, app, out, langs):
                 lat, lon = SPEC["cities"][spec["city"]]
                 simctl("location", udid, "set", f"{lat},{lon}")
             simctl("terminate", udid, bundle)
+            started = time.time()
             r = simctl("launch", udid, bundle, *launch_args(screen, lang))
             if r.returncode:
                 print(f"::warning::{platform}/{lang['app']}/{screen}: launch failed", flush=True)
                 continue
             time.sleep(wait(platform, screen))
             target = folder / f"{n:02d}-{screen}.png"
-            simctl("io", udid, "screenshot", *display, str(target), timeout=90)
-            print(f"{platform}/{lang['app']}/{target.name}", flush=True)
+            shot = simctl("io", udid, "screenshot", *display, str(target), timeout=60)
+            note = "" if shot.returncode == 0 else f" (screenshot failed: {shot.stderr.strip()[:80]})"
+            print(f"{time.strftime('%H:%M:%S')} {platform}/{lang['app']}/{target.name} {time.time() - started:.0f}s{note}", flush=True)
     simctl("terminate", udid, bundle)
     simctl("shutdown", udid)
 

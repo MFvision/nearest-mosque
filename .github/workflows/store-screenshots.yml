@@ -116,6 +116,8 @@ jobs:
           APP=$(find dd/Build/Products -maxdepth 2 -name "$SCHEME.app" -type d | head -1)
           echo "APP=$PWD/$APP" >> "$GITHUB_ENV"
       - name: Capture
+        # A shard that runs long stops here and still uploads what it captured (a cancelled job uploads nothing).
+        timeout-minutes: 45
         env:
           PLATFORM: ${{ matrix.platform }}
           LANGS: ${{ matrix.langs }}
