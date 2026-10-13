@@ -6,7 +6,7 @@ Duo). Each file is uploaded once and placed on every App Store Connect locale of
     asc_library.py discover                       # the placement types and groups Apple offers (changes nothing)
     asc_library.py census                         # what each locale holds, by type and group (changes nothing)
     asc_library.py fill <folder> <group>          # adds the screenshots a set lacks (by NN- number) and orders it
-    asc_library.py creative <folder>              # <folder>/header/<locale>.mp4, <folder>/search/<locale>.mp4
+    asc_library.py creative <folder>              # <folder>/header|search|demo/<locale>.mp4 (demo: the app preview)
     asc_library.py screenshots <folder> <group>   # <folder>/<locale>/NN-*.png into that APP_SCREENSHOT group
 
 Environment: ASC_KEY_ID, ASC_ISSUER_ID, ASC_PRIVATE_KEY, BUNDLE_ID, DRY_RUN ("true": report only).
@@ -28,7 +28,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from asc_upload import EDITABLE, all_pages, api  # noqa: E402
 
 SPEC = json.loads((pathlib.Path(__file__).resolve().parent / "screens.json").read_text())
-CREATIVE = {"header": "PRODUCT_PAGE_HEADER_ASSET", "search": "APP_STORE_SEARCH_RESULTS_ASSET"}
+# Folder in the artifact -> (placement type, asset category).
+CREATIVE = {"header": ("PRODUCT_PAGE_HEADER_ASSET", "CREATIVE_ASSETS"), "search": ("APP_STORE_SEARCH_RESULTS_ASSET", "CREATIVE_ASSETS"),
+            "demo": ("APP_PREVIEW", "APP_SCREENSHOTS_AND_PREVIEWS")}
 DRY = os.environ.get("DRY_RUN", "").lower() == "true"
 
 
@@ -188,12 +190,17 @@ def creative(folder: pathlib.Path) -> int:
     locs, library = target()
     census(locs)
     placed = skipped = failed = 0
-    for sub, ptype in CREATIVE.items():
+    sample = locs.get("en-US") or next(iter(locs.values()))
+    with_shots = {p["attributes"].get("placementGroup") for p in placements(sample) if p["attributes"].get("placementType") == "APP_SCREENSHOT"}
+    for sub, (ptype, category) in CREATIVE.items():
         files = sorted((folder / sub).glob("*.mp4"))
         if not files:
             continue
         w, h = media_size(files[0])
         groups = [g for g, specs in groups_for(ref, ptype).items() if g in ios_groups(ref) and spec_fits(ref, specs, w, h)]
+        if ptype == "APP_PREVIEW":
+            # Previews go with the screenshot sets the app has (not every device size the file would fit).
+            groups = [g for g in groups if g in with_shots]
         if not groups:
             print(f"::error::{ptype}: no iOS placement group takes {w} x {h} videos (run discover).")
             return 1
@@ -208,7 +215,7 @@ def creative(folder: pathlib.Path) -> int:
             if DRY:
                 print(f"{sub} {f.stem}: would upload once and place on {len(todo)} locale group(s).", flush=True)
                 continue
-            vid = upload(library, f, "appAssetLibraryVideos", "CREATIVE_ASSETS", f"Near Mosque {sub} {f.stem}")
+            vid = upload(library, f, "appAssetLibraryVideos", category, f"Near Mosque {sub} {f.stem}")
             state = wait_ready("appAssetLibraryVideos", [vid])[vid]
             if state != "PREPARE_FOR_SUBMISSION":
                 print(f"::warning::{sub} {f.stem}: processing ended in {state}.", flush=True)
