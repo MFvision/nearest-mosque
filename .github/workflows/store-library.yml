@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "discover, creative or screenshots"
+        description: "discover, census, creative or screenshots"
         default: "discover"
       run_id:
         description: "Run ID whose artifact to upload (creative: App Store creative assets; screenshots: App Store screenshots)"
@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - name: Get the files
-        if: inputs.mode != 'discover'
+        if: inputs.mode != 'discover' && inputs.mode != 'census'
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ inputs.run_id }}
@@ -64,7 +64,7 @@ jobs:
           GROUP: ${{ inputs.group }}
         run: |
           case "$MODE" in
-            discover) /tmp/asc/bin/python tools/store/asc_library.py discover ;;
+            discover|census) /tmp/asc/bin/python tools/store/asc_library.py "$MODE" ;;
             creative) /tmp/asc/bin/python tools/store/asc_library.py creative media ;;
             screenshots) /tmp/asc/bin/python tools/store/asc_library.py screenshots "media/$FOLDER" "$GROUP" ;;
             *) echo "::error::mode must be discover, creative or screenshots"; exit 1 ;;

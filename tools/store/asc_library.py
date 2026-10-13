@@ -4,6 +4,7 @@ assets (product page header and search results videos) and screenshot sets the o
 Duo). Each file is uploaded once and placed on every App Store Connect locale of its language.
 
     asc_library.py discover                       # the placement types and groups Apple offers (changes nothing)
+    asc_library.py census                         # what each locale holds, by type and group (changes nothing)
     asc_library.py creative <folder>              # <folder>/header/<locale>.mp4, <folder>/search/<locale>.mp4
     asc_library.py screenshots <folder> <group>   # <folder>/<locale>/NN-*.png into that APP_SCREENSHOT group
 
@@ -255,10 +256,28 @@ def screenshots(folder: pathlib.Path, group: str) -> int:
     return 1 if failed else 0
 
 
+def census_all() -> int:
+    locs, _ = target()
+    kinds = set()
+    table = {}
+    for locale, loc in sorted(locs.items()):
+        row = {}
+        for p in placements(loc):
+            k = f"{p['attributes'].get('placementType')}/{p['attributes'].get('placementGroup')}"
+            row[k] = row.get(k, 0) + 1
+        table[locale] = row
+        kinds |= set(row)
+    for k in sorted(kinds):
+        print(f"{k}: " + " ".join(f"{l}={table[l].get(k, 0)}" for l in sorted(table)), flush=True)
+    return 0
+
+
 def main() -> int:
     mode = sys.argv[1]
     if mode == "discover":
         return discover()
+    if mode == "census":
+        return census_all()
     if mode == "creative":
         return creative(pathlib.Path(sys.argv[2]))
     if mode == "screenshots":
