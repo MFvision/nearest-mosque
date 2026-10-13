@@ -122,9 +122,11 @@ def shoot_simulator(platform, app, out, langs):
                 continue
             spec = SPEC["screens"][screen]
             want = spec.get("appearance", "light")
-            if (platform in ("iphone", "ipad") or platform.startswith("duo")) and want != look:
+            # The iPhone Duo simulator sometimes misses a change of appearance: it is set before each of its captures.
+            if (platform in ("iphone", "ipad") or platform.startswith("duo")) and (want != look or platform.startswith("duo")):
                 simctl("ui", udid, "appearance", want)
                 look = want
+                time.sleep(1)
             if spec.get("city"):
                 lat, lon = SPEC["cities"][spec["city"]]
                 simctl("location", udid, "set", f"{lat},{lon}")
