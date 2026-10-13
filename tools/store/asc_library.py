@@ -5,6 +5,7 @@ Duo). Each file is uploaded once and placed on every App Store Connect locale of
 
     asc_library.py discover                       # the placement types and groups Apple offers (changes nothing)
     asc_library.py census                         # what each locale holds, by type and group (changes nothing)
+    asc_library.py fill <folder> <group>          # adds the screenshots a set lacks (by NN- number) and orders it
     asc_library.py creative <folder>              # <folder>/header/<locale>.mp4, <folder>/search/<locale>.mp4
     asc_library.py screenshots <folder> <group>   # <folder>/<locale>/NN-*.png into that APP_SCREENSHOT group
 
@@ -256,6 +257,56 @@ def screenshots(folder: pathlib.Path, group: str) -> int:
     return 1 if failed else 0
 
 
+def numbered(name: str) -> int:
+    # "03-mosques-map.png" -> 3 (store order); unnumbered names go last.
+    head = name.split("-")[0]
+    return int(head) if head.isdigit() else 99
+
+
+def fill(folder: pathlib.Path, group: str) -> int:
+    """Adds the screenshots a locale's set lacks (by number, NN-*.png) and orders the whole set by those numbers.
+    What is already there stays; nothing is removed."""
+    locs, library = target()
+    added = 0
+    for d in sorted(p for p in folder.iterdir() if p.is_dir()):
+        files = {numbered(f.name): f for f in sorted(d.glob("*.png"))}
+        for locale in [l for l in asc_locales(d.name) if l in locs]:
+            loc = locs[locale]
+            # One page holds them all (a locale has a few dozen placements at most), with their images' names.
+            page = api("GET", f"/appStoreVersionLocalizations/{loc}/placements", {"include": "image", "limit": "200"})
+            current = [p for p in page["data"] if p["attributes"].get("placementType") == "APP_SCREENSHOT" and p["attributes"].get("placementGroup") == group]
+            images = {}
+            for inc in page.get("included", []):
+                images[inc["id"]] = inc["attributes"].get("fileName") or inc["attributes"].get("referenceName") or ""
+            by_num = {}
+            for p in current:
+                img = ((p.get("relationships") or {}).get("image") or {}).get("data") or {}
+                by_num[numbered(os.path.basename(images.get(img.get("id"), "")).split(" ")[-1])] = p["id"]
+            missing = [n for n in sorted(files) if n not in by_num]
+            room = 10 - len(current)
+            missing = missing[:max(0, room)]
+            if not missing:
+                print(f"{locale}: {len(current)} in place, nothing to add.", flush=True)
+                continue
+            if DRY:
+                print(f"{locale}: has {len(current)} ({sorted(by_num)}); would add {missing}.", flush=True)
+                continue
+            new = {n: upload(library, files[n], "appAssetLibraryImages", "APP_SCREENSHOTS_AND_PREVIEWS", files[n].name) for n in missing}
+            states = wait_ready("appAssetLibraryImages", list(new.values()), 20)
+            for n, i in new.items():
+                if states.get(i) == "PREPARE_FOR_SUBMISSION":
+                    by_num[n] = place("appAssetLibraryImages", i, loc, "APP_SCREENSHOT", group)
+                    added += 1
+            order = [by_num[n] for n in sorted(by_num)]
+            api("POST", "/appAssetLibraryPlacementOrderingRequests", body={"data": {
+                "type": "appAssetLibraryPlacementOrderingRequests", "attributes": {"placementGroup": group},
+                "relationships": {"orderedPlacements": {"data": [{"type": "appAssetLibraryPlacements", "id": p} for p in order]},
+                                  "appStoreVersionLocalization": {"data": {"type": "appStoreVersionLocalizations", "id": loc}}}}})
+            print(f"{locale}: added {len(new)}, now {len(order)} in order.", flush=True)
+    print(f"Done: {added} added." + (" (dry run)" if DRY else ""))
+    return 0
+
+
 def census_all() -> int:
     locs, _ = target()
     kinds = set()
@@ -278,6 +329,8 @@ def main() -> int:
         return discover()
     if mode == "census":
         return census_all()
+    if mode == "fill":
+        return fill(pathlib.Path(sys.argv[2]), sys.argv[3])
     if mode == "creative":
         return creative(pathlib.Path(sys.argv[2]))
     if mode == "screenshots":
