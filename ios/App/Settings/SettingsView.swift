@@ -1,6 +1,9 @@
 import NMCore
 import NMData
 import SwiftUI
+#if canImport(WatchConnectivity) && !targetEnvironment(macCatalyst) && !os(visionOS)
+import WatchConnectivity
+#endif
 import UniformTypeIdentifiers
 
 /// Settings, grouped like the phone's own: General (language, appearance), Prayer (location, calculation,
@@ -85,7 +88,8 @@ struct SettingsView: View {
                         SettingsRow(icon: "paintpalette.fill", tint: .teal, title: l10n.t("app_style_title"), value: l10n.t("style_" + app.settings.widgetLook))
                     }
                     #if !targetEnvironment(macCatalyst) && !os(visionOS)
-                    if UIDevice.current.userInterfaceIdiom == .phone {
+                    // Only where an Apple Watch can be paired (WatchConnectivity is supported on iPhone only).
+                    if WCSession.isSupported() {
                         NavigationLink { WatchFacesView() } label: {
                             SettingsRow(icon: "applewatch", tint: .orange, title: l10n.t("watch_section"))
                         }
@@ -134,7 +138,7 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $demoAudio) { PrayerAudioSettingsView() }
             #endif
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() }.keyboardShortcut(.cancelAction) } }
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button { dismiss() } label: { Label(l10n.t("done"), systemImage: "checkmark") }.keyboardShortcut(.cancelAction) } }
             .sheet(isPresented: $showCity) { CityPickerView() }
             .sheet(isPresented: $showCalc) { CalculationView() }
         }

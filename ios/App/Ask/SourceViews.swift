@@ -109,7 +109,7 @@ struct ReaderView: View {
             }
             .navigationTitle(referenceLabel(citation.chunk, l10n: l10n))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { dismiss() }.keyboardShortcut(.cancelAction) } }
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button { dismiss() } label: { Label(l10n.t("done"), systemImage: "checkmark") }.keyboardShortcut(.cancelAction) } }
         }
     }
 }

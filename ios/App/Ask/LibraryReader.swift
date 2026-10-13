@@ -270,7 +270,7 @@ struct LibraryReaderView: View {
             .navigationTitle(libraryTitle(chunk, l10n))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) }
+                ToolbarItem(placement: .cancellationAction) { Button { dismiss() } label: { Label(l10n.t("close"), systemImage: "xmark") }.keyboardShortcut(.cancelAction) }
                 if let u = chunk.url.flatMap(WebLink.url) {
                     ToolbarItem(placement: .primaryAction) {
                         Button { openURL(u) } label: { Label(libraryWebLabel(chunk, l10n), systemImage: "safari") }

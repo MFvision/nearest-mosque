@@ -197,6 +197,16 @@ Both follow the app's style. Neither exists on Mac or Vision Pro.
 * **Fajr alarm** with AlarmKit on iOS 26 (up to 7 alarms, Stop button); an ordinary notification on
   earlier iOS, on the Mac, or if alarm permission is refused.
 
+## iPhone Duo
+
+The app is built with the iOS 26 SDK, so on iPhone Duo it runs centred on the open inner display (Apple's
+behaviour for older SDKs). The layout code follows Apple's preparation list: no `UIScreen.main` sizing, no
+layout from device orientation (only the compass reads it, to correct its heading), no device checks by
+idiom (Settings → Apple Watch shows where WatchConnectivity is supported), standard `NavigationStack` and
+`TabView`, and every toolbar button with an icon and a title for vertical bars. A CI job builds with the
+iOS 27 SDK on GitHub's preview runner. Building with the iOS 27.1 SDK (edge to edge, vertical bars) waits
+for Xcode 27.1 and a check in the iPhone Duo simulator.
+
 ## Mac (Mac Catalyst)
 
 The iPad app on the Mac with: desktop widgets (no Lock Screen, Control or Live Activities), the Qibla

@@ -391,7 +391,7 @@ private struct SetupPage: View {
         .sheet(isPresented: $showLanguages) {
             NavigationStack {
                 LanguagePickerView()
-                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button(l10n.t("done")) { showLanguages = false } } }
+                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button { showLanguages = false } label: { Label(l10n.t("done"), systemImage: "checkmark") } } }
             }
             .environment(\.layoutDirection, l10n.layoutDirection)
         }

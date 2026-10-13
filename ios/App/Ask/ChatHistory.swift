@@ -84,7 +84,7 @@ struct ChatHistoryView: View {
             .navigationTitle(l10n.t("chat_history"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) }
+                ToolbarItem(placement: .cancellationAction) { Button { dismiss() } label: { Label(l10n.t("close"), systemImage: "xmark") }.keyboardShortcut(.cancelAction) }
             }
         }
     }

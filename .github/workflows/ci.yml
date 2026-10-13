@@ -536,6 +536,44 @@ jobs:
             ios/tvrel.log
             ios/tvsim.log
 
+  ios27:
+    name: iPhone app with the iOS 27 SDK (preview runner, for iPhone Duo)
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
+    # GitHub's Xcode 27 image is a preview; this job warns early and never blocks.
+    runs-on: xcode-27
+    continue-on-error: true
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Select the newest Xcode 27
+        run: |
+          ls -d /Applications/Xcode*.app
+          XC=$(ls -d /Applications/Xcode_27*.app 2>/dev/null | sort -V | tail -1)
+          [ -n "$XC" ] && sudo xcode-select -s "$XC"
+          xcodebuild -version
+          xcodebuild -showsdks | grep -q watchos || xcodebuild -downloadPlatform watchOS
+          xcrun simctl list devicetypes | grep -i -e "iPhone Duo" -e resizable || echo "No iPhone Duo simulator in this Xcode (it needs Xcode 27.1)."
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Build for iOS Simulator
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -destination 'generic/platform=iOS Simulator' -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build27.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" build27.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: failure()
+        with:
+          name: ios27-build-log
+          path: ios/build27.log
+          retention-days: 5
+
   watchos:
     name: Apple Watch app (watchOS simulator build and screenshots)
     needs: changes

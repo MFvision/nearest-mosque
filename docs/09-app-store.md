@@ -153,6 +153,16 @@ The common questions, and so the Ask answer, exist in all 22 store languages. In
 before they were translated (October 2026), the Ask screenshot of the 15 languages other than ar, en, es, fr,
 id, tr and ur shows the question list instead of an answer; its `shows` field says so. A new run fixes that.
 
+### iPhone Duo (not captured yet)
+
+App Store Connect has an iPhone Duo slot (outer display 1398 × 2034, inner display 2007 × 2853, and the
+same turned to landscape). Apple requires these screenshots from April 2027 for apps built with the
+iOS 27.1 SDK or later; until then the slot can stay empty. They are only made from the iPhone Duo
+simulator, which needs Xcode 27.1; GitHub's runners do not have it yet (October 2026). Do not fill the slot
+with resized iPhone screenshots: the proportions and the fold differ. When Xcode 27.1 is on the runners,
+add a `duo` platform to `tools/store/screens.json` with the simulator and the App Store Connect display
+type for each display, capture, and upload with the upload workflow.
+
 ## Languages
 
 The app has 36 interface languages; 22 of them are App Store languages. Each app language fills its

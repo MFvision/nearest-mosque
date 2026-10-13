@@ -153,7 +153,7 @@ struct BookReaderView: View {
             }
             .navigationTitle(book.volumes.count > 1 ? book.title + " · " + l10n.t("classics_volume", volume.volume) : book.title)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button { dismiss() } label: { Label(l10n.t("close"), systemImage: "xmark") }.keyboardShortcut(.cancelAction) } }
         }
         .environment(\.colorScheme, .dark)
     }

@@ -38,7 +38,7 @@ struct LibraryView: View {
             .background(Color(hex: 0x0B1220).ignoresSafeArea())
             .navigationTitle(l10n.t("library_title"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(l10n.t("close")) { dismiss() }.keyboardShortcut(.cancelAction) } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button { dismiss() } label: { Label(l10n.t("close"), systemImage: "xmark") }.keyboardShortcut(.cancelAction) } }
             .navigationDestination(for: String.self) { id in
                 if id == "classics" {
                     ClassicsView()
