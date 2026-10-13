@@ -3,7 +3,7 @@
  "promo": "Giờ cầu nguyện, hướng Qibla và thánh đường gần nhất trong một ứng dụng yên tĩnh. Adhan, tiện ích và câu trả lời từ sách uy tín kèm nguồn. Không quảng cáo.",
  "promo_tv": "Giờ cầu nguyện hôm nay trên TV của bạn, hướng Qibla cho thành phố và các thánh đường gần đó. Thông báo toàn màn hình mỗi giờ cầu nguyện. Không quảng cáo, không tài khoản.",
  "keywords": "adhan,azan,salah,namaz,cau nguyen,qibla,thanh duong,masjid,hoi giao,islam,muslim,quran,ramadan",
- "whats_new": "Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút của ứng dụng, mọi tiện ích, màn hình khóa và Dynamic Island sẽ theo kiểu đó. Kiểu tiện ích mới: xanh mòng két và theo thời điểm.",
+ "whats_new": "Mới: Near Mosque trên Apple Watch, có tổ hợp, la bàn Qibla và tasbih. Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút của ứng dụng, mọi tiện ích, màn hình khóa và Dynamic Island sẽ theo kiểu đó. Kiểu tiện ích mới: xanh mòng két và theo thời điểm.",
  "whats_new_other": "Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút và màu nhấn của ứng dụng sẽ theo kiểu đó. Kiểu mới: xanh mòng két và theo thời điểm.",
  "intro": "Near Mosque hiển thị giờ cầu nguyện hôm nay cho thành phố của bạn, chỉ hướng Qibla và tìm các thánh đường quanh bạn. Giờ cầu nguyện và Qibla được tính trên thiết bị, nên dùng được cả khi không có internet.",
  "h_prayer": "GIỜ CẦU NGUYỆN",
@@ -41,6 +41,11 @@
   "10 tiện ích cho Màn hình chính và Màn hình khóa, đếm ngược trên Dynamic Island và nút Qibla trong Trung tâm điều khiển",
   "Một kiểu cho ứng dụng và mọi tiện ích: vàng và kem, xanh lá, bầu trời đêm, xanh mòng két hoặc theo thời điểm",
   "Hỏi Siri khi nào đến giờ cầu nguyện tiếp theo hoặc thánh đường gần nhất ở đâu"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Giờ cầu nguyện, đếm ngược trực tiếp và nhắc nhở trên cổ tay, kèm tổ hợp cho mặt đồng hồ và Ngăn xếp thông minh",
+  "La bàn Qibla chạm cổ tay khi bạn hướng đúng, tasbih bằng Digital Crown, thánh đường gần đó và câu trả lời phổ biến bằng giọng nói; dùng được cả khi không có iPhone"
  ],
  "widgets_mac": [
   "10 tiện ích cho màn hình nền và Trung tâm thông báo",

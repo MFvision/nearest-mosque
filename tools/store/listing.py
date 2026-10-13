@@ -48,6 +48,8 @@ def description(d, platform):
     ]
     if phone:
         parts.append(section(d["h_widgets"], bullets(d["widgets_ios"])))
+        # The Apple Watch app ships inside the iPhone app.
+        parts.append(section(d["h_watch"], bullets(d["watch"])))
     elif platform == "MAC_OS":
         parts.append(section(d["h_widgets"], bullets(d["widgets_mac"])))
     parts.append(section(d["h_also"], d[{"IOS": "also_ios", "MAC_OS": "also_mac", "VISION_OS": "also_vision"}[platform]]))

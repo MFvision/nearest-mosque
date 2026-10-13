@@ -3,7 +3,7 @@
  "promo": "Waktu salat, arah kiblat, dan masjid terdekat dalam satu aplikasi yang tenang. Azan, widget, dan jawaban dari kitab tepercaya beserta sumbernya. Tanpa iklan, tanpa akun.",
  "promo_tv": "Waktu salat hari ini di TV Anda, kiblat untuk kota Anda, dan masjid di sekitar. Peringatan layar penuh di setiap waktu salat. Tanpa iklan, tanpa akun.",
  "keywords": "azan,adzan,salat,sholat,jadwal,kiblat,masjid,islam,muslim,quran,hijriah,doa,ramadan,makkah,tasbih",
- "whats_new": "Satu gaya untuk semuanya. Pilih di Pengaturan, lalu tombol aplikasi, setiap widget, layar kunci, dan Dynamic Island mengikutinya. Tampilan widget baru: hijau toska dan sesuai waktu.",
+ "whats_new": "Baru: Near Mosque di Apple Watch, dengan komplikasi, kompas kiblat, dan tasbih. Satu gaya untuk semuanya. Pilih di Pengaturan, lalu tombol aplikasi, setiap widget, layar kunci, dan Dynamic Island mengikutinya. Tampilan widget baru: hijau toska dan sesuai waktu.",
  "whats_new_other": "Satu gaya untuk semuanya. Pilih di Pengaturan, lalu tombol dan sorotan aplikasi mengikutinya. Tampilan baru: hijau toska dan sesuai waktu.",
  "intro": "Near Mosque menampilkan waktu salat hari ini untuk kota Anda, menunjukkan arah kiblat, dan menemukan masjid di sekitar Anda. Waktu salat dan kiblat dihitung di perangkat Anda, jadi tetap berfungsi tanpa internet.",
  "h_prayer": "WAKTU SALAT",
@@ -41,6 +41,11 @@
   "10 widget untuk Layar Utama dan Layar Kunci, hitung mundur di Dynamic Island, dan tombol kiblat di Pusat Kontrol",
   "Satu gaya untuk aplikasi dan setiap widget: emas dan krem, hijau, langit malam, hijau toska, atau sesuai waktu",
   "Tanyakan kepada Siri kapan salat berikutnya atau di mana masjid terdekat"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Waktu salat, hitung mundur langsung, dan pengingat di pergelangan, dengan komplikasi untuk tampilan jam dan Tumpukan Pintar",
+  "Kompas kiblat yang mengetuk pergelangan saat Anda menghadap kiblat, tasbih dengan Digital Crown, masjid terdekat, dan jawaban umum lewat suara; juga tanpa iPhone"
  ],
  "widgets_mac": [
   "10 widget untuk desktop dan Pusat Pemberitahuan",

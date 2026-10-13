@@ -3,7 +3,7 @@
  "promo": "Horarios de oración, la qibla y la mezquita más cercana en una sola app tranquila. Adhan, widgets y respuestas de libros fiables con fuentes. Sin anuncios ni cuenta.",
  "promo_tv": "Los horarios de oración de hoy en tu televisor, la qibla de tu ciudad y las mezquitas cercanas. Un aviso a pantalla completa en cada oración. Sin anuncios ni cuenta.",
  "keywords": "adhan,azan,salat,oracion,qibla,mezquita,islam,musulman,coran,hijri,dua,ramadan,meca,tasbih,horario",
- "whats_new": "Un solo estilo para todo. Elígelo en Ajustes y lo siguen los botones de la app, cada widget, la pantalla bloqueada y la Dynamic Island. Nuevos estilos de widget: verde azulado y según la hora.",
+ "whats_new": "Novedad: Near Mosque en el Apple Watch, con complicaciones, la brújula de la alquibla y el tasbih. Un solo estilo para todo. Elígelo en Ajustes y lo siguen los botones de la app, cada widget, la pantalla bloqueada y la Dynamic Island. Nuevos estilos de widget: verde azulado y según la hora.",
  "whats_new_other": "Un solo estilo para todo. Elígelo en Ajustes y lo siguen los botones y los acentos de la app. Nuevos estilos: verde azulado y según la hora.",
  "intro": "Near Mosque muestra los horarios de oración de hoy para tu ciudad, te indica la qibla y encuentra las mezquitas a tu alrededor. Los horarios y la qibla se calculan en tu dispositivo, así que funcionan sin internet.",
  "h_prayer": "HORARIOS DE ORACIÓN",
@@ -41,6 +41,11 @@
   "10 widgets para la pantalla de inicio y la pantalla bloqueada, una cuenta atrás en la Dynamic Island y un botón de qibla en el centro de control",
   "Un solo estilo para la app y cada widget: dorado y crema, verde, cielo nocturno, verde azulado o según la hora",
   "Pregunta a Siri cuándo es la próxima oración o dónde está la mezquita más cercana"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Horarios de oración, cuenta atrás en directo y recordatorios en la muñeca, con complicaciones para la esfera y la pila inteligente",
+  "Una brújula de la alquibla que toca tu muñeca al mirarla, tasbih con la Digital Crown, mezquitas cercanas y respuestas comunes por voz; también sin iPhone"
  ],
  "widgets_mac": [
   "10 widgets para el escritorio y el centro de notificaciones",

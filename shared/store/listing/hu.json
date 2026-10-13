@@ -3,7 +3,7 @@
  "promo": "Imaidők, a kibla és a legközelebbi mecset egyetlen nyugodt alkalmazásban. Ezán, widgetek és válaszok megbízható könyvekből, forrásokkal. Hirdetés és fiók nélkül.",
  "promo_tv": "A mai imaidők a tévén, a városod kiblája és a közeli mecsetek. Teljes képernyős értesítés minden imánál. Hirdetés és fiók nélkül.",
  "keywords": "ezan,adhan,ima,imaido,kibla,mecset,iszlam,muszlim,korán,hidzsra,dua,ramadan,mekka,tasbih",
- "whats_new": "Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai, minden widget, a zárolási képernyő és a Dynamic Island követi. Új widgetstílusok: kékeszöld és napszak szerint.",
+ "whats_new": "Új: Near Mosque Apple Watchon, komplikációkkal, kibla-iránytűvel és tasbihhal. Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai, minden widget, a zárolási képernyő és a Dynamic Island követi. Új widgetstílusok: kékeszöld és napszak szerint.",
  "whats_new_other": "Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai és kiemelései követik. Új stílusok: kékeszöld és napszak szerint.",
  "intro": "A Near Mosque megmutatja a városod mai imaidőit, a kibla irányát és a környező mecseteket. Az imaidők és a kibla a készülékeden számolódnak, így internet nélkül is működnek.",
  "h_prayer": "IMAIDŐK",
@@ -41,6 +41,11 @@
   "10 widget a főképernyőre és a zárolási képernyőre, visszaszámlálás a Dynamic Islandben és kibla gomb a Vezérlőközpontban",
   "Egy stílus az alkalmazásnak és minden widgetnek: arany és krém, zöld, éjszakai ég, kékeszöld vagy napszak szerint",
   "Kérdezd meg Sirit, mikor lesz a következő ima, vagy hol a legközelebbi mecset"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Imaidők, élő visszaszámlálás és emlékeztetők a csuklón, komplikációkkal a számlaphoz és az Intelligens halomhoz",
+  "Kibla-iránytű, amely megkoppintja a csuklót, ha a kibla felé néz, tasbih a Digital Crownnal, közeli mecsetek és gyakori válaszok hanggal; iPhone nélkül is működik"
  ],
  "widgets_mac": [
   "10 widget az asztalra és az Értesítési központba",

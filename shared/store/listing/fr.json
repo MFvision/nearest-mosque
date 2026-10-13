@@ -3,7 +3,7 @@
  "promo": "Heures de prière, qibla et mosquée la plus proche dans une seule app calme. Adhan, widgets et réponses tirées de livres fiables, avec sources. Sans pub ni compte.",
  "promo_tv": "Les heures de prière du jour sur votre téléviseur, la qibla de votre ville et les mosquées proches. Une alerte plein écran à chaque prière. Sans pub ni compte.",
  "keywords": "adhan,azan,salat,priere,qibla,mosquee,islam,musulman,coran,hijri,dua,ramadan,mecque,tasbih,horaire",
- "whats_new": "Un seul style pour tout. Choisissez-le dans les Réglages : les boutons de l’app, chaque widget, l’écran verrouillé et la Dynamic Island le suivent. Nouveaux styles de widget : bleu canard et selon l’heure.",
+ "whats_new": "Nouveau : Near Mosque sur Apple Watch, avec complications, boussole de la qibla et tasbih. Un seul style pour tout. Choisissez-le dans les Réglages : les boutons de l’app, chaque widget, l’écran verrouillé et la Dynamic Island le suivent. Nouveaux styles de widget : bleu canard et selon l’heure.",
  "whats_new_other": "Un seul style pour tout. Choisissez-le dans les Réglages : les boutons et les accents de l’app le suivent. Nouveaux styles : bleu canard et selon l’heure.",
  "intro": "Near Mosque affiche les heures de prière du jour pour votre ville, vous indique la qibla et trouve les mosquées autour de vous. Les heures et la qibla sont calculées sur votre appareil : elles fonctionnent sans internet.",
  "h_prayer": "HEURES DE PRIÈRE",
@@ -41,6 +41,11 @@
   "10 widgets pour l’écran d’accueil et l’écran verrouillé, un compte à rebours dans la Dynamic Island et un bouton qibla dans le centre de contrôle",
   "Un seul style pour l’app et chaque widget : or et crème, vert, ciel de nuit, bleu canard ou selon l’heure",
   "Demandez à Siri l’heure de la prochaine prière ou la mosquée la plus proche"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Horaires de prière, compte à rebours en direct et rappels au poignet, avec des complications pour le cadran et la pile intelligente",
+  "Une boussole de la qibla qui tapote le poignet quand vous lui faites face, un tasbih sur la Digital Crown, les mosquées proches et les réponses courantes à la voix ; fonctionne aussi sans iPhone"
  ],
  "widgets_mac": [
   "10 widgets pour le bureau et le centre de notifications",

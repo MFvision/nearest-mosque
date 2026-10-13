@@ -5,7 +5,8 @@ with the file each item lives in. Screenshots and where they go are in `09-app-s
 changes, this page is checked again; it is not a promise beyond the current build.
 
 Near Mosque runs on iPhone, iPad, Mac (Mac Catalyst), Apple TV and Apple Vision Pro, all under the one
-bundle ID `sa.zood.nearmosque`, plus Android and Windows. There is no Apple Watch app.
+bundle ID `sa.zood.nearmosque`, plus Android and Windows. The Apple Watch app (`sa.zood.nearmosque.watchkitapp`)
+ships inside the iPhone app, in the same listing.
 
 ## Counts at a glance
 
@@ -15,7 +16,8 @@ bundle ID `sa.zood.nearmosque`, plus Android and Windows. There is no Apple Watc
 | App Store languages with screenshots | 22 (`09-app-store.md`) |
 | iPhone and iPad widgets | 10 kinds |
 | Lock Screen widget sizes | 9 (in 5 of the widgets) |
-| Control Center controls | 1 (Qibla) |
+| Control Center controls | 1 on iPhone (Qibla), 2 on Apple Watch (Qibla, tasbih) |
+| Apple Watch complications | 7 kinds in 15 sizes, plus 1 Smart Stack widget |
 | Live Activities | 2 (next-prayer countdown, Qibla compass) |
 | Siri and Shortcuts actions | 6 |
 | App and widget styles | 5 (cream, green, night, teal, sky), plus "Same as app" in widgets |
@@ -218,6 +220,67 @@ button floating, onboarding turned with buttons, and the menu-bar commands above
 The same app built natively for visionOS 26, in a 980 × 720 window. The Qibla is drawn from north (no
 compass). Left out: Live Activities, widgets, the Fajr alarm, the Lock Screen countdown, the companion's
 motion (it sways on its own) and Liquid Glass (a material look instead).
+
+## Apple Watch (`ios/Watch/`, `ios/WatchWidgets/`)
+
+watchOS 26 (Series 6, SE 2nd generation, Ultra and later). Installed from the iPhone's Watch app or the
+App Store on the watch; it also works without the iPhone.
+
+**Where the times come from** (Settings on the watch, the gear at the top):
+* **From iPhone** (default): the city, calculation method, language, style, reminder bells, the nearest
+  mosques and today's suggested questions arrive from the iPhone app through WatchConnectivity
+  (`ios/App/Platform/WatchBridge.swift` → `ios/Watch/WatchModel.swift`). Nothing goes to a server.
+* **This watch's location**: the watch locates itself (kept to about 100 m), names the place after the
+  nearest built-in city and suggests the method for the country. Method and Asr time can be changed there.
+
+**Pages** (turn the Digital Crown to move between them):
+1. **Prayer**: the next prayer with a ring for the period and a live countdown, on the sky of the hour;
+   today's six times with the reminder bells; city and Hijri date.
+2. **Qibla**: a live compass (Series 5 and later have one): the ring turns, the Kaaba sits on the rim at
+   the Qibla, the hint says which way to turn, and the watch taps the wrist when you face it (±5°).
+   Without a compass reading it shows the Qibla from north and says so.
+3. **Tasbih**: count with the Digital Crown, a tap, or a double tap with two fingers (Series 9, Ultra 2
+   and later); a light tap on the wrist per count and a stronger one every 33; reset at the top.
+4. **Nearest mosques**: from the watch's position (else the prayer city), built-in data plus Apple Maps
+   when online search is on (only a rounded centre is sent). Each row's arrow points to the mosque as the
+   watch is held. A mosque opens a small map, its distance and **Directions** (walking, in Maps). With
+   nothing found, the mosques the iPhone last found are shown.
+5. **Ask**: speak (dictation), Scribble or type. The watch answers from the common answers it carries,
+   with their Qur'an references, hadith numbers and the "awaiting scholar review" label; other questions
+   get a note to ask on the iPhone, which searches the books. Today's suggested questions are under the box.
+
+**Reminders**: reminders from the iPhone already show on the watch. **Reminders on this watch** (off by
+default) makes the watch set its own for the prayers you pick, ten days ahead, refreshed in the
+background, for when the iPhone stays behind.
+
+**Complications** (any face with complications; long-press the face → Edit):
+
+| Complication | Sizes | Opens |
+|---|---|---|
+| Next prayer | circular (ring and time), corner, rectangular (name, time, countdown, city), inline | Prayer |
+| Prayer countdown | circular, corner, rectangular (with bar) | Prayer |
+| Today's prayers | rectangular (five times, the next lit) | Prayer |
+| Qibla | circular (arrow from north), corner, inline | Qibla |
+| Tasbih | circular (count and ring of 33) | Tasbih |
+| Nearest mosque | circular (distance), rectangular (name, arrow, distance) | Mosques |
+| Companion | circular (the lantern or the heart, as full as on the iPhone) | Prayer |
+
+The complications rank higher in the Smart Stack in the half hour before a prayer. **Prayer soon** is a
+Smart Stack widget only: it comes up from 30 minutes before each prayer until 10 minutes after
+(`ios/WatchWidgets/PrayerSoon.swift`).
+
+**Control Center** on the watch: **Qibla** and **Tasbih** buttons (also for the Action button on Ultra).
+
+**Live Activities on the watch**: the iPhone's next-prayer countdown and Qibla compass also show in the
+watch's Smart Stack, in a layout made for the watch (prayer, time, countdown and bar; the arrow and the hint).
+
+**Ready-made faces**: none ship. Apple only lets an app offer a face that was exported from a real watch
+(`.watchface` files); Settings → Apple Watch on the iPhone adds any that are put in `ios/App/Resources/`,
+and otherwise explains how to add the complications to a face. Sharing faces is reported broken with
+WidgetKit complications on watchOS 26, so this needs a test on a real watch first.
+
+Not on the watch: the library and books, Adhan recordings, the Fajr alarm (AlarmKit is iPhone and iPad
+only), widgets' styles other than the accent colour.
 
 ## Android and Windows (brief)
 

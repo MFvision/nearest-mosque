@@ -3,7 +3,7 @@
  "promo": "Namaz vakitleri, kıble ve en yakın cami tek ve sakin bir uygulamada. Ezan, widget'lar ve güvenilir kitaplardan kaynaklarıyla cevaplar. Reklam yok, hesap yok.",
  "promo_tv": "Bugünün namaz vakitleri televizyonunuzda, şehrinizin kıblesi ve yakındaki camiler. Her namazda tam ekran uyarı. Reklam yok, hesap yok.",
  "keywords": "ezan,namaz,vakit,kible,cami,mescit,islam,musluman,kuran,hicri,dua,ramazan,mekke,tesbih,imsakiye",
- "whats_new": "Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri, tüm widget'lar, kilitli ekran ve Dynamic Island ona uyar. Yeni widget görünümleri: camgöbeği ve günün saatine göre.",
+ "whats_new": "Yeni: Apple Watch'ta Near Mosque; komplikasyonlar, kıble pusulası ve tesbih. Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri, tüm widget'lar, kilitli ekran ve Dynamic Island ona uyar. Yeni widget görünümleri: camgöbeği ve günün saatine göre.",
  "whats_new_other": "Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri ve vurguları ona uyar. Yeni görünümler: camgöbeği ve günün saatine göre.",
  "intro": "Near Mosque şehriniz için bugünün namaz vakitlerini gösterir, kıbleyi bulur ve çevrenizdeki camileri listeler. Vakitler ve kıble cihazınızda hesaplanır, bu yüzden internetsiz de çalışır.",
  "h_prayer": "NAMAZ VAKİTLERİ",
@@ -41,6 +41,11 @@
   "Ana ekran ve kilitli ekran için 10 widget, Dynamic Island'da geri sayım ve Denetim Merkezi'nde kıble düğmesi",
   "Uygulama ve tüm widget'lar için tek stil: altın ve krem, yeşil, gece göğü, camgöbeği veya günün saatine göre",
   "Siri'ye sıradaki namazı veya en yakın camiyi sorun"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Bileğinizde namaz vakitleri, canlı geri sayım ve hatırlatmalar; kadranınız ve Akıllı Yığın için komplikasyonlar",
+  "Kıbleye döndüğünüzde bileğinize dokunan kıble pusulası, Digital Crown ile tesbih, yakındaki camiler ve sesle sık sorulan yanıtlar; iPhone olmadan da çalışır"
  ],
  "widgets_mac": [
   "Masaüstü ve Bildirim Merkezi için 10 widget",

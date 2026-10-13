@@ -3,7 +3,7 @@
  "promo": "Horários de oração, a qibla e a mesquita mais próxima num só app tranquilo. Adhan, widgets e respostas de livros confiáveis, com as fontes. Sem anúncios e sem conta.",
  "promo_tv": "Os horários de oração de hoje na sua TV, a qibla da sua cidade e as mesquitas próximas. Um alerta em tela cheia em cada oração. Sem anúncios e sem conta.",
  "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih",
- "whats_new": "Um só estilo para tudo. Escolha nos Ajustes e os botões do app, cada widget, a tela bloqueada e a Dynamic Island passam a segui-lo. Novos estilos de widget: verde-azulado e conforme a hora.",
+ "whats_new": "Novo: Near Mosque no Apple Watch, com complicações, bússola da qibla e tasbih. Um só estilo para tudo. Escolha nos Ajustes e os botões do app, cada widget, a tela bloqueada e a Dynamic Island passam a segui-lo. Novos estilos de widget: verde-azulado e conforme a hora.",
  "whats_new_other": "Um só estilo para tudo. Escolha nos Ajustes e os botões e destaques do app passam a segui-lo. Novos estilos: verde-azulado e conforme a hora.",
  "intro": "O Near Mosque mostra os horários de oração de hoje para a sua cidade, aponta a qibla e encontra as mesquitas ao seu redor. Os horários e a qibla são calculados no seu aparelho, então funcionam sem internet.",
  "h_prayer": "HORÁRIOS DE ORAÇÃO",
@@ -41,6 +41,11 @@
   "10 widgets para a tela de início e a tela bloqueada, uma contagem regressiva na Dynamic Island e um botão de qibla na central de controle",
   "Um só estilo para o app e todos os widgets: dourado e creme, verde, céu noturno, verde-azulado ou conforme a hora",
   "Pergunte à Siri quando é a próxima oração ou onde fica a mesquita mais próxima"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Horários de oração, contagem regressiva ao vivo e lembretes no pulso, com complicações para o mostrador e a Pilha Inteligente",
+  "Uma bússola da qibla que toca o pulso quando você fica de frente, tasbih na Digital Crown, mesquitas próximas e respostas comuns por voz; funciona também sem o iPhone"
  ],
  "widgets_mac": [
   "10 widgets para a mesa e a central de notificações",

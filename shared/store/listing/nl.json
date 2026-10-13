@@ -3,7 +3,7 @@
  "promo": "Gebedstijden, de qibla en de dichtstbijzijnde moskee in één rustige app. Adhan, widgets en antwoorden uit betrouwbare boeken, met bron. Geen reclame, geen account.",
  "promo_tv": "De gebedstijden van vandaag op je tv, de qibla voor je stad en moskeeën in de buurt. Een melding op het hele scherm bij elk gebed. Geen advertenties, geen account.",
  "keywords": "adhan,azan,salah,gebed,gebedstijden,qibla,moskee,islam,moslim,koran,hijri,dua,ramadan,mekka,tasbih",
- "whats_new": "Eén stijl voor alles. Kies hem in Instellingen en de knoppen van de app, elke widget, het toegangsscherm en het Dynamic Island volgen hem. Nieuwe widgetstijlen: petrol en naar tijdstip.",
+ "whats_new": "Nieuw: Near Mosque op Apple Watch, met complicaties, het qibla-kompas en de tasbih. Eén stijl voor alles. Kies hem in Instellingen en de knoppen van de app, elke widget, het toegangsscherm en het Dynamic Island volgen hem. Nieuwe widgetstijlen: petrol en naar tijdstip.",
  "whats_new_other": "Eén stijl voor alles. Kies hem in Instellingen en de knoppen en accenten van de app volgen hem. Nieuwe stijlen: petrol en naar tijdstip.",
  "intro": "Near Mosque toont de gebedstijden van vandaag voor je stad, wijst je de qibla en vindt de moskeeën om je heen. De tijden en de qibla worden op je apparaat berekend, dus ze werken zonder internet.",
  "h_prayer": "GEBEDSTIJDEN",
@@ -41,6 +41,11 @@
   "10 widgets voor het beginscherm en het toegangsscherm, een aftelling in het Dynamic Island en een qibla-knop in het bedieningspaneel",
   "Eén stijl voor de app en elke widget: goud en crème, groen, nachthemel, petrol of naar tijdstip",
   "Vraag Siri wanneer het volgende gebed is of waar de dichtstbijzijnde moskee is"
+ ],
+ "h_watch": "APPLE WATCH",
+ "watch": [
+  "Gebedstijden, live aftellen en herinneringen om je pols, met complicaties voor je wijzerplaat en de slimme stapel",
+  "Een qibla-kompas dat op je pols tikt als je naar de qibla kijkt, tasbih met de Digital Crown, moskeeën in de buurt en veelgestelde antwoorden met je stem; werkt ook zonder iPhone"
  ],
  "widgets_mac": [
   "10 widgets voor het bureaublad en het berichtencentrum",

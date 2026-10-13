@@ -55,6 +55,7 @@ iPads). At most 10 screenshots per set.
 |---|---|---|---|
 | iPhone 6.9" | `APP_IPHONE_67` | iOS | 1320 × 2868 (portrait) |
 | iPad 13" | `APP_IPAD_PRO_3GEN_129` | iOS | 2064 × 2752 (portrait) |
+| Apple Watch Ultra | `APP_WATCH_ULTRA` | iOS (the watch app ships inside the iPhone app) | 422 × 514 |
 | Mac | `APP_DESKTOP` | macOS | 1280 × 800, 1440 × 900, 2560 × 1600 or 2880 × 1800 (the app window on a blurred copy of itself) |
 | Apple TV | `APP_APPLE_TV` | tvOS | 1920 × 1080 or 3840 × 2160 |
 | Apple Vision Pro | `APP_APPLE_VISION_PRO` | visionOS | 3840 × 2160 |
@@ -91,6 +92,21 @@ The exact size of every file is in the manifest.
 | 7 | `07-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
 | 8 | `08-widgets-qibla.png` | Qibla and ring widgets | The Qibla widget and the prayer ring widget in the teal style. |
 | 9 | `09-onboarding.png` | Welcome | The first page of the welcome tour. |
+
+### Apple Watch Ultra: `APP_WATCH_ULTRA`
+
+In App Store Connect this set is under the iOS version, in the Apple Watch section of each locale.
+
+| # | File | Title | What it shows |
+|---|---|---|---|
+| 1 | `01-watch-prayer.png` | Prayer times on the wrist | Apple Watch: the next prayer, its time and a live countdown on the sky of the hour, then today's times with their reminder bells. |
+| 2 | `02-watch-qibla.png` | Qibla compass on the watch | Apple Watch: the live Qibla compass, facing the Qibla (the watch taps the wrist when you face it). |
+| 3 | `03-watch-tasbih.png` | Tasbih on the Digital Crown | Apple Watch: the tasbih counter; turn the Digital Crown, tap or double-tap to count, and the ring fills every 33. |
+| 4 | `04-watch-mosques.png` | Nearest mosques | Apple Watch: the nearest mosques with their distance and an arrow pointing to each. |
+| 5 | `05-watch-ask.png` | Ask on the watch | Apple Watch: a common answer (asked by voice) with its Qur'an references and the review label. |
+
+The simulator has no compass, so the Qibla screenshot is made with a set heading (`-demoHeading`); on a
+watch the dial turns with the wrist.
 
 ### Mac: `APP_DESKTOP`
 
