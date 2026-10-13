@@ -47,9 +47,13 @@ def record(app, out, langs):
            "--cellularBars", "4", "--wifiBars", "3")
     simctl("ui", udid, "appearance", "light")
 
-    # A first launch unpacks the app's data and is slow; one warm-up launch keeps it out of the first recording.
-    simctl("launch", udid, BUNDLE, "-languageOverride", "en", timeout=120)
-    time.sleep(25)
+    # A first launch unpacks the app's data and is slow; one warm-up launch keeps it out of the first recording. It
+    # uses the first clip's own arguments, so the app settles exactly as the recordings expect (city, no welcome).
+    first = next(iter(conf["clips"].values()))
+    lat, lon = SPEC["cities"][first["city"]]
+    simctl("location", udid, "set", f"{lat},{lon}")
+    simctl("launch", udid, BUNDLE, *launch_args_for(first, langs[0]), timeout=120)
+    time.sleep(30)
     simctl("terminate", udid, BUNDLE)
 
     def marker():
