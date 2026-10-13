@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       platforms:
-        description: "Devices (any of: iphone ipad watch mac tv vision)"
+        description: "Devices (any of: iphone ipad duo-outer duo-inner watch mac tv vision)"
         default: "iphone ipad watch mac tv vision"
       languages:
         description: "App language codes, space-separated (empty: all 22 store languages)"
@@ -46,7 +46,7 @@ jobs:
         run: |
           python3 -c "
           import json, os
-          ok = ['iphone', 'ipad', 'watch', 'mac', 'tv', 'vision']
+          ok = ['iphone', 'ipad', 'duo-outer', 'duo-inner', 'watch', 'mac', 'tv', 'vision']
           want = [p for p in os.environ['WANTED'].split() if p in ok] or ok
           print('platforms=' + json.dumps(want))" >> "$GITHUB_OUTPUT"
 
@@ -54,7 +54,8 @@ jobs:
     name: Screenshots (${{ matrix.platform }})
     needs: plan
     if: inputs.capture
-    runs-on: macos-26
+    # iPhone Duo needs Xcode 27.1 and its simulator (GitHub's Xcode 27 image).
+    runs-on: ${{ startsWith(matrix.platform, 'duo') && 'xcode-27' || 'macos-26' }}
     timeout-minutes: 240
     strategy:
       fail-fast: false
@@ -66,11 +67,17 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - name: Select newest Xcode
+        env:
+          PLATFORM: ${{ matrix.platform }}
         run: |
           XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
           [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          case "$PLATFORM" in duo*) XC=/Applications/Xcode_27.1.app ;; esac
           sudo xcode-select -s "$XC"
           xcodebuild -version
+      - name: iOS 27.1 simulator runtime (iPhone Duo)
+        if: startsWith(matrix.platform, 'duo')
+        run: xcrun simctl list runtimes | grep -q "iOS 27.1" || xcodebuild -downloadPlatform iOS
       - name: watchOS SDK and simulator
         if: matrix.platform == 'watch'
         run: xcrun simctl list runtimes | grep -qi watchos || xcodebuild -downloadPlatform watchOS
@@ -89,7 +96,7 @@ jobs:
         run: |
           set -o pipefail
           case "$PLATFORM" in
-            iphone|ipad) SCHEME=NearMosque; DEST='generic/platform=iOS Simulator' ;;
+            iphone|ipad|duo-*) SCHEME=NearMosque; DEST='generic/platform=iOS Simulator' ;;
             mac) SCHEME=NearMosque; DEST='generic/platform=macOS,variant=Mac Catalyst' ;;
             tv) SCHEME=NearMosqueTV; DEST='generic/platform=tvOS Simulator' ;;
             vision) SCHEME=NearMosqueVision; DEST='generic/platform=visionOS Simulator' ;;

@@ -27,7 +27,7 @@ REPO = HERE.parent.parent
 SPEC = json.loads((HERE / "screens.json").read_text())
 # The App Store version (platform) whose localizations hold each device's screenshot sets.
 # The Apple Watch screenshots belong to the iOS version (the watch app ships inside the iPhone app).
-ASC_PLATFORM = {"iphone": "IOS", "ipad": "IOS", "watch": "IOS", "mac": "MAC_OS", "tv": "TV_OS", "vision": "VISION_OS"}
+ASC_PLATFORM = {"iphone": "IOS", "ipad": "IOS", "duo-outer": "IOS", "duo-inner": "IOS", "watch": "IOS", "mac": "MAC_OS", "tv": "TV_OS", "vision": "VISION_OS"}
 
 
 def fit_on_canvas(im, size):

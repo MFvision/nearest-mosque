@@ -68,6 +68,18 @@
       "sizes": [[2064, 2752], [2048, 2732]],
       "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding"]
     },
+    "duo-outer": {
+      "displayType": "IPHONE_DUO_OUTER", "label": "iPhone Duo, outer display", "simulator": "^iPhone Duo", "scheme": "NearMosque",
+      "runtime": "27.1", "display": 1,
+      "sizes": [[1398, 2034]],
+      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "mosques-radar", "prayer-dark"]
+    },
+    "duo-inner": {
+      "displayType": "IPHONE_DUO_INNER", "label": "iPhone Duo, inner display", "simulator": "^iPhone Duo", "scheme": "NearMosque",
+      "runtime": "27.1", "display": 3, "unfold": true,
+      "sizes": [[2007, 2853]],
+      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding"]
+    },
     "watch": {
       "displayType": "APP_WATCH_ULTRA", "label": "Apple Watch Ultra", "simulator": "^Apple Watch Ultra", "scheme": "NearMosqueWatch",
       "sizes": [[422, 514], [410, 502]],

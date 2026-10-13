@@ -40,16 +40,29 @@ def wait(platform, screen):
     return WAIT.get(screen, 11) + EXTRA.get(platform, 0) + EXTRA_SCREEN.get((platform, screen), 0) + int(os.environ.get("EXTRA_WAIT") or 0)
 
 
-def run(*cmd, check=False):
-    return subprocess.run(cmd, capture_output=True, text=True, check=check)
+def run(*cmd, check=False, timeout=600):
+    # A simulator command that hangs (seen with the iPhone Duo simulator) fails after `timeout` seconds.
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, check=check, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        if check:
+            raise
+        return subprocess.CompletedProcess(cmd, 124, "", "timed out")
 
 
-def simctl(*args, check=False):
-    return run("xcrun", "simctl", *args, check=check)
+def simctl(*args, check=False, timeout=180):
+    return run("xcrun", "simctl", *args, check=check, timeout=timeout)
 
 
-def find_simulator(pattern, family):
-    """Newest-runtime simulator whose name matches `pattern`, the newest model first (created when none exists)."""
+def find_simulator(pattern, family, runtime=None):
+    """Newest-runtime simulator whose name matches `pattern`, the newest model first (created when none exists).
+    With `runtime` (e.g. "27.1"), a device of exactly that runtime version, created when there is none."""
+    if runtime:
+        rts = json.loads(simctl("list", "runtimes", "available", "-j", check=True).stdout)["runtimes"]
+        rt = next(r for r in rts if any(f in r["identifier"] for f in family) and r["version"].startswith(runtime))
+        types = json.loads(simctl("list", "devicetypes", "-j", check=True).stdout)["devicetypes"]
+        kind = next(t for t in types if re.search(pattern, t["name"]))
+        return simctl("create", kind["name"], kind["identifier"], rt["identifier"], check=True).stdout.strip()
     devices = json.loads(simctl("list", "devices", "available", "-j", check=True).stdout)["devices"]
 
     def version(rt):
@@ -84,13 +97,19 @@ def shoot_simulator(platform, app, out, langs):
     conf = SPEC["platforms"][platform]
     family = {"tv": ["tvOS"], "vision": ["xrOS", "visionOS"], "watch": ["watchOS"]}.get(platform, ["iOS"])
     bundle = BUNDLES.get(platform, BUNDLE)
-    udid = find_simulator(conf["simulator"], family)
+    udid = find_simulator(conf["simulator"], family, conf.get("runtime"))
     print(f"{platform}: simulator {udid}", flush=True)
     simctl("boot", udid)
-    simctl("bootstatus", udid, "-b", check=True)
+    simctl("bootstatus", udid, "-b", check=True, timeout=600)
+    # iPhone Duo: the simulator starts folded (outer display 1); unfolded is the inner display (3) on, the outer off.
+    display = [f"--display={conf['display']}"] if conf.get("display") else []
+    if conf.get("unfold"):
+        simctl("io", udid, "screenConfig", "--display=1", "power", "off")
+        simctl("io", udid, "screenConfig", f"--display={conf['display']}", "power", "on")
+        time.sleep(6)
     simctl("install", udid, app, check=True)
     simctl("privacy", udid, "grant", "location", bundle)
-    if platform in ("iphone", "ipad"):
+    if platform in ("iphone", "ipad") or platform.startswith("duo"):
         simctl("status_bar", udid, "override", "--time", "9:41", "--batteryLevel", "100", "--batteryState", "charged",
                "--cellularBars", "4", "--wifiBars", "3")
     look = None
@@ -102,7 +121,7 @@ def shoot_simulator(platform, app, out, langs):
                 continue
             spec = SPEC["screens"][screen]
             want = spec.get("appearance", "light")
-            if platform in ("iphone", "ipad") and want != look:
+            if (platform in ("iphone", "ipad") or platform.startswith("duo")) and want != look:
                 simctl("ui", udid, "appearance", want)
                 look = want
             if spec.get("city"):
@@ -115,7 +134,7 @@ def shoot_simulator(platform, app, out, langs):
                 continue
             time.sleep(wait(platform, screen))
             target = folder / f"{n:02d}-{screen}.png"
-            simctl("io", udid, "screenshot", str(target))
+            simctl("io", udid, "screenshot", *display, str(target), timeout=90)
             print(f"{platform}/{lang['app']}/{target.name}", flush=True)
     simctl("terminate", udid, bundle)
     simctl("shutdown", udid)
