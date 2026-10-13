@@ -140,6 +140,21 @@ struct MosquesView: View {
         .onChange(of: vm.items) { _, _ in openRequestedMosque() }
         .onAppear { openRequestedMosque() }
         #if DEBUG
+        // CI App Store preview (`-demoPreview mosques`): the mosque compass turning, then the map, then the nearest
+        // mosque's page.
+        .task(id: vm.items.isEmpty) {
+            guard DemoPreview.kind == "mosques", !vm.items.isEmpty else { return }
+            mode = 0
+            await DemoPreview.waitForStart()
+            for i in 0...90 {
+                app.location.demoHeading(200 + 50 * Double(i) / 90 + 360)
+                try? await Task.sleep(for: .milliseconds(33))
+            }
+            await DemoPreview.pause(0.6)
+            withAnimation(Theme.spring) { mode = 1 }
+            await DemoPreview.pause(4)
+            selected = vm.items.first
+        }
         // CI screenshots: `-demoFullMap YES` opens the full-screen map once mosques are listed.
         .onChange(of: vm.items.isEmpty) { _, empty in
             guard !empty, UserDefaults.standard.bool(forKey: "demoFullMap") else { return }

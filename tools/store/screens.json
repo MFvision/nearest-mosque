@@ -107,6 +107,7 @@
     "size": [886, 1920],
     "clips": {
       "header": {"title": "Prayer header and Qibla", "shows": "The prayer header on the sky of the hour, scrolled into the slim bar and back, then a tap into the Qibla view that lights up when the phone faces the Qibla.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoPreview", "header"], "lead": 3, "seconds": 20},
+      "mosques": {"title": "Nearest mosques", "shows": "The mosque compass turning with the phone, then the map of the nearest mosques, then the nearest one's page.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoPreview", "mosques", "-demoMosqueMode", "0"], "lead": 3, "seconds": 15},
       "search": {"title": "Ask with cited sources", "shows": "Ask: a question typed and sent, the thinking steps, then the answer from the offline library with its sources.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoPreview", "ask", "-demoAskId", "quran-miracle"], "lead": 3, "seconds": 20}
     }
   }

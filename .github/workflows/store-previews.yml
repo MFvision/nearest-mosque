@@ -42,7 +42,7 @@ jobs:
     name: Previews (${{ matrix.shard }})
     needs: plan
     runs-on: macos-26
-    timeout-minutes: 120
+    timeout-minutes: 150
     strategy:
       fail-fast: false
       matrix:
@@ -70,7 +70,7 @@ jobs:
           grep -q "BUILD SUCCEEDED" build.log
           echo "APP=$PWD/$(find dd/Build/Products -maxdepth 2 -name NearMosque.app -type d | head -1)" >> "$GITHUB_ENV"
       - name: Record
-        timeout-minutes: 60
+        timeout-minutes: 100
         env:
           LANGS: ${{ matrix.langs }}
           ONLY: ${{ inputs.only }}
