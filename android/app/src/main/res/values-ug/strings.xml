@@ -164,6 +164,9 @@
     <string name="follow_device_location">ئورنۇمغا ئەگىشىش</string>
     <string name="get_directions">يول كۆرسىتىش</string>
     <string name="heading_accuracy">ئېنىقلىق ±%1$s°</string>
+    <string name="health_minutes">ھەر نامازغا %1$s مىنۇت</string>
+    <string name="health_note">بەلگىلىگەن ھەر بىر ناماز Apple Health قا ئەستايىدىللىق مىنۇتى سۈپىتىدە قوشۇلىدۇ. Health دىن ھېچنېمە ئوقۇلمايدۇ، ھېچنېمە ئۈسكۈنىلىرىڭىزدىن چىقمايدۇ.</string>
+    <string name="health_toggle">نامازلارنى Apple Health قا قوشۇش</string>
     <string name="high_latitude_rule">يۇقىرى كەڭلىك قائىدىسى</string>
     <string name="hijri_adjustment">ھىجرىيە چېسلاسىنى تەڭشەش</string>
     <string name="hijri_calendar_note">ھىجرىيە چېسلالىرى ئۇممۇلقۇرا كالېندارى بويىچە. يەرلىك ئاي كۆرۈش بىر كۈن پەرقلىنىشى مۇمكىن.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (تېخى يوق)</string>
     <string name="sources">مەنبەلەر</string>
     <string name="sources_licenses">مەنبە ۋە ئىجازەتنامىلەر</string>
+    <string name="spirit_note">پەقەت سىز بەلگىلىگەنلا ھېسابلىنىدۇ. بۇ سىز بىلەن ئاللاھ ئوتتۇرىسىدىكى ئىش، ئۈسكۈنىلىرىڭىزدىلا قالىدۇ.</string>
+    <string name="spirit_streak">بەش ناماز تولۇق ئۇدا كۈنلەر: %1$s</string>
+    <string name="spirit_title">مەنىۋى ساغلاملىق</string>
+    <string name="spirit_today">بۈگۈن</string>
+    <string name="spirit_week">ئاخىرقى يەتتە كۈن</string>
+    <string name="spirit_week_count">%2$s نامازدىن %1$s بەلگىلەندى</string>
     <string name="start_at_login">Windows بىلەن بىللە قوزغات</string>
     <string name="start_at_login_note">كىرگەندە ئۇقتۇرۇش رايونىدا ئېچىلىدۇ، ئەپنى ئاچمايلا ئەزان ۋە ئەسكەرتىشلەر كېلىدۇ.</string>
     <string name="start_at_login_store_note">كىرگەندە Near Mosque قوزغىلىشى ئۈچۈن، Windows تەڭشىكى ← ئەپلەر ← قوزغىلىشتا ئېچىڭ.</string>

@@ -54,6 +54,22 @@ struct SettingsPage: View {
             } footer: {
                 Text(l10n.t("watch_reminders_note"))
             }
+            if WatchHealth.available {
+                Section {
+                    Toggle(l10n.t("health_toggle"), isOn: Binding(get: { model.settings.healthOn }, set: { on in
+                        Task { await model.setHealth(on) }
+                    }))
+                    if model.settings.healthOn {
+                        Stepper(value: $model.settings.healthMinutes, in: 5...30, step: 5) {
+                            Text(l10n.t("health_minutes", model.settings.healthMinutes.formatted(.number.locale(l10n.locale))))
+                        }
+                    }
+                } header: {
+                    Text(l10n.t("spirit_title"))
+                } footer: {
+                    Text(l10n.t("health_note"))
+                }
+            }
             Section {
                 Toggle(l10n.t("watch_qibla_haptic"), isOn: $model.settings.qiblaHaptic)
                 Toggle(l10n.t("watch_tasbih_haptic"), isOn: $model.settings.tasbihHaptic)

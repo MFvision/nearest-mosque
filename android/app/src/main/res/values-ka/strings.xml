@@ -164,6 +164,9 @@
     <string name="follow_device_location">ჩემი მდებარეობის მიდევნება</string>
     <string name="get_directions">მარშრუტის მიღება</string>
     <string name="heading_accuracy">სიზუსტე ±%1$s°</string>
+    <string name="health_minutes">%1$s წთ ყოველ ლოცვაზე</string>
+    <string name="health_note">ყოველი მონიშნული ლოცვა Apple Health-ს ემატება გაცნობიერების წუთებად. Health-იდან არაფერი იკითხება და არაფერი ტოვებს თქვენს მოწყობილობებს.</string>
+    <string name="health_toggle">ლოცვების დამატება Apple Health-ში</string>
     <string name="high_latitude_rule">მაღალი განედის წესი</string>
     <string name="hijri_adjustment">ჰიჯრის თარიღის კორექტირება</string>
     <string name="hijri_calendar_note">ჰიჯრის თარიღები უმ ალ-ყურას კალენდარს ეყრდნობა. ადგილობრივი მთვარის დანახვა შეიძლება ერთი დღით განსხვავდებოდეს.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (ჯერ მიუწვდომელია)</string>
     <string name="sources">წყაროები</string>
     <string name="sources_licenses">წყაროები და ლიცენზიები</string>
+    <string name="spirit_note">ითვლება მხოლოდ ის, რასაც თქვენ მონიშნავთ. ეს თქვენსა და ალაჰს შორისაა და თქვენს მოწყობილობებზე რჩება.</string>
+    <string name="spirit_streak">დღეები ზედიზედ ხუთივე ლოცვით: %1$s</string>
+    <string name="spirit_title">სულიერი ჯანმრთელობა</string>
+    <string name="spirit_today">დღეს</string>
+    <string name="spirit_week">ბოლო შვიდი დღე</string>
+    <string name="spirit_week_count">მონიშნულია %2$s-დან %1$s ლოცვა</string>
     <string name="start_at_login">Windows-თან ერთად გაშვება</string>
     <string name="start_at_login_note">შესვლისას იხსნება შეტყობინებების არეში, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს.</string>
     <string name="start_at_login_store_note">რომ Near Mosque შესვლისას გაიშვას, ჩართეთ Windows-ის პარამეტრებში → აპები → გაშვება.</string>

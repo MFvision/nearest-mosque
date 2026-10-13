@@ -1,7 +1,8 @@
 import NMCore
 import SwiftUI
 
-/// The first page: the next prayer and its countdown over the sky of the hour, then today's times with their bells.
+/// The first page: the next prayer over the living sky (its time, a large countdown and the period filling up),
+/// then today's times with their reminder bells, the place and the Hijri date.
 struct PrayerPage: View {
     @Environment(WatchModel.self) private var model
 
@@ -15,23 +16,27 @@ struct PrayerPage: View {
             if let s = model.state, let next {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
-                        NextPrayerCard(state: s, next: next, now: now, accent: model.accent)
-                        VStack(spacing: 4) {
+                        NextPrayerHero(state: s, next: next, now: now, accent: model.accent)
+                        VStack(spacing: 3) {
                             ForEach(PrayerEvent.allCases, id: \.self) { e in
                                 if let at = today?[e] { row(s, e, at, now: e == current, past: at <= now && e != current) }
                             }
                         }
-                        Label(s.name, systemImage: "mappin.and.ellipse").font(.footnote).foregroundStyle(.secondary).lineLimit(2)
-                        Text(s.hijri(now)).font(.footnote).foregroundStyle(.secondary)
+                        .padding(4)
+                        .watchCard(radius: 20)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Label(s.name, systemImage: "mappin.and.ellipse").lineLimit(2)
+                            Label(s.hijri(now), systemImage: "moon.stars").lineLimit(2)
+                        }
+                        .font(.footnote).foregroundStyle(.white.opacity(0.8))
                         SettingsButton()
                     }
                 }
-                .containerBackground(LinearGradient(colors: WatchColors.sky(current, sinceSunrise: today?[.sunrise].map { now.timeIntervalSince($0) }),
-                                                    startPoint: .top, endPoint: .bottom), for: .tabView)
             } else {
                 WaitingView()
             }
         }
+        .watchSky()
         .navigationTitle(model.l10n.t("prayer_section"))
     }
 
@@ -53,12 +58,17 @@ struct PrayerPage: View {
         .foregroundStyle(now ? Color.black : .white)
         .opacity(past ? 0.5 : 1)
         .padding(.horizontal, 10).padding(.vertical, 5)
-        .background(now ? model.accent : Color.white.opacity(0.08), in: Capsule())
+        .background {
+            if now {
+                Capsule().fill(LinearGradient(colors: [model.accent, model.accent.opacity(0.8)], startPoint: .top, endPoint: .bottom))
+                    .shadow(color: model.accent.opacity(0.5), radius: 6)
+            }
+        }
     }
 }
 
-/// The next prayer: name and icon, the time, a ring filling over the period, and the time left.
-struct NextPrayerCard: View {
+/// The next prayer, large and centred on the sky: icon and name, time, the countdown and a bar for the period.
+struct NextPrayerHero: View {
     let state: SharedState
     let next: Upcoming
     let now: Date
@@ -66,32 +76,35 @@ struct NextPrayerCard: View {
 
     var body: some View {
         let start = min(next.periodStart ?? now, now)
-        HStack(spacing: 10) {
-            ZStack {
-                ProgressView(timerInterval: start...max(start.addingTimeInterval(1), next.at), countsDown: false) {
-                    EmptyView()
-                } currentValueLabel: {
-                    EmptyView()
-                }
-                .progressViewStyle(.circular)
-                .tint(accent)
-                Image(systemName: next.event.watchSymbol).font(.title3).foregroundStyle(accent)
+        let name = state.t("prayer_\(next.event.rawValue)")
+        VStack(spacing: 2) {
+            Text(state.t("next_prayer")).font(.caption2.weight(.semibold)).foregroundStyle(.white.opacity(0.75)).textCase(.uppercase)
+            HStack(spacing: 6) {
+                Image(systemName: next.event.watchSymbol).foregroundStyle(accent).symbolRenderingMode(.hierarchical)
+                Text(name).font(.title3.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.7)
             }
-            .frame(width: 52, height: 52)
-            VStack(alignment: .leading, spacing: 0) {
-                Text(state.t("next_prayer")).font(.caption2).foregroundStyle(.secondary)
-                Text(state.t("prayer_\(next.event.rawValue)")).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
-                Text(state.time(next.at)).font(.system(.title3, design: .rounded).weight(.semibold)).monospacedDigit()
+            Text(state.time(next.at))
+                .font(.system(size: 34, weight: .semibold, design: .rounded)).monospacedDigit()
+                .lineLimit(1).minimumScaleFactor(0.6)
+            Text(timerInterval: now...max(now, next.at), countsDown: true)
+                .font(.system(.title3, design: .rounded).weight(.bold).monospacedDigit())
+                .foregroundStyle(accent)
+                .environment(\.layoutDirection, .leftToRight)
+                .accessibilityLabel(state.t("countdown_a11y", name, state.time(next.at),
+                                            Format.remainingLong(next.at.timeIntervalSince(now), locale: state.locale)))
+            ProgressView(timerInterval: start...max(start.addingTimeInterval(1), next.at), countsDown: false) {
+                EmptyView()
+            } currentValueLabel: {
+                EmptyView()
             }
-            Spacer(minLength: 0)
+            .tint(accent)
+            .padding(.horizontal, 14)
+            .padding(.top, 2)
         }
-        Text(timerInterval: now...max(now, next.at), countsDown: true)
-            .font(.system(.title2, design: .rounded).weight(.semibold).monospacedDigit())
-            .foregroundStyle(accent)
-            .environment(\.layoutDirection, .leftToRight)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .accessibilityLabel(state.t("countdown_a11y", state.t("prayer_\(next.event.rawValue)"), state.time(next.at),
-                                        Format.remainingLong(next.at.timeIntervalSince(now), locale: state.locale)))
+        .foregroundStyle(.white)
+        .shadow(color: .black.opacity(0.45), radius: 4, y: 1)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 6)
     }
 }
 

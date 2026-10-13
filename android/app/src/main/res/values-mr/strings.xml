@@ -164,6 +164,9 @@
     <string name="follow_device_location">माझ्या लोकेशननुसार</string>
     <string name="get_directions">रस्ता पाहा</string>
     <string name="heading_accuracy">अचूकता ±%1$s°</string>
+    <string name="health_minutes">प्रत्येक नमाजसाठी %1$s मिनिटे</string>
+    <string name="health_note">प्रत्येक नोंदवलेली नमाज Apple Health मध्ये माइंडफुल मिनिटे म्हणून जोडली जाते. Health मधून काहीही वाचले जात नाही, आणि काहीही तुमच्या उपकरणांबाहेर जात नाही.</string>
+    <string name="health_toggle">नमाज Apple Health मध्ये जोडा</string>
     <string name="high_latitude_rule">उच्च अक्षांशाचा नियम</string>
     <string name="hijri_adjustment">हिजरी तारखेत बदल</string>
     <string name="hijri_calendar_note">हिजरी तारखा उम्मुल कुरा कॅलेंडरनुसार आहेत. स्थानिक चंद्रदर्शनामुळे एका दिवसाचा फरक पडू शकतो.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (अद्याप उपलब्ध नाही)</string>
     <string name="sources">स्रोत</string>
     <string name="sources_licenses">स्रोत आणि परवाने</string>
+    <string name="spirit_note">तुम्ही नोंदवलेलेच मोजले जाते. ते तुमच्या आणि अल्लाहच्या दरम्यान आहे, आणि तुमच्या उपकरणांवरच राहते.</string>
+    <string name="spirit_streak">पाचही नमाजांचे सलग दिवस: %1$s</string>
+    <string name="spirit_title">आध्यात्मिक आरोग्य</string>
+    <string name="spirit_today">आज</string>
+    <string name="spirit_week">मागील सात दिवस</string>
+    <string name="spirit_week_count">%2$s पैकी %1$s नमाज नोंदल्या</string>
     <string name="start_at_login">Windows सोबत सुरू करा</string>
     <string name="start_at_login_note">साइन इन करताच सूचना क्षेत्रात उघडते, त्यामुळे अ‍ॅप न उघडता अजान आणि आठवणी येतात.</string>
     <string name="start_at_login_store_note">साइन इन करताना Near Mosque सुरू होण्यासाठी, Windows सेटिंग्ज → अ‍ॅप्स → स्टार्टअप मध्ये ते चालू करा.</string>

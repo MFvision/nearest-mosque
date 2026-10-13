@@ -42,11 +42,12 @@ struct WatchExtras: Codable, Equatable {
 
 /// The watch app's screens, for complications, controls and links (nearmosque://qibla and so on).
 enum WatchScreen: String, AppEnum {
-    case prayer, qibla, tasbih, mosques, ask
+    case prayer, qibla, spirit, tasbih, mosques, ask
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "widget_kind_next"
     static var caseDisplayRepresentations: [WatchScreen: DisplayRepresentation] = [
-        .prayer: "widget_kind_next", .qibla: "widget_kind_qibla", .tasbih: "widget_kind_tasbih", .mosques: "widget_kind_mosque", .ask: "widget_kind_ask",
+        .prayer: "widget_kind_next", .qibla: "widget_kind_qibla", .spirit: "spirit_title", .tasbih: "widget_kind_tasbih", .mosques: "widget_kind_mosque",
+        .ask: "widget_kind_ask",
     ]
 
     var url: URL { URL(string: "nearmosque://\(rawValue)")! }

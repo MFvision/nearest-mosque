@@ -164,6 +164,9 @@
     <string name="follow_device_location">Mijn locatie volgen</string>
     <string name="get_directions">Route plannen</string>
     <string name="heading_accuracy">Nauwkeurigheid ±%1$s°</string>
+    <string name="health_minutes">%1$s min per gebed</string>
+    <string name="health_note">Elk gemarkeerd gebed wordt als mindfulnessminuten aan Gezondheid toegevoegd. Er wordt niets uit Gezondheid gelezen en niets verlaat je apparaten.</string>
+    <string name="health_toggle">Gebeden toevoegen aan Gezondheid</string>
     <string name="high_latitude_rule">Regel voor hoge breedtegraden</string>
     <string name="hijri_adjustment">Hijri-datum aanpassen</string>
     <string name="hijri_calendar_note">Hijri-data volgen de Umm al-Qura-kalender. Lokale maanwaarneming kan een dag verschillen.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (nog niet beschikbaar)</string>
     <string name="sources">Bronnen</string>
     <string name="sources_licenses">Bronnen en licenties</string>
+    <string name="spirit_note">Alleen wat je markeert telt. Het is tussen jou en Allah, en het blijft op je apparaten.</string>
+    <string name="spirit_streak">Dagen op rij met alle vijf: %1$s</string>
+    <string name="spirit_title">Spirituele gezondheid</string>
+    <string name="spirit_today">Vandaag</string>
+    <string name="spirit_week">De afgelopen zeven dagen</string>
+    <string name="spirit_week_count">%1$s van %2$s gebeden gemarkeerd</string>
     <string name="start_at_login">Starten met Windows</string>
     <string name="start_at_login_note">Opent in het systeemvak wanneer je je aanmeldt, zodat de adhan en herinneringen komen zonder de app te openen.</string>
     <string name="start_at_login_store_note">Wil je Near Mosque laten starten wanneer je je aanmeldt, zet het dan aan in Windows-instellingen → Apps → Opstarten.</string>

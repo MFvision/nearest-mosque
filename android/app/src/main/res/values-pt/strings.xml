@@ -164,6 +164,9 @@
     <string name="follow_device_location">Seguir minha localização</string>
     <string name="get_directions">Ver rota</string>
     <string name="heading_accuracy">Precisão ±%1$s°</string>
+    <string name="health_minutes">%1$s min por oração</string>
+    <string name="health_note">Cada oração marcada é adicionada ao Saúde como minutos de atenção plena. Nada é lido do Saúde e nada sai dos seus aparelhos.</string>
+    <string name="health_toggle">Adicionar orações ao Saúde</string>
     <string name="high_latitude_rule">Regra para altas latitudes</string>
     <string name="hijri_adjustment">Ajuste da data hijri</string>
     <string name="hijri_calendar_note">As datas hijri usam o calendário Umm al-Qura. A observação local da lua pode variar em um dia.</string>
@@ -460,6 +463,12 @@
     <string name="source_unavailable">%1$s (ainda não disponível)</string>
     <string name="sources">Fontes</string>
     <string name="sources_licenses">Fontes e licenças</string>
+    <string name="spirit_note">Só conta o que você marca. É entre você e Allah, e fica nos seus aparelhos.</string>
+    <string name="spirit_streak">Dias seguidos com as cinco: %1$s</string>
+    <string name="spirit_title">Saúde espiritual</string>
+    <string name="spirit_today">Hoje</string>
+    <string name="spirit_week">Os últimos sete dias</string>
+    <string name="spirit_week_count">%1$s de %2$s orações marcadas</string>
     <string name="start_at_login">Iniciar com o Windows</string>
     <string name="start_at_login_note">Abre na área de notificação quando você entra, para o adhan e os lembretes chegarem sem abrir o app.</string>
     <string name="start_at_login_store_note">Para o Near Mosque iniciar quando você entrar, ative-o em Configurações do Windows → Aplicativos → Inicialização.</string>

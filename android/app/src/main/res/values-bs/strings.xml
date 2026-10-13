@@ -164,6 +164,9 @@
     <string name="follow_device_location">Prati moju lokaciju</string>
     <string name="get_directions">Upute za put</string>
     <string name="heading_accuracy">Tačnost ±%1$s°</string>
+    <string name="health_minutes">%1$s min po namazu</string>
+    <string name="health_note">Svaki označeni namaz dodaje se u Apple Health kao minute pažnje. Ništa se ne čita iz Healtha i ništa ne napušta vaše uređaje.</string>
+    <string name="health_toggle">Dodaj namaze u Apple Health</string>
     <string name="high_latitude_rule">Pravilo za velike širine</string>
     <string name="hijri_adjustment">Podešavanje hidžretskog datuma</string>
     <string name="hijri_calendar_note">Hidžretski datumi prate kalendar Umm al-Kura. Lokalno viđenje mladog mjeseca može se razlikovati za jedan dan.</string>
@@ -460,6 +463,12 @@
     <string name="source_unavailable">%1$s (još nije dostupno)</string>
     <string name="sources">Izvori</string>
     <string name="sources_licenses">Izvori i licence</string>
+    <string name="spirit_note">Računa se samo ono što označite. To je između vas i Allaha i ostaje na vašim uređajima.</string>
+    <string name="spirit_streak">Dana zaredom sa svih pet: %1$s</string>
+    <string name="spirit_title">Duhovno zdravlje</string>
+    <string name="spirit_today">Danas</string>
+    <string name="spirit_week">Posljednjih sedam dana</string>
+    <string name="spirit_week_count">Označeno %1$s od %2$s namaza</string>
     <string name="start_at_login">Pokreni s Windowsom</string>
     <string name="start_at_login_note">Otvara se u području obavijesti kad se prijavite, pa ezan i podsjetnici stižu bez otvaranja aplikacije.</string>
     <string name="start_at_login_store_note">Da se Near Mosque pokrene kad se prijavite, uključite ga u Windows postavkama → Aplikacije → Pokretanje.</string>

@@ -101,12 +101,15 @@ In App Store Connect this set is under the iOS version, in the Apple Watch secti
 |---|---|---|---|
 | 1 | `01-watch-prayer.png` | Prayer times on the wrist | Apple Watch: the next prayer, its time and a live countdown on the sky of the hour, then today's times with their reminder bells. |
 | 2 | `02-watch-qibla.png` | Qibla compass on the watch | Apple Watch: the live Qibla compass, facing the Qibla (the watch taps the wrist when you face it). |
-| 3 | `03-watch-tasbih.png` | Tasbih on the Digital Crown | Apple Watch: the tasbih counter; turn the Digital Crown, tap or double-tap to count, and the ring fills every 33. |
-| 4 | `04-watch-mosques.png` | Nearest mosques | Apple Watch: the nearest mosques with their distance and an arrow pointing to each. |
-| 5 | `05-watch-ask.png` | Ask on the watch | Apple Watch: a common answer (asked by voice) with its Qur'an references and the review label. |
+| 3 | `03-watch-spirit.png` | Spiritual health | Apple Watch: the companion bright or tired with the prayers you mark, today's five prayers, the last seven days and the days in a row with all five. |
+| 4 | `04-watch-tasbih.png` | Tasbih on the Digital Crown | Apple Watch: the tasbih counter; turn the Digital Crown, tap or double-tap to count, and the ring fills every 33. |
+| 5 | `05-watch-mosques.png` | Nearest mosques | Apple Watch: the nearest mosques with their distance and an arrow pointing to each. |
+| 6 | `06-watch-ask.png` | Ask on the watch | Apple Watch: a common answer (asked by voice) with its Qur'an references and the review label. |
 
 The simulator has no compass, so the Qibla screenshot is made with a set heading (`-demoHeading`); on a
-watch the dial turns with the wrist.
+watch the dial turns with the wrist. The skies are set per screen (`-demoSky`: Maghrib behind the Qibla,
+night behind the tasbih and Isha behind spiritual health) so the set shows the day's colours; on a watch
+the sky follows the time of day. The spiritual health screen shows a sample week (`-demoMarks`).
 
 ### Mac: `APP_DESKTOP`
 

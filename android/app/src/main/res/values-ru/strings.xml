@@ -164,6 +164,9 @@
     <string name="follow_device_location">Следовать за моим местоположением</string>
     <string name="get_directions">Проложить маршрут</string>
     <string name="heading_accuracy">Точность ±%1$s°</string>
+    <string name="health_minutes">%1$s мин на молитву</string>
+    <string name="health_note">Каждая отмеченная молитва добавляется в «Здоровье» как минуты осознанности. Из «Здоровья» ничего не читается, и ничего не покидает ваши устройства.</string>
+    <string name="health_toggle">Добавлять молитвы в «Здоровье»</string>
     <string name="high_latitude_rule">Правило для высоких широт</string>
     <string name="hijri_adjustment">Коррекция даты по хиджре</string>
     <string name="hijri_calendar_note">Даты по хиджре даны по календарю Умм аль-Кура. Местное наблюдение луны может отличаться на день.</string>
@@ -461,6 +464,12 @@
     <string name="source_unavailable">%1$s (пока недоступно)</string>
     <string name="sources">Источники</string>
     <string name="sources_licenses">Источники и лицензии</string>
+    <string name="spirit_note">Считается только то, что вы отмечаете. Это между вами и Аллахом и остаётся на ваших устройствах.</string>
+    <string name="spirit_streak">Дней подряд со всеми пятью: %1$s</string>
+    <string name="spirit_title">Духовное здоровье</string>
+    <string name="spirit_today">Сегодня</string>
+    <string name="spirit_week">Последние семь дней</string>
+    <string name="spirit_week_count">Отмечено %1$s из %2$s молитв</string>
     <string name="start_at_login">Запускать вместе с Windows</string>
     <string name="start_at_login_note">Открывается в области уведомлений при входе в систему, чтобы азан и напоминания приходили без запуска приложения.</string>
     <string name="start_at_login_store_note">Чтобы Near Mosque запускался при входе, включите его в «Параметры Windows» → «Приложения» → «Автозагрузка».</string>

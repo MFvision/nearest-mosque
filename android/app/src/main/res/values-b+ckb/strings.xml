@@ -164,6 +164,9 @@
     <string name="follow_device_location">شوێنەکەم بەدوادا بچێ</string>
     <string name="get_directions">ڕێنمایی ڕێگا</string>
     <string name="heading_accuracy">وردی ±%1$s°</string>
+    <string name="health_minutes">%1$s خولەک بۆ هەر نوێژێک</string>
+    <string name="health_note">هەر نوێژێک نیشانی بکەیت وەک خولەکی ئاگایی زیاد دەکرێت بۆ Apple Health. هیچ شتێک لە Health ناخوێنرێتەوە و هیچ شتێک ئامێرەکانت جێناهێڵێت.</string>
+    <string name="health_toggle">زیادکردنی نوێژەکان بۆ Apple Health</string>
     <string name="high_latitude_rule">یاسای پانییە بەرزەکان</string>
     <string name="hijri_adjustment">ڕێکخستنی ڕێکەوتی کۆچی</string>
     <string name="hijri_calendar_note">ڕێکەوتە کۆچییەکان ڕۆژژمێری ئوم ئەلقورا بەکاردەهێنن. بینینی مانگ لە ناوچەکەت لەوانەیە ڕۆژێک جیاواز بێت.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (هێشتا بەردەست نییە)</string>
     <string name="sources">سەرچاوەکان</string>
     <string name="sources_licenses">سەرچاوەکان و مۆڵەتەکان</string>
+    <string name="spirit_note">تەنها ئەوەی نیشانی دەکەیت دەژمێردرێت. ئەمە لە نێوان تۆ و خوادایە و لەسەر ئامێرەکانت دەمێنێتەوە.</string>
+    <string name="spirit_streak">ڕۆژی بەدوایەک بە هەر پێنج نوێژەکە: %1$s</string>
+    <string name="spirit_title">تەندروستی ڕۆحی</string>
+    <string name="spirit_today">ئەمڕۆ</string>
+    <string name="spirit_week">دوایین حەوت ڕۆژ</string>
+    <string name="spirit_week_count">%1$s لە %2$s نوێژ نیشانکراوە</string>
     <string name="start_at_login">دەستپێکردن لەگەڵ ویندۆز</string>
     <string name="start_at_login_note">کاتێک دەچیتە ژوورەوە لە ناوچەی ئاگادارکردنەوە دەکرێتەوە، بۆ ئەوەی بانگ و بیرخستنەوەکان بێ کردنەوەی ئەپ بێن.</string>
     <string name="start_at_login_store_note">بۆ ئەوەی Near Mosque لە کاتی چوونەژوورەوە دەست پێبکات، لە ڕێکخستنەکانی ویندۆز ← ئەپەکان ← دەستپێکردن چالاکی بکە.</string>

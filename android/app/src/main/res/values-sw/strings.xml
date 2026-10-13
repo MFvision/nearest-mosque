@@ -164,6 +164,9 @@
     <string name="follow_device_location">Fuata mahali nilipo</string>
     <string name="get_directions">Pata maelekezo</string>
     <string name="heading_accuracy">Usahihi ±%1$s°</string>
+    <string name="health_minutes">Dakika %1$s kwa kila swala</string>
+    <string name="health_note">Kila swala unayoweka alama huongezwa kwenye Apple Health kama dakika za utulivu. Hakuna kinachosomwa kutoka Health, na hakuna kinachotoka kwenye vifaa vyako.</string>
+    <string name="health_toggle">Ongeza swala kwenye Apple Health</string>
     <string name="high_latitude_rule">Kanuni ya latitudo za juu</string>
     <string name="hijri_adjustment">Marekebisho ya tarehe ya Hijria</string>
     <string name="hijri_calendar_note">Tarehe za Hijria zinatumia kalenda ya Umm al-Qura. Kuandama kwa mwezi mahali ulipo kunaweza kutofautiana kwa siku moja.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (bado haipatikani)</string>
     <string name="sources">Vyanzo</string>
     <string name="sources_licenses">Vyanzo na leseni</string>
+    <string name="spirit_note">Kinachohesabiwa ni ulichoweka alama tu. Ni kati yako na Allah, na hubaki kwenye vifaa vyako.</string>
+    <string name="spirit_streak">Siku mfululizo zenye swala zote tano: %1$s</string>
+    <string name="spirit_title">Afya ya kiroho</string>
+    <string name="spirit_today">Leo</string>
+    <string name="spirit_week">Siku saba zilizopita</string>
+    <string name="spirit_week_count">Swala %1$s kati ya %2$s zimewekwa alama</string>
     <string name="start_at_login">Anza pamoja na Windows</string>
     <string name="start_at_login_note">Hufunguka kwenye eneo la arifa unapoingia, ili adhana na vikumbusho vije bila kufungua programu.</string>
     <string name="start_at_login_store_note">Ili Near Mosque ianze unapoingia, iwashe katika Mipangilio ya Windows → Programu → Uanzishaji.</string>

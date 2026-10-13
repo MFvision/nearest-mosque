@@ -164,6 +164,9 @@
     <string name="follow_device_location">میرے مقام کے مطابق</string>
     <string name="get_directions">راستہ دیکھیں</string>
     <string name="heading_accuracy">درستی ±%1$s°</string>
+    <string name="health_minutes">ہر نماز کے %1$s منٹ</string>
+    <string name="health_note">ہر نشان زد نماز Apple Health میں مائنڈفل منٹس کے طور پر شامل ہوتی ہے۔ Health سے کچھ نہیں پڑھا جاتا، اور کچھ آپ کے آلات سے باہر نہیں جاتا۔</string>
+    <string name="health_toggle">نمازیں Apple Health میں شامل کریں</string>
     <string name="high_latitude_rule">بلند عرض بلد کا اصول</string>
     <string name="hijri_adjustment">ہجری تاریخ میں ترمیم</string>
     <string name="hijri_calendar_note">ہجری تاریخ ام القریٰ کیلنڈر کے مطابق ہے؛ مقامی رؤیت میں ایک دن کا فرق ہو سکتا ہے۔</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (ابھی دستیاب نہیں)</string>
     <string name="sources">ماخذ</string>
     <string name="sources_licenses">ماخذ اور لائسنس</string>
+    <string name="spirit_note">صرف وہی شمار ہوتا ہے جو آپ نشان زد کریں۔ یہ آپ اور اللہ کے درمیان ہے، اور آپ کے آلات پر ہی رہتا ہے۔</string>
+    <string name="spirit_streak">پانچوں نمازوں والے مسلسل دن: %1$s</string>
+    <string name="spirit_title">روحانی صحت</string>
+    <string name="spirit_today">آج</string>
+    <string name="spirit_week">پچھلے سات دن</string>
+    <string name="spirit_week_count">%2$s میں سے %1$s نمازیں نشان زد</string>
     <string name="start_at_login">ونڈوز کے ساتھ شروع کریں</string>
     <string name="start_at_login_note">سائن ان کرتے ہی نوٹیفکیشن ایریا میں کھل جاتی ہے، تاکہ ایپ کھولے بغیر اذان اور یاد دہانیاں آئیں۔</string>
     <string name="start_at_login_store_note">سائن ان پر قریبی مسجد شروع کرنے کے لیے اسے ونڈوز کی ترتیبات ← ایپس ← اسٹارٹ اپ میں آن کریں۔</string>

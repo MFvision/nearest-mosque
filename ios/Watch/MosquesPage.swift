@@ -57,6 +57,7 @@ struct MosquesPage: View {
                 WaitingView()
             }
         }
+        .watchSky()
         .navigationTitle(l10n.t("tab_mosques"))
         .task(id: "\(model.state?.latitude ?? 0),\(model.state?.longitude ?? 0),\(model.settings.onlineSearch)") { await load() }
         .onAppear { compass.start() }

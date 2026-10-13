@@ -164,6 +164,9 @@
     <string name="follow_device_location">اتبع موقعي</string>
     <string name="get_directions">الاتجاهات</string>
     <string name="heading_accuracy">الدقة ±%1$s°</string>
+    <string name="health_minutes">%1$s دقيقة لكل صلاة</string>
+    <string name="health_note">تُضاف كل صلاة تسجّلها إلى Apple Health دقائقَ يقظة ذهنية. لا يُقرأ شيء من Health، ولا يغادر شيء أجهزتك.</string>
+    <string name="health_toggle">إضافة الصلوات إلى Apple Health</string>
     <string name="high_latitude_rule">قاعدة العروض العليا</string>
     <string name="hijri_adjustment">تعديل التاريخ الهجري</string>
     <string name="hijri_calendar_note">التاريخ الهجري وفق تقويم أم القرى، وقد تختلف رؤية الهلال المحلية بيوم.</string>
@@ -463,6 +466,12 @@
     <string name="source_unavailable">%1$s (غير متوفر بعد)</string>
     <string name="sources">المصادر</string>
     <string name="sources_licenses">المصادر والتراخيص</string>
+    <string name="spirit_note">لا يُحسب إلا ما تسجّله. هو بينك وبين الله، ويبقى على أجهزتك.</string>
+    <string name="spirit_streak">أيام متتالية بالصلوات الخمس: %1$s</string>
+    <string name="spirit_title">الصحة الروحية</string>
+    <string name="spirit_today">اليوم</string>
+    <string name="spirit_week">آخر سبعة أيام</string>
+    <string name="spirit_week_count">%1$s من %2$s صلاة مسجّلة</string>
     <string name="start_at_login">التشغيل مع ويندوز</string>
     <string name="start_at_login_note">يعمل في منطقة الإشعارات عند تسجيل الدخول، فيصلك الأذان والتذكير دون فتح التطبيق.</string>
     <string name="start_at_login_store_note">لتشغيل «أقرب مسجد» عند تسجيل الدخول، فعّله من إعدادات ويندوز ← التطبيقات ← بدء التشغيل.</string>

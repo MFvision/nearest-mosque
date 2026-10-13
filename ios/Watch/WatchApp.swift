@@ -23,7 +23,8 @@ struct NearMosqueWatchApp: App {
     }
 }
 
-/// Pages, one above the other (turn the Digital Crown): prayer times, Qibla, tasbih, nearest mosques and Ask.
+/// Pages, one above the other (turn the Digital Crown): prayer times, Qibla, spiritual health, tasbih, nearest
+/// mosques and Ask.
 /// Settings open from the end of the prayer page (nothing sits beside the clock).
 struct WatchRoot: View {
     @Environment(WatchModel.self) private var model
@@ -34,6 +35,7 @@ struct WatchRoot: View {
             TabView(selection: $model.screen) {
                 PrayerPage().tag(WatchScreen.prayer)
                 QiblaPage().tag(WatchScreen.qibla)
+                SpiritPage().tag(WatchScreen.spirit)
                 TasbihPage().tag(WatchScreen.tasbih)
                 MosquesPage().tag(WatchScreen.mosques)
                 AskPage().tag(WatchScreen.ask)

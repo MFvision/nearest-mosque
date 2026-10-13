@@ -32,6 +32,9 @@ struct WatchSettings: Codable, Equatable {
     var tasbihHaptic = true
     /// Live results from Apple Maps added to the built-in mosque data (approximate location only).
     var onlineSearch = true
+    /// Each marked prayer adds this many mindful minutes to Apple Health (off until turned on).
+    var healthOn = false
+    var healthMinutes = 10
 
     init() {}
 
@@ -47,6 +50,8 @@ struct WatchSettings: Codable, Equatable {
         qiblaHaptic = get(Bool.self, .qiblaHaptic) ?? true
         tasbihHaptic = get(Bool.self, .tasbihHaptic) ?? true
         onlineSearch = get(Bool.self, .onlineSearch) ?? true
+        healthOn = get(Bool.self, .healthOn) ?? false
+        healthMinutes = get(Int.self, .healthMinutes) ?? 10
     }
 }
 
@@ -68,6 +73,8 @@ final class WatchModel {
     var extras = WatchExtras.read()
     var screen: WatchScreen = .prayer
     var showSettings = false
+    /// Changes whenever a prayer is marked here or on the iPhone (the companion's log is not observable).
+    private(set) var marksVersion = 0
     /// A question to ask when the Ask page opens (debug screenshots).
     var pendingAsk: String?
 
@@ -146,8 +153,14 @@ final class WatchModel {
 
     // MARK: From the iPhone
 
-    /// The iPhone sent new values (application context).
-    func received(_ state: SharedState?, level: Double?) {
+    /// The iPhone sent new values (application context): its settings, and the prayers marked there.
+    func received(_ state: SharedState?, level: Double?, marks: [String]? = nil) {
+        if let marks {
+            let new = CompanionLog.merge(marks)
+            if !new.isEmpty { marksVersion += 1 }
+            // Marks made on the iPhone: in Apple Health from the prayer's time (only the day is known).
+            if settings.healthOn { for m in new { recordHealth(m, at: nil) } }
+        }
         if let state {
             phone = state
             if let data = try? JSONEncoder().encode(state) { UserDefaults.standard.set(data, forKey: "phoneState") }
@@ -155,8 +168,49 @@ final class WatchModel {
             if l10n.language != state.language { l10n.override = state.language }
             if !settings.methodChosenByUser { settings.prayer = state.prayer }
         }
-        if let level { extras.companionLevel = level }
+        extras.companionLevel = marks == nil ? (level ?? extras.companionLevel) : CompanionLog.level(zone: (state ?? self.state)?.zone ?? .current)
         publish()
+    }
+
+    // MARK: Spiritual health
+
+    /// Marks a prayer as prayed (only what you mark counts), on the watch and on the iPhone.
+    func markPrayer(_ e: PrayerEvent, on date: CivilDate) {
+        CompanionLog.checkIn(e.rawValue, on: date)
+        let key = "\(CompanionLog.iso(date)):\(e.rawValue)"
+        WatchLink.shared.send(marks: [key])
+        WKInterfaceDevice.current().play(.success)
+        if settings.healthOn { recordHealth(key, at: Date()) }
+        refreshCompanion()
+    }
+
+    func refreshCompanion() {
+        marksVersion += 1
+        extras.companionLevel = CompanionLog.level(zone: state?.zone ?? .current)
+        publish()
+    }
+
+    /// A mindful session for `mark`, ending now (marked here) or from the prayer's time (marked on the iPhone).
+    private func recordHealth(_ mark: String, at end: Date?) {
+        let minutes = settings.healthMinutes
+        let parts = mark.split(separator: ":")
+        guard parts.count == 2, let e = PrayerEvent(rawValue: String(parts[1])) else { return }
+        var start = end.map { $0.addingTimeInterval(-Double(minutes) * 60) }
+        if start == nil, let s = state, let here = s.location {
+            let d = parts[0].split(separator: "-").compactMap { Int($0) }
+            if d.count == 3 {
+                let day = calculator.schedule(here, date: CivilDate(year: d[0], month: d[1], day: d[2]), zone: s.zone, settings: s.prayer)
+                start = day[e]
+            }
+        }
+        guard let start, start < Date() else { return }
+        Task { await WatchHealth.record(mark, start: start, minutes: minutes) }
+    }
+
+    /// Turns the Apple Health link on (asking permission) or off.
+    func setHealth(_ on: Bool) async {
+        guard on else { settings.healthOn = false; return }
+        settings.healthOn = await WatchHealth.authorize()
     }
 
     // MARK: Location
@@ -203,6 +257,15 @@ final class WatchModel {
     func countTasbih() {
         extras.tasbih += 1
         let round = extras.tasbih % 33 == 0
+        if round, let zone = state?.zone {
+            // A round of 33 is a check-in for the companion, as on the iPhone's tasbih widget.
+            let today = CivilDate.of(Date(), in: zone)
+            if !CompanionLog.checkedIn("dhikr", on: today) {
+                CompanionLog.checkIn("dhikr", on: today)
+                WatchLink.shared.send(marks: ["\(CompanionLog.iso(today)):dhikr"])
+                extras.companionLevel = CompanionLog.level(zone: zone)
+            }
+        }
         if settings.tasbihHaptic { WKInterfaceDevice.current().play(round ? .success : .click) }
         WatchExtras.write(extras)
         // The complication is redrawn at each round (and when the app leaves the screen), not on every count.
@@ -267,6 +330,19 @@ final class WatchModel {
         }
         if let s = d.string(forKey: "demoScreen").flatMap(WatchScreen.init(rawValue:)) { screen = s }
         if d.bool(forKey: "demoSettings") { showSettings = true }
+        if d.object(forKey: "demoMarks") != nil, let zone = state?.zone {
+            // `-demoMarks 1`: a week of marks with a few missed, for the spiritual health page.
+            let today = CivilDate.of(Date(), in: zone)
+            var list: [String] = []
+            for back in 0..<7 {
+                let day = today.adding(days: -back)
+                for (i, e) in PrayerEvent.prayers.enumerated() where !(back == 3 && i == 4) && !(back == 5 && i < 2) && !(back == 0 && i > 1) {
+                    list.append("\(CompanionLog.iso(day)):\(e.rawValue)")
+                }
+            }
+            CompanionLog.merge(list)
+            extras.companionLevel = CompanionLog.level(zone: zone)
+        }
         if d.object(forKey: "demoTasbih") != nil { extras.tasbih = d.integer(forKey: "demoTasbih") }
         if let id = d.string(forKey: "demoAskId"), let url = Bundle.main.url(forResource: "common-questions", withExtension: "json"),
            let data = try? Data(contentsOf: url), let file = try? JSONDecoder().decode(CommonQuestionsFile.self, from: data),
@@ -296,7 +372,14 @@ final class WatchLink: NSObject, WCSessionDelegate {
     private func apply(_ ctx: [String: Any]) {
         let state = (ctx["state"] as? Data).flatMap { try? JSONDecoder().decode(SharedState.self, from: $0) }
         let level = ctx["level"] as? Double
-        Task { @MainActor in WatchModel.shared.received(state, level: level) }
+        let marks = ctx["marks"] as? [String]
+        Task { @MainActor in WatchModel.shared.received(state, level: level, marks: marks) }
+    }
+
+    /// Prayers marked on the watch, for the iPhone's companion (queued until the iPhone app gets them).
+    func send(marks: [String]) {
+        guard WCSession.isSupported(), WCSession.default.activationState == .activated else { return }
+        WCSession.default.transferUserInfo(["marks": marks])
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {

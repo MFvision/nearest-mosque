@@ -164,6 +164,9 @@
     <string name="follow_device_location">મારા લોકેશન મુજબ</string>
     <string name="get_directions">રસ્તો જુઓ</string>
     <string name="heading_accuracy">ચોકસાઈ ±%1$s°</string>
+    <string name="health_minutes">દરેક નમાઝ માટે %1$s મિનિટ</string>
+    <string name="health_note">દરેક નોંધેલી નમાઝ Apple Health માં માઇન્ડફુલ મિનિટ તરીકે ઉમેરાય છે. Health માંથી કંઈ વંચાતું નથી, અને કંઈ તમારાં ઉપકરણોની બહાર જતું નથી.</string>
+    <string name="health_toggle">નમાઝ Apple Health માં ઉમેરો</string>
     <string name="high_latitude_rule">ઊંચા અક્ષાંશનો નિયમ</string>
     <string name="hijri_adjustment">હિજરી તારીખમાં ફેરફાર</string>
     <string name="hijri_calendar_note">હિજરી તારીખો ઉમ્મુલ કુરા કૅલેન્ડર મુજબ છે. સ્થાનિક ચાંદ દેખાવાને કારણે એક દિવસનો ફરક પડી શકે છે.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (હજી ઉપલબ્ધ નથી)</string>
     <string name="sources">સ્રોતો</string>
     <string name="sources_licenses">સ્રોતો અને લાઇસન્સ</string>
+    <string name="spirit_note">તમે નોંધો એ જ ગણાય છે. એ તમારા અને અલ્લાહ વચ્ચે છે, અને તમારાં ઉપકરણો પર જ રહે છે.</string>
+    <string name="spirit_streak">પાંચેય નમાઝવાળા સળંગ દિવસ: %1$s</string>
+    <string name="spirit_title">આધ્યાત્મિક આરોગ્ય</string>
+    <string name="spirit_today">આજે</string>
+    <string name="spirit_week">છેલ્લા સાત દિવસ</string>
+    <string name="spirit_week_count">%2$s માંથી %1$s નમાઝ નોંધાઈ</string>
     <string name="start_at_login">Windows સાથે શરૂ કરો</string>
     <string name="start_at_login_note">સાઇન ઇન કરતાં જ સૂચના વિસ્તારમાં ખૂલે છે, જેથી ઍપ ખોલ્યા વગર અઝાન અને યાદ અપાવણી આવે.</string>
     <string name="start_at_login_store_note">સાઇન ઇન કરતી વખતે Near Mosque શરૂ થાય તે માટે, Windows સેટિંગ → ઍપ્સ → સ્ટાર્ટઅપમાં તેને ચાલુ કરો.</string>

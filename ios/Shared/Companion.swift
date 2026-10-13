@@ -55,6 +55,18 @@ enum CompanionLog {
 
     static func checkedIn(_ event: String, on date: CivilDate) -> Bool { marks.contains("\(iso(date)):\(event)") }
 
+    /// Adds check-ins made on the other device (the iPhone or the Apple Watch); returns the ones that were new here.
+    @discardableResult
+    static func merge(_ incoming: [String]) -> [String] {
+        var list = marks
+        let new = incoming.filter { !list.contains($0) }
+        guard !new.isEmpty else { return [] }
+        list += new
+        // "yyyy-MM-dd:event" sorts by day; the newest stay.
+        save(Array(list.sorted().suffix(60)))
+        return new
+    }
+
     /// How full: each prayer marked today adds to it (five fill it), a tasbih round adds a little; with nothing
     /// today it rests on the last day you checked in, lower each day away. A newcomer starts half full.
     static func level(now: Date = Date(), zone: TimeZone = .current) -> Double {

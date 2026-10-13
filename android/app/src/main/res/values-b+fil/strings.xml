@@ -164,6 +164,9 @@
     <string name="follow_device_location">Sundan ang aking lokasyon</string>
     <string name="get_directions">Kumuha ng direksyon</string>
     <string name="heading_accuracy">Katumpakan ±%1$s°</string>
+    <string name="health_minutes">%1$s min bawat salah</string>
+    <string name="health_note">Bawat salah na minarkahan mo ay idinadagdag sa Apple Health bilang mindful minutes. Walang binabasa mula sa Health, at walang umaalis sa iyong mga device.</string>
+    <string name="health_toggle">Idagdag ang salah sa Apple Health</string>
     <string name="high_latitude_rule">Panuntunan sa mataas na latitude</string>
     <string name="hijri_adjustment">Pag-aayos ng petsang Hijri</string>
     <string name="hijri_calendar_note">Gumagamit ang mga petsang Hijri ng kalendaryong Umm al-Qura. Maaaring magkaiba nang isang araw ang lokal na pagkakita sa buwan.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (hindi pa available)</string>
     <string name="sources">Mga sanggunian</string>
     <string name="sources_licenses">Mga sanggunian at lisensya</string>
+    <string name="spirit_note">Ang minarkahan mo lang ang binibilang. Ito ay sa pagitan mo at ni Allah, at nananatili sa iyong mga device.</string>
+    <string name="spirit_streak">Sunod-sunod na araw na kumpleto ang lima: %1$s</string>
+    <string name="spirit_title">Kalusugang espirituwal</string>
+    <string name="spirit_today">Ngayon</string>
+    <string name="spirit_week">Nakaraang pitong araw</string>
+    <string name="spirit_week_count">%1$s sa %2$s salah ang namarkahan</string>
     <string name="start_at_login">Simulan kasabay ng Windows</string>
     <string name="start_at_login_note">Bumubukas sa notification area pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app.</string>
     <string name="start_at_login_store_note">Para magsimula ang Near Mosque pag-sign in mo, i-on ito sa Windows Settings → Apps → Startup.</string>

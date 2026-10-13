@@ -164,6 +164,9 @@
     <string name="follow_device_location">ਮੇਰੇ ਟਿਕਾਣੇ ਮੁਤਾਬਕ</string>
     <string name="get_directions">ਰਸਤਾ ਵੇਖੋ</string>
     <string name="heading_accuracy">ਸ਼ੁੱਧਤਾ ±%1$s°</string>
+    <string name="health_minutes">ਹਰ ਨਮਾਜ਼ ਦੇ %1$s ਮਿੰਟ</string>
+    <string name="health_note">ਹਰ ਦਰਜ ਨਮਾਜ਼ Apple Health ਵਿੱਚ ਮਾਈਂਡਫੁਲ ਮਿੰਟਾਂ ਵਜੋਂ ਜੁੜਦੀ ਹੈ। Health ਤੋਂ ਕੁਝ ਨਹੀਂ ਪੜ੍ਹਿਆ ਜਾਂਦਾ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੀਆਂ ਡਿਵਾਈਸਾਂ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
+    <string name="health_toggle">ਨਮਾਜ਼ਾਂ Apple Health ਵਿੱਚ ਜੋੜੋ</string>
     <string name="high_latitude_rule">ਉੱਚ ਅਕਸ਼ਾਂਸ਼ ਦਾ ਨਿਯਮ</string>
     <string name="hijri_adjustment">ਹਿਜਰੀ ਤਾਰੀਖ਼ ਵਿੱਚ ਸੋਧ</string>
     <string name="hijri_calendar_note">ਹਿਜਰੀ ਤਾਰੀਖ਼ਾਂ ਉੱਮ ਅਲ-ਕੁਰਾ ਕੈਲੰਡਰ ਮੁਤਾਬਕ ਹਨ। ਸਥਾਨਕ ਚੰਨ ਦੇ ਦੀਦਾਰ ਨਾਲ ਇੱਕ ਦਿਨ ਦਾ ਫ਼ਰਕ ਹੋ ਸਕਦਾ ਹੈ।</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ)</string>
     <string name="sources">ਸਰੋਤ</string>
     <string name="sources_licenses">ਸਰੋਤ ਅਤੇ ਲਾਇਸੈਂਸ</string>
+    <string name="spirit_note">ਸਿਰਫ਼ ਉਹੀ ਗਿਣਿਆ ਜਾਂਦਾ ਹੈ ਜੋ ਤੁਸੀਂ ਦਰਜ ਕਰੋ। ਇਹ ਤੁਹਾਡੇ ਅਤੇ ਅੱਲ੍ਹਾ ਵਿਚਕਾਰ ਹੈ, ਅਤੇ ਤੁਹਾਡੀਆਂ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ।</string>
+    <string name="spirit_streak">ਪੰਜੇ ਨਮਾਜ਼ਾਂ ਵਾਲੇ ਲਗਾਤਾਰ ਦਿਨ: %1$s</string>
+    <string name="spirit_title">ਰੂਹਾਨੀ ਸਿਹਤ</string>
+    <string name="spirit_today">ਅੱਜ</string>
+    <string name="spirit_week">ਪਿਛਲੇ ਸੱਤ ਦਿਨ</string>
+    <string name="spirit_week_count">%2$s ਵਿੱਚੋਂ %1$s ਨਮਾਜ਼ਾਂ ਦਰਜ</string>
     <string name="start_at_login">Windows ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="start_at_login_note">ਸਾਈਨ ਇਨ ਕਰਦੇ ਹੀ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਖੁੱਲ੍ਹਦੀ ਹੈ, ਤਾਂ ਜੋ ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਅਜ਼ਾਨ ਅਤੇ ਯਾਦ-ਦਹਾਨੀਆਂ ਆਉਣ।</string>
     <string name="start_at_login_store_note">ਸਾਈਨ ਇਨ ਕਰਨ \'ਤੇ Near Mosque ਸ਼ੁਰੂ ਕਰਨ ਲਈ, ਇਸਨੂੰ Windows ਸੈਟਿੰਗਾਂ → ਐਪਾਂ → ਸਟਾਰਟਅੱਪ ਵਿੱਚ ਚਾਲੂ ਕਰੋ।</string>

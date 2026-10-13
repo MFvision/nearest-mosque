@@ -164,6 +164,9 @@
     <string name="follow_device_location">ตามตำแหน่งของฉัน</string>
     <string name="get_directions">ขอเส้นทาง</string>
     <string name="heading_accuracy">ความแม่นยำ ±%1$s°</string>
+    <string name="health_minutes">%1$s นาทีต่อละหมาด</string>
+    <string name="health_note">ละหมาดแต่ละครั้งที่คุณทำเครื่องหมายจะถูกเพิ่มในแอปสุขภาพเป็นนาทีแห่งสติ ไม่มีการอ่านข้อมูลจากสุขภาพ และไม่มีข้อมูลออกจากอุปกรณ์ของคุณ</string>
+    <string name="health_toggle">เพิ่มละหมาดในแอปสุขภาพ</string>
     <string name="high_latitude_rule">กฎละติจูดสูง</string>
     <string name="hijri_adjustment">ปรับวันที่ฮิจญ์เราะฮ์</string>
     <string name="hijri_calendar_note">วันที่ฮิจญ์เราะฮ์ใช้ปฏิทินอุมมุลกุรอ การดูเดือนในท้องถิ่นอาจต่างกันหนึ่งวัน</string>
@@ -458,6 +461,12 @@
     <string name="source_unavailable">%1$s (ยังไม่พร้อมใช้งาน)</string>
     <string name="sources">แหล่งที่มา</string>
     <string name="sources_licenses">แหล่งที่มาและสัญญาอนุญาต</string>
+    <string name="spirit_note">นับเฉพาะสิ่งที่คุณทำเครื่องหมาย เป็นเรื่องระหว่างคุณกับอัลลอฮ์ และเก็บไว้บนอุปกรณ์ของคุณเท่านั้น</string>
+    <string name="spirit_streak">วันติดต่อกันที่ครบทั้งห้า: %1$s</string>
+    <string name="spirit_title">สุขภาพทางจิตวิญญาณ</string>
+    <string name="spirit_today">วันนี้</string>
+    <string name="spirit_week">เจ็ดวันที่ผ่านมา</string>
+    <string name="spirit_week_count">ทำเครื่องหมายแล้ว %1$s จาก %2$s ละหมาด</string>
     <string name="start_at_login">เริ่มพร้อม Windows</string>
     <string name="start_at_login_note">เปิดในพื้นที่แจ้งเตือนเมื่อคุณลงชื่อเข้าใช้ เพื่อให้เสียงอะซานและการเตือนมาโดยไม่ต้องเปิดแอป</string>
     <string name="start_at_login_store_note">หากต้องการให้ Near Mosque เริ่มเมื่อคุณลงชื่อเข้าใช้ ให้เปิดใน การตั้งค่า Windows → แอป → การเริ่มต้นระบบ</string>

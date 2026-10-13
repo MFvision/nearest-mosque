@@ -165,7 +165,7 @@ final class AppModel {
     /// The same values for the Apple Watch app, with how full the companion is (only sent when something changed).
     private func syncWatch(_ s: SharedState?) {
         #if canImport(WatchConnectivity) && !targetEnvironment(macCatalyst) && !os(visionOS)
-        WatchBridge.shared.send(s, companionLevel: CompanionLog.level(now: Date(), zone: s?.zone ?? .current))
+        WatchBridge.shared.send(s, companionLevel: CompanionLog.level(now: Date(), zone: s?.zone ?? .current), marks: CompanionLog.marks)
         #endif
     }
 

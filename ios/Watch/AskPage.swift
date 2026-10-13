@@ -17,7 +17,7 @@ struct AskPage: View {
                     .onSubmit { ask(question) }
                 if let asked {
                     if let a = answer {
-                        AnswerView(q: a, lang: l10n.language, l10n: l10n, accent: model.accent)
+                        AnswerView(q: a, lang: l10n.language, l10n: l10n, accent: model.accent).watchCard()
                     } else {
                         Text(asked).font(.headline)
                         Text(l10n.t("watch_ask_none")).font(.footnote).foregroundStyle(.secondary)
@@ -37,6 +37,7 @@ struct AskPage: View {
                 }
             }
         }
+        .watchSky()
         .navigationTitle(l10n.t("tab_ask_short"))
         .onAppear {
             if let q = model.pendingAsk {

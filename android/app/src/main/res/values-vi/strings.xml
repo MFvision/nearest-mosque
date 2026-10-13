@@ -164,6 +164,9 @@
     <string name="follow_device_location">Theo vị trí của tôi</string>
     <string name="get_directions">Chỉ đường</string>
     <string name="heading_accuracy">Độ chính xác ±%1$s°</string>
+    <string name="health_minutes">%1$s phút mỗi lần</string>
+    <string name="health_note">Mỗi lần cầu nguyện bạn đánh dấu được thêm vào Sức khỏe dưới dạng phút chánh niệm. Không đọc gì từ Sức khỏe và không gì rời khỏi thiết bị của bạn.</string>
+    <string name="health_toggle">Thêm cầu nguyện vào Sức khỏe</string>
     <string name="high_latitude_rule">Quy tắc vĩ độ cao</string>
     <string name="hijri_adjustment">Điều chỉnh ngày Hijri</string>
     <string name="hijri_calendar_note">Ngày Hijri theo lịch Umm al-Qura. Việc nhìn trăng tại địa phương có thể chênh một ngày.</string>
@@ -458,6 +461,12 @@
     <string name="source_unavailable">%1$s (chưa có)</string>
     <string name="sources">Nguồn</string>
     <string name="sources_licenses">Nguồn và giấy phép</string>
+    <string name="spirit_note">Chỉ những gì bạn đánh dấu mới được tính. Đó là chuyện giữa bạn và Allah, và chỉ nằm trên thiết bị của bạn.</string>
+    <string name="spirit_streak">Số ngày liên tiếp đủ năm lần: %1$s</string>
+    <string name="spirit_title">Sức khỏe tâm linh</string>
+    <string name="spirit_today">Hôm nay</string>
+    <string name="spirit_week">Bảy ngày qua</string>
+    <string name="spirit_week_count">Đã đánh dấu %1$s trên %2$s lần cầu nguyện</string>
     <string name="start_at_login">Khởi động cùng Windows</string>
     <string name="start_at_login_note">Mở trong khu vực thông báo khi bạn đăng nhập, để tiếng Adhan và lời nhắc đến mà không cần mở ứng dụng.</string>
     <string name="start_at_login_store_note">Để Near Mosque khởi động khi bạn đăng nhập, hãy bật nó trong Cài đặt Windows → Ứng dụng → Khởi động.</string>

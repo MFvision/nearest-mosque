@@ -36025,6 +36025,669 @@
         }
       }
     },
+    "health_minutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min per prayer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ دقيقة لكل صلاة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ہر نماز کے %1$@ منٹ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namaz başına %1$@ dk"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ menit per salat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min par prière"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min por oración"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ мин на молитву"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রতি নামাজে %1$@ মিনিট"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ دقیقه برای هر نماز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ دقیقه برای هر نماز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次礼拜 %1$@ 分钟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर नमाज़ के %1$@ मिनट"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min por oração"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minti %1$@ a kowace sallah"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dakika %1$@ kwa kila swala"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min bawat salah"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ phút mỗi lần"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ นาทีต่อละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ នាទីក្នុងមួយសឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ھەر نامازغا %1$@ مىنۇت"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ خولەک بۆ هەر نوێژێک"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min po namazu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ мин по намазу"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ мин по намаз"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imánként %1$@ perc"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ min per gebed"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ წთ ყოველ ლოცვაზე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නමාසයකට මිනිත්තු %1$@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రతి నమాజ్‌కు %1$@ నిమిషాలు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪ್ರತಿ ನಮಾಜ್‌ಗೆ %1$@ ನಿಮಿಷ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഓരോ നമസ്കാരത്തിനും %1$@ മിനിറ്റ്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रत्येक नमाजसाठी %1$@ मिनिटे"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "દરેક નમાઝ માટે %1$@ મિનિટ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਰ ਨਮਾਜ਼ ਦੇ %1$@ ਮਿੰਟ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্ৰতি নামাজত %1$@ মিনিট"
+          }
+        }
+      }
+    },
+    "health_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each prayer you mark is added to Apple Health as mindful minutes. Nothing is read from Health, and nothing leaves your devices."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُضاف كل صلاة تسجّلها إلى Apple Health دقائقَ يقظة ذهنية. لا يُقرأ شيء من Health، ولا يغادر شيء أجهزتك."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ہر نشان زد نماز Apple Health میں مائنڈفل منٹس کے طور پر شامل ہوتی ہے۔ Health سے کچھ نہیں پڑھا جاتا، اور کچھ آپ کے آلات سے باہر نہیں جاتا۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İşaretlediğiniz her namaz Apple Sağlık'a farkındalık dakikası olarak eklenir. Sağlık'tan hiçbir şey okunmaz ve hiçbir şey cihazlarınızdan çıkmaz."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setiap salat yang Anda tandai ditambahkan ke Apple Health sebagai menit kesadaran. Tidak ada yang dibaca dari Health, dan tidak ada yang keluar dari perangkat Anda."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque prière marquée est ajoutée à Santé en minutes de pleine conscience. Rien n’est lu dans Santé, et rien ne quitte vos appareils."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada oración que marcas se añade a Salud como minutos de atención plena. No se lee nada de Salud y nada sale de tus dispositivos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждая отмеченная молитва добавляется в «Здоровье» как минуты осознанности. Из «Здоровья» ничего не читается, и ничего не покидает ваши устройства."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রতিটি চিহ্নিত নামাজ Apple Health-এ মাইন্ডফুল মিনিট হিসেবে যোগ হয়। Health থেকে কিছু পড়া হয় না, আর কিছুই আপনার ডিভাইসের বাইরে যায় না।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هر نمازی که علامت بزنید، به‌صورت دقایق ذهن‌آگاهی به Apple Health افزوده می‌شود. چیزی از Health خوانده نمی‌شود و چیزی از دستگاه‌هایتان بیرون نمی‌رود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هر نمازی که علامت بزنید، به‌صورت دقایق ذهن‌آگاهی به Apple Health افزوده می‌شود. چیزی از Health خوانده نمی‌شود و چیزی از دستگاه‌هایتان بیرون نمی‌رود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你标记的每次礼拜都会以“正念分钟数”添加到“健康”。不会读取“健康”中的任何数据，也不会有数据离开你的设备。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर दर्ज नमाज़ Apple Health में माइंडफ़ुल मिनट के रूप में जुड़ती है। Health से कुछ पढ़ा नहीं जाता, और कुछ भी आपके डिवाइस से बाहर नहीं जाता।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada oração marcada é adicionada ao Saúde como minutos de atenção plena. Nada é lido do Saúde e nada sai dos seus aparelhos."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kowace sallah da kuka yi wa alama ana ƙara ta a Apple Health a matsayin mintunan natsuwa. Ba a karanta komai daga Health, kuma babu abin da ke barin na'urorinku."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kila swala unayoweka alama huongezwa kwenye Apple Health kama dakika za utulivu. Hakuna kinachosomwa kutoka Health, na hakuna kinachotoka kwenye vifaa vyako."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bawat salah na minarkahan mo ay idinadagdag sa Apple Health bilang mindful minutes. Walang binabasa mula sa Health, at walang umaalis sa iyong mga device."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mỗi lần cầu nguyện bạn đánh dấu được thêm vào Sức khỏe dưới dạng phút chánh niệm. Không đọc gì từ Sức khỏe và không gì rời khỏi thiết bị của bạn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดแต่ละครั้งที่คุณทำเครื่องหมายจะถูกเพิ่มในแอปสุขภาพเป็นนาทีแห่งสติ ไม่มีการอ่านข้อมูลจากสุขภาพ และไม่มีข้อมูลออกจากอุปกรณ์ของคุณ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតនីមួយៗដែលអ្នកសម្គាល់ ត្រូវបានបន្ថែមទៅ Apple Health ជានាទីស្មារតី។ គ្មានអ្វីត្រូវបានអានពី Health ហើយគ្មានអ្វីចេញពីឧបករណ៍របស់អ្នកទេ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بەلگىلىگەن ھەر بىر ناماز Apple Health قا ئەستايىدىللىق مىنۇتى سۈپىتىدە قوشۇلىدۇ. Health دىن ھېچنېمە ئوقۇلمايدۇ، ھېچنېمە ئۈسكۈنىلىرىڭىزدىن چىقمايدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هەر نوێژێک نیشانی بکەیت وەک خولەکی ئاگایی زیاد دەکرێت بۆ Apple Health. هیچ شتێک لە Health ناخوێنرێتەوە و هیچ شتێک ئامێرەکانت جێناهێڵێت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svaki označeni namaz dodaje se u Apple Health kao minute pažnje. Ništa se ne čita iz Healtha i ništa ne napušta vaše uređaje."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сваки означени намаз додаје се у Apple Health као минути пажње. Ништа се не чита из Health-а и ништа не напушта ваше уређаје."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Секој означен намаз се додава во Apple Health како минути на свесност. Ништо не се чита од Health и ништо не ги напушта вашите уреди."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minden megjelölt ima tudatossági percként kerül az Egészségbe. Semmit sem olvasunk ki belőle, és semmi sem hagyja el az eszközeit."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elk gemarkeerd gebed wordt als mindfulnessminuten aan Gezondheid toegevoegd. Er wordt niets uit Gezondheid gelezen en niets verlaat je apparaten."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყოველი მონიშნული ლოცვა Apple Health-ს ემატება გაცნობიერების წუთებად. Health-იდან არაფერი იკითხება და არაფერი ტოვებს თქვენს მოწყობილობებს."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ සලකුණු කරන සෑම නමාසයක්ම Apple Health වෙත සිහිකල්පනා මිනිත්තු ලෙස එක් වේ. Health වෙතින් කිසිවක් කියවන්නේ නැත, ඔබේ උපාංගවලින් කිසිවක් පිට නොයයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు గుర్తించే ప్రతి నమాజ్ Apple Healthలో మైండ్‌ఫుల్ నిమిషాలుగా జోడించబడుతుంది. Health నుండి ఏదీ చదవబడదు, ఏదీ మీ పరికరాల నుండి బయటకు వెళ్లదు."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನೀವು ಗುರುತಿಸುವ ಪ್ರತಿ ನಮಾಜ್ Apple Health ಗೆ ಮೈಂಡ್‌ಫುಲ್ ನಿಮಿಷಗಳಾಗಿ ಸೇರುತ್ತದೆ. Health ನಿಂದ ಏನನ್ನೂ ಓದುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಸಾಧನಗಳಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങൾ അടയാളപ്പെടുത്തുന്ന ഓരോ നമസ്കാരവും Apple Health-ൽ മൈൻഡ്‌ഫുൾ മിനിറ്റുകളായി ചേർക്കും. Health-ൽ നിന്ന് ഒന്നും വായിക്കില്ല, ഒന്നും നിങ്ങളുടെ ഉപകരണങ്ങൾ വിട്ടുപോകില്ല."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रत्येक नोंदवलेली नमाज Apple Health मध्ये माइंडफुल मिनिटे म्हणून जोडली जाते. Health मधून काहीही वाचले जात नाही, आणि काहीही तुमच्या उपकरणांबाहेर जात नाही."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "દરેક નોંધેલી નમાઝ Apple Health માં માઇન્ડફુલ મિનિટ તરીકે ઉમેરાય છે. Health માંથી કંઈ વંચાતું નથી, અને કંઈ તમારાં ઉપકરણોની બહાર જતું નથી."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਰ ਦਰਜ ਨਮਾਜ਼ Apple Health ਵਿੱਚ ਮਾਈਂਡਫੁਲ ਮਿੰਟਾਂ ਵਜੋਂ ਜੁੜਦੀ ਹੈ। Health ਤੋਂ ਕੁਝ ਨਹੀਂ ਪੜ੍ਹਿਆ ਜਾਂਦਾ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੀਆਂ ਡਿਵਾਈਸਾਂ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্ৰতিটো চিহ্নিত নামাজ Apple Healthত মাইণ্ডফুল মিনিট হিচাপে যোগ হয়। Healthৰ পৰা একো পঢ়া নহয়, আৰু একো আপোনাৰ ডিভাইচৰ বাহিৰলৈ নাযায়।"
+          }
+        }
+      }
+    },
+    "health_toggle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add prayers to Apple Health"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إضافة الصلوات إلى Apple Health"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نمازیں Apple Health میں شامل کریں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namazları Apple Sağlık'a ekle"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambahkan salat ke Apple Health"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter les prières à Santé"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir oraciones a Salud"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавлять молитвы в «Здоровье»"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজ Apple Health-এ যোগ করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افزودن نمازها به Apple Health"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افزودن نمازها به Apple Health"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将礼拜添加到“健康”"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ें Apple Health में जोड़ें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar orações ao Saúde"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ƙara salloli zuwa Apple Health"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ongeza swala kwenye Apple Health"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idagdag ang salah sa Apple Health"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thêm cầu nguyện vào Sức khỏe"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เพิ่มละหมาดในแอปสุขภาพ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បន្ថែមសឡាតទៅ Apple Health"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نامازلارنى Apple Health قا قوشۇش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زیادکردنی نوێژەکان بۆ Apple Health"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodaj namaze u Apple Health"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додај намазе у Apple Health"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додај ги намазите во Apple Health"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imák hozzáadása az Egészséghez"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebeden toevoegen aan Gezondheid"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ლოცვების დამატება Apple Health-ში"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නමාස Apple Health වෙත එක් කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్‌లను Apple Healthకు జోడించండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್‌ಗಳನ್ನು Apple Health ಗೆ ಸೇರಿಸಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാരങ്ങൾ Apple Health-ൽ ചേർക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज Apple Health मध्ये जोडा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝ Apple Health માં ઉમેરો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ਾਂ Apple Health ਵਿੱਚ ਜੋੜੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজ Apple Healthত যোগ কৰক"
+          }
+        }
+      }
+    },
     "high_latitude_rule": {
       "extractionState": "manual",
       "localizations": {
@@ -101009,6 +101672,1332 @@
           "stringUnit": {
             "state": "translated",
             "value": "উৎস আৰু অনুজ্ঞাপত্ৰ"
+          }
+        }
+      }
+    },
+    "spirit_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only what you mark counts. It is between you and Allah, and it stays on your devices."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يُحسب إلا ما تسجّله. هو بينك وبين الله، ويبقى على أجهزتك."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صرف وہی شمار ہوتا ہے جو آپ نشان زد کریں۔ یہ آپ اور اللہ کے درمیان ہے، اور آپ کے آلات پر ہی رہتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca işaretledikleriniz sayılır. Bu, sizinle Allah arasındadır ve cihazlarınızda kalır."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hanya yang Anda tandai yang dihitung. Itu antara Anda dan Allah, dan tetap di perangkat Anda."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seul ce que vous marquez compte. Cela reste entre vous et Allah, et sur vos appareils."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo cuenta lo que marcas. Es entre tú y Allah, y se queda en tus dispositivos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Считается только то, что вы отмечаете. Это между вами и Аллахом и остаётся на ваших устройствах."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শুধু আপনি যা চিহ্নিত করেন তা-ই গোনা হয়। এটি আপনার ও আল্লাহর মধ্যে, আর আপনার ডিভাইসেই থাকে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فقط آنچه علامت می‌زنید شمرده می‌شود. این میان شما و خداست و روی دستگاه‌هایتان می‌ماند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فقط آنچه علامت می‌زنید شمرده می‌شود. این میان شما و خداست و روی دستگاه‌هایتان می‌ماند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只计算你自己标记的。这是你与安拉之间的事，只保存在你的设备上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिर्फ़ वही गिना जाता है जो आप दर्ज करें। यह आपके और अल्लाह के बीच है, और आपके डिवाइस पर ही रहता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Só conta o que você marca. É entre você e Allah, e fica nos seus aparelhos."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abin da kuka yi wa alama kawai ake ƙirgawa. Tsakaninku da Allah ne, kuma yana zama a na'urorinku."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kinachohesabiwa ni ulichoweka alama tu. Ni kati yako na Allah, na hubaki kwenye vifaa vyako."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang minarkahan mo lang ang binibilang. Ito ay sa pagitan mo at ni Allah, at nananatili sa iyong mga device."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chỉ những gì bạn đánh dấu mới được tính. Đó là chuyện giữa bạn và Allah, và chỉ nằm trên thiết bị của bạn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นับเฉพาะสิ่งที่คุณทำเครื่องหมาย เป็นเรื่องระหว่างคุณกับอัลลอฮ์ และเก็บไว้บนอุปกรณ์ของคุณเท่านั้น"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រាប់តែអ្វីដែលអ្នកសម្គាល់ប៉ុណ្ណោះ។ វាជារឿងរវាងអ្នក និងអល់ឡោះ ហើយនៅលើឧបករណ៍របស់អ្នក។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پەقەت سىز بەلگىلىگەنلا ھېسابلىنىدۇ. بۇ سىز بىلەن ئاللاھ ئوتتۇرىسىدىكى ئىش، ئۈسكۈنىلىرىڭىزدىلا قالىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تەنها ئەوەی نیشانی دەکەیت دەژمێردرێت. ئەمە لە نێوان تۆ و خوادایە و لەسەر ئامێرەکانت دەمێنێتەوە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Računa se samo ono što označite. To je između vas i Allaha i ostaje na vašim uređajima."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рачуна се само оно што означите. То је између вас и Аллаха и остаје на вашим уређајима."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Се брои само она што ќе го означите. Тоа е меѓу вас и Аллах и останува на вашите уреди."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Csak az számít, amit megjelöl. Ez Ön és Allah között marad, az eszközein."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alleen wat je markeert telt. Het is tussen jou en Allah, en het blijft op je apparaten."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ითვლება მხოლოდ ის, რასაც თქვენ მონიშნავთ. ეს თქვენსა და ალაჰს შორისაა და თქვენს მოწყობილობებზე რჩება."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ සලකුණු කරන දේ පමණක් ගණන් වේ. එය ඔබ සහ අල්ලාහ් අතර වන අතර ඔබේ උපාංගවලම රැඳේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు గుర్తించినదే లెక్కలోకి వస్తుంది. ఇది మీకు అల్లాహ్‌కు మధ్య విషయం, మీ పరికరాల్లోనే ఉంటుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನೀವು ಗುರುತಿಸಿದ್ದೇ ಎಣಿಕೆಗೆ ಬರುತ್ತದೆ. ಇದು ನಿಮ್ಮ ಮತ್ತು ಅಲ್ಲಾಹನ ನಡುವಿನದು, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಉಳಿಯುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങൾ അടയാളപ്പെടുത്തുന്നതു മാത്രമേ എണ്ണൂ. അത് നിങ്ങൾക്കും അല്ലാഹുവിനും ഇടയിലാണ്, നിങ്ങളുടെ ഉപകരണങ്ങളിൽ മാത്രം നിൽക്കും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्ही नोंदवलेलेच मोजले जाते. ते तुमच्या आणि अल्लाहच्या दरम्यान आहे, आणि तुमच्या उपकरणांवरच राहते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમે નોંધો એ જ ગણાય છે. એ તમારા અને અલ્લાહ વચ્ચે છે, અને તમારાં ઉપકરણો પર જ રહે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਿਰਫ਼ ਉਹੀ ਗਿਣਿਆ ਜਾਂਦਾ ਹੈ ਜੋ ਤੁਸੀਂ ਦਰਜ ਕਰੋ। ਇਹ ਤੁਹਾਡੇ ਅਤੇ ਅੱਲ੍ਹਾ ਵਿਚਕਾਰ ਹੈ, ਅਤੇ ਤੁਹਾਡੀਆਂ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপুনি চিহ্নিত কৰাখিনিহে গণনা হয়। ই আপোনাৰ আৰু আল্লাহৰ মাজৰ কথা, আৰু আপোনাৰ ডিভাইচতে থাকে।"
+          }
+        }
+      }
+    },
+    "spirit_streak": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days in a row with all five: %1$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أيام متتالية بالصلوات الخمس: %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پانچوں نمازوں والے مسلسل دن: %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beş vaktin tamamı olan ardışık gün: %1$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hari berturut-turut dengan kelima salat: %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jours d’affilée avec les cinq : %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Días seguidos con las cinco: %1$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дней подряд со всеми пятью: %1$@"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পাঁচ ওয়াক্তসহ টানা দিন: %1$@"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روزهای پیاپی با هر پنج نماز: %1$@"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روزهای پیاپی با هر پنج نماز: %1$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连续完成五次礼拜的天数：%1$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पाँचों नमाज़ों वाले लगातार दिन: %1$@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dias seguidos com as cinco: %1$@"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwanaki a jere da salloli biyar: %1$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siku mfululizo zenye swala zote tano: %1$@"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunod-sunod na araw na kumpleto ang lima: %1$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Số ngày liên tiếp đủ năm lần: %1$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วันติดต่อกันที่ครบทั้งห้า: %1$@"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃជាប់គ្នាដែលគ្រប់ទាំងប្រាំ៖ %1$@"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بەش ناماز تولۇق ئۇدا كۈنلەر: %1$@"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ڕۆژی بەدوایەک بە هەر پێنج نوێژەکە: %1$@"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dana zaredom sa svih pet: %1$@"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дана заредом са свих пет: %1$@"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Денови по ред со сите пет: %1$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egymás utáni napok mind az öttel: %1$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagen op rij met alle vijf: %1$@"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დღეები ზედიზედ ხუთივე ლოცვით: %1$@"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පහම සම්පූර්ණ වූ අඛණ්ඩ දින: %1$@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఐదూ పూర్తయిన వరుస రోజులు: %1$@"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಐದೂ ಪೂರ್ಣಗೊಂಡ ಸತತ ದಿನಗಳು: %1$@"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അഞ്ചും പൂർത്തിയായ തുടർച്ചയായ ദിവസങ്ങൾ: %1$@"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पाचही नमाजांचे सलग दिवस: %1$@"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "પાંચેય નમાઝવાળા સળંગ દિવસ: %1$@"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪੰਜੇ ਨਮਾਜ਼ਾਂ ਵਾਲੇ ਲਗਾਤਾਰ ਦਿਨ: %1$@"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পাঁচওৱাক্তৰ সৈতে একেৰাহে দিন: %1$@"
+          }
+        }
+      }
+    },
+    "spirit_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spiritual health"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصحة الروحية"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روحانی صحت"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manevi sağlık"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kesehatan rohani"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé spirituelle"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salud espiritual"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Духовное здоровье"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আত্মিক সুস্থতা"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سلامت معنوی"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صحت معنوی"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心灵健康"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूहानी सेहत"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saúde espiritual"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lafiyar ruhi"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afya ya kiroho"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalusugang espirituwal"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sức khỏe tâm linh"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สุขภาพทางจิตวิญญาณ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សុខភាពខាងវិញ្ញាណ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مەنىۋى ساغلاملىق"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تەندروستی ڕۆحی"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duhovno zdravlje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Духовно здравље"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Духовно здравје"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lelki egészség"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spirituele gezondheid"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სულიერი ჯანმრთელობა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ආත්මික සෞඛ්‍යය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆధ్యాత్మిక ఆరోగ్యం"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆಧ್ಯಾತ್ಮಿಕ ಆರೋಗ್ಯ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ആത്മീയ ആരോഗ്യം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आध्यात्मिक आरोग्य"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આધ્યાત્મિક આરોગ્ય"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਹਾਨੀ ਸਿਹਤ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আধ্যাত্মিক সুস্থতা"
+          }
+        }
+      }
+    },
+    "spirit_today": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اليوم"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آج"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hari ini"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd’hui"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজ"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امروز"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امروز"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yau"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leo"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngayon"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hôm nay"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วันนี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ថ្ងៃនេះ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۈگۈن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەمڕۆ"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Danas"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Данас"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Денес"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ma"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დღეს"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අද"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈరోజు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಇಂದು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇന്ന്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આજે"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅੱਜ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজি"
+          }
+        }
+      }
+    },
+    "spirit_week": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The last seven days"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آخر سبعة أيام"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پچھلے سات دن"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son yedi gün"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tujuh hari terakhir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les sept derniers jours"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los últimos siete días"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Последние семь дней"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গত সাত দিন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هفت روز گذشته"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هفت روز گذشته"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近七天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले सात दिन"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os últimos sete dias"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwanaki bakwai da suka wuce"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siku saba zilizopita"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nakaraang pitong araw"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bảy ngày qua"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เจ็ดวันที่ผ่านมา"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប្រាំពីរថ្ងៃចុងក្រោយ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئاخىرقى يەتتە كۈن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دوایین حەوت ڕۆژ"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posljednjih sedam dana"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Последњих седам дана"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Последните седум дена"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az elmúlt hét nap"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De afgelopen zeven dagen"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ბოლო შვიდი დღე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පසුගිය දින හත"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "గత ఏడు రోజులు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಳೆದ ಏಳು ದಿನಗಳು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "കഴിഞ്ഞ ഏഴ് ദിവസം"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मागील सात दिवस"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "છેલ્લા સાત દિવસ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਿਛਲੇ ਸੱਤ ਦਿਨ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "যোৱা সাত দিন"
+          }
+        }
+      }
+    },
+    "spirit_week_count": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ of %2$@ prayers marked"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ من %2$@ صلاة مسجّلة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ میں سے %1$@ نمازیں نشان زد"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ namazdan %1$@ işaretli"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ dari %2$@ salat ditandai"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ prières sur %2$@ marquées"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ de %2$@ oraciones marcadas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отмечено %1$@ из %2$@ молитв"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@-এর মধ্যে %1$@ নামাজ চিহ্নিত"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ از %2$@ نماز علامت خورده"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ از %2$@ نماز علامت خورده"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已标记 %1$@ / %2$@ 次礼拜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ में से %1$@ नमाज़ें दर्ज"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ de %2$@ orações marcadas"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An yi alamar sallah %1$@ cikin %2$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swala %1$@ kati ya %2$@ zimewekwa alama"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sa %2$@ salah ang namarkahan"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã đánh dấu %1$@ trên %2$@ lần cầu nguyện"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทำเครื่องหมายแล้ว %1$@ จาก %2$@ ละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានសម្គាល់ %1$@ ក្នុងចំណោម %2$@ សឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ نامازدىن %1$@ بەلگىلەندى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ لە %2$@ نوێژ نیشانکراوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Označeno %1$@ od %2$@ namaza"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Означено %1$@ од %2$@ намаза"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Означени %1$@ од %2$@ намази"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ imából %1$@ megjelölve"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ van %2$@ gebeden gemarkeerd"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მონიშნულია %2$@-დან %1$@ ლოცვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නමාස %2$@ න් %1$@ ක් සලකුණු කළා"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@లో %1$@ నమాజ్‌లు గుర్తించారు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ ರಲ್ಲಿ %1$@ ನಮಾಜ್ ಗುರುತಿಸಲಾಗಿದೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@-ൽ %1$@ നമസ്കാരം അടയാളപ്പെടുത്തി"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ पैकी %1$@ नमाज नोंदल्या"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ માંથી %1$@ નમાઝ નોંધાઈ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ ਵਿੱਚੋਂ %1$@ ਨਮਾਜ਼ਾਂ ਦਰਜ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ৰ ভিতৰত %1$@ নামাজ চিহ্নিত"
           }
         }
       }

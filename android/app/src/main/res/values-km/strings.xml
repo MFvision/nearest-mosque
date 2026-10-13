@@ -164,6 +164,9 @@
     <string name="follow_device_location">តាមទីតាំងរបស់ខ្ញុំ</string>
     <string name="get_directions">យកផ្លូវទៅ</string>
     <string name="heading_accuracy">ភាពត្រឹមត្រូវ ±%1$s°</string>
+    <string name="health_minutes">%1$s នាទីក្នុងមួយសឡាត</string>
+    <string name="health_note">សឡាតនីមួយៗដែលអ្នកសម្គាល់ ត្រូវបានបន្ថែមទៅ Apple Health ជានាទីស្មារតី។ គ្មានអ្វីត្រូវបានអានពី Health ហើយគ្មានអ្វីចេញពីឧបករណ៍របស់អ្នកទេ។</string>
+    <string name="health_toggle">បន្ថែមសឡាតទៅ Apple Health</string>
     <string name="high_latitude_rule">ច្បាប់រយៈទទឹងខ្ពស់</string>
     <string name="hijri_adjustment">ការកែតម្រូវកាលបរិច្ឆេទហ៊ីជរ៉ះ</string>
     <string name="hijri_calendar_note">កាលបរិច្ឆេទហ៊ីជរ៉ះប្រើប្រតិទិន Umm al-Qura។ ការមើលព្រះចន្ទក្នុងតំបន់អាចខុសគ្នាមួយថ្ងៃ។</string>
@@ -458,6 +461,12 @@
     <string name="source_unavailable">%1$s (មិនទាន់មាននៅឡើយ)</string>
     <string name="sources">ប្រភព</string>
     <string name="sources_licenses">ប្រភព និងអាជ្ញាប័ណ្ណ</string>
+    <string name="spirit_note">រាប់តែអ្វីដែលអ្នកសម្គាល់ប៉ុណ្ណោះ។ វាជារឿងរវាងអ្នក និងអល់ឡោះ ហើយនៅលើឧបករណ៍របស់អ្នក។</string>
+    <string name="spirit_streak">ថ្ងៃជាប់គ្នាដែលគ្រប់ទាំងប្រាំ៖ %1$s</string>
+    <string name="spirit_title">សុខភាពខាងវិញ្ញាណ</string>
+    <string name="spirit_today">ថ្ងៃនេះ</string>
+    <string name="spirit_week">ប្រាំពីរថ្ងៃចុងក្រោយ</string>
+    <string name="spirit_week_count">បានសម្គាល់ %1$s ក្នុងចំណោម %2$s សឡាត</string>
     <string name="start_at_login">ចាប់ផ្ដើមជាមួយ Windows</string>
     <string name="start_at_login_note">បើកនៅតំបន់ជូនដំណឹងពេលអ្នកចូល ដើម្បីឱ្យអាហ្សាន និងការរំលឹកមកដល់ដោយមិនចាំបាច់បើកកម្មវិធី។</string>
     <string name="start_at_login_store_note">ដើម្បីឱ្យ Near Mosque ចាប់ផ្ដើមពេលអ្នកចូល សូមបើកវានៅក្នុង ការកំណត់ Windows → កម្មវិធី → ការចាប់ផ្ដើម។</string>

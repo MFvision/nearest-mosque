@@ -164,6 +164,9 @@
     <string name="follow_device_location">എന്റെ ലൊക്കേഷൻ പിന്തുടരുക</string>
     <string name="get_directions">വഴി കാണുക</string>
     <string name="heading_accuracy">കൃത്യത ±%1$s°</string>
+    <string name="health_minutes">ഓരോ നമസ്കാരത്തിനും %1$s മിനിറ്റ്</string>
+    <string name="health_note">നിങ്ങൾ അടയാളപ്പെടുത്തുന്ന ഓരോ നമസ്കാരവും Apple Health-ൽ മൈൻഡ്‌ഫുൾ മിനിറ്റുകളായി ചേർക്കും. Health-ൽ നിന്ന് ഒന്നും വായിക്കില്ല, ഒന്നും നിങ്ങളുടെ ഉപകരണങ്ങൾ വിട്ടുപോകില്ല.</string>
+    <string name="health_toggle">നമസ്കാരങ്ങൾ Apple Health-ൽ ചേർക്കുക</string>
     <string name="high_latitude_rule">ഉയർന്ന അക്ഷാംശ നിയമം</string>
     <string name="hijri_adjustment">ഹിജ്റ തീയതി ക്രമീകരണം</string>
     <string name="hijri_calendar_note">ഹിജ്റ തീയതികൾ ഉമ്മുൽ ഖുറാ കലണ്ടർ പ്രകാരമാണ്. പ്രാദേശിക മാസപ്പിറവി ദർശനത്തിൽ ഒരു ദിവസത്തെ വ്യത്യാസം വരാം.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (ഇതുവരെ ലഭ്യമല്ല)</string>
     <string name="sources">ഉറവിടങ്ങൾ</string>
     <string name="sources_licenses">ഉറവിടങ്ങളും ലൈസൻസുകളും</string>
+    <string name="spirit_note">നിങ്ങൾ അടയാളപ്പെടുത്തുന്നതു മാത്രമേ എണ്ണൂ. അത് നിങ്ങൾക്കും അല്ലാഹുവിനും ഇടയിലാണ്, നിങ്ങളുടെ ഉപകരണങ്ങളിൽ മാത്രം നിൽക്കും.</string>
+    <string name="spirit_streak">അഞ്ചും പൂർത്തിയായ തുടർച്ചയായ ദിവസങ്ങൾ: %1$s</string>
+    <string name="spirit_title">ആത്മീയ ആരോഗ്യം</string>
+    <string name="spirit_today">ഇന്ന്</string>
+    <string name="spirit_week">കഴിഞ്ഞ ഏഴ് ദിവസം</string>
+    <string name="spirit_week_count">%2$s-ൽ %1$s നമസ്കാരം അടയാളപ്പെടുത്തി</string>
     <string name="start_at_login">Windows-നൊപ്പം ആരംഭിക്കുക</string>
     <string name="start_at_login_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ അറിയിപ്പ് ഭാഗത്ത് തുറക്കും, ആപ്പ് തുറക്കാതെ തന്നെ ബാങ്കും ഓർമ്മപ്പെടുത്തലുകളും വരും.</string>
     <string name="start_at_login_store_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ Near Mosque ആരംഭിക്കാൻ, Windows ക്രമീകരണങ്ങൾ → ആപ്പുകൾ → സ്റ്റാർട്ടപ്പിൽ അത് ഓണാക്കുക.</string>

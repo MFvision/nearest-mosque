@@ -164,6 +164,9 @@
     <string name="follow_device_location">跟随我的位置</string>
     <string name="get_directions">获取路线</string>
     <string name="heading_accuracy">精度 ±%1$s°</string>
+    <string name="health_minutes">每次礼拜 %1$s 分钟</string>
+    <string name="health_note">你标记的每次礼拜都会以“正念分钟数”添加到“健康”。不会读取“健康”中的任何数据，也不会有数据离开你的设备。</string>
+    <string name="health_toggle">将礼拜添加到“健康”</string>
     <string name="high_latitude_rule">高纬度规则</string>
     <string name="hijri_adjustment">希吉来历日期调整</string>
     <string name="hijri_calendar_note">希吉来历日期采用乌姆古拉历法。当地见月可能相差一天。</string>
@@ -458,6 +461,12 @@
     <string name="source_unavailable">%1$s（暂不可用）</string>
     <string name="sources">来源</string>
     <string name="sources_licenses">来源与许可</string>
+    <string name="spirit_note">只计算你自己标记的。这是你与安拉之间的事，只保存在你的设备上。</string>
+    <string name="spirit_streak">连续完成五次礼拜的天数：%1$s</string>
+    <string name="spirit_title">心灵健康</string>
+    <string name="spirit_today">今天</string>
+    <string name="spirit_week">最近七天</string>
+    <string name="spirit_week_count">已标记 %1$s / %2$s 次礼拜</string>
     <string name="start_at_login">随 Windows 启动</string>
     <string name="start_at_login_note">登录时在通知区域打开，无需打开应用也能收到宣礼和提醒。</string>
     <string name="start_at_login_store_note">如需登录时启动 Near Mosque，请在 Windows“设置”→“应用”→“启动”中打开它。</string>

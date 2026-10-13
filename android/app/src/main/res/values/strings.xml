@@ -164,6 +164,9 @@
     <string name="follow_device_location">Follow my location</string>
     <string name="get_directions">Get directions</string>
     <string name="heading_accuracy">Accuracy ±%1$s°</string>
+    <string name="health_minutes">%1$s min per prayer</string>
+    <string name="health_note">Each prayer you mark is added to Apple Health as mindful minutes. Nothing is read from Health, and nothing leaves your devices.</string>
+    <string name="health_toggle">Add prayers to Apple Health</string>
     <string name="high_latitude_rule">High-latitude rule</string>
     <string name="hijri_adjustment">Hijri date adjustment</string>
     <string name="hijri_calendar_note">Hijri dates use the Umm al-Qura calendar. Local moon sighting can differ by a day.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (not available yet)</string>
     <string name="sources">Sources</string>
     <string name="sources_licenses">Sources and licenses</string>
+    <string name="spirit_note">Only what you mark counts. It is between you and Allah, and it stays on your devices.</string>
+    <string name="spirit_streak">Days in a row with all five: %1$s</string>
+    <string name="spirit_title">Spiritual health</string>
+    <string name="spirit_today">Today</string>
+    <string name="spirit_week">The last seven days</string>
+    <string name="spirit_week_count">%1$s of %2$s prayers marked</string>
     <string name="start_at_login">Start with Windows</string>
     <string name="start_at_login_note">Opens in the notification area when you sign in, so the Adhan and reminders come without opening the app.</string>
     <string name="start_at_login_store_note">To start Near Mosque when you sign in, turn it on in Windows Settings → Apps → Startup.</string>

@@ -317,6 +317,10 @@ targets:
       - path: WatchShared
       - path: Shared/SharedState.swift
       - path: Shared/StyleAccent.swift
+      - path: Shared/Companion.swift
+      # The iPhone's sky and its mosque skyline, behind every watch page.
+      - path: App/Support/Sky.swift
+      - path: App/Support/Art.swift
       - path: App/Support/Localization.swift
       - path: App/Support/Format.swift
       - path: App/Mosques/AppleMosqueSearch.swift
@@ -343,6 +347,9 @@ targets:
       properties:
         # Shared with the complications (the watch's own keychain; the iPhone's values arrive through WatchConnectivity).
         keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+        # Settings → Apple Health (off by default): marked prayers as mindful minutes; nothing is read.
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).watchkitapp
@@ -370,6 +377,8 @@ targets:
           - CFBundleURLName: $(APP_BUNDLE_ID).watchkitapp
             CFBundleURLSchemes: [nearmosque]
         NSLocationWhenInUseUsageDescription: Your location is used on this watch for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        NSHealthUpdateUsageDescription: If you turn it on, each prayer you mark is added to Apple Health as mindful minutes.
+        NSHealthShareUsageDescription: Near Mosque does not read your health data; it only adds the mindful minutes of the prayers you mark.
         ITSAppUsesNonExemptEncryption: false
   NearMosqueWatchWidgets:
     type: app-extension

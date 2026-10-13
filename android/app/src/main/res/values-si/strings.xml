@@ -164,6 +164,9 @@
     <string name="follow_device_location">මගේ ස්ථානය අනුගමනය කරන්න</string>
     <string name="get_directions">මඟ ලබා ගන්න</string>
     <string name="heading_accuracy">නිරවද්‍යතාව ±%1$s°</string>
+    <string name="health_minutes">නමාසයකට මිනිත්තු %1$s</string>
+    <string name="health_note">ඔබ සලකුණු කරන සෑම නමාසයක්ම Apple Health වෙත සිහිකල්පනා මිනිත්තු ලෙස එක් වේ. Health වෙතින් කිසිවක් කියවන්නේ නැත, ඔබේ උපාංගවලින් කිසිවක් පිට නොයයි.</string>
+    <string name="health_toggle">නමාස Apple Health වෙත එක් කරන්න</string>
     <string name="high_latitude_rule">ඉහළ අක්ෂාංශ නීතිය</string>
     <string name="hijri_adjustment">හිජ්රි දින ගැළපීම</string>
     <string name="hijri_calendar_note">හිජ්රි දින උම්මුල් කුරා දින දර්ශනය භාවිත කරයි. ප්‍රාදේශීය සඳ දර්ශනය අනුව එක් දිනක වෙනසක් විය හැක.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (තවම ලබා ගත නොහැක)</string>
     <string name="sources">මූලාශ්‍ර</string>
     <string name="sources_licenses">මූලාශ්‍ර සහ බලපත්‍ර</string>
+    <string name="spirit_note">ඔබ සලකුණු කරන දේ පමණක් ගණන් වේ. එය ඔබ සහ අල්ලාහ් අතර වන අතර ඔබේ උපාංගවලම රැඳේ.</string>
+    <string name="spirit_streak">පහම සම්පූර්ණ වූ අඛණ්ඩ දින: %1$s</string>
+    <string name="spirit_title">ආත්මික සෞඛ්‍යය</string>
+    <string name="spirit_today">අද</string>
+    <string name="spirit_week">පසුගිය දින හත</string>
+    <string name="spirit_week_count">නමාස %2$s න් %1$s ක් සලකුණු කළා</string>
     <string name="start_at_login">Windows සමඟ ආරම්භ කරන්න</string>
     <string name="start_at_login_note">ඔබ පුරනය වන විට දැනුම්දීම් ප්‍රදේශයේ විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ.</string>
     <string name="start_at_login_store_note">ඔබ පුරනය වන විට Near Mosque ආරම්භ වීමට, Windows සැකසීම් → යෙදුම් → ආරම්භය තුළ එය සක්‍රිය කරන්න.</string>

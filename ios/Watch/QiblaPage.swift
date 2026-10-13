@@ -26,6 +26,7 @@ struct QiblaPage: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     Text(hint(s, turn: turn, facing: facing))
                         .font(.headline).foregroundStyle(facing ? model.accent : .white)
+                        .shadow(color: .black.opacity(0.5), radius: 3)
                         .lineLimit(2).minimumScaleFactor(0.6).multilineTextAlignment(.center)
                     Text(s.t("qibla_bearing", Format.degrees(bearing, locale: s.locale)))
                         .font(.caption2).foregroundStyle(.secondary).lineLimit(1).minimumScaleFactor(0.7)
@@ -39,6 +40,7 @@ struct QiblaPage: View {
                 WaitingView()
             }
         }
+        .watchSky()
         .navigationTitle(l10n.t("qibla"))
         .onAppear { compass.start() }
         .onDisappear { compass.stop() }
@@ -62,6 +64,8 @@ struct QiblaWatchDial: View {
     let facing: Bool
     let accent: Color
     let north: String
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var ripple = false
 
     var body: some View {
         GeometryReader { g in
@@ -70,8 +74,16 @@ struct QiblaWatchDial: View {
             let c = CGPoint(x: g.size.width / 2, y: g.size.height / 2)
             let ring = -(heading ?? 0)
             ZStack {
-                Circle().fill(Color.white.opacity(0.06)).frame(width: d, height: d)
-                Circle().stroke(facing ? accent : Color.white.opacity(0.25), lineWidth: facing ? 3 : 1.5).frame(width: d - 4, height: d - 4)
+                // A ripple of light while you face the Qibla.
+                Circle().stroke(accent, lineWidth: 2).frame(width: d, height: d)
+                    .scaleEffect(ripple ? 1.18 : 1).opacity(facing ? (ripple ? 0 : 0.9) : 0)
+                Circle().fill(.ultraThinMaterial).frame(width: d, height: d)
+                Circle().fill(RadialGradient(colors: [accent.opacity(facing ? 0.35 : 0.12), .clear], center: .center, startRadius: 0, endRadius: d / 2))
+                    .frame(width: d, height: d)
+                Circle().stroke(facing ? AnyShapeStyle(accent) : AnyShapeStyle(LinearGradient(colors: [.white.opacity(0.5), .white.opacity(0.12)], startPoint: .top, endPoint: .bottom)),
+                                lineWidth: facing ? 3 : 1.5)
+                    .frame(width: d - 4, height: d - 4)
+                    .shadow(color: facing ? accent.opacity(0.8) : .clear, radius: 8)
                 ForEach(0..<36) { i in
                     Capsule().fill(Color.white.opacity(i % 9 == 0 ? 0.8 : 0.3))
                         .frame(width: i % 9 == 0 ? 2 : 1, height: i % 9 == 0 ? 8 : 4)
@@ -94,6 +106,10 @@ struct QiblaWatchDial: View {
                     .position(c)
             }
             .animation(.easeOut(duration: 0.25), value: heading ?? 0)
+        }
+        .onAppear {
+            guard !reduceMotion else { return }
+            withAnimation(.easeOut(duration: 1.6).repeatForever(autoreverses: false)) { ripple = true }
         }
         .environment(\.layoutDirection, .leftToRight)
         .aspectRatio(1, contentMode: .fit)

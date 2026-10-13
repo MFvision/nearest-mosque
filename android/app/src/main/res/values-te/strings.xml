@@ -164,6 +164,9 @@
     <string name="follow_device_location">నా లొకేషన్‌ను అనుసరించు</string>
     <string name="get_directions">దారి చూపించు</string>
     <string name="heading_accuracy">ఖచ్చితత్వం ±%1$s°</string>
+    <string name="health_minutes">ప్రతి నమాజ్‌కు %1$s నిమిషాలు</string>
+    <string name="health_note">మీరు గుర్తించే ప్రతి నమాజ్ Apple Healthలో మైండ్‌ఫుల్ నిమిషాలుగా జోడించబడుతుంది. Health నుండి ఏదీ చదవబడదు, ఏదీ మీ పరికరాల నుండి బయటకు వెళ్లదు.</string>
+    <string name="health_toggle">నమాజ్‌లను Apple Healthకు జోడించండి</string>
     <string name="high_latitude_rule">అధిక అక్షాంశ నియమం</string>
     <string name="hijri_adjustment">హిజ్రీ తేదీ సర్దుబాటు</string>
     <string name="hijri_calendar_note">హిజ్రీ తేదీలు ఉమ్ అల్-ఖురా క్యాలెండర్‌ను ఉపయోగిస్తాయి. స్థానిక నెలవంక దర్శనం వల్ల ఒక రోజు తేడా ఉండవచ్చు.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (ఇంకా అందుబాటులో లేదు)</string>
     <string name="sources">మూలాలు</string>
     <string name="sources_licenses">మూలాలు మరియు లైసెన్సులు</string>
+    <string name="spirit_note">మీరు గుర్తించినదే లెక్కలోకి వస్తుంది. ఇది మీకు అల్లాహ్‌కు మధ్య విషయం, మీ పరికరాల్లోనే ఉంటుంది.</string>
+    <string name="spirit_streak">ఐదూ పూర్తయిన వరుస రోజులు: %1$s</string>
+    <string name="spirit_title">ఆధ్యాత్మిక ఆరోగ్యం</string>
+    <string name="spirit_today">ఈరోజు</string>
+    <string name="spirit_week">గత ఏడు రోజులు</string>
+    <string name="spirit_week_count">%2$sలో %1$s నమాజ్‌లు గుర్తించారు</string>
     <string name="start_at_login">Windowsతో ప్రారంభించు</string>
     <string name="start_at_login_note">మీరు సైన్ ఇన్ చేయగానే నోటిఫికేషన్ ప్రాంతంలో తెరుచుకుంటుంది, యాప్ తెరవకుండానే అజాన్, రిమైండర్‌లు వస్తాయి.</string>
     <string name="start_at_login_store_note">సైన్ ఇన్ చేసినప్పుడు Near Mosque ప్రారంభం కావాలంటే, Windows సెట్టింగ్‌లు → యాప్‌లు → స్టార్టప్‌లో దాన్ని ఆన్ చేయండి.</string>

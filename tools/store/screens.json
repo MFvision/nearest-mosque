@@ -51,8 +51,9 @@
     "tv-top-shelf": {"title": "Top Shelf", "shows": "The Top Shelf on the Apple TV Home Screen: the next prayer without opening the app.", "city": "Riyadh", "args": ["-demoTopShelf", "YES"]},
     "tv-settings": {"title": "Settings", "shows": "City, calculation method and Adhan settings.", "city": "Riyadh", "args": ["-demoTab", "settings"]},
     "watch-prayer": {"title": "Prayer times on the wrist", "shows": "Apple Watch: the next prayer, its time and a live countdown on the sky of the hour, then today's times with their reminder bells.", "city": "Riyadh", "args": ["-demoScreen", "prayer"]},
-    "watch-qibla": {"title": "Qibla compass on the watch", "shows": "Apple Watch: the live Qibla compass, facing the Qibla (the watch taps the wrist when you face it).", "city": "Riyadh", "args": ["-demoScreen", "qibla", "-demoHeading", "241"]},
-    "watch-tasbih": {"title": "Tasbih on the Digital Crown", "shows": "Apple Watch: the tasbih counter; turn the Digital Crown, tap or double-tap to count, and the ring fills every 33.", "city": "Riyadh", "args": ["-demoScreen", "tasbih", "-demoTasbih", "21"]},
+    "watch-qibla": {"title": "Qibla compass on the watch", "shows": "Apple Watch: the live Qibla compass, facing the Qibla (the watch taps the wrist when you face it).", "city": "Riyadh", "args": ["-demoScreen", "qibla", "-demoHeading", "241", "-demoSky", "maghrib"]},
+    "watch-spirit": {"title": "Spiritual health", "shows": "Apple Watch: the companion bright or tired with the prayers you mark, today's five prayers, the last seven days and the days in a row with all five.", "city": "Riyadh", "args": ["-demoScreen", "spirit", "-demoMarks", "1", "-demoSky", "isha"]},
+    "watch-tasbih": {"title": "Tasbih on the Digital Crown", "shows": "Apple Watch: the tasbih counter; turn the Digital Crown, tap or double-tap to count, and the ring fills every 33.", "city": "Riyadh", "args": ["-demoScreen", "tasbih", "-demoTasbih", "21", "-demoSky", "night"]},
     "watch-mosques": {"title": "Nearest mosques", "shows": "Apple Watch: the nearest mosques with their distance and an arrow pointing to each.", "city": "Cairo", "args": ["-demoScreen", "mosques"]},
     "watch-ask": {"title": "Ask on the watch", "shows": "Apple Watch: a common answer (asked by voice) with its Qur'an references and the review label.", "city": "Riyadh", "args": ["-demoScreen", "ask", "-demoAskId", "quran-miracle"], "fallbackArgs": ["-demoScreen", "ask"]}
   },
@@ -70,7 +71,7 @@
     "watch": {
       "displayType": "APP_WATCH_ULTRA", "label": "Apple Watch Ultra", "simulator": "^Apple Watch Ultra", "scheme": "NearMosqueWatch",
       "sizes": [[422, 514], [410, 502]],
-      "order": ["watch-prayer", "watch-qibla", "watch-tasbih", "watch-mosques", "watch-ask"]
+      "order": ["watch-prayer", "watch-qibla", "watch-spirit", "watch-tasbih", "watch-mosques", "watch-ask"]
     },
     "mac": {
       "displayType": "APP_DESKTOP", "label": "Mac", "scheme": "NearMosque",

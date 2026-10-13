@@ -233,25 +233,46 @@ App Store on the watch; it also works without the iPhone.
 * **This watch's location**: the watch locates itself (kept to about 100 m), names the place after the
   nearest built-in city and suggests the method for the country. Method and Asr time can be changed there.
 
+**Design**: every page sits on the iPhone's landscape (`ios/App/Support/Sky.swift`): the sky of the prayer
+period (dawn pinks at Fajr, gold at sunrise, blue by day, amber at Asr, orange and violet at Maghrib, deep
+blue at Isha and night), stars that twinkle at night, drifting clouds, the horizon glow, ridges, a lake and a
+mosque on the horizon, with the sun or a shining crescent moon where it is in the sky now
+(`ios/Watch/WatchSky.swift`). Motion stops under Reduce Motion; when the screen dims (always on) the
+background is black.
+
 **Pages** (turn the Digital Crown to move between them):
 1. **Prayer**: the next prayer with a ring for the period and a live countdown, on the sky of the hour;
    today's six times with the reminder bells; city and Hijri date.
 2. **Qibla**: a live compass (Series 5 and later have one): the ring turns, the Kaaba sits on the rim at
    the Qibla, the hint says which way to turn, and the watch taps the wrist when you face it (±5°).
    Without a compass reading it shows the Qibla from north and says so.
-3. **Tasbih**: count with the Digital Crown, a tap, or a double tap with two fingers (Series 9, Ultra 2
-   and later); a light tap on the wrist per count and a stronger one every 33; reset at the top.
-4. **Nearest mosques**: from the watch's position (else the prayer city), built-in data plus Apple Maps
+3. **Spiritual health** (`ios/Watch/SpiritPage.swift`): the companion (the lantern or the heart chosen on
+   the iPhone), alive, bright and smiling when you keep your prayers and dim and sad when you miss them
+   (the same level as on the iPhone); **I prayed …** for the prayer in progress; today's five prayers lit
+   when marked; the last seven days as five dots a day with the count, and the days in a row with all five.
+   Only what you mark counts. Marks made on the watch reach the iPhone's companion and the iPhone's marks
+   reach the watch (WatchConnectivity); a tasbih round of 33 counts as on the iPhone.
+4. **Tasbih**: 33 beads round the count light up one by one, with the dhikr of the round above the number
+   (subḥān Allāh, al-ḥamdu lillāh, Allāhu akbar, in Arabic in every language). Count with the Digital Crown,
+   a tap, or a double tap with two fingers (Series 9, Ultra 2 and later); a light tap on the wrist per count
+   and a stronger one every 33; reset beside the hint.
+5. **Nearest mosques**: from the watch's position (else the prayer city), built-in data plus Apple Maps
    when online search is on (only a rounded centre is sent). Each row's arrow points to the mosque as the
    watch is held. A mosque opens a small map, its distance and **Directions** (walking, in Maps). With
    nothing found, the mosques the iPhone last found are shown.
-5. **Ask**: speak (dictation), Scribble or type. The watch answers from the common answers it carries,
+6. **Ask**: speak (dictation), Scribble or type. The watch answers from the common answers it carries,
    with their Qur'an references, hadith numbers and the "awaiting scholar review" label; other questions
    get a note to ask on the iPhone, which searches the books. Today's suggested questions are under the box.
 
 **Reminders**: reminders from the iPhone already show on the watch. **Reminders on this watch** (off by
 default) makes the watch set its own for the prayers you pick, ten days ahead, refreshed in the
 background, for when the iPhone stays behind.
+
+**Apple Health** (Settings on the watch, off by default): each prayer you mark adds mindful minutes to
+Apple Health (5 to 30 minutes, 10 unless changed), ending when you mark it, or from the prayer's time for
+a mark made on the iPhone. Only mindful sessions are written, nothing is read, and each prayer is written
+once (a sync identifier per prayer). Apple Health has no spiritual category, so mindful minutes is where
+it goes. The watch app asks for Health permission only when this is turned on.
 
 **Complications** (any face with complications; long-press the face → Edit):
 

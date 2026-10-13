@@ -164,6 +164,9 @@
     <string name="follow_device_location">ನನ್ನ ಸ್ಥಳವನ್ನು ಅನುಸರಿಸಿ</string>
     <string name="get_directions">ದಾರಿ ಪಡೆಯಿರಿ</string>
     <string name="heading_accuracy">ನಿಖರತೆ ±%1$s°</string>
+    <string name="health_minutes">ಪ್ರತಿ ನಮಾಜ್‌ಗೆ %1$s ನಿಮಿಷ</string>
+    <string name="health_note">ನೀವು ಗುರುತಿಸುವ ಪ್ರತಿ ನಮಾಜ್ Apple Health ಗೆ ಮೈಂಡ್‌ಫುಲ್ ನಿಮಿಷಗಳಾಗಿ ಸೇರುತ್ತದೆ. Health ನಿಂದ ಏನನ್ನೂ ಓದುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಸಾಧನಗಳಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ.</string>
+    <string name="health_toggle">ನಮಾಜ್‌ಗಳನ್ನು Apple Health ಗೆ ಸೇರಿಸಿ</string>
     <string name="high_latitude_rule">ಉನ್ನತ ಅಕ್ಷಾಂಶ ನಿಯಮ</string>
     <string name="hijri_adjustment">ಹಿಜರಿ ದಿನಾಂಕ ಹೊಂದಾಣಿಕೆ</string>
     <string name="hijri_calendar_note">ಹಿಜರಿ ದಿನಾಂಕಗಳು ಉಮ್ಮುಲ್ ಕುರಾ ಕ್ಯಾಲೆಂಡರ್ ಅನ್ನು ಬಳಸುತ್ತವೆ. ಸ್ಥಳೀಯ ಚಂದ್ರದರ್ಶನದಿಂದ ಒಂದು ದಿನದ ವ್ಯತ್ಯಾಸ ಇರಬಹುದು.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ)</string>
     <string name="sources">ಮೂಲಗಳು</string>
     <string name="sources_licenses">ಮೂಲಗಳು ಮತ್ತು ಪರವಾನಗಿಗಳು</string>
+    <string name="spirit_note">ನೀವು ಗುರುತಿಸಿದ್ದೇ ಎಣಿಕೆಗೆ ಬರುತ್ತದೆ. ಇದು ನಿಮ್ಮ ಮತ್ತು ಅಲ್ಲಾಹನ ನಡುವಿನದು, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಉಳಿಯುತ್ತದೆ.</string>
+    <string name="spirit_streak">ಐದೂ ಪೂರ್ಣಗೊಂಡ ಸತತ ದಿನಗಳು: %1$s</string>
+    <string name="spirit_title">ಆಧ್ಯಾತ್ಮಿಕ ಆರೋಗ್ಯ</string>
+    <string name="spirit_today">ಇಂದು</string>
+    <string name="spirit_week">ಕಳೆದ ಏಳು ದಿನಗಳು</string>
+    <string name="spirit_week_count">%2$s ರಲ್ಲಿ %1$s ನಮಾಜ್ ಗುರುತಿಸಲಾಗಿದೆ</string>
     <string name="start_at_login">Windows ಜೊತೆ ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="start_at_login_note">ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಅಧಿಸೂಚನೆ ಪ್ರದೇಶದಲ್ಲಿ ತೆರೆಯುತ್ತದೆ, ಆ್ಯಪ್ ತೆರೆಯದೆಯೇ ಅಜಾನ್ ಮತ್ತು ಜ್ಞಾಪನೆಗಳು ಬರುತ್ತವೆ.</string>
     <string name="start_at_login_store_note">ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ Near Mosque ಪ್ರಾರಂಭವಾಗಲು, Windows ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ಆ್ಯಪ್‌ಗಳು → ಸ್ಟಾರ್ಟ್‌ಅಪ್‌ನಲ್ಲಿ ಅದನ್ನು ಆನ್ ಮಾಡಿ.</string>

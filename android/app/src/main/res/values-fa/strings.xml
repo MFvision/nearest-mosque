@@ -164,6 +164,9 @@
     <string name="follow_device_location">دنبال کردن موقعیت من</string>
     <string name="get_directions">مسیریابی</string>
     <string name="heading_accuracy">دقت ±%1$s°</string>
+    <string name="health_minutes">%1$s دقیقه برای هر نماز</string>
+    <string name="health_note">هر نمازی که علامت بزنید، به‌صورت دقایق ذهن‌آگاهی به Apple Health افزوده می‌شود. چیزی از Health خوانده نمی‌شود و چیزی از دستگاه‌هایتان بیرون نمی‌رود.</string>
+    <string name="health_toggle">افزودن نمازها به Apple Health</string>
     <string name="high_latitude_rule">قاعده عرض‌های بالا</string>
     <string name="hijri_adjustment">تنظیم تاریخ هجری قمری</string>
     <string name="hijri_calendar_note">تاریخ‌های هجری قمری بر اساس تقویم ام‌القری است. رؤیت محلی ماه ممکن است یک روز تفاوت داشته باشد.</string>
@@ -459,6 +462,12 @@
     <string name="source_unavailable">%1$s (هنوز در دسترس نیست)</string>
     <string name="sources">منابع</string>
     <string name="sources_licenses">منابع و مجوزها</string>
+    <string name="spirit_note">فقط آنچه علامت می‌زنید شمرده می‌شود. این میان شما و خداست و روی دستگاه‌هایتان می‌ماند.</string>
+    <string name="spirit_streak">روزهای پیاپی با هر پنج نماز: %1$s</string>
+    <string name="spirit_title">سلامت معنوی</string>
+    <string name="spirit_today">امروز</string>
+    <string name="spirit_week">هفت روز گذشته</string>
+    <string name="spirit_week_count">%1$s از %2$s نماز علامت خورده</string>
     <string name="start_at_login">اجرا همراه با ویندوز</string>
     <string name="start_at_login_note">هنگام ورود در ناحیهٔ اعلان باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند.</string>
     <string name="start_at_login_store_note">برای اجرای Near Mosque هنگام ورود، آن را در تنظیمات ویندوز ← برنامه‌ها ← راه‌اندازی روشن کنید.</string>

@@ -129,6 +129,8 @@ struct SkyBackdrop: View {
     var horizon: CGFloat = 0.64
     /// Draws a mosque silhouette on the horizon (Ask tab).
     var skyline = false
+    /// Drawn behind the clouds and ridges (the Apple Watch puts the sun or the moon there).
+    var orb: AnyView?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var drift = false
     @State private var twinkle = false
@@ -159,6 +161,8 @@ struct SkyBackdrop: View {
                     .frame(width: w * 1.4, height: w * 1.4)
                     .scaleEffect(x: 1, y: 0.42)
                     .position(x: w / 2, y: y0)
+
+                if let orb { orb.frame(width: w, height: h) }
 
                 // The cloud band is wider than the screen: as an overlay it never changes the stack's size
                 // (an oversized child shifted every layer sideways and cut the ridges and lake with a hard edge).

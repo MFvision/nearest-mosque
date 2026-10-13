@@ -604,6 +604,12 @@ jobs:
           shot 08-ask -demoCity Riyadh -demoScreen ask -demoAskId quran-miracle -languageOverride en
           shot 09-ask-ar -demoCity Riyadh -demoScreen ask -demoAskId quran-miracle -languageOverride ar
           shot 10-settings -demoCity Riyadh -demoSettings YES -languageOverride en
+          shot 12-spirit -demoCity Riyadh -demoScreen spirit -demoMarks 1 -demoSky isha -languageOverride en
+          shot 13-spirit-ar -demoCity Riyadh -demoScreen spirit -demoMarks 1 -demoSky isha -languageOverride ar
+          shot 14-prayer-fajr -demoCity Riyadh -demoSky fajr -languageOverride en
+          shot 15-prayer-maghrib -demoCity Riyadh -demoSky maghrib -languageOverride en
+          shot 16-qibla-night -demoCity Riyadh -demoScreen qibla -demoHeading 241 -demoSky night -languageOverride en
+          shot 17-tasbih-night -demoCity Riyadh -demoScreen tasbih -demoTasbih 21 -demoSky night -languageOverride en
           shot 11-settings-ar -demoCity Riyadh -demoSettings YES -languageOverride ar
           running=$(xcrun simctl spawn "$UDID" launchctl list || true)
           if ! grep -q "sa.zood.nearmosque.watchkitapp" <<<"$running"; then
