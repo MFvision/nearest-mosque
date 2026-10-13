@@ -265,9 +265,14 @@ def screenshots(folder: pathlib.Path, group: str) -> int:
 
 
 def numbered(name: str) -> int:
-    # "03-mosques-map.png" -> 3 (store order); unnumbered names go last.
-    head = name.split("-")[0]
-    return int(head) if head.isdigit() else 99
+    # The store position in a file name: "03-mosques-map.png" -> 3, "duo_03.png" -> 3. Names without one -> 99.
+    import re
+    stem = os.path.splitext(os.path.basename(name))[0]
+    lead = re.match(r"(\d{1,2})(?:\D|$)", stem)
+    if lead:
+        return int(lead.group(1))
+    tail = re.search(r"(?:^|\D)(\d{1,2})$", stem)
+    return int(tail.group(1)) if tail else 99
 
 
 def fill(folder: pathlib.Path, group: str) -> int:
@@ -288,12 +293,12 @@ def fill(folder: pathlib.Path, group: str) -> int:
             by_num = {}
             for p in current:
                 img = ((p.get("relationships") or {}).get("image") or {}).get("data") or {}
-                by_num[numbered(os.path.basename(images.get(img.get("id"), "")).split(" ")[-1])] = p["id"]
+                by_num[numbered(images.get(img.get("id"), ""))] = p["id"]
             if DRY:
                 # What the names look like (file names of store screenshots, nothing personal).
                 inc = page.get("included", [])
-                print(f"{locale}: {len(current)} placed; {len(inc)} included; image keys "
-                      f"{sorted(inc[0]['attributes'])[:12] if inc else []}; names {sorted(images.values())[:10]}", flush=True)
+                mine = [images.get((((p.get("relationships") or {}).get("image") or {}).get("data") or {}).get("id"), "?") for p in current]
+                print(f"{locale}: {len(current)} in this group, named {mine}", flush=True)
             if 99 in by_num or len(by_num) < len(current):
                 print(f"::warning::{locale}: a screenshot there has no NN- number in its name; left as it is.", flush=True)
                 continue
