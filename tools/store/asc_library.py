@@ -289,6 +289,9 @@ def fill(folder: pathlib.Path, group: str) -> int:
             for p in current:
                 img = ((p.get("relationships") or {}).get("image") or {}).get("data") or {}
                 by_num[numbered(os.path.basename(images.get(img.get("id"), "")).split(" ")[-1])] = p["id"]
+            if 99 in by_num or len(by_num) < len(current):
+                print(f"::warning::{locale}: a screenshot there has no NN- number in its name; left as it is.", flush=True)
+                continue
             missing = [n for n in sorted(files) if n not in by_num]
             room = 10 - len(current)
             missing = missing[:max(0, room)]
