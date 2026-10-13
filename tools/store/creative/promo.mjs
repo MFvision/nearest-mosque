@@ -29,7 +29,7 @@ const SCENES = {
   1: { kind: 'sky', sky: [0.0, 0.11], title: 'كلُّ صلاةٍ في وقتها، أينما كنت' },
   2: { kind: 'brand', title: 'أقرب مسجد', chips: ['مواقيت الصلاة', 'القبلة', 'أقرب مسجد'] },
   3: { kind: 'phone', title: 'الصلاة القادمة والوقت المتبقي', sub: 'وسماءٌ تتبدّل مع ساعات يومك', media: { clip: 'header', from: 0.4, rate: 1, still: 'iphone/01-prayer.png' } },
-  4: { kind: 'phone', title: 'وجّه هاتفك نحو القبلة', sub: 'فإذا استقبلتها أضاءت لك', media: { clip: 'header', from: 10.8, rate: 1, still: 'iphone/02-qibla.png' } },
+  4: { kind: 'phone', title: 'وجّه هاتفك نحو القبلة', sub: 'فإذا استقبلتها أضاءت لك', media: { clip: 'header', from: 10.3, rate: 1, still: 'iphone/02-qibla.png' } },
   5: { kind: 'phone', title: 'أقرب المساجد إليك', sub: 'على الخريطة، بالمسافة والاتجاه', media: { still: 'iphone/03-mosques-map.png' } },
   6: { kind: 'phone', title: 'اسأل عن دينك', sub: 'إجاباتٌ من كتبٍ موثوقة على هاتفك، مع مصادرها', media: { clip: 'search', from: 2.8, rate: 1.55, still: 'iphone/04-ask.png' } },
   7: { kind: 'phone', title: 'مكتبةٌ على هاتفك', sub: 'كتبٌ وفتاوى ومحاضرات، تقرؤها وتسمعها دون اتصال', media: { still: 'iphone/05-classics.png' } },
