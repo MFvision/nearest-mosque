@@ -66,8 +66,16 @@ def record(app, out, langs):
             raw = folder / f"{n:02d}-{name}.raw.mp4"
             rec = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", "--codec=h264", "--force", str(raw)],
                                    stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
-            time.sleep(1.5)
-            began = time.time()
+            # simctl says "Recording started" once frames are being written: the video's time 0.
+            began = None
+            deadline = time.time() + 30
+            while began is None and time.time() < deadline:
+                line = rec.stderr.readline()
+                if "Recording started" in line:
+                    began = time.time()
+                elif not line and rec.poll() is not None:
+                    break
+            began = began or time.time()
             simctl("launch", udid, BUNDLE, *launch_args_for(clip, lang), timeout=120)
             # The tour marks its start once the app is ready (at least 8 to 9 seconds after launch).
             deadline = time.time() + 120
@@ -93,8 +101,7 @@ def record(app, out, langs):
             # The app's animations would slow the conversion down (the simulator shares the machine).
             simctl("terminate", udid, BUNDLE)
             target = folder / f"{n:02d}-{name}.mp4"
-            # The recording's first frame comes shortly after recordVideo starts; `began` is close enough to it.
-            c = convert(raw, start - clip["lead"] - began + 1.5, clip["seconds"], conf["size"], target)
+            c = convert(raw, start - clip["lead"] - began, clip["seconds"], conf["size"], target)
             note = "" if c.returncode == 0 else f" (convert failed: {c.stderr.strip()[:120]})"
             raw.unlink(missing_ok=True)
             print(f"{time.strftime('%H:%M:%S')} previews/{lang['app']}/{target.name}{note}", flush=True)

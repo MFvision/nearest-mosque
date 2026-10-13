@@ -1,0 +1,27 @@
+{
+  "_about": "Text of the App Store creative assets (product page header and search results videos, iOS 27), per app language. Built by tools/store/creative/. English and Arabic are final; the others are drafts awaiting a native speaker's review.",
+  "phrase": {
+    "ar": "كل صلاة في وقتها، أينما كنت",
+    "en": "Every prayer on time, wherever you are",
+    "fr": "Chaque prière à l’heure, où que vous soyez",
+    "es": "Cada oración a su hora, estés donde estés",
+    "pt": "Cada oração na hora certa, onde você estiver",
+    "tr": "Her namaz vaktinde, nerede olursanız olun",
+    "id": "Setiap salat tepat waktu, di mana pun Anda berada",
+    "ur": "ہر نماز اپنے وقت پر، آپ جہاں بھی ہوں",
+    "ru": "Каждая молитва вовремя, где бы вы ни были",
+    "nl": "Elk gebed op tijd, waar je ook bent",
+    "hu": "Minden ima időben, bárhol is vagy",
+    "zh": "每次礼拜准时，无论身在何处",
+    "hi": "हर नमाज़ समय पर, आप जहाँ भी हों",
+    "bn": "প্রতিটি নামাজ সময়মতো, যেখানেই থাকুন",
+    "gu": "દરેક નમાઝ સમયસર, તમે જ્યાં પણ હો",
+    "kn": "ಪ್ರತಿ ನಮಾಜ್ ಸಮಯಕ್ಕೆ, ನೀವು ಎಲ್ಲೇ ಇರಲಿ",
+    "ml": "ഓരോ നമസ്കാരവും സമയത്ത്, നിങ്ങൾ എവിടെയായാലും",
+    "mr": "प्रत्येक नमाज वेळेवर, तुम्ही कुठेही असा",
+    "pa": "ਹਰ ਨਮਾਜ਼ ਸਮੇਂ ਸਿਰ, ਤੁਸੀਂ ਜਿੱਥੇ ਵੀ ਹੋਵੋ",
+    "te": "ప్రతి నమాజ్ సమయానికి, మీరు ఎక్కడ ఉన్నా",
+    "th": "ละหมาดตรงเวลาทุกครั้ง ไม่ว่าคุณจะอยู่ที่ใด",
+    "vi": "Mỗi lần cầu nguyện đúng giờ, dù bạn ở đâu"
+  }
+}
