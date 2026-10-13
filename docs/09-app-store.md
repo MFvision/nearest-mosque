@@ -235,6 +235,31 @@ with `dry_run` on to see what it would do, then again with it off.
 By hand: App Store Connect → the app → the platform's version → **Previews and Screenshots** → pick
 the language at the top right → drag a locale folder's files onto the matching device box in order.
 
+## Creative assets (iOS 27): product page header and search results
+
+Apple's iOS 27 App Store adds **creative assets**: an image or a looping video at the top of the product page
+(the header) and on the app's card in search results. They show the app's brand and mood rather than its
+screens, are muted by default and loop. The **App Store creative assets** workflow
+(`.github/workflows/store-creative.yml`, started by hand) builds both in the 22 store languages; the artifact
+`app-store-creative` holds `header/<locale>.mp4`, `search/<locale>.mp4` and a README.
+
+| Asset | Apple's spec | Ours |
+|-------|--------------|------|
+| Product page header | 21:9, 3840 × 1646, 5–30 s, 30 or 60 fps, .mov/.m4v/.mp4 | 20 s loop, 30 fps, H.264 |
+| Search results | 3:2, 1920 × 1280 to 3840 × 2560, 5–30 s | 2880 × 1920, 20 s loop, 30 fps, H.264 |
+
+**What they show.** One day of prayer in 20 seconds, Fajr to Fajr, so the loop has no seam: the app's living
+sky (`tools/store/creative/sky.js`, the colours of `ios/App/Support/Sky.swift`), the sun on a gold path with
+the prayer marks lighting as it passes, the moon and stars after Maghrib, the mosque and its reflection, and
+one short phrase per language (`shared/store/creative.json`; English and Arabic final, the rest drafts). The
+search video adds the phone with the app's prayer screen, which turns to dark mode at night; for Arabic and Urdu
+it is mirrored so the sun travels in the reading direction. The sound (`ambience.py`) is synthesized: wind,
+birds by day, crickets at night and a soft chime at each prayer mark, with no music.
+
+**Where they go.** App Store Connect: the version, **Product Page Information → Header and Search Results**,
+then **Header** or **Search Results**; or **Asset Library → Upload Creative Assets** to submit them on their own.
+They are reviewed like other metadata.
+
 ## App previews (videos)
 
 The **App Store previews** workflow (`.github/workflows/store-previews.yml`, started by hand) records two
