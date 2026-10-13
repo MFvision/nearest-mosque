@@ -129,9 +129,29 @@ def wait_ready(kind: str, ids: list, minutes: int = 40) -> dict:
     return states
 
 
+_placements: dict = {}
+
+
+def placements(loc_id: str) -> list:
+    if loc_id not in _placements:
+        _placements[loc_id] = all_pages(f"/appStoreVersionLocalizations/{loc_id}/placements", {"limit": "200"})
+    return _placements[loc_id]
+
+
 def existing(loc_id: str, placement_type: str, group: str) -> list:
-    return all_pages(f"/appStoreVersionLocalizations/{loc_id}/placements",
-                     {"filter[placementType]": placement_type, "filter[placementGroup]": group, "sort": "placementGroupPosition", "limit": "50"})
+    # Checked here rather than with filter parameters, which the endpoint may not apply.
+    return [p for p in placements(loc_id)
+            if p["attributes"].get("placementType") == placement_type and p["attributes"].get("placementGroup") == group]
+
+
+def census(locs: dict) -> None:
+    # What one locale already holds, by type and group (counts only).
+    loc = locs.get("en-US") or next(iter(locs.values()))
+    counts: dict = {}
+    for p in placements(loc):
+        k = f"{p['attributes'].get('placementType')}/{p['attributes'].get('placementGroup')}"
+        counts[k] = counts.get(k, 0) + 1
+    print("en-US now holds: " + (", ".join(f"{k} x{v}" for k, v in sorted(counts.items())) or "no placements"), flush=True)
 
 
 def place(asset_kind: str, asset_id: str, loc_id: str, placement_type: str, group: str) -> str:
@@ -164,6 +184,7 @@ def discover() -> int:
 def creative(folder: pathlib.Path) -> int:
     ref = ref_data()
     locs, library = target()
+    census(locs)
     placed = skipped = failed = 0
     for sub, ptype in CREATIVE.items():
         files = sorted((folder / sub).glob("*.mp4"))
@@ -205,6 +226,7 @@ def screenshots(folder: pathlib.Path, group: str) -> int:
         print(f"::error::{group} is not an APP_SCREENSHOT group Apple offers (run discover).")
         return 1
     locs, library = target()
+    census(locs)
     placed = skipped = failed = 0
     for d in sorted(p for p in folder.iterdir() if p.is_dir()):
         files = sorted(d.glob("*.png"))[:10]
