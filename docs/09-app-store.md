@@ -153,15 +153,24 @@ The common questions, and so the Ask answer, exist in all 22 store languages. In
 before they were translated (October 2026), the Ask screenshot of the 15 languages other than ar, en, es, fr,
 id, tr and ur shows the question list instead of an answer; its `shows` field says so. A new run fixes that.
 
-### iPhone Duo (not captured yet)
+### iPhone Duo: outer display (`duo-outer`), inner display pending
 
-App Store Connect has an iPhone Duo slot (outer display 1398 × 2034, inner display 2007 × 2853, and the
-same turned to landscape). Apple requires these screenshots from April 2027 for apps built with the
-iOS 27.1 SDK or later; until then the slot can stay empty. They are only made from the iPhone Duo
-simulator, which needs Xcode 27.1; GitHub's runners do not have it yet (October 2026). Do not fill the slot
-with resized iPhone screenshots: the proportions and the fold differ. When Xcode 27.1 is on the runners,
-add a `duo` platform to `tools/store/screens.json` with the simulator and the App Store Connect display
-type for each display, capture, and upload with the upload workflow.
+App Store Connect has an iPhone Duo slot: outer display 1398 × 2034, inner display 2007 × 2853 (and the
+same turned to landscape). Apple requires these from April 2027 for apps built with the iOS 27.1 SDK or
+later. The captures come from the iPhone Duo simulator in Xcode 27.1 on GitHub's `xcode-27` runner
+(iOS 27.1 simulator runtime), built with that SDK: the app fills the display edge to edge and the tab bar
+stands vertically along the side, as on the device.
+
+* `duo-outer`: display 1 of the simulator (it starts folded), the iPhone screens in this order: prayer,
+  qibla, mosques-map, ask, classics, widgets, audio, mosques-radar, prayer-dark. Folder `IPHONE_DUO_OUTER`.
+* `duo-inner`: not captured. Unfolding in the simulator (the outer display powered off with
+  `simctl io … screenConfig --display=1 power off`) froze the runner both times it was tried (October 2026).
+  Try again with a later Xcode 27.1 or 27.2 image.
+* Upload by hand: App Store Connect's API has no iPhone Duo screenshot type yet, so the upload workflow
+  cannot fill the slot. Drag a locale's `IPHONE_DUO_OUTER` files onto the iPhone Duo box. Once one set
+  exists, its `screenshotDisplayType` can be read from the API and the upload workflow pointed at it.
+
+Do not fill the slot with resized iPhone screenshots: the proportions and the side bars differ.
 
 ## Languages
 
