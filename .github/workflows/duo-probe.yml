@@ -1,0 +1,68 @@
+name: iPhone Duo simulator probe
+
+# Temporary: learns how the iPhone Duo simulator (Xcode 27.1) exposes its displays and folding, for the
+# App Store screenshot pipeline. Started by hand; uploads nothing to Apple.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: xcode-27
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Xcode 27.1 and the iPhone Duo simulator
+        run: |
+          sudo xcode-select -s /Applications/Xcode_27.1.app
+          xcodebuild -version
+          xcrun simctl list devicetypes -j | python3 -c "import json,sys; [print(json.dumps(t, indent=1)) for t in json.load(sys.stdin)['devicetypes'] if 'Duo' in t['name']]"
+          xcrun simctl list runtimes
+          xcrun simctl help 2>&1 | tee ../simctl-help.txt
+          for c in io ui status_bar; do echo "== $c"; xcrun simctl help $c 2>&1 | head -80; done | tee ../simctl-sub.txt
+      - name: Build the app
+        run: |
+          brew install xcodegen
+          xcodegen generate
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -destination 'generic/platform=iOS Simulator' -configuration Debug \
+            -derivedDataPath dd CODE_SIGNING_ALLOWED=NO build 2>&1 | tail -3
+      - name: Boot, try the displays, screenshot
+        run: |
+          set -x
+          RT=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; r=[x for x in json.load(sys.stdin)['runtimes'] if x['platform']=='iOS' and x['isAvailable']]; print(r[-1]['identifier'])")
+          UDID=$(xcrun simctl create "Duo probe" com.apple.CoreSimulator.SimDeviceType.iPhone-Duo "$RT")
+          xcrun simctl boot "$UDID"; xcrun simctl bootstatus "$UDID" -b
+          xcrun simctl io "$UDID" enumerate | tee ../io-enumerate.txt || true
+          xcrun simctl install "$UDID" dd/Build/Products/Debug-iphonesimulator/NearMosque.app
+          xcrun simctl privacy "$UDID" grant location sa.zood.nearmosque || true
+          xcrun simctl location "$UDID" set 24.7136,46.6753 || true
+          xcrun simctl status_bar "$UDID" override --time 9:41 --batteryLevel 100 || true
+          xcrun simctl launch "$UDID" sa.zood.nearmosque -demoCity Riyadh -demoTab prayer -languageOverride en
+          sleep 15
+          mkdir -p ../probe
+          xcrun simctl io "$UDID" screenshot ../probe/default.png || true
+          for d in internal external inner outer primary secondary 0 1 2; do xcrun simctl io "$UDID" screenshot --display=$d ../probe/display-$d.png 2>&1 | tail -1 || true; done
+          for p in open closed folded unfolded flat half tent; do echo "== pose $p"; xcrun simctl ui "$UDID" posture $p 2>&1 | tail -2; xcrun simctl ui "$UDID" fold $p 2>&1 | tail -2; done
+          sleep 5
+          xcrun simctl io "$UDID" screenshot ../probe/after-poses.png || true
+          python3 -c "
+          from PIL import Image
+          import glob
+          for f in sorted(glob.glob('../probe/*.png')): print(f, Image.open(f).size)" 2>/dev/null || sips -g pixelWidth -g pixelHeight ../probe/*.png
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: duo-probe
+          path: |
+            probe/
+            simctl-help.txt
+            simctl-sub.txt
+            io-enumerate.txt
+          retention-days: 3
