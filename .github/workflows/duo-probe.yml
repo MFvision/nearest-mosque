@@ -54,20 +54,19 @@ jobs:
           sleep 15
           mkdir -p ../probe
           t 90 xcrun simctl io "$UDID" screenshot ../probe/default.png || true
-          for d in internal external primary secondary 1 2 3 Internal-1 Internal-2; do t 60 xcrun simctl io "$UDID" screenshot --display=$d ../probe/display-$d.png 2>&1 | tail -1 || true; done
-          # Folding: power each display off in turn (closed = inner off), relaunch, capture what is on.
-          for d in 1 2; do
-            echo "== display $d off"
-            t 90 xcrun simctl io "$UDID" screenConfig --display=$d power off 2>&1 | tail -2 || true
-            sleep 4
-            t 90 xcrun simctl terminate "$UDID" sa.zood.nearmosque || true
-            t 90 xcrun simctl launch "$UDID" sa.zood.nearmosque -demoCity Riyadh -demoTab prayer -languageOverride en
-            sleep 12
-            t 90 xcrun simctl io "$UDID" enumerate | grep -iE "screen|name|power|size|width|height" | head -30 || true
-            for o in 1 2; do t 60 xcrun simctl io "$UDID" screenshot --display=$o ../probe/off$d-display$o.png 2>&1 | tail -1 || true; done
-            t 90 xcrun simctl io "$UDID" screenConfig --display=$d power on 2>&1 | tail -2 || true
-            sleep 4
-          done
+          t 60 xcrun simctl io "$UDID" screenshot --display=1 ../probe/outer.png || true
+          # Unfold: the outer display (1) off, the inner one (3) on; the app moves to the inner display.
+          t 90 xcrun simctl io "$UDID" screenConfig --display=1 power off || true
+          t 90 xcrun simctl io "$UDID" screenConfig --display=3 power on || true
+          sleep 6
+          t 90 xcrun simctl terminate "$UDID" sa.zood.nearmosque || true
+          t 90 xcrun simctl launch "$UDID" sa.zood.nearmosque -demoCity Riyadh -demoTab prayer -languageOverride en
+          sleep 15
+          t 60 xcrun simctl io "$UDID" screenshot --display=3 ../probe/inner.png || true
+          t 90 xcrun simctl launch "$UDID" sa.zood.nearmosque -demoCity Riyadh -demoTab mosques -languageOverride en || true
+          sleep 15
+          t 60 xcrun simctl io "$UDID" screenshot --display=3 ../probe/inner-mosques.png || true
+          t 90 xcrun simctl io "$UDID" enumerate | grep -iE "Screen ID|Name:|Power state" | head -20 || true
           python3 -c "
           from PIL import Image
           import glob
