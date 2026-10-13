@@ -23,6 +23,8 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_27.1.app
           xcodebuild -version
           xcrun simctl list devicetypes -j | python3 -c "import json,sys; [print(json.dumps(t, indent=1)) for t in json.load(sys.stdin)['devicetypes'] if 'Duo' in t['name']]"
+          # The iPhone Duo needs the iOS 27.1 simulator runtime (the image ships 27.0).
+          xcrun simctl list runtimes | grep -q "iOS 27.1" || xcodebuild -downloadPlatform iOS
           xcrun simctl list runtimes
           xcrun simctl help 2>&1 | tee ../simctl-help.txt
           for c in io ui status_bar; do echo "== $c"; xcrun simctl help $c 2>&1 | head -80; done | tee ../simctl-sub.txt
@@ -36,7 +38,7 @@ jobs:
       - name: Boot, try the displays, screenshot
         run: |
           set -x
-          RT=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; r=[x for x in json.load(sys.stdin)['runtimes'] if x['platform']=='iOS' and x['isAvailable']]; print(r[-1]['identifier'])")
+          RT=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; r=[x for x in json.load(sys.stdin)['runtimes'] if x['platform']=='iOS' and x['isAvailable'] and x['version'].startswith('27.1')]; print(r[-1]['identifier'])")
           UDID=$(xcrun simctl create "Duo probe" com.apple.CoreSimulator.SimDeviceType.iPhone-Duo "$RT")
           xcrun simctl boot "$UDID"; xcrun simctl bootstatus "$UDID" -b
           xcrun simctl io "$UDID" enumerate | tee ../io-enumerate.txt || true
@@ -48,10 +50,20 @@ jobs:
           sleep 15
           mkdir -p ../probe
           xcrun simctl io "$UDID" screenshot ../probe/default.png || true
-          for d in internal external inner outer primary secondary 0 1 2; do xcrun simctl io "$UDID" screenshot --display=$d ../probe/display-$d.png 2>&1 | tail -1 || true; done
-          for p in open closed folded unfolded flat half tent; do echo "== pose $p"; xcrun simctl ui "$UDID" posture $p 2>&1 | tail -2; xcrun simctl ui "$UDID" fold $p 2>&1 | tail -2; done
-          sleep 5
-          xcrun simctl io "$UDID" screenshot ../probe/after-poses.png || true
+          for d in internal external primary secondary 1 2 3 Internal-1 Internal-2; do xcrun simctl io "$UDID" screenshot --display=$d ../probe/display-$d.png 2>&1 | tail -1 || true; done
+          # Folding: power each display off in turn (closed = inner off), relaunch, capture what is on.
+          for d in 1 2; do
+            echo "== display $d off"
+            xcrun simctl io "$UDID" screenConfig --display=$d power off 2>&1 | tail -2 || true
+            sleep 4
+            xcrun simctl terminate "$UDID" sa.zood.nearmosque || true
+            xcrun simctl launch "$UDID" sa.zood.nearmosque -demoCity Riyadh -demoTab prayer -languageOverride en
+            sleep 12
+            xcrun simctl io "$UDID" enumerate | grep -iE "screen|name|power|size|width|height" | head -30 || true
+            for o in 1 2; do xcrun simctl io "$UDID" screenshot --display=$o ../probe/off$d-display$o.png 2>&1 | tail -1 || true; done
+            xcrun simctl io "$UDID" screenConfig --display=$d power on 2>&1 | tail -2 || true
+            sleep 4
+          done
           python3 -c "
           from PIL import Image
           import glob
