@@ -289,6 +289,11 @@ def fill(folder: pathlib.Path, group: str) -> int:
             for p in current:
                 img = ((p.get("relationships") or {}).get("image") or {}).get("data") or {}
                 by_num[numbered(os.path.basename(images.get(img.get("id"), "")).split(" ")[-1])] = p["id"]
+            if DRY:
+                # What the names look like (file names of store screenshots, nothing personal).
+                inc = page.get("included", [])
+                print(f"{locale}: {len(current)} placed; {len(inc)} included; image keys "
+                      f"{sorted(inc[0]['attributes'])[:12] if inc else []}; names {sorted(images.values())[:10]}", flush=True)
             if 99 in by_num or len(by_num) < len(current):
                 print(f"::warning::{locale}: a screenshot there has no NN- number in its name; left as it is.", flush=True)
                 continue
