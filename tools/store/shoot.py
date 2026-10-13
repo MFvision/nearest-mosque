@@ -133,6 +133,14 @@ def shoot_simulator(platform, app, out, langs):
             simctl("terminate", udid, bundle)
             started = time.time()
             r = simctl("launch", udid, bundle, *launch_args(screen, lang), timeout=120)
+            # The iPhone Duo simulator sometimes fails a launch: once more, after a pause.
+            for _ in range(2 if r.returncode else 0):
+                simctl("terminate", udid, bundle)
+                time.sleep(8)
+                started = time.time()
+                r = simctl("launch", udid, bundle, *launch_args(screen, lang), timeout=120)
+                if r.returncode == 0:
+                    break
             if r.returncode:
                 print(f"::warning::{platform}/{lang['app']}/{screen}: launch failed", flush=True)
                 continue

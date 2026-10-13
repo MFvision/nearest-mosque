@@ -50,9 +50,11 @@ function rand(seed) {
 }
 
 // The sun's path: from the left horizon (sunrise) to the right one (Maghrib), and the prayer marks on it.
+// The path rises steeply at the edges and runs high across the middle, so the sun and the moon pass above the
+// phrase in the centre (never behind it).
 function arcPoint(w, h, s, horizon) {
-  const x = w * (0.1 + 0.8 * s);
-  const y = horizon - Math.sin(Math.PI * s) * h * 0.52;
+  const x = w * (0.06 + 0.88 * s);
+  const y = horizon - Math.sqrt(Math.sin(Math.PI * clamp(s))) * (horizon - h * 0.1);
   return [x, y];
 }
 
@@ -255,7 +257,7 @@ function drawSky(ctx, w, h, t, opts = {}) {
   let moon = null;
   if (mt < 0.46) {
     const s = mt / 0.46;
-    const mx = w * (0.82 - 0.64 * s), my = horizon - Math.sin(Math.PI * s) * h * 0.46;
+    const [mx, my] = arcPoint(w, h, 1 - s, horizon);
     const vis = clamp(Math.min(mt, 0.46 - mt) / 0.05) * clamp(night * 1.3);
     if (vis > 0) { crescent(ctx, mx, my, unit / 48, vis); moon = [mx, my, vis]; }
   }
