@@ -143,8 +143,9 @@ struct MosquesView: View {
         // CI App Store preview (`-demoPreview mosques`): the mosque compass turning, then the map, then the nearest
         // mosque's page.
         .task(id: vm.items.isEmpty) {
-            guard DemoPreview.kind == "mosques", !vm.items.isEmpty else { return }
-            mode = 0
+            // Once: the list refreshing (and so this task restarting) must not start the tour over.
+            guard DemoPreview.kind == "mosques", !vm.items.isEmpty, !DemoPreview.mosquesTourStarted else { return }
+            DemoPreview.mosquesTourStarted = true
             await DemoPreview.waitForStart()
             for i in 0...90 {
                 app.location.demoHeading(200 + 50 * Double(i) / 90 + 360)

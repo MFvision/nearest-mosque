@@ -47,6 +47,11 @@ def record(app, out, langs):
            "--cellularBars", "4", "--wifiBars", "3")
     simctl("ui", udid, "appearance", "light")
 
+    # A first launch unpacks the app's data and is slow; one warm-up launch keeps it out of the first recording.
+    simctl("launch", udid, BUNDLE, "-languageOverride", "en", timeout=120)
+    time.sleep(25)
+    simctl("terminate", udid, BUNDLE)
+
     def marker():
         # The app's data folder appears on its first launch.
         c = simctl("get_app_container", udid, BUNDLE, "data")

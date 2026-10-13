@@ -7,6 +7,8 @@ enum DemoPreview {
     /// Set when the app starts (NearMosqueApp.init).
     static let launched = Date()
     static var kind: String? { UserDefaults.standard.string(forKey: "demoPreview") }
+    /// The mosques tour runs once per launch.
+    @MainActor static var mosquesTourStarted = false
 
     /// The tour starts at least this many seconds after launch, so the screen has settled.
     static func waitForStart(after seconds: Double = 9) async {

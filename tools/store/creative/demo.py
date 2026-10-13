@@ -6,7 +6,7 @@ language (store-previews.yml: header, mosques, search) and writes it in Apple's 
 
 <previews folder>/<lang>/01-header.mp4, 02-mosques.mp4, 03-search.mp4 -> <out>/<asc locale>.mp4
 
-The tour, about 27 seconds of the app's real screens joined by short crossfades: the prayer header scrolling
+The tour, about 29 seconds of the app's real screens joined by short crossfades: the prayer header scrolling
 into the slim bar and back; the Qibla view turning until it lights up; the mosque compass, then the map; a
 question asked and its answer with sources. 886 x 1920, H.264 High at 30 fps, about 11 Mbps, with the soft
 soundscape (wind and birds) as its stereo track (Apple requires one).
@@ -20,7 +20,8 @@ import tempfile
 HERE = pathlib.Path(__file__).resolve().parent
 SPEC = json.loads((HERE.parent / "screens.json").read_text())
 # (clip, from second, to second): read from the tours' timings (DemoPreview, record.py's lead of 3 seconds).
-CUTS = [("01-header", 0.4, 8.6), ("01-header", 10.3, 15.9), ("02-mosques", 3.4, 9.6), ("03-search", 2.9, 11.6)]
+# The search cut runs long enough for the slower languages' answers to arrive.
+CUTS = [("01-header", 0.3, 8.9), ("01-header", 10.6, 17.6), ("02-mosques", 2.0, 6.0), ("03-search", 3.5, 14.5)]
 FADE = 0.4
 
 
