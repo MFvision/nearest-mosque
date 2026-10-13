@@ -78,7 +78,7 @@ def main():
             mix[1, i0:i1] += s * pan
 
     # Crickets at night: a soft pulsing trill.
-    nightw = window(n, u, night[0], night[1] + 0.2, 0.05) + window(n, u, -0.2, 0.08, 0.05)
+    nightw = window(n, u, night[0], night[1] + 0.2, 0.05) + (window(n, u, -0.2, 0.08, 0.05) if night[0] <= 1 else 0)
     trill = np.sin(2 * np.pi * 4300 * t) * (0.5 + 0.5 * np.sign(np.sin(2 * np.pi * 30 * t))) * (np.sin(2 * np.pi * 3 * t) > 0.2)
     for ch in range(2):
         mix[ch] += bandpass(trill, 3000, 6000) * np.clip(nightw, 0, 1) * (0.018 if ch else 0.012)
