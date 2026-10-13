@@ -1,0 +1,105 @@
+name: App Store previews
+
+# Records the App Store previews (videos) of the iPhone app in every store language (tools/store/screens.json,
+# "previews") from a Debug build in the iPhone simulator, converted to App Store Connect's format by
+# tools/store/record.py (how to use them: docs/09-app-store.md). Started by hand; uploads nothing to Apple.
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: "App language codes, space-separated (empty: all 22 store languages)"
+        default: ""
+      only:
+        description: "Record only these, e.g. \"ar/01-header en/02-search\""
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-previews
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      shards: ${{ steps.p.outputs.shards }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - id: p
+        env:
+          LANGS: ${{ inputs.languages }}
+        run: |
+          python3 -c "
+          import json, os
+          langs = os.environ['LANGS'].split() or [l['app'] for l in json.load(open('tools/store/screens.json'))['languages']]
+          n = min(4, len(langs))
+          print('shards=' + json.dumps([{'shard': i + 1, 'langs': ' '.join(langs[i::n])} for i in range(n)]))" >> "$GITHUB_OUTPUT"
+
+  record:
+    name: Previews (${{ matrix.shard }})
+    needs: plan
+    runs-on: macos-26
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.shards) }}
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Select newest Xcode 26
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+      - name: Tools
+        run: brew install xcodegen ffmpeg
+      - name: Generate project
+        run: xcodegen generate
+      - name: Debug build
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath dd CODE_SIGNING_ALLOWED=NO build 2>&1 \
+            | tee build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" build.log
+          echo "APP=$PWD/$(find dd/Build/Products -maxdepth 2 -name NearMosque.app -type d | head -1)" >> "$GITHUB_ENV"
+      - name: Record
+        timeout-minutes: 60
+        env:
+          LANGS: ${{ matrix.langs }}
+          ONLY: ${{ inputs.only }}
+        # shellcheck disable=SC2086 # the language list is meant to split into arguments
+        run: |
+          python3 ../tools/store/record.py "$APP" out $LANGS
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,channels -show_entries format=duration \
+            -of compact "$(find out -name '*.mp4' | head -1)" || true
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: previews-${{ matrix.shard }}
+          path: ios/out/previews/
+          retention-days: 3
+
+  finish:
+    name: Collect the previews
+    needs: record
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: previews-*
+          merge-multiple: true
+          path: previews
+      - run: find previews -name '*.mp4' | sort | sed 's|^previews/||' | tee -a "$GITHUB_STEP_SUMMARY" | wc -l
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: app-store-previews
+          path: previews/
+          retention-days: 30

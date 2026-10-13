@@ -173,6 +173,7 @@ struct PrayerView: View {
                 .onChange(of: model.location.compass) { _, c in updateAlignment(c, snap.qiblaBearing) }
                 #if DEBUG
                 .task {
+                    if DemoPreview.kind == "header" { await headerTour(proxy, bearing: snap.qiblaBearing); return }
                     // CI screenshots: `-demoCompact YES` scrolls down so the header shrinks into the bar;
                     // `-demoCompanionCard YES` scrolls to the companion.
                     let card = UserDefaults.standard.bool(forKey: "demoCompanionCard")
@@ -184,6 +185,32 @@ struct PrayerView: View {
             }
         }
     }
+
+    #if DEBUG
+    /// CI App Store preview (`-demoPreview header`): the big header, scrolled into the bar and back, then a tap into
+    /// the Qibla view while the phone turns until it faces the Qibla.
+    private func headerTour(_ proxy: ScrollViewProxy, bearing: Double?) async {
+        await DemoPreview.waitForStart()
+        withAnimation(.easeInOut(duration: 1.4)) { proxy.scrollTo("schedule", anchor: .top) }
+        await DemoPreview.pause(4)
+        withAnimation(.easeInOut(duration: 1.4)) { proxy.scrollTo("top", anchor: .top) }
+        await DemoPreview.pause(3)
+        guard let b = bearing ?? model.settings.location.map({ Qibla.bearing(from: $0.location) }) else { return }
+        // From 75° off, easing in with a small overshoot, as a hand turns the phone.
+        model.location.demoHeading(b + 75 + 360)
+        showCompass = true
+        await DemoPreview.pause(1.5)
+        let steps = 150
+        for i in 1...steps {
+            let t = Double(i) / Double(steps)
+            let ease = 1 - pow(1 - t, 3)
+            let off = 75 * (1 - ease) - 9 * sin(.pi * min(1, t * 1.4)) * (1 - t)
+            model.location.demoHeading(b + off + 360)
+            try? await Task.sleep(for: .milliseconds(33))
+        }
+        model.location.demoHeading(b + 360)
+    }
+    #endif
 
     /// Changes when the phone or the prayer city moves, or the data becomes ready.
     private var nearestKey: String {

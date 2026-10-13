@@ -140,6 +140,13 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     nonisolated func locationManagerShouldDisplayHeadingCalibration(_ m: CLLocationManager) -> Bool { false }
     #endif
 
+    #if DEBUG
+    /// CI App Store previews: a heading as if the phone were turning (the simulator has no compass).
+    func demoHeading(_ degrees: Double) {
+        compass = .live(headingTrue: degrees.truncatingRemainder(dividingBy: 360), accuracyDeg: 5, needsCalibration: false)
+    }
+    #endif
+
     nonisolated static func convert(_ l: CLLocation) -> DevicePosition? {
         guard let ll = LatLng(l.coordinate.latitude, l.coordinate.longitude) else { return nil }
         return DevicePosition(location: ll, accuracyMeters: l.horizontalAccuracy >= 0 ? l.horizontalAccuracy : nil, timestamp: l.timestamp)

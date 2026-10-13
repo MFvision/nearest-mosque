@@ -95,8 +95,15 @@ final class AskModel {
                 also = await QueryRewriter.searchQueries(for: question, language: lang)
             }
             step(.searching)
+            #if DEBUG
+            // CI App Store preview: long enough to see each step of the thinking card.
+            if DemoPreview.kind == "ask" { await DemoPreview.pause(1.6) }
+            #endif
             guard var answer = try? await Task.detached(operation: { try block(also) }).value else { return }
             step(.reading)
+            #if DEBUG
+            if DemoPreview.kind == "ask" { await DemoPreview.pause(1.4) }
+            #endif
             let cites = (try? repo.resolve(answer.citations)) ?? []
             let related = (try? repo.resolve(answer.related)) ?? []
             let library = (try? repo.resolve(answer.library)) ?? []
@@ -181,8 +188,14 @@ struct AskView: View {
                 .frame(maxWidth: 760)
                 .frame(maxWidth: .infinity)
                 .animation(Theme.spring, value: vm.turns.map(\.answer?.question))
+                #if DEBUG
+                Color.clear.frame(height: 1).id("askEnd")
+                #endif
             }
             .scrollIndicators(.hidden)
+            #if DEBUG
+            .task(id: app.ready) { if app.ready, DemoPreview.kind == "ask" { await searchTour(proxy) } }
+            #endif
             .dismissesKeyboardWhenScrolling()
             .onChange(of: vm.turns.last?.answer?.question) { _, _ in
                 if let id = vm.turns.last?.id { withAnimation { proxy.scrollTo(id, anchor: .top) } }
@@ -206,7 +219,7 @@ struct AskView: View {
         .task(id: app.ready) {
             // CI screenshots: `-demoAsk YES` asks the first common question (`-demoAskId quran-miracle`: that one).
             let wanted = UserDefaults.standard.string(forKey: "demoAskId")
-            guard app.ready, vm.turns.isEmpty, UserDefaults.standard.bool(forKey: "demoAsk"),
+            guard app.ready, vm.turns.isEmpty, UserDefaults.standard.bool(forKey: "demoAsk"), DemoPreview.kind == nil,
                   let all = try? app.ask?.commonQuestions(),
                   let q = all.first(where: { $0.id == wanted }) ?? all.first else { return }
             vm.ask(app, common: q, displayed: q.question[l10n.language] ?? q.question["en"] ?? q.id)
@@ -215,6 +228,30 @@ struct AskView: View {
         .onAppear { if UserDefaults.standard.bool(forKey: "demoLibrary") { showLibrary = true } }
         #endif
     }
+
+    #if DEBUG
+    /// CI App Store preview (`-demoPreview ask`): the question typed into the box and sent, the thinking card, then
+    /// the answer read down to its sources.
+    private func searchTour(_ proxy: ScrollViewProxy) async {
+        let wanted = UserDefaults.standard.string(forKey: "demoAskId")
+        guard vm.turns.isEmpty, let all = try? app.ask?.commonQuestions(),
+              let q = all.first(where: { $0.id == wanted }) ?? all.first else { return }
+        let text = q.question[l10n.language] ?? q.question["en"] ?? q.id
+        await DemoPreview.waitForStart(after: 8)
+        // About 2.5 seconds of typing, whatever the question's length.
+        let gap = max(25, min(90, 2500 / max(1, text.count)))
+        for ch in text {
+            input.append(ch)
+            try? await Task.sleep(for: .milliseconds(gap))
+        }
+        await DemoPreview.pause(0.7)
+        input = ""
+        vm.ask(app, common: q, displayed: text)
+        for _ in 0..<75 where vm.busy || vm.turns.last?.answer == nil { await DemoPreview.pause(0.2) }
+        await DemoPreview.pause(4.5)
+        withAnimation(.easeInOut(duration: 3)) { proxy.scrollTo("askEnd", anchor: .bottom) }
+    }
+    #endif
 
     private var header: some View {
         HStack(spacing: 8) {

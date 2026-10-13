@@ -100,5 +100,14 @@
       "sizes": [[3840, 2160]],
       "order": ["prayer", "mosques-map", "ask", "classics", "audio", "onboarding"]
     }
+  },
+  "previews": {
+    "_about": "App Previews (videos of 15 to 30 seconds): a scripted tour in the Debug build (`-demoPreview`), recorded from the iPhone simulator by tools/store/record.py and converted to App Store Connect's format (886 x 1920, H.264 at 30 fps, silent stereo AAC). The same files fit the iPhone 6.9\" and iPhone Duo preview slots. Up to 3 previews per device size and language; the order here is the order on the store page. Each video starts `lead` seconds before the tour does (the app marks the moment) and lasts `seconds`.",
+    "simulator": "^iPhone \\d+ Pro Max$",
+    "size": [886, 1920],
+    "clips": {
+      "header": {"title": "Prayer header and Qibla", "shows": "The prayer header on the sky of the hour, scrolled into the slim bar and back, then a tap into the Qibla view that lights up when the phone faces the Qibla.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoPreview", "header"], "lead": 2, "seconds": 20},
+      "search": {"title": "Ask with cited sources", "shows": "Ask: a question typed and sent, the thinking steps, then the answer from the offline library with its sources.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoPreview", "ask", "-demoAskId", "quran-miracle"], "lead": 2, "seconds": 20}
+    }
   }
 }

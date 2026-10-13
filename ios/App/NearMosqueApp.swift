@@ -18,6 +18,9 @@ struct NearMosqueApp: App {
         #endif
         // Reminders reach only a few days ahead (iOS keeps 64); this tops them up while the app is closed.
         ReminderRefresh.register()
+        #if DEBUG
+        _ = DemoPreview.launched
+        #endif
     }
 
     var body: some Scene {
