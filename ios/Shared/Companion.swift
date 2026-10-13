@@ -29,6 +29,10 @@ enum CompanionLog {
 
     /// Check-ins as "2026-10-10:dhuhr" (a prayer marked) or "2026-10-10:dhikr" (a tasbih round), newest last.
     static var marks: [String] {
+        #if targetEnvironment(simulator)
+        // Unsigned simulator builds (CI) have no keychain.
+        return UserDefaults.standard.stringArray(forKey: "sim." + account) ?? []
+        #endif
         var q = query()
         q[kSecReturnData as String] = true
         q[kSecMatchLimit as String] = kSecMatchLimitOne
@@ -39,6 +43,10 @@ enum CompanionLog {
     }
 
     private static func save(_ list: [String]) {
+        #if targetEnvironment(simulator)
+        UserDefaults.standard.set(list, forKey: "sim." + account)
+        return
+        #endif
         guard let data = try? JSONEncoder().encode(list) else { return }
         let q = query()
         let attrs: [String: Any] = [kSecValueData as String: data, kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]

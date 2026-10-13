@@ -24,6 +24,10 @@ struct WatchExtras: Codable, Equatable {
     }
 
     static func read() -> WatchExtras {
+        #if targetEnvironment(simulator)
+        // Unsigned simulator builds (CI) have no keychain.
+        return UserDefaults.standard.data(forKey: "sim." + account).flatMap { try? JSONDecoder().decode(WatchExtras.self, from: $0) } ?? WatchExtras()
+        #endif
         var q = query()
         q[kSecReturnData as String] = true
         q[kSecMatchLimit as String] = kSecMatchLimitOne
@@ -35,6 +39,10 @@ struct WatchExtras: Codable, Equatable {
 
     static func write(_ x: WatchExtras) {
         guard let data = try? JSONEncoder().encode(x) else { return }
+        #if targetEnvironment(simulator)
+        UserDefaults.standard.set(data, forKey: "sim." + account)
+        return
+        #endif
         let q = query()
         let attrs: [String: Any] = [kSecValueData as String: data, kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]
         if SecItemUpdate(q as CFDictionary, attrs as CFDictionary) != errSecSuccess {
