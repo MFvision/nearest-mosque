@@ -20,10 +20,13 @@ struct SpiritPage: View {
                 let _ = model.marksVersion
                 ScrollView {
                     VStack(spacing: 10) {
-                        CompanionStage(kind: companionKind(s), level: level)
-                            .frame(height: 92)
-                        Text(moodLine(s, level)).font(.footnote.weight(.semibold)).multilineTextAlignment(.center)
-                            .foregroundStyle(.white).shadow(color: .black.opacity(0.4), radius: 3)
+                        HStack(spacing: 8) {
+                            CompanionStage(kind: companionKind(s), level: level)
+                                .frame(width: 58, height: 72)
+                            Text(moodLine(s, level)).font(.footnote.weight(.semibold))
+                                .foregroundStyle(.white).shadow(color: .black.opacity(0.4), radius: 3)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                         if let m = CompanionLog.markable(today: today, current: current, now: now), m.0.isPrayer {
                             let done = CompanionLog.checkedIn(m.0.rawValue, on: m.1)
                             Button {

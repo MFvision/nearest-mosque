@@ -329,7 +329,13 @@ final class WatchModel {
             settings.source = .phone
         }
         if let s = d.string(forKey: "demoScreen").flatMap(WatchScreen.init(rawValue:)) { screen = s }
-        if d.bool(forKey: "demoSettings") { showSettings = true }
+        if d.bool(forKey: "demoSettings") {
+            // After the pages are on screen, or the push is lost.
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(2))
+                self.showSettings = true
+            }
+        }
         if d.object(forKey: "demoMarks") != nil, let zone = state?.zone {
             // `-demoMarks 1`: a week of marks with a few missed, for the spiritual health page.
             let today = CivilDate.of(Date(), in: zone)

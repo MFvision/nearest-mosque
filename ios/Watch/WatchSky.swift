@@ -74,18 +74,18 @@ struct SkyOrb: View {
     var body: some View {
         GeometryReader { g in
             let w = g.size.width, h = g.size.height
+            // In the top corner, clear of the page's text, rising and setting a little along the day.
             let f = fraction
-            let horizonY = h * 0.8
-            let x = w * (0.12 + 0.76 * f)
-            let y = horizonY - CGFloat(sin(Double.pi * f)) * h * 0.52 - h * 0.04
+            let x = w * (0.07 + 0.2 * f)
+            let y = h * (0.15 - 0.07 * CGFloat(sin(Double.pi * f)))
             let day = isDay
-            let d = w * (day ? 0.15 : 0.13)
+            let d = w * (day ? 0.11 : 0.1)
             ZStack {
                 // Halo.
                 Circle()
                     .fill(RadialGradient(colors: [(day ? sky.glow : Color(hex: 0xDCE6FF)).opacity(day ? 0.55 : 0.4), .clear],
-                                         center: .center, startRadius: 0, endRadius: d * 2.4))
-                    .frame(width: d * 4.8, height: d * 4.8)
+                                         center: .center, startRadius: 0, endRadius: d * 2))
+                    .frame(width: d * 4, height: d * 4)
                     .scaleEffect(shine ? 1.12 : 0.94)
                 if day {
                     Circle()

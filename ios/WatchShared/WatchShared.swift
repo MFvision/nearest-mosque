@@ -16,7 +16,10 @@ struct WatchExtras: Codable, Equatable {
     private static func query() -> [String: Any] {
         var q: [String: Any] = [kSecClass as String: kSecClassGenericPassword, kSecAttrService as String: "sa.zood.nearmosque.shared",
                                 kSecAttrAccount as String: account]
+        // Simulator builds in CI are unsigned, so they have no access group: the item stays the app's own there.
+        #if !targetEnvironment(simulator)
         if let group, !group.hasPrefix("$(") { q[kSecAttrAccessGroup as String] = group }
+        #endif
         return q
     }
 
