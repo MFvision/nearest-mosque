@@ -111400,6 +111400,3542 @@
         }
       }
     },
+    "watch_ask_none": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No ready answer on the watch. Ask on your iPhone to search all the books."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد إجابة جاهزة على الساعة. اسأل من iPhone للبحث في كل الكتب."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی پر تیار جواب نہیں ہے۔ تمام کتابوں میں تلاش کے لیے iPhone پر پوچھیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatte hazır bir yanıt yok. Tüm kitaplarda aramak için iPhone'da sorun."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidak ada jawaban siap di jam. Tanyakan di iPhone untuk mencari di semua buku."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de réponse prête sur la montre. Posez la question sur l’iPhone pour chercher dans tous les livres."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay una respuesta lista en el reloj. Pregunta en el iPhone para buscar en todos los libros."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На часах нет готового ответа. Спросите на iPhone, чтобы искать по всем книгам."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়িতে তৈরি উত্তর নেই। সব বইয়ে খুঁজতে iPhone-এ জিজ্ঞাসা করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پاسخ آماده‌ای روی ساعت نیست. برای جستجو در همهٔ کتاب‌ها در iPhone بپرسید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پاسخ آماده‌ای روی ساعت نیست. برای جستجو در همهٔ کتاب‌ها در iPhone بپرسید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表上没有现成的回答。请在 iPhone 上提问，以搜索所有书籍。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर कोई तैयार जवाब नहीं है। सभी किताबों में खोजने के लिए iPhone पर पूछें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não há resposta pronta no relógio. Pergunte no iPhone para pesquisar em todos os livros."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Babu amsa a shirye a agogon. Ku tambaya a iPhone don bincike a duk littattafai."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hakuna jibu tayari kwenye saa. Uliza kwenye iPhone ili kutafuta katika vitabu vyote."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walang handang sagot sa relo. Magtanong sa iPhone para hanapin sa lahat ng aklat."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đồng hồ chưa có câu trả lời sẵn. Hãy hỏi trên iPhone để tìm trong mọi sách."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นาฬิกาไม่มีคำตอบสำเร็จรูป ถามบน iPhone เพื่อค้นหาในหนังสือทั้งหมด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "គ្មានចម្លើយរួចរាល់នៅលើនាឡិកាទេ។ សួរនៅលើ iPhone ដើម្បីស្វែងរកក្នុងសៀវភៅទាំងអស់។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سائەتتە تەييار جاۋاب يوق. بارلىق كىتابلاردىن ئىزدەش ئۈچۈن iPhone دا سوراڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وەڵامی ئامادە لەسەر کاتژمێر نییە. بۆ گەڕان لە هەموو کتێبەکاندا لە iPhone بپرسە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na satu nema gotovog odgovora. Pitajte na iPhoneu za pretragu svih knjiga."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На сату нема готовог одговора. Питајте на iPhone-у за претрагу свих књига."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нема готов одговор на часовникот. Прашајте на iPhone за пребарување во сите книги."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az órán nincs kész válasz. Kérdezzen az iPhone-on, hogy minden könyvben keressen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen kant-en-klaar antwoord op de watch. Vraag het op je iPhone om in alle boeken te zoeken."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათზე მზა პასუხი არ არის. ჰკითხეთ iPhone-ზე ყველა წიგნში საძიებლად."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවේ සූදානම් පිළිතුරක් නැත. සියලු පොත්වල සෙවීමට iPhone හි අසන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్‌లో సిద్ధమైన సమాధానం లేదు. అన్ని పుస్తకాల్లో వెతకడానికి iPhoneలో అడగండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್‌ನಲ್ಲಿ ಸಿದ್ಧ ಉತ್ತರ ಇಲ್ಲ. ಎಲ್ಲ ಪುಸ್ತಕಗಳಲ್ಲಿ ಹುಡುಕಲು iPhone ನಲ್ಲಿ ಕೇಳಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിൽ തയ്യാറായ ഉത്തരമില്ല. എല്ലാ പുസ്തകങ്ങളിലും തിരയാൻ iPhone-ൽ ചോദിക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळावर तयार उत्तर नाही. सर्व पुस्तकांत शोधण्यासाठी iPhone वर विचारा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળ પર તૈયાર જવાબ નથી. બધાં પુસ્તકોમાં શોધવા iPhone પર પૂછો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ’ਤੇ ਕੋਈ ਤਿਆਰ ਜਵਾਬ ਨਹੀਂ। ਸਾਰੀਆਂ ਕਿਤਾਬਾਂ ਵਿੱਚ ਲੱਭਣ ਲਈ iPhone ’ਤੇ ਪੁੱਛੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়ীত সাজু উত্তৰ নাই। সকলো কিতাপত বিচাৰিবলৈ iPhoneত সোধক।"
+          }
+        }
+      }
+    },
+    "watch_ask_prompt": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speak or type a question"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قل سؤالك أو اكتبه"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوال بولیں یا لکھیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sorunuzu söyleyin veya yazın"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ucapkan atau ketik pertanyaan"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dites ou écrivez une question"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Di o escribe una pregunta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скажите или введите вопрос"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রশ্ন বলুন বা লিখুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سؤال را بگویید یا بنویسید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سؤال را بگویید یا بنویسید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "说出或输入问题"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सवाल बोलें या लिखें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fale ou digite uma pergunta"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faɗi ko rubuta tambaya"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sema au andika swali"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabihin o i-type ang tanong"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nói hoặc nhập câu hỏi"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "พูดหรือพิมพ์คำถาม"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "និយាយ ឬវាយសំណួរ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سوئالنى ئېيتىڭ ياكى يېزىڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرسیارەکەت بڵێ یان بینووسە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izgovorite ili upišite pitanje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изговорите или упишите питање"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кажете или напишете прашање"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mondja ki vagy írja be a kérdést"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spreek of typ een vraag"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თქვით ან ჩაწერეთ კითხვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ප්‍රශ්නය කියන්න හෝ ටයිප් කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రశ్నను చెప్పండి లేదా టైప్ చేయండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪ್ರಶ್ನೆಯನ್ನು ಹೇಳಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചോദ്യം പറയുക അല്ലെങ്കിൽ ടൈപ്പ് ചെയ്യുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रश्न बोला किंवा लिहा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "પ્રશ્ન બોલો અથવા લખો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਵਾਲ ਬੋਲੋ ਜਾਂ ਲਿਖੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্ৰশ্ন কওক বা লিখক"
+          }
+        }
+      }
+    },
+    "watch_face_howto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On your watch, touch and hold the watch face, tap Edit, swipe to the complications and choose Near Mosque."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "على ساعتك: المس واجهة الساعة مطولًا، واضغط «تعديل»، ثم مرّر إلى المضاعفات واختر «أقرب مسجد»."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی پر واچ فیس کو دبائے رکھیں، Edit پر ٹیپ کریں، کمپلیکیشنز تک سوائپ کریں اور قریبی مسجد چنیں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatte kadranı basılı tutun, Düzenle'ye dokunun, komplikasyonlara kaydırın ve Near Mosque'u seçin."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Di jam, sentuh dan tahan tampilan jam, ketuk Edit, gesek ke komplikasi, lalu pilih Near Mosque."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur la montre, maintenez le cadran, touchez Modifier, balayez jusqu’aux complications et choisissez Near Mosque."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En el reloj, mantén pulsada la esfera, toca Editar, desliza hasta las complicaciones y elige Near Mosque."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На часах нажмите и удерживайте циферблат, коснитесь «Изменить», перейдите к расширениям и выберите Near Mosque."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়িতে ওয়াচ ফেস চেপে ধরুন, Edit-এ ট্যাপ করুন, কমপ্লিকেশন পর্যন্ত সোয়াইপ করে Near Mosque বেছে নিন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روی ساعت، صفحهٔ ساعت را لمس کرده و نگه دارید، روی «ویرایش» بزنید، تا کامپلیکیشن‌ها بکشید و نزدیک‌ترین مسجد را انتخاب کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روی ساعت، صفحهٔ ساعت را لمس کرده و نگه دارید، روی «ویرایش» بزنید، تا کامپلیکیشن‌ها بکشید و نزدیک‌ترین مسجد را انتخاب کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在手表上按住表盘，轻点“编辑”，滑动到复杂功能，然后选择 Near Mosque。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर वॉच फ़ेस को दबाकर रखें, Edit पर टैप करें, कॉम्प्लिकेशन तक स्वाइप करें और Near Mosque चुनें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No relógio, toque e segure o mostrador, toque em Editar, deslize até as complicações e escolha Near Mosque."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A agogo, taɓa ka riƙe fuskar agogo, taɓa Edit, zame zuwa complications sannan ka zaɓi Near Mosque."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwenye saa, gusa na ushikilie uso wa saa, gusa Hariri, telezesha hadi complications kisha uchague Near Mosque."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa relo, pindutin nang matagal ang watch face, i-tap ang Edit, mag-swipe sa complications at piliin ang Near Mosque."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trên đồng hồ, chạm và giữ mặt đồng hồ, chạm Sửa, vuốt đến phần tổ hợp rồi chọn Near Mosque."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "บนนาฬิกา แตะหน้าปัดค้างไว้ แตะแก้ไข ปัดไปที่ส่วนเสริม แล้วเลือก Near Mosque"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "លើនាឡិកា ចុចសង្កត់ផ្ទៃនាឡិកា ចុច Edit អូសទៅ complications ហើយជ្រើស Near Mosque។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سائەتتە سائەت يۈزىنى بېسىپ تۇرۇڭ، Edit نى چېكىڭ، complications قا سۈرۈڭ ۋە ئەڭ يېقىن مەسچىت نى تاللاڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لەسەر کاتژمێر، ڕووی کاتژمێر دابگرە، دەست لە Edit بدە، بۆ complications ڕابکێشە و نزیکترین مزگەوت هەڵبژێرە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na satu držite brojčanik, dodirnite Uredi, prevucite do komplikacija i odaberite Near Mosque."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На сату држите бројчаник, додирните Измени, превуците до компликација и изаберите Near Mosque."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На часовникот држете го бројчаникот, допрете Уреди, лизгајте до компликациите и изберете Near Mosque."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az órán tartsa nyomva a számlapot, koppintson a Szerkesztésre, lapozzon a komplikációkhoz, és válassza a Near Mosque-ot."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Houd op je watch de wijzerplaat ingedrukt, tik op Wijzig, veeg naar de complicaties en kies Near Mosque."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათზე ხანგრძლივად შეეხეთ ციფერბლატს, შეეხეთ „რედაქტირებას“, გადაფურცლეთ გართულებებამდე და აირჩიეთ Near Mosque."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවේ මුහුණත ඔබාගෙන සිට Edit තට්ටු කර, complications වෙත ස්වයිප් කර Near Mosque තෝරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్‌లో వాచ్ ఫేస్‌ను నొక్కి పట్టుకోండి, Edit ట్యాప్ చేయండి, కాంప్లికేషన్‌లకు స్వైప్ చేసి Near Mosque ఎంచుకోండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್‌ನಲ್ಲಿ ವಾಚ್ ಫೇಸ್ ಒತ್ತಿ ಹಿಡಿಯಿರಿ, Edit ಟ್ಯಾಪ್ ಮಾಡಿ, ಕಾಂಪ್ಲಿಕೇಶನ್‌ಗಳಿಗೆ ಸ್ವೈಪ್ ಮಾಡಿ ಮತ್ತು Near Mosque ಆಯ್ಕೆಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിൽ വാച്ച് ഫെയ്സ് അമർത്തിപ്പിടിക്കുക, Edit ടാപ്പ് ചെയ്യുക, കോംപ്ലിക്കേഷനുകളിലേക്ക് സ്വൈപ്പ് ചെയ്ത് Near Mosque തിരഞ്ഞെടുക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळावर वॉच फेस दाबून ठेवा, Edit वर टॅप करा, कॉम्प्लिकेशनपर्यंत स्वाइप करा आणि Near Mosque निवडा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળ પર વૉચ ફેસ દબાવી રાખો, Edit પર ટૅપ કરો, કોમ્પ્લિકેશન સુધી સ્વાઇપ કરો અને Near Mosque પસંદ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ’ਤੇ ਵਾਚ ਫੇਸ ਦਬਾ ਕੇ ਰੱਖੋ, Edit ’ਤੇ ਟੈਪ ਕਰੋ, ਕੰਪਲੀਕੇਸ਼ਨਾਂ ਤੱਕ ਸਵਾਈਪ ਕਰੋ ਅਤੇ Near Mosque ਚੁਣੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়ীত ৱাচ ফেচ টিপি ধৰক, Edit টেপ কৰক, কমপ্লিকেশ্বনলৈ ছোৱাইপ কৰক আৰু Near Mosque বাছক।"
+          }
+        }
+      }
+    },
+    "watch_face_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The next prayer, the countdown, today’s prayers, the Qibla, the tasbih, the nearest mosque and the companion fit on any face with complications."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصلاة القادمة والعدّ التنازلي وصلوات اليوم والقبلة والتسبيح وأقرب مسجد والرفيق تناسب أي واجهة فيها مضاعفات."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگلی نماز، الٹی گنتی، آج کی نمازیں، قبلہ، تسبیح، قریبی مسجد اور ساتھی ہر اس فیس پر آ سکتے ہیں جس میں کمپلیکیشنز ہوں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki namaz, geri sayım, bugünün namazları, kıble, tesbih, en yakın cami ve arkadaş, komplikasyonlu her kadrana sığar."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salat berikutnya, hitung mundur, salat hari ini, kiblat, tasbih, masjid terdekat, dan teman bisa dipasang di tampilan jam mana pun yang punya komplikasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prochaine prière, compte à rebours, prières du jour, qibla, tasbih, mosquée la plus proche et compagnon se placent sur tout cadran à complications."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La próxima oración, la cuenta atrás, las oraciones de hoy, la alquibla, el tasbih, la mezquita más cercana y el compañero caben en cualquier esfera con complicaciones."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следующая молитва, обратный отсчёт, молитвы на сегодня, кибла, тасбих, ближайшая мечеть и спутник подходят для любого циферблата с расширениями."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরের নামাজ, কাউন্টডাউন, আজকের নামাজ, কিবলা, তাসবিহ, নিকটতম মসজিদ আর সঙ্গী কমপ্লিকেশনসহ যেকোনো ফেসে বসানো যায়।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی، شمارش معکوس، نمازهای امروز، قبله، تسبیح، نزدیک‌ترین مسجد و همراه روی هر صفحهٔ دارای کامپلیکیشن جا می‌گیرند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز بعدی، شمارش معکوس، نمازهای امروز، قبله، تسبیح، نزدیک‌ترین مسجد و همراه روی هر صفحهٔ دارای کامپلیکیشن جا می‌گیرند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下次礼拜、倒计时、今日礼拜、朝向、赞念、最近的清真寺和伙伴，都可放在任何带复杂功能的表盘上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगली नमाज़, उलटी गिनती, आज की नमाज़ें, क़िबला, तस्बीह, नज़दीकी मस्जिद और साथी किसी भी कॉम्प्लिकेशन वाले फ़ेस पर लग सकते हैं।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A próxima oração, a contagem regressiva, as orações de hoje, a qibla, o tasbih, a mesquita mais próxima e o companheiro cabem em qualquer mostrador com complicações."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sallah ta gaba, ƙidayar lokaci, sallolin yau, Alƙibla, tasbihi, masallaci mafi kusa da abokin tafiya suna dacewa da kowace fuska mai complications."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swala ijayo, muda uliobaki, swala za leo, Kibla, tasbihi, msikiti wa karibu na rafiki hukaa kwenye uso wowote wenye complications."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang susunod na salah, countdown, mga salah ngayon, Qibla, tasbih, pinakamalapit na masjid at kasama ay kasya sa anumang watch face na may complications."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giờ cầu nguyện tới, đếm ngược, các giờ hôm nay, Qibla, tasbih, thánh đường gần nhất và người bạn đồng hành đặt được trên mọi mặt đồng hồ có tổ hợp."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละหมาดถัดไป การนับถอยหลัง ละหมาดวันนี้ กิบลัต ตัสบีห์ มัสยิดใกล้สุด และเพื่อนคู่ใจ ใส่ได้ในทุกหน้าปัดที่มีส่วนเสริม"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សឡាតបន្ទាប់ ការរាប់ថយក្រោយ សឡាតថ្ងៃនេះ គិបឡាត់ តាសប៊ីហ៍ ម៉ាស្ជិតជិតបំផុត និងដៃគូ ដាក់បានលើផ្ទៃនាឡិកាណាដែលមាន complications។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كېيىنكى ناماز، تەتۈر ساناش، بۈگۈنكى نامازلار، قىبلە، تەسبىھ، ئەڭ يېقىن مەسچىت ۋە ھەمراھنى complications بار ھەر قانداق سائەت يۈزىگە قويغىلى بولىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژی داهاتوو، ژماردنی پێچەوانە، نوێژەکانی ئەمڕۆ، قیبلە، تەسبیح، نزیکترین مزگەوت و هاوڕێ لەسەر هەر ڕوویەکی خاوەن complications دادەنرێن."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sljedeći namaz, odbrojavanje, današnji namazi, kibla, tesbih, najbliža džamija i pratilac staju na svaki brojčanik s komplikacijama."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следећи намаз, одбројавање, данашњи намази, кибла, тесбих, најближа џамија и пратилац стају на сваки бројчаник са компликацијама."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следниот намаз, одбројувањето, денешните намази, киблата, тесбихот, најблиската џамија и придружникот одат на секој бројчаник со компликации."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A következő ima, a visszaszámlálás, a mai imák, a kibla, a tasbih, a legközelebbi mecset és a társ minden komplikációs számlapra felkerülhet."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het volgende gebed, het aftellen, de gebeden van vandaag, de qibla, de tasbih, de dichtstbijzijnde moskee en de metgezel passen op elke wijzerplaat met complicaties."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შემდეგი ლოცვა, უკუთვლა, დღევანდელი ლოცვები, ყიბლა, თასბიჰი, უახლოესი მეჩეთი და თანამგზავრი ნებისმიერ გართულებიან ციფერბლატზე ეტევა."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඊළඟ නමාසය, ගණන් කිරීම, අද නමාස, කිබ්ලාව, තස්බීහ්, ළඟම පල්ලිය සහ සහකරු complications ඇති ඕනෑම මුහුණතකට දැමිය හැක."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తదుపరి నమాజ్, కౌంట్‌డౌన్, ఈరోజు నమాజ్‌లు, ఖిబ్లా, తస్బీహ్, దగ్గరి మసీదు, తోడు—కాంప్లికేషన్‌లు ఉన్న ఏ ఫేస్‌పైనైనా పెట్టవచ్చు."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮುಂದಿನ ನಮಾಜ್, ಕೌಂಟ್‌ಡೌನ್, ಇಂದಿನ ನಮಾಜ್‌ಗಳು, ಕಿಬ್ಲಾ, ತಸ್ಬೀಹ್, ಹತ್ತಿರದ ಮಸೀದಿ ಮತ್ತು ಸಂಗಾತಿಯನ್ನು ಕಾಂಪ್ಲಿಕೇಶನ್ ಇರುವ ಯಾವುದೇ ಫೇಸ್‌ಗೆ ಹಾಕಬಹುದು."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അടുത്ത നമസ്കാരം, കൗണ്ട്ഡൗൺ, ഇന്നത്തെ നമസ്കാരങ്ങൾ, ഖിബ്‌ല, തസ്ബീഹ്, അടുത്തുള്ള പള്ളി, കൂട്ടുകാരൻ എന്നിവ കോംപ്ലിക്കേഷനുള്ള ഏത് ഫെയ്സിലും വെക്കാം."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुढची नमाज, उलटगणती, आजच्या नमाज, किब्ला, तस्बीह, जवळची मशीद आणि सोबती कॉम्प्लिकेशन असलेल्या कोणत्याही फेसवर लावता येतात."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આગલી નમાઝ, ઊંધી ગણતરી, આજની નમાઝ, કિબ્લા, તસ્બીહ, નજીકની મસ્જિદ અને સાથી કોઈ પણ કોમ્પ્લિકેશનવાળા ફેસ પર આવી શકે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਗਲੀ ਨਮਾਜ਼, ਉਲਟੀ ਗਿਣਤੀ, ਅੱਜ ਦੀਆਂ ਨਮਾਜ਼ਾਂ, ਕਿਬਲਾ, ਤਸਬੀਹ, ਨਜ਼ਦੀਕੀ ਮਸਜਿਦ ਅਤੇ ਸਾਥੀ ਕਿਸੇ ਵੀ ਕੰਪਲੀਕੇਸ਼ਨ ਵਾਲੇ ਫੇਸ ’ਤੇ ਲੱਗ ਸਕਦੇ ਹਨ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পিছৰ নামাজ, কাউণ্টডাউন, আজিৰ নামাজ, কিবলা, তছবীহ, ওচৰৰ মছজিদ আৰু সংগী কমপ্লিকেশ্বন থকা যিকোনো ফেচত বহুৱাব পাৰি।"
+          }
+        }
+      }
+    },
+    "watch_from_iphone": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From iPhone"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من iPhone"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone سے"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone'dan"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dari iPhone"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depuis l’iPhone"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde el iPhone"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "С iPhone"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone থেকে"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از iPhone"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از iPhone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "来自 iPhone"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone से"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do iPhone"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daga iPhone"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kutoka iPhone"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula sa iPhone"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ iPhone"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "จาก iPhone"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពី iPhone"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone دىن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لە iPhoneەوە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa iPhonea"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Са iPhone-а"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од iPhone"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az iPhone-ról"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Van iPhone"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-იდან"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone වෙතින්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone నుండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ನಿಂದ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-ൽ നിന്ന്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone वरून"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone પરથી"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ਤੋਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneৰ পৰা"
+          }
+        }
+      }
+    },
+    "watch_location_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From iPhone uses the city and method you chose on your iPhone. This watch’s location works without your iPhone."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«من iPhone» يستخدم المدينة وطريقة الحساب المختارة في iPhone. أما «موقع هذه الساعة» فيعمل دون iPhone."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«iPhone سے» وہی شہر اور طریقہ استعمال کرتا ہے جو آپ نے iPhone پر چنا۔ «اس گھڑی کا مقام» iPhone کے بغیر بھی کام کرتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone'dan”, iPhone'da seçtiğiniz şehri ve yöntemi kullanır. “Bu saatin konumu” iPhone olmadan da çalışır."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Dari iPhone” memakai kota dan metode yang Anda pilih di iPhone. “Lokasi jam ini” berfungsi tanpa iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Depuis l’iPhone » reprend la ville et la méthode choisies sur l’iPhone. « Position de cette montre » fonctionne sans l’iPhone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Desde el iPhone» usa la ciudad y el método que elegiste en el iPhone. «Ubicación de este reloj» funciona sin el iPhone."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«С iPhone» берёт город и метод, выбранные на iPhone. «Местоположение часов» работает и без iPhone."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone থেকে” iPhone-এ বেছে নেওয়া শহর ও পদ্ধতি ব্যবহার করে। “এই ঘড়ির লোকেশন” iPhone ছাড়াও কাজ করে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«از iPhone» شهر و روشی را به کار می‌برد که در iPhone انتخاب کرده‌اید. «موقعیت این ساعت» بدون iPhone هم کار می‌کند."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«از iPhone» شهر و روشی را به کار می‌برد که در iPhone انتخاب کرده‌اید. «موقعیت این ساعت» بدون iPhone هم کار می‌کند."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“来自 iPhone”使用你在 iPhone 上选择的城市和计算方法。“此手表的位置”无需 iPhone 也能使用。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone से” वही शहर और तरीका लेता है जो आपने iPhone पर चुना। “इस घड़ी की लोकेशन” iPhone के बिना भी काम करती है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Do iPhone” usa a cidade e o método escolhidos no iPhone. “Localização deste relógio” funciona sem o iPhone."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Daga iPhone” na amfani da birni da hanyar da kuka zaɓa a iPhone. “Wurin wannan agogo” yana aiki ba tare da iPhone ba."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Kutoka iPhone” hutumia mji na njia uliyochagua kwenye iPhone. “Mahali saa hii ilipo” hufanya kazi bila iPhone."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ginagamit ng “Mula sa iPhone” ang lungsod at paraang pinili mo sa iPhone. Gumagana ang “Lokasyon ng relong ito” kahit wala ang iPhone."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Từ iPhone” dùng thành phố và phương pháp bạn đã chọn trên iPhone. “Vị trí của đồng hồ này” hoạt động cả khi không có iPhone."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“จาก iPhone” ใช้เมืองและวิธีคำนวณที่คุณเลือกใน iPhone ส่วน “ตำแหน่งของนาฬิกานี้” ใช้ได้แม้ไม่มี iPhone"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«ពី iPhone» ប្រើទីក្រុង និងវិធីដែលអ្នកបានជ្រើសនៅលើ iPhone។ «ទីតាំងនាឡិកានេះ» ដំណើរការដោយគ្មាន iPhone។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«iPhone دىن» iPhone دا تاللىغان شەھەر ۋە ئۇسۇلنى ئىشلىتىدۇ. «بۇ سائەتنىڭ ئورنى» iPhone بولمىسىمۇ ئىشلەيدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«لە iPhoneەوە» ئەو شار و ڕێگایە بەکاردەهێنێت کە لە iPhone هەڵتبژاردووە. «شوێنی ئەم کاتژمێرە» بەبێ iPhoneیش کاردەکات."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Sa iPhonea“ koristi grad i metod koje ste odabrali na iPhoneu. „Lokacija ovog sata“ radi i bez iPhonea."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Са iPhone-а“ користи град и метод изабране на iPhone-у. „Локација овог сата“ ради и без iPhone-а."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Од iPhone“ ги користи градот и методот избрани на iPhone. „Локација на часовникот“ работи и без iPhone."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az „Az iPhone-ról” az iPhone-on választott várost és módszert használja. „Az óra helye” iPhone nélkül is működik."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘Van iPhone’ gebruikt de stad en methode die je op je iPhone koos. ‘Locatie van deze watch’ werkt ook zonder iPhone."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„iPhone-იდან“ იყენებს iPhone-ზე არჩეულ ქალაქსა და მეთოდს. „ამ საათის მდებარეობა“ iPhone-ის გარეშეც მუშაობს."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone වෙතින්” iPhone හි තෝරාගත් නගරය සහ ක්‍රමය භාවිත කරයි. “මෙම ඔරලෝසුවේ ස්ථානය” iPhone නොමැතිවද ක්‍රියා කරයි."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone నుండి” మీరు iPhoneలో ఎంచుకున్న నగరం, పద్ధతిని వాడుతుంది. “ఈ వాచ్ లొకేషన్” iPhone లేకుండానూ పనిచేస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone ನಿಂದ” iPhone ನಲ್ಲಿ ಆಯ್ಕೆ ಮಾಡಿದ ನಗರ ಮತ್ತು ವಿಧಾನವನ್ನು ಬಳಸುತ್ತದೆ. “ಈ ವಾಚ್‌ನ ಸ್ಥಳ” iPhone ಇಲ್ಲದೆಯೂ ಕೆಲಸ ಮಾಡುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone-ൽ നിന്ന്” iPhone-ൽ തിരഞ്ഞെടുത്ത നഗരവും രീതിയും ഉപയോഗിക്കുന്നു. “ഈ വാച്ചിന്റെ ലൊക്കേഷൻ” iPhone ഇല്ലാതെയും പ്രവർത്തിക്കും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone वरून” iPhone वर निवडलेले शहर आणि पद्धत वापरते. “या घड्याळाचे लोकेशन” iPhone शिवायही चालते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone પરથી” iPhone પર પસંદ કરેલું શહેર અને પદ્ધતિ વાપરે છે. “આ ઘડિયાળનું લોકેશન” iPhone વગર પણ ચાલે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhone ਤੋਂ” iPhone ’ਤੇ ਚੁਣਿਆ ਸ਼ਹਿਰ ਅਤੇ ਤਰੀਕਾ ਵਰਤਦਾ ਹੈ। “ਇਸ ਘੜੀ ਦਾ ਟਿਕਾਣਾ” iPhone ਤੋਂ ਬਿਨਾਂ ਵੀ ਚੱਲਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“iPhoneৰ পৰা”ই iPhoneত বাছনি কৰা চহৰ আৰু পদ্ধতি ব্যৱহাৰ কৰে। “এই ঘড়ীটোৰ অৱস্থান” iPhone নোহোৱাকৈও চলে।"
+          }
+        }
+      }
+    },
+    "watch_mosques_from_iphone": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From where your iPhone last looked"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من آخر مكان بحث فيه iPhone"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وہاں سے جہاں iPhone نے آخری بار دیکھا"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone'un en son baktığı yerden"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dari tempat terakhir iPhone mencari"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depuis le dernier endroit vu par l’iPhone"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde donde buscó el iPhone por última vez"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "От места, где iPhone искал в последний раз"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone শেষবার যেখানে খুঁজেছে সেখান থেকে"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از جایی که iPhone آخرین بار جستجو کرد"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از جایی که iPhone آخرین بار جستجو کرد"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从 iPhone 上次查找的位置算起"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जहाँ iPhone ने आख़िरी बार देखा, वहाँ से"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De onde o iPhone procurou por último"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daga inda iPhone ya duba na ƙarshe"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kutoka mahali iPhone ilipotafuta mwisho"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula sa huling hinanapan ng iPhone"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tính từ nơi iPhone tìm lần cuối"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "จากจุดที่ iPhone ค้นหาล่าสุด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពីកន្លែងដែល iPhone បានរកចុងក្រោយ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ئەڭ ئاخىرىدا ئىزدىگەن يەردىن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لەو شوێنەوە کە iPhone دواجار گەڕا"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od mjesta gdje je iPhone zadnji put tražio"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од места где је iPhone последњи пут тражио"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од местото каде iPhone последно барал"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onnan, ahol az iPhone utoljára keresett"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanaf waar je iPhone het laatst zocht"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "იქიდან, სადაც iPhone-მა ბოლოს მოძებნა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone අවසන් වරට සෙවූ තැන සිට"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone చివరిసారి వెతికిన చోటు నుండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ಕೊನೆಯದಾಗಿ ಹುಡುಕಿದ ಸ್ಥಳದಿಂದ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone അവസാനം തിരഞ്ഞ സ്ഥലത്തുനിന്ന്"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ने शेवटी जिथे पाहिले तिथून"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone એ છેલ્લે જ્યાં જોયું ત્યાંથી"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜਿੱਥੇ iPhone ਨੇ ਆਖ਼ਰੀ ਵਾਰ ਲੱਭਿਆ, ਉੱਥੋਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneএ শেষবাৰ য’ত বিচাৰিছিল তাৰ পৰা"
+          }
+        }
+      }
+    },
+    "watch_qibla_haptic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap my wrist when I face the Qibla"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبّه معصمي حين أتجه إلى القبلة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبلہ رخ ہونے پر کلائی پر تھپتھپائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kıbleye döndüğümde bileğime dokun"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketuk pergelangan saat menghadap kiblat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tapoter mon poignet face à la qibla"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocar mi muñeca al mirar a la alquibla"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Касание запястья, когда я лицом к кибле"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিবলামুখী হলে কব্জিতে টোকা"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقتی رو به قبله‌ام به مچم ضربه بزن"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقتی رو به قبله‌ام به مچم ضربه بزن"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "面向朝向时轻触我的手腕"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क़िबला की ओर होने पर कलाई पर टैप"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocar no pulso quando eu estiver de frente para a qibla"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taɓa wuyan hannuna idan na fuskanci Alƙibla"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gusa kifundo nikielekea Kibla"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tapikin ang pulso ko kapag nakaharap sa Qibla"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm cổ tay khi tôi hướng về Qibla"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะข้อมือเมื่อฉันหันไปทางกิบลัต"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប៉ះកដៃពេលខ្ញុំបែរទៅគិបឡាត់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قىبلىگە يۈزلەنگەندە بىلىكىمنى چەك"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کاتێک ڕووم لە قیبلەیە لە مەچەکم بدە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodir na zglobu kad sam okrenut kibli"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додир на зглобу кад сам окренут кибли"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Допир на зглобот кога сум свртен кон киблата"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppintás a csuklón, ha a kibla felé nézek"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tik op mijn pols als ik naar de qibla kijk"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მაჯაზე შეხება, როცა ყიბლისკენ ვდგავარ"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "කිබ්ලාව දෙසට හැරුණු විට මැණික්කටුවට තට්ටුවක්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఖిబ్లా వైపు తిరిగినప్పుడు మణికట్టుపై తట్టు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಿಬ್ಲಾ ಕಡೆ ತಿರುಗಿದಾಗ ಮಣಿಕಟ್ಟಿಗೆ ತಟ್ಟು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഖിബ്‌ലയിലേക്ക് തിരിയുമ്പോൾ കൈത്തണ്ടയിൽ തട്ടുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किबल्याकडे तोंड झाल्यावर मनगटावर टॅप"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "કિબ્લા તરફ મોં થાય ત્યારે કાંડે ટૅપ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਿਬਲੇ ਵੱਲ ਮੂੰਹ ਹੋਣ ’ਤੇ ਗੁੱਟ ’ਤੇ ਟੈਪ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কিবলামুখী হ’লে হাতৰ কব্জিত টোকৰ"
+          }
+        }
+      }
+    },
+    "watch_reminders": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders on this watch"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التذكيرات على هذه الساعة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اس گھڑی پر یاددہانیاں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu saatte hatırlatmalar"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pengingat di jam ini"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappels sur cette montre"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recordatorios en este reloj"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Напоминания на часах"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এই ঘড়িতে রিমাইন্ডার"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یادآوری روی این ساعت"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یادآوری روی این ساعت"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在此手表上提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस घड़ी पर रिमाइंडर"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lembretes neste relógio"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tunatarwa a wannan agogo"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikumbusho kwenye saa hii"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mga paalala sa relong ito"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhắc nhở trên đồng hồ này"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเตือนบนนาฬิกานี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការរំលឹកលើនាឡិកានេះ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۇ سائەتتىكى ئەسكەرتىش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بیرخستنەوە لەسەر ئەم کاتژمێرە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podsjetnici na ovom satu"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подсетници на овом сату"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Потсетници на часовникот"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emlékeztetők az órán"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herinneringen op deze watch"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შეხსენებები ამ საათზე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "මෙම ඔරලෝසුවේ සිහිකැඳවීම්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ వాచ్‌లో రిమైండర్‌లు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಈ ವಾಚ್‌ನಲ್ಲಿ ಜ್ಞಾಪನೆಗಳು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഈ വാച്ചിൽ ഓർമ്മപ്പെടുത്തലുകൾ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "या घड्याळावर स्मरणपत्रे"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આ ઘડિયાળ પર રિમાઇન્ડર"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਸ ਘੜੀ ’ਤੇ ਯਾਦ-ਸੂਚਨਾਵਾਂ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এই ঘড়ীত সোঁৱৰণী"
+          }
+        }
+      }
+    },
+    "watch_reminders_note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders from your iPhone already show on your watch. Turn this on if you leave your iPhone behind."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تذكيرات iPhone تظهر على ساعتك أصلًا. فعّل هذا إن كنت تترك iPhone خلفك."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone کی یاددہانیاں پہلے ہی گھڑی پر آتی ہیں۔ اگر آپ iPhone ساتھ نہیں رکھتے تو اسے آن کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone'daki hatırlatmalar zaten saatinizde görünür. iPhone'u yanınıza almıyorsanız bunu açın."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pengingat dari iPhone sudah tampil di jam Anda. Aktifkan ini jika Anda meninggalkan iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les rappels de l’iPhone s’affichent déjà sur la montre. Activez ceci si vous laissez l’iPhone derrière vous."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los recordatorios del iPhone ya aparecen en el reloj. Actívalo si dejas el iPhone en otro sitio."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Напоминания с iPhone и так приходят на часы. Включите, если оставляете iPhone дома."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-এর রিমাইন্ডার এমনিতেই ঘড়িতে আসে। iPhone সঙ্গে না রাখলে এটি চালু করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یادآوری‌های iPhone همین حالا هم روی ساعت می‌آیند. اگر iPhone را همراه ندارید، این را روشن کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یادآوری‌های iPhone همین حالا هم روی ساعت می‌آیند. اگر iPhone را همراه ندارید، این را روشن کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone 的提醒本来就会显示在手表上。如果你不带 iPhone，请打开此项。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone के रिमाइंडर पहले से घड़ी पर आते हैं। अगर आप iPhone साथ नहीं रखते, तो इसे चालू करें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os lembretes do iPhone já aparecem no relógio. Ative isto se deixar o iPhone para trás."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tunatarwar iPhone tana bayyana a agogonku tuni. Kunna wannan idan kuna barin iPhone a baya."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikumbusho vya iPhone tayari huonekana kwenye saa. Washa hiki ukiacha iPhone nyuma."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lumalabas na sa relo ang mga paalala ng iPhone. I-on ito kung iniiwan mo ang iPhone."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhắc nhở từ iPhone vốn đã hiện trên đồng hồ. Bật mục này nếu bạn để iPhone ở nhà."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเตือนจาก iPhone แสดงบนนาฬิกาอยู่แล้ว เปิดตัวเลือกนี้หากคุณไม่ได้พก iPhone"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការរំលឹកពី iPhone បង្ហាញលើនាឡិការួចហើយ។ បើកវា ប្រសិនបើអ្នកទុក iPhone ចោល។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone نىڭ ئەسكەرتىشلىرى سائەتتە ئاللىقاچان كۆرۈنىدۇ. iPhone نى ئالمىسىڭىز بۇنى ئېچىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بیرخستنەوەکانی iPhone هەر ئێستا لەسەر کاتژمێرەکەت دەردەکەون. ئەگەر iPhone بەجێدەهێڵیت ئەمە چالاک بکە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podsjetnici sa iPhonea već stižu na sat. Uključite ovo ako ostavljate iPhone."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подсетници са iPhone-а већ стижу на сат. Укључите ово ако остављате iPhone."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Потсетниците од iPhone веќе се појавуваат на часовникот. Вклучете го ова ако го оставате iPhone."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az iPhone emlékeztetői már most is megjelennek az órán. Kapcsolja be, ha otthon hagyja az iPhone-t."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herinneringen van je iPhone verschijnen al op je watch. Zet dit aan als je je iPhone achterlaat."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-ის შეხსენებები ისედაც ჩანს საათზე. ჩართეთ, თუ iPhone-ს სახლში ტოვებთ."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone සිහිකැඳවීම් දැනටමත් ඔරලෝසුවේ පෙන්වයි. iPhone රැගෙන නොයන්නේ නම් මෙය සක්‍රිය කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone రిమైండర్‌లు ఇప్పటికే వాచ్‌లో కనిపిస్తాయి. iPhone వెంట లేకపోతే దీన్ని ఆన్ చేయండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ಜ್ಞಾಪನೆಗಳು ಈಗಾಗಲೇ ವಾಚ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ. iPhone ಜೊತೆಗಿಲ್ಲದಿದ್ದರೆ ಇದನ್ನು ಆನ್ ಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-ലെ ഓർമ്മപ്പെടുത്തലുകൾ ഇപ്പോൾത്തന്നെ വാച്ചിൽ കാണാം. iPhone കൂടെയില്ലെങ്കിൽ ഇത് ഓൺ ചെയ്യുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ची स्मरणपत्रे आधीच घड्याळावर दिसतात. iPhone सोबत नसेल तर हे चालू करा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ના રિમાઇન્ડર પહેલેથી ઘડિયાળ પર આવે છે. iPhone સાથે ન હોય તો આ ચાલુ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ਦੀਆਂ ਯਾਦ-ਸੂਚਨਾਵਾਂ ਪਹਿਲਾਂ ਹੀ ਘੜੀ ’ਤੇ ਆਉਂਦੀਆਂ ਹਨ। ਜੇ iPhone ਨਾਲ ਨਹੀਂ ਰੱਖਦੇ ਤਾਂ ਇਹ ਚਾਲੂ ਕਰੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneৰ সোঁৱৰণী ঘড়ীত আগৰে পৰাই আহে। iPhone লগত নাথাকিলে ইয়াক অন কৰক।"
+          }
+        }
+      }
+    },
+    "watch_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        }
+      }
+    },
+    "watch_tasbih_haptic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap my wrist as I count"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبّه معصمي مع كل عدّة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گنتی کے ساتھ کلائی پر تھپتھپائیں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sayarken bileğime dokun"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketuk pergelangan saat menghitung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tapoter mon poignet à chaque compte"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocar mi muñeca al contar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Касание запястья при счёте"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গোনার সময় কব্জিতে টোকা"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هنگام شمردن به مچم ضربه بزن"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هنگام شمردن به مچم ضربه بزن"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "计数时轻触我的手腕"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गिनते समय कलाई पर टैप"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocar no pulso ao contar"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taɓa wuyan hannuna yayin ƙirgawa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gusa kifundo ninapohesabu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tapikin ang pulso ko habang nagbibilang"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chạm cổ tay khi tôi đếm"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แตะข้อมือขณะนับ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប៉ះកដៃពេលខ្ញុំរាប់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساناۋاتقاندا بىلىكىمنى چەك"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لە کاتی ژماردندا لە مەچەکم بدە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodir na zglobu pri brojanju"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додир на зглобу при бројању"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Допир на зглобот при броење"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppintás a csuklón számláláskor"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tik op mijn pols bij het tellen"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მაჯაზე შეხება თვლისას"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ගණන් කරන විට මැණික්කටුවට තට්ටුවක්"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లెక్కిస్తున్నప్పుడు మణికట్టుపై తట్టు"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಣಿಸುವಾಗ ಮಣಿಕಟ್ಟಿಗೆ ತಟ್ಟು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "എണ്ണുമ്പോൾ കൈത്തണ്ടയിൽ തട്ടുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मोजताना मनगटावर टॅप"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ગણતી વખતે કાંડે ટૅપ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਿਣਦੇ ਸਮੇਂ ਗੁੱਟ ’ਤੇ ਟੈਪ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গণোঁতে হাতৰ কব্জিত টোকৰ"
+          }
+        }
+      }
+    },
+    "watch_tasbih_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn the Digital Crown, tap or double-tap to count"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدر التاج الرقمي أو اضغط أو انقر مرتين للعدّ"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گننے کے لیے ڈیجیٹل کراؤن گھمائیں، ٹیپ یا ڈبل ٹیپ کریں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saymak için Digital Crown'u çevirin, dokunun veya çift dokunun"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Putar Digital Crown, ketuk, atau ketuk dua kali untuk menghitung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tournez la Digital Crown, touchez ou touchez deux fois pour compter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gira la Digital Crown, toca o toca dos veces para contar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поверните колёсико Digital Crown, коснитесь или дважды коснитесь"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গুনতে Digital Crown ঘোরান, ট্যাপ বা ডাবল ট্যাপ করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای شمردن، Digital Crown را بچرخانید، ضربه یا دو ضربه بزنید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای شمردن، Digital Crown را بچرخانید، ضربه یا دو ضربه بزنید"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "转动数码表冠、轻点或连点两下即可计数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गिनने के लिए Digital Crown घुमाएँ, टैप या डबल टैप करें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gire a Digital Crown, toque ou toque duas vezes para contar"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Juya Digital Crown, taɓa ko taɓa sau biyu don ƙirgawa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zungusha Digital Crown, gusa au gusa mara mbili kuhesabu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iikot ang Digital Crown, i-tap o i-double tap para magbilang"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xoay Digital Crown, chạm hoặc chạm hai lần để đếm"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หมุน Digital Crown แตะ หรือแตะสองครั้งเพื่อนับ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បង្វិល Digital Crown ចុច ឬចុចពីរដងដើម្បីរាប់"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سانىماق ئۈچۈن Digital Crown نى چۆرۈڭ، چېكىڭ ياكى قوش چېكىڭ"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۆ ژماردن Digital Crown بسوڕێنە، دەستی لێبدە یان دووجار دەستی لێبدە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okrenite Digital Crown, dodirnite ili dvaput dodirnite za brojanje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Окрените Digital Crown, додирните или додирните двапут за бројање"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свртете ја Digital Crown, допрете или допрете двапати за броење"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Számláláshoz forgassa a Digital Crownt, koppintson vagy duplán koppintson"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Draai de Digital Crown, tik of tik twee keer om te tellen"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დასათვლელად დაატრიალეთ Digital Crown, შეეხეთ ან ორჯერ შეეხეთ"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ගණන් කිරීමට Digital Crown කරකවන්න, තට්ටු කරන්න හෝ දෙවරක් තට්ටු කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లెక్కించడానికి Digital Crown తిప్పండి, ట్యాప్ లేదా డబుల్ ట్యాప్ చేయండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಣಿಸಲು Digital Crown ತಿರುಗಿಸಿ, ಟ್ಯಾಪ್ ಅಥವಾ ಡಬಲ್ ಟ್ಯಾಪ್ ಮಾಡಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "എണ്ണാൻ Digital Crown തിരിക്കുക, ടാപ്പ് ചെയ്യുക അല്ലെങ്കിൽ ഡബിൾ ടാപ്പ് ചെയ്യുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मोजण्यासाठी Digital Crown फिरवा, टॅप किंवा डबल टॅप करा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ગણવા માટે Digital Crown ફેરવો, ટૅપ અથવા ડબલ ટૅપ કરો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਿਣਨ ਲਈ Digital Crown ਘੁਮਾਓ, ਟੈਪ ਜਾਂ ਡਬਲ ਟੈਪ ਕਰੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গণিবলৈ Digital Crown ঘূৰাওক, টেপ বা ডাবল টেপ কৰক"
+          }
+        }
+      }
+    },
+    "watch_this_watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This watch’s location"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقع هذه الساعة"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اس گھڑی کا مقام"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu saatin konumu"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokasi jam ini"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Position de cette montre"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación de este reloj"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Местоположение часов"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এই ঘড়ির লোকেশন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت این ساعت"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت این ساعت"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此手表的位置"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस घड़ी की लोकेशन"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localização deste relógio"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wurin wannan agogo"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mahali saa hii ilipo"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokasyon ng relong ito"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vị trí của đồng hồ này"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตำแหน่งของนาฬิกานี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទីតាំងនាឡិកានេះ"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۇ سائەتنىڭ ئورنى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شوێنی ئەم کاتژمێرە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokacija ovog sata"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Локација овог сата"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Локација на часовникот"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az óra helye"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locatie van deze watch"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ამ საათის მდებარეობა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "මෙම ඔරලෝසුවේ ස්ථානය"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ వాచ్ లొకేషన్"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಈ ವಾಚ್‌ನ ಸ್ಥಳ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഈ വാച്ചിന്റെ ലൊക്കേഷൻ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "या घड्याळाचे लोकेशन"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આ ઘડિયાળનું લોકેશન"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਸ ਘੜੀ ਦਾ ਟਿਕਾਣਾ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এই ঘড়ীটোৰ অৱস্থান"
+          }
+        }
+      }
+    },
+    "watch_update_location": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update location"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحديث الموقع"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مقام اپ ڈیٹ کریں"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konumu güncelle"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perbarui lokasi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualiser la position"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizar ubicación"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обновить местоположение"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লোকেশন আপডেট করুন"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "به‌روزرسانی موقعیت"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "به‌روزرسانی موقعیت"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新位置"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लोकेशन अपडेट करें"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizar localização"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabunta wuri"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sasisha mahali"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-update ang lokasyon"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cập nhật vị trí"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัปเดตตำแหน่ง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ធ្វើបច្ចុប្បន្នភាពទីតាំង"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئورۇننى يېڭىلاش"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێکردنەوەی شوێن"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ažuriraj lokaciju"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ажурирај локацију"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ажурирај ја локацијата"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hely frissítése"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locatie bijwerken"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მდებარეობის განახლება"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ස්ථානය යාවත්කාලීන කරන්න"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లొకేషన్ అప్‌డేట్ చేయండి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸ್ಥಳ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ലൊക്കേഷൻ പുതുക്കുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लोकेशन अपडेट करा"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "લોકેશન અપડેટ કરો"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਟਿਕਾਣਾ ਅੱਪਡੇਟ ਕਰੋ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অৱস্থান আপডেট কৰক"
+          }
+        }
+      }
+    },
+    "watch_waiting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Near Mosque on your iPhone, or use this watch’s location."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح «أقرب مسجد» على iPhone، أو استخدم موقع هذه الساعة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone پر قریبی مسجد کھولیں، یا اس گھڑی کا مقام استعمال کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone'da Near Mosque'u açın veya bu saatin konumunu kullanın."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Near Mosque di iPhone, atau pakai lokasi jam ini."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez Near Mosque sur l’iPhone, ou utilisez la position de cette montre."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Near Mosque en el iPhone o usa la ubicación de este reloj."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Откройте Near Mosque на iPhone или используйте местоположение часов."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-এ Near Mosque খুলুন, অথবা এই ঘড়ির লোকেশন ব্যবহার করুন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجد را در iPhone باز کنید یا از موقعیت این ساعت استفاده کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزدیک‌ترین مسجد را در iPhone باز کنید یا از موقعیت این ساعت استفاده کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在 iPhone 上打开 Near Mosque，或使用此手表的位置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone पर Near Mosque खोलें, या इस घड़ी की लोकेशन इस्तेमाल करें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Near Mosque no iPhone ou use a localização deste relógio."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buɗe Near Mosque a iPhone, ko ku yi amfani da wurin wannan agogo."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fungua Near Mosque kwenye iPhone, au tumia mahali saa hii ilipo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buksan ang Near Mosque sa iPhone, o gamitin ang lokasyon ng relong ito."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Near Mosque trên iPhone, hoặc dùng vị trí của đồng hồ này."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Near Mosque บน iPhone หรือใช้ตำแหน่งของนาฬิกานี้"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើក Near Mosque លើ iPhone ឬប្រើទីតាំងនាឡិកានេះ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone دا ئەڭ يېقىن مەسچىت نى ئېچىڭ ياكى بۇ سائەتنىڭ ئورنىنى ئىشلىتىڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نزیکترین مزگەوت لە iPhone بکەرەوە، یان شوێنی ئەم کاتژمێرە بەکاربهێنە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvorite Near Mosque na iPhoneu ili koristite lokaciju ovog sata."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отворите Near Mosque на iPhone-у или користите локацију овог сата."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отворете Near Mosque на iPhone или користете ја локацијата на часовникот."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyissa meg a Near Mosque-ot az iPhone-on, vagy használja az óra helyét."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Near Mosque op je iPhone of gebruik de locatie van deze watch."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გახსენით Near Mosque iPhone-ზე ან გამოიყენეთ ამ საათის მდებარეობა."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone හි Near Mosque විවෘත කරන්න, නැතහොත් මෙම ඔරලෝසුවේ ස්ථානය භාවිත කරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneలో Near Mosque తెరవండి, లేదా ఈ వాచ్ లొకేషన్ వాడండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ನಲ್ಲಿ Near Mosque ತೆರೆಯಿರಿ, ಅಥವಾ ಈ ವಾಚ್‌ನ ಸ್ಥಳ ಬಳಸಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone-ൽ Near Mosque തുറക്കുക, അല്ലെങ്കിൽ ഈ വാച്ചിന്റെ ലൊക്കേഷൻ ഉപയോഗിക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone वर Near Mosque उघडा, किंवा या घड्याळाचे लोकेशन वापरा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone પર Near Mosque ખોલો, અથવા આ ઘડિયાળનું લોકેશન વાપરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone ’ਤੇ Near Mosque ਖੋਲ੍ਹੋ, ਜਾਂ ਇਸ ਘੜੀ ਦਾ ਟਿਕਾਣਾ ਵਰਤੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneত Near Mosque খোলক, নহয় এই ঘড়ীটোৰ অৱস্থান ব্যৱহাৰ কৰক।"
+          }
+        }
+      }
+    },
     "website": {
       "extractionState": "manual",
       "localizations": {
@@ -115595,6 +119131,448 @@
           "stringUnit": {
             "state": "translated",
             "value": "পৰৱৰ্তী নামাজলৈ বাকী সময় এটা ৰিঙত, আজিৰ সকলো সময়ৰ সৈতে।"
+          }
+        }
+      }
+    },
+    "widget_kind_soon": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prayer soon"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصلاة قريبًا"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز قریب"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namaz yaklaşıyor"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salat sebentar lagi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prière bientôt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oración pronto"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скоро молитва"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজ শিগগির"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز نزدیک است"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نماز نزدیک است"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即将礼拜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज़ जल्द"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oração em breve"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sallah na kusa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swala inakaribia"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malapit na ang salah"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sắp đến giờ cầu nguyện"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใกล้เวลาละหมาด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ជិតដល់ពេលសឡាត"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ناماز يېقىنلاشتى"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نوێژ نزیکە"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uskoro namaz"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ускоро намаз"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Наскоро намаз"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamarosan ima"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebed binnenkort"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ლოცვა მალე"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නමාසය ළඟයි"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నమాజ్ త్వరలో"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮಾಜ್ ಶೀಘ್ರದಲ್ಲಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നമസ്കാരം ഉടൻ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमाज लवकरच"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નમાઝ નજીક"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਮਾਜ਼ ਜਲਦੀ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নামাজ সোনকালে"
+          }
+        }
+      }
+    },
+    "widget_kind_soon_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comes up in the Smart Stack half an hour before each prayer."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يظهر في «المكدس الذكي» قبل كل صلاة بنصف ساعة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ہر نماز سے آدھا گھنٹہ پہلے اسمارٹ اسٹیک میں آتا ہے۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her namazdan yarım saat önce Akıllı Yığın'da öne çıkar."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muncul di Tumpukan Pintar setengah jam sebelum setiap salat."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apparaît dans la pile intelligente une demi-heure avant chaque prière."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aparece en la pila inteligente media hora antes de cada oración."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Появляется в смарт-стопке за полчаса до каждой молитвы."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রতিটি নামাজের আধা ঘণ্টা আগে স্মার্ট স্ট্যাকে আসে।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نیم ساعت پیش از هر نماز در پشتهٔ هوشمند ظاهر می‌شود."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نیم ساعت پیش از هر نماز در پشتهٔ هوشمند ظاهر می‌شود."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次礼拜前半小时出现在智能叠放中。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर नमाज़ से आधा घंटा पहले स्मार्ट स्टैक में आता है।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aparece na Pilha Inteligente meia hora antes de cada oração."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana bayyana a Smart Stack rabin awa kafin kowace sallah."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hujitokeza kwenye Smart Stack nusu saa kabla ya kila swala."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lumilitaw sa Smart Stack kalahating oras bago ang bawat salah."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiện trong Ngăn xếp thông minh nửa giờ trước mỗi giờ cầu nguyện."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ขึ้นมาในสแต็คอัจฉริยะครึ่งชั่วโมงก่อนละหมาดแต่ละเวลา"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "លេចឡើងក្នុង Smart Stack កន្លះម៉ោងមុនសឡាតនីមួយៗ។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ھەر ناماز ۋاقتىدىن يېرىم سائەت بۇرۇن Smart Stack دا كۆرۈنىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نیو کاتژمێر پێش هەر نوێژێک لە Smart Stack دەردەکەوێت."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pojavljuje se u Smart Stacku pola sata prije svakog namaza."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Појављује се у Smart Stack-у пола сата пре сваког намаза."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Се појавува во Smart Stack половина час пред секој намаз."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minden ima előtt fél órával megjelenik az Intelligens halomban."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verschijnt in de slimme stapel een halfuur voor elk gebed."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჭკვიან დასტაში ჩნდება ყოველ ლოცვამდე ნახევარი საათით ადრე."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සෑම නමාසයකටම පැය භාගයකට පෙර Smart Stack හි දිස් වේ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రతి నమాజ్‌కు అరగంట ముందు స్మార్ట్ స్టాక్‌లో కనిపిస్తుంది."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪ್ರತಿ ನಮಾಜ್‌ಗೆ ಅರ್ಧ ಗಂಟೆ ಮೊದಲು ಸ್ಮಾರ್ಟ್ ಸ್ಟ್ಯಾಕ್‌ನಲ್ಲಿ ಬರುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഓരോ നമസ്കാരത്തിനും അരമണിക്കൂർ മുമ്പ് സ്മാർട്ട് സ്റ്റാക്കിൽ വരും."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रत्येक नमाजच्या अर्धा तास आधी स्मार्ट स्टॅकमध्ये येते."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "દરેક નમાઝના અડધો કલાક પહેલાં સ્માર્ટ સ્ટેકમાં આવે છે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਰ ਨਮਾਜ਼ ਤੋਂ ਅੱਧਾ ਘੰਟਾ ਪਹਿਲਾਂ ਸਮਾਰਟ ਸਟੈਕ ਵਿੱਚ ਆਉਂਦਾ ਹੈ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্ৰতিটো নামাজৰ আধা ঘণ্টা আগতে স্মাৰ্ট ষ্টেকত আহে।"
           }
         }
       }

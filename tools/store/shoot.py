@@ -4,7 +4,7 @@
     shoot.py <platform> <path to the built .app> <output folder> [language codes...]
 
 The screens, their order and the launch arguments come from tools/store/screens.json. Simulators (iPhone,
-iPad, Apple TV, Apple Vision Pro) are driven with simctl; the Mac app is opened and its window captured.
+iPad, Apple Watch, Apple TV, Apple Vision Pro) are driven with simctl; the Mac app is opened and its window captured.
 Files land in <output>/<platform>/<app language>/<NN>-<screen>.png; finish.py checks sizes and writes the
 manifest that says where each file goes in App Store Connect.
 """
@@ -17,11 +17,13 @@ import sys
 import time
 
 BUNDLE = "sa.zood.nearmosque"
+# The Apple Watch app has its own bundle id (it ships inside the iPhone app).
+BUNDLES = {"watch": BUNDLE + ".watchkitapp"}
 HERE = pathlib.Path(__file__).resolve().parent
 SPEC = json.loads((HERE / "screens.json").read_text())
 
 # Seconds to wait after launch, per screen (maps and answers take longer to settle).
-WAIT = {"mosques-map": 16, "mosques-radar": 14, "ask": 18, "classics": 12, "tv-mosques": 14}
+WAIT = {"mosques-map": 16, "mosques-radar": 14, "ask": 18, "classics": 12, "tv-mosques": 14, "watch-mosques": 16, "watch-ask": 14}
 # The Apple Vision Pro simulator renders a whole room and opens windows slowly: extra seconds, more for sheets.
 EXTRA = {"vision": 10}
 EXTRA_SCREEN = {("vision", "audio"): 14}
@@ -71,7 +73,7 @@ def find_simulator(pattern, family):
 def launch_args(screen, lang):
     spec = SPEC["screens"][screen]
     args = list(spec["args"])
-    if screen == "ask" and lang["app"] not in SPEC["askLanguages"]:
+    if "fallbackArgs" in spec and lang["app"] not in SPEC["askLanguages"]:
         args = list(spec["fallbackArgs"])
     if spec.get("city"):
         args += ["-demoCity", spec["city"]]
@@ -80,13 +82,14 @@ def launch_args(screen, lang):
 
 def shoot_simulator(platform, app, out, langs):
     conf = SPEC["platforms"][platform]
-    family = {"tv": ["tvOS"], "vision": ["xrOS", "visionOS"]}.get(platform, ["iOS"])
+    family = {"tv": ["tvOS"], "vision": ["xrOS", "visionOS"], "watch": ["watchOS"]}.get(platform, ["iOS"])
+    bundle = BUNDLES.get(platform, BUNDLE)
     udid = find_simulator(conf["simulator"], family)
     print(f"{platform}: simulator {udid}", flush=True)
     simctl("boot", udid)
     simctl("bootstatus", udid, "-b", check=True)
     simctl("install", udid, app, check=True)
-    simctl("privacy", udid, "grant", "location", BUNDLE)
+    simctl("privacy", udid, "grant", "location", bundle)
     if platform in ("iphone", "ipad"):
         simctl("status_bar", udid, "override", "--time", "9:41", "--batteryLevel", "100", "--batteryState", "charged",
                "--cellularBars", "4", "--wifiBars", "3")
@@ -105,8 +108,8 @@ def shoot_simulator(platform, app, out, langs):
             if spec.get("city"):
                 lat, lon = SPEC["cities"][spec["city"]]
                 simctl("location", udid, "set", f"{lat},{lon}")
-            simctl("terminate", udid, BUNDLE)
-            r = simctl("launch", udid, BUNDLE, *launch_args(screen, lang))
+            simctl("terminate", udid, bundle)
+            r = simctl("launch", udid, bundle, *launch_args(screen, lang))
             if r.returncode:
                 print(f"::warning::{platform}/{lang['app']}/{screen}: launch failed", flush=True)
                 continue
@@ -114,7 +117,7 @@ def shoot_simulator(platform, app, out, langs):
             target = folder / f"{n:02d}-{screen}.png"
             simctl("io", udid, "screenshot", str(target))
             print(f"{platform}/{lang['app']}/{target.name}", flush=True)
-    simctl("terminate", udid, BUNDLE)
+    simctl("terminate", udid, bundle)
     simctl("shutdown", udid)
 
 

@@ -66,6 +66,8 @@ struct CompanionCard: View {
                         physics.tap(kind: kind)
                         Task { try? await Task.sleep(for: .milliseconds(300)); bounce = false }
                         WidgetCenter.shared.reloadAllTimelines()
+                        // The watch's companion fills up too.
+                        model.shareWithWidgets()
                     } label: {
                         Label(l10n.t(done ? "companion_marked" : "companion_mark", name), systemImage: done ? "checkmark.circle.fill" : "hands.and.sparkles")
                             .font(.subheadline.weight(.semibold))

@@ -10,7 +10,7 @@ import WidgetKit
 struct QiblaLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: QiblaActivityAttributes.self) { context in
-            QiblaLockCard(attributes: context.attributes, state: context.state)
+            QiblaActivityContent(attributes: context.attributes, state: context.state)
                 .activityBackgroundTint(.clear)
                 .activitySystemActionForegroundColor(.white)
                 .widgetURL(URL(string: "nearmosque://qibla"))
@@ -67,6 +67,37 @@ struct QiblaLiveActivity: Widget {
             }
             .widgetURL(URL(string: "nearmosque://qibla"))
             .keylineTint(tint)
+        }
+        // Also in the Apple Watch Smart Stack: the arrow turns with the iPhone (the watch app has its own compass).
+        .supplementalActivityFamilies([.small])
+    }
+}
+
+/// The Lock Screen card, or on Apple Watch (the small family) the arrow, the hint and the bearing.
+struct QiblaActivityContent: View {
+    @Environment(\.activityFamily) private var family
+    let attributes: QiblaActivityAttributes
+    let state: QiblaActivityAttributes.ContentState
+
+    var body: some View {
+        if family == .small {
+            let tint = IslandTint.of(attributes.style)
+            HStack(spacing: 10) {
+                ZStack {
+                    Circle().stroke(state.facing ? tint : Color.white.opacity(0.35), lineWidth: 2)
+                    IslandArrow(turn: state.turn, facing: state.facing, tint: tint, size: 26)
+                }
+                .frame(width: 44, height: 44)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(attributes.title).font(.caption2).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
+                    Text(state.hint).font(.headline).foregroundStyle(state.facing ? tint : .white).lineLimit(2).minimumScaleFactor(0.7)
+                    Text(attributes.bearingText + " " + attributes.fromNorth).font(.caption2.monospacedDigit()).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
+                }
+                Spacer(minLength: 0)
+            }
+            .environment(\.layoutDirection, attributes.rtl ? .rightToLeft : .leftToRight)
+        } else {
+            QiblaLockCard(attributes: attributes, state: state)
         }
     }
 }

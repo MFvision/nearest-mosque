@@ -155,10 +155,18 @@ final class AppModel {
                         mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion,
                         linkToken: Self.linkToken)
         }
+        syncWatch(s)
         guard s != lastShared else { return }
         lastShared = s
         SharedStore.write(s)
         WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    /// The same values for the Apple Watch app, with how full the companion is (only sent when something changed).
+    private func syncWatch(_ s: SharedState?) {
+        #if canImport(WatchConnectivity) && !targetEnvironment(macCatalyst) && !os(visionOS)
+        WatchBridge.shared.send(s, companionLevel: CompanionLog.level(now: Date(), zone: s?.zone ?? .current))
+        #endif
     }
 
     var packsRoot: URL? { Bundle.main.url(forResource: "packs", withExtension: nil) }
@@ -197,6 +205,8 @@ final class AppModel {
         #endif
         if settings.followDevice, location.isAuthorized { await useDeviceLocation(silent: true) }
         await rescheduleReminders()
+        // Today's questions are ready now; the watch gets them with the rest.
+        shareWithWidgets()
     }
 
     /// Saved library items (chunk ids), kept on this device only.

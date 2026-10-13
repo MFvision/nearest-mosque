@@ -1,6 +1,6 @@
 name: Nearest Mosque TestFlight
 
-# Builds the iPhone and iPad app, the Mac app (Mac Catalyst), the Apple TV app and the Apple Vision Pro app, signs them with the App Store Connect
+# Builds the iPhone and iPad app (with the Apple Watch app inside), the Mac app (Mac Catalyst), the Apple TV app and the Apple Vision Pro app, signs them with the App Store Connect
 # API key (Xcode automatic signing, cloud-managed distribution certificate) and uploads them to TestFlight.
 # Start it from the Actions tab (Run workflow) or by pushing a tag such as `ios-v1`.
 # Needs three repository secrets (see docs/07-testflight.md):
@@ -64,6 +64,8 @@ jobs:
           [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
           sudo xcode-select -s "$XC"
           xcodebuild -version
+          # The iPhone app carries the Apple Watch app.
+          xcodebuild -showsdks | grep -q watchos || xcodebuild -downloadPlatform watchOS
 
       - name: Generate project
         run: |
@@ -88,13 +90,24 @@ jobs:
         if: ${{ !inputs.mac_only && !inputs.tv_only }}
         run: |
           set -o pipefail
-          xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
-            -destination 'generic/platform=iOS' -archivePath build/NearMosque.xcarchive \
-            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic \
-            APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            archive | tee archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
+          archive() {
+            xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
+              -destination 'generic/platform=iOS' -archivePath build/NearMosque.xcarchive \
+              DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic \
+              APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+              -allowProvisioningUpdates \
+              -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+              archive 2>&1 | tee -a archive.log | grep -E "error:|warning: .*(signing|provision)|ARCHIVE (SUCCEEDED|FAILED)" || true
+          }
+          archive
+          if grep -q "ARCHIVE SUCCEEDED" archive.log; then exit 0; fi
+          # The iPhone app carries the Apple Watch app. If the watch app (or its complications) cannot be built or
+          # signed, the iPhone and iPad build still goes out, without it.
+          echo "::warning::The archive with the Apple Watch app failed; archiving the iPhone app without it."
+          rm -rf build/NearMosque.xcarchive
+          sed -i '' '/# watch-embed/d' project.yml
+          xcodegen generate
+          archive
           grep -q "ARCHIVE SUCCEEDED" archive.log
 
       - name: Write the export options

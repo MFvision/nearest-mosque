@@ -114,6 +114,8 @@ jobs:
           [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
           sudo xcode-select -s "$XC"
           xcodebuild -version
+          # The iPhone app carries the Apple Watch app, so the watchOS platform is needed too.
+          xcodebuild -showsdks | grep -q watchos || xcodebuild -downloadPlatform watchOS
       - name: Package tests (macOS, CryptoKit path)
         working-directory: ios/Packages/NearestMosqueKit
         run: swift test
@@ -533,6 +535,86 @@ jobs:
             ios/shots-tv/
             ios/tvrel.log
             ios/tvsim.log
+
+  watchos:
+    name: Apple Watch app (watchOS simulator build and screenshots)
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
+    runs-on: macos-26
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Select newest Xcode
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ -z "$XC" ] && XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          # The watchOS platform may be an optional download on the runner image.
+          xcrun simctl list runtimes | grep -qi watchos || xcodebuild -downloadPlatform watchOS
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Release build for Apple Watch (unsigned, same configuration TestFlight uses)
+        run: |
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosqueWatch -configuration Release \
+            -destination 'generic/platform=watchOS' CODE_SIGNING_ALLOWED=NO build 2>&1 | tee watchrel.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" watchrel.log
+      - name: Run in the Apple Watch simulator and capture screenshots
+        run: |
+          set -euo pipefail
+          UDID=$(xcrun simctl list devices available -j | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)['devices']
+          rts=sorted([k for k in d if 'watchOS' in k], key=lambda k: [int(x) for x in k.split('watchOS-')[-1].split('-')])
+          for rt in reversed(rts):
+              for dev in sorted(d[rt], key=lambda x: x['name'], reverse=True):
+                  if dev['name'].startswith('Apple Watch Ultra'):
+                      print(dev['udid']); sys.exit()
+          ")
+          echo "Simulator $UDID"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          set -o pipefail
+          xcodebuild -project NearMosque.xcodeproj -scheme NearMosqueWatch -configuration Debug \
+            -destination "platform=watchOS Simulator,id=$UDID" -derivedDataPath ddw CODE_SIGNING_ALLOWED=NO build 2>&1 | tee watchsim.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" watchsim.log
+          xcrun simctl install "$UDID" ddw/Build/Products/Debug-watchsimulator/NearMosqueWatch.app
+          xcrun simctl privacy "$UDID" grant location sa.zood.nearmosque.watchkitapp || true
+          mkdir -p shots-watch
+          shot() { name=$1; shift
+            xcrun simctl terminate "$UDID" sa.zood.nearmosque.watchkitapp 2>/dev/null || true
+            xcrun simctl launch "$UDID" sa.zood.nearmosque.watchkitapp "$@"
+            sleep 10
+            xcrun simctl io "$UDID" screenshot "shots-watch/$name.png"
+          }
+          shot 01-waiting -languageOverride en
+          shot 02-prayer-en -demoCity Riyadh -languageOverride en
+          shot 03-prayer-ar -demoCity Riyadh -languageOverride ar
+          shot 04-qibla -demoCity Riyadh -demoScreen qibla -demoHeading 241 -languageOverride en
+          shot 05-qibla-turn -demoCity Riyadh -demoScreen qibla -demoHeading 180 -languageOverride en
+          shot 06-tasbih -demoCity Riyadh -demoScreen tasbih -demoTasbih 21 -languageOverride en
+          xcrun simctl location "$UDID" set 30.0444,31.2357 || true
+          shot 07-mosques -demoCity Cairo -demoScreen mosques -languageOverride en
+          shot 08-ask -demoCity Riyadh -demoScreen ask -demoAskId quran-miracle -languageOverride en
+          shot 09-ask-ar -demoCity Riyadh -demoScreen ask -demoAskId quran-miracle -languageOverride ar
+          running=$(xcrun simctl spawn "$UDID" launchctl list || true)
+          if ! grep -q "sa.zood.nearmosque.watchkitapp" <<<"$running"; then
+            echo "::error::The Apple Watch app is not running after the last screenshot."; exit 1
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: watchos-screenshots
+          path: |
+            ios/shots-watch/
+            ios/watchrel.log
+            ios/watchsim.log
 
   visionos:
     name: Apple Vision Pro app (visionOS build)

@@ -6,6 +6,8 @@ options:
     iOS: "18.0"
     tvOS: "18.0"
     visionOS: "26.0"
+    # Controls in the watch's Control Center and relevance in the Smart Stack need watchOS 26 (Series 6 and later).
+    watchOS: "26.0"
   developmentLanguage: en
   createIntermediateGroups: true
 packages:
@@ -48,6 +50,10 @@ targets:
       - package: NearestMosqueKit
         product: NMData
       - target: NearMosqueWidgets
+      # The Apple Watch app ships inside the iPhone app (not in the Mac app). TestFlight removes these two lines and
+      # archives again if the watch app cannot be signed, so the iPhone build still goes out.
+      - target: NearMosqueWatch # watch-embed
+        platformFilter: iOS # watch-embed
     entitlements:
       path: App/NearMosque.entitlements
       properties:
@@ -300,6 +306,108 @@ targets:
         NSExtension:
           NSExtensionPointIdentifier: com.apple.tv-top-shelf
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ContentProvider
+  # Apple Watch: prayer times, the Qibla compass, tasbih, nearest mosques and the common answers, from the iPhone's
+  # settings or the watch's own location (it also works without the iPhone). One App Store listing with the iPhone app.
+  NearMosqueWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: Watch
+        excludes: [Info.plist, "*.entitlements"]
+      - path: WatchShared
+      - path: Shared/SharedState.swift
+      - path: Shared/StyleAccent.swift
+      - path: App/Support/Localization.swift
+      - path: App/Support/Format.swift
+      - path: App/Mosques/AppleMosqueSearch.swift
+      - path: App/Resources/Localizable.xcstrings
+      # The built-in mosques, the city table and the common answers (the books stay on the iPhone).
+      - path: ../packs/mosques
+        type: folder
+        buildPhase: resources
+      - path: ../packs/cities
+        type: folder
+        buildPhase: resources
+      - path: ../shared/content/common-questions.json
+        buildPhase: resources
+      - path: ../shared/content/stopwords.json
+        buildPhase: resources
+    dependencies:
+      - package: NearestMosqueKit
+        product: NMCore
+      - package: NearestMosqueKit
+        product: NMData
+      - target: NearMosqueWatchWidgets
+    entitlements:
+      path: Watch/NearMosqueWatch.entitlements
+      properties:
+        # Shared with the complications (the watch's own keychain; the iPhone's values arrive through WatchConnectivity).
+        keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).watchkitapp
+        TARGETED_DEVICE_FAMILY: "4"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Watch/Info.plist
+        SKIP_INSTALL: YES
+        ENABLE_PREVIEWS: YES
+    info:
+      path: Watch/Info.plist
+      properties:
+        CFBundleDisplayName: Near Mosque
+        CFBundleName: Near Mosque
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
+        CFBundleAllowMixedLocalizations: false
+        SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: $(APP_BUNDLE_ID)
+        # Works on its own: its own location, reminders and mosque search when the iPhone is not around.
+        WKRunsIndependentlyOfCompanionApp: true
+        CFBundleURLTypes:
+          - CFBundleURLName: $(APP_BUNDLE_ID).watchkitapp
+            CFBundleURLSchemes: [nearmosque]
+        NSLocationWhenInUseUsageDescription: Your location is used on this watch for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        ITSAppUsesNonExemptEncryption: false
+  NearMosqueWatchWidgets:
+    type: app-extension
+    platform: watchOS
+    sources:
+      - path: WatchWidgets
+        excludes: [Info.plist, "*.entitlements"]
+      - path: WatchShared
+      - path: Shared/SharedState.swift
+      - path: Shared/StyleAccent.swift
+      - path: Shared/Companion.swift
+      - path: App/Resources/Localizable.xcstrings
+    dependencies:
+      - package: NearestMosqueKit
+        product: NMCore
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    entitlements:
+      path: WatchWidgets/NearMosqueWatchWidgets.entitlements
+      properties:
+        keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).watchkitapp.widgets
+        TARGETED_DEVICE_FAMILY: "4"
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: WatchWidgets/Info.plist
+        SKIP_INSTALL: YES
+    info:
+      path: WatchWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Near Mosque
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
+        SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
 schemes:
   NearMosque:
     build:
@@ -317,5 +425,11 @@ schemes:
     build:
       targets:
         NearMosqueTV: all
+    run:
+      config: Debug
+  NearMosqueWatch:
+    build:
+      targets:
+        NearMosqueWatch: all
     run:
       config: Debug

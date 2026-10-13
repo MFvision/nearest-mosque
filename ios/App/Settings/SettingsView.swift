@@ -84,6 +84,13 @@ struct SettingsView: View {
                     } label: {
                         SettingsRow(icon: "paintpalette.fill", tint: .teal, title: l10n.t("app_style_title"), value: l10n.t("style_" + app.settings.widgetLook))
                     }
+                    #if !targetEnvironment(macCatalyst) && !os(visionOS)
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        NavigationLink { WatchFacesView() } label: {
+                            SettingsRow(icon: "applewatch", tint: .orange, title: l10n.t("watch_section"))
+                        }
+                    }
+                    #endif
                 } header: { Text(l10n.t("settings_personalize")) }
 
                 Section {

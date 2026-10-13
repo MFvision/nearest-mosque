@@ -8,7 +8,7 @@ import WidgetKit
 struct PrayerLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: PrayerActivityAttributes.self) { context in
-            PrayerLockScreenView(attributes: context.attributes, state: context.state, stale: context.isStale)
+            PrayerActivityContent(attributes: context.attributes, state: context.state, stale: context.isStale)
                 .activityBackgroundTint(.clear)
                 .activitySystemActionForegroundColor(.white)
                 .widgetURL(URL(string: "nearmosque://prayer"))
@@ -86,6 +86,48 @@ struct PrayerLiveActivity: Widget {
             }
             .widgetURL(URL(string: "nearmosque://prayer"))
             .keylineTint(gold)
+        }
+        // Also in the Apple Watch Smart Stack, with a layout made for the watch.
+        .supplementalActivityFamilies([.small])
+    }
+}
+
+/// The Lock Screen card, or on Apple Watch (the small family) the next prayer, its time and the countdown.
+struct PrayerActivityContent: View {
+    @Environment(\.activityFamily) private var family
+    let attributes: PrayerActivityAttributes
+    let state: PrayerActivityAttributes.ContentState
+    let stale: Bool
+
+    var body: some View {
+        if family == .small {
+            let gold = IslandTint.of(attributes.style)
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 4) {
+                    Image(systemName: state.symbol).foregroundStyle(gold)
+                    Text(stale ? state.nowTitle : state.prayer).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
+                    Spacer(minLength: 2)
+                    Text(state.timeText).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                }
+                if !stale {
+                    Text(timerInterval: state.start...max(state.start, state.at), countsDown: true)
+                        .font(.system(.title2, design: .rounded).weight(.semibold).monospacedDigit())
+                        .foregroundStyle(gold)
+                        .environment(\.layoutDirection, .leftToRight)
+                    ProgressView(timerInterval: state.start...max(state.start.addingTimeInterval(1), state.at), countsDown: false) {
+                        EmptyView()
+                    } currentValueLabel: {
+                        EmptyView()
+                    }
+                    .tint(gold)
+                }
+                Text(state.city).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+            }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .environment(\.layoutDirection, attributes.rtl ? .rightToLeft : .leftToRight)
+        } else {
+            PrayerLockScreenView(attributes: attributes, state: state, stale: stale)
         }
     }
 }
