@@ -106,8 +106,8 @@
     "simulator": "^iPhone \\d+ Pro Max$",
     "size": [886, 1920],
     "clips": {
-      "header": {"title": "Prayer header and Qibla", "shows": "The prayer header on the sky of the hour, scrolled into the slim bar and back, then a tap into the Qibla view that lights up when the phone faces the Qibla.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoPreview", "header"], "lead": 2, "seconds": 20},
-      "search": {"title": "Ask with cited sources", "shows": "Ask: a question typed and sent, the thinking steps, then the answer from the offline library with its sources.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoPreview", "ask", "-demoAskId", "quran-miracle"], "lead": 2, "seconds": 20}
+      "header": {"title": "Prayer header and Qibla", "shows": "The prayer header on the sky of the hour, scrolled into the slim bar and back, then a tap into the Qibla view that lights up when the phone faces the Qibla.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoPreview", "header"], "lead": 3, "seconds": 20},
+      "search": {"title": "Ask with cited sources", "shows": "Ask: a question typed and sent, the thinking steps, then the answer from the offline library with its sources.", "city": "Riyadh", "args": ["-demoTab", "ask", "-demoPreview", "ask", "-demoAskId", "quran-miracle"], "lead": 3, "seconds": 20}
     }
   }
 }

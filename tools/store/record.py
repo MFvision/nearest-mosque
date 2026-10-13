@@ -29,10 +29,10 @@ def convert(raw, start, seconds, size, target):
         "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000", "-t", str(seconds),
         "-vf", f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps=30,format=yuv420p",
         "-map", "0:v:0", "-map", "1:a:0",
-        "-c:v", "libx264", "-profile:v", "high", "-level:v", "4.0", "-preset", "slow",
+        "-c:v", "libx264", "-profile:v", "high", "-level:v", "4.0", "-preset", "medium",
         "-b:v", "11M", "-maxrate", "12M", "-bufsize", "24M",
         "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2",
-        "-movflags", "+faststart", str(target), timeout=300)
+        "-movflags", "+faststart", str(target), timeout=900)
 
 
 def record(app, out, langs):
@@ -70,12 +70,14 @@ def record(app, out, langs):
             began = time.time()
             simctl("launch", udid, BUNDLE, *launch_args_for(clip, lang), timeout=120)
             # The tour marks its start once the app is ready (at least 8 to 9 seconds after launch).
-            deadline = time.time() + 60
+            deadline = time.time() + 120
             m = None
             while time.time() < deadline and not (m and m.exists()):
                 time.sleep(0.25)
                 m = m or marker()
             if not (m and m.exists()):
+                # What was on the screen instead, to see why.
+                simctl("io", udid, "screenshot", str(folder / f"{n:02d}-{name}.failed.png"))
                 rec.send_signal(signal.SIGINT)
                 rec.wait(timeout=30)
                 raw.unlink(missing_ok=True)
@@ -88,6 +90,8 @@ def record(app, out, langs):
                 rec.wait(timeout=30)
             except subprocess.TimeoutExpired:
                 rec.kill()
+            # The app's animations would slow the conversion down (the simulator shares the machine).
+            simctl("terminate", udid, BUNDLE)
             target = folder / f"{n:02d}-{name}.mp4"
             # The recording's first frame comes shortly after recordVideo starts; `began` is close enough to it.
             c = convert(raw, start - clip["lead"] - began + 1.5, clip["seconds"], conf["size"], target)
