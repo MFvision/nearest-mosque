@@ -107,7 +107,8 @@ def shoot_simulator(platform, app, out, langs):
         simctl("io", udid, "screenConfig", "--display=1", "power", "off")
         simctl("io", udid, "screenConfig", f"--display={conf['display']}", "power", "on")
         time.sleep(6)
-    simctl("install", udid, app, check=True)
+    # A freshly booted simulator (the iPhone Duo especially) takes minutes to install the app.
+    simctl("install", udid, app, check=True, timeout=600)
     simctl("privacy", udid, "grant", "location", bundle)
     if platform in ("iphone", "ipad") or platform.startswith("duo"):
         simctl("status_bar", udid, "override", "--time", "9:41", "--batteryLevel", "100", "--batteryState", "charged",
@@ -129,7 +130,7 @@ def shoot_simulator(platform, app, out, langs):
                 simctl("location", udid, "set", f"{lat},{lon}")
             simctl("terminate", udid, bundle)
             started = time.time()
-            r = simctl("launch", udid, bundle, *launch_args(screen, lang))
+            r = simctl("launch", udid, bundle, *launch_args(screen, lang), timeout=120)
             if r.returncode:
                 print(f"::warning::{platform}/{lang['app']}/{screen}: launch failed", flush=True)
                 continue
