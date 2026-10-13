@@ -87,8 +87,9 @@ struct MosquesPage: View {
         let repo = model.mosques
         let lang = model.l10n.language
         var offline: [RankedMosque] = []
+        let radius = Self.radius
         if let repo {
-            let result = try? await Task.detached { try repo.nearest(here, radiusMeters: Self.radius, lang: lang) }.value
+            let result = try? await Task.detached { try repo.nearest(here, radiusMeters: radius, lang: lang) }.value
             if case let .some(.found(list, _)) = result { offline = list }
         }
         var merged = offline

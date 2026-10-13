@@ -603,6 +603,8 @@ jobs:
           shot 07-mosques -demoCity Cairo -demoScreen mosques -languageOverride en
           shot 08-ask -demoCity Riyadh -demoScreen ask -demoAskId quran-miracle -languageOverride en
           shot 09-ask-ar -demoCity Riyadh -demoScreen ask -demoAskId quran-miracle -languageOverride ar
+          shot 10-settings -demoCity Riyadh -demoSettings YES -languageOverride en
+          shot 11-settings-ar -demoCity Riyadh -demoSettings YES -languageOverride ar
           running=$(xcrun simctl spawn "$UDID" launchctl list || true)
           if ! grep -q "sa.zood.nearmosque.watchkitapp" <<<"$running"; then
             echo "::error::The Apple Watch app is not running after the last screenshot."; exit 1

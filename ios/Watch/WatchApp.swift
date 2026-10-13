@@ -24,10 +24,9 @@ struct NearMosqueWatchApp: App {
 }
 
 /// Pages, one above the other (turn the Digital Crown): prayer times, Qibla, tasbih, nearest mosques and Ask.
-/// Settings sit behind the gear at the top.
+/// Settings open from the end of the prayer page (nothing sits beside the clock).
 struct WatchRoot: View {
     @Environment(WatchModel.self) private var model
-    @State private var settings = false
 
     var body: some View {
         @Bindable var model = model
@@ -40,15 +39,7 @@ struct WatchRoot: View {
                 AskPage().tag(WatchScreen.ask)
             }
             .tabViewStyle(.verticalPage)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { settings = true } label: { Image(systemName: "gearshape") }
-                        .accessibilityLabel(model.l10n.t("settings"))
-                }
-            }
-            .sheet(isPresented: $settings) {
-                NavigationStack { SettingsPage() }
-            }
+            .navigationDestination(isPresented: $model.showSettings) { SettingsPage() }
         }
         .tint(model.accent)
         .onOpenURL { url in

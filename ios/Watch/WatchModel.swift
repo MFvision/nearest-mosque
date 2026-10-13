@@ -67,6 +67,7 @@ final class WatchModel {
     private(set) var phone: SharedState?
     var extras = WatchExtras.read()
     var screen: WatchScreen = .prayer
+    var showSettings = false
     /// A question to ask when the Ask page opens (debug screenshots).
     var pendingAsk: String?
 
@@ -265,6 +266,7 @@ final class WatchModel {
             settings.source = .phone
         }
         if let s = d.string(forKey: "demoScreen").flatMap(WatchScreen.init(rawValue:)) { screen = s }
+        if d.bool(forKey: "demoSettings") { showSettings = true }
         if d.object(forKey: "demoTasbih") != nil { extras.tasbih = d.integer(forKey: "demoTasbih") }
         if let id = d.string(forKey: "demoAskId"), let url = Bundle.main.url(forResource: "common-questions", withExtension: "json"),
            let data = try? Data(contentsOf: url), let file = try? JSONDecoder().decode(CommonQuestionsFile.self, from: data),

@@ -23,6 +23,7 @@ struct PrayerPage: View {
                         }
                         Label(s.name, systemImage: "mappin.and.ellipse").font(.footnote).foregroundStyle(.secondary).lineLimit(2)
                         Text(s.hijri(now)).font(.footnote).foregroundStyle(.secondary)
+                        SettingsButton()
                     }
                 }
                 .containerBackground(LinearGradient(colors: WatchColors.sky(current, sinceSunrise: today?[.sunrise].map { now.timeIntervalSince($0) }),
@@ -37,9 +38,9 @@ struct PrayerPage: View {
     private func row(_ s: SharedState, _ e: PrayerEvent, _ at: Date, now: Bool, past: Bool) -> some View {
         HStack(spacing: 6) {
             Image(systemName: e.watchSymbol).frame(width: 18).foregroundStyle(now ? Color.black : model.accent)
-            Text(s.t("prayer_\(e.rawValue)")).lineLimit(1).minimumScaleFactor(0.7)
-            Spacer(minLength: 4)
-            Text(s.time(at)).monospacedDigit().lineLimit(1)
+            Text(s.t("prayer_\(e.rawValue)")).lineLimit(1).minimumScaleFactor(0.6)
+            Spacer(minLength: 2)
+            Text(s.time(at)).monospacedDigit().lineLimit(1).minimumScaleFactor(0.7).layoutPriority(1)
             if e.isPrayer {
                 Image(systemName: s.reminderOn(e) ? "bell.fill" : "bell.slash").font(.caption2)
                     .foregroundStyle(now ? Color.black.opacity(0.7) : (s.reminderOn(e) ? model.accent : .secondary))
@@ -48,7 +49,7 @@ struct PrayerPage: View {
                 Image(systemName: "bell").font(.caption2).hidden()
             }
         }
-        .font(.body.weight(now ? .semibold : .regular))
+        .font(.callout.weight(now ? .semibold : .regular))
         .foregroundStyle(now ? Color.black : .white)
         .opacity(past ? 0.5 : 1)
         .padding(.horizontal, 10).padding(.vertical, 5)
@@ -117,7 +118,20 @@ struct WaitingView: View {
                 }
                 .disabled(busy)
                 if let failed { Text(failed).font(.caption2).foregroundStyle(.secondary).multilineTextAlignment(.center) }
+                SettingsButton()
             }
         }
+    }
+}
+
+/// Opens Settings (at the end of the prayer page).
+struct SettingsButton: View {
+    @Environment(WatchModel.self) private var model
+
+    var body: some View {
+        Button { model.showSettings = true } label: {
+            Label(model.l10n.t("settings"), systemImage: "gearshape")
+        }
+        .padding(.top, 6)
     }
 }

@@ -33,8 +33,16 @@ struct TasbihPage: View {
             .buttonStyle(.plain)
             .handGestureShortcut(.primaryAction)
             .accessibilityLabel(l10n.t("tasbih_count_a11y", count))
-            Text(l10n.t("watch_tasbih_hint")).font(.caption2).foregroundStyle(.secondary).multilineTextAlignment(.center)
-                .lineLimit(2).minimumScaleFactor(0.7)
+            HStack(spacing: 6) {
+                Text(l10n.t("watch_tasbih_hint")).font(.caption2).foregroundStyle(.secondary)
+                    .lineLimit(2).minimumScaleFactor(0.7)
+                Spacer(minLength: 0)
+                Button { model.resetTasbih() } label: { Image(systemName: "arrow.clockwise") }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(model.accent)
+                    .frame(width: 32, height: 32)
+                    .accessibilityLabel(l10n.t("tasbih_reset"))
+            }
         }
         .focusable()
         .digitalCrownRotation($crown, from: -1_000_000, through: 1_000_000, by: 1, sensitivity: .low, isContinuous: true, isHapticFeedbackEnabled: false)
@@ -43,12 +51,6 @@ struct TasbihPage: View {
             let step = Int(v.rounded(.down))
             if step > lastStep { for _ in 0..<min(step - lastStep, 5) { count1() } }
             lastStep = step
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button { model.resetTasbih() } label: { Image(systemName: "arrow.clockwise") }
-                    .accessibilityLabel(l10n.t("tasbih_reset"))
-            }
         }
         .navigationTitle(l10n.t("widget_kind_tasbih"))
         .onDisappear { model.publish() }
