@@ -1,0 +1,152 @@
+name: App Store creative assets
+
+# Builds the iOS 27 App Store creative assets in every store language (tools/store/creative, docs/09-app-store.md):
+# the product page header video (21:9, 3840 x 1646) and the search results video (3:2, 2880 x 1920), 20-second
+# seamless loops of the app's living sky with the phrase from shared/store/creative.json. The search video shows
+# the app's prayer screen from a store-screenshots release. Started by hand; uploads nothing to Apple.
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: "App language codes, space-separated (empty: all 22 store languages)"
+        default: ""
+      screenshots:
+        description: "store-screenshots release whose iPhone screenshots the search video shows"
+        default: "store-screenshots-1cdedab"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-creative
+  cancel-in-progress: true
+
+jobs:
+  sky:
+    name: Sky (${{ matrix.shape }} ${{ matrix.part }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shape: [header, search]
+        part: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          cd tools/store/creative && npm install --no-save --silent playwright@1.56.1 && npx playwright install --with-deps chromium >/dev/null
+      - name: Render
+        env:
+          SHAPE: ${{ matrix.shape }}
+          PART: ${{ matrix.part }}
+        run: |
+          cd tools/store/creative
+          FRAMES="$(( (PART - 1) * 200 )):$(( PART * 200 ))"
+          if [ "$SHAPE" = header ]; then
+            FRAMES=$FRAMES node render.mjs sky "$GITHUB_WORKSPACE/part.mp4" 3840 1646 20 30
+          else
+            FRAMES=$FRAMES SKY='{"mosque":0.12,"mosqueX":0.27,"horizon":0.74}' node render.mjs sky "$GITHUB_WORKSPACE/part.mp4" 2880 1920 20 30
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sky-${{ matrix.shape }}-${{ matrix.part }}
+          path: part.mp4
+          retention-days: 2
+
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      groups: ${{ steps.p.outputs.groups }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - id: p
+        env:
+          LANGS: ${{ inputs.languages }}
+        run: |
+          python3 -c "
+          import json, os
+          langs = os.environ['LANGS'].split() or [l['app'] for l in json.load(open('tools/store/screens.json'))['languages']]
+          n = min(4, len(langs))
+          print('groups=' + json.dumps([{'group': i + 1, 'langs': ' '.join(langs[i::n])} for i in range(n)]))" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Videos (${{ matrix.group }})
+    needs: [sky, plan]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.groups) }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet numpy pillow
+          cd tools/store/creative && npm install --no-save --silent playwright@1.56.1 && npx playwright install --with-deps chromium >/dev/null
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: sky-*
+          path: sky
+      - name: Join the sky loops, the soundscape, the phones
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE: ${{ inputs.screenshots }}
+        run: |
+          for s in header search; do
+            printf "file '%s'\n" "$PWD/sky/sky-$s-1/part.mp4" "$PWD/sky/sky-$s-2/part.mp4" "$PWD/sky/sky-$s-3/part.mp4" > "$s.txt"
+            ffmpeg -nostdin -loglevel error -y -f concat -safe 0 -i "$s.txt" -c copy "sky-$s.mp4"
+          done
+          /tmp/venv/bin/python tools/store/creative/ambience.py ambience.wav 20 0.03,0.32,0.47,0.62
+          gh release download "$RELEASE" --repo "$GITHUB_REPOSITORY" --pattern APP_IPHONE_67.zip
+          unzip -q APP_IPHONE_67.zip 'APP_IPHONE_67/*/01-prayer.png' 'APP_IPHONE_67/*/10-prayer-dark.png'
+          mkdir phones
+          for d in APP_IPHONE_67/*/; do
+            l=$(basename "$d")
+            /tmp/venv/bin/python tools/store/creative/phone.py "$d/01-prayer.png" "phones/$l-light.png" 1560
+            /tmp/venv/bin/python tools/store/creative/phone.py "$d/10-prayer-dark.png" "phones/$l-dark.png" 1560
+          done
+      - name: Build
+        env:
+          LANGS: ${{ matrix.langs }}
+          PLAYWRIGHT: ${{ github.workspace }}/tools/store/creative/node_modules/playwright/index.mjs
+        # shellcheck disable=SC2086 # the language list is meant to split into arguments
+        run: |
+          /tmp/venv/bin/python tools/store/creative/make.py header sky-header.mp4 ambience.wav out/header $LANGS
+          /tmp/venv/bin/python tools/store/creative/make.py search sky-search.mp4 ambience.wav phones out/search $LANGS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: creative-${{ matrix.group }}
+          path: out/
+          retention-days: 3
+
+  finish:
+    name: Collect
+    needs: build
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: creative-*
+          merge-multiple: true
+          path: creative
+      - name: Readme
+        run: |
+          cat > creative/README.txt <<'EOF'
+          App Store creative assets (iOS 27), one video per App Store Connect language, 20-second seamless loops at 30 fps.
+          header/  Product page header, 21:9, 3840 x 1646. App Store Connect: the version > Product Page Information >
+                   Header and Search Results > Header (or Asset Library > Upload Creative Assets).
+          search/  Search results, 3:2, 2880 x 1920: same place > Search Results.
+          The en-US files also fit en-GB, en-AU and en-CA; fr-FR fits fr-CA; es-ES fits es-MX; pt-BR fits pt-PT.
+          EOF
+          find creative -name '*.mp4' | sort | sed 's|^creative/||' | tee -a "$GITHUB_STEP_SUMMARY" | wc -l
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: app-store-creative
+          path: creative/
+          retention-days: 30
