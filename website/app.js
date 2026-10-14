@@ -185,6 +185,10 @@ function sizeSky() {
 }
 
 function frame(now) {
+  try { step(now); } catch (e) { console.error(e); }
+  requestAnimationFrame(frame);
+}
+function step(now) {
   const dt = Math.min(0.1, (now - lastFrame) / 1000);
   lastFrame = now;
   const y = scrollY;
@@ -201,7 +205,9 @@ function frame(now) {
     document.querySelectorAll('.board a').forEach((a, k) => { if (k === s.i) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
     chapters.forEach((c, k) => c.querySelectorAll('video').forEach((v) => { if (k === s.i && !reduce.matches) v.play().catch(() => {}); else v.pause(); }));
   }
-  if (!reduce.matches) { ambient += dt * 0.2; spinAcc += dt * 7; } // twelve minutes of the sun, seven degrees of turn, every second
+  // Twelve minutes of the sun and seven degrees of turn every second; with Reduce Motion, a slow, steady turn.
+  ambient += dt * (reduce.matches ? 0.06 : 0.2);
+  spinAcc += dt * (reduce.matches ? 2.5 : 7);
   if (inStory) {
     if (globe && s.mix < 0.999) {
       const wide = innerWidth > 860, rtl = lang === 'ar', aspect = innerWidth / innerHeight;
@@ -236,7 +242,6 @@ function frame(now) {
     } else skyCanvas.style.opacity = '0';
   }
   soundFrame(s);
-  requestAnimationFrame(frame);
 }
 
 // Cards that rise where a named city's Adhan comes: the city, the prayer, and its local time.
