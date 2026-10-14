@@ -23,6 +23,15 @@ on:
       artifact:
         description: "creative: the artifact to upload (app-store-creative, or app-store-demo for the app preview)"
         default: "app-store-creative"
+      replace:
+        description: "creative: what to swap for the video where a slot is filled (empty: nothing; images; all)"
+        default: ""
+      groups:
+        description: "creative: only these placement groups (space-separated, e.g. IPHONE_DUO_PROFILE)"
+        default: ""
+      locales:
+        description: "creative: only these App Store Connect locales (space-separated, e.g. ar-SA en-US en-GB)"
+        default: ""
       dry_run:
         description: "Only report what would be uploaded"
         type: boolean
@@ -66,6 +75,9 @@ jobs:
           MODE: ${{ inputs.mode }}
           FOLDER: ${{ inputs.folder }}
           GROUP: ${{ inputs.group }}
+          REPLACE: ${{ inputs.replace }}
+          GROUPS: ${{ inputs.groups }}
+          LOCALES: ${{ inputs.locales }}
         run: |
           case "$MODE" in
             discover|census) /tmp/asc/bin/python tools/store/asc_library.py "$MODE" ;;

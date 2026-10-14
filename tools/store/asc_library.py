@@ -32,6 +32,11 @@ SPEC = json.loads((pathlib.Path(__file__).resolve().parent / "screens.json").rea
 CREATIVE = {"header": ("PRODUCT_PAGE_HEADER_ASSET", "CREATIVE_ASSETS"), "search": ("APP_STORE_SEARCH_RESULTS_ASSET", "CREATIVE_ASSETS"),
             "demo": ("APP_PREVIEW", "APP_SCREENSHOTS_AND_PREVIEWS")}
 DRY = os.environ.get("DRY_RUN", "").lower() == "true"
+# creative: REPLACE="images" swaps image placements for the video, "all" swaps whatever is there (the asset stays in
+# the library); GROUPS and LOCALES (space-separated) narrow where it places.
+REPLACE = os.environ.get("REPLACE", "")
+GROUPS = set(os.environ.get("GROUPS", "").split())
+LOCALES = set(os.environ.get("LOCALES", "").split())
 
 
 def ref_data() -> dict:
@@ -205,15 +210,31 @@ def creative(folder: pathlib.Path) -> int:
             print(f"::error::{ptype}: no iOS placement group takes {w} x {h} videos (run discover).")
             return 1
         print(f"{ptype}: groups {', '.join(groups)}", flush=True)
+        if GROUPS:
+            groups = [g for g in groups if g in GROUPS]
+            print(f"{ptype}: only {', '.join(groups)}", flush=True)
         for f in files:
-            todo = [(l, g) for l in asc_locales(f.stem) if l in locs for g in groups if not existing(locs[l], ptype, g)]
-            have = [l for l in asc_locales(f.stem) if l in locs and (l, groups[0]) not in todo]
-            skipped += len(have)
+            # Each locale and group gets the video where it is empty; with REPLACE, also where it holds what
+            # REPLACE names (images, or anything), which is taken off only once the new video is ready.
+            todo, old = [], {}
+            for l in asc_locales(f.stem):
+                if l not in locs or (LOCALES and l not in LOCALES):
+                    continue
+                for g in groups:
+                    ex = existing(locs[l], ptype, g)
+                    swap = [p for p in ex if REPLACE == "all" or (REPLACE == "images" and p["attributes"].get("mediaType") == "IMAGE")]
+                    if not ex or swap:
+                        todo.append((l, g))
+                        old[(l, g)] = swap
+                    else:
+                        skipped += 1
             if not todo:
                 print(f"{sub} {f.stem}: already placed; left as it is.", flush=True)
                 continue
+            replacing = sum(len(v) for v in old.values())
             if DRY:
-                print(f"{sub} {f.stem}: would upload once and place on {len(todo)} locale group(s).", flush=True)
+                print(f"{sub} {f.stem}: would upload once and place on {len(todo)} locale group(s)"
+                      + (f", taking off {replacing} existing placement(s) there" if replacing else "") + ".", flush=True)
                 continue
             vid = upload(library, f, "appAssetLibraryVideos", category, f"Near Mosque {sub} {f.stem}")
             state = wait_ready("appAssetLibraryVideos", [vid])[vid]
@@ -222,9 +243,12 @@ def creative(folder: pathlib.Path) -> int:
                 failed += 1
                 continue
             for l, g in todo:
+                for p in old[(l, g)]:
+                    # The placement only: its image or video stays in the asset library.
+                    api("DELETE", f"/appAssetLibraryPlacements/{p['id']}")
                 place("appAssetLibraryVideos", vid, locs[l], ptype, g)
                 placed += 1
-            print(f"{sub} {f.stem}: placed on {len(todo)} locale group(s).", flush=True)
+            print(f"{sub} {f.stem}: placed on {len(todo)} locale group(s)" + (f", replacing {replacing}" if replacing else "") + ".", flush=True)
     print(f"Done: {placed} placed, {skipped} left as they were, {failed} failed." + (" (dry run)" if DRY else ""))
     return 1 if failed else 0
 
