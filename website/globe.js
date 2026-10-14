@@ -101,7 +101,7 @@ const ringFS = `
     gl_FragColor = vec4(uColor, ring * (1.0 - vAge));
   }`;
 
-export async function createGlobe(canvas, base) {
+export async function createGlobe(canvas, base, places = []) {
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -152,6 +152,9 @@ export async function createGlobe(canvas, base) {
     cmag[i] = Math.max(0, (m - 0.55) / 0.45);
     if (i < 900) cities.push({ lat, lon, v: vec(lat, lon, 1.003), prev: null });
   }
+  // The named cities (places.js) ring too, and report their Adhan to the page.
+  places.forEach(([, , lat, lon], k) => cities.push({ lat, lon, v: vec(lat, lon, 1.003), prev: null, place: k }));
+  const events = [];
   const lightGeo = new THREE.BufferGeometry();
   lightGeo.setAttribute('position', new THREE.BufferAttribute(cpos, 3));
   lightGeo.setAttribute('aMag', new THREE.BufferAttribute(cmag, 1));
@@ -333,10 +336,15 @@ export async function createGlobe(canvas, base) {
         const asr = Math.atan(1 / (1 + Math.tan(Math.abs(f - sd)))) / D;
         if (c.prev && spawned < 14) {
           const [pa, ph] = c.prev;
-          const hit = (pa < -18 && alt >= -18 && h < 0) || (ph < 0 && h >= 0 && ph > -90) || (pa > asr && alt <= asr && h > 0) || (pa > -0.833 && alt <= -0.833 && h > 0) || (pa > -17 && alt <= -17 && h > 0);
-          if (hit) {
+          // Which prayer's moment was crossed: 0 Fajr, 1 Dhuhr, 2 Asr, 3 Maghrib, 4 Isha.
+          const kind = pa < -18 && alt >= -18 && h < 0 ? 0 : ph < 0 && h >= 0 && ph > -90 ? 1 : pa > asr && alt <= asr && h > 0 ? 2
+            : pa > -0.833 && alt <= -0.833 && h > 0 ? 3 : pa > -17 && alt <= -17 && h > 0 ? 4 : -1;
+          if (kind >= 0) {
             tmp.copy(c.v).applyEuler(world.rotation);
-            if (tmp.z > 0.05) { spawn(c.v, state.now); spawned++; heard.push([c.v, state.now]); }
+            if (tmp.z > 0.05) {
+              spawn(c.v, state.now); spawned++; heard.push([c.v, state.now]);
+              if (c.place != null && tmp.z > 0.3) events.push({ place: c.place, kind, hours: state.hours, v: c.v });
+            }
           }
         }
         c.prev = [alt, h];
@@ -361,10 +369,13 @@ export async function createGlobe(canvas, base) {
     return { pan: Math.max(-1, Math.min(1, (x / canvas.clientWidth) * 2 - 1)), level: Math.min(1, heard.length / 6) };
   }
 
+  // The named Adhans since the last call.
+  function adhans() { return events.splice(0); }
+
   function labels() {
     const out = lineMid.map((v) => (v ? project(v) : null));
     return { lines: out, makkah: project(mk) };
   }
 
-  return { update, resize, setTheme, labels, sound, dispose: () => renderer.dispose() };
+  return { update, resize, setTheme, labels, sound, adhans, project, dispose: () => renderer.dispose() };
 }

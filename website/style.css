@@ -70,9 +70,15 @@ a { color: inherit; }
 .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 #sky-canvas { opacity: 0; }
 .labels { position: absolute; inset: 0; pointer-events: none; font: 600 0.82rem var(--font-display); }
-.labels span { position: absolute; transform: translate(-50%, -140%); color: var(--gold); white-space: nowrap; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.4s;
+.labels > span { position: absolute; transform: translate(-50%, -140%); color: var(--gold); white-space: nowrap; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.4s;
   text-shadow: 0 1px 8px var(--ground); }
 .labels .makkah { color: var(--gold); font-size: 0.95rem; }
+/* A named city's Adhan: a small glass card above the city's ring. */
+.labels .tag { position: absolute; opacity: 0; display: grid; gap: 1px; padding: 7px 12px 8px; border-radius: 14px; background: var(--glass); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 10px 24px -12px var(--shadow); white-space: nowrap; text-align: center; will-change: transform, opacity; }
+.labels .tag b { font: 600 0.86rem var(--font-display); color: var(--ink); }
+.labels .tag span { font: 500 0.76rem var(--font-body); color: var(--gold); font-variant-numeric: tabular-nums; }
+.labels .tag::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 1px; height: 7px; background: var(--gold-bright); }
 .stage-poster { position: absolute; inset: 0; display: none; }
 .no-webgl .stage-poster { display: block; background: radial-gradient(60vmin 60vmin at 62% 52%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); opacity: 0.5; }
 

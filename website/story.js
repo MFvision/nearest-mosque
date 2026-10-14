@@ -1,7 +1,8 @@
 // The landing page's words and pictures, in English and Arabic. The page (app.js) reads only this; the stage
 // follows each chapter's `stage` keys. Facts come from docs/10-features.md; keep them true when editing.
 //
-// stage: globe  { lon, lat } centre of the view (follow: 1 keeps it 70° east of the sun, on the evening side), zoom, lines (0..1, the five prayer lines), arcs (0..1, the Qibla
+// stage: globe  { lon, lat } centre of the view (spin: 1 turns the globe on its own; follow: 1 keeps the view 70° east of
+//               the sun, on the evening side), zoom, lines (0..1, the five prayer lines), arcs (0..1, the Qibla
 //               arcs), hours (simulated hours added across the chapter)
 //        sky    t on the app's sky loop (0 Fajr … 1 Fajr again), mix (0 globe … 1 sky)
 // media: phones, watches, devices; paths are under assets/<lang>/.
@@ -14,9 +15,9 @@ export const links = {
 };
 
 const chapters = [
-  { id: 'world', stage: { lon: 34, lat: 14, zoom: 1, lines: 0, arcs: 0, mix: 0, hours: 0, follow: 0 } },
-  { id: 'lines', stage: { lon: 30, lat: 12, zoom: 1, lines: 1, arcs: 0, mix: 0, hours: 4, follow: 0 } },
-  { id: 'qibla', stage: { lon: 39.8, lat: 21.4, zoom: 2.3, lines: 0, arcs: 1, mix: 0, hours: 0, follow: 0 } },
+  { id: 'world', stage: { lon: 34, lat: 14, zoom: 1, lines: 0, arcs: 0, mix: 0, hours: 0, follow: 0, spin: 1 } },
+  { id: 'lines', stage: { lon: 30, lat: 12, zoom: 1, lines: 1, arcs: 0, mix: 0, hours: 4, follow: 0, spin: 1 } },
+  { id: 'qibla', stage: { lon: 39.8, lat: 21.4, zoom: 2.3, lines: 0, arcs: 1, mix: 0, hours: 0, follow: 0, spin: 0 } },
   { id: 'sky', stage: { lon: 46.7, lat: 24.7, zoom: 3.4, follow: 0, lines: 0, arcs: 0, mix: 1, t: 0.03 }, media: [{ phone: 'iphone/01-prayer', clip: 'clips/01-header' }] },
   { id: 'mosque', stage: { mix: 1, t: 0.17 }, media: [{ phone: 'iphone/09-mosques-radar' }, { phone: 'iphone/03-mosques-map' }] },
   { id: 'ask', stage: { mix: 1, t: 0.3 }, media: [{ phone: 'iphone/04-ask', clip: 'clips/03-search' }] },
@@ -26,7 +27,7 @@ const chapters = [
   { id: 'watch', stage: { mix: 1, t: 0.7 }, media: [{ watch: 'watch/01-watch-prayer' }, { watch: 'watch/03-watch-spirit' }, { watch: 'watch/04-watch-tasbih' }] },
   { id: 'devices', stage: { mix: 1, t: 0.8 }, media: [{ devices: ['iphone/10-prayer-dark', 'ipad/01-prayer', 'mac/01-prayer', 'tv/01-tv-board', 'vision/01-prayer'] }] },
   { id: 'privacy', stage: { mix: 1, t: 0.9 } },
-  { id: 'get', stage: { lon: 40, lat: 18, zoom: 1, lines: 1, arcs: 0.35, mix: 0, hours: 3, follow: 1 } },
+  { id: 'get', stage: { lon: 40, lat: 18, zoom: 1, lines: 1, arcs: 0.35, mix: 0, hours: 3, follow: 0, spin: 1 } },
 ];
 
 const en = {

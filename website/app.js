@@ -2,6 +2,7 @@
 // the app's sky from sky.js) and marks the current chapter. Native scrolling throughout; nothing hijacks the wheel.
 import { story, links } from './story.js';
 import { createGlobe } from './globe.js';
+import { places } from './places.js';
 
 const BASE = new URL('.', import.meta.url).href;
 const WEIGHTS = { world: 1.5, lines: 1.8, qibla: 1.7, sky: 1.9, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
@@ -18,7 +19,7 @@ document.documentElement.classList.add('js');
 const states = [];
 let hoursAcc = 0;
 story.chapters.forEach((c, i) => {
-  const prev = i ? states[i - 1] : { lon: 28, lat: 14, zoom: 1, lines: 0, arcs: 0, mix: 0, t: 0, follow: 0 };
+  const prev = i ? states[i - 1] : { lon: 28, lat: 14, zoom: 1, lines: 0, arcs: 0, mix: 0, t: 0, follow: 0, spin: 0 };
   const s = { ...prev, ...c.stage };
   s.hoursAt = hoursAcc;
   s.hours = c.stage.hours || 0;
@@ -165,7 +166,8 @@ function stageAt(y) {
   const mixP = a.mix < b.mix ? smooth((e - 0.45) / 0.55) : a.mix > b.mix ? smooth(e / 0.5) : e;
   return {
     i, p,
-    lon: lerpLon(a.lon, b.lon, e), lat: lerp(a.lat, b.lat, e), zoom: lerp(a.zoom, b.zoom, a.mix < b.mix ? smooth(e / 0.8) : e),
+    // A spinning chapter's view turns west to east on its own (the globe turns under the viewer).
+    lon: lerpLon(a.lon - spinAcc * a.spin, b.lon - spinAcc * b.spin, e), lat: lerp(a.lat, b.lat, e), zoom: lerp(a.zoom, b.zoom, a.mix < b.mix ? smooth(e / 0.8) : e),
     follow: 70, followMix: lerp(a.follow, b.follow, e),
     lines: lerp(a.lines, b.lines, e), arcs: lerp(a.arcs, b.arcs, e), mix: lerp(a.mix, b.mix, mixP), t: lerp(a.t, b.t, e),
     hours: a.hoursAt + a.hours * (reduce.matches ? 0 : smooth(p)),
@@ -174,7 +176,7 @@ function stageAt(y) {
 
 const globeCanvas = $('#globe-canvas'), skyCanvas = $('#sky-canvas'), labelBox = $('.labels');
 const skyCtx = skyCanvas.getContext('2d');
-let lastSky = null, current = -1, ambient = 0, lastFrame = performance.now();
+let lastSky = null, current = -1, ambient = 0, spinAcc = 0, lastFrame = performance.now();
 function sizeSky() {
   const k = Math.min(1.5, devicePixelRatio || 1);
   skyCanvas.width = Math.round(innerWidth * k);
@@ -199,7 +201,7 @@ function frame(now) {
     document.querySelectorAll('.board a').forEach((a, k) => { if (k === s.i) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
     chapters.forEach((c, k) => c.querySelectorAll('video').forEach((v) => { if (k === s.i && !reduce.matches) v.play().catch(() => {}); else v.pause(); }));
   }
-  if (!reduce.matches) ambient += dt * 0.1; // six minutes of the sun every second
+  if (!reduce.matches) { ambient += dt * 0.2; spinAcc += dt * 7; } // twelve minutes of the sun, seven degrees of turn, every second
   if (inStory) {
     if (globe && s.mix < 0.999) {
       const wide = innerWidth > 860, rtl = lang === 'ar', aspect = innerWidth / innerHeight;
@@ -210,7 +212,7 @@ function frame(now) {
       // The prayer names beside their lines, Makkah beside its light.
       const L = globe.labels(), t = story[lang];
       const names = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
-      labelBox.querySelectorAll('span').forEach((el, k) => {
+      labelBox.querySelectorAll(':scope > span').forEach((el, k) => {
         const pt = k < 5 ? L.lines[k] : L.makkah;
         const on = k < 5 ? s.lines > 0.3 && s.mix < 0.2 : s.arcs > 0.3 && s.mix < 0.2;
         if (!pt || !on || pt.facing < 0.25) { el.style.opacity = 0; return; }
@@ -218,9 +220,10 @@ function frame(now) {
         el.style.left = `${pt.x}px`; el.style.top = `${pt.y}px`;
         el.style.opacity = String(k < 5 ? Math.min(1, (s.lines - 0.3) * 2) : Math.min(1, (s.arcs - 0.3) * 2));
       });
+      tagFrame(s, now / 1000);
     } else {
       globeCanvas.style.opacity = '0';
-      labelBox.querySelectorAll('span').forEach((el) => { el.style.opacity = 0; });
+      labelBox.querySelectorAll(':scope > span, .tag').forEach((el) => { el.style.opacity = 0; });
     }
     document.documentElement.classList.toggle('on-sky', s.mix > 0.5);
     if (s.mix > 0.001) {
@@ -234,6 +237,42 @@ function frame(now) {
   }
   soundFrame(s);
   requestAnimationFrame(frame);
+}
+
+// Cards that rise where a named city's Adhan comes: the city, the prayer, and its local time.
+const TAG_LIFE = 3.4, fmt = {};
+let lastTag = 0;
+function localTime(hours, tz) {
+  const key = lang + tz;
+  fmt[key] = fmt[key] || new Intl.DateTimeFormat(lang === 'ar' ? 'ar-u-nu-latn' : 'en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
+  return fmt[key].format(new Date(Date.UTC(2026, 9, 14) + hours * 3600e3));
+}
+function tagFrame(s, now) {
+  const tags = [...labelBox.querySelectorAll('.tag')];
+  const show = s.mix < 0.2 && s.arcs < 0.3 && s.zoom < 1.3;
+  const t = story[lang], names = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+  for (const ev of globe.adhans()) {
+    if (!show || now - lastTag < 0.6) continue;
+    const free = tags.find((el) => !el.dataset.born || now - +el.dataset.born > TAG_LIFE);
+    if (!free) continue;
+    // Keep the cards apart: none within 130 px of one already showing.
+    const at = globe.project(ev.v);
+    if (tags.some((el) => el !== free && el.dataset.born && now - +el.dataset.born < TAG_LIFE && el._v && Math.hypot(globe.project(el._v).x - at.x, globe.project(el._v).y - at.y) < 130)) continue;
+    const [en, ar, , , tz] = places[ev.place];
+    free.innerHTML = `<b>${esc(lang === 'ar' ? ar : en)}</b><span>${esc(t.prayers[names[ev.kind]])} · ${esc(localTime(ev.hours, tz))}</span>`;
+    free.dataset.born = now;
+    free._v = ev.v;
+    lastTag = now;
+  }
+  tags.forEach((el) => {
+    const age = el.dataset.born ? now - +el.dataset.born : 99;
+    if (!show || age > TAG_LIFE || !el._v) { el.style.opacity = 0; return; }
+    const pt = globe.project(el._v);
+    if (pt.facing < 0.15) { el.style.opacity = 0; return; }
+    el.style.left = `${pt.x}px`; el.style.top = `${pt.y}px`;
+    el.style.opacity = String(Math.min(1, age / 0.35, (TAG_LIFE - age) / 0.6));
+    el.style.transform = `translate(-50%, calc(-100% - 14px - ${Math.min(1, age / 0.6) * 8}px))`;
+  });
 }
 
 // The Adhan: starts only from the button; it comes from where the rings rise on the globe, softer over the sky.
@@ -288,8 +327,8 @@ addEventListener('resize', () => { measure(); sizeSky(); globe?.resize(); });
 render();
 sizeSky();
 applyTheme();
-labelBox.innerHTML = '<span></span><span></span><span></span><span></span><span></span><span class="makkah"></span>';
-createGlobe(globeCanvas, BASE).then((g) => {
+labelBox.innerHTML = '<span></span><span></span><span></span><span></span><span></span><span class="makkah"></span>' + '<div class="tag"></div>'.repeat(4);
+createGlobe(globeCanvas, BASE, places).then((g) => {
   globe = g;
   if (!g) { document.documentElement.classList.add('no-webgl'); return; }
   g.resize();
