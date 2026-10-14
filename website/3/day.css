@@ -1,0 +1,88 @@
+/* Version 3: the app's sky fills the window behind the page and moves through the day as the page scrolls; each
+   prayer time is one screen, its words in a glass card and its screen beside them. */
+:root {
+  --ink: #F4F6F8; --ink-2: rgba(244, 246, 248, 0.76); --gold: #F2D27A; --gold-bright: #E2B649;
+  --glass: rgba(8, 20, 34, 0.42); --glass-edge: rgba(255, 255, 255, 0.16); --device: #10151B;
+  --ground: #081B29; --ground-2: #0E2638;
+  --font-display: 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-ar: 'IBM Plex Sans Arabic', 'Readex Pro', system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #141E3C; color: var(--ink); font: 400 1rem/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
+[lang="ar"] body { font-family: var(--font-ar); line-height: 1.8; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 3px; border-radius: 8px; }
+.sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
+
+.bar { position: fixed; z-index: 5; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 1.05rem var(--font-display); }
+.brand img { width: 34px; height: 34px; border-radius: 9px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); }
+.tools { display: flex; gap: 8px; }
+.pill { font: 600 0.88rem var(--font-display); color: var(--ink); background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 999px; padding: 8px 14px; min-height: 40px;
+  display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.pill:hover { border-color: var(--gold-bright); }
+
+/* The rail: the five prayers and sunrise, the one in view named. */
+.rail { position: fixed; z-index: 4; inset-inline-end: max(14px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: grid; gap: 6px; transition: opacity 0.4s; }
+.rail.off { opacity: 0; pointer-events: none; }
+.rail a { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 4px 2px; text-decoration: none; font: 600 0.78rem var(--font-display); color: var(--ink-2); }
+.rail a::after { content: ""; width: 6px; height: 6px; border-radius: 3px; background: currentColor; opacity: 0.5; transition: width 0.3s, background 0.3s, opacity 0.3s; }
+.rail a span { opacity: 0; transition: opacity 0.3s; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+.rail a[aria-current] { color: var(--gold); }
+.rail a[aria-current]::after { width: 22px; opacity: 1; background: var(--gold-bright); }
+.rail a[aria-current] span, .rail a:hover span { opacity: 1; }
+
+/* Each part of the day: one screen. */
+main { position: relative; z-index: 1; }
+.part { min-height: 100svh; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; gap: clamp(20px, 5vw, 72px);
+  padding: calc(84px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); }
+.part.start, .part.night { grid-template-columns: minmax(0, 1fr); }
+.words { max-width: 34rem; padding: clamp(22px, 3vw, 34px); border-radius: 28px; background: var(--glass); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); box-shadow: 0 30px 70px -36px rgba(0, 0, 0, 0.6);
+  opacity: 0.35; transform: translateY(16px); transition: opacity 0.6s, transform 0.8s cubic-bezier(.2,.7,.2,1); }
+.part.on .words { opacity: 1; transform: none; }
+.start .words { background: transparent; border-color: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-inline: 0; max-width: 44rem; }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 0 0 12px; font: 600 0.82rem var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+[lang="ar"] .eyebrow { letter-spacing: 0; font-size: 0.95rem; }
+.eyebrow .prayer { font-size: 1.05rem; }
+.eyebrow .when { color: var(--ink-2); font-weight: 500; letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+h1 { margin: 0 0 14px; font: 600 clamp(2.3rem, 1.3rem + 4.4vw, 4.4rem)/1.06 var(--font-display); letter-spacing: -0.02em; text-wrap: balance; }
+h2 { margin: 0 0 12px; font: 600 clamp(1.7rem, 1.2rem + 2.2vw, 2.8rem)/1.12 var(--font-display); letter-spacing: -0.02em; text-wrap: balance; }
+[lang="ar"] h1, [lang="ar"] h2 { letter-spacing: 0; line-height: 1.3; }
+.body { margin: 0; color: var(--ink-2); font-size: clamp(1.02rem, 0.95rem + 0.35vw, 1.2rem); max-width: 32em; }
+.cue { margin: 28px 0 0; font: 600 0.8rem var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+.cue::after { content: ""; width: 1px; height: 36px; background: linear-gradient(var(--ink-2), transparent); animation: cue 2.2s ease-in-out infinite; }
+@keyframes cue { 50% { transform: translateY(8px); opacity: 0.4; } }
+.phone { margin: 0; justify-self: center; width: clamp(200px, 21vw, 280px); aspect-ratio: 1320 / 2868; border-radius: 15% / 7%; background: var(--device); padding: 3.2%;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.65), inset 0 0 0 1.5px #59616B; opacity: 0.3; transform: translateY(40px) scale(0.96); transition: opacity 0.7s, transform 0.9s cubic-bezier(.2,.7,.2,1); }
+.part.on .phone { opacity: 1; transform: none; }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 12% / 5.6%; background: #000; }
+
+.stores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.store { display: inline-grid; grid-template-columns: auto auto; align-items: center; gap: 0 10px; padding: 8px 16px; border-radius: 14px; min-height: 52px; text-decoration: none; background: #F4F6F8; color: #10202B; }
+.store svg { grid-row: span 2; width: 24px; height: 24px; fill: currentColor; }
+.store small { font-size: 0.7rem; opacity: 0.75; line-height: 1.1; }
+.store b { font: 600 1rem var(--font-display); line-height: 1.15; }
+.store.soon { background: transparent; color: var(--ink); border: 1px solid var(--glass-edge); }
+
+footer { position: relative; z-index: 1; background: rgba(8, 20, 34, 0.86); padding: 24px max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+footer nav { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 600; font-size: 0.92rem; }
+
+/* Phones: the words above, the screen below, both inside the one screen; the rail steps aside. */
+@media (max-width: 860px) {
+  .rail { display: none; }
+  .part { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 18px; padding-top: calc(70px + env(safe-area-inset-top, 0px)); }
+  .phone { width: min(52vw, 230px, 34svh); }
+  .words { padding: 18px 20px; border-radius: 22px; }
+  .tools .pill:first-child { display: none; }
+}
+@media (max-width: 560px) { .brand span { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .words, .phone { transition: none; opacity: 1; transform: none; }
+  .cue::after { animation: none; }
+}

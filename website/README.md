@@ -15,6 +15,13 @@ promo and the watch) for each feature, with the store screenshots.
   sky, today's times, the Qibla from their city, then the rest of the app as cards. No 3D and no film. Times are
   worked out in `2/now.js` for the centre of the city from the browser's time zone, with the method the app
   suggests for that country.
+* `3/`: version 3, a day of prayer: the app's sky fills the window and moves from Fajr to Isha as the page
+  scrolls, each prayer time (with the visitor's own time for it) showing one part of the app.
+* `4/`: version 4, Ask first: four of the app's common questions typed in and answered as the app answers them,
+  with their Qur'an and HadeethEnc sources and the review label. `4/questions.json` comes from
+  `shared/content/common-questions.json` through `tools/site/build_ask_sample.py`.
+* `versions/`: one page that opens all four versions, for asking people which they prefer.
+* `prayer.js`: prayer times, the Qibla and the sky's moment for versions 2 and 3.
 * `support.html` (the store's support URL) and `terms.html` (terms of use).
 * `privacy.html`, `security.html`, `credits.html` (sources and licences; with `legal.css`, `legal.js`): the privacy policy and the security page in both
   languages, for the store listings. They describe what the apps do; when an app starts sending or keeping

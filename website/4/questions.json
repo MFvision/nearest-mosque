@@ -1,0 +1,77 @@
+[
+ {
+  "id": "qibla",
+  "question": {
+   "en": "Which direction do Muslims face when praying?",
+   "ar": "إلى أي اتجاه يتوجه المسلمون في الصلاة؟"
+  },
+  "summary": {
+   "en": "Verses 2:144 and 2:149–150 instruct believers to turn their faces toward the Sacred Mosque (al-Masjid al-Haram) in Makkah wherever they are. The Prayer & Qibla tab calculates that direction from your location; a phone compass is only approximate.",
+   "ar": "تأمر الآيات 2:144 و2:149–150 المؤمنين بتوجيه وجوههم شطر المسجد الحرام بمكة حيثما كانوا. ويحسب قسم «الصلاة والقبلة» هذا الاتجاه من موقعك، وبوصلة الهاتف تقريبية."
+  },
+  "quran": [
+   "2:144",
+   "2:149",
+   "2:150"
+  ],
+  "hadith": [],
+  "reviewed": false
+ },
+ {
+  "id": "prayer-times",
+  "question": {
+   "en": "Why do Muslims pray at fixed times?",
+   "ar": "لماذا يصلي المسلمون في أوقات محددة؟"
+  },
+  "summary": {
+   "en": "Verse 4:103 says that prayer at fixed times has been prescribed for the believers. Verse 11:114 mentions prayer at the two ends of the day and in parts of the night, and 17:78 mentions prayer from the going down of the sun until the dark of night, and the recitation at dawn. The exact five times are explained in hadith and by scholars; the Prayer & Qibla tab calculates them for your location.",
+   "ar": "تقول الآية 4:103 إن الصلاة كانت على المؤمنين كتابًا موقوتًا. وتذكر الآية 11:114 إقامة الصلاة طرفي النهار وزلفًا من الليل، وتذكر الآية 17:78 إقامة الصلاة لدلوك الشمس إلى غسق الليل وقرآن الفجر. أما تفصيل الأوقات الخمسة فمصدره الحديث وكلام العلماء، ويحسبها قسم «الصلاة والقبلة» لموقعك."
+  },
+  "quran": [
+   "4:103",
+   "11:114",
+   "17:78"
+  ],
+  "hadith": [],
+  "reviewed": false
+ },
+ {
+  "id": "wudu",
+  "question": {
+   "en": "How do I perform wudu (ablution)?",
+   "ar": "كيف أتوضأ؟"
+  },
+  "summary": {
+   "en": "Verse 5:6 tells believers who rise for prayer to wash the face, wash the hands up to the elbows, wipe the head, and (wash) the feet up to the ankles. The same verse, and 4:43, allow dry purification with clean earth (tayammum) for someone who is ill, travelling, or cannot find water. In the hadith below, ʿUthman ibn ʿAffan shows the ablution of the Prophet ﷺ: washing the hands three times, rinsing the mouth and nose, washing the face three times and the arms to the elbows three times, wiping the head, then washing each foot three times.",
+   "ar": "تأمر الآية 5:6 المؤمنين إذا قاموا إلى الصلاة بغسل الوجه، وغسل الأيدي إلى المرافق، ومسح الرأس، والأرجل إلى الكعبين. وتبيح الآية نفسها والآية 4:43 التيمم بالصعيد الطيب للمريض أو المسافر أو من لم يجد الماء. وفي الحديث أدناه يصف عثمان بن عفان وضوء النبي ﷺ: غسل الكفين ثلاثًا، ثم المضمضة والاستنشاق، ثم غسل الوجه ثلاثًا واليدين إلى المرفقين ثلاثًا، ثم مسح الرأس، ثم غسل كل رجل ثلاثًا."
+  },
+  "quran": [
+   "5:6",
+   "4:43"
+  ],
+  "hadith": [
+   3313
+  ],
+  "reviewed": false
+ },
+ {
+  "id": "what-is-islam",
+  "question": {
+   "en": "What is Islam?",
+   "ar": "ما هو الإسلام؟"
+  },
+  "summary": {
+   "en": "Verse 3:19 says that the religion with Allah is Islam, surrender to Him, and 3:85 says that no other religion will be accepted from whoever seeks it. Verse 2:112 says that whoever submits himself to Allah while doing good has his reward with his Lord. In the hadith of Jibril below, the Prophet ﷺ defines Islam as testifying that there is no god but Allah and that Muhammad is the Messenger of Allah, establishing prayer, paying zakat, fasting Ramadan and performing Hajj for whoever is able; the same hadith also explains faith (iman) and excellence (ihsan).",
+   "ar": "تقول الآية 3:19 إن الدين عند الله الإسلام، وتقول الآية 3:85 إن من يبتغِ غير الإسلام دينًا فلن يُقبل منه. وتقول الآية 2:112 إن من أسلم وجهه لله وهو محسن فله أجره عند ربه. وفي حديث جبريل أدناه عرّف النبي ﷺ الإسلام بأن تشهد أن لا إله إلا الله وأن محمدًا رسول الله، وتقيم الصلاة، وتؤتي الزكاة، وتصوم رمضان، وتحج البيت إن استطعت إليه سبيلًا، وبيّن في الحديث نفسه الإيمان والإحسان."
+  },
+  "quran": [
+   "3:19",
+   "3:85",
+   "2:112"
+  ],
+  "hadith": [
+   4563
+  ],
+  "reviewed": false
+ }
+]
