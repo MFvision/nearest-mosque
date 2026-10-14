@@ -1,11 +1,11 @@
 // The landing page: builds the chapters from story.js, then one scroll conductor drives the stage (the globe, then
 // the app's sky from sky.js) and marks the current chapter. Native scrolling throughout; nothing hijacks the wheel.
 import { story, links } from './story.js';
-import { createGlobe } from './globe.js';
+import { createGlobe, PRAYER_COLORS } from './globe.js';
 import { places } from './places.js';
 
 const BASE = new URL('.', import.meta.url).href;
-const WEIGHTS = { world: 1.5, lines: 1.8, qibla: 1.7, sky: 1.9, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
+const WEIGHTS = { world: 1.6, lines: 1.9, qibla: 1.5, kaaba: 2.1, sky: 1.9, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
 const GLOBE_CH = new Set(['world', 'lines', 'get']);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
@@ -15,17 +15,27 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 let lang = (location.hash === '#ar' || location.hash === '#en') ? location.hash.slice(1) : store.get('nm-lang') || ((navigator.languages || [navigator.language]).some((l) => /^ar/i.test(l)) ? 'ar' : 'en');
 document.documentElement.classList.add('js');
 
+// Where the visitor is: the most populous built-in city in the browser's time zone (no location is asked for).
+// Riyadh until the table has loaded, or when the zone is not in it.
+const you = { lat: 24.714, lon: 46.675, en: 'Riyadh', ar: 'الرياض' };
 // The stage's states, each chapter's filled in from the one before.
 const states = [];
-let hoursAcc = 0;
-story.chapters.forEach((c, i) => {
-  const prev = i ? states[i - 1] : { lon: 28, lat: 14, zoom: 1, lines: 0, arcs: 0, mix: 0, t: 0, follow: 0, spin: 0 };
-  const s = { ...prev, ...c.stage };
-  s.hoursAt = hoursAcc;
-  s.hours = c.stage.hours || 0;
-  hoursAcc += s.hours;
-  states.push(s);
-});
+function buildStates() {
+  states.length = 0;
+  let hoursAcc = 0;
+  story.chapters.forEach((c, i) => {
+    const prev = i ? states[i - 1] : { lon: 28, lat: 14, zoom: 1, lines: 0, arcs: 0, haram: 0, mix: 0, t: 0, follow: 0, spin: 0, fly: 0, real: 0 };
+    const s = { ...prev, ...c.stage };
+    if (s.lon === 'you') s.lon = you.lon;
+    if (s.lat === 'you') s.lat = you.lat;
+    s.fly = c.stage.fly || 0;
+    s.hoursAt = hoursAcc;
+    s.hours = c.stage.hours || 0;
+    hoursAcc += s.hours;
+    states.push(s);
+  });
+}
+buildStates();
 
 const ICONS = {
   appStore: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm6.2 4.2-4.6 8h2.1l.8-1.4h4.9l-1-1.8H10.6l2.5-4.4-1.9-.4Zm2.6 3.2-1 1.7 2.2 3.9h2.1l-3.3-5.6Z"/></svg>',
@@ -124,6 +134,7 @@ function render() {
   $('footer').innerHTML = `<div><nav><a href="${BASE}privacy.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.privacy)}</a><a href="${BASE}security.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.security)}</a></nav>
     <p>${esc(t.footer.note)}</p><p>${esc(t.footer.sources)}</p></div>`;
   chapters = [...document.querySelectorAll('.chapter')];
+  renderHud();
   measure();
 }
 
@@ -137,8 +148,8 @@ function applyTheme() {
   $('#theme').textContent = THEME_LABEL[lang][theme];
   dark = theme === 'dark' || (theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
   globe?.setTheme(dark
-    ? { oceanDay: '#173F5A', oceanNight: '#05121C', landDay: '#F4EEDF', landNight: '#2B4A6C', dusk: '#E2B649', lights: '#F6D88E', line: '#E2B649', arc: '#F6D88E', ring: '#F2CF6B', rim: '#5D8FC9', stars: true }
-    : { oceanDay: '#D5DFE2', oceanNight: '#0E2F45', landDay: '#1A4D6E', landNight: '#3A6488', dusk: '#C9952A', lights: '#F2CF6B', line: '#B8862A', arc: '#F2C14E', ring: '#B8862A', rim: '#FFFFFF', stars: false });
+    ? { oceanDay: '#173F5A', oceanNight: '#05121C', landDay: '#F4EEDF', landNight: '#2B4A6C', dusk: '#FFC85A', arc: '#FFC94D', ring: '#FFD36B', holy: '#FFE7A8', ground: '#0B1620', rim: '#6FA3E0', stars: true }
+    : { oceanDay: '#D5DFE2', oceanNight: '#0E2F45', landDay: '#1A4D6E', landNight: '#3A6488', dusk: '#E8A93A', arc: '#FFC94D', ring: '#F5B93F', holy: '#FFE7A8', ground: '#0B1620', rim: '#BFD7F2', stars: false });
   dirty = true;
 }
 
@@ -160,23 +171,36 @@ function stageAt(y) {
   while (i + 1 < tops.length && mid >= tops[i + 1]) i++;
   const p = Math.min(1, Math.max(0, (mid - tops[i]) / (heights[i] || 1)));
   const a = states[i], b = states[Math.min(i + 1, states.length - 1)];
-  let e = reduce.matches ? (p > 0.8 ? 1 : 0) : smooth((p - 0.55) / 0.45);
+  let e = smooth((p - 0.4) / 0.6);
   if (i + 1 >= states.length) e = 0;
   // Into the sky the globe zooms first and the sky follows; out of it, the sky clears first.
   const mixP = a.mix < b.mix ? smooth((e - 0.45) / 0.55) : a.mix > b.mix ? smooth(e / 0.5) : e;
+  // In a flight the view crosses first and the zoom follows; elsewhere both move together.
+  const fe = b.fly ? smooth(e / 0.75) : e;
+  const ze = b.fly ? Math.pow(e, 1.6) : a.mix < b.mix ? smooth(e / 0.8) : e;
   return {
     i, p,
     // A spinning chapter's view turns west to east on its own (the globe turns under the viewer).
-    lon: lerpLon(a.lon - spinAcc * a.spin, b.lon - spinAcc * b.spin, e), lat: lerp(a.lat, b.lat, e), zoom: lerp(a.zoom, b.zoom, a.mix < b.mix ? smooth(e / 0.8) : e),
+    lon: lerpLon(a.lon - spinAcc * a.spin, b.lon - spinAcc * b.spin, fe), lat: lerp(a.lat, b.lat, fe),
+    // Zoom in steps of scale; a flight pulls back first, crosses, then comes down (as Google Earth does).
+    zoom: Math.exp(lerp(Math.log(a.zoom), Math.log(b.zoom), ze) - (b.fly ? 1.2 * Math.sin(Math.PI * Math.min(1, e * 1.1)) : 0)),
+    haram: lerp(a.haram, b.haram, a.haram < b.haram ? smooth((e - 0.7) / 0.3) : smooth(e / 0.3)),
     follow: 70, followMix: lerp(a.follow, b.follow, e),
     lines: lerp(a.lines, b.lines, e), arcs: lerp(a.arcs, b.arcs, e), mix: lerp(a.mix, b.mix, mixP), t: lerp(a.t, b.t, e),
-    hours: a.hoursAt + a.hours * (reduce.matches ? 0 : smooth(p)),
+    hours: a.hoursAt + a.hours * smooth(p),
+    // 1 where the globe shows the real time (the Qibla, Makkah); 0 where the day runs fast round the world.
+    real: lerp(a.real || 0, b.real || 0, e),
   };
 }
 
 const globeCanvas = $('#globe-canvas'), skyCanvas = $('#sky-canvas'), labelBox = $('.labels');
 const skyCtx = skyCanvas.getContext('2d');
-let lastSky = null, current = -1, ambient = 0, spinAcc = 0, lastFrame = performance.now();
+let lastSky = null, current = -1, ambient = 0, spinAcc = 0, arcsShown = 0, simHours = 0, lastFrame = performance.now();
+// Today, in hours since midnight UTC, and its day of the year.
+const today = new Date();
+const dayStart = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+const utcNow = () => (Date.now() - dayStart) / 3600e3;
+const dayOfYear = () => Math.floor((dayStart - Date.UTC(today.getUTCFullYear(), 0, 1)) / 86400e3) + 1;
 function sizeSky() {
   const k = Math.min(1.5, devicePixelRatio || 1);
   skyCanvas.width = Math.round(innerWidth * k);
@@ -206,26 +230,40 @@ function step(now) {
     chapters.forEach((c, k) => c.querySelectorAll('video').forEach((v) => { if (k === s.i && !reduce.matches) v.play().catch(() => {}); else v.pause(); }));
   }
   // Twelve minutes of the sun and seven degrees of turn every second; with Reduce Motion, a slow, steady turn.
-  ambient += dt * (reduce.matches ? 0.06 : 0.2);
+  // Where the globe shows the real time (the Qibla, Makkah), the fast day stops.
+  ambient += dt * (reduce.matches ? 0.06 : 0.2) * (1 - s.real);
   spinAcc += dt * (reduce.matches ? 2.5 : 7);
   if (inStory) {
     if (globe && s.mix < 0.999) {
       const wide = innerWidth > 860, rtl = lang === 'ar', aspect = innerWidth / innerHeight;
-      const away = Math.max(0, 1 - (s.zoom - 1) / 0.8);
+      // The globe sits beside the words, then moves to the middle as it comes closer.
+      const away = Math.max(0, Math.min(1, 1 - Math.log(s.zoom) / Math.log(4)));
       const fit = wide ? 1 : Math.min(2.6, Math.max(1, (1.25 / (0.2867 * aspect) - 1) / 4.4));
-      globe.update({ ...s, zoom: s.zoom / fit, hours: 14.5 + s.hours + ambient, now: now / 1000, shift: wide ? (rtl ? -0.82 : 0.82) * away : 0, lift: wide ? 0 : 0.5 * away * fit });
+      // The globe's time: now, plus the fast day; towards the Qibla it runs on to the same time of day as now.
+      const off = s.hours + ambient, hours = utcNow() + lerp(off, Math.ceil(off / 24) * 24, smooth(s.real));
+      simHours = hours;
+      // The arcs draw over a few seconds once they are called for, the visitor's own first.
+      arcsShown += (s.arcs - arcsShown) * Math.min(1, dt * (s.arcs > arcsShown ? 0.7 : 3));
+      globe.update({ ...s, arcs: arcsShown, day: dayOfYear(), zoom: s.zoom / fit, hours, now: now / 1000, shift: wide ? (rtl ? -0.82 : 0.82) * away : 0, lift: wide ? 0 : 0.5 * away * fit });
       globeCanvas.style.opacity = String(1 - s.mix);
-      // The prayer names beside their lines, Makkah beside its light.
+      // The prayer names on their waves; Makkah and Madinah beside their light; the visitor's city.
       const L = globe.labels(), t = story[lang];
       const names = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+      const farOut = s.zoom < 2.2 && s.mix < 0.2;
       labelBox.querySelectorAll(':scope > span').forEach((el, k) => {
-        const pt = k < 5 ? L.lines[k] : L.makkah;
-        const on = k < 5 ? s.lines > 0.3 && s.mix < 0.2 : s.arcs > 0.3 && s.mix < 0.2;
+        let pt, on, text, op = 1;
+        if (k < 5) { pt = L.lines[k]; on = s.lines > 0.3 && farOut; text = t.prayers[names[k]]; op = Math.min(1, (s.lines - 0.3) * 2); el.style.color = PRAYER_COLORS[k]; }
+        else if (k === 5) { pt = L.makkah; on = s.mix < 0.2 && s.haram < 0.6; text = t.makkah; }
+        else if (k === 6) { pt = L.madinah; on = farOut && s.zoom < 1.3; text = t.hud.madinah; op = 0.85; }
+        else { pt = globe.project(youVec()); on = s.arcs > 0.2 && s.zoom < 2.2 && s.mix < 0.2; text = `${t.hud.you}${lang === 'ar' ? (you.ar ? ' · ' + you.ar : '') : ' · ' + you.en}`; }
         if (!pt || !on || pt.facing < 0.25) { el.style.opacity = 0; return; }
-        el.textContent = k < 5 ? t.prayers[names[k]] : t.makkah;
+        el.textContent = text;
         el.style.left = `${pt.x}px`; el.style.top = `${pt.y}px`;
-        el.style.opacity = String(k < 5 ? Math.min(1, (s.lines - 0.3) * 2) : Math.min(1, (s.arcs - 0.3) * 2));
+        el.style.opacity = String(op);
       });
+      // The legend, the style switch and Makkah's time, while the whole globe is in view.
+      hud.classList.toggle('off', !(farOut && s.haram < 0.1));
+      hudClock.textContent = `${t.hud.clock} · ${localTime(simHours, 'Asia/Riyadh')}`;
       tagFrame(s, now / 1000);
     } else {
       globeCanvas.style.opacity = '0';
@@ -244,13 +282,33 @@ function step(now) {
   soundFrame(s);
 }
 
+const youVec = () => { const p = you.lat * Math.PI / 180, l = you.lon * Math.PI / 180; return { x: Math.cos(p) * Math.sin(l) * 1.004, y: Math.sin(p) * 1.004, z: Math.cos(p) * Math.cos(l) * 1.004 }; };
+// The legend of the five prayers' colours, Makkah's time, and the switch between the two looks of the globe.
+const hud = document.createElement('div');
+hud.className = 'hud off';
+document.body.appendChild(hud);
+let hudClock = null;
+let globeStyle = store.get('nm-globe') === 'dots' ? 'dots' : 'earth';
+function renderHud() {
+  const t = story[lang], names = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+  hud.innerHTML = `<p class="hud-legend">${esc(t.hud.legend)}</p><ul>${names.map((n, k) => `<li><i style="background:${PRAYER_COLORS[k]}"></i>${esc(t.prayers[n])}</li>`).join('')}</ul>
+    <div class="hud-row"><span class="hud-clock"></span><span class="hud-style" role="group">${['earth', 'dots'].map((k, j) => `<button type="button" data-style="${k}" aria-pressed="${globeStyle === k}">${esc(t.hud.styles[j])}</button>`).join('')}</span></div>`;
+  hudClock = hud.querySelector('.hud-clock');
+  hud.querySelectorAll('[data-style]').forEach((b) => b.addEventListener('click', () => {
+    globeStyle = b.dataset.style;
+    store.set('nm-globe', globeStyle);
+    globe?.setStyle(globeStyle);
+    hud.querySelectorAll('[data-style]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.style === globeStyle)));
+  }));
+}
+
 // Cards that rise where a named city's Adhan comes: the city, the prayer, and its local time.
 const TAG_LIFE = 3.4, fmt = {};
 let lastTag = 0;
 function localTime(hours, tz) {
   const key = lang + tz;
   fmt[key] = fmt[key] || new Intl.DateTimeFormat(lang === 'ar' ? 'ar-u-nu-latn' : 'en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
-  return fmt[key].format(new Date(Date.UTC(2026, 9, 14) + hours * 3600e3));
+  return fmt[key].format(new Date(dayStart + hours * 3600e3));
 }
 function tagFrame(s, now) {
   const tags = [...labelBox.querySelectorAll('.tag')];
@@ -332,8 +390,20 @@ addEventListener('resize', () => { measure(); sizeSky(); globe?.resize(); });
 render();
 sizeSky();
 applyTheme();
-labelBox.innerHTML = '<span></span><span></span><span></span><span></span><span></span><span class="makkah"></span>' + '<div class="tag"></div>'.repeat(4);
+labelBox.innerHTML = '<span></span><span></span><span></span><span></span><span></span><span class="makkah"></span><span class="madinah"></span><span class="you"></span>' + '<div class="tag"></div>'.repeat(4);
+fetch(BASE + 'assets/zones.json').then((r) => r.json()).then((zones) => {
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  // A built-in place in the same zone (other than Makkah and Madinah) gives the Arabic name too.
+  const place = places.find((p) => p[4] === tz && !/^(Makkah|Madinah)$/.test(p[0]));
+  const z = zones[tz];
+  if (place) Object.assign(you, { lat: place[2], lon: place[3], en: place[0], ar: place[1] });
+  else if (z) Object.assign(you, { lat: z[0], lon: z[1], en: z[2], ar: '' });
+  else return;
+  buildStates();
+  globe?.setYou(you.lat, you.lon);
+}).catch(() => {});
 createGlobe(globeCanvas, BASE, places).then((g) => {
+  if (g) { g.setStyle(globeStyle); g.setYou(you.lat, you.lon); }
   globe = g;
   if (!g) { document.documentElement.classList.add('no-webgl'); return; }
   g.resize();

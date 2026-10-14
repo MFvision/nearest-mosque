@@ -1,7 +1,8 @@
 // The landing page's words and pictures, in English and Arabic. The page (app.js) reads only this; the stage
 // follows each chapter's `stage` keys. Facts come from docs/10-features.md; keep them true when editing.
 //
-// stage: globe  { lon, lat } centre of the view (spin: 1 turns the globe on its own; follow: 1 keeps the view 70° east of
+// stage: globe  { lon, lat } centre of the view ('you': the visitor's city, from the browser's time zone; haram: the
+//               close-up of the Kaaba; fly: reach this chapter's view by flying out and back down) (spin: 1 turns the globe on its own; follow: 1 keeps the view 70° east of
 //               the sun, on the evening side), zoom, lines (0..1, the five prayer lines), arcs (0..1, the Qibla
 //               arcs), hours (simulated hours added across the chapter)
 //        sky    t on the app's sky loop (0 Fajr … 1 Fajr again), mix (0 globe … 1 sky)
@@ -17,8 +18,10 @@ export const links = {
 const chapters = [
   { id: 'world', stage: { lon: 34, lat: 14, zoom: 1, lines: 0, arcs: 0, mix: 0, hours: 0, follow: 0, spin: 1 } },
   { id: 'lines', stage: { lon: 30, lat: 12, zoom: 1, lines: 1, arcs: 0, mix: 0, hours: 4, follow: 0, spin: 1 } },
-  { id: 'qibla', stage: { lon: 39.8, lat: 21.4, zoom: 2.3, lines: 0, arcs: 1, mix: 0, hours: 0, follow: 0, spin: 0 } },
-  { id: 'sky', stage: { lon: 46.7, lat: 24.7, zoom: 3.4, follow: 0, lines: 0, arcs: 0, mix: 1, t: 0.03 }, media: [{ phone: 'iphone/01-prayer', clip: 'clips/01-header' }] },
+  { id: 'qibla', stage: { lon: 'you', lat: 'you', zoom: 1.5, lines: 0, arcs: 1, mix: 0, hours: 0, follow: 0, spin: 0, real: 1 } },
+  // From the visitor's city to Makkah, as a flight: out, across, then down to the Kaaba.
+  { id: 'kaaba', stage: { lon: 39.8262, lat: 21.4225, zoom: 3600, arcs: 1, haram: 1, fly: 1 } },
+  { id: 'sky', stage: { mix: 1, t: 0.03, fly: 0 }, media: [{ phone: 'iphone/01-prayer', clip: 'clips/01-header' }] },
   { id: 'mosque', stage: { mix: 1, t: 0.17 }, media: [{ phone: 'iphone/09-mosques-radar' }, { phone: 'iphone/03-mosques-map' }] },
   { id: 'ask', stage: { mix: 1, t: 0.3 }, media: [{ phone: 'iphone/04-ask', clip: 'clips/03-search' }] },
   { id: 'library', stage: { mix: 1, t: 0.38 }, media: [{ phone: 'iphone/05-classics' }] },
@@ -27,7 +30,7 @@ const chapters = [
   { id: 'watch', stage: { mix: 1, t: 0.7 }, media: [{ watch: 'watch/01-watch-prayer' }, { watch: 'watch/03-watch-spirit' }, { watch: 'watch/04-watch-tasbih' }] },
   { id: 'devices', stage: { mix: 1, t: 0.8 }, media: [{ devices: ['iphone/10-prayer-dark', 'ipad/01-prayer', 'mac/01-prayer', 'tv/01-tv-board', 'vision/01-prayer'] }] },
   { id: 'privacy', stage: { mix: 1, t: 0.9 } },
-  { id: 'get', stage: { lon: 40, lat: 18, zoom: 1, lines: 1, arcs: 0.35, mix: 0, hours: 3, follow: 0, spin: 1 } },
+  { id: 'get', stage: { lon: 40, lat: 18, zoom: 1, lines: 1, arcs: 0, mix: 0, hours: 3, follow: 0, spin: 1, haram: 0, real: 0 } },
 ];
 
 const en = {
@@ -40,7 +43,8 @@ const en = {
   makkah: 'Makkah',
   scroll: 'Scroll',
   sound: ['Hear the Adhan', 'Adhan on'],
-  board: { world: 'The Adhan', lines: 'Five prayers', qibla: 'Qibla', sky: 'Your sky', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
+  hud: { legend: 'Each light is a city at its prayer time', clock: 'Makkah', styles: ['Earth', 'Dots'], you: 'You', madinah: 'Madinah' },
+  board: { world: 'The Adhan', lines: 'Five prayers', qibla: 'Qibla', kaaba: 'Makkah', sky: 'Your sky', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
   boardLabel: 'Story',
   soon: 'Coming soon',
   stores: { appStore: ['Download on the', 'App Store'], googlePlay: ['Get it on', 'Google Play'], microsoftStore: ['Get it from', 'Microsoft Store'] },
@@ -54,7 +58,7 @@ const en = {
     lines: {
       eyebrow: 'Five times a day',
       title: 'Each prayer moves around the world [[with the sun]].',
-      body: 'Fajr travels with the dawn and Maghrib with the sunset. The lines on this globe follow the sun’s real position today.',
+      body: 'Each light is a city reaching its prayer time. Fajr travels with the dawn and Maghrib with the sunset, following the sun’s real position today.',
       points: ['13,090 cities built in, no internet needed', '11 calculation methods, suggested for your country'],
     },
     qibla: {
@@ -119,6 +123,11 @@ const en = {
       body: 'Prayer times, the Qibla and your answers are worked out on your device. There is no account to make and nothing about you is sent to us.',
       points: ['Prayer times and Qibla work offline', 'Online only for mosque search, maps and the downloads you choose, with your location rounded to about 1 km'],
     },
+    kaaba: {
+      eyebrow: 'Makkah',
+      title: 'Every line ends at the [[Kaaba]].',
+      body: 'Wherever you pray, you face the same place. Near Mosque shows you the way to it from where you stand.',
+    },
     get: {
       eyebrow: 'Near Mosque',
       title: 'Every prayer [[on time]], wherever you are.',
@@ -144,7 +153,7 @@ const en = {
   footer: {
     privacy: 'Privacy policy',
     security: 'Security',
-    sources: 'Adhan: Masjid al-Haram, Makkah (Internet Archive). City data © GeoNames (CC BY 4.0). Mosques © OpenStreetMap contributors (ODbL). Map outline: Natural Earth (public domain). Classical books: OpenITI (CC BY-NC-SA 4.0).',
+    sources: 'Adhan: Masjid al-Haram, Makkah (Internet Archive). City data © GeoNames (CC BY 4.0). Mosques © OpenStreetMap contributors (ODbL). Earth images: NASA Blue Marble and Black Marble. Map outline: Natural Earth (both public domain). Classical books: OpenITI (CC BY-NC-SA 4.0).',
     note: '36 interface languages: English and Arabic are reviewed; the others are drafts awaiting native review.',
   },
 };
@@ -159,7 +168,8 @@ const ar = {
   makkah: 'مكة المكرمة',
   scroll: 'مرّر',
   sound: ['استمع إلى الأذان', 'الأذان يعمل'],
-  board: { world: 'الأذان', lines: 'الصلوات الخمس', qibla: 'القبلة', sky: 'سماؤك', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
+  hud: { legend: 'كل ضوءٍ مدينةٌ حان وقت صلاتها', clock: 'مكة', styles: ['الأرض', 'النقاط'], you: 'أنت هنا', madinah: 'المدينة المنورة' },
+  board: { world: 'الأذان', lines: 'الصلوات الخمس', qibla: 'القبلة', kaaba: 'مكة المكرمة', sky: 'سماؤك', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
   boardLabel: 'القصة',
   soon: 'قريبًا',
   stores: { appStore: ['حمّله من', 'App Store'], googlePlay: ['احصل عليه من', 'Google Play'], microsoftStore: ['احصل عليه من', 'Microsoft Store'] },
@@ -173,7 +183,7 @@ const ar = {
     lines: {
       eyebrow: 'خمس مرات في اليوم',
       title: 'كل صلاةٍ تدور حول العالم [[مع الشمس]].',
-      body: 'الفجر يسير مع الشروق الأول، والمغرب مع الغروب. والخطوط على هذه الكرة تتبع موضع الشمس الحقيقي اليوم.',
+      body: 'كل ضوءٍ مدينةٌ حان وقت صلاتها. الفجر يسير مع الشروق الأول، والمغرب مع الغروب، تبعًا لموضع الشمس الحقيقي اليوم.',
       points: ['13,090 مدينة مدمجة في التطبيق، دون حاجة إلى الإنترنت', '11 طريقة حساب، يُقترح منها ما يناسب بلدك'],
     },
     qibla: {
@@ -238,6 +248,11 @@ const ar = {
       body: 'تُحسب المواقيت والقبلة وإجاباتك على جهازك. لا حساب تنشئه، ولا يُرسل إلينا شيءٌ عنك.',
       points: ['المواقيت والقبلة تعمل دون إنترنت', 'الاتصال فقط للبحث عن المساجد والخرائط وما تختار تنزيله، مع تقريب موقعك إلى نحو كيلومتر'],
     },
+    kaaba: {
+      eyebrow: 'مكة المكرمة',
+      title: 'كل الخطوط تنتهي عند [[الكعبة]].',
+      body: 'أينما صلّيت فأنت تستقبل المكان نفسه، و«أقرب مسجد» يريك اتجاهه من حيث تقف.',
+    },
     get: {
       eyebrow: 'أقرب مسجد',
       title: 'كل صلاةٍ [[في وقتها]]، أينما كنت.',
@@ -263,7 +278,7 @@ const ar = {
   footer: {
     privacy: 'سياسة الخصوصية',
     security: 'الأمان',
-    sources: 'الأذان: المسجد الحرام، مكة المكرمة (Internet Archive). بيانات المدن © GeoNames (CC BY 4.0). المساجد © المساهمون في OpenStreetMap (ODbL). حدود الخريطة: Natural Earth (ملكية عامة). أمهات الكتب: OpenITI (CC BY-NC-SA 4.0).',
+    sources: 'الأذان: المسجد الحرام، مكة المكرمة (Internet Archive). بيانات المدن © GeoNames (CC BY 4.0). المساجد © المساهمون في OpenStreetMap (ODbL). صور الأرض: NASA Blue Marble وBlack Marble. حدود الخريطة: Natural Earth (وكلاهما ملكية عامة). أمهات الكتب: OpenITI (CC BY-NC-SA 4.0).',
     note: '36 لغة للواجهة: العربية والإنجليزية مراجعتان، والبقية مسودات بانتظار مراجعة متحدثيها.',
   },
 };

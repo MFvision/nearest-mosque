@@ -7,7 +7,8 @@ in English and Arabic as WebP, and short clips of the app preview recordings.
 <screenshots root>/<en|ar>/<iphone|ipad|mac|tv|vision|watch>/NN-name.png (the App Store screenshots);
 <recordings root>/<en|ar>/01-header.mp4, 03-search.mp4 (store-previews.yml).
 
-Land: Natural Earth 1:110m land (public domain) as world-atlas TopoJSON (tools/site/land-110m.json), drawn on an
+Earth: NASA Blue Marble Next Generation (December 2004) and Black Marble 2016 (city lights), both public domain,
+resized into assets/earth-day.jpg and earth-night.jpg (done once, by hand). Land: Natural Earth 1:110m land (public domain) as world-atlas TopoJSON (tools/site/land-110m.json), drawn on an
 equirectangular grid and sampled on an even spread of points over the sphere. Cities: packs/cities/cities.tsv
 (GeoNames, CC BY 4.0), the most populous ones.
 """
@@ -69,13 +70,18 @@ def land_dots(n=90000):
     return out
 
 
-def cities(n=2400):
+def cities():
+    """Every built-in city (they light up at their prayer times), and for each time zone its most populous city
+    (where the page places a visitor, from the browser's time zone)."""
     rows = []
     for line in (ROOT / "packs/cities/cities.tsv").read_text().splitlines():
         f = line.split("\t")
-        rows.append((int(f[8] or 0), float(f[5]), float(f[6])))
+        rows.append((int(f[8] or 0), float(f[5]), float(f[6]), f[7], f[2]))
     rows.sort(reverse=True)
-    return [(round(la * 100), round(lo * 100), min(255, int(math.log10(max(pop, 1e4)) * 30))) for pop, la, lo in rows[:n]]
+    zones = {}
+    for pop, la, lo, tz, en in rows:
+        zones.setdefault(tz, [round(la, 3), round(lo, 3), en])
+    return [(round(la * 100), round(lo * 100), min(255, int(math.log10(max(pop, 1e4)) * 30))) for pop, la, lo, *_ in rows], zones
 
 
 def main():
@@ -84,8 +90,9 @@ def main():
     dots = land_dots()
     # Flat lists of whole numbers: latitude and longitude in hundredths of a degree (cities add a size, 0 to 255).
     (OUT / "land.json").write_text(json.dumps([v for d in dots for v in d], separators=(",", ":")))
-    cs = cities()
+    cs, zones = cities()
     (OUT / "cities.json").write_text(json.dumps([v for c in cs for v in c], separators=(",", ":")))
+    (OUT / "zones.json").write_text(json.dumps(zones, ensure_ascii=False, separators=(",", ":")))
     print(f"land {len(dots)} dots, cities {len(cs)}")
     widths = {"iphone": 640, "ipad": 1100, "mac": 1200, "tv": 1200, "vision": 1200, "watch": 360}
     for lang in ("en", "ar"):

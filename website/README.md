@@ -1,8 +1,9 @@
 # Near Mosque website
 
-The landing page: one scroll story in English and Arabic. The globe (Three.js) shows the five prayer lines where
-the sun stands at each prayer's angle today, gold rings and mosques rising where a prayer time arrives, and the
-Qibla arcs meeting at Makkah; then the page dives into the app's living sky (`sky.js`, the same sky as the
+The landing page: one scroll story in English and Arabic. The globe (Three.js, the real Earth or gold dots) turns on its own
+while all 13,090 built-in cities light up in gold as each prayer's time reaches them, so the Adhan moves round the
+world in waves; Makkah shines brightest. Then the view flies from the visitor's city (from the browser's time zone)
+to Makkah along the Qibla arcs, down to the Kaaba inside rings of light; then the page dives into the app's living sky (`sky.js`, the same sky as the
 promo and the watch) for each feature, with the store screenshots.
 
 * `story.js`: every word and picture, both languages, and each chapter's stage. Store links are at the top:
@@ -12,5 +13,6 @@ promo and the watch) for each feature, with the store screenshots.
   the opening of the Makkah Adhan for the sound button).
 * `vendor/three.module.min.js`: Three.js r160 (MIT, `vendor/three.LICENSE`).
 
-Data: Natural Earth land (public domain, via world-atlas), GeoNames cities (CC BY 4.0). The Adhan recording's
+Data: NASA Blue Marble Next Generation and Black Marble 2016 (the Earth by day and night, public domain), Natural
+Earth land (public domain, via world-atlas, for the dots look), GeoNames cities (CC BY 4.0). The Adhan recording's
 rights notes are in `shared/audio/CREDITS.md`.
