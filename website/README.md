@@ -17,6 +17,9 @@ promo and the watch) for each feature, with the store screenshots.
   something new, update them and their date before the release.
 * `CNAME`: the domain, nearmosque.net, for hosts that read it (GitHub Pages). Upload the folder as it is to the
   root of the domain; the store fields are https://nearmosque.net/support.html and https://nearmosque.net/privacy.html.
+* `Dockerfile`, `Caddyfile`, `railway.json`: the site as a small Caddy server, for Railway. In Railway: deploy
+  this repository, set the service's root directory to `/website`, then add the custom domain nearmosque.net
+  under Networking and put the DNS record Railway shows at the domain's registrar.
 * `vendor/three.module.min.js`: Three.js r160 (MIT, `vendor/three.LICENSE`).
 
 Photographs of Makkah: the city from the International Space Station (ISS Expedition 44, NASA, public domain),

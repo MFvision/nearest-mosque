@@ -1,0 +1,25 @@
+# Serves the website as static files on Railway (or anywhere Docker runs). Railway gives the port in $PORT
+# and handles HTTPS in front of it.
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+	file_server
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options SAMEORIGIN
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+	# Pictures, films and data change rarely; the pages, scripts and styles are checked on every visit.
+	@media path /assets/* /vendor/*
+	header @media Cache-Control "public, max-age=604800"
+	@code path / *.html *.js *.css
+	header @code Cache-Control "no-cache"
+}
