@@ -1,0 +1,29 @@
+# Downloads openly licensed media for the website (for example from Wikimedia Commons) and keeps it as an
+# artifact, for when the build machines cannot reach the host. Inputs: space-separated URLs.
+name: Fetch media
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: Space-separated URLs
+        required: true
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          mkdir media
+          for u in $URLS; do
+            curl -fsSL --retry 4 --retry-delay 20 -A "NearMosqueSite/1.0 (https://github.com/MFvision/nearest-mosque)" -o "media/$(basename "${u%%\?*}")" "$u"
+          done
+          ls -la media
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: media
+          path: media
+          retention-days: 7
