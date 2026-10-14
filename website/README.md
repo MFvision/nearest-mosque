@@ -13,6 +13,10 @@ promo and the watch) for each feature, with the store screenshots.
   the opening of the Makkah Adhan for the sound button).
 * `vendor/three.module.min.js`: Three.js r160 (MIT, `vendor/three.LICENSE`).
 
+Photographs of Makkah: the city from the International Space Station (ISS Expedition 44, NASA, public domain),
+Masjid al-Haram at night (Wurzelgnohm, CC0) and the tawaf, cropped from "Time lapse of Masjid al-Haram" by Masajida
+Allah (CC BY 3.0), all via Wikimedia Commons (`.github/workflows/fetch-media.yml` downloads such files).
+
 Data: NASA Blue Marble Next Generation and Black Marble 2016 (the Earth by day and night, public domain), Natural
 Earth land (public domain, via world-atlas, for the dots look), GeoNames cities (CC BY 4.0). The Adhan recording's
 rights notes are in `shared/audio/CREDITS.md`.

@@ -1,7 +1,7 @@
 // The landing page: builds the chapters from story.js, then one scroll conductor drives the stage (the globe, then
 // the app's sky from sky.js) and marks the current chapter. Native scrolling throughout; nothing hijacks the wheel.
 import { story, links } from './story.js';
-import { createGlobe, PRAYER_COLORS } from './globe.js';
+import { createGlobe, PRAYER_COLORS, sunAt } from './globe.js';
 import { places } from './places.js';
 
 const BASE = new URL('.', import.meta.url).href;
@@ -119,6 +119,7 @@ function render() {
           ${x.note ? `<p class="note">${esc(x.note)}</p>` : ''}
           ${c.id === 'world' ? `<a class="cta-link" href="#get">${esc(x.cta)}</a><div class="scroll-cue">${esc(t.scroll)}</div>` : ''}
           ${c.id === 'get' ? storesHTML(t) : ''}
+          ${c.id === 'kaaba' ? `<div class="daynight" role="group">${t.daynight.map((n, k) => `<button type="button" data-night="${k}" aria-pressed="${(k === 1) === makkahNight()}">${esc(n)}</button>`).join('')}</div>` : ''}
         </div>
         <div class="media">${mediaHTML(c, x)}</div>
       </div>
@@ -134,6 +135,10 @@ function render() {
   $('footer').innerHTML = `<div><nav><a href="${BASE}privacy.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.privacy)}</a><a href="${BASE}security.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.security)}</a></nav>
     <p>${esc(t.footer.note)}</p><p>${esc(t.footer.sources)}</p></div>`;
   chapters = [...document.querySelectorAll('.chapter')];
+  document.querySelectorAll('.daynight button').forEach((b) => b.addEventListener('click', () => {
+    nightPick = b.dataset.night === '1';
+    document.querySelectorAll('.daynight button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  }));
   renderHud();
   measure();
 }
@@ -244,7 +249,8 @@ function step(now) {
       simHours = hours;
       // The arcs draw over a few seconds once they are called for, the visitor's own first.
       arcsShown += (s.arcs - arcsShown) * Math.min(1, dt * (s.arcs > arcsShown ? 0.7 : 3));
-      globe.update({ ...s, arcs: arcsShown, day: dayOfYear(), zoom: s.zoom / fit, hours, now: now / 1000, shift: wide ? (rtl ? -0.82 : 0.82) * away : 0, lift: wide ? 0 : 0.5 * away * fit });
+      const veil = descentFrame(s, s.zoom / fit, wide);
+      globe.update({ ...s, veil, arcs: arcsShown, day: dayOfYear(), zoom: s.zoom / fit, hours, now: now / 1000, shift: wide ? (rtl ? -0.82 : 0.82) * away : 0, lift: wide ? 0 : 0.5 * away * fit });
       globeCanvas.style.opacity = String(1 - s.mix);
       // The prayer names on their waves; Makkah and Madinah beside their light; the visitor's city.
       const L = globe.labels(), t = story[lang];
@@ -253,9 +259,15 @@ function step(now) {
       labelBox.querySelectorAll(':scope > span').forEach((el, k) => {
         let pt, on, text, op = 1;
         if (k < 5) { pt = L.lines[k]; on = s.lines > 0.3 && farOut; text = t.prayers[names[k]]; op = Math.min(1, (s.lines - 0.3) * 2); el.style.color = PRAYER_COLORS[k]; }
-        else if (k === 5) { pt = L.makkah; on = s.mix < 0.2 && s.haram < 0.6; text = t.makkah; }
-        else if (k === 6) { pt = L.madinah; on = farOut && s.zoom < 1.3; text = t.hud.madinah; op = 0.85; }
-        else { pt = globe.project(youVec()); on = s.arcs > 0.2 && s.zoom < 2.2 && s.mix < 0.2; text = `${t.hud.you}${lang === 'ar' ? (you.ar ? ' · ' + you.ar : '') : ' · ' + you.en}`; }
+        else if (k === 5) { pt = L.makkah; on = s.mix < 0.2 && descentShown < 0.3; text = t.makkah; }
+        else if (k === 6) {
+          // Madinah only when it stands clear of Makkah on the screen.
+          pt = L.madinah; text = t.hud.madinah; op = 0.9;
+          on = farOut && s.zoom < 1.3 && Math.hypot(pt.x - L.makkah.x, pt.y - L.makkah.y) > 90;
+        } else {
+          pt = globe.project(youVec()); text = `${t.hud.you}${lang === 'ar' ? (you.ar ? ' · ' + you.ar : '') : ' · ' + you.en}`;
+          on = s.arcs > 0.2 && s.zoom < 2.2 && s.mix < 0.2 && Math.hypot(pt.x - L.makkah.x, pt.y - L.makkah.y) > 60;
+        }
         if (!pt || !on || pt.facing < 0.25) { el.style.opacity = 0; return; }
         el.textContent = text;
         el.style.left = `${pt.x}px`; el.style.top = `${pt.y}px`;
@@ -263,9 +275,11 @@ function step(now) {
       });
       // The legend, the style switch and Makkah's time, while the whole globe is in view.
       hud.classList.toggle('off', !(farOut && s.haram < 0.1));
-      hudClock.textContent = `${t.hud.clock} · ${localTime(simHours, 'Asia/Riyadh')}`;
+      // Makkah's clock is the real time now (the globe's day may be running fast).
+      hudClock.textContent = `${t.hud.clock} · ${localTime(utcNow(), 'Asia/Riyadh')}`;
       tagFrame(s, now / 1000);
     } else {
+      descent.style.opacity = '0';
       globeCanvas.style.opacity = '0';
       labelBox.querySelectorAll(':scope > span, .tag').forEach((el) => { el.style.opacity = 0; });
     }
@@ -300,6 +314,44 @@ function renderHud() {
     globe?.setStyle(globeStyle);
     hud.querySelectorAll('[data-style]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.style === globeStyle)));
   }));
+}
+
+// The descent to Makkah, in real photographs that grow with the camera as one shot: by day the city from the
+// International Space Station (its centre on Makkah, at its real scale: about 3.9 km across), then the tawaf
+// round the Kaaba; by night Masjid al-Haram lit, the view closing in on the Kaaba. Day or night follows the real
+// time in Makkah unless the visitor picks one.
+const descent = $('.descent'), satBox = $('.descent .sat'), nightImg = $('.descent .night'), film = $('.descent .film');
+let descentShown = 0, nightPick = null;
+const makkahNight = () => {
+  if (nightPick !== null) return nightPick;
+  const sun = sunAt(dayOfYear(), utcNow()), D = Math.PI / 180;
+  const f = 21.4225 * D, d = sun.decl * D, h = (39.8262 - sun.lon) * D;
+  return Math.asin(Math.sin(f) * Math.sin(d) + Math.cos(f) * Math.cos(d) * Math.cos(h)) / D < -4;
+};
+function descentFrame(s, zoom, wide) {
+  const dist = 1 + 4.4 / zoom;
+  const viewKm = 2 * 0.2867 * (dist - 1) * 6371;       // the height of the view on the ground
+  const pxPerKm = innerHeight / viewKm;
+  const L = globe.labels();
+  const size = 3.9 * pxPerKm;                           // the photograph's width on the screen
+  const night = makkahNight();
+  const fade = (1 - s.mix) * (L.makkah.facing > 0.2 ? 1 : 0);
+  const sm = (x) => smooth(x);
+  // Day: the photograph from space, on Makkah, then the tawaf as the view comes down to the mosque.
+  const satOp = night ? 0 : sm((Math.log(size) - Math.log(260)) / (Math.log(900) - Math.log(260)));
+  const filmOp = night ? 0 : sm((1.3 - viewKm) / 0.7);
+  satBox.style.cssText = `opacity:${(satOp * (1 - filmOp)).toFixed(3)};width:${size}px;height:${size}px;left:${L.makkah.x - size / 2}px;top:${L.makkah.y - size / 2}px`;
+  film.style.opacity = (filmOp * fade).toFixed(3);
+  film.style.transform = `scale(${(1 + Math.max(0, viewKm - 0.4) * 0.3).toFixed(4)})`;
+  if (filmOp > 0.01 && fade > 0.01) { if (film.paused) film.play().catch(() => {}); } else if (!film.paused) film.pause();
+  // Night: the mosque lit, the view closing in on the Kaaba.
+  const nightOp = night ? sm((Math.log(size) - Math.log(320)) / (Math.log(1300) - Math.log(320))) : 0;
+  nightImg.style.opacity = nightOp.toFixed(3);
+  nightImg.style.transform = `scale(${(1 + Math.max(0, Math.min(1.7, Math.log(Math.max(1, size / 1300)) / Math.log(6) * 1.7))).toFixed(4)})`;
+  descent.style.opacity = fade.toFixed(3);
+  descentShown = Math.max(satOp, filmOp, nightOp) * fade;
+  // The globe's waves and lights step back under the photographs.
+  return Math.max(satOp, nightOp);
 }
 
 // Cards that rise where a named city's Adhan comes: the city, the prayer, and its local time.

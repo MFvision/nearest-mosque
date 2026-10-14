@@ -69,12 +69,23 @@ a { color: inherit; }
 .stage { position: fixed; inset: 0; z-index: 0; background: radial-gradient(120% 90% at 60% 30%, var(--stage-a), var(--stage-b)); overflow: hidden; }
 .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 #sky-canvas { opacity: 0; }
+/* The real photographs of Makkah over the globe. */
+.descent { position: absolute; inset: 0; opacity: 0; pointer-events: none; overflow: hidden; }
+.descent .sat { position: absolute; opacity: 0; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
+.descent .sat img { width: 100%; height: 100%; display: block; }
+.descent .night, .descent .film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform-origin: 52.9% 75.5%; }
+.descent .night { object-position: 52.9% 75.5%; }
+.descent .film { transform-origin: 50% 50%; }
+.descent .veil { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(4, 10, 16, 0.55) 100%); }
+.daynight { display: inline-flex; margin-top: 20px; border: 1px solid var(--glass-edge); border-radius: 999px; padding: 3px; }
+.daynight button { font: 600 0.85rem var(--font-display); border: 0; background: transparent; color: var(--ink-2); padding: 7px 16px; border-radius: 999px; cursor: pointer; min-height: 34px; }
+.daynight button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
 .labels { position: absolute; inset: 0; pointer-events: none; font: 600 0.82rem var(--font-display); }
 .labels > span { position: absolute; transform: translate(-50%, -140%); color: var(--gold); white-space: nowrap; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.4s;
   text-shadow: 0 1px 8px var(--ground); }
-.labels .makkah { color: #FFE3A1; font-size: 1rem; text-shadow: 0 0 14px rgba(255, 210, 120, 0.8), 0 1px 6px rgba(0, 0, 0, 0.6); }
-.labels .madinah { color: #FFE3A1; font-size: 0.8rem; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
-.labels .you { color: var(--ink); background: var(--glass); border: 1px solid var(--glass-edge); padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.labels .makkah { transform: translate(-50%, 55%); color: #FFE3A1; font-size: 1rem; text-shadow: 0 0 14px rgba(255, 210, 120, 0.8), 0 1px 6px rgba(0, 0, 0, 0.6); }
+.labels .madinah { transform: translate(-50%, -170%); color: #FFE3A1; font-size: 0.8rem; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+.labels .you { transform: translate(-50%, -190%); color: var(--ink); background: var(--glass); border: 1px solid var(--glass-edge); padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .labels > span:not(.makkah):not(.madinah):not(.you) { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75); font-size: 0.86rem; }
 /* The legend, Makkah's time and the globe's look: quiet, at the bottom on the reading side. */
 .hud { position: fixed; z-index: 12; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); inset-inline-end: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 8px; padding: 12px 14px; border-radius: 18px;

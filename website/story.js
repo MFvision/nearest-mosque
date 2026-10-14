@@ -20,7 +20,7 @@ const chapters = [
   { id: 'lines', stage: { lon: 30, lat: 12, zoom: 1, lines: 1, arcs: 0, mix: 0, hours: 4, follow: 0, spin: 1 } },
   { id: 'qibla', stage: { lon: 'you', lat: 'you', zoom: 1.5, lines: 0, arcs: 1, mix: 0, hours: 0, follow: 0, spin: 0, real: 1 } },
   // From the visitor's city to Makkah, as a flight: out, across, then down to the Kaaba.
-  { id: 'kaaba', stage: { lon: 39.8262, lat: 21.4225, zoom: 3600, arcs: 1, haram: 1, fly: 1 } },
+  { id: 'kaaba', stage: { lon: 39.8262, lat: 21.4225, zoom: 27000, arcs: 1, haram: 0, fly: 1 } },
   { id: 'sky', stage: { mix: 1, t: 0.03, fly: 0 }, media: [{ phone: 'iphone/01-prayer', clip: 'clips/01-header' }] },
   { id: 'mosque', stage: { mix: 1, t: 0.17 }, media: [{ phone: 'iphone/09-mosques-radar' }, { phone: 'iphone/03-mosques-map' }] },
   { id: 'ask', stage: { mix: 1, t: 0.3 }, media: [{ phone: 'iphone/04-ask', clip: 'clips/03-search' }] },
@@ -43,7 +43,8 @@ const en = {
   makkah: 'Makkah',
   scroll: 'Scroll',
   sound: ['Hear the Adhan', 'Adhan on'],
-  hud: { legend: 'Each light is a city at its prayer time', clock: 'Makkah', styles: ['Earth', 'Dots'], you: 'You', madinah: 'Madinah' },
+  daynight: ['Day', 'Night'],
+  hud: { legend: 'Each light is a city at its prayer time', clock: 'Now in Makkah', styles: ['Earth', 'Dots'], you: 'You', madinah: 'Madinah' },
   board: { world: 'The Adhan', lines: 'Five prayers', qibla: 'Qibla', kaaba: 'Makkah', sky: 'Your sky', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
   boardLabel: 'Story',
   soon: 'Coming soon',
@@ -64,7 +65,7 @@ const en = {
     qibla: {
       eyebrow: 'Qibla',
       title: 'From anywhere, [[one direction]].',
-      body: 'Turn your phone and the arrow finds the Kaaba. When you face it, the Qibla lights up and you feel one soft tap.',
+      body: 'Turn your phone and the arrow leads you to the Kaaba. When you face it, the Qibla lights up and you feel a gentle vibration.',
       points: ['Bearing and distance to the Kaaba', 'Without a compass, it is drawn from north and says so'],
     },
     sky: {
@@ -125,8 +126,8 @@ const en = {
     },
     kaaba: {
       eyebrow: 'Makkah',
-      title: 'Every line ends at the [[Kaaba]].',
-      body: 'Wherever you pray, you face the same place. Near Mosque shows you the way to it from where you stand.',
+      title: 'Every line meets at the [[Kaaba]].',
+      body: 'Wherever you pray, your Qibla is the same. Near Mosque shows you its direction from where you stand.',
     },
     get: {
       eyebrow: 'Near Mosque',
@@ -153,7 +154,7 @@ const en = {
   footer: {
     privacy: 'Privacy policy',
     security: 'Security',
-    sources: 'Adhan: Masjid al-Haram, Makkah (Internet Archive). City data © GeoNames (CC BY 4.0). Mosques © OpenStreetMap contributors (ODbL). Earth images: NASA Blue Marble and Black Marble. Map outline: Natural Earth (both public domain). Classical books: OpenITI (CC BY-NC-SA 4.0).',
+    sources: 'Makkah from space: ISS Expedition 44, NASA (public domain). Masjid al-Haram at night: Wurzelgnohm (CC0). Tawaf: Masajida Allah, CC BY 3.0, via Wikimedia Commons, cropped. Adhan: Masjid al-Haram, Makkah (Internet Archive). City data © GeoNames (CC BY 4.0). Mosques © OpenStreetMap contributors (ODbL). Earth images: NASA Blue Marble and Black Marble. Map outline: Natural Earth (both public domain). Classical books: OpenITI (CC BY-NC-SA 4.0).',
     note: '36 interface languages: English and Arabic are reviewed; the others are drafts awaiting native review.',
   },
 };
@@ -168,7 +169,8 @@ const ar = {
   makkah: 'مكة المكرمة',
   scroll: 'مرّر',
   sound: ['استمع إلى الأذان', 'الأذان يعمل'],
-  hud: { legend: 'كل ضوءٍ مدينةٌ حان وقت صلاتها', clock: 'مكة', styles: ['الأرض', 'النقاط'], you: 'أنت هنا', madinah: 'المدينة المنورة' },
+  daynight: ['نهار', 'ليل'],
+  hud: { legend: 'كل ضوءٍ مدينةٌ حان وقت صلاتها', clock: 'الآن في مكة', styles: ['الأرض', 'النقاط'], you: 'أنت هنا', madinah: 'المدينة المنورة' },
   board: { world: 'الأذان', lines: 'الصلوات الخمس', qibla: 'القبلة', kaaba: 'مكة المكرمة', sky: 'سماؤك', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
   boardLabel: 'القصة',
   soon: 'قريبًا',
@@ -182,32 +184,32 @@ const ar = {
     },
     lines: {
       eyebrow: 'خمس مرات في اليوم',
-      title: 'كل صلاةٍ تدور حول العالم [[مع الشمس]].',
+      title: 'كل صلاةٍ تسري حول العالم [[مع الشمس]].',
       body: 'كل ضوءٍ مدينةٌ حان وقت صلاتها. الفجر يسير مع الشروق الأول، والمغرب مع الغروب، تبعًا لموضع الشمس الحقيقي اليوم.',
       points: ['13,090 مدينة مدمجة في التطبيق، دون حاجة إلى الإنترنت', '11 طريقة حساب، يُقترح منها ما يناسب بلدك'],
     },
     qibla: {
       eyebrow: 'القبلة',
       title: 'من أي مكان، [[اتجاهٌ واحد]].',
-      body: 'أدر هاتفك فيجد السهم الكعبة. فإذا استقبلتها أضاءت القبلة وشعرت بنقرةٍ خفيفة.',
-      points: ['الاتجاه والمسافة إلى الكعبة', 'وإن لم تتوفر بوصلة رُسمت القبلة من الشمال مع التنبيه بذلك'],
+      body: 'أدِر هاتفك يُرشدك السهم إلى الكعبة، فإذا استقبلتها أضاءت القبلة وشعرت باهتزازةٍ خفيفة.',
+      points: ['الاتجاه والمسافة إلى الكعبة', 'وفي الأجهزة التي لا بوصلة فيها تُحدَّد القبلة انطلاقًا من الشمال، مع التنبيه إلى ذلك'],
     },
     sky: {
       eyebrow: 'مواقيت الصلاة',
-      title: '[[صلاتك القادمة]] على سماء ساعتك.',
-      body: 'يعرض أعلى الشاشة الصلاة القادمة والوقت المتبقي، وسماؤه وردية عند الفجر وذهبية عند العصر وبنفسجية عند المغرب.',
+      title: '[[صلاتك القادمة]] تحت سماء ساعتك.',
+      body: 'يعرض لك أعلى الشاشة الصلاة القادمة والوقت المتبقي لها، تحت سماءٍ يتبدّل لونها مع يومك: وردية عند الفجر، وذهبية عند العصر، وبنفسجية عند المغرب.',
       points: ['مواقيت اليوم الستة، لكلٍّ منها تنبيه', 'التاريخان الهجري والميلادي جنبًا إلى جنب'],
     },
     mosque: {
       eyebrow: 'أقرب مسجد',
-      title: 'اعرف في أي اتجاهٍ [[المسجد]]، وكم يبعد.',
-      body: 'تُظهر البوصلة كل مسجد في اتجاهه الحقيقي. وانتقل إلى الخريطة لترى وقت المشي والاتجاهات.',
+      title: 'اعرف اتجاه [[أقرب مسجد]] وكم يبعد عنك.',
+      body: 'تعرض البوصلة كل مسجدٍ في اتجاهه الحقيقي، وتعرض الخريطة وقت المشي إليه وطريق الوصول.',
       points: ['الاتجاهات في خرائط Apple أو Google Maps', 'بيانات مساجد مدمجة، ومعها خرائط Apple عند تفعيل البحث على الإنترنت'],
     },
     ask: {
       eyebrow: 'اسأل',
       title: 'اسأل عن دينك، واعرف [[مصدر]] كل إجابة.',
-      body: 'تقتبس الإجابات من الكتب الموجودة على هاتفك وتذكر كل مصدر. وتأتي فتوى العالم أولًا إن وُجدت فتوى مطابقة.',
+      body: 'تُستمدّ الإجابات من الكتب المحفوظة في هاتفك، مع ذكر مصدر كل نص، وتتقدّمها فتوى أهل العلم إن وُجدت فتوى مطابقة.',
       points: ['25 سؤالًا شائعًا بـ22 لغة، عليها علامة «بانتظار مراجعة العلماء»', 'تُكتب على هاتفك بنموذج Apple المدمج في الجهاز، ولا تُرسل أسئلتك إلى ذكاءٍ اصطناعي سحابي'],
       note: 'الإجابات تقتبس من الكتب، وليست فتوى.',
     },
@@ -238,7 +240,7 @@ const ar = {
     devices: {
       eyebrow: 'على كل شاشة',
       title: 'على [[آيفون وآيباد وماك وآبل تي في وفيجن برو]].',
-      body: 'صفحة واحدة في المتجر لأجهزة Apple كلها. ولأندرويد وويندوز نسختان بالمواقيت والقبلة نفسها.',
+      body: 'تطبيقٌ واحد لأجهزة Apple كلها، ونسختان لأندرويد وويندوز بالمواقيت والقبلة نفسها.',
       points: ['36 لغة للواجهة، منها 6 من اليمين إلى اليسار'],
       labels: ['آيفون', 'آيباد', 'ماك', 'آبل تي في', 'فيجن برو'],
     },
@@ -250,8 +252,8 @@ const ar = {
     },
     kaaba: {
       eyebrow: 'مكة المكرمة',
-      title: 'كل الخطوط تنتهي عند [[الكعبة]].',
-      body: 'أينما صلّيت فأنت تستقبل المكان نفسه، و«أقرب مسجد» يريك اتجاهه من حيث تقف.',
+      title: 'كل الخطوط تلتقي عند [[الكعبة]].',
+      body: 'أينما صلّيت فقبلتك واحدة، و«أقرب مسجد» يدلّك على اتجاهها من حيث تقف.',
     },
     get: {
       eyebrow: 'أقرب مسجد',
@@ -278,7 +280,7 @@ const ar = {
   footer: {
     privacy: 'سياسة الخصوصية',
     security: 'الأمان',
-    sources: 'الأذان: المسجد الحرام، مكة المكرمة (Internet Archive). بيانات المدن © GeoNames (CC BY 4.0). المساجد © المساهمون في OpenStreetMap (ODbL). صور الأرض: NASA Blue Marble وBlack Marble. حدود الخريطة: Natural Earth (وكلاهما ملكية عامة). أمهات الكتب: OpenITI (CC BY-NC-SA 4.0).',
+    sources: 'مكة من الفضاء: محطة الفضاء الدولية، البعثة 44، ناسا (ملكية عامة). المسجد الحرام ليلًا: Wurzelgnohm (CC0). الطواف: Masajida Allah، برخصة CC BY 3.0 عبر ويكيميديا كومنز، مقصوص. الأذان: المسجد الحرام، مكة المكرمة (Internet Archive). بيانات المدن © GeoNames (CC BY 4.0). المساجد © المساهمون في OpenStreetMap (ODbL). صور الأرض: NASA Blue Marble وBlack Marble. حدود الخريطة: Natural Earth (وكلاهما ملكية عامة). أمهات الكتب: OpenITI (CC BY-NC-SA 4.0).',
     note: '36 لغة للواجهة: العربية والإنجليزية مراجعتان، والبقية مسودات بانتظار مراجعة متحدثيها.',
   },
 };

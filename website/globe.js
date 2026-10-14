@@ -215,7 +215,7 @@ export async function createGlobe(canvas, base, places = []) {
   const mk = vec(...MAKKAH), md = vec(...MADINAH);
   const holyGeo = new THREE.BufferGeometry();
   holyGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array([...vec(...MAKKAH, 1.004).toArray(), ...vec(...MADINAH, 1.004).toArray()]), 3));
-  holyGeo.setAttribute('aSize', new THREE.BufferAttribute(new Float32Array([96, 44]), 1));
+  holyGeo.setAttribute('aSize', new THREE.BufferAttribute(new Float32Array([96, 26]), 1));
   const holyOn = { value: 1 };
   world.add(new THREE.Points(holyGeo, new THREE.ShaderMaterial({ vertexShader: pulseVS, fragmentShader: pulseFS, uniforms: { uPR, uTime, uOn: holyOn, uColor: col('holy') }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })));
 
@@ -358,9 +358,10 @@ export async function createGlobe(canvas, base, places = []) {
     uScale.value = 3.2 * (canvas.clientHeight / 900) * Math.min(1, (dist - 1) / 4.4);
     arcsProg.value = state.arcs;
     haramOn.value = state.haram;
-    holyOn.value = 1 - state.haram * 0.92;
+    holyOn.value = 1 - Math.max(state.haram * 0.92, state.veil || 0);
     kMat.opacity = state.haram; bandMat.opacity = state.haram;
-    wavesOn.value = 1 - state.haram * 0.85;
+    // The real photographs of Makkah cover the globe up close (`veil`, 0..1).
+    wavesOn.value = 1 - Math.max(state.haram * 0.85, state.veil || 0);
 
     // Where to put each prayer's name: on its line where it faces the viewer most.
     const sd = sun.decl * D;
