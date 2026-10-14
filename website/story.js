@@ -154,8 +154,7 @@ const en = {
   footer: {
     privacy: 'Privacy policy',
     security: 'Security',
-    sources: 'Makkah from space: ISS Expedition 44, NASA (public domain). Masjid al-Haram at night: Wurzelgnohm (CC0). Tawaf: Masajida Allah, CC BY 3.0, via Wikimedia Commons, cropped. Adhan: Masjid al-Haram, Makkah (Internet Archive). City data © GeoNames (CC BY 4.0). Mosques © OpenStreetMap contributors (ODbL). Earth images: NASA Blue Marble and Black Marble. Map outline: Natural Earth (both public domain). Classical books: OpenITI (CC BY-NC-SA 4.0).',
-    note: '36 interface languages: English and Arabic are reviewed; the others are drafts awaiting native review.',
+    credits: 'Sources and licences',
   },
 };
 
@@ -280,8 +279,7 @@ const ar = {
   footer: {
     privacy: 'سياسة الخصوصية',
     security: 'الأمان',
-    sources: 'مكة من الفضاء: محطة الفضاء الدولية، البعثة 44، ناسا (ملكية عامة). المسجد الحرام ليلًا: Wurzelgnohm (CC0). الطواف: Masajida Allah، برخصة CC BY 3.0 عبر ويكيميديا كومنز، مقصوص. الأذان: المسجد الحرام، مكة المكرمة (Internet Archive). بيانات المدن © GeoNames (CC BY 4.0). المساجد © المساهمون في OpenStreetMap (ODbL). صور الأرض: NASA Blue Marble وBlack Marble. حدود الخريطة: Natural Earth (وكلاهما ملكية عامة). أمهات الكتب: OpenITI (CC BY-NC-SA 4.0).',
-    note: '36 لغة للواجهة: العربية والإنجليزية مراجعتان، والبقية مسودات بانتظار مراجعة متحدثيها.',
+    credits: 'المصادر والتراخيص',
   },
 };
 

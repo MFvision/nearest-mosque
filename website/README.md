@@ -11,7 +11,7 @@ promo and the watch) for each feature, with the store screenshots.
 * `globe.js`, `app.js`, `style.css`, `index.html`: the page. Static files: host the folder as it is.
 * `assets/`: built by `tools/site/build_assets.py` (land and cities for the globe, WebP screenshots, short clips,
   the opening of the Makkah Adhan for the sound button).
-* `privacy.html`, `security.html` (with `legal.css`, `legal.js`): the privacy policy and the security page in both
+* `privacy.html`, `security.html`, `credits.html` (sources and licences; with `legal.css`, `legal.js`): the privacy policy and the security page in both
   languages, for the store listings. They describe what the apps do; when an app starts sending or keeping
   something new, update them and their date before the release.
 * `vendor/three.module.min.js`: Three.js r160 (MIT, `vendor/three.LICENSE`).
