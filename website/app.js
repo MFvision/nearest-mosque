@@ -202,7 +202,7 @@ function stageAt(y) {
   return {
     i, p,
     // A spinning chapter's view turns west to east on its own (the globe turns under the viewer).
-    lon: lerpLon(a.lon - spinAcc * a.spin, b.lon - spinAcc * b.spin, fe), lat: lerp(a.lat, b.lat, fe),
+    lon: lerpLon(a.spin ? dayLon() : a.lon, b.spin ? dayLon() : b.lon, fe), lat: lerp(a.lat, b.lat, fe),
     // Zoom in steps of scale; a flight pulls back first, crosses, then comes down (as Google Earth does).
     zoom: Math.exp(lerp(Math.log(a.zoom), Math.log(b.zoom), ze) - (b.fly ? 1.2 * Math.sin(Math.PI * Math.min(1, e * 1.1)) : 0)),
     haram: lerp(a.haram, b.haram, a.haram < b.haram ? smooth((e - 0.7) / 0.3) : smooth(e / 0.3)),
@@ -216,12 +216,18 @@ function stageAt(y) {
 
 const globeCanvas = $('#globe-canvas'), skyCanvas = $('#sky-canvas'), labelBox = $('.labels');
 const skyCtx = skyCanvas.getContext('2d');
-let lastSky = null, current = -1, ambient = 0, spinAcc = 0, arcsShown = 0, simHours = 0, lastFrame = performance.now();
+let lastSky = null, current = -1, arcsShown = 0, lastFrame = performance.now();
 // Today, in hours since midnight UTC, and its day of the year.
 const today = new Date();
 const dayStart = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
 const utcNow = () => (Date.now() - dayStart) / 3600e3;
 const dayOfYear = () => Math.floor((dayStart - Date.UTC(today.getUTCFullYear(), 0, 1)) / 86400e3) + 1;
+// The turning globe: the view stays on the sunlit side, 50° east of the point under the sun (late afternoon in the
+// middle, the sunset and its Maghrib and Isha lights in view to the east), and the Earth turns beneath it as the
+// day runs fast from the real time now. Makkah is in view from mid-morning to two hours after its sunset.
+const DAY_EAST = 50;
+let ambient = 0, simHours = utcNow();
+const dayLon = () => sunAt(dayOfYear(), simHours).lon + DAY_EAST;
 function sizeSky() {
   const k = Math.min(1.5, devicePixelRatio || 1);
   skyCanvas.width = Math.round(innerWidth * k);
@@ -252,10 +258,9 @@ function step(now) {
     document.querySelectorAll('.board a').forEach((a, k) => { if (k === s.i) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
     chapters.forEach((c, k) => c.querySelectorAll('video').forEach((v) => { if (k === s.i && !reduce.matches) v.play().catch(() => {}); else v.pause(); }));
   }
-  // Twelve minutes of the sun and seven degrees of turn every second; with Reduce Motion, a slow, steady turn.
-  // Where the globe shows the real time (the Qibla, Makkah), the fast day stops.
-  ambient += dt * (reduce.matches ? 0.06 : 0.2) * (1 - s.real);
-  spinAcc += dt * (reduce.matches ? 2.5 : 7);
+  // Eighteen minutes of the day every second (the Earth turns 4.5° a second); with Reduce Motion, a slow, steady
+  // turn. Where the globe shows the real time (the Qibla, Makkah), the fast day stops.
+  ambient += dt * (reduce.matches ? 0.04 : 0.3) * (1 - s.real);
   if (inStory) {
     if (globe && s.mix < 0.999) {
       const wide = innerWidth > 860 || (innerWidth > innerHeight && innerHeight <= 520), rtl = lang === 'ar', aspect = innerWidth / innerHeight;

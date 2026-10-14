@@ -32,7 +32,7 @@ One email per publisher. Only the subject, the content line and the recipient ch
 
 شكراً لكم،
 [CONFIRM: الاسم، الصفة، الجهة]
-app@zood.sa
+app@vision.bz
 
 ---
 
@@ -55,4 +55,4 @@ Please reply with your approval or your conditions **by [CONFIRM: date]**.
 
 Thank you,
 [CONFIRM: name, title, organisation]
-app@zood.sa
+app@vision.bz
