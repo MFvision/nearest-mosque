@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Near Mosque</title>
+<meta name="description" content="Your next prayer, the Qibla and the nearest mosque, in one calm app.">
+<link rel="canonical" href="https://nearmosque.net/2/">
+<meta name="theme-color" content="#081B29">
+<link rel="icon" href="../assets/icon-180.png">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="now.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="./"><img src="../assets/icon.webp" alt="" width="34" height="34"><span data-t="title">Near Mosque</span></a>
+  <nav class="tools"><a class="pill" href="../" data-t="story">See the story</a><button id="lang" class="pill" type="button" lang="ar">العربية</button></nav>
+</header>
+
+<section class="hero" aria-labelledby="next">
+  <canvas class="sky" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <div class="now">
+      <p class="eyebrow"><span data-t="title">Near Mosque</span> · <button id="city-btn" type="button" class="city" aria-haspopup="true"><span id="city">Riyadh</span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></p>
+      <label class="picker" hidden><span class="sr" data-t="change">Change city</span><select id="city-pick"></select></label>
+      <h1 id="next"><span id="next-name">Asr</span> <span id="next-in" class="soft">in</span> <span id="count" class="count">0:00:00</span></h1>
+      <p class="at" id="at">at 3:18 PM</p>
+      <ol class="times" id="times" aria-label="Today"></ol>
+      <div class="qibla">
+        <svg class="dial" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" class="ring"/>
+          <g class="ticks"></g>
+          <text x="50" y="16" class="n">N</text>
+          <g id="needle"><path d="M50 14 L55 50 L50 56 L45 50 Z" class="arrow"/><rect x="45.5" y="8" width="9" height="9" rx="1.6" class="kaaba"/></g>
+          <circle cx="50" cy="50" r="3" class="hub"/>
+        </svg>
+        <div><p class="q-title" id="q-title">Qibla from Riyadh</p><p class="q-sub" id="q-sub">244° from north · 870 km to Makkah</p></div>
+      </div>
+      <div class="stores" id="stores-top"></div>
+      <p class="note" id="note"></p>
+    </div>
+    <figure class="hero-phone"><div class="phone"><img id="hero-shot" src="../assets/en/iphone/01-prayer.webp" alt="" width="440" height="956" fetchpriority="high"></div></figure>
+  </div>
+</section>
+
+<main>
+  <section class="more" aria-labelledby="more-title">
+    <h2 id="more-title" data-t="more">What else is in the app</h2>
+    <div class="cards" id="cards"></div>
+  </section>
+  <section class="end" aria-labelledby="end-title">
+    <p class="eyebrow" data-t="privacyEyebrow">Privacy</p>
+    <h2 id="end-title" data-t="privacy">No account, no ads, no tracking.</h2>
+    <p class="lead" data-t="privacyLine">Prayer times and the Qibla are worked out on your device and work without the internet.</p>
+    <div class="stores" id="stores-end"></div>
+  </section>
+</main>
+
+<footer><nav id="foot"></nav></footer>
+<script src="../sky.js"></script>
+<script type="module" src="now.js"></script>
+</body>
+</html>

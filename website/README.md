@@ -11,6 +11,10 @@ promo and the watch) for each feature, with the store screenshots.
 * `globe.js`, `app.js`, `style.css`, `index.html`: the page. Static files: host the folder as it is.
 * `assets/`: built by `tools/site/build_assets.py` (land and cities for the globe, WebP screenshots, short clips,
   the opening of the Makkah Adhan for the sound button).
+* `2/`: version 2, for comparing against the story: the visitor's next prayer with a live countdown on the app's
+  sky, today's times, the Qibla from their city, then the rest of the app as cards. No 3D and no film. Times are
+  worked out in `2/now.js` for the centre of the city from the browser's time zone, with the method the app
+  suggests for that country.
 * `support.html` (the store's support URL) and `terms.html` (terms of use).
 * `privacy.html`, `security.html`, `credits.html` (sources and licences; with `legal.css`, `legal.js`): the privacy policy and the security page in both
   languages, for the store listings. They describe what the apps do; when an app starts sending or keeping

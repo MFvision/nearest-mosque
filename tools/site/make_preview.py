@@ -12,26 +12,29 @@ import shutil
 import sys
 
 SITE = pathlib.Path(__file__).resolve().parents[2] / "website"
-NAMES = ["app.js", "story.js", "globe.js", "places.js", "sky.js", "style.css", "legal.js", "legal.css"]
+NAMES = ["app.js", "story.js", "globe.js", "places.js", "sky.js", "style.css", "legal.js", "legal.css", "2/now.js", "2/now.css"]
 
 
 def main():
     out, v = pathlib.Path(sys.argv[1]), sys.argv[2]
     if out.exists():
         shutil.rmtree(out)
-    shutil.copytree(SITE, out, ignore=shutil.ignore_patterns("README.md", "*.LICENSE", "CNAME"))
-    ren = {n: f"{pathlib.Path(n).stem}.{v}{pathlib.Path(n).suffix}" for n in NAMES}
-    for f in [out / n for n in NAMES] + sorted(out.glob("*.html")):
+    shutil.copytree(SITE, out, ignore=shutil.ignore_patterns("README.md", "*.LICENSE", "CNAME", "Dockerfile", "Caddyfile", ".dockerignore", "railway.json"))
+    # Each file keeps its folder; references are rewritten by file name (the names are unique across folders).
+    ren = {pathlib.Path(n).name: f"{pathlib.Path(n).stem}.{v}{pathlib.Path(n).suffix}" for n in NAMES}
+    for f in [out / n for n in NAMES] + sorted(out.rglob("*.html")):
         s = f.read_text()
         for a, b in ren.items():
-            s = re.sub(rf"(['\"(/]|\./){re.escape(a)}(['\")])", lambda m: m.group(1) + b + m.group(2), s)
-        if f.name == "index.html":
+            s = re.sub(rf"(['\"(/]|\./|^){re.escape(a)}(['\")])", lambda m: m.group(1) + b + m.group(2), s, flags=re.M)
+            s = s.replace(f'src="{a}"', f'src="{b}"').replace(f'href="{a}"', f'href="{b}"')
+        if f == out / "index.html":
             for t in ["<!doctype html>\n", '<html lang="en" dir="ltr">\n', "<head>\n", "</head>\n", "<body>\n", "</body>\n", "</html>\n",
                       '<meta charset="utf-8">\n', '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n']:
                 s = s.replace(t, "")
         f.write_text(s)
-    for a, b in ren.items():
-        (out / a).rename(out / b)
+    for n in NAMES:
+        f = out / n
+        f.rename(f.with_name(ren[f.name]))
     files = sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file() and p.name != "index.html")
     (out.parent / f"{out.name}-files.json").write_text(json.dumps([{"path": p} for p in files]))
     print(len(files), "files;", ", ".join(ren.values()))
