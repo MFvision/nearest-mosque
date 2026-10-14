@@ -113,6 +113,9 @@ def main():
                 subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-i", str(src), "-an", "-vf", "scale=432:-2,fps=30",
                                 "-c:v", "libx264", "-profile:v", "main", "-crf", "28", "-preset", "slow", "-pix_fmt", "yuv420p",
                                 "-movflags", "+faststart", str(OUT / lang / "clips" / f"{clip}.mp4")], check=True)
+                # WebM too, for browsers without H.264.
+                subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-i", str(OUT / lang / "clips" / f"{clip}.mp4"), "-an",
+                                "-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "40", "-row-mt", "1", str(OUT / lang / "clips" / f"{clip}.webm")], check=True)
     print("done")
 
 

@@ -7,6 +7,8 @@ import { places } from './places.js';
 const BASE = new URL('.', import.meta.url).href;
 const WEIGHTS = { world: 1.6, lines: 1.9, qibla: 1.5, kaaba: 2.1, sky: 1.9, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
 const GLOBE_CH = new Set(['world', 'lines', 'get']);
+// The chapters that show the legend at the bottom of the screen (on phones their words stay above it).
+const HUD_CH = new Set(['world', 'lines', 'qibla', 'get']);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
 const $ = (s, el = document) => el.querySelector(s);
@@ -46,10 +48,15 @@ const ICONS = {
 // A title's words, each in its own span (they come in one by one); [[…]] are highlighted in gold.
 function words(str) {
   let k = 0;
-  return str.split(/(\[\[.*?\]\])/).map((part) => {
-    const hl = part.startsWith('[[');
-    const inner = part.replace(/\[\[|\]\]/g, '').split(/(\s+)/).map((w) => (!w || /^\s+$/.test(w) ? w : `<span class="w" style="--d:${k++}">${esc(w)}</span>`)).join('');
-    return hl ? `<span class="hl" style="--d:${k}">${inner}</span>` : inner;
+  const spans = (part) => part.split(/(\s+)/).map((w) => (!w || /^\s+$/.test(w) ? w : `<span class="w" style="--d:${k++}">${esc(w)}</span>`)).join('');
+  return str.split(/(\[\[.*?\]\][.,،:;!?؟]*)/).map((part) => {
+    const m = part.match(/^\[\[(.*?)\]\]([.,،:;!?؟]*)$/);
+    if (!m) return spans(part);
+    const [, inner, punct] = m, d = k;
+    if (!punct) return `<span class="hl" style="--d:${d}">${spans(inner)}</span>`;
+    // The mark after a highlight stays on the line of its last word.
+    const cut = inner.lastIndexOf(' ') + 1, head = inner.slice(0, cut), last = inner.slice(cut);
+    return `${head ? `<span class="hl" style="--d:${d}">${spans(head)}</span>` : ''}<span class="nw"><span class="hl" style="--d:${d}">${spans(last)}</span>${esc(punct)}</span>`;
   }).join('');
 }
 const plain = (str) => str.replace(/\[\[|\]\]/g, '');
@@ -63,7 +70,8 @@ function mediaHTML(c, t) {
   return c.media.map((m) => {
     if (m.phone) {
       const still = `${BASE}assets/${lang}/${m.phone}.webp`;
-      const video = m.clip ? `<video muted playsinline loop preload="none" poster="${still}" src="${BASE}assets/${lang}/${m.clip}.mp4"></video>` : '';
+      const clip = `${BASE}assets/${lang}/${m.clip}`;
+      const video = m.clip ? `<video muted playsinline loop preload="none" poster="${still}"><source src="${clip}.mp4" type="video/mp4"><source src="${clip}.webm" type="video/webm"></video>` : '';
       return `<div class="phone">${img(m.phone, plain(t.title))}${video}</div>`;
     }
     if (m.watch) return `<div class="watch">${img(m.watch, plain(t.title))}</div>`;
@@ -109,7 +117,7 @@ function render() {
   $('#story').innerHTML = story.chapters.map((c, i) => {
     const x = t.chapters[c.id];
     const h = i === 0 ? 'h1' : 'h2';
-    return `<section class="chapter${GLOBE_CH.has(c.id) ? ' globe-ch' : ''}" id="${c.id}" data-i="${i}" style="--weight:${WEIGHTS[c.id]}" aria-labelledby="h-${c.id}">
+    return `<section class="chapter${GLOBE_CH.has(c.id) ? ' globe-ch' : ''}${HUD_CH.has(c.id) ? ' hud-ch' : ''}" id="${c.id}" data-i="${i}" style="--weight:${WEIGHTS[c.id]}" aria-labelledby="h-${c.id}">
       <div class="beat">
         <div class="copy">
           <p class="eyebrow">${esc(x.eyebrow)}</p>
@@ -160,7 +168,15 @@ function applyTheme() {
 
 // The scroll conductor.
 let chapters = [], tops = [], heights = [], storyEnd = 0, dirty = true, globe = null, dark = false;
+// Where the reading column ends (its inner edge on the screen) and the gap after it, for placing the globe.
+let colEdge = 0, colGap = 0;
 function measure() {
+  const beat = $('.chapter .beat');
+  if (beat) {
+    const cs = getComputedStyle(beat), r = beat.getBoundingClientRect(), w1 = parseFloat(cs.gridTemplateColumns) || 0;
+    colGap = parseFloat(cs.columnGap) || 0;
+    colEdge = lang === 'ar' ? r.right - parseFloat(cs.paddingRight) - w1 : r.left + parseFloat(cs.paddingLeft) + w1;
+  }
   tops = chapters.map((c) => c.offsetTop);
   heights = chapters.map((c) => c.offsetHeight);
   storyEnd = tops.length ? tops[tops.length - 1] + heights[heights.length - 1] : 0;
@@ -227,7 +243,9 @@ function step(now) {
     const p = Math.min(1, Math.max(0, (y + innerHeight * 0.5 - tops[k]) / (heights[k] || 1)));
     chapters[k].style.setProperty('--p', p.toFixed(4));
   }
-  $('.board').classList.toggle('off', !inStory);
+  // The storyboard and the legend leave as the page after the story comes up over the stage.
+  const storyShown = y + innerHeight * 0.8 < storyEnd;
+  $('.board').classList.toggle('off', !storyShown);
   if (s.i !== current) {
     current = s.i;
     chapters.forEach((c, k) => c.classList.toggle('on', k === s.i));
@@ -240,11 +258,17 @@ function step(now) {
   spinAcc += dt * (reduce.matches ? 2.5 : 7);
   if (inStory) {
     if (globe && s.mix < 0.999) {
-      const wide = innerWidth > 860, rtl = lang === 'ar', aspect = innerWidth / innerHeight;
+      const wide = innerWidth > 860 || (innerWidth > innerHeight && innerHeight <= 520), rtl = lang === 'ar', aspect = innerWidth / innerHeight;
       // The globe sits beside the words, then moves to the middle as it comes closer.
       const away = Math.max(0, Math.min(1, 1 - Math.log(s.zoom) / Math.log(4)));
       // A tall screen sees the whole globe from a little further back; close to the ground both are the same.
-      const fitFar = wide ? 1 : Math.min(2.6, Math.max(1, (1.25 / (0.2867 * aspect) - 1) / 4.4));
+      // Beside the words, the whole globe (with its glow) fits the room left by the reading column and the storyboard.
+      const room = rtl ? colEdge - colGap - 48 : innerWidth - 48 - colEdge - colGap;
+      const rBase = innerHeight / (2 * 0.2867 * Math.sqrt(5.4 * 5.4 - 1));
+      const distW = Math.sqrt(1 + Math.pow(innerHeight * 1.07 / (2 * 0.2867 * Math.max(60, Math.min(rBase * 1.07, room / 2))), 2));
+      const xc = rtl ? colEdge - colGap - room / 2 : colEdge + colGap + room / 2;
+      const shiftWide = (xc - innerWidth / 2) * 0.2867 * distW / (innerHeight / 2);
+      const fitFar = wide ? Math.max(1, (distW - 1) / 4.4) : Math.min(2.6, Math.max(1, (1.25 / (0.2867 * aspect) - 1) / 4.4));
       const fit = Math.pow(fitFar, Math.max(0, 1 - Math.log(s.zoom) / Math.log(40)));
       // The globe's time: now, plus the fast day; towards the Qibla it runs on to the same time of day as now.
       const off = s.hours + ambient, hours = utcNow() + lerp(off, Math.ceil(off / 24) * 24, smooth(s.real));
@@ -252,37 +276,43 @@ function step(now) {
       // The arcs draw over a few seconds once they are called for, the visitor's own first.
       arcsShown += (s.arcs - arcsShown) * Math.min(1, dt * (s.arcs > arcsShown ? 0.7 : 3));
       const veil = descentFrame(s, s.zoom / fit, wide);
-      globe.update({ ...s, veil, arcs: arcsShown, day: dayOfYear(), zoom: s.zoom / fit, hours, now: now / 1000, shift: wide ? (rtl ? -0.82 : 0.82) * away : 0, lift: wide ? 0 : 0.5 * away * fit });
+      globe.update({ ...s, veil, arcs: arcsShown, day: dayOfYear(), zoom: s.zoom / fit, hours, now: now / 1000, shift: wide ? shiftWide * away : 0, lift: wide ? 0 : 0.5 * away * fit });
       globeCanvas.style.opacity = String(1 - s.mix);
       // The prayer names on their waves; Makkah and Madinah beside their light; the visitor's city.
       const L = globe.labels(), t = story[lang];
       const names = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
       const farOut = s.zoom < 2.2 && s.mix < 0.2;
-      labelBox.querySelectorAll(':scope > span').forEach((el, k) => {
+      // In order of importance (Makkah, the visitor, Madinah, the prayers); a name that would touch one already
+      // placed is left out until it stands clear.
+      const spans = labelBox.querySelectorAll(':scope > span');
+      placed.length = 0;
+      for (const k of [5, 7, 6, 0, 1, 2, 3, 4]) {
+        const el = spans[k];
         let pt, on, text, op = 1;
         if (k < 5) { pt = L.lines[k]; on = s.lines > 0.3 && farOut; text = t.prayers[names[k]]; op = Math.min(1, (s.lines - 0.3) * 2); el.style.color = PRAYER_COLORS[k]; }
         else if (k === 5) { pt = L.makkah; on = s.mix < 0.2 && descentShown < 0.3; text = t.makkah; }
-        else if (k === 6) {
-          // Madinah only when it stands clear of Makkah on the screen.
-          pt = L.madinah; text = t.hud.madinah; op = 0.9;
-          on = farOut && s.zoom < 1.3 && Math.hypot(pt.x - L.makkah.x, pt.y - L.makkah.y) > 90;
-        } else {
+        else if (k === 6) { pt = L.madinah; text = t.hud.madinah; op = 0.9; on = farOut && s.zoom < 1.3 && Math.hypot(pt.x - L.makkah.x, pt.y - L.makkah.y) > 70; }
+        else {
           pt = globe.project(youVec()); text = `${t.hud.you}${lang === 'ar' ? (you.ar ? ' · ' + you.ar : '') : ' · ' + you.en}`;
-          on = s.arcs > 0.2 && s.zoom < 2.2 && s.mix < 0.2 && Math.hypot(pt.x - L.makkah.x, pt.y - L.makkah.y) > 60;
+          on = s.arcs > 0.2 && s.zoom < 2.2 && s.mix < 0.2 && Math.hypot(pt.x - L.makkah.x, pt.y - L.makkah.y) > 50;
         }
-        if (!pt || !on || pt.facing < 0.25) { el.style.opacity = 0; return; }
-        el.textContent = text;
+        if (!pt || !on || pt.facing < 0.25) { el.style.opacity = 0; continue; }
+        if (el._text !== text) { el.textContent = text; el._text = text; el._w = el.offsetWidth; el._h = el.offsetHeight; }
+        const box = labelRect(k, pt, el._w, el._h);
+        if (placed.some((r) => overlaps(r, box, 6))) { el.style.opacity = 0; continue; }
+        placed.push(box);
         el.style.left = `${pt.x}px`; el.style.top = `${pt.y}px`;
         el.style.opacity = String(op);
-      });
+      }
       // The legend, the style switch and Makkah's time, while the whole globe is in view.
-      hud.classList.toggle('off', !(farOut && s.haram < 0.1));
+      hud.classList.toggle('off', !(storyShown && farOut && s.haram < 0.1 && HUD_CH.has(story.chapters[s.i].id)));
       // Makkah's clock is the real time now (the globe's day may be running fast).
       hudClock.textContent = `${t.hud.clock} · ${localTime(utcNow(), 'Asia/Riyadh')}`;
       tagFrame(s, now / 1000);
     } else {
       descent.style.opacity = '0';
       globeCanvas.style.opacity = '0';
+      hud.classList.add('off');
       labelBox.querySelectorAll(':scope > span, .tag').forEach((el) => { el.style.opacity = 0; });
     }
     document.documentElement.classList.toggle('on-sky', s.mix > 0.5);
@@ -295,8 +325,15 @@ function step(now) {
       }
     } else skyCanvas.style.opacity = '0';
   }
+  else hud.classList.add('off');
   soundFrame(s);
 }
+
+// Where a floating name sits on the screen, from its point and the offset its style gives it (see .labels).
+const placed = [];
+const LABEL_DY = { 5: 0.55, 6: -1.7, 7: -1.9 };
+const labelRect = (k, pt, w, h) => { const top = pt.y + (LABEL_DY[k] ?? -1.4) * h; return { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h }; };
+const overlaps = (a, b, pad = 0) => a.l < b.r + pad && b.l < a.r + pad && a.t < b.b + pad && b.t < a.b + pad;
 
 const youVec = () => { const p = you.lat * Math.PI / 180, l = you.lon * Math.PI / 180; return { x: Math.cos(p) * Math.sin(l) * 1.004, y: Math.sin(p) * 1.004, z: Math.cos(p) * Math.cos(l) * 1.004 }; };
 // The legend of the five prayers' colours, Makkah's time, and the switch between the two looks of the globe.
@@ -310,6 +347,7 @@ function renderHud() {
   hud.innerHTML = `<p class="hud-legend">${esc(t.hud.legend)}</p><ul>${names.map((n, k) => `<li><i style="background:${PRAYER_COLORS[k]}"></i>${esc(t.prayers[n])}</li>`).join('')}</ul>
     <div class="hud-row"><span class="hud-clock"></span><span class="hud-style" role="group">${['earth', 'dots'].map((k, j) => `<button type="button" data-style="${k}" aria-pressed="${globeStyle === k}">${esc(t.hud.styles[j])}</button>`).join('')}</span></div>`;
   hudClock = hud.querySelector('.hud-clock');
+  measureHud();
   hud.querySelectorAll('[data-style]').forEach((b) => b.addEventListener('click', () => {
     globeStyle = b.dataset.style;
     store.set('nm-globe', globeStyle);
@@ -322,8 +360,21 @@ function renderHud() {
 // International Space Station (its centre on Makkah, at its real scale: about 3.9 km across), then the tawaf
 // round the Kaaba; by night Masjid al-Haram lit, the view closing in on the Kaaba. Day or night follows the real
 // time in Makkah unless the visitor picks one.
+// The legend's height, so the words on phones can stay clear of it.
+function measureHud() { document.documentElement.style.setProperty('--hud-h', `${hud.offsetHeight}px`); }
+document.fonts?.ready.then(() => { measureHud(); labelBox.querySelectorAll(':scope > span').forEach((el) => { el._text = null; }); measure(); });
 const descent = $('.descent'), satBox = $('.descent .sat'), nightImg = $('.descent .night'), film = $('.descent .film');
-let descentShown = 0, nightPick = null;
+let descentShown = 0, nightPick = null, filmTall = null;
+// Portrait screens get a tall cut of the film at the source's full detail; wide ones the wide cut.
+function pickFilm() {
+  const tall = innerWidth / innerHeight < 0.9;
+  if (tall === filmTall) return;
+  filmTall = tall;
+  const name = tall ? 'kaaba-tawaf-tall' : 'kaaba-tawaf';
+  film.innerHTML = `<source src="${BASE}assets/${name}.webm" type="video/webm"><source src="${BASE}assets/${name}.mp4" type="video/mp4">`;
+  film.load();
+}
+pickFilm();
 const makkahNight = () => {
   if (nightPick !== null) return nightPick;
   const sun = sunAt(dayOfYear(), utcNow()), D = Math.PI / 180;
@@ -386,16 +437,24 @@ function tagFrame(s, now) {
     const [en, ar, , , tz] = places[ev.place];
     free.innerHTML = `<b>${esc(lang === 'ar' ? ar : en)}</b><span>${esc(t.prayers[names[ev.kind]])} · ${esc(localTime(ev.hours, tz))}</span>`;
     free.dataset.born = now;
+    free._w = free._h = 0;
     free._v = ev.v;
     lastTag = now;
   }
+  // The legend's box, when it shows: the cards keep off it too.
+  let hudBox = null;
+  if (!hud.classList.contains('off')) { const r = hud.getBoundingClientRect(); hudBox = { l: r.left, r: r.right, t: r.top, b: r.bottom }; }
   tags.forEach((el) => {
     const age = el.dataset.born ? now - +el.dataset.born : 99;
     if (!show || age > TAG_LIFE || !el._v) { el.style.opacity = 0; return; }
     const pt = globe.project(el._v);
     if (pt.facing < 0.15) { el.style.opacity = 0; return; }
+    // A card that would cover a city's name steps back while it does.
+    const w = el._w || (el._w = el.offsetWidth), h = el._h || (el._h = el.offsetHeight);
+    const box = { l: pt.x - w / 2, r: pt.x + w / 2, t: pt.y - h - 22, b: pt.y - 14 };
+    const clear = !placed.some((r) => overlaps(r, box, 4)) && !(hudBox && overlaps(hudBox, box, 6));
     el.style.left = `${pt.x}px`; el.style.top = `${pt.y}px`;
-    el.style.opacity = String(Math.min(1, age / 0.35, (TAG_LIFE - age) / 0.6));
+    el.style.opacity = clear ? String(Math.min(1, age / 0.35, (TAG_LIFE - age) / 0.6)) : '0';
     el.style.transform = `translate(-50%, calc(-100% - 14px - ${Math.min(1, age / 0.6) * 8}px))`;
   });
 }
@@ -447,7 +506,7 @@ $('#theme').addEventListener('click', () => {
   applyTheme();
 });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
-addEventListener('resize', () => { measure(); sizeSky(); globe?.resize(); });
+addEventListener('resize', () => { pickFilm(); measureHud(); measure(); sizeSky(); globe?.resize(); });
 
 render();
 sizeSky();

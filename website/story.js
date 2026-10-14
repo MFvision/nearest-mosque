@@ -122,7 +122,7 @@ const en = {
       eyebrow: 'Privacy',
       title: 'No account, no ads, [[no tracking]].',
       body: 'Prayer times, the Qibla and your answers are worked out on your device. There is no account to make and nothing about you is sent to us.',
-      points: ['Prayer times and Qibla work offline', 'Online only for mosque search, maps and the downloads you choose, with your location rounded to about 1 km'],
+      points: ['Prayer times and Qibla work offline', 'Online only for mosque search (with your location rounded to about 1 km), maps and the downloads you choose'],
     },
     kaaba: {
       eyebrow: 'Makkah',
@@ -248,7 +248,7 @@ const ar = {
       eyebrow: 'الخصوصية',
       title: 'بلا حساب، بلا إعلانات، [[بلا تتبُّع]].',
       body: 'تُحسب المواقيت والقبلة وإجاباتك على جهازك. لا حساب تنشئه، ولا يُرسل إلينا شيءٌ عنك.',
-      points: ['المواقيت والقبلة تعمل دون إنترنت', 'الاتصال فقط للبحث عن المساجد والخرائط وما تختار تنزيله، مع تقريب موقعك إلى نحو كيلومتر'],
+      points: ['المواقيت والقبلة تعمل دون إنترنت', 'الاتصال فقط للبحث عن المساجد (مع تقريب موقعك إلى نحو كيلومتر) والخرائط وما تختار تنزيله'],
     },
     kaaba: {
       eyebrow: 'مكة المكرمة',

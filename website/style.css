@@ -75,7 +75,7 @@ a { color: inherit; }
 .descent .sat img { width: 100%; height: 100%; display: block; }
 .descent .night, .descent .film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform-origin: 52.9% 75.5%; }
 .descent .night { object-position: 52.9% 75.5%; }
-.descent .film { transform-origin: 50% 50%; }
+.descent .film { transform-origin: 50% 48%; object-position: 50% 48%; }
 .descent .veil { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(4, 10, 16, 0.55) 100%); }
 .daynight { display: inline-flex; margin-top: 20px; border: 1px solid var(--glass-edge); border-radius: 999px; padding: 3px; }
 .daynight button { font: 600 0.85rem var(--font-display); border: 0; background: transparent; color: var(--ink-2); padding: 7px 16px; border-radius: 999px; cursor: pointer; min-height: 34px; }
@@ -100,20 +100,12 @@ a { color: inherit; }
 .hud-style { display: inline-flex; border: 1px solid var(--glass-edge); border-radius: 999px; padding: 2px; }
 .hud-style button { font: 600 0.75rem var(--font-display); border: 0; background: transparent; color: var(--ink-2); padding: 5px 11px; border-radius: 999px; cursor: pointer; min-height: 28px; }
 .hud-style button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
-/* Phones: the storyboard steps aside, the cards are compact and sit low, clear of the photographs' middle. */
+/* Phones: the HUD is compact, centred at the bottom, and the chapters it shows in keep their words clear of it. */
 @media (max-width: 860px) {
-  .board { display: none !important; }
-  .copy { padding: 16px 18px; border-radius: 22px; max-height: 46svh; overflow: auto; }
-  .copy h1 { font-size: clamp(1.75rem, 7.4vw, 2.4rem); margin-bottom: 10px; }
-  .copy h2 { font-size: clamp(1.45rem, 6.2vw, 1.9rem); margin-bottom: 10px; }
-  .copy p { font-size: 0.97rem; line-height: 1.6; }
-  .copy ul { margin-top: 10px; gap: 6px; font-size: 0.9rem; }
-  .eyebrow { margin-bottom: 8px; }
-  .daynight { margin-top: 12px; }
-  .beat { padding-block: calc(64px + env(safe-area-inset-top, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)); }
+  .hud { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); inset-inline-end: auto; left: 50%; translate: -50% 0; width: min(calc(100vw - 32px), 40rem); max-width: none; padding: 10px 12px; gap: 6px; font-size: 0.74rem; }
+  .hud ul { gap: 4px 12px; }
   .labels .tag { padding: 5px 9px 6px; } .labels .tag b { font-size: 0.76rem; } .labels .tag span { font-size: 0.68rem; }
 }
-@media (max-width: 860px) { .hud { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); inset-inline-end: auto; left: 50%; translate: -50% 0; width: calc(100vw - 32px); } .js .chapter.globe-ch.on .copy { margin-bottom: 120px; } }
 /* A named city's Adhan: a small glass card above the city's ring. */
 .labels .tag { position: absolute; opacity: 0; display: grid; gap: 1px; padding: 7px 12px 8px; border-radius: 14px; background: var(--glass); border: 1px solid var(--glass-edge);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 10px 24px -12px var(--shadow); white-space: nowrap; text-align: center; will-change: transform, opacity; }
@@ -122,6 +114,8 @@ a { color: inherit; }
 .labels .tag::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 1px; height: 7px; background: var(--gold-bright); }
 .stage-poster { position: absolute; inset: 0; display: none; }
 .no-webgl .stage-poster { display: block; background: radial-gradient(60vmin 60vmin at 62% 52%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); opacity: 0.5; }
+[dir="rtl"] .no-webgl .stage-poster { background: radial-gradient(60vmin 60vmin at 38% 52%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); }
+@media (max-width: 860px) { .no-webgl .stage-poster, [dir="rtl"] .no-webgl .stage-poster { background: radial-gradient(42vmin 42vmin at 50% 26%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); } }
 
 /* Chapters. */
 main { position: relative; z-index: 1; }
@@ -211,19 +205,64 @@ footer { position: relative; z-index: 2; background: var(--ground-2); padding-bl
 footer > div { max-width: 1180px; margin-inline: auto; display: grid; gap: 10px; }
 footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color: var(--ink); }
 
-/* Phones and narrow windows: the screens above, the copy below. */
+/* Phones and narrow windows: each chapter is exactly one screen tall; the screens fill the space above the words
+   (sized against that space, so nothing runs off the bottom), and the words sit low. */
 @media (max-width: 860px) {
-  .beat { grid-template-columns: minmax(0, 1fr); align-content: end; gap: 18px; padding-block: calc(70px + env(safe-area-inset-top, 0px)) 28px; }
-  .media { order: -1; min-height: 0; }
-  .phone { width: clamp(118px, 34vw, 190px); }
-  .watch { width: clamp(84px, 24vw, 130px); }
-  .globe-ch .copy { padding-inline: 4px; }
-  .copy { padding: 20px; }
-  .copy h1 { font-size: clamp(2rem, 8.5vw, 2.8rem); }
-  .copy h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-  .copy p { font-size: 1.02rem; }
-  .copy ul { margin-top: 14px; font-size: 0.95rem; }
-  .labels span { font-size: 0.72rem; }
+  .board { display: none !important; }
+  .beat { height: 100svh; min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; align-content: stretch; gap: 14px;
+    padding-block: calc(64px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .js .hud-ch .beat { padding-bottom: calc(var(--hud-h, 104px) + 24px + env(safe-area-inset-bottom, 0px)); }
+  .media { order: -1; min-height: 0; height: 100%; container-type: size; }
+  .phone { width: min(44vw, 250px, 45cqh, 90cqw); }
+  .media .phone + .phone { width: min(42vw, 240px, 45cqh, 46cqw); }
+  .watch { width: min(27vw, 140px, 62cqh, 29cqw); }
+  .family { width: min(100%, 560px, 128cqh); }
+  .copy { width: 100%; max-width: 40rem; justify-self: center; padding: 16px 18px; border-radius: 22px; }
+  .copy h1 { font-size: clamp(1.75rem, 7.4vw, 2.4rem); margin-bottom: 10px; }
+  .copy h2 { font-size: clamp(1.45rem, 6.2vw, 1.9rem); margin-bottom: 10px; }
+  .copy p { font-size: 0.97rem; line-height: 1.6; }
+  .copy ul { margin-top: 10px; gap: 6px; font-size: 0.9rem; }
+  .note { margin-top: 10px !important; }
+  .eyebrow { margin-bottom: 8px; }
+  .daynight { margin-top: 12px; }
+  .cta-link { margin-top: 16px; }
+  .scroll-cue { display: none; }
+  .stores { margin-top: 16px; gap: 8px; }
+  .store { min-height: 50px; padding: 8px 14px; }
+  .labels > span { font-size: 0.72rem; }
+  .labels .makkah { font-size: 0.9rem; }
+}
+/* Phones on their side: the words and the screens side by side again, small enough to fit the short height. */
+@media (max-width: 960px) and (max-height: 520px) and (orientation: landscape) {
+  .beat { height: 100svh; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-rows: minmax(0, 1fr); align-content: stretch; align-items: center; gap: 20px;
+    padding-block: calc(58px + env(safe-area-inset-top, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .js .hud-ch .beat { padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .media { order: 0; }
+  .copy { justify-self: stretch; max-width: 30rem; padding: 12px 16px; border-radius: 18px; }
+  .globe-ch .copy { background: transparent; border-color: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-inline: 0; }
+  .copy h1 { font-size: 1.55rem; margin-bottom: 6px; }
+  .copy h2 { font-size: 1.3rem; margin-bottom: 6px; }
+  .copy p { font-size: 0.86rem; line-height: 1.5; }
+  .copy ul { margin-top: 6px; gap: 3px; font-size: 0.8rem; }
+  .eyebrow { margin-bottom: 4px; font-size: 0.72rem; }
+  .note { margin-top: 6px !important; font-size: 0.8rem !important; }
+  .cta-link, .stores, .daynight { margin-top: 10px; }
+  .store { min-height: 42px; padding: 6px 12px; }
+  .hud { left: auto; translate: none; inset-inline-end: max(12px, env(safe-area-inset-right, 0px)); width: auto; max-width: 44vw; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .hud-legend { display: none; }
+}
+/* Too little room above the words for a screen to read: leave it out rather than show it tiny. */
+@container (max-height: 150px) { .phone, .watch, .family { display: none; } }
+/* Short screens with room beside the words: a smaller scale, so the longest chapter fits the height. */
+@media (min-width: 861px) and (max-height: 860px) {
+  :root { --step-3: clamp(1.7rem, 0.9rem + 3.6vh, 2.7rem); --step-4: clamp(2rem, 1rem + 4.4vh, 3.2rem); --step-1: clamp(1rem, 0.78rem + 0.9vh, 1.2rem); }
+  .beat { padding-block: calc(72px + env(safe-area-inset-top, 0px)) 28px; }
+  .copy { padding: clamp(20px, 2.4vh, 30px) clamp(22px, 2.4vw, 32px); }
+  .copy h1, .copy h2 { margin-bottom: 12px; }
+  .copy ul { margin-top: 14px; gap: 7px; }
+  .eyebrow { margin-bottom: 10px; }
+  .media { min-height: 0; }
+  .phone { width: clamp(150px, min(19vw, 27vh), 260px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .copy, .phone, .media > * { transition: none !important; }
@@ -236,6 +275,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   background-repeat: no-repeat; background-size: 100% 100%; background-position: left; color: var(--gold); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 [dir="rtl"] .copy .hl { background-position: right; }
 .copy .w { display: inline-block; }
+.copy .nw { white-space: nowrap; }
 .js .copy .w { opacity: 0; transform: translateY(0.45em); filter: blur(6px); transition: opacity 0.6s, transform 0.7s cubic-bezier(.2,.7,.2,1), filter 0.6s; transition-delay: calc(var(--d) * 65ms); }
 .js .copy .hl { background-size: 0% 100%; transition: background-size 0.8s cubic-bezier(.3,.7,.2,1); transition-delay: calc(var(--d) * 65ms + 250ms); }
 .js .chapter.on .copy .w { opacity: 1; transform: none; filter: none; }

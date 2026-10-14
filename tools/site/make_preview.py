@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Copies website/ into a preview folder for a host that wraps the page itself: the page without its own
-<html>/<head>/<body> tags, and the scripts and stylesheet under names carrying a version, so a browser that
+<html>/<head>/<body> tags (the other pages keep theirs), and the scripts and stylesheet under names carrying a version, so a browser that
 cached an earlier preview loads the new files.
 
     make_preview.py <out folder> <version>
@@ -12,7 +12,7 @@ import shutil
 import sys
 
 SITE = pathlib.Path(__file__).resolve().parents[2] / "website"
-NAMES = ["app.js", "story.js", "globe.js", "places.js", "sky.js", "style.css"]
+NAMES = ["app.js", "story.js", "globe.js", "places.js", "sky.js", "style.css", "legal.js", "legal.css"]
 
 
 def main():
@@ -21,7 +21,7 @@ def main():
         shutil.rmtree(out)
     shutil.copytree(SITE, out, ignore=shutil.ignore_patterns("README.md", "*.LICENSE"))
     ren = {n: f"{pathlib.Path(n).stem}.{v}{pathlib.Path(n).suffix}" for n in NAMES}
-    for f in [out / n for n in NAMES] + [out / "index.html"]:
+    for f in [out / n for n in NAMES] + sorted(out.glob("*.html")):
         s = f.read_text()
         for a, b in ren.items():
             s = re.sub(rf"(['\"(/]|\./){re.escape(a)}(['\")])", lambda m: m.group(1) + b + m.group(2), s)

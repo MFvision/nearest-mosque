@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security · Near Mosque</title>
+<meta name="description" content="How Near Mosque protects what it keeps and what it downloads, its known limits, and how to report a problem.">
+<meta name="theme-color" content="#F4EEDF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#081B29" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Readex+Pro:wght@600&display=swap">
+<link rel="stylesheet" href="legal.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html" data-href="index.html"><img src="assets/icon-180.png" alt="" width="32" height="32"><span data-en="Near Mosque" data-ar="أقرب مسجد">Near Mosque</span></a>
+  <button id="lang" type="button" lang="ar">العربية</button>
+</header>
+<main>
+
+<article lang="en" dir="ltr" data-title="Security · Near Mosque">
+  <p class="eyebrow">Near Mosque</p>
+  <h1>Security</h1>
+  <p class="meta">Updated 14 October 2026.</p>
+  <p class="lead">Near Mosque has no accounts and no server of its own, so there is no store of users' data to break into. What the app keeps stays on your device, and what it downloads is checked before it is used.</p>
+
+  <h2>Connections</h2>
+  <ul>
+    <li>Every connection the app makes uses HTTPS. The Apple apps keep Apple's App Transport Security on with no exceptions, and the Android app does not allow plain HTTP.</li>
+    <li>The library opens files only from a fixed list of hosts (IslamHouse, binbaz.org.sa, HadeethEnc, QuranEnc and our own content files on GitHub) and refuses a redirect that leads anywhere else.</li>
+  </ul>
+
+  <h2>Downloads are checked</h2>
+  <ul>
+    <li>Language packs and the classical books carry SHA-256 fingerprints that ship inside the app. A download is installed or opened only if its size and fingerprint match; otherwise it is thrown away.</li>
+    <li>Pack files with unsafe names or paths are refused.</li>
+  </ul>
+
+  <h2>On the device</h2>
+  <ul>
+    <li>On iPhone, the Ask history is stored with complete file protection (encrypted while the phone is locked) and is left out of backups. Shared items for the widgets and the companion's prayer marks sit in the keychain, kept to this device only.</li>
+    <li>On Android, the app's data is in its private storage, and the database and Ask history are left out of cloud backups.</li>
+    <li>Links from widgets carry a random code made for your install, so another app cannot use a link to make Near Mosque run a question.</li>
+  </ul>
+
+  <h2>What the app is built with</h2>
+  <ul>
+    <li>No analytics, advertising, crash-reporting or tracking software, on any platform.</li>
+    <li>Open-source libraries only: Adhan (prayer time calculation), GRDB (database, Apple), AndroidX, Room and DataStore (Android), MapLibre (Android map) and Kotlin's own libraries.</li>
+    <li>No passwords or API keys inside the apps. The keys used to publish to the App Store are kept as encrypted secrets of the build system.</li>
+  </ul>
+
+  <h2>Known limits</h2>
+  <ul>
+    <li>A pack you import yourself from Files is checked against its own list of fingerprints. That shows it arrived whole, not who made it, so import packs only from a source you trust.</li>
+    <li>Library files from IslamHouse and the other listed sites are protected by HTTPS and the host list, without a fingerprint of their own.</li>
+    <li>Answers in Ask quote the books on your device. They are not a fatwa.</li>
+  </ul>
+
+  <h2>Report a problem</h2>
+  <p>If you find a security problem, write to <a href="mailto:app@zood.sa?subject=Security">app@zood.sa</a> with "Security" in the subject. Please include the device, the app version and the steps to see it. We read every report and reply as soon as we can. Please do not access other people's data or disrupt any service while testing.</p>
+</article>
+
+<article lang="ar" dir="rtl" data-title="الأمان · أقرب مسجد">
+  <p class="eyebrow">أقرب مسجد</p>
+  <h1>الأمان</h1>
+  <p class="meta">آخر تحديث: 14 أكتوبر 2026.</p>
+  <p class="lead">لا يحتوي «أقرب مسجد» على حسابات ولا خادم خاص به، فلا توجد بيانات مستخدمين مجمّعة يمكن اختراقها. ما يحفظه التطبيق يبقى على جهازك، وما ينزّله يُتحقق منه قبل استخدامه.</p>
+
+  <h2>الاتصالات</h2>
+  <ul>
+    <li>كل اتصال يجريه التطبيق يستخدم HTTPS. تُبقي تطبيقات Apple ميزة App Transport Security مفعّلة دون استثناءات، ولا يسمح تطبيق أندرويد بالاتصال غير المشفّر.</li>
+    <li>لا تفتح المكتبة الملفات إلا من قائمة محددة من المواقع (IslamHouse وbinbaz.org.sa وHadeethEnc وQuranEnc وملفات المحتوى الخاصة بنا على GitHub)، وترفض أي تحويل يقود إلى موقع آخر.</li>
+  </ul>
+
+  <h2>التحقق من التنزيلات</h2>
+  <ul>
+    <li>لحزم اللغات والكتب التراثية بصمات SHA-256 مدمجة في التطبيق، ولا يُثبَّت التنزيل أو يُفتح إلا إذا طابق حجمُه وبصمتُه ما فيها، وإلا حُذف.</li>
+    <li>تُرفض ملفات الحزم ذات الأسماء أو المسارات غير الآمنة.</li>
+  </ul>
+
+  <h2>على الجهاز</h2>
+  <ul>
+    <li>في آيفون يُحفظ سجل «اسأل» بحماية كاملة للملفات (مشفّرًا ما دام الهاتف مقفلًا)، ويُستثنى من النسخ الاحتياطي. وتُحفظ البيانات المشتركة مع الأدوات وسجل صلوات الرفيق في سلسلة المفاتيح، على هذا الجهاز وحده.</li>
+    <li>في أندرويد تُحفظ بيانات التطبيق في مساحته الخاصة، وتُستثنى قاعدة البيانات وسجل «اسأل» من النسخ السحابي.</li>
+    <li>تحمل روابط الأدوات رمزًا عشوائيًا خاصًا بتثبيتك، فلا يستطيع تطبيق آخر أن يجعل «أقرب مسجد» يطرح سؤالًا عبر رابط.</li>
+  </ul>
+
+  <h2>مكونات التطبيق</h2>
+  <ul>
+    <li>لا برامج تحليلات أو إعلانات أو تقارير أعطال أو تتبّع، في أي منصة.</li>
+    <li>مكتبات مفتوحة المصدر فقط: Adhan (حساب المواقيت)، وGRDB (قاعدة البيانات في أجهزة Apple)، وAndroidX وRoom وDataStore (أندرويد)، وMapLibre (خريطة أندرويد)، ومكتبات Kotlin.</li>
+    <li>لا كلمات مرور ولا مفاتيح API داخل التطبيقات. أما مفاتيح النشر في App Store فمحفوظة أسرارًا مشفّرة في نظام البناء.</li>
+  </ul>
+
+  <h2>حدود معروفة</h2>
+  <ul>
+    <li>الحزمة التي تستوردها بنفسك من «الملفات» يُتحقق منها بقائمة البصمات التي فيها. وهذا يثبت أنها وصلت كاملة، لا مصدرها، فاستورد الحزم من مصدر تثق به فقط.</li>
+    <li>ملفات المكتبة من IslamHouse والمواقع الأخرى المدرجة محمية بـHTTPS وقائمة المواقع، دون بصمة خاصة بها.</li>
+    <li>إجابات «اسأل» تقتبس من الكتب المحفوظة على جهازك، وليست فتوى.</li>
+  </ul>
+
+  <h2>الإبلاغ عن مشكلة</h2>
+  <p>إذا وجدت مشكلة أمنية فراسلنا على <a href="mailto:app@zood.sa?subject=Security">app@zood.sa</a> واكتب «Security» في العنوان، مع ذكر الجهاز وإصدار التطبيق وخطوات ظهور المشكلة. نقرأ كل بلاغ ونرد في أقرب وقت. ونرجو ألا تطّلع على بيانات غيرك أو تعطّل أي خدمة أثناء الاختبار.</p>
+</article>
+
+</main>
+<footer><div><a href="index.html" data-href="index.html" data-en="Home" data-ar="الرئيسية">Home</a><a href="privacy.html" data-href="privacy.html" data-en="Privacy policy" data-ar="سياسة الخصوصية">Privacy policy</a></div></footer>
+<script src="legal.js"></script>
+</body>
+</html>
