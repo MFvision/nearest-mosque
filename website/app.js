@@ -243,7 +243,9 @@ function step(now) {
       const wide = innerWidth > 860, rtl = lang === 'ar', aspect = innerWidth / innerHeight;
       // The globe sits beside the words, then moves to the middle as it comes closer.
       const away = Math.max(0, Math.min(1, 1 - Math.log(s.zoom) / Math.log(4)));
-      const fit = wide ? 1 : Math.min(2.6, Math.max(1, (1.25 / (0.2867 * aspect) - 1) / 4.4));
+      // A tall screen sees the whole globe from a little further back; close to the ground both are the same.
+      const fitFar = wide ? 1 : Math.min(2.6, Math.max(1, (1.25 / (0.2867 * aspect) - 1) / 4.4));
+      const fit = Math.pow(fitFar, Math.max(0, 1 - Math.log(s.zoom) / Math.log(40)));
       // The globe's time: now, plus the fast day; towards the Qibla it runs on to the same time of day as now.
       const off = s.hours + ambient, hours = utcNow() + lerp(off, Math.ceil(off / 24) * 24, smooth(s.real));
       simHours = hours;
@@ -334,20 +336,28 @@ function descentFrame(s, zoom, wide) {
   const pxPerKm = innerHeight / viewKm;
   const L = globe.labels();
   const size = 3.9 * pxPerKm;                           // the photograph's width on the screen
+  const dpr = Math.min(3, devicePixelRatio || 1);
+  const viewMinKm = viewKm * Math.min(1, innerWidth / innerHeight); // across the narrower side of the screen
   const night = makkahNight();
   const fade = (1 - s.mix) * (L.makkah.facing > 0.2 ? 1 : 0);
   const sm = (x) => smooth(x);
   // Day: the photograph from space, on Makkah, then the tawaf as the view comes down to the mosque.
-  const satOp = night ? 0 : sm((Math.log(size) - Math.log(260)) / (Math.log(900) - Math.log(260)));
-  const filmOp = night ? 0 : sm((1.3 - viewKm) / 0.7);
+  // Sizes against the screen's narrower side, so a phone sees the photograph come in at the same moment.
+  const minDim = Math.min(innerWidth, innerHeight);
+  const satOp = night ? 0 : sm((Math.log(size) - Math.log(minDim * 0.12)) / (Math.log(minDim * 0.6) - Math.log(minDim * 0.12)));
+  // The film takes over before the photograph is enlarged past its own detail (2600 pixels across).
+  const filmOp = night ? 0 : Math.max(sm((size * dpr - 2900) / 3200), sm((1.3 - viewMinKm) / 0.7));
   satBox.style.cssText = `opacity:${(satOp * (1 - filmOp)).toFixed(3)};width:${size}px;height:${size}px;left:${L.makkah.x - size / 2}px;top:${L.makkah.y - size / 2}px`;
   film.style.opacity = (filmOp * fade).toFixed(3);
   film.style.transform = `scale(${(1 + Math.max(0, viewKm - 0.4) * 0.3).toFixed(4)})`;
   if (filmOp > 0.01 && fade > 0.01) { if (film.paused) film.play().catch(() => {}); } else if (!film.paused) film.pause();
   // Night: the mosque lit, the view closing in on the Kaaba.
-  const nightOp = night ? sm((Math.log(size) - Math.log(320)) / (Math.log(1300) - Math.log(320))) : 0;
+  const nightOp = night ? sm((Math.log(size) - Math.log(minDim * 0.4)) / (Math.log(minDim * 1.5) - Math.log(minDim * 0.4))) : 0;
   nightImg.style.opacity = nightOp.toFixed(3);
-  nightImg.style.transform = `scale(${(1 + Math.max(0, Math.min(1.7, Math.log(Math.max(1, size / 1300)) / Math.log(6) * 1.7))).toFixed(4)})`;
+  // Closing in on the Kaaba, never past one and a half screen pixels per pixel of the photograph.
+  const cover = Math.max(innerWidth / 2213, innerHeight / 2503) * dpr;
+  const maxScale = Math.max(1, 1.5 / cover);
+  nightImg.style.transform = `scale(${(1 + (maxScale - 1) * Math.max(0, Math.min(1, Math.log(Math.max(1, size / 1300)) / Math.log(6)))).toFixed(4)})`;
   descent.style.opacity = fade.toFixed(3);
   descentShown = Math.max(satOp, filmOp, nightOp) * fade;
   // The globe's waves and lights step back under the photographs.

@@ -71,7 +71,7 @@ a { color: inherit; }
 #sky-canvas { opacity: 0; }
 /* The real photographs of Makkah over the globe. */
 .descent { position: absolute; inset: 0; opacity: 0; pointer-events: none; overflow: hidden; }
-.descent .sat { position: absolute; opacity: 0; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
+.descent .sat { position: absolute; opacity: 0; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
 .descent .sat img { width: 100%; height: 100%; display: block; }
 .descent .night, .descent .film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform-origin: 52.9% 75.5%; }
 .descent .night { object-position: 52.9% 75.5%; }
@@ -100,7 +100,20 @@ a { color: inherit; }
 .hud-style { display: inline-flex; border: 1px solid var(--glass-edge); border-radius: 999px; padding: 2px; }
 .hud-style button { font: 600 0.75rem var(--font-display); border: 0; background: transparent; color: var(--ink-2); padding: 5px 11px; border-radius: 999px; cursor: pointer; min-height: 28px; }
 .hud-style button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
-@media (max-width: 860px) { .hud { bottom: calc(46px + env(safe-area-inset-bottom, 0px)); inset-inline-end: auto; left: 50%; translate: -50% 0; width: calc(100vw - 32px); } .js .chapter.globe-ch.on .copy { margin-bottom: 120px; } }
+/* Phones: the storyboard steps aside, the cards are compact and sit low, clear of the photographs' middle. */
+@media (max-width: 860px) {
+  .board { display: none !important; }
+  .copy { padding: 16px 18px; border-radius: 22px; max-height: 46svh; overflow: auto; }
+  .copy h1 { font-size: clamp(1.75rem, 7.4vw, 2.4rem); margin-bottom: 10px; }
+  .copy h2 { font-size: clamp(1.45rem, 6.2vw, 1.9rem); margin-bottom: 10px; }
+  .copy p { font-size: 0.97rem; line-height: 1.6; }
+  .copy ul { margin-top: 10px; gap: 6px; font-size: 0.9rem; }
+  .eyebrow { margin-bottom: 8px; }
+  .daynight { margin-top: 12px; }
+  .beat { padding-block: calc(64px + env(safe-area-inset-top, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)); }
+  .labels .tag { padding: 5px 9px 6px; } .labels .tag b { font-size: 0.76rem; } .labels .tag span { font-size: 0.68rem; }
+}
+@media (max-width: 860px) { .hud { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); inset-inline-end: auto; left: 50%; translate: -50% 0; width: calc(100vw - 32px); } .js .chapter.globe-ch.on .copy { margin-bottom: 120px; } }
 /* A named city's Adhan: a small glass card above the city's ring. */
 .labels .tag { position: absolute; opacity: 0; display: grid; gap: 1px; padding: 7px 12px 8px; border-radius: 14px; background: var(--glass); border: 1px solid var(--glass-edge);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 10px 24px -12px var(--shadow); white-space: nowrap; text-align: center; will-change: transform, opacity; }
