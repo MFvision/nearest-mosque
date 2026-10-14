@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Builds the Arabic promo video (docs/11-promo-script.md) from a voiceover take: the voice cut to the version's
-lines, the timeline the scenes follow (promo.mjs), the soundscape with a soft click as each element appears, and
-the final mix.
+"""Builds the promo video (docs/11-promo-script.md) from a voiceover take: the voice cut to the version's lines, the
+timeline the scenes follow (promo.mjs), the soundscape with a soft click as each element appears, and the final mix.
 
     promo.py <voice> <wide|tall> <assets folder> <out.mp4> [--voice-map NAME]
+
+The voice map names the take; one ending in "-en" makes the English promo (English titles and screens: the assets
+folder holds the English store screenshots and recordings).
 
 The voice maps below give, for each take, where each script line is in the recording (seconds); they were read
 from the takes' silences. The wide cut (16:9, 1920 x 1080) keeps all 15 lines with their natural pauses; the tall
@@ -25,6 +27,16 @@ VOICES = {
     "ali": {1: (0.00, 3.75), 2: (4.58, 12.14), 3: (12.80, 20.37), 4: (21.12, 25.61), 5: (26.35, 30.80), 6: (31.67, 38.32),
             7: (39.02, 45.45), 8: (46.31, 50.87), 9: (51.60, 57.86), 10: (58.48, 65.86), 11: (66.43, 71.29), 12: (71.86, 73.71),
             13: (74.29, 80.00), 14: (80.49, 81.63), 15: (82.40, 84.97)},
+    # English (Near-Mosque-Voiceover-EN): EN_Alghammas_take1, EN_Ali_take1, EN_Raed_take2.
+    "alghammas-en": {1: (0.00, 3.67), 2: (5.02, 11.25), 3: (12.38, 18.88), 4: (19.98, 24.00), 5: (25.13, 29.39), 6: (30.54, 36.10),
+                     7: (37.15, 42.48), 8: (43.64, 48.23), 9: (49.31, 54.31), 10: (55.28, 63.05), 11: (64.08, 68.57), 12: (69.34, 71.20),
+                     13: (71.92, 77.13), 14: (78.17, 79.03), 15: (79.98, 81.87)},
+    "ali-en": {1: (0.00, 3.80), 2: (5.22, 11.34), 3: (12.52, 18.97), 4: (20.20, 24.25), 5: (25.31, 29.69), 6: (30.90, 36.35),
+               7: (37.46, 42.75), 8: (43.97, 48.64), 9: (49.77, 54.79), 10: (55.90, 63.85), 11: (65.07, 69.52), 12: (70.42, 72.36),
+               13: (73.46, 78.56), 14: (79.65, 80.46), 15: (81.56, 83.57)},
+    "raed-en": {1: (0.00, 3.83), 2: (5.27, 11.35), 3: (12.64, 18.93), 4: (20.19, 24.21), 5: (25.40, 29.45), 6: (30.68, 36.16),
+                7: (37.28, 42.59), 8: (43.92, 48.49), 9: (49.69, 54.57), 10: (55.77, 63.39), 11: (64.48, 68.92), 12: (69.84, 71.70),
+                13: (72.76, 77.69), 14: (78.78, 79.59), 15: (80.85, 82.68)},
 }
 WIDE_ONLY = {7, 11, 13}
 
@@ -35,7 +47,9 @@ def run(*cmd):
 
 def main():
     voice, cut, assets, out = sys.argv[1], sys.argv[2], pathlib.Path(sys.argv[3]), pathlib.Path(sys.argv[4])
-    vmap = VOICES[sys.argv[sys.argv.index("--voice-map") + 1] if "--voice-map" in sys.argv else "alghammas"]
+    name = sys.argv[sys.argv.index("--voice-map") + 1] if "--voice-map" in sys.argv else "alghammas"
+    vmap = VOICES[name]
+    lang = "en" if name.endswith("-en") else "ar"
     lines = [n for n in sorted(vmap) if cut == "wide" or n not in WIDE_ONLY]
     gap = 1.05 if cut == "wide" else 0.4
     lead, tail = 0.6, 2.2
@@ -63,7 +77,7 @@ def main():
 
     # The pictures: promo.mjs renders the scenes for this timeline and lists when each element appears (the clicks).
     spec = tmp / "timeline.json"
-    spec.write_text(json.dumps({"cut": cut, "width": w, "height": h, "duration": total, "lines": timeline, "assets": str(assets)}))
+    spec.write_text(json.dumps({"lang": lang, "cut": cut, "width": w, "height": h, "duration": total, "lines": timeline, "assets": str(assets)}))
     video = tmp / "video.mp4"
     clicks = tmp / "clicks.json"
     run("node", str(HERE / "promo.mjs"), str(spec), str(video), str(clicks))

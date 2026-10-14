@@ -49,3 +49,38 @@ The 60-second cut runs 01–06, 08–10, 12, 14, 15 with the same pictures, each
 * 12: 36 interface languages (English and Arabic final; the rest drafts).
 * 13: no ads and no tracking (privacy manifests: tracking false); prayer times and Qibla work offline. Map search
   and downloads need the internet.
+
+## English promo
+
+The same 15 lines and scenes in English (`Near-Mosque-Voiceover-EN`, three voices). `promo.py --voice-map
+alghammas-en|ali-en|raed-en` picks the take; the assets folder then holds the English store screenshots and the
+English preview recordings. The English cut sets the titles larger, word by word, with the key words highlighted in
+gold (`textfx` in the timeline).
+
+| # | Voice (English) |
+|---|-----------------|
+| 01 | Every prayer, on time… wherever you are. |
+| 02 | Near Mosque: prayer times, the Qibla, and the nearest mosque… in one calm app. |
+| 03 | It knows your next prayer, counts down the time left… and its sky changes with the hours of your day. |
+| 04 | Point your phone… and when you face the Qibla, it lights up. |
+| 05 | The mosques nearest to you, on the map… with distance and direction. |
+| 06 | Ask about your faith… and the answer comes from trusted books on your phone, with its sources. |
+| 07 | A library of books, fatwas and lectures… to read and listen to, offline. **(wide only)** |
+| 08 | The Adhan in the voices you choose… and a reminder before every prayer. |
+| 09 | Your prayer times on your Home Screen and in the Dynamic Island… without opening the app. |
+| 10 | And on your watch: a companion that rejoices in your prayers, a record of every prayer, and tasbih on the Digital Crown. |
+| 11 | On iPhone… iPad… Mac… Apple TV… and Vision Pro. **(wide only)** |
+| 12 | In thirty-six languages. |
+| 13 | No ads. No tracking… and your prayer times and Qibla work without the internet. **(wide only)** |
+| 14 | Near Mosque. |
+| 15 | Download it now on the App Store. |
+
+## The live widgets scene (line 09, both languages)
+
+Line 09 is in motion rather than two screenshots: a Home Screen with the app's widgets (cut from the widget
+screenshot) whose Dynamic Island goes from the next-prayer countdown (compact, then expanded) to the Qibla compass
+(the arrow turns until it faces the Qibla and lights up), and a Lock Screen with the next-prayer Live Activity
+counting down while Siri answers "When is the next prayer in Near Mosque". The island, the cards and Siri's answer
+follow the app's own views and strings (`PrayerLiveActivity.swift`, `QiblaLiveActivity.swift`, `IslandViews.swift`,
+`siri_next_prayer`), at the moment of the widget screenshot (Riyadh, Maghrib at 5:29 PM, 2:27:52 left). They are
+drawn for the film, not recorded from a device.
