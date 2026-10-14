@@ -19,7 +19,7 @@ def main():
     out, v = pathlib.Path(sys.argv[1]), sys.argv[2]
     if out.exists():
         shutil.rmtree(out)
-    shutil.copytree(SITE, out, ignore=shutil.ignore_patterns("README.md", "*.LICENSE"))
+    shutil.copytree(SITE, out, ignore=shutil.ignore_patterns("README.md", "*.LICENSE", "CNAME"))
     ren = {n: f"{pathlib.Path(n).stem}.{v}{pathlib.Path(n).suffix}" for n in NAMES}
     for f in [out / n for n in NAMES] + sorted(out.glob("*.html")):
         s = f.read_text()

@@ -140,7 +140,7 @@ function render() {
       <div class="strip" tabindex="0" aria-label="${esc(t.index.title)}">${shots.map((s) => img(`iphone/${s}`, '')).join('')}${['01-watch-prayer', '02-watch-qibla', '05-watch-mosques', '06-watch-ask'].map((s) => img(`watch/${s}`, '')).join('')}</div>
       <div class="groups">${t.index.groups.map(([g, items]) => `<div class="group"><h3>${esc(g)}</h3><ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div>
     </div>`;
-  $('footer').innerHTML = `<div><nav><a href="${BASE}privacy.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.privacy)}</a><a href="${BASE}security.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.security)}</a><a href="${BASE}credits.html${lang === 'ar' ? '#ar' : ''}">${esc(t.footer.credits)}</a></nav></div>`;
+  $('footer').innerHTML = `<div><nav>${[['privacy', t.footer.privacy], ['terms', t.footer.terms], ['support', t.footer.support], ['security', t.footer.security], ['credits', t.footer.credits]].map(([f, label]) => `<a href="${BASE}${f}.html${lang === 'ar' ? '#ar' : ''}">${esc(label)}</a>`).join('')}</nav></div>`;
   chapters = [...document.querySelectorAll('.chapter')];
   document.querySelectorAll('.daynight button').forEach((b) => b.addEventListener('click', () => {
     nightPick = b.dataset.night === '1';

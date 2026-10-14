@@ -154,6 +154,8 @@ const en = {
   footer: {
     privacy: 'Privacy policy',
     security: 'Security',
+    terms: 'Terms of use',
+    support: 'Support',
     credits: 'Sources and licences',
   },
 };
@@ -279,6 +281,8 @@ const ar = {
   footer: {
     privacy: 'سياسة الخصوصية',
     security: 'الأمان',
+    terms: 'شروط الاستخدام',
+    support: 'الدعم',
     credits: 'المصادر والتراخيص',
   },
 };
