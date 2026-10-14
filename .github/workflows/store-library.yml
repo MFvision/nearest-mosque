@@ -2,7 +2,7 @@ name: App Store asset library upload
 
 # Uploads App Store media through the App Asset Library (tools/store/asc_library.py): the creative assets (product
 # page header and search results videos) from an "App Store creative assets" run, or a screenshot folder (iPhone Duo)
-# from an "App Store screenshots" run. It only fills empty places: anything already in App Store Connect is left as
+# from an "App Store screenshots" run or from this repository (repo_folder). It only fills empty places: anything already in App Store Connect is left as
 # it is. Started by hand; "discover" lists what Apple offers and changes nothing.
 
 on:
@@ -17,6 +17,9 @@ on:
       folder:
         description: "screenshots: the folder in the app-store-screenshots artifact (e.g. IPHONE_DUO_OUTER)"
         default: "IPHONE_DUO_OUTER"
+      repo_folder:
+        description: "screenshots/fill: take the files from this repository folder instead of a run (e.g. shared/store/duo-poses)"
+        default: ""
       group:
         description: "screenshots: the APP_SCREENSHOT placement group (from discover)"
         default: ""
@@ -58,8 +61,11 @@ jobs:
           RUN_ID: ${{ inputs.run_id }}
           MODE: ${{ inputs.mode }}
           ARTIFACT: ${{ inputs.artifact }}
+          FOLDER: ${{ inputs.folder }}
+          REPO_FOLDER: ${{ inputs.repo_folder }}
         run: |
-          if [ "$MODE" = creative ]; then gh run download "$RUN_ID" -n "$ARTIFACT" -D media
+          if [ -n "$REPO_FOLDER" ]; then mkdir -p "media/$FOLDER" && cp -R "$REPO_FOLDER"/. "media/$FOLDER/"
+          elif [ "$MODE" = creative ]; then gh run download "$RUN_ID" -n "$ARTIFACT" -D media
           else gh run download "$RUN_ID" -n app-store-screenshots -D media; fi
       - name: Install the script's dependencies (pinned)
         run: |

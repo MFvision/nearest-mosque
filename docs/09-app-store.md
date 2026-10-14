@@ -172,6 +172,13 @@ stands vertically along the side, as on the device.
 
 Do not fill the slot with resized iPhone screenshots: the proportions and the side bars differ.
 
+* `shared/store/duo-poses/<locale>/00-duo-poses.png` (2034 × 1398): a marketing image, the app's screens set
+  into the three poses of an iPhone Duo picture (on the table: the Apple TV prayer board; open: the outer
+  display's prayer and Qibla captures; half folded: the TV Qibla screen and a drawn Adhan strip). It is not a
+  capture. Number 00 puts it first; the "App Store asset library upload" workflow adds it with mode `fill`,
+  folder `IPHONE_DUO_POSES`, `repo_folder` `shared/store/duo-poses` and group `IPHONE_DUO_PROFILE`, where a
+  locale's set has room (at most 10).
+
 ## Languages
 
 The app has 36 interface languages; 22 of them are App Store languages. Each app language fills its
