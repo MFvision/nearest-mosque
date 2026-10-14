@@ -36,8 +36,10 @@ def convert(raw, start, seconds, size, target):
 
 
 def record(app, out, langs):
-    conf = SPEC["previews"]
-    udid = find_simulator(conf["simulator"], ["iOS"])
+    # PREVIEW_DEVICE=duo records on the iPhone Duo simulator (its outer display) instead of the iPhone's.
+    conf = dict(SPEC["previews"])
+    conf.update(SPEC["previews"].get("devices", {}).get(os.environ.get("PREVIEW_DEVICE", "iphone"), {}))
+    udid = find_simulator(conf["simulator"], ["iOS"], conf.get("runtime"))
     print(f"previews: simulator {udid}", flush=True)
     simctl("boot", udid)
     simctl("bootstatus", udid, "-b", check=True, timeout=600)
@@ -73,19 +75,31 @@ def record(app, out, langs):
             if (m := marker()) is not None:
                 m.unlink(missing_ok=True)
             raw = folder / f"{n:02d}-{name}.raw.mp4"
-            rec = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", "--codec=h264", "--force", str(raw)],
-                                   stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
-            # simctl says "Recording started" once frames are being written: the video's time 0.
+            # simctl says "Recording started" once frames are being written: the video's time 0. A device with
+            # several displays (iPhone Duo) records the one named; without it if simctl does not take the option.
             began = None
-            deadline = time.time() + 30
-            while began is None and time.time() < deadline:
-                line = rec.stderr.readline()
-                if "Recording started" in line:
-                    began = time.time()
-                elif not line and rec.poll() is not None:
+            for display in ([f"--display={conf['display']}"] if conf.get("display") else []) + [None]:
+                cmd = ["xcrun", "simctl", "io", udid, "recordVideo", "--codec=h264", "--force"] + ([display] if display else []) + [str(raw)]
+                rec = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+                deadline = time.time() + 30
+                while began is None and time.time() < deadline:
+                    line = rec.stderr.readline()
+                    if "Recording started" in line:
+                        began = time.time()
+                    elif not line and rec.poll() is not None:
+                        break
+                if began is not None:
                     break
+                rec.kill()
             began = began or time.time()
-            simctl("launch", udid, BUNDLE, *launch_args_for(clip, lang), timeout=120)
+            r = simctl("launch", udid, BUNDLE, *launch_args_for(clip, lang), timeout=120)
+            # The iPhone Duo simulator sometimes fails a launch: twice more, after a pause.
+            for _ in range(2 if r.returncode else 0):
+                simctl("terminate", udid, BUNDLE)
+                time.sleep(8)
+                r = simctl("launch", udid, BUNDLE, *launch_args_for(clip, lang), timeout=120)
+                if r.returncode == 0:
+                    break
             # The tour marks its start once the app is ready (at least 8 to 9 seconds after launch).
             deadline = time.time() + 120
             m = None

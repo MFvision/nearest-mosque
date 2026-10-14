@@ -13,6 +13,9 @@ on:
       languages:
         description: "App language codes to cut (empty: every language recorded)"
         default: ""
+      device:
+        description: "iphone, or duo (recordings from the iPhone Duo simulator, framed in Apple's 886 x 1920)"
+        default: "iphone"
 
 permissions:
   contents: read
@@ -35,6 +38,23 @@ jobs:
             for d in "rec/$id"/previews-*; do cp -R "$d/." previews/; done
           done
           find previews -name '*.mp4' | wc -l
+      - name: The iPhone Duo frame (night sky, rounded corners, the phrase per language)
+        if: inputs.device == 'duo'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet numpy pillow
+          cd tools/store/creative && npm install --no-save --silent playwright@1.56.1 && npx playwright install --with-deps chromium >/dev/null
+          mkdir -p "$RUNNER_TEMP/frame"
+          SKY='{"horizon":0.93,"mosque":0.05,"arc":false}' node render.mjs still "$RUNNER_TEMP/frame/background.png" 886 1920 0.74
+          for l in $(python3 -c "import json; print(' '.join(json.load(open('../../../shared/store/creative.json'))['phrase']))"); do
+            p=$(python3 -c "import json,sys; print(json.load(open('../../../shared/store/creative.json'))['phrase'][sys.argv[1]])" "$l")
+            node render.mjs text "$RUNNER_TEMP/frame/$l.png" 886 1920 "$l" "$p" 0.03 0.083 0.06,0.94
+          done
+          /tmp/venv/bin/python -c "
+          from PIL import Image, ImageDraw
+          m = Image.new('L', (886, 1288), 0); ImageDraw.Draw(m).rounded_rectangle((0, 0, 885, 1287), radius=48, fill=255)
+          m.save('$RUNNER_TEMP/frame/mask.png')"
+          echo "DUO_FRAME=$RUNNER_TEMP/frame" >> "$GITHUB_ENV"
       - name: Cut
         env:
           LANGS: ${{ inputs.languages }}

@@ -13,6 +13,9 @@ on:
       only:
         description: "Record only these, e.g. \"ar/01-header en/02-search\""
         default: ""
+      device:
+        description: "iphone, or duo (the iPhone Duo simulator's outer display, on GitHub's Xcode 27 image)"
+        default: "iphone"
 
 permissions:
   contents: read
@@ -41,7 +44,7 @@ jobs:
   record:
     name: Previews (${{ matrix.shard }})
     needs: plan
-    runs-on: macos-26
+    runs-on: ${{ inputs.device == 'duo' && 'xcode-27' || 'macos-26' }}
     timeout-minutes: 150
     strategy:
       fail-fast: false
@@ -52,11 +55,17 @@ jobs:
         working-directory: ios
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-      - name: Select newest Xcode 26
+      - name: Select Xcode
+        env:
+          DEVICE: ${{ inputs.device }}
         run: |
           XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ "$DEVICE" = duo ] && XC=/Applications/Xcode_27.1.app
           sudo xcode-select -s "$XC"
           xcodebuild -version
+      - name: iOS 27.1 simulator runtime (iPhone Duo)
+        if: inputs.device == 'duo'
+        run: xcrun simctl list runtimes | grep -q "iOS 27.1" || xcodebuild -downloadPlatform iOS
       - name: Tools
         run: brew install xcodegen ffmpeg
       - name: Generate project
@@ -74,6 +83,7 @@ jobs:
         env:
           LANGS: ${{ matrix.langs }}
           ONLY: ${{ inputs.only }}
+          PREVIEW_DEVICE: ${{ inputs.device }}
         # shellcheck disable=SC2086 # the language list is meant to split into arguments
         run: |
           python3 ../tools/store/record.py "$APP" out $LANGS
@@ -108,12 +118,15 @@ jobs:
         with:
           path: repo
       - name: Cut the demo previews
+        # The iPhone Duo's recordings are framed by the demo workflow (store-demo.yml, device duo).
+        if: inputs.device != 'duo'
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
           python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet numpy
           /tmp/venv/bin/python repo/tools/store/creative/demo.py previews demo/demo
           find demo -name '*.mp4' | sort | sed 's|^demo/||' | tee -a "$GITHUB_STEP_SUMMARY" | wc -l
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: inputs.device != 'duo'
         with:
           name: app-store-demo
           path: demo/

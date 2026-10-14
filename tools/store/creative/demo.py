@@ -12,6 +12,7 @@ question asked and its answer with sources. 886 x 1920, H.264 High at 30 fps, ab
 soundscape (wind and birds) as its stereo track (Apple requires one).
 """
 import json
+import os
 import pathlib
 import subprocess
 import sys
@@ -24,6 +25,10 @@ SPEC = json.loads((HERE.parent / "screens.json").read_text())
 # the answer and its sources however long a language takes to answer.
 CUTS = [("01-header", 0.3, 8.9), ("01-header", 10.6, 17.6), ("02-mosques", 2.0, 6.0), ("03-search", 3.5, 8.0), ("03-search", -6.5, 0)]
 FADE = 0.4
+# DUO_FRAME=<folder>: the recordings are the iPhone Duo's outer display (886 x 1288, its side tab bar included);
+# they sit whole in Apple's 886 x 1920 preview frame on <folder>/background.png, with rounded corners, and the
+# language's phrase (<folder>/<app language>.png, a transparent layer) above them.
+DUO = os.environ.get("DUO_FRAME")
 
 
 def main():
@@ -55,11 +60,20 @@ def main():
             offset += (CUTS[i - 1][2] - CUTS[i - 1][1]) - FADE
             chain.append(f"[{last}][v{i}]xfade=transition=fade:duration={FADE}:offset={offset:.3f}[x{i}]")
             last = f"x{i}"
+        if DUO:
+            frame = pathlib.Path(DUO)
+            text = frame / f"{lang['app']}.png"
+            n = len(CUTS)  # the frame's inputs come after the clips (and before the soundscape)
+            inputs += ["-loop", "1", "-i", str(frame / "background.png"), "-loop", "1", "-i", str(frame / "mask.png"),
+                       "-loop", "1", "-i", str(text if text.exists() else frame / "en.png")]
+            chain.append(f"[{last}]scale=886:1288,format=rgba[scr];[{n + 1}:v]format=gray[msk];[scr][msk]alphamerge[rounded]")
+            chain.append(f"[{n}:v][rounded]overlay=0:{(1920 - 1288) // 2}:shortest=1[on];[on][{n + 2}:v]overlay=0:0:shortest=1[framed]")
+            last = "framed"
         chain.append(f"[{last}]format=yuv420p[vout]")
         last = "vout"
         target = out / f"{lang['asc'][0]}.mp4"
         subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", *inputs, "-i", str(amb), "-filter_complex", ";".join(chain),
-                        "-map", f"[{last}]", "-map", f"{len(CUTS)}:a", "-t", f"{total:.2f}",
+                        "-map", f"[{last}]", "-map", f"{len(CUTS) + (3 if DUO else 0)}:a", "-t", f"{total:.2f}",
                         "-c:v", "libx264", "-profile:v", "high", "-level:v", "4.0", "-preset", "medium", "-b:v", "11M", "-maxrate", "12M",
                         "-bufsize", "24M", "-r", "30", "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2", "-movflags", "+faststart",
                         str(target)], check=True)

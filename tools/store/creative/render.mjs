@@ -1,6 +1,7 @@
 // Renders the creative videos' moving parts in Chromium (Playwright) and streams the frames to ffmpeg.
 //
 //   node render.mjs sky <out.mp4> <width> <height> <seconds> [fps]    the living sky loop, no text
+//   node render.mjs still <out.png> <width> <height> <t>              one frame of the sky (a background)
 //   node render.mjs text <out.png> <width> <height> <lang> <phrase> [size] [y] [left,right]   the phrase on a transparent layer
 //
 // The sky is drawn by sky.js (one frame per call, t = 0..1 over the loop). Text uses web fonts per script so every
@@ -47,6 +48,14 @@ if (kind === 'sky') {
   }
   ff.stdin.end();
   await new Promise((r) => ff.on('close', r));
+} else if (kind === 'still') {
+  // One frame of the sky at t (0..1 over the day), as a PNG (backgrounds); SKY options as for the loop.
+  const [t] = rest;
+  await page.setContent(`<html><body style="margin:0;background:#000"><canvas id=c width=${w} height=${h}></canvas>
+    <script>${fs.readFileSync(path.join(here, 'sky.js'), 'utf8')}</script></body></html>`);
+  await page.evaluate(([t, opts]) => { const c = document.getElementById('c'); drawSky(c.getContext('2d'), c.width, c.height, t, opts); },
+    [+t, JSON.parse(process.env.SKY || '{}')]);
+  await page.screenshot({ path: out });
 } else if (kind === 'text') {
   // size: font size as a fraction of the height; y: the text's centre; box: its left and right edges (fractions).
   const [lang, phrase, size = '0.07', y = '0.37', box = '0.22,0.78'] = rest;

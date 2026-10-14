@@ -102,9 +102,12 @@
     }
   },
   "previews": {
-    "_about": "App Previews (videos of 15 to 30 seconds): a scripted tour in the Debug build (`-demoPreview`), recorded from the iPhone simulator by tools/store/record.py and converted to App Store Connect's format (886 x 1920, H.264 at 30 fps, silent stereo AAC). The same files fit the iPhone 6.9\" and iPhone Duo preview slots. Up to 3 previews per device size and language; the order here is the order on the store page. Each video starts `lead` seconds before the tour does (the app marks the moment) and lasts `seconds`.",
+    "_about": "App Previews (videos of 15 to 30 seconds): a scripted tour in the Debug build (`-demoPreview`), recorded from the iPhone simulator by tools/store/record.py and converted to App Store Connect's format (886 x 1920, H.264 at 30 fps, silent stereo AAC). The iPhone Duo's own recordings (`devices.duo`, its outer display, 886 x 1288) are set in the 886 x 1920 frame Apple asks for by demo.py. Up to 3 previews per device size and language; the order here is the order on the store page. Each video starts `lead` seconds before the tour does (the app marks the moment) and lasts `seconds`.",
     "simulator": "^iPhone \\d+ Pro Max$",
     "size": [886, 1920],
+    "devices": {
+      "duo": {"simulator": "^iPhone Duo", "runtime": "27.1", "display": 1, "size": [886, 1288]}
+    },
     "clips": {
       "header": {"title": "Prayer header and Qibla", "shows": "The prayer header on the sky of the hour, scrolled into the slim bar and back, then a tap into the Qibla view that lights up when the phone faces the Qibla.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoPreview", "header"], "lead": 3, "seconds": 20},
       "mosques": {"title": "Nearest mosques", "shows": "The mosque compass turning with the phone, then the map of the nearest mosques, then the nearest one's page.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoPreview", "mosques", "-demoMosqueMode", "0"], "lead": 3, "seconds": 15},
