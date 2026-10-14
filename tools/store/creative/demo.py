@@ -29,6 +29,9 @@ FADE = 0.4
 # they sit whole in Apple's 886 x 1920 preview frame on <folder>/background.png, with rounded corners, and the
 # language's phrase (<folder>/<app language>.png, a transparent layer) above them.
 DUO = os.environ.get("DUO_FRAME")
+if DUO:
+    # The Duo simulator settles the city about two seconds into the header recording.
+    CUTS = [("01-header", 2.3, 8.9)] + CUTS[1:]
 
 
 def main():
