@@ -74,16 +74,17 @@ const SCENES = {
 }[LANG];
 
 // The live scene's words: the app's strings (shared/i18n/strings.json, AppShortcuts.xcstrings) and the moment of
-// the widget screenshot (Riyadh, Maghrib at 5:29 PM, 2:27:52 left).
+// the language's widget screenshot (Riyadh; English: Maghrib at 5:29 PM, 2:27:52 left; Arabic: Asr at 3:00 PM,
+// 3:55 left), so the island, the Lock Screen and the widgets agree.
 const LIVE = {
-  ar: { prayer: 'المغرب', at: '5:29 م', next: 'الصلاة القادمة', city: 'الرياض', qibla: 'القبلة', mosque: 'أقرب مسجد', left: 'انعطف يسارًا', facing: 'استقبلت القبلة',
-    clock: '3:01', date: 'الاثنين 12 أكتوبر', ask: 'متى الصلاة القادمة في أقرب مسجد', answer: 'المغرب الساعة 5:29 م، بعد ساعتين و27 دقيقة.', app: 'أقرب مسجد',
+  ar: { prayer: 'العصر', at: '3:00 م', next: 'الصلاة القادمة', city: 'الرياض', qibla: 'القبلة', mosque: 'أقرب مسجد', left: 'انعطف يسارًا', facing: 'استقبلت القبلة',
+    clock: '2:56', date: 'الاثنين 12 أكتوبر', ask: 'متى الصلاة القادمة في أقرب مسجد', answer: 'العصر الساعة 3:00 م، بعد 3 دقائق.', app: 'أقرب مسجد', seconds: 3 * 60 + 55, index: 2, icon: 'sun',
     slots: [['الفجر', '4:32'], ['الظهر', '11:40'], ['العصر', '3:00'], ['المغرب', '5:29'], ['العشاء', '6:59']] },
   en: { prayer: 'Maghrib', at: '5:29 PM', next: 'Next prayer', city: 'Riyadh', qibla: 'Qibla', mosque: 'Nearest Mosque', left: 'Turn left', facing: 'Facing the Qibla',
-    clock: '3:01', date: 'Monday, October 12', ask: 'When is the next prayer in Near Mosque', answer: 'Maghrib is at 5:29 PM, in 2 hours, 27 minutes.', app: 'Near Mosque',
+    clock: '3:01', date: 'Monday, October 12', ask: 'When is the next prayer in Near Mosque', answer: 'Maghrib is at 5:29 PM, in 2 hours, 27 minutes.', app: 'Near Mosque', seconds: 2 * 3600 + 27 * 60 + 52, index: 3, icon: 'sunset',
     slots: [['Fajr', '4:32'], ['Dhuhr', '11:40'], ['Asr', '3:00'], ['Maghrib', '5:29'], ['Isha', '6:59']] },
 }[LANG];
-const LEFT = 2 * 3600 + 27 * 60 + 52; // seconds left at the scene's start
+const LEFT = LIVE.seconds; // seconds left at the scene's start
 
 const wide = spec.cut === 'wide';
 const W = spec.width, H = spec.height;
@@ -91,7 +92,7 @@ const u = (wide ? H : W) / 1080; // one design unit
 
 // Scenes start a little before their line and end where the next one starts.
 const lines = spec.lines;
-const scenes = lines.map((l, i) => ({ ...SCENES[l.line], line: l.line, start: i ? l.start - 0.35 : 0, end: i + 1 < lines.length ? lines[i + 1].start - 0.35 : spec.duration }));
+const scenes = lines.map((l, i) => ({ ...SCENES[l.line], line: l.line, voice: l.end - l.start, start: i ? l.start - 0.35 : 0, end: i + 1 < lines.length ? lines[i + 1].start - 0.35 : spec.duration }));
 
 const font = rtl ? "'IBM Plex Sans Arabic', sans-serif" : "'Inter', sans-serif";
 const h1 = (rtl ? 64 : fx ? 82 : 66) * u * (wide ? 1 : rtl ? 1.22 : 1.12);
@@ -255,22 +256,47 @@ const appear = await page.evaluate(async ({ scenes, wide, W, H, u, CLIPS, A, rtl
           items.push([wch, 0.3 + k * 0.9, true]);
         });
       } else if (s.kind === 'devices') {
+        // The devices come in one by one as the voice names them: each rises and tilts into place, a light passes
+        // over its screen, it floats, and its screen changes to a second view of the app.
         const t = mk(el, 'div', 'el', { left: 0, right: 0, top: px(H * (wide ? 0.09 : 0.08)), textAlign: 'center' });
         mk(t, 'h1', '', {}, words(s.title, 0, 0.11).html);
         textItem(t, 0.1);
-        const list = [['iphone/01-prayer.png', 0.25, 0.462], ['ipad/01-prayer.png', 0.55, 1.33], ['mac/01-prayer.png', 0.62, 1.6], ['tv/01-tv-board.png', 0.62, 1.78], ['vision/01-prayer.png', 0.62, 1.78]];
-        const slots = wide ? list.map((_, k) => [mc(W * (0.9 - k * 0.2)), H * 0.56]) : [[W * 0.24, H * 0.36], [W * 0.66, H * 0.34], [W * 0.5, H * 0.55], [W * 0.27, H * 0.76], [W * 0.73, H * 0.76]];
-        list.forEach(([img, scale, ratio], k) => {
-          const hgt = (wide ? H * 0.34 : H * 0.15) * (k === 0 ? 1.15 : 1) * (k === 0 ? 1 : 0.62 + 0.38 * (ratio < 1.5 ? 1 : 0.7));
-          const wdt = k === 0 ? hgt * ratio : Math.min(hgt * ratio, wide ? W * 0.18 : W * 0.4);
-          const [cx, cy] = slots[k];
-          const box = mk(el, 'div', 'el', { left: px(cx - wdt / 2), top: px(cy - hgt / 2), width: px(wdt), textAlign: 'center' });
-          const frame = mk(box, 'div', '', { width: px(wdt), height: px(wdt / ratio), borderRadius: px(k === 0 ? 30 * u : 16 * u), background: '#111317', padding: px(k === 0 ? 6 * u : 5 * u), boxShadow: `0 ${20 * u}px ${50 * u}px rgba(20,30,50,0.18)` });
-          const im = mk(frame, 'img', '', { width: '100%', height: '100%', objectFit: 'cover', borderRadius: px(k === 0 ? 24 * u : 11 * u), display: 'block' });
-          im.src = fileUrl(img);
-          if (k === 2) mk(box, 'div', '', { width: px(wdt), height: px(10 * u), borderRadius: `0 0 ${12 * u}px ${12 * u}px`, background: '#C9CBD0' });
-          mk(box, 'div', 'label', { marginTop: px(18 * u) }, s.labels[k]);
-          items.push([box, 0.35 + k * 0.95, true]);
+        // [screens, centre x and y (fractions, left to right), screen width and height (units), kind, depth]: a family
+        // shot, the TV and the Mac behind, the iPad and the iPhone in front, the Vision Pro window floating.
+        const list = [[['iphone/01-prayer.png', 'iphone/02-qibla.png'], 0.615, 0.74, 172, 372, 'phone', 5], [['ipad/01-prayer.png', 'ipad/03-mosques-map.png'], 0.31, 0.73, 420, 315, 'tablet', 4],
+          [['mac/01-prayer.png', 'mac/03-ask.png'], 0.55, 0.47, 640, 400, 'mac', 2], [['tv/01-tv-board.png', 'tv/02-tv-qibla.png'], 0.225, 0.45, 600, 338, 'tv', 1],
+          [['vision/01-prayer.png', 'vision/02-mosques-map.png'], 0.835, 0.4, 440, 248, 'vision', 3]];
+        const z = wide ? u : u * 0.55;
+        const beat = (s.voice || 5) * 0.9 / list.length;
+        // The name of the device coming in, under the title.
+        const names = mk(el, 'div', 'el', { left: 0, right: 0, top: px(H * 0.09 + parseFloat(getComputedStyle(t.firstChild).fontSize) * 1.3), textAlign: 'center', height: px(60 * u) });
+        names.dataset.names = 1;
+        s.labels.forEach((l, k) => { const n = mk(names, 'div', '', { position: 'absolute', left: 0, right: 0, fontSize: px(40 * u), fontWeight: 600, color: '#A57A12', opacity: 0 }, l); n.dataset.at = 0.3 + k * beat; });
+        items.push([names, 0, false]);
+        names.dataset.fx = 1;
+        list.forEach(([shots, fxp, fyp, sw, sh, kind, depth], k) => {
+          const cx = rtl ? W * (1 - fxp) : W * fxp, cy = H * fyp;
+          const box = mk(el, 'div', 'el', { left: px(cx - sw * z / 2), top: px(cy - sh * z / 2), width: px(sw * z), height: px(sh * z), transformOrigin: '50% 100%', zIndex: depth });
+          box.dataset.dev = k;
+          if (kind === 'vision') box.dataset.tilt = rtl ? 10 : -10;
+          const r = { phone: 30, tablet: 18, mac: 12, tv: 6, vision: 22 }[kind] * z;
+          const bez = { phone: 6, tablet: 8, mac: 7, tv: 5, vision: 0 }[kind] * z;
+          const frame = mk(box, 'div', '', { position: 'absolute', inset: 0, borderRadius: px(r), background: kind === 'vision' ? 'transparent' : '#111317', padding: px(bez),
+            boxShadow: kind === 'vision' ? `0 ${30 * z}px ${80 * z}px rgba(20,30,50,0.30), 0 0 0 ${1.5 * z}px rgba(255,255,255,0.7)` : `0 ${30 * z}px ${70 * z}px rgba(20,30,50,0.25), inset 0 0 0 ${1.5 * z}px #6B7079` });
+          const scr = mk(frame, 'div', '', { position: 'relative', width: '100%', height: '100%', borderRadius: px(Math.max(2, r - bez)), overflow: 'hidden', background: '#000' });
+          shots.forEach((src, j) => { const im = mk(scr, 'img', '', { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', opacity: j ? 0 : 1 }); im.src = fileUrl(src); if (j) im.dataset.swap = 1; });
+          const shine = mk(scr, 'div', '', { position: 'absolute', top: '-20%', bottom: '-20%', width: '45%', left: '-60%', background: 'linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0) 70%, transparent 100%)' });
+          shine.dataset.shine = 1;
+          if (kind === 'phone') mk(scr, 'div', '', { position: 'absolute', top: px(8 * z), left: '50%', width: px(52 * z), height: px(15 * z), marginLeft: px(-26 * z), borderRadius: px(8 * z), background: '#000' });
+          if (kind === 'mac') {
+            mk(box, 'div', '', { position: 'absolute', left: px(-56 * z), right: px(-56 * z), top: '100%', height: px(16 * z), borderRadius: `${2 * z}px ${2 * z}px ${16 * z}px ${16 * z}px`, background: 'linear-gradient(#E6E7EB,#B5B7BD)', boxShadow: `0 ${14 * z}px ${30 * z}px rgba(20,30,50,0.2)` });
+            mk(box, 'div', '', { position: 'absolute', left: '50%', width: px(110 * z), marginLeft: px(-55 * z), top: '100%', height: px(6 * z), borderRadius: `0 0 ${6 * z}px ${6 * z}px`, background: '#A4A6AD' });
+          }
+          if (kind === 'tv') {
+            mk(box, 'div', '', { position: 'absolute', left: '50%', width: px(22 * z), marginLeft: px(-11 * z), top: '100%', height: px(46 * z), background: 'linear-gradient(90deg,#9EA1A8,#CDCFD4,#9EA1A8)' });
+            mk(box, 'div', '', { position: 'absolute', left: '50%', width: px(200 * z), marginLeft: px(-100 * z), top: `calc(100% + ${46 * z}px)`, height: px(9 * z), borderRadius: px(5 * z), background: '#B9BBC1', boxShadow: `0 ${10 * z}px ${22 * z}px rgba(20,30,50,0.18)` });
+          }
+          items.push([box, 0.3 + k * beat, true]);
         });
       } else if (s.kind === 'languages') {
         const ws = ['مرحبًا', 'Hello', 'Bonjour', 'Hola', 'Merhaba', 'Selamat', 'خوش آمدید', 'Привет', 'Welkom', '你好', 'नमस्ते', 'স্বাগতম', 'Olá', 'Szia', 'สวัสดี', 'Xin chào', 'ਜੀ ਆਇਆਂ', 'സ്വാഗതം'];
@@ -339,6 +365,8 @@ const appear = await page.evaluate(async ({ scenes, wide, W, H, u, CLIPS, A, rtl
   // The app's arrow: a split arrowhead, white on one side, gold on the other.
   const arrow = (s, gold) => `<svg width="${s}" height="${s}" viewBox="-12 -12 24 24" style="display:block;overflow:visible"><path d="M0 -11 L8 9 L0 4 Z" fill="${gold}"/><path d="M0 -11 L-8 9 L0 4 Z" fill="#FFFFFF"/></svg>`;
   const sunset = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 5v4M5 10l2 2M19 10l-2 2M9 3l3 2 3-2"/></svg>`;
+  const sunG = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`;
+  const symbol = (s, c) => (LIVE.icon === 'sun' ? sunG(s, c) : sunset(s, c));
   const pin = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7" r="3"/><path d="M12 10v8M6 16c-2 .6-3 1.4-3 2.2C3 19.8 7 21 12 21s9-1.2 9-2.8c0-.8-1-1.6-3-2.2"/></svg>`;
   const north = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M12 3 L18 19 L12 15 L6 19 Z" fill="${c}"/></svg>`;
   const columns = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"><path d="M3 9 L12 4 L21 9 Z M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>`;
@@ -361,9 +389,9 @@ const appear = await page.evaluate(async ({ scenes, wide, W, H, u, CLIPS, A, rtl
     isl.dataset.island = 1;
     const part = (name, html) => { const p = mk(isl, 'div', 'part', { opacity: 0 }, html); p.dataset.part = name; return p; };
     const lead = rtl ? 'right' : 'left', trail = rtl ? 'left' : 'right';
-    part('pc', `<div style="position:absolute;${lead}:12px;top:9px;display:flex;gap:4px;align-items:center;font-size:12.5px;font-weight:600">${sunset(16, gold)}<span>${LIVE.prayer}</span></div>
+    part('pc', `<div style="position:absolute;${lead}:12px;top:9px;display:flex;gap:4px;align-items:center;font-size:12.5px;font-weight:600">${symbol(16, gold)}<span>${LIVE.prayer}</span></div>
       <div class="mono" data-count="short" style="position:absolute;${trail}:12px;top:10px;font-size:12.5px;font-weight:600;color:${gold}"></div>`);
-    part('pe', `<div style="position:absolute;${lead}:22px;top:20px;display:flex;gap:8px;align-items:center;font-size:17px;font-weight:600">${sunset(20, gold)}<span>${LIVE.prayer}</span></div>
+    part('pe', `<div style="position:absolute;${lead}:22px;top:20px;display:flex;gap:8px;align-items:center;font-size:17px;font-weight:600">${symbol(20, gold)}<span>${LIVE.prayer}</span></div>
       <div class="mono" style="position:absolute;${trail}:22px;top:21px;font-size:17px;font-weight:600;color:rgba(255,255,255,0.8)">${LIVE.at}</div>
       <div style="position:absolute;left:0;right:0;top:50px;text-align:center;font-size:12px;color:rgba(255,255,255,0.7)">${LIVE.next} · ${LIVE.city}</div>
       <div class="mono" data-count="long" style="position:absolute;left:0;right:0;top:72px;text-align:center;font-size:36px;font-weight:600;color:${gold};letter-spacing:-0.01em"></div>
@@ -397,9 +425,9 @@ const appear = await page.evaluate(async ({ scenes, wide, W, H, u, CLIPS, A, rtl
     const card = mk(lock, 'div', '', { position: 'absolute', left: '14px', right: '14px', top: '560px', height: '178px', borderRadius: '26px', padding: '16px', color: '#fff', background: 'linear-gradient(180deg,#1F3B78 0%,#2E5A9E 100%)', boxShadow: '0 12px 40px rgba(0,0,0,0.25)', direction: rtl ? 'rtl' : 'ltr' });
     card.dataset.card = 1;
     card.innerHTML = `<div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:rgba(255,255,255,0.8)"><span style="display:flex;gap:6px;align-items:center">${pin(14, 'rgba(255,255,255,0.8)')}${LIVE.city}</span><span class="mono">${LIVE.clock}</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px"><span style="display:flex;gap:8px;align-items:center;font-size:24px;font-weight:700">${sunset(22, '#F2CF6B')}${LIVE.prayer}</span><span class="mono" data-count="long" style="font-size:31px;font-weight:600;color:#F2CF6B;direction:ltr"></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px"><span style="display:flex;gap:8px;align-items:center;font-size:24px;font-weight:700">${symbol(22, '#F2CF6B')}${LIVE.prayer}</span><span class="mono" data-count="long" style="font-size:31px;font-weight:600;color:#F2CF6B;direction:ltr"></span></div>
       <div style="margin-top:8px;height:5px;border-radius:3px;background:rgba(255,255,255,0.2);direction:ltr"><div data-progress=1 style="height:100%;border-radius:3px;background:#F2CF6B;width:44%"></div></div>
-      <div style="display:flex;gap:4px;margin-top:10px">${LIVE.slots.map(([n, t], k) => `<div style="flex:1;text-align:center;padding:4px 0;border-radius:8px;font-size:11px;line-height:1.35;${k === 3 ? 'background:#F2CF6B;color:#14284F;font-weight:700' : 'color:rgba(255,255,255,0.85)'}"><div>${n}</div><div class="mono">${t}</div></div>`).join('')}</div>`;
+      <div style="display:flex;gap:4px;margin-top:10px">${LIVE.slots.map(([n, t], k) => `<div style="flex:1;text-align:center;padding:4px 0;border-radius:8px;font-size:11px;line-height:1.35;${k === LIVE.index ? 'background:#F2CF6B;color:#14284F;font-weight:700' : 'color:rgba(255,255,255,0.85)'}"><div>${n}</div><div class="mono">${t}</div></div>`).join('')}</div>`;
     // Siri: the glowing edge, what was asked, and the answer from the app (NextPrayerIntent's dialog).
     const glow = mk(lock, 'div', '', { position: 'absolute', inset: 0, borderRadius: '55px', padding: '9px', overflow: 'hidden', opacity: 0, pointerEvents: 'none',
       webkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)', webkitMaskComposite: 'xor', maskComposite: 'exclude' });
@@ -452,6 +480,30 @@ for (let f = 0; f < frames; f++) {
         const d = +e.dataset.delay;
         // A slow drift for the whole scene, as in Apple's films.
         const drift = 1 + 0.025 * Math.min(1, lt / dur);
+        if (e.dataset.dev !== undefined) {
+          const k = +e.dataset.dev, x = (lt - d) / 0.9;
+          const p = 1 - Math.exp(-6 * Math.max(0, x)) * Math.cos(7 * Math.max(0, x)) * Math.max(0, 1 - Math.max(0, x));
+          const pp = x <= 0 ? 0 : Math.min(1.08, p);
+          const float = Math.sin(lt * 1.1 + k * 1.3) * 5 * u * ease((lt - d - 0.8) / 1.2);
+          e.style.opacity = ease((lt - d) / 0.45);
+          const tilt = +(e.dataset.tilt || 0);
+          e.style.transform = `perspective(${1400 * u}px) translateY(${(1 - pp) * 90 * u + float}px) rotateX(${(1 - pp) * 24}deg) rotateY(${tilt * Math.min(1, pp)}deg) scale(${0.86 + 0.14 * pp})`;
+          const sh = e.querySelector('[data-shine]');
+          if (sh) sh.style.left = `${-60 + 220 * ease((lt - d - 0.45) / 1.1)}%`;
+          e.querySelectorAll('[data-swap]').forEach((im) => { im.style.opacity = ease((lt - d - 2.1) / 0.7); });
+          return;
+        }
+        if (e.dataset.names) {
+          e.style.opacity = 1;
+          const ns = [...e.children];
+          ns.forEach((n, k) => {
+            const a = +n.dataset.at, b = k + 1 < ns.length ? +ns[k + 1].dataset.at : 1e9;
+            const p = ease((lt - a) / 0.35) * (1 - ease((lt - b + 0.1) / 0.3));
+            n.style.opacity = p;
+            n.style.transform = `translateY(${(1 - ease((lt - a) / 0.35)) * 14 * u - ease((lt - b + 0.1) / 0.3) * 14 * u}px)`;
+          });
+          return;
+        }
         if (e.dataset.fx) {
           // Word by word: each rises and sharpens in; the highlight sweeps under its words once they are in.
           e.style.opacity = 1;
@@ -483,7 +535,7 @@ for (let f = 0; f < frames; f++) {
       el.querySelectorAll('canvas[data-wall]').forEach((c) => drawSky(c.getContext('2d'), c.width, c.height, 0.43 + now * 0.0015, { arc: false, mosque: 0.12, horizon: 0.8 }));
       // The countdown, as the app writes it (H:MM:SS; M:SS under an hour).
       const left = Math.max(0, LEFT - Math.floor(now));
-      const hms = `${Math.floor(left / 3600)}:${String(Math.floor(left / 60) % 60).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+      const hms = left >= 3600 ? `${Math.floor(left / 3600)}:${String(Math.floor(left / 60) % 60).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}` : `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
       el.querySelectorAll('[data-count]').forEach((c) => { c.textContent = hms; });
       el.querySelectorAll('[data-progress]').forEach((p) => { p.style.width = `${44 + now * 0.02}%`; });
       // The island: idle -> prayer (compact) -> prayer (expanded) -> Qibla (compact) -> Qibla (expanded).
