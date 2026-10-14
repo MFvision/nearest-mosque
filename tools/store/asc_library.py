@@ -236,7 +236,10 @@ def creative(folder: pathlib.Path) -> int:
                 print(f"{sub} {f.stem}: would upload once and place on {len(todo)} locale group(s)"
                       + (f", taking off {replacing} existing placement(s) there" if replacing else "") + ".", flush=True)
                 continue
-            vid = upload(library, f, "appAssetLibraryVideos", category, f"Near Mosque {sub} {f.stem}")
+            # Reference names are unique in the library: a short fingerprint of the file keeps a new cut apart.
+            import hashlib
+            tag = hashlib.md5(f.read_bytes()).hexdigest()[:8]
+            vid = upload(library, f, "appAssetLibraryVideos", category, f"Near Mosque {sub} {f.stem} {tag}")
             state = wait_ready("appAssetLibraryVideos", [vid])[vid]
             if state != "PREPARE_FOR_SUBMISSION":
                 print(f"::warning::{sub} {f.stem}: processing ended in {state}.", flush=True)
