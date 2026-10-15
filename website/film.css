@@ -1,0 +1,42 @@
+/* The film's button, corner card and player (film.js), shared by every version of the landing page. */
+.film-btn { display: inline-flex; align-items: center; gap: 7px; }
+.film-btn svg { flex: none; }
+.film-btn .short { display: none; }
+@media (max-width: 760px) { .film-btn .long { display: none; } .film-btn .short { display: inline; } .film-btn { padding-inline: 12px !important; gap: 5px; } }
+@media (max-width: 379px) { .film-btn .short { display: none; } .film-btn { padding-inline: 11px !important; } }
+
+.film-card { position: fixed; z-index: 19; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); inset-inline-start: max(18px, env(safe-area-inset-left, 0px));
+  display: none; align-items: stretch; border-radius: 20px; padding: 6px; background: rgba(8, 20, 31, 0.62); border: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.6); color: #F1F4F6;
+  opacity: 0; transform: translateY(14px); transition: opacity 0.5s, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+.film-card.in { opacity: 1; transform: none; }
+.film-card.away { opacity: 0; transform: translateY(14px); pointer-events: none; }
+@media (min-width: 1024px) and (min-height: 640px) { .film-card { display: flex; } }
+.film-open { display: flex; align-items: center; gap: 12px; padding: 0 14px 0 0; margin: 0; border: 0; background: none; color: inherit; cursor: pointer; text-align: start; font: inherit; }
+[dir="rtl"] .film-open { padding: 0 0 0 14px; }
+.film-thumb { position: relative; width: 132px; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; flex: none; background: #0B2335; }
+.film-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+.film-thumb i { position: absolute; inset: 0; margin: auto; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.92); color: #10202B; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+.film-thumb i svg { margin-inline-start: 2px; }
+[dir="rtl"] .film-thumb i svg { margin-inline-start: 0; margin-inline-end: 2px; }
+.film-open:hover .film-thumb img { transform: scale(1.06); }
+.film-words { display: grid; gap: 2px; }
+.film-words b { font: 600 0.98rem 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif; }
+.film-words small { font: 400 0.8rem 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #A9B6C0; }
+.film-x { align-self: flex-start; width: 28px; height: 28px; margin: 2px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; background: rgba(255, 255, 255, 0.1); color: #F1F4F6; }
+.film-x:hover, .film-open:hover b { color: #E2B649; }
+
+.promo-player { padding: 0; border: 0; background: transparent; max-width: none; max-height: none; width: 100%; height: 100%; margin: 0; overflow: hidden; color: #F1F4F6; }
+.promo-player[open] { display: grid; place-items: center; align-content: center; gap: 14px; }
+.promo-player::backdrop { background: rgba(3, 10, 16, 0.84); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.film-frame { width: min(92vw, calc((100svh - 120px) * 16 / 9), 1280px); aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #000; box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.8); }
+.promo-player[data-cut="tall"] .film-frame { width: min(92vw, calc((100svh - 120px) * 9 / 16), 480px); aspect-ratio: 9 / 16; }
+.promo-player video { width: 100%; height: 100%; display: block; background: #000; }
+.film-row { width: min(92vw, 1280px); display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.film-langs { display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.14); }
+.film-langs button, .film-close { font: 600 0.92rem 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif; min-height: 40px; padding: 6px 16px; border-radius: 999px; border: 0; cursor: pointer; background: transparent; color: #F1F4F6; }
+.film-langs button[aria-pressed="true"] { background: #F1F4F6; color: #10202B; }
+.film-close { border: 1px solid rgba(255, 255, 255, 0.22); }
+.film-close:hover { border-color: #E2B649; }
+.film-on body { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .film-card, .film-thumb img { transition: none; } }

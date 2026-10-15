@@ -22,6 +22,10 @@ promo and the watch) for each feature, with the store screenshots.
   `shared/content/common-questions.json` through `tools/site/build_ask_sample.py`.
 * `versions/`: one page that opens all four versions, for asking people which they prefer.
 * `prayer.js`: prayer times, the Qibla and the sky's moment for versions 2 and 3.
+* Shared by all four versions: `devices.css` with `assets/frames/` (the iPhone and Apple Watch frames drawn round
+  the screenshots); `film.js`, `film.css` with `assets/film/` (the button and player for the app's short film, in
+  Arabic and English, a wide cut and a tall cut, cut down for the web from the promo masters); `duo.js`, `duo.css`
+  with `assets/<lang>/duo/` (the app on iPhone Duo in its three poses).
 * `support.html` (the store's support URL) and `terms.html` (terms of use).
 * `privacy.html`, `security.html`, `credits.html` (sources and licences; with `legal.css`, `legal.js`): the privacy policy and the security page in both
   languages, for the store listings. They describe what the apps do; when an app starts sending or keeping

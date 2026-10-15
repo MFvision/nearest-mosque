@@ -84,7 +84,7 @@ function render() {
   $('#stores-top').innerHTML = $('#stores-end').innerHTML = storesHTML(s, links);
   $('#chips').innerHTML = questions.map((q, i) => `<button type="button" data-i="${i}">${esc(q.question[lang])}</button>`).join('');
   document.querySelectorAll('#chips button').forEach((b) => b.addEventListener('click', () => show(+b.dataset.i, true)));
-  $('#cards').innerHTML = t.cards.map(([img, h, p]) => `<article class="card"><div class="shot"><img src="../assets/${lang}/${img}.webp" alt="" loading="lazy" decoding="async"></div><div><h3>${esc(h)}</h3><p>${esc(p)}</p></div></article>`).join('');
+  $('#cards').innerHTML = t.cards.map(([img, h, p]) => `<article class="card"><div class="shot"><div class="phone"><img src="../assets/${lang}/${img}.webp" alt="" loading="lazy" decoding="async"></div></div><div><h3>${esc(h)}</h3><p>${esc(p)}</p></div></article>`).join('');
   const f = s.footer;
   $('#foot').innerHTML = [['../privacy.html', f.privacy], ['../terms.html', f.terms], ['../support.html', f.support], ['../security.html', f.security], ['../credits.html', f.credits]].map(([h, l]) => `<a href="${h}${lang === 'ar' ? '#ar' : ''}">${esc(l)}</a>`).join('');
   show(current, true);

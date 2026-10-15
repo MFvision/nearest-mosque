@@ -88,7 +88,20 @@ def target():
     versions = all_pages(f"/apps/{app['id']}/appStoreVersions", {"filter[platform]": "IOS", "limit": "50"})
     editable = [v for v in versions if (v["attributes"].get("appVersionState") or v["attributes"].get("appStoreState")) in EDITABLE]
     if not editable:
-        raise SystemExit("::error::No editable iOS version (Prepare for Submission) to place assets on.")
+        # Say which versions there are and in what state, so it is clear what to do (create the next version, or
+        # take the one in review back), and write it to the run's summary. A dry run ends as a warning: it had
+        # nothing to change, so nothing failed.
+        states = ", ".join(f"{v['attributes']['versionString']}: {(v['attributes'].get('appVersionState') or v['attributes'].get('appStoreState') or '?').replace('_', ' ').lower()}" for v in versions[:5]) or "none"
+        note = (f"No editable iOS version to place assets on (versions: {states}). Create the next version in App Store Connect, "
+                "or remove the one waiting for review from review, then run this again.")
+        summary = os.environ.get("GITHUB_STEP_SUMMARY")
+        if summary:
+            with open(summary, "a") as f:
+                f.write(f"### Nothing uploaded\n\n{note}\n")
+        if DRY:
+            print(f"::warning::{note}", flush=True)
+            raise SystemExit(0)
+        raise SystemExit(f"::error::{note}")
     version = editable[0]
     print(f"iOS version {version['attributes']['versionString']}", flush=True)
     locs = {l["attributes"]["locale"]: l["id"] for l in all_pages(f"/appStoreVersions/{version['id']}/appStoreVersionLocalizations", {"limit": "50"})}

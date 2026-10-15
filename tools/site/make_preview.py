@@ -12,7 +12,7 @@ import shutil
 import sys
 
 SITE = pathlib.Path(__file__).resolve().parents[2] / "website"
-NAMES = ["app.js", "story.js", "globe.js", "places.js", "sky.js", "style.css", "legal.js", "legal.css", "prayer.js", "2/now.js", "2/now.css", "3/day.js", "3/day.css", "4/ask.js", "4/ask.css"]
+NAMES = ["app.js", "story.js", "globe.js", "places.js", "sky.js", "style.css", "legal.js", "legal.css", "prayer.js", "2/now.js", "2/now.css", "3/day.js", "3/day.css", "4/ask.js", "4/ask.css", "devices.css", "film.js", "film.css", "duo.js", "duo.css"]
 
 
 def main():

@@ -84,7 +84,7 @@ function mediaHTML(c, t) {
         <figure class="mac"><div class="screen">${img(mac)}</div><div class="base"></div><figcaption>${L[2]}</figcaption></figure>
         <figure class="vision"><div class="screen">${img(vision)}</div><figcaption>${L[4]}</figcaption></figure>
         <figure class="ipad"><div class="screen">${img(ipad)}</div><figcaption>${L[1]}</figcaption></figure>
-        <figure class="iphone"><div class="screen">${img(iphone)}</div><figcaption>${L[0]}</figcaption></figure>
+        <figure class="iphone"><div class="phone">${img(iphone)}</div><figcaption>${L[0]}</figcaption></figure>
       </div>`;
     }
     return '';

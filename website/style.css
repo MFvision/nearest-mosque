@@ -146,13 +146,9 @@ main { position: relative; z-index: 1; }
 
 /* Screens. */
 .media { min-width: 0; display: flex; align-items: center; justify-content: center; gap: clamp(12px, 2vw, 28px); min-height: 60svh; }
-.phone { position: relative; width: clamp(150px, 19vw, 260px); aspect-ratio: 1320 / 2868; border-radius: 15% / 7%; background: var(--device); padding: 3.2%;
-  box-shadow: 0 40px 80px -30px var(--shadow), inset 0 0 0 1.5px var(--device-edge); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; flex: none; }
-.phone img, .phone video { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 12% / 5.6%; background: #000; }
-.phone video { position: absolute; inset: 3.2%; width: 93.6%; height: 95.8%; }
+.phone { width: clamp(150px, 19vw, 260px); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; flex: none; }
 .media .phone:nth-child(2) { transform: translateY(8%); }
-.watch { width: clamp(108px, 12vw, 168px); aspect-ratio: 0.82; border-radius: 24%; background: var(--device); padding: 6%; box-shadow: 0 30px 60px -24px var(--shadow), inset 0 0 0 1.5px var(--device-edge); flex: none; }
-.watch img { width: 100%; height: 100%; object-fit: cover; border-radius: 19%; }
+.watch { width: clamp(100px, 11vw, 156px); flex: none; }
 .media .watch:nth-child(2) { transform: translateY(-12%) scale(1.1); }
 .family { position: relative; width: min(100%, 640px); aspect-ratio: 1.45; }
 .family figure { position: absolute; margin: 0; }
@@ -171,8 +167,7 @@ main { position: relative; z-index: 1; }
 .family .ipad { left: 10%; bottom: 0; width: 38%; z-index: 4; }
 .family .ipad .screen { aspect-ratio: 4 / 3; border-radius: 14px; }
 .family .iphone { left: 47%; bottom: 2%; width: 15%; z-index: 5; }
-.family .iphone .screen { aspect-ratio: 1320 / 2868; border-radius: 18px; padding: 4%; }
-.family .iphone .screen img { border-radius: 14px; }
+.family .iphone .phone { width: 100%; }
 [dir="rtl"] .family { transform: scaleX(-1); }
 [dir="rtl"] .family figure > * { transform: scaleX(-1); }
 
@@ -320,3 +315,4 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .js .copy .hl { background-size: 100% 100%; transition: none; }
   .js .chapter.on .media > *, .js .chapter.on .copy, .js .chapter.on .family { transform: none; }
 }
+.duo { background: var(--ground); }
