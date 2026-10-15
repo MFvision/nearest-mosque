@@ -47,10 +47,13 @@ const earthFS = `
     vec3 n = texture2D(uNight, vUv).rgb;
     // Real Earth: the day image lit by the sun, the night image's city lights where it is dark, a warm band at dusk.
     float sunlit = clamp(s * 1.4 + 0.25, 0.0, 1.0);
-    vec3 lit = d * (0.38 + 0.92 * sunlit);
-    // The sunlit sea a shade brighter and bluer, as the air makes it look from space.
-    float sea = smoothstep(0.015, 0.08, d.b - max(d.r, d.g));
-    lit += vec3(0.04, 0.11, 0.2) * sunlit * (0.35 + 0.65 * sea);
+    // The texture is read as linear light, and this colour goes to the screen as it is, so the day side is put back
+    // in the photograph's own tones; without it the sunlit oceans came out nearly black.
+    vec3 p = pow(d, vec3(1.0 / 2.2));
+    vec3 lit = p * (0.42 + 0.68 * sunlit);
+    // The sunlit sea brighter and bluer, as the air makes it look from space; a light haze over the land.
+    float sea = smoothstep(0.03, 0.12, p.b - max(p.r, p.g));
+    lit += vec3(0.05, 0.15, 0.32) * sunlit * (0.25 + 0.75 * sea);
     vec3 dark = d * 0.035 + pow(n, vec3(1.7)) * vec3(1.25, 1.02, 0.7) * 1.5;
     vec3 col = mix(dark, lit, day);
     col += vec3(0.95, 0.55, 0.25) * exp(-pow(s / 0.07, 2.0)) * 0.22;
