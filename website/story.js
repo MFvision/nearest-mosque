@@ -45,15 +45,17 @@ const en = {
   sound: ['Hear the Adhan', 'Adhan on'],
   daynight: ['Day', 'Night'],
   hud: { legend: 'Each light is a city at its prayer time', clock: 'Now in Makkah', styles: ['Earth', 'Dots'], you: 'You', madinah: 'Madinah' },
-  board: { world: 'The Adhan', lines: 'Five prayers', qibla: 'Qibla', kaaba: 'Makkah', sky: 'Your sky', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
+  board: { world: 'Next prayer', lines: 'Five prayers', qibla: 'Qibla', kaaba: 'Makkah', sky: 'Your sky', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
   boardLabel: 'Story',
   soon: 'Coming soon',
   stores: { appStore: ['Download on the', 'App Store'], googlePlay: ['Get it on', 'Google Play'], microsoftStore: ['Get it from', 'Microsoft Store'] },
   chapters: {
     world: {
-      eyebrow: 'Near Mosque',
-      title: 'Somewhere on Earth, the [[Adhan]] is being called right now.',
-      body: 'Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app.',
+      eyebrow: 'Your next prayer',
+      title: 'Your next prayer, wherever you are.',
+      body: 'Somewhere on Earth, the Adhan is being called right now. Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app.',
+      // The title becomes the visitor's next prayer and the time left (app.js); these are its words.
+      nextIn: 'in', nextAt: 'at {time} in {city}',
       cta: 'Get the app',
     },
     lines: {
@@ -172,15 +174,16 @@ const ar = {
   sound: ['استمع إلى الأذان', 'الأذان يعمل'],
   daynight: ['نهار', 'ليل'],
   hud: { legend: 'كل ضوءٍ مدينةٌ حان وقت صلاتها', clock: 'الآن في مكة', styles: ['الأرض', 'النقاط'], you: 'أنت هنا', madinah: 'المدينة المنورة' },
-  board: { world: 'الأذان', lines: 'الصلوات الخمس', qibla: 'القبلة', kaaba: 'مكة المكرمة', sky: 'سماؤك', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
+  board: { world: 'صلاتك القادمة', lines: 'الصلوات الخمس', qibla: 'القبلة', kaaba: 'مكة المكرمة', sky: 'سماؤك', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
   boardLabel: 'القصة',
   soon: 'قريبًا',
   stores: { appStore: ['حمّله من', 'App Store'], googlePlay: ['احصل عليه من', 'Google Play'], microsoftStore: ['احصل عليه من', 'Microsoft Store'] },
   chapters: {
     world: {
-      eyebrow: 'أقرب مسجد',
-      title: 'في مكانٍ ما على الأرض، يُرفع [[الأذان]] الآن.',
-      body: 'مواقيت الصلاة والقبلة وأقرب مسجد أينما كنت، في تطبيقٍ واحدٍ هادئ.',
+      eyebrow: 'صلاتك القادمة',
+      title: 'صلاتك القادمة، أينما كنت.',
+      body: 'في مكانٍ ما على الأرض يُرفع الأذان الآن. مواقيت الصلاة والقبلة وأقرب مسجد أينما كنت، في تطبيقٍ واحدٍ هادئ.',
+      nextIn: 'بعد', nextAt: 'الساعة {time} في {city}',
       cta: 'حمّل التطبيق',
     },
     lines: {

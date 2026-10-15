@@ -3,6 +3,7 @@
 import { story, links } from './story.js';
 import { createGlobe, PRAYER_COLORS, sunAt } from './globe.js';
 import { places } from './places.js';
+import { resolveCity, schedule, nextPrayer, clock } from './prayer.js';
 
 const BASE = new URL('.', import.meta.url).href;
 const WEIGHTS = { world: 1.6, lines: 1.9, qibla: 1.5, kaaba: 2.1, sky: 1.9, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
@@ -122,6 +123,7 @@ function render() {
         <div class="copy">
           <p class="eyebrow">${esc(x.eyebrow)}</p>
           <${h} id="h-${c.id}" aria-label="${esc(plain(x.title))}"><span aria-hidden="true">${words(x.title)}</span></${h}>
+          ${c.id === 'world' ? '<p class="hero-at"></p>' : ''}
           <p>${esc(x.body)}</p>
           ${x.points ? `<ul>${x.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
           ${x.note ? `<p class="note">${esc(x.note)}</p>` : ''}
@@ -148,7 +150,30 @@ function render() {
   }));
   renderHud();
   measure();
+  heroTitle();
 }
+
+// The first title is the visitor's next prayer and the time left, for the centre of their city (from the browser's
+// time zone, with the method the app suggests there), counting down each second.
+let heroCity = null, heroPlan = null;
+function heroTitle() {
+  const el = $('#h-world');
+  if (!el || !heroCity) return;
+  const t = story[lang], x = t.chapters.world, now = new Date();
+  if (!heroPlan || now > heroPlan.tomorrowFajr) heroPlan = schedule(heroCity);
+  const [k, at] = nextPrayer(heroPlan, now);
+  const name = t.prayers[k], city = lang === 'ar' ? heroCity.ar : heroCity.en;
+  if (el.dataset.next !== k + lang + +at) {
+    el.dataset.next = k + lang + +at;
+    const when = x.nextAt.replace('{time}', clock(at, heroCity.tz, lang)).replace('{city}', city);
+    el.setAttribute('aria-label', `${name} ${when}`);
+    el.innerHTML = `<span aria-hidden="true"><span class="w" style="--d:0">${esc(name)}</span> <span class="w" style="--d:1">${esc(x.nextIn)}</span> <span class="hl" style="--d:2"><span class="w count" style="--d:2"></span></span></span>`;
+    $('#world .hero-at').textContent = when;
+  }
+  const left = Math.max(0, Math.round((at - now) / 1000));
+  el.querySelector('.count').textContent = `${Math.floor(left / 3600)}:${String(Math.floor(left / 60) % 60).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+}
+resolveCity(places, BASE + 'assets/zones.json', null).then((c) => { heroCity = c; heroTitle(); setInterval(heroTitle, 1000); }).catch(() => {});
 
 // Theme: the system's, or the viewer's choice.
 const THEMES = ['auto', 'light', 'dark'];
