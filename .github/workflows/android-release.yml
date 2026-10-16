@@ -89,6 +89,8 @@ jobs:
           # Pasted secrets often carry line breaks or spaces: keep only the base64 characters.
           printf '%s' "$ANDROID_KEYSTORE_BASE64" | tr -cd 'A-Za-z0-9+/=' | base64 --decode > "$ks" 2>/dev/null || true
           [ -s "$ks" ] || { echo "::error::ANDROID_KEYSTORE_BASE64 is not base64 of the keystore file (paste the long line from the secrets file, nothing else)."; exit 1; }
+          # Size and the start of the file's SHA-256 (not secret) tell a cut-off paste from a wrong password.
+          echo "Decoded keystore: $(stat -c %s "$ks") bytes, sha256 $(sha256sum "$ks" | cut -c1-16)"
           if ! keytool -list -keystore "$ks" -storepass "$ANDROID_KEYSTORE_PASSWORD" >/dev/null 2>&1; then
             echo "::error::The keystore does not open with ANDROID_KEYSTORE_PASSWORD: the base64 is incomplete or the password is not the one in the secrets file."; exit 1
           fi
