@@ -154,7 +154,8 @@ the questionnaire honestly if it asks about references, and expect an all-ages o
 
 ### Target audience
 
-Recommended: **13 and over** (13–15, 16–17, 18+), not designed for children. Choosing any age under 13
+Chosen by the owner: **13 and over** (13–15, 16–17, 18+), not designed for children, with the content rating
+Everyone (so the app is still suitable for, and available to, all ages). Choosing any age under 13
 puts the app under the Families policy (extra review, limits on sending location from children's devices).
 
 ### Permission declarations for this manifest
