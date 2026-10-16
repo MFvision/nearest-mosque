@@ -6,7 +6,7 @@
 
 Text comes from shared/store/play/listing.json (tools/store/play_listing_build.py). Graphics come from <assets dir>
 as built by tools/store/play_graphics.py (.github/workflows/store-play-assets.yml):
-    icon.png, <app language>/feature.png, <app language>/phone/NN-*.png
+    icon.png, <app language>/feature.png, <app language>/{phone,seven,ten}/NN-*.png
 A language with no graphics of its own uses the English ones. Store contact details (email, website) are set too; the
 default language stays as chosen in Play Console unless DEFAULT_LANGUAGE is given. The edit is committed only after every call succeeded, so a failure leaves
 the store as it was. Nothing here touches releases or tracks.
@@ -26,7 +26,10 @@ from play_upload import API, UPLOAD, Play, access_token  # noqa: E402
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 LISTING = ROOT / "shared/store/play/listing.json"
 CONTACT = {"contactEmail": "app@vision.bz", "contactWebsite": "https://nearmosque.net/"}
-IMAGE_TYPES = ("icon", "featureGraphic", "phoneScreenshots")
+IMAGE_TYPES = ("icon", "featureGraphic", "phoneScreenshots", "sevenInchScreenshots", "tenInchScreenshots")
+# Folder under <assets>/<app language>/ for each kind of screenshot (7-inch: an unfolded foldable such as the
+# Galaxy Z Fold's inner screen; 10-inch: a tablet).
+SHOT_DIRS = {"phoneScreenshots": "phone", "sevenInchScreenshots": "seven", "tenInchScreenshots": "ten"}
 
 
 def upload_image(play: Play, edit: str, lang: str, kind: str, path: pathlib.Path) -> None:
@@ -37,8 +40,10 @@ def upload_image(play: Play, edit: str, lang: str, kind: str, path: pathlib.Path
 def graphics(assets: pathlib.Path, app_lang: str) -> dict:
     def pick(lang: str) -> dict:
         d = assets / lang
-        return {"featureGraphic": [d / "feature.png"] if (d / "feature.png").exists() else [],
-                "phoneScreenshots": sorted((d / "phone").glob("*.png")) if (d / "phone").is_dir() else []}
+        out = {"featureGraphic": [d / "feature.png"] if (d / "feature.png").exists() else []}
+        for kind, sub in SHOT_DIRS.items():
+            out[kind] = sorted((d / sub).glob("*.png")) if (d / sub).is_dir() else []
+        return out
     own, en = pick(app_lang), pick("en")
     out = {k: own[k] or en[k] for k in own}
     out["icon"] = [assets / "icon.png"] if (assets / "icon.png").exists() else []
@@ -87,7 +92,8 @@ def apply(play: Play, edit: str, ours: dict, assets: pathlib.Path) -> None:
             for path in g[kind][:8]:
                 upload_image(play, edit, lang, kind, path)
         print(f"  {lang:7s} text, icon {len(g['icon'])}, feature graphic {len(g['featureGraphic'])}, "
-              f"phone screenshots {len(g['phoneScreenshots'][:8])}", flush=True)
+              f"phone {len(g['phoneScreenshots'][:8])}, 7-inch {len(g['sevenInchScreenshots'][:8])}, "
+              f"10-inch {len(g['tenInchScreenshots'][:8])} screenshots", flush=True)
 
 
 def main() -> int:
