@@ -36,6 +36,7 @@ class NearMosqueApp : Application() {
         AppStyle.load(this)
         container = AppContainer(this)
         container.start()
+        container.cities.preload()
         // Widgets follow the city, the calculation settings, the reminders (bells) and the waits for the iqama.
         container.scope.launch {
             container.settings.settings.map { listOf(it.prayerLocation, it.prayer, it.reminders, it.iqama) }.distinctUntilChanged().collect {
@@ -70,7 +71,7 @@ class AppContainer(
         SettingsStore(androidx.datastore.preferences.core.PreferenceDataStoreFactory.create(produceFile = { f }))
     } ?: SettingsStore(app)
     val packs = PackManager(app, db)
-    val cities = CityRepository(packs)
+    val cities = CityRepository(packs, scope)
     val mosques = MosqueRepository(db)
     /** Meaning-based library search; vectors are built in the background after the libraries install. */
     val semantic = sa.zood.nearmosque.data.SemanticIndexStore(java.io.File(app.filesDir, "semantic"), db) {

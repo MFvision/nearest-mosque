@@ -7,6 +7,9 @@ import java.text.Normalizer
  * shared/fixtures/normalization.json). Displayed quotations are never normalized.
  */
 object TextNormalizer {
+    /** Compiled once: the city index folds tens of thousands of names when it loads. */
+    private val PREFIX_SEPARATORS = Regex("[\\s\\-'’.]+")
+
     private val charMap: Map<Int, String> = buildMap {
         put(0x0671, "ا") // alef wasla
         put(0x0649, "ي") // alef maqsura
@@ -104,7 +107,7 @@ object TextNormalizer {
                 sb.append(m ?: ch.toString())
             }
         }
-        return sb.toString().replace(Regex("[\\s\\-'’.]+"), " ").trim()
+        return sb.toString().replace(PREFIX_SEPARATORS, " ").trim()
     }
 
     private fun isArabic(c: Char) = c in '؀'..'ۿ'

@@ -1,6 +1,10 @@
 package sa.zood.nearmosque.data
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.sync.Mutex
@@ -26,12 +30,25 @@ import sa.zood.nearmosque.core.SourceChunk
 import sa.zood.nearmosque.core.SourceDocument
 import sa.zood.nearmosque.core.TimeZoneResolver
 
-class CityRepository(private val packs: PackManager) {
+class CityRepository(private val packs: PackManager, private val scope: CoroutineScope) {
     private val mutex = Mutex()
-    private var index: CityIndex? = null
+    private var loading: Deferred<CityIndex>? = null
 
-    suspend fun index(): CityIndex = mutex.withLock {
-        index ?: withContext(Dispatchers.IO) { CityIndex.parse(packs.readAsset("cities/cities.tsv")) }.also { index = it }
+    /**
+     * The city index, loaded once in [scope]: a caller that goes away (each keystroke restarts the search) does not
+     * cancel or waste the load. A failed load is tried again on the next call.
+     */
+    suspend fun index(): CityIndex {
+        val job = mutex.withLock {
+            loading?.takeUnless { it.isCompleted && it.getCompletionExceptionOrNull() != null }
+                ?: scope.async(Dispatchers.IO) { CityIndex.parse(packs.readAsset("cities/cities.tsv")) }.also { loading = it }
+        }
+        return job.await()
+    }
+
+    /** Starts loading the index in the background, so the first city search answers at once. */
+    fun preload() {
+        scope.launch { runCatching { index() } }
     }
 
     suspend fun timeZones(): TimeZoneResolver = TimeZoneResolver(index())

@@ -513,7 +513,7 @@ def onboard():
     sh("input text Riyadh")
     time.sleep(2)
     city = need(lambda n: text_is("Riyadh")(n) and n.pkg == PKG and n.cls != "android.widget.EditText" and n.cy > field.cy,
-                "Riyadh in the city results")
+                "Riyadh in the city results", timeout=30)
     tap(city, "Riyadh")
     need(lambda n: n.pkg == PKG and n.text.startswith(S_LOCATION_SET) and "Riyadh" in n.text, "'Prayer times for Riyadh'", timeout=15)
     tap(scroll_to(text_is(S_START), "Get started"), "get started")

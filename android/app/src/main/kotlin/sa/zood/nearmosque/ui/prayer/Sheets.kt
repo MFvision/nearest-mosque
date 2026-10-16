@@ -37,6 +37,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -71,7 +72,12 @@ fun CityPickerSheet(container: AppContainer, vm: PrayerViewModel, onDismiss: () 
     val lang = Format.languageCode(context)
     var query by rememberSaveable { mutableStateOf("") }
     var results by remember { mutableStateOf<List<City>>(emptyList()) }
-    LaunchedEffect(query) { results = container.cities.index().search(query, 40) }
+    // False until the city list has loaded, so "no matching city" is never shown while it is still loading.
+    var searched by remember { mutableStateOf(false) }
+    LaunchedEffect(query) {
+        results = container.cities.index().search(query, 40)
+        searched = true
+    }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         vm.useDeviceLocation(context.getString(R.string.location_current))
         onDismiss()
@@ -96,7 +102,9 @@ fun CityPickerSheet(container: AppContainer, vm: PrayerViewModel, onDismiss: () 
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 modifier = Modifier.fillMaxWidth(),
             )
-            if (results.isEmpty() && query.isNotBlank()) {
+            if (!searched) {
+                LinearProgressIndicator(Modifier.fillMaxWidth().padding(vertical = 16.dp))
+            } else if (results.isEmpty() && query.isNotBlank()) {
                 Text(stringResource(R.string.no_city_results), Modifier.padding(vertical = 16.dp), color = LocalExtraColors.current.textSecondary)
             }
             LazyColumn(Modifier.fillMaxWidth()) {
