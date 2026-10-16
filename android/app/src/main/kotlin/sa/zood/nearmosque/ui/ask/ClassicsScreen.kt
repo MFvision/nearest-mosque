@@ -101,30 +101,39 @@ fun ClassicsList(onBack: () -> Unit) {
     var book by remember { mutableStateOf<ClassicBook?>(null) }
     val b = book
     if (b != null) { BookScreen(b, onBack = { book = null }); return }
-    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-        LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            item {
-                TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.library_browse), color = LinkBlue) }
-                Text(stringResource(R.string.classics_note), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
+    // The screen follows the interface direction; only the books' own Arabic title and author are set right to left.
+    LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        item {
+            TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.library_browse), color = LinkBlue) }
+            Text(stringResource(R.string.classics_note), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
+        }
+        catalog.byGroup.forEach { (group, books) ->
+            item(key = "g-$group") {
+                Text(groupLabel(group), Modifier.padding(top = 10.dp), color = Accent, style = MaterialTheme.typography.titleMedium)
             }
-            catalog.byGroup.forEach { (group, books) ->
-                item(key = "g-$group") {
-                    Text(groupLabel(group), Modifier.padding(top = 10.dp), color = Accent, style = MaterialTheme.typography.titleMedium)
-                }
-                items(books, key = { it.id }) { bk ->
-                    Column(
-                        Modifier.fillMaxWidth().glass(RoundedCornerShape(16.dp), tint = Ink.copy(alpha = 0.04f))
-                            .clickable(role = Role.Button) { book = bk }.semantics(mergeDescendants = true) {}.padding(14.dp),
-                    ) {
+            items(books, key = { it.id }) { bk ->
+                Column(
+                    Modifier.fillMaxWidth().glass(RoundedCornerShape(16.dp), tint = Ink.copy(alpha = 0.04f))
+                        .clickable(role = Role.Button) { book = bk }.semantics(mergeDescendants = true) {}.padding(14.dp),
+                ) {
+                    ArabicText {
                         Text(bk.title, color = Ink, style = MaterialTheme.typography.titleSmall)
                         Text(bk.author, color = Ink.copy(alpha = 0.8f), style = MaterialTheme.typography.bodyMedium)
-                        val vols = if (bk.volumes.size > 1) stringResource(R.string.classics_volumes, bk.volumes.size) + " · " else ""
-                        Text(vols + Classics.size(context, bk.bytes), color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.bodySmall)
                     }
+                    val vols = if (bk.volumes.size > 1) stringResource(R.string.classics_volumes, bk.volumes.size) + " · " else ""
+                    Text(vols + Classics.size(context, bk.bytes), color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.bodySmall)
                 }
             }
-            item { Text(catalog.source, Modifier.padding(top = 12.dp), color = Ink.copy(alpha = 0.5f), style = MaterialTheme.typography.labelSmall) }
         }
+        item { Text(catalog.source, Modifier.padding(top = 12.dp), color = Ink.copy(alpha = 0.5f), style = MaterialTheme.typography.labelSmall) }
+    }
+}
+
+/** The books' own Arabic text (title, author), set right to left whatever the interface language. */
+@Composable
+private fun ArabicText(content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+        Column(Modifier.fillMaxWidth()) { content() }
     }
 }
 
@@ -151,13 +160,11 @@ private fun BookScreen(book: ClassicBook, onBack: () -> Unit) {
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
             TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.classics_title), color = LinkBlue) }
-            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                Column(Modifier.fillMaxWidth()) {
-                    Text(book.title, color = Ink, style = MaterialTheme.typography.titleLarge)
-                    Text(book.author, color = Ink, style = MaterialTheme.typography.bodyMedium)
-                    Text(stringResource(R.string.classics_edition, book.edition), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
-                }
+            ArabicText {
+                Text(book.title, color = Ink, style = MaterialTheme.typography.titleLarge)
+                Text(book.author, color = Ink, style = MaterialTheme.typography.bodyMedium)
             }
+            Text(stringResource(R.string.classics_edition, book.edition), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
         }
         items(book.volumes, key = { it.file }) { v ->
             val saved = remember(version, v.file) { Classics.isDownloaded(context, v) }
