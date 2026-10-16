@@ -18,9 +18,9 @@ robolectric = "4.16.1"
 roborazzi = "1.52.0"
 
 [libraries]
-# The OpenGL ES build: the default build needs Vulkan, which Google Play then requires of every device
-# (hiding the app from Chromebooks and phones without it).
-maplibre-android = { module = "org.maplibre.gl:android-sdk-opengl", version.ref = "maplibre" }
+# The default build renders with Vulkan, so Google Play lists the app only for devices with Vulkan (nearly every
+# phone since Android 10 and most Chromebooks). The OpenGL ES build (android-sdk-opengl) stopped at 11.11.
+maplibre-android = { module = "org.maplibre.gl:android-sdk", version.ref = "maplibre" }
 adhan = { module = "com.batoulapps.adhan:adhan2", version.ref = "adhan" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
