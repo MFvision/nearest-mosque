@@ -197,18 +197,24 @@ extension AlertKind {
     static let allIdentifiers = [AlertKind.atPrayer, .before, .friday, .suhoor, .iftar, .fajrAlarm, .adhan, .before10, .before5, .near, .iqama].map(\.rawValue)
 }
 
-/// Taps and buttons on the app's notifications.
+/// Taps and buttons on the app's notifications. The completion-handler forms, each handler called on the main
+/// thread: with the async forms the system's completion ran on a background thread, and iOS ended the app when
+/// a notification was opened (TestFlight build 140 on iOS 27).
 final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationHandler()
 
     /// With the app open at prayer time, the whole Adhan plays in the app instead of the 30-second sound.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let info = notification.request.content.userInfo
-        if let file = info["adhan"] as? String {
-            await MainActor.run { AdhanPlayer.shared.play(file, title: Self.adhanTitle(info), adhan: true) }
-            return [.banner, .list]
+        Task { @MainActor in
+            if let file = info["adhan"] as? String {
+                AdhanPlayer.shared.play(file, title: Self.adhanTitle(info), adhan: true)
+                completionHandler([.banner, .list])
+            } else {
+                completionHandler([.banner, .list, .sound])
+            }
         }
-        return [.banner, .list, .sound]
     }
 
     @MainActor private static func adhanTitle(_ info: [AnyHashable: Any]) -> String {
@@ -217,22 +223,27 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         return l10n.t("adhan_playing", l10n.t(source == .makkah ? "source_makkah" : "source_madinah"))
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
         let content = response.notification.request.content
         let event = content.userInfo["event"] as? String ?? ""
         let date = content.userInfo["date"] as? String ?? ""
-        switch Reminders.Action(rawValue: response.actionIdentifier) {
-        case .prayed: Reminders.markPrayed(event: event, date: date, delivered: response.notification.date)
-        case .snooze: await Reminders.snooze(content)
-        case .qibla: await MainActor.run { PendingRoute.open(URL(string: "nearmosque://qibla")!) }
-        case .mosques: await MainActor.run { PendingRoute.open(URL(string: "nearmosque://mosques")!) }
-        case nil:
-            // Opening an Adhan notification carries the Adhan on in the app, from where it would be now.
-            if let file = content.userInfo["adhan"] as? String {
-                let offset = Date().timeIntervalSince(response.notification.date)
-                await MainActor.run { AdhanPlayer.shared.play(file, title: Self.adhanTitle(content.userInfo), adhan: true, offset: offset) }
+        let delivered = response.notification.date
+        let action = Reminders.Action(rawValue: response.actionIdentifier)
+        Task { @MainActor in
+            switch action {
+            case .prayed: Reminders.markPrayed(event: event, date: date, delivered: delivered)
+            case .snooze: await Reminders.snooze(content)
+            case .qibla: PendingRoute.open(URL(string: "nearmosque://qibla")!)
+            case .mosques: PendingRoute.open(URL(string: "nearmosque://mosques")!)
+            case nil:
+                // Opening an Adhan notification carries the Adhan on in the app, from where it would be now.
+                if let file = content.userInfo["adhan"] as? String {
+                    AdhanPlayer.shared.play(file, title: Self.adhanTitle(content.userInfo), adhan: true, offset: Date().timeIntervalSince(delivered))
+                }
+                PendingRoute.open(URL(string: "nearmosque://prayer")!)
             }
-            await MainActor.run { PendingRoute.open(URL(string: "nearmosque://prayer")!) }
+            completionHandler()
         }
     }
 }
