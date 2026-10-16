@@ -288,4 +288,24 @@ class ScreenshotTest {
         compose.waitForIdle()
         compose.onRoot().captureRoboImage("build/screenshots/iqama_settings_en.png")
     }
+
+    /** Silent during prayer: on, without Do Not Disturb access yet (the row that asks for it), Fajr left out. */
+    @Test fun silenceSettings() {
+        val c = container()
+        compose.setContent {
+            NearMosqueTheme(dark = true) {
+                sa.zood.nearmosque.ui.settings.PrayerAudioScreen(
+                    c, sa.zood.nearmosque.core.AlertSettings(), emptySet(), sa.zood.nearmosque.core.IqamaSettings(),
+                    sa.zood.nearmosque.core.SilenceSettings(enabled = true).with(sa.zood.nearmosque.core.PrayerEvent.FAJR, false),
+                ) {}
+            }
+        }
+        compose.waitForIdle()
+        compose.onNodeWithText("Allow Do Not Disturb access").performScrollTo()
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/silence_settings_en.png")
+        compose.onNodeWithText("Do Not Disturb turns on", substring = true).performScrollTo()
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/silence_settings_friday_en.png")
+    }
 }

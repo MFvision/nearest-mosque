@@ -18,8 +18,9 @@ enum Reminders {
     static let maxPending = 60
 
     /// Notification categories: the buttons under each kind of alert.
-    enum Category: String { case prayer, before, verse }
-    enum Action: String { case prayed, snooze, qibla, mosques }
+    /// The `Silence` ones add "Silence until after the prayer" (iPhone, with silence during prayer on).
+    enum Category: String { case prayer, before, verse, prayerSilence, iqamaSilence }
+    enum Action: String { case prayed, snooze, qibla, mosques, silence }
 
     /// Registers the buttons in the current language (again whenever the language changes).
     static func registerCategories(_ l10n: Localization) {
@@ -31,11 +32,19 @@ enum Reminders {
                                          icon: UNNotificationActionIcon(systemImageName: "location.north.line"))
         let mosques = UNNotificationAction(identifier: Action.mosques.rawValue, title: l10n.t("tab_mosques"), options: [.foreground],
                                            icon: UNNotificationActionIcon(systemImageName: "building.columns"))
-        UNUserNotificationCenter.current().setNotificationCategories([
+        var categories: Set<UNNotificationCategory> = [
             UNNotificationCategory(identifier: Category.prayer.rawValue, actions: [prayed, snooze, qibla, mosques], intentIdentifiers: []),
             UNNotificationCategory(identifier: Category.before.rawValue, actions: [qibla, mosques], intentIdentifiers: []),
             UNNotificationCategory(identifier: Category.verse.rawValue, actions: [], intentIdentifiers: []),
-        ])
+        ]
+        if SilenceShortcutRunner.supported {
+            // Opens the app, which runs the user's Shortcut (the silence button first, so it is never cut off).
+            let silence = UNNotificationAction(identifier: Action.silence.rawValue, title: l10n.t("silence_now"), options: [.foreground],
+                                               icon: UNNotificationActionIcon(systemImageName: "moon.fill"))
+            categories.insert(UNNotificationCategory(identifier: Category.prayerSilence.rawValue, actions: [silence, prayed, snooze, qibla, mosques], intentIdentifiers: []))
+            categories.insert(UNNotificationCategory(identifier: Category.iqamaSilence.rawValue, actions: [silence, qibla, mosques], intentIdentifiers: []))
+        }
+        UNUserNotificationCenter.current().setNotificationCategories(categories)
     }
 
     static func authorized() async -> Bool {
@@ -53,9 +62,11 @@ enum Reminders {
     /// Returns the number of notifications scheduled.
     @discardableResult
     static func reschedule(location: PrayerLocation?, settings: PrayerSettings, enabled: Set<PrayerEvent>, alerts: AlertSettings,
-                           iqama: IqamaSettings = IqamaSettings(enabled: false), l10n: Localization, mosqueLine: String? = nil, verse: (String) -> String? = { _ in nil },
-                           now: Date = Date()) async -> Int {
+                           iqama: IqamaSettings = IqamaSettings(enabled: false), silence: SilenceSettings = SilenceSettings(), l10n: Localization,
+                           mosqueLine: String? = nil, verse: (String) -> String? = { _ in nil }, now: Date = Date()) async -> Int {
         let center = UNUserNotificationCenter.current()
+        // The silence button runs a Shortcut: only where the Shortcuts app opens it.
+        let silence = SilenceShortcutRunner.supported ? silence : SilenceSettings()
         registerCategories(l10n)
         center.removeAllPendingNotificationRequests()
         guard let loc = location else { await FajrAlarms.reschedule([], l10n: l10n); return 0 }
@@ -88,6 +99,7 @@ enum Reminders {
                 content.title = l10n.t("reminder_title", name)
                 content.body = l10n.t("reminder_body", loc.name, time)
                 content.categoryIdentifier = Category.prayer.rawValue
+                if silence.offersAction(a.kind, event: a.event, date: a.date, iqama: iqama) { content.categoryIdentifier = Category.prayerSilence.rawValue }
                 content.relevanceScore = 1
                 if a.kind == .adhan {
                     let file = AudioCatalog.adhan(a.event, alerts)
@@ -118,6 +130,7 @@ enum Reminders {
                 content.body = l10n.t("notif_iqama_body")
                 content.subtitle = l10n.t("iqama_at", Format.time(a.at, zone: loc.zone, locale: l10n.locale))
                 content.categoryIdentifier = Category.before.rawValue
+                if silence.offersAction(a.kind, event: a.event, date: a.date, iqama: iqama) { content.categoryIdentifier = Category.iqamaSilence.rawValue }
                 content.relevanceScore = 0.8
             case .salawat, .quran, .sleep, .kahf:
                 continue
@@ -236,6 +249,7 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
             case .snooze: await Reminders.snooze(content)
             case .qibla: PendingRoute.open(URL(string: "nearmosque://qibla")!)
             case .mosques: PendingRoute.open(URL(string: "nearmosque://mosques")!)
+            case .silence: SilenceShortcutRunner.runFromNotification()
             case nil:
                 // Opening an Adhan notification carries the Adhan on in the app, from where it would be now.
                 if let file = content.userInfo["adhan"] as? String {

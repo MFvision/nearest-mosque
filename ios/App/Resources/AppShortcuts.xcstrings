@@ -78,6 +78,17 @@
         }
       }
     },
+    "End of prayer in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نهاية الصلاة في ${applicationName}"
+          }
+        }
+      }
+    },
     "Nearest mosque in ${applicationName}": {
       "extractionState": "manual",
       "localizations": {
@@ -140,6 +151,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "دلني على ${applicationName}"
+          }
+        }
+      }
+    },
+    "When does the prayer end in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متى تنتهي الصلاة في ${applicationName}"
           }
         }
       }

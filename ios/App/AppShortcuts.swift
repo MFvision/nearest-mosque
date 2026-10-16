@@ -32,5 +32,9 @@ struct NearMosqueShortcuts: AppShortcutsProvider {
             "Where is the Qibla in \(.applicationName)",
             "\(.applicationName) Qibla",
         ], shortTitle: "widget_kind_qibla", systemImageName: "location.north.line.fill")
+        AppShortcut(intent: PrayerSilenceEndIntent(), phrases: [
+            "End of prayer in \(.applicationName)",
+            "When does the prayer end in \(.applicationName)",
+        ], shortTitle: "silence_end_intent", systemImageName: "moon.fill")
     }
 }

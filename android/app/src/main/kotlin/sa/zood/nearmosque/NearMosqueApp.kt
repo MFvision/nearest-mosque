@@ -1,6 +1,7 @@
 package sa.zood.nearmosque
 
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.distinctUntilChangedBy
 
 import kotlinx.coroutines.flow.map
 
@@ -39,6 +40,13 @@ class NearMosqueApp : Application() {
         container.scope.launch {
             container.settings.settings.map { listOf(it.prayerLocation, it.prayer, it.reminders, it.iqama) }.distinctUntilChanged().collect {
                 sa.zood.nearmosque.platform.PrayerWidgets.refresh(this@NearMosqueApp)
+            }
+        }
+        // Silent during prayer: applied at start (on now if a prayer is under way, off if it has ended) and
+        // rebuilt whenever the city, the times, the iqama or the silence settings change.
+        container.scope.launch {
+            container.settings.settings.distinctUntilChangedBy { listOf(it.prayerLocation, it.prayer, it.iqama, it.silence) }.collect {
+                sa.zood.nearmosque.platform.PrayerSilence(this@NearMosqueApp).sync(it)
             }
         }
     }

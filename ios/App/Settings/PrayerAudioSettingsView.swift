@@ -7,7 +7,10 @@ import SwiftUI
 struct PrayerAudioSettingsView: View {
     @Environment(\.appModel) private var app
     @Environment(\.l10n) private var l10n
+    @Environment(\.openURL) private var openURL
     @State private var expanded: Set<PrayerEvent> = []
+    /// The Shortcut's name while it is typed (saved on Return, on leaving the field and on Try).
+    @State private var shortcutDraft = ""
 
     private var a: AlertSettings { app.settings.alerts }
     private var voice: VoiceLanguage { a.voice ?? VoiceLanguage.forInterface(l10n.language) }
@@ -17,6 +20,9 @@ struct PrayerAudioSettingsView: View {
         Form {
             adhanSection
             iqamaSection
+            #if os(iOS) && !targetEnvironment(macCatalyst)
+            silenceSections
+            #endif
             beforeSection
             perPrayerSection
             dhikrSection
@@ -90,6 +96,73 @@ struct PrayerAudioSettingsView: View {
             }
         } header: { Text(l10n.t("iqama_section")) } footer: { Text(l10n.t("iqama_note")) }
     }
+
+    #if os(iOS) && !targetEnvironment(macCatalyst)
+    private var silence: SilenceSettings { app.settings.silence }
+
+    private func silenceBinding<T>(_ key: WritableKeyPath<SilenceSettings, T>) -> Binding<T> {
+        Binding(get: { app.settings.silence[keyPath: key] }, set: { v in var s = app.settings.silence; s[keyPath: key] = v; app.setSilence(s) })
+    }
+
+    private var defaultShortcutName: String { l10n.t("silence_shortcut_name") }
+    private var shortcutName: String { SilenceSettings.shortcutName(shortcutDraft, default: defaultShortcutName) }
+
+    /// Silent during prayer: iPhone lets no app turn on Focus, so a Shortcut the user makes once does it, run from
+    /// the Adhan or iqama notification (and from Siri or the Action button).
+    @ViewBuilder private var silenceSections: some View {
+        Section {
+            Toggle(l10n.t("silence_enable"), isOn: silenceBinding(\.enabled))
+            if silence.enabled {
+                Picker(selection: silenceBinding(\.start)) {
+                    Text(l10n.t("silence_from_adhan")).tag(SilenceSettings.Start.adhan)
+                    Text(l10n.t("silence_from_iqama")).tag(SilenceSettings.Start.iqama)
+                } label: {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(l10n.t("silence_start"))
+                        Text(l10n.t("silence_until", q.prayerMinutes)).font(.caption).foregroundStyle(.secondary)
+                    }
+                }
+            }
+        } header: { Text(l10n.t("silence_section")) } footer: { Text(l10n.t("silence_note_ios")) }
+        if silence.enabled {
+            Section {
+                ForEach(PrayerEvent.prayers, id: \.self) { e in
+                    Toggle(isOn: Binding(get: { silence.includes(e) }, set: { on in var s = silence; s.set(e, on); app.setSilence(s) })) {
+                        Label(l10n.t(Format.prayerKey(e)), systemImage: Theme.icon(e))
+                    }
+                }
+                if silence.includes(.dhuhr) {
+                    Picker(selection: silenceBinding(\.fridayMinutes)) {
+                        ForEach(SilenceSettings.fridayChoices, id: \.self) { m in Text(l10n.t("silence_friday_minutes", m)).tag(m) }
+                    } label: {
+                        Label(l10n.t("silence_friday"), systemImage: "calendar")
+                    }
+                }
+            } header: { Text(l10n.t("silence_prayers")) }
+            Section {
+                TextField(defaultShortcutName, text: $shortcutDraft)
+                    .autocorrectionDisabled()
+                    .submitLabel(.done)
+                    .onAppear { shortcutDraft = app.settings.silenceShortcut ?? "" }
+                    .onSubmit { app.setSilenceShortcut(shortcutDraft) }
+                    .onDisappear { app.setSilenceShortcut(shortcutDraft) }
+                Text(l10n.t("silence_ios_steps", shortcutName))
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Button { openURL(SilenceSettings.shortcutsAppURL) } label: {
+                    Label(l10n.t("silence_open_shortcuts"), systemImage: "square.2.layers.3d")
+                }
+                Button {
+                    app.setSilenceShortcut(shortcutDraft)
+                    SilenceShortcutRunner.run(shortcutName)
+                } label: {
+                    Label(l10n.t("silence_test"), systemImage: "moon.fill")
+                }
+            }
+        }
+    }
+    #endif
 
     private var beforeSection: some View {
         Section {

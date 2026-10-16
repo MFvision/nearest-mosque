@@ -119,6 +119,32 @@ struct NearestMosqueDirectionsIntent: AppIntent {
     }
 }
 
+/// "End of prayer", for the Shortcut that silences the phone during prayer ("Set Focus: Do Not Disturb, On,
+/// Until" this result): the end of the silence under way now, else of the next one, from the city, the iqama
+/// waits and the silence settings chosen in the app (worked out even when the setting is off, so the Shortcut
+/// still works). Answered on the device without opening the app.
+struct PrayerSilenceEndIntent: AppIntent {
+    static var title: LocalizedStringResource = "silence_end_intent"
+    static var openAppWhenRun = false
+
+    func perform() async throws -> some IntentResult & ReturnsValue<Date> {
+        let now = Date()
+        guard let s = StoredSettings.saved(), let loc = s.location else { throw PrayerSilenceEndError() }
+        let calc = PrayerCalculator()
+        let today = CivilDate.of(now, in: loc.zone)
+        let days = (-1...1).map { calc.schedule(loc.location, date: today.adding(days: $0), zone: loc.zone, settings: s.prayer) }
+        guard let end = s.silence.shortcutEnd(days, iqama: s.iqama, now: now) else { throw PrayerSilenceEndError() }
+        return .result(value: end)
+    }
+}
+
+/// No city chosen yet: the Shortcut stops with this message (in the app's language).
+struct PrayerSilenceEndError: Error, CustomLocalizedStringResourceConvertible {
+    var localizedStringResource: LocalizedStringResource {
+        LocalizedStringResource(stringLiteral: Localization().t("widget_choose_city"))
+    }
+}
+
 /// The widget's own look, shown under Siri's answer.
 struct IntentSnippet: View {
     let entry: PrayerEntry

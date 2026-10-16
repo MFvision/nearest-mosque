@@ -23,6 +23,7 @@ import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerSettings
 import sa.zood.nearmosque.core.PrayerSounds
 import sa.zood.nearmosque.core.Reciter
+import sa.zood.nearmosque.core.SilenceSettings
 import sa.zood.nearmosque.core.VoiceLanguage
 import java.time.ZoneId
 
@@ -52,6 +53,8 @@ data class AppSettings(
     val alerts: sa.zood.nearmosque.core.AlertSettings = sa.zood.nearmosque.core.AlertSettings(),
     /** The wait for the iqama after each Adhan, and the prayer after it. */
     val iqama: IqamaSettings = IqamaSettings(),
+    /** Do Not Disturb during each prayer (off until the user turns it on). */
+    val silence: SilenceSettings = SilenceSettings(),
 )
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -111,6 +114,12 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val iqamaMinutes = stringPreferencesKey("iqama_minutes")
         val iqamaPrayer = intPreferencesKey("iqama_prayer_minutes")
         val iqamaAlert = booleanPreferencesKey("iqama_alert")
+        val silenceOn = booleanPreferencesKey("silence_on")
+        /** "ADHAN" or "IQAMA". */
+        val silenceStart = stringPreferencesKey("silence_start")
+        /** The prayers silenced (names); missing = all five. */
+        val silencePrayers = stringSetPreferencesKey("silence_prayers")
+        val silenceFriday = intPreferencesKey("silence_friday_minutes")
         fun offset(e: PrayerEvent) = intPreferencesKey("offset_${e.name}")
     }
 
@@ -177,7 +186,20 @@ class SettingsStore(private val store: DataStore<Preferences>) {
                 prayerMinutes = p[K.iqamaPrayer] ?: 15,
                 alert = p[K.iqamaAlert] ?: true,
             ),
+            silence = SilenceSettings(
+                enabled = p[K.silenceOn] ?: false,
+                start = enumOr(p[K.silenceStart], SilenceSettings.Start.IQAMA),
+                prayers = p[K.silencePrayers]?.let(::decodePrayers) ?: PrayerEvent.prayers.toSet(),
+                fridayMinutes = p[K.silenceFriday]?.takeIf { it > 0 } ?: 60,
+            ),
         )
+    }
+
+    suspend fun setSilence(s: SilenceSettings) = store.edit { p ->
+        p[K.silenceOn] = s.enabled
+        p[K.silenceStart] = s.start.name
+        p[K.silencePrayers] = s.prayers.filter { it.isPrayer }.map { it.name }.toSet()
+        p[K.silenceFriday] = s.fridayMinutes
     }
 
     suspend fun setIqama(q: IqamaSettings) = store.edit { p ->
@@ -228,6 +250,10 @@ class SettingsStore(private val store: DataStore<Preferences>) {
             if (bits.length != 4) return@mapNotNull null
             e to PrayerSounds(bits[0] == '1', bits[1] == '1', bits[2] == '1', bits[3] == '1')
         }.toMap()
+
+        /** Prayer names saved as a set; unknown names and sunrise are dropped. */
+        fun decodePrayers(names: Set<String>): Set<PrayerEvent> =
+            names.mapNotNull { n -> PrayerEvent.entries.firstOrNull { it.name == n && it.isPrayer } }.toSet()
 
         fun encodeIqamaMinutes(m: Map<PrayerEvent, Int>): String = m.entries.joinToString(",") { (e, v) -> e.name + ":" + v }
 

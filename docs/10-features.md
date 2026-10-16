@@ -120,6 +120,14 @@ ships inside the iPhone app, in the same listing.
     begun") before the countdown to the next prayer. Waits: Fajr 25, Dhuhr 20, Asr 20, Maghrib 10, Isha 20
     minutes; prayer time after the iqama 15 minutes; a notification at the iqama; each can be changed or the
     whole thing switched off. These are the usual waits, not a mosque's own timetable, and the app says so.
+  * **Silent during prayer** (off by default): from the iqama (or the Adhan) to the end of the prayer, for the
+    prayers chosen; on Friday from the Dhuhr Adhan for 45 to 90 minutes (60 by default) for the khutbah.
+    Android turns Do Not Disturb on and off itself through its own Do Not Disturb rule (with the user's
+    permission; Android 8 and 9 switch to priority only and back), with a quiet notification and "Sound on
+    now"; turning sound on by hand is left alone. iPhone and iPad let no app change Focus, so the app gives a
+    Shortcuts action, "End of prayer", for a Shortcut the user makes once (Set Focus: Do Not Disturb, On,
+    Until that time); the Adhan or iqama notification has a button that runs it, as do Siri and the Action
+    button. Not on Windows (no public way for an app to turn on Do Not Disturb). Not yet tried on devices.
   * Before the prayer: 10 minutes, 5 minutes, and a pre-prayer reminder at 15, 20 or 30 minutes; spoken
     in Arabic or English.
   * Each prayer on its own: notification, Adhan, the reminders. Sunrise (end of Fajr time).

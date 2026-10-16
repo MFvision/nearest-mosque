@@ -14,6 +14,7 @@ import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerSounds
 import sa.zood.nearmosque.core.Reciter
+import sa.zood.nearmosque.core.SilenceSettings
 import sa.zood.nearmosque.core.VoiceLanguage
 import java.io.File
 
@@ -61,6 +62,37 @@ class AudioSettingsTest {
         first.cancel()
         first.join()
         assertEquals(set, store(file, SupervisorJob()).settings.first().iqama)
+    }
+
+    @Test
+    fun silenceSurvivesAReopen() = runBlocking {
+        val file = File.createTempFile("silence", ".preferences_pb").also { it.delete() }
+        // Off until the user turns it on, every prayer chosen.
+        val old = SupervisorJob()
+        val fresh = store(file, old).settings.first().silence
+        assertEquals(SilenceSettings(), fresh)
+        assertEquals(false, fresh.enabled)
+        old.cancel()
+        old.join()
+        val set = SilenceSettings(enabled = true, start = SilenceSettings.Start.ADHAN, fridayMinutes = 90)
+            .with(PrayerEvent.FAJR, false).with(PrayerEvent.ISHA, false)
+        val first = SupervisorJob()
+        store(file, first).setSilence(set)
+        first.cancel()
+        first.join()
+        assertEquals(set, store(file, SupervisorJob()).settings.first().silence)
+    }
+
+    @Test
+    fun noPrayerSilencedSurvivesAReopen() = runBlocking {
+        val file = File.createTempFile("silence-none", ".preferences_pb").also { it.delete() }
+        val set = SilenceSettings(enabled = true, prayers = emptySet())
+        val first = SupervisorJob()
+        store(file, first).setSilence(set)
+        first.cancel()
+        first.join()
+        assertEquals(set, store(file, SupervisorJob()).settings.first().silence)
+        assertEquals(setOf(PrayerEvent.ASR), SettingsStore.decodePrayers(setOf("ASR", "SUNRISE", "garbage")))
     }
 
     @Test

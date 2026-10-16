@@ -22,9 +22,11 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.PlayArrow
@@ -70,9 +72,11 @@ import sa.zood.nearmosque.core.AlertSettings
 import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.Reciter
+import sa.zood.nearmosque.core.SilenceSettings
 import sa.zood.nearmosque.core.VoiceLanguage
 import sa.zood.nearmosque.platform.AudioCatalog
 import sa.zood.nearmosque.platform.AudioPreview
+import sa.zood.nearmosque.platform.PrayerSilence
 import sa.zood.nearmosque.platform.ReminderScheduler
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.prayer.prayerIcon
@@ -80,12 +84,20 @@ import sa.zood.nearmosque.ui.theme.LocalExtraColors
 
 /**
  * Prayer & Audio: every Adhan, reminder and recitation has its own switch, and none changes another. Grouped
- * as the Adhan, reminders before the prayer, each prayer (expandable), the iqama, Qur'an and dhikr, and more reminders.
+ * as the Adhan, reminders before the prayer, each prayer (expandable), the iqama, silent during prayer, Qur'an and
+ * dhikr, and more reminders.
  * Each change is saved at once and the reminders are rebuilt. Mirrors the iOS PrayerAudioSettingsView.
  */
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders: Set<PrayerEvent>, iqama: IqamaSettings, onClose: () -> Unit) {
+fun PrayerAudioScreen(
+    container: AppContainer,
+    alerts: AlertSettings,
+    reminders: Set<PrayerEvent>,
+    iqama: IqamaSettings,
+    silence: SilenceSettings = SilenceSettings(),
+    onClose: () -> Unit,
+) {
     BackHandler(onBack = onClose)
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -104,6 +116,22 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
     fun setIqama(q: IqamaSettings) = scope.launch {
         container.settings.setIqama(q)
         withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
+    }
+    // Do Not Disturb access is granted in system settings: checked again whenever the screen comes back, and the
+    // silences applied at once if it was just granted.
+    var silenceAllowed by remember { mutableStateOf(PrayerSilence(context).granted()) }
+    androidx.lifecycle.compose.LifecycleResumeEffect(Unit) {
+        val now = PrayerSilence(context).granted()
+        if (now != silenceAllowed) {
+            silenceAllowed = now
+            scope.launch(Dispatchers.Default) { PrayerSilence(context).sync(container.settings.settings.first()) }
+        }
+        onPauseOrDispose { }
+    }
+    // Saved settings are applied by the app's observer (NearMosqueApp); applied here too for the screen's own container.
+    fun setSilence(s: SilenceSettings) = scope.launch {
+        container.settings.setSilence(s)
+        withContext(Dispatchers.Default) { PrayerSilence(context).sync(container.settings.settings.first()) }
     }
     fun setBell(e: PrayerEvent, on: Boolean) = scope.launch {
         container.settings.setReminder(e, on)
@@ -245,6 +273,52 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
                 }
                 Note(stringResource(R.string.iqama_note))
 
+                Header(stringResource(R.string.silence_section))
+                Toggle(stringResource(R.string.silence_enable), null, silence.enabled) { setSilence(silence.copy(enabled = it)) }
+                AnimatedVisibility(silence.enabled) {
+                    Column {
+                        if (!silenceAllowed) {
+                            Row(
+                                Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                                    .clickable(role = Role.Button) {
+                                        try {
+                                            context.startActivity(PrayerSilence.permissionIntent())
+                                        } catch (e: android.content.ActivityNotFoundException) {
+                                        }
+                                    },
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Column(Modifier.weight(1f)) {
+                                    Text(stringResource(R.string.silence_permission), style = MaterialTheme.typography.bodyLarge, color = LocalExtraColors.current.accentText)
+                                    Text(stringResource(R.string.silence_permission_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
+                                }
+                                Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = LocalExtraColors.current.accentText)
+                            }
+                        }
+                        Text(stringResource(R.string.silence_start), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(top = 8.dp))
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            FilterChip(selected = silence.start == SilenceSettings.Start.ADHAN, onClick = { setSilence(silence.copy(start = SilenceSettings.Start.ADHAN)) },
+                                label = { Text(stringResource(R.string.silence_from_adhan)) })
+                            FilterChip(selected = silence.start == SilenceSettings.Start.IQAMA, onClick = { setSilence(silence.copy(start = SilenceSettings.Start.IQAMA)) },
+                                label = { Text(stringResource(R.string.silence_from_iqama)) })
+                        }
+                        Note(stringResource(R.string.silence_until, iqama.prayerMinutes))
+                        Text(stringResource(R.string.silence_prayers), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(top = 8.dp))
+                        PrayerEvent.prayers.forEach { e ->
+                            PrayerSwitch(stringResource(Format.prayerName(e)), prayerIcon(e), silence.includes(e)) { setSilence(silence.with(e, it)) }
+                        }
+                        Text(stringResource(R.string.silence_friday), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(top = 8.dp))
+                        Note(stringResource(R.string.silence_friday_minutes, silence.fridayMinutes))
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            SilenceSettings.fridayChoices.forEach { m ->
+                                FilterChip(selected = silence.fridayMinutes == m, onClick = { setSilence(silence.copy(fridayMinutes = m)) },
+                                    label = { Text(stringResource(R.string.minutes_value, m)) })
+                            }
+                        }
+                    }
+                }
+                Note(stringResource(R.string.silence_note_android))
+
                 Header(stringResource(R.string.dhikr_section))
                 Toggle(stringResource(R.string.salawat), stringResource(R.string.salawat_note), alerts.salawat,
                     preview = AudioCatalog.salawat(alerts.reciter) to stringResource(R.string.salawat)) { set(alerts.copy(salawat = it)) }
@@ -336,6 +410,19 @@ private fun MinutesRow(title: String, icon: Int?, minutes: Int, choices: List<In
                 }
             }
         }
+    }
+}
+
+/** A prayer's name and icon with a switch (the prayers silenced). */
+@Composable
+private fun PrayerSwitch(title: String, icon: Int, on: Boolean, onChange: (Boolean) -> Unit) {
+    Row(
+        Modifier.fillMaxWidth().heightIn(min = 52.dp).toggleable(on, role = Role.Switch, onValueChange = onChange),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(painterResource(icon), contentDescription = null, tint = LocalExtraColors.current.accentText, modifier = Modifier.size(22.dp))
+        Text(title, Modifier.weight(1f).padding(start = 12.dp), style = MaterialTheme.typography.bodyLarge)
+        Switch(checked = on, onCheckedChange = null)
     }
 }
 

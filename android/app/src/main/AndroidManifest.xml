@@ -17,6 +17,8 @@
     <!-- The Adhan and spoken reminders (opt-in) play while their notification shows, then stop. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- Silent during prayer (opt-in): the app turns its own Do Not Disturb rule on and off; the user grants access in system settings. -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
     <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
@@ -181,6 +183,7 @@
         </service>
 
         <receiver android:name=".platform.ReminderReceiver" android:exported="false" />
+        <receiver android:name=".platform.SilenceReceiver" android:exported="false" />
         <service android:name=".platform.PrayerAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <receiver android:name=".platform.RescheduleReceiver" android:exported="false">
             <intent-filter>

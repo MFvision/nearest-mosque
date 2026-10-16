@@ -30,6 +30,10 @@ struct StoredSettings: Codable, Equatable {
     var alerts = AlertSettings()
     /// The wait for the iqama after each Adhan, and the prayer after it.
     var iqama = IqamaSettings()
+    /// Silent during prayer (iPhone: through the user's Shortcut, run from the Adhan or iqama notification).
+    var silence = SilenceSettings()
+    /// The name of that Shortcut as the user made it; nil = the default name in the app's language.
+    var silenceShortcut: String?
     var onboarded = false
     /// Live mosque results (Apple Maps search) added to downloaded data; disclosed in onboarding and Settings.
     var onlineSearch = true
@@ -55,11 +59,18 @@ struct StoredSettings: Codable, Equatable {
         reminders = Set((get([String].self, .reminders) ?? []).compactMap(PrayerEvent.init(rawValue:)))
         alerts = get(AlertSettings.self, .alerts) ?? AlertSettings()
         iqama = get(IqamaSettings.self, .iqama) ?? IqamaSettings()
+        silence = get(SilenceSettings.self, .silence) ?? SilenceSettings()
+        silenceShortcut = get(String.self, .silenceShortcut)
         onboarded = get(Bool.self, .onboarded) ?? false
         onlineSearch = get(Bool.self, .onlineSearch) ?? true
         widgetLook = get(String.self, .widgetLook) ?? "cream"
         liveCountdown = get(Bool.self, .liveCountdown) ?? true
         companion = get(String.self, .companion) ?? "lantern"
+    }
+
+    /// The saved settings, read without the app's model (App Intents run with the app in the background).
+    static func saved() -> StoredSettings? {
+        UserDefaults.standard.data(forKey: "settings").flatMap { try? JSONDecoder().decode(StoredSettings.self, from: $0) }
     }
 }
 
@@ -320,13 +331,33 @@ final class AppModel {
         }
     }
 
+    func setSilence(_ s: SilenceSettings) {
+        settings.silence = s
+        Task {
+            // The button that runs the Shortcut is on the notifications.
+            if s.enabled, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
+            await rescheduleReminders()
+        }
+    }
+
+    /// Saves the Shortcut's name as typed (the default, or nothing, is kept as nil so it follows the language).
+    func setSilenceShortcut(_ typed: String) {
+        let name = SilenceSettings.storedShortcutName(typed, default: l10n.t("silence_shortcut_name"))
+        if name != settings.silenceShortcut { settings.silenceShortcut = name }
+    }
+
+    /// The Shortcut the notifications run.
+    var silenceShortcutName: String {
+        SilenceSettings.shortcutName(settings.silenceShortcut, default: l10n.t("silence_shortcut_name"))
+    }
+
     func rescheduleReminders() async {
         ReminderRefresh.submit()
         let lang = l10n.language
         let ask = ask
         let mosqueLine = nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) }
         await Reminders.reschedule(location: settings.location, settings: settings.prayer, enabled: settings.reminders, alerts: settings.alerts,
-                                   iqama: settings.iqama, l10n: l10n, mosqueLine: mosqueLine) { id in
+                                   iqama: settings.iqama, silence: settings.silence, l10n: l10n, mosqueLine: mosqueLine) { id in
             // The Qur'an text on the phone; English readers also get the translation in the pack.
             guard let c = (try? ask?.resolve([id]))?.first?.chunk else { return nil }
             let en = lang == "en" ? c.allTranslations.first { $0.lang == "en" }?.text : nil

@@ -200,7 +200,7 @@ class ReminderReceiver : BroadcastReceiver() {
     }
 }
 
-/** Boot, time, zone and exact-alarm-permission changes rebuild the bounded schedule. */
+/** Boot, time, zone and exact-alarm-permission changes rebuild the bounded schedule and the prayer silences. */
 class RescheduleReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) = rescheduleAsync(context, goAsync())
 
@@ -211,7 +211,9 @@ class RescheduleReceiver : BroadcastReceiver() {
             val app = context.applicationContext as NearMosqueApp
             scope.launch {
                 try {
-                    ReminderScheduler(app).reschedule(app.container.settings.settings.first())
+                    val settings = app.container.settings.settings.first()
+                    runCatching { ReminderScheduler(app).reschedule(settings) }
+                    PrayerSilence(app).sync(settings)
                 } finally {
                     pending?.finish()
                 }
