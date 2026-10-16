@@ -1,0 +1,7 @@
+{
+ "_note": "Draft translation awaiting native review. Adapted for Android from the App Store draft shared/store/listing/zh.json (same terms); the iqama, Silent during prayer, widget and 'also on' lines are new. tools/store/play_listing_build.py builds shared/store/play/listing.json from it.",
+ "title": "Near Mosque：礼拜时间",
+ "shortDescription": "礼拜时间、宣礼、朝向和最近的清真寺。无广告，无需账号。",
+ "fullDescription": "Near Mosque 显示你所在城市今天的礼拜时间，为你指出朝向，并找到你周围的清真寺。礼拜时间和朝向在你的设备上计算，因此无需联网也能使用。\n\n礼拜时间\n• 下一次礼拜和剩余时间，显示在随时段变化的天空上\n• 11 种计算方法，大众或哈乃斐派晡礼，伊历日期，每次礼拜可按分钟调整\n• 禁寺或先知寺的宣礼（完整或简短），每次礼拜前的提醒，以及晨礼闹钟\n• 宣礼之后倒计时到伊卡玛，并在伊卡玛时通知；等待时间可以自行修改\n• 礼拜时静音（默认关闭，需自行开启）：礼拜时自动开启“勿扰”模式，结束后自动关闭\n\n朝向\n• 指南针随手机转动，对准天房时会提示你\n• 从你所在城市到麦加的方向和距离\n\n最近清真寺\n• 在地图或指南针上查看周围的清真寺，附距离和路线\n• 清真寺通过网络搜索，应用还自带开罗、伦敦和开普敦的清真寺数据\n\n询问伊斯兰知识\n• 提出问题，从应用的书库中阅读解答，每段内容都注明出处\n• 你的问题保留在你的设备上。解答引自书籍，并非教法裁决。\n\n书库\n• 伊本·巴兹谢赫的教法解答、圣训、古兰经译本和经注，以及 IslamHouse 的书籍\n• 信仰、圣训、教法、经注和先知传记方面的阿拉伯文经典，下载一次即可离线阅读\n\n主屏幕小组件\n• 8 个小组件：下一次礼拜、礼拜倒计时、礼拜圆环、今日礼拜、最近的清真寺、朝向、伊斯兰教问答和快捷操作\n• 应用和所有小组件使用同一种风格：金色与米色、绿色、夜空、青绿或随时段变化\n\n也适用于\niPhone、iPad、Mac、Windows 和 Linux。\n\n隐私\n无需账号，没有广告，没有追踪。应用只在搜索清真寺（使用模糊位置）、显示地图、下载你要求的内容和打开你选择的链接时联网。\n\n36 种语言。",
+ "whatsNew": "Near Mosque 在 Google Play 上的首个版本。"
+}

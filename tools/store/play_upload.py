@@ -4,7 +4,7 @@
     play_upload.py <app.aab>
 
 Environment: PLAY_SERVICE_ACCOUNT_JSON (the service account's JSON key, the whole file), PACKAGE_NAME
-(e.g. sa.zood.nearmosque), TRACK (internal | closed | production; "closed" is Play's default closed track,
+(e.g. com.AVA.nearmosque), TRACK (internal | closed | production; "closed" is Play's default closed track,
 "alpha"), RELEASE_NAME (optional, shown in Play Console), DRY_RUN ("true": sign in and open an edit, then
 discard it without uploading).
 
