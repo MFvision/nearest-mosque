@@ -9,7 +9,7 @@ and whatsNew. One app language can feed several Play locales (en → en-US, en-G
 Google Play has no listing language for are listed under "unsupported" and are left out of "locales".
 The output is what an uploader sends with the Google Play Developer API (edits.listings.update for title,
 shortDescription and fullDescription; whatsNew goes into the release's releaseNotes on the track). The
-listing's default language is en-US. docs/12-google-play.md describes the store listing.
+listing's default language is ar (as set in Play Console). docs/12-google-play.md describes the store listing.
 
 Rules checked, all fatal: every enabled app language has a file and is either mapped or listed as
 unsupported; each Play code is one of Play's listing languages; the four fields are present, non-empty and
@@ -32,7 +32,7 @@ LANGS = REPO / "shared/i18n/languages.json"
 # Google Play listing limits (characters, i.e. Unicode code points). whatsNew is the release notes limit.
 LIMITS = {"title": 30, "shortDescription": 80, "fullDescription": 4000, "whatsNew": 500}
 FIELDS = list(LIMITS)
-DEFAULT_LOCALE = "en-US"
+DEFAULT_LOCALE = "ar"
 FINAL = {"en", "ar"}
 
 # Play Console listing languages and codes, from Google's help page "Add translations and localized

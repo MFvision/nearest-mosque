@@ -7,8 +7,8 @@
 Text comes from shared/store/play/listing.json (tools/store/play_listing_build.py). Graphics come from <assets dir>
 as built by tools/store/play_graphics.py (.github/workflows/store-play-assets.yml):
     icon.png, <app language>/feature.png, <app language>/phone/NN-*.png
-A language with no graphics of its own uses the English ones. Store contact details (email, website) and the
-default language (en-US) are set too. The edit is committed only after every call succeeded, so a failure leaves
+A language with no graphics of its own uses the English ones. Store contact details (email, website) are set too; the
+default language stays as chosen in Play Console unless DEFAULT_LANGUAGE is given. The edit is committed only after every call succeeded, so a failure leaves
 the store as it was. Nothing here touches releases or tracks.
 
 Environment: PLAY_SERVICE_ACCOUNT_JSON, PACKAGE_NAME, optional LOCALES (space-separated Play locale codes to limit
@@ -25,7 +25,7 @@ from play_upload import API, UPLOAD, Play, access_token  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 LISTING = ROOT / "shared/store/play/listing.json"
-CONTACT = {"defaultLanguage": "en-US", "contactEmail": "app@vision.bz", "contactWebsite": "https://nearmosque.net/"}
+CONTACT = {"contactEmail": "app@vision.bz", "contactWebsite": "https://nearmosque.net/"}
 IMAGE_TYPES = ("icon", "featureGraphic", "phoneScreenshots")
 
 
@@ -69,9 +69,13 @@ def apply(play: Play, edit: str, ours: dict, assets: pathlib.Path) -> None:
     missing = [k for k in limit if k not in ours]
     if missing:
         raise SystemExit(f"Not in listing.json: {' '.join(missing)}")
-    play.call("PATCH", play.app(f"/edits/{edit}/details"), body=CONTACT)
-    print("Contact details and default language set.", flush=True)
-    for lang, text in sorted(locales.items(), key=lambda kv: kv[0] != "en-US"):
+    details = dict(CONTACT)
+    if os.environ.get("DEFAULT_LANGUAGE"):
+        details["defaultLanguage"] = os.environ["DEFAULT_LANGUAGE"]
+    play.call("PATCH", play.app(f"/edits/{edit}/details"), body=details)
+    print("Contact details set" + (f", default language {details['defaultLanguage']}." if "defaultLanguage" in details else
+                                   " (the default language stays as set in Play Console)."), flush=True)
+    for lang, text in sorted(locales.items()):
         play.call("PUT", play.app(f"/edits/{edit}/listings/{lang}"), body={
             "language": lang, "title": text["title"], "shortDescription": text["shortDescription"],
             "fullDescription": text["fullDescription"]})

@@ -1,6 +1,6 @@
 {
  "_about": "Google Play store listing text per Play listing language, for Near Mosque on Android. Built by tools/store/play_listing_build.py from shared/store/play/<app language>.json; do not edit by hand. title, shortDescription and fullDescription go to the store listing (Play Developer API edits.listings.update, one call per locale); whatsNew goes to the release notes of the track release (releaseNotes: [{language, text}]). The default listing language is en-US. English and Arabic are final; the other translations are drafts awaiting native review. Lengths are Unicode code points, as Play counts them.",
- "defaultLanguage": "en-US",
+ "defaultLanguage": "ar",
  "limits": {
   "title": 30,
   "shortDescription": 80,
