@@ -19,6 +19,7 @@ import json
 import os
 import pathlib
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from play_upload import API, UPLOAD, Play, access_token  # noqa: E402
@@ -80,7 +81,7 @@ def apply(play: Play, edit: str, ours: dict, assets: pathlib.Path) -> None:
     play.call("PATCH", play.app(f"/edits/{edit}/details"), body=details)
     print("Contact details set" + (f", default language {details['defaultLanguage']}." if "defaultLanguage" in details else
                                    " (the default language stays as set in Play Console)."), flush=True)
-    for lang, text in sorted(locales.items()):
+    def one(lang: str, text: dict) -> str:
         play.call("PUT", play.app(f"/edits/{edit}/listings/{lang}"), body={
             "language": lang, "title": text["title"], "shortDescription": text["shortDescription"],
             "fullDescription": text["fullDescription"]})
@@ -89,11 +90,17 @@ def apply(play: Play, edit: str, ours: dict, assets: pathlib.Path) -> None:
             if not g[kind]:
                 continue
             play.call("DELETE", play.app(f"/edits/{edit}/listings/{lang}/{kind}"))
+            # One after another within a slot, so the screenshots keep their order on the store page.
             for path in g[kind][:8]:
                 upload_image(play, edit, lang, kind, path)
-        print(f"  {lang:7s} text, icon {len(g['icon'])}, feature graphic {len(g['featureGraphic'])}, "
-              f"phone {len(g['phoneScreenshots'][:8])}, 7-inch {len(g['sevenInchScreenshots'][:8])}, "
-              f"10-inch {len(g['tenInchScreenshots'][:8])} screenshots", flush=True)
+        return (f"  {lang:7s} text, icon {len(g['icon'])}, feature graphic {len(g['featureGraphic'])}, "
+                f"phone {len(g['phoneScreenshots'][:8])}, 7-inch {len(g['sevenInchScreenshots'][:8])}, "
+                f"10-inch {len(g['tenInchScreenshots'][:8])} screenshots")
+
+    # Several languages at once: each language's calls stay in order, and a failure stops the run before the commit.
+    with ThreadPoolExecutor(max_workers=int(os.environ.get("WORKERS", "6"))) as pool:
+        for line in pool.map(lambda kv: one(*kv), sorted(locales.items())):
+            print(line, flush=True)
 
 
 def main() -> int:
@@ -108,7 +115,7 @@ def main() -> int:
     except (KeyError, ValueError):
         print("PLAY_SERVICE_ACCOUNT_JSON is not a service account JSON key (it needs client_email and private_key).")
         return 1
-    play = Play(access_token(key), os.environ["PACKAGE_NAME"])
+    play = Play(access_token(key), os.environ["PACKAGE_NAME"], key)
     edit = play.call("POST", play.app("/edits"), body={})["id"]
     if mode == "check":
         check(play, edit, ours)

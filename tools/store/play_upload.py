@@ -21,6 +21,7 @@ import os
 import pathlib
 import re
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -58,13 +59,24 @@ def access_token(key: dict) -> str:
 
 
 class Play:
-    def __init__(self, token: str, package: str):
+    def __init__(self, token: str, package: str, key: dict | None = None):
         self.token = token
         self.package = package
+        # With the key, the token is renewed before its hour runs out (long listing uploads).
+        self.key = key
+        self.issued = time.time()
+        self.lock = threading.Lock()
+
+    def fresh_token(self) -> str:
+        with self.lock:
+            if self.key and time.time() - self.issued > 2700:
+                self.token = access_token(self.key)
+                self.issued = time.time()
+            return self.token
 
     def call(self, method: str, url: str, body: dict | None = None, data: bytes | None = None, timeout: int = 120,
              content_type: str = "application/octet-stream") -> dict:
-        headers = {"Authorization": "Bearer " + self.token}
+        headers = {"Authorization": "Bearer " + self.fresh_token()}
         if data is not None:
             headers["Content-Type"] = content_type
         elif body is not None:
