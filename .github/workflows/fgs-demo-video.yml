@@ -1,0 +1,172 @@
+name: Google Play foreground-service video
+
+# The video Google Play asks for with the FOREGROUND_SERVICE_MEDIA_PLAYBACK declaration, recorded from the real
+# debug app on an Android emulator (tools/store/fgs_demo.py): Near Mosque opens, the Adhan is turned on for the next
+# prayer in Settings > Prayer & Audio (notifications and "Alarms & reminders" allowed on the way), the app is left for
+# the home screen, the clock is moved to a few seconds before that prayer, the app's own alarm starts the Adhan
+# (PrayerAudioService, a mediaPlayback foreground service) with its notification, the notification shade shows it
+# with Stop, and Stop ends the sound. The first-launch tour (Riyadh chosen from the city search) runs before the
+# recording starts. Artifact fgs-demo-video: near-mosque-fgs-demo.mp4 (H.264, captions, the emulator's audio when it
+# could be captured) and two screenshots; fgs-demo-debug: the raw recordings, the timeline, logcat and, when a step
+# fails, its screenshot and UI tree. Started by hand.
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_level:
+        description: "Emulator Android API level (google_apis x86_64 image)"
+        default: "34"
+        type: choice
+        options: ["34", "35"]
+      prayer:
+        description: "The prayer whose Adhan is shown (English name as in the app); the clock starts at start_time"
+        default: "Asr"
+      start_time:
+        description: "Riyadh time the emulator clock starts at, before the prayer above (HH:MM)"
+        default: "13:00"
+      audio:
+        description: "Capture the emulator's sound into the video (PulseAudio)"
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fgs-demo-video
+  cancel-in-progress: true
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      API_LEVEL: ${{ inputs.api_level }}
+      FGS_OUT: ${{ github.workspace }}/fgs-demo
+      FGS_PRAYER: ${{ inputs.prayer }}
+      FGS_START: ${{ inputs.start_time }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          ls -l /dev/kvm
+
+      - name: Tools (ffmpeg, caption font, PulseAudio)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core pulseaudio pulseaudio-utils >/dev/null
+          mkdir -p "$FGS_OUT/debug"
+
+      - name: Audio sink for the emulator
+        if: inputs.audio
+        continue-on-error: true
+        run: |
+          pulseaudio -D --exit-idle-time=-1 --log-target="file:$FGS_OUT/debug/pulseaudio.log"
+          sleep 2
+          pactl load-module module-null-sink sink_name=fgs sink_properties=device.description=fgs
+          pactl set-default-sink fgs
+          pactl info
+          echo "FGS_AUDIO_SOURCE=fgs.monitor" >> "$GITHUB_ENV"
+
+      - name: Emulator and system image
+        run: |
+          sdk="$ANDROID_HOME"
+          bin="$sdk/cmdline-tools/latest/bin"
+          image="system-images;android-${API_LEVEL};google_apis;x86_64"
+          export ANDROID_AVD_HOME="$HOME/.android/avd"
+          mkdir -p "$ANDROID_AVD_HOME"
+          echo "ANDROID_AVD_HOME=$ANDROID_AVD_HOME" >> "$GITHUB_ENV"
+          yes | "$bin/sdkmanager" --licenses >/dev/null || true
+          "$bin/sdkmanager" --install "platform-tools" "emulator" "$image" >/dev/null
+          echo "$sdk/platform-tools" >> "$GITHUB_PATH"
+          echo "$sdk/emulator" >> "$GITHUB_PATH"
+          device=pixel_6
+          "$bin/avdmanager" list device -c | grep -qx "$device" || device=pixel
+          echo no | "$bin/avdmanager" create avd --force -n fgs -k "$image" -d "$device"
+          cat >> "$ANDROID_AVD_HOME/fgs.avd/config.ini" <<'EOF'
+          hw.ramSize=4096
+          disk.dataPartition.size=6G
+          hw.keyboard=no
+          hw.audioOutput=yes
+          EOF
+          "$sdk/emulator/emulator" -version | head -1
+
+      - name: Boot the emulator (in the background, while the app builds)
+        run: |
+          # Never -no-audio: the guest keeps its sound device so the app's MediaPlayer plays as on a phone. Without the
+          # PulseAudio sink the emulator falls back to a silent backend (and the video has no sound).
+          if [ -n "${FGS_AUDIO_SOURCE:-}" ]; then export QEMU_AUDIO_DRV=pa; fi
+          nohup "$ANDROID_HOME/emulator/emulator" -avd fgs -no-window -no-snapshot -no-boot-anim -gpu swiftshader_indirect \
+            -camera-back none -camera-front none > "$FGS_OUT/debug/emulator.log" 2>&1 &
+          echo "started the emulator (audio capture: ${FGS_AUDIO_SOURCE:-none})"
+
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/wrapper-validation@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+
+      - name: Build the debug app
+        working-directory: android
+        run: ./gradlew --no-daemon :app:assembleDebug
+
+      - name: Wait for the emulator
+        timeout-minutes: 15
+        run: |
+          adb wait-for-device
+          until [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do sleep 3; done
+          adb root
+          sleep 3
+          adb wait-for-device
+          until [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do sleep 2; done
+          until adb shell cmd package list packages >/dev/null 2>&1; do sleep 2; done
+          # First boot keeps the system busy for a while (optimising apps); let the launcher settle.
+          sleep 45
+          adb shell wm size
+          adb shell getprop ro.build.version.release
+
+      - name: Emulator settings (animations off, Asia/Riyadh, manual time)
+        run: python3 tools/store/fgs_demo.py prepare
+
+      - name: Install the app
+        run: |
+          adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+          adb shell cmd package resolve-activity --brief com.AVA.nearmosque | tail -1
+
+      - name: First launch (off camera)
+        run: python3 tools/store/fgs_demo.py onboard
+
+      - name: Record the demo
+        run: python3 tools/store/fgs_demo.py record
+
+      - name: Edit the video
+        run: python3 tools/store/fgs_demo.py cut
+
+      - name: Logs
+        if: always()
+        run: |
+          adb logcat -d > "$FGS_OUT/debug/logcat.txt" 2>/dev/null || true
+          adb exec-out screencap -p > "$FGS_OUT/debug/last-screen.png" 2>/dev/null || true
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: fgs-demo-video
+          path: |
+            fgs-demo/near-mosque-fgs-demo.mp4
+            fgs-demo/notification-with-stop.png
+            fgs-demo/after-stop.png
+          retention-days: 30
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: fgs-demo-debug
+          path: |
+            fgs-demo/debug/
+            fgs-demo/raw/
+            fgs-demo/cut/filter.txt
+          retention-days: 14
