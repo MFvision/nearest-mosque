@@ -5,7 +5,8 @@ import NMCore
 
 /// Experimental: the Qibla compass in the Dynamic Island (QiblaActivityAttributes), started from the Qibla
 /// widget. Reads the true heading in the background for two minutes (iOS shows the location indicator), sends
-/// the arrow to the activity about once a second, then stops reading and ends the activity.
+/// the arrow to the activity about four times a second when it has moved (the views glide between updates),
+/// then stops reading and ends the activity.
 @MainActor
 final class QiblaIsland: NSObject, CLLocationManagerDelegate {
     static let shared = QiblaIsland()
@@ -43,7 +44,7 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
         guard activity != nil else { return }
         background = CLBackgroundActivitySession()
         manager.delegate = self
-        manager.headingFilter = 2
+        manager.headingFilter = 1
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
         manager.allowsBackgroundLocationUpdates = true
         manager.showsBackgroundLocationIndicator = true
@@ -77,8 +78,9 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
             : turn > 0 ? l10n.t(a < 30 ? "qibla_go_right_little" : "qibla_go_right")
             : l10n.t(a < 30 ? "qibla_go_left_little" : "qibla_go_left")
         let state = QiblaActivityAttributes.ContentState(turn: turn, facing: a <= 5, hint: hint)
-        // About once a second, or at once when the facing state changes.
-        guard state.facing != lastState?.facing || Date().timeIntervalSince(lastSent) >= 1 else { return }
+        // About four times a second while the arrow moves, or at once when the facing state changes.
+        let moved = abs(Angles.normalize180(turn - (lastState?.turn ?? turn + 10))) >= 1
+        guard state.facing != lastState?.facing || (moved && Date().timeIntervalSince(lastSent) >= 0.25) else { return }
         lastSent = Date()
         lastState = state
         pending = state

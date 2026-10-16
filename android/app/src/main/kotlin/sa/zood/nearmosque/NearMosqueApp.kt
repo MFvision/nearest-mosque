@@ -35,9 +35,9 @@ class NearMosqueApp : Application() {
         AppStyle.load(this)
         container = AppContainer(this)
         container.start()
-        // Widgets follow the city, the calculation settings and the reminders (bells).
+        // Widgets follow the city, the calculation settings, the reminders (bells) and the waits for the iqama.
         container.scope.launch {
-            container.settings.settings.map { Triple(it.prayerLocation, it.prayer, it.reminders) }.distinctUntilChanged().collect {
+            container.settings.settings.map { listOf(it.prayerLocation, it.prayer, it.reminders, it.iqama) }.distinctUntilChanged().collect {
                 sa.zood.nearmosque.platform.PrayerWidgets.refresh(this@NearMosqueApp)
             }
         }

@@ -132,6 +132,17 @@ struct SettingsView: View {
                     SettingsRow(icon: "info.circle.fill", tint: .secondary, title: l10n.t("about"),
                                 value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String)
                 } header: { Text(l10n.t("about")) }
+
+                // Who makes the app and how to reach them, as on the App Store page and the website.
+                Section {
+                    linkRow(Publisher.companyURL, icon: "building.2.fill", tint: .indigo, title: l10n.t("about_publisher"), value: Publisher.name)
+                    linkRow(Publisher.websiteURL(l10n.language), icon: "globe", tint: .teal, title: l10n.t("website"), value: Publisher.website)
+                    linkRow(Publisher.emailURL, icon: "envelope.fill", tint: .blue, title: l10n.t("about_support"), value: Publisher.email)
+                    linkRow(Publisher.phoneURL, icon: "phone.fill", tint: .green, title: l10n.t("about_phone"), value: Publisher.phoneDisplay)
+                    linkRow(Publisher.termsURL(l10n.language), icon: "doc.plaintext.fill", tint: .gray, title: l10n.t("about_terms"), value: nil)
+                } footer: {
+                    Text("© \(Publisher.year) \(Publisher.name). " + l10n.t("about_rights"))
+                }
             }
             .navigationTitle(l10n.t("settings"))
             #if DEBUG
@@ -143,6 +154,33 @@ struct SettingsView: View {
             .sheet(isPresented: $showCalc) { CalculationView() }
         }
     }
+}
+
+extension SettingsView {
+    /// A row that opens a web page, an email or a call.
+    func linkRow(_ url: URL, icon: String, tint: Color, title: String, value: String?) -> some View {
+        Link(destination: url) {
+            SettingsRow(icon: icon, tint: tint, title: title, value: value, chevron: true)
+        }
+        .foregroundStyle(.primary)
+    }
+}
+
+/// The publisher's details shown in Settings (the same as on the App Store page and nearmosque.net).
+enum Publisher {
+    static let name = "AVA ai"
+    static let companyURL = URL(string: "https://avaai.sa")!
+    static let website = "nearmosque.net"
+    static let email = "app@vision.bz"
+    static let phone = "+966579372403"
+    /// Kept left to right inside Arabic text.
+    static let phoneDisplay = "\u{2066}+966 57 937 2403\u{2069}"
+    static let year = 2026
+    static var emailURL: URL { URL(string: "mailto:\(email)")! }
+    static var phoneURL: URL { URL(string: "tel:\(phone)")! }
+    /// The site and its terms page, in Arabic for an Arabic interface.
+    static func websiteURL(_ language: String) -> URL { URL(string: "https://nearmosque.net/" + (language == "ar" ? "#ar" : ""))! }
+    static func termsURL(_ language: String) -> URL { URL(string: "https://nearmosque.net/terms.html" + (language == "ar" ? "#ar" : ""))! }
 }
 
 /// A settings row: a coloured icon tile, the title (and a note), and the current value.

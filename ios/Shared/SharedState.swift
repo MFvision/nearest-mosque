@@ -33,11 +33,22 @@ struct SharedState: Codable, Equatable {
     /// A random value made once on this phone; the widgets' question links carry it, so the app runs those questions
     /// at once, while a question in a link from anywhere else is only put in the box.
     var linkToken: String?
+    /// The wait for the iqama after each Adhan (nil from versions before it: the usual waits).
+    var iqama: IqamaSettings?
+    /// Live Apple Maps results allowed (the app's setting), for Siri's nearest mosque (nil from older versions: on).
+    var onlineSearch: Bool?
 
     var location: LatLng? { LatLng(latitude, longitude) }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
     var locale: Locale { Locale(identifier: Languages.tag(language)) }
     var isRTL: Bool { Languages.isRTL(language) }
+
+    var iqamaSettings: IqamaSettings { iqama ?? IqamaSettings() }
+
+    /// What the prayer times show at `now`: the countdown to the next Adhan, the wait for the iqama, or the prayer.
+    func moment(_ now: Date, calculator: PrayerCalculator = PrayerCalculator()) -> PrayerMoment? {
+        calculator.moment(days(now, calculator: calculator), now: now, iqama: iqamaSettings)
+    }
 
     func reminderOn(_ e: PrayerEvent) -> Bool { reminders?.contains(e.rawValue) ?? false }
 

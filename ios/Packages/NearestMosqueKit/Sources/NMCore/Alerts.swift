@@ -68,6 +68,8 @@ public struct AlertSettings: Codable, Hashable, Sendable {
     /// The Fajr Adhan (with "prayer is better than sleep"), and which recording.
     public var fajrAdhan = false
     public var fajrAdhanSource = AdhanSource.makkah
+    /// Only the first "Allahu akbar, Allahu akbar" instead of the whole Adhan (for every prayer).
+    public var shortAdhan = false
     /// Spoken reminders 10 and 5 minutes before the prayer.
     public var before10 = false
     public var before5 = false
@@ -165,6 +167,7 @@ public struct AlertSettings: Codable, Hashable, Sendable {
         adhanSource = get(.adhanSource, AdhanSource.makkah)
         fajrAdhan = get(.fajrAdhan, false)
         fajrAdhanSource = get(.fajrAdhanSource, AdhanSource.makkah)
+        shortAdhan = get(.shortAdhan, false)
         before10 = get(.before10, false)
         before5 = get(.before5, false)
         near = get(.near, false)
@@ -198,6 +201,8 @@ public enum AlertKind: Int, Sendable {
     case before10, before5, near
     /// Friday Salli Ala Rasulillah, the daily Qur'an reminder, the bedtime verse, Friday Al-Kahf.
     case salawat, quran, sleep, kahf
+    /// The iqama, the set wait after the Adhan.
+    case iqama
 }
 
 public struct PlannedAlert: Equatable, Sendable {
@@ -211,7 +216,7 @@ public struct PlannedAlert: Equatable, Sendable {
 /// they keep). `isRamadan` says whether a civil date falls in Ramadan (Hijri, with the user's adjustment).
 public enum AlertPlanner {
     public static func plan(_ days: [DaySchedule], now: Date, atPrayer: Set<PrayerEvent>, alerts: AlertSettings,
-                            isRamadan: (CivilDate) -> Bool) -> [PlannedAlert] {
+                            iqama: IqamaSettings = IqamaSettings(enabled: false), isRamadan: (CivilDate) -> Bool) -> [PlannedAlert] {
         var out: [PlannedAlert] = []
         func add(_ k: AlertKind, _ e: PrayerEvent, _ at: Date, _ d: DaySchedule) { out.append(PlannedAlert(kind: k, event: e, at: at, date: d.date)) }
         for d in days {
@@ -227,6 +232,8 @@ public enum AlertPlanner {
                 if alerts.before10, s.before10 { add(.before10, e, at.addingTimeInterval(-600), d) }
                 if alerts.before5, s.before5 { add(.before5, e, at.addingTimeInterval(-300), d) }
                 if alerts.near, s.near { add(.near, e, at.addingTimeInterval(-Double(alerts.nearMinutes) * 60), d) }
+                // The iqama, for a prayer that has an Adhan or a bell.
+                if iqama.enabled, iqama.alert, iqama.wait(e) > 0, alerts.adhanPlays(e) || atPrayer.contains(e) { add(.iqama, e, iqama.iqama(e, adhan: at), d) }
             }
             // Sunrise (the end of Fajr time): a plain notification when its bell is on.
             if atPrayer.contains(.sunrise), let s = d[.sunrise] { add(.atPrayer, .sunrise, s, d) }

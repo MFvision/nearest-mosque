@@ -2,6 +2,7 @@
 """Convert the app's recordings into the files the apps ship (needs ffmpeg).
 
   python3 tools/build_audio.py <Islamic_App_Audio_Assets dir> <Prayer_Voice_Notifications_ElevenLabs dir> <clean Adhan dir>
+  python3 tools/build_audio.py --short     (only the short Adhans, cut from the shipped full ones)
 
 The clean Adhan dir holds the four Adhan recordings chosen for low noise (one folder each: mk-world-1st,
 mkf-world-2nd-fajr, md-col2013-surayhi-isha, mdf-col2021-surayhi, each with audio.<ext>); the owner's pack
@@ -23,6 +24,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IOS = os.path.join(ROOT, "ios", "App", "Resources", "Sounds")
 ANDROID = os.path.join(ROOT, "android", "app", "src", "main", "res", "raw")
+WINDOWS = os.path.join(ROOT, "windows", "src", "main", "sounds")
 
 PRAYERS = ["fajr", "dhuhr", "asr", "maghrib", "isha"]
 PRAYER_DIRS = {"fajr": "01_Fajr", "dhuhr": "02_Dhuhr", "asr": "03_Asr", "maghrib": "04_Maghrib", "isha": "05_Isha"}
@@ -47,6 +49,9 @@ def recordings(assets, clean):
     }
 
 FULL = {"adhan_makkah", "adhan_madinah", "fajr_makkah", "fajr_madinah"}
+# The short Adhan: the first "Allahu akbar, Allahu akbar" of each recording, to this many seconds (the end of that
+# breath and its echo; the next phrase starts at 15.2 s in Makkah and 22.0 s in Madinah), faded out.
+SHORT = {"adhan_makkah": 11.6, "adhan_madinah": 13.0}
 # DC offset removed, then one loudness for every recording (EBU R128, -16 LUFS, peaks under -1.5 dBTP). The gain
 # is linear (two-pass loudnorm): dynamic levelling would lift the pauses between phrases and their hiss with them.
 HIGHPASS = "highpass=f=40"
@@ -79,6 +84,18 @@ def m4a(src, dst, start=0.0, end=None, kbps=64, clean=True):
     ff(*args, "-map", "0:a:0", "-vn", *(["-af", af] if clean else []), "-ac", "1", "-ar", "44100", "-c:a", "aac", "-b:a", "%dk" % kbps, "-movflags", "+faststart", dst)
 
 
+def short_adhans():
+    """The short Adhans from the shipped full ones (already cleaned and levelled): a .caf for notifications and an
+    .m4a for the app on iOS, an .m4a on Android, an .mp3 on Windows."""
+    for name, end in SHORT.items():
+        src = os.path.join(IOS, name + ".m4a")
+        fade = "afade=t=out:st=%.2f:d=0.8" % (end - 0.8)
+        ff("-i", src, "-t", str(end), "-af", fade, "-ac", "1", "-ar", "24000", "-c:a", "pcm_s16le", os.path.join(IOS, name + "_short.caf"))
+        for out in (os.path.join(IOS, name + "_short.m4a"), os.path.join(ANDROID, name + "_short.m4a")):
+            ff("-i", src, "-t", str(end), "-af", fade, "-ac", "1", "-ar", "44100", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", out)
+        ff("-i", src, "-t", str(end), "-af", fade, "-ac", "1", "-ar", "44100", "-c:a", "libmp3lame", "-b:a", "128k", os.path.join(WINDOWS, name + "_short.mp3"))
+
+
 def main(assets, voices, clean):
     os.makedirs(IOS, exist_ok=True)
     os.makedirs(ANDROID, exist_ok=True)
@@ -95,10 +112,14 @@ def main(assets, voices, clean):
                 name = "voice_%s_%s_%s" % (lang, p, short)
                 caf(src, os.path.join(IOS, name + ".caf"), 0, 29.5)
                 m4a(src, os.path.join(ANDROID, name + ".m4a"), kbps=48)
+    short_adhans()
     print("written", len(os.listdir(IOS)), "iOS files,", len([f for f in os.listdir(ANDROID) if f.endswith(".m4a")]), "Android files")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
+    if sys.argv[1:] == ["--short"]:
+        short_adhans()
+    elif len(sys.argv) != 4:
         sys.exit(__doc__)
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    else:
+        main(sys.argv[1], sys.argv[2], sys.argv[3])

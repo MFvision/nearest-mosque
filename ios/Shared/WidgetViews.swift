@@ -49,15 +49,40 @@ struct PrayerEntry: TimelineEntry {
     let look: WidgetLook
     let state: SharedState?
     let today: DaySchedule?
+    /// What the widget counts down to: the next Adhan, or after an Adhan its iqama (with the prayer's name and the
+    /// iqama's time), and during the prayer that prayer at its iqama (no countdown then, see `stage`).
     let next: Upcoming?
+    var stage: PrayerMoment.Stage = .upcoming
 
     static func make(_ date: Date, look requested: WidgetLook, state: SharedState?) -> PrayerEntry {
         let look = requested.resolved(state)
         guard let state else { return PrayerEntry(date: date, look: look, state: nil, today: nil, next: nil) }
         let days = state.days(date)
-        return PrayerEntry(date: date, look: look, state: state, today: days.count == 3 ? days[1] : nil,
-                           next: PrayerCalculator().nextPrayer(days, now: date))
+        let today = days.count == 3 ? days[1] : nil
+        guard let m = PrayerCalculator().moment(days, now: date, iqama: state.iqamaSettings) else {
+            return PrayerEntry(date: date, look: look, state: state, today: today, next: nil)
+        }
+        switch m.stage {
+        case .upcoming:
+            return PrayerEntry(date: date, look: look, state: state, today: today, next: m.next)
+        case .toIqama, .prayer:
+            let iqama = m.iqama ?? m.until
+            return PrayerEntry(date: date, look: look, state: state, today: today,
+                               next: Upcoming(event: m.event, at: iqama, periodStart: m.adhan, isTomorrow: false), stage: m.stage)
+        }
     }
+
+    /// "Time left", "Iqama in", or "Dhuhr prayer has begun".
+    func remainingLabel(_ s: SharedState) -> String {
+        switch stage {
+        case .upcoming: return s.t("widget_remaining")
+        case .toIqama: return s.t("iqama_in")
+        case .prayer: return next.map { s.t("prayer_started", s.t("prayer_\($0.event.rawValue)")) } ?? ""
+        }
+    }
+
+    /// "Next prayer", or "Iqama" while a prayer waits for its iqama or is being prayed.
+    func headerLabel(_ s: SharedState) -> String { stage == .upcoming ? s.t("next_prayer") : s.t("iqama_section") }
 
     /// Elapsed fraction of the current prayer period.
     var progress: Double {
@@ -192,8 +217,10 @@ struct PrayerWidgetView: View {
             .accessibilityLabel(s.t(s.reminderOn(e) ? "reminder_on_a11y" : "reminder_off_a11y", name(s, e)))
     }
 
-    private func countdown(_ next: Upcoming) -> some View {
-        Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true).monospacedDigit()
+    /// The time left, or during the prayer (after the iqama) "Dhuhr prayer has begun" in its place.
+    private func countdown(_ next: Upcoming) -> Text {
+        if entry.stage == .prayer, let s = entry.state { return Text(s.t("prayer_started", name(s, next.event))) }
+        return Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true).monospacedDigit()
     }
 
     private func bar(_ next: Upcoming, _ p: WidgetPalette) -> some View {
@@ -331,7 +358,7 @@ struct PrayerWidgetView: View {
                 }
             }
             Spacer(minLength: 0)
-            Text(s.t("widget_remaining")).font(.caption2).foregroundStyle(p.secondary)
+            Text(entry.remainingLabel(s)).font(.caption2).foregroundStyle(p.secondary)
             countdown(next).font(.title3.weight(.medium)).foregroundStyle(p.ink).lineLimit(1)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -355,7 +382,7 @@ struct PrayerWidgetView: View {
         #endif
         case .systemSmall:
             VStack(alignment: .leading, spacing: 6) {
-                Text(s.t("next_prayer")).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
+                Text(entry.headerLabel(s)).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
                 Label(name(s, next.event), systemImage: next.event.symbol).font(.headline).foregroundStyle(p.ink).lineLimit(1)
                 Text(s.time(next.at)).font(.system(size: 26, weight: .semibold)).monospacedDigit().foregroundStyle(p.ink)
                     .minimumScaleFactor(0.6).lineLimit(1)
@@ -370,7 +397,7 @@ struct PrayerWidgetView: View {
         default:
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text(s.t("next_prayer")).font(.headline).foregroundStyle(p.ink)
+                    Text(entry.headerLabel(s)).font(.headline).foregroundStyle(p.ink)
                     Spacer()
                     Text(s.weekdayDayMonth(entry.date)).font(.caption.weight(.semibold)).foregroundStyle(p.secondary)
                 }
@@ -426,7 +453,7 @@ struct PrayerWidgetView: View {
             }
             .environment(\.layoutDirection, .leftToRight)
             VStack(spacing: 2) {
-                if label { Text(s.t("widget_until")).font(.caption).foregroundStyle(p.secondary) }
+                if label { Text(entry.stage == .upcoming ? s.t("widget_until") : entry.remainingLabel(s)).font(.caption).foregroundStyle(p.secondary) }
                 Text(name(s, next.event)).font(nameFont).foregroundStyle(p.ink).lineLimit(1).minimumScaleFactor(0.6)
                 countdown(next).font(.system(size: timeSize, weight: .medium)).foregroundStyle(p.ink)
                     .multilineTextAlignment(.center).lineLimit(1).minimumScaleFactor(0.5)
@@ -484,7 +511,7 @@ struct PrayerWidgetView: View {
             Spacer(minLength: 4)
             VStack(alignment: .leading, spacing: 4) {
                 chipRow(name(s, next.event), Text(s.time(next.at)).monospacedDigit(), p)
-                chipRow(s.t("widget_remaining"), countdown(next), p)
+                chipRow(entry.remainingLabel(s), countdown(next), p)
             }
             Spacer(minLength: 4)
             place(s, p).frame(maxWidth: 70)
@@ -712,7 +739,8 @@ extension PrayerWidgetView {
                         Text(s.t("qibla_distance", s.distance(Qibla.distanceMeters(from: here)))).font(.caption2).foregroundStyle(p.secondary).lineLimit(1)
                         Spacer(minLength: 0)
                         QiblaIslandButton {
-                            Label(s.t(QiblaIslandSupport.available ? "widget_qibla_island" : "widget_qibla_live"), systemImage: "hand.tap")
+                            // Short, so it is never cut off ("…").
+                            Label(s.t("widget_qibla_live"), systemImage: "hand.tap")
                                 .font(.caption2.weight(.semibold)).foregroundStyle(p.accent).lineLimit(2).minimumScaleFactor(0.7)
                         }
                     }

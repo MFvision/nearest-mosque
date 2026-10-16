@@ -25,8 +25,10 @@ import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.core.PolarRule
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.Qibla
 import sa.zood.nearmosque.core.Upcoming
+import sa.zood.nearmosque.core.moment
 import sa.zood.nearmosque.data.AppSettings
 import sa.zood.nearmosque.data.PrayerLocation
 import sa.zood.nearmosque.platform.LocationPermission
@@ -44,6 +46,8 @@ data class PrayerUi(
     val today: DaySchedule? = null,
     val tomorrow: DaySchedule? = null,
     val next: Upcoming? = null,
+    /** What the header shows: the countdown to the next Adhan, the wait for the iqama, or the prayer itself. */
+    val moment: PrayerMoment? = null,
     /** The prayer period in progress (for the sky and the arc), null before today's Fajr. */
     val current: PrayerEvent? = null,
     val fajrEndsAt: Instant? = null,
@@ -117,12 +121,13 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
             cached = (-1L..1L).map { calc.schedule(loc.location, today.plusDays(it), zone, s.prayer) }
             cacheKey = key
         }
-        val next = calc.nextPrayer(cached, now)
+        val moment = calc.moment(cached, now, s.iqama)
+        val next = moment?.next
         val todaySchedule = cached[1]
         val current = PrayerEvent.entries.lastOrNull { e -> todaySchedule[e]?.let { !it.isAfter(now) } == true }
             ?: if (cached[0][PrayerEvent.ISHA] != null) PrayerEvent.ISHA else null
         return PrayerUi(
-            settings = s, location = loc, now = now, today = todaySchedule, tomorrow = cached[2], next = next,
+            settings = s, location = loc, now = now, today = todaySchedule, tomorrow = cached[2], next = next, moment = moment,
             current = current, fajrEndsAt = calc.fajrEndsAt(todaySchedule, now),
             qiblaBearing = Qibla.bearing(loc.location), qiblaDistance = Qibla.distanceMeters(loc.location),
             sky = SkyPeriod.at(now, todaySchedule[PrayerEvent.SUNRISE], current, hasLocation = true),

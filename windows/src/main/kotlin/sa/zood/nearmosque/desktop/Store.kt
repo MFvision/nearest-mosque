@@ -2,6 +2,7 @@ package sa.zood.nearmosque.desktop
 
 import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AsrMadhab
+import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.core.PrayerEvent
 import java.io.File
@@ -17,6 +18,8 @@ data class DesktopSettings(
     val adhan: Boolean = true,
     val adhanSource: AdhanSource = AdhanSource.MAKKAH,
     val fajrAdhanSource: AdhanSource = AdhanSource.MAKKAH,
+    /** Only the first "Allahu akbar, Allahu akbar" instead of the whole Adhan. */
+    val shortAdhan: Boolean = false,
     val before10: Boolean = false,
     val sunrise: Boolean = false,
     /** Prayers whose Adhan is off (the notification still shows). */
@@ -25,6 +28,8 @@ data class DesktopSettings(
     val onlineSearch: Boolean = true,
     /** Open in the notification area when the person signs in to Windows. */
     val startAtLogin: Boolean = true,
+    /** The wait from each Adhan to the iqama, the prayer after it, and the notification at the iqama. */
+    val iqama: IqamaSettings = IqamaSettings(),
 )
 
 object Store {
@@ -39,11 +44,23 @@ object Store {
         adhan = prefs.getBoolean("adhan", true),
         adhanSource = runCatching { AdhanSource.valueOf(prefs.get("adhanSource", "MAKKAH")) }.getOrDefault(AdhanSource.MAKKAH),
         fajrAdhanSource = runCatching { AdhanSource.valueOf(prefs.get("fajrAdhanSource", "MAKKAH")) }.getOrDefault(AdhanSource.MAKKAH),
+        shortAdhan = prefs.getBoolean("shortAdhan", false),
         before10 = prefs.getBoolean("before10", false),
         sunrise = prefs.getBoolean("sunrise", false),
         silent = prefs.get("silent", "").split(',').mapNotNull { runCatching { PrayerEvent.valueOf(it) }.getOrNull() }.toSet(),
         onlineSearch = prefs.getBoolean("onlineSearch", true),
         startAtLogin = prefs.getBoolean("startAtLogin", true),
+        iqama = IqamaSettings(
+            enabled = prefs.getBoolean("iqama", true),
+            // "FAJR=25,DHUHR=20,…"; a prayer not listed keeps its default wait.
+            minutes = prefs.get("iqamaMinutes", "").split(',').mapNotNull { pair ->
+                val (e, m) = pair.split('=').takeIf { it.size == 2 } ?: return@mapNotNull null
+                val event = runCatching { PrayerEvent.valueOf(e) }.getOrNull() ?: return@mapNotNull null
+                m.toIntOrNull()?.let { event to it.coerceIn(0, 120) }
+            }.toMap(),
+            prayerMinutes = prefs.getInt("iqamaPrayerMinutes", 15).coerceIn(0, 60),
+            alert = prefs.getBoolean("iqamaAlert", true),
+        ),
     )
 
     fun save(s: DesktopSettings) {
@@ -55,11 +72,16 @@ object Store {
         prefs.putBoolean("adhan", s.adhan)
         prefs.put("adhanSource", s.adhanSource.name)
         prefs.put("fajrAdhanSource", s.fajrAdhanSource.name)
+        prefs.putBoolean("shortAdhan", s.shortAdhan)
         prefs.putBoolean("before10", s.before10)
         prefs.putBoolean("sunrise", s.sunrise)
         prefs.put("silent", s.silent.joinToString(",") { it.name })
         prefs.putBoolean("onlineSearch", s.onlineSearch)
         prefs.putBoolean("startAtLogin", s.startAtLogin)
+        prefs.putBoolean("iqama", s.iqama.enabled)
+        prefs.put("iqamaMinutes", s.iqama.minutes.entries.joinToString(",") { "${it.key.name}=${it.value}" })
+        prefs.putInt("iqamaPrayerMinutes", s.iqama.prayerMinutes)
+        prefs.putBoolean("iqamaAlert", s.iqama.alert)
         prefs.flush()
     }
 

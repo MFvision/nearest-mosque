@@ -112,6 +112,7 @@ fun SettingsScreen(
     if (showAudio) {
         PrayerAudioScreen(
             container, prayer.settings?.alerts ?: sa.zood.nearmosque.core.AlertSettings(), prayer.settings?.reminders.orEmpty(),
+            prayer.settings?.iqama ?: sa.zood.nearmosque.core.IqamaSettings(),
             onClose = { showAudio = false },
         )
         return

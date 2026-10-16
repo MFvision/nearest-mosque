@@ -12,6 +12,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.net.Uri
+import android.os.Build
 import android.os.SystemClock
 import android.text.TextUtils
 import android.view.View
@@ -24,7 +25,10 @@ import sa.zood.nearmosque.MainActivity
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.container
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.Qibla
+import sa.zood.nearmosque.core.moment
+import sa.zood.nearmosque.core.stageChanges
 import sa.zood.nearmosque.data.AppSettings
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.prayer.prayerIcon
@@ -112,8 +116,9 @@ data class WidgetExtras(val mosques: List<WidgetMosque>? = null, val questions: 
 
 /**
  * Home-screen widgets. Times come from the city and method chosen in the app, on the phone. Each prayer
- * shows its icon and a bell for its reminder; the dates are the weekday, Gregorian and Hijri. Each redraw
- * schedules the next one (after the coming prayer, at midnight, and every half hour while a countdown bar
+ * shows its icon and a bell for its reminder; the dates are the weekday, Gregorian and Hijri. After each Adhan
+ * the next prayer gives way to the countdown to its iqama, then to the prayer itself. Each redraw schedules the
+ * next one (at the next Adhan, iqama or end of the prayer, at midnight, and every half hour while a countdown bar
  * is shown); the countdowns tick by themselves (Chronometer).
  */
 object PrayerWidgets {
@@ -178,14 +183,14 @@ object PrayerWidgets {
     private suspend fun draw(context: Context, s: AppSettings) {
         val m = AppWidgetManager.getInstance(context)
         val extras = WidgetExtras.load(context.container, s, Format.languageCode(context))
-        var next: Instant? = null
+        var change: Instant? = null
         var bar = false
         var ring = false
         for ((cls, kind) in providers) {
             for (id in m.getAppWidgetIds(ComponentName(context, cls))) {
                 val (v, at) = views(context, context.container, s, kind, style(context, id), extras)
-                // Mosque, Ask, Qibla and quick actions have no prayer time: keep the one a prayer widget gave.
-                if (at != null) next = at
+                // Mosque, Ask, Qibla and quick actions have no prayer times: keep the change a prayer widget gave.
+                if (at != null) change = at
                 bar = bar || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE
                 ring = ring || kind.isRing
                 m.updateAppWidget(id, v)
@@ -194,7 +199,7 @@ object PrayerWidgets {
         val now = context.container.clock()
         val zone = s.prayerLocation?.zoneId
         val candidates = listOfNotNull(
-            next?.plusSeconds(1),
+            change?.plusSeconds(1),
             zone?.let { now.atZone(it).toLocalDate().plusDays(1).atStartOfDay(it).toInstant() },
             if (bar) now.plus(Duration.ofMinutes(30)) else null,
             // The ring is a picture drawn here, so it moves on every 10 minutes.
@@ -206,7 +211,8 @@ object PrayerWidgets {
     /** Text colour at 45% for times already passed. */
     private fun faded(color: Int) = (color and 0x00FFFFFF) or (0x73 shl 24)
 
-    /** The widget's views for [s] at the container's clock, and the time of the next prayer. */
+    /** The widget's views for [s] at the container's clock, and when what it shows next changes (an Adhan, an iqama or
+     *  the end of a prayer). */
     fun views(
         context: Context, c: sa.zood.nearmosque.AppContainer, s: AppSettings, kind: WidgetKind, st: WidgetStyle,
         extras: WidgetExtras = WidgetExtras(),
@@ -217,7 +223,8 @@ object PrayerWidgets {
             val today = now.atZone(l.zoneId).toLocalDate()
             (-1L..1L).map { c.calculator.schedule(l.location, today.plusDays(it), l.zoneId, s.prayer) }
         }.orEmpty()
-        val next = if (days.isEmpty()) null else c.calculator.nextPrayer(days, now)
+        val moment = if (days.isEmpty()) null else c.calculator.moment(days, now, s.iqama)
+        val next = moment?.next
         val v = RemoteViews(context.packageName, kind.layout)
         // Views a layout does not have are skipped by RemoteViews, so every widget is filled the same way.
         val begun = days.flatMap { d -> PrayerEvent.entries.mapNotNull { e -> d[e]?.let { e to it } } }.filter { !it.second.isAfter(now) }.maxByOrNull { it.second }
@@ -235,8 +242,8 @@ object PrayerWidgets {
         // next must show again explicitly.
         val cityViews = listOf(R.id.widget_time, R.id.widget_countdown, R.id.widget_bell, R.id.widget_icon, R.id.widget_day, R.id.widget_left_label,
             R.id.widget_title, R.id.widget_timer, R.id.widget_weekday, R.id.widget_gregorian, R.id.widget_hijri, R.id.widget_pin,
-            R.id.widget_city) + rows + tiles
-        if (loc == null || next == null) {
+            R.id.widget_city, R.id.widget_timer) + rows + tiles
+        if (loc == null || moment == null || next == null) {
             v.setTextViewText(R.id.widget_name, context.getString(R.string.widget_choose_city))
             v.setTextColor(R.id.widget_name, st.ink)
             for (id in cityViews + WidgetStyle.entries.map { it.progress }) v.setViewVisibility(id, View.GONE)
@@ -258,42 +265,74 @@ object PrayerWidgets {
             v.setContentDescription(id, context.getString(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, context.getString(Format.prayerName(e))))
         }
 
-        // The next prayer: name and icon, time, reminder bell, the day, time left.
-        v.setTextViewText(R.id.widget_name, context.getString(Format.prayerName(next.event)))
+        // The next prayer (or, after its Adhan, the one waiting for its iqama or being prayed): name and icon, time,
+        // reminder bell, the day, time left. Waiting for the iqama, the time is the iqama's and the countdown runs
+        // to it; during the prayer it says the prayer has begun, with no countdown, and the next prayer quietly below.
+        val shown = moment.event
+        val shownName = context.getString(Format.prayerName(shown))
+        val stage = moment.stage
+        val nextLine = context.getString(Format.prayerName(next.event)) + " " + Format.time(context, next.at, zone)
+        // The small widget and the rings have no room for "Asr prayer has begun" as the name: it goes on the smaller
+        // line below instead, in place of the next prayer.
+        val narrow = kind == WidgetKind.SMALL || kind.isRing
+        v.setTextViewText(R.id.widget_name, when {
+            stage == PrayerMoment.Stage.PRAYER && !narrow -> context.getString(R.string.prayer_started, shownName)
+            // The small ring has no room for a label: it says what it counts down to instead.
+            stage == PrayerMoment.Stage.TO_IQAMA && kind == WidgetKind.RING_SMALL -> context.getString(R.string.iqama_in)
+            else -> shownName
+        })
         v.setTextColor(R.id.widget_name, if (accentTitle) st.accent else st.ink)
-        v.setImageViewResource(R.id.widget_icon, prayerIcon(next.event))
+        v.setImageViewResource(R.id.widget_icon, prayerIcon(shown))
         v.setInt(R.id.widget_icon, "setColorFilter", st.accent)
-        v.setTextViewText(R.id.widget_time, Format.time(context, next.at, zone))
+        v.setTextViewText(R.id.widget_time, Format.time(context, if (stage == PrayerMoment.Stage.UPCOMING) moment.adhan else moment.iqama ?: moment.adhan, zone))
         v.setTextColor(R.id.widget_time, st.ink)
-        val on = next.event in s.reminders
+        val on = shown in s.reminders
         v.setImageViewResource(R.id.widget_bell, if (on) R.drawable.ic_bell else R.drawable.ic_bell_off)
         v.setInt(R.id.widget_bell, "setColorFilter", if (on) st.accent else st.secondary)
-        v.setContentDescription(R.id.widget_bell, context.getString(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, context.getString(Format.prayerName(next.event))))
+        v.setContentDescription(R.id.widget_bell, context.getString(if (on) R.string.reminder_on_a11y else R.string.reminder_off_a11y, shownName))
         val weekday = Format.weekday(context, date)
         val comma = when (Format.languageCode(context)) { "zh" -> "，"; else -> if (TextUtils.getLayoutDirectionFromLocale(context.resources.configuration.locales[0]) == View.LAYOUT_DIRECTION_RTL) "، " else ", " }
         v.setTextViewText(R.id.widget_day, if (kind == WidgetKind.COUNTDOWN) "$weekday$comma${Format.dayMonth(context, date)}" else "$weekday · ${Format.dayMonth(context, date)}")
         v.setTextColor(R.id.widget_day, st.secondary)
-        v.setTextViewText(R.id.widget_left_label, context.getString(R.string.widget_remaining))
+        v.setTextViewText(R.id.widget_left_label, when (stage) {
+            PrayerMoment.Stage.UPCOMING -> context.getString(R.string.widget_remaining)
+            PrayerMoment.Stage.TO_IQAMA -> context.getString(R.string.iqama_in)
+            PrayerMoment.Stage.PRAYER -> if (narrow) context.getString(R.string.prayer_started, shownName) else nextLine
+        })
         v.setTextColor(R.id.widget_left_label, if (accentTitle) st.accent else st.secondary)
-        val left = Duration.between(now, next.at).toMillis().coerceAtLeast(0)
-        v.setChronometer(R.id.widget_countdown, SystemClock.elapsedRealtime() + left, null, true)
-        v.setChronometerCountDown(R.id.widget_countdown, true)
+        if (stage == PrayerMoment.Stage.PRAYER) {
+            v.setChronometer(R.id.widget_countdown, SystemClock.elapsedRealtime(), null, false)
+            v.setViewVisibility(R.id.widget_countdown, View.GONE)
+            v.setViewVisibility(R.id.widget_timer, View.GONE)
+        } else {
+            val left = Duration.between(now, moment.until).toMillis().coerceAtLeast(0)
+            v.setChronometer(R.id.widget_countdown, SystemClock.elapsedRealtime() + left, null, true)
+            v.setChronometerCountDown(R.id.widget_countdown, true)
+        }
         v.setTextColor(R.id.widget_countdown, st.ink)
         if (kind == WidgetKind.MEDIUM || kind == WidgetKind.COUNTDOWN || kind == WidgetKind.LARGE) v.setInt(R.id.next_card, "setBackgroundResource", st.card)
 
-        // Countdown bar.
-        v.setTextViewText(R.id.widget_title, context.getString(R.string.next_prayer))
+        // Countdown bar: from the end of the last prayer to the next Adhan, from the Adhan to the iqama, or through the prayer.
+        v.setTextViewText(R.id.widget_title, when (stage) {
+            PrayerMoment.Stage.UPCOMING -> context.getString(R.string.next_prayer)
+            PrayerMoment.Stage.TO_IQAMA -> context.getString(R.string.iqama_in)
+            PrayerMoment.Stage.PRAYER -> context.getString(R.string.next_prayer) + " · " + nextLine
+        })
         v.setTextColor(R.id.widget_title, st.ink)
         // One bar per look in the layout: only this look's shows (the look can change when reconfigured).
         for (bar in WidgetStyle.entries.map { it.progress }) v.setViewVisibility(bar, if (bar == st.progress) View.VISIBLE else View.GONE)
-        val start = next.periodStart
-        val fraction = if (start != null && next.at.isAfter(start)) Duration.between(start, now).toMillis().toDouble() / Duration.between(start, next.at).toMillis() else 0.0
+        val start = moment.since
+        val fraction = if (start != null && moment.until.isAfter(start)) Duration.between(start, now).toMillis().toDouble() / Duration.between(start, moment.until).toMillis() else 0.0
         v.setProgressBar(st.progress, 1000, (fraction.coerceIn(0.0, 1.0) * 1000).toInt(), false)
         v.setInt(R.id.widget_timer, "setColorFilter", st.secondary)
         if (kind.isRing) {
             val px = ((if (kind == WidgetKind.RING) 260 else 150) * context.resources.displayMetrics.density).toInt()
             v.setImageViewBitmap(R.id.ring_image, ringBitmap(st, fraction.coerceIn(0.0, 1.0), px))
-            v.setTextViewText(R.id.widget_left_label, context.getString(R.string.widget_until))
+            v.setTextViewText(R.id.widget_left_label, when (stage) {
+                PrayerMoment.Stage.UPCOMING -> context.getString(R.string.widget_until)
+                PrayerMoment.Stage.TO_IQAMA -> context.getString(R.string.iqama_in)
+                PrayerMoment.Stage.PRAYER -> context.getString(R.string.prayer_started, shownName)
+            })
             v.setTextColor(R.id.widget_left_label, st.secondary)
         }
 
@@ -351,7 +390,7 @@ object PrayerWidgets {
             v.setInt(rowIcons[i], "setColorFilter", if (now0) st.onPill else if (isPast(e)) faded(st.accent) else st.accent)
             bell(rowBells[i], e, now0)
         }
-        return v to next.at
+        return v to stageChanges(days, now, s.iqama).firstOrNull()
     }
 
     /** North-up, from the prayer city: widgets cannot read the compass, so a tap opens the live compass. */
@@ -648,14 +687,18 @@ object PrayerWidgets {
         }
     }
 
-    /** An inexact alarm for the next redraw (no exact-alarm permission needed for widgets). */
+    /**
+     * The next redraw, on time when the app may set exact alarms (as the reminders do), so the widget changes at the
+     * Adhan, at the iqama and at the end of the prayer; otherwise an inexact one. Neither wakes the phone: a widget
+     * is only seen with the screen on, and an alarm that came due while asleep goes off when the phone wakes.
+     */
     private fun scheduleNext(context: Context, atMillis: Long) {
         val am = context.getSystemService(AlarmManager::class.java) ?: return
         val pi = PendingIntent.getBroadcast(
             context, 7701, Intent(context, PrayerWidgetSmall::class.java).setAction(ACTION_REFRESH),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        am.set(AlarmManager.RTC, atMillis, pi)
+        if (Build.VERSION.SDK_INT < 31 || am.canScheduleExactAlarms()) am.setExact(AlarmManager.RTC, atMillis, pi) else am.set(AlarmManager.RTC, atMillis, pi)
     }
 }
 

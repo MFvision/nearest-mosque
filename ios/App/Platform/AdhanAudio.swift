@@ -7,8 +7,11 @@ import UserNotifications
 /// shared/audio/CREDITS.md). Notification sounds are the .caf files (at most 29.5 s, iOS's limit); the whole
 /// Adhan is the .m4a, played by the app.
 enum AudioCatalog {
+    /// The whole Adhan for the prayer, or with the short Adhan chosen its first takbir (the same words at Fajr).
     static func adhan(_ e: PrayerEvent, _ a: AlertSettings) -> String {
-        e == .fajr ? "fajr_\(a.fajrAdhanSource.rawValue)" : "adhan_\(a.adhanSource.rawValue)"
+        let source = e == .fajr ? a.fajrAdhanSource : a.adhanSource
+        if a.shortAdhan { return "adhan_\(source.rawValue)_short" }
+        return e == .fajr ? "fajr_\(source.rawValue)" : "adhan_\(source.rawValue)"
     }
 
     static func adhan(source: AdhanSource, fajr: Bool) -> String { fajr ? "fajr_\(source.rawValue)" : "adhan_\(source.rawValue)" }

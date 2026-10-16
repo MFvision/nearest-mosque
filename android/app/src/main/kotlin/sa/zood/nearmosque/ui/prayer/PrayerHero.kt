@@ -87,6 +87,7 @@ import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.Angles
 import sa.zood.nearmosque.core.CompassState
 import sa.zood.nearmosque.core.PrayerCalculator
+import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.glass.GlassButton
 import sa.zood.nearmosque.ui.glass.GlassButtonText
@@ -159,21 +160,70 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, aligned: Boolean) {
     val context = LocalContext.current
     val zone = ui.location?.zoneId
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        val next = ui.next
-        if (next != null && zone != null) {
-            val name = stringResource(Format.prayerName(next.event))
-            val time = Format.time(context, next.at, zone)
-            val remaining = PrayerCalculator.remaining(ui.now, next.at)
-            val a11y = stringResource(R.string.countdown_a11y, name, time, Format.countdown(context, remaining))
-            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
-                Text(name, color = Ink.copy(alpha = 0.92f), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
-                // The big time grows with the text size up to 115%, so it still fits inside the arc.
-                val fs = LocalDensity.current.fontScale
-                Text(time, color = Ink, fontSize = (58f * minOf(fs, 1.15f) / fs).sp, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
-                Text(
-                    stringResource(R.string.remaining_long, Format.remainingLong(context, remaining)), color = Ink.copy(alpha = 0.85f),
-                    style = MaterialTheme.typography.bodyLarge.copy(fontFeatureSettings = "tnum"),
-                )
+        val moment = ui.moment
+        if (moment != null && zone != null) {
+            val name = stringResource(Format.prayerName(moment.event))
+            // The big time grows with the text size up to 115%, so it still fits inside the arc.
+            val fs = LocalDensity.current.fontScale
+            val bigSize = (58f * minOf(fs, 1.15f) / fs).sp
+            val remaining = PrayerCalculator.remaining(ui.now, moment.until)
+            when (moment.stage) {
+                PrayerMoment.Stage.UPCOMING -> {
+                    val time = Format.time(context, moment.adhan, zone)
+                    val a11y = stringResource(R.string.countdown_a11y, name, time, Format.countdown(context, remaining))
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
+                        Text(name, color = Ink.copy(alpha = 0.92f), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
+                        Text(time, color = Ink, fontSize = bigSize, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
+                        Text(
+                            stringResource(R.string.remaining_long, Format.remainingLong(context, remaining)), color = Ink.copy(alpha = 0.85f),
+                            style = MaterialTheme.typography.bodyLarge.copy(fontFeatureSettings = "tnum"),
+                        )
+                        // Its iqama, quietly, when the text is small enough to leave room for it.
+                        val iqama = moment.iqama
+                        if (iqama != null && iqama.isAfter(moment.adhan) && !largeText()) {
+                            Text(
+                                stringResource(R.string.iqama_at, Format.time(context, iqama, zone)), color = Ink.copy(alpha = 0.7f),
+                                style = MaterialTheme.typography.bodySmall.copy(fontFeatureSettings = "tnum"),
+                            )
+                        }
+                    }
+                }
+                PrayerMoment.Stage.TO_IQAMA -> {
+                    // The Adhan has been called: "Time for Asr", then the countdown to the iqama.
+                    val title = stringResource(R.string.reminder_title, name)
+                    val a11y = title + ", " + stringResource(R.string.iqama_left, Format.remainingLong(context, remaining))
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
+                        Text(title, color = Ink.copy(alpha = 0.92f), textAlign = TextAlign.Center, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
+                        Text(stringResource(R.string.iqama_in), color = Ink.copy(alpha = 0.85f), style = MaterialTheme.typography.bodyLarge)
+                        Text(
+                            Format.countdown(context, remaining), color = Ink, fontSize = bigSize, fontWeight = FontWeight.Light, maxLines = 1,
+                            style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"),
+                        )
+                        moment.iqama?.let {
+                            Text(
+                                stringResource(R.string.iqama_at, Format.time(context, it, zone)), color = Ink.copy(alpha = 0.7f),
+                                style = MaterialTheme.typography.bodySmall.copy(fontFeatureSettings = "tnum"),
+                            )
+                        }
+                    }
+                }
+                PrayerMoment.Stage.PRAYER -> {
+                    // The prayer itself: no countdown, and the next prayer quietly below.
+                    val title = stringResource(R.string.prayer_started, name)
+                    val nextName = stringResource(Format.prayerName(moment.next.event))
+                    val nextTime = Format.time(context, moment.next.at, zone)
+                    val a11y = title + ". " + stringResource(
+                        R.string.countdown_a11y, nextName, nextTime, Format.countdown(context, PrayerCalculator.remaining(ui.now, moment.next.at)),
+                    )
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
+                        Text(title, color = Ink.copy(alpha = 0.92f), textAlign = TextAlign.Center, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
+                        Spacer(Modifier.size(6.dp))
+                        Text(
+                            "$nextName  $nextTime", color = Ink.copy(alpha = 0.7f),
+                            style = MaterialTheme.typography.bodyLarge.copy(fontFeatureSettings = "tnum"),
+                        )
+                    }
+                }
             }
         } else if (ui.location == null) {
             Text(stringResource(R.string.app_name), color = Ink, style = MaterialTheme.typography.headlineMedium)
@@ -293,7 +343,7 @@ fun QiblaArc(
 @Composable
 fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, aligned: Boolean, onExpand: () -> Unit) {
     val context = LocalContext.current
-    val next = ui.next ?: return
+    val moment = ui.moment ?: return
     val zone = ui.location?.zoneId ?: return
     val sky = LocalSky.current
     val bearing = ui.qiblaBearing
@@ -324,11 +374,17 @@ fun CompactPrayerBar(ui: PrayerUi, compass: CompassState, aligned: Boolean, onEx
         LogoDisc(aligned, size = 46.dp, arrow = if (target == null) null else shown.value)
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
-            Text(stringResource(Format.prayerName(next.event)) + "  " + Format.time(context, next.at, zone), color = Ink, style = MaterialTheme.typography.titleMedium)
-            Text(
-                stringResource(R.string.remaining_long, Format.remainingLong(context, PrayerCalculator.remaining(ui.now, next.at))),
-                color = Accent, style = MaterialTheme.typography.bodyMedium.copy(fontFeatureSettings = "tnum"),
-            )
+            val name = stringResource(Format.prayerName(moment.event))
+            val (title, line) = when (moment.stage) {
+                PrayerMoment.Stage.UPCOMING -> name + "  " + Format.time(context, moment.adhan, zone) to
+                    stringResource(R.string.remaining_long, Format.remainingLong(context, PrayerCalculator.remaining(ui.now, moment.until)))
+                PrayerMoment.Stage.TO_IQAMA -> stringResource(R.string.reminder_title, name) to
+                    stringResource(R.string.iqama_left, Format.remainingLong(context, PrayerCalculator.remaining(ui.now, moment.until)))
+                PrayerMoment.Stage.PRAYER -> stringResource(R.string.prayer_started, name) to
+                    stringResource(Format.prayerName(moment.next.event)) + "  " + Format.time(context, moment.next.at, zone)
+            }
+            Text(title, color = Ink, style = MaterialTheme.typography.titleMedium)
+            Text(line, color = Accent, style = MaterialTheme.typography.bodyMedium.copy(fontFeatureSettings = "tnum"))
         }
         Icon(rememberVectorPainter(Icons.Filled.KeyboardArrowDown), contentDescription = null, tint = Ink)
     }

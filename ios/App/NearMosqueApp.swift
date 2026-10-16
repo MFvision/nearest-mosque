@@ -125,10 +125,17 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $tab) {
             Tab(l10n.t("tab_prayer"), systemImage: "location.north.circle", value: AppTab.prayer) {
-                NavigationStack { PrayerView(showSettings: $showSettings, onMosques: { tab = .mosques }) }
+                NavigationStack {
+                    PrayerView(showSettings: $showSettings, onMosques: { tab = .mosques })
+                        .modifier(PageSwipe(edgeOnly: false, forward: { tab = .mosques }))
+                }
             }
             Tab(l10n.t("tab_mosques"), image: "MosqueTab", value: AppTab.mosques) {
-                NavigationStack { MosquesView(showSettings: $showSettings) }
+                NavigationStack {
+                    // From the screen's edge only, so dragging the map never changes the page.
+                    MosquesView(showSettings: $showSettings)
+                        .modifier(PageSwipe(edgeOnly: true, back: { tab = .prayer }))
+                }
             }
         }
         .tint(Theme.gold)
@@ -271,5 +278,33 @@ struct SettingsButton: View {
     @Environment(\.l10n) private var l10n
     var body: some View {
         GlassIconButton(systemImage: "gearshape", label: l10n.t("settings")) { show = true }
+    }
+}
+
+/// Swiping across a main page moves to the other one: towards the next page in the reading direction (from
+/// right to left in English, from left to right in Arabic) and back. A clearly sideways swipe only, so scrolling
+/// is never taken for one; with `edgeOnly` it has to start at the screen's edge (for pages with a map).
+struct PageSwipe: ViewModifier {
+    @Environment(\.layoutDirection) private var direction
+    var edgeOnly: Bool
+    var forward: (() -> Void)? = nil
+    var back: (() -> Void)? = nil
+    @State private var width: CGFloat = 0
+
+    func body(content: Content) -> some View {
+        content
+            .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 30, coordinateSpace: .local).onEnded { v in
+                    let dx = v.translation.width, dy = v.translation.height
+                    guard abs(dx) > 90, abs(dx) > abs(dy) * 2 else { return }
+                    if edgeOnly {
+                        let start = v.startLocation.x
+                        guard dx > 0 ? start < 44 : start > width - 44 else { return }
+                    }
+                    let towardsNext = direction == .rightToLeft ? dx > 0 : dx < 0
+                    withAnimation(.snappy) { (towardsNext ? forward : back)?() }
+                }
+            )
     }
 }

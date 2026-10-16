@@ -59,6 +59,8 @@ data class AlertSettings(
     /** The Fajr Adhan, and which recording. */
     val fajrAdhan: Boolean = false,
     val fajrAdhanSource: AdhanSource = AdhanSource.MAKKAH,
+    /** Only the first "Allahu akbar, Allahu akbar" instead of the whole Adhan (for every prayer). */
+    val shortAdhan: Boolean = false,
     /** Spoken reminders 10 and 5 minutes before the prayer. */
     val before10: Boolean = false,
     val before5: Boolean = false,
@@ -153,7 +155,7 @@ data class AlertSettings(
     }
 }
 
-enum class AlertKind { AT_PRAYER, BEFORE, FRIDAY, SUHOOR, IFTAR, FAJR_ALARM, ADHAN, BEFORE_10, BEFORE_5, NEAR, SALAWAT, QURAN, SLEEP, KAHF }
+enum class AlertKind { AT_PRAYER, BEFORE, FRIDAY, SUHOOR, IFTAR, FAJR_ALARM, ADHAN, BEFORE_10, BEFORE_5, NEAR, SALAWAT, QURAN, SLEEP, KAHF, IQAMA }
 
 data class PlannedAlert(val kind: AlertKind, val event: PrayerEvent, val at: Instant, val date: LocalDate)
 
@@ -164,7 +166,7 @@ data class PlannedAlert(val kind: AlertKind, val event: PrayerEvent, val at: Ins
 object AlertPlanner {
     fun plan(
         days: List<DaySchedule>, now: Instant, atPrayer: Set<PrayerEvent>, alerts: AlertSettings,
-        isRamadan: (LocalDate) -> Boolean,
+        iqama: IqamaSettings = IqamaSettings.OFF, isRamadan: (LocalDate) -> Boolean,
     ): List<PlannedAlert> {
         val out = mutableListOf<PlannedAlert>()
         for (d in days) {
@@ -178,6 +180,8 @@ object AlertPlanner {
                 if (alerts.before10 && s.before10) add(AlertKind.BEFORE_10, e, at.minusSeconds(600))
                 if (alerts.before5 && s.before5) add(AlertKind.BEFORE_5, e, at.minusSeconds(300))
                 if (alerts.near && s.near) add(AlertKind.NEAR, e, at.minusSeconds(alerts.nearMinutes * 60L))
+                // The iqama, for a prayer that has an Adhan or a bell.
+                if (iqama.enabled && iqama.alert && iqama.wait(e) > 0 && (alerts.adhanPlays(e) || e in atPrayer)) add(AlertKind.IQAMA, e, iqama.iqama(e, at))
             }
             // Sunrise (the end of Fajr time): a plain notification when its bell is on.
             if (PrayerEvent.SUNRISE in atPrayer) d[PrayerEvent.SUNRISE]?.let { add(AlertKind.AT_PRAYER, PrayerEvent.SUNRISE, it) }

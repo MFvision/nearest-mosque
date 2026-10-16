@@ -74,7 +74,7 @@ struct NearestMosqueIntent: AppIntent {
             return .result(value: text, dialog: IntentDialog(stringLiteral: text),
                            view: IntentSnippet(entry: PrayerEntry.make(Date(), look: .green, state: nil), kind: .mosque, show: false))
         }
-        if let fresh = await NearbyMosques.lookup(lang: s.language, unnamed: s.t("mosque_unnamed")) {
+        if let fresh = await NearbyMosques.lookup(lang: s.language, unnamed: s.t("mosque_unnamed"), online: s.onlineSearch ?? true) {
             s.mosques = fresh.map(\.shared)
         }
         let text: String
@@ -101,7 +101,7 @@ struct NearestMosqueDirectionsIntent: AppIntent {
         guard let s = SharedStore.read() else {
             return .result(opensIntent: OpenURLIntent(URL(string: "nearmosque://mosques")!), dialog: IntentDialog(stringLiteral: SharedState.fallbackNoCity))
         }
-        if let found = await NearbyMosques.lookup(lang: s.language, unnamed: s.t("mosque_unnamed")) {
+        if let found = await NearbyMosques.lookup(lang: s.language, unnamed: s.t("mosque_unnamed"), online: s.onlineSearch ?? true) {
             guard let m = found.first else {
                 let text = s.t("siri_nearest_none")
                 return .result(opensIntent: OpenURLIntent(URL(string: "nearmosque://mosques")!), dialog: IntentDialog(stringLiteral: text))
@@ -145,27 +145,34 @@ enum NearbyMosques {
         let location: LatLng
     }
 
-    /// nil when there is no recent fix or no mosque data on this phone (the app was never opened);
-    /// empty when the data has no mosque within 25 km.
-    static func lookup(lang: String, unnamed: String) async -> [Found]? {
-        guard let center = await OneShotLocation().fix(timeout: 6) else { return nil }
+    /// nil when there is no recent fix, or no mosque data on this phone for the area and no live results;
+    /// empty when nothing is within 25 km. With online search on (as in the app), an area the downloaded data
+    /// does not cover is searched in Apple Maps, as the Nearest Mosque tab does.
+    static func lookup(lang: String, unnamed: String, online: Bool) async -> [Found]? {
+        guard let center = await OneShotLocation().fix(timeout: 8) else { return nil }
         let result: MosqueResult? = try? await Task.detached {
             try MosqueRepository(db: AppDatabase.onDisk()).nearest(center, radiusMeters: 25_000, lang: lang)
         }.value
-        switch result {
-        case let .found(list, _):
-            return list.prefix(3).map { r in
+        func found(_ list: [RankedMosque]) -> [Found] {
+            list.prefix(3).map { r in
                 Found(shared: SharedMosque(id: r.id, name: r.mosque.displayName(lang) ?? unnamed, meters: r.distanceMeters,
                                            bearing: Geo.initialBearing(from: center, to: r.mosque.location)),
                       location: r.mosque.location)
             }
-        case .noRecordsInCoverage: return []
-        default: return nil
         }
+        if case let .found(list, _)? = result { return found(list) }
+        if online, let live = await AppleMosqueSearch.search(center: center, radiusMeters: 10_000) {
+            let merged = OnlineMosques.merge(center: center, offline: [], online: live, radiusMeters: 25_000)
+            if !merged.isEmpty { return found(merged) }
+        }
+        if case .noRecordsInCoverage? = result { return [] }
+        return nil
     }
 }
 
 /// One location fix (when-in-use permission already given), or the last fix if under 15 minutes old.
+/// Siri runs the intents with the app in the background, where since iOS 18 a "while using" app gets no location
+/// unless it holds a service session: one is held for the length of the fix.
 @MainActor
 final class OneShotLocation: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
@@ -178,8 +185,12 @@ final class OneShotLocation: NSObject, CLLocationManagerDelegate {
         #else
         guard status == .authorizedWhenInUse || status == .authorizedAlways else { return nil }
         #endif
+        let session = CLServiceSession(authorization: .whenInUse)
+        defer { session.invalidate() }
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        // A fix from the last minute is good enough, and Siri answers at once.
+        if let l = manager.location, Date().timeIntervalSince(l.timestamp) < 60 { return LatLng(l.coordinate.latitude, l.coordinate.longitude) }
         let fresh: CLLocation? = await withCheckedContinuation { c in
             cont = c
             manager.requestLocation()

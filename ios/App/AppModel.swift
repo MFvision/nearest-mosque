@@ -28,6 +28,8 @@ struct StoredSettings: Codable, Equatable {
     var reminders: Set<PrayerEvent> = []
     /// Early, Friday and Ramadan reminders and the Fajr alarm.
     var alerts = AlertSettings()
+    /// The wait for the iqama after each Adhan, and the prayer after it.
+    var iqama = IqamaSettings()
     var onboarded = false
     /// Live mosque results (Apple Maps search) added to downloaded data; disclosed in onboarding and Settings.
     var onlineSearch = true
@@ -52,6 +54,7 @@ struct StoredSettings: Codable, Equatable {
         // Bells as names, so a value this version does not know is skipped rather than failing the set.
         reminders = Set((get([String].self, .reminders) ?? []).compactMap(PrayerEvent.init(rawValue:)))
         alerts = get(AlertSettings.self, .alerts) ?? AlertSettings()
+        iqama = get(IqamaSettings.self, .iqama) ?? IqamaSettings()
         onboarded = get(Bool.self, .onboarded) ?? false
         onlineSearch = get(Bool.self, .onlineSearch) ?? true
         widgetLook = get(String.self, .widgetLook) ?? "cream"
@@ -153,7 +156,7 @@ final class AppModel {
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
                         reminders: settings.reminders.map(\.rawValue).sorted(),
                         mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion,
-                        linkToken: Self.linkToken)
+                        linkToken: Self.linkToken, iqama: settings.iqama, onlineSearch: settings.onlineSearch)
         }
         syncWatch(s)
         guard s != lastShared else { return }
@@ -308,13 +311,22 @@ final class AppModel {
         }
     }
 
+    func setIqama(_ q: IqamaSettings) {
+        settings.iqama = q
+        shareWithWidgets()
+        Task {
+            await LiveCountdown.refresh(self)
+            await rescheduleReminders()
+        }
+    }
+
     func rescheduleReminders() async {
         ReminderRefresh.submit()
         let lang = l10n.language
         let ask = ask
         let mosqueLine = nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) }
         await Reminders.reschedule(location: settings.location, settings: settings.prayer, enabled: settings.reminders, alerts: settings.alerts,
-                                   l10n: l10n, mosqueLine: mosqueLine) { id in
+                                   iqama: settings.iqama, l10n: l10n, mosqueLine: mosqueLine) { id in
             // The Qur'an text on the phone; English readers also get the translation in the pack.
             guard let c = (try? ask?.resolve([id]))?.first?.chunk else { return nil }
             let en = lang == "en" ? c.allTranslations.first { $0.lang == "en" }?.text : nil

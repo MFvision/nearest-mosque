@@ -65,9 +65,11 @@ import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AsrMadhab
 import sa.zood.nearmosque.core.City
 import sa.zood.nearmosque.core.HijriCalendar
+import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.Qibla
 import java.time.Duration
 import java.time.Instant
@@ -115,7 +117,7 @@ fun main(args: Array<String>) = application {
     Tray(
         icon = painterResource("icon.png"),
         state = tray,
-        tooltip = t("app_name"),
+        tooltip = trayStatus(clock, now),
         onAction = { visible = true },
         menu = {
             Item(t("tab_prayer"), onClick = { visible = true })
@@ -187,7 +189,8 @@ private fun railIcon(s: Screen) = when (s) {
 @Composable
 private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit) {
     val today = clock.today(now)
-    val next = clock.next(now)
+    val moment = clock.moment(now)
+    val iqama = clock.iqama
     val hijri = HijriCalendar.of(now.atZone(clock.zone).toLocalDate(), clock.settings.hijriAdjustmentDays)
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -197,23 +200,18 @@ private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit) {
             }
             TextButton(onClick = onChangeCity) { Text(t("choose_city_title"), color = Gold) }
         }
-        if (next != null) {
-            val left = PrayerCalculator.remaining(now, next.at)
-            Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(24.dp)) {
-                    Text(t("next_prayer"), color = Muted)
-                    Text(t(prayerKey(next.event)), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
-                    Text(clockText(next.at, clock.zone) + "  ·  " + countdown(left), color = Ink, fontSize = 20.sp)
-                }
-            }
-        }
+        if (moment != null) MomentCard(moment, clock, now)
         Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(vertical = 8.dp)) {
                 PrayerEvent.entries.forEach { e ->
                     val at = today[e]
+                    val color = if (moment?.event == e) Gold else Ink
                     Row(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Text(t(prayerKey(e)), color = if (next?.event == e) Gold else Ink, fontSize = 18.sp, modifier = Modifier.weight(1f))
-                        Text(at?.let { clockText(it, clock.zone) } ?: "—", color = if (next?.event == e) Gold else Ink, fontSize = 18.sp)
+                        Text(t(prayerKey(e)), color = color, fontSize = 18.sp, modifier = Modifier.weight(1f))
+                        if (iqama.enabled && iqama.wait(e) > 0 && at != null) {
+                            Text(t("iqama_at", clockText(iqama.iqama(e, at), clock.zone)), color = Muted, fontSize = 14.sp, modifier = Modifier.padding(horizontal = 16.dp))
+                        }
+                        Text(at?.let { clockText(it, clock.zone) } ?: "—", color = color, fontSize = 18.sp)
                         if (e.isPrayer) TextButton(onClick = { Sound.play(Sound.adhanFile(e, Store.load())) }) { Text("▶", color = Muted) }
                         else Spacer(Modifier.width(56.dp))
                     }
@@ -221,6 +219,33 @@ private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit) {
             }
         }
         if (Sound.playing != null) Button(onClick = { Sound.stop() }) { Text(t("stop")) }
+    }
+}
+
+/** The next Adhan with its countdown; after an Adhan, the countdown to the iqama; after the iqama, the prayer. */
+@Composable
+private fun MomentCard(m: PrayerMoment, clock: Clock, now: Instant) {
+    val name = t(prayerKey(m.event))
+    Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(24.dp)) {
+            when (m.stage) {
+                PrayerMoment.Stage.UPCOMING -> {
+                    Text(t("next_prayer"), color = Muted)
+                    Text(name, color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                    Text(clockText(m.adhan, clock.zone) + "  ·  " + countdown(PrayerCalculator.remaining(now, m.adhan)), color = Ink, fontSize = 20.sp)
+                    m.iqama?.let { Text(t("iqama_at", clockText(it, clock.zone)), color = Muted) }
+                }
+                PrayerMoment.Stage.TO_IQAMA -> {
+                    Text(t("reminder_title", name), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                    Text(t("iqama_in") + "  " + countdown(PrayerCalculator.remaining(now, m.until)), color = Ink, fontSize = 20.sp)
+                    m.iqama?.let { Text(t("iqama_at", clockText(it, clock.zone)), color = Muted) }
+                }
+                PrayerMoment.Stage.PRAYER -> {
+                    Text(t("prayer_started", name), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                    Text(t("next_prayer") + "  ·  " + t(prayerKey(m.next.event)) + " " + clockText(m.next.at, clock.zone), color = Muted)
+                }
+            }
+        }
     }
 }
 
@@ -298,12 +323,26 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
         Toggle(t("play_adhan"), s.adhan) { onChange(s.copy(adhan = it)) }
         Choice(t("adhan_full"), sourceName(s.adhanSource), AdhanSource.entries.map { a -> sourceName(a) to { onChange(s.copy(adhanSource = a)) } })
         Choice(t("adhan_fajr"), sourceName(s.fajrAdhanSource), AdhanSource.entries.map { a -> sourceName(a) to { onChange(s.copy(fajrAdhanSource = a)) } })
+        Choice(t("adhan_length"), t(if (s.shortAdhan) "adhan_short" else "adhan_length_full"), listOf(
+            t("adhan_length_full") to { onChange(s.copy(shortAdhan = false)) },
+            t("adhan_short") to { onChange(s.copy(shortAdhan = true)) },
+        ))
         Text(t("per_prayer_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         PrayerEvent.prayers.forEach { e ->
             Toggle(t(prayerKey(e)), e !in s.silent) { on -> onChange(s.copy(silent = if (on) s.silent - e else s.silent + e)) }
         }
         Toggle(t("before10"), s.before10) { onChange(s.copy(before10 = it)) }
         Toggle(t("sunrise_notify"), s.sunrise) { onChange(s.copy(sunrise = it)) }
+        Text(t("iqama_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        Toggle(t("iqama_show"), s.iqama.enabled) { onChange(s.copy(iqama = s.iqama.copy(enabled = it))) }
+        if (s.iqama.enabled) {
+            PrayerEvent.prayers.forEach { e ->
+                Choice(t(prayerKey(e)), minutes(s.iqama.wait(e)), IqamaSettings.choices.map { m -> minutes(m) to { onChange(s.copy(iqama = s.iqama.withWait(e, m))) } })
+            }
+            Choice(t("iqama_prayer_minutes"), minutes(s.iqama.prayerMinutes), IqamaSettings.prayerChoices.map { m -> minutes(m) to { onChange(s.copy(iqama = s.iqama.copy(prayerMinutes = m))) } })
+            Toggle(t("iqama_alert"), s.iqama.alert) { onChange(s.copy(iqama = s.iqama.copy(alert = it))) }
+        }
+        Text(t("iqama_note"), color = Muted, fontSize = 13.sp)
         Text(t("tab_mosques"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Toggle(t("online_search"), s.onlineSearch) { onChange(s.copy(onlineSearch = it)) }
         Text(t("online_search_body"), color = Muted, fontSize = 13.sp)
@@ -313,8 +352,45 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
         } else if (Startup.isStorePackage) {
             Text(t("start_at_login_store_note"), color = Muted, fontSize = 13.sp)
         }
+        // Who makes the app and how to reach them, as on the store pages and nearmosque.net.
+        Text(t("about"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        val ar = Strings.language == "ar"
+        LinkRow(t("about_publisher"), Publisher.NAME, Publisher.COMPANY_URL)
+        LinkRow(t("website"), Publisher.WEBSITE, "https://nearmosque.net/" + if (ar) "#ar" else "")
+        LinkRow(t("about_support"), Publisher.EMAIL, "mailto:" + Publisher.EMAIL)
+        LinkRow(t("about_phone"), Publisher.PHONE_DISPLAY, "tel:" + Publisher.PHONE)
+        LinkRow(t("about_terms"), "nearmosque.net", "https://nearmosque.net/terms.html" + if (ar) "#ar" else "")
+        Text("© ${Publisher.YEAR} ${Publisher.NAME}. " + t("about_rights"), color = Muted, fontSize = 13.sp)
     }
 }
+
+/** The publisher's details (the same as on the store pages and nearmosque.net). */
+private object Publisher {
+    const val NAME = "AVA ai"
+    const val COMPANY_URL = "https://avaai.sa"
+    const val WEBSITE = "nearmosque.net"
+    const val EMAIL = "app@vision.bz"
+    const val PHONE = "+966579372403"
+    /** Kept left to right inside Arabic text. */
+    const val PHONE_DISPLAY = "\u2066+966 57 937 2403\u2069"
+    const val YEAR = 2026
+}
+
+/** A row that opens a page, an email or a call in the PC's own apps. */
+@Composable
+private fun LinkRow(label: String, value: String, url: String) {
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text(label, color = Ink, modifier = Modifier.weight(1f))
+        TextButton(onClick = {
+            runCatching {
+                val d = java.awt.Desktop.getDesktop()
+                if (url.startsWith("mailto:")) d.mail(java.net.URI(url)) else d.browse(java.net.URI(url))
+            }
+        }) { Text(value, color = Gold) }
+    }
+}
+
+private fun minutes(m: Int) = t("minutes_value", m)
 
 private fun sourceName(a: AdhanSource) = t(if (a == AdhanSource.MADINAH) "source_madinah" else "source_makkah")
 

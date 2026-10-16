@@ -16,6 +16,7 @@ struct PrayerAudioSettingsView: View {
         ScrollViewReader { proxy in
         Form {
             adhanSection
+            iqamaSection
             beforeSection
             perPrayerSection
             dhikrSection
@@ -50,7 +51,44 @@ struct PrayerAudioSettingsView: View {
             Toggle(l10n.t("adhan_fajr"), isOn: bind(\.fajrAdhan))
             sourceRow(.makkah, fajr: true)
             sourceRow(.madinah, fajr: true)
+            Picker(l10n.t("adhan_length"), selection: bind(\.shortAdhan)) {
+                Text(l10n.t("adhan_length_full")).tag(false)
+                Text(l10n.t("adhan_short")).tag(true)
+            }
+            if a.shortAdhan {
+                HStack {
+                    Text(l10n.t("adhan_short"))
+                    Spacer()
+                    PreviewButton(name: "adhan_\(a.adhanSource.rawValue)_short", label: l10n.t("adhan_short"))
+                }
+            }
         } header: { Text(l10n.t("adhan_section")) } footer: { Text(l10n.t("adhan_note")) }
+    }
+
+    private var q: IqamaSettings { app.settings.iqama }
+
+    private func iqama<T>(_ key: WritableKeyPath<IqamaSettings, T>) -> Binding<T> {
+        Binding(get: { app.settings.iqama[keyPath: key] }, set: { v in var s = app.settings.iqama; s[keyPath: key] = v; app.setIqama(s) })
+    }
+
+    /// The wait for the iqama after each Adhan, then the prayer, before the countdown to the next prayer.
+    private var iqamaSection: some View {
+        Section {
+            Toggle(l10n.t("iqama_show"), isOn: iqama(\.enabled))
+            if q.enabled {
+                ForEach(PrayerEvent.prayers, id: \.self) { e in
+                    Picker(selection: Binding(get: { q.wait(e) }, set: { m in var s = q; s.setWait(e, m); app.setIqama(s) })) {
+                        ForEach(IqamaSettings.choices, id: \.self) { m in Text(l10n.t("minutes_value", m)).tag(m) }
+                    } label: {
+                        Label(l10n.t(Format.prayerKey(e)), systemImage: Theme.icon(e))
+                    }
+                }
+                Picker(l10n.t("iqama_prayer_minutes"), selection: iqama(\.prayerMinutes)) {
+                    ForEach(IqamaSettings.prayerChoices, id: \.self) { m in Text(l10n.t("minutes_value", m)).tag(m) }
+                }
+                Toggle(l10n.t("iqama_alert"), isOn: iqama(\.alert))
+            }
+        } header: { Text(l10n.t("iqama_section")) } footer: { Text(l10n.t("iqama_note")) }
     }
 
     private var beforeSection: some View {

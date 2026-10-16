@@ -28,10 +28,18 @@ import java.time.ZonedDateTime
 class WidgetScreenshotTest {
     private val context = ApplicationProvider.getApplicationContext<android.content.Context>()
 
-    private fun shoot(name: String, kind: WidgetKind, style: WidgetStyle, extras: WidgetExtras = WidgetExtras()) = runBlocking {
+    private val noon = ZonedDateTime.of(2026, 10, 3, 14, 10, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant()
+
+    /** [afterAsr]: minutes after that day's Asr Adhan instead of 14:10 (5: waiting for the iqama; 25: the prayer). */
+    private fun shoot(name: String, kind: WidgetKind, style: WidgetStyle, extras: WidgetExtras = WidgetExtras(), afterAsr: Long? = null) = runBlocking {
+        val at = afterAsr?.let { m ->
+            val zone = ZoneId.of("Africa/Johannesburg")
+            sa.zood.nearmosque.core.PrayerCalculator().schedule(LatLng(-33.92584, 18.42322), java.time.LocalDate.of(2026, 10, 3), zone, sa.zood.nearmosque.core.PrayerSettings())
+                .get(sa.zood.nearmosque.core.PrayerEvent.ASR)!!.plusSeconds(m * 60)
+        } ?: noon
         val c = AppContainer(
             context, inMemoryDb = true,
-            clock = { ZonedDateTime.of(2026, 10, 3, 14, 10, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant() },
+            clock = { at },
             settingsFile = java.io.File.createTempFile("settings", ".preferences_pb").also { it.delete() },
         )
         c.settings.setPrayerLocation(
@@ -72,6 +80,17 @@ class WidgetScreenshotTest {
     // 14:10 in Cape Town is after Dhuhr: the time-of-day look shows the day sky.
     @Test fun largeSky() = shoot("widget_large_sky", WidgetKind.LARGE, WidgetStyle.SKY)
     @Test fun todaySky() = shoot("widget_today_sky", WidgetKind.TODAY, WidgetStyle.SKY)
+
+    // After the Asr Adhan: the countdown to the iqama, then the prayer itself with no countdown.
+    @Test fun smallIqama() = shoot("widget_small_iqama_cream", WidgetKind.SMALL, WidgetStyle.CREAM, afterAsr = 5)
+    @Test fun countdownIqama() = shoot("widget_countdown_iqama_green", WidgetKind.COUNTDOWN, WidgetStyle.GREEN, afterAsr = 5)
+    @Test fun ringIqama() = shoot("widget_ring_medium_iqama_cream", WidgetKind.RING_MEDIUM, WidgetStyle.CREAM, afterAsr = 5)
+    @Test fun smallPrayer() = shoot("widget_small_prayer_cream", WidgetKind.SMALL, WidgetStyle.CREAM, afterAsr = 25)
+    @Test fun ringPrayer() = shoot("widget_ring_prayer_night", WidgetKind.RING, WidgetStyle.NIGHT, afterAsr = 25)
+    @Test fun largePrayer() = shoot("widget_large_prayer_night", WidgetKind.LARGE, WidgetStyle.NIGHT, afterAsr = 25)
+    @Test fun todayPrayer() = shoot("widget_today_prayer_green", WidgetKind.TODAY, WidgetStyle.GREEN, afterAsr = 25)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun mediumIqamaArabic() = shoot("widget_medium_iqama_cream_ar", WidgetKind.MEDIUM, WidgetStyle.CREAM, afterAsr = 5)
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
     fun mediumArabic() = shoot("widget_medium_cream_ar", WidgetKind.MEDIUM, WidgetStyle.CREAM)

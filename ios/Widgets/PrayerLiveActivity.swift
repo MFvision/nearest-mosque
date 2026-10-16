@@ -25,14 +25,31 @@ struct PrayerLiveActivity: Widget {
                     .padding(.leading, 4)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text(s.timeText).font(.headline.monospacedDigit()).foregroundStyle(.white.opacity(0.8)).padding(.trailing, 4)
+                    Text(context.isStale ? s.iqamaText ?? s.timeText : s.timeText).font(.headline.monospacedDigit())
+                        .foregroundStyle(.white.opacity(0.8)).lineLimit(1).minimumScaleFactor(0.7).padding(.trailing, 4)
                 }
                 DynamicIslandExpandedRegion(.center) {
                     Text(a.nextLabel + " · " + s.city).font(.caption).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack(spacing: 8) {
-                        if context.isStale {
+                        if context.isStale, let r = s.iqamaRange {
+                            // The Adhan time has come: "Time for Asr", then the countdown to the iqama.
+                            Text(s.nowTitle).font(.headline).foregroundStyle(.white)
+                            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                                Text(s.iqamaLabel ?? "").font(.subheadline.weight(.semibold)).foregroundStyle(.white.opacity(0.75))
+                                Text(timerInterval: r, countsDown: true)
+                                    .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+                                    .foregroundStyle(gold)
+                                    .environment(\.layoutDirection, .leftToRight)
+                            }
+                            ProgressView(timerInterval: r.lowerBound...max(r.lowerBound.addingTimeInterval(1), r.upperBound), countsDown: false) {
+                                EmptyView()
+                            } currentValueLabel: {
+                                EmptyView()
+                            }
+                            .tint(gold)
+                        } else if context.isStale {
                             Text(s.nowTitle).font(.title2.weight(.semibold)).foregroundStyle(gold)
                         } else {
                             Text(timerInterval: s.start...max(s.start, s.at), countsDown: true)
@@ -70,7 +87,7 @@ struct PrayerLiveActivity: Widget {
                     Text(s.prayer).font(.caption.weight(.semibold)).lineLimit(1).frame(maxWidth: 60)
                 }
             } compactTrailing: {
-                Text(timerInterval: s.start...max(s.start, s.at), countsDown: true)
+                Text(timerInterval: (context.isStale ? s.iqamaRange : nil) ?? s.start...max(s.start, s.at), countsDown: true)
                     .font(.caption.monospacedDigit().weight(.semibold))
                     .foregroundStyle(gold)
                     .frame(maxWidth: 56)
@@ -109,12 +126,15 @@ struct PrayerActivityContent: View {
                     Spacer(minLength: 2)
                     Text(state.timeText).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
                 }
-                if !stale {
-                    Text(timerInterval: state.start...max(state.start, state.at), countsDown: true)
+                if let range = stale ? state.iqamaRange : Optional(state.start...max(state.start, state.at)) {
+                    if stale, let label = state.iqamaLabel {
+                        Text(label).font(.caption2.weight(.semibold)).foregroundStyle(.secondary).lineLimit(1)
+                    }
+                    Text(timerInterval: range, countsDown: true)
                         .font(.system(.title2, design: .rounded).weight(.semibold).monospacedDigit())
                         .foregroundStyle(gold)
                         .environment(\.layoutDirection, .leftToRight)
-                    ProgressView(timerInterval: state.start...max(state.start.addingTimeInterval(1), state.at), countsDown: false) {
+                    ProgressView(timerInterval: range.lowerBound...max(range.lowerBound.addingTimeInterval(1), range.upperBound), countsDown: false) {
                         EmptyView()
                     } currentValueLabel: {
                         EmptyView()

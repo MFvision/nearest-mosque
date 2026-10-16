@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.map
 import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AsrMadhab
 import sa.zood.nearmosque.core.HighLatRule
+import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.Method
 import sa.zood.nearmosque.core.PolarRule
@@ -49,6 +50,8 @@ data class AppSettings(
     val onlineSearch: Boolean = true,
     /** Early, Friday and Ramadan reminders and the Fajr alarm. */
     val alerts: sa.zood.nearmosque.core.AlertSettings = sa.zood.nearmosque.core.AlertSettings(),
+    /** The wait for the iqama after each Adhan, and the prayer after it. */
+    val iqama: IqamaSettings = IqamaSettings(),
 )
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -102,6 +105,11 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val quran = booleanPreferencesKey("audio_quran")
         val quranMinutes = intPreferencesKey("audio_quran_minutes")
         val reciter = stringPreferencesKey("audio_reciter")
+        val iqamaOn = booleanPreferencesKey("iqama_on")
+        /** "FAJR:25,MAGHRIB:10": minutes from the Adhan to the iqama for each prayer listed. */
+        val iqamaMinutes = stringPreferencesKey("iqama_minutes")
+        val iqamaPrayer = intPreferencesKey("iqama_prayer_minutes")
+        val iqamaAlert = booleanPreferencesKey("iqama_alert")
         fun offset(e: PrayerEvent) = intPreferencesKey("offset_${e.name}")
     }
 
@@ -159,7 +167,21 @@ class SettingsStore(private val store: DataStore<Preferences>) {
                 quranMinutes = p[K.quranMinutes] ?: (20 * 60 + 30),
                 reciter = enumOr(p[K.reciter], Reciter.ALAFASY),
             ).migrated(),
+            // Saves from before the iqama have none of these keys and get the usual waits.
+            iqama = IqamaSettings(
+                enabled = p[K.iqamaOn] ?: true,
+                minutes = decodeIqamaMinutes(p[K.iqamaMinutes]),
+                prayerMinutes = p[K.iqamaPrayer] ?: 15,
+                alert = p[K.iqamaAlert] ?: true,
+            ),
         )
+    }
+
+    suspend fun setIqama(q: IqamaSettings) = store.edit { p ->
+        p[K.iqamaOn] = q.enabled
+        p[K.iqamaMinutes] = encodeIqamaMinutes(q.minutes)
+        p[K.iqamaPrayer] = q.prayerMinutes
+        p[K.iqamaAlert] = q.alert
     }
 
     suspend fun setAlerts(a: sa.zood.nearmosque.core.AlertSettings) = store.edit { p ->
@@ -201,6 +223,14 @@ class SettingsStore(private val store: DataStore<Preferences>) {
             val e = PrayerEvent.entries.firstOrNull { it.name == name } ?: return@mapNotNull null
             if (bits.length != 4) return@mapNotNull null
             e to PrayerSounds(bits[0] == '1', bits[1] == '1', bits[2] == '1', bits[3] == '1')
+        }.toMap()
+
+        fun encodeIqamaMinutes(m: Map<PrayerEvent, Int>): String = m.entries.joinToString(",") { (e, v) -> e.name + ":" + v }
+
+        fun decodeIqamaMinutes(v: String?): Map<PrayerEvent, Int> = v.orEmpty().split(",").mapNotNull { part ->
+            val (name, minutes) = part.split(":").takeIf { it.size == 2 } ?: return@mapNotNull null
+            val e = PrayerEvent.entries.firstOrNull { it.name == name && it.isPrayer } ?: return@mapNotNull null
+            e to (minutes.toIntOrNull()?.takeIf { it >= 0 } ?: return@mapNotNull null)
         }.toMap()
     }
 

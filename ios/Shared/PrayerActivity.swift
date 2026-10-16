@@ -26,6 +26,14 @@ struct PrayerActivityAttributes: ActivityAttributes {
         var nextIndex: Int
         /// PrayerEvent raw value of the period in effect, for the sky colours ("" before Fajr).
         var period: String
+        /// The prayer's iqama, "Iqama in" and "Iqama 3:20 PM": once the Adhan time has come (the activity is then
+        /// stale) the views count down to the iqama. Nil with the iqama off, or from an older app.
+        var iqama: Date? = nil
+        var iqamaLabel: String? = nil
+        var iqamaText: String? = nil
+
+        /// From the Adhan to the iqama, for the countdown shown once the Adhan time has come.
+        var iqamaRange: ClosedRange<Date>? { iqama.map { at...max(at, $0) } }
     }
 
     var rtl: Bool

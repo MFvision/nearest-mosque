@@ -34,7 +34,8 @@ import java.time.Instant
 /**
  * Local prayer reminders: a bounded horizon (7 days) of one-shot alarms, rebuilt whenever settings
  * change, the app opens, the device reboots, the time/zone changes, or one of them fires. The Adhan and spoken
- * reminders are played by [PrayerAudioService] while their notification shows, then it stops. Respects
+ * reminders are played by [PrayerAudioService] while their notification shows, then it stops; the iqama is a plain
+ * notification on the reminder channel, never the Adhan. Respects
  * notification and exact-alarm permissions, the ringer and Do Not Disturb.
  */
 class ReminderScheduler(private val context: Context, private val calculator: PrayerCalculator = PrayerCalculator()) {
@@ -55,7 +56,7 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
         ensureChannel()
         val today = now.atZone(loc.zoneId).toLocalDate()
         val days = (0 until HORIZON_DAYS).map { calculator.schedule(loc.location, today.plusDays(it.toLong()), loc.zoneId, settings.prayer) }
-        val plan = AlertPlanner.plan(days, now, settings.reminders, settings.alerts) {
+        val plan = AlertPlanner.plan(days, now, settings.reminders, settings.alerts, settings.iqama) {
             HijriCalendar.isRamadan(it, settings.prayer.hijriAdjustmentDays)
         }.take(MAX_ALERTS)
         val voice = settings.alerts.voice ?: VoiceLanguage.forInterface(Format.languageCode(context))
@@ -77,6 +78,7 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
                 AlertKind.QURAN -> context.getString(R.string.notif_quran_title) to context.getString(R.string.notif_quran_body)
                 AlertKind.SLEEP -> context.getString(R.string.notif_sleep_title) to context.getString(R.string.alerts_sleep_note)
                 AlertKind.KAHF -> context.getString(R.string.notif_kahf_title) to context.getString(R.string.alerts_kahf_note)
+                AlertKind.IQAMA -> context.getString(R.string.notif_iqama_title, name) to context.getString(R.string.notif_iqama_body)
             }
             val sound = AudioCatalog.sound(a.kind, a.event, settings.alerts, voice)
             val alarm = a.kind == AlertKind.FAJR_ALARM

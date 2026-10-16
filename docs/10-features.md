@@ -114,7 +114,12 @@ ships inside the iPhone app, in the same listing.
   minutes adjustment −30…+30 for each of the six times.
 * **Prayer & Audio**:
   * Adhan for Dhuhr, Asr, Maghrib and Isha, and the Fajr Adhan, each from Masjid al-Haram (Makkah) or
-    Al-Masjid an-Nabawi (Madinah), with preview.
+    Al-Masjid an-Nabawi (Madinah), with preview. **Adhan length**: Full, or Short (the first "Allahu akbar,
+    Allahu akbar" of the same recording, about 12 seconds).
+  * **Iqama**: after each Adhan the countdown is to the iqama, then the prayer shows ("Dhuhr prayer has
+    begun") before the countdown to the next prayer. Waits: Fajr 25, Dhuhr 20, Asr 20, Maghrib 10, Isha 20
+    minutes; prayer time after the iqama 15 minutes; a notification at the iqama; each can be changed or the
+    whole thing switched off. These are the usual waits, not a mosque's own timetable, and the app says so.
   * Before the prayer: 10 minutes, 5 minutes, and a pre-prayer reminder at 15, 20 or 30 minutes; spoken
     in Arabic or English.
   * Each prayer on its own: notification, Adhan, the reminders. Sunrise (end of Fajr time).
@@ -131,7 +136,11 @@ colours the app's buttons and accents, every widget, the Lock Screen and the Dyn
 
 **Downloads**: installed packs with remove, Import from file (checked), Restore built-in data.
 
-**About**: Privacy, Sources and licenses, On-device AI status, Show welcome tour, version.
+**About**: Privacy, Sources and licenses, On-device AI status, Show welcome tour, version; publisher AVA ai
+(avaai.sa), website nearmosque.net, support app@vision.bz, phone +966 57 937 2403, terms of use, copyright.
+
+**Moving between the two pages**: swipe sideways on Prayer & Qibla to go to Nearest Mosque, and from the
+screen's edge on Nearest Mosque to come back (from the edge only, so dragging the map never changes page).
 
 ### Onboarding (`ios/App/Onboarding/`)
 
@@ -146,7 +155,7 @@ Teal, Time of day (colours follow the prayer period).
 
 | # | Widget | What it shows | Home Screen sizes | Lock Screen sizes | Tap opens |
 |---|---|---|---|---|---|
-| 1 | Next prayer | The next prayer, its countdown and today's times | Small, Medium, Large | Circular, Rectangular, Inline | Prayer |
+| 1 | Next prayer | The next prayer, its countdown and today's times (after the Adhan: the countdown to the iqama, then "… prayer has begun") | Small, Medium, Large | Circular, Rectangular, Inline | Prayer |
 | 2 | Prayer countdown | A bar that fills up until the next prayer | Small, Medium | Rectangular | Prayer |
 | 3 | Prayer ring | Time left on a ring, with all of today's times | Small, Medium, Large, Extra Large | none | Prayer |
 | 4 | Today's prayers | All five prayers, the date and the next prayer | Medium, Large, Extra Large | none | Prayer |
@@ -170,10 +179,13 @@ Not on Mac.
      prayers with the next one lit.
    * Dynamic Island: compact (icon and name; countdown), minimal (progress ring), expanded (name, time,
      city, large countdown, **Qibla** and **Nearest Mosque** buttons; "Time for …" when it arrives).
-   * Starts when the app opens with "Countdown on the Lock Screen" on (default on) and a city set; marked
-     stale 15 minutes after the prayer; iOS removes it after at most 8 hours. No push updates.
-2. **Qibla compass** (`ios/Widgets/QiblaLiveActivity.swift`), started from the Qibla widget's dial: arrow,
-   bearing, turn hint, Kaaba when facing; uses the compass for 2 minutes and then ends.
+   * Starts when the app opens with "Countdown on the Lock Screen" on (default on) and a city set. At the Adhan
+     it turns by itself to "Time for …" and the countdown to the iqama (with the iqama off: "Time for …" for 15
+     minutes); iOS removes it after at most 8 hours. No push updates.
+2. **Qibla compass** (`ios/Widgets/QiblaLiveActivity.swift`), started from the Qibla widget's dial: the Kaaba at
+   the top of an arc, the gold dot where the Qibla is, the arrow turning with the phone (updated about four
+   times a second and gliding between updates), bearing, turn hint, glow when facing; uses the compass for 2
+   minutes and then ends.
 
 Both follow the app's style. Neither exists on Mac or Vision Pro.
 
@@ -182,7 +194,7 @@ Both follow the app's style. Neither exists on Mac or Vision Pro.
 | Action | Example phrase (English; Arabic too) | Result |
 |---|---|---|
 | Next prayer | "When is the next prayer in Near Mosque" | Spoken answer without opening the app |
-| Nearest mosque | "Where is the nearest mosque in Near Mosque" | Spoken answer and card (phone unlocked) |
+| Nearest mosque | "Where is the nearest mosque in Near Mosque" | Spoken answer and card (phone unlocked); a fresh location even with the app in the background, the downloaded mosques, then Apple Maps when online search is on |
 | Directions to the nearest mosque | "Take me to the nearest mosque with Near Mosque" | Apple Maps walking directions |
 | Ask about Islam | "Ask Near Mosque" | Opens Ask with the question |
 | Prayer times | "Show prayer times in Near Mosque" | Opens Prayer |

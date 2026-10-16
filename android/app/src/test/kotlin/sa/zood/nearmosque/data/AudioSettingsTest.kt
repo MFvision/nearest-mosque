@@ -10,6 +10,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AlertSettings
+import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerSounds
 import sa.zood.nearmosque.core.Reciter
@@ -38,6 +39,29 @@ class AudioSettingsTest {
         first.cancel()
         first.join()
         assertEquals(set, store(file, SupervisorJob()).settings.first().alerts)
+    }
+
+    @Test
+    fun iqamaSurvivesAReopen() = runBlocking {
+        val file = File.createTempFile("iqama", ".preferences_pb").also { it.delete() }
+        // A save from before the iqama: the usual waits.
+        val old = SupervisorJob()
+        assertEquals(IqamaSettings(), store(file, old).settings.first().iqama)
+        old.cancel()
+        old.join()
+        val set = IqamaSettings(enabled = false, prayerMinutes = 20, alert = false).withWait(PrayerEvent.FAJR, 30).withWait(PrayerEvent.MAGHRIB, 5)
+        val first = SupervisorJob()
+        store(file, first).setIqama(set)
+        first.cancel()
+        first.join()
+        assertEquals(set, store(file, SupervisorJob()).settings.first().iqama)
+    }
+
+    @Test
+    fun iqamaEncoding() {
+        val m = mapOf(PrayerEvent.FAJR to 25, PrayerEvent.ISHA to 15)
+        assertEquals(m, SettingsStore.decodeIqamaMinutes(SettingsStore.encodeIqamaMinutes(m)))
+        assertEquals(emptyMap<PrayerEvent, Int>(), SettingsStore.decodeIqamaMinutes("garbage,SUNRISE:10,ASR:x,DHUHR:-5"))
     }
 
     @Test

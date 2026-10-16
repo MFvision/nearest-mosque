@@ -38,8 +38,11 @@ struct PrayerProvider: AppIntentTimelineProvider {
         var entries = [PrayerEntry.make(now, look: configuration.style, state: state)]
         if let state {
             let horizon = now.addingTimeInterval(26 * 3600)
-            let times = state.days(now).flatMap { d in PrayerEvent.allCases.compactMap { d[$0] } }
-                + state.days(now.addingTimeInterval(86_400)).flatMap { d in PrayerEvent.allCases.compactMap { d[$0] } }
+            // Each prayer time, and with the iqama on its iqama and the end of its prayer too.
+            let calc = PrayerCalculator()
+            let days = state.days(now) + state.days(now.addingTimeInterval(86_400))
+            let times = days.flatMap { d in PrayerEvent.allCases.compactMap { d[$0] } }
+                + calc.stageChanges(days, after: now, iqama: state.iqamaSettings)
             // Midnight too, so the dates change on time.
             var cal = Calendar(identifier: .gregorian)
             cal.timeZone = state.zone

@@ -6,7 +6,10 @@ struct PrayerSnapshot {
     let now: Date
     let location: PrayerLocation?
     let today: DaySchedule?
+    /// What the header counts down to: the next Adhan, or after an Adhan its iqama (with that prayer's name and the
+    /// iqama's time), and during the prayer that prayer at its iqama (see `stage`).
     let next: Upcoming?
+    let stage: PrayerMoment.Stage
     let current: PrayerEvent?
     let fajrEndsAt: Date?
     let qiblaBearing: Double?
@@ -21,7 +24,13 @@ struct PrayerSnapshot {
         location = model.settings.location
         let days = model.days(now: now)
         today = days.count == 3 ? days[1] : nil
-        next = model.calculator.nextPrayer(days, now: now)
+        let moment = model.calculator.moment(days, now: now, iqama: model.settings.iqama)
+        stage = moment?.stage ?? .upcoming
+        if let m = moment, m.stage != .upcoming {
+            next = Upcoming(event: m.event, at: m.iqama ?? m.until, periodStart: m.adhan, isTomorrow: false)
+        } else {
+            next = moment?.next
+        }
         if let t = today {
             current = PrayerEvent.allCases.last { (t[$0] ?? .distantFuture) <= now } ?? (days[0][.isha] != nil ? .isha : nil)
             fajrEndsAt = model.calculator.fajrEndsAt(t, now: now)
@@ -32,6 +41,26 @@ struct PrayerSnapshot {
         qiblaDistance = location.map { Qibla.distanceMeters(from: $0.location) }
         sky = location == nil ? .night : SkyPeriod.at(now, today: today, current: current)
         arc = location == nil ? nil : DayArc.at(now, days: days)
+    }
+
+    /// "1 hr 5 min left", "19 min until the iqama", or "Dhuhr prayer has begun".
+    @MainActor
+    func remainingText(_ l10n: Localization) -> String {
+        guard let next else { return "" }
+        let left = Format.remainingLong(PrayerCalculator.remaining(now, next.at), locale: l10n.locale)
+        switch stage {
+        case .upcoming: return l10n.t("remaining_long", left)
+        case .toIqama: return l10n.t("iqama_left", left)
+        case .prayer: return l10n.t("prayer_started", l10n.t(Format.prayerKey(next.event)))
+        }
+    }
+
+    /// The prayer's name, or "Time for Dhuhr" while it waits for its iqama.
+    @MainActor
+    func title(_ l10n: Localization) -> String {
+        guard let next else { return "" }
+        let name = l10n.t(Format.prayerKey(next.event))
+        return stage == .toIqama ? l10n.t("reminder_title", name) : name
     }
 
     /// Elapsed fraction of the current prayer period (time progress, not sun position).

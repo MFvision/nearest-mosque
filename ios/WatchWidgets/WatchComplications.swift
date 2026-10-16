@@ -17,7 +17,10 @@ struct WatchEntry: TimelineEntry {
     static func make(_ date: Date, state: SharedState?, extras: WatchExtras) -> WatchEntry {
         guard let state else { return WatchEntry(date: date, state: nil, extras: extras, today: nil, next: nil, relevance: nil) }
         let days = state.days(date)
-        let next = PrayerCalculator().nextPrayer(days, now: date)
+        // After an Adhan, the countdown to its iqama; otherwise to the next Adhan.
+        let next = PrayerCalculator().moment(days, now: date, iqama: state.iqamaSettings).map { m in
+            m.stage == .toIqama ? Upcoming(event: m.event, at: m.until, periodStart: m.adhan, isTomorrow: false) : m.next
+        }
         // Higher in the Smart Stack in the half hour before a prayer.
         let soon = next.map { $0.at.timeIntervalSince(date) <= 1800 } ?? false
         return WatchEntry(date: date, state: state, extras: extras, today: days.count == 3 ? days[1] : nil, next: next,
@@ -49,11 +52,13 @@ struct WatchProvider: TimelineProvider {
         let extras = WatchExtras.read()
         var entries = [WatchEntry.make(now, state: state, extras: extras)]
         if let state {
-            let times = (state.days(now) + state.days(now.addingTimeInterval(86_400))).flatMap { d in PrayerEvent.allCases.compactMap { d[$0] } }
+            let days = state.days(now) + state.days(now.addingTimeInterval(86_400))
+            let times = days.flatMap { d in PrayerEvent.allCases.compactMap { d[$0] } }
             var cal = Calendar(identifier: .gregorian)
             cal.timeZone = state.zone
             let midnight = cal.startOfDay(for: now.addingTimeInterval(86_400))
-            let marks = times.flatMap { [$0.addingTimeInterval(1), $0.addingTimeInterval(-1800)] } + [midnight.addingTimeInterval(1)]
+            let iqamas = PrayerCalculator().stageChanges(days, after: now, iqama: state.iqamaSettings).map { $0.addingTimeInterval(1) }
+            let marks = times.flatMap { [$0.addingTimeInterval(1), $0.addingTimeInterval(-1800)] } + iqamas + [midnight.addingTimeInterval(1)]
             for t in Set(marks).sorted() where t > now && t < now.addingTimeInterval(26 * 3600) {
                 entries.append(WatchEntry.make(t, state: state, extras: extras))
             }

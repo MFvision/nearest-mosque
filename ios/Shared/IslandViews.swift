@@ -26,6 +26,7 @@ struct IslandArrow: View {
         }
         .frame(width: size * 0.79, height: size)
         .rotationEffect(.degrees(turn ?? 0))
+        .animation(.easeOut(duration: 0.35), value: turn ?? 0)
         .shadow(color: facing ? tint.opacity(0.9) : .clear, radius: size * 0.3)
         .opacity(turn == nil ? 0.5 : 1)
         .environment(\.layoutDirection, .leftToRight)
@@ -34,7 +35,9 @@ struct IslandArrow: View {
 }
 
 /// The app's Qibla ring as an arc for the island: the Kaaba at the apex, the gold dot where the Qibla is now
-/// (held at the ends when it is behind you), the glowing stretch between them, and the arrow at the centre.
+/// (held at the ends when it is behind you), the glowing stretch between them, and the arrow at the centre. The
+/// dot, the stretch and the arrow are shapes and turns, so they glide from one update to the next instead of
+/// jumping, as the compass does in the app.
 struct QiblaArcDial: View {
     let turn: Double?
     let facing: Bool
@@ -47,8 +50,6 @@ struct QiblaArcDial: View {
             let r = min(w / 2 - 16, h - 14)
             let c = CGPoint(x: w / 2, y: h - 2)
             let t = max(-90, min(90, turn ?? 0))
-            let rad = t * .pi / 180
-            let dot = CGPoint(x: c.x + r * CGFloat(Foundation.sin(rad)), y: c.y - r * CGFloat(Foundation.cos(rad)))
             let ink = onDark ? Color.white : Color(red: 0.07, green: 0.15, blue: 0.23)
             ZStack {
                 Canvas { ctx, _ in
@@ -62,16 +63,17 @@ struct QiblaArcDial: View {
                         tick.addLine(to: CGPoint(x: c.x + (r + 5) * CGFloat(Foundation.sin(a)), y: c.y - (r + 5) * CGFloat(Foundation.cos(a))))
                         ctx.stroke(tick, with: .color(ink.opacity(i % 6 == 0 ? 0.6 : 0.25)), lineWidth: i % 6 == 0 ? 1.5 : 1)
                     }
-                    if turn != nil {
-                        var trail = Path()
-                        trail.addArc(center: c, radius: r, startAngle: .degrees(-90), endAngle: .degrees(-90 + t), clockwise: t < 0)
-                        var glow = ctx
-                        glow.addFilter(.blur(radius: 3))
-                        glow.stroke(trail, with: .color(tint.opacity(0.9)), style: StrokeStyle(lineWidth: 6, lineCap: .round))
-                        ctx.stroke(trail, with: .color(tint), style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                        ctx.fill(Path(ellipseIn: CGRect(x: dot.x - 7, y: dot.y - 7, width: 14, height: 14)), with: .color(tint))
-                        ctx.stroke(Path(ellipseIn: CGRect(x: dot.x - 7, y: dot.y - 7, width: 14, height: 14)), with: .color(.white), lineWidth: 2)
-                    }
+                }
+                if turn != nil {
+                    TurnArc(center: c, radius: r, turn: t)
+                        .stroke(tint.opacity(0.9), style: StrokeStyle(lineWidth: 6, lineCap: .round)).blur(radius: 3)
+                    TurnArc(center: c, radius: r, turn: t)
+                        .stroke(tint, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                    // The dot rides the arc: a turn about the centre, not a slide across.
+                    Circle().fill(tint).overlay(Circle().stroke(Color.white, lineWidth: 2))
+                        .frame(width: 14, height: 14)
+                        .position(x: c.x, y: c.y - r)
+                        .rotationEffect(.degrees(t), anchor: UnitPoint(x: c.x / max(w, 1), y: c.y / max(h, 1)))
                 }
                 // The Kaaba fixed at the apex: you face the Qibla when the dot reaches it.
                 ZStack {
@@ -85,9 +87,29 @@ struct QiblaArcDial: View {
                 IslandArrow(turn: turn, facing: facing, tint: tint, size: min(46, r * 0.75))
                     .position(x: c.x, y: c.y - r * 0.42)
             }
+            .animation(.easeOut(duration: 0.35), value: t)
+            .animation(.easeInOut(duration: 0.3), value: facing)
         }
         .environment(\.layoutDirection, .leftToRight)
         .accessibilityHidden(true)
+    }
+}
+
+/// The stretch of the arc from the apex to the Qibla, `turn` degrees (negative: to the left); animatable.
+struct TurnArc: Shape {
+    var center: CGPoint
+    var radius: CGFloat
+    var turn: Double
+
+    var animatableData: Double {
+        get { turn }
+        set { turn = newValue }
+    }
+
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.addArc(center: center, radius: radius, startAngle: .degrees(-90), endAngle: .degrees(-90 + turn), clockwise: turn < 0)
+        return p
     }
 }
 
@@ -127,11 +149,13 @@ struct PrayerLockScreenView: View {
 
     var body: some View {
         let p = WidgetPalette.of(.sky, period: PrayerEvent(rawValue: state.period))
+        // Before the Adhan: the countdown to it. Once its time has come: to the iqama, when there is one.
+        let range: ClosedRange<Date>? = stale ? state.iqamaRange : state.start...max(state.start, state.at)
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Label(state.city, systemImage: "mappin.and.ellipse").font(.caption.weight(.semibold)).foregroundStyle(p.secondary).lineLimit(1)
                 Spacer()
-                Text(state.timeText).font(.caption.weight(.semibold).monospacedDigit()).foregroundStyle(p.secondary)
+                Text(stale ? state.iqamaText ?? state.timeText : state.timeText).font(.caption.weight(.semibold).monospacedDigit()).foregroundStyle(p.secondary)
             }
             HStack(alignment: .firstTextBaseline) {
                 Label {
@@ -141,17 +165,22 @@ struct PrayerLockScreenView: View {
                 }
                 .foregroundStyle(p.ink)
                 Spacer(minLength: 8)
-                if !stale {
-                    Text(timerInterval: state.start...max(state.start, state.at), countsDown: true)
-                        .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
-                        .foregroundStyle(p.accent)
-                        .multilineTextAlignment(.trailing)
-                        .environment(\.layoutDirection, .leftToRight)
-                        .frame(maxWidth: 140, alignment: .trailing)
+                if let range {
+                    VStack(alignment: .trailing, spacing: 0) {
+                        if stale, let label = state.iqamaLabel {
+                            Text(label).font(.caption.weight(.semibold)).foregroundStyle(p.secondary).lineLimit(1)
+                        }
+                        Text(timerInterval: range, countsDown: true)
+                            .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+                            .foregroundStyle(p.accent)
+                            .multilineTextAlignment(.trailing)
+                            .environment(\.layoutDirection, .leftToRight)
+                    }
+                    .frame(maxWidth: 160, alignment: .trailing)
                 }
             }
-            if !stale {
-                ProgressView(timerInterval: state.start...max(state.start.addingTimeInterval(1), state.at), countsDown: false) {
+            if let range {
+                ProgressView(timerInterval: range.lowerBound...max(range.lowerBound.addingTimeInterval(1), range.upperBound), countsDown: false) {
                     EmptyView()
                 } currentValueLabel: {
                     EmptyView()

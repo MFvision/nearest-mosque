@@ -3,6 +3,7 @@ package sa.zood.nearmosque
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
@@ -137,6 +138,18 @@ class ScreenshotTest {
     // Maghrib light on the glass (18:40) in dark and light mode.
     @Test fun prayerMaghrib() = shoot("prayer_maghrib_en", Tab.PRAYER, at = ZonedDateTime.of(2026, 10, 3, 18, 40, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
 
+    /** [minutes] after that day's Asr Adhan in Cape Town. */
+    private fun afterAsr(minutes: Long) = sa.zood.nearmosque.core.PrayerCalculator()
+        .schedule(capeTown.location, java.time.LocalDate.of(2026, 10, 3), capeTown.zoneId, sa.zood.nearmosque.core.PrayerSettings())
+        .get(sa.zood.nearmosque.core.PrayerEvent.ASR)!!.plusSeconds(minutes * 60)
+
+    // After the Asr Adhan: "Time for Asr" and the countdown to the iqama; then the prayer itself, with no countdown.
+    @Test fun prayerToIqama() = shoot("prayer_iqama_en", Tab.PRAYER, at = afterAsr(5))
+    @Test fun prayerStarted() = shoot("prayer_started_en", Tab.PRAYER, dark = false, at = afterAsr(25))
+    @Test fun compactToIqama() = shoot("compact_iqama_en", Tab.PRAYER, at = afterAsr(5)) { scrollToCompact() }
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun prayerToIqamaArabic() = shoot("prayer_iqama_ar", Tab.PRAYER, at = afterAsr(5))
+
     @Test fun prayerDayLight() = shoot("prayer_day_en_light", Tab.PRAYER, dark = false, at = ZonedDateTime.of(2026, 10, 3, 10, 0, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
 
     /** The full Qibla view, with a live heading [heading]° (Cape Town's Qibla is about 23°). */
@@ -246,15 +259,33 @@ class ScreenshotTest {
             .withSounds(sa.zood.nearmosque.core.PrayerEvent.MAGHRIB, sa.zood.nearmosque.core.PrayerSounds(adhan = false))
         compose.setContent {
             NearMosqueTheme(dark = true) {
-                sa.zood.nearmosque.ui.settings.PrayerAudioScreen(c, alerts, setOf(sa.zood.nearmosque.core.PrayerEvent.FAJR)) {}
+                sa.zood.nearmosque.ui.settings.PrayerAudioScreen(c, alerts, setOf(sa.zood.nearmosque.core.PrayerEvent.FAJR), sa.zood.nearmosque.core.IqamaSettings()) {}
             }
         }
         compose.waitForIdle()
         compose.onRoot().captureRoboImage("build/screenshots/prayer_audio_en.png")
-        compose.onNodeWithText("Maghrib").performScrollTo().performClick()
+        // The first "Maghrib" is its own prayer's row; the iqama section has one too.
+        compose.onAllNodesWithText("Maghrib")[0].performScrollTo().performClick()
         compose.waitForIdle()
         compose.onNodeWithText("Play the Adhan").performScrollTo()
         compose.waitForIdle()
         compose.onRoot().captureRoboImage("build/screenshots/prayer_audio_maghrib_en.png")
+    }
+
+    /** The iqama section of Prayer & Audio: the switch, a wait per prayer, the prayer after it and its notification. */
+    @Test fun iqamaSettings() {
+        val c = container()
+        compose.setContent {
+            NearMosqueTheme(dark = true) {
+                sa.zood.nearmosque.ui.settings.PrayerAudioScreen(
+                    c, sa.zood.nearmosque.core.AlertSettings(), emptySet(),
+                    sa.zood.nearmosque.core.IqamaSettings().withWait(sa.zood.nearmosque.core.PrayerEvent.ISHA, 15),
+                ) {}
+            }
+        }
+        compose.waitForIdle()
+        compose.onNodeWithText("Notify at the iqama").performScrollTo()
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/iqama_settings_en.png")
     }
 }

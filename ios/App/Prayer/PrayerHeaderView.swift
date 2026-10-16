@@ -70,14 +70,14 @@ struct PrayerHero: View {
         let zone = snap.location?.zone ?? .current
         VStack(spacing: 4) {
             if let next = snap.next {
-                let name = l10n.t(Format.prayerKey(next.event))
+                let name = snap.title(l10n)
                 let time = Format.time(next.at, zone: zone, locale: l10n.locale)
                 let remaining = PrayerCalculator.remaining(snap.now, next.at)
                 VStack(spacing: 2) {
                     Text(name).font(.title2.weight(.medium)).foregroundStyle(Theme.ink.opacity(0.92))
                     Text(time).font(.system(size: timeSize, weight: .light)).monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
                         .contentTransition(.numericText())
-                    Text(l10n.t("remaining_long", Format.remainingLong(remaining, locale: l10n.locale)))
+                    Text(snap.remainingText(l10n))
                         .font(.callout).monospacedDigit().foregroundStyle(Theme.ink.opacity(0.85))
                         .contentTransition(reduceMotion ? .identity : .numericText(countsDown: true))
                 }
@@ -269,8 +269,8 @@ struct CompactPrayerBar: View {
                 HStack(spacing: 12) {
                     TurningLogo(target: arrowTarget, size: 46, glow: aligned)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(l10n.t(Format.prayerKey(next.event)) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
-                        Text(l10n.t("remaining_long", Format.remainingLong(PrayerCalculator.remaining(snap.now, next.at), locale: l10n.locale)))
+                        Text(snap.title(l10n) + "  " + Format.time(next.at, zone: loc.zone, locale: l10n.locale)).font(.headline)
+                        Text(snap.remainingText(l10n))
                             .font(.subheadline).monospacedDigit().foregroundStyle(Theme.accent)
                     }
                     Spacer()

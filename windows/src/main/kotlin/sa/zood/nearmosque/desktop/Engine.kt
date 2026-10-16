@@ -2,12 +2,17 @@ package sa.zood.nearmosque.desktop
 
 import javazoom.jl.player.Player
 import sa.zood.nearmosque.core.AdhanSource
+import sa.zood.nearmosque.core.AlertKind
+import sa.zood.nearmosque.core.AlertPlanner
+import sa.zood.nearmosque.core.AlertSettings
 import sa.zood.nearmosque.core.City
 import sa.zood.nearmosque.core.CityIndex
 import sa.zood.nearmosque.core.DaySchedule
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.PrayerSettings
+import sa.zood.nearmosque.core.moment
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -40,7 +45,31 @@ class Clock(val city: City, private val s: DesktopSettings) {
     fun today(now: Instant = Instant.now()): DaySchedule = day(now.atZone(zone).toLocalDate())
 
     fun next(now: Instant = Instant.now()) = calc.nextPrayer(city.location, now, zone, settings)
+
+    val iqama get() = s.iqama
+
+    /** The countdown to the next Adhan, the wait for the iqama, or the prayer itself (yesterday to tomorrow). */
+    fun moment(now: Instant = Instant.now()): PrayerMoment? {
+        val today = now.atZone(zone).toLocalDate()
+        return calc.moment((-1L..1L).map { day(today.plusDays(it)) }, now, s.iqama)
+    }
 }
+
+/** One line for the notification-area icon: the next prayer, the wait for the iqama, or the prayer under way. */
+fun trayStatus(clock: Clock?, now: Instant = Instant.now()): String {
+    val m = clock?.moment(now) ?: return t("app_name")
+    val name = t(prayerKey(m.event))
+    val line = when (m.stage) {
+        PrayerMoment.Stage.UPCOMING -> "$name ${clockText(m.adhan, clock.zone)}" + (m.iqama?.let { " · " + t("iqama_at", clockText(it, clock.zone)) } ?: "")
+        PrayerMoment.Stage.TO_IQAMA -> t("reminder_title", name) + " · " + t("iqama_left", t("minutes_value", minutesLeft(now, m.until)))
+        PrayerMoment.Stage.PRAYER -> t("prayer_started", name)
+    }
+    return t("app_name") + " · " + line
+}
+
+/** Whole minutes until [until], rounded up (so "1 min" shows until the very end). */
+fun minutesLeft(now: Instant, until: Instant): Int =
+    ((PrayerCalculator.remaining(now, until).seconds + 59) / 60).toInt()
 
 /** Plays the app's recordings (MP3 in the app's resources) one at a time. */
 object Sound {
@@ -52,6 +81,8 @@ object Sound {
         val fajr = event == PrayerEvent.FAJR
         val src = if (fajr) s.fajrAdhanSource else s.adhanSource
         val place = if (src == AdhanSource.MADINAH) "madinah" else "makkah"
+        // The short Adhan is the same first takbir at every prayer.
+        if (s.shortAdhan) return "adhan_${place}_short"
         return if (fajr) "fajr_$place" else "adhan_$place"
     }
 
@@ -81,7 +112,7 @@ object Sound {
 /**
  * Fires the prayer reminders while the app runs (it stays in the notification area when its window is closed):
  * at each prayer a notification and, unless silenced for that prayer, the Adhan; optionally ten minutes before,
- * and at sunrise. Checked every 15 seconds against freshly computed times, so a sleep or clock change is caught up.
+ * at sunrise and (a notification only, no sound) at each iqama. Checked every 15 seconds against freshly computed times, so a sleep or clock change is caught up.
  */
 class Reminders(private val notify: (String, String) -> Unit) {
     private val fired = mutableSetOf<String>()
@@ -107,6 +138,13 @@ class Reminders(private val notify: (String, String) -> Unit) {
                 if (s.adhan && e !in s.silent) Sound.play(Sound.adhanFile(e, s))
             }
         }
+        // The iqama, planned by the shared core (every prayer notifies here); yesterday too, for an Isha iqama
+        // after midnight. A plain notification: the Adhan has already been heard.
+        AlertPlanner.plan(listOf(clock.day(today.date.minusDays(1)), today), now.minusSeconds(120), PrayerEvent.prayers.toSet(), AlertSettings(), s.iqama) { false }
+            .filter { it.kind == AlertKind.IQAMA }
+            .forEach { a ->
+                fire("${a.date}-${a.event}-iqama", a.at, now) { notify(t("notif_iqama_title", t(prayerKey(a.event))), t("notif_iqama_body")) }
+            }
         if (fired.size > 200) fired.clear()
     }
 

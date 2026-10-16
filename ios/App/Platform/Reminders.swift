@@ -53,7 +53,7 @@ enum Reminders {
     /// Returns the number of notifications scheduled.
     @discardableResult
     static func reschedule(location: PrayerLocation?, settings: PrayerSettings, enabled: Set<PrayerEvent>, alerts: AlertSettings,
-                           l10n: Localization, mosqueLine: String? = nil, verse: (String) -> String? = { _ in nil },
+                           iqama: IqamaSettings = IqamaSettings(enabled: false), l10n: Localization, mosqueLine: String? = nil, verse: (String) -> String? = { _ in nil },
                            now: Date = Date()) async -> Int {
         let center = UNUserNotificationCenter.current()
         registerCategories(l10n)
@@ -62,7 +62,7 @@ enum Reminders {
         let calc = PrayerCalculator()
         let today = CivilDate.of(now, in: loc.zone)
         let days = (0..<14).map { calc.schedule(loc.location, date: today.adding(days: $0), zone: loc.zone, settings: settings) }
-        let plan = AlertPlanner.plan(days, now: now, atPrayer: enabled, alerts: alerts) {
+        let plan = AlertPlanner.plan(days, now: now, atPrayer: enabled, alerts: alerts, iqama: iqama) {
             HijriCalendar.isRamadan($0, adjustmentDays: settings.hijriAdjustmentDays)
         }.filter { !repeating.contains($0.kind) }
         let alarms = plan.filter { $0.kind == .fajrAlarm }
@@ -112,6 +112,13 @@ enum Reminders {
             case .iftar:
                 content.title = l10n.t("reminder_iftar_title")
                 content.body = l10n.t("reminder_body", loc.name, time)
+            case .iqama:
+                // A plain sound: the Adhan has already been called.
+                content.title = l10n.t("notif_iqama_title", name)
+                content.body = l10n.t("notif_iqama_body")
+                content.subtitle = l10n.t("iqama_at", Format.time(a.at, zone: loc.zone, locale: l10n.locale))
+                content.categoryIdentifier = Category.before.rawValue
+                content.relevanceScore = 0.8
             case .salawat, .quran, .sleep, .kahf:
                 continue
             }
@@ -187,7 +194,7 @@ enum Reminders {
 }
 
 extension AlertKind {
-    static let allIdentifiers = [AlertKind.atPrayer, .before, .friday, .suhoor, .iftar, .fajrAlarm, .adhan, .before10, .before5, .near].map(\.rawValue)
+    static let allIdentifiers = [AlertKind.atPrayer, .before, .friday, .suhoor, .iftar, .fajrAlarm, .adhan, .before10, .before5, .near, .iqama].map(\.rawValue)
 }
 
 /// Taps and buttons on the app's notifications.

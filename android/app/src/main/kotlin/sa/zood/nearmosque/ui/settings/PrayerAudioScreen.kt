@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,8 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -64,6 +67,7 @@ import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AlertKind
 import sa.zood.nearmosque.core.AlertSettings
+import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.Reciter
 import sa.zood.nearmosque.core.VoiceLanguage
@@ -76,12 +80,12 @@ import sa.zood.nearmosque.ui.theme.LocalExtraColors
 
 /**
  * Prayer & Audio: every Adhan, reminder and recitation has its own switch, and none changes another. Grouped
- * as the Adhan, reminders before the prayer, each prayer (expandable), Qur'an and dhikr, and more reminders.
+ * as the Adhan, reminders before the prayer, each prayer (expandable), the iqama, Qur'an and dhikr, and more reminders.
  * Each change is saved at once and the reminders are rebuilt. Mirrors the iOS PrayerAudioSettingsView.
  */
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders: Set<PrayerEvent>, onClose: () -> Unit) {
+fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders: Set<PrayerEvent>, iqama: IqamaSettings, onClose: () -> Unit) {
     BackHandler(onBack = onClose)
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -96,6 +100,10 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
             container.settings.setAlerts(a)
             withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
         }
+    }
+    fun setIqama(q: IqamaSettings) = scope.launch {
+        container.settings.setIqama(q)
+        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
     }
     fun setBell(e: PrayerEvent, on: Boolean) = scope.launch {
         container.settings.setReminder(e, on)
@@ -205,6 +213,24 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
                 Toggle(stringResource(R.string.sunrise_notify), null, PrayerEvent.SUNRISE in reminders) { setBell(PrayerEvent.SUNRISE, it) }
                 Note(stringResource(R.string.per_prayer_note))
 
+                Header(stringResource(R.string.iqama_section))
+                Toggle(stringResource(R.string.iqama_show), null, iqama.enabled) { setIqama(iqama.copy(enabled = it)) }
+                AnimatedVisibility(iqama.enabled) {
+                    Column {
+                        PrayerEvent.prayers.forEach { e ->
+                            MinutesRow(stringResource(Format.prayerName(e)), prayerIcon(e), iqama.wait(e), IqamaSettings.choices) { setIqama(iqama.withWait(e, it)) }
+                        }
+                        MinutesRow(stringResource(R.string.iqama_prayer_minutes), null, iqama.prayerMinutes, IqamaSettings.prayerChoices) {
+                            setIqama(iqama.copy(prayerMinutes = it))
+                        }
+                        Toggle(stringResource(R.string.iqama_alert), null, iqama.alert) {
+                            if (it && android.os.Build.VERSION.SDK_INT >= 33) permission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                            setIqama(iqama.copy(alert = it))
+                        }
+                    }
+                }
+                Note(stringResource(R.string.iqama_note))
+
                 Header(stringResource(R.string.dhikr_section))
                 Toggle(stringResource(R.string.salawat), stringResource(R.string.salawat_note), alerts.salawat,
                     preview = AudioCatalog.salawat(alerts.reciter) to stringResource(R.string.salawat)) { set(alerts.copy(salawat = it)) }
@@ -272,6 +298,31 @@ private fun PrayerRows(e: PrayerEvent, alerts: AlertSettings, bell: Boolean, onB
         }
     }
     HorizontalDivider()
+}
+
+/** A number of minutes chosen from [choices] (a prayer's wait for the iqama, or the prayer after it), with the prayer's icon. */
+@Composable
+private fun MinutesRow(title: String, icon: Int?, minutes: Int, choices: List<Int>, onChange: (Int) -> Unit) {
+    var open by remember { mutableStateOf(false) }
+    Row(Modifier.fillMaxWidth().heightIn(min = 52.dp), verticalAlignment = Alignment.CenterVertically) {
+        icon?.let { Icon(painterResource(it), contentDescription = null, tint = LocalExtraColors.current.accentText, modifier = Modifier.size(22.dp)) }
+        Text(title, Modifier.weight(1f).padding(start = if (icon != null) 12.dp else 0.dp), style = MaterialTheme.typography.bodyLarge)
+        Box {
+            TextButton(onClick = { open = true }, modifier = Modifier.heightIn(min = 48.dp)) {
+                Text(stringResource(R.string.minutes_value, minutes))
+                Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null)
+            }
+            DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+                choices.forEach { m ->
+                    DropdownMenuItem(
+                        text = { Text(stringResource(R.string.minutes_value, m)) },
+                        trailingIcon = { if (m == minutes) Text("✓") },
+                        onClick = { open = false; onChange(m) },
+                    )
+                }
+            }
+        }
+    }
 }
 
 /** A per-prayer switch, always usable: on here while the reminder is off above turns it on for this prayer only. */
