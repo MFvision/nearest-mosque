@@ -18,7 +18,9 @@ robolectric = "4.16.1"
 roborazzi = "1.52.0"
 
 [libraries]
-maplibre-android = { module = "org.maplibre.gl:android-sdk", version.ref = "maplibre" }
+# The OpenGL ES build: the default build needs Vulkan, which Google Play then requires of every device
+# (hiding the app from Chromebooks and phones without it).
+maplibre-android = { module = "org.maplibre.gl:android-sdk-opengl", version.ref = "maplibre" }
 adhan = { module = "com.batoulapps.adhan:adhan2", version.ref = "adhan" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }

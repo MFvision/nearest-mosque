@@ -61,10 +61,11 @@ import java.time.ZonedDateTime
  * The Google Play screenshots: for every app language and device ([Device]), eight real screens with the same demo
  * data as the App Store screenshots (tools/store/screens.json: Riyadh for the prayer times and the Qibla, Cairo for
  * the mosques). Output: app/build/store-play/<appLang>/<device>/NN-name.png, flattened and checked afterwards by
- * tools/store/play_graphics.py (which takes phone, seven and ten; the other devices are for checking layouts).
+ * tools/store/play_graphics.py (which takes phone, seven, ten, desktop and xr; the other devices are for checking
+ * layouts). The desktop and XR slots leave out the home-screen widgets (06): neither ChromeOS nor Android XR has them.
  *
  * Left out of ordinary test runs: Gradle runs it only with -PstoreShots=true; -PstoreLangs="en ar" for some
- * languages, -PstoreDevices="phone cover" for other devices than phone, seven and ten, -PstoreClock=12 or 24 to
+ * languages, -PstoreDevices="phone cover" for other devices than phone, seven, ten, desktop and xr, -PstoreClock=12 or 24 to
  * force the phone's clock (e.g. to check the 12-hour times of every language). For example:
  * ./gradlew :app:testDebugUnitTest -PstoreShots=true -Proborazzi.test.record=true --tests '*StoreScreenshotTest'
  */
@@ -72,7 +73,7 @@ import java.time.ZonedDateTime
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [35], qualifiers = "w432dp-h768dp-400dpi", application = android.app.Application::class)
 class StoreScreenshotTest(private val lang: String, private val qualifier: String, private val device: Device) {
-    /** The screens rendered: Google Play's phone, 7-inch and 10-inch slots, and other sizes to check layouts on. */
+    /** The screens rendered: Google Play's phone, 7-inch, 10-inch, Chromebook (desktop) and Android XR slots, and other sizes to check layouts on. */
     enum class Device(val qualifiers: String) {
         /** 1080x1920, 9:16: a large phone. */
         PHONE("w432dp-h768dp-400dpi"),
@@ -80,6 +81,13 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         SEVEN("w690dp-h829dp-420dpi"),
         /** A 10-inch tablet held sideways, its app window: 2560x1440, 16:9 (Play's 10-inch slot). */
         TEN("w1280dp-h720dp-xhdpi"),
+        /** A desktop (Chromebook or PC) window, maximized: 2880x1620, 16:9 (Play's Chromebook slot: 16:9, 1080 px or more). */
+        DESKTOP("w1440dp-h810dp-xhdpi"),
+        /**
+         * An Android XR panel: Android XR shows large-screen apps on a 1024 x 720 dp panel; 3072x2160, which
+         * play_graphics.py sets in a space at 3840x2400 (Play's XR slot: 8:5, 3840x2400 recommended).
+         */
+        XR("w1024dp-h720dp-xxhdpi"),
         /** Galaxy Z Fold cover screen: 903x2315. */
         COVER("w344dp-h882dp-420dpi"),
         /** The Fold's inner screen turned sideways: 2176x1811. */
@@ -99,7 +107,7 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
             val root = File(System.getProperty("nm.root") ?: "../..")
             val wanted = System.getProperty("nm.storeLangs").orEmpty().split(' ', ',').filter(String::isNotBlank).toSet()
             val devices = System.getProperty("nm.storeDevices").orEmpty().split(' ', ',').filter(String::isNotBlank)
-                .map { d -> Device.entries.first { it.folder == d } }.ifEmpty { listOf(Device.PHONE, Device.SEVEN, Device.TEN) }
+                .map { d -> Device.entries.first { it.folder == d } }.ifEmpty { listOf(Device.PHONE, Device.SEVEN, Device.TEN, Device.DESKTOP, Device.XR) }
             val all = Json.parseToJsonElement(File(root, "shared/i18n/languages.json").readText()).jsonObject["languages"]!!.jsonArray
             return all.map { it.jsonObject }
                 .filter { it["enabled"]!!.jsonPrimitive.boolean }
@@ -290,6 +298,8 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
 
     /** Home-screen widgets on a dusk wallpaper, drawn from their RemoteViews like WidgetScreenshotTest. */
     @Test fun shot6Widgets() = runBlocking {
+        // Neither ChromeOS nor Android XR puts app widgets on a home screen: no widgets in those listings.
+        org.junit.Assume.assumeTrue(device != Device.DESKTOP && device != Device.XR)
         launch()
         val c = container()
         val s = c.settings.settings.first()

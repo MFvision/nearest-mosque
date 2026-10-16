@@ -63,6 +63,14 @@ class FoldTest {
         assertTrue("resizeable", !manifest.contains("resizeableActivity=\"false\""))
     }
 
+    /** Google Play offers the app on Chromebooks, desktops and Android XR headsets: no hardware is required. */
+    @Test fun noHardwareIsRequired() {
+        val manifest = java.io.File(System.getProperty("nm.root") ?: "../..", "android/app/src/main/AndroidManifest.xml").readText()
+        for (feature in listOf("touchscreen", "location", "location.gps", "sensor.compass", "sensor.accelerometer")) {
+            assertTrue("$feature not required", Regex("android:name=\"android\\.hardware\\.${Regex.escape(feature)}\"\\s+android:required=\"false\"").containsMatchIn(manifest))
+        }
+    }
+
     /** The worst case, an activity that is recreated at the new size: the Ask conversation and the open screen stay. */
     @Test fun unfoldingKeepsTheConversation() = runBlocking {
         val zone = ZoneId.of("Asia/Riyadh")

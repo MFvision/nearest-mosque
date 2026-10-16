@@ -20,6 +20,12 @@
     <!-- Silent during prayer (opt-in): the app turns its own Do Not Disturb rule on and off; the user grants access in system settings. -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
+    <!-- Nothing needs a particular piece of hardware, so Google Play offers the app on Chromebooks and other desktops,
+         Android XR headsets and tablets too: the location permissions imply android.hardware.location (a city can be
+         chosen instead), the Qibla compass falls back to the bearing without a compass, and every screen works with a
+         mouse, trackpad, keyboard or XR hand input as well as touch. -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
     <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />

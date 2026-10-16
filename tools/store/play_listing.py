@@ -7,6 +7,8 @@
 Text comes from shared/store/play/listing.json (tools/store/play_listing_build.py). Graphics come from <assets dir>
 as built by tools/store/play_graphics.py (.github/workflows/store-play-assets.yml):
     icon.png, <app language>/feature.png, <app language>/{phone,seven,ten}/NN-*.png
+(<app language>/desktop and xr, the Chromebook and Android XR screenshots, are not uploaded: the API has no image
+type for them, so they go up by hand in Play Console.)
 A language with no graphics of its own uses the English ones. Store contact details (email, website) are set too; the
 default language stays as chosen in Play Console unless DEFAULT_LANGUAGE is given. The edit is committed only after every call succeeded, so a failure leaves
 the store as it was. Nothing here touches releases or tracks.
