@@ -22,7 +22,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: android-release
+  # Shared with play-listing.yml: Google Play takes one edit at a time.
+  group: play-edit
   cancel-in-progress: false
 
 jobs:
