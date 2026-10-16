@@ -103,6 +103,31 @@ object Format {
         return if (mark.isNotEmpty() && full.contains(mark)) full.replace(mark, "").trim() to mark else full to null
     }
 
+    /**
+     * The time and where its AM/PM mark is in it, when the mark is a long word (Assamese "অপৰাহ্ন", Kannada
+     * "ಅಪರಾಹ್ನ", Malayalam, Marathi and others): large times draw such a mark smaller so the time still fits on one
+     * line. Null for short marks ("PM", "ص", "下午") and in 24-hour mode.
+     */
+    fun timeWithLongMark(context: Context, instant: Instant, zone: ZoneId): Pair<String, IntRange?> {
+        val full = time(context, instant, zone)
+        if (DateFormat.is24HourFormat(context)) return full to null
+        val mark = DateTimeFormatter.ofPattern("a", locale(context)).format(instant.atZone(zone))
+        val at = if (mark.length > LONG_MARK) full.indexOf(mark) else -1
+        return full to (if (at >= 0) at until at + mark.length else null)
+    }
+
+    /** Marks longer than this many characters are drawn smaller in large times. */
+    const val LONG_MARK = 3
+
+    /** [time] for a large TextView (widgets): a long AM/PM mark at half the size (see [timeWithLongMark]). */
+    fun timeLarge(context: Context, instant: Instant, zone: ZoneId): CharSequence {
+        val (full, mark) = timeWithLongMark(context, instant, zone)
+        if (mark == null) return full
+        return android.text.SpannableString(full).apply {
+            setSpan(android.text.style.RelativeSizeSpan(0.5f), mark.first, mark.last + 1, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+    }
+
     /** H:MM:SS (or M:SS under an hour), localized digits. */
     fun countdown(context: Context, d: Duration): String {
         val s = d.seconds.coerceAtLeast(0)

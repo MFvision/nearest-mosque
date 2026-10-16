@@ -82,6 +82,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.Angles
@@ -173,7 +174,18 @@ private fun ArcContent(ui: PrayerUi, compass: CompassState, aligned: Boolean) {
                     val a11y = stringResource(R.string.countdown_a11y, name, time, Format.countdown(context, remaining))
                     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clearAndSetSemantics { contentDescription = a11y; heading() }) {
                         Text(name, color = Ink.copy(alpha = 0.92f), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium))
-                        Text(time, color = Ink, fontSize = bigSize, fontWeight = FontWeight.Light, maxLines = 1, style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
+                        // A long AM/PM word (Assamese, Kannada, Marathi...) at half the size, and the whole time
+                        // smaller still if it does not fit on one line inside the arc.
+                        val (_, mark) = Format.timeWithLongMark(context, moment.adhan, zone)
+                        val big = androidx.compose.ui.text.buildAnnotatedString {
+                            append(time)
+                            if (mark != null) addStyle(androidx.compose.ui.text.SpanStyle(fontSize = 0.5.em), mark.first, mark.last + 1)
+                        }
+                        Text(
+                            big, color = Ink, fontWeight = FontWeight.Light, maxLines = 1, softWrap = false,
+                            autoSize = androidx.compose.foundation.text.TextAutoSize.StepBased(minFontSize = 28.sp, maxFontSize = bigSize, stepSize = 2.sp),
+                            style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"),
+                        )
                         Text(
                             stringResource(R.string.remaining_long, Format.remainingLong(context, remaining)), color = Ink.copy(alpha = 0.85f),
                             style = MaterialTheme.typography.bodyLarge.copy(fontFeatureSettings = "tnum"),

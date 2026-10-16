@@ -30,7 +30,9 @@
                 <TextView android:id="@+id/widget_name" style="@style/NMWidgetText.Name" android:layout_width="0dp" android:layout_weight="1" />
                 <ImageView android:id="@+id/widget_icon" android:layout_width="20dp" android:layout_height="20dp" android:importantForAccessibility="no" />
             </LinearLayout>
-            <TextView android:id="@+id/widget_time" style="@style/NMWidgetText.Time" />
+            <!-- Shrinks to fit when the time has a long AM/PM word (e.g. Uyghur "چۈشتىن كېيىن"). -->
+            <TextView android:id="@+id/widget_time" style="@style/NMWidgetText.Time" android:layout_width="match_parent"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="14sp" android:autoSizeMaxTextSize="30sp" android:autoSizeStepGranularity="1sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

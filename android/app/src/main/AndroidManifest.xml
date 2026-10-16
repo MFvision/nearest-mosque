@@ -47,11 +47,14 @@
         android:enableOnBackInvokedCallback="true"
         android:theme="@style/Theme.NearMosque">
 
+        <!-- Folding, unfolding, turning and resizing (a Galaxy Z Fold, a tablet, split screen) redraw the screens at the
+             new size without restarting the activity; no fixed orientation (FoldTest checks this). -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:resizeableActivity="true"
             android:windowSoftInputMode="adjustResize"
-            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|uiMode|keyboardHidden">
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|density|uiMode|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

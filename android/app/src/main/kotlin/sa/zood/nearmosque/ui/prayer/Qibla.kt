@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -270,10 +271,7 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
         SkyBackdrop(sky, Modifier.fillMaxSize(), horizon = 0.82f)
         val bearing = ui.qiblaBearing
         if (bearing != null) QiblaLightBeam(qiblaRelative(bearing, compass), aligned, Modifier.fillMaxSize())
-        Column(
-            Modifier.fillMaxSize().safeDrawingPadding().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
+        val header: @Composable () -> Unit = {
             Box(Modifier.fillMaxWidth().padding(top = 8.dp)) {
                 Column(Modifier.align(Alignment.Center).padding(horizontal = 56.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(ui.location?.name ?: stringResource(R.string.qibla), style = MaterialTheme.typography.titleLarge, color = Ink, modifier = Modifier.semantics { heading() })
@@ -281,11 +279,12 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
                 }
                 GlassIconButton(rememberVectorPainter(Icons.Filled.Close), stringResource(R.string.close), onClose, Modifier.align(Alignment.CenterEnd))
             }
-            Spacer(Modifier.height(12.dp))
+        }
+        val ring: @Composable (Modifier) -> Unit = { mod ->
             if (bearing != null) {
                 val n = ui.nearestMosque
                 QiblaRing(
-                    qiblaRelative(bearing, compass), aligned, qiblaGuidance(compass, bearing), Modifier.widthIn(max = 420.dp),
+                    qiblaRelative(bearing, compass), aligned, qiblaGuidance(compass, bearing), mod.widthIn(max = 420.dp),
                     kaabaDistance = ui.qiblaDistance?.let { stringResource(R.string.qibla_distance, Format.distance(context, it)) },
                     nearest = n?.let { stringResource(R.string.nearest_mosque_chip, Format.distance(context, it.distanceMeters)) },
                     onNearest = n?.let { { mosque = it } },
@@ -294,10 +293,13 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
                 Text(
                     stringResource(R.string.qibla_hold_flat) + " · " + stringResource(R.string.qibla_approximate),
                     style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center, color = Ink.copy(alpha = 0.7f),
+                    modifier = Modifier.widthIn(max = 560.dp),
                 )
             } else {
                 Text(stringResource(R.string.qibla_location_needed), color = Ink, modifier = Modifier.padding(top = 60.dp))
             }
+        }
+        val day: @Composable () -> Unit = {
             ui.location?.let { loc ->
                 val date = ui.now.atZone(loc.zoneId).toLocalDate()
                 Spacer(Modifier.height(16.dp))
@@ -305,8 +307,35 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
                 Format.hijri(context, date, ui.settings?.prayer?.hijriAdjustmentDays ?: 0)?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = Accent) }
             }
             Spacer(Modifier.height(12.dp))
-            ScheduleCard(ui, ui.settings?.reminders.orEmpty(), onToggleReminder = null)
+            Box(Modifier.widthIn(max = sa.zood.nearmosque.ui.Adaptive.contentWidth)) { ScheduleCard(ui, ui.settings?.reminders.orEmpty(), onToggleReminder = null) }
             Spacer(Modifier.height(32.dp))
+        }
+        androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize().safeDrawingPadding()) {
+            if (sa.zood.nearmosque.ui.Adaptive.twoPane(maxWidth, maxHeight)) {
+                // Sideways on a tablet or an unfolded Fold: the ring on one side, the day's times on the other.
+                val ringMax = maxHeight - 150.dp
+                androidx.compose.foundation.layout.Row(Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
+                    Column(Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Spacer(Modifier.height(12.dp))
+                        ring(Modifier.widthIn(max = ringMax))
+                    }
+                    Spacer(Modifier.width(16.dp))
+                    Column(Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) {
+                        header()
+                        day()
+                    }
+                }
+            } else {
+                Column(
+                    Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    header()
+                    Spacer(Modifier.height(12.dp))
+                    ring(Modifier)
+                    day()
+                }
+            }
         }
     }
 }

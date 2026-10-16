@@ -4,6 +4,8 @@ import sa.zood.nearmosque.ui.theme.Accent
 
 import sa.zood.nearmosque.ui.theme.Ink
 
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -107,7 +109,8 @@ fun AskScreen(vm: AskViewModel, onClose: () -> Unit) {
     LaunchedEffect(ui.turns.size, ui.turns.lastOrNull()?.answer) { if (ui.turns.isNotEmpty()) list.animateScrollToItem(list.layoutInfo.totalItemsCount.coerceAtLeast(1) - 1) }
     val white = Ink
 
-    Column(Modifier.fillMaxSize().statusBarsPadding().imePadding()) {
+    // On a tablet or an unfolded Fold the conversation keeps a readable width in the middle.
+    Column(Modifier.fillMaxSize().wrapContentWidth(androidx.compose.ui.Alignment.CenterHorizontally).widthIn(max = sa.zood.nearmosque.ui.Adaptive.contentWidth).statusBarsPadding().imePadding()) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
             GlassIconButton(rememberVectorPainter(Icons.Filled.Close), stringResource(R.string.close), onClose)
             Text(

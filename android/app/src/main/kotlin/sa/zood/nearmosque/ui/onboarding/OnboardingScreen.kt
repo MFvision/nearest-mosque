@@ -23,6 +23,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -186,7 +187,7 @@ private fun Dots(index: Int) {
 @Composable
 private fun Page(title: String, body: String, art: @Composable () -> Unit) {
     Column(
-        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 28.dp),
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).wrapContentWidth(androidx.compose.ui.Alignment.CenterHorizontally).widthIn(max = sa.zood.nearmosque.ui.Adaptive.contentWidth).padding(horizontal = 28.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(Modifier.fillMaxWidth().widthIn(max = 420.dp).height(300.dp), contentAlignment = Alignment.Center) { art() }
@@ -353,7 +354,7 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
         vm.useDeviceLocation(context.getString(R.string.location_current))
     }
     val current = Format.languageCode(context)
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp)) {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).wrapContentWidth(androidx.compose.ui.Alignment.CenterHorizontally).widthIn(max = sa.zood.nearmosque.ui.Adaptive.contentWidth).padding(horizontal = 24.dp)) {
         Text(stringResource(R.string.onb_setup_title), color = Ink, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold), modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(8.dp))
         Text(stringResource(R.string.onb_setup_body), color = Ink.copy(alpha = 0.88f), style = MaterialTheme.typography.bodyLarge)

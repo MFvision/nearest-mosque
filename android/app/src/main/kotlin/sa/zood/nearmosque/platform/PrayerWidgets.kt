@@ -284,7 +284,8 @@ object PrayerWidgets {
         v.setTextColor(R.id.widget_name, if (accentTitle) st.accent else st.ink)
         v.setImageViewResource(R.id.widget_icon, prayerIcon(shown))
         v.setInt(R.id.widget_icon, "setColorFilter", st.accent)
-        v.setTextViewText(R.id.widget_time, Format.time(context, if (stage == PrayerMoment.Stage.UPCOMING) moment.adhan else moment.iqama ?: moment.adhan, zone))
+        // A long AM/PM word (Assamese, Kannada, Marathi...) at half the size, so the time fits the small widget.
+        v.setTextViewText(R.id.widget_time, Format.timeLarge(context, if (stage == PrayerMoment.Stage.UPCOMING) moment.adhan else moment.iqama ?: moment.adhan, zone))
         v.setTextColor(R.id.widget_time, st.ink)
         val on = shown in s.reminders
         v.setImageViewResource(R.id.widget_bell, if (on) R.drawable.ic_bell else R.drawable.ic_bell_off)
@@ -382,7 +383,7 @@ object PrayerWidgets {
                 else -> st.ink
             }
             v.setTextViewText(rowNames[i], context.getString(Format.prayerName(e)))
-            v.setTextViewText(rowTimes[i], at?.let { Format.time(context, it, zone) } ?: "—")
+            v.setTextViewText(rowTimes[i], at?.let { Format.timeLarge(context, it, zone) } ?: "—")
             v.setTextColor(rowNames[i], color)
             v.setTextColor(rowTimes[i], color)
             v.setInt(rows[i], "setBackgroundResource", if (now0) st.pill else R.drawable.widget_row_none)

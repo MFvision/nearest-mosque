@@ -30,6 +30,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -115,18 +119,13 @@ fun PrayerScreen(
 
     LaunchedEffect(ui.settings?.reminders) { if (ui.settings?.reminders?.isNotEmpty() == true) vm.rescheduleReminders(context) }
 
-    Box(Modifier.fillMaxSize()) {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier.fillMaxSize().statusBarsPadding(),
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = bottomBarPadding(16.dp).calculateBottomPadding()),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
-        ) {
-            item("hero") {
-                Box(Modifier.graphicsLayer { alpha = heroAlpha; val k = 0.9f + 0.1f * heroAlpha; scaleX = k; scaleY = k; transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 0f) }) {
-                    PrayerHero(ui, compass, aligned, onLocation = onPickCity, onSettings = onOpenSettings, onQibla = onOpenCompass, onNearest = { mosque = it })
-                }
-            }
+    androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize()) {
+        val bottom = bottomBarPadding(16.dp).calculateBottomPadding()
+        val hero: @Composable () -> Unit = {
+            PrayerHero(ui, compass, aligned, onLocation = onPickCity, onSettings = onOpenSettings, onQibla = onOpenCompass, onNearest = { mosque = it })
+        }
+        // Everything under the header: notices, the day's arc, today's times and the dates.
+        val rest: androidx.compose.foundation.lazy.LazyListScope.() -> Unit = {
             val loc = ui.location
             if (loc == null) {
                 item("choose") {
@@ -141,41 +140,75 @@ fun PrayerScreen(
                         onPickCity = onPickCity,
                     )
                 }
-                return@LazyColumn
-            }
-            if (ui.today?.status is ScheduleStatus.Estimated) {
-                item("estimated") {
-                    Text(
-                        stringResource(R.string.estimated_badge), color = Accent, style = MaterialTheme.typography.labelLarge,
-                        modifier = Modifier.glass(RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 14.dp, vertical = 8.dp),
-                    )
+            } else {
+                if (ui.today?.status is ScheduleStatus.Estimated) {
+                    item("estimated") {
+                        Text(
+                            stringResource(R.string.estimated_badge), color = Accent, style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier.glass(RoundedCornerShape(50), shadow = 4.dp).padding(horizontal = 14.dp, vertical = 8.dp),
+                        )
+                    }
                 }
-            }
-            if (!loc.zoneConfirmed) item("zone") { ZoneConfirmCard(loc, onConfirm = vm::confirmZone, onChange = onPickCity) }
-            val today = ui.today
-            if (today != null && today.status == ScheduleStatus.Unavailable) {
-                item("polar") { PolarCard(onUseNearest = { vm.setPolar(sa.zood.nearmosque.core.PolarRule.NEAREST_LATITUDE) }) }
-            }
-            ui.arc?.let { arc -> item("sky") { DayArcView(arc, ui.sky, loc.zoneId) } }
-            if (today != null && today.status != ScheduleStatus.Unavailable) {
-                item("schedule") {
-                    ScheduleCard(
-                        ui = ui,
-                        reminders = ui.settings?.reminders.orEmpty(),
-                        onToggleReminder = { e, on ->
-                            if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
-                            vm.setReminder(context, e, on)
-                        },
-                    )
+                if (!loc.zoneConfirmed) item("zone") { ZoneConfirmCard(loc, onConfirm = vm::confirmZone, onChange = onPickCity) }
+                val today = ui.today
+                if (today != null && today.status == ScheduleStatus.Unavailable) {
+                    item("polar") { PolarCard(onUseNearest = { vm.setPolar(sa.zood.nearmosque.core.PolarRule.NEAREST_LATITUDE) }) }
                 }
+                ui.arc?.let { arc -> item("sky") { DayArcView(arc, ui.sky, loc.zoneId) } }
+                if (today != null && today.status != ScheduleStatus.Unavailable) {
+                    item("schedule") {
+                        ScheduleCard(
+                            ui = ui,
+                            reminders = ui.settings?.reminders.orEmpty(),
+                            onToggleReminder = { e, on ->
+                                if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                vm.setReminder(context, e, on)
+                            },
+                        )
+                    }
+                }
+                item("dates") { DatesCard(ui, onOpenCalculation) }
             }
-            item("dates") { DatesCard(ui, onOpenCalculation) }
         }
-        AnimatedVisibility(
-            visible = showCompact && ui.next != null,
-            enter = fadeIn() + slideInVertically { -it }, exit = fadeOut() + slideOutVertically { -it },
-        ) {
-            CompactPrayerBar(ui, compass, aligned) { scope.launch { listState.animateScrollToItem(0) } }
+        if (sa.zood.nearmosque.ui.Adaptive.twoPane(maxWidth, maxHeight)) {
+            // A tablet or an unfolded Fold held sideways: the header on one side, the day and its times on the other.
+            val heroMax = maxHeight - 180.dp
+            androidx.compose.foundation.layout.Row(Modifier.fillMaxSize().statusBarsPadding()) {
+                Column(
+                    Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState()).padding(start = 16.dp, end = 8.dp, bottom = bottom),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Box(Modifier.widthIn(max = heroMax)) { hero() }
+                }
+                LazyColumn(
+                    state = listState,
+                    modifier = Modifier.weight(1f).fillMaxHeight(),
+                    contentPadding = PaddingValues(start = 8.dp, end = 16.dp, top = 16.dp, bottom = bottom),
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
+                    content = rest,
+                )
+            }
+        } else {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier.fillMaxSize().statusBarsPadding(),
+                // On a tablet upright the cards keep a readable width in the middle.
+                contentPadding = PaddingValues(start = sa.zood.nearmosque.ui.Adaptive.sidePadding(maxWidth), end = sa.zood.nearmosque.ui.Adaptive.sidePadding(maxWidth), bottom = bottom),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+            ) {
+                item("hero") {
+                    Box(Modifier.graphicsLayer { alpha = heroAlpha; val k = 0.9f + 0.1f * heroAlpha; scaleX = k; scaleY = k; transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 0f) }) {
+                        hero()
+                    }
+                }
+                rest()
+            }
+            AnimatedVisibility(
+                visible = showCompact && ui.next != null,
+                enter = fadeIn() + slideInVertically { -it }, exit = fadeOut() + slideOutVertically { -it },
+            ) {
+                CompactPrayerBar(ui, compass, aligned) { scope.launch { listState.animateScrollToItem(0) } }
+            }
         }
     }
 }

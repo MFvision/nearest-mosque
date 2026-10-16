@@ -19,7 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -101,31 +100,44 @@ fun ClassicsList(onBack: () -> Unit) {
     var book by remember { mutableStateOf<ClassicBook?>(null) }
     val b = book
     if (b != null) { BookScreen(b, onBack = { book = null }); return }
-    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-        LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            item {
-                TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.library_browse), color = LinkBlue) }
-                Text(stringResource(R.string.classics_note), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
-            }
-            catalog.byGroup.forEach { (group, books) ->
-                item(key = "g-$group") {
-                    Text(groupLabel(group), Modifier.padding(top = 10.dp), color = Accent, style = MaterialTheme.typography.titleMedium)
-                }
-                items(books, key = { it.id }) { bk ->
-                    Column(
-                        Modifier.fillMaxWidth().glass(RoundedCornerShape(16.dp), tint = Ink.copy(alpha = 0.04f))
-                            .clickable(role = Role.Button) { book = bk }.semantics(mergeDescendants = true) {}.padding(14.dp),
-                    ) {
-                        Text(bk.title, color = Ink, style = MaterialTheme.typography.titleSmall)
-                        Text(bk.author, color = Ink.copy(alpha = 0.8f), style = MaterialTheme.typography.bodyMedium)
-                        val vols = if (bk.volumes.size > 1) stringResource(R.string.classics_volumes, bk.volumes.size) + " · " else ""
-                        Text(vols + Classics.size(context, bk.bytes), color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-            }
-            item { Text(catalog.source, Modifier.padding(top = 12.dp), color = Ink.copy(alpha = 0.5f), style = MaterialTheme.typography.labelSmall) }
+    // The page follows the interface's direction (the note, the headings and "791 kB" read as in the interface
+    // language); only the books' Arabic titles and authors are laid out right to left, aligned with the rest.
+    LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        item {
+            TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.library_browse), color = LinkBlue) }
+            Text(stringResource(R.string.classics_note), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
         }
+        catalog.byGroup.forEach { (group, books) ->
+            item(key = "g-$group") {
+                Text(groupLabel(group), Modifier.padding(top = 10.dp), color = Accent, style = MaterialTheme.typography.titleMedium)
+            }
+            items(books, key = { it.id }) { bk ->
+                Column(
+                    Modifier.fillMaxWidth().glass(RoundedCornerShape(16.dp), tint = Ink.copy(alpha = 0.04f))
+                        .clickable(role = Role.Button) { book = bk }.semantics(mergeDescendants = true) {}.padding(14.dp),
+                ) {
+                    ArabicText(bk.title, Ink, MaterialTheme.typography.titleSmall)
+                    ArabicText(bk.author, Ink.copy(alpha = 0.8f), MaterialTheme.typography.bodyMedium)
+                    val vols = if (bk.volumes.size > 1) stringResource(R.string.classics_volumes, bk.volumes.size) + " · " else ""
+                    Text(vols + Classics.size(context, bk.bytes), color = Ink.copy(alpha = 0.6f), style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+        item { Text(catalog.source, Modifier.padding(top = 12.dp), color = Ink.copy(alpha = 0.5f), style = MaterialTheme.typography.labelSmall) }
     }
+}
+
+/**
+ * A book's Arabic title or author: a right-to-left paragraph (its brackets and dates stay in place) in any interface
+ * language, on the same edge as the text around it.
+ */
+@Composable
+private fun ArabicText(text: String, color: Color, style: androidx.compose.ui.text.TextStyle) {
+    val edge = if (LocalLayoutDirection.current == LayoutDirection.Rtl) androidx.compose.ui.text.style.TextAlign.Right else androidx.compose.ui.text.style.TextAlign.Left
+    Text(
+        text, Modifier.fillMaxWidth(), color = color, textAlign = edge,
+        style = style.copy(textDirection = androidx.compose.ui.text.style.TextDirection.Rtl),
+    )
 }
 
 @Composable
@@ -151,12 +163,10 @@ private fun BookScreen(book: ClassicBook, onBack: () -> Unit) {
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
             TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("‹ " + stringResource(R.string.classics_title), color = LinkBlue) }
-            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                Column(Modifier.fillMaxWidth()) {
-                    Text(book.title, color = Ink, style = MaterialTheme.typography.titleLarge)
-                    Text(book.author, color = Ink, style = MaterialTheme.typography.bodyMedium)
-                    Text(stringResource(R.string.classics_edition, book.edition), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
-                }
+            Column(Modifier.fillMaxWidth()) {
+                ArabicText(book.title, Ink, MaterialTheme.typography.titleLarge)
+                ArabicText(book.author, Ink, MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.classics_edition, book.edition), color = Ink.copy(alpha = 0.7f), style = MaterialTheme.typography.bodySmall)
             }
         }
         items(book.volumes, key = { it.file }) { v ->

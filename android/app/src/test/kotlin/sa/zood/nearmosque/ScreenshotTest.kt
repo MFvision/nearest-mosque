@@ -226,6 +226,40 @@ class ScreenshotTest {
     @Test @Config(qualifiers = "sw-w393dp-h852dp-xxhdpi")
     fun onboardingSetupSwahili() = shoot("onboarding_setup_sw", Tab.PRAYER, onboardingPage = 5)
 
+    // Large screens: an unfolded Galaxy Z Fold, and a 10-inch tablet held sideways (two panes).
+    @Test @Config(qualifiers = "w690dp-h829dp-420dpi")
+    fun prayerFoldInner() = shoot("prayer_fold_inner_en", Tab.PRAYER)
+
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+    fun prayerTabletLandscape() = shoot("prayer_tablet_land_en", Tab.PRAYER)
+
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+    fun mosquesTabletLandscape() = shoot("mosques_tablet_land_en", Tab.MOSQUES) {
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithText("Nearest known mosque").assertExists() }.isSuccess }
+    }
+
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+    fun askTabletLandscape() = shoot("ask_answer_tablet_land_en", Tab.ASK) {
+        compose.waitUntil(15_000) { runCatching { compose.onNodeWithText("How do I perform wudu (ablution)?").assertExists() }.isSuccess }
+        compose.onNodeWithText("How do I perform wudu (ablution)?").performClick()
+        compose.waitUntil(15_000) { runCatching { compose.onNodeWithText("Sources").assertExists() }.isSuccess }
+    }
+
+    /** The classical books in English: the page reads left to right, only the Arabic titles right to left. */
+    @OptIn(com.github.takahirom.roborazzi.ExperimentalRoborazziApi::class)
+    @Test fun classicsEnglish() {
+        val c = container()
+        compose.setContent { NearMosqueTheme(dark = true) { AppRoot(c, initialTab = Tab.ASK, showOnboarding = false) } }
+        compose.waitForIdle()
+        compose.onNodeWithContentDescription("Library").performClick()
+        compose.waitForIdle()
+        compose.onNodeWithText("Browse").performClick()
+        compose.waitUntil(15_000) { runCatching { compose.onNodeWithText("Classical books").assertExists() }.isSuccess }
+        compose.onNodeWithText("Classical books").performClick()
+        compose.waitForIdle()
+        com.github.takahirom.roborazzi.captureScreenRoboImage("build/screenshots/classics_en.png")
+    }
+
     /** Full-screen map cards (the map itself is MapLibre, not drawn here). */
     private fun shootMapCards(name: String, dark: Boolean) {
         fun mosque(id: String, n: String, addr: String?, phone: String?, web: String?, lat: Double, lng: Double, d: Double) =

@@ -26,6 +26,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -135,20 +139,9 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
     LaunchedEffect(Unit) { vm.start(lang) }
     val heading = (compass as? CompassState.Live)?.headingTrue
 
-    Column(Modifier.fillMaxSize().statusBarsPadding().padding(horizontal = 16.dp)) {
-        Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-            GlassIconButton(
-                painterResource(if (ui.favoritesOnly) R.drawable.ic_star_filled else R.drawable.ic_star_outline), stringResource(R.string.favorites),
-                onClick = { vm.setFavoritesOnly(!ui.favoritesOnly) }, tint = if (ui.favoritesOnly) Accent else Ink,
-            )
-            Text(
-                stringResource(R.string.tab_mosques), Modifier.weight(1f).semantics { heading() }, color = Ink,
-                style = MaterialTheme.typography.titleMedium, textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-            )
-            GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onOpenSettings)
-        }
-        Spacer(Modifier.height(12.dp))
-        val center = ui.center
+    val center = ui.center
+    // The compass or the map (with its mode switch); the radar no wider than [radarMax].
+    val top: @Composable (radarMax: androidx.compose.ui.unit.Dp) -> Unit = { radarMax ->
         if (center != null && !ui.favoritesOnly) {
             GlassSegmented(ui.mode, listOf(stringResource(R.string.view_compass) to R.drawable.ic_compass, stringResource(R.string.view_map) to R.drawable.ic_map), vm::setMode)
             Spacer(Modifier.height(12.dp))
@@ -156,7 +149,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                 Crossfade(ui.mode, label = "mode") { m ->
                     if (m == 0) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            MosqueRadar(ui.items, center, heading, Modifier.fillMaxWidth(0.82f)) { selected = it }
+                            MosqueRadar(ui.items, center, heading, Modifier.fillMaxWidth(0.82f).widthIn(max = radarMax)) { selected = it }
                             guidance(ui.items, center, heading)?.let { g ->
                                 Spacer(Modifier.height(6.dp))
                                 Text(
@@ -182,8 +175,10 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                 Spacer(Modifier.height(10.dp))
             }
         }
+    }
+    val list: @Composable (listModifier: Modifier) -> Unit = { listModifier ->
         LazyColumn(
-            Modifier.weight(1f),
+            listModifier,
             contentPadding = PaddingValues(bottom = bottomBarPadding(12.dp).calculateBottomPadding()),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
@@ -225,6 +220,35 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                         else -> Unit
                     }
                 }
+            }
+        }
+    }
+    androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize().statusBarsPadding()) {
+        val twoPane = sa.zood.nearmosque.ui.Adaptive.twoPane(maxWidth, maxHeight)
+        val radarRoom = maxHeight - 220.dp
+        Column(Modifier.fillMaxSize().padding(horizontal = if (twoPane) 16.dp else sa.zood.nearmosque.ui.Adaptive.sidePadding(maxWidth))) {
+            Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                GlassIconButton(
+                    painterResource(if (ui.favoritesOnly) R.drawable.ic_star_filled else R.drawable.ic_star_outline), stringResource(R.string.favorites),
+                    onClick = { vm.setFavoritesOnly(!ui.favoritesOnly) }, tint = if (ui.favoritesOnly) Accent else Ink,
+                )
+                Text(
+                    stringResource(R.string.tab_mosques), Modifier.weight(1f).semantics { heading() }, color = Ink,
+                    style = MaterialTheme.typography.titleMedium, textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                )
+                GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onOpenSettings)
+            }
+            Spacer(Modifier.height(12.dp))
+            if (twoPane) {
+                // Sideways on a tablet or an unfolded Fold: the compass or map on one side, the mosques on the other.
+                Row(Modifier.weight(1f)) {
+                    Column(Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) { top(radarRoom) }
+                    Spacer(Modifier.width(16.dp))
+                    Column(Modifier.weight(1f).fillMaxHeight()) { list(Modifier.weight(1f)) }
+                }
+            } else {
+                top(460.dp)
+                list(Modifier.weight(1f))
             }
         }
     }

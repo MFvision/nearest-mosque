@@ -76,7 +76,22 @@ android {
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
-            all { it.systemProperty("nm.root", rootProject.projectDir.parentFile.absolutePath) }
+            all {
+                it.systemProperty("nm.root", rootProject.projectDir.parentFile.absolutePath)
+                // The Google Play screenshots (StoreScreenshotTest, 8 screens in every app language) run only when asked:
+                // -PstoreShots=true, optionally -PstoreLangs="en ar", -PstoreDevices="phone seven ten cover inner-land tablet" and -PstoreClock=12|24 (.github/workflows/store-play-assets.yml).
+                if (findProperty("storeShots") == "true") {
+                    it.systemProperty("nm.storeLangs", findProperty("storeLangs") as String? ?: "")
+                    it.systemProperty("nm.storeClock", findProperty("storeClock") as String? ?: "")
+                    it.systemProperty("nm.storeDevices", findProperty("storeDevices") as String? ?: "")
+                    it.maxHeapSize = "4g"
+                    // The PNGs are not declared outputs: always run, never from the build cache.
+                    it.outputs.upToDateWhen { false }
+                    it.outputs.cacheIf { false }
+                } else {
+                    it.exclude("**/StoreScreenshotTest*")
+                }
+            }
         }
     }
 }

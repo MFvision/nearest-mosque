@@ -5,6 +5,8 @@ android/build/
 android/*/build/
 android/local.properties
 android/captures/
+# Store graphics made by tools/store/play_graphics.py
+/build/
 # Xcode / SwiftPM
 ios/build/
 ios/*.xcodeproj

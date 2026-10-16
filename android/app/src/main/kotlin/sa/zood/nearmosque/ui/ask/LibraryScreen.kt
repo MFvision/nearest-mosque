@@ -7,6 +7,8 @@ import sa.zood.nearmosque.ui.theme.LibraryAppearance
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -59,7 +61,7 @@ fun LibraryScreen(onDismiss: () -> Unit) {
     var tab by remember { mutableIntStateOf(0) }
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
         LibraryAppearance {
-            Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).statusBarsPadding()) {
+            Column(Modifier.fillMaxSize().background(Color(0xFF0B1220)).wrapContentWidth(androidx.compose.ui.Alignment.CenterHorizontally).widthIn(max = sa.zood.nearmosque.ui.Adaptive.contentWidth).statusBarsPadding()) {
                 Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
                     TextButton(onClick = onDismiss, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.close), color = Ink) }
                     Text(stringResource(R.string.library_title), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = Ink)
