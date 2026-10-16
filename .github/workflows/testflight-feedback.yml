@@ -1,0 +1,38 @@
+name: TestFlight feedback
+
+# The crash reports and screenshot comments testers sent from TestFlight ("Share" after a crash), with the
+# exception and the crashing thread for each crash in the log and the whole crash logs as an artifact. Testers'
+# names and emails are left out (tools/store/asc_feedback.py).
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: How many of the newest reports
+        default: "10"
+
+permissions:
+  contents: read
+
+jobs:
+  feedback:
+    runs-on: ubuntu-24.04
+    env:
+      BUNDLE_ID: sa.zood.nearmosque
+      LIMIT: ${{ inputs.limit }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - run: "pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
+      - env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        run: python tools/store/asc_feedback.py feedback
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: testflight-feedback
+          path: feedback
+          retention-days: 14
