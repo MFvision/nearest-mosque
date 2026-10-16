@@ -319,6 +319,7 @@
     <string name="no_city_results">შესაბამისი ქალაქი ვერ მოიძებნა. სცადეთ სხვა მართლწერა.</string>
     <string name="no_records_body">%1$s-ის ჩამოტვირთულ მონაცემებში ამ წერტილიდან %2$s-ის რადიუსში მეჩეთები არ არის. მონაცემები შეიძლება არასრული იყოს.</string>
     <string name="no_records_title">ახლოს მეჩეთები არ არის აღრიცხული</string>
+    <string name="no_tray_note">ამ სამუშაო მაგიდას შეტყობინებების არე არ აქვს, ამიტომ ფანჯრის დახურვა Near Mosque-ს თიშავს. აზანისა და შეხსენებებისთვის დატოვეთ ის გახსნილი ან ჩაკეცილი.</string>
     <string name="notif_iqama_body">ლოცვისთვის ადგომის დროა.</string>
     <string name="notif_iqama_title">%1$s იყამა</string>
     <string name="notif_kahf_title">პარასკევი: სურა ალ-ქაჰფ</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">ბოლო შვიდი დღე</string>
     <string name="spirit_week_count">მონიშნულია %2$s-დან %1$s ლოცვა</string>
     <string name="start_at_login">Windows-თან ერთად გაშვება</string>
+    <string name="start_at_login_linux">გაშვება შესვლისას</string>
+    <string name="start_at_login_linux_note">შესვლისას ჩაკეცილი იხსნება, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს.</string>
     <string name="start_at_login_note">შესვლისას იხსნება შეტყობინებების არეში, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს.</string>
     <string name="start_at_login_store_note">რომ Near Mosque შესვლისას გაიშვას, ჩართეთ Windows-ის პარამეტრებში → აპები → გაშვება.</string>
     <string name="stop">შეჩერება</string>

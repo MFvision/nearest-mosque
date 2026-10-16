@@ -7,6 +7,18 @@ plugins {
     alias(libs.plugins.roborazzi)
 }
 
+// Release signing comes only from the environment (CI decodes the upload keystore from repository secrets;
+// docs/12-google-play.md). With any of the four unset, the release build is left unsigned and debug builds
+// are unaffected.
+val releaseKeystore = listOf("ANDROID_KEYSTORE_FILE", "ANDROID_KEYSTORE_PASSWORD", "ANDROID_KEY_ALIAS", "ANDROID_KEY_PASSWORD")
+    .map { System.getenv(it)?.takeIf(String::isNotBlank) }
+    .takeIf { values -> values.all { it != null } }
+    ?.map { it!! }
+
+// CI passes -PversionCode=<number> (or ANDROID_VERSION_CODE) so every upload to Google Play is higher than the last.
+val appVersionCode = (findProperty("versionCode") as String? ?: System.getenv("ANDROID_VERSION_CODE"))
+    ?.takeIf(String::isNotBlank)?.toInt() ?: 1
+
 android {
     namespace = "sa.zood.nearmosque"
     compileSdk = 36
@@ -15,13 +27,26 @@ android {
         applicationId = "sa.zood.nearmosque"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
+        versionCode = appVersionCode
         versionName = "0.5.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (releaseKeystore != null) {
+            create("release") {
+                val (path, storePass, alias, keyPass) = releaseKeystore
+                storeFile = file(path)
+                storePassword = storePass
+                keyAlias = alias
+                keyPassword = keyPass
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (releaseKeystore != null) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -58,6 +83,13 @@ android {
 
 kotlin {
     compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) }
+}
+
+composeCompiler {
+    // The Compose group mapping merged into the R8 mapping needs org.jetbrains.kotlin:compose-group-mapping, which
+    // could not be resolved for Kotlin 2.4.0 and made :app:bundleRelease fail. mapping.txt still deobfuscates
+    // crash stacks; only Compose group keys stay unmapped.
+    includeComposeMappingFile.set(false)
 }
 
 ksp {

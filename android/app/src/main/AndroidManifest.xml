@@ -9,11 +9,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Prayer reminders (opt-in per prayer). -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Exact alarms ("Alarms & reminders", user-granted on Android 12+; Prayer & Audio links to it). The Fajr alarm is an
+         AlarmManager alarm clock on the alarm channel that rings until stopped; it needs no full-screen intent. -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- The Fajr alarm (opt-in) shows over the lock screen like an alarm clock. -->
-    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <!-- The Adhan and spoken reminders (opt-in) play while their notification shows, then stop. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />

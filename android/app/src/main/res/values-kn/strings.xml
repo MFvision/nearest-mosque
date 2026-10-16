@@ -319,6 +319,7 @@
     <string name="no_city_results">ಹೊಂದುವ ನಗರವಿಲ್ಲ. ಬೇರೆ ಕಾಗುಣಿತ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="no_records_body">%1$s ಗಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಡೇಟಾದಲ್ಲಿ ಈ ಸ್ಥಳದಿಂದ %2$s ಒಳಗೆ ಯಾವುದೇ ಮಸೀದಿಗಳಿಲ್ಲ. ಡೇಟಾ ಅಪೂರ್ಣವಾಗಿರಬಹುದು.</string>
     <string name="no_records_title">ಹತ್ತಿರದಲ್ಲಿ ದಾಖಲಾದ ಮಸೀದಿಗಳಿಲ್ಲ</string>
+    <string name="no_tray_note">ಈ ಡೆಸ್ಕ್‌ಟಾಪ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆ ಪ್ರದೇಶವಿಲ್ಲ, ಆದ್ದರಿಂದ ವಿಂಡೋ ಮುಚ್ಚಿದರೆ Near Mosque ಮುಚ್ಚುತ್ತದೆ. ಅಜಾನ್ ಮತ್ತು ಜ್ಞಾಪನೆಗಳಿಗಾಗಿ ಅದನ್ನು ತೆರೆದು ಅಥವಾ ಮಿನಿಮೈಸ್ ಮಾಡಿ ಇಡಿ.</string>
     <string name="notif_iqama_body">ನಮಾಜ್‌ಗೆ ನಿಲ್ಲುವ ಸಮಯ.</string>
     <string name="notif_iqama_title">%1$s ಇಕಾಮತ್</string>
     <string name="notif_kahf_title">ಶುಕ್ರವಾರ: ಸೂರಾ ಅಲ್-ಕಹ್ಫ್</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">ಕಳೆದ ಏಳು ದಿನಗಳು</string>
     <string name="spirit_week_count">%2$s ರಲ್ಲಿ %1$s ನಮಾಜ್ ಗುರುತಿಸಲಾಗಿದೆ</string>
     <string name="start_at_login">Windows ಜೊತೆ ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="start_at_login_linux">ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="start_at_login_linux_note">ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಮಿನಿಮೈಸ್ ಆಗಿ ತೆರೆಯುತ್ತದೆ, ಆ್ಯಪ್ ತೆರೆಯದೆಯೇ ಅಜಾನ್ ಮತ್ತು ಜ್ಞಾಪನೆಗಳು ಬರುತ್ತವೆ.</string>
     <string name="start_at_login_note">ನೀವು ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ ಅಧಿಸೂಚನೆ ಪ್ರದೇಶದಲ್ಲಿ ತೆರೆಯುತ್ತದೆ, ಆ್ಯಪ್ ತೆರೆಯದೆಯೇ ಅಜಾನ್ ಮತ್ತು ಜ್ಞಾಪನೆಗಳು ಬರುತ್ತವೆ.</string>
     <string name="start_at_login_store_note">ಸೈನ್ ಇನ್ ಮಾಡಿದಾಗ Near Mosque ಪ್ರಾರಂಭವಾಗಲು, Windows ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ಆ್ಯಪ್‌ಗಳು → ಸ್ಟಾರ್ಟ್‌ಅಪ್‌ನಲ್ಲಿ ಅದನ್ನು ಆನ್ ಮಾಡಿ.</string>
     <string name="stop">ನಿಲ್ಲಿಸಿ</string>

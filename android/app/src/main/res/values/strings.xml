@@ -319,6 +319,7 @@
     <string name="no_city_results">No matching city. Try another spelling.</string>
     <string name="no_records_body">The downloaded data for %1$s has no mosques within %2$s of this point. The data may be incomplete.</string>
     <string name="no_records_title">No mosques recorded nearby</string>
+    <string name="no_tray_note">This desktop has no notification area, so closing the window quits Near Mosque. Keep it open or minimized for the Adhan and reminders.</string>
     <string name="notif_iqama_body">Time to stand for the prayer.</string>
     <string name="notif_iqama_title">Iqama for %1$s</string>
     <string name="notif_kahf_title">Jumu\'ah: Surat Al-Kahf</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">The last seven days</string>
     <string name="spirit_week_count">%1$s of %2$s prayers marked</string>
     <string name="start_at_login">Start with Windows</string>
+    <string name="start_at_login_linux">Start when you sign in</string>
+    <string name="start_at_login_linux_note">Opens minimized when you sign in, so the Adhan and reminders come without opening the app.</string>
     <string name="start_at_login_note">Opens in the notification area when you sign in, so the Adhan and reminders come without opening the app.</string>
     <string name="start_at_login_store_note">To start Near Mosque when you sign in, turn it on in Windows Settings → Apps → Startup.</string>
     <string name="stop">Stop</string>

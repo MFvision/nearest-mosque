@@ -318,6 +318,7 @@
     <string name="no_city_results">Kota tidak ditemukan. Coba ejaan lain.</string>
     <string name="no_records_body">Data %1$s yang diunduh tidak memuat masjid dalam %2$s dari titik ini. Data mungkin belum lengkap.</string>
     <string name="no_records_title">Tidak ada masjid tercatat di dekat sini</string>
+    <string name="no_tray_note">Desktop ini tidak punya area notifikasi, jadi menutup jendela akan menutup Near Mosque. Biarkan tetap terbuka atau diminimalkan agar azan dan pengingat tetap datang.</string>
     <string name="notif_iqama_body">Saatnya berdiri untuk salat.</string>
     <string name="notif_iqama_title">Iqamah %1$s</string>
     <string name="notif_kahf_title">Jumat: Surah Al-Kahf</string>
@@ -509,6 +510,8 @@
     <string name="spirit_week">Tujuh hari terakhir</string>
     <string name="spirit_week_count">%1$s dari %2$s salat ditandai</string>
     <string name="start_at_login">Mulai bersama Windows</string>
+    <string name="start_at_login_linux">Mulai saat Anda masuk</string>
+    <string name="start_at_login_linux_note">Terbuka dalam keadaan diminimalkan saat Anda masuk, sehingga azan dan pengingat datang tanpa membuka aplikasi.</string>
     <string name="start_at_login_note">Terbuka di area notifikasi saat Anda masuk, sehingga azan dan pengingat datang tanpa membuka aplikasi.</string>
     <string name="start_at_login_store_note">Agar Near Mosque mulai saat Anda masuk, aktifkan di Pengaturan Windows → Aplikasi → Startup.</string>
     <string name="stop">Berhenti</string>

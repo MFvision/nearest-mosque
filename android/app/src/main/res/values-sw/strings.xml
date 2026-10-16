@@ -319,6 +319,7 @@
     <string name="no_city_results">Hakuna mji unaolingana. Jaribu tahajia nyingine.</string>
     <string name="no_records_body">Data iliyopakuliwa ya %1$s haina misikiti ndani ya %2$s kutoka mahali hapa. Huenda data haijakamilika.</string>
     <string name="no_records_title">Hakuna misikiti iliyorekodiwa karibu</string>
+    <string name="no_tray_note">Eneo-kazi hili halina eneo la arifa, kwa hiyo kufunga dirisha kunafunga Near Mosque. Liache wazi au limepunguzwa ili upate adhana na vikumbusho.</string>
     <string name="notif_iqama_body">Wakati wa kusimama kwa sala.</string>
     <string name="notif_iqama_title">Iqama ya %1$s</string>
     <string name="notif_kahf_title">Ijumaa: Surat Al-Kahf</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">Siku saba zilizopita</string>
     <string name="spirit_week_count">Swala %1$s kati ya %2$s zimewekwa alama</string>
     <string name="start_at_login">Anza pamoja na Windows</string>
+    <string name="start_at_login_linux">Anza unapoingia</string>
+    <string name="start_at_login_linux_note">Hufunguka ikiwa imepunguzwa unapoingia, ili adhana na vikumbusho vije bila kufungua programu.</string>
     <string name="start_at_login_note">Hufunguka kwenye eneo la arifa unapoingia, ili adhana na vikumbusho vije bila kufungua programu.</string>
     <string name="start_at_login_store_note">Ili Near Mosque ianze unapoingia, iwashe katika Mipangilio ya Windows → Programu → Uanzishaji.</string>
     <string name="stop">Simamisha</string>

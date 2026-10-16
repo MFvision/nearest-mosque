@@ -318,6 +318,7 @@
     <string name="no_city_results">Không có thành phố phù hợp. Hãy thử cách viết khác.</string>
     <string name="no_records_body">Dữ liệu đã tải về cho %1$s không có thánh đường nào trong phạm vi %2$s từ điểm này. Dữ liệu có thể chưa đầy đủ.</string>
     <string name="no_records_title">Không có thánh đường nào được ghi nhận gần đây</string>
+    <string name="no_tray_note">Màn hình nền này không có khu vực thông báo, nên đóng cửa sổ sẽ thoát Near Mosque. Hãy để cửa sổ mở hoặc thu nhỏ để nhận tiếng Adhan và lời nhắc.</string>
     <string name="notif_iqama_body">Đã đến giờ đứng lên dâng salah.</string>
     <string name="notif_iqama_title">Iqama %1$s</string>
     <string name="notif_kahf_title">Thứ Sáu: chương Al-Kahf</string>
@@ -509,6 +510,8 @@
     <string name="spirit_week">Bảy ngày qua</string>
     <string name="spirit_week_count">Đã đánh dấu %1$s trên %2$s lần cầu nguyện</string>
     <string name="start_at_login">Khởi động cùng Windows</string>
+    <string name="start_at_login_linux">Khởi động khi đăng nhập</string>
+    <string name="start_at_login_linux_note">Mở ở dạng thu nhỏ khi bạn đăng nhập, để tiếng Adhan và lời nhắc đến mà không cần mở ứng dụng.</string>
     <string name="start_at_login_note">Mở trong khu vực thông báo khi bạn đăng nhập, để tiếng Adhan và lời nhắc đến mà không cần mở ứng dụng.</string>
     <string name="start_at_login_store_note">Để Near Mosque khởi động khi bạn đăng nhập, hãy bật nó trong Cài đặt Windows → Ứng dụng → Khởi động.</string>
     <string name="stop">Dừng</string>

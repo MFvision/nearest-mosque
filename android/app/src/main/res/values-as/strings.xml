@@ -319,6 +319,7 @@
     <string name="no_city_results">মিল থকা কোনো চহৰ পোৱা নগ\'ল। আন বানানেৰে চেষ্টা কৰক।</string>
     <string name="no_records_body">%1$sৰ ডাউনলোড কৰা তথ্যত এই ঠাইৰ পৰা %2$sৰ ভিতৰত কোনো মছজিদ নাই। তথ্য অসম্পূৰ্ণ হ\'ব পাৰে।</string>
     <string name="no_records_title">ওচৰত কোনো মছজিদ নথিভুক্ত নাই</string>
+    <string name="no_tray_note">এই ডেস্কটপত জাননী অঞ্চল নাই, সেয়ে উইণ্ড\' বন্ধ কৰিলে Near Mosque বন্ধ হৈ যায়। আজান আৰু সোঁৱৰণিৰ বাবে ইয়াক খোলা বা মিনিমাইজ কৰি ৰাখক।</string>
     <string name="notif_iqama_body">নামাজৰ বাবে থিয় হোৱাৰ সময়।</string>
     <string name="notif_iqama_title">%1$sৰ ইকামত</string>
     <string name="notif_kahf_title">জুমা: ছূৰা আল-কাহফ</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">যোৱা সাত দিন</string>
     <string name="spirit_week_count">%2$sৰ ভিতৰত %1$s নামাজ চিহ্নিত</string>
     <string name="start_at_login">Windows-ৰ সৈতে আৰম্ভ কৰক</string>
+    <string name="start_at_login_linux">ছাইন ইন কৰোঁতে আৰম্ভ কৰক</string>
+    <string name="start_at_login_linux_note">ছাইন ইন কৰাৰ লগে লগে মিনিমাইজ হৈ খোল খায়, যাতে এপ নোখোলাকৈ আজান আৰু সোঁৱৰণি আহে।</string>
     <string name="start_at_login_note">ছাইন ইন কৰাৰ লগে লগে জাননী অঞ্চলত খোল খায়, যাতে এপ নোখোলাকৈ আজান আৰু সোঁৱৰণি আহে।</string>
     <string name="start_at_login_store_note">ছাইন ইন কৰোঁতে Near Mosque আৰম্ভ কৰিবলৈ, Windows ছেটিংছ → এপ → ষ্টাৰ্টআপত ইয়াক অন কৰক।</string>
     <string name="stop">ৰখাওক</string>

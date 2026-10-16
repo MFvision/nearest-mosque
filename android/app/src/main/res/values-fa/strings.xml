@@ -319,6 +319,7 @@
     <string name="no_city_results">شهری پیدا نشد. املای دیگری را امتحان کنید.</string>
     <string name="no_records_body">داده‌های دانلودشده برای %1$s هیچ مسجدی در فاصله %2$s از این نقطه ندارد. ممکن است داده‌ها کامل نباشد.</string>
     <string name="no_records_title">مسجدی در این نزدیکی ثبت نشده است</string>
+    <string name="no_tray_note">این میز کار ناحیهٔ اعلان ندارد، پس بستن پنجره «نزدیک‌ترین مسجد» را می‌بندد. برای اذان و یادآوری‌ها آن را باز یا کوچک‌شده نگه دارید.</string>
     <string name="notif_iqama_body">وقت ایستادن برای نماز است.</string>
     <string name="notif_iqama_title">اقامهٔ نماز %1$s</string>
     <string name="notif_kahf_title">جمعه: سورهٔ کهف</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">هفت روز گذشته</string>
     <string name="spirit_week_count">%1$s از %2$s نماز علامت خورده</string>
     <string name="start_at_login">اجرا همراه با ویندوز</string>
+    <string name="start_at_login_linux">اجرا هنگام ورود</string>
+    <string name="start_at_login_linux_note">هنگام ورود به‌صورت کوچک‌شده باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند.</string>
     <string name="start_at_login_note">هنگام ورود در ناحیهٔ اعلان باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند.</string>
     <string name="start_at_login_store_note">برای اجرای Near Mosque هنگام ورود، آن را در تنظیمات ویندوز ← برنامه‌ها ← راه‌اندازی روشن کنید.</string>
     <string name="stop">توقف</string>

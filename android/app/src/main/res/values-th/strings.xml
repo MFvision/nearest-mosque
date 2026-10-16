@@ -318,6 +318,7 @@
     <string name="no_city_results">ไม่พบเมืองที่ตรงกัน ลองสะกดแบบอื่น</string>
     <string name="no_records_body">ข้อมูลที่ดาวน์โหลดของ %1$s ไม่มีมัสยิดในระยะ %2$s จากจุดนี้ ข้อมูลอาจไม่ครบถ้วน</string>
     <string name="no_records_title">ไม่มีมัสยิดที่บันทึกไว้ในบริเวณใกล้เคียง</string>
+    <string name="no_tray_note">เดสก์ท็อปนี้ไม่มีพื้นที่แจ้งเตือน การปิดหน้าต่างจึงเป็นการออกจาก Near Mosque เปิดหน้าต่างไว้หรือย่อไว้เพื่อรับเสียงอะซานและการเตือน</string>
     <string name="notif_iqama_body">ถึงเวลายืนละหมาดแล้ว</string>
     <string name="notif_iqama_title">อิกอมะฮ์%1$s</string>
     <string name="notif_kahf_title">วันศุกร์: ซูเราะฮ์อัลกะฮ์ฟี</string>
@@ -509,6 +510,8 @@
     <string name="spirit_week">เจ็ดวันที่ผ่านมา</string>
     <string name="spirit_week_count">ทำเครื่องหมายแล้ว %1$s จาก %2$s ละหมาด</string>
     <string name="start_at_login">เริ่มพร้อม Windows</string>
+    <string name="start_at_login_linux">เริ่มเมื่อลงชื่อเข้าใช้</string>
+    <string name="start_at_login_linux_note">เปิดแบบย่อหน้าต่างเมื่อคุณลงชื่อเข้าใช้ เพื่อให้เสียงอะซานและการเตือนมาโดยไม่ต้องเปิดแอป</string>
     <string name="start_at_login_note">เปิดในพื้นที่แจ้งเตือนเมื่อคุณลงชื่อเข้าใช้ เพื่อให้เสียงอะซานและการเตือนมาโดยไม่ต้องเปิดแอป</string>
     <string name="start_at_login_store_note">หากต้องการให้ Near Mosque เริ่มเมื่อคุณลงชื่อเข้าใช้ ให้เปิดใน การตั้งค่า Windows → แอป → การเริ่มต้นระบบ</string>
     <string name="stop">หยุด</string>

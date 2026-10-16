@@ -319,6 +319,7 @@
     <string name="no_city_results">Eşleşen şehir yok. Başka bir yazım deneyin.</string>
     <string name="no_records_body">%1$s için indirilen veride bu noktaya %2$s içinde cami yok. Veri eksik olabilir.</string>
     <string name="no_records_title">Yakında kayıtlı cami yok</string>
+    <string name="no_tray_note">Bu masaüstünde bildirim alanı yok, bu yüzden pencereyi kapatınca Near Mosque kapanır. Ezan ve hatırlatmalar için açık ya da simge durumunda tutun.</string>
     <string name="notif_iqama_body">Namaza durma vakti.</string>
     <string name="notif_iqama_title">%1$s kameti</string>
     <string name="notif_kahf_title">Cuma: Kehf Suresi</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">Son yedi gün</string>
     <string name="spirit_week_count">%2$s namazdan %1$s işaretli</string>
     <string name="start_at_login">Windows ile başlat</string>
+    <string name="start_at_login_linux">Oturum açınca başlat</string>
+    <string name="start_at_login_linux_note">Oturum açtığınızda simge durumunda açılır; ezan ve hatırlatmalar uygulamayı açmadan gelir.</string>
     <string name="start_at_login_note">Oturum açtığınızda bildirim alanında açılır; ezan ve hatırlatmalar uygulamayı açmadan gelir.</string>
     <string name="start_at_login_store_note">Oturum açınca Near Mosque\'un başlaması için Windows Ayarlar → Uygulamalar → Başlangıç\'tan açın.</string>
     <string name="stop">Durdur</string>

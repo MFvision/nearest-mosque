@@ -319,6 +319,7 @@
     <string name="no_city_results">Ba a sami gari ba. Gwada wani rubutun sunan.</string>
     <string name="no_records_body">Bayanan da aka sauke na %1$s ba su da masallatai a cikin %2$s daga wannan wuri. Bayanan ƙila ba su cika ba.</string>
     <string name="no_records_title">Babu masallatan da aka rubuta a kusa</string>
+    <string name="no_tray_note">Wannan tebur ba shi da wurin sanarwa, don haka rufe taga yana rufe Near Mosque. Bar shi a buɗe ko a rage don kiran salla da tunatarwa.</string>
     <string name="notif_iqama_body">Lokaci ya yi na tsayuwa don sallah.</string>
     <string name="notif_iqama_title">Iƙamar %1$s</string>
     <string name="notif_kahf_title">Juma\'a: Suratul Kahf</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">Kwanaki bakwai da suka wuce</string>
     <string name="spirit_week_count">An yi alamar sallah %1$s cikin %2$s</string>
     <string name="start_at_login">Fara tare da Windows</string>
+    <string name="start_at_login_linux">Fara idan ka shiga</string>
+    <string name="start_at_login_linux_note">Yana buɗewa a rage idan ka shiga, don kiran salla da tunatarwa su zo ba tare da buɗe manhajar ba.</string>
     <string name="start_at_login_note">Yana buɗewa a wurin sanarwa idan ka shiga, don kiran salla da tunatarwa su zo ba tare da buɗe manhajar ba.</string>
     <string name="start_at_login_store_note">Don Near Mosque ya fara idan ka shiga, kunna shi a Saitunan Windows → Manhajoji → Farawa.</string>
     <string name="stop">Tsaya</string>

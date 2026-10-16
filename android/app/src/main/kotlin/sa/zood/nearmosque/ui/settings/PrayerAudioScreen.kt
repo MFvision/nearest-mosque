@@ -60,6 +60,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -117,16 +118,31 @@ fun PrayerAudioScreen(
         container.settings.setIqama(q)
         withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
     }
-    // Do Not Disturb access is granted in system settings: checked again whenever the screen comes back, and the
-    // silences applied at once if it was just granted.
+    // Do Not Disturb access and exact alarms ("Alarms & reminders", Android 12+) are granted in system settings: both
+    // are checked again whenever the screen comes back, and the reminders and silences rebuilt at once if one changed.
     var silenceAllowed by remember { mutableStateOf(PrayerSilence(context).granted()) }
+    var exactAllowed by remember { mutableStateOf(ReminderScheduler.exactAlarmsAllowed(context)) }
     androidx.lifecycle.compose.LifecycleResumeEffect(Unit) {
         val now = PrayerSilence(context).granted()
-        if (now != silenceAllowed) {
+        val exactNow = ReminderScheduler.exactAlarmsAllowed(context)
+        val exactChanged = exactNow != exactAllowed
+        if (now != silenceAllowed || exactChanged) {
             silenceAllowed = now
-            scope.launch(Dispatchers.Default) { PrayerSilence(context).sync(container.settings.settings.first()) }
+            exactAllowed = exactNow
+            scope.launch(Dispatchers.Default) {
+                val s = container.settings.settings.first()
+                if (exactChanged) runCatching { ReminderScheduler(context).reschedule(s) }
+                PrayerSilence(context).sync(s)
+            }
         }
         onPauseOrDispose { }
+    }
+    // The row asking for exact alarms shows only when something here rings or acts at a set minute (the place comes
+    // from the saved settings; the switches from this screen's own values, which are the ones just changed).
+    val saved by container.settings.settings.collectAsStateWithLifecycle(initialValue = null)
+    val needsExact = remember(saved, alerts, reminders, iqama, silence, exactAllowed) {
+        !exactAllowed && ReminderScheduler.exactAlarmSettingsIntent(context) != null &&
+            saved?.let { s -> ReminderScheduler.wantsTimedAlerts(s.copy(alerts = alerts, reminders = reminders, iqama = iqama, silence = silence)) } == true
     }
     // Saved settings are applied by the app's observer (NearMosqueApp); applied here too for the screen's own container.
     fun setSilence(s: SilenceSettings) = scope.launch {
@@ -204,6 +220,23 @@ fun PrayerAudioScreen(
                 Text(stringResource(R.string.audio_title), Modifier.weight(1f).semantics { heading() }, style = MaterialTheme.typography.headlineSmall)
             }
             Column(Modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
+                AnimatedVisibility(needsExact) {
+                    SettingsLinkRow(stringResource(R.string.exact_alarm_needed), stringResource(R.string.open_settings)) {
+                        ReminderScheduler.exactAlarmSettingsIntent(context)?.let { intent ->
+                            try {
+                                context.startActivity(intent)
+                            } catch (e: android.content.ActivityNotFoundException) {
+                                // Some builds lack the per-app page; the app's own settings page has "Alarms & reminders".
+                                runCatching {
+                                    context.startActivity(
+                                        android.content.Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, intent.data)
+                                            .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
                 Header(stringResource(R.string.adhan_section))
                 Toggle(stringResource(R.string.adhan_full), null, alerts.adhan) { set(alerts.copy(adhan = it)) }
                 SourceRow(AdhanSource.MAKKAH, fajr = false)
@@ -432,6 +465,21 @@ private fun SubSwitch(title: String, on: Boolean, onChange: (Boolean) -> Unit) {
     Row(Modifier.fillMaxWidth().heightIn(min = 52.dp), verticalAlignment = Alignment.CenterVertically) {
         Text(title, Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
         Switch(checked = on, onCheckedChange = onChange)
+    }
+}
+
+/** A row that opens a system settings page: what is needed, and the action under it. */
+@Composable
+private fun SettingsLinkRow(title: String, action: String, onClick: () -> Unit) {
+    Row(
+        Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(top = 8.dp).clickable(role = Role.Button, onClickLabel = action, onClick = onClick),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(title, style = MaterialTheme.typography.bodyLarge, color = LocalExtraColors.current.accentText)
+            Text(action, style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
+        }
+        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = LocalExtraColors.current.accentText)
     }
 }
 

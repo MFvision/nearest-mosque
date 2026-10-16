@@ -319,6 +319,7 @@
     <string name="no_city_results">Walang tugmang lungsod. Subukan ang ibang baybay.</string>
     <string name="no_records_body">Walang masjid sa na-download na datos para sa %1$s sa loob ng %2$s mula sa puntong ito. Maaaring kulang ang datos.</string>
     <string name="no_records_title">Walang naitalang masjid sa malapit</string>
+    <string name="no_tray_note">Walang notification area ang desktop na ito, kaya humihinto ang Near Mosque kapag isinara ang window. Panatilihin itong bukas o naka-minimize para sa adhan at mga paalala.</string>
     <string name="notif_iqama_body">Oras na para tumayo sa pagdarasal.</string>
     <string name="notif_iqama_title">Iqama ng %1$s</string>
     <string name="notif_kahf_title">Biyernes: Surah Al-Kahf</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">Nakaraang pitong araw</string>
     <string name="spirit_week_count">%1$s sa %2$s salah ang namarkahan</string>
     <string name="start_at_login">Simulan kasabay ng Windows</string>
+    <string name="start_at_login_linux">Simulan pag-sign in</string>
+    <string name="start_at_login_linux_note">Bumubukas nang naka-minimize pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app.</string>
     <string name="start_at_login_note">Bumubukas sa notification area pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app.</string>
     <string name="start_at_login_store_note">Para magsimula ang Near Mosque pag-sign in mo, i-on ito sa Windows Settings → Apps → Startup.</string>
     <string name="stop">Ihinto</string>

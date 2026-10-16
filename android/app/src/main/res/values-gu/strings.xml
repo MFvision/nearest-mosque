@@ -319,6 +319,7 @@
     <string name="no_city_results">મળતું શહેર મળ્યું નહીં. બીજો સ્પેલિંગ અજમાવો.</string>
     <string name="no_records_body">%1$s ના ડાઉનલોડ કરેલા ડેટામાં આ જગ્યાથી %2$s ની અંદર કોઈ મસ્જિદ નથી. ડેટા અધૂરો હોઈ શકે છે.</string>
     <string name="no_records_title">નજીકમાં કોઈ મસ્જિદ નોંધાયેલી નથી</string>
+    <string name="no_tray_note">આ ડેસ્કટૉપમાં સૂચના વિસ્તાર નથી, તેથી વિન્ડો બંધ કરવાથી Near Mosque બંધ થઈ જાય છે. અઝાન અને યાદ અપાવણી માટે તેને ખુલ્લી અથવા મિનિમાઇઝ રાખો.</string>
     <string name="notif_iqama_body">નમાઝ માટે ઊભા થવાનો સમય.</string>
     <string name="notif_iqama_title">%1$s ની ઇકામત</string>
     <string name="notif_kahf_title">જુમ્આ: સૂરહ અલ-કહફ</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">છેલ્લા સાત દિવસ</string>
     <string name="spirit_week_count">%2$s માંથી %1$s નમાઝ નોંધાઈ</string>
     <string name="start_at_login">Windows સાથે શરૂ કરો</string>
+    <string name="start_at_login_linux">સાઇન ઇન કરતાં શરૂ કરો</string>
+    <string name="start_at_login_linux_note">સાઇન ઇન કરતાં જ મિનિમાઇઝ થઈને ખૂલે છે, જેથી ઍપ ખોલ્યા વગર અઝાન અને યાદ અપાવણી આવે.</string>
     <string name="start_at_login_note">સાઇન ઇન કરતાં જ સૂચના વિસ્તારમાં ખૂલે છે, જેથી ઍપ ખોલ્યા વગર અઝાન અને યાદ અપાવણી આવે.</string>
     <string name="start_at_login_store_note">સાઇન ઇન કરતી વખતે Near Mosque શરૂ થાય તે માટે, Windows સેટિંગ → ઍપ્સ → સ્ટાર્ટઅપમાં તેને ચાલુ કરો.</string>
     <string name="stop">રોકો</string>

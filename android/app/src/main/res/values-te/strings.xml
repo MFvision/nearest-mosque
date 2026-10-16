@@ -319,6 +319,7 @@
     <string name="no_city_results">సరిపోలే నగరం లేదు. వేరే స్పెల్లింగ్ ప్రయత్నించండి.</string>
     <string name="no_records_body">%1$s కోసం డౌన్‌లోడ్ చేసిన డేటాలో ఈ ప్రదేశం నుండి %2$s లోపు మసీదులు లేవు. డేటా అసంపూర్ణంగా ఉండవచ్చు.</string>
     <string name="no_records_title">దగ్గరలో నమోదైన మసీదులు లేవు</string>
+    <string name="no_tray_note">ఈ డెస్క్‌టాప్‌లో నోటిఫికేషన్ ప్రాంతం లేదు, కాబట్టి విండోను మూసివేస్తే Near Mosque మూసుకుపోతుంది. అజాన్, రిమైండర్‌ల కోసం దాన్ని తెరిచి లేదా మినిమైజ్ చేసి ఉంచండి.</string>
     <string name="notif_iqama_body">నమాజ్‌కు నిలబడే సమయం.</string>
     <string name="notif_iqama_title">%1$s ఇఖామత్</string>
     <string name="notif_kahf_title">శుక్రవారం: సూరా అల్-కహఫ్</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">గత ఏడు రోజులు</string>
     <string name="spirit_week_count">%2$sలో %1$s నమాజ్‌లు గుర్తించారు</string>
     <string name="start_at_login">Windowsతో ప్రారంభించు</string>
+    <string name="start_at_login_linux">సైన్ ఇన్ చేసినప్పుడు ప్రారంభించు</string>
+    <string name="start_at_login_linux_note">మీరు సైన్ ఇన్ చేయగానే మినిమైజ్ అయి తెరుచుకుంటుంది, యాప్ తెరవకుండానే అజాన్, రిమైండర్‌లు వస్తాయి.</string>
     <string name="start_at_login_note">మీరు సైన్ ఇన్ చేయగానే నోటిఫికేషన్ ప్రాంతంలో తెరుచుకుంటుంది, యాప్ తెరవకుండానే అజాన్, రిమైండర్‌లు వస్తాయి.</string>
     <string name="start_at_login_store_note">సైన్ ఇన్ చేసినప్పుడు Near Mosque ప్రారంభం కావాలంటే, Windows సెట్టింగ్‌లు → యాప్‌లు → స్టార్టప్‌లో దాన్ని ఆన్ చేయండి.</string>
     <string name="stop">ఆపు</string>

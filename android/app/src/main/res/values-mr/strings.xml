@@ -319,6 +319,7 @@
     <string name="no_city_results">जुळणारे शहर सापडले नाही. दुसरे स्पेलिंग वापरून पाहा.</string>
     <string name="no_records_body">%1$s च्या डाउनलोड केलेल्या डेटामध्ये या ठिकाणापासून %2$s च्या आत कोणतीही मशीद नाही. डेटा अपूर्ण असू शकतो.</string>
     <string name="no_records_title">जवळपास कोणतीही मशीद नोंदलेली नाही</string>
+    <string name="no_tray_note">या डेस्कटॉपमध्ये सूचना क्षेत्र नाही, त्यामुळे विंडो बंद केल्यावर Near Mosque बंद होते. अजान आणि आठवणींसाठी ती उघडी किंवा मिनिमाइझ ठेवा.</string>
     <string name="notif_iqama_body">नमाजसाठी उभे राहण्याची वेळ.</string>
     <string name="notif_iqama_title">%1$s ची इकामत</string>
     <string name="notif_kahf_title">जुमा: सूरह अल-कहफ</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">मागील सात दिवस</string>
     <string name="spirit_week_count">%2$s पैकी %1$s नमाज नोंदल्या</string>
     <string name="start_at_login">Windows सोबत सुरू करा</string>
+    <string name="start_at_login_linux">साइन इन करताच सुरू करा</string>
+    <string name="start_at_login_linux_note">साइन इन करताच मिनिमाइझ होऊन उघडते, त्यामुळे अ‍ॅप न उघडता अजान आणि आठवणी येतात.</string>
     <string name="start_at_login_note">साइन इन करताच सूचना क्षेत्रात उघडते, त्यामुळे अ‍ॅप न उघडता अजान आणि आठवणी येतात.</string>
     <string name="start_at_login_store_note">साइन इन करताना Near Mosque सुरू होण्यासाठी, Windows सेटिंग्ज → अ‍ॅप्स → स्टार्टअप मध्ये ते चालू करा.</string>
     <string name="stop">थांबवा</string>

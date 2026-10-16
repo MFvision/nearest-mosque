@@ -254,6 +254,8 @@ class ScreenshotTest {
 
     /** Prayer & Audio with a mix of switches on, and Maghrib's own settings open. */
     @Test fun prayerAudioSettings() {
+        // Exact alarms allowed, as after the user grants them; the row that asks for them has its own screenshot.
+        org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(true)
         val c = container()
         val alerts = sa.zood.nearmosque.core.AlertSettings(adhan = true, before10 = true, near = true, salawat = true, quran = true)
             .withSounds(sa.zood.nearmosque.core.PrayerEvent.MAGHRIB, sa.zood.nearmosque.core.PrayerSounds(adhan = false))
@@ -274,6 +276,7 @@ class ScreenshotTest {
 
     /** The iqama section of Prayer & Audio: the switch, a wait per prayer, the prayer after it and its notification. */
     @Test fun iqamaSettings() {
+        org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(true)
         val c = container()
         compose.setContent {
             NearMosqueTheme(dark = true) {
@@ -291,6 +294,7 @@ class ScreenshotTest {
 
     /** Silent during prayer: on, without Do Not Disturb access yet (the row that asks for it), Fajr left out. */
     @Test fun silenceSettings() {
+        org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(true)
         val c = container()
         compose.setContent {
             NearMosqueTheme(dark = true) {
@@ -307,5 +311,19 @@ class ScreenshotTest {
         compose.onNodeWithText("Do Not Disturb turns on", substring = true).performScrollTo()
         compose.waitForIdle()
         compose.onRoot().captureRoboImage("build/screenshots/silence_settings_friday_en.png")
+    }
+
+    /** Android 12+ without "Alarms & reminders": with the Adhan on, Prayer & Audio starts with the row that opens it. */
+    @Test fun exactAlarmRow() {
+        org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(false)
+        val c = container()
+        compose.setContent {
+            NearMosqueTheme(dark = true) {
+                sa.zood.nearmosque.ui.settings.PrayerAudioScreen(c, sa.zood.nearmosque.core.AlertSettings(adhan = true), emptySet(), sa.zood.nearmosque.core.IqamaSettings()) {}
+            }
+        }
+        compose.waitForIdle()
+        compose.onNodeWithText("To ring on time", substring = true).assertExists()
+        compose.onRoot().captureRoboImage("build/screenshots/exact_alarm_en.png")
     }
 }

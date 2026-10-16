@@ -321,6 +321,7 @@
     <string name="no_city_results">Город не найден. Попробуйте другое написание.</string>
     <string name="no_records_body">В загруженных данных (%1$s) нет мечетей в радиусе %2$s от этой точки. Данные могут быть неполными.</string>
     <string name="no_records_title">Поблизости мечети не найдены</string>
+    <string name="no_tray_note">В этой среде рабочего стола нет области уведомлений, поэтому закрытие окна завершает Near Mosque. Оставьте окно открытым или свёрнутым, чтобы получать азан и напоминания.</string>
     <string name="notif_iqama_body">Время встать на намаз.</string>
     <string name="notif_iqama_title">Икамат %1$s</string>
     <string name="notif_kahf_title">Пятница: сура «Аль-Кахф»</string>
@@ -512,6 +513,8 @@
     <string name="spirit_week">Последние семь дней</string>
     <string name="spirit_week_count">Отмечено %1$s из %2$s молитв</string>
     <string name="start_at_login">Запускать вместе с Windows</string>
+    <string name="start_at_login_linux">Запускать при входе в систему</string>
+    <string name="start_at_login_linux_note">Запускается свёрнутым при входе в систему, чтобы азан и напоминания приходили без открытия приложения.</string>
     <string name="start_at_login_note">Открывается в области уведомлений при входе в систему, чтобы азан и напоминания приходили без запуска приложения.</string>
     <string name="start_at_login_store_note">Чтобы Near Mosque запускался при входе, включите его в «Параметры Windows» → «Приложения» → «Автозагрузка».</string>
     <string name="stop">Стоп</string>

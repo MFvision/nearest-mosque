@@ -319,6 +319,7 @@
     <string name="no_city_results">Nincs ilyen város. Próbáld más írásmóddal.</string>
     <string name="no_records_body">A(z) %1$s letöltött adataiban nincs mecset ettől a ponttól %2$s távolságon belül. Az adatok hiányosak lehetnek.</string>
     <string name="no_records_title">Nincs rögzített mecset a közelben</string>
+    <string name="no_tray_note">Ezen az asztali környezeten nincs értesítési terület, ezért az ablak bezárása kilép a Near Mosque-ból. Az ezán és az emlékeztetők miatt hagyja nyitva vagy kis méretre állítva.</string>
     <string name="notif_iqama_body">Ideje felállni az imához.</string>
     <string name="notif_iqama_title">%1$s ikáma</string>
     <string name="notif_kahf_title">Péntek: al-Kahf szúra</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">Az elmúlt hét nap</string>
     <string name="spirit_week_count">%2$s imából %1$s megjelölve</string>
     <string name="start_at_login">Indítás a Windowszal</string>
+    <string name="start_at_login_linux">Indítás bejelentkezéskor</string>
+    <string name="start_at_login_linux_note">Bejelentkezéskor kis méretre állítva indul, így az ezán és az emlékeztetők az alkalmazás megnyitása nélkül is jönnek.</string>
     <string name="start_at_login_note">Bejelentkezéskor az értesítési területen indul, így az ezán és az emlékeztetők az alkalmazás megnyitása nélkül is jönnek.</string>
     <string name="start_at_login_store_note">Ha azt szeretné, hogy a Near Mosque bejelentkezéskor induljon, kapcsolja be a Windows Gépház → Alkalmazások → Indítás menüben.</string>
     <string name="stop">Leállítás</string>

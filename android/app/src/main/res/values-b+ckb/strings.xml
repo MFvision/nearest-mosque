@@ -319,6 +319,7 @@
     <string name="no_city_results">هیچ شارێک نەدۆزرایەوە. ڕێنووسێکی تر تاقی بکەرەوە.</string>
     <string name="no_records_body">زانیارییە داگیراوەکانی %1$s هیچ مزگەوتێکیان لە ماوەی %2$s لەم خاڵەوە تێدا نییە. لەوانەیە زانیارییەکان تەواو نەبن.</string>
     <string name="no_records_title">هیچ مزگەوتێک لەم نزیکانە تۆمار نەکراوە</string>
+    <string name="no_tray_note">ئەم ڕووی کارە ناوچەی ئاگادارکردنەوەی نییە، بۆیە داخستنی پەنجەرەکە «نزیکترین مزگەوت» دادەخات. بۆ بانگ و بیرخستنەوەکان بە کراوەیی یان بچووککراوەیی بیهێڵەرەوە.</string>
     <string name="notif_iqama_body">کاتی هەستان بۆ نوێژە.</string>
     <string name="notif_iqama_title">ئیقامەی نوێژی %1$s</string>
     <string name="notif_kahf_title">هەینی: سورەتی کەهف</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">دوایین حەوت ڕۆژ</string>
     <string name="spirit_week_count">%1$s لە %2$s نوێژ نیشانکراوە</string>
     <string name="start_at_login">دەستپێکردن لەگەڵ ویندۆز</string>
+    <string name="start_at_login_linux">دەستپێکردن لە کاتی چوونەژوورەوە</string>
+    <string name="start_at_login_linux_note">کاتێک دەچیتە ژوورەوە بە بچووککراوەیی دەکرێتەوە، بۆ ئەوەی بانگ و بیرخستنەوەکان بێ کردنەوەی ئەپ بێن.</string>
     <string name="start_at_login_note">کاتێک دەچیتە ژوورەوە لە ناوچەی ئاگادارکردنەوە دەکرێتەوە، بۆ ئەوەی بانگ و بیرخستنەوەکان بێ کردنەوەی ئەپ بێن.</string>
     <string name="start_at_login_store_note">بۆ ئەوەی Near Mosque لە کاتی چوونەژوورەوە دەست پێبکات، لە ڕێکخستنەکانی ویندۆز ← ئەپەکان ← دەستپێکردن چالاکی بکە.</string>
     <string name="stop">ڕاگرتن</string>

@@ -320,6 +320,7 @@
     <string name="no_city_results">Nenhuma cidade encontrada. Tente outra grafia.</string>
     <string name="no_records_body">Os dados baixados de %1$s não têm mesquitas a até %2$s deste ponto. Os dados podem estar incompletos.</string>
     <string name="no_records_title">Nenhuma mesquita registrada por perto</string>
+    <string name="no_tray_note">Esta área de trabalho não tem área de notificação, então fechar a janela encerra o Near Mosque. Deixe a janela aberta ou minimizada para o adhan e os lembretes.</string>
     <string name="notif_iqama_body">Hora de se levantar para a oração.</string>
     <string name="notif_iqama_title">Iqama de %1$s</string>
     <string name="notif_kahf_title">Sexta-feira: surata Al-Kahf</string>
@@ -511,6 +512,8 @@
     <string name="spirit_week">Os últimos sete dias</string>
     <string name="spirit_week_count">%1$s de %2$s orações marcadas</string>
     <string name="start_at_login">Iniciar com o Windows</string>
+    <string name="start_at_login_linux">Iniciar ao entrar</string>
+    <string name="start_at_login_linux_note">Abre minimizado quando você entra, para o adhan e os lembretes chegarem sem abrir o app.</string>
     <string name="start_at_login_note">Abre na área de notificação quando você entra, para o adhan e os lembretes chegarem sem abrir o app.</string>
     <string name="start_at_login_store_note">Para o Near Mosque iniciar quando você entrar, ative-o em Configurações do Windows → Aplicativos → Inicialização.</string>
     <string name="stop">Parar</string>

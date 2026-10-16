@@ -318,6 +318,7 @@
     <string name="no_city_results">រកមិនឃើញទីក្រុងដែលត្រូវគ្នា។ សូមសាកល្បងប្រកបតាមរបៀបផ្សេង។</string>
     <string name="no_records_body">ទិន្នន័យដែលបានទាញយកសម្រាប់ %1$s គ្មានម៉ាស្ជិតក្នុងចម្ងាយ %2$s ពីចំណុចនេះទេ។ ទិន្នន័យអាចមិនពេញលេញ។</string>
     <string name="no_records_title">គ្មានម៉ាស្ជិតដែលបានកត់ត្រានៅក្បែរនេះទេ</string>
+    <string name="no_tray_note">ផ្ទៃតុនេះគ្មានតំបន់ជូនដំណឹងទេ ដូច្នេះការបិទបង្អួចនឹងបិទ Near Mosque។ សូមទុកវាឱ្យបើក ឬបង្រួម ដើម្បីទទួលអាហ្សាន និងការរំលឹក។</string>
     <string name="notif_iqama_body">ដល់ពេលក្រោកឈរសម្រាប់ការសឡាតហើយ។</string>
     <string name="notif_iqama_title">អ៊ីកាម៉ា %1$s</string>
     <string name="notif_kahf_title">ថ្ងៃសុក្រ៖ ស៊ូរ៉ោះ អាល់កះហ្វ</string>
@@ -509,6 +510,8 @@
     <string name="spirit_week">ប្រាំពីរថ្ងៃចុងក្រោយ</string>
     <string name="spirit_week_count">បានសម្គាល់ %1$s ក្នុងចំណោម %2$s សឡាត</string>
     <string name="start_at_login">ចាប់ផ្ដើមជាមួយ Windows</string>
+    <string name="start_at_login_linux">ចាប់ផ្ដើមពេលអ្នកចូល</string>
+    <string name="start_at_login_linux_note">បើកជាទម្រង់បង្រួមពេលអ្នកចូល ដើម្បីឱ្យអាហ្សាន និងការរំលឹកមកដល់ដោយមិនចាំបាច់បើកកម្មវិធី។</string>
     <string name="start_at_login_note">បើកនៅតំបន់ជូនដំណឹងពេលអ្នកចូល ដើម្បីឱ្យអាហ្សាន និងការរំលឹកមកដល់ដោយមិនចាំបាច់បើកកម្មវិធី។</string>
     <string name="start_at_login_store_note">ដើម្បីឱ្យ Near Mosque ចាប់ផ្ដើមពេលអ្នកចូល សូមបើកវានៅក្នុង ការកំណត់ Windows → កម្មវិធី → ការចាប់ផ្ដើម។</string>
     <string name="stop">បញ្ឈប់</string>

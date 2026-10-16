@@ -319,6 +319,7 @@
     <string name="no_city_results">യോജിക്കുന്ന നഗരമില്ല. മറ്റൊരു സ്പെല്ലിംഗ് ശ്രമിക്കുക.</string>
     <string name="no_records_body">%1$s-നായി ഡൗൺലോഡ് ചെയ്ത ഡാറ്റയിൽ ഈ സ്ഥലത്തുനിന്ന് %2$s-നുള്ളിൽ പള്ളികളൊന്നുമില്ല. ഡാറ്റ അപൂർണ്ണമായിരിക്കാം.</string>
     <string name="no_records_title">സമീപത്ത് രേഖപ്പെടുത്തിയ പള്ളികളില്ല</string>
+    <string name="no_tray_note">ഈ ഡെസ്‌ക്‌ടോപ്പിൽ അറിയിപ്പ് ഭാഗമില്ല, അതിനാൽ വിൻഡോ അടച്ചാൽ Near Mosque അടയും. ബാങ്കിനും ഓർമ്മപ്പെടുത്തലുകൾക്കുമായി അത് തുറന്നോ ചെറുതാക്കിയോ വയ്ക്കുക.</string>
     <string name="notif_iqama_body">നമസ്കാരത്തിന് നിൽക്കാനുള്ള സമയം.</string>
     <string name="notif_iqama_title">%1$s ഇഖാമത്ത്</string>
     <string name="notif_kahf_title">വെള്ളിയാഴ്ച: സൂറത്തുൽ കഹ്ഫ്</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">കഴിഞ്ഞ ഏഴ് ദിവസം</string>
     <string name="spirit_week_count">%2$s-ൽ %1$s നമസ്കാരം അടയാളപ്പെടുത്തി</string>
     <string name="start_at_login">Windows-നൊപ്പം ആരംഭിക്കുക</string>
+    <string name="start_at_login_linux">സൈൻ ഇൻ ചെയ്യുമ്പോൾ ആരംഭിക്കുക</string>
+    <string name="start_at_login_linux_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ ചെറുതാക്കിയ നിലയിൽ തുറക്കും, ആപ്പ് തുറക്കാതെ തന്നെ ബാങ്കും ഓർമ്മപ്പെടുത്തലുകളും വരും.</string>
     <string name="start_at_login_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ അറിയിപ്പ് ഭാഗത്ത് തുറക്കും, ആപ്പ് തുറക്കാതെ തന്നെ ബാങ്കും ഓർമ്മപ്പെടുത്തലുകളും വരും.</string>
     <string name="start_at_login_store_note">സൈൻ ഇൻ ചെയ്യുമ്പോൾ Near Mosque ആരംഭിക്കാൻ, Windows ക്രമീകരണങ്ങൾ → ആപ്പുകൾ → സ്റ്റാർട്ടപ്പിൽ അത് ഓണാക്കുക.</string>
     <string name="stop">നിർത്തുക</string>

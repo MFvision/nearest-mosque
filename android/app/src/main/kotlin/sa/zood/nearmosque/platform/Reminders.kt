@@ -23,6 +23,8 @@ import sa.zood.nearmosque.NearMosqueApp
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.AlertKind
 import sa.zood.nearmosque.core.AlertPlanner
+import sa.zood.nearmosque.core.DaySchedule
+import sa.zood.nearmosque.core.PlannedAlert
 import sa.zood.nearmosque.core.HijriCalendar
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
@@ -46,7 +48,7 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
             ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) &&
             NotificationManagerCompat.from(context).areNotificationsEnabled()
 
-    fun exactAlarmsAllowed(): Boolean = Build.VERSION.SDK_INT < 31 || alarms.canScheduleExactAlarms()
+    fun exactAlarmsAllowed(): Boolean = exactAlarmsAllowed(context)
 
     /** Returns the number of reminders and alarms scheduled. */
     fun reschedule(settings: AppSettings, now: Instant = Instant.now()): Int {
@@ -54,11 +56,7 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
         val loc = settings.prayerLocation ?: return 0
         if (!notificationsAllowed()) return 0
         ensureChannel()
-        val today = now.atZone(loc.zoneId).toLocalDate()
-        val days = (0 until HORIZON_DAYS).map { calculator.schedule(loc.location, today.plusDays(it.toLong()), loc.zoneId, settings.prayer) }
-        val plan = AlertPlanner.plan(days, now, settings.reminders, settings.alerts, settings.iqama) {
-            HijriCalendar.isRamadan(it, settings.prayer.hijriAdjustmentDays)
-        }.take(MAX_ALERTS)
+        val (days, plan) = plan(settings, now, calculator) ?: return 0
         val voice = settings.alerts.voice ?: VoiceLanguage.forInterface(Format.languageCode(context))
         plan.forEachIndexed { code, a ->
             val name = context.getString(Format.prayerName(a.event))
@@ -136,6 +134,72 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
     }
 
     companion object {
+        /** The prayer days of the horizon and the alerts planned on them; null without a place. */
+        fun plan(settings: AppSettings, now: Instant, calculator: PrayerCalculator = PrayerCalculator()): Pair<List<DaySchedule>, List<PlannedAlert>>? {
+            val loc = settings.prayerLocation ?: return null
+            val today = now.atZone(loc.zoneId).toLocalDate()
+            val days = (0 until HORIZON_DAYS).map { calculator.schedule(loc.location, today.plusDays(it.toLong()), loc.zoneId, settings.prayer) }
+            val plan = AlertPlanner.plan(days, now, settings.reminders, settings.alerts, settings.iqama) {
+                HijriCalendar.isRamadan(it, settings.prayer.hijriAdjustmentDays)
+            }.take(MAX_ALERTS)
+            return days to plan
+        }
+
+        /**
+         * Whether these settings ring or act at a set minute: a reminder, the Adhan, an iqama alert, the Fajr alarm or
+         * silence during prayer. Those need exact alarms to be on time.
+         */
+        fun wantsTimedAlerts(settings: AppSettings, now: Instant = Instant.now()): Boolean =
+            settings.silence.enabled || plan(settings, now)?.second?.isNotEmpty() == true
+
+        /** Exact alarms are always allowed below Android 12; from 12 the user allows "Alarms & reminders". */
+        fun exactAlarmsAllowed(context: Context): Boolean =
+            Build.VERSION.SDK_INT < 31 || (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager).canScheduleExactAlarms()
+
+        /** The system page that allows exact alarms for this app (Android 12+), or null where there is none. */
+        fun exactAlarmSettingsIntent(context: Context): Intent? =
+            if (Build.VERSION.SDK_INT < 31) {
+                null
+            } else {
+                Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, android.net.Uri.parse("package:" + context.packageName))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+        /**
+         * The channel for an Adhan that [PrayerAudioService] could not play (Android refused to start it, e.g. from an
+         * inexact alarm on Android 12+): the notification itself plays the recording. One channel per recording, since a
+         * channel's sound is fixed; the sound is referenced by name so it survives app updates. Null when the recording
+         * is not in the app (then the reminder channel's sound is used).
+         */
+        fun adhanChannel(context: Context, sound: String): String? {
+            if (AudioCatalog.rawId(context, sound) == 0) return null
+            val id = "adhan_sound_$sound"
+            val nm = context.getSystemService(NotificationManager::class.java)
+            if (nm.getNotificationChannel(id) == null) {
+                val source = sa.zood.nearmosque.core.AdhanSource.entries.firstOrNull { sound.contains(it.name.lowercase()) }
+                val place = when (source) {
+                    sa.zood.nearmosque.core.AdhanSource.MADINAH -> context.getString(R.string.source_madinah)
+                    else -> context.getString(R.string.source_makkah)
+                }
+                val name = when {
+                    sound.startsWith("fajr_") -> context.getString(R.string.adhan_fajr) + " · " + place
+                    sound.endsWith("_short") -> context.getString(R.string.adhan_playing, place) + " · " + context.getString(R.string.adhan_short)
+                    else -> context.getString(R.string.adhan_playing, place)
+                }
+                nm.createNotificationChannel(
+                    NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH).apply {
+                        setSound(
+                            android.net.Uri.parse("android.resource://${context.packageName}/raw/$sound"),
+                            android.media.AudioAttributes.Builder().setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION)
+                                .setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION).build(),
+                        )
+                        enableVibration(true)
+                    },
+                )
+            }
+            return id
+        }
+
         const val HORIZON_DAYS = 7
         const val MAX_ALERTS = 120
         const val CHANNEL = "prayer_reminders"
@@ -154,6 +218,11 @@ class ReminderScheduler(private val context: Context, private val calculator: Pr
 }
 
 class ReminderReceiver : BroadcastReceiver() {
+    companion object {
+        /** Starts the Adhan/voice player; replaced in tests to act as if Android refused the foreground service. */
+        internal var startAudio: (Context, Intent) -> Boolean = PrayerAudioService::start
+    }
+
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == ReminderScheduler.ACTION_STOP) {
             NotificationManagerCompat.from(context).cancel(intent.getIntExtra(ReminderScheduler.EXTRA_ID, 0))
@@ -161,16 +230,24 @@ class ReminderReceiver : BroadcastReceiver() {
         }
         val alarm = intent.getBooleanExtra(ReminderScheduler.EXTRA_ALARM, false)
         val id = intent.getIntExtra(ReminderScheduler.EXTRA_ID, 0)
+        val sound = intent.getStringExtra(ReminderScheduler.EXTRA_SOUND)
         // The Adhan and the spoken reminders: the app plays the recording (with Stop on the notification).
-        if (!alarm && intent.getStringExtra(ReminderScheduler.EXTRA_SOUND) != null && PrayerAudioService.start(context, intent)) {
+        if (!alarm && sound != null && startAudio(context, intent)) {
             RescheduleReceiver.rescheduleAsync(context, goAsync())
             return
+        }
+        // Android refused the player (e.g. Android 12+ after an inexact alarm): an Adhan still sounds, through a
+        // notification channel whose sound is that recording; a spoken reminder falls back to the reminder sound.
+        val adhanChannel = if (!alarm && sound != null && intent.getBooleanExtra(ReminderScheduler.EXTRA_ADHAN, false)) {
+            runCatching { ReminderScheduler.adhanChannel(context, sound) }.getOrNull()
+        } else {
+            null
         }
         val open = PendingIntent.getActivity(
             context, 0, Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             PendingIntent.FLAG_IMMUTABLE,
         )
-        val builder = NotificationCompat.Builder(context, if (alarm) ReminderScheduler.ALARM_CHANNEL else ReminderScheduler.CHANNEL)
+        val builder = NotificationCompat.Builder(context, if (alarm) ReminderScheduler.ALARM_CHANNEL else adhanChannel ?: ReminderScheduler.CHANNEL)
             .setSmallIcon(R.drawable.ic_tab_prayer)
             .setContentTitle(intent.getStringExtra(ReminderScheduler.EXTRA_TITLE))
             .setContentText(intent.getStringExtra(ReminderScheduler.EXTRA_BODY))
@@ -186,7 +263,6 @@ class ReminderReceiver : BroadcastReceiver() {
             builder.setPriority(NotificationCompat.PRIORITY_MAX)
                 .addAction(0, context.getString(R.string.alarm_stop), stop)
                 .setDeleteIntent(stop)
-                .setFullScreenIntent(open, true)
         }
         val n = builder.build()
         // An alarm keeps ringing until it is stopped or opened.
@@ -208,7 +284,7 @@ class RescheduleReceiver : BroadcastReceiver() {
         private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
         fun rescheduleAsync(context: Context, pending: PendingResult?) {
-            val app = context.applicationContext as NearMosqueApp
+            val app = context.applicationContext as? NearMosqueApp ?: run { pending?.finish(); return }
             scope.launch {
                 try {
                     val settings = app.container.settings.settings.first()

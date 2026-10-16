@@ -319,6 +319,7 @@
     <string name="no_city_results">ගැළපෙන නගරයක් නැත. වෙනත් අක්ෂර වින්‍යාසයක් උත්සාහ කරන්න.</string>
     <string name="no_records_body">%1$s සඳහා බාගත කළ දත්තවල මෙම ස්ථානයේ සිට %2$s ඇතුළත පල්ලි කිසිවක් නැත. දත්ත අසම්පූර්ණ විය හැක.</string>
     <string name="no_records_title">අසල පල්ලි කිසිවක් වාර්තා වී නැත</string>
+    <string name="no_tray_note">මෙම ඩෙස්ක්ටොපයේ දැනුම්දීම් ප්‍රදේශයක් නැත, එබැවින් කවුළුව වැසීමෙන් Near Mosque වැසේ. අදාන් සහ සිහිකැඳවීම් සඳහා එය විවෘතව හෝ කුඩා කර තබන්න.</string>
     <string name="notif_iqama_body">සලාතය සඳහා නැගී සිටින වේලාවයි.</string>
     <string name="notif_iqama_title">%1$s ඉකාමාව</string>
     <string name="notif_kahf_title">සිකුරාදා: සූරා අල්-කහ්ෆ්</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">පසුගිය දින හත</string>
     <string name="spirit_week_count">නමාස %2$s න් %1$s ක් සලකුණු කළා</string>
     <string name="start_at_login">Windows සමඟ ආරම්භ කරන්න</string>
+    <string name="start_at_login_linux">පුරනය වන විට ආරම්භ කරන්න</string>
+    <string name="start_at_login_linux_note">ඔබ පුරනය වන විට කුඩා කළ තත්ත්වයෙන් විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ.</string>
     <string name="start_at_login_note">ඔබ පුරනය වන විට දැනුම්දීම් ප්‍රදේශයේ විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ.</string>
     <string name="start_at_login_store_note">ඔබ පුරනය වන විට Near Mosque ආරම්භ වීමට, Windows සැකසීම් → යෙදුම් → ආරම්භය තුළ එය සක්‍රිය කරන්න.</string>
     <string name="stop">නවත්වන්න</string>

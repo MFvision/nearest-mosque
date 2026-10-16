@@ -320,6 +320,7 @@
     <string name="no_city_results">Нема таквог града. Покушајте другачије да га напишете.</string>
     <string name="no_records_body">Преузети подаци (%1$s) немају џамија у кругу од %2$s од ове тачке. Подаци можда нису потпуни.</string>
     <string name="no_records_title">Нема забележених џамија у близини</string>
+    <string name="no_tray_note">Ова радно окружење нема област обавештења, па затварање прозора гаси Near Mosque. Оставите прозор отворен или умањен за езан и подсетнике.</string>
     <string name="notif_iqama_body">Време је да се устане на намаз.</string>
     <string name="notif_iqama_title">Икамет за %1$s</string>
     <string name="notif_kahf_title">Петак: сура Ел-Кехф</string>
@@ -511,6 +512,8 @@
     <string name="spirit_week">Последњих седам дана</string>
     <string name="spirit_week_count">Означено %1$s од %2$s намаза</string>
     <string name="start_at_login">Покрени са Windows-ом</string>
+    <string name="start_at_login_linux">Покрени при пријављивању</string>
+    <string name="start_at_login_linux_note">Отвара се умањена када се пријавите, па езан и подсетници стижу без отварања апликације.</string>
     <string name="start_at_login_note">Отвара се у области обавештења када се пријавите, па езан и подсетници стижу без отварања апликације.</string>
     <string name="start_at_login_store_note">Да би се Near Mosque покренуо када се пријавите, укључите га у Windows подешавањима → Апликације → Покретање.</string>
     <string name="stop">Заустави</string>

@@ -319,6 +319,7 @@
     <string name="no_city_results">ਕੋਈ ਮਿਲਦਾ ਸ਼ਹਿਰ ਨਹੀਂ। ਕੋਈ ਹੋਰ ਸ਼ਬਦ-ਜੋੜ ਅਜ਼ਮਾਓ।</string>
     <string name="no_records_body">%1$s ਦੇ ਡਾਊਨਲੋਡ ਕੀਤੇ ਡਾਟਾ ਵਿੱਚ ਇਸ ਥਾਂ ਤੋਂ %2$s ਦੇ ਅੰਦਰ ਕੋਈ ਮਸਜਿਦ ਨਹੀਂ। ਡਾਟਾ ਅਧੂਰਾ ਹੋ ਸਕਦਾ ਹੈ।</string>
     <string name="no_records_title">ਨੇੜੇ ਕੋਈ ਮਸਜਿਦ ਦਰਜ ਨਹੀਂ</string>
+    <string name="no_tray_note">ਇਸ ਡੈਸਕਟਾਪ ਵਿੱਚ ਸੂਚਨਾ ਖੇਤਰ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਵਿੰਡੋ ਬੰਦ ਕਰਨ ’ਤੇ Near Mosque ਬੰਦ ਹੋ ਜਾਂਦੀ ਹੈ। ਅਜ਼ਾਨ ਅਤੇ ਯਾਦ-ਦਹਾਨੀਆਂ ਲਈ ਇਸਨੂੰ ਖੁੱਲ੍ਹਾ ਜਾਂ ਮਿਨੀਮਾਈਜ਼ ਰੱਖੋ।</string>
     <string name="notif_iqama_body">ਨਮਾਜ਼ ਲਈ ਖੜ੍ਹੇ ਹੋਣ ਦਾ ਸਮਾਂ।</string>
     <string name="notif_iqama_title">%1$s ਦੀ ਇਕਾਮਤ</string>
     <string name="notif_kahf_title">ਜੁਮਾ: ਸੂਰਾ ਅਲ-ਕਹਫ਼</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">ਪਿਛਲੇ ਸੱਤ ਦਿਨ</string>
     <string name="spirit_week_count">%2$s ਵਿੱਚੋਂ %1$s ਨਮਾਜ਼ਾਂ ਦਰਜ</string>
     <string name="start_at_login">Windows ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="start_at_login_linux">ਸਾਈਨ ਇਨ ਕਰਨ ’ਤੇ ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="start_at_login_linux_note">ਸਾਈਨ ਇਨ ਕਰਦੇ ਹੀ ਮਿਨੀਮਾਈਜ਼ ਹੋ ਕੇ ਖੁੱਲ੍ਹਦੀ ਹੈ, ਤਾਂ ਜੋ ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਅਜ਼ਾਨ ਅਤੇ ਯਾਦ-ਦਹਾਨੀਆਂ ਆਉਣ।</string>
     <string name="start_at_login_note">ਸਾਈਨ ਇਨ ਕਰਦੇ ਹੀ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਖੁੱਲ੍ਹਦੀ ਹੈ, ਤਾਂ ਜੋ ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਅਜ਼ਾਨ ਅਤੇ ਯਾਦ-ਦਹਾਨੀਆਂ ਆਉਣ।</string>
     <string name="start_at_login_store_note">ਸਾਈਨ ਇਨ ਕਰਨ \'ਤੇ Near Mosque ਸ਼ੁਰੂ ਕਰਨ ਲਈ, ਇਸਨੂੰ Windows ਸੈਟਿੰਗਾਂ → ਐਪਾਂ → ਸਟਾਰਟਅੱਪ ਵਿੱਚ ਚਾਲੂ ਕਰੋ।</string>
     <string name="stop">ਰੋਕੋ</string>

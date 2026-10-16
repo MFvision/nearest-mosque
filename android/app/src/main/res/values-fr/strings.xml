@@ -319,6 +319,7 @@
     <string name="no_city_results">Aucune ville trouvée. Essayez une autre orthographe.</string>
     <string name="no_records_body">Les données de %1$s ne contiennent aucune mosquée à moins de %2$s. Elles peuvent être incomplètes.</string>
     <string name="no_records_title">Aucune mosquée enregistrée à proximité</string>
+    <string name="no_tray_note">Ce bureau n’a pas de zone de notification : fermer la fenêtre quitte Near Mosque. Laissez-la ouverte ou réduite pour l’adhan et les rappels.</string>
     <string name="notif_iqama_body">C’est l’heure de se lever pour la prière.</string>
     <string name="notif_iqama_title">Iqama de %1$s</string>
     <string name="notif_kahf_title">Vendredi : sourate Al-Kahf</string>
@@ -510,6 +511,8 @@
     <string name="spirit_week">Les sept derniers jours</string>
     <string name="spirit_week_count">%1$s prières sur %2$s marquées</string>
     <string name="start_at_login">Démarrer avec Windows</string>
+    <string name="start_at_login_linux">Démarrer à la connexion</string>
+    <string name="start_at_login_linux_note">S’ouvre en réduit à la connexion : l’adhan et les rappels arrivent sans ouvrir l’app.</string>
     <string name="start_at_login_note">S’ouvre dans la zone de notification à la connexion : l’adhan et les rappels arrivent sans ouvrir l’app.</string>
     <string name="start_at_login_store_note">Pour lancer Near Mosque à la connexion, activez-le dans Paramètres Windows → Applications → Démarrage.</string>
     <string name="stop">Arrêter</string>

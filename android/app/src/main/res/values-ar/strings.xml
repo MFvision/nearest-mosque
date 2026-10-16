@@ -323,6 +323,7 @@
     <string name="no_city_results">لا توجد مدينة مطابقة. جرّب كتابة أخرى.</string>
     <string name="no_records_body">لا تحتوي بيانات %1$s المحمّلة على مساجد ضمن %2$s من هذه النقطة. قد تكون البيانات ناقصة.</string>
     <string name="no_records_title">لا توجد مساجد مسجّلة قريبة</string>
+    <string name="no_tray_note">لا توجد منطقة تنبيهات في سطح المكتب هذا، لذلك يُغلَق «أقرب مسجد» عند إغلاق نافذته. أبقِها مفتوحة أو مصغّرة ليصلك الأذان والتذكيرات.</string>
     <string name="notif_iqama_body">حان وقت القيام إلى الصلاة.</string>
     <string name="notif_iqama_title">إقامة صلاة %1$s</string>
     <string name="notif_kahf_title">جمعة مباركة: سورة الكهف</string>
@@ -514,6 +515,8 @@
     <string name="spirit_week">آخر سبعة أيام</string>
     <string name="spirit_week_count">%1$s من %2$s صلاة مسجّلة</string>
     <string name="start_at_login">التشغيل مع ويندوز</string>
+    <string name="start_at_login_linux">التشغيل عند تسجيل الدخول</string>
+    <string name="start_at_login_linux_note">يفتح مصغّرًا عند تسجيل الدخول، فيصلك الأذان والتذكيرات دون أن تفتح التطبيق.</string>
     <string name="start_at_login_note">يعمل في منطقة الإشعارات عند تسجيل الدخول، فيصلك الأذان والتذكير دون فتح التطبيق.</string>
     <string name="start_at_login_store_note">لتشغيل «أقرب مسجد» عند تسجيل الدخول، فعّله من إعدادات ويندوز ← التطبيقات ← بدء التشغيل.</string>
     <string name="stop">إيقاف</string>
