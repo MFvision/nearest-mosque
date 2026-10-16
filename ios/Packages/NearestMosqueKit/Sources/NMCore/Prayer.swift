@@ -114,6 +114,10 @@ public struct Upcoming: Equatable, Sendable {
     public let at: Date
     public let periodStart: Date?
     public let isTomorrow: Bool
+
+    public init(event: PrayerEvent, at: Date, periodStart: Date?, isTomorrow: Bool) {
+        self.event = event; self.at = at; self.periodStart = periodStart; self.isTomorrow = isTomorrow
+    }
 }
 
 public struct PrayerCalculator: Sendable {
