@@ -81,11 +81,22 @@ jobs:
         if: steps.secrets.outputs.sign == 'true'
         env:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
           umask 077
-          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
-          [ -s "$RUNNER_TEMP/upload.jks" ] || { echo "::error::ANDROID_KEYSTORE_BASE64 did not decode to a file."; exit 1; }
-          echo "ANDROID_KEYSTORE_FILE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+          ks="$RUNNER_TEMP/signing.p12"
+          # Pasted secrets often carry line breaks or spaces: keep only the base64 characters.
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | tr -cd 'A-Za-z0-9+/=' | base64 --decode > "$ks" 2>/dev/null || true
+          [ -s "$ks" ] || { echo "::error::ANDROID_KEYSTORE_BASE64 is not base64 of the keystore file (paste the long line from the secrets file, nothing else)."; exit 1; }
+          if ! keytool -list -keystore "$ks" -storepass "$ANDROID_KEYSTORE_PASSWORD" >/dev/null 2>&1; then
+            echo "::error::The keystore does not open with ANDROID_KEYSTORE_PASSWORD: the base64 is incomplete or the password is not the one in the secrets file."; exit 1
+          fi
+          if ! keytool -list -keystore "$ks" -storepass "$ANDROID_KEYSTORE_PASSWORD" -alias "$ANDROID_KEY_ALIAS" >/dev/null 2>&1; then
+            echo "::error::The keystore has no key named by ANDROID_KEY_ALIAS (it should be the alias from the secrets file)."; exit 1
+          fi
+          echo "The keystore opens and has the key."
+          echo "ANDROID_KEYSTORE_FILE=$ks" >> "$GITHUB_ENV"
 
       - name: Build release bundle and APK (versionCode ${{ steps.version.outputs.code }})
         working-directory: android
@@ -125,7 +136,7 @@ jobs:
 
       - name: Remove the decoded keystore
         if: always()
-        run: rm -f "$RUNNER_TEMP/upload.jks"
+        run: rm -f "$RUNNER_TEMP/signing.p12"
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
