@@ -20,6 +20,9 @@ jobs:
   changes:
     name: Decide which platform jobs run
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
     outputs:
       ios: ${{ steps.c.outputs.ios }}
     steps:
@@ -27,9 +30,18 @@ jobs:
         with:
           fetch-depth: 0
       - id: c
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          before="${{ github.event.before }}"
-          if [ "${{ github.event_name }}" != "push" ] || [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$before" 2>/dev/null; then
+          # Compared with the last commit whose iOS build passed, not just the previous push: a run cancelled by a
+          # newer push would otherwise let its iOS changes through unbuilt.
+          before=""
+          for id in $(gh api "repos/${{ github.repository }}/actions/workflows/ci.yml/runs?branch=main&status=success&per_page=30" --jq '.workflow_runs[].id' 2>/dev/null); do
+            if [ "$(gh api "repos/${{ github.repository }}/actions/runs/$id/jobs" --jq '[.jobs[] | select(.name | startswith("iOS app (Xcode")) | .conclusion][0] // ""' 2>/dev/null)" = "success" ]; then
+              before=$(gh api "repos/${{ github.repository }}/actions/runs/$id" --jq .head_sha); break
+            fi
+          done
+          if [ "${{ github.event_name }}" != "push" ] || [ -z "$before" ] || ! git cat-file -e "$before" 2>/dev/null; then
             echo "ios=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
           if git diff --name-only "$before" "${{ github.sha }}" | grep -qE '^(ios/|shared/|packs/|\.github/workflows/ci\.yml)'; then
