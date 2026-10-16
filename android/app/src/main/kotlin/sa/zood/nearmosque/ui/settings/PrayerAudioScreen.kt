@@ -183,6 +183,20 @@ fun PrayerAudioScreen(container: AppContainer, alerts: AlertSettings, reminders:
                 Toggle(stringResource(R.string.adhan_fajr), null, alerts.fajrAdhan) { set(alerts.copy(fajrAdhan = it)) }
                 SourceRow(AdhanSource.MAKKAH, fajr = true)
                 SourceRow(AdhanSource.MADINAH, fajr = true)
+                // The whole Adhan or only its first takbir, for every prayer (Fajr included).
+                Text(stringResource(R.string.adhan_length), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(top = 8.dp))
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(selected = !alerts.shortAdhan, onClick = { set(alerts.copy(shortAdhan = false)) },
+                        label = { Text(stringResource(R.string.adhan_length_full)) })
+                    FilterChip(selected = alerts.shortAdhan, onClick = { set(alerts.copy(shortAdhan = true)) },
+                        label = { Text(stringResource(R.string.adhan_short)) })
+                }
+                if (alerts.shortAdhan) {
+                    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).padding(start = 16.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text(stringResource(R.string.adhan_short), Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
+                        Preview(AudioCatalog.shortAdhan(alerts.adhanSource), stringResource(R.string.adhan_short))
+                    }
+                }
                 Note(stringResource(R.string.adhan_note_android))
 
                 Header(stringResource(R.string.before_section))

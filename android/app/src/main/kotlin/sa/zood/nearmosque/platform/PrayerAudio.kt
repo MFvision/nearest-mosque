@@ -33,6 +33,16 @@ import sa.zood.nearmosque.core.VoiceLanguage
 object AudioCatalog {
     fun adhan(source: AdhanSource, fajr: Boolean) = (if (fajr) "fajr_" else "adhan_") + source.name.lowercase()
 
+    /** The first "Allahu akbar, Allahu akbar" only; the same words at Fajr, so one recording per source. */
+    fun shortAdhan(source: AdhanSource) = "adhan_" + source.name.lowercase() + "_short"
+
+    /** The Adhan for this prayer: the whole one, or with the short Adhan chosen its first takbir (Fajr too). */
+    fun adhan(e: PrayerEvent, a: AlertSettings): String {
+        val fajr = e == PrayerEvent.FAJR
+        val source = if (fajr) a.fajrAdhanSource else a.adhanSource
+        return if (a.shortAdhan) shortAdhan(source) else adhan(source, fajr)
+    }
+
     fun voice(kind: AlertKind, e: PrayerEvent, language: VoiceLanguage): String? {
         val variant = when (kind) {
             AlertKind.BEFORE_10 -> "10"
@@ -48,7 +58,7 @@ object AudioCatalog {
 
     /** The recording for a planned alert, or null for the plain notification sound. */
     fun sound(kind: AlertKind, e: PrayerEvent, a: AlertSettings, voice: VoiceLanguage): String? = when (kind) {
-        AlertKind.ADHAN -> if (e == PrayerEvent.FAJR) adhan(a.fajrAdhanSource, true) else adhan(a.adhanSource, false)
+        AlertKind.ADHAN -> adhan(e, a)
         AlertKind.BEFORE_10, AlertKind.BEFORE_5, AlertKind.NEAR -> voice(kind, e, voice)
         AlertKind.SALAWAT -> salawat(a.reciter)
         AlertKind.QURAN, AlertKind.SLEEP -> evening(a.reciter)

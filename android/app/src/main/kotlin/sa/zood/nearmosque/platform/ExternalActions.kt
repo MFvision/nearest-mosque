@@ -29,6 +29,11 @@ object ExternalActions {
         start(context, Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone.filter { it.isDigit() || it == '+' })))
     }
 
+    /** A new email to [address] in the user's mail app. */
+    fun email(context: Context, address: String) {
+        start(context, Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$address")))
+    }
+
     fun open(context: Context, url: String) {
         // Web pages only, always over HTTPS.
         val u = when {

@@ -39,7 +39,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
+import kotlin.math.abs
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -162,8 +169,12 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
 
     val sky = Sky.of(prayer.sky, sa.zood.nearmosque.ui.theme.LocalDark.current)
     val horizon by animateFloatAsState(tab.horizon, spring(dampingRatio = 0.86f, stiffness = 120f), label = "horizon")
+    val onboard = showOnboarding ?: (prayer.settings?.onboarded == false)
+    // Swiping between the two pages, only while one of them is what is on screen.
+    val swipeOn = tab != Tab.ASK && !showSettings && !onboard
+    val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     CompositionLocalProvider(LocalSky provides sky) {
-        Box(Modifier.fillMaxSize().background(sky.low)) {
+        Box(Modifier.fillMaxSize().background(sky.low).pageSwipe(tab, swipeOn, rtl) { tab = it; under = it }) {
             SkyBackdrop(sky, Modifier.fillMaxSize(), horizon = horizon, skyline = tab == Tab.ASK)
             when (tab) {
                 Tab.PRAYER -> PrayerScreen(
@@ -193,7 +204,6 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
                 QiblaCompassScreen(prayer, compass, aligned, onClose = { showCompass = false })
             }
         }
-        val onboard = showOnboarding ?: (prayer.settings?.onboarded == false)
         AnimatedVisibility(onboard, enter = fadeIn(tween(300)), exit = fadeOut(tween(400))) {
             OnboardingScreen(container, prayerVm, prayer, onPickCity = { showCity = true }, onFinish = { prayerVm.setOnboarded(true) }, startPage = onboardingPage)
         }
@@ -201,6 +211,43 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
         if (showCalc) prayer.settings?.prayer?.let { CalculationSheet(it, prayerVm, onDismiss = { showCalc = false }) }
     }
 }
+
+/**
+ * A sideways swipe between Prayer and Mosques, watched before the page sees it and never consumed, so the
+ * page's own scrolling and the map's panning and pinching carry on as usual. On Prayer a clear sideways
+ * swipe (far enough, and mostly sideways) goes forward to Mosques; on Mosques only a swipe that starts at
+ * the edge it comes back from returns to Prayer, so dragging the map never changes page. Forward follows
+ * the reading direction: right to left in LTR, left to right in RTL. Sheets and dialogs are their own
+ * windows and never reach it.
+ */
+private fun Modifier.pageSwipe(tab: Tab, enabled: Boolean, rtl: Boolean, onSwipe: (Tab) -> Unit): Modifier =
+    if (!enabled) this else pointerInput(tab, rtl) {
+        val far = 90.dp.toPx()
+        val edge = 40.dp.toPx()
+        awaitEachGesture {
+            val down = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
+            // Back to Prayer starts at the leading edge (left in LTR, right in RTL).
+            val atEdge = if (rtl) down.position.x >= size.width - edge else down.position.x <= edge
+            if (tab == Tab.MOSQUES && !atEdge) return@awaitEachGesture
+            var last = down.position
+            while (true) {
+                val event = awaitPointerEvent(PointerEventPass.Initial)
+                // A second finger is a pinch or a zoom, not a page swipe.
+                if (event.changes.size > 1) return@awaitEachGesture
+                val c = event.changes.firstOrNull { it.id == down.id } ?: return@awaitEachGesture
+                last = c.position
+                if (!c.pressed) break
+            }
+            val dx = last.x - down.position.x
+            val dy = last.y - down.position.y
+            if (abs(dx) <= far || abs(dx) <= 2 * abs(dy)) return@awaitEachGesture
+            val forward = if (rtl) dx > 0 else dx < 0
+            when {
+                tab == Tab.PRAYER && forward -> onSwipe(Tab.MOSQUES)
+                tab == Tab.MOSQUES && !forward -> onSwipe(Tab.PRAYER)
+            }
+        }
+    }
 
 /**
  * Floating glass capsule with the two tabs (the selected one sits in a gold glass bubble) and, beside

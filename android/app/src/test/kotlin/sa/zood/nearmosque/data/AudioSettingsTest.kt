@@ -28,7 +28,7 @@ class AudioSettingsTest {
         val file = File.createTempFile("audio", ".preferences_pb").also { it.delete() }
         val set = AlertSettings(
             friday = true, kahf = true, bedtimeMinutes = 22 * 60 + 15,
-            adhan = true, adhanSource = AdhanSource.MADINAH, fajrAdhan = false, fajrAdhanSource = AdhanSource.MAKKAH,
+            adhan = true, adhanSource = AdhanSource.MADINAH, fajrAdhan = false, fajrAdhanSource = AdhanSource.MAKKAH, shortAdhan = true,
             before10 = true, before5 = false, near = true, nearMinutes = 20, voice = VoiceLanguage.ARABIC,
             salawat = true, salawatMinutes = 10 * 60 + 30, quran = false, quranMinutes = 21 * 60, reciter = Reciter.CLASSIC,
         ).withSounds(PrayerEvent.MAGHRIB, PrayerSounds(adhan = false, before10 = true, before5 = true, near = false))
@@ -39,6 +39,12 @@ class AudioSettingsTest {
         first.cancel()
         first.join()
         assertEquals(set, store(file, SupervisorJob()).settings.first().alerts)
+    }
+
+    @Test
+    fun oldSavesKeepTheWholeAdhan() = runBlocking {
+        val file = File.createTempFile("adhan", ".preferences_pb").also { it.delete() }
+        assertEquals(false, store(file, SupervisorJob()).settings.first().alerts.shortAdhan)
     }
 
     @Test

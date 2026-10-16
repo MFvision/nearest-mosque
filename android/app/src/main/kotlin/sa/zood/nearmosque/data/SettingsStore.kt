@@ -93,6 +93,7 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val adhanSource = stringPreferencesKey("audio_adhan_source")
         val fajrAdhan = booleanPreferencesKey("audio_fajr_adhan")
         val fajrAdhanSource = stringPreferencesKey("audio_fajr_adhan_source")
+        val shortAdhan = booleanPreferencesKey("audio_short_adhan")
         val before10 = booleanPreferencesKey("audio_before10")
         val before5 = booleanPreferencesKey("audio_before5")
         val near = booleanPreferencesKey("audio_near")
@@ -155,6 +156,8 @@ class SettingsStore(private val store: DataStore<Preferences>) {
                 adhanSource = enumOr(p[K.adhanSource], AdhanSource.MAKKAH),
                 fajrAdhan = p[K.fajrAdhan] ?: false,
                 fajrAdhanSource = enumOr(p[K.fajrAdhanSource], AdhanSource.MAKKAH),
+                // Saves from before the short Adhan have no key and keep the whole one.
+                shortAdhan = p[K.shortAdhan] ?: false,
                 before10 = p[K.before10] ?: false,
                 before5 = p[K.before5] ?: false,
                 near = p[K.near] ?: false,
@@ -195,6 +198,7 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         p[K.adhanSource] = a.adhanSource.name
         p[K.fajrAdhan] = a.fajrAdhan
         p[K.fajrAdhanSource] = a.fajrAdhanSource.name
+        p[K.shortAdhan] = a.shortAdhan
         p[K.before10] = a.before10
         p[K.before5] = a.before5
         p[K.near] = a.near

@@ -60,6 +60,7 @@ import sa.zood.nearmosque.core.PackError
 import sa.zood.nearmosque.core.PackJson
 import sa.zood.nearmosque.core.PackManifest
 import sa.zood.nearmosque.data.InstalledPackEntity
+import sa.zood.nearmosque.platform.ExternalActions
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.prayer.RadioRow
 import sa.zood.nearmosque.ui.prayer.PrayerUi
@@ -253,6 +254,16 @@ fun SettingsScreen(
 
                 Section(stringResource(R.string.about))
                 Text(stringResource(R.string.version_label, BuildConfig.VERSION_NAME), style = MaterialTheme.typography.bodyMedium)
+                // Who makes the app and how to reach them, as on the store pages and the website.
+                LinkRow(stringResource(R.string.about_publisher), Publisher.NAME) { ExternalActions.open(context, Publisher.COMPANY_URL) }
+                LinkRow(stringResource(R.string.website), Publisher.WEBSITE) { ExternalActions.open(context, Publisher.websiteUrl(lang)) }
+                LinkRow(stringResource(R.string.about_support), Publisher.EMAIL) { ExternalActions.email(context, Publisher.EMAIL) }
+                LinkRow(stringResource(R.string.about_phone), Publisher.PHONE_DISPLAY) { ExternalActions.call(context, Publisher.PHONE) }
+                LinkRow(stringResource(R.string.about_terms), null) { ExternalActions.open(context, Publisher.termsUrl(lang)) }
+                Text(
+                    "© ${Publisher.YEAR} ${Publisher.NAME}. " + stringResource(R.string.about_rights),
+                    Modifier.padding(top = 8.dp), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary,
+                )
                 Spacer(Modifier.height(32.dp))
             }
         }
@@ -266,6 +277,31 @@ fun SettingsScreen(
             confirmButton = { TextButton(onClick = { scope.launch { container.packs.remove(p.id) }; confirmRemove = null }) { Text(stringResource(R.string.remove)) } },
             dismissButton = { TextButton(onClick = { confirmRemove = null }) { Text(stringResource(R.string.cancel)) } },
         )
+    }
+}
+
+/** The publisher's details shown in Settings (the same as on the store pages and nearmosque.net). */
+object Publisher {
+    const val NAME = "AVA ai"
+    const val COMPANY_URL = "https://avaai.sa"
+    const val WEBSITE = "nearmosque.net"
+    const val EMAIL = "app@vision.bz"
+    const val PHONE = "+966579372403"
+    /** Kept left to right inside Arabic text. */
+    const val PHONE_DISPLAY = "\u2066+966 57 937 2403\u2069"
+    const val YEAR = 2026
+
+    /** The site and its terms page, in Arabic for an Arabic interface. */
+    fun websiteUrl(language: String) = "https://nearmosque.net/" + if (language == "ar") "#ar" else ""
+    fun termsUrl(language: String) = "https://nearmosque.net/terms.html" + if (language == "ar") "#ar" else ""
+}
+
+/** A row that opens a web page, an email or a call, with its value (if any) after the title. */
+@Composable
+private fun LinkRow(title: String, value: String?, onClick: () -> Unit) {
+    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically) {
+        Text(title, Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
+        value?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = LocalExtraColors.current.accentText) }
     }
 }
 
