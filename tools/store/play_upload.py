@@ -62,10 +62,11 @@ class Play:
         self.token = token
         self.package = package
 
-    def call(self, method: str, url: str, body: dict | None = None, data: bytes | None = None, timeout: int = 120) -> dict:
+    def call(self, method: str, url: str, body: dict | None = None, data: bytes | None = None, timeout: int = 120,
+             content_type: str = "application/octet-stream") -> dict:
         headers = {"Authorization": "Bearer " + self.token}
         if data is not None:
-            headers["Content-Type"] = "application/octet-stream"
+            headers["Content-Type"] = content_type
         elif body is not None:
             data = json.dumps(body).encode()
             headers["Content-Type"] = "application/json"

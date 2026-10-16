@@ -1,0 +1,70 @@
+name: Google Play store listing
+
+# Reads (check) or replaces (apply) the Google Play listing of every language: title, short and full description
+# (shared/store/play/listing.json) and the icon, feature graphic and phone screenshots built by a run of
+# store-play-assets.yml. Touches no release or track. Needs the PLAY_SERVICE_ACCOUNT_JSON secret
+# (docs/12-google-play.md). Started by hand.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "check (read only) or apply (replace the listing)"
+        type: choice
+        options: [check, apply]
+        default: check
+      assets_run:
+        description: "Run ID of \"Google Play store graphics\" whose graphics to use (apply only)"
+        default: ""
+      locales:
+        description: "Only these Play locales, space-separated (empty: all in listing.json)"
+        default: ""
+      not_for_review:
+        description: "Commit with changesNotSentForReview (only if Play asks for it)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: play-edit
+  cancel-in-progress: false
+
+jobs:
+  listing:
+    name: Store listing (${{ inputs.mode }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - name: Listing text is current
+        run: python3 tools/store/play_listing_build.py --check
+      - name: Graphics from run ${{ inputs.assets_run }}
+        if: inputs.mode == 'apply'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN: ${{ inputs.assets_run }}
+        run: |
+          [ -n "$RUN" ] || { echo "::error::Give assets_run: the run ID of a successful \"Google Play store graphics\" run."; exit 1; }
+          gh run download "$RUN" -R "$GITHUB_REPOSITORY" -n play-store-assets -D "$RUNNER_TEMP/assets"
+          ls "$RUNNER_TEMP/assets" | head -50
+      - name: Google Play
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          PACKAGE_NAME: com.AVA.nearmosque
+          MODE: ${{ inputs.mode }}
+          LOCALES: ${{ inputs.locales }}
+          NOT_FOR_REVIEW: ${{ inputs.not_for_review }}
+        run: |
+          [ -n "$PLAY_SERVICE_ACCOUNT_JSON" ] || { echo "::error::The PLAY_SERVICE_ACCOUNT_JSON repository secret is not set (docs/12-google-play.md)."; exit 1; }
+          python3 -m venv /tmp/play && /tmp/play/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0
+          if [ "$MODE" = apply ]; then
+            /tmp/play/bin/python tools/store/play_listing.py apply "$RUNNER_TEMP/assets"
+          else
+            /tmp/play/bin/python tools/store/play_listing.py check
+          fi
