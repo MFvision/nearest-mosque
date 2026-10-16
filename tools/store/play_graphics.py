@@ -17,7 +17,7 @@ against Google Play's limits, with a manifest.
   eligibility.
 - <lang>/desktop/NN-name.png: the Chromebook (desktop) slot, a maximized desktop window at 2880 x 1620: 4 to 8,
   16:9 (or 9:16), each side 1080 px or more.
-- <lang>/xr/NN-name.png: the Android XR slot, 3840 x 2400 (8:5, Google's recommended size; at least 1920 x 1200),
+- <lang>/xr/NN-name.png: the Android XR slot, 3840 x 2160 (16:9: Play Console rejects other ratios there),
   4 to 8: the app's 1024 x 720 dp panel (as Android XR shows a large-screen app) floating in a calm dusk space
   (xr_scene), drawn here and not imitating any headset's own interface.
 - manifest.json: the files per language and slot, each API slot's Play image type ("playSlots"), the slots the
@@ -79,7 +79,7 @@ GOLD_LIGHT = (0xF2, 0xD2, 0x7A)
 # number Google recommends at 16:9 or 9:16 and 1080 px or more for promotion; the aspect ratios allowed, if fixed;
 # the smallest size (short side, long side)). The 7-inch slot gets the Galaxy Z Fold's inner screen unfolded
 # (1811x2176, not 16:9), the 10-inch slot a 10-inch tablet held sideways (2560x1440), the Chromebook slot a desktop
-# window (2880x1620) and the Android XR slot the app's panel in a space (3840x2400).
+# window (2880x1620) and the Android XR slot the app's panel in a space (3840x2160).
 # Limits: Play Console Help, "Add preview assets to showcase your app"
 # (https://support.google.com/googleplay/android-developer/answer/9866151); image types: AppImageType of the Google
 # Play Developer API v3 (https://developers.google.com/android-publisher/api-ref/rest/v3/AppImageType), which has
@@ -89,11 +89,11 @@ SLOTS = {
     "seven": ("sevenInchScreenshots", "7-inch tablet", 4, 0, None, (320, 320)),
     "ten": ("tenInchScreenshots", "10-inch tablet", 4, 4, None, (320, 320)),
     "desktop": (None, "Chromebook", 4, 4, ((16, 9), (9, 16)), (1080, 1080)),
-    "xr": (None, "Android XR", 4, 0, ((8, 5),), (1200, 1920)),
+    "xr": (None, "Android XR", 4, 0, ((16, 9),), (1080, 1920)),
 }
 MAX_SHOTS, MAX_SIDE, MAX_BYTES = 8, 3840, 8 * 1024 * 1024
-# Android XR: 3840 x 2400, Google's recommended size (8:5).
-XW, XH = 3840, 2400
+# Android XR: 3840 x 2160. Google's help suggests 8:5, but Play Console accepts only 16:9 or 9:16 there.
+XW, XH = 3840, 2160
 
 FW, FH = 1024, 500
 # Key content stays inside this centred box (about 12% in from each side, 8% from top and bottom).
@@ -452,7 +452,7 @@ def xr_scene(app, backdrop):
     """The app window (StoreScreenshotTest's 1024 x 720 dp XR panel) as a panel floating in the backdrop."""
     pw = 2600
     ph = round(pw * app.height / app.width)
-    x, y = (XW - pw) // 2, 190
+    x, y = (XW - pw) // 2, 130
     radius = 80  # about 32 dp at the panel's scale
     img = backdrop.copy()
     panel = app.convert("RGBA").resize((pw, ph), Image.LANCZOS)
