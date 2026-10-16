@@ -667,6 +667,14 @@ def record():
     swipe(w // 2, 8, w // 2, int(h * 0.62), 500, "open the notification shade", hold=3.4, pause=1.2)
     t_shade = EVENTS[-1]["t"]
     stop, _ = find(lambda n: n.pkg == "com.android.systemui" and n.text.lower() == S_STOP.lower(), timeout=4)
+    if not stop and not find(lambda n: n.pkg == "com.android.systemui", timeout=1)[0]:
+        # A swipe from the very top edge is not always taken as opening the shade on the emulator.
+        log("the shade did not open from the swipe; opening it with cmd statusbar")
+        swipe(w // 2, int(h * 0.02) + 30, w // 2, int(h * 0.62), 450, "open the notification shade", hold=1.0, pause=0.8)
+        if not find(lambda n: n.pkg == "com.android.systemui", timeout=2)[0]:
+            sh("cmd statusbar expand-notifications", check=False)
+            time.sleep(1.5)
+        stop, _ = find(lambda n: n.pkg == "com.android.systemui" and n.text.lower() == S_STOP.lower(), timeout=4)
     if not stop:
         expand, _ = find(lambda n: n.pkg == "com.android.systemui" and n.rid == "android:id/expand_button", timeout=2)
         if expand:
