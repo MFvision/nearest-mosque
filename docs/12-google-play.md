@@ -22,7 +22,7 @@ items under "Before the first review" are still open.
    Sign up at play.google.com/console → **Organization**. Developer name, email and phone you enter are shown
    on the Play store page.
 2. **Create the app**: Play Console → **Create app** → app name, default language, **App**, **Free**, accept
-   the declarations. The package name is fixed by the first upload: **`sa.zood.nearmosque`**.
+   the declarations. The package name is fixed by the first upload: **`com.AVA.nearmosque`** (the code namespace stays `sa.zood.nearmosque`).
 3. **Upload key** (on your own computer, once; keep the file and passwords in a password manager and a backup;
    never commit them):
 

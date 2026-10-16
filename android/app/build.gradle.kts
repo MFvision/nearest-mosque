@@ -24,7 +24,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "sa.zood.nearmosque"
+        applicationId = "com.AVA.nearmosque"
         minSdk = 26
         targetSdk = 36
         versionCode = appVersionCode

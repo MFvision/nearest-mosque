@@ -4,16 +4,16 @@
     <shortcut android:shortcutId="qibla" android:enabled="true" android:icon="@drawable/ic_tab_prayer"
         android:shortcutShortLabel="@string/qibla">
         <intent android:action="android.intent.action.VIEW" android:data="nearmosque://qibla"
-            android:targetPackage="sa.zood.nearmosque" android:targetClass="sa.zood.nearmosque.MainActivity" />
+            android:targetPackage="com.AVA.nearmosque" android:targetClass="sa.zood.nearmosque.MainActivity" />
     </shortcut>
     <shortcut android:shortcutId="mosques" android:enabled="true" android:icon="@drawable/ic_tab_mosque"
         android:shortcutShortLabel="@string/tab_mosques">
         <intent android:action="android.intent.action.VIEW" android:data="nearmosque://mosques"
-            android:targetPackage="sa.zood.nearmosque" android:targetClass="sa.zood.nearmosque.MainActivity" />
+            android:targetPackage="com.AVA.nearmosque" android:targetClass="sa.zood.nearmosque.MainActivity" />
     </shortcut>
     <shortcut android:shortcutId="ask" android:enabled="true" android:icon="@drawable/ic_sparkle"
         android:shortcutShortLabel="@string/tab_ask">
         <intent android:action="android.intent.action.VIEW" android:data="nearmosque://ask"
-            android:targetPackage="sa.zood.nearmosque" android:targetClass="sa.zood.nearmosque.MainActivity" />
+            android:targetPackage="com.AVA.nearmosque" android:targetClass="sa.zood.nearmosque.MainActivity" />
     </shortcut>
 </shortcuts>
