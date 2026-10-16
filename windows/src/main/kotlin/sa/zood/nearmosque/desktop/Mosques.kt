@@ -50,7 +50,7 @@ object MosqueFinder {
         val body = "data=" + URLEncoder.encode(OnlineMosques.overpassQuery(center, ONLINE_RADIUS), "UTF-8")
         val req = HttpRequest.newBuilder(URI("https://overpass-api.de/api/interpreter"))
             .timeout(Duration.ofSeconds(25))
-            .header("User-Agent", "NearMosque/0.5 (Windows)")
+            .header("User-Agent", "NearMosque/0.5 (${if (Platform.isLinux) "Linux" else "Windows"})")
             .header("Content-Type", "application/x-www-form-urlencoded")
             .POST(HttpRequest.BodyPublishers.ofString(body)).build()
         val res = http.send(req, HttpResponse.BodyHandlers.ofString())

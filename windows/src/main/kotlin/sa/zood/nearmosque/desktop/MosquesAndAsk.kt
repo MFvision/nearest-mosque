@@ -43,11 +43,9 @@ import sa.zood.nearmosque.core.AnswerKind
 import sa.zood.nearmosque.core.City
 import sa.zood.nearmosque.core.Geo
 import sa.zood.nearmosque.core.SourceChunk
-import java.awt.Desktop
-import java.net.URI
 import kotlin.math.roundToInt
 
-private fun openInBrowser(url: String) = runCatching { Desktop.getDesktop().browse(URI(url)) }
+private fun openInBrowser(url: String) = Platform.open(url)
 
 private fun distanceText(meters: Double): String =
     if (meters < 1000) t("distance_m", meters.roundToInt().toString())

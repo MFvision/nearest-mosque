@@ -1,0 +1,205 @@
+name: Near Mosque for Windows and Linux
+
+# Builds the desktop app (windows/) for both systems, each on its own runner, started by hand:
+#   * Windows: tests, the MSI for PCs, and the MSIX the Microsoft Store takes (once the Partner Center identity is in
+#     the repository variables MSIX_IDENTITY_NAME, MSIX_PUBLISHER and MSIX_PUBLISHER_NAME; the Store signs it on
+#     submission). The MSI is installed on the runner and the installed app started as a check.
+#   * Linux (Ubuntu 22.04, so the .deb's dependencies and glibc suit older systems too): tests, the .deb and one
+#     .AppImage file. The .deb is installed with apt and both are started under a virtual display as a check.
+# With "release" ticked, a last job makes a DRAFT GitHub Release (tag desktop-v<version>) with the MSI, the .deb,
+# the AppImage and SHA256SUMS.txt; nothing is published until someone publishes the draft.
+#
+# The version is 0.5.<run number> (MSI rules: MAJOR.MINOR.BUILD, BUILD at most 65535).
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Make a draft GitHub Release with the MSI, .deb and AppImage
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  APP_VERSION: 0.5.${{ github.run_number }}
+  # appimagetool and the AppImage runtime it embeds, pinned to fixed releases and checked before use. The SHA-256
+  # values were taken from the files downloaded from these exact release URLs on 2026-10-16.
+  APPIMAGETOOL_URL: https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-x86_64.AppImage
+  APPIMAGETOOL_SHA256: ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0
+  APPIMAGE_RUNTIME_URL: https://github.com/AppImage/type2-runtime/releases/download/20251108/runtime-x86_64
+  APPIMAGE_RUNTIME_SHA256: 2fca8b443c92510f1483a883f60061ad09b46b978b2631c807cd873a47ec260d
+
+jobs:
+  windows:
+    name: Windows (tests, MSI, MSIX)
+    runs-on: windows-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: windows
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/wrapper-validation@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+      - name: Tests, app image and MSI
+        run: ./gradlew.bat --no-daemon "-PappVersion=${{ env.APP_VERSION }}" test createDistributable packageMsi
+      - name: MSIX for the Microsoft Store
+        if: vars.MSIX_IDENTITY_NAME != ''
+        shell: pwsh
+        run: >
+          ./msix/build-msix.ps1 -IdentityName "${{ vars.MSIX_IDENTITY_NAME }}" -Publisher "${{ vars.MSIX_PUBLISHER }}"
+          -PublisherName "${{ vars.MSIX_PUBLISHER_NAME }}" -Version "${{ env.APP_VERSION }}.0"
+      - name: Install the MSI and start the installed app for 20 seconds
+        shell: pwsh
+        run: |
+          $msi = Get-ChildItem build/compose/binaries/main/msi/*.msi | Select-Object -First 1
+          $install = Start-Process msiexec.exe -ArgumentList "/i `"$($msi.FullName)`" /qn /norestart /l*v `"$PWD\build\msi-install.log`"" -Wait -PassThru
+          if ($install.ExitCode -ne 0) { Get-Content build/msi-install.log -Tail 60; throw "MSI install failed ($($install.ExitCode))" }
+          $exe = @("$env:ProgramFiles\Near Mosque\Near Mosque.exe", "$env:LOCALAPPDATA\Programs\Near Mosque\Near Mosque.exe") |
+            Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $exe) { throw "Near Mosque.exe not found after installing the MSI" }
+          Write-Host "Installed: $exe"
+          $app = Start-Process -FilePath $exe -PassThru
+          Start-Sleep -Seconds 20
+          if ($app.HasExited) { throw "The installed app quit within 20 s (exit code $($app.ExitCode))" }
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+          $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+          [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+          New-Item -ItemType Directory -Force build/smoke | Out-Null
+          $bmp.Save("$PWD\build\smoke\windows-msi.png")
+          Stop-Process -Id $app.Id -Force
+          Write-Host "Still running after 20 s"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: near-mosque-windows
+          path: |
+            windows/build/compose/binaries/main/msi/*.msi
+            windows/build/msix/*.msix
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: windows-smoke
+          path: |
+            windows/build/smoke/
+            windows/build/shots/
+            windows/build/msi-install.log
+          retention-days: 7
+
+  linux:
+    name: Linux (tests, .deb, AppImage)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: windows
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/wrapper-validation@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+      - name: Packaging and test tools (fakeroot for jpackage, a virtual display and screenshots)
+        run: sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends fakeroot xvfb xauth imagemagick
+      - name: Tests, app image and .deb
+        run: ./gradlew --no-daemon "-PappVersion=$APP_VERSION" test createDistributable packageDeb
+      - name: AppImage
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # The pinned hashes must also match the digests GitHub records for those release assets.
+          for pair in "appimagetool 1.9.1 appimagetool-x86_64.AppImage $APPIMAGETOOL_SHA256" "type2-runtime 20251108 runtime-x86_64 $APPIMAGE_RUNTIME_SHA256"; do
+            set -- $pair
+            digest=$(gh api "repos/AppImage/$1/releases/tags/$2" --jq ".assets[] | select(.name == \"$3\") | .digest" || true)
+            if [ -n "$digest" ] && [ "$digest" != "sha256:$4" ]; then echo "::error::$3 differs from GitHub's digest"; exit 1; fi
+            [ -n "$digest" ] || echo "::notice::GitHub lists no digest for $3; checked against the pinned hash only"
+          done
+          tools="$RUNNER_TEMP/appimage-tools"; mkdir -p "$tools"
+          curl -fsSL --retry 3 -o "$tools/appimagetool" "$APPIMAGETOOL_URL"
+          curl -fsSL --retry 3 -o "$tools/runtime-x86_64" "$APPIMAGE_RUNTIME_URL"
+          printf '%s  %s\n' "$APPIMAGETOOL_SHA256" "$tools/appimagetool" "$APPIMAGE_RUNTIME_SHA256" "$tools/runtime-x86_64" | sha256sum -c -
+          chmod +x "$tools/appimagetool"
+          ./linux/build-appimage.sh "$APP_VERSION" "$tools/appimagetool" "$tools/runtime-x86_64"
+      - name: Install the .deb with apt and start it for 20 seconds
+        run: |
+          sudo apt-get install -y -q "./build/compose/binaries/main/deb/near-mosque_${APP_VERSION}_amd64.deb"
+          dpkg -s near-mosque | grep -E '^(Status|Version):'
+          mkdir -p build/smoke
+          ./linux/smoke-test.sh build/smoke/linux-deb.png "/opt/near-mosque/bin/Near Mosque"
+      - name: Start the AppImage for 20 seconds
+        env:
+          # No FUSE on the runner: the AppImage unpacks itself to a temporary folder and runs from there.
+          APPIMAGE_EXTRACT_AND_RUN: "1"
+        run: ./linux/smoke-test.sh build/smoke/linux-appimage.png "./build/appimage/near-mosque-${APP_VERSION}-x86_64.AppImage"
+      - name: Remove the .deb again
+        run: sudo apt-get remove -y -q near-mosque
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: near-mosque-linux
+          path: |
+            windows/build/compose/binaries/main/deb/*.deb
+            windows/build/appimage/*.AppImage
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: linux-smoke
+          path: |
+            windows/build/smoke/
+            windows/build/shots/
+          retention-days: 7
+
+  release:
+    name: Draft GitHub Release
+    if: inputs.release
+    needs: [windows, linux]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: near-mosque-*
+          path: artifacts
+      - name: Collect the files and their checksums
+        run: |
+          mkdir -p out
+          msi=$(find artifacts -name '*.msi' | head -n 1)
+          deb=$(find artifacts -name '*.deb' | head -n 1)
+          appimage=$(find artifacts -name '*.AppImage' | head -n 1)
+          for f in "$msi" "$deb" "$appimage"; do [ -n "$f" ] || { echo "Missing a package"; find artifacts; exit 1; }; done
+          cp "$msi" "out/near-mosque-$APP_VERSION.msi"
+          cp "$deb" "out/near-mosque_${APP_VERSION}_amd64.deb"
+          cp "$appimage" "out/near-mosque-$APP_VERSION-x86_64.AppImage"
+          (cd out && sha256sum near-mosque* > SHA256SUMS.txt && cat SHA256SUMS.txt)
+      - name: Draft release desktop-v${{ env.APP_VERSION }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<EOF
+          Near Mosque for Windows and Linux, version $APP_VERSION (draft: check, then publish).
+
+          **Windows**: run \`near-mosque-$APP_VERSION.msi\`.
+
+          **Linux (Debian, Ubuntu and similar)**: \`sudo apt install ./near-mosque_${APP_VERSION}_amd64.deb\`, then open
+          Near Mosque from the menu.
+
+          **Linux (any)**: \`chmod +x near-mosque-$APP_VERSION-x86_64.AppImage\` and run it. If it says FUSE is missing,
+          run it with \`--appimage-extract-and-run\`.
+
+          Check a download with \`sha256sum -c SHA256SUMS.txt --ignore-missing\`.
+          Built from ${{ github.sha }}.
+          EOF
+          gh release create "desktop-v$APP_VERSION" --repo "${{ github.repository }}" --draft \
+            --target "${{ github.sha }}" --title "Near Mosque for Windows and Linux $APP_VERSION" \
+            --notes-file notes.md out/*

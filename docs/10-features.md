@@ -5,7 +5,7 @@ with the file each item lives in. Screenshots and where they go are in `09-app-s
 changes, this page is checked again; it is not a promise beyond the current build.
 
 Near Mosque runs on iPhone, iPad, Mac (Mac Catalyst), Apple TV and Apple Vision Pro, all under the one
-bundle ID `sa.zood.nearmosque`, plus Android and Windows. The Apple Watch app (`sa.zood.nearmosque.watchkitapp`)
+bundle ID `sa.zood.nearmosque`, plus Android, Windows and Linux. The Apple Watch app (`sa.zood.nearmosque.watchkitapp`)
 ships inside the iPhone app, in the same listing.
 
 ## Counts at a glance
@@ -333,12 +333,19 @@ WidgetKit complications on watchOS 26, so this needs a test on a real watch firs
 Not on the watch: the library and books, Adhan recordings, the Fajr alarm (AlarmKit is iPhone and iPad
 only), widgets' styles other than the accent colour.
 
-## Android and Windows (brief)
+## Android, Windows and Linux (brief)
 
 * **Android**: the same tabs and Ask; 8 widget kinds (Next prayer, Countdown, Ring, Today, Mosque, Ask,
   Qibla, Actions) in 16 size variants, 3 styles (cream, green, night); app shortcuts Qibla, Mosques, Ask.
-* **Windows**: Prayer, Qibla (from north), Nearest Mosque, Ask, Classical books (opened in the PC's PDF
-  reader) and Settings; stays in the notification area and plays the Adhan and reminders while running.
+* **Windows and Linux** (one app, `windows/`): Prayer, Qibla (from north), Nearest Mosque, Ask, Classical books
+  (opened in the PC's PDF reader) and Settings; stays in the notification area and plays the Adhan and reminders
+  while running. After each Adhan the countdown is to the iqama, then "… prayer has begun", with a notification at
+  the iqama. Settings: language, city, method, Asr, Hijri adjustment (−2…+2), Adhan on/off, Makkah or Madinah for
+  the Adhan and the Fajr Adhan, Full or Short Adhan, each prayer's Adhan, 10 and 5 minutes before (spoken),
+  sunrise, the iqama waits, online mosque search, start at sign-in, and About (publisher, website, support,
+  phone, terms, privacy, version). Opening the app a second time brings the running window forward.
+  Not on the PC: Silent during prayer, the high-latitude and minutes adjustments, salawat, the Qur'an and
+  Friday reminders, the Fajr alarm, widgets.
   * Nearest Mosque: around the chosen city (a PC has no GPS), from the mosque data that comes with the app
     and, with "Search online for mosques" on, OpenStreetMap (the city centre is sent, rounded to about 1 km);
     walking directions open in the browser.
@@ -347,6 +354,10 @@ only), widgets' styles other than the accent colour.
   * Start with Windows: the installed app (MSI) opens in the notification area at sign-in (on by default, a
     switch in Settings); the Microsoft Store version has a startup task the person turns on in Windows
     Settings → Apps → Startup.
+  * Linux: a .deb (`sudo apt install ./near-mosque_*.deb`) and an AppImage. Start at sign-in uses
+    `~/.config/autostart`; notifications go through `notify-send`. On a desktop without a notification area
+    (GNOME by default) closing the window quits the app and a start at sign-in opens it minimized. Details and
+    what has been tested: `05-status.md` §5.6.
 
 ## Privacy (what stays and what goes)
 

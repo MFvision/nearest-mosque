@@ -4,7 +4,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import sa.zood.nearmosque.core.BookCatalog
 import sa.zood.nearmosque.core.BookVolume
-import java.awt.Desktop
 import java.io.File
 import java.net.URI
 import java.net.http.HttpClient
@@ -14,7 +13,7 @@ import java.security.MessageDigest
 
 /**
  * The classical books (shared/content/books-catalog.json): each volume is downloaded once into the app's folder,
- * kept only if its SHA-256 matches the catalog, and opened in the PC's PDF reader.
+ * kept only if its SHA-256 matches the catalog, and opened in the PC's PDF reader (xdg-open on Linux).
  */
 object Books {
     val catalog: BookCatalog by lazy { runCatching { BookCatalog.parse(Strings.resource("books-catalog.json")) }.getOrDefault(BookCatalog.EMPTY) }
@@ -40,7 +39,7 @@ object Books {
             tmp.delete()
             if (!ok) return@withContext false
         }
-        runCatching { Desktop.getDesktop().open(target); true }.getOrDefault(false)
+        Platform.openFile(target)
     }
 
     private fun sha256(f: File): String {

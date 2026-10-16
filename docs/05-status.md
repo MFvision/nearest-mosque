@@ -137,3 +137,40 @@ the App Store Connect API key, and uploaded **version 0.2.0 build 102** of `sa.z
 5. City names are stored in the language active when chosen; re-localize by city id.
 6. Scholar review of the eight common answers and native review of translations.
 7. Pickthall translation source for any commercial release (licensing gate).
+
+## 5.6 Windows and Linux app (`windows/`)
+
+One Compose for Desktop app on the shared Kotlin core (`android/core`), packaged for both systems by
+`.github/workflows/desktop-release.yml` (started by hand; it replaces `windows-release.yml`). The version is
+`0.5.<run number>` (`-PappVersion`, default 0.5.0). With **release** ticked the workflow makes a **draft** GitHub
+Release `desktop-v<version>` with the MSI, the .deb, the AppImage and `SHA256SUMS.txt`.
+
+| Package | Built on | Install |
+|---|---|---|
+| MSI (and the MSIX for the Store once the Partner Center variables are set) | windows-latest | Run the MSI |
+| `near-mosque_<version>_amd64.deb` | ubuntu-22.04 (older glibc and dependency names, so it also installs on newer Ubuntu and Debian) | `sudo apt install ./near-mosque_*.deb`, then Near Mosque in the menu (Utility); the program is `/opt/near-mosque/bin/Near Mosque` |
+| `near-mosque-<version>-x86_64.AppImage` | ubuntu-22.04 (`windows/linux/build-appimage.sh`, appimagetool 1.9.1 and runtime 20251108, both checked by SHA-256) | `chmod +x near-mosque-*.AppImage` and run it; without FUSE, add `--appimage-extract-and-run` |
+
+What differs on Linux, all decided at run time (`Platform.kt`):
+
+* Settings in `~/.config/near-mosque/settings.properties` and downloaded books in `~/.local/share/near-mosque`
+  (or under `$XDG_CONFIG_HOME` / `$XDG_DATA_HOME`). Windows keeps the registry and `%LOCALAPPDATA%\NearMosque`.
+* Start at sign-in: `~/.config/autostart/near-mosque.desktop`, pointing at the installed program or at the
+  AppImage file; the switch is "Start when you sign in".
+* Notification area: used where the desktop has one (KDE, Xfce, Cinnamon, MATE). Where it has none (GNOME by
+  default) the window is the app: closing it quits, a start at sign-in opens it minimized, and Settings says so.
+* Notifications through `notify-send` when it is installed (package `libnotify-bin`), else the tray's, else a
+  line at the top of the window.
+* Links, email and books open with `xdg-open` (a dependency of the .deb).
+* Arabic and the other scripts use the system's fonts (fontconfig); every desktop distribution ships one with
+  Arabic (DejaVu Sans, Noto). A bare system without such a font would show boxes.
+* One copy at a time on both systems: opening the app again brings the running window forward instead of
+  starting a second Adhan.
+
+Checked in this environment (Ubuntu 24.04 container, no real desktop, sound device, tray or notification
+service): 26 desktop tests; `createDistributable`, `packageDeb`, the AppImage; the .deb installed with apt and
+removed again; the installed program, the app image and the AppImage each started under Xvfb and still running
+after 20 s, with Prayer and Settings drawn in English and Arabic (times in Arabic as "2:57 م"). Not yet checked:
+anything on Windows since these changes (the workflow's Windows job builds, installs and starts the MSI), the
+workflow itself, and on a real Linux desktop: the Adhan through the speakers, notifications, the tray on KDE or
+Xfce, the start at sign-in, and Wayland sessions.

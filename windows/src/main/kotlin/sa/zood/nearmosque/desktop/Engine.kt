@@ -86,24 +86,26 @@ object Sound {
         return if (fajr) "fajr_$place" else "adhan_$place"
     }
 
-    /** "Ten minutes remain until …", Arabic for an Arabic interface, English otherwise. */
-    fun reminderFile(event: PrayerEvent, language: String): String =
-        "voice_${if (language == "ar") "ar" else "en"}_${event.name.lowercase()}_10"
+    /** "Ten (or five) minutes remain until …", Arabic for an Arabic interface, English otherwise. */
+    fun reminderFile(event: PrayerEvent, language: String, minutes: Int = 10): String =
+        "voice_${if (language == "ar") "ar" else "en"}_${event.name.lowercase()}_$minutes"
 
+    /** Plays [sound]; without a working sound device (none, or busy) it stays silent and the notification still shows. */
     fun play(sound: String) {
         stop()
         val stream = Sound::class.java.classLoader.getResourceAsStream("sounds/$sound.mp3") ?: return
-        val p = Player(stream.buffered())
+        val p = runCatching { Player(stream.buffered()) }.getOrElse { runCatching { stream.close() }; return }
         player = p
         playing = sound
         Thread {
             runCatching { p.play() }
+            runCatching { p.close() }
             if (player === p) { player = null; playing = null }
         }.apply { isDaemon = true }.start()
     }
 
     fun stop() {
-        player?.close()
+        player?.let { runCatching { it.close() } }
         player = null
         playing = null
     }
@@ -111,7 +113,7 @@ object Sound {
 
 /**
  * Fires the prayer reminders while the app runs (it stays in the notification area when its window is closed):
- * at each prayer a notification and, unless silenced for that prayer, the Adhan; optionally ten minutes before,
+ * at each prayer a notification and, unless silenced for that prayer, the Adhan; optionally ten and five minutes before,
  * at sunrise and (a notification only, no sound) at each iqama. Checked every 15 seconds against freshly computed times, so a sleep or clock change is caught up.
  */
 class Reminders(private val notify: (String, String) -> Unit) {
@@ -126,11 +128,11 @@ class Reminders(private val notify: (String, String) -> Unit) {
                 if (s.sunrise) fire("${today.date}-$e", at, now) { notify(t("notif_sunrise_title"), clockText(at, clock.zone)) }
                 continue
             }
-            if (s.before10) {
-                val early = at.minusSeconds(600)
-                fire("${today.date}-$e-10", early, now) {
-                    notify(t(prayerKey(e)), t("notif_minutes_until", 10, t(prayerKey(e))))
-                    if (s.adhan && e !in s.silent) Sound.play(Sound.reminderFile(e, s.language))
+            for ((on, minutes) in listOf(s.before10 to 10, s.before5 to 5)) {
+                if (!on) continue
+                fire("${today.date}-$e-$minutes", at.minusSeconds(minutes * 60L), now) {
+                    notify(t(prayerKey(e)), t("notif_minutes_until", minutes, t(prayerKey(e))))
+                    if (s.adhan && e !in s.silent) Sound.play(Sound.reminderFile(e, s.language, minutes))
                 }
             }
             fire("${today.date}-$e", at, now) {

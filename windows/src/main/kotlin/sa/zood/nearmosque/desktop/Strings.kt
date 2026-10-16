@@ -30,8 +30,15 @@ object Strings {
 
     val isRtl: Boolean get() = languages.firstOrNull { it.code == language }?.rtl == true
 
+    /**
+     * Desktop texts not yet in shared/i18n/strings.json, in English and Arabic (other languages read English).
+     * Once the shared file has a key, its translations are used instead of these.
+     */
+    internal val pending: Map<String, Map<String, String>> = mapOf(
+    )
+
     fun t(key: String, vararg args: Any): String {
-        val row = table[key] ?: return key
+        val row = table[key] ?: pending[key] ?: return key
         val s = row[language] ?: row["en"] ?: key
         return if (args.isEmpty()) s else runCatching { String.format(s, *args) }.getOrDefault(s)
     }

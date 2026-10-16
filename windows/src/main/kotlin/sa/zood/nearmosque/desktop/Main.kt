@@ -84,25 +84,55 @@ internal val Muted = Color(0xFFAEB7C7)
 private enum class Screen { PRAYER, QIBLA, MOSQUES, ASK, BOOKS, SETTINGS }
 
 /**
- * Near Mosque for Windows. Closing the window keeps the app in the notification area so the Adhan and reminders
- * still come; Quit in the tray menu ends it.
+ * Near Mosque for Windows and Linux. Closing the window keeps the app in the notification area so the Adhan and
+ * reminders still come; Quit in the tray menu ends it. On a desktop with no notification area (GNOME, for one)
+ * the window is the app: closing it quits, and at sign-in it starts minimized instead of hidden.
  */
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) {
+    val minimized = "--minimized" in args
+    val instance = SingleInstance(Store.dataDir)
+    if (!instance.acquire()) {
+        // Already running (perhaps since sign-in): bring its window up instead of a second Adhan.
+        if (!minimized) instance.askToShow()
+        return
+    }
+    app(minimized, instance)
+}
+
+private fun app(minimized: Boolean, instance: SingleInstance) = application {
     var settings by remember { mutableStateOf(Store.load().also { Strings.language = it.language }) }
     var city by remember { mutableStateOf(Cities.byId(settings.cityId) ?: Cities.guess()) }
-    // Started by Windows at sign-in: stay in the notification area until the person opens the window.
-    var visible by remember { mutableStateOf("--minimized" !in args) }
+    val hasTray = Platform.hasTray
+    // Started at sign-in: stay in the notification area until the person opens the window (no tray: minimized).
+    var visible by remember { mutableStateOf(!minimized || !hasTray) }
+    // Bumped when another copy asks for the window, to bring it to the front.
+    var raise by remember { mutableStateOf(0) }
     val clock = remember(city, settings) { city?.let { Clock(it, settings) } }
     val tray = rememberTrayState()
-    val reminders = remember { Reminders { title, body -> tray.sendNotification(Notification(title, body)) } }
+    // The last notification, shown inside the window when the desktop has no way to show it.
+    var banner by remember { mutableStateOf<String?>(null) }
+    val reminders = remember {
+        Reminders { title, body ->
+            val inApp = { banner = "$title · $body" }
+            when (Platform.route) {
+                Platform.Route.TRAY -> tray.sendNotification(Notification(title, body))
+                Platform.Route.NOTIFY_SEND -> Platform.notifySend(title, body) {
+                    if (hasTray) tray.sendNotification(Notification(title, body)) else inApp()
+                }
+                Platform.Route.IN_APP -> inApp()
+            }
+        }
+    }
     var now by remember { mutableStateOf(Instant.now()) }
 
-    // Keep the "Start with Windows" entry in step with the setting (the installer may have moved the app).
+    // Keep the start-at-sign-in entry in step with the setting (the installer may have moved the app).
     LaunchedEffect(Unit) { Startup.set(settings.startAtLogin) }
     LaunchedEffect(Unit) {
         while (true) {
             now = Instant.now()
-            reminders.tick(clock, settings, now)
+            // A slip in one tick (a broken sound device, a notification that cannot show) never stops the next.
+            runCatching { reminders.tick(clock, settings, now) }
+            if (instance.takeShowRequest()) { visible = true; raise++ }
             delay(1_000)
         }
     }
@@ -114,25 +144,36 @@ fun main(args: Array<String>) = application {
         Store.save(s)
     }
 
-    Tray(
-        icon = painterResource("icon.png"),
-        state = tray,
-        tooltip = trayStatus(clock, now),
-        onAction = { visible = true },
-        menu = {
-            Item(t("tab_prayer"), onClick = { visible = true })
-            Item(t("stop"), onClick = { Sound.stop() })
-            Item(t("close"), onClick = ::exitApplication)
-        },
-    )
+    if (hasTray) {
+        Tray(
+            icon = painterResource("icon.png"),
+            state = tray,
+            tooltip = trayStatus(clock, now),
+            onAction = { visible = true; raise++ },
+            menu = {
+                Item(t("tab_prayer"), onClick = { visible = true; raise++ })
+                Item(t("stop"), onClick = { Sound.stop() })
+                Item(t("close"), onClick = ::exitApplication)
+            },
+        )
+    }
 
     if (visible) {
+        // Without a tray, a start at sign-in shows the window minimized (the only copy, so it is never re-created).
+        val windowState = rememberWindowState(size = DpSize(980.dp, 680.dp), isMinimized = minimized && !hasTray)
         Window(
-            onCloseRequest = { visible = false },
+            onCloseRequest = { if (hasTray) visible = false else exitApplication() },
             title = t("app_name"),
             icon = painterResource("icon.png"),
-            state = rememberWindowState(size = DpSize(980.dp, 680.dp)),
+            state = windowState,
         ) {
+            LaunchedEffect(raise) {
+                if (raise > 0) {
+                    windowState.isMinimized = false
+                    window.toFront()
+                    window.requestFocus()
+                }
+            }
             MaterialTheme(colorScheme = darkColorScheme(primary = Gold, background = Navy, surface = Card, onSurface = Ink)) {
                 CompositionLocalProvider(LocalLayoutDirection provides if (Strings.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                     AppScreen(
@@ -142,6 +183,8 @@ fun main(args: Array<String>) = application {
                         now = now,
                         onCity = { c -> city = c; update(settings.copy(cityId = c.id)) },
                         onSettings = ::update,
+                        banner = banner,
+                        onDismissBanner = { banner = null },
                     )
                 }
             }
@@ -150,7 +193,10 @@ fun main(args: Array<String>) = application {
 }
 
 @Composable
-internal fun AppScreen(settings: DesktopSettings, city: City?, clock: Clock?, now: Instant, onCity: (City) -> Unit, onSettings: (DesktopSettings) -> Unit) {
+internal fun AppScreen(
+    settings: DesktopSettings, city: City?, clock: Clock?, now: Instant, onCity: (City) -> Unit, onSettings: (DesktopSettings) -> Unit,
+    banner: String? = null, onDismissBanner: () -> Unit = {},
+) {
     var screen by remember { mutableStateOf(Screen.PRAYER) }
     var picking by remember { mutableStateOf(city == null) }
     Row(Modifier.fillMaxSize().background(Navy)) {
@@ -163,8 +209,16 @@ internal fun AppScreen(settings: DesktopSettings, city: City?, clock: Clock?, no
                 NavigationRailItem(selected = screen == s, onClick = { screen = s }, icon = { Text(railIcon(s), fontSize = 20.sp) }, label = { Text(t(key), fontSize = 11.sp) })
             }
         }
-        Box(Modifier.fillMaxSize().padding(24.dp)) {
-            when {
+        Column(Modifier.fillMaxSize().padding(24.dp)) {
+            if (banner != null) {
+                Surface(color = Card, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+                    Row(Modifier.padding(start = 16.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text(banner, color = Gold, modifier = Modifier.weight(1f))
+                        TextButton(onClick = onDismissBanner) { Text("×", color = Muted, fontSize = 18.sp) }
+                    }
+                }
+            }
+            Box(Modifier.fillMaxSize()) { when {
                 picking || clock == null -> CityPicker(onPick = { onCity(it); picking = false })
                 screen == Screen.PRAYER -> PrayerScreen(clock, now, onChangeCity = { picking = true })
                 screen == Screen.QIBLA -> QiblaScreen(clock.city)
@@ -172,7 +226,7 @@ internal fun AppScreen(settings: DesktopSettings, city: City?, clock: Clock?, no
                 screen == Screen.ASK -> AskScreen()
                 screen == Screen.BOOKS -> BooksScreen()
                 else -> SettingsScreen(settings, clock, onSettings, onChangeCity = { picking = true })
-            }
+            } }
         }
     }
 }
@@ -319,6 +373,8 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
             t("asr_standard") to { onChange(s.copy(madhab = AsrMadhab.SHAFI)) },
             t("asr_hanafi") to { onChange(s.copy(madhab = AsrMadhab.HANAFI)) },
         ))
+        Choice(t("hijri_adjustment"), days(s.hijriAdjustment), (-2..2).map { d -> days(d) to { onChange(s.copy(hijriAdjustment = d)) } })
+        Text(t("hijri_calendar_note"), color = Muted, fontSize = 13.sp)
         Text(t("adhan_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Toggle(t("play_adhan"), s.adhan) { onChange(s.copy(adhan = it)) }
         Choice(t("adhan_full"), sourceName(s.adhanSource), AdhanSource.entries.map { a -> sourceName(a) to { onChange(s.copy(adhanSource = a)) } })
@@ -332,6 +388,7 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
             Toggle(t(prayerKey(e)), e !in s.silent) { on -> onChange(s.copy(silent = if (on) s.silent - e else s.silent + e)) }
         }
         Toggle(t("before10"), s.before10) { onChange(s.copy(before10 = it)) }
+        Toggle(t("before5"), s.before5) { onChange(s.copy(before5 = it)) }
         Toggle(t("sunrise_notify"), s.sunrise) { onChange(s.copy(sunrise = it)) }
         Text(t("iqama_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Toggle(t("iqama_show"), s.iqama.enabled) { onChange(s.copy(iqama = s.iqama.copy(enabled = it))) }
@@ -347,11 +404,13 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
         Toggle(t("online_search"), s.onlineSearch) { onChange(s.copy(onlineSearch = it)) }
         Text(t("online_search_body"), color = Muted, fontSize = 13.sp)
         if (Startup.available) {
-            Toggle(t("start_at_login"), s.startAtLogin) { onChange(s.copy(startAtLogin = it)) }
-            Text(t("start_at_login_note"), color = Muted, fontSize = 13.sp)
+            val linux = Platform.isLinux
+            Toggle(t(if (linux) "start_at_login_linux" else "start_at_login"), s.startAtLogin) { onChange(s.copy(startAtLogin = it)) }
+            Text(t(if (linux && !Platform.hasTray) "start_at_login_linux_note" else "start_at_login_note"), color = Muted, fontSize = 13.sp)
         } else if (Startup.isStorePackage) {
             Text(t("start_at_login_store_note"), color = Muted, fontSize = 13.sp)
         }
+        if (Platform.isLinux && !Platform.hasTray) Text(t("no_tray_note"), color = Muted, fontSize = 13.sp)
         // Who makes the app and how to reach them, as on the store pages and nearmosque.net.
         Text(t("about"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         val ar = Strings.language == "ar"
@@ -360,6 +419,8 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
         LinkRow(t("about_support"), Publisher.EMAIL, "mailto:" + Publisher.EMAIL)
         LinkRow(t("about_phone"), Publisher.PHONE_DISPLAY, "tel:" + Publisher.PHONE)
         LinkRow(t("about_terms"), "nearmosque.net", "https://nearmosque.net/terms.html" + if (ar) "#ar" else "")
+        LinkRow(t("privacy"), "nearmosque.net", "https://nearmosque.net/privacy.html" + if (ar) "#ar" else "")
+        appVersion?.let { Text(t("version_label", it), color = Muted, fontSize = 13.sp) }
         Text("© ${Publisher.YEAR} ${Publisher.NAME}. " + t("about_rights"), color = Muted, fontSize = 13.sp)
     }
 }
@@ -381,16 +442,20 @@ private object Publisher {
 private fun LinkRow(label: String, value: String, url: String) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Text(label, color = Ink, modifier = Modifier.weight(1f))
-        TextButton(onClick = {
-            runCatching {
-                val d = java.awt.Desktop.getDesktop()
-                if (url.startsWith("mailto:")) d.mail(java.net.URI(url)) else d.browse(java.net.URI(url))
-            }
-        }) { Text(value, color = Gold) }
+        TextButton(onClick = { Platform.open(url) }) { Text(value, color = Gold) }
     }
 }
 
+/** The app's version (written into the app's resources by the build). */
+internal val appVersion: String? by lazy {
+    runCatching { Strings.resource("version.txt").trim() }.getOrNull()?.takeIf { it.isNotEmpty() }
+        ?: System.getProperty("jpackage.app-version")
+}
+
 private fun minutes(m: Int) = t("minutes_value", m)
+
+/** A Hijri adjustment: "0", "+1", "−2" (kept left to right in Arabic). */
+private fun days(d: Int) = "\u2066" + (if (d > 0) "+$d" else if (d < 0) "−${-d}" else "0") + "\u2069"
 
 private fun sourceName(a: AdhanSource) = t(if (a == AdhanSource.MADINAH) "source_madinah" else "source_makkah")
 
