@@ -16,6 +16,7 @@ always opens, and is useful, with neither.
 | Mosque compass (direction and distance to each mosque) | Location + heading sensors | **Yes** | North-up when there is no live heading. |
 | Live street map | Internet for map images: Apple Maps (iOS, MapKit), OpenFreeMap vector tiles (Android, MapLibre) | No | Pins and the list stay; the compass view needs no map. |
 | Walking route and time (iOS) | Internet (Apple Maps directions) | No | Straight-line distance only. |
+| Sky follows the weather (optional, off by default) | Internet; MET Norway | No | The normal time-of-day sky, silently; data older than 3 h is never shown. |
 | Turn-by-turn navigation | External maps app + its road data | **Outside this app's guarantee** | The app opens Apple Maps / Google Maps / any `geo:` handler. |
 | Call a mosque / open its website | Telephony / internet | No (website) | Buttons shown only when the record has the field. |
 | Ask AI: cited search, common questions, reader | Installed book pack (starter pack bundled) | **Yes, always** | "I couldn't find this in your books" — never a guessed answer. |

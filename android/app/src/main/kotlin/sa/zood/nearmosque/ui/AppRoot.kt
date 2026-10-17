@@ -73,6 +73,8 @@ import sa.zood.nearmosque.ui.ask.AskScreen
 import sa.zood.nearmosque.ui.ask.AskViewModel
 import sa.zood.nearmosque.ui.glass.SkyBackdrop
 import sa.zood.nearmosque.ui.glass.glass
+import sa.zood.nearmosque.ui.glass.under as underWeather
+import androidx.lifecycle.repeatOnLifecycle
 import sa.zood.nearmosque.ui.mosques.MosquesScreen
 import sa.zood.nearmosque.ui.mosques.MosquesViewModel
 import sa.zood.nearmosque.ui.onboarding.OnboardingScreen
@@ -167,7 +169,29 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
 
     BackHandler(enabled = tab != Tab.PRAYER && !showSettings) { tab = if (tab == Tab.ASK) under else Tab.PRAYER }
 
-    val sky = Sky.of(prayer.sky, sa.zood.nearmosque.ui.theme.LocalDark.current)
+    // Sky follows the weather (opt-in): the prayer city's weather veils the sky, and LocalSky carries the veiled
+    // colours, so the glass, the ink and the compact bar follow. Silent fallback to the normal sky.
+    val sky = Sky.of(prayer.sky, sa.zood.nearmosque.ui.theme.LocalDark.current).underWeather(prayer.weather)
+    // Asked only while the app is on screen (MET's terms for mobile apps: no background fetching), at once when
+    // the switch is turned on or the city changes (the core keeps 60 s between requests), then when the cache
+    // allows. Turning the switch off forgets the forecast. Unknown settings (still loading) change nothing. Only a
+    // city's coordinates are sent: with "Use my location", the city near the device, and none without one.
+    val weatherOn = prayer.settings?.skyWeather
+    val weatherPlace = prayer.location?.weatherLocation
+    val weatherKey = weatherPlace?.let(sa.zood.nearmosque.core.Weather::key)
+    val lifecycle = androidx.lifecycle.compose.LocalLifecycleOwner.current.lifecycle
+    LaunchedEffect(weatherOn, weatherKey) {
+        when {
+            weatherOn == null -> Unit
+            !weatherOn -> container.weather.clear()
+            weatherPlace != null -> lifecycle.repeatOnLifecycle(androidx.lifecycle.Lifecycle.State.STARTED) {
+                while (true) {
+                    container.weather.refreshIfDue(weatherPlace)
+                    kotlinx.coroutines.delay(container.weather.millisUntilDue(weatherPlace))
+                }
+            }
+        }
+    }
     val horizon by animateFloatAsState(tab.horizon, spring(dampingRatio = 0.86f, stiffness = 120f), label = "horizon")
     val onboard = showOnboarding ?: (prayer.settings?.onboarded == false)
     // Swiping between the two pages, only while one of them is what is on screen.
@@ -175,7 +199,7 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
     val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     CompositionLocalProvider(LocalSky provides sky) {
         Box(Modifier.fillMaxSize().background(sky.low).pageSwipe(tab, swipeOn, rtl) { tab = it; under = it }) {
-            SkyBackdrop(sky, Modifier.fillMaxSize(), horizon = horizon, skyline = tab == Tab.ASK)
+            SkyBackdrop(sky, Modifier.fillMaxSize(), horizon = horizon, skyline = tab == Tab.ASK, weather = prayer.weather)
             when (tab) {
                 Tab.PRAYER -> PrayerScreen(
                     prayerVm, prayer, compass, aligned,
@@ -196,6 +220,7 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
                 container, prayer, onPickCity = { showCity = true }, onOpenCalculation = { showCalc = true },
                 onReplayTour = { showSettings = false; prayerVm.setOnboarded(false) },
                 onOnlineSearch = prayerVm::setOnlineSearch,
+                onSkyWeather = prayerVm::setSkyWeather,
                 onClose = { showSettings = false },
             )
         }

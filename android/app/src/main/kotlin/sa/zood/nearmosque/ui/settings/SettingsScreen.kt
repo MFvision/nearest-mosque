@@ -5,6 +5,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.Column
@@ -85,6 +86,7 @@ fun SettingsScreen(
     onOpenCalculation: () -> Unit,
     onReplayTour: () -> Unit,
     onOnlineSearch: (Boolean) -> Unit,
+    onSkyWeather: (Boolean) -> Unit,
     onClose: () -> Unit,
 ) {
     BackHandler(onBack = onClose)
@@ -153,6 +155,24 @@ fun SettingsScreen(
                     sa.zood.nearmosque.Appearance.DARK to R.string.appearance_dark,
                 ).forEach { (mode, label) ->
                     RadioRow(stringResource(label), appearance == mode) { sa.zood.nearmosque.Appearance.set(context, mode) }
+                }
+                // Sky follows the weather (opt-in, off by default), with what it sends and the credit MET Norway's licence asks for.
+                val skyWeather = prayer.settings?.skyWeather == true
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                        .toggleable(skyWeather, role = androidx.compose.ui.semantics.Role.Switch, onValueChange = onSkyWeather),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(stringResource(R.string.sky_weather), Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
+                    androidx.compose.material3.Switch(checked = skyWeather, onCheckedChange = null)
+                }
+                Text(stringResource(R.string.sky_weather_note), style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                        .clickable(role = androidx.compose.ui.semantics.Role.Button) { ExternalActions.open(context, sa.zood.nearmosque.core.Weather.ATTRIBUTION_URL) },
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(stringResource(R.string.sky_weather_attribution), style = MaterialTheme.typography.bodyMedium, color = LocalExtraColors.current.accentText)
                 }
 
                 Section(stringResource(R.string.app_style_title))
@@ -248,6 +268,10 @@ fun SettingsScreen(
                 Text("Adhan (MIT) · Batoul Apps; MapLibre Android (BSD-2-Clause)", style = MaterialTheme.typography.bodySmall)
                 Text("Search model: static-similarity-mrl-multilingual-v1 · sentence-transformers (Apache-2.0), reduced to 256 dimensions", style = MaterialTheme.typography.bodySmall)
                 Text(stringResource(R.string.map_attribution_ofm), style = MaterialTheme.typography.bodySmall)
+                Text(
+                    sa.zood.nearmosque.core.Weather.CREDIT, style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.clickable { ExternalActions.open(context, sa.zood.nearmosque.core.Weather.ATTRIBUTION_URL) },
+                )
 
                 Section(stringResource(R.string.privacy))
                 Text(stringResource(R.string.privacy_body), style = MaterialTheme.typography.bodyMedium)

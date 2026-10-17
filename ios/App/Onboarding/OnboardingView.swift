@@ -383,6 +383,20 @@ private struct SetupPage: View {
                 }
                 if let error { Text(error).font(.footnote).foregroundStyle(Color(hex: 0xF2B8B5)) }
                 Text(l10n.t("online_search_body")).font(.footnote).foregroundStyle(Theme.ink.opacity(0.75))
+                // Sky follows the weather: offered here, off until turned on, after the mosque search note (which
+                // belongs to the location buttons above). Once a city is chosen the sky behind this page shows the
+                // weather at once, as a preview.
+                VStack(alignment: .leading, spacing: 6) {
+                    Toggle(isOn: Binding(get: { model.settings.skyWeather }, set: { model.settings.skyWeather = $0 })) {
+                        Text(l10n.t("sky_weather")).font(.headline)
+                    }
+                    .tint(Theme.gold)
+                    Text(l10n.t("onb_weather_body")).font(.footnote).foregroundStyle(Theme.ink.opacity(0.8))
+                        .fixedSize(horizontal: false, vertical: true)
+                    Link(l10n.t("sky_weather_attribution"), destination: URL(string: Weather.attributionURL)!)
+                        .font(.caption).foregroundStyle(Theme.accent)
+                }
+                .glassCard(padding: 16, cornerRadius: 20)
             }
             .padding(.horizontal, 24)
             .padding(.top, 8)

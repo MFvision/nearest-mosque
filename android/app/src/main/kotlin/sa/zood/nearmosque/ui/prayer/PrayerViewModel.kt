@@ -58,6 +58,8 @@ data class PrayerUi(
     val arc: DayArc? = null,
     /** Nearest downloaded mosque to the phone (or to the prayer city). */
     val nearestMosque: sa.zood.nearmosque.core.RankedMosque? = null,
+    /** The prayer city's weather for the sky, when "Sky follows the weather" is on and a recent forecast is cached. */
+    val weather: sa.zood.nearmosque.core.WeatherNow? = null,
 )
 
 sealed interface LocateState {
@@ -83,7 +85,10 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
     private val nearest = MutableStateFlow<sa.zood.nearmosque.core.RankedMosque?>(null)
     private var nearestKey: String? = null
 
-    val ui: StateFlow<PrayerUi> = combine(c.settings.settings, ticker, nearest) { s, now, n -> build(s, now).copy(nearestMosque = n) }
+    // Re-read every tick: the weather falls back to the normal sky by itself once the forecast is too old.
+    val ui: StateFlow<PrayerUi> = combine(c.settings.settings, ticker, nearest, c.weather.cache) { s, now, n, wc ->
+        build(s, now).copy(nearestMosque = n, weather = weatherNow(s, wc, now))
+    }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), PrayerUi())
 
     /** Looks up the nearest downloaded mosque when the phone (or the prayer city) has moved ~100 m. */
@@ -153,9 +158,12 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
         val resolver = c.cities.timeZones()
         val zone = withContext(Dispatchers.Default) { resolver.resolve(fix.location, ZoneId.systemDefault()) }
         val s = c.settings.settings.first()
-        val name = zone.nearestCity?.takeIf { (zone.distanceMeters ?: Double.MAX_VALUE) < 30_000 }?.name ?: nameForCurrent
+        val near = zone.nearestCity?.takeIf { (zone.distanceMeters ?: Double.MAX_VALUE) < 30_000 }
         c.settings.setPrayerLocation(
-            PrayerLocation(name, fix.location, zone.zoneId, zone.nearestCity?.countryCode, PrayerLocation.Source.DEVICE, zoneConfirmed = !zone.needsConfirmation),
+            PrayerLocation(
+                near?.name ?: nameForCurrent, fix.location, zone.zoneId, zone.nearestCity?.countryCode, PrayerLocation.Source.DEVICE,
+                zoneConfirmed = !zone.needsConfirmation, nearCity = near?.location,
+            ),
             follow = true,
         )
         if (!s.methodChosenByUser) c.settings.setMethod(PrayerCalculator.suggestedMethod(zone.nearestCity?.countryCode), byUser = false)
@@ -174,6 +182,7 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
 
     fun setOnboarded(on: Boolean) = viewModelScope.launch { c.settings.setOnboarded(on) }
     fun setOnlineSearch(on: Boolean) = viewModelScope.launch { c.settings.setOnlineSearch(on) }
+    fun setSkyWeather(on: Boolean) = viewModelScope.launch { c.settings.setSkyWeather(on) }
 
     fun clearLocateState() { _locate.value = LocateState.Idle }
 
@@ -195,6 +204,16 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
     }
 
     companion object {
+        /**
+         * What the sky shows: only with the switch on, for the prayer city (with "Use my location", the city near
+         * the device: PrayerLocation.weatherLocation), from a cache MET confirmed recently.
+         */
+        fun weatherNow(s: AppSettings, cache: sa.zood.nearmosque.core.WeatherCache?, now: Instant): sa.zood.nearmosque.core.WeatherNow? {
+            val place = s.prayerLocation?.weatherLocation ?: return null
+            if (!s.skyWeather) return null
+            return sa.zood.nearmosque.core.Weather.now(cache, sa.zood.nearmosque.core.Weather.key(place), now)
+        }
+
         fun dateOf(instant: Instant, zone: ZoneId): LocalDate = instant.atZone(zone).toLocalDate()
         fun isSameLocation(a: LatLng?, b: LatLng?) = a == b
     }

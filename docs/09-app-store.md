@@ -301,6 +301,27 @@ In App Store Connect (API: `appStoreVersionLocalizations`, fields `description`,
 same locale as its screenshots. The app's name is not in the file: keep the name the listing already has.
 English and Arabic are final; the other languages are drafts until a native speaker has read them.
 
+## App Privacy (the privacy label)
+
+Before "Sky follows the weather" the label was **Data Not Collected**: `ios/App/PrivacyInfo.xcprivacy` declared
+no collected data types, and Apple Maps is Apple's own service. With the switch on (it is off by default), the
+app sends the prayer city's coordinates rounded to about 1 km to MET Norway (with "Use my location", the nearest
+bundled city within 30 km), a third party whose server logs may keep them longer than the request itself, and it
+does so on its own about every half hour while the app is open. The exemption for optional data the user enters
+each time does not fit. The conservative answer, recommended here, is an owner or legal decision:
+
+* App Store Connect → App Privacy: **Location → Coarse Location**, not linked to the user, not used for
+  tracking, purpose **App Functionality**. The label then reads "Data Not Linked to You: Location".
+* The matching entry in `PrivacyInfo.xcprivacy` → `NSPrivacyCollectedDataTypes`:
+  `NSPrivacyCollectedDataTypeCoarseLocation`, linked `false`, tracking `false`, purpose
+  `NSPrivacyCollectedDataTypePurposeAppFunctionality`. `NSPrivacyTracking` stays `false` and
+  `NSPrivacyTrackingDomains` empty. No new required-reason API: the weather cache is plain file I/O, and file
+  timestamps are already declared (C617.1).
+* The manifest entry is in place (so no build ships saying nothing is collected). Before the build that brings
+  the feature is submitted, change the App Store Connect answer to match, and the Google Play Data safety form
+  (`12-google-play.md`); `website/privacy.html` is already updated. If the owner decides against declaring it,
+  remove the manifest entry in the same change.
+
 ## What has no screenshot slot
 
 * **App icons** come from the build, not from the listing. `icons/` holds them for reference (website,

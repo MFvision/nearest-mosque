@@ -11,8 +11,9 @@ struct PrayerHero: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.colorScheme) private var scheme
     @Environment(\.layoutDirection) private var direction
+    /// The sky behind (veiled when "Sky follows the weather" shows clouds or rain).
+    @Environment(\.sky) private var sky
     /// The big time grows with the text-size setting (and still fits the arc: minimumScaleFactor).
     @ScaledMetric(relativeTo: .largeTitle) private var timeSize: CGFloat = 60
     let snap: PrayerSnapshot
@@ -25,17 +26,23 @@ struct PrayerHero: View {
     var onNearest: (RankedMosque) -> Void
 
     var body: some View {
+        let weather = model.skyWeather(now: snap.now)
         VStack(spacing: 6) {
-            HStack {
+            HStack(alignment: .top) {
                 Color.clear.frame(width: 44, height: 44)
                 Spacer()
-                LocationPill(name: snap.location?.name ?? l10n.t("choose_city_title"), action: onLocation)
+                VStack(spacing: 3) {
+                    LocationPill(name: snap.location?.name ?? l10n.t("choose_city_title"), action: onLocation)
+                    // Sky follows the weather: the temperature and the wind, only when there is recent data.
+                    if let weather { WeatherLine(w: weather, city: snap.location?.name) }
+                }
+                .animation(.easeInOut(duration: 0.6), value: weather == nil)
                 Spacer()
                 GlassIconButton(systemImage: "gearshape", label: l10n.t("settings"), action: onSettings)
             }
             .padding(.top, 4)
 
-            QiblaArc(angle: dotAngle, mode: arcMode, aligned: aligned, light: light,
+            QiblaArc(angle: dotAngle, mode: arcMode, aligned: aligned, light: light(WeatherLook.of(weather?.symbol).glowStrength),
                      kaabaDistance: snap.qiblaDistance.map { l10n.t("qibla_distance", Format.distance($0, l10n: l10n)) },
                      nearest: model.nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) },
                      onNearest: { if let n = model.nearestMosque { onNearest(n) } }) {
@@ -50,8 +57,10 @@ struct PrayerHero: View {
         .foregroundStyle(Theme.ink)
     }
 
-    private var light: SkyLight {
-        SkyLight.of(snap.arc, period: snap.sky, sky: Sky.of(snap.sky, dark: scheme == .dark), rtl: direction == .rightToLeft)
+    /// The glint on the glass, from the sky behind it; weaker under cloud (glow: WeatherLook.glowStrength, 1 when clear).
+    private func light(_ glow: Double) -> SkyLight {
+        let l = SkyLight.of(snap.arc, period: sky.period, sky: sky, rtl: direction == .rightToLeft)
+        return glow < 1 ? SkyLight(color: l.color, angle: l.angle, strength: l.strength * glow) : l
     }
 
     private var arcMode: ArcMode {
@@ -121,6 +130,35 @@ struct LocationPill: View {
         .glass(Capsule())
         .accessibilityHint(l10n.t("change_city_hint"))
     }
+}
+
+/// Sky follows the weather: one small line under the city, the temperature and the wind only ("24°C · Wind 14 km/h"),
+/// in the units of the device's region and settings and the digits of the app's language. VoiceOver reads the city
+/// and the condition too. Not shown at all without recent data (no placeholder, no error).
+struct WeatherLine: View {
+    @Environment(\.appModel) private var model
+    @Environment(\.l10n) private var l10n
+    let w: WeatherNow
+    let city: String?
+
+    var body: some View {
+        let units = model.weather.units
+        // Each value in an isolate, so a minus sign and the unit keep their order in right-to-left text.
+        let temp = Weather.isolate(l10n.t(units.temperature.stringKey, number(units.temperature(w.temperatureC))))
+        let wind = Weather.isolate(l10n.t(units.wind.stringKey, number(units.wind(w.windMs))))
+        Text(l10n.t(Weather.lineKey, temp, wind))
+            .font(.caption.weight(.medium))
+            .monospacedDigit()
+            // At least 7:1 where it sits, over every period and condition (the dark deck is a grey, not white).
+            .foregroundStyle(Theme.ink.opacity(0.85))
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            .accessibilityElement()
+            .accessibilityLabel(l10n.t(Weather.a11yKey, city ?? "", l10n.t(w.symbol.condition.stringKey), temp, wind))
+            .transition(.opacity)
+    }
+
+    private func number(_ v: Int) -> String { Format.number(Double(v), digits: 0, locale: l10n.locale) }
 }
 
 /// Large circle whose top is the phone's forward direction (live) or north (north-up). The disc sits
@@ -256,7 +294,8 @@ private struct ArcLayer: View, Animatable {
 /// Qibla. Tapping it scrolls back up to the big header.
 struct CompactPrayerBar: View {
     @Environment(\.l10n) private var l10n
-    @Environment(\.colorScheme) private var scheme
+    /// The sky behind the page (veiled under clouds when "Sky follows the weather" is on), so the bar matches it.
+    @Environment(\.sky) private var sky
     let snap: PrayerSnapshot
     let compass: CompassState
     let aligned: Bool
@@ -264,7 +303,6 @@ struct CompactPrayerBar: View {
 
     var body: some View {
         if let next = snap.next, let loc = snap.location {
-            let sky = Sky.of(snap.sky, dark: scheme == .dark)
             Button(action: onExpand) {
                 HStack(spacing: 12) {
                     TurningLogo(target: arrowTarget, size: 46, glow: aligned)

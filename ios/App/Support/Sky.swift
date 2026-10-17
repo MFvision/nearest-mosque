@@ -60,6 +60,14 @@ struct Sky: Equatable {
     var shade: Double { dark ? 1 : 0.35 }
     /// Stars only on the night skies.
     var showsStars: Bool { dark && period.hasStars }
+
+    /// The same sky with every stop mixed toward `veil` by `f` (0 = unchanged): the overcast of "Sky follows the
+    /// weather" (App/Support/WeatherSky.swift).
+    func veiled(_ veil: Color, by f: Double) -> Sky {
+        guard f > 0 else { return self }
+        return Sky(period: period, top: top.mix(with: veil, by: f), mid: mid.mix(with: veil, by: f),
+                   glow: glow.mix(with: veil, by: f), low: low.mix(with: veil, by: f), dark: dark)
+    }
 }
 
 /// Light on the glass from where the sun (or the moon) is: pink-gold at Fajr, gold by day, orange at
@@ -131,6 +139,17 @@ struct SkyBackdrop: View {
     var skyline = false
     /// Drawn behind the clouds and ridges (the Apple Watch puts the sun or the moon there).
     var orb: AnyView?
+    // "Sky follows the weather" (iPhone, iPad, Mac and Vision Pro only; the defaults draw today's sky).
+    /// Multiplies the horizon glow and its reflection on the lake (less under cloud).
+    var glowStrength: Double = 1
+    /// Multiplies the stars.
+    var starOpacity: Double = 1
+    /// Opacity of the cloud band; nil keeps the usual one.
+    var cloudOpacity: Double? = nil
+    /// Drawn in front of the cloud band and behind the ridges (overcast, rain, snow, lightning).
+    var weather: AnyView? = nil
+    /// Drawn in front of everything (the low fog on the horizon).
+    var mist: AnyView? = nil
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var drift = false
     @State private var twinkle = false
@@ -147,16 +166,16 @@ struct SkyBackdrop: View {
                     .init(color: sky.low, location: 1),
                 ], startPoint: .top, endPoint: .bottom)
 
-                if sky.showsStars {
-                    StarField(seed: 7).opacity(twinkle ? 0.95 : 0.55)
+                if sky.showsStars && starOpacity > 0 {
+                    StarField(seed: 7).opacity((twinkle ? 0.95 : 0.55) * starOpacity)
                         .frame(width: w, height: y0 * 0.85)
-                    StarField(seed: 31).opacity(twinkle ? 0.45 : 0.9)
+                    StarField(seed: 31).opacity((twinkle ? 0.45 : 0.9) * starOpacity)
                         .frame(width: w, height: y0 * 0.85)
                 }
 
                 // Horizon glow: an ellipse, faded to nothing well below the text area.
                 Circle()
-                    .fill(RadialGradient(colors: [sky.glow.opacity(0.95), sky.glow.opacity(0.4), sky.glow.opacity(0)],
+                    .fill(RadialGradient(colors: [sky.glow.opacity(0.95 * glowStrength), sky.glow.opacity(0.4 * glowStrength), sky.glow.opacity(0)],
                                          center: .center, startRadius: 0, endRadius: w * 0.7))
                     .frame(width: w * 1.4, height: w * 1.4)
                     .scaleEffect(x: 1, y: 0.42)
@@ -170,8 +189,10 @@ struct SkyBackdrop: View {
                     CloudBand(tint: Color.white.mix(with: sky.glow, by: sky.dark ? 0.35 : 0.15))
                         .frame(width: w * 1.7, height: y0 * 0.55)
                         .offset(x: drift ? -w * 0.55 : -w * 0.1, y: y0 * 0.38)
-                        .opacity(sky.showsStars ? 0.35 : 0.8)
+                        .opacity(cloudOpacity ?? (sky.showsStars ? 0.35 : 0.8))
                 }
+
+                if let weather { weather.frame(width: w, height: h) }
 
                 Ridge(points: Ridge.far)
                     .fill(LinearGradient(colors: [sky.mid.mix(with: sky.glow, by: 0.22).opacity(0.85), sky.low], startPoint: .top, endPoint: .bottom))
@@ -193,11 +214,13 @@ struct SkyBackdrop: View {
                     .frame(width: w, height: max(0, h - y0 - h * 0.06))
                     .offset(y: y0 + h * 0.06)
                 Circle()
-                    .fill(RadialGradient(colors: [sky.glow.opacity(0.32), sky.glow.opacity(0)], center: .center, startRadius: 0, endRadius: w * 0.3))
+                    .fill(RadialGradient(colors: [sky.glow.opacity(0.32 * glowStrength), sky.glow.opacity(0)], center: .center, startRadius: 0, endRadius: w * 0.3))
                     .frame(width: w * 0.6, height: w * 0.6)
                     .scaleEffect(x: 1, y: 1.3)
                     .position(x: w / 2, y: y0 + h * 0.16)
                     .opacity(twinkle ? 1 : 0.75)
+
+                if let mist { mist.frame(width: w, height: h) }
             }
             .frame(width: w, height: h, alignment: .topLeading)
             .clipped()

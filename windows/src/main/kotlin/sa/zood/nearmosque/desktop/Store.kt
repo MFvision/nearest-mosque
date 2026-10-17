@@ -45,6 +45,13 @@ data class DesktopSettings(
     val silent: Set<PrayerEvent> = emptySet(),
     /** OpenStreetMap results added to the mosques that come with the app (the city's centre is sent, rounded). */
     val onlineSearch: Boolean = true,
+    /**
+     * Sky follows the weather (opt-in): the chosen city's weather on the sky behind the next-prayer card, with the
+     * temperature and wind; the city rounded to about 1 km is sent to MET Norway while the window is shown.
+     */
+    val skyWeather: Boolean = false,
+    /** The one-time offer of [skyWeather] at the top of the prayer screen was answered (either way). */
+    val weatherOffered: Boolean = false,
     /** Open in the notification area (or minimized, where there is none) when the person signs in. */
     val startAtLogin: Boolean = true,
     /** The wait from each Adhan to the iqama, the prayer after it, and the notification at the iqama. */
@@ -140,6 +147,8 @@ object Store {
         sunrise = prefs.getBoolean("sunrise", false),
         silent = prefs.get("silent", "").split(',').mapNotNull { runCatching { PrayerEvent.valueOf(it) }.getOrNull() }.toSet(),
         onlineSearch = prefs.getBoolean("onlineSearch", true),
+        skyWeather = prefs.getBoolean("skyWeather", false),
+        weatherOffered = prefs.getBoolean("weatherOffered", false),
         startAtLogin = prefs.getBoolean("startAtLogin", true),
         iqama = IqamaSettings(
             enabled = prefs.getBoolean("iqama", true),
@@ -188,6 +197,8 @@ object Store {
         prefs.putBoolean("sunrise", s.sunrise)
         prefs.put("silent", s.silent.joinToString(",") { it.name })
         prefs.putBoolean("onlineSearch", s.onlineSearch)
+        prefs.putBoolean("skyWeather", s.skyWeather)
+        prefs.putBoolean("weatherOffered", s.weatherOffered)
         prefs.putBoolean("startAtLogin", s.startAtLogin)
         prefs.putBoolean("iqama", s.iqama.enabled)
         prefs.put("iqamaMinutes", eventMinutesText(s.iqama.minutes))

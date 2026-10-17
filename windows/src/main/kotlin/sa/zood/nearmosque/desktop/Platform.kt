@@ -109,6 +109,66 @@ object Platform {
     private fun start(cmd: List<String>): Process =
         ProcessBuilder(cmd).redirectOutput(ProcessBuilder.Redirect.DISCARD).redirectError(ProcessBuilder.Redirect.DISCARD).start()
 
+    /**
+     * Whether the desktop lets apps animate: Windows "Animation effects" (MinAnimate under
+     * HKCU\Control Panel\Desktop\WindowMetrics), GNOME's enable-animations, KDE's AnimationDurationFactor. Read once,
+     * in the background; nothing moves until it is known, and nothing moves when any of them says no.
+     */
+    val animations: Boolean get() = animationState.value
+
+    private val animationState: androidx.compose.runtime.MutableState<Boolean> by lazy {
+        androidx.compose.runtime.mutableStateOf(false).also { state ->
+            Thread { state.value = runCatching { readAnimations() }.getOrDefault(true) }.apply { isDaemon = true; name = "animation-setting" }.start()
+        }
+    }
+
+    private fun readAnimations(): Boolean = when (os) {
+        Os.WINDOWS -> windowsAnimations(output(listOf("reg", "query", "HKCU\\Control Panel\\Desktop\\WindowMetrics", "/v", "MinAnimate"))) ?: true
+        Os.LINUX -> {
+            val gnome = which("gsettings")?.let { gnomeAnimations(output(listOf(it.path, "get", "org.gnome.desktop.interface", "enable-animations"))) }
+            val kde = runCatching { File(xdg(System.getenv("XDG_CONFIG_HOME"), "$home/.config"), "kdeglobals").takeIf { it.isFile }?.readText() }.getOrNull()
+            gnome != false && kdeAnimations(kde) != false
+        }
+        Os.OTHER -> true
+    }
+
+    /** `reg query … /v MinAnimate`: "    MinAnimate    REG_SZ    0" means off; null if the value is not there. */
+    fun windowsAnimations(regOutput: String?): Boolean? {
+        val line = regOutput?.lineSequence()?.firstOrNull { it.trim().startsWith("MinAnimate", ignoreCase = true) } ?: return null
+        return when (line.trim().split(Regex("\\s+")).lastOrNull()) {
+            "0" -> false
+            "1" -> true
+            else -> null
+        }
+    }
+
+    /** `gsettings get org.gnome.desktop.interface enable-animations`: "true" or "false". */
+    fun gnomeAnimations(output: String?): Boolean? = when (output?.trim()) {
+        "true" -> true
+        "false" -> false
+        else -> null
+    }
+
+    /** ~/.config/kdeglobals: AnimationDurationFactor=0 in [KDE] turns animations off. */
+    fun kdeAnimations(kdeglobals: String?): Boolean? {
+        var group = ""
+        for (raw in kdeglobals?.lineSequence().orEmpty()) {
+            val line = raw.trim()
+            if (line.startsWith("[")) group = line
+            else if (group == "[KDE]" && line.startsWith("AnimationDurationFactor=")) {
+                return line.substringAfter('=').trim().toDoubleOrNull()?.let { it > 0.0 }
+            }
+        }
+        return null
+    }
+
+    /** A short command's output, or null if it cannot run, fails or takes more than 3 seconds. */
+    private fun output(cmd: List<String>): String? = runCatching {
+        val p = ProcessBuilder(cmd).redirectError(ProcessBuilder.Redirect.DISCARD).start()
+        val text = p.inputStream.bufferedReader().use { it.readText() }
+        if (p.waitFor(3, TimeUnit.SECONDS) && p.exitValue() == 0) text else null
+    }.getOrNull()
+
     /** How a notification is shown on this PC. */
     enum class Route { TRAY, NOTIFY_SEND, IN_APP }
 

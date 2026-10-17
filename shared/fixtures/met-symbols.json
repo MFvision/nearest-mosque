@@ -1,0 +1,596 @@
+{
+  "_comment": "Every MET Norway weather symbol code (https://raw.githubusercontent.com/metno/weathericons/main/weather/legend.csv, 41 codes) mapped to what the sky draws, the two spellings of MET's 'lights...' typo codes, the fallback for unknown future codes, the rounding, unit, region and request cases of the shared weather model (coordinates include negative halves such as -60.025, which must round the same way on every platform), and forecast steps in shapes MET does not send today, which both parsers must read alike. Intensity: light 0.5, normal 0.75, heavy 1.0. Codes with variants also come with _day, _night and _polartwilight suffixes, which map like the base code. Read by NMCore WeatherTests.swift and core WeatherTest.kt.",
+  "suffixes": [
+    "_day",
+    "_night",
+    "_polartwilight"
+  ],
+  "codes": {
+    "clearsky": {
+      "condition": "clear",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "fair": {
+      "condition": "partly_cloudy",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "partlycloudy": {
+      "condition": "partly_cloudy",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "cloudy": {
+      "condition": "cloudy",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "lightrainshowers": {
+      "condition": "rain",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "rainshowers": {
+      "condition": "rain",
+      "intensity": 0.75,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "heavyrainshowers": {
+      "condition": "rain",
+      "intensity": 1.0,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "lightrainshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "rainshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.75,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "heavyrainshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "lightsleetshowers": {
+      "condition": "rain",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "sleetshowers": {
+      "condition": "rain",
+      "intensity": 0.75,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "heavysleetshowers": {
+      "condition": "rain",
+      "intensity": 1.0,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "lightssleetshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "sleetshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.75,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "heavysleetshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "lightsnowshowers": {
+      "condition": "snow",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "snow"
+    },
+    "snowshowers": {
+      "condition": "snow",
+      "intensity": 0.75,
+      "showers": true,
+      "precipitation": "snow"
+    },
+    "heavysnowshowers": {
+      "condition": "snow",
+      "intensity": 1.0,
+      "showers": true,
+      "precipitation": "snow"
+    },
+    "lightssnowshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "snow"
+    },
+    "snowshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.75,
+      "showers": true,
+      "precipitation": "snow"
+    },
+    "heavysnowshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": true,
+      "precipitation": "snow"
+    },
+    "lightrain": {
+      "condition": "rain",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "rain": {
+      "condition": "rain",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "heavyrain": {
+      "condition": "rain",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "lightrainandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "rainandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "heavyrainandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "lightsleet": {
+      "condition": "rain",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "sleet": {
+      "condition": "rain",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "heavysleet": {
+      "condition": "rain",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "lightsleetandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "sleetandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "heavysleetandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "lightsnow": {
+      "condition": "snow",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "snow": {
+      "condition": "snow",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "heavysnow": {
+      "condition": "snow",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "lightsnowandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "snowandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "heavysnowandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "fog": {
+      "condition": "fog",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    }
+  },
+  "withVariants": [
+    "clearsky",
+    "fair",
+    "partlycloudy",
+    "lightrainshowers",
+    "rainshowers",
+    "heavyrainshowers",
+    "lightrainshowersandthunder",
+    "rainshowersandthunder",
+    "heavyrainshowersandthunder",
+    "lightsleetshowers",
+    "sleetshowers",
+    "heavysleetshowers",
+    "lightssleetshowersandthunder",
+    "sleetshowersandthunder",
+    "heavysleetshowersandthunder",
+    "lightsnowshowers",
+    "snowshowers",
+    "heavysnowshowers",
+    "lightssnowshowersandthunder",
+    "snowshowersandthunder",
+    "heavysnowshowersandthunder"
+  ],
+  "alternates": {
+    "lightsleetshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "lightsnowshowersandthunder": {
+      "condition": "thunderstorm",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "snow"
+    }
+  },
+  "fallback": {
+    "heavysnowthunderstorm": {
+      "condition": "thunderstorm",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "lightfreezingrainshowers": {
+      "condition": "rain",
+      "intensity": 0.5,
+      "showers": true,
+      "precipitation": "rain"
+    },
+    "blowingsnow": {
+      "condition": "snow",
+      "intensity": 0.75,
+      "showers": false,
+      "precipitation": "snow"
+    },
+    "lightsleetdrizzle": {
+      "condition": "rain",
+      "intensity": 0.5,
+      "showers": false,
+      "precipitation": "rain"
+    },
+    "freezingfog": {
+      "condition": "fog",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "partlysunny": {
+      "condition": "partly_cloudy",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "mostlycloudy": {
+      "condition": "cloudy",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "clearskywithhaze": {
+      "condition": "clear",
+      "intensity": 1.0,
+      "showers": false,
+      "precipitation": "none"
+    },
+    "sandstorm": null,
+    "haze": null,
+    "": null
+  },
+  "rounding": [
+    {
+      "x": -0.4,
+      "expected": 0
+    },
+    {
+      "x": -2.5,
+      "expected": -3
+    },
+    {
+      "x": 2.5,
+      "expected": 3
+    },
+    {
+      "x": 21.49,
+      "expected": 21
+    },
+    {
+      "x": -21.5,
+      "expected": -22
+    },
+    {
+      "x": 0.5,
+      "expected": 1
+    },
+    {
+      "x": -0.5,
+      "expected": -1
+    }
+  ],
+  "temperature": [
+    {
+      "celsius": 35.4,
+      "unit": "fahrenheit",
+      "expected": 96
+    },
+    {
+      "celsius": 35.4,
+      "unit": "celsius",
+      "expected": 35
+    },
+    {
+      "celsius": -0.4,
+      "unit": "celsius",
+      "expected": 0
+    },
+    {
+      "celsius": -2.5,
+      "unit": "celsius",
+      "expected": -3
+    },
+    {
+      "celsius": -17.8,
+      "unit": "fahrenheit",
+      "expected": 0
+    },
+    {
+      "celsius": 0.0,
+      "unit": "fahrenheit",
+      "expected": 32
+    },
+    {
+      "celsius": 21.49,
+      "unit": "celsius",
+      "expected": 21
+    }
+  ],
+  "wind": [
+    {
+      "ms": 5.7,
+      "unit": "kmh",
+      "expected": 21
+    },
+    {
+      "ms": 5.7,
+      "unit": "mph",
+      "expected": 13
+    },
+    {
+      "ms": 0.1,
+      "unit": "kmh",
+      "expected": 0
+    },
+    {
+      "ms": -1.0,
+      "unit": "kmh",
+      "expected": 0
+    },
+    {
+      "ms": 10.0,
+      "unit": "mph",
+      "expected": 22
+    }
+  ],
+  "regions": {
+    "US": [
+      "fahrenheit",
+      "mph"
+    ],
+    "PR": [
+      "fahrenheit",
+      "mph"
+    ],
+    "LR": [
+      "fahrenheit",
+      "mph"
+    ],
+    "BS": [
+      "fahrenheit",
+      "mph"
+    ],
+    "gb": [
+      "celsius",
+      "mph"
+    ],
+    "GB": [
+      "celsius",
+      "mph"
+    ],
+    "IM": [
+      "celsius",
+      "mph"
+    ],
+    "JE": [
+      "celsius",
+      "mph"
+    ],
+    "GG": [
+      "celsius",
+      "mph"
+    ],
+    "SA": [
+      "celsius",
+      "kmh"
+    ],
+    "CA": [
+      "celsius",
+      "kmh"
+    ],
+    "IN": [
+      "celsius",
+      "kmh"
+    ],
+    "": [
+      "celsius",
+      "kmh"
+    ],
+    "_none": [
+      "celsius",
+      "kmh"
+    ]
+  },
+  "coordinates": [
+    {
+      "lat": -33.92487,
+      "lon": 18.42401,
+      "query": "lat=-33.92&lon=18.42",
+      "key": "-33.92,18.42"
+    },
+    {
+      "lat": 21.4225,
+      "lon": 39.8262,
+      "query": "lat=21.42&lon=39.83",
+      "key": "21.42,39.83"
+    },
+    {
+      "lat": 64.1466,
+      "lon": -21.9426,
+      "query": "lat=64.15&lon=-21.94",
+      "key": "64.15,-21.94"
+    },
+    {
+      "lat": -0.001,
+      "lon": -0.004,
+      "query": "lat=0.00&lon=0.00",
+      "key": "0.00,0.00"
+    },
+    {
+      "lat": 90.0,
+      "lon": -180.0,
+      "query": "lat=90.00&lon=-180.00",
+      "key": "90.00,-180.00"
+    },
+    {
+      "lat": -3.10194,
+      "lon": -60.025,
+      "query": "lat=-3.10&lon=-60.03",
+      "key": "-3.10,-60.03"
+    },
+    {
+      "lat": -26.215,
+      "lon": 28.164,
+      "query": "lat=-26.22&lon=28.16",
+      "key": "-26.22,28.16"
+    }
+  ],
+  "steps": {
+    "_comment": "Each step alone in a compact reply (units celsius and m/s), parsed at 'now': fractional seconds are read like whole seconds; a quoted number is no value (temperatureC null, so the sky stays normal).",
+    "now": "2026-10-17T13:20:00Z",
+    "cases": [
+      {
+        "step": {
+          "time": "2026-10-17T14:00:00.000Z",
+          "data": {
+            "instant": {
+              "details": {
+                "air_temperature": 12.5,
+                "wind_speed": 3.0
+              }
+            },
+            "next_1_hours": {
+              "summary": {
+                "symbol_code": "rain_day"
+              }
+            }
+          }
+        },
+        "expected": {
+          "time": "2026-10-17T14:00:00Z",
+          "temperatureC": 12.5,
+          "windMs": 3.0,
+          "symbol": "rain"
+        }
+      },
+      {
+        "step": {
+          "time": "2026-10-17T14:00:00Z",
+          "data": {
+            "instant": {
+              "details": {
+                "air_temperature": "12.5",
+                "wind_speed": 3.0
+              }
+            },
+            "next_1_hours": {
+              "summary": {
+                "symbol_code": "rain_day"
+              }
+            }
+          }
+        },
+        "expected": {
+          "time": "2026-10-17T14:00:00Z",
+          "temperatureC": null,
+          "windMs": 3.0,
+          "symbol": "rain"
+        }
+      }
+    ]
+  }
+}

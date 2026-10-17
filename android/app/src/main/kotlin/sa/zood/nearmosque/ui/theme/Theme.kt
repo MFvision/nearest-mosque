@@ -76,6 +76,15 @@ data class Sky(val period: SkyPeriod, val top: Color, val mid: Color, val glow: 
     /** Tint for glass over this sky, so text stays legible where the horizon is bright. */
     val glassTint: Color get() = if (dark) low.copy(alpha = 0.35f) else Color.White.copy(alpha = 0.55f)
 
+    /**
+     * Sky follows the weather: every stop mixed toward the condition's [veil] by [f] (tokens.json "weather";
+     * tools/check_tokens.py checks the text contrast on every period x condition).
+     */
+    fun veiled(veil: Color, f: Float): Sky = copy(
+        top = androidx.compose.ui.graphics.lerp(top, veil, f), mid = androidx.compose.ui.graphics.lerp(mid, veil, f),
+        glow = androidx.compose.ui.graphics.lerp(glow, veil, f), low = androidx.compose.ui.graphics.lerp(low, veil, f),
+    )
+
     companion object {
         fun of(p: SkyPeriod, dark: Boolean = true): Sky = if (dark) when (p) {
             SkyPeriod.NIGHT -> Sky(p, Color(0xFF081B29), Color(0xFF12304A), Color(0xFF2C4C7A), Color(0xFF0B1A2C))
@@ -161,16 +170,18 @@ val DataDirection = androidx.compose.ui.text.style.TextDirection.Content
 @Immutable
 data class SkyLight(val color: Color, val angle: Float, val strength: Float) {
     companion object {
-        fun of(arc: sa.zood.nearmosque.core.DayArc?, period: SkyPeriod, sky: Sky, rtl: Boolean): SkyLight {
+        /** [weatherLight]: WeatherLook.glowStrength under clouds, rain or fog (1 for a clear sky or with the weather off). */
+        fun of(arc: sa.zood.nearmosque.core.DayArc?, period: SkyPeriod, sky: Sky, rtl: Boolean, weatherLight: Float = 1f): SkyLight {
             val f = arc?.let { if (rtl) 1 - it.fraction else it.fraction } ?: 0.5
             val angle = (-90 + 180 * f).toFloat()
-            if (arc != null && !arc.isDay) return SkyLight(if (sky.dark) Tokens.moonlight else Tokens.navy, angle, if (sky.dark) 0.7f else 0.35f)
+            val k = weatherLight.coerceIn(0f, 1f)
+            if (arc != null && !arc.isDay) return SkyLight(if (sky.dark) Tokens.moonlight else Tokens.navy, angle, (if (sky.dark) 0.7f else 0.35f) * k)
             // The pale daytime skies of light mode need a deeper colour to show on the glass.
             val c = if (sky.dark) sky.glow else androidx.compose.ui.graphics.lerp(sky.glow, Tokens.goldDeep, 0.55f)
             return when (period) {
-                SkyPeriod.FAJR, SkyPeriod.SUNRISE, SkyPeriod.MAGHRIB -> SkyLight(c, angle, 1f)
-                SkyPeriod.ASR -> SkyLight(c, angle, 0.9f)
-                else -> SkyLight(c, angle, 0.8f)
+                SkyPeriod.FAJR, SkyPeriod.SUNRISE, SkyPeriod.MAGHRIB -> SkyLight(c, angle, 1f * k)
+                SkyPeriod.ASR -> SkyLight(c, angle, 0.9f * k)
+                else -> SkyLight(c, angle, 0.8f * k)
             }
         }
     }

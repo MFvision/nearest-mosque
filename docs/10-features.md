@@ -49,7 +49,12 @@ ships inside the iPhone app, in the same listing.
 1. **Header**: location pill, the Qibla arc with a gold dot at the Qibla's direction relative to the top
    of the phone, the next prayer with its time and countdown, distance to the Kaaba, the nearest-mosque
    chip. When the phone faces the Qibla the logo glows and the phone gives one haptic tap. Without a
-   compass the arc is drawn from north and says so.
+   compass the arc is drawn from north and says so. With **Sky follows the weather** on (off by default),
+   the sky also shows the prayer city's current weather (clear, partly cloudy, cloudy, rain, thunderstorm,
+   fog, snow), and a small line under the location pill shows the temperature and the wind (°C/km/h, or
+   °F/mph where the region uses them). Static under Reduce Motion, with no lightning flashes then; the normal
+   sky returns silently when offline or when the data is over 3 hours old (`ios/App/Support/WeatherSky.swift`,
+   `ios/App/Platform/WeatherService.swift`, rules in NMCore `Weather.swift`).
 2. **Compact bar**: after scrolling, a glass bar with the next prayer, time left and a small Qibla arrow;
    tap to go back up.
 3. **Qibla compass** (tap the header): dial turning with the phone, the Kaaba at the Qibla bearing,
@@ -138,14 +143,16 @@ ships inside the iPhone app, in the same listing.
 * Countdown on the Lock Screen (iPhone and iPad).
 
 **Personalize**: Companion (Lantern, Heart, None); **App and widget style**: one choice of five that
-colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island.
+colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island; **Sky follows
+the weather** (off by default), with its note (what is sent, to whom, how often) and the "Weather: based on
+data from MET Norway" link.
 
 **Nearest Mosque**: Search online for mosques (on by default).
 
 **Downloads**: installed packs with remove, Import from file (checked), Restore built-in data.
 
-**About**: Privacy, Sources and licenses, On-device AI status, Show welcome tour, version; publisher AVA ai
-(avaai.sa), website nearmosque.net, support app@vision.bz, phone +966 57 937 2403, terms of use, copyright.
+**About**: Privacy, Sources and licenses (with the MET Norway weather credit), On-device AI status, Show
+welcome tour, version; publisher AVA ai (avaai.sa), website nearmosque.net, support app@vision.bz, phone +966 57 937 2403, terms of use, copyright.
 
 **Moving between the two pages**: swipe sideways on Prayer & Qibla to go to Nearest Mosque, and from the
 screen's edge on Nearest Mosque to come back (from the edge only, so dragging the map never changes page).
@@ -154,7 +161,8 @@ screen's edge on Nearest Mosque to come back (from the edge only, so dragging th
 
 Six pages, each with a language menu and Skip: 1 Assalamu alaikum · 2 Prayer times that follow the sky ·
 3 Face the Qibla · 4 The nearest mosque · 5 Ask anything about Islam · 6 Let's set up (language,
-location, the online-search notice). With Reduce Motion each page shows a still picture.
+location, the online-search notice, the Sky follows the weather choice, off until turned on, with the MET
+Norway credit). With Reduce Motion each page shows a still picture.
 
 ## Widgets (iPhone, iPad, Mac) (`ios/Widgets/`)
 
@@ -337,6 +345,11 @@ only), widgets' styles other than the accent colour.
 
 * **Android**: the same tabs and Ask; 8 widget kinds (Next prayer, Countdown, Ring, Today, Mosque, Ask,
   Qibla, Actions) in 16 size variants, 3 styles (cream, green, night); app shortcuts Qibla, Mosques, Ask.
+  **Sky follows the weather** as on the iPhone (off by default; offered on the setup page of the welcome tour,
+  a switch in Settings → Appearance with its note and the MET Norway link): the header's sky shows the prayer
+  city's weather and a line gives the temperature and the wind. Refreshed only while the app is in the
+  foreground, never by a background job (`android/app/src/main/kotlin/sa/zood/nearmosque/data/Weather.kt`,
+  `ui/glass/WeatherSky.kt`; shared rules in `android/core` `Weather.kt`).
 * **Windows and Linux** (one app, `windows/`): Prayer, Qibla (from north), Nearest Mosque, Ask, Classical books
   (opened in the PC's PDF reader) and Settings; stays in the notification area and plays the Adhan and reminders
   while running. After each Adhan the countdown is to the iqama, then "… prayer has begun", with a notification at
@@ -355,6 +368,10 @@ only), widgets' styles other than the accent colour.
   and the alarm come only while the PC is awake and the app runs (no wake timers); one missed during a sleep is not
   given late (more than two minutes after its time).
   Not on the PC: Silent during prayer, widgets.
+  * Sky follows the weather (off by default; offered once in a card on the prayer screen, a switch in Settings →
+    Appearance with the MET Norway link): a line under the city name and a sky strip behind the next-prayer card,
+    refreshed only while the window is open (not while it is minimized or closed to the notification area)
+    (`windows/src/main/kotlin/sa/zood/nearmosque/desktop/Weather.kt`, `SkyStrip.kt`).
   * Nearest Mosque: around the chosen city (a PC has no GPS), from the mosque data that comes with the app
     and, with "Search online for mosques" on, OpenStreetMap (the city centre is sent, rounded to about 1 km);
     walking directions open in the browser.
@@ -372,14 +389,17 @@ only), widgets' styles other than the accent colour.
 ## Privacy (what stays and what goes)
 
 * **On the device**: prayer times, Qibla, Ask and on-device answers, chat history, companion log, tasbih
-  count, bookmarks.
+  count, bookmarks, and the last weather report with Sky follows the weather on (in the cache, out of backups).
 * **Online, only for**: the mosque search with "Search online" on (location rounded to about 1 km; walking
   times rounded to about 100 m), map images, downloads the person taps (language packs, classical books,
-  library files), and links the person opens.
+  library files), links the person opens, and the weather for the prayer city with Sky follows the weather on
+  (its location rounded to about 1 km, to MET Norway, at most about every 30 minutes while the app is open;
+  the last report is cached on the device and deleted when the switch is turned off).
 * No accounts, no ads, no tracking, no cloud AI. Privacy manifest: `ios/App/PrivacyInfo.xcprivacy`.
 
 ## Content sources
 
 GeoNames (cities), OpenStreetMap (mosques, ODbL), IslamHouse, HadeethEnc, QuranEnc, Tanzil, binbaz.org.sa
-(fatwas), OpenITI (classical books), and the recordings in `shared/audio/CREDITS.md`. Licences:
+(fatwas), OpenITI (classical books), MET Norway (weather, CC BY 4.0 and NLOD 2.0), and the recordings in
+`shared/audio/CREDITS.md`. Licences:
 `04-data-and-licenses.md`.

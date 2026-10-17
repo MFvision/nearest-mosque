@@ -268,7 +268,7 @@ fun QiblaCompassScreen(ui: PrayerUi, compass: CompassState, aligned: Boolean, on
     var mosque by remember { androidx.compose.runtime.mutableStateOf<RankedMosque?>(null) }
     mosque?.let { NearestMosqueSheet(it, onDismiss = { mosque = null }) }
     Box(Modifier.fillMaxSize()) {
-        SkyBackdrop(sky, Modifier.fillMaxSize(), horizon = 0.82f)
+        SkyBackdrop(sky, Modifier.fillMaxSize(), horizon = 0.82f, weather = ui.weather)
         val bearing = ui.qiblaBearing
         if (bearing != null) QiblaLightBeam(qiblaRelative(bearing, compass), aligned, Modifier.fillMaxSize())
         val header: @Composable () -> Unit = {

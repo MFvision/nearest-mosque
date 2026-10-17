@@ -87,6 +87,11 @@ struct SettingsView: View {
                     } label: {
                         SettingsRow(icon: "paintpalette.fill", tint: .teal, title: l10n.t("app_style_title"), value: l10n.t("style_" + app.settings.widgetLook))
                     }
+                    // Sky follows the weather (opt-in): what is sent and to whom is in the note, the credit MET's
+                    // licence asks for is in the footer.
+                    Toggle(isOn: Binding(get: { app.settings.skyWeather }, set: { app.settings.skyWeather = $0 })) {
+                        SettingsRow(icon: "cloud.sun.fill", tint: .cyan, title: l10n.t("sky_weather"), subtitle: l10n.t("sky_weather_note"))
+                    }
                     #if !targetEnvironment(macCatalyst) && !os(visionOS)
                     // Only where an Apple Watch can be paired (WatchConnectivity is supported on iPhone only).
                     if WCSession.isSupported() {
@@ -95,7 +100,9 @@ struct SettingsView: View {
                         }
                     }
                     #endif
-                } header: { Text(l10n.t("settings_personalize")) }
+                } header: { Text(l10n.t("settings_personalize")) } footer: {
+                    Link(l10n.t("sky_weather_attribution"), destination: URL(string: Weather.attributionURL)!)
+                }
 
                 Section {
                     Toggle(isOn: Binding(get: { app.settings.onlineSearch }, set: { app.settings.onlineSearch = $0 })) {
@@ -311,6 +318,9 @@ struct SourcesSettingsView: View {
                 Text("Adhan (MIT) · Batoul Apps; GRDB (MIT) · Gwendal Roué").font(.caption)
                 Text("Search model: static-similarity-mrl-multilingual-v1 · sentence-transformers (Apache-2.0), reduced to 256 dimensions").font(.caption)
                 Text("Map and live mosque results: Apple Maps (online)").font(.caption)
+                // Sky follows the weather (CC BY 4.0 and NLOD 2.0 ask for the credit and a link to the licence).
+                Text(Weather.credit).font(.caption)
+                Link(destination: URL(string: "https://api.met.no/doc/License")!) { Text(verbatim: "api.met.no/doc/License") }.font(.caption)
             }
         }
         .navigationTitle(l10n.t("sources_licenses"))

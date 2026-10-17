@@ -9,8 +9,30 @@ Seven skies (night, Fajr, sunrise, day, Asr, Maghrib, Isha) in `shared/design/to
 horizon glow and ground/lake colours. The landscape is drawn, not photographed: gradient, stars at
 night, slow clouds, a horizon glow behind two mountain ridges, a lake with the glow's reflection, and a
 mosque skyline on the Ask tab. The horizon height differs per tab (0.64 Prayer, 0.42 Mosques, 0.30 Ask)
-and glides when switching tabs on Android. `tools/check_tokens.py` checks white text on every stop,
-including the glow blended in at its maximum where text can sit (42 checks).
+and glides when switching tabs on Android. `tools/check_tokens.py` checks white text on every dark sky stop
+and the three inks (text, gold, secondary) on every light sky stop, including the glow blended in at its maximum
+where text can sit, for today's sky and for each weather veil below (also at the lighter showers mix): 1,827
+checks with the card checks (7 cards, 7 dark skies × 13 looks × 5, 7 light skies × 13 looks × 15).
+
+**Sky follows the weather** (opt-in, off by default) puts the prayer city's current weather from MET Norway
+on this sky without replacing it: clear, partly cloudy, cloudy, rain, thunderstorm, fog, snow (showers are a
+lighter rain or snow). The numbers are in `shared/design/tokens.json` → `weather`, and NMCore and
+`android/core` `WeatherLook` carry the same ones (their tests check). Every stop is mixed toward the
+condition's grey (one for dark skies, one for light), the glow, stars and cloud band are scaled, and a few
+quiet layers are added: an overcast deck (kept translucent enough for 4.5:1), thin rain streaks (60 at full
+intensity) or small flakes (55), faint under the header text (rain 35% at the top, full nearer the horizon;
+flakes 10% at the top, 30% at 0.6 of the way down, full only at the horizon, and pale blue-grey rather than the
+white of the text on dark skies, so none reads as a star or a letter's dot), a low
+fog band and, in a thunderstorm, a rare soft glow. With Reduce Motion / animations off it is one still frame
+with no lightning. iOS also gives the still frame in Low Power Mode and drops the lightning with Dim Flashing
+Lights; Android drops it in Battery Saver.
+One small line under the location pill gives the temperature and the wind only ("24°C · Wind 14 km/h";
+°F and mph where the region uses them). Windows and Linux show the same weather in a strip behind the
+next-prayer card, under a 60% card-colour scrim where the text sits (`SkyStripTest` checks 4.5:1 for the
+three inks on every period and condition). It is decoration: hidden from VoiceOver and TalkBack, never
+mirrored, never takes touches, and with no recent data (offline, or over 3 hours old) the normal sky returns
+without a message (`ios/App/Support/WeatherSky.swift`, `android/.../ui/glass/WeatherSky.kt`,
+`windows/.../desktop/SkyStrip.kt`).
 
 ## Glass
 

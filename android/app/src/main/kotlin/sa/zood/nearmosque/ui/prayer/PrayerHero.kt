@@ -130,7 +130,9 @@ fun PrayerHero(
         else -> bearing
     }
     val sky = LocalSky.current
-    val light = SkyLight.of(ui.arc, ui.sky, sky, LocalLayoutDirection.current == LayoutDirection.Rtl)
+    // Under clouds, rain or fog the glass catches less light (the shared WeatherLook glow).
+    val weatherLight = sa.zood.nearmosque.core.WeatherLook.of(ui.weather?.symbol).glowStrength.toFloat()
+    val light = SkyLight.of(ui.arc, ui.sky, sky, LocalLayoutDirection.current == LayoutDirection.Rtl, weatherLight)
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
             Spacer(Modifier.size(48.dp))
@@ -138,6 +140,14 @@ fun PrayerHero(
                 LocationPill(ui.location?.name ?: stringResource(R.string.choose_city_title), onClick = onLocation)
             }
             GlassIconButton(rememberVectorPainter(Icons.Filled.Settings), stringResource(R.string.settings), onSettings)
+        }
+        // Sky follows the weather: one quiet line under the city, the temperature and the wind only.
+        androidx.compose.animation.AnimatedVisibility(
+            ui.weather != null, enter = androidx.compose.animation.fadeIn(), exit = androidx.compose.animation.fadeOut(),
+        ) {
+            val shown = remember { arrayOfNulls<sa.zood.nearmosque.core.WeatherNow>(1) }
+            ui.weather?.let { shown[0] = it }
+            shown[0]?.let { WeatherLine(it, ui.location?.name.orEmpty()) }
         }
         val n = ui.nearestMosque
         QiblaArc(
@@ -150,6 +160,43 @@ fun PrayerHero(
             ArcContent(ui, compass, aligned)
         }
     }
+}
+
+/**
+ * "18°C · Wind 12 km/h" in the locale's digits and units, read out as one phrase with the city and the
+ * condition. Each value is isolated, so a minus sign and the degree sign keep their order in RTL text.
+ */
+@Composable
+fun WeatherLine(w: sa.zood.nearmosque.core.WeatherNow, city: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val config = androidx.compose.ui.platform.LocalConfiguration.current
+    val units = remember(config) { sa.zood.nearmosque.data.WeatherDisplay.units() }
+    val temp = stringResource(
+        if (units.temperature == sa.zood.nearmosque.core.TemperatureUnit.CELSIUS) R.string.weather_temp_c else R.string.weather_temp_f,
+        Format.number(context, units.temperature(w.temperatureC).toDouble(), 0),
+    )
+    val wind = stringResource(
+        if (units.wind == sa.zood.nearmosque.core.WindUnit.KMH) R.string.weather_wind_kmh else R.string.weather_wind_mph,
+        Format.number(context, units.wind(w.windMs).toDouble(), 0),
+    )
+    val a11y = stringResource(R.string.weather_a11y, city, stringResource(weatherConditionName(w.symbol.condition)), temp, wind)
+    val line = stringResource(R.string.weather_line, sa.zood.nearmosque.core.Weather.isolate(temp), sa.zood.nearmosque.core.Weather.isolate(wind))
+    Text(
+        line, color = Ink.copy(alpha = 0.85f), maxLines = 1, textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.labelMedium.copy(fontFeatureSettings = "tnum"),
+        modifier = modifier.padding(top = 4.dp).clearAndSetSemantics { contentDescription = a11y },
+    )
+}
+
+/** weather_clear, weather_partly_cloudy, ... */
+fun weatherConditionName(c: sa.zood.nearmosque.core.WeatherCondition): Int = when (c) {
+    sa.zood.nearmosque.core.WeatherCondition.CLEAR -> R.string.weather_clear
+    sa.zood.nearmosque.core.WeatherCondition.PARTLY_CLOUDY -> R.string.weather_partly_cloudy
+    sa.zood.nearmosque.core.WeatherCondition.CLOUDY -> R.string.weather_cloudy
+    sa.zood.nearmosque.core.WeatherCondition.RAIN -> R.string.weather_rain
+    sa.zood.nearmosque.core.WeatherCondition.THUNDERSTORM -> R.string.weather_thunderstorm
+    sa.zood.nearmosque.core.WeatherCondition.FOG -> R.string.weather_fog
+    sa.zood.nearmosque.core.WeatherCondition.SNOW -> R.string.weather_snow
 }
 
 /** Text size at 130% or more (Settings → Display → Font size). */

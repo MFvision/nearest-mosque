@@ -61,6 +61,8 @@ class AppContainer(
     settingsFile: java.io.File? = null,
     /** Live mosque results; tests pass a fake or a source that is always unavailable. */
     val online: sa.zood.nearmosque.data.OnlineMosqueSource = sa.zood.nearmosque.data.OverpassMosqueSource(),
+    /** MET Norway for "Sky follows the weather"; tests pass a fake (nothing is fetched while the switch is off). */
+    val weatherSource: sa.zood.nearmosque.data.WeatherSource = sa.zood.nearmosque.data.MetWeatherSource(),
 ) {
     private val app = context.applicationContext
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
@@ -73,6 +75,12 @@ class AppContainer(
     val packs = PackManager(app, db)
     val cities = CityRepository(packs, scope)
     val mosques = MosqueRepository(db)
+    /** The chosen city's weather for the sky (opt-in), cached in one small file; refreshed only while the app is open. */
+    val weather = sa.zood.nearmosque.data.WeatherRepository(
+        weatherSource,
+        java.io.File(app.cacheDir, if (inMemoryDb) "weather-cache-test.json" else sa.zood.nearmosque.core.Weather.CACHE_FILE_NAME),
+        clock,
+    )
     /** Meaning-based library search; vectors are built in the background after the libraries install. */
     val semantic = sa.zood.nearmosque.data.SemanticIndexStore(java.io.File(app.filesDir, "semantic"), db) {
         app.assets.open("model.bin").use { it.readBytes() }

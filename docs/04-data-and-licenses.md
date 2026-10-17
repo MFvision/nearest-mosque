@@ -40,16 +40,34 @@ shown.
 | Google Places (the website's mosque source) | Needs a billed API key; shipping an unrestricted key in an app is unsafe, and Places content must be shown on a Google map with caching limits | A key restricted to the app's package/bundle ID and signing certificate, a server proxy if usage must be controlled, Google Maps SDK for display |
 | Time-zone boundaries | Not needed for city selection; nearest-city + confirmation covers arbitrary points | `timezone-boundary-builder` (ODbL) pack if exact boundaries are wanted |
 
-## 4.2b Online services used (live map and live results)
+## 4.2b Online services used (live map, live results and weather)
 
 | Service | Platform | Terms that matter | What is sent |
 |---|---|---|---|
 | Apple Maps (MapKit map, MKLocalSearch, MKDirections walking routes) | iOS | Free with the Apple Developer Program; results shown on Apple's map; Apple attribution is drawn by MapKit | Map area being viewed; search region centred on a 0.01° rounded point; route endpoints when a walking route is requested |
 | OpenFreeMap (`tiles.openfreemap.org`, "dark" style) | Android | Free, no key, no usage limits stated; attribution "OpenFreeMap © OpenMapTiles Data from OpenStreetMap" shown in the app | Tile requests for the area being viewed |
 | OpenStreetMap Overpass API (`overpass-api.de`) | Android | Public instance for light use; heavy production traffic should use a self-hosted or commercial instance; data ODbL | One query per search: a 0.01° rounded centre and a radius |
+| MET Norway Locationforecast 2.0 compact (api.met.no) | iOS, iPadOS, Mac, visionOS, Android, Windows, Linux; opt-in "Sky follows the weather" | NLOD 2.0 and CC BY 4.0; credit "MET Norway" ("Based on data from MET Norway"), link appreciated; identifying User-Agent required (missing or generic → 403); honour Expires and send If-Modified-Since with the previous Last-Modified; at most 4 decimals; over 20 requests/s needs an agreement; no fetching while the app is not in use; the TOS advises apps to use a proxy (not used: no server, see the decision note) | A city's coordinates only (the chosen city; with "Use my location" on iOS and Android, the nearest bundled city within 30 km, and no request without one) rounded to 0.01°, and the app name, version, platform and contact in the User-Agent |
 
 None of these receive an account, device ID, prayer settings or questions. Online search can be
-switched off in Settings; the map images are only loaded when the Map view is open.
+switched off in Settings; the map images are only loaded when the Map view is open. The weather request is
+off by default and can be switched off.
+
+**MET Norway: decision note.** Terms read on 2026-10-17 (https://api.met.no/doc/TermsOfService,
+https://api.met.no/doc/License, https://docs.api.met.no/doc/locationforecast/HowTO); the HTTP behaviour was
+checked with live requests the same day (200 with an Expires about 30 minutes ahead, then 304 to
+If-Modified-Since). Commercial use is not restricted; there is no SLA. Services must not look as if they come
+from Yr, NRK or MET, and must not use "Yr" in their name. The terms say browsers and mobile apps *should* call
+through a caching proxy; the apps call api.met.no directly instead, because a proxy would contradict "We run no
+server for the app" (`website/privacy.html`) and would hand the developer users' IP addresses. To keep the
+load light the apps send an identifying User-Agent (`NearMosque/<version> (<platform>; +https://nearmosque.net/;
+app@vision.bz)`, the publisher's contact, never a user's; the platform defaults such as `Dalvik/…`,
+`okhttp/…` and `Java/…` are blocked), honour Expires and If-Modified-Since, ask at most about twice an hour per
+device and only while the app is in use (a random 0–90 s offset spreads requests), back off on 429 and wait
+24 hours after a 403, and send two decimals. Plan B, if MET objects or traffic grows: a small caching proxy on
+nearmosque.net keyed by 0.01° tile, after the privacy policy and the store labels are updated. MET's weather
+icons (MIT, © Yr) are not used: the apps draw their own sky, so no MIT notice is needed; bundling them later
+would need it.
 
 ## 4.3 Software dependencies
 
@@ -67,8 +85,8 @@ switched off in Settings; the map images are only loaded when the Map view is op
 | MapLibre Native Android | 13.0.2 | BSD-2-Clause | Android (live map) |
 | MapKit | system | Apple SDK | iOS (live map, search, routes) |
 
-No analytics, crash reporting or ads are included. The only network code is the live map and live
-mosque search described in 4.2b.
+No analytics, crash reporting or ads are included. The only network code is the live map, live mosque
+search, content downloads and the optional weather request described in 4.2b.
 
 ## 4.3b Search model
 

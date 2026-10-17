@@ -78,6 +78,9 @@ val versionResource by tasks.registering {
 sourceSets.main { resources.srcDir(layout.buildDirectory.dir("version-resources")) }
 tasks.named("processResources") { dependsOn(sharedResources, versionResource) }
 
+// Development runs report MET's 203 (a deprecated API version) on stderr (WeatherClient); packaged apps never do.
+tasks.withType<JavaExec>().matching { it.name == "run" }.configureEach { systemProperty("nearmosque.debug", "true") }
+
 compose.desktop {
     application {
         mainClass = "sa.zood.nearmosque.desktop.MainKt"

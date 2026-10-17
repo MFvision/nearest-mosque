@@ -102,6 +102,8 @@ import sa.zood.nearmosque.ui.glass.MosquePin
 import sa.zood.nearmosque.ui.glass.SkyBackdrop
 import sa.zood.nearmosque.ui.glass.YouDot
 import sa.zood.nearmosque.ui.glass.glass
+import sa.zood.nearmosque.ui.glass.glassSky
+import androidx.compose.foundation.selection.toggleable
 import sa.zood.nearmosque.ui.glass.reducedMotion
 import sa.zood.nearmosque.ui.prayer.ArcMode
 import sa.zood.nearmosque.ui.prayer.LocateState
@@ -131,7 +133,7 @@ fun OnboardingScreen(container: AppContainer, vm: PrayerViewModel, ui: PrayerUi,
     val scope = rememberCoroutineScope()
     BackHandler(enabled = pager.currentPage > 0) { scope.launch { pager.animateScrollToPage(pager.currentPage - 1) } }
     Box(Modifier.fillMaxSize()) {
-        SkyBackdrop(LocalSky.current, Modifier.fillMaxSize(), horizon = 0.8f)
+        SkyBackdrop(LocalSky.current, Modifier.fillMaxSize(), horizon = 0.8f, weather = ui.weather)
         Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
             Row(Modifier.fillMaxWidth().height(56.dp).padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
                 LanguageMenu()
@@ -400,6 +402,26 @@ private fun SetupPage(vm: PrayerViewModel, ui: PrayerUi, onPickCity: () -> Unit)
         }
         Spacer(Modifier.height(12.dp))
         Text(stringResource(R.string.online_search_body), color = Ink.copy(alpha = 0.75f), style = MaterialTheme.typography.bodySmall)
+        // Sky follows the weather: offered here, off until turned on (also in Settings, Appearance). After the
+        // mosque search note, which belongs to the location buttons above.
+        val weatherOn = ui.settings?.skyWeather == true
+        Column(Modifier.fillMaxWidth().padding(top = 14.dp).glassSky(RoundedCornerShape(20.dp)).padding(16.dp)) {
+            Row(
+                Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                    .toggleable(weatherOn, role = Role.Switch, onValueChange = { vm.setSkyWeather(it) }),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(stringResource(R.string.sky_weather), color = Ink, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                androidx.compose.material3.Switch(checked = weatherOn, onCheckedChange = null)
+            }
+            Text(stringResource(R.string.onb_weather_body), color = Ink.copy(alpha = 0.8f), style = MaterialTheme.typography.bodySmall)
+            Box(
+                Modifier.heightIn(min = 48.dp).clickable(role = Role.Button) { sa.zood.nearmosque.platform.ExternalActions.open(context, sa.zood.nearmosque.core.Weather.ATTRIBUTION_URL) },
+                contentAlignment = Alignment.CenterStart,
+            ) {
+                Text(stringResource(R.string.sky_weather_attribution), color = Accent, style = MaterialTheme.typography.bodySmall)
+            }
+        }
         Spacer(Modifier.height(24.dp))
     }
 }

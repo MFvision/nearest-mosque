@@ -14,9 +14,20 @@ struct PrayerLocation: Codable, Equatable {
     var countryCode: String?
     var source: Source
     var zoneConfirmed = true
+    /// With source .device: the nearest bundled city within 30 km (the one named), nil when none is that close.
+    var cityLatitude: Double?
+    var cityLongitude: Double?
 
     var location: LatLng { LatLng(latitude, longitude) ?? Qibla.kaaba }
     var zone: TimeZone { TimeZone(identifier: zoneId) ?? .current }
+
+    /// Whose weather the sky shows ("Sky follows the weather" sends only a city's coordinates): the chosen city, or
+    /// with "Use my location" the city near the device; nil when there is none (the sky stays normal).
+    var weatherLocation: LatLng? {
+        if source == .city { return location }
+        guard let la = cityLatitude, let lo = cityLongitude else { return nil }
+        return LatLng(la, lo)
+    }
 }
 
 /// Persistent settings (UserDefaults). Missing keys decode to defaults so older saves keep working.
@@ -44,6 +55,9 @@ struct StoredSettings: Codable, Equatable {
     var liveCountdown = true
     /// The companion on the Prayer screen and its widget (CompanionKind raw value).
     var companion = "lantern"
+    /// Sky follows the weather: opt-in, off by default. The prayer city's weather from MET Norway on the sky, with
+    /// the temperature and the wind (WeatherService). Not shared with the widgets or the watch.
+    var skyWeather = false
 
     init() {}
 
@@ -67,6 +81,7 @@ struct StoredSettings: Codable, Equatable {
         widgetLook = get(String.self, .widgetLook) ?? "cream"
         liveCountdown = get(Bool.self, .liveCountdown) ?? true
         companion = get(String.self, .companion) ?? "lantern"
+        skyWeather = get(Bool.self, .skyWeather) ?? false
     }
 
     /// The saved settings, read without the app's model (App Intents run with the app in the background).
@@ -75,8 +90,10 @@ struct StoredSettings: Codable, Equatable {
     }
 }
 
-/// App-wide state and services. The UI reads computed values only from local storage and
-/// deterministic services; nothing here performs network requests.
+/// App-wide state and services. The UI reads computed values only from local storage and deterministic services.
+/// Two things go online, both disclosed in onboarding and Settings: the live mosque search (Apple Maps, when online
+/// search is on: refreshNearestMosque) and, only when "Sky follows the weather" is turned on, the prayer city's
+/// weather from MET Norway (WeatherService, while the app is in use).
 @MainActor
 @Observable
 final class AppModel {
@@ -86,6 +103,8 @@ final class AppModel {
     let l10n = Localization()
     let location = LocationService()
     let calculator = PrayerCalculator()
+    /// "Sky follows the weather" (resumed and paused with the scene in NearMosqueApp).
+    let weather = WeatherService()
     private(set) var db: AppDatabase?
     private(set) var packs: PackManager?
     private(set) var mosques: MosqueRepository?
@@ -269,6 +288,10 @@ final class AppModel {
         }
         if d.bool(forKey: "demoOnboarding") { settings.onboarded = false }
     }
+
+    /// Simulator screenshots: `-demoWeather rain` (clear, partly_cloudy, cloudy, rain, thunderstorm, fog, snow, or a
+    /// MET symbol code) draws that weather at 18 °C and 4 m/s, with no network and whatever the switch says.
+    private static let demoWeather: WeatherSymbol? = UserDefaults.standard.string(forKey: "demoWeather").flatMap(WeatherService.demoSymbol)
     #endif
 
     // MARK: Prayer location
@@ -297,7 +320,8 @@ final class AppModel {
             // exact position (they are in backups).
             latitude: (fix.location.latitude * 1000).rounded() / 1000, longitude: (fix.location.longitude * 1000).rounded() / 1000,
             zoneId: (z?.zone ?? .current).identifier, countryCode: z?.nearestCity?.countryCode, source: .device,
-            zoneConfirmed: !(z?.needsConfirmation ?? true)
+            zoneConfirmed: !(z?.needsConfirmation ?? true),
+            cityLatitude: near?.location.latitude, cityLongitude: near?.location.longitude
         )
         settings.followDevice = true
         if !settings.methodChosenByUser { settings.prayer.method = PrayerCalculator.suggestedMethod(z?.nearestCity?.countryCode) }
@@ -386,6 +410,17 @@ final class AppModel {
     func skyPeriod(now: Date) -> SkyPeriod {
         guard settings.location != nil else { return .night }
         return PrayerSnapshot(model: self, now: now).sky
+    }
+
+    /// The prayer city's weather to draw on the sky now; nil (the normal sky) when the switch is off, no city is
+    /// chosen (or, with "Use my location", none is within 30 km), or there is no recent data (offline, older than
+    /// about 3 hours, another city).
+    func skyWeather(now: Date) -> WeatherNow? {
+        #if DEBUG
+        if let demo = Self.demoWeather { return WeatherNow(symbol: demo, temperatureC: 18, windMs: 4, at: now) }
+        #endif
+        guard settings.skyWeather, let place = settings.location?.weatherLocation else { return nil }
+        return weather.now(for: place, at: now)
     }
 
     // MARK: Prayer schedule (cached per location/settings/date; countdown recomputed from instants)

@@ -22,11 +22,16 @@ import sa.zood.nearmosque.core.HighLatRule
 import sa.zood.nearmosque.core.PolarRule
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerMoment
+import sa.zood.nearmosque.core.Weather
+import sa.zood.nearmosque.core.WeatherCache
+import sa.zood.nearmosque.core.WeatherNow
+import sa.zood.nearmosque.core.WeatherSample
 import java.io.File
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /** Renders the main screen off-screen (no display needed) into build/shots, in English and Arabic. */
@@ -46,7 +51,8 @@ class ScreenshotTest {
         at: ((Clock) -> Instant)? = null,
     ) {
         Strings.language = language
-        val settings = change(DesktopSettings(cityId = city.id, language = language))
+        // The one-time weather offer already answered, so these show the screens as they were before it.
+        val settings = change(DesktopSettings(cityId = city.id, language = language, weatherOffered = true))
         val clock = Clock(city, settings)
         val now = at?.invoke(clock) ?: noon
         render(name) { AppScreen(settings, city, clock, now, onCity = {}, onSettings = {}) }
@@ -111,7 +117,7 @@ class ScreenshotTest {
             salawat = true, quran = true, quranMinutes = 21 * 60 + 7, bedtimeMinutes = 22 * 60 + 30, kahf = true,
             friday = true, ramadan = true, fajrAlarmMinutesBefore = 10,
         )
-        render(name, height = 4400) {
+        render(name, height = 4900) {
             Box(Modifier.fillMaxSize().background(Navy).padding(24.dp)) {
                 SettingsScreen(settings, Clock(city, settings), onChange = {}, onChangeCity = {}, openPrayer = PrayerEvent.ASR)
             }
@@ -125,7 +131,7 @@ class ScreenshotTest {
     /** The Fajr alarm ringing: its card with Stop above the prayer screen. */
     private fun alarmShot(name: String, language: String) {
         Strings.language = language
-        val settings = DesktopSettings(cityId = riyadh.id, language = language, fajrAlarmMinutesBefore = 10)
+        val settings = DesktopSettings(cityId = riyadh.id, language = language, fajrAlarmMinutesBefore = 10, weatherOffered = true)
         val clock = Clock(riyadh, settings)
         val now = clock.today(noon)[PrayerEvent.FAJR]!!.minusSeconds(590)
         render(name) { AppScreen(settings, riyadh, clock, now, onCity = {}, onSettings = {}, alarm = true) }
@@ -136,6 +142,69 @@ class ScreenshotTest {
     @Test fun alarmArabic() = alarmShot("alarm-ar", "ar")
 
     @Test fun calculationSettingsArabic() = settingsShot("settings-calculation-ar", "ar")
+
+    // Sky follows the weather: the next-prayer card on the time-of-day sky with the city's weather, from a seeded
+    // cache read the way the app reads it (Weather.now), and the temperature and wind line under the city name.
+    private val istanbul get() = Cities.index.search("Istanbul", 1).first()
+
+    private fun weatherShot(
+        name: String, code: String?, city: City = riyadh, language: String = "en", tempC: Double = 24.0, windMs: Double = 4.0,
+        at: (Clock) -> Instant,
+    ): WeatherNow? {
+        Strings.language = language
+        val settings = DesktopSettings(cityId = city.id, language = language, skyWeather = true, weatherOffered = true)
+        val clock = Clock(city, settings)
+        val now = at(clock)
+        val key = Weather.key(city.location)
+        val cache = code?.let {
+            WeatherCache(
+                key = key, samples = listOf(WeatherSample(now.minusSeconds(600), tempC, windMs, it)), lastModified = "Mon, 12 Oct 2026 09:30:00 GMT",
+                expires = now.plusSeconds(1500), validatedAt = now.minusSeconds(300), lastAttempt = now.minusSeconds(300),
+            )
+        }
+        val weather = Weather.now(cache, key, now)
+        if (code != null) assertNotNull(weather, "the seeded $code is shown")
+        render(name) { AppScreen(settings, city, clock, now, onCity = {}, onSettings = {}, weather = weather, animate = false) }
+        return weather
+    }
+
+    private fun localTime(clock: Clock, hhmm: String): Instant =
+        java.time.LocalDate.of(2026, 10, 12).atTime(java.time.LocalTime.parse(hhmm)).atZone(clock.zone).toInstant()
+
+    @Test fun weatherClearDay() { weatherShot("weather-clear-en", "clearsky_day", tempC = 33.6, windMs = 3.1) { localTime(it, "13:00") } }
+
+    @Test fun weatherPartlyCloudyAsr() { weatherShot("weather-partly-cloudy-en", "partlycloudy_day", tempC = 31.2) { localTime(it, "16:00") } }
+
+    @Test fun weatherCloudySunrise() { weatherShot("weather-cloudy-en", "cloudy", tempC = 22.0) { localTime(it, "06:15") } }
+
+    @Test fun weatherRainDay() { weatherShot("weather-rain-en", "rain", tempC = 19.4, windMs = 6.2) { localTime(it, "13:00") } }
+
+    @Test fun weatherRainArabic() { weatherShot("weather-rain-ar", "heavyrainshowers_day", language = "ar", tempC = 19.4, windMs = 6.2) { localTime(it, "13:00") } }
+
+    @Test fun weatherThunderstormMaghrib() { weatherShot("weather-thunderstorm-en", "heavyrainandthunder", tempC = 21.0, windMs = 9.5) { localTime(it, "18:00") } }
+
+    @Test fun weatherFogFajr() { weatherShot("weather-fog-en", "fog", istanbul, tempC = 11.0, windMs = 1.2) { localTime(it, "07:00") } }
+
+    @Test fun weatherSnowIsha() { weatherShot("weather-snow-en", "snow", istanbul, tempC = -2.5, windMs = 3.0) { localTime(it, "21:00") } }
+
+    @Test fun weatherClearNightArabic() { weatherShot("weather-clear-night-ar", "clearsky_night", language = "ar", tempC = 26.0, windMs = 2.0) { localTime(it, "23:30") } }
+
+    // On, but no fresh data (offline, or older than 3 hours): the plain time-of-day sky and no line, no error.
+    @Test fun weatherFallback() { assertNull(weatherShot("weather-fallback-en", null) { localTime(it, "13:00") }) }
+
+    /** The one-time offer at the top of the prayer screen (the desktop's onboarding for the feature). */
+    private fun offerShot(name: String, language: String) {
+        Strings.language = language
+        val settings = DesktopSettings(cityId = riyadh.id, language = language)
+        val clock = Clock(riyadh, settings)
+        var answered: DesktopSettings? = null
+        render(name) { AppScreen(settings, riyadh, clock, noon, onCity = {}, onSettings = { answered = it }) }
+        assertNull(answered)
+    }
+
+    @Test fun weatherOfferEnglish() = offerShot("weather-offer-en", "en")
+
+    @Test fun weatherOfferArabic() = offerShot("weather-offer-ar", "ar")
 
     @Test fun stagesFollowTheIqama() {
         Strings.language = "en"

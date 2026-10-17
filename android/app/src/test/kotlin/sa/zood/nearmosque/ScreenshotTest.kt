@@ -28,6 +28,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import sa.zood.nearmosque.ui.Tab
 import sa.zood.nearmosque.ui.theme.NearMosqueTheme
+import sa.zood.nearmosque.ui.glass.under as underWeather
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -45,13 +46,30 @@ class ScreenshotTest {
     // 2026-10-03 05:30 SAST: between Fajr and sunrise, like the reference screenshot's situation.
     private val fixed = ZonedDateTime.of(2026, 10, 3, 5, 30, 28, 0, ZoneId.of("Africa/Johannesburg")).toInstant()
 
-    private fun container(location: PrayerLocation? = capeTown, at: java.time.Instant = fixed): AppContainer = runBlocking {
-        // Still frames (system "remove animations"), and no network: live search returns nothing new.
+    /** "Sky follows the weather" in a test: a MET symbol code with its temperature (°C) and wind (m/s). */
+    private data class Wx(val symbol: String, val tempC: Double, val windMs: Double)
+
+    /** A compact MET reply whose steps start at the hour of [at], all with [w] (the shape of shared/fixtures/met-compact-sample.json). */
+    private fun metBody(at: java.time.Instant, w: Wx): String {
+        val start = at.truncatedTo(java.time.temporal.ChronoUnit.HOURS)
+        val steps = (0..3).joinToString(",") { i ->
+            """{"time":"${start.plusSeconds(3600L * i)}","data":{"instant":{"details":{"air_temperature":${w.tempC},"wind_speed":${w.windMs}}},""" +
+                """"next_1_hours":{"summary":{"symbol_code":"${w.symbol}"}}}}"""
+        }
+        return """{"type":"Feature","properties":{"meta":{"units":{"air_temperature":"celsius","wind_speed":"m/s"}},"timeseries":[$steps]}}"""
+    }
+
+    private fun container(location: PrayerLocation? = capeTown, at: java.time.Instant = fixed, weather: Wx? = null): AppContainer = runBlocking {
+        // Still frames (system "remove animations"), and no network: live search returns nothing new, and the
+        // weather (only when asked for) comes from a fake MET that answers once with [weather].
         android.provider.Settings.Global.putFloat(compose.activity.contentResolver, android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0f)
         val c = AppContainer(
             compose.activity, inMemoryDb = true, clock = { at },
             settingsFile = java.io.File.createTempFile("settings", ".preferences_pb").also { it.delete() },
             online = sa.zood.nearmosque.data.OnlineMosqueSource { _, _ -> emptyList() },
+            weatherSource = sa.zood.nearmosque.data.WeatherSource { _, _, _ ->
+                weather?.let { sa.zood.nearmosque.data.WeatherHttp(200, null, null, metBody(at, it)) }
+            },
         )
         c.packs.ensureBuiltins { !sa.zood.nearmosque.data.ChunkScope.isLibrary(it.id) }
         c.start(installLibraries = false)
@@ -59,11 +77,17 @@ class ScreenshotTest {
             c.settings.setPrayerLocation(location, follow = false)
             c.settings.setMethod(Method.MUSLIM_WORLD_LEAGUE, byUser = false)
         }
+        c.weather.clear()
+        if (weather != null) {
+            c.settings.setSkyWeather(true)
+            // Cached before the first frame, so the screenshot shows it without waiting for the refresh loop.
+            location?.let { c.weather.refreshIfDue(it.location) }
+        }
         c
     }
 
-    private fun shoot(name: String, tab: Tab, location: PrayerLocation? = capeTown, onboardingPage: Int? = null, dark: Boolean = true, at: java.time.Instant = fixed, after: () -> Unit = {}) {
-        val c = container(location, at)
+    private fun shoot(name: String, tab: Tab, location: PrayerLocation? = capeTown, onboardingPage: Int? = null, dark: Boolean = true, at: java.time.Instant = fixed, weather: Wx? = null, after: () -> Unit = {}) {
+        val c = container(location, at, weather)
         compose.setContent { NearMosqueTheme(dark = dark) { AppRoot(c, initialTab = tab, showOnboarding = onboardingPage != null, onboardingPage = onboardingPage ?: 0) } }
         compose.waitForIdle()
         after()
@@ -153,15 +177,16 @@ class ScreenshotTest {
     @Test fun prayerDayLight() = shoot("prayer_day_en_light", Tab.PRAYER, dark = false, at = ZonedDateTime.of(2026, 10, 3, 10, 0, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant())
 
     /** The full Qibla view, with a live heading [heading]° (Cape Town's Qibla is about 23°). */
-    private fun shootQibla(name: String, heading: Double, dark: Boolean = true) {
-        val c = container()
+    private fun shootQibla(name: String, heading: Double, dark: Boolean = true, weather: Wx? = null) {
+        val c = container(weather = weather)
         val vm = sa.zood.nearmosque.ui.prayer.PrayerViewModel(c)
         vm.refreshNearestMosque("en")
         compose.setContent {
             NearMosqueTheme(dark = dark) {
                 androidx.compose.runtime.CompositionLocalProvider(LocalAppContainer provides c) {
                     val ui by vm.ui.collectAsState()
-                    androidx.compose.runtime.CompositionLocalProvider(sa.zood.nearmosque.ui.theme.LocalSky provides sa.zood.nearmosque.ui.theme.Sky.of(ui.sky, dark)) {
+                    val sky = sa.zood.nearmosque.ui.theme.Sky.of(ui.sky, dark)
+                    androidx.compose.runtime.CompositionLocalProvider(sa.zood.nearmosque.ui.theme.LocalSky provides sky.underWeather(ui.weather)) {
                         val compass = sa.zood.nearmosque.core.CompassState.Live(heading, 8.0, false)
                         val aligned = ui.qiblaBearing?.let { kotlin.math.abs(sa.zood.nearmosque.core.Angles.relativeToQibla(it, heading)) < 3 } ?: false
                         sa.zood.nearmosque.ui.prayer.QiblaCompassScreen(ui, compass, aligned, onClose = {})
@@ -185,6 +210,45 @@ class ScreenshotTest {
 
     @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
     fun qiblaArabic() = shootQibla("qibla_turn_ar", heading = 60.0)
+
+    // Sky follows the weather (opt-in): each condition on the sky, by night and by day, light and dark, Arabic RTL.
+    // Robolectric's default locale is en-US, so the English line shows °F and mph; Arabic has no region: °C and km/h.
+    private fun sast(h: Int, m: Int) = ZonedDateTime.of(2026, 10, 3, h, m, 0, 0, ZoneId.of("Africa/Johannesburg")).toInstant()
+
+    @Test fun prayerRainNight() = shoot("prayer_rain_night_en", Tab.PRAYER, at = sast(22, 30), weather = Wx("rain", 14.2, 6.1))
+
+    @Test fun prayerThunderDayLight() = shoot("prayer_thunder_day_en_light", Tab.PRAYER, dark = false, at = sast(14, 10), weather = Wx("heavyrainandthunder", 19.6, 9.4))
+
+    @Test fun prayerFog() = shoot("prayer_fog_en", Tab.PRAYER, at = sast(7, 10), weather = Wx("fog", 11.8, 1.2))
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
+    fun prayerSnowArabic() = shoot("prayer_snow_ar", Tab.PRAYER, at = sast(10, 0), weather = Wx("snow", -2.6, 4.3))
+
+    @Test fun prayerCloudyLight() = shoot("prayer_cloudy_en_light", Tab.PRAYER, dark = false, at = sast(10, 0), weather = Wx("cloudy", 16.0, 3.0))
+
+    @Test fun prayerPartlyCloudyEvening() = shoot("prayer_partly_cloudy_evening_en", Tab.PRAYER, at = sast(18, 40), weather = Wx("partlycloudy_day", 18.0, 2.5))
+
+    @Test fun compactCloudy() = shoot("compact_cloudy_en", Tab.PRAYER, at = sast(14, 10), weather = Wx("cloudy", 17.4, 5.0)) { scrollToCompact() }
+
+    @Test fun qiblaRain() = shootQibla("qibla_rain_en", heading = 103.0, weather = Wx("rainshowers_day", 15.0, 7.0))
+
+    /** Appearance in Settings: the switch on, what it sends, and the credit to MET Norway. */
+    @Test fun settingsWeather() {
+        val c = container(weather = Wx("partlycloudy_day", 18.0, 2.5))
+        val vm = sa.zood.nearmosque.ui.prayer.PrayerViewModel(c)
+        compose.setContent {
+            NearMosqueTheme(dark = true) {
+                androidx.compose.runtime.CompositionLocalProvider(LocalAppContainer provides c) {
+                    val ui by vm.ui.collectAsState()
+                    sa.zood.nearmosque.ui.settings.SettingsScreen(c, ui, {}, {}, {}, {}, vm::setSkyWeather) {}
+                }
+            }
+        }
+        compose.waitForIdle()
+        compose.onNodeWithText("Weather: based on data from MET Norway").performScrollTo()
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/screenshots/settings_weather_en.png")
+    }
 
     @Test fun mosquesList() = shoot("mosques_en", Tab.MOSQUES)
 

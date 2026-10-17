@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Check shared/design/tokens.json: WCAG contrast of text on the header skies and key surfaces, and
-that the Android (Theme.kt) and iOS (Theme.swift, Sky.swift) themes use exactly the token colours."""
+"""Check shared/design/tokens.json: WCAG contrast of text on the header skies and key surfaces (also with
+every "Sky follows the weather" veil mixed in), and that the Android (Theme.kt) and iOS (Theme.swift,
+Sky.swift) themes use exactly the token colours (the weather sky files only token colours)."""
 import json
 import os
 import re
@@ -36,23 +37,41 @@ def main():
     def blend(a, b, f):
         return "".join("%02X" % round(int(a[i:i + 2], 16) * (1 - f) + int(b[i:i + 2], 16) * f) for i in (0, 2, 4))
 
+    # Sky follows the weather: every stop mixed toward the condition's veil (also at the lighter showers mix),
+    # the horizon glow scaled. "clear" (mix 0) is today's sky.
+    w = t.get("weather", {})
+    variants = [("", None, 0.0, 1.0)]
+    for cond, mix in w.get("mix", {}).items():
+        for label, m in ((cond, mix), (f"{cond} showers", mix * w.get("showersMix", 1.0))):
+            if m > 0:
+                variants.append((f" {label}", cond, m, w["glow"][cond]))
+
+    def veiled(sky, veil, cond, m):
+        s = {k: v.lstrip("#").upper() for k, v in sky.items()}
+        if cond is None:
+            return s
+        v = veil[cond].lstrip("#").upper()
+        return {k: blend(c, v, m) for k, c in s.items()}
+
     for name, sky in t["sky"].items():
         if name.startswith("_"):
             continue
-        s = {k: v.lstrip("#").upper() for k, v in sky.items()}
-        for stop in ("top", "mid", "low"):
-            checks.append((f"white on sky {name} {stop}", "FFFFFF", s[stop], 4.5))
-        checks.append((f"white on sky {name} mid + 20% glow", "FFFFFF", blend(s["mid"], s["glow"], 0.2), 4.5))
-        checks.append((f"white on sky {name} low + 25% glow", "FFFFFF", blend(s["low"], s["glow"], 0.25), 4.5))
+        for label, cond, m, g in variants:
+            s = veiled(sky, w.get("veilDark", {}), cond, m)
+            for stop in ("top", "mid", "low"):
+                checks.append((f"white on sky {name}{label} {stop}", "FFFFFF", s[stop], 4.5))
+            checks.append((f"white on sky {name}{label} mid + 20% glow", "FFFFFF", blend(s["mid"], s["glow"], 0.2 * g), 4.5))
+            checks.append((f"white on sky {name}{label} low + 25% glow", "FFFFFF", blend(s["low"], s["glow"], 0.25 * g), 4.5))
     for name, sky in t.get("skyLight", {}).items():
         if name.startswith("_"):
             continue
-        s = {k: v.lstrip("#").upper() for k, v in sky.items()}
-        for ink in ("textLight", "goldInk", "textSecondaryLight"):
-            for stop in ("top", "mid", "low"):
-                checks.append((f"{ink} on light sky {name} {stop}", col[ink], s[stop], 4.5))
-            checks.append((f"{ink} on light sky {name} mid + 20% glow", col[ink], blend(s["mid"], s["glow"], 0.2), 4.5))
-            checks.append((f"{ink} on light sky {name} low + 25% glow", col[ink], blend(s["low"], s["glow"], 0.25), 4.5))
+        for label, cond, m, g in variants:
+            s = veiled(sky, w.get("veilLight", {}), cond, m)
+            for ink in ("textLight", "goldInk", "textSecondaryLight"):
+                for stop in ("top", "mid", "low"):
+                    checks.append((f"{ink} on light sky {name}{label} {stop}", col[ink], s[stop], 4.5))
+                checks.append((f"{ink} on light sky {name}{label} mid + 20% glow", col[ink], blend(s["mid"], s["glow"], 0.2 * g), 4.5))
+                checks.append((f"{ink} on light sky {name}{label} low + 25% glow", col[ink], blend(s["low"], s["glow"], 0.25 * g), 4.5))
     for name, a, b, need in checks:
         r = ratio(a, b)
         if r < need:
@@ -71,6 +90,19 @@ def main():
     for label, used in (("Theme.kt", used_kt), ("Theme.swift + Sky.swift", used_sw)):
         if sky_hex - used:
             errors.append(f"{label} is missing sky colours: {sorted(sky_hex - used)}")
+    # The weather sky files (once they exist) may use only token colours, the weather ones included.
+    weather_hex = {c.lstrip("#").upper() for v in w.values() if not isinstance(v, (int, float))
+                   for c in (v.values() if isinstance(v, dict) else [v]) if isinstance(c, str) and c.startswith("#")}
+    for rel in ("ios/App/Support/WeatherSky.swift", "android/app/src/main/kotlin/sa/zood/nearmosque/ui/glass/WeatherSky.kt",
+                "windows/src/main/kotlin/sa/zood/nearmosque/desktop/SkyStrip.kt"):
+        path = os.path.join(ROOT, rel)
+        if not os.path.exists(path):
+            continue
+        text = open(path).read()
+        used = {m.upper() for m in re.findall(r"0xFF([0-9A-Fa-f]{6})", text)} | {m.upper() for m in re.findall(r"hex: 0x([0-9A-Fa-f]{6})", text)}
+        stray = used - allowed - weather_hex
+        if stray:
+            errors.append(f"{rel} uses colours not in tokens.json: {sorted(stray)}")
     if errors:
         print("\n".join(errors))
         sys.exit(1)

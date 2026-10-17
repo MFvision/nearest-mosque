@@ -35,8 +35,16 @@ data class PrayerLocation(
     val countryCode: String?,
     val source: Source,
     val zoneConfirmed: Boolean = true,
+    /** With [Source.DEVICE]: the nearest bundled city within 30 km (the one named), or null when none is that close. */
+    val nearCity: LatLng? = null,
 ) {
     enum class Source { CITY, DEVICE }
+
+    /**
+     * Whose weather the sky shows ("Sky follows the weather" sends only a city's coordinates): the chosen city, or
+     * with "Use my location" the city near the device; null when there is none (the sky stays normal).
+     */
+    val weatherLocation: LatLng? get() = if (source == Source.CITY) location else nearCity
 }
 
 data class AppSettings(
@@ -55,6 +63,8 @@ data class AppSettings(
     val iqama: IqamaSettings = IqamaSettings(),
     /** Do Not Disturb during each prayer (off until the user turns it on). */
     val silence: SilenceSettings = SilenceSettings(),
+    /** Sky follows the weather (opt-in): the chosen city's weather from MET Norway on the sky. Off until turned on. */
+    val skyWeather: Boolean = false,
 )
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -71,6 +81,8 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val locCountry = stringPreferencesKey("loc_country")
         val locSource = stringPreferencesKey("loc_source")
         val locZoneConfirmed = booleanPreferencesKey("loc_zone_confirmed")
+        val locCityLat = doublePreferencesKey("loc_city_lat")
+        val locCityLng = doublePreferencesKey("loc_city_lng")
         val follow = booleanPreferencesKey("follow_device")
         val method = stringPreferencesKey("method")
         val methodByUser = booleanPreferencesKey("method_by_user")
@@ -84,6 +96,8 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         val mosqueView = stringPreferencesKey("mosque_view")
         val onboarded = booleanPreferencesKey("onboarded")
         val onlineSearch = booleanPreferencesKey("online_search")
+        /** Sky follows the weather; missing (older saves) = off. */
+        val skyWeather = booleanPreferencesKey("sky_weather")
         val alertBefore = intPreferencesKey("alert_before")
         val alertFriday = booleanPreferencesKey("alert_friday")
         val alertRamadan = booleanPreferencesKey("alert_ramadan")
@@ -134,6 +148,7 @@ class SettingsStore(private val store: DataStore<Preferences>) {
                     p[K.locName] ?: "", ll, zone, p[K.locCountry],
                     if (p[K.locSource] == "DEVICE") PrayerLocation.Source.DEVICE else PrayerLocation.Source.CITY,
                     p[K.locZoneConfirmed] ?: true,
+                    LatLng.orNull(p[K.locCityLat], p[K.locCityLng]),
                 )
             } else null
         }
@@ -154,6 +169,7 @@ class SettingsStore(private val store: DataStore<Preferences>) {
             mosqueView = p[K.mosqueView] ?: "compass",
             onboarded = p[K.onboarded] ?: false,
             onlineSearch = p[K.onlineSearch] ?: true,
+            skyWeather = p[K.skyWeather] ?: false,
             alerts = sa.zood.nearmosque.core.AlertSettings(
                 minutesBefore = p[K.alertBefore] ?: 0,
                 friday = p[K.alertFriday] ?: false,
@@ -272,6 +288,14 @@ class SettingsStore(private val store: DataStore<Preferences>) {
         loc.countryCode?.let { p[K.locCountry] = it } ?: p.remove(K.locCountry)
         p[K.locSource] = loc.source.name
         p[K.locZoneConfirmed] = loc.zoneConfirmed
+        val city = loc.nearCity
+        if (city != null) {
+            p[K.locCityLat] = city.latitude
+            p[K.locCityLng] = city.longitude
+        } else {
+            p.remove(K.locCityLat)
+            p.remove(K.locCityLng)
+        }
         p[K.follow] = follow
     }
 
@@ -296,6 +320,7 @@ class SettingsStore(private val store: DataStore<Preferences>) {
     }
     suspend fun setOnboarded(on: Boolean) = store.edit { it[K.onboarded] = on }
     suspend fun setOnlineSearch(on: Boolean) = store.edit { it[K.onlineSearch] = on }
+    suspend fun setSkyWeather(on: Boolean) = store.edit { it[K.skyWeather] = on }
     suspend fun setReminder(e: PrayerEvent, on: Boolean) = store.edit { p ->
         val cur = p[K.reminders].orEmpty().toMutableSet()
         if (on) cur += e.name else cur -= e.name

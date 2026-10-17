@@ -1,6 +1,8 @@
 package sa.zood.nearmosque.ui.glass
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -10,6 +12,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -22,6 +25,8 @@ import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import sa.zood.nearmosque.core.WeatherLook
+import sa.zood.nearmosque.core.WeatherNow
 import sa.zood.nearmosque.ui.theme.Sky
 
 /**
@@ -47,9 +52,17 @@ fun reducedMotion(): Boolean {
  * Full-screen landscape behind the glass: gradient sky, stars at night, drifting clouds, a horizon
  * glow behind two mountain ridges and a calm lake; optionally a mosque skyline. Decorative only.
  * Text never sits over the brightest glow (tools/check_tokens.py).
+ *
+ * With [weather] (Sky follows the weather, opt-in) the same sky also shows the city's weather: pass a [sky]
+ * already veiled with Sky.under. Stars, glow and clouds are scaled by the shared WeatherLook, and an overcast
+ * deck, rain, snow, a fog band or a rare soft flash (animations on, not in Battery Saver) are added. The layers
+ * fade in and out over 2 s; with animations off everything is one still frame.
  */
 @Composable
-fun SkyBackdrop(sky: Sky, modifier: Modifier = Modifier, horizon: Float = 0.64f, skyline: Boolean = false, animate: Boolean = !reducedMotion()) {
+fun SkyBackdrop(
+    sky: Sky, modifier: Modifier = Modifier, horizon: Float = 0.64f, skyline: Boolean = false, animate: Boolean = !reducedMotion(),
+    weather: WeatherNow? = null,
+) {
     val top by animateColorAsState(sky.top, tween(1200), label = "top")
     val mid by animateColorAsState(sky.mid, tween(1200), label = "mid")
     val glow by animateColorAsState(sky.glow, tween(1200), label = "glow")
@@ -57,6 +70,26 @@ fun SkyBackdrop(sky: Sky, modifier: Modifier = Modifier, horizon: Float = 0.64f,
     val d = loopingFloat(animate, 140_000, reverse = true, label = "drift", still = 0.3f)
     val tw = loopingFloat(animate, 3200, reverse = true, label = "twinkle", still = 0.5f)
     val stars = sky.period.hasStars
+    // The last weather is kept while its layers fade out after the switch is turned off or the data gets old.
+    val held = remember { HeldWeather() }
+    if (weather != null) held.symbol = weather.symbol
+    val fade by animateFloatAsState(if (weather != null) 1f else 0f, if (animate) tween(2000) else snap(), label = "weather")
+    val symbol = if (weather != null || fade > 0f) held.symbol else null
+    val look = WeatherLook.of(symbol, night = stars)
+    val veil = symbol?.let { WeatherTokens.veil(it.condition, sky.dark) }
+    val starK = lerpF(1f, look.starOpacity.toFloat(), fade)
+    val glowK = lerpF(1f, look.glowStrength.toFloat(), fade)
+    val cloudDefault = if (stars) 0.35f else 0.8f
+    val cloudK = lerpF(cloudDefault, look.cloudOpacity?.toFloat() ?: cloudDefault, fade)
+    val deck = look.deckOpacity.toFloat() * fade
+    val fog = look.fogBand.toFloat() * fade
+    val rain = look.rainStreaks > 0 && fade > 0f
+    val snow = look.snowFlakes > 0 && fade > 0f
+    // Motion only through loopingFloat: with animations off each is a fixed value and nothing loops.
+    val rainPhase = loopingFloat(animate && rain, 1600, reverse = false, label = "rain", still = 0.37f)
+    val snowPhase = loopingFloat(animate && snow, 14_000, reverse = false, label = "snow", still = 0.42f)
+    val flashes = look.lightning && weather != null && animate && !powerSaveMode()
+    val bolt = loopingFloat(flashes, 12_000, reverse = false, label = "bolt", still = 0f)
     Canvas(modifier.clearAndSetSemantics { }) {
         val w = size.width
         val h = size.height
@@ -67,14 +100,14 @@ fun SkyBackdrop(sky: Sky, modifier: Modifier = Modifier, horizon: Float = 0.64f,
                 (horizon + 0.14f).coerceAtMost(1f) to low, 1f to low,
             ),
         )
-        if (stars) {
-            drawStars(7, Size(w, y0 * 0.85f), 0.55f + 0.4f * tw)
-            drawStars(31, Size(w, y0 * 0.85f), 0.9f - 0.45f * tw)
+        if (stars && starK > 0f) {
+            drawStars(7, Size(w, y0 * 0.85f), (0.55f + 0.4f * tw) * starK)
+            drawStars(31, Size(w, y0 * 0.85f), (0.9f - 0.45f * tw) * starK)
         }
         // Horizon glow (ellipse), faded to nothing well below the text area.
         scale(1f, 0.42f, pivot = Offset(w / 2, y0)) {
             drawCircle(
-                Brush.radialGradient(listOf(glow.copy(alpha = 0.95f), glow.copy(alpha = 0.4f), glow.copy(alpha = 0f)), center = Offset(w / 2, y0), radius = w * 0.7f),
+                Brush.radialGradient(listOf(glow.copy(alpha = 0.95f * glowK), glow.copy(alpha = 0.4f * glowK), glow.copy(alpha = 0f)), center = Offset(w / 2, y0), radius = w * 0.7f),
                 radius = w * 0.7f, center = Offset(w / 2, y0),
             )
         }
@@ -82,21 +115,31 @@ fun SkyBackdrop(sky: Sky, modifier: Modifier = Modifier, horizon: Float = 0.64f,
         val shade = if (sky.dark) 1f else 0.35f
         val cloudTint = lerp(Color.White, glow, if (sky.dark) 0.35f else 0.15f)
         translate(left = -w * (0.1f + 0.45f * d), top = y0 * 0.38f) {
-            drawClouds(Size(w * 1.7f, y0 * 0.55f), cloudTint, if (stars) 0.35f else 0.8f)
+            drawClouds(Size(w * 1.7f, y0 * 0.55f), cloudTint, cloudK)
         }
+        if (veil != null && deck > 0f) drawOvercast(Size(w, y0), veil, sky.dark, deck, d)
+        if (flashes) drawLightning(Size(w, y0), bolt, sky.dark)
+        val lakeTop = y0 + h * 0.06f
+        if (rain) drawRain(Size(w, lakeTop), look.rainStreaks, WeatherTokens.streak(sky.dark), (if (sky.dark) 0.36f else 0.26f) * fade, rainPhase)
+        if (snow) drawSnow(Size(w, lakeTop), look.snowFlakes, if (sky.dark) WeatherTokens.streakDark else WeatherTokens.flake, if (sky.dark) null else WeatherTokens.streakLight, fade, snowPhase)
         drawRidge(FAR, Offset(0f, y0 - h * 0.075f), Size(w, h * 0.16f), Brush.verticalGradient(listOf(lerp(mid, glow, 0.22f).copy(alpha = 0.85f), low), startY = y0 - h * 0.075f, endY = y0 + h * 0.085f))
         if (skyline) drawSkyline(Offset(w * 0.19f, y0 - h * 0.13f), Size(w * 0.62f, h * 0.15f), lerp(low, Color.Black, 0.25f * shade))
         drawRidge(NEAR, Offset(0f, y0 - h * 0.035f), Size(w, h * 0.12f), Brush.verticalGradient(listOf(lerp(low, Color.Black, 0.18f * shade), lerp(low, Color.Black, 0.18f * shade))))
-        val lakeTop = y0 + h * 0.06f
         drawRect(Brush.verticalGradient(listOf(lerp(low, glow, 0.12f), lerp(low, Color.Black, 0.2f * shade)), startY = lakeTop, endY = h), topLeft = Offset(0f, lakeTop), size = Size(w, h - lakeTop))
         scale(1f, 1.3f, pivot = Offset(w / 2, y0 + h * 0.16f)) {
             drawCircle(
-                Brush.radialGradient(listOf(glow.copy(alpha = 0.32f * (0.75f + 0.25f * tw)), glow.copy(alpha = 0f)), center = Offset(w / 2, y0 + h * 0.16f), radius = w * 0.3f),
+                Brush.radialGradient(listOf(glow.copy(alpha = 0.32f * glowK * (0.75f + 0.25f * tw)), glow.copy(alpha = 0f)), center = Offset(w / 2, y0 + h * 0.16f), radius = w * 0.3f),
                 radius = w * 0.3f, center = Offset(w / 2, y0 + h * 0.16f),
             )
         }
+        if (fog > 0f) drawFogBand(y0, WeatherTokens.fog(sky.dark), fog)
     }
 }
+
+/** The symbol last shown, so its layers can fade out after the weather goes away. */
+private class HeldWeather { var symbol: sa.zood.nearmosque.core.WeatherSymbol? = null }
+
+private fun lerpF(a: Float, b: Float, t: Float): Float = a + (b - a) * t
 
 private val FAR = listOf(0f to 0.55f, 0.08f to 0.42f, 0.17f to 0.2f, 0.26f to 0.38f, 0.36f to 0.3f, 0.47f to 0.5f, 0.58f to 0.34f, 0.7f to 0.12f, 0.8f to 0.36f, 0.9f to 0.28f, 1f to 0.45f)
 private val NEAR = listOf(0f to 0.35f, 0.12f to 0.55f, 0.24f to 0.42f, 0.38f to 0.7f, 0.52f to 0.6f, 0.66f to 0.75f, 0.8f to 0.5f, 0.92f to 0.62f, 1f to 0.4f)

@@ -49,6 +49,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
@@ -85,6 +86,8 @@ import sa.zood.nearmosque.core.Qibla
 import sa.zood.nearmosque.core.Reciter
 import sa.zood.nearmosque.core.ScheduleStatus
 import sa.zood.nearmosque.core.VoiceLanguage
+import sa.zood.nearmosque.core.Weather
+import sa.zood.nearmosque.core.WeatherNow
 import java.time.Duration
 import java.time.Instant
 import kotlin.math.roundToInt
@@ -151,9 +154,14 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
         alarmSince = null
     }
     var now by remember { mutableStateOf(Instant.now()) }
+    val weather = WeatherClient.shared
 
     // Keep the start-at-sign-in entry in step with the setting (the installer may have moved the app).
-    LaunchedEffect(Unit) { Startup.set(settings.startAtLogin) }
+    LaunchedEffect(Unit) {
+        Startup.set(settings.startAtLogin)
+        // Sky follows the weather is off: no forecast is kept on the PC.
+        if (!settings.skyWeather) weather.clear()
+    }
     TickLoop(clock, settings) { c, s ->
         now = Instant.now()
         // A slip in one tick (a broken sound device, a notification that cannot show) never stops the next.
@@ -168,6 +176,8 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
         if (s.startAtLogin != settings.startAtLogin) Startup.set(s.startAtLogin)
         // The Fajr alarm turned off while it rings: it stops.
         if (s.fajrAlarmMinutesBefore == null && settings.fajrAlarmMinutesBefore != null && (alarmSince != null || Sound.alarm)) stopAlarm()
+        // Sky follows the weather turned off: the forecast and its file go.
+        if (!s.skyWeather && settings.skyWeather) weather.clear()
         settings = s
         Store.save(s)
     }
@@ -204,6 +214,19 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
                     window.requestFocus()
                 }
             }
+            // Sky follows the weather: asked for only while this window is shown and not minimized (closed to the
+            // notification area, the window and this loop are gone; the tick above never fetches), when the city
+            // changes, and then as MET's Expires and the shared policy allow (about every half hour).
+            val skyCity = city
+            val skyOn = settings.skyWeather && skyCity != null
+            LaunchedEffect(skyOn, skyCity?.id, windowState.isMinimized) {
+                if (!skyOn || windowState.isMinimized) return@LaunchedEffect
+                while (true) {
+                    weather.refreshIfDue(skyCity.location)
+                    delay(weather.millisUntilDue(skyCity.location))
+                }
+            }
+            val weatherNow = if (skyOn) weather.now(skyCity.location, now) else null
             MaterialTheme(colorScheme = darkColorScheme(primary = Gold, background = Navy, surface = Card, onSurface = Ink)) {
                 CompositionLocalProvider(LocalLayoutDirection provides if (Strings.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                     AppScreen(
@@ -217,6 +240,8 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
                         onDismissBanner = { banner = null },
                         alarm = alarmSince != null && alarmShows(),
                         onStopAlarm = ::stopAlarm,
+                        weather = weatherNow,
+                        animate = Platform.animations,
                     )
                 }
             }
@@ -249,6 +274,7 @@ internal fun TickLoop(clock: Clock?, settings: DesktopSettings, periodMillis: Lo
 internal fun AppScreen(
     settings: DesktopSettings, city: City?, clock: Clock?, now: Instant, onCity: (City) -> Unit, onSettings: (DesktopSettings) -> Unit,
     banner: String? = null, onDismissBanner: () -> Unit = {}, alarm: Boolean = false, onStopAlarm: () -> Unit = {},
+    weather: WeatherNow? = null, animate: Boolean = false,
 ) {
     var screen by remember { mutableStateOf(Screen.PRAYER) }
     var picking by remember { mutableStateOf(city == null) }
@@ -278,6 +304,10 @@ internal fun AppScreen(
                 screen == Screen.PRAYER -> PrayerScreen(
                     clock, now, onChangeCity = { picking = true },
                     onUseNearest = { onSettings(settings.copy(polarRule = PolarRule.NEAREST_LATITUDE)) },
+                    sky = settings.skyWeather, weather = weather, animate = animate,
+                    // Offered once (the desktop has no tour); either answer puts it away for good.
+                    offerWeather = !settings.weatherOffered && !settings.skyWeather,
+                    onOfferAnswer = { on -> onSettings(settings.copy(skyWeather = on || settings.skyWeather, weatherOffered = true)) },
                 )
                 screen == Screen.QIBLA -> QiblaScreen(clock.city)
                 screen == Screen.MOSQUES -> MosquesScreen(clock.city, settings.onlineSearch)
@@ -311,16 +341,25 @@ private fun railIcon(s: Screen) = when (s) {
 }
 
 @Composable
-private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit, onUseNearest: () -> Unit) {
+private fun PrayerScreen(
+    clock: Clock, now: Instant, onChangeCity: () -> Unit, onUseNearest: () -> Unit,
+    sky: Boolean = false, weather: WeatherNow? = null, animate: Boolean = false, offerWeather: Boolean = false, onOfferAnswer: (Boolean) -> Unit = {},
+) {
     val today = clock.today(now)
     val moment = clock.moment(now)
     val iqama = clock.iqama
     val hijri = HijriCalendar.of(now.atZone(clock.zone).toLocalDate(), clock.settings.hijriAdjustmentDays)
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        if (offerWeather) WeatherOfferCard(onOfferAnswer)
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(clock.city.displayName(Strings.language), color = Ink, fontSize = 26.sp, fontWeight = FontWeight.SemiBold)
                 if (hijri != null) Text("${hijri.day} / ${hijri.month} / ${hijri.year}", color = Muted)
+                // Sky follows the weather: the temperature and the wind, nothing else (no line without fresh data).
+                if (weather != null) {
+                    val description = weatherDescription(weather, clock.city)
+                    Text(weatherLine(weather), color = Muted, fontSize = 14.sp, modifier = Modifier.semantics { contentDescription = description })
+                }
                 // Polar day or night with the nearest-latitude rule: the times are those at 48.5°, and the Adhan follows them.
                 if (today.status is ScheduleStatus.Estimated) Text(t("estimated_badge"), color = Gold, fontSize = 13.sp)
             }
@@ -328,7 +367,7 @@ private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit, o
         }
         // No sunrise or sunset today: no times are invented unless the person picks the nearest-latitude rule.
         if (today.status == ScheduleStatus.Unavailable) PolarCard(onUseNearest)
-        if (moment != null) MomentCard(moment, clock, now)
+        if (moment != null) MomentCard(moment, clock, now, sky, weather, animate)
         Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(vertical = 8.dp)) {
                 PrayerEvent.entries.forEach { e ->
@@ -362,27 +401,53 @@ private fun PolarCard(onUseNearest: () -> Unit) {
     }
 }
 
-/** The next Adhan with its countdown; after an Adhan, the countdown to the iqama; after the iqama, the prayer. */
+/** Sky follows the weather, offered once at the top of the prayer screen: off unless the person turns it on. */
 @Composable
-private fun MomentCard(m: PrayerMoment, clock: Clock, now: Instant) {
-    val name = t(prayerKey(m.event))
+private fun WeatherOfferCard(onAnswer: (Boolean) -> Unit) {
     Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(24.dp)) {
-            when (m.stage) {
-                PrayerMoment.Stage.UPCOMING -> {
-                    Text(t("next_prayer"), color = Muted)
-                    Text(name, color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
-                    Text(clockText(m.adhan, clock.zone) + "  ·  " + countdown(PrayerCalculator.remaining(now, m.adhan)), color = Ink, fontSize = 20.sp)
-                    m.iqama?.let { Text(t("iqama_at", clockText(it, clock.zone)), color = Muted) }
-                }
-                PrayerMoment.Stage.TO_IQAMA -> {
-                    Text(t("reminder_title", name), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
-                    Text(t("iqama_in") + "  " + countdown(PrayerCalculator.remaining(now, m.until)), color = Ink, fontSize = 20.sp)
-                    m.iqama?.let { Text(t("iqama_at", clockText(it, clock.zone)), color = Muted) }
-                }
-                PrayerMoment.Stage.PRAYER -> {
-                    Text(t("prayer_started", name), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
-                    Text(t("next_prayer") + "  ·  " + t(prayerKey(m.next.event)) + " " + clockText(m.next.at, clock.zone), color = Muted)
+        Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(t("sky_weather"), color = Ink, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            Text(t("onb_weather_body"), color = Muted)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = { onAnswer(true) }) { Text(t("weather_offer_turn_on")) }
+                TextButton(onClick = { onAnswer(false) }) { Text(t("weather_offer_not_now"), color = Gold) }
+                Spacer(Modifier.weight(1f))
+                TextButton(onClick = { Platform.open(Weather.ATTRIBUTION_URL) }) { Text(t("sky_weather_attribution"), color = Muted, fontSize = 13.sp) }
+            }
+        }
+    }
+}
+
+/**
+ * The next Adhan with its countdown; after an Adhan, the countdown to the iqama; after the iqama, the prayer. With
+ * Sky follows the weather on ([sky]), the card sits on the time-of-day sky with the city's [weather] (none: the
+ * plain sky); off, it is the flat card as before.
+ */
+@Composable
+private fun MomentCard(m: PrayerMoment, clock: Clock, now: Instant, sky: Boolean = false, weather: WeatherNow? = null, animate: Boolean = false) {
+    val name = t(prayerKey(m.event))
+    // How far the text reaches from the card's start edge (with its padding): the sky stays fully dimmed under it.
+    var textWidth by remember { mutableStateOf(Float.MAX_VALUE) }
+    Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+        Box {
+            if (sky) SkyStrip(SkyPeriod.of(clock, now), weather, now, animate, Modifier.matchParentSize(), textWidth)
+            Column(Modifier.onSizeChanged { textWidth = it.width.toFloat() }.padding(24.dp)) {
+                when (m.stage) {
+                    PrayerMoment.Stage.UPCOMING -> {
+                        Text(t("next_prayer"), color = Muted)
+                        Text(name, color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                        Text(clockText(m.adhan, clock.zone) + "  ·  " + countdown(PrayerCalculator.remaining(now, m.adhan)), color = Ink, fontSize = 20.sp)
+                        m.iqama?.let { Text(t("iqama_at", clockText(it, clock.zone)), color = Muted) }
+                    }
+                    PrayerMoment.Stage.TO_IQAMA -> {
+                        Text(t("reminder_title", name), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                        Text(t("iqama_in") + "  " + countdown(PrayerCalculator.remaining(now, m.until)), color = Ink, fontSize = 20.sp)
+                        m.iqama?.let { Text(t("iqama_at", clockText(it, clock.zone)), color = Muted) }
+                    }
+                    PrayerMoment.Stage.PRAYER -> {
+                        Text(t("prayer_started", name), color = Gold, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                        Text(t("next_prayer") + "  ·  " + t(prayerKey(m.next.event)) + " " + clockText(m.next.at, clock.zone), color = Muted)
+                    }
                 }
             }
         }
@@ -559,6 +624,11 @@ internal fun SettingsScreen(
             Text(t("start_at_login_store_note"), color = Muted, fontSize = 13.sp)
         }
         if (Platform.isLinux && !Platform.hasTray) Text(t("no_tray_note"), color = Muted, fontSize = 13.sp)
+        // Its own section, after the start-at-sign-in and notification-area notes (which are not about the look).
+        Header(t("appearance"))
+        Toggle(t("sky_weather"), s.skyWeather, note = t("sky_weather_note")) { onChange(s.copy(skyWeather = it, weatherOffered = true)) }
+        // CC BY 4.0 / NLOD: the source, credited and linked, under the switch.
+        LinkRow(t("sky_weather_attribution"), "met.no", Weather.ATTRIBUTION_URL)
         // Who makes the app and how to reach them, as on the store pages and nearmosque.net.
         Text(t("about"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         val ar = Strings.language == "ar"
@@ -568,6 +638,7 @@ internal fun SettingsScreen(
         LinkRow(t("about_phone"), Publisher.PHONE_DISPLAY, "tel:" + Publisher.PHONE)
         LinkRow(t("about_terms"), "nearmosque.net", "https://nearmosque.net/terms.html" + if (ar) "#ar" else "")
         LinkRow(t("privacy"), "nearmosque.net", "https://nearmosque.net/privacy.html" + if (ar) "#ar" else "")
+        LinkRow(t("sources_licenses"), "nearmosque.net", "https://nearmosque.net/credits.html" + if (ar) "#ar" else "")
         appVersion?.let { Text(t("version_label", it), color = Muted, fontSize = 13.sp) }
         Text("© ${Publisher.YEAR} ${Publisher.NAME}. " + t("about_rights"), color = Muted, fontSize = 13.sp)
     }

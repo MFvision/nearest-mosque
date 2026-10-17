@@ -42,7 +42,11 @@ struct NearMosqueApp: App {
                 // The Lock Screen countdown moves on to the next prayer each time the app comes to the screen.
                 .onChange(of: phase, initial: true) { _, p in
                     if p == .active { Task { await LiveCountdown.refresh(model) } }
+                    updateWeather(p)
                 }
+                // "Sky follows the weather": turning it on or choosing another city asks at once (at most once a
+                // minute); turning it off stops and deletes the saved weather.
+                .onChange(of: weatherKey) { _, _ in updateWeather(phase) }
         }
         #if os(visionOS)
         // A comfortable reading window in the room; people can resize it.
@@ -67,6 +71,22 @@ struct NearMosqueApp: App {
 
     @MainActor private func open(_ s: String) {
         if let url = URL(string: s) { PendingRoute.open(url) }
+    }
+
+    /// Changes when the weather switch or the prayer city changes (with "Use my location", the city near the device).
+    private var weatherKey: String {
+        let p = model.settings.location?.weatherLocation
+        return "\(model.settings.skyWeather) " + (p.map { "\($0.latitude) \($0.longitude)" } ?? "none")
+    }
+
+    /// The weather is fetched only while the app is active (MET's terms: no new data while the app is not in use);
+    /// never in the background. Turning the switch off deletes the saved weather at once, active or not. Only a city's
+    /// coordinates are sent: with "Use my location", the city near the device, and nothing without one.
+    @MainActor private func updateWeather(_ p: ScenePhase) {
+        if p == .active || !model.settings.skyWeather {
+            model.weather.resume(location: model.settings.location?.weatherLocation, enabled: model.settings.skyWeather)
+        }
+        if p != .active { model.weather.pause() }
     }
 }
 
