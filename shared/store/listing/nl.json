@@ -1,6 +1,6 @@
 {
  "subtitle": "Gebedstijden, qibla, moskee",
- "promo": "Gebedstijden, de qibla en de dichtstbijzijnde moskee in één rustige app. Adhan, widgets en antwoorden uit betrouwbare boeken, met bron. Geen reclame, geen account.",
+ "promo": "Gebedstijden op een lucht die het weer kan tonen, qibla en de moskee dichtbij. Adhan, widgets en antwoorden uit betrouwbare boeken, met bron. Geen reclame, geen account.",
  "promo_tv": "De gebedstijden van vandaag op je tv, de qibla voor je stad en moskeeën in de buurt. Een melding op het hele scherm bij elk gebed. Geen advertenties, geen account.",
  "keywords": "adhan,azan,salah,gebed,gebedstijden,qibla,moskee,islam,moslim,koran,hijri,dua,ramadan,mekka,tasbih",
  "whats_new": "Nieuw: Near Mosque op Apple Watch, met complicaties, het qibla-kompas en de tasbih. Eén stijl voor alles. Kies hem in Instellingen en de knoppen van de app, elke widget, het toegangsscherm en het Dynamic Island volgen hem. Nieuwe widgetstijlen: petrol en naar tijdstip.",
@@ -9,6 +9,7 @@
  "h_prayer": "GEBEDSTIJDEN",
  "prayer": [
   "Het volgende gebed en de resterende tijd, op een lucht die het tijdstip van de dag volgt",
+  "Lucht volgt het weer (optioneel): het weer van vandaag in je gebedsstad, in de lucht boven de gebedstijden, met de temperatuur en de wind. Uit totdat je het aanzet; daarna wordt de locatie van de stad, afgerond op ongeveer 1 km, naar MET Norway gestuurd. Weer: op basis van gegevens van MET Norway (CC BY 4.0).",
   "11 rekenmethoden, standaard of Hanafi asr, hidjri-datum en aanpassing in minuten voor elk gebed",
   "Adhan van Masjid al-Haram of al-Masjid an-Nabawi, herinneringen voor elk gebed en een wekker voor fajr"
  ],
@@ -56,7 +57,7 @@
  "also_mac": "iPhone, iPad, Apple TV en Apple Vision Pro.",
  "also_vision": "iPhone, iPad, Mac en Apple TV.",
  "h_privacy": "PRIVACY",
- "privacy": "Geen account, geen advertenties, geen tracking. De app gaat alleen online om moskeeën te zoeken (met een afgeronde locatie), de kaart te tonen, te downloaden wat je vraagt en links te openen die je kiest.",
+ "privacy": "Geen account, geen advertenties, geen tracking. De app gaat alleen online om moskeeën te zoeken (met een afgeronde locatie), de kaart te tonen, te downloaden wat je vraagt, links te openen die je kiest en, als je “Lucht volgt het weer” aanzet, het weer voor je stad op te halen.",
  "languages": "36 talen.",
  "tv": {
   "intro": "Near Mosque maakt van je tv een gebedsbord voor thuis of de moskeezaal: de tijden van vandaag, het volgende gebed en de resterende tijd, van ver te lezen.",
@@ -66,6 +67,8 @@
    "Moskeeën bij je stad, met een code om de route op je telefoon te openen",
    "De tijden van vandaag in de Top Shelf, zonder de app te openen",
    "11 rekenmethoden, standaard of Hanafi asr, hidjri-datum en aanpassing in minuten"
-  ]
+  ],
+  "privacy": "Geen account, geen advertenties, geen tracking. De app gaat alleen online om moskeeën te zoeken (met een afgeronde locatie), de kaart te tonen, te downloaden wat je vraagt en links te openen die je kiest.",
+  "keywords": "adhan,azan,salah,gebed,gebedstijden,qibla,moskee,islam,moslim,koran,hijri,dua,ramadan,mekka,tasbih"
  }
 }

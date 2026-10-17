@@ -14,9 +14,18 @@ already at a size App Store Connect accepts for that slot.
    device type plus `manifest-sheets-icons.zip`; unzip them all into one folder). The workflow can make
    it only when Settings → Actions → General → Workflow permissions is "Read and write permissions".
 
-To redo a few captures, run it with **only** (e.g. `ar/01-prayer en/05-audio`) and **from_run** (the ID of
-the run that has the rest). To redo only the sorting after a change to `tools/store/screens.json`, run it
-with **from_run** and **capture** off; nothing is captured again.
+To redo a few captures, run it with **only** (e.g. `ar/01-prayer en/02-prayer-weather`, numbered in the current order
+of `tools/store/screens.json`) and **from_run** (the IDs of the runs that have the rest, older first). To redo
+only the sorting after a change to `tools/store/screens.json`, run it with **from_run** and **capture** off;
+nothing is captured again.
+
+From each **from_run** the workflow reads the finished set (the `app-store-screenshots` artifact, kept 30 days)
+and the raw captures (kept 3 days), then this run's own captures (`tools/store/collect.py`). Captures are
+matched by screen name, not by number: a later capture of a screen replaces an earlier one whatever its number,
+and a run made in an older order sorts into the new one (`finish.py` numbers each file by its position now).
+A run that sorted only (capture off) holds whatever it sorted, which may be a few files: check its manifest's
+`missing` before using it as a source. `python3 tools/store/collect.py --check` (CI) checks `screens.json` and
+this merge.
 
 The layout of the files:
 
@@ -69,29 +78,30 @@ The exact size of every file is in the manifest.
 | # | File | Title | What it shows |
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
-| 2 | `02-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
-| 3 | `03-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 4 | `04-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
-| 5 | `05-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
-| 6 | `06-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
-| 7 | `07-island.png` | Dynamic Island and Lock Screen | The next-prayer Live Activity in the Dynamic Island and on the Lock Screen. |
-| 8 | `08-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
-| 9 | `09-mosques-radar.png` | Mosque compass | The mosque compass: the nearest mosques placed around the person by direction and distance. |
-| 10 | `10-prayer-dark.png` | Prayer times in dark mode | The prayer screen in dark mode. |
+| 2 | `02-prayer-weather.png` | Sky follows the weather | The prayer screen with Sky follows the weather turned on: rain on the sky with the temperature and the wind (a fixed demo forecast; in the app the weather comes from MET Norway). |
+| 3 | `03-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
+| 4 | `04-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
+| 5 | `05-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
+| 6 | `06-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
+| 7 | `07-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
+| 8 | `08-island.png` | Dynamic Island and Lock Screen | The next-prayer Live Activity in the Dynamic Island and on the Lock Screen. |
+| 9 | `09-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
+| 10 | `10-mosques-radar.png` | Mosque compass | The mosque compass: the nearest mosques placed around the person by direction and distance. |
 
 ### iPad 13" display: `APP_IPAD_PRO_3GEN_129`
 
 | # | File | Title | What it shows |
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
-| 2 | `02-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
-| 3 | `03-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 4 | `04-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
-| 5 | `05-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
-| 6 | `06-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
-| 7 | `07-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
-| 8 | `08-widgets-qibla.png` | Qibla and ring widgets | The Qibla widget and the prayer ring widget in the teal style. |
-| 9 | `09-onboarding.png` | Welcome | The first page of the welcome tour. |
+| 2 | `02-prayer-weather.png` | Sky follows the weather | The prayer screen with Sky follows the weather turned on: rain on the sky with the temperature and the wind (a fixed demo forecast; in the app the weather comes from MET Norway). |
+| 3 | `03-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
+| 4 | `04-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
+| 5 | `05-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
+| 6 | `06-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
+| 7 | `07-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
+| 8 | `08-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
+| 9 | `09-widgets-qibla.png` | Qibla and ring widgets | The Qibla widget and the prayer ring widget in the teal style. |
+| 10 | `10-onboarding.png` | Welcome | The first page of the welcome tour. |
 
 ### Apple Watch Ultra: `APP_WATCH_ULTRA`
 
@@ -116,12 +126,13 @@ the sky follows the time of day. The spiritual health screen shows a sample week
 | # | File | Title | What it shows |
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
-| 2 | `02-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 3 | `03-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
-| 4 | `04-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
-| 5 | `05-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
-| 6 | `06-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
-| 7 | `07-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
+| 2 | `02-prayer-weather.png` | Sky follows the weather | The prayer screen with Sky follows the weather turned on: rain on the sky with the temperature and the wind (a fixed demo forecast; in the app the weather comes from MET Norway). |
+| 3 | `03-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
+| 4 | `04-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
+| 5 | `05-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
+| 6 | `06-widgets.png` | Home Screen widgets | The Today widget (all prayers of the day) in its sizes, in the app's style. |
+| 7 | `07-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
+| 8 | `08-qibla.png` | Qibla compass | The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so. |
 
 ### Apple TV: `APP_APPLE_TV`
 
@@ -139,11 +150,24 @@ the sky follows the time of day. The spiritual health screen shows a sample week
 | # | File | Title | What it shows |
 |---|---|---|---|
 | 1 | `01-prayer.png` | Prayer times | Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day. |
-| 2 | `02-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
-| 3 | `03-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
-| 4 | `04-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
-| 5 | `05-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
-| 6 | `06-onboarding.png` | Welcome | The first page of the welcome tour. |
+| 2 | `02-prayer-weather.png` | Sky follows the weather | The prayer screen with Sky follows the weather turned on: rain on the sky with the temperature and the wind (a fixed demo forecast; in the app the weather comes from MET Norway). |
+| 3 | `03-mosques-map.png` | Nearest mosques on the map | Mosques around the person on the map, with the list of the nearest ones and their distance. |
+| 4 | `04-ask.png` | Ask with cited sources | Ask (opened from the Ask AI button): the answer to the common question on the Quran as a miracle, from the app's offline library, with its sources. |
+| 5 | `05-classics.png` | Classical books | The library's classical books (Arabic, from OpenITI): grouped by subject, each downloadable once and read offline. |
+| 6 | `06-audio.png` | Adhan and reminders | Prayer & Audio settings: the Adhan voice for each prayer, reminders before the prayer and at sunrise. |
+| 7 | `07-onboarding.png` | Welcome | The first page of the welcome tour. |
+
+**Sky follows the weather** (`prayer-weather`, iPhone, iPad, Mac and Apple Vision Pro; the feature is not on
+the Apple TV or the Apple Watch): the prayer screen with `-demoWeather rain`, which draws a fixed rain forecast
+(18 °C, wind 4 m/s) in the Debug build and sends nothing to MET Norway, and `-appearance dark` (the app's own
+Settings → Appearance key), so the Mac capture is dark too; the simulators are also set to dark. In the app the
+switch is off by default; when it is on, the prayer city's coordinates rounded to about 1 km go to MET Norway
+while the app is open. The main app has no demo clock, so the sky is the one of the moment of capture in
+Riyadh. Start the run that captures it at about 12:00 UTC, so the captures fall in Riyadh's Asr (from late
+October to mid November about 14:50 to 17:10 Riyadh time, 11:50 to 14:10 UTC): the rain and the grey cloud deck
+then lie on the teal Asr sky with a little gold left on the horizon, at the same time of day as the Google Play
+weather screenshot (16:20 Riyadh). Outside that window the shot shows the sky of its own hour, dimmed under the
+rain the same way.
 
 Cities: prayer, Qibla and settings screens use Riyadh. Mosque screens use Cairo, because the offline
 mosque data that comes with the app covers Cairo, London and Cape Town. The status bar reads 9:41 with
@@ -162,9 +186,13 @@ later. The captures come from the iPhone Duo simulator in Xcode 27.1 on GitHub's
 stands vertically along the side, as on the device.
 
 * `duo-outer`: display 1 of the simulator (it starts folded), the iPhone screens in this order: prayer,
-  qibla, mosques-map, ask, classics, widgets, audio, mosques-radar, prayer-dark. Folder `IPHONE_DUO_OUTER`.
-* `duo-inner`: not captured. Unfolding in the simulator (the outer display powered off with
-  `simctl io … screenConfig --display=1 power off`) froze the runner both times it was tried (October 2026).
+  prayer-weather, qibla, mosques-map, ask, classics, widgets, audio, mosques-radar. Folder `IPHONE_DUO_OUTER`.
+  The captures made so far (October 2026, 13 languages, before the weather screen) sort into this order; the
+  weather screen needs a new Duo run.
+* `duo-inner`: the iPad screens in the iPad order (prayer, prayer-weather, qibla, mosques-map, ask, classics,
+  widgets, audio, widgets-qibla, onboarding), not captured. Unfolding in the simulator (the outer display
+  powered off with `simctl io … screenConfig --display=1 power off`) froze the runner both times it was tried
+  (October 2026).
   Try again with a later Xcode 27.1 or 27.2 image.
 * Upload by hand: App Store Connect's API has no iPhone Duo screenshot type yet, so the upload workflow
   cannot fill the slot. Drag a locale's `IPHONE_DUO_OUTER` files onto the iPhone Duo box. Once one set
@@ -235,9 +263,39 @@ list what a set holds and get the owner's confirmation. A deleted screenshot can
 
 The workflow **App Store screenshots upload** (`.github/workflows/store-upload.yml`, `tools/store/asc_upload.py`)
 does these steps for the sets named in `display_types` (e.g. `APP_WATCH_ULTRA`), from the
-`app-store-screenshots` artifact of a screenshots run (`run_id`). It only fills empty sets: a set that
-already holds screenshots is reported and left as it is, so it never replaces or deletes anything. Start it
-with `dry_run` on to see what it would do, then again with it off.
+`app-store-screenshots` artifact of a screenshots run (`run_id`). Start every change with `dry_run` on (the
+default) to see what it would do, then again with it off. What it does depends on the inputs:
+
+| Inputs | What it does |
+|---|---|
+| `display_types` only (the default) | Fills empty sets. A set that already holds screenshots is reported and left as it is, so it never replaces or deletes anything. |
+| `screens` (e.g. `prayer-weather`) | Adds the files of those screens to sets that already hold screenshots, where that screen is not there yet, then orders the set as the manifest does. Screenshots the manifest does not know (a screen that left the order, or a file name it does not recognise) keep their order after the others. A second run adds nothing. A set that would go over 10 is skipped and reported; a missing or empty set is left to the default mode. Only a screenshot App Store Connect finished processing counts as there: a new one that fails processing or cannot be uploaded is deleted again at once (it is the run's own upload), and one of those screens already in a set in any other state stops that set with an error saying to remove it with `remove_screens` and `confirm_delete` first. An upload error stops the run cleanly. |
+| `remove_screens` (e.g. `prayer-dark`) and `confirm_delete` | Deletes the screenshots of those screens in the sets being processed, before adding, so a full set can take the new screen. With `confirm_delete` off (the default) it only lists what it would delete and deletes nothing. Turn it on only after the owner has confirmed that list. |
+| `text` and `platforms` | Updates `description`, `keywords` and `promotionalText` of every locale of each named version (`IOS`, `MAC_OS`, `VISION_OS`, `TV_OS`) from `shared/store/listing.json`, and `whatsNew` unless the version is the app's first on that platform (if App Store Connect refuses it, it is skipped and reported). It never changes the name or the subtitle (the subtitle is on `appInfoLocalizations`: change it by hand), never blanks a field the file does not have, sends only the fields that differ, and skips and reports locales App Store Connect does not have (it does not create them). For text only, leave `display_types` empty; `run_id` is then not needed. |
+
+A screenshot already in App Store Connect is recognised by its file name, `<anything>-<screen>.png` (the
+workflow uploads files named `NN-<screen>.png`; the number does not matter). The longest screen name wins, so
+`09-widgets-qibla.png` is `widgets-qibla`, never `qibla`, and a file it does not recognise is never deleted. In
+these modes a platform with no editable version is reported ("the version is in review or live: nothing
+changed") and the other platforms go on; the default mode stops there, as before. A dry run lists the file
+names each set holds; the logs show only locales, counts and those file names. `python3
+tools/store/tests/test_asc_upload.py` tests the modes offline against a fake App Store Connect.
+
+**Adding the weather screen (`prayer-weather`).** After a screenshots run that has it:
+
+1. Dry run with `display_types` `APP_IPHONE_67 APP_IPAD_PRO_3GEN_129 APP_DESKTOP APP_APPLE_VISION_PRO`,
+   `screens` `prayer-weather`, `remove_screens` `prayer-dark` and `confirm_delete` off. It shows what each set
+   holds and what it would do there.
+2. Sets with room take the weather screen as number 2: run again with `dry_run` off and `remove_screens`
+   empty. The previous order had 9 iPad, 7 Mac and 6 Apple Vision Pro screens; the dry run shows what each set
+   really holds.
+3. A set that holds 10 is skipped. The previous iPhone order had 10, the last one `prayer-dark`, which left the
+   iPhone order to make room for the weather screen. Deleting it needs the owner's yes; with it, run with
+   `remove_screens` `prayer-dark` and `confirm_delete` on (dry run first).
+4. The text, once `shared/store/listing.json` has it: `text` on, `display_types` empty, `platforms`
+   `IOS MAC_OS VISION_OS` (the weather is not on the Apple TV or the Apple Watch), dry run first.
+
+The iPhone Duo slot has no screenshot type in the API yet (see above), so its files are still added by hand.
 
 By hand: App Store Connect → the app → the platform's version → **Previews and Screenshots** → pick
 the language at the top right → drag a locale folder's files onto the matching device box in order.

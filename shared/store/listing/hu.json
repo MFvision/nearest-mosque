@@ -1,14 +1,15 @@
 {
  "subtitle": "Imaidők, kibla, mecsetek",
- "promo": "Imaidők, a kibla és a legközelebbi mecset egyetlen nyugodt alkalmazásban. Ezán, widgetek és válaszok megbízható könyvekből, forrásokkal. Hirdetés és fiók nélkül.",
+ "promo": "Imaidők az időjárást is mutató égbolton, ha kéred, kibla és a legközelebbi mecset. Ezán, widgetek és válaszok megbízható könyvekből, forrásokkal. Hirdetés és fiók nélkül.",
  "promo_tv": "A mai imaidők a tévén, a városod kiblája és a közeli mecsetek. Teljes képernyős értesítés minden imánál. Hirdetés és fiók nélkül.",
- "keywords": "ezan,adhan,ima,imaido,kibla,mecset,iszlam,muszlim,korán,hidzsra,dua,ramadan,mekka,tasbih",
+ "keywords": "ezan,adhan,ima,imaido,kibla,mecset,iszlam,muszlim,korán,hidzsra,dua,ramadan,mekka,tasbih,időjárás",
  "whats_new": "Új: Near Mosque Apple Watchon, komplikációkkal, kibla-iránytűvel és tasbihhal. Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai, minden widget, a zárolási képernyő és a Dynamic Island követi. Új widgetstílusok: kékeszöld és napszak szerint.",
  "whats_new_other": "Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai és kiemelései követik. Új stílusok: kékeszöld és napszak szerint.",
  "intro": "A Near Mosque megmutatja a városod mai imaidőit, a kibla irányát és a környező mecseteket. Az imaidők és a kibla a készülékeden számolódnak, így internet nélkül is működnek.",
  "h_prayer": "IMAIDŐK",
  "prayer": [
   "A következő ima és a hátralévő idő, a napszakot követő égbolton",
+  "Időjárás szerinti égbolt (választható): a mai időjárás az imavárosodban, az égbolton az imaidők fölött, a hőmérséklettel és a széllel. Ki van kapcsolva, amíg be nem kapcsolod; utána a város kb. 1 km-re kerekített helye a MET Norwayhez kerül. Időjárás: a MET Norway adatai alapján (CC BY 4.0).",
   "11 számítási mód, általános vagy hanafita aszr, hidzsra dátum és percnyi igazítás minden imához",
   "Ezán a mekkai Szent Mecsetből vagy a Próféta Mecsetéből, emlékeztetők minden ima előtt és ébresztő a fadzsrhoz"
  ],
@@ -56,7 +57,7 @@
  "also_mac": "iPhone-on, iPaden, Apple TV-n és Apple Vision Prón.",
  "also_vision": "iPhone-on, iPaden, Macen és Apple TV-n.",
  "h_privacy": "ADATVÉDELEM",
- "privacy": "Nincs fiók, nincs hirdetés, nincs követés. Az alkalmazás csak mecsetkereséshez (kerekített helyzettel), a térképhez, a kért letöltésekhez és az általad választott linkekhez használ internetet.",
+ "privacy": "Nincs fiók, nincs hirdetés, nincs követés. Az alkalmazás csak mecsetkereséshez (kerekített helyzettel), a térképhez, a kért letöltésekhez, az általad választott linkekhez és, ha bekapcsolod az „Időjárás szerinti égbolt” funkciót, a városod időjárásához használ internetet.",
  "languages": "36 nyelv.",
  "tv": {
   "intro": "A Near Mosque imatáblává teszi a tévédet otthonra vagy a mecset termébe: a mai imaidők, a következő ima és a hátralévő idő, messziről is olvashatóan.",
@@ -66,6 +67,8 @@
    "A városodhoz közeli mecsetek, kóddal az útvonalhoz a telefonodon",
    "A mai imaidők a Top Shelfen, az alkalmazás megnyitása nélkül",
    "11 számítási mód, általános vagy hanafita aszr, hidzsra dátum és percnyi igazítás"
-  ]
+  ],
+  "privacy": "Nincs fiók, nincs hirdetés, nincs követés. Az alkalmazás csak mecsetkereséshez (kerekített helyzettel), a térképhez, a kért letöltésekhez és az általad választott linkekhez használ internetet.",
+  "keywords": "ezan,adhan,ima,imaido,kibla,mecset,iszlam,muszlim,korán,hidzsra,dua,ramadan,mekka,tasbih"
  }
 }

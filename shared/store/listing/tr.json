@@ -1,14 +1,15 @@
 {
  "subtitle": "Namaz vakitleri, kıble, cami",
- "promo": "Namaz vakitleri, kıble ve en yakın cami tek ve sakin bir uygulamada. Ezan, widget'lar ve güvenilir kitaplardan kaynaklarıyla cevaplar. Reklam yok, hesap yok.",
+ "promo": "İsterseniz hava durumunu gösteren gökyüzünde namaz vakitleri, kıble ve en yakın cami. Ezan, widget'lar ve güvenilir kitaplardan kaynaklı cevaplar. Reklam yok, hesap yok.",
  "promo_tv": "Bugünün namaz vakitleri televizyonunuzda, şehrinizin kıblesi ve yakındaki camiler. Her namazda tam ekran uyarı. Reklam yok, hesap yok.",
- "keywords": "ezan,namaz,vakit,kible,cami,mescit,islam,musluman,kuran,hicri,dua,ramazan,mekke,tesbih,imsakiye",
+ "keywords": "ezan,namaz,vakit,kible,cami,mescit,islam,musluman,kuran,hicri,dua,ramazan,mekke,tesbih,imsakiye,hava",
  "whats_new": "Yeni: Apple Watch'ta Near Mosque; komplikasyonlar, kıble pusulası ve tesbih. Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri, tüm widget'lar, kilitli ekran ve Dynamic Island ona uyar. Yeni widget görünümleri: camgöbeği ve günün saatine göre.",
  "whats_new_other": "Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri ve vurguları ona uyar. Yeni görünümler: camgöbeği ve günün saatine göre.",
  "intro": "Near Mosque şehriniz için bugünün namaz vakitlerini gösterir, kıbleyi bulur ve çevrenizdeki camileri listeler. Vakitler ve kıble cihazınızda hesaplanır, bu yüzden internetsiz de çalışır.",
  "h_prayer": "NAMAZ VAKİTLERİ",
  "prayer": [
   "Sıradaki namaz ve kalan süre, günün saatine göre değişen bir gökyüzünde",
+  "Hava durumuna göre gökyüzü (isteğe bağlı): namaz şehrinizin bugünkü hava durumu, namaz vakitlerinin üzerindeki gökyüzünde, sıcaklık ve rüzgârla birlikte. Siz açana kadar kapalıdır; açtığınızda şehrin yaklaşık 1 km'ye yuvarlanmış konumu MET Norway'e gönderilir. Hava durumu: MET Norway verilerine dayanır (CC BY 4.0).",
   "11 hesaplama yöntemi, standart veya Hanefi ikindi, hicri tarih ve her vakit için dakika ayarı",
   "Mescid-i Haram veya Mescid-i Nebevi ezanı, her namazdan önce hatırlatma ve sabah alarmı"
  ],
@@ -56,7 +57,7 @@
  "also_mac": "iPhone, iPad, Apple TV ve Apple Vision Pro.",
  "also_vision": "iPhone, iPad, Mac ve Apple TV.",
  "h_privacy": "GİZLİLİK",
- "privacy": "Hesap yok, reklam yok, takip yok. Uygulama yalnızca cami aramak (yuvarlanmış konumla), haritayı göstermek, istediğinizi indirmek ve seçtiğiniz bağlantıları açmak için internete bağlanır.",
+ "privacy": "Hesap yok, reklam yok, takip yok. Uygulama yalnızca cami aramak (yuvarlanmış konumla), haritayı göstermek, istediğinizi indirmek, seçtiğiniz bağlantıları açmak ve “Hava durumuna göre gökyüzü” açıksa şehrinizin hava durumunu almak için internete bağlanır.",
  "languages": "36 dil.",
  "tv": {
   "intro": "Near Mosque televizyonunuzu eviniz veya cami salonu için bir namaz panosuna çevirir: bugünün vakitleri, sıradaki namaz ve kalan süre, uzaktan okunur.",
@@ -66,6 +67,8 @@
    "Şehrinize yakın camiler ve telefonunuzla yol tarifi için taranacak bir kod",
    "Uygulamayı açmadan Top Shelf'te bugünün vakitleri",
    "11 hesaplama yöntemi, standart veya Hanefi ikindi, hicri tarih ve dakika ayarı"
-  ]
+  ],
+  "privacy": "Hesap yok, reklam yok, takip yok. Uygulama yalnızca cami aramak (yuvarlanmış konumla), haritayı göstermek, istediğinizi indirmek ve seçtiğiniz bağlantıları açmak için internete bağlanır.",
+  "keywords": "ezan,namaz,vakit,kible,cami,mescit,islam,musluman,kuran,hicri,dua,ramazan,mekke,tesbih,imsakiye"
  }
 }

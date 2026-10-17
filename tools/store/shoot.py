@@ -27,7 +27,7 @@ WAIT = {"mosques-map": 16, "mosques-radar": 14, "ask": 18, "classics": 12, "tv-m
 # The Apple Vision Pro simulator renders a whole room and opens windows slowly: extra seconds, more for sheets.
 EXTRA = {"vision": 10}
 EXTRA_SCREEN = {("vision", "audio"): 14}
-# ONLY="ar/01-prayer en/05-audio" captures just those (to redo a few); empty captures everything.
+# ONLY="ar/01-prayer en/02-prayer-weather" captures just those (to redo a few); empty captures everything.
 ONLY = set(os.environ.get("ONLY", "").split())
 
 

@@ -195,10 +195,35 @@ the non-English texts are drafts until a native speaker has read them.
 
 | Asset | Play's requirement | What exists |
 |---|---|---|
-| App icon | 512 × 512 PNG (32-bit, up to 1 MB) | `shared/brand/app-icon-preview.png` (1024 × 1024) can be scaled down; `mark-512.png` is the mark alone, not the icon |
-| Feature graphic | 1024 × 500 JPEG or 24-bit PNG, no transparency | None yet |
-| Phone screenshots | 2–8, JPEG or 24-bit PNG (no transparency), each side 320–3,840 px, the long side at most twice the short side | The CI artifact `android-screenshots-and-apk` (job "Android") has Robolectric renders at 1179 × 2556 with transparency. They are **not** usable as they are: 2556/1179 is over 2:1 and they have an alpha channel. Crop or pad to at most 2:1 and flatten, or capture on a device or emulator |
-| Tablet screenshots | Optional (7" and 10") | None |
+| App icon | 512 × 512 PNG (32-bit, up to 1 MB) | `icon.png`, scaled from `shared/brand/app-icon-preview.png` by `tools/store/play_graphics.py`; `mark-512.png` is the mark alone, not the icon |
+| Feature graphic | 1024 × 500 JPEG or 24-bit PNG, no transparency | `<lang>/feature.png` per app language, drawn by `tools/store/play_graphics.py` |
+| Phone screenshots | 2–8, JPEG or 24-bit PNG (no transparency), each side 320–3,840 px, the long side at most twice the short side | 8 per language at 1080 × 1920 (below) |
+| Tablet screenshots | Optional (7" and 10") | 8 per language: 7-inch at 1811 × 2176 (an unfolded Galaxy Z Fold), 10-inch at 2560 × 1440 (a tablet held sideways) |
+| Chromebook and Android XR screenshots | 4–8; the Google Play Developer API has no image type for them, so they go up by hand in Play Console | 7 per language (no widgets: neither has home-screen widgets): a desktop window at 2880 × 1620, the app's panel in a space at 3840 × 2160 |
+
+The screenshots are the real screens rendered under Robolectric with demo data
+(`android/app/src/test/.../StoreScreenshotTest.kt`, the same cities as the App Store screenshots: Riyadh for the
+prayer times and the Qibla, Cairo for the mosques), then flattened and checked against Play's limits by
+`tools/store/play_graphics.py`. GitHub → Actions → **Google Play graphics** (`store-play-assets.yml`) builds all
+of them and keeps them in the artifact `play-store-assets`; it uploads nothing. Store order, the same in every
+slot and language:
+
+| # | File | Shows |
+|---|---|---|
+| 1 | `01-prayer.png` | The prayer screen: the next prayer and the time left, the Qibla arc and the day's prayers on the late-afternoon sky |
+| 2 | `02-weather.png` | The same prayer screen with **Sky follows the weather** turned on (off by default): rain on the sky, with the temperature and the wind under the city ("18°C · Wind 14 km/h"; the units follow the phone's region, and the test sets the phone's locale to the app language, with no region or one that uses them, so °C and km/h in every language). A fixed demo forecast (rain, 18 °C, wind 4 m/s, as the iOS `-demoWeather` screenshots) from a fake source in the test, so nothing is fetched; in the app the weather comes from MET Norway |
+| 3 | `03-qibla.png` | The Qibla compass, facing the Qibla |
+| 4 | `04-mosques.png` | The mosques around Cairo and the nearest ones (the MapLibre map does not draw under Robolectric) |
+| 5 | `05-ask.png` | Ask: a common question and the start of its answer |
+| 6 | `06-library.png` | The library's classical books |
+| 7 | `07-widgets.png` | Home-screen widgets (phone and tablets only) |
+| 8 | `08-silence.png` | Silent during prayer, on, in Prayer & Audio |
+
+Locally (from `android/`):
+`./gradlew :app:testDebugUnitTest -PstoreShots=true -PstoreLangs="en ar" -PstoreDevices="phone" -Proborazzi.test.record=true --tests 'sa.zood.nearmosque.StoreScreenshotTest'`
+writes `android/app/build/store-play/<lang>/<device>/`; then `python3 tools/store/play_graphics.py --languages "en ar" --slots phone`
+writes `build/store-play/`. Other than English and Arabic, the text on the screenshots is the app's draft
+translation, awaiting native review like the rest of the listing.
 
 ## Before the first review
 

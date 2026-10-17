@@ -9,6 +9,10 @@ Output:
     <out>/contact-sheets/<platform>.jpg                    one row per language, for a quick look
     <out>/icons/                                           the app icons as built into the apps (for reference)
 
+Each screen's capture is found by its name, whatever its number (the number is the position in the order of the
+run that made it; collect.py gathers captures of several runs into the raw folder), and is written with its
+position in the current order of screens.json.
+
 A capture already at a size App Store Connect accepts is kept as it is (as RGB, no alpha). Anything else
 (the Mac window, the Apple Vision Pro view) is placed, never stretched, on a canvas of an accepted size over
 a blurred copy of itself.
@@ -21,6 +25,8 @@ import shutil
 import sys
 
 from PIL import Image, ImageEnhance, ImageFilter, ImageStat
+
+from collect import find_capture
 
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent
@@ -134,17 +140,18 @@ def main():
             primary = lang["asc"][0]
             files = []
             for n, screen in enumerate(conf["order"], 1):
-                src = raw / platform / lang["app"] / f"{n:02d}-{screen}.png"
-                if not src.exists():
-                    missing.append(f"{platform}/{lang['app']}/{src.name}")
+                name = f"{n:02d}-{screen}.png"
+                src = find_capture(raw / platform / lang["app"], n, screen)
+                if src is None:
+                    missing.append(f"{platform}/{lang['app']}/{name}")
                     continue
                 im = Image.open(src)
                 if platform == "vision" and loading_screen(im):
-                    skipped.append(f"{platform}/{lang['app']}/{src.name}: still loading when captured")
+                    skipped.append(f"{platform}/{lang['app']}/{name}: still loading when captured")
                     continue
                 if not accepted(im, conf["sizes"]):
                     im = fit_on_canvas(im, target_size(im, conf["sizes"]))
-                dest = out / conf["displayType"] / primary / src.name
+                dest = out / conf["displayType"] / primary / name
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 im.convert("RGB").save(dest)
                 files.append(dest)

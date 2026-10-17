@@ -60,9 +60,12 @@ import java.time.ZonedDateTime
 /**
  * The Google Play screenshots: for every app language and device ([Device]), eight real screens with the same demo
  * data as the App Store screenshots (tools/store/screens.json: Riyadh for the prayer times and the Qibla, Cairo for
- * the mosques). Output: app/build/store-play/<appLang>/<device>/NN-name.png, flattened and checked afterwards by
- * tools/store/play_graphics.py (which takes phone, seven, ten, desktop and xr; the other devices are for checking
- * layouts). The desktop and XR slots leave out the home-screen widgets (06): neither ChromeOS nor Android XR has them.
+ * the mosques), in store order: 01 prayer, 02 weather (the same prayer screen with Sky follows the weather on: a
+ * fixed rain forecast from a fake MET source, nothing fetched), 03 Qibla, 04 mosques, 05 Ask, 06 library,
+ * 07 widgets, 08 silence. Output: app/build/store-play/<appLang>/<device>/NN-name.png, flattened and checked
+ * afterwards by tools/store/play_graphics.py (which takes phone, seven, ten, desktop and xr; the other devices are
+ * for checking layouts). The desktop and XR slots leave out the home-screen widgets (07): neither ChromeOS nor
+ * Android XR has them. No test here touches the network: the mosque search and the weather are fakes.
  *
  * Left out of ordinary test runs: Gradle runs it only with -PstoreShots=true; -PstoreLangs="en ar" for some
  * languages, -PstoreDevices="phone cover" for other devices than phone, seven, ten, desktop and xr, -PstoreClock=12 or 24 to
@@ -85,7 +88,7 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         DESKTOP("w1440dp-h810dp-xhdpi"),
         /**
          * An Android XR panel: Android XR shows large-screen apps on a 1024 x 720 dp panel; 3072x2160, which
-         * play_graphics.py sets in a space at 3840x2400 (Play's XR slot: 8:5, 3840x2400 recommended).
+         * play_graphics.py sets in a space at 3840x2160 (Play Console takes only 16:9 or 9:16 in the XR slot).
          */
         XR("w1024dp-h720dp-xxhdpi"),
         /** Galaxy Z Fold cover screen: 903x2315. */
@@ -147,26 +150,72 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
     private var scenario: ActivityScenario<ComponentActivity>? = null
     private lateinit var activity: ComponentActivity
 
-    private fun out(name: String) = "build/store-play/$lang/${device.folder}/$name.png"
+    /**
+     * Where shot [name] ("NN-name") goes. Any other file with the same number NN, left there by an older set
+     * (e.g. 07-iqama before 07-widgets), is removed first: play_graphics.py takes every PNG in the folder.
+     */
+    private fun out(name: String): String {
+        val file = File("build/store-play/$lang/${device.folder}/$name.png")
+        clearNumber(name.substringBefore('-'), keep = file.name)
+        return file.path
+    }
+
+    /** Deletes the device folder's NN-*.png files other than [keep] (none kept when it is null). */
+    private fun clearNumber(number: String, keep: String? = null) {
+        File("build/store-play/$lang/${device.folder}").listFiles { f -> f.name.startsWith("$number-") && f.name.endsWith(".png") && f.name != keep }
+            ?.forEach { it.delete() }
+    }
 
     /** The language's resources, then a fresh activity in it (its layout direction follows). */
     private fun launch() {
         RuntimeEnvironment.setQualifiers("+$qualifier-${device.qualifiers}")
+        // The JVM's default locale follows the language too, as on a phone set to it (and as with @Config qualifiers
+        // in ScreenshotTest); otherwise it stays en-US for every language, and the weather line, which takes its units
+        // from the formatting locale's region, would show °F and mph in Arabic. With no region (en, ar, ...) the units
+        // are °C and km/h.
+        savedLocale = java.util.Locale.getDefault()
+        java.util.Locale.setDefault(RuntimeEnvironment.getApplication().resources.configuration.locales[0])
         android.provider.Settings.Global.putFloat(RuntimeEnvironment.getApplication().contentResolver, android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0f)
         org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(true)
         if (clock != null) android.provider.Settings.System.putString(RuntimeEnvironment.getApplication().contentResolver, android.provider.Settings.System.TIME_12_24, clock)
         scenario = ActivityScenario.launch(ComponentActivity::class.java).also { s -> s.onActivity { activity = it } }
     }
 
-    @After fun close() { scenario?.close() }
+    private var savedLocale: java.util.Locale? = null
+
+    @After fun close() {
+        scenario?.close()
+        savedLocale?.let { java.util.Locale.setDefault(it) }
+    }
 
     private fun string(id: Int, vararg args: Any): String = activity.getString(id, *args)
 
-    private fun container(location: PrayerLocation = riyadh, method: Method = Method.UMM_AL_QURA): AppContainer = runBlocking {
+    /** "Sky follows the weather" in a screenshot: a MET symbol code with its temperature (°C) and wind (m/s). */
+    private data class Wx(val symbol: String, val tempC: Double, val windMs: Double)
+
+    /** A compact MET reply whose steps start at the hour of [at], all with [w] (as ScreenshotTest builds it). */
+    private fun metBody(w: Wx): String {
+        val start = at.truncatedTo(java.time.temporal.ChronoUnit.HOURS)
+        val steps = (0..3).joinToString(",") { i ->
+            """{"time":"${start.plusSeconds(3600L * i)}","data":{"instant":{"details":{"air_temperature":${w.tempC},"wind_speed":${w.windMs}}},""" +
+                """"next_1_hours":{"summary":{"symbol_code":"${w.symbol}"}}}}"""
+        }
+        return """{"type":"Feature","properties":{"meta":{"units":{"air_temperature":"celsius","wind_speed":"m/s"}},"timeseries":[$steps]}}"""
+    }
+
+    /**
+     * The app with the demo data. No network: live mosque search returns nothing new, and the weather comes from a
+     * fake MET source that answers with [weather] (only when it is given; otherwise the switch stays off, the
+     * default, and the fake is never asked).
+     */
+    private fun container(location: PrayerLocation = riyadh, method: Method = Method.UMM_AL_QURA, weather: Wx? = null): AppContainer = runBlocking {
         val c = AppContainer(
             activity, inMemoryDb = true, clock = { at },
             settingsFile = File.createTempFile("settings", ".preferences_pb").also { it.delete() },
             online = sa.zood.nearmosque.data.OnlineMosqueSource { _, _ -> emptyList() },
+            weatherSource = sa.zood.nearmosque.data.WeatherSource { _, _, _ ->
+                weather?.let { sa.zood.nearmosque.data.WeatherHttp(200, null, null, metBody(it)) }
+            },
         )
         c.packs.ensureBuiltins { !sa.zood.nearmosque.data.ChunkScope.isLibrary(it.id) }
         c.start(installLibraries = false)
@@ -174,6 +223,12 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         c.settings.setMethod(method, byUser = false)
         c.settings.setReminder(PrayerEvent.FAJR, true)
         c.settings.setReminder(PrayerEvent.MAGHRIB, true)
+        c.weather.clear()
+        if (weather != null) {
+            c.settings.setSkyWeather(true)
+            // Cached before the first frame, so the screenshot shows it without waiting for the refresh loop.
+            c.weather.refreshIfDue(location.location)
+        }
         c
     }
 
@@ -230,8 +285,22 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         compose.onRoot().captureRoboImage(out("01-prayer"))
     }
 
+    /**
+     * The same prayer screen with Sky follows the weather turned on (it is off by default): rain on the sky, with the
+     * temperature and the wind under the city. A fixed demo forecast (rain, 18 °C, wind 4 m/s, as the iOS
+     * -demoWeather screenshots) from the fake MET source; in the app the weather comes from MET Norway.
+     */
+    @Test fun shot2Weather() {
+        launch()
+        val sensor = compassSensor()
+        app(container(weather = Wx("rain", 18.0, 4.0)), Tab.PRAYER)
+        sendHeading(sensor, facingQibla())
+        settle()
+        compose.onRoot().captureRoboImage(out("02-weather"))
+    }
+
     /** The Qibla compass, facing the Qibla (the light brightens and the arrow points straight up). */
-    @Test fun shot2Qibla() {
+    @Test fun shot3Qibla() {
         launch()
         val c = container()
         val vm = sa.zood.nearmosque.ui.prayer.PrayerViewModel(c)
@@ -250,21 +319,21 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
             }
         }
         settle()
-        compose.onRoot().captureRoboImage(out("02-qibla"))
+        compose.onRoot().captureRoboImage(out("03-qibla"))
     }
 
     /** The mosque compass around Cairo (the MapLibre map does not draw under Robolectric) and the nearest ones. */
-    @Test fun shot3Mosques() {
+    @Test fun shot4Mosques() {
         launch()
         app(container(cairo, Method.EGYPTIAN), Tab.MOSQUES)
         // The area's mosques come from the Cairo pack on a background thread.
         waitForText(string(R.string.nearest_known_mosque), 30_000)
         settle()
-        compose.onRoot().captureRoboImage(out("03-mosques"))
+        compose.onRoot().captureRoboImage(out("04-mosques"))
     }
 
     /** Ask: the question and the start of the common answer on the Quran as a miracle; the Ask screen where there is none. */
-    @Test fun shot4Ask() {
+    @Test fun shot5Ask() {
         launch()
         val c = container()
         val q = runBlocking { c.ask.commonQuestions() }.firstOrNull { it.id == "quran-miracle" }?.question?.get(lang)
@@ -278,12 +347,12 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
             waitForText(string(R.string.sources))
         }
         settle()
-        compose.onRoot().captureRoboImage(out("04-ask"))
+        compose.onRoot().captureRoboImage(out("05-ask"))
     }
 
     /** The library's classical books (opened from Ask: library, browse, classical books). */
     @OptIn(ExperimentalRoborazziApi::class)
-    @Test fun shot5Library() {
+    @Test fun shot6Library() {
         launch()
         app(container(), Tab.ASK)
         compose.onNodeWithContentDescription(string(R.string.library_title)).performClick()
@@ -293,12 +362,14 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         compose.onNodeWithText(string(R.string.classics_title)).performClick()
         waitForText(string(R.string.classics_note))
         settle()
-        captureScreenRoboImage(out("05-library"))
+        captureScreenRoboImage(out("06-library"))
     }
 
     /** Home-screen widgets on a dusk wallpaper, drawn from their RemoteViews like WidgetScreenshotTest. */
-    @Test fun shot6Widgets() = runBlocking {
-        // Neither ChromeOS nor Android XR puts app widgets on a home screen: no widgets in those listings.
+    @Test fun shot7Widgets() = runBlocking {
+        // Neither ChromeOS nor Android XR puts app widgets on a home screen: no widgets in those listings (and no
+        // 07 file left there from an older set).
+        if (device == Device.DESKTOP || device == Device.XR) clearNumber("07")
         org.junit.Assume.assumeTrue(device != Device.DESKTOP && device != Device.XR)
         launch()
         val c = container()
@@ -331,7 +402,7 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         }
         activity.setContentView(column, android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT))
         org.robolectric.shadows.ShadowLooper.idleMainLooper()
-        column.captureRoboImage(out("06-widgets"))
+        column.captureRoboImage(out("07-widgets"))
     }
 
     /** Prayer & Audio scrolled so the section headed [header] starts at the top. */
@@ -350,15 +421,6 @@ class StoreScreenshotTest(private val lang: String, private val qualifier: Strin
         scroller.performSemanticsAction(SemanticsActions.ScrollBy) { it(0f, dy) }
         settle()
         compose.onRoot().captureRoboImage(out(name))
-    }
-
-    @Test fun shot7Iqama() {
-        launch()
-        prayerAudio(
-            string(R.string.iqama_section),
-            AlertSettings(adhan = true, before10 = true, near = true),
-            IqamaSettings().withWait(PrayerEvent.ISHA, 15), SilenceSettings(), "07-iqama",
-        )
     }
 
     /** Silent during prayer, on, with Do Not Disturb access granted and Fajr left out. */

@@ -1,20 +1,41 @@
 name: App Store screenshots upload
 
-# Uploads screenshot sets made by the "App Store screenshots" workflow to App Store Connect
-# (tools/store/asc_upload.py). It only fills empty sets: anything already in App Store Connect is left as it is.
-# Started by hand.
+# Uploads screenshot sets made by the "App Store screenshots" workflow to App Store Connect, and optionally the
+# listing text (tools/store/asc_upload.py, docs/09-app-store.md "Uploading"). Started by hand.
+# With only display_types it fills empty sets: anything already in App Store Connect is left as it is.
+# screens adds named screens to sets that already have screenshots and orders them; remove_screens deletes named
+# screens only when confirm_delete is on (otherwise it reports them); text updates description, keywords,
+# promotional text and what's new from shared/store/listing.json. Start every change with dry_run on.
 
 on:
   workflow_dispatch:
     inputs:
       run_id:
-        description: "Run ID of the App Store screenshots workflow whose app-store-screenshots artifact to upload"
-        required: true
+        description: "Run ID of the App Store screenshots workflow whose app-store-screenshots artifact to upload (not needed for text only)"
+        required: false
+        default: ""
       display_types:
-        description: "Screenshot sets to upload, space-separated (e.g. APP_WATCH_ULTRA)"
+        description: "Screenshot sets, space-separated (e.g. APP_WATCH_ULTRA); empty for text only"
         default: "APP_WATCH_ULTRA"
+      screens:
+        description: "Add these screens to sets that already have screenshots, then order the sets (e.g. prayer-weather); empty: only fill empty sets"
+        default: ""
+      remove_screens:
+        description: "Delete these screens' screenshots from those sets (e.g. prayer-dark); only with confirm_delete"
+        default: ""
+      confirm_delete:
+        description: "Really delete the remove_screens screenshots (cannot be undone); off: only report them"
+        type: boolean
+        default: false
+      text:
+        description: "Update description, keywords, promotional text and what's new from shared/store/listing.json"
+        type: boolean
+        default: false
+      platforms:
+        description: "Text: App Store versions to update, space-separated (IOS MAC_OS VISION_OS TV_OS)"
+        default: "IOS MAC_OS VISION_OS"
       dry_run:
-        description: "Only report what would be uploaded"
+        description: "Only report what would change"
         type: boolean
         default: true
 
@@ -33,10 +54,16 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - name: Get the screenshots
+        if: ${{ inputs.display_types != '' }}
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ inputs.run_id }}
-        run: gh run download "$RUN_ID" -n app-store-screenshots -D store
+        run: |
+          if [ -z "$RUN_ID" ]; then
+            echo "::error::run_id is needed to upload screenshots (the App Store screenshots run to take them from)."
+            exit 1
+          fi
+          gh run download "$RUN_ID" -n app-store-screenshots -D store
       - name: Install the script's dependencies (pinned)
         run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
       - name: Upload
@@ -46,5 +73,10 @@ jobs:
           ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
           BUNDLE_ID: sa.zood.nearmosque
           DISPLAY_TYPES: ${{ inputs.display_types }}
+          SCREENS: ${{ inputs.screens }}
+          REMOVE_SCREENS: ${{ inputs.remove_screens }}
+          CONFIRM_DELETE: ${{ inputs.confirm_delete }}
+          TEXT: ${{ inputs.text }}
+          PLATFORMS: ${{ inputs.platforms }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: /tmp/asc/bin/python tools/store/asc_upload.py store

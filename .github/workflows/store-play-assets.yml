@@ -3,7 +3,9 @@ name: Google Play graphics
 # The Google Play store graphics for every app language: 8 screenshots each for the phone (1080 x 1920), 7-inch
 # (Galaxy Z Fold inner screen, 1811 x 2176) and 10-inch (tablet sideways, 2560 x 1440) slots, 7 each (no widgets)
 # for the Chromebook slot (desktop window, 2880 x 1620) and the Android XR slot (the app's panel in a space,
-# 3840 x 2400), rendered from the real screens under Robolectric (android/app/src/test/.../StoreScreenshotTest.kt),
+# 3840 x 2160). In store order: 01 prayer, 02 weather (Sky follows the weather on, a fixed rain demo; no network),
+# 03 Qibla, 04 mosques, 05 Ask, 06 library, 07 widgets (not on Chromebook or XR), 08 silence during prayer;
+# rendered from the real screens under Robolectric (android/app/src/test/.../StoreScreenshotTest.kt),
 # the 512 x 512 icon and a 1024 x 500 feature graphic per language (tools/store/play_graphics.py), with a manifest.
 # Started by hand; uploads nothing to Google Play (the artifact "play-store-assets" holds the files). The Google Play
 # Developer API has no image type for the Chromebook and Android XR slots: <lang>/desktop and <lang>/xr go up by

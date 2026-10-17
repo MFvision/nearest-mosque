@@ -32,6 +32,7 @@
   "askLanguages": ["ar", "en", "es", "fr", "id", "tr", "ur", "pt", "ru", "nl", "hu", "zh", "vi", "hi", "bn", "th", "gu", "mr", "pa", "kn", "ml", "te"],
   "screens": {
     "prayer":   {"title": "Prayer times", "shows": "Home: the next prayer, its time and the time left, the Qibla arc and today's five prayers on the sky for the current part of the day.", "city": "Riyadh", "args": ["-demoTab", "prayer"]},
+    "prayer-weather": {"title": "Sky follows the weather", "shows": "The prayer screen with Sky follows the weather turned on: rain on the sky with the temperature and the wind (a fixed demo forecast; in the app the weather comes from MET Norway).", "city": "Riyadh", "appearance": "dark", "args": ["-demoTab", "prayer", "-demoWeather", "rain", "-appearance", "dark"]},
     "qibla":    {"title": "Qibla compass", "shows": "The Qibla compass: the Kaaba at the Qibla bearing with the bearing and the distance to Makkah. On a phone with a compass the dial turns with the phone; without one (simulator, Mac) it is drawn from north and says so.", "city": "Riyadh", "args": ["-demoTab", "prayer", "-demoCompass", "YES"]},
     "mosques-map": {"title": "Nearest mosques on the map", "shows": "Mosques around the person on the map, with the list of the nearest ones and their distance.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoMosqueMode", "1"]},
     "mosques-radar": {"title": "Mosque compass", "shows": "The mosque compass: the nearest mosques placed around the person by direction and distance.", "city": "Cairo", "args": ["-demoTab", "mosques", "-demoMosqueMode", "0"]},
@@ -61,24 +62,24 @@
     "iphone": {
       "displayType": "APP_IPHONE_67", "label": "iPhone 6.9\" display", "simulator": "^iPhone \\d+ Pro Max$", "scheme": "NearMosque",
       "sizes": [[1320, 2868], [1290, 2796], [1260, 2736]],
-      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "island", "audio", "mosques-radar", "prayer-dark"]
+      "order": ["prayer", "prayer-weather", "qibla", "mosques-map", "ask", "classics", "widgets", "island", "audio", "mosques-radar"]
     },
     "ipad": {
       "displayType": "APP_IPAD_PRO_3GEN_129", "label": "iPad 13\" display", "simulator": "^iPad Pro 13-inch", "scheme": "NearMosque",
       "sizes": [[2064, 2752], [2048, 2732]],
-      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding"]
+      "order": ["prayer", "prayer-weather", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding"]
     },
     "duo-outer": {
       "displayType": "IPHONE_DUO_OUTER", "label": "iPhone Duo, outer display", "simulator": "^iPhone Duo", "scheme": "NearMosque",
       "runtime": "27.1", "display": 1,
       "sizes": [[1398, 2034]],
-      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "mosques-radar", "prayer-dark"]
+      "order": ["prayer", "prayer-weather", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "mosques-radar"]
     },
     "duo-inner": {
       "displayType": "IPHONE_DUO_INNER", "label": "iPhone Duo, inner display", "simulator": "^iPhone Duo", "scheme": "NearMosque",
       "runtime": "27.1", "display": 3, "unfold": true,
       "sizes": [[2007, 2853]],
-      "order": ["prayer", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding"]
+      "order": ["prayer", "prayer-weather", "qibla", "mosques-map", "ask", "classics", "widgets", "audio", "widgets-qibla", "onboarding"]
     },
     "watch": {
       "displayType": "APP_WATCH_ULTRA", "label": "Apple Watch Ultra", "simulator": "^Apple Watch Ultra", "scheme": "NearMosqueWatch",
@@ -88,7 +89,7 @@
     "mac": {
       "displayType": "APP_DESKTOP", "label": "Mac", "scheme": "NearMosque",
       "sizes": [[2880, 1800], [2560, 1600], [1440, 900], [1280, 800]],
-      "order": ["prayer", "mosques-map", "ask", "classics", "widgets", "audio", "qibla"]
+      "order": ["prayer", "prayer-weather", "mosques-map", "ask", "classics", "widgets", "audio", "qibla"]
     },
     "tv": {
       "displayType": "APP_APPLE_TV", "label": "Apple TV", "simulator": "^Apple TV 4K", "scheme": "NearMosqueTV",
@@ -98,7 +99,7 @@
     "vision": {
       "displayType": "APP_APPLE_VISION_PRO", "label": "Apple Vision Pro", "simulator": "^Apple Vision Pro", "scheme": "NearMosqueVision",
       "sizes": [[3840, 2160]],
-      "order": ["prayer", "mosques-map", "ask", "classics", "audio", "onboarding"]
+      "order": ["prayer", "prayer-weather", "mosques-map", "ask", "classics", "audio", "onboarding"]
     }
   },
   "previews": {

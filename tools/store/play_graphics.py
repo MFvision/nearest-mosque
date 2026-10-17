@@ -12,7 +12,8 @@ against Google Play's limits, with a manifest.
   middle (Google crops the edges and lays its own controls over some placements).
 - <lang>/phone|seven|ten/NN-name.png: the screenshots of StoreScreenshotTest (android/app/build/store-play/<lang>/
   <slot>) for Google Play's phone, 7-inch and 10-inch slots (SLOTS), flattened to RGB and checked: each side 320 to
-  3840 px, the long side at most twice the short one, at most 8 MB, 2 (phone) or 4 (tablets) to 8 per language;
+  3840 px, the long side at most twice the short one, at most 8 MB, one file per number NN (the store order),
+  2 (phone) or 4 (tablets) to 8 per language (each slot folder is emptied first, so no older set stays);
   fewer than the recommended number at 16:9 or 9:16 and 1080 px or more is reported, as it can lose promotion
   eligibility.
 - <lang>/desktop/NN-name.png: the Chromebook (desktop) slot, a maximized desktop window at 2880 x 1620: 4 to 8,
@@ -538,6 +539,11 @@ def main():
             if slot not in wanted_slots:
                 continue
             sources = sorted((shots / lang / slot).glob("*.png"))
+            # Start the slot empty: play_listing.py uploads every PNG in it, so screenshots of an older set
+            # (e.g. 02-qibla, 07-iqama) must not stay next to the new ones. Never when it is the source folder.
+            if (out / lang / slot).resolve() != (shots / lang / slot).resolve():
+                for old in (out / lang / slot).glob("*.png"):
+                    old.unlink()
             if not sources and slot != "phone":
                 warnings.append(f"{slot}: no screenshots in {shots / lang / slot}")
                 continue
@@ -554,6 +560,12 @@ def main():
                 if min(w, h) >= 1080 and abs(max(w, h) / min(w, h) - 16 / 9) < 0.01:
                     promo += 1
                 files.append({"file": f"{lang}/{slot}/{src.name}", "size": [w, h], "kb": round(dst.stat().st_size / 1024)})
+            # One file per store position (NN-name.png): a second one with the same number is a leftover of an
+            # older set (e.g. 07-iqama next to 07-widgets) and would be uploaded too.
+            numbers = [s.name.split("-", 1)[0] for s in sources]
+            dupes = sorted({n for n in numbers if numbers.count(n) > 1})
+            if dupes:
+                problems.append(f"{slot}: more than one screenshot numbered {', '.join(dupes)} in {shots / lang / slot} (left from an older set?)")
             if len(files) > MAX_SHOTS:
                 problems.append(f"{len(files)} {slot} screenshots; Google Play takes at most {MAX_SHOTS}")
             if len(files) < minimum:

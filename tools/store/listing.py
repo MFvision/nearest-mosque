@@ -6,7 +6,8 @@
 
 Each app language file holds the pieces (subtitle, promotional text, keywords, what's new, and the description
 in sections); this assembles one description per platform, because the devices differ: the Mac and Apple
-Vision Pro have no compass, Dynamic Island or Lock Screen, and the Apple TV app has no Ask, library or widgets.
+Vision Pro have no compass, Dynamic Island or Lock Screen, and the Apple TV app has no Ask, library, widgets or
+weather sky.
 The output, keyed like tools/store/screens.json (App Store locale → platform → field), is what an agent pastes
 into App Store Connect. docs/09-app-store.md explains it.
 """
@@ -35,8 +36,9 @@ def section(head, body):
 
 def description(d, platform):
     if platform == "TV_OS":
+        # The Apple TV app has no "Sky follows the weather", so its privacy text leaves the weather out.
         tv = d["tv"]
-        return "\n\n".join([tv["intro"], bullets(tv["points"]), section(d["h_privacy"], d["privacy"]), d["languages"]])
+        return "\n\n".join([tv["intro"], bullets(tv["points"]), section(d["h_privacy"], tv["privacy"]), d["languages"]])
     phone = platform == "IOS"
     parts = [
         d["intro"],
@@ -72,7 +74,7 @@ def build():
             fields = {
                 "subtitle": d["subtitle"],
                 "promotionalText": d["promo_tv"] if tv else d["promo"],
-                "keywords": d["keywords"],
+                "keywords": d["tv"]["keywords"] if tv else d["keywords"],
                 "description": description(d, platform),
                 "whatsNew": d["whats_new"] if platform == "IOS" else d["whats_new_other"],
             }

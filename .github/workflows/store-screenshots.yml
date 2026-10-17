@@ -14,10 +14,10 @@ on:
         description: "App language codes, space-separated (empty: all 22 store languages)"
         default: ""
       from_run:
-        description: "Earlier run IDs whose captures to use (space-separated, later ones win); this run's own captures win over all"
+        description: "Earlier run IDs whose screenshots to use (space-separated, later ones win; matched by screen name, so an older order is fine); this run's own captures win over all"
         default: ""
       only:
-        description: "Capture only these, e.g. \"ar/01-prayer en/05-audio\" (to redo a few; give from_run for the rest)"
+        description: "Capture only these, e.g. \"ar/01-prayer en/02-prayer-weather\" (NN: the position in screens.json's current order; to redo a few, give from_run for the rest)"
         default: ""
       extra_wait:
         description: "Extra seconds before each capture"
@@ -150,6 +150,9 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      # An earlier run's raw captures are kept 3 days, its finished set (app-store-screenshots) 30 days: both are
+      # read, the finished set first. tools/store/collect.py matches captures by screen name, so a later capture of a
+      # screen replaces an earlier one whatever its number, and runs made in an older order sort into the new one.
       - name: Collect the captures (earlier runs first, this run last)
         env:
           GH_TOKEN: ${{ github.token }}
@@ -157,8 +160,15 @@ jobs:
         run: |
           mkdir -p raw
           for id in $FROM_RUN "$GITHUB_RUN_ID"; do
+            if [ "$id" != "$GITHUB_RUN_ID" ]; then
+              gh run download "$id" --repo "$GITHUB_REPOSITORY" --name app-store-screenshots --dir "downloaded/$id/finished" || true
+              if [ -f "downloaded/$id/finished/manifest.json" ]; then python3 tools/store/collect.py raw "downloaded/$id/finished"; fi
+            fi
             gh run download "$id" --repo "$GITHUB_REPOSITORY" --pattern 'raw-*' --dir "downloaded/$id" || true
-            for d in "downloaded/$id"/raw-*; do [ -d "$d/raw" ] && cp -R "$d/raw/." raw/; done
+            for d in "downloaded/$id"/raw-*; do
+              if [ -d "$d/raw" ]; then python3 tools/store/collect.py raw "$d/raw"; fi
+            done
+            rm -rf "downloaded/$id"
           done
           find raw -name '*.png' | wc -l
       - name: Sort, check sizes, write the manifest

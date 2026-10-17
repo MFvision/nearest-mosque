@@ -1,6 +1,6 @@
 {
  "subtitle": "Giờ cầu nguyện, Qibla, mosque",
- "promo": "Giờ cầu nguyện, hướng Qibla và thánh đường gần nhất trong một ứng dụng yên tĩnh. Adhan, tiện ích và câu trả lời từ sách uy tín kèm nguồn. Không quảng cáo.",
+ "promo": "Giờ cầu nguyện trên bầu trời có thể theo thời tiết, hướng Qibla và thánh đường gần nhất. Adhan, tiện ích và câu trả lời từ sách uy tín kèm nguồn. Không quảng cáo.",
  "promo_tv": "Giờ cầu nguyện hôm nay trên TV của bạn, hướng Qibla cho thành phố và các thánh đường gần đó. Thông báo toàn màn hình mỗi giờ cầu nguyện. Không quảng cáo, không tài khoản.",
  "keywords": "adhan,azan,salah,namaz,cau nguyen,qibla,thanh duong,masjid,hoi giao,islam,muslim,quran,ramadan",
  "whats_new": "Mới: Near Mosque trên Apple Watch, có tổ hợp, la bàn Qibla và tasbih. Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút của ứng dụng, mọi tiện ích, màn hình khóa và Dynamic Island sẽ theo kiểu đó. Kiểu tiện ích mới: xanh mòng két và theo thời điểm.",
@@ -9,6 +9,7 @@
  "h_prayer": "GIỜ CẦU NGUYỆN",
  "prayer": [
   "Lần cầu nguyện tiếp theo và thời gian còn lại, trên bầu trời thay đổi theo giờ trong ngày",
+  "Bầu trời theo thời tiết (tùy chọn): thời tiết hôm nay tại thành phố cầu nguyện của bạn, trên bầu trời phía trên giờ cầu nguyện, kèm nhiệt độ và gió. Tắt cho đến khi bạn bật; khi đó, vị trí thành phố làm tròn đến khoảng 1 km được gửi đến MET Norway. Thời tiết: dựa trên dữ liệu của MET Norway (CC BY 4.0).",
   "11 phương pháp tính, Asr thông thường hoặc Hanafi, ngày Hijri và chỉnh phút cho từng lần cầu nguyện",
   "Adhan từ Masjid al-Haram hoặc Masjid an-Nabawi, nhắc trước mỗi lần cầu nguyện và báo thức Fajr"
  ],
@@ -56,7 +57,7 @@
  "also_mac": "iPhone, iPad, Apple TV và Apple Vision Pro.",
  "also_vision": "iPhone, iPad, Mac và Apple TV.",
  "h_privacy": "QUYỀN RIÊNG TƯ",
- "privacy": "Không tài khoản, không quảng cáo, không theo dõi. Ứng dụng chỉ kết nối mạng để tìm thánh đường (với vị trí đã làm tròn), hiển thị bản đồ, tải những gì bạn yêu cầu và mở liên kết bạn chọn.",
+ "privacy": "Không tài khoản, không quảng cáo, không theo dõi. Ứng dụng chỉ kết nối mạng để tìm thánh đường (với vị trí đã làm tròn), hiển thị bản đồ, tải những gì bạn yêu cầu, mở liên kết bạn chọn và, nếu bạn bật “Bầu trời theo thời tiết”, lấy thời tiết cho thành phố của bạn.",
  "languages": "36 ngôn ngữ.",
  "tv": {
   "intro": "Near Mosque biến TV của bạn thành bảng giờ cầu nguyện cho gia đình hoặc sảnh thánh đường: giờ hôm nay, lần cầu nguyện tiếp theo và thời gian còn lại, đọc được từ xa.",
@@ -66,6 +67,8 @@
    "Các thánh đường gần thành phố, kèm mã để quét xem đường đi trên điện thoại",
    "Giờ hôm nay trên Top Shelf mà không cần mở ứng dụng",
    "11 phương pháp tính, Asr thông thường hoặc Hanafi, ngày Hijri và chỉnh phút"
-  ]
+  ],
+  "privacy": "Không tài khoản, không quảng cáo, không theo dõi. Ứng dụng chỉ kết nối mạng để tìm thánh đường (với vị trí đã làm tròn), hiển thị bản đồ, tải những gì bạn yêu cầu và mở liên kết bạn chọn.",
+  "keywords": "adhan,azan,salah,namaz,cau nguyen,qibla,thanh duong,masjid,hoi giao,islam,muslim,quran,ramadan"
  }
 }

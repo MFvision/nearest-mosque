@@ -1,14 +1,15 @@
 {
  "subtitle": "Orações, qibla e mesquitas",
- "promo": "Horários de oração, a qibla e a mesquita mais próxima num só app tranquilo. Adhan, widgets e respostas de livros confiáveis, com as fontes. Sem anúncios e sem conta.",
+ "promo": "Horários de oração, qibla e mesquita próxima, com um céu opcional que segue o clima. Adhan, widgets e respostas de livros, com fontes. Sem anúncios e sem conta.",
  "promo_tv": "Os horários de oração de hoje na sua TV, a qibla da sua cidade e as mesquitas próximas. Um alerta em tela cheia em cada oração. Sem anúncios e sem conta.",
- "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih",
+ "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih,clima",
  "whats_new": "Novo: Near Mosque no Apple Watch, com complicações, bússola da qibla e tasbih. Um só estilo para tudo. Escolha nos Ajustes e os botões do app, cada widget, a tela bloqueada e a Dynamic Island passam a segui-lo. Novos estilos de widget: verde-azulado e conforme a hora.",
  "whats_new_other": "Um só estilo para tudo. Escolha nos Ajustes e os botões e destaques do app passam a segui-lo. Novos estilos: verde-azulado e conforme a hora.",
  "intro": "O Near Mosque mostra os horários de oração de hoje para a sua cidade, aponta a qibla e encontra as mesquitas ao seu redor. Os horários e a qibla são calculados no seu aparelho, então funcionam sem internet.",
  "h_prayer": "HORÁRIOS DE ORAÇÃO",
  "prayer": [
   "A próxima oração e o tempo que falta, num céu que acompanha a hora do dia",
+  "Céu conforme o clima (opcional): o clima de hoje na sua cidade de oração, no céu acima dos horários de oração, com a temperatura e o vento. Fica desativado até você ativar; então a localização da cidade, arredondada para cerca de 1 km, é enviada ao MET Norway. Clima: com base em dados do MET Norway (CC BY 4.0).",
   "11 métodos de cálculo, Asr padrão ou hanafi, data hijri e ajuste em minutos para cada oração",
   "Adhan de Masjid al-Haram ou de al-Masjid an-Nabawi, lembretes antes de cada oração e alarme para o Fajr"
  ],
@@ -56,7 +57,7 @@
  "also_mac": "iPhone, iPad, Apple TV e Apple Vision Pro.",
  "also_vision": "iPhone, iPad, Mac e Apple TV.",
  "h_privacy": "PRIVACIDADE",
- "privacy": "Sem conta, sem anúncios, sem rastreamento. O app só se conecta para buscar mesquitas (com sua localização arredondada), mostrar o mapa, baixar o que você pedir e abrir os links que você escolher.",
+ "privacy": "Sem conta, sem anúncios, sem rastreamento. O app só se conecta para buscar mesquitas (com sua localização arredondada), mostrar o mapa, baixar o que você pedir, abrir os links que você escolher e, se você ativar “Céu conforme o clima”, obter o clima da sua cidade.",
  "languages": "36 idiomas.",
  "tv": {
   "intro": "O Near Mosque transforma a sua TV num painel de orações para casa ou o salão da mesquita: os horários de hoje, a próxima oração e o tempo que falta, legíveis de longe.",
@@ -66,6 +67,8 @@
    "As mesquitas perto da sua cidade, com um código para ver o caminho no telefone",
    "Os horários de hoje na Top Shelf, sem abrir o app",
    "11 métodos de cálculo, Asr padrão ou hanafi, data hijri e ajuste em minutos"
-  ]
+  ],
+  "privacy": "Sem conta, sem anúncios, sem rastreamento. O app só se conecta para buscar mesquitas (com sua localização arredondada), mostrar o mapa, baixar o que você pedir e abrir os links que você escolher.",
+  "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih"
  }
 }
