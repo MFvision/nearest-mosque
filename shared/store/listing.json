@@ -1,12 +1,14 @@
 {
  "about": "App Store listing text per App Store locale and platform (IOS = iPhone and iPad). Built by tools/store/listing.py from shared/store/listing/<language>.json; do not edit by hand. Translations other than English and Arabic are drafts awaiting native review.",
+ "appInfo": "APP_INFO in each locale is app-level text (appInfoLocalizations), not a platform: privacyPolicyText is App Information → Privacy Policy Text, shown on Apple TV.",
  "limits": {
   "name": 30,
   "subtitle": 30,
   "promotionalText": 170,
   "keywords": 100,
   "description": 4000,
-  "whatsNew": 4000
+  "whatsNew": 4000,
+  "privacyPolicyText": 4000
  },
  "locales": {
   "ar-SA": {
@@ -39,6 +41,9 @@
     "keywords": "أذان,اذان,صلاة,مواقيت,قبلة,مسجد,جامع,إسلام,مسلم,قرآن,هجري,دعاء,رمضان,مكة,تسبيح,فتاوى",
     "description": "يجعل «أقرب مسجد» تلفازك لوحة صلاة لبيتك أو لقاعة المسجد: مواقيت اليوم، والصلاة القادمة، والوقت المتبقي، بخط يُقرأ من بعيد.\n\n• تنبيه بملء الشاشة عند دخول وقت الصلاة\n• اتجاه القبلة والمسافة إلى مكة لمدينتك\n• المساجد القريبة من مدينتك، مع رمز تمسحه بهاتفك للاتجاهات\n• مواقيت اليوم في الرف العلوي دون فتح التطبيق\n• 11 طريقة حساب، والعصر على قول الجمهور أو الحنفية، والتاريخ الهجري، وتعديل الدقائق\n\nالخصوصية\nبلا حساب وبلا إعلانات وبلا تتبع. لا يتصل التطبيق بالإنترنت إلا للبحث عن المساجد (بموقع مقرَّب)، ولعرض الخريطة، ولتنزيل ما تطلبه، ولفتح الروابط التي تختارها.\n\n36 لغة.",
     "whatsNew": "نمط واحد لكل شيء: اختره من الإعدادات فتتبعه أزرار التطبيق وألوانه. مظهران جديدان: أخضر مزرق وحسب الوقت."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "لا حساب في «أقرب مسجد» ولا إعلانات ولا تحليلات ولا تتبّع. تُحسب مواقيت الصلاة والقبلة على جهازك، ولا نشغّل خادمًا للتطبيق، فلا يصلنا عنك شيء. ولا يتصل التطبيق بالإنترنت إلا للبحث عن المساجد، وعرض الخرائط، وتنزيل ما تطلبه، وفتح الروابط التي تختارها. وفي آيفون وآيباد وماك وApple Vision Pro لا تعمل ميزة «سماء حسب الطقس» الاختيارية حتى تفعّلها، وعندها يُرسل موقع مدينتك إلى MET Norway مقرّبًا إلى نحو كيلومتر لجلب الطقس. ولا يستخدمها تطبيق Apple TV. النص الكامل لسياسة الخصوصية: https://nearmosque.net/privacy.html"
    }
   },
   "en-US": {
@@ -71,6 +76,9 @@
     "keywords": "adhan,azan,salah,namaz,qibla,mosque,masjid,islam,muslim,quran,hijri,dua,ramadan,makkah,tasbih",
     "description": "Near Mosque turns your TV into a prayer board for your home or the mosque hall: today's times, the next prayer and the time left, readable from across the room.\n\n• A full-screen alert when a prayer time comes\n• The Qibla direction and the distance to Makkah for your city\n• Mosques near your city, with a code to scan for directions on your phone\n• Today's times on the Top Shelf, without opening the app\n• 11 calculation methods, standard or Hanafi Asr, Hijri date and minute adjustments\n\nPRIVACY\nNo account, no ads, no tracking. The app goes online only to search for mosques (with your location rounded), to show the map, to download what you ask for, and to open links you choose.\n\n36 languages.",
     "whatsNew": "One style for everything. Pick it in Settings and the app's buttons and highlights follow it. New looks: teal and time of day."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque has no account, no ads, no analytics and no tracking. Prayer times and the Qibla are worked out on your device, and we run no server for the app, so nothing about you reaches us. The app goes online only to search for mosques, show maps, download what you choose and open links you pick. On iPhone, iPad, Mac and Apple Vision Pro, the optional \"Sky follows the weather\" is off until you turn it on; it then sends your city's location, rounded to about 1 km, to MET Norway to get the weather. The Apple TV app does not use it. Full privacy policy: https://nearmosque.net/privacy.html"
    }
   },
   "en-GB": {
@@ -103,6 +111,9 @@
     "keywords": "adhan,azan,salah,namaz,qibla,mosque,masjid,islam,muslim,quran,hijri,dua,ramadan,makkah,tasbih",
     "description": "Near Mosque turns your TV into a prayer board for your home or the mosque hall: today's times, the next prayer and the time left, readable from across the room.\n\n• A full-screen alert when a prayer time comes\n• The Qibla direction and the distance to Makkah for your city\n• Mosques near your city, with a code to scan for directions on your phone\n• Today's times on the Top Shelf, without opening the app\n• 11 calculation methods, standard or Hanafi Asr, Hijri date and minute adjustments\n\nPRIVACY\nNo account, no ads, no tracking. The app goes online only to search for mosques (with your location rounded), to show the map, to download what you ask for, and to open links you choose.\n\n36 languages.",
     "whatsNew": "One style for everything. Pick it in Settings and the app's buttons and highlights follow it. New looks: teal and time of day."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque has no account, no ads, no analytics and no tracking. Prayer times and the Qibla are worked out on your device, and we run no server for the app, so nothing about you reaches us. The app goes online only to search for mosques, show maps, download what you choose and open links you pick. On iPhone, iPad, Mac and Apple Vision Pro, the optional \"Sky follows the weather\" is off until you turn it on; it then sends your city's location, rounded to about 1 km, to MET Norway to get the weather. The Apple TV app does not use it. Full privacy policy: https://nearmosque.net/privacy.html"
    }
   },
   "en-AU": {
@@ -135,6 +146,9 @@
     "keywords": "adhan,azan,salah,namaz,qibla,mosque,masjid,islam,muslim,quran,hijri,dua,ramadan,makkah,tasbih",
     "description": "Near Mosque turns your TV into a prayer board for your home or the mosque hall: today's times, the next prayer and the time left, readable from across the room.\n\n• A full-screen alert when a prayer time comes\n• The Qibla direction and the distance to Makkah for your city\n• Mosques near your city, with a code to scan for directions on your phone\n• Today's times on the Top Shelf, without opening the app\n• 11 calculation methods, standard or Hanafi Asr, Hijri date and minute adjustments\n\nPRIVACY\nNo account, no ads, no tracking. The app goes online only to search for mosques (with your location rounded), to show the map, to download what you ask for, and to open links you choose.\n\n36 languages.",
     "whatsNew": "One style for everything. Pick it in Settings and the app's buttons and highlights follow it. New looks: teal and time of day."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque has no account, no ads, no analytics and no tracking. Prayer times and the Qibla are worked out on your device, and we run no server for the app, so nothing about you reaches us. The app goes online only to search for mosques, show maps, download what you choose and open links you pick. On iPhone, iPad, Mac and Apple Vision Pro, the optional \"Sky follows the weather\" is off until you turn it on; it then sends your city's location, rounded to about 1 km, to MET Norway to get the weather. The Apple TV app does not use it. Full privacy policy: https://nearmosque.net/privacy.html"
    }
   },
   "en-CA": {
@@ -167,6 +181,9 @@
     "keywords": "adhan,azan,salah,namaz,qibla,mosque,masjid,islam,muslim,quran,hijri,dua,ramadan,makkah,tasbih",
     "description": "Near Mosque turns your TV into a prayer board for your home or the mosque hall: today's times, the next prayer and the time left, readable from across the room.\n\n• A full-screen alert when a prayer time comes\n• The Qibla direction and the distance to Makkah for your city\n• Mosques near your city, with a code to scan for directions on your phone\n• Today's times on the Top Shelf, without opening the app\n• 11 calculation methods, standard or Hanafi Asr, Hijri date and minute adjustments\n\nPRIVACY\nNo account, no ads, no tracking. The app goes online only to search for mosques (with your location rounded), to show the map, to download what you ask for, and to open links you choose.\n\n36 languages.",
     "whatsNew": "One style for everything. Pick it in Settings and the app's buttons and highlights follow it. New looks: teal and time of day."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque has no account, no ads, no analytics and no tracking. Prayer times and the Qibla are worked out on your device, and we run no server for the app, so nothing about you reaches us. The app goes online only to search for mosques, show maps, download what you choose and open links you pick. On iPhone, iPad, Mac and Apple Vision Pro, the optional \"Sky follows the weather\" is off until you turn it on; it then sends your city's location, rounded to about 1 km, to MET Norway to get the weather. The Apple TV app does not use it. Full privacy policy: https://nearmosque.net/privacy.html"
    }
   },
   "fr-FR": {
@@ -199,6 +216,9 @@
     "keywords": "adhan,azan,salat,priere,qibla,mosquee,islam,musulman,coran,hijri,dua,ramadan,mecque,tasbih,horaire",
     "description": "Near Mosque transforme votre téléviseur en tableau des prières pour la maison ou la salle de la mosquée : les heures du jour, la prochaine prière et le temps restant, lisibles de loin.\n\n• Une alerte plein écran à l’heure de chaque prière\n• La direction de la qibla et la distance jusqu’à La Mecque pour votre ville\n• Les mosquées proches de votre ville, avec un code à scanner pour l’itinéraire sur votre téléphone\n• Les heures du jour sur le Top Shelf, sans ouvrir l’app\n• 11 méthodes de calcul, Asr standard ou hanafite, date hégirienne et ajustement en minutes\n\nCONFIDENTIALITÉ\nSans compte, sans pub, sans pistage. L’app ne va en ligne que pour chercher des mosquées (avec une position arrondie), afficher la carte, télécharger ce que vous demandez et ouvrir les liens que vous choisissez.\n\n36 langues.",
     "whatsNew": "Un seul style pour tout. Choisissez-le dans les Réglages : les boutons et les accents de l’app le suivent. Nouveaux styles : bleu canard et selon l’heure."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque, c’est sans compte, sans pub, sans mesure d’audience et sans pistage. Les heures de prière et la qibla sont calculées sur votre appareil, et nous n’exploitons aucun serveur pour l’app : rien sur vous ne nous parvient. L’app ne va en ligne que pour chercher des mosquées, afficher les cartes, télécharger ce que vous choisissez et ouvrir les liens que vous sélectionnez. Sur iPhone, iPad, Mac et Apple Vision Pro, l’option « Ciel selon la météo » reste désactivée tant que vous ne l’activez pas ; elle envoie alors la position de votre ville, arrondie à environ 1 km, à MET Norway pour obtenir la météo. L’app Apple TV ne l’utilise pas. Politique de confidentialité complète : https://nearmosque.net/privacy.html"
    }
   },
   "fr-CA": {
@@ -231,6 +251,9 @@
     "keywords": "adhan,azan,salat,priere,qibla,mosquee,islam,musulman,coran,hijri,dua,ramadan,mecque,tasbih,horaire",
     "description": "Near Mosque transforme votre téléviseur en tableau des prières pour la maison ou la salle de la mosquée : les heures du jour, la prochaine prière et le temps restant, lisibles de loin.\n\n• Une alerte plein écran à l’heure de chaque prière\n• La direction de la qibla et la distance jusqu’à La Mecque pour votre ville\n• Les mosquées proches de votre ville, avec un code à scanner pour l’itinéraire sur votre téléphone\n• Les heures du jour sur le Top Shelf, sans ouvrir l’app\n• 11 méthodes de calcul, Asr standard ou hanafite, date hégirienne et ajustement en minutes\n\nCONFIDENTIALITÉ\nSans compte, sans pub, sans pistage. L’app ne va en ligne que pour chercher des mosquées (avec une position arrondie), afficher la carte, télécharger ce que vous demandez et ouvrir les liens que vous choisissez.\n\n36 langues.",
     "whatsNew": "Un seul style pour tout. Choisissez-le dans les Réglages : les boutons et les accents de l’app le suivent. Nouveaux styles : bleu canard et selon l’heure."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque, c’est sans compte, sans pub, sans mesure d’audience et sans pistage. Les heures de prière et la qibla sont calculées sur votre appareil, et nous n’exploitons aucun serveur pour l’app : rien sur vous ne nous parvient. L’app ne va en ligne que pour chercher des mosquées, afficher les cartes, télécharger ce que vous choisissez et ouvrir les liens que vous sélectionnez. Sur iPhone, iPad, Mac et Apple Vision Pro, l’option « Ciel selon la météo » reste désactivée tant que vous ne l’activez pas ; elle envoie alors la position de votre ville, arrondie à environ 1 km, à MET Norway pour obtenir la météo. L’app Apple TV ne l’utilise pas. Politique de confidentialité complète : https://nearmosque.net/privacy.html"
    }
   },
   "es-ES": {
@@ -263,6 +286,9 @@
     "keywords": "adhan,azan,salat,oracion,qibla,mezquita,islam,musulman,coran,hijri,dua,ramadan,meca,tasbih,horario",
     "description": "Near Mosque convierte tu televisor en un tablero de oraciones para casa o la sala de la mezquita: los horarios de hoy, la próxima oración y el tiempo que falta, legibles desde lejos.\n\n• Un aviso a pantalla completa cuando llega la hora de cada oración\n• La dirección de la qibla y la distancia a La Meca para tu ciudad\n• Las mezquitas cercanas a tu ciudad, con un código para escanear la ruta en tu teléfono\n• Los horarios de hoy en el Top Shelf, sin abrir la app\n• 11 métodos de cálculo, Asr estándar o hanafí, fecha hégira y ajuste en minutos\n\nPRIVACIDAD\nSin cuenta, sin anuncios, sin rastreo. La app solo se conecta para buscar mezquitas (con tu ubicación redondeada), mostrar el mapa, descargar lo que pidas y abrir los enlaces que elijas.\n\n36 idiomas.",
     "whatsNew": "Un solo estilo para todo. Elígelo en Ajustes y lo siguen los botones y los acentos de la app. Nuevos estilos: verde azulado y según la hora."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque no tiene cuenta, anuncios, analíticas ni rastreo. Los horarios de oración y la qibla se calculan en tu dispositivo, y no tenemos ningún servidor para la app, así que nada sobre ti llega a nosotros. La app solo se conecta para buscar mezquitas, mostrar mapas, descargar lo que elijas y abrir los enlaces que escojas. En iPhone, iPad, Mac y Apple Vision Pro, la opción «Cielo según el tiempo» está desactivada hasta que la actives; entonces envía la ubicación de tu ciudad, redondeada a cerca de 1 km, a MET Norway para obtener el tiempo. La app de Apple TV no la usa. Política de privacidad completa: https://nearmosque.net/privacy.html"
    }
   },
   "es-MX": {
@@ -295,6 +321,9 @@
     "keywords": "adhan,azan,salat,oracion,qibla,mezquita,islam,musulman,coran,hijri,dua,ramadan,meca,tasbih,horario",
     "description": "Near Mosque convierte tu televisor en un tablero de oraciones para casa o la sala de la mezquita: los horarios de hoy, la próxima oración y el tiempo que falta, legibles desde lejos.\n\n• Un aviso a pantalla completa cuando llega la hora de cada oración\n• La dirección de la qibla y la distancia a La Meca para tu ciudad\n• Las mezquitas cercanas a tu ciudad, con un código para escanear la ruta en tu teléfono\n• Los horarios de hoy en el Top Shelf, sin abrir la app\n• 11 métodos de cálculo, Asr estándar o hanafí, fecha hégira y ajuste en minutos\n\nPRIVACIDAD\nSin cuenta, sin anuncios, sin rastreo. La app solo se conecta para buscar mezquitas (con tu ubicación redondeada), mostrar el mapa, descargar lo que pidas y abrir los enlaces que elijas.\n\n36 idiomas.",
     "whatsNew": "Un solo estilo para todo. Elígelo en Ajustes y lo siguen los botones y los acentos de la app. Nuevos estilos: verde azulado y según la hora."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque no tiene cuenta, anuncios, analíticas ni rastreo. Los horarios de oración y la qibla se calculan en tu dispositivo, y no tenemos ningún servidor para la app, así que nada sobre ti llega a nosotros. La app solo se conecta para buscar mezquitas, mostrar mapas, descargar lo que elijas y abrir los enlaces que escojas. En iPhone, iPad, Mac y Apple Vision Pro, la opción «Cielo según el tiempo» está desactivada hasta que la actives; entonces envía la ubicación de tu ciudad, redondeada a cerca de 1 km, a MET Norway para obtener el tiempo. La app de Apple TV no la usa. Política de privacidad completa: https://nearmosque.net/privacy.html"
    }
   },
   "pt-BR": {
@@ -327,6 +356,9 @@
     "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih",
     "description": "O Near Mosque transforma a sua TV num painel de orações para casa ou o salão da mesquita: os horários de hoje, a próxima oração e o tempo que falta, legíveis de longe.\n\n• Um alerta em tela cheia quando chega a hora de cada oração\n• A direção da qibla e a distância até Meca para a sua cidade\n• As mesquitas perto da sua cidade, com um código para ver o caminho no telefone\n• Os horários de hoje na Top Shelf, sem abrir o app\n• 11 métodos de cálculo, Asr padrão ou hanafi, data hijri e ajuste em minutos\n\nPRIVACIDADE\nSem conta, sem anúncios, sem rastreamento. O app só se conecta para buscar mesquitas (com sua localização arredondada), mostrar o mapa, baixar o que você pedir e abrir os links que você escolher.\n\n36 idiomas.",
     "whatsNew": "Um só estilo para tudo. Escolha nos Ajustes e os botões e destaques do app passam a segui-lo. Novos estilos: verde-azulado e conforme a hora."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "O Near Mosque não tem conta, anúncios, análises de uso nem rastreamento. Os horários de oração e a qibla são calculados no seu aparelho, e não mantemos nenhum servidor para o app, então nada sobre você chega até nós. O app só se conecta para buscar mesquitas, mostrar mapas, baixar o que você escolher e abrir os links que você selecionar. No iPhone, iPad, Mac e Apple Vision Pro, a opção “Céu conforme o clima” fica desativada até você ativá-la; então ela envia a localização da sua cidade, arredondada para cerca de 1 km, ao MET Norway para obter o clima. O app para Apple TV não a usa. Política de privacidade completa: https://nearmosque.net/privacy.html"
    }
   },
   "pt-PT": {
@@ -359,6 +391,9 @@
     "keywords": "adhan,azan,salat,oracao,qibla,mesquita,islam,muculmano,alcorao,hijri,dua,ramadan,meca,tasbih",
     "description": "O Near Mosque transforma a sua TV num painel de orações para casa ou o salão da mesquita: os horários de hoje, a próxima oração e o tempo que falta, legíveis de longe.\n\n• Um alerta em tela cheia quando chega a hora de cada oração\n• A direção da qibla e a distância até Meca para a sua cidade\n• As mesquitas perto da sua cidade, com um código para ver o caminho no telefone\n• Os horários de hoje na Top Shelf, sem abrir o app\n• 11 métodos de cálculo, Asr padrão ou hanafi, data hijri e ajuste em minutos\n\nPRIVACIDADE\nSem conta, sem anúncios, sem rastreamento. O app só se conecta para buscar mesquitas (com sua localização arredondada), mostrar o mapa, baixar o que você pedir e abrir os links que você escolher.\n\n36 idiomas.",
     "whatsNew": "Um só estilo para tudo. Escolha nos Ajustes e os botões e destaques do app passam a segui-lo. Novos estilos: verde-azulado e conforme a hora."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "O Near Mosque não tem conta, anúncios, análises de uso nem rastreamento. Os horários de oração e a qibla são calculados no seu aparelho, e não mantemos nenhum servidor para o app, então nada sobre você chega até nós. O app só se conecta para buscar mesquitas, mostrar mapas, baixar o que você escolher e abrir os links que você selecionar. No iPhone, iPad, Mac e Apple Vision Pro, a opção “Céu conforme o clima” fica desativada até você ativá-la; então ela envia a localização da sua cidade, arredondada para cerca de 1 km, ao MET Norway para obter o clima. O app para Apple TV não a usa. Política de privacidade completa: https://nearmosque.net/privacy.html"
    }
   },
   "tr": {
@@ -391,6 +426,9 @@
     "keywords": "ezan,namaz,vakit,kible,cami,mescit,islam,musluman,kuran,hicri,dua,ramazan,mekke,tesbih,imsakiye",
     "description": "Near Mosque televizyonunuzu eviniz veya cami salonu için bir namaz panosuna çevirir: bugünün vakitleri, sıradaki namaz ve kalan süre, uzaktan okunur.\n\n• Her namaz vakti girdiğinde tam ekran uyarı\n• Şehriniz için kıble yönü ve Mekke'ye mesafe\n• Şehrinize yakın camiler ve telefonunuzla yol tarifi için taranacak bir kod\n• Uygulamayı açmadan Top Shelf'te bugünün vakitleri\n• 11 hesaplama yöntemi, standart veya Hanefi ikindi, hicri tarih ve dakika ayarı\n\nGİZLİLİK\nHesap yok, reklam yok, takip yok. Uygulama yalnızca cami aramak (yuvarlanmış konumla), haritayı göstermek, istediğinizi indirmek ve seçtiğiniz bağlantıları açmak için internete bağlanır.\n\n36 dil.",
     "whatsNew": "Her şey için tek stil. Ayarlar'dan seçin; uygulamanın düğmeleri ve vurguları ona uyar. Yeni görünümler: camgöbeği ve günün saatine göre."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque'ta hesap, reklam, analiz ve takip yok. Namaz vakitleri ve kıble cihazınızda hesaplanır; uygulama için sunucu çalıştırmıyoruz, bu yüzden sizinle ilgili hiçbir şey bize ulaşmaz. Uygulama yalnızca cami aramak, harita göstermek, istediğinizi indirmek ve seçtiğiniz bağlantıları açmak için internete bağlanır. iPhone, iPad, Mac ve Apple Vision Pro'da isteğe bağlı “Hava durumuna göre gökyüzü” siz açana kadar kapalıdır; açtığınızda hava durumunu almak için şehrinizin yaklaşık 1 km'ye yuvarlanmış konumunu MET Norway'e gönderir. Apple TV uygulaması bunu kullanmaz. Gizlilik politikasının tamamı: https://nearmosque.net/privacy.html"
    }
   },
   "id": {
@@ -423,6 +461,9 @@
     "keywords": "azan,adzan,salat,sholat,jadwal,kiblat,masjid,islam,muslim,quran,hijriah,doa,ramadan,makkah,tasbih",
     "description": "Near Mosque mengubah TV Anda menjadi papan jadwal salat untuk rumah atau ruang masjid: waktu salat hari ini, salat berikutnya, dan sisa waktunya, terbaca dari jauh.\n\n• Peringatan layar penuh saat masuk waktu salat\n• Arah kiblat dan jarak ke Makkah untuk kota Anda\n• Masjid di dekat kota Anda, dengan kode untuk dipindai agar petunjuk jalan muncul di ponsel\n• Waktu salat hari ini di Top Shelf tanpa membuka aplikasi\n• 11 metode perhitungan, Asar standar atau Hanafi, tanggal Hijriah, dan penyesuaian menit\n\nPRIVASI\nTanpa akun, tanpa iklan, tanpa pelacakan. Aplikasi hanya terhubung ke internet untuk mencari masjid (dengan lokasi yang dibulatkan), menampilkan peta, mengunduh yang Anda minta, dan membuka tautan yang Anda pilih.\n\n36 bahasa.",
     "whatsNew": "Satu gaya untuk semuanya. Pilih di Pengaturan, lalu tombol dan sorotan aplikasi mengikutinya. Tampilan baru: hijau toska dan sesuai waktu."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque tanpa akun, tanpa iklan, tanpa analitik, dan tanpa pelacakan. Waktu salat dan kiblat dihitung di perangkat Anda, dan kami tidak menjalankan server untuk aplikasi ini, jadi tidak ada apa pun tentang Anda yang sampai ke kami. Aplikasi hanya terhubung ke internet untuk mencari masjid, menampilkan peta, mengunduh yang Anda pilih, dan membuka tautan pilihan Anda. Di iPhone, iPad, Mac, dan Apple Vision Pro, fitur opsional \"Langit mengikuti cuaca\" nonaktif sampai Anda mengaktifkannya; setelah itu, fitur ini mengirim lokasi kota Anda, yang dibulatkan hingga sekitar 1 km, ke MET Norway untuk mengambil cuaca. Aplikasi Apple TV tidak menggunakannya. Kebijakan privasi lengkap: https://nearmosque.net/privacy.html"
    }
   },
   "ur-PK": {
@@ -455,6 +496,9 @@
     "keywords": "اذان,نماز,اوقات,قبلہ,مسجد,اسلام,مسلم,قرآن,ہجری,دعا,رمضان,مکہ,تسبیح,azan,namaz,qibla",
     "description": "Near Mosque آپ کے ٹی وی کو گھر یا مسجد کے ہال کے لیے نماز بورڈ بنا دیتی ہے: آج کے اوقات، اگلی نماز اور باقی وقت، دور سے پڑھنے کے قابل۔\n\n• نماز کا وقت ہونے پر پوری اسکرین کی اطلاع\n• آپ کے شہر کے لیے قبلے کی سمت اور مکہ تک فاصلہ\n• آپ کے شہر کے قریب مساجد، فون پر راستے کے لیے اسکین کرنے والے کوڈ کے ساتھ\n• ایپ کھولے بغیر Top Shelf پر آج کے اوقات\n• حساب کے 11 طریقے، جمہور یا حنفی عصر، ہجری تاریخ اور منٹوں کی تبدیلی\n\nرازداری\nنہ اکاؤنٹ، نہ اشتہار، نہ ٹریکنگ۔ ایپ صرف مساجد تلاش کرنے (گول کیے گئے مقام کے ساتھ)، نقشہ دکھانے، آپ کی منگوائی چیز ڈاؤن لوڈ کرنے اور آپ کے چنے ہوئے لنک کھولنے کے لیے انٹرنیٹ استعمال کرتی ہے۔\n\n36 زبانیں۔",
     "whatsNew": "ہر چیز کے لیے ایک انداز۔ اسے ترتیبات میں چنیں تو ایپ کے بٹن اور نمایاں رنگ اسی کے مطابق ہو جاتے ہیں۔ نئے انداز: فیروزی اور وقت کے مطابق۔"
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque میں نہ اکاؤنٹ ہے، نہ اشتہار، نہ اینالیٹکس اور نہ ٹریکنگ۔ نماز کے اوقات اور قبلہ آپ کے آلے پر نکالے جاتے ہیں، اور ہم ایپ کے لیے کوئی سرور نہیں چلاتے، اس لیے آپ کے بارے میں کچھ بھی ہم تک نہیں پہنچتا۔ ایپ صرف مساجد تلاش کرنے، نقشے دکھانے، آپ کی منتخب کی ہوئی چیز ڈاؤن لوڈ کرنے اور آپ کے چنے ہوئے لنک کھولنے کے لیے انٹرنیٹ استعمال کرتی ہے۔ آئی فون، آئی پیڈ، میک اور Apple Vision Pro پر اختیاری “موسم کے مطابق آسمان” تب تک بند رہتا ہے جب تک آپ اسے آن نہ کریں؛ آن کرنے پر یہ موسم معلوم کرنے کے لیے آپ کے شہر کا مقام، تقریباً 1 کلومیٹر تک گول کر کے، MET Norway کو بھیجتا ہے۔ Apple TV ایپ اسے استعمال نہیں کرتی۔ مکمل رازداری پالیسی: https://nearmosque.net/privacy.html"
    }
   },
   "ru": {
@@ -487,6 +531,9 @@
     "keywords": "азан,намаз,время,кибла,мечеть,ислам,мусульманин,коран,хиджра,дуа,рамадан,мекка,тасбих,салят",
     "description": "Near Mosque превращает телевизор в табло намазов для дома или зала мечети: время на сегодня, следующий намаз и оставшееся время, видно издалека.\n\n• Уведомление на весь экран, когда наступает время намаза\n• Направление киблы и расстояние до Мекки для вашего города\n• Мечети рядом с вашим городом и код, чтобы открыть маршрут на телефоне\n• Время на сегодня на Top Shelf без запуска приложения\n• 11 методов расчёта, аср по большинству или по ханафитам, дата по хиджре и поправка в минутах\n\nКОНФИДЕНЦИАЛЬНОСТЬ\nБез аккаунта, без рекламы, без отслеживания. Приложение выходит в сеть, только чтобы искать мечети (с округлённым местоположением), показать карту, скачать то, что вы просите, и открыть выбранные вами ссылки.\n\n36 языков.",
     "whatsNew": "Один стиль для всего. Выберите его в настройках, и кнопки и акценты приложения будут ему следовать. Новые виды: бирюзовый и по времени суток."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "В Near Mosque нет аккаунта, рекламы, аналитики и отслеживания. Время намаза и кибла рассчитываются на вашем устройстве, а сервера для приложения у нас нет, поэтому никакие сведения о вас к нам не попадают. Приложение выходит в сеть, только чтобы искать мечети, показывать карты, скачивать то, что вы выберете, и открывать выбранные вами ссылки. На iPhone, iPad, Mac и Apple Vision Pro необязательная функция «Небо по погоде» выключена, пока вы её не включите; тогда она отправляет местоположение вашего города, округлённое примерно до 1 км, в MET Norway, чтобы получить погоду. Приложение для Apple TV её не использует. Полная политика конфиденциальности: https://nearmosque.net/privacy.html"
    }
   },
   "nl-NL": {
@@ -519,6 +566,9 @@
     "keywords": "adhan,azan,salah,gebed,gebedstijden,qibla,moskee,islam,moslim,koran,hijri,dua,ramadan,mekka,tasbih",
     "description": "Near Mosque maakt van je tv een gebedsbord voor thuis of de moskeezaal: de tijden van vandaag, het volgende gebed en de resterende tijd, van ver te lezen.\n\n• Een melding op het hele scherm wanneer een gebedstijd begint\n• De richting van de qibla en de afstand tot Mekka voor je stad\n• Moskeeën bij je stad, met een code om de route op je telefoon te openen\n• De tijden van vandaag in de Top Shelf, zonder de app te openen\n• 11 rekenmethoden, standaard of Hanafi asr, hidjri-datum en aanpassing in minuten\n\nPRIVACY\nGeen account, geen advertenties, geen tracking. De app gaat alleen online om moskeeën te zoeken (met een afgeronde locatie), de kaart te tonen, te downloaden wat je vraagt en links te openen die je kiest.\n\n36 talen.",
     "whatsNew": "Eén stijl voor alles. Kies hem in Instellingen en de knoppen en accenten van de app volgen hem. Nieuwe stijlen: petrol en naar tijdstip."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque heeft geen account, geen advertenties, geen analytics en geen tracking. Gebedstijden en de qibla worden op je apparaat berekend, en we draaien geen server voor de app, dus niets over jou bereikt ons. De app gaat alleen online om moskeeën te zoeken, kaarten te tonen, te downloaden wat je kiest en links te openen die je selecteert. Op iPhone, iPad, Mac en Apple Vision Pro staat de optionele functie “Lucht volgt het weer” uit tot je die aanzet; daarna stuurt de app de locatie van je stad, afgerond op ongeveer 1 km, naar MET Norway om het weer op te halen. De Apple TV-app gebruikt deze functie niet. Volledig privacybeleid: https://nearmosque.net/privacy.html"
    }
   },
   "hu": {
@@ -551,6 +601,9 @@
     "keywords": "ezan,adhan,ima,imaido,kibla,mecset,iszlam,muszlim,korán,hidzsra,dua,ramadan,mekka,tasbih",
     "description": "A Near Mosque imatáblává teszi a tévédet otthonra vagy a mecset termébe: a mai imaidők, a következő ima és a hátralévő idő, messziről is olvashatóan.\n\n• Teljes képernyős értesítés, amikor eljön az ima ideje\n• A kibla iránya és a távolság Mekkáig a városodhoz\n• A városodhoz közeli mecsetek, kóddal az útvonalhoz a telefonodon\n• A mai imaidők a Top Shelfen, az alkalmazás megnyitása nélkül\n• 11 számítási mód, általános vagy hanafita aszr, hidzsra dátum és percnyi igazítás\n\nADATVÉDELEM\nNincs fiók, nincs hirdetés, nincs követés. Az alkalmazás csak mecsetkereséshez (kerekített helyzettel), a térképhez, a kért letöltésekhez és az általad választott linkekhez használ internetet.\n\n36 nyelv.",
     "whatsNew": "Egy stílus mindenhez. Válaszd ki a Beállításokban, és az alkalmazás gombjai és kiemelései követik. Új stílusok: kékeszöld és napszak szerint."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "A Near Mosque-ban nincs fiók, nincs hirdetés, nincs analitika és nincs követés. Az imaidők és a kibla a készülékeden számolódnak, és nem üzemeltetünk szervert az alkalmazáshoz, így rólad semmi sem jut el hozzánk. Az alkalmazás csak mecsetkereséshez, a térképekhez, az általad választott letöltésekhez és az általad választott linkek megnyitásához használ internetet. iPhone-on, iPaden, Macen és Apple Vision Prón a választható „Időjárás szerinti égbolt” ki van kapcsolva, amíg be nem kapcsolod; utána az időjáráshoz elküldi a városod kb. 1 km-re kerekített helyét a MET Norwaynek. Az Apple TV-alkalmazás nem használja. A teljes adatvédelmi szabályzat: https://nearmosque.net/privacy.html"
    }
   },
   "zh-Hans": {
@@ -583,6 +636,9 @@
     "keywords": "礼拜,礼拜时间,宣礼,朝向,清真寺,伊斯兰,穆斯林,古兰经,伊历,祈祷,斋月,麦加,赞念,adhan,qibla",
     "description": "Near Mosque 把你的电视变成家中或清真寺礼堂的礼拜时间板：今天的时间、下一次礼拜和剩余时间，远处也看得清。\n\n• 礼拜时间到时全屏提醒\n• 你所在城市的朝向和到麦加的距离\n• 你所在城市附近的清真寺，扫码即可在手机上查看路线\n• 无需打开应用，在顶部栏查看今天的时间\n• 11 种计算方法，大众或哈乃斐派晡礼，伊历日期，可按分钟调整\n\n隐私\n无需账号，没有广告，没有追踪。应用只在搜索清真寺（使用模糊位置）、显示地图、下载你要求的内容和打开你选择的链接时联网。\n\n36 种语言。",
     "whatsNew": "一种风格用于一切。在设置中选择后，应用的按钮和强调色都会随之改变。新增外观：青绿和随时段变化。"
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque 无需账号，没有广告、数据分析和追踪。礼拜时间和朝向在你的设备上计算，我们也不为应用运行任何服务器，因此我们不会收到任何关于你的信息。应用只在搜索清真寺、显示地图、下载你选择的内容和打开你选择的链接时联网。在 iPhone、iPad、Mac 和 Apple Vision Pro 上，可选的“天空随天气变化”默认关闭，需你自行开启；开启后，它会将取整到约 1 公里的城市位置发送给 MET Norway 以获取天气。Apple TV 应用不使用此功能。完整隐私政策：https://nearmosque.net/privacy.html"
    }
   },
   "hi": {
@@ -615,6 +671,9 @@
     "keywords": "अज़ान,नमाज़,समय,क़िबला,मस्जिद,इस्लाम,मुस्लिम,क़ुरआन,हिजरी,दुआ,रमज़ान,मक्का,तस्बीह,azan,namaz",
     "description": "Near Mosque आपके टीवी को घर या मस्जिद के हॉल के लिए नमाज़ बोर्ड बना देता है: आज का समय, अगली नमाज़ और बाक़ी समय, दूर से पढ़ने लायक़।\n\n• नमाज़ का समय होने पर पूरी स्क्रीन की सूचना\n• आपके शहर के लिए क़िबला की दिशा और मक्का तक की दूरी\n• आपके शहर के पास की मस्जिदें, फ़ोन पर रास्ते के लिए स्कैन करने का कोड\n• ऐप खोले बिना Top Shelf पर आज का समय\n• गणना के 11 तरीक़े, सामान्य या हनफ़ी अस्र, हिजरी तारीख़ और मिनटों का बदलाव\n\nनिजता\nन खाता, न विज्ञापन, न ट्रैकिंग। ऐप सिर्फ़ मस्जिदें खोजने (अनुमानित स्थान के साथ), नक्शा दिखाने, आपकी माँगी चीज़ डाउनलोड करने और आपके चुने लिंक खोलने के लिए इंटरनेट से जुड़ता है।\n\n36 भाषाएँ।",
     "whatsNew": "हर चीज़ के लिए एक स्टाइल। इसे सेटिंग में चुनें, तो ऐप के बटन और हाइलाइट उसी के अनुसार हो जाते हैं। नए रूप: हरा-नीला और समय के अनुसार।"
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque में न खाता है, न विज्ञापन, न एनालिटिक्स और न ट्रैकिंग। नमाज़ का समय और क़िबला आपके डिवाइस पर निकाले जाते हैं, और हम ऐप के लिए कोई सर्वर नहीं चलाते, इसलिए आपके बारे में कुछ भी हम तक नहीं पहुँचता। ऐप सिर्फ़ मस्जिदें खोजने, नक्शे दिखाने, आपकी चुनी चीज़ डाउनलोड करने और आपके चुने लिंक खोलने के लिए इंटरनेट से जुड़ता है। iPhone, iPad, Mac और Apple Vision Pro पर वैकल्पिक \"मौसम के अनुसार आसमान\" तब तक बंद रहता है जब तक आप इसे चालू न करें; चालू करने पर यह मौसम लाने के लिए आपके शहर की लोकेशन, लगभग 1 किमी तक राउंड करके, MET Norway को भेजता है। Apple TV ऐप इसका इस्तेमाल नहीं करता। पूरी निजता नीति: https://nearmosque.net/privacy.html"
    }
   },
   "bn-BD": {
@@ -647,6 +706,9 @@
     "keywords": "আজান,নামাজ,সময়,কিবলা,মসজিদ,ইসলাম,মুসলিম,কুরআন,হিজরি,দোয়া,রমজান,মক্কা,তাসবিহ,azan,namaz",
     "description": "Near Mosque আপনার টিভিকে ঘর বা মসজিদের হলের জন্য নামাজের বোর্ড বানিয়ে দেয়: আজকের সময়, পরের নামাজ আর বাকি সময়, দূর থেকেও পড়া যায়।\n\n• নামাজের সময় হলে পুরো স্ক্রিনে সতর্কবার্তা\n• আপনার শহরের কিবলার দিক ও মক্কা পর্যন্ত দূরত্ব\n• আপনার শহরের কাছের মসজিদ, ফোনে পথ দেখতে স্ক্যান করার কোডসহ\n• অ্যাপ না খুলেই Top Shelf-এ আজকের সময়\n• হিসাবের ১১টি পদ্ধতি, সাধারণ বা হানাফি আসর, হিজরি তারিখ এবং মিনিট সমন্বয়\n\nগোপনীয়তা\nঅ্যাকাউন্ট নেই, বিজ্ঞাপন নেই, ট্র্যাকিং নেই। অ্যাপ শুধু মসজিদ খুঁজতে (আনুমানিক অবস্থানসহ), মানচিত্র দেখাতে, আপনার চাওয়া জিনিস ডাউনলোড করতে এবং আপনার বেছে নেওয়া লিংক খুলতে ইন্টারনেটে যায়।\n\n৩৬টি ভাষা।",
     "whatsNew": "সবকিছুর জন্য একটি স্টাইল। সেটিংসে বেছে নিন, তাহলে অ্যাপের বোতাম আর হাইলাইট সেটি অনুসরণ করবে। নতুন রূপ: সবুজাভ নীল ও সময় অনুযায়ী।"
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque-এ কোনো অ্যাকাউন্ট নেই, বিজ্ঞাপন নেই, অ্যানালিটিক্স নেই, ট্র্যাকিং নেই। নামাজের সময় ও কিবলা আপনার ডিভাইসেই হিসাব হয়, আর অ্যাপের জন্য আমরা কোনো সার্ভার চালাই না, তাই আপনার সম্পর্কে কিছুই আমাদের কাছে পৌঁছায় না। অ্যাপ শুধু মসজিদ খুঁজতে, মানচিত্র দেখাতে, আপনার চাওয়া জিনিস ডাউনলোড করতে এবং আপনার বেছে নেওয়া লিংক খুলতে ইন্টারনেটে যায়। iPhone, iPad, Mac ও Apple Vision Pro-তে ঐচ্ছিক \"আবহাওয়া অনুযায়ী আকাশ\" আপনি চালু না করা পর্যন্ত বন্ধ থাকে; চালু করলে আবহাওয়া আনতে এটি আপনার শহরের অবস্থান, প্রায় 1 কিমিতে রাউন্ড করে, MET Norway-তে পাঠায়। Apple TV অ্যাপ এটি ব্যবহার করে না। পূর্ণ গোপনীয়তা নীতি: https://nearmosque.net/privacy.html"
    }
   },
   "gu-IN": {
@@ -679,6 +741,9 @@
     "keywords": "અઝાન,નમાઝ,સમય,કિબ્લા,મસ્જિદ,ઇસ્લામ,મુસ્લિમ,કુરાન,હિજરી,દુઆ,રમઝાન,મક્કા,તસ્બીહ,azan,namaz",
     "description": "Near Mosque તમારા ટીવીને ઘર અથવા મસ્જિદના હૉલ માટે નમાઝ બોર્ડ બનાવે છે: આજનો સમય, આગલી નમાઝ અને બાકી સમય, દૂરથી વાંચી શકાય તેવો.\n\n• નમાઝનો સમય થાય ત્યારે આખી સ્ક્રીન પર સૂચના\n• તમારા શહેર માટે કિબ્લાની દિશા અને મક્કા સુધીનું અંતર\n• તમારા શહેર નજીકની મસ્જિદો, ફોન પર રસ્તા માટે સ્કૅન કરવાના કોડ સાથે\n• ઍપ ખોલ્યા વગર Top Shelf પર આજનો સમય\n• ગણતરીની 11 રીતો, સામાન્ય અથવા હનફી અસર, હિજરી તારીખ અને મિનિટનો ફેરફાર\n\nગોપનીયતા\nએકાઉન્ટ નહીં, જાહેરાત નહીં, ટ્રેકિંગ નહીં. ઍપ માત્ર મસ્જિદ શોધવા (અંદાજિત સ્થાન સાથે), નકશો બતાવવા, તમે માગો તે ડાઉનલોડ કરવા અને તમે પસંદ કરેલી લિંક ખોલવા ઇન્ટરનેટ વાપરે છે.\n\n36 ભાષાઓ.",
     "whatsNew": "દરેક વસ્તુ માટે એક શૈલી. સેટિંગમાં પસંદ કરો, અને ઍપનાં બટન અને હાઇલાઇટ તેને અનુસરશે. નવા દેખાવ: લીલો-વાદળી અને સમય મુજબ."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque માં એકાઉન્ટ નથી, જાહેરાત નથી, એનાલિટિક્સ નથી અને ટ્રેકિંગ નથી. નમાઝનો સમય અને કિબ્લા તમારા ડિવાઇસ પર ગણાય છે, અને અમે ઍપ માટે કોઈ સર્વર ચલાવતા નથી, તેથી તમારા વિશે કંઈ જ અમારા સુધી પહોંચતું નથી. ઍપ માત્ર મસ્જિદ શોધવા, નકશા બતાવવા, તમે માગો તે ડાઉનલોડ કરવા અને તમે પસંદ કરેલી લિંક ખોલવા ઇન્ટરનેટ વાપરે છે. iPhone, iPad, Mac અને Apple Vision Pro પર વૈકલ્પિક \"હવામાન મુજબ આકાશ\" તમે ચાલુ ન કરો ત્યાં સુધી બંધ રહે છે; ચાલુ કર્યા પછી તે હવામાન મેળવવા તમારા શહેરનું સ્થાન, લગભગ 1 કિમી સુધી રાઉન્ડ કરીને, MET Norway ને મોકલે છે. Apple TV ઍપ તેનો ઉપયોગ કરતી નથી. સંપૂર્ણ ગોપનીયતા નીતિ: https://nearmosque.net/privacy.html"
    }
   },
   "kn-IN": {
@@ -711,6 +776,9 @@
     "keywords": "ಅಜಾನ್,ನಮಾಜ್,ಸಮಯ,ಕಿಬ್ಲಾ,ಮಸೀದಿ,ಇಸ್ಲಾಂ,ಮುಸ್ಲಿಂ,ಕುರಾನ್,ಹಿಜ್ರಿ,ದುಆ,ರಂಜಾನ್,ಮಕ್ಕಾ,azan,namaz",
     "description": "Near Mosque ನಿಮ್ಮ ಟಿವಿಯನ್ನು ಮನೆ ಅಥವಾ ಮಸೀದಿಯ ಸಭಾಂಗಣಕ್ಕೆ ನಮಾಜ್ ಫಲಕವನ್ನಾಗಿ ಮಾಡುತ್ತದೆ: ಇಂದಿನ ಸಮಯ, ಮುಂದಿನ ನಮಾಜ್ ಮತ್ತು ಉಳಿದ ಸಮಯ, ದೂರದಿಂದಲೂ ಓದುವಂತೆ.\n\n• ನಮಾಜ್ ಸಮಯವಾದಾಗ ಪೂರ್ಣ ಪರದೆಯ ಸೂಚನೆ\n• ನಿಮ್ಮ ನಗರಕ್ಕೆ ಕಿಬ್ಲಾ ದಿಕ್ಕು ಮತ್ತು ಮಕ್ಕಾಗೆ ದೂರ\n• ನಿಮ್ಮ ನಗರದ ಹತ್ತಿರದ ಮಸೀದಿಗಳು, ಫೋನ್‌ನಲ್ಲಿ ದಾರಿಗಾಗಿ ಸ್ಕ್ಯಾನ್ ಮಾಡುವ ಕೋಡ್‌ನೊಂದಿಗೆ\n• ಆ್ಯಪ್ ತೆರೆಯದೆ Top Shelf‌ನಲ್ಲಿ ಇಂದಿನ ಸಮಯ\n• ಲೆಕ್ಕದ 11 ವಿಧಾನಗಳು, ಸಾಮಾನ್ಯ ಅಥವಾ ಹನಫಿ ಅಸರ್, ಹಿಜ್ರಿ ದಿನಾಂಕ ಮತ್ತು ನಿಮಿಷಗಳ ಹೊಂದಾಣಿಕೆ\n\nಗೌಪ್ಯತೆ\nಖಾತೆ ಇಲ್ಲ, ಜಾಹೀರಾತು ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. ಆ್ಯಪ್ ಮಸೀದಿಗಳನ್ನು ಹುಡುಕಲು (ಅಂದಾಜು ಸ್ಥಳದೊಂದಿಗೆ), ನಕ್ಷೆ ತೋರಿಸಲು, ನೀವು ಕೇಳಿದ್ದನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಮತ್ತು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಲಿಂಕ್‌ಗಳನ್ನು ತೆರೆಯಲು ಮಾತ್ರ ಇಂಟರ್ನೆಟ್ ಬಳಸುತ್ತದೆ.\n\n36 ಭಾಷೆಗಳು.",
     "whatsNew": "ಎಲ್ಲದಕ್ಕೂ ಒಂದೇ ಶೈಲಿ. ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಆಯ್ಕೆ ಮಾಡಿ, ಆ್ಯಪ್‌ನ ಬಟನ್‌ಗಳು ಮತ್ತು ಹೈಲೈಟ್‌ಗಳು ಅದನ್ನು ಅನುಸರಿಸುತ್ತವೆ. ಹೊಸ ರೂಪಗಳು: ನೀಲಿ ಹಸಿರು ಮತ್ತು ಸಮಯಕ್ಕೆ ತಕ್ಕಂತೆ."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque ನಲ್ಲಿ ಖಾತೆ ಇಲ್ಲ, ಜಾಹೀರಾತು ಇಲ್ಲ, ಅನಾಲಿಟಿಕ್ಸ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. ನಮಾಜ್ ಸಮಯ ಮತ್ತು ಕಿಬ್ಲಾ ನಿಮ್ಮ ಸಾಧನದಲ್ಲೇ ಲೆಕ್ಕವಾಗುತ್ತವೆ, ಮತ್ತು ಆ್ಯಪ್‌ಗಾಗಿ ನಾವು ಯಾವುದೇ ಸರ್ವರ್ ನಡೆಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ನಿಮ್ಮ ಬಗ್ಗೆ ಏನೂ ನಮ್ಮನ್ನು ತಲುಪುವುದಿಲ್ಲ. ಆ್ಯಪ್ ಮಸೀದಿಗಳನ್ನು ಹುಡುಕಲು, ನಕ್ಷೆಗಳನ್ನು ತೋರಿಸಲು, ನೀವು ಕೇಳಿದ್ದನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಮತ್ತು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಲಿಂಕ್‌ಗಳನ್ನು ತೆರೆಯಲು ಮಾತ್ರ ಇಂಟರ್ನೆಟ್ ಬಳಸುತ್ತದೆ. iPhone, iPad, Mac ಮತ್ತು Apple Vision Pro ನಲ್ಲಿ ಐಚ್ಛಿಕ \"ಹವಾಮಾನಕ್ಕೆ ತಕ್ಕ ಆಕಾಶ\" ನೀವು ಆನ್ ಮಾಡುವವರೆಗೆ ಆಫ್ ಆಗಿರುತ್ತದೆ; ನಂತರ ಹವಾಮಾನ ಪಡೆಯಲು ಅದು ನಿಮ್ಮ ನಗರದ ಸ್ಥಳವನ್ನು, ಸುಮಾರು 1 ಕಿ.ಮೀ.ಗೆ ರೌಂಡ್ ಮಾಡಿ, MET Norwayಗೆ ಕಳುಹಿಸುತ್ತದೆ. Apple TV ಆ್ಯಪ್ ಇದನ್ನು ಬಳಸುವುದಿಲ್ಲ. ಸಂಪೂರ್ಣ ಗೌಪ್ಯತಾ ನೀತಿ: https://nearmosque.net/privacy.html"
    }
   },
   "ml-IN": {
@@ -743,6 +811,9 @@
     "keywords": "ബാങ്ക്,നമസ്കാരം,സമയം,ഖിബ്‌ല,പള്ളി,ഇസ്‌ലാം,മുസ്‌ലിം,ഖുർആൻ,ഹിജ്റ,ദുആ,റമദാൻ,മക്ക,azan,namaz",
     "description": "Near Mosque നിങ്ങളുടെ ടിവിയെ വീടിനോ പള്ളിയിലെ ഹാളിനോ ഉള്ള നമസ്കാര ബോർഡാക്കുന്നു: ഇന്നത്തെ സമയം, അടുത്ത നമസ്കാരം, ബാക്കി സമയം, ദൂരെ നിന്നും വായിക്കാം.\n\n• നമസ്കാര സമയമാകുമ്പോൾ പൂർണ്ണ സ്ക്രീൻ അറിയിപ്പ്\n• നിങ്ങളുടെ നഗരത്തിന്റെ ഖിബ്‌ല ദിശയും മക്കയിലേക്കുള്ള ദൂരവും\n• നിങ്ങളുടെ നഗരത്തിനടുത്തുള്ള പള്ളികൾ, ഫോണിൽ വഴി കാണാൻ സ്കാൻ ചെയ്യാനുള്ള കോഡ് സഹിതം\n• ആപ്പ് തുറക്കാതെ Top Shelf-ൽ ഇന്നത്തെ സമയം\n• 11 കണക്കുകൂട്ടൽ രീതികൾ, സാധാരണ അല്ലെങ്കിൽ ഹനഫി അസ്ർ, ഹിജ്റ തീയതി, മിനിറ്റ് ക്രമീകരണം\n\nസ്വകാര്യത\nഅക്കൗണ്ടില്ല, പരസ്യമില്ല, ട്രാക്കിംഗില്ല. പള്ളികൾ തിരയാനും (ഏകദേശ സ്ഥാനത്തോടെ), മാപ്പ് കാണിക്കാനും, നിങ്ങൾ ആവശ്യപ്പെടുന്നത് ഡൗൺലോഡ് ചെയ്യാനും, നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ലിങ്കുകൾ തുറക്കാനും മാത്രമേ ആപ്പ് ഇന്റർനെറ്റ് ഉപയോഗിക്കൂ.\n\n36 ഭാഷകൾ.",
     "whatsNew": "എല്ലാത്തിനും ഒരേ ശൈലി. ക്രമീകരണങ്ങളിൽ തിരഞ്ഞെടുക്കുക, ആപ്പിന്റെ ബട്ടണുകളും ഹൈലൈറ്റുകളും അത് പിന്തുടരും. പുതിയ രൂപങ്ങൾ: നീലപ്പച്ചയും സമയമനുസരിച്ചും."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque-ൽ അക്കൗണ്ടില്ല, പരസ്യമില്ല, അനലിറ്റിക്സില്ല, ട്രാക്കിംഗില്ല. നമസ്കാര സമയവും ഖിബ്‌ലയും നിങ്ങളുടെ ഉപകരണത്തിൽ തന്നെ കണക്കാക്കുന്നു, ആപ്പിനായി ഞങ്ങൾ ഒരു സെർവറും പ്രവർത്തിപ്പിക്കുന്നില്ല, അതിനാൽ നിങ്ങളെക്കുറിച്ച് ഒന്നും ഞങ്ങളിലേക്ക് എത്തുന്നില്ല. പള്ളികൾ തിരയാനും, മാപ്പുകൾ കാണിക്കാനും, നിങ്ങൾ ആവശ്യപ്പെടുന്നത് ഡൗൺലോഡ് ചെയ്യാനും, നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ലിങ്കുകൾ തുറക്കാനും മാത്രമേ ആപ്പ് ഇന്റർനെറ്റ് ഉപയോഗിക്കൂ. iPhone, iPad, Mac, Apple Vision Pro എന്നിവയിൽ ഐച്ഛികമായ \"കാലാവസ്ഥയനുസരിച്ച് ആകാശം\" നിങ്ങൾ ഓണാക്കുന്നതുവരെ ഓഫായിരിക്കും; പിന്നീട് കാലാവസ്ഥ ലഭിക്കാൻ ഇത് നിങ്ങളുടെ നഗരത്തിന്റെ ലൊക്കേഷൻ, ഏകദേശം 1 കി.മീ.ലേക്ക് റൗണ്ട് ചെയ്ത്, MET Norway-ലേക്ക് അയയ്ക്കുന്നു. Apple TV ആപ്പ് ഇത് ഉപയോഗിക്കുന്നില്ല. പൂർണ്ണ സ്വകാര്യതാ നയം: https://nearmosque.net/privacy.html"
    }
   },
   "mr-IN": {
@@ -775,6 +846,9 @@
     "keywords": "अजान,नमाज,वेळ,किबला,मशीद,इस्लाम,मुस्लिम,कुराण,हिजरी,दुआ,रमजान,मक्का,तस्बीह,azan,namaz",
     "description": "Near Mosque तुमच्या टीव्हीला घर किंवा मशिदीच्या हॉलसाठी नमाज फलक बनवते: आजच्या वेळा, पुढची नमाज आणि उरलेला वेळ, दुरूनही वाचता येईल असे.\n\n• नमाजची वेळ झाल्यावर पूर्ण स्क्रीन सूचना\n• तुमच्या शहरासाठी किबल्याची दिशा आणि मक्केपर्यंतचे अंतर\n• तुमच्या शहराजवळच्या मशिदी, फोनवर मार्गासाठी स्कॅन करायच्या कोडसह\n• अ‍ॅप न उघडता Top Shelf वर आजच्या वेळा\n• मोजणीच्या 11 पद्धती, सामान्य किंवा हनफी असर, हिजरी तारीख आणि मिनिटांचा बदल\n\nगोपनीयता\nखाते नाही, जाहिराती नाहीत, ट्रॅकिंग नाही. अ‍ॅप फक्त मशिदी शोधण्यासाठी (अंदाजे स्थानासह), नकाशा दाखवण्यासाठी, तुम्ही मागितलेले डाउनलोड करण्यासाठी आणि तुम्ही निवडलेल्या लिंक उघडण्यासाठी इंटरनेट वापरते.\n\n36 भाषा.",
     "whatsNew": "सगळ्यासाठी एकच शैली. सेटिंग्जमध्ये निवडा, मग अ‍ॅपची बटणे आणि हायलाइट ती पाळतात. नवे रूप: हिरवट निळा आणि वेळेनुसार."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque मध्ये खाते नाही, जाहिराती नाहीत, अ‍ॅनालिटिक्स नाही आणि ट्रॅकिंग नाही. नमाजच्या वेळा आणि किबला तुमच्या डिव्हाइसवरच मोजले जातात, आणि आम्ही अ‍ॅपसाठी कोणताही सर्व्हर चालवत नाही, त्यामुळे तुमच्याबद्दल काहीही आमच्यापर्यंत पोहोचत नाही. अ‍ॅप फक्त मशिदी शोधण्यासाठी, नकाशे दाखवण्यासाठी, तुम्ही मागितलेले डाउनलोड करण्यासाठी आणि तुम्ही निवडलेल्या लिंक उघडण्यासाठी इंटरनेट वापरते. iPhone, iPad, Mac आणि Apple Vision Pro वर ऐच्छिक \"हवामानानुसार आकाश\" तुम्ही चालू करेपर्यंत बंद राहते; त्यानंतर हवामान मिळवण्यासाठी ते तुमच्या शहराचे स्थान, सुमारे 1 किमीपर्यंत राउंड करून, MET Norway ला पाठवते. Apple TV अ‍ॅप ते वापरत नाही. संपूर्ण गोपनीयता धोरण: https://nearmosque.net/privacy.html"
    }
   },
   "pa-IN": {
@@ -807,6 +881,9 @@
     "keywords": "ਅਜ਼ਾਨ,ਨਮਾਜ਼,ਸਮਾਂ,ਕਿਬਲਾ,ਮਸਜਿਦ,ਇਸਲਾਮ,ਮੁਸਲਿਮ,ਕੁਰਆਨ,ਹਿਜਰੀ,ਦੁਆ,ਰਮਜ਼ਾਨ,ਮੱਕਾ,azan,namaz",
     "description": "Near Mosque ਤੁਹਾਡੇ ਟੀਵੀ ਨੂੰ ਘਰ ਜਾਂ ਮਸਜਿਦ ਦੇ ਹਾਲ ਲਈ ਨਮਾਜ਼ ਬੋਰਡ ਬਣਾ ਦਿੰਦੀ ਹੈ: ਅੱਜ ਦੇ ਸਮੇਂ, ਅਗਲੀ ਨਮਾਜ਼ ਅਤੇ ਬਾਕੀ ਸਮਾਂ, ਦੂਰੋਂ ਪੜ੍ਹਨਯੋਗ।\n\n• ਨਮਾਜ਼ ਦਾ ਸਮਾਂ ਹੋਣ 'ਤੇ ਪੂਰੀ ਸਕ੍ਰੀਨ ਸੂਚਨਾ\n• ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਲਈ ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ ਅਤੇ ਮੱਕੇ ਤੱਕ ਦੂਰੀ\n• ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦੇ ਨੇੜੇ ਮਸਜਿਦਾਂ, ਫ਼ੋਨ 'ਤੇ ਰਸਤੇ ਲਈ ਸਕੈਨ ਕਰਨ ਵਾਲੇ ਕੋਡ ਨਾਲ\n• ਐਪ ਖੋਲ੍ਹੇ ਬਿਨਾਂ Top Shelf 'ਤੇ ਅੱਜ ਦੇ ਸਮੇਂ\n• ਗਿਣਤੀ ਦੇ 11 ਤਰੀਕੇ, ਆਮ ਜਾਂ ਹਨਫ਼ੀ ਅਸਰ, ਹਿਜਰੀ ਤਾਰੀਖ਼ ਅਤੇ ਮਿੰਟਾਂ ਦੀ ਤਬਦੀਲੀ\n\nਨਿੱਜਤਾ\nਨਾ ਖਾਤਾ, ਨਾ ਇਸ਼ਤਿਹਾਰ, ਨਾ ਟ੍ਰੈਕਿੰਗ। ਐਪ ਸਿਰਫ਼ ਮਸਜਿਦਾਂ ਲੱਭਣ (ਅੰਦਾਜ਼ਨ ਟਿਕਾਣੇ ਨਾਲ), ਨਕਸ਼ਾ ਦਿਖਾਉਣ, ਤੁਹਾਡੀ ਮੰਗੀ ਚੀਜ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਅਤੇ ਤੁਹਾਡੇ ਚੁਣੇ ਲਿੰਕ ਖੋਲ੍ਹਣ ਲਈ ਇੰਟਰਨੈੱਟ ਵਰਤਦੀ ਹੈ।\n\n36 ਭਾਸ਼ਾਵਾਂ।",
     "whatsNew": "ਹਰ ਚੀਜ਼ ਲਈ ਇੱਕ ਸ਼ੈਲੀ। ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਚੁਣੋ, ਤਾਂ ਐਪ ਦੇ ਬਟਨ ਅਤੇ ਹਾਈਲਾਈਟ ਉਸ ਮੁਤਾਬਕ ਹੋ ਜਾਂਦੇ ਹਨ। ਨਵੇਂ ਰੂਪ: ਹਰਾ-ਨੀਲਾ ਅਤੇ ਸਮੇਂ ਮੁਤਾਬਕ।"
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque ਵਿੱਚ ਨਾ ਖਾਤਾ ਹੈ, ਨਾ ਇਸ਼ਤਿਹਾਰ, ਨਾ ਐਨਾਲਿਟਿਕਸ ਅਤੇ ਨਾ ਟ੍ਰੈਕਿੰਗ। ਨਮਾਜ਼ ਦੇ ਸਮੇਂ ਅਤੇ ਕਿਬਲਾ ਤੁਹਾਡੀ ਡਿਵਾਈਸ 'ਤੇ ਹੀ ਗਿਣੇ ਜਾਂਦੇ ਹਨ, ਅਤੇ ਅਸੀਂ ਐਪ ਲਈ ਕੋਈ ਸਰਵਰ ਨਹੀਂ ਚਲਾਉਂਦੇ, ਇਸ ਲਈ ਤੁਹਾਡੇ ਬਾਰੇ ਕੁਝ ਵੀ ਸਾਡੇ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚਦਾ। ਐਪ ਸਿਰਫ਼ ਮਸਜਿਦਾਂ ਲੱਭਣ, ਨਕਸ਼ੇ ਦਿਖਾਉਣ, ਤੁਹਾਡੀ ਮੰਗੀ ਚੀਜ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਅਤੇ ਤੁਹਾਡੇ ਚੁਣੇ ਲਿੰਕ ਖੋਲ੍ਹਣ ਲਈ ਇੰਟਰਨੈੱਟ ਵਰਤਦੀ ਹੈ। iPhone, iPad, Mac ਅਤੇ Apple Vision Pro 'ਤੇ ਵਿਕਲਪਿਕ \"ਮੌਸਮ ਮੁਤਾਬਕ ਅਸਮਾਨ\" ਤਦ ਤੱਕ ਬੰਦ ਰਹਿੰਦਾ ਹੈ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਇਸਨੂੰ ਚਾਲੂ ਨਹੀਂ ਕਰਦੇ; ਫਿਰ ਮੌਸਮ ਲਿਆਉਣ ਲਈ ਇਹ ਤੁਹਾਡੇ ਸ਼ਹਿਰ ਦਾ ਟਿਕਾਣਾ, ਲਗਭਗ 1 ਕਿ.ਮੀ. ਤੱਕ ਰਾਊਂਡ ਕਰਕੇ, MET Norway ਨੂੰ ਭੇਜਦਾ ਹੈ। Apple TV ਐਪ ਇਸਨੂੰ ਨਹੀਂ ਵਰਤਦੀ। ਪੂਰੀ ਨਿੱਜਤਾ ਨੀਤੀ: https://nearmosque.net/privacy.html"
    }
   },
   "te-IN": {
@@ -839,6 +916,9 @@
     "keywords": "అజాన్,నమాజ్,సమయం,ఖిబ్లా,మసీదు,ఇస్లాం,ముస్లిం,ఖురాన్,హిజ్రీ,దువా,రంజాన్,మక్కా,azan,namaz",
     "description": "Near Mosque మీ టీవీని ఇల్లు లేదా మసీదు హాలు కోసం నమాజ్ బోర్డుగా మారుస్తుంది: ఈ రోజు సమయాలు, తదుపరి నమాజ్, మిగిలిన సమయం, దూరం నుంచీ చదవగలిగేలా.\n\n• నమాజ్ సమయం అయినప్పుడు పూర్తి స్క్రీన్ హెచ్చరిక\n• మీ నగరానికి ఖిబ్లా దిశ, మక్కాకు దూరం\n• మీ నగరానికి దగ్గరి మసీదులు, ఫోన్‌లో దారి కోసం స్కాన్ చేసే కోడ్‌తో\n• యాప్ తెరవకుండా Top Shelf‌పై ఈ రోజు సమయాలు\n• 11 లెక్కింపు పద్ధతులు, సాధారణ లేదా హనఫీ అస్ర్, హిజ్రీ తేదీ, నిమిషాల సర్దుబాటు\n\nగోప్యత\nఖాతా లేదు, ప్రకటనలు లేవు, ట్రాకింగ్ లేదు. మసీదులు వెతకడానికి (సుమారు స్థానంతో), మ్యాప్ చూపడానికి, మీరు అడిగినది డౌన్‌లోడ్ చేయడానికి, మీరు ఎంచుకున్న లింక్‌లు తెరవడానికి మాత్రమే యాప్ ఇంటర్నెట్ వాడుతుంది.\n\n36 భాషలు.",
     "whatsNew": "అన్నిటికీ ఒకే శైలి. సెట్టింగ్‌లలో ఎంచుకోండి, యాప్ బటన్‌లు, హైలైట్‌లు దాన్ని అనుసరిస్తాయి. కొత్త రూపాలు: నీలి ఆకుపచ్చ, సమయాన్ని బట్టి."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosqueలో ఖాతా లేదు, ప్రకటనలు లేవు, అనలిటిక్స్ లేవు, ట్రాకింగ్ లేదు. నమాజ్ సమయాలు, ఖిబ్లా మీ పరికరంలోనే లెక్కించబడతాయి, యాప్ కోసం మేము ఏ సర్వర్‌నూ నడపము, కాబట్టి మీ గురించి ఏదీ మాకు చేరదు. మసీదులు వెతకడానికి, మ్యాప్‌లు చూపడానికి, మీరు అడిగినది డౌన్‌లోడ్ చేయడానికి, మీరు ఎంచుకున్న లింక్‌లు తెరవడానికి మాత్రమే యాప్ ఇంటర్నెట్ వాడుతుంది. iPhone, iPad, Mac, Apple Vision Proలో ఐచ్ఛికమైన \"వాతావరణాన్ని బట్టి ఆకాశం\" మీరు ఆన్ చేసే వరకు ఆఫ్‌లో ఉంటుంది; ఆ తర్వాత వాతావరణం పొందడానికి అది మీ నగర స్థానాన్ని, దాదాపు 1 కి.మీ.కు రౌండ్ చేసి, MET Norwayకు పంపుతుంది. Apple TV యాప్ దీన్ని వాడదు. పూర్తి గోప్యతా విధానం: https://nearmosque.net/privacy.html"
    }
   },
   "th": {
@@ -871,6 +951,9 @@
     "keywords": "อะซาน,ละหมาด,เวลาละหมาด,กิบลัต,มัสยิด,อิสลาม,มุสลิม,อัลกุรอาน,ฮิจเราะห์,ดุอาอ์,รอมฎอน,มักกะฮ์",
     "description": "Near Mosque เปลี่ยนทีวีของคุณเป็นกระดานเวลาละหมาดสำหรับบ้านหรือห้องโถงมัสยิด: เวลาวันนี้ ละหมาดถัดไป และเวลาที่เหลือ อ่านได้จากระยะไกล\n\n• แจ้งเตือนเต็มจอเมื่อถึงเวลาละหมาด\n• ทิศกิบลัตและระยะทางไปมักกะฮ์สำหรับเมืองของคุณ\n• มัสยิดใกล้เมืองของคุณ พร้อมโค้ดให้สแกนดูเส้นทางบนโทรศัพท์\n• เวลาวันนี้บน Top Shelf โดยไม่ต้องเปิดแอป\n• วิธีคำนวณ 11 แบบ อัศรีแบบทั่วไปหรือฮะนะฟี วันที่ฮิจเราะห์ และปรับนาทีได้\n\nความเป็นส่วนตัว\nไม่มีบัญชี ไม่มีโฆษณา ไม่มีการติดตาม แอปออนไลน์เฉพาะเพื่อค้นหามัสยิด (ด้วยตำแหน่งแบบปัดเศษ) แสดงแผนที่ ดาวน์โหลดสิ่งที่คุณขอ และเปิดลิงก์ที่คุณเลือก\n\n36 ภาษา",
     "whatsNew": "สไตล์เดียวสำหรับทุกอย่าง เลือกในการตั้งค่า แล้วปุ่มและสีเน้นของแอปจะเปลี่ยนตาม ลุคใหม่: เขียวอมฟ้า และตามช่วงเวลา"
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque ไม่มีบัญชี ไม่มีโฆษณา ไม่มีการวิเคราะห์ข้อมูล และไม่มีการติดตาม เวลาละหมาดและกิบลัตคำนวณบนอุปกรณ์ของคุณ และเราไม่มีเซิร์ฟเวอร์สำหรับแอป จึงไม่มีข้อมูลใดเกี่ยวกับคุณมาถึงเรา แอปออนไลน์เฉพาะเพื่อค้นหามัสยิด แสดงแผนที่ ดาวน์โหลดสิ่งที่คุณขอ และเปิดลิงก์ที่คุณเลือก บน iPhone, iPad, Mac และ Apple Vision Pro ฟีเจอร์เสริม \"ท้องฟ้าตามสภาพอากาศ\" จะปิดอยู่จนกว่าคุณจะเปิด เมื่อเปิดแล้วแอปจะส่งตำแหน่งเมืองของคุณที่ปัดเศษเป็นราว 1 กม. ไปยัง MET Norway เพื่อรับข้อมูลสภาพอากาศ แอป Apple TV ไม่ได้ใช้ฟีเจอร์นี้ นโยบายความเป็นส่วนตัวฉบับเต็ม: https://nearmosque.net/privacy.html"
    }
   },
   "vi": {
@@ -903,6 +986,9 @@
     "keywords": "adhan,azan,salah,namaz,cau nguyen,qibla,thanh duong,masjid,hoi giao,islam,muslim,quran,ramadan",
     "description": "Near Mosque biến TV của bạn thành bảng giờ cầu nguyện cho gia đình hoặc sảnh thánh đường: giờ hôm nay, lần cầu nguyện tiếp theo và thời gian còn lại, đọc được từ xa.\n\n• Thông báo toàn màn hình khi đến giờ cầu nguyện\n• Hướng Qibla và khoảng cách đến Makkah cho thành phố của bạn\n• Các thánh đường gần thành phố, kèm mã để quét xem đường đi trên điện thoại\n• Giờ hôm nay trên Top Shelf mà không cần mở ứng dụng\n• 11 phương pháp tính, Asr thông thường hoặc Hanafi, ngày Hijri và chỉnh phút\n\nQUYỀN RIÊNG TƯ\nKhông tài khoản, không quảng cáo, không theo dõi. Ứng dụng chỉ kết nối mạng để tìm thánh đường (với vị trí đã làm tròn), hiển thị bản đồ, tải những gì bạn yêu cầu và mở liên kết bạn chọn.\n\n36 ngôn ngữ.",
     "whatsNew": "Một kiểu cho mọi thứ. Chọn trong Cài đặt, các nút và màu nhấn của ứng dụng sẽ theo kiểu đó. Kiểu mới: xanh mòng két và theo thời điểm."
+   },
+   "APP_INFO": {
+    "privacyPolicyText": "Near Mosque không có tài khoản, không quảng cáo, không phân tích và không theo dõi. Giờ cầu nguyện và Qibla được tính trên thiết bị của bạn, và chúng tôi không vận hành máy chủ nào cho ứng dụng, nên không thông tin nào về bạn đến được với chúng tôi. Ứng dụng chỉ kết nối mạng để tìm thánh đường, hiển thị bản đồ, tải những gì bạn yêu cầu và mở liên kết bạn chọn. Trên iPhone, iPad, Mac và Apple Vision Pro, tính năng tùy chọn “Bầu trời theo thời tiết” tắt cho đến khi bạn bật; khi đó, nó gửi vị trí thành phố của bạn, làm tròn đến khoảng 1 km, đến MET Norway để lấy thời tiết. Ứng dụng Apple TV không dùng tính năng này. Chính sách quyền riêng tư đầy đủ: https://nearmosque.net/privacy.html"
    }
   }
  }

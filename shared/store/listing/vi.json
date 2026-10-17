@@ -59,6 +59,7 @@
  "h_privacy": "QUYỀN RIÊNG TƯ",
  "privacy": "Không tài khoản, không quảng cáo, không theo dõi. Ứng dụng chỉ kết nối mạng để tìm thánh đường (với vị trí đã làm tròn), hiển thị bản đồ, tải những gì bạn yêu cầu, mở liên kết bạn chọn và, nếu bạn bật “Bầu trời theo thời tiết”, lấy thời tiết cho thành phố của bạn.",
  "languages": "36 ngôn ngữ.",
+ "privacy_policy_text": "Near Mosque không có tài khoản, không quảng cáo, không phân tích và không theo dõi. Giờ cầu nguyện và Qibla được tính trên thiết bị của bạn, và chúng tôi không vận hành máy chủ nào cho ứng dụng, nên không thông tin nào về bạn đến được với chúng tôi. Ứng dụng chỉ kết nối mạng để tìm thánh đường, hiển thị bản đồ, tải những gì bạn yêu cầu và mở liên kết bạn chọn. Trên iPhone, iPad, Mac và Apple Vision Pro, tính năng tùy chọn “Bầu trời theo thời tiết” tắt cho đến khi bạn bật; khi đó, nó gửi vị trí thành phố của bạn, làm tròn đến khoảng 1 km, đến MET Norway để lấy thời tiết. Ứng dụng Apple TV không dùng tính năng này. Chính sách quyền riêng tư đầy đủ: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "Near Mosque biến TV của bạn thành bảng giờ cầu nguyện cho gia đình hoặc sảnh thánh đường: giờ hôm nay, lần cầu nguyện tiếp theo và thời gian còn lại, đọc được từ xa.",
   "points": [

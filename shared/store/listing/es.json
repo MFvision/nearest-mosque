@@ -59,6 +59,7 @@
  "h_privacy": "PRIVACIDAD",
  "privacy": "Sin cuenta, sin anuncios, sin rastreo. La app solo se conecta para buscar mezquitas (con tu ubicación redondeada), mostrar el mapa, descargar lo que pidas, abrir los enlaces que elijas y, si activas «Cielo según el tiempo», obtener el tiempo de tu ciudad.",
  "languages": "36 idiomas.",
+ "privacy_policy_text": "Near Mosque no tiene cuenta, anuncios, analíticas ni rastreo. Los horarios de oración y la qibla se calculan en tu dispositivo, y no tenemos ningún servidor para la app, así que nada sobre ti llega a nosotros. La app solo se conecta para buscar mezquitas, mostrar mapas, descargar lo que elijas y abrir los enlaces que escojas. En iPhone, iPad, Mac y Apple Vision Pro, la opción «Cielo según el tiempo» está desactivada hasta que la actives; entonces envía la ubicación de tu ciudad, redondeada a cerca de 1 km, a MET Norway para obtener el tiempo. La app de Apple TV no la usa. Política de privacidad completa: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "Near Mosque convierte tu televisor en un tablero de oraciones para casa o la sala de la mezquita: los horarios de hoy, la próxima oración y el tiempo que falta, legibles desde lejos.",
   "points": [

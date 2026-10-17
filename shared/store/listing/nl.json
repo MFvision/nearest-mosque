@@ -59,6 +59,7 @@
  "h_privacy": "PRIVACY",
  "privacy": "Geen account, geen advertenties, geen tracking. De app gaat alleen online om moskeeën te zoeken (met een afgeronde locatie), de kaart te tonen, te downloaden wat je vraagt, links te openen die je kiest en, als je “Lucht volgt het weer” aanzet, het weer voor je stad op te halen.",
  "languages": "36 talen.",
+ "privacy_policy_text": "Near Mosque heeft geen account, geen advertenties, geen analytics en geen tracking. Gebedstijden en de qibla worden op je apparaat berekend, en we draaien geen server voor de app, dus niets over jou bereikt ons. De app gaat alleen online om moskeeën te zoeken, kaarten te tonen, te downloaden wat je kiest en links te openen die je selecteert. Op iPhone, iPad, Mac en Apple Vision Pro staat de optionele functie “Lucht volgt het weer” uit tot je die aanzet; daarna stuurt de app de locatie van je stad, afgerond op ongeveer 1 km, naar MET Norway om het weer op te halen. De Apple TV-app gebruikt deze functie niet. Volledig privacybeleid: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "Near Mosque maakt van je tv een gebedsbord voor thuis of de moskeezaal: de tijden van vandaag, het volgende gebed en de resterende tijd, van ver te lezen.",
   "points": [

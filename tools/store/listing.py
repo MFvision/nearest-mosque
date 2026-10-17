@@ -9,7 +9,9 @@ in sections); this assembles one description per platform, because the devices d
 Vision Pro have no compass, Dynamic Island or Lock Screen, and the Apple TV app has no Ask, library, widgets or
 weather sky.
 The output, keyed like tools/store/screens.json (App Store locale → platform → field), is what an agent pastes
-into App Store Connect. docs/09-app-store.md explains it.
+into App Store Connect. Next to the platforms, each locale has "APP_INFO" for the app-level text, which belongs
+to the app rather than to a version: "privacyPolicyText" (App Information → Privacy Policy Text, shown on Apple
+TV; API: appInfoLocalizations), from privacy_policy_text. docs/09-app-store.md explains it.
 """
 import json
 import pathlib
@@ -21,9 +23,14 @@ SRC = REPO / "shared/store/listing"
 OUT = REPO / "shared/store/listing.json"
 SPEC = json.loads((HERE / "screens.json").read_text())
 
-# App Store Connect limits (characters).
-LIMITS = {"name": 30, "subtitle": 30, "promotionalText": 170, "keywords": 100, "description": 4000, "whatsNew": 4000}
+# App Store Connect limits (characters). privacyPolicyText: Apple documents no limit for it that this repo has a
+# source for, so it is held to the description's 4000.
+LIMITS = {"name": 30, "subtitle": 30, "promotionalText": 170, "keywords": 100, "description": 4000, "whatsNew": 4000,
+          "privacyPolicyText": 4000}
 PLATFORMS = ["IOS", "MAC_OS", "VISION_OS", "TV_OS"]
+# The app-level fields (appInfoLocalizations) under each locale's "APP_INFO", and the full policy they link to.
+APP_INFO = "APP_INFO"
+POLICY_URL = "https://nearmosque.net/privacy.html"
 
 
 def bullets(items):
@@ -84,6 +91,15 @@ def build():
             if any(" ," in w or w != w.strip() for w in [fields["keywords"]]):
                 problems.append(f"{lang['app']} keywords: no spaces around commas")
             per[platform] = fields
+        policy = d.get("privacy_policy_text")
+        if not isinstance(policy, str) or not policy.strip():
+            problems.append(f"{lang['app']} privacy_policy_text: missing")
+        else:
+            if len(policy) > LIMITS["privacyPolicyText"]:
+                problems.append(f"{lang['app']} privacyPolicyText: {len(policy)} > {LIMITS['privacyPolicyText']}")
+            if POLICY_URL not in policy:
+                problems.append(f"{lang['app']} privacy_policy_text: does not link {POLICY_URL}")
+            per[APP_INFO] = {"privacyPolicyText": policy}
         for locale in lang["asc"]:
             out[locale] = {"appLanguage": lang["app"], "sameAs": None if locale == lang["asc"][0] else lang["asc"][0], **per}
     return out, problems
@@ -95,6 +111,8 @@ def main():
         "about": "App Store listing text per App Store locale and platform (IOS = iPhone and iPad). Built by "
                  "tools/store/listing.py from shared/store/listing/<language>.json; do not edit by hand. "
                  "Translations other than English and Arabic are drafts awaiting native review.",
+        "appInfo": "APP_INFO in each locale is app-level text (appInfoLocalizations), not a platform: "
+                   "privacyPolicyText is App Information → Privacy Policy Text, shown on Apple TV.",
         "limits": LIMITS,
         "locales": out,
     }, ensure_ascii=False, indent=1) + "\n"

@@ -59,6 +59,7 @@
  "h_privacy": "PRIVASI",
  "privacy": "Tanpa akun, tanpa iklan, tanpa pelacakan. Aplikasi hanya terhubung ke internet untuk mencari masjid (dengan lokasi yang dibulatkan), menampilkan peta, mengunduh yang Anda minta, membuka tautan yang Anda pilih, dan, jika Anda mengaktifkan \"Langit mengikuti cuaca\", mengambil cuaca kota Anda.",
  "languages": "36 bahasa.",
+ "privacy_policy_text": "Near Mosque tanpa akun, tanpa iklan, tanpa analitik, dan tanpa pelacakan. Waktu salat dan kiblat dihitung di perangkat Anda, dan kami tidak menjalankan server untuk aplikasi ini, jadi tidak ada apa pun tentang Anda yang sampai ke kami. Aplikasi hanya terhubung ke internet untuk mencari masjid, menampilkan peta, mengunduh yang Anda pilih, dan membuka tautan pilihan Anda. Di iPhone, iPad, Mac, dan Apple Vision Pro, fitur opsional \"Langit mengikuti cuaca\" nonaktif sampai Anda mengaktifkannya; setelah itu, fitur ini mengirim lokasi kota Anda, yang dibulatkan hingga sekitar 1 km, ke MET Norway untuk mengambil cuaca. Aplikasi Apple TV tidak menggunakannya. Kebijakan privasi lengkap: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "Near Mosque mengubah TV Anda menjadi papan jadwal salat untuk rumah atau ruang masjid: waktu salat hari ini, salat berikutnya, dan sisa waktunya, terbaca dari jauh.",
   "points": [

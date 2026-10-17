@@ -270,8 +270,8 @@ default) to see what it would do, then again with it off. What it does depends o
 |---|---|
 | `display_types` only (the default) | Fills empty sets. A set that already holds screenshots is reported and left as it is, so it never replaces or deletes anything. |
 | `screens` (e.g. `prayer-weather`) | Adds the files of those screens to sets that already hold screenshots, where that screen is not there yet, then orders the set as the manifest does. Screenshots the manifest does not know (a screen that left the order, or a file name it does not recognise) keep their order after the others. A second run adds nothing. A set that would go over 10 is skipped and reported; a missing or empty set is left to the default mode. Only a screenshot App Store Connect finished processing counts as there: a new one that fails processing or cannot be uploaded is deleted again at once (it is the run's own upload), and one of those screens already in a set in any other state stops that set with an error saying to remove it with `remove_screens` and `confirm_delete` first. An upload error stops the run cleanly. |
-| `remove_screens` (e.g. `prayer-dark`) and `confirm_delete` | Deletes the screenshots of those screens in the sets being processed, before adding, so a full set can take the new screen. With `confirm_delete` off (the default) it only lists what it would delete and deletes nothing. Turn it on only after the owner has confirmed that list. |
-| `text` and `platforms` | Updates `description`, `keywords` and `promotionalText` of every locale of each named version (`IOS`, `MAC_OS`, `VISION_OS`, `TV_OS`) from `shared/store/listing.json`, and `whatsNew` unless the version is the app's first on that platform (if App Store Connect refuses it, it is skipped and reported). It never changes the name or the subtitle (the subtitle is on `appInfoLocalizations`: change it by hand), never blanks a field the file does not have, sends only the fields that differ, and skips and reports locales App Store Connect does not have (it does not create them). For text only, leave `display_types` empty; `run_id` is then not needed. |
+| `remove_screens` (e.g. `prayer-dark`) and `confirm_delete` | Deletes the screenshots of those screens in the sets being processed. With `confirm_delete` off (the default) it only lists what it would delete and deletes nothing. Turn it on only after the owner has confirmed that list. Together with `screens`, it deletes in a set only when the manifest has every one of those screens for that `displayType` and locale and the insert is not skipped (a set that would go over 10, or that holds one of those screens unfinished, is left whole). A set the manifest lacks one of them for (for example a locale whose weather capture is missing) is reported and left exactly as it is: nothing deleted, added or reordered. The manifest check does not guarantee the new screenshot reaches App Store Connect, so the order matters: a set with room takes the new screenshots first and deletes only once every one of them is ready; if one fails, nothing is deleted there. A full set (10) has to delete first to make room, so if the new screenshot then fails processing or cannot be uploaded, the deleted one is not brought back: the run reports it (an upload error also stops the run), and the set holds one fewer until a later run uploads the new screen. The dry run and the report with `confirm_delete` off say which sets delete first. |
+| `text` and `platforms` | Updates `description`, `keywords` and `promotionalText` of every locale of each named version (`IOS`, `MAC_OS`, `VISION_OS`, `TV_OS`) from `shared/store/listing.json`, and `whatsNew` unless the version is the app's first on that platform (if App Store Connect refuses it, it is skipped and reported). It never changes the name or the subtitle (the subtitle is on `appInfoLocalizations`: change it by hand), never blanks a field the file does not have, sends only the fields that differ, and skips and reports locales App Store Connect does not have (it does not create them). With `TV_OS` in `platforms` it also updates the **Privacy Policy Text** of the app information (App Information → Privacy Policy Text, shown on Apple TV; API `appInfoLocalizations`, `privacyPolicyText`) from each locale's `APP_INFO`, only where it differs and only on an editable app information (`GET /v1/apps/{id}/appInfos`, state Prepare for Submission or rejected, the same states as the versions). If none is editable it reports "app information is in review or live: privacy text not changed" and goes on. It never touches the name, the subtitle or the privacy policy URL, and a dry run shows the locales and lengths, not the text. For text only, leave `display_types` empty; `run_id` is then not needed. |
 
 A screenshot already in App Store Connect is recognised by its file name, `<anything>-<screen>.png` (the
 workflow uploads files named `NN-<screen>.png`; the number does not matter). The longest screen name wins, so
@@ -291,9 +291,17 @@ tools/store/tests/test_asc_upload.py` tests the modes offline against a fake App
    really holds.
 3. A set that holds 10 is skipped. The previous iPhone order had 10, the last one `prayer-dark`, which left the
    iPhone order to make room for the weather screen. Deleting it needs the owner's yes; with it, run with
-   `remove_screens` `prayer-dark` and `confirm_delete` on (dry run first).
+   `remove_screens` `prayer-dark` and `confirm_delete` on (dry run first). These sets are full, so `prayer-dark`
+   is deleted before the weather screen is uploaded: if that upload fails, `prayer-dark` is not brought back and
+   the set holds 9 until a run uploads the weather screen.
 4. The text, once `shared/store/listing.json` has it: `text` on, `display_types` empty, `platforms`
    `IOS MAC_OS VISION_OS` (the weather is not on the Apple TV or the Apple Watch), dry run first.
+5. The Apple TV Privacy Policy Text, which still said the app goes online only for mosque search, maps,
+   downloads and links: `text` on, `platforms` `TV_OS`, dry run first. It updates the Privacy Policy Text
+   (it now names the optional weather on the other Apple devices and says the Apple TV app does not use it) and
+   the Apple TV version's text from `listing.json`; the Apple TV description keeps its privacy paragraph without
+   the weather, because the TV app has none. The app information must be editable (a new version in Prepare for
+   Submission on any platform); otherwise the run reports it and changes nothing there.
 
 The iPhone Duo slot has no screenshot type in the API yet (see above), so its files are still added by hand.
 
@@ -351,8 +359,11 @@ previews; they are added by hand.
 (`IOS`, `MAC_OS`, `VISION_OS`, `TV_OS`): `subtitle`, `promotionalText`, `keywords`, `description` and
 `whatsNew`. Each device gets its own description, because they differ: the Mac and Apple Vision Pro have
 no compass, Dynamic Island or Lock Screen, and the Apple TV app is a prayer board without Ask, library or
-widgets. It is built by `tools/store/listing.py` from one file per language in `shared/store/listing/`;
-edit those, never the output. CI fails when a field is over its limit.
+widgets. Next to the platforms, each locale has `APP_INFO` with the app-level `privacyPolicyText` (App
+Information → Privacy Policy Text, shown on Apple TV), from `privacy_policy_text` in the language file; it links
+the full policy (`https://nearmosque.net/privacy.html`). It is built by `tools/store/listing.py` from one file
+per language in `shared/store/listing/`; edit those, never the output. CI fails when a field is over its limit
+(the Privacy Policy Text is held to 4,000 characters) or the privacy text does not link the policy.
 
 In App Store Connect (API: `appStoreVersionLocalizations`, fields `description`, `keywords`,
 `promotionalText`, `whatsNew`; the subtitle is on `appInfoLocalizations`), each locale's text goes into the

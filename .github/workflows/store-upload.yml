@@ -4,8 +4,13 @@ name: App Store screenshots upload
 # listing text (tools/store/asc_upload.py, docs/09-app-store.md "Uploading"). Started by hand.
 # With only display_types it fills empty sets: anything already in App Store Connect is left as it is.
 # screens adds named screens to sets that already have screenshots and orders them; remove_screens deletes named
-# screens only when confirm_delete is on (otherwise it reports them); text updates description, keywords,
-# promotional text and what's new from shared/store/listing.json. Start every change with dry_run on.
+# screens only when confirm_delete is on (otherwise it reports them), and with screens only in sets the manifest
+# has every one of those screens for. A set with room deletes only once the new screen is ready in App Store
+# Connect; a full set deletes first to make room, so if the new screen then fails, the deleted one is not brought
+# back (the run reports it). text updates description, keywords, promotional text and what's new from
+# shared/store/listing.json, and with TV_OS in platforms also the Privacy Policy Text of the app information (shown
+# on Apple TV), only where it differs and only while the app information is editable. Start every change with
+# dry_run on.
 
 on:
   workflow_dispatch:
@@ -21,18 +26,18 @@ on:
         description: "Add these screens to sets that already have screenshots, then order the sets (e.g. prayer-weather); empty: only fill empty sets"
         default: ""
       remove_screens:
-        description: "Delete these screens' screenshots from those sets (e.g. prayer-dark); only with confirm_delete"
+        description: "Delete these screens' screenshots from those sets (e.g. prayer-dark); only with confirm_delete, and with screens only in sets the manifest has every one of those screens for; a full set deletes before uploading, so a failed upload does not bring it back"
         default: ""
       confirm_delete:
         description: "Really delete the remove_screens screenshots (cannot be undone); off: only report them"
         type: boolean
         default: false
       text:
-        description: "Update description, keywords, promotional text and what's new from shared/store/listing.json"
+        description: "Update description, keywords, promotional text and what's new from shared/store/listing.json; with TV_OS in platforms, also the Apple TV Privacy Policy Text (app information, only while editable)"
         type: boolean
         default: false
       platforms:
-        description: "Text: App Store versions to update, space-separated (IOS MAC_OS VISION_OS TV_OS)"
+        description: "Text: App Store versions to update, space-separated (IOS MAC_OS VISION_OS TV_OS); TV_OS also updates the Privacy Policy Text"
         default: "IOS MAC_OS VISION_OS"
       dry_run:
         description: "Only report what would change"

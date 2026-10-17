@@ -29,6 +29,7 @@
  "h_privacy": "PRIVACY",
  "privacy": "No account, no ads, no tracking. The app goes online only to search for mosques (with your location rounded), to show the map, to download what you ask for, to open links you choose, and, if you turn on \"Sky follows the weather\", to get the weather for your city.",
  "languages": "36 languages.",
+ "privacy_policy_text": "Near Mosque has no account, no ads, no analytics and no tracking. Prayer times and the Qibla are worked out on your device, and we run no server for the app, so nothing about you reaches us. The app goes online only to search for mosques, show maps, download what you choose and open links you pick. On iPhone, iPad, Mac and Apple Vision Pro, the optional \"Sky follows the weather\" is off until you turn it on; it then sends your city's location, rounded to about 1 km, to MET Norway to get the weather. The Apple TV app does not use it. Full privacy policy: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "Near Mosque turns your TV into a prayer board for your home or the mosque hall: today's times, the next prayer and the time left, readable from across the room.",
   "points": ["A full-screen alert when a prayer time comes", "The Qibla direction and the distance to Makkah for your city", "Mosques near your city, with a code to scan for directions on your phone", "Today's times on the Top Shelf, without opening the app", "11 calculation methods, standard or Hanafi Asr, Hijri date and minute adjustments"],

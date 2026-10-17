@@ -59,6 +59,7 @@
  "h_privacy": "GİZLİLİK",
  "privacy": "Hesap yok, reklam yok, takip yok. Uygulama yalnızca cami aramak (yuvarlanmış konumla), haritayı göstermek, istediğinizi indirmek, seçtiğiniz bağlantıları açmak ve “Hava durumuna göre gökyüzü” açıksa şehrinizin hava durumunu almak için internete bağlanır.",
  "languages": "36 dil.",
+ "privacy_policy_text": "Near Mosque'ta hesap, reklam, analiz ve takip yok. Namaz vakitleri ve kıble cihazınızda hesaplanır; uygulama için sunucu çalıştırmıyoruz, bu yüzden sizinle ilgili hiçbir şey bize ulaşmaz. Uygulama yalnızca cami aramak, harita göstermek, istediğinizi indirmek ve seçtiğiniz bağlantıları açmak için internete bağlanır. iPhone, iPad, Mac ve Apple Vision Pro'da isteğe bağlı “Hava durumuna göre gökyüzü” siz açana kadar kapalıdır; açtığınızda hava durumunu almak için şehrinizin yaklaşık 1 km'ye yuvarlanmış konumunu MET Norway'e gönderir. Apple TV uygulaması bunu kullanmaz. Gizlilik politikasının tamamı: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "Near Mosque televizyonunuzu eviniz veya cami salonu için bir namaz panosuna çevirir: bugünün vakitleri, sıradaki namaz ve kalan süre, uzaktan okunur.",
   "points": [

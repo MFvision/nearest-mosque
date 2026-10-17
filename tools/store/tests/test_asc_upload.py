@@ -48,6 +48,8 @@ class FakeASC:
         self.sets = {}       # localization id -> [set]
         self.shots = {}      # set id -> [screenshot], in store order
         self.refuse_whats_new = False
+        self.infos = []          # appInfos of the app
+        self.info_locs = {}      # appInfo id -> [appInfoLocalization]
         self.fail_names = set()  # uploads of these file names end FAILED in processing
         self.fail_commit = set()  # the commit (PATCH uploaded) of these file names is refused
 
@@ -67,6 +69,21 @@ class FakeASC:
         self.locs[vid].append({"id": lid, "attributes": {"locale": locale, **text}})
         self.sets[lid] = []
         return lid
+
+    def add_info(self, **states) -> str:
+        """An appInfo with the given state attributes (state=..., appStoreState=...)."""
+        iid = self.nid("info")
+        self.infos.append({"id": iid, "attributes": dict(states)})
+        self.info_locs[iid] = []
+        return iid
+
+    def add_info_locale(self, iid: str, locale: str, **attrs) -> str:
+        lid = self.nid("infoloc")
+        self.info_locs[iid].append({"id": lid, "attributes": {"locale": locale, **attrs}})
+        return lid
+
+    def info_localization(self, lid: str) -> dict:
+        return next(l for ls in self.info_locs.values() for l in ls if l["id"] == lid)
 
     def add_set(self, lid: str, display_type: str, files: list, states: dict | None = None) -> str:
         sid = self.nid("set")
@@ -89,6 +106,15 @@ class FakeASC:
         p = path.split("?")[0].strip("/").split("/")
         if method == "GET" and p == ["apps"]:
             return {"data": [{"id": "app1"}]}
+        if method == "GET" and p[0] == "apps" and p[2] == "appInfos":
+            return {"data": copy.deepcopy(self.infos)}
+        if method == "GET" and p[0] == "appInfos" and p[2] == "appInfoLocalizations":
+            return {"data": copy.deepcopy(self.info_locs[p[1]])}
+        if method == "PATCH" and p[0] == "appInfoLocalizations":
+            attrs = body["data"]["attributes"]
+            assert set(attrs) == {"privacyPolicyText"}, f"only the privacy text may change, not {sorted(attrs)}"
+            self.info_localization(p[1])["attributes"].update(attrs)
+            return {}
         if method == "GET" and p[0] == "apps" and p[2] == "appStoreVersions":
             return {"data": copy.deepcopy(self.versions.get(params["filter[platform]"], []))}
         if method == "GET" and p[0] == "appStoreVersions" and p[2] == "appStoreVersionLocalizations":
@@ -399,17 +425,98 @@ class Screens(Base):
         self.assertIn("::error::APP_IPHONE_67 ar-SA: uploading stopped (HTTPError HTTP 409) after deleting 10-prayer-dark.png", out)
         self.assertIn("Done: 0 uploaded, 1 deleted", out)
 
-    @unittest.expectedFailure  # known gap: remove this line once asc_upload.py handles it
     def test_confirmed_delete_only_where_the_new_screen_goes_in(self):
         # ar-SA has no weather capture in the manifest (missing in finish.py): its prayer-dark makes room for nothing.
         self.manifest("APP_IPHONE_67", "IOS", IPHONE_NEW, locales=("en-US",))
         self.manifest("APP_IPHONE_67", "IOS", [s for s in IPHONE_NEW if s != "prayer-weather"], locales=("ar-SA",))
-        self.fake.add_set(self.en, "APP_IPHONE_67", names(IPHONE_OLD))
+        en = self.fake.add_set(self.en, "APP_IPHONE_67", names(IPHONE_OLD))
         ar = self.fake.add_set(self.ar, "APP_IPHONE_67", names(IPHONE_OLD))
         code, out = self.run_tool(DISPLAY_TYPES="APP_IPHONE_67", SCREENS="prayer-weather", REMOVE_SCREENS="prayer-dark",
                                   CONFIRM_DELETE="true")
         self.assertEqual(code, 0, out)
         self.assertEqual(self.fake.file_names(ar), names(IPHONE_OLD), out)
+        self.assertIn("::warning::APP_IPHONE_67 ar-SA: the manifest has no prayer-weather for this set", out)
+        # en-US has the weather capture: there the delete makes room for it as before.
+        self.assertNotIn("10-prayer-dark.png", self.fake.file_names(en))
+        self.assertEqual(self.fake.file_names(en)[1], "02-prayer-weather.png")
+        self.assertEqual(len([c for c in self.fake.writes() if c[0] == "DELETE"]), 1)
+
+    ROOM = names(IPAD_OLD[:8]) + ["09-prayer-dark.png"]   # 9: room for the new screen without the delete
+    ROOM_ENV = {"DISPLAY_TYPES": "APP_IPAD_PRO_3GEN_129", "SCREENS": "prayer-weather", "REMOVE_SCREENS": "prayer-dark",
+                "CONFIRM_DELETE": "true"}
+
+    def test_set_with_room_uploads_before_deleting(self):
+        self.manifest("APP_IPAD_PRO_3GEN_129", "IOS", IPAD_NEW, locales=("en-US",))
+        en = self.fake.add_set(self.en, "APP_IPAD_PRO_3GEN_129", self.ROOM)
+        code, out = self.run_tool(DRY_RUN="true", **self.ROOM_ENV)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("with confirm_delete, 09-prayer-dark.png is deleted only after 02-prayer-weather.png is uploaded "
+                      "and ready; if it fails, nothing is deleted.", out)
+        code, out = self.run_tool(**self.ROOM_ENV)
+        self.assertEqual(code, 0, out)
+        kinds = [(c[0], c[1].split("/")[1]) for c in self.fake.writes() if c[1].startswith("/appScreenshot")]
+        # Upload (create, commit), then the delete, then one reorder.
+        self.assertEqual(kinds, [("POST", "appScreenshots"), ("PATCH", "appScreenshots"),
+                                 ("DELETE", "appScreenshots"), ("PATCH", "appScreenshotSets")])
+        self.assertEqual(self.fake.file_names(en), ["01-prayer.png", "02-prayer-weather.png"] + names(IPAD_OLD[:8])[1:])
+        self.assertIn("deleted 09-prayer-dark.png (the new screenshot is ready).", out)
+
+    def test_set_with_room_keeps_its_screenshot_when_the_new_one_fails(self):
+        self.manifest("APP_IPAD_PRO_3GEN_129", "IOS", IPAD_NEW, locales=("en-US",))
+        en = self.fake.add_set(self.en, "APP_IPAD_PRO_3GEN_129", self.ROOM)
+        self.fake.fail_names = {"02-prayer-weather.png"}
+        code, out = self.run_tool(**self.ROOM_ENV)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(en), self.ROOM)   # the failed upload deleted again, prayer-dark kept
+        self.assertIn("::warning::APP_IPAD_PRO_3GEN_129 en-US: 09-prayer-dark.png not deleted, because the new "
+                      "screenshot is not ready", out)
+        self.assertIn("Done: 0 uploaded, 0 deleted", out)
+        # Once the file is fixed, a second run uploads it and only then deletes prayer-dark.
+        self.fake.fail_names = set()
+        code, out = self.run_tool(**self.ROOM_ENV)
+        self.assertEqual(code, 0, out)
+        self.assertNotIn("09-prayer-dark.png", self.fake.file_names(en))
+        self.assertEqual(self.fake.file_names(en)[1], "02-prayer-weather.png")
+
+    def test_set_with_room_keeps_its_screenshot_when_the_upload_stops(self):
+        self.manifest("APP_IPAD_PRO_3GEN_129", "IOS", IPAD_NEW, locales=("en-US",))
+        en = self.fake.add_set(self.en, "APP_IPAD_PRO_3GEN_129", self.ROOM)
+        self.fake.fail_commit = {"02-prayer-weather.png"}
+        code, out = self.run_tool(**self.ROOM_ENV)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(en), self.ROOM)
+        self.assertIn("uploading stopped (HTTPError HTTP 409); 09-prayer-dark.png not deleted; not reordered", out)
+        self.assertIn("Done: 0 uploaded, 0 deleted", out)
+
+    def test_full_set_deletes_first_and_says_it_is_not_brought_back(self):
+        self.manifest("APP_IPHONE_67", "IOS", IPHONE_NEW, locales=("en-US",))
+        en = self.fake.add_set(self.en, "APP_IPHONE_67", names(IPHONE_OLD))
+        env = {"DISPLAY_TYPES": "APP_IPHONE_67", "SCREENS": "prayer-weather", "REMOVE_SCREENS": "prayer-dark"}
+        code, out = self.run_tool(**env)    # the report the owner confirms from, confirm_delete off
+        self.assertEqual(code, 0, out)
+        self.assertIn("with confirm_delete, the set is full, so 10-prayer-dark.png is deleted before "
+                      "02-prayer-weather.png is uploaded; if that upload fails, 10-prayer-dark.png is not brought back.", out)
+        self.fake.fail_names = {"02-prayer-weather.png"}
+        code, out = self.run_tool(CONFIRM_DELETE="true", **env)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(en), names(IPHONE_OLD)[:9])
+        self.assertIn("deleted 10-prayer-dark.png (the set is full: deleted before uploading).", out)
+        self.assertIn("::error::APP_IPHONE_67 en-US: 10-prayer-dark.png was deleted to make room and is not brought "
+                      "back; the set stays without it until a run uploads the new screenshot.", out)
+
+    def test_delete_without_the_new_screen_is_reported_in_a_dry_run_too(self):
+        self.manifest("APP_IPHONE_67", "IOS", [s for s in IPHONE_NEW if s != "prayer-weather"], locales=("ar-SA",))
+        self.manifest("APP_IPHONE_67", "IOS", IPHONE_NEW, locales=("en-US",))
+        self.fake.add_set(self.ar, "APP_IPHONE_67", names(IPHONE_OLD))
+        for env in ({"DRY_RUN": "true", "CONFIRM_DELETE": "true"}, {}):
+            self.fake.calls.clear()
+            code, out = self.run_tool(DISPLAY_TYPES="APP_IPHONE_67", SCREENS="prayer-weather",
+                                      REMOVE_SCREENS="prayer-dark", **env)
+            self.assertEqual(code, 0, out)
+            self.assertEqual(self.fake.writes(), [])
+            self.assertIn("ar-SA: the manifest has no prayer-weather for this set", out)
+            self.assertNotIn("would delete", out)
 
     def test_input_errors(self):
         self.manifest("APP_IPHONE_67", "IOS", IPHONE_NEW)
@@ -542,6 +649,119 @@ class Text(Base):
         self.assertEqual(code, 0, out)
         self.assertFalse(self.store.exists())
         self.assertFalse([c for c in self.fake.calls if "Screenshot" in c[1]])
+
+
+OLD_POLICY = "Near Mosque has no account, no ads and no tracking. The app goes online only for mosque search, maps, downloads and links."
+NEW_POLICY = ("Near Mosque has no account, no ads, no analytics and no tracking. On iPhone, iPad, Mac and Apple Vision Pro, "
+              "the optional \"Sky follows the weather\" is off until you turn it on. Full privacy policy: "
+              "https://nearmosque.net/privacy.html")
+AR_POLICY = "لا حساب في «أقرب مسجد» ولا إعلانات ولا تحليلات ولا تتبّع. النص الكامل لسياسة الخصوصية: https://nearmosque.net/privacy.html"
+TV = {"subtitle": "Prayer times, Qibla, mosques", "promotionalText": "TV promo", "keywords": "adhan,qibla",
+      "description": "The Apple TV description, without the weather.", "whatsNew": "TV notes"}
+
+
+class PrivacyText(Base):
+    """TEXT with TV_OS also sets appInfoLocalizations.privacyPolicyText (App Information → Privacy Policy Text)."""
+
+    def setUp(self):
+        super().setUp()
+        tv = self.fake.add_version("TV_OS")
+        self.tv_en = self.fake.add_locale(tv, "en-US", description="Old TV")
+        # The live app information comes first, as App Store Connect may list it; it must never be touched.
+        self.live = self.fake.add_info(state="READY_FOR_DISTRIBUTION", appStoreState="READY_FOR_SALE")
+        self.live_en = self.fake.add_info_locale(self.live, "en-US", name="Near Mosque", privacyPolicyText=OLD_POLICY)
+        self.info = self.fake.add_info(state="PREPARE_FOR_SUBMISSION", appStoreState="PREPARE_FOR_SUBMISSION")
+        self.info_en = self.fake.add_info_locale(
+            self.info, "en-US", name="Near Mosque", subtitle="Prayer times, Qibla, mosques",
+            privacyPolicyUrl="https://nearmosque.net/privacy.html", privacyPolicyText=OLD_POLICY)
+        self.info_ar = self.fake.add_info_locale(self.info, "ar-SA", name="أقرب مسجد", privacyPolicyText=AR_POLICY)
+        self.info_de = self.fake.add_info_locale(self.info, "de-DE", name="Near Mosque", privacyPolicyText="Alt")
+        self.data = listing(**{
+            "en-US": {"appLanguage": "en", "TV_OS": TV, "APP_INFO": {"privacyPolicyText": NEW_POLICY}},
+            "ar-SA": {"appLanguage": "ar", "TV_OS": TV, "APP_INFO": {"privacyPolicyText": AR_POLICY}},
+            "fr-FR": {"appLanguage": "fr", "TV_OS": TV, "APP_INFO": {"privacyPolicyText": NEW_POLICY}},
+        })
+
+    def privacy_patches(self) -> list:
+        return [c for c in self.fake.writes() if c[1].startswith("/appInfoLocalizations/")]
+
+    def test_updated_only_where_it_differs(self):
+        code, out = self.run_tool(listing=self.data, TEXT="true", PLATFORMS="TV_OS")
+        self.assertEqual(code, 0, out)
+        patches = self.privacy_patches()
+        self.assertEqual([c[1] for c in patches], [f"/appInfoLocalizations/{self.info_en}"])
+        self.assertEqual(patches[0][3]["data"]["attributes"], {"privacyPolicyText": NEW_POLICY})
+        en = self.fake.info_localization(self.info_en)["attributes"]
+        self.assertEqual(en, {"locale": "en-US", "name": "Near Mosque", "subtitle": "Prayer times, Qibla, mosques",
+                              "privacyPolicyUrl": "https://nearmosque.net/privacy.html", "privacyPolicyText": NEW_POLICY})
+        self.assertEqual(self.fake.info_localization(self.info_ar)["attributes"]["privacyPolicyText"], AR_POLICY)
+        self.assertEqual(self.fake.info_localization(self.info_de)["attributes"]["privacyPolicyText"], "Alt")
+        self.assertEqual(self.fake.info_localization(self.live_en)["attributes"]["privacyPolicyText"], OLD_POLICY)
+        self.assertIn(f"App information en-US: updated privacyPolicyText ({len(OLD_POLICY)} -> {len(NEW_POLICY)} characters).", out)
+        self.assertIn("App information ar-SA: privacy text already up to date.", out)
+        self.assertIn("App information: not in App Store Connect, skipped (add the locale there first): fr-FR", out)
+        self.assertIn("App information: no privacy text in listing.json for de-DE; left as it is.", out)
+        self.assertNotIn(NEW_POLICY, out)                      # locales and lengths, never the text
+        self.assertNotIn("Sky follows", out)
+        # The TV version's own text is still updated as before.
+        self.assertEqual(self.fake.localization(self.tv_en)["attributes"]["description"], TV["description"])
+        # Second run: nothing left to change.
+        self.fake.calls.clear()
+        code, out = self.run_tool(listing=self.data, TEXT="true", PLATFORMS="TV_OS")
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.privacy_patches(), [])
+        self.assertIn("App information en-US: privacy text already up to date.", out)
+
+    def test_not_editable_app_information_is_reported_and_text_goes_on(self):
+        for states in ({"state": "WAITING_FOR_REVIEW"}, {"appStoreState": "IN_REVIEW"},
+                       {"state": "READY_FOR_REVIEW"}, {"state": "PREPARE_FOR_SUBMISSION", "appStoreState": "IN_REVIEW"}):
+            self.fake.calls.clear()
+            self.fake.infos[1]["attributes"] = dict(states)
+            code, out = self.run_tool(listing=self.data, TEXT="true", PLATFORMS="TV_OS")
+            self.assertEqual(code, 0, out)
+            self.assertEqual(self.privacy_patches(), [], states)
+            self.assertIn("app information is in review or live: privacy text not changed", out)
+            self.assertFalse([c for c in self.fake.calls if "appInfoLocalizations" in c[1]], states)
+        self.assertEqual(self.fake.info_localization(self.info_en)["attributes"]["privacyPolicyText"], OLD_POLICY)
+        # The editable TV version's text was still updated.
+        self.assertEqual(self.fake.localization(self.tv_en)["attributes"]["description"], TV["description"])
+
+    def test_older_attribute_alone_counts(self):
+        self.fake.infos[1]["attributes"] = {"appStoreState": "PREPARE_FOR_SUBMISSION"}
+        code, out = self.run_tool(listing=self.data, TEXT="true", PLATFORMS="TV_OS")
+        self.assertEqual(code, 0, out)
+        self.assertEqual(len(self.privacy_patches()), 1)
+
+    def test_dry_run_makes_no_writes(self):
+        code, out = self.run_tool(listing=self.data, TEXT="true", PLATFORMS="TV_OS", DRY_RUN="true")
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn(f"App information en-US: would update privacyPolicyText ({len(OLD_POLICY)} -> {len(NEW_POLICY)} characters).", out)
+        self.assertIn("Privacy text done: 1 locale(s) would be updated, 0 problem(s). (dry run)", out)
+        self.assertNotIn(NEW_POLICY, out)
+        self.assertEqual(self.fake.info_localization(self.info_en)["attributes"]["privacyPolicyText"], OLD_POLICY)
+
+    def test_only_when_tv_os_is_in_platforms(self):
+        ios = self.fake.add_version("IOS")
+        self.fake.add_locale(ios, "en-US", description="Old")
+        data = copy.deepcopy(self.data)
+        data["locales"]["en-US"]["IOS"] = EN
+        for platforms in ("IOS", "IOS MAC_OS VISION_OS"):
+            self.fake.calls.clear()
+            code, out = self.run_tool(listing=data, TEXT="true", PLATFORMS=platforms)
+            self.assertEqual(code, 0, out)
+            self.assertFalse([c for c in self.fake.calls if "appInfo" in c[1]], platforms)
+            self.assertNotIn("privacy text", out.lower())
+        self.assertEqual(self.fake.info_localization(self.info_en)["attributes"]["privacyPolicyText"], OLD_POLICY)
+
+    def test_over_limit_is_left(self):
+        data = copy.deepcopy(self.data)
+        data["limits"]["privacyPolicyText"] = 4000
+        data["locales"]["en-US"]["APP_INFO"]["privacyPolicyText"] = "p" * 4001
+        code, out = self.run_tool(listing=data, TEXT="true", PLATFORMS="TV_OS")
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.privacy_patches(), [])
+        self.assertIn("App information en-US: privacyPolicyText is 4001 characters (limit 4000); left as it is.", out)
 
 
 if __name__ == "__main__":

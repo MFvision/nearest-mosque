@@ -20,14 +20,27 @@ DRY_RUN ("true": report what would change and change nothing, in every mode), an
                   it with REMOVE_SCREENS and CONFIRM_DELETE first. A new screenshot of this run that fails, or that
                   could not be uploaded and committed, is deleted again at once (it is the run's own upload).
   REMOVE_SCREENS  Screen names, space-separated (e.g. "prayer-dark"). Deletes those screens' screenshots from the
-                  sets being processed, before adding (so a full set can take the new screen), and only when
-                  CONFIRM_DELETE is exactly "true"; otherwise it reports what it would delete and deletes nothing.
+                  sets being processed, only when CONFIRM_DELETE is exactly "true"; otherwise it reports what it
+                  would delete and deletes nothing.
+                  With SCREENS, only in a set the manifest has every SCREENS file for (that displayType and locale)
+                  and whose insert is not skipped (a set that would go over 10, or that holds one of those screens
+                  unfinished, is left whole); a set the manifest lacks one of them for is reported and left exactly
+                  as it is. A set with room takes the new screenshots first and deletes only once every one of them
+                  is ready (COMPLETE); if one fails, nothing is deleted there. A full set has to delete first to make
+                  room: if the new screenshot then fails processing or cannot be uploaded, the deleted one is not
+                  brought back (the run reports it, and an upload error stops the run). Reports and dry runs say
+                  which of the two each set does.
                   A deleted screenshot cannot be brought back. Screenshots it does not recognise are never deleted.
   TEXT            "true": updates description, keywords and promotionalText of each locale of the editable version
                   of each platform in PLATFORMS ("IOS MAC_OS VISION_OS TV_OS") from shared/store/listing.json, and
                   whatsNew unless it is the app's first version on that platform (if App Store Connect refuses it,
                   it is skipped and reported). Never the name or the subtitle; a field the file does not have is left
                   as it is, never blanked; locales missing in App Store Connect are skipped and reported.
+                  With TV_OS in PLATFORMS it also updates the app information's Privacy Policy Text (shown on Apple
+                  TV; appInfoLocalizations.privacyPolicyText) from each locale's APP_INFO in listing.json, only
+                  where it differs and only on an editable app information (Prepare for Submission or rejected);
+                  otherwise it reports "app information is in review or live: privacy text not changed" and goes
+                  on. Never the name, the subtitle or the privacy policy URL. A dry run shows locales and lengths.
 
 A screenshot is recognised by its fileName: "<anything>-<screen>.png", the longest known screen name winning, so
 "09-widgets-qibla.png" is widgets-qibla and never qibla. Screenshot modes use the editable version of each
@@ -55,6 +68,10 @@ MAX_PER_SET = 10
 TEXT_PLATFORMS = ("IOS", "MAC_OS", "VISION_OS", "TV_OS")
 # The appStoreVersionLocalizations fields TEXT may change. Not subtitle (appInfoLocalizations) and not the name.
 TEXT_FIELDS = ("description", "keywords", "promotionalText", "whatsNew")
+# With TV_OS in PLATFORMS, TEXT also sets this one appInfoLocalizations field (Privacy Policy Text, shown on Apple
+# TV) from each locale's APP_INFO in listing.json. Never the name, the subtitle or the privacy policy URL.
+APP_INFO = "APP_INFO"
+PRIVACY_FIELD = "privacyPolicyText"
 
 
 def token() -> str:
@@ -315,6 +332,18 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
                 continue
             present = {screen_of(file_name(s), names) for s in shots if state_of(s) == "COMPLETE"}
             doomed = [s for s in shots if screen_of(file_name(s), names) in remove]
+            # With SCREENS, a removal makes room for the new screens: it happens only in a set the manifest has
+            # every one of them for (this displayType and locale). Otherwise nothing would take the deleted
+            # screenshots' place, so the set is reported and left exactly as it is. This checks the manifest, not
+            # App Store Connect: whether the new screenshot then arrives is handled below (delete after it is
+            # ready in a set with room; a full set deletes first and reports it if the upload fails).
+            missing = sorted(add - {screen_of_entry(e) for e in wanted}) if add and doomed else []
+            if missing:
+                print(f"::warning::{label}: the manifest has no {' '.join(missing)} for this set, so nothing would take "
+                      f"the place of {' '.join(file_name(s) for s in doomed)}; left as it is (nothing deleted, added or "
+                      f"reordered).", flush=True)
+                n["left"] += 1
+                continue
             new, seen = [], set()
             for e in wanted:
                 if screen_of_entry(e) not in present and screen_of_entry(e) not in seen:
@@ -325,6 +354,16 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
                       f"(CONFIRM_DELETE is not \"true\": nothing deleted).")
                 n["would_delete"] += len(doomed)
             deleting = doomed if confirm else []
+            # A set with room takes the new screenshots first and deletes only once every one of them is ready. A
+            # full set has to delete first to make room: if a new screenshot then fails or cannot be uploaded, the
+            # deleted one is not brought back. Said before any confirmed delete, so the owner knows which sets.
+            full = len(shots) + len(new) > MAX_PER_SET
+            if doomed and new and (dry or not confirm):
+                gone, coming = " ".join(file_name(s) for s in doomed), " ".join(pathlib.Path(e["file"]).name for e in new)
+                print(f"{label}: with confirm_delete, " + (
+                    f"the set is full, so {gone} is deleted before {coming} is uploaded; if that upload fails, "
+                    f"{gone} is not brought back." if full else
+                    f"{gone} is deleted only after {coming} is uploaded and ready; if it fails, nothing is deleted."))
             after = len(shots) - len(deleting) + len(new)
             if after > MAX_PER_SET:
                 print(f"::warning::{label}: would hold {after} screenshots (at most {MAX_PER_SET}); skipped. "
@@ -354,10 +393,13 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
                     print(f"{label}: would order: {' '.join(file_name(s) for s in in_order(planned, order, names))}.")
                     n["reordered"] += 1
                 continue
-            # Deletions first, so a full set can take the new screen.
-            for s in deleting:
+            # Only a full set deletes before uploading (it needs the room); a set with room deletes once every new
+            # screenshot is ready, so a failed upload there leaves the set exactly as it was.
+            first = deleting if full else []
+            later = [s for s in deleting if s not in first]
+            for s in first:
                 api("DELETE", f"/appScreenshots/{s['id']}")
-                print(f"{label}: deleted {file_name(s)}.", flush=True)
+                print(f"{label}: deleted {file_name(s)} (the set is full: deleted before uploading).", flush=True)
                 n["deleted"] += 1
             if new:
                 ids = []
@@ -369,7 +411,8 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
                     n["failed"] += len(new)
                     code = f" HTTP {err.code}" if isinstance(err, urllib.error.HTTPError) else ""
                     print(f"::error::{label}: uploading stopped ({type(err).__name__}{code})"
-                          + (f" after deleting {' '.join(file_name(s) for s in deleting)}" if deleting else "")
+                          + (f" after deleting {' '.join(file_name(s) for s in first)} (not brought back)" if first else "")
+                          + (f"; {' '.join(file_name(s) for s in later)} not deleted" if later else "")
                           + "; not reordered. The run stops here: sets not reached yet are left as they are.", flush=True)
                     stopped = True
                     break
@@ -391,7 +434,18 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
                     if waiting:
                         print(f"::warning::{label}: not reordered while {' '.join(file_of[i] for i in waiting)} is still "
                               f"processing; run again later to order it.", flush=True)
+                    if later:
+                        print(f"::warning::{label}: {' '.join(file_name(s) for s in later)} not deleted, because the new "
+                              f"screenshot is not ready; run again once it is.", flush=True)
+                    elif first and failed:
+                        print(f"::error::{label}: {' '.join(file_name(s) for s in first)} was deleted to make room and is "
+                              f"not brought back; the set stays without it until a run uploads the new screenshot.",
+                              flush=True)
                     continue
+            for s in later:
+                api("DELETE", f"/appScreenshots/{s['id']}")
+                print(f"{label}: deleted {file_name(s)}" + (" (the new screenshot is ready)." if new else "."), flush=True)
+                n["deleted"] += 1
             if add and wanted:
                 # Read the set again, so the order names every screenshot it holds now and drops none.
                 now = all_pages(f"/appScreenshotSets/{existing['id']}/appScreenshots", {"limit": "50"})
@@ -482,6 +536,75 @@ def update_text(app: dict, platforms: list, listing: dict, dry: bool) -> int:
     return 1 if problems else 0
 
 
+# ---- TEXT with TV_OS: the Privacy Policy Text of the app information (shown on Apple TV) ----
+
+def info_states(info: dict) -> list:
+    attrs = info.get("attributes") or {}
+    return [attrs[k] for k in ("appStoreState", "state") if attrs.get(k)]
+
+
+def info_editable(info: dict) -> bool:
+    # appStoreState (older) or state (newer); when both are there, both must be editable.
+    states = info_states(info)
+    return bool(states) and all(s in EDITABLE for s in states)
+
+
+def update_privacy_text(app: dict, listing: dict, dry: bool) -> int:
+    """appInfoLocalizations.privacyPolicyText from listing.json (each locale's APP_INFO), only where it differs and
+    only on an editable app information. Never the name, the subtitle or the privacy policy URL. Logs show locales
+    and lengths, never the text."""
+    limit = listing.get("limits", {}).get(PRIVACY_FIELD)
+    have = {l: v[APP_INFO][PRIVACY_FIELD] for l, v in listing.get("locales", {}).items()
+            if isinstance(v.get(APP_INFO), dict) and isinstance(v[APP_INFO].get(PRIVACY_FIELD), str)
+            and v[APP_INFO][PRIVACY_FIELD].strip()}
+    # The same editable states as the versions: an app information that is waiting for review, in review,
+    # ready for review (already staged in a submission) or live is left as it is.
+    infos = all_pages(f"/apps/{app['id']}/appInfos", {"limit": "50"})
+    editable = [i for i in infos if info_editable(i)]
+    if not editable:
+        print("::warning::Privacy Policy Text (Apple TV): app information is in review or live: privacy text not "
+              "changed.", flush=True)
+        return 0
+    info = editable[0]
+    print(f"App information ({'/'.join(dict.fromkeys(info_states(info)))}): Privacy Policy Text (Apple TV).", flush=True)
+    locs = {l["attributes"]["locale"]: l for l in all_pages(f"/appInfos/{info['id']}/appInfoLocalizations", {"limit": "50"})}
+    absent = sorted(l for l in have if l not in locs)
+    if absent:
+        print(f"::warning::App information: not in App Store Connect, skipped (add the locale there first): {' '.join(absent)}")
+    no_text = sorted(l for l in locs if l not in have)
+    if no_text:
+        print(f"App information: no privacy text in listing.json for {' '.join(no_text)}; left as it is.")
+    problems = updated = 0
+    for locale in sorted(l for l in have if l in locs):
+        value, loc = have[locale], locs[locale]
+        if limit and len(value) > limit:
+            print(f"::warning::App information {locale}: {PRIVACY_FIELD} is {len(value)} characters (limit {limit}); left as it is.")
+            problems += 1
+            continue
+        current = (loc.get("attributes") or {}).get(PRIVACY_FIELD)
+        if current == value:
+            print(f"App information {locale}: privacy text already up to date.")
+            continue
+        sizes = f"{len(current or '')} -> {len(value)} characters"
+        if dry:
+            print(f"App information {locale}: would update {PRIVACY_FIELD} ({sizes}).")
+            updated += 1
+            continue
+        try:
+            # Only this attribute: never name, subtitle, privacyPolicyUrl or privacyChoicesUrl.
+            api("PATCH", f"/appInfoLocalizations/{loc['id']}", body={"data": {
+                "type": "appInfoLocalizations", "id": loc["id"], "attributes": {PRIVACY_FIELD: value}}})
+        except urllib.error.HTTPError:
+            print(f"::error::App information {locale}: App Store Connect refused {PRIVACY_FIELD}; left as it is.", flush=True)
+            problems += 1
+            continue
+        updated += 1
+        print(f"App information {locale}: updated {PRIVACY_FIELD} ({sizes}).", flush=True)
+    verb = "would be " if dry else ""
+    print(f"Privacy text done: {updated} locale(s) {verb}updated, {problems} problem(s)." + (" (dry run)" if dry else ""))
+    return 1 if problems else 0
+
+
 def main() -> int:
     wanted = set(os.environ.get("DISPLAY_TYPES", "").split())
     add = set(os.environ.get("SCREENS", "").split())
@@ -535,7 +658,10 @@ def main() -> int:
             status |= fill_empty(store, entries, app, dry)
     if text:
         app = app or find_app()
-        status |= update_text(app, platforms, json.loads(LISTING.read_text()), dry)
+        listing = json.loads(LISTING.read_text())
+        status |= update_text(app, platforms, listing, dry)
+        if "TV_OS" in platforms:
+            status |= update_privacy_text(app, listing, dry)
     return status
 
 

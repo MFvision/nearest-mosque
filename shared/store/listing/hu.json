@@ -59,6 +59,7 @@
  "h_privacy": "ADATVÉDELEM",
  "privacy": "Nincs fiók, nincs hirdetés, nincs követés. Az alkalmazás csak mecsetkereséshez (kerekített helyzettel), a térképhez, a kért letöltésekhez, az általad választott linkekhez és, ha bekapcsolod az „Időjárás szerinti égbolt” funkciót, a városod időjárásához használ internetet.",
  "languages": "36 nyelv.",
+ "privacy_policy_text": "A Near Mosque-ban nincs fiók, nincs hirdetés, nincs analitika és nincs követés. Az imaidők és a kibla a készülékeden számolódnak, és nem üzemeltetünk szervert az alkalmazáshoz, így rólad semmi sem jut el hozzánk. Az alkalmazás csak mecsetkereséshez, a térképekhez, az általad választott letöltésekhez és az általad választott linkek megnyitásához használ internetet. iPhone-on, iPaden, Macen és Apple Vision Prón a választható „Időjárás szerinti égbolt” ki van kapcsolva, amíg be nem kapcsolod; utána az időjáráshoz elküldi a városod kb. 1 km-re kerekített helyét a MET Norwaynek. Az Apple TV-alkalmazás nem használja. A teljes adatvédelmi szabályzat: https://nearmosque.net/privacy.html",
  "tv": {
   "intro": "A Near Mosque imatáblává teszi a tévédet otthonra vagy a mecset termébe: a mai imaidők, a következő ima és a hátralévő idő, messziről is olvashatóan.",
   "points": [
