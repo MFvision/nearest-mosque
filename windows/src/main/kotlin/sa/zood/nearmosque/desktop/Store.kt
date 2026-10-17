@@ -1,5 +1,6 @@
 package sa.zood.nearmosque.desktop
 
+import sa.zood.nearmosque.core.AdhanChoice
 import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AlertSettings
 import sa.zood.nearmosque.core.AsrMadhab
@@ -83,6 +84,8 @@ data class DesktopSettings(
     val quran: Boolean = false,
     val quranMinutes: Int = 20 * 60 + 30,
     val reciter: Reciter = Reciter.ALAFASY,
+    /** The first-run tour (Onboarding.kt) was finished; Settings → "Show welcome tour" turns it off to show it again. */
+    val onboarded: Boolean = false,
 )
 
 /**
@@ -116,6 +119,23 @@ fun DesktopSettings.withAdhan(e: PrayerEvent, on: Boolean): DesktopSettings = wh
     adhan -> copy(silent = silent - e)
     else -> copy(adhan = true, silent = PrayerEvent.prayers.toSet() - e)
 }
+
+/**
+ * The onboarding's Adhan choice, through the shared core's mapping (AlertSettings.with): a mosque turns the Adhan on
+ * with its recording for every prayer, Fajr included, the short Adhan keeps the recordings, banner only turns the
+ * Adhan off. One prayer's own switch ([DesktopSettings.silent]) is never touched.
+ */
+fun DesktopSettings.withAdhanChoice(c: AdhanChoice): DesktopSettings {
+    val a = alerts().with(c)
+    return copy(adhan = a.adhan, adhanSource = a.adhanSource, fajrAdhanSource = a.fajrAdhanSource, shortAdhan = a.shortAdhan)
+}
+
+/**
+ * What Continue on the onboarding's Adhan step keeps when nothing was tapped: the [shown] choice, saved only when the
+ * settings do not already say it, so a separate Fajr recording chosen in Settings stays as it is.
+ */
+fun DesktopSettings.keepingShownAdhan(shown: AdhanChoice): DesktopSettings =
+    if (alerts().adhanChoice == shown) this else withAdhanChoice(shown)
 
 object Store {
     /** Opened on first use, so tests that pass their own store never touch the registry or ~/.config. */
@@ -171,6 +191,8 @@ object Store {
         quran = prefs.getBoolean("quranReminder", false),
         quranMinutes = prefs.getInt("quranMinutes", 20 * 60 + 30).takeIf { it in DAY_MINUTES } ?: (20 * 60 + 30),
         reciter = runCatching { Reciter.valueOf(prefs.get("reciter", "ALAFASY")) }.getOrDefault(Reciter.ALAFASY),
+        // Settings saved before the tour existed (any key at all) belong to someone who already uses the app: no tour.
+        onboarded = prefs.get("onboarded", null)?.toBooleanStrictOrNull() ?: runCatching { prefs.keys().isNotEmpty() }.getOrDefault(false),
     )
 
     /** Minutes after midnight, for the times of day the person picks. */
@@ -218,6 +240,7 @@ object Store {
         prefs.putBoolean("quranReminder", s.quran)
         prefs.putInt("quranMinutes", s.quranMinutes)
         prefs.put("reciter", s.reciter.name)
+        prefs.putBoolean("onboarded", s.onboarded)
         // A settings store that cannot be written (a full disk, a locked file) keeps the choice for this run only.
         runCatching { prefs.flush() }
     }

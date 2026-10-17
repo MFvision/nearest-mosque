@@ -120,6 +120,13 @@ class PrayerCalculator {
         return Upcoming(event, at, prayers.getOrNull(idx - 1)?.second, date.isAfter(today))
     }
 
+    /**
+     * Asr on [date] for each school: the same schedule with only the madhab changed (the onboarding shows both). A
+     * school is missing when that day cannot be calculated.
+     */
+    fun asrTimes(location: LatLng, date: LocalDate, zone: ZoneId, settings: PrayerSettings): Map<AsrMadhab, Instant> =
+        AsrMadhab.entries.mapNotNull { m -> schedule(location, date, zone, settings.copy(madhab = m))[PrayerEvent.ASR]?.let { m to it } }.toMap()
+
     /** Sunrise of the current Fajr period, when now is between Fajr and sunrise. */
     fun fajrEndsAt(schedule: DaySchedule, now: Instant): Instant? {
         val fajr = schedule[PrayerEvent.FAJR] ?: return null

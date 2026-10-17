@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
 import com.github.takahirom.roborazzi.captureRoboImage
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
@@ -22,6 +23,8 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.Method
+import sa.zood.nearmosque.core.OnboardingStep
+import sa.zood.nearmosque.core.WeatherCondition
 import sa.zood.nearmosque.data.PrayerLocation
 import sa.zood.nearmosque.ui.AppRoot
 import androidx.compose.runtime.collectAsState
@@ -63,6 +66,9 @@ class ScreenshotTest {
         // Still frames (system "remove animations"), and no network: live search returns nothing new, and the
         // weather (only when asked for) comes from a fake MET that answers once with [weather].
         android.provider.Settings.Global.putFloat(compose.activity.contentResolver, android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0f)
+        // The app style is process-wide: every test starts from Gold and cream.
+        compose.activity.getSharedPreferences("ui", android.content.Context.MODE_PRIVATE).edit().clear().commit()
+        AppStyle.load(compose.activity)
         val c = AppContainer(
             compose.activity, inMemoryDb = true, clock = { at },
             settingsFile = java.io.File.createTempFile("settings", ".preferences_pb").also { it.delete() },
@@ -86,9 +92,19 @@ class ScreenshotTest {
         c
     }
 
-    private fun shoot(name: String, tab: Tab, location: PrayerLocation? = capeTown, onboardingPage: Int? = null, dark: Boolean = true, at: java.time.Instant = fixed, weather: Wx? = null, after: () -> Unit = {}) {
+    private fun shoot(
+        name: String, tab: Tab, location: PrayerLocation? = capeTown, onboarding: OnboardingStep? = null, dark: Boolean = true, at: java.time.Instant = fixed,
+        weather: Wx? = null, preview: WeatherCondition? = null, after: () -> Unit = {},
+    ) {
         val c = container(location, at, weather)
-        compose.setContent { NearMosqueTheme(dark = dark) { AppRoot(c, initialTab = tab, showOnboarding = onboardingPage != null, onboardingPage = onboardingPage ?: 0) } }
+        compose.setContent {
+            NearMosqueTheme(dark = dark) {
+                AppRoot(
+                    c, initialTab = tab, showOnboarding = onboarding != null,
+                    onboardingStep = onboarding ?: OnboardingStep.PROMISE, onboardingStill = true, onboardingPreview = preview,
+                )
+            }
+        }
         compose.waitForIdle()
         after()
         compose.waitForIdle()
@@ -110,19 +126,6 @@ class ScreenshotTest {
     fun prayerArabicRtl() = shoot("prayer_ar", Tab.PRAYER)
 
     @Test fun firstLaunchNoLocation() = shoot("prayer_first_launch_en", Tab.PRAYER, location = null)
-
-    @Test fun onboardingWelcome() = shoot("onboarding_welcome_en", Tab.PRAYER, location = null, onboardingPage = 0)
-
-    @Test fun onboardingQibla() = shoot("onboarding_qibla_en", Tab.PRAYER, location = null, onboardingPage = 2)
-
-    @Test fun onboardingMosque() = shoot("onboarding_mosque_en", Tab.PRAYER, location = null, onboardingPage = 3)
-
-    @Test fun onboardingAsk() = shoot("onboarding_ask_en", Tab.PRAYER, location = null, onboardingPage = 4)
-
-    @Test fun onboardingSetup() = shoot("onboarding_setup_en", Tab.PRAYER, location = null, onboardingPage = 5)
-
-    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi")
-    fun onboardingArabic() = shoot("onboarding_qibla_ar", Tab.PRAYER, location = null, onboardingPage = 2)
 
     @Test fun prayerScrolled() = shoot("prayer_scrolled_en", Tab.PRAYER) {
         compose.onNodeWithText("Today’s prayer times").performScrollTo()
@@ -286,10 +289,6 @@ class ScreenshotTest {
     @Test @Config(qualifiers = "b+zh+Hans-w393dp-h852dp-xxhdpi")
     fun askChinese() = shoot("ask_zh", Tab.ASK)
 
-    // The setup page offers the language's content for download (nothing is fetched in the test).
-    @Test @Config(qualifiers = "sw-w393dp-h852dp-xxhdpi")
-    fun onboardingSetupSwahili() = shoot("onboarding_setup_sw", Tab.PRAYER, onboardingPage = 5)
-
     // Large screens: an unfolded Galaxy Z Fold, and a 10-inch tablet held sideways (two panes).
     @Test @Config(qualifiers = "w690dp-h829dp-420dpi")
     fun prayerFoldInner() = shoot("prayer_fold_inner_en", Tab.PRAYER)
@@ -423,5 +422,197 @@ class ScreenshotTest {
         compose.waitForIdle()
         compose.onNodeWithText("To ring on time", substring = true).assertExists()
         compose.onRoot().captureRoboImage("build/screenshots/exact_alarm_en.png")
+    }
+
+    // First Light, the welcome tour: every step in English and Arabic (right to left), still frames. The promise and the
+    // place start with no place chosen; the rest in Cape Town.
+    private fun onb(name: String, step: OnboardingStep, at: java.time.Instant = fixed, dark: Boolean = true, preview: WeatherCondition? = null, after: () -> Unit = {}) =
+        shoot(name, Tab.PRAYER, location = if (step.ordinal <= OnboardingStep.PLACE.ordinal) null else capeTown, onboarding = step, dark = dark, at = at, preview = preview, after = after)
+
+    @Test fun onboardingPromise() = onb("onboarding_promise_en", OnboardingStep.PROMISE)
+    @Test fun onboardingWhere() = onb("onboarding_where_en", OnboardingStep.PLACE)
+    @Test fun onboardingAsr() = onb("onboarding_asr_en", OnboardingStep.ASR)
+    @Test fun onboardingAdhan() = onb("onboarding_adhan_en", OnboardingStep.ADHAN)
+    @Test fun onboardingFriday() = onb("onboarding_friday_en", OnboardingStep.FRIDAY)
+    @Test fun onboardingWeather() = onb("onboarding_weather_en", OnboardingStep.WEATHER, preview = WeatherCondition.RAIN)
+    @Test fun onboardingLook() = onb("onboarding_look_en", OnboardingStep.LOOK)
+    @Test fun onboardingBuilding() = onb("onboarding_building_en", OnboardingStep.BUILDING)
+    // 14:10: the sun on the day's arc.
+    @Test fun onboardingDay() = onb("onboarding_day_en", OnboardingStep.DAY, at = sast(14, 10))
+    @Test fun onboardingExtras() = onb("onboarding_extras_en", OnboardingStep.EXTRAS)
+    @Test fun onboardingMore() = onb("onboarding_more_en", OnboardingStep.MORE)
+    @Test fun onboardingPrivacy() = onb("onboarding_privacy_en", OnboardingStep.PRIVACY)
+    @Test fun onboardingDone() = onb("onboarding_done_en", OnboardingStep.DONE)
+
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingPromiseArabic() = onb("onboarding_promise_ar", OnboardingStep.PROMISE)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingWhereArabic() = onb("onboarding_where_ar", OnboardingStep.PLACE)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingAsrArabic() = onb("onboarding_asr_ar", OnboardingStep.ASR)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingAdhanArabic() = onb("onboarding_adhan_ar", OnboardingStep.ADHAN)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingFridayArabic() = onb("onboarding_friday_ar", OnboardingStep.FRIDAY)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingWeatherArabic() = onb("onboarding_weather_ar", OnboardingStep.WEATHER, preview = WeatherCondition.SNOW)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingLookArabic() = onb("onboarding_look_ar", OnboardingStep.LOOK)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingBuildingArabic() = onb("onboarding_building_ar", OnboardingStep.BUILDING)
+    // 05:30, before sunrise: the moon on the night's arc, which runs right to left.
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingDayArabic() = onb("onboarding_day_ar", OnboardingStep.DAY)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingExtrasArabic() = onb("onboarding_extras_ar", OnboardingStep.EXTRAS)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingMoreArabic() = onb("onboarding_more_ar", OnboardingStep.MORE)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingPrivacyArabic() = onb("onboarding_privacy_ar", OnboardingStep.PRIVACY)
+    @Test @Config(qualifiers = "ar-w393dp-h852dp-xxhdpi") fun onboardingDoneArabic() = onb("onboarding_done_ar", OnboardingStep.DONE)
+
+    // Two panes (a tablet held sideways), an unfolded Fold, light mode and long Swahili text.
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi") fun onboardingWhereTablet() = onb("onboarding_where_tablet_en", OnboardingStep.PLACE)
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi") fun onboardingDayTablet() = onb("onboarding_day_tablet_en", OnboardingStep.DAY, at = sast(14, 10))
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi") fun onboardingFridayTablet() = onb("onboarding_friday_tablet_en", OnboardingStep.FRIDAY)
+    @Test @Config(qualifiers = "w1280dp-h800dp-xhdpi") fun onboardingPrivacyTablet() = onb("onboarding_privacy_tablet_en", OnboardingStep.PRIVACY)
+    @Test @Config(qualifiers = "ar-w1280dp-h800dp-xhdpi") fun onboardingLookTabletArabic() = onb("onboarding_look_tablet_ar", OnboardingStep.LOOK)
+    @Test @Config(qualifiers = "w690dp-h829dp-420dpi") fun onboardingDayFold() = onb("onboarding_day_fold_en", OnboardingStep.DAY, at = sast(14, 10))
+    @Test fun onboardingLookLight() = onb("onboarding_look_en_light", OnboardingStep.LOOK, dark = false, at = sast(10, 0))
+    @Test fun onboardingPrivacyLight() = onb("onboarding_privacy_en_light", OnboardingStep.PRIVACY, dark = false, at = sast(10, 0))
+    @Test @Config(qualifiers = "sw-w393dp-h852dp-xxhdpi") fun onboardingPrivacySwahili() = onb("onboarding_privacy_sw", OnboardingStep.PRIVACY)
+    @Test @Config(qualifiers = "sw-w393dp-h852dp-xxhdpi") fun onboardingMoreSwahili() = onb("onboarding_more_sw", OnboardingStep.MORE)
+    // A phone turned sideways keeps the one scrolling column (two panes would leave each step a sliver).
+    @Test @Config(qualifiers = "w852dp-h393dp-xxhdpi") fun onboardingAdhanLandscape() = onb("onboarding_adhan_land_en", OnboardingStep.ADHAN)
+    @Test @Config(qualifiers = "w852dp-h393dp-xxhdpi") fun onboardingLookLandscape() = onb("onboarding_look_land_en", OnboardingStep.LOOK)
+    @Test @Config(qualifiers = "w852dp-h393dp-xxhdpi") fun onboardingPrivacyLandscape() = onb("onboarding_privacy_land_en", OnboardingStep.PRIVACY)
+
+    /** The flow on its own (no screenshot), starting at [step], for the behaviour tests below. */
+    private fun startOnboarding(step: OnboardingStep, before: suspend (AppContainer) -> Unit = {}): AppContainer {
+        val c = container()
+        runBlocking { before(c) }
+        compose.setContent {
+            NearMosqueTheme(dark = true) { AppRoot(c, showOnboarding = true, onboardingStep = step, onboardingStill = true) }
+        }
+        compose.waitForIdle()
+        return c
+    }
+
+    /** Waits for a saved setting: the view model saves on the main looper, which only runs while the test idles it. */
+    private fun waitFor(condition: suspend () -> Boolean) {
+        repeat(100) {
+            compose.waitForIdle()
+            if (runBlocking { condition() }) return
+            Thread.sleep(50)
+        }
+        throw AssertionError("The setting was not saved")
+    }
+
+    private fun headerDescription(): String = compose.onNode(androidx.compose.ui.test.hasContentDescription("Your day", substring = true))
+        .fetchSemanticsNode().config[androidx.compose.ui.semantics.SemanticsProperties.ContentDescription].joinToString()
+
+    @Test fun lookChoosesTheAppStyle() {
+        startOnboarding(OnboardingStep.LOOK)
+        compose.onNodeWithText("Teal").performClick()
+        compose.waitForIdle()
+        org.junit.Assert.assertEquals("teal", AppStyle.current)
+        org.junit.Assert.assertTrue(headerDescription().contains("Teal"))
+    }
+
+    @Test fun shortAdhanIsSaved() {
+        val c = startOnboarding(OnboardingStep.ADHAN)
+        compose.onNodeWithText("Short Adhan").performClick()
+        waitFor { c.settings.settings.first().alerts.shortAdhan }
+        val a = runBlocking { c.settings.settings.first().alerts }
+        org.junit.Assert.assertTrue(a.adhan && a.fajrAdhan)
+    }
+
+    @Test fun fridaySwitchSavesAndShowsTheChip() {
+        val c = startOnboarding(OnboardingStep.FRIDAY)
+        org.junit.Assert.assertFalse(headerDescription().contains("Friday"))
+        compose.onNodeWithText("Friday (Jumu'ah) reminder").performClick()
+        waitFor { c.settings.settings.first().alerts.friday }
+        compose.waitForIdle()
+        org.junit.Assert.assertTrue(headerDescription().endsWith("Friday"))
+        // The Friday line shows the coming Friday's real times.
+        compose.onNodeWithText("On Friday:", substring = true).assertExists()
+        compose.onNodeWithText("Friday (Jumu'ah) reminder").performClick()
+        waitFor { !c.settings.settings.first().alerts.friday }
+        compose.waitForIdle()
+        org.junit.Assert.assertFalse(headerDescription().contains("Friday"))
+    }
+
+    @Test fun skipOnFridayChangesNothing() {
+        val c = startOnboarding(OnboardingStep.FRIDAY)
+        val before = runBlocking { c.settings.settings.first().alerts }
+        compose.onNodeWithText("Skip").performClick()
+        compose.waitForIdle()
+        compose.onNodeWithText("Building your prayer day…").assertExists()
+        org.junit.Assert.assertEquals(before, runBlocking { c.settings.settings.first().alerts })
+    }
+
+    // Someone who has set nothing sees Makkah selected; Skip keeps what they saw, as Continue does.
+    @Test fun skipOnAdhanKeepsTheChoiceShown() {
+        val c = startOnboarding(OnboardingStep.ADHAN)
+        org.junit.Assert.assertEquals(sa.zood.nearmosque.core.AlertSettings(), runBlocking { c.settings.settings.first().alerts })
+        compose.onNodeWithText("Skip").performClick()
+        waitFor { c.settings.settings.first().alerts.adhanChoice == sa.zood.nearmosque.core.AdhanChoice.MAKKAH }
+        compose.onNodeWithText("Building your prayer day…").assertExists()
+        org.junit.Assert.assertTrue(headerDescription().contains("Makkah Adhan"))
+    }
+
+    // Skipped from the Asr step, the Adhan step was never shown: its chip stays a placeholder, not "Banner only".
+    @Test fun skipPastTheAdhanLeavesItsChipEmpty() {
+        val c = startOnboarding(OnboardingStep.ASR)
+        compose.onNodeWithText("Skip").performClick()
+        compose.waitForIdle()
+        compose.onNodeWithText("Building your prayer day…").assertExists()
+        org.junit.Assert.assertEquals(sa.zood.nearmosque.core.AlertSettings(), runBlocking { c.settings.settings.first().alerts })
+        org.junit.Assert.assertFalse(headerDescription().contains("Banner only"))
+    }
+
+    // Seen again with the weather sky already on: Not now leaves it on.
+    @Test fun notNowKeepsTheWeatherSkyOn() {
+        val c = startOnboarding(OnboardingStep.WEATHER) { it.settings.setSkyWeather(true) }
+        compose.onNodeWithText("Not now").performClick()
+        compose.waitForIdle()
+        org.junit.Assert.assertTrue(runBlocking { c.settings.settings.first().skyWeather })
+    }
+
+    // Building and done have no Back; the system Back stays in the tour instead of leaving it half-finished.
+    @Test fun systemBackStaysOnDone() {
+        startOnboarding(OnboardingStep.DONE)
+        compose.runOnUiThread { compose.activity.onBackPressedDispatcher.onBackPressed() }
+        compose.waitForIdle()
+        org.junit.Assert.assertFalse(compose.activity.isFinishing)
+        compose.onNodeWithText("You’re all set.").assertExists()
+    }
+
+    @Test fun skipOnExtrasGoesToPrivacy() {
+        startOnboarding(OnboardingStep.EXTRAS)
+        compose.onNodeWithText("Skip").performClick()
+        compose.waitForIdle()
+        compose.onNodeWithText("Exactly what leaves your phone").assertExists()
+    }
+
+    // Robolectric has no sensors: the bearing from north instead of the compass; the Adhan step (passed) offered the quiet.
+    @Test fun moreShowsOnlyTheRest() {
+        startOnboarding(OnboardingStep.MORE)
+        compose.onNodeWithText("Qibla from north").assertExists()
+        compose.onNodeWithText("Qibla compass").assertDoesNotExist()
+        compose.onNodeWithText("Silent during prayer").assertDoesNotExist()
+    }
+
+    @Test fun extrasDrawsTheRealWidgets() {
+        startOnboarding(OnboardingStep.EXTRAS)
+        compose.onNodeWithContentDescription("Preview: Next prayer").assertExists()
+        compose.onNodeWithContentDescription("Preview: Today's prayers").assertExists()
+        compose.onNode(androidx.compose.ui.test.hasScrollToIndexAction() and androidx.compose.ui.test.hasAnyDescendant(androidx.compose.ui.test.hasContentDescription("Preview: Next prayer")))
+            .performScrollToIndex(3)
+        compose.waitForIdle()
+        compose.onNodeWithContentDescription("Preview: Prayer ring").assertExists()
+        compose.onNodeWithContentDescription("Preview: Qibla").assertExists()
+    }
+
+    @Test fun finishedOnboardingIsNotShownAgain() {
+        val c = container()
+        runBlocking { c.settings.setOnboarded(true) }
+        compose.setContent { NearMosqueTheme(dark = true) { AppRoot(c) } }
+        compose.waitForIdle()
+        compose.onNodeWithText("Pray on time, wherever you are.").assertDoesNotExist()
+    }
+
+    @Test fun newUserSeesTheOnboarding() {
+        val c = container(location = null)
+        compose.setContent { NearMosqueTheme(dark = true) { AppRoot(c, onboardingStill = true) } }
+        compose.waitUntil(10_000) { runCatching { compose.onNodeWithText("Pray on time, wherever you are.").assertExists() }.isSuccess }
     }
 }

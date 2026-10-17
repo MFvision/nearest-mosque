@@ -1,7 +1,18 @@
 #if canImport(WatchConnectivity) && !targetEnvironment(macCatalyst) && !os(visionOS)
 import Foundation
+import Observation
 import WatchConnectivity
 import WidgetKit
+
+/// Whether an Apple Watch is paired with this iPhone and has the app: the onboarding's watch card shows only then. Nil
+/// until WatchConnectivity has activated (the card simply does not appear); never logged, never sent anywhere.
+@MainActor
+@Observable
+final class WatchPairing {
+    static let shared = WatchPairing()
+    enum State: Equatable { case unpaired, paired(appInstalled: Bool) }
+    var state: State?
+}
 
 /// Gives the Apple Watch app what the widgets get (city, method, language, reminders, nearest mosques, today's
 /// questions) and how full the companion is, through WatchConnectivity's application context: the latest value
@@ -20,13 +31,36 @@ final class WatchBridge: NSObject, WCSessionDelegate {
         if let data { ctx["state"] = data }
         pending = ctx
         if lastSent.map({ $0.state == data && $0.level == level && $0.marks == marks }) == true { return }
+        if WCSession.default.delegate == nil {
+            activate()
+            return
+        }
+        flush()
+    }
+
+    /// Starts WatchConnectivity (the first send does too; the onboarding starts it early so its watch card can know
+    /// whether a watch is paired). The pending context goes out once activation completes.
+    func activate() {
+        guard WCSession.isSupported() else { return }
         let session = WCSession.default
         if session.delegate == nil {
             session.delegate = self
             session.activate()
-            return
         }
-        flush()
+    }
+
+    /// The paired watch and its app, for WatchPairing (read on the delegate's queue, applied here).
+    nonisolated private static func pairing(_ session: WCSession) -> WatchPairing.State? {
+        guard session.activationState == .activated else { return nil }
+        return session.isPaired ? .paired(appInstalled: session.isWatchAppInstalled) : .unpaired
+    }
+
+    private func setPairing(_ state: WatchPairing.State?) {
+        #if DEBUG
+        // CI screenshots set the watch with -demoOnboardingWatch (AppModel); a real session does not replace it.
+        if UserDefaults.standard.string(forKey: "demoOnboardingWatch") != nil { return }
+        #endif
+        if let state { WatchPairing.shared.state = state }
     }
 
     private func flush() {
@@ -41,7 +75,11 @@ final class WatchBridge: NSObject, WCSessionDelegate {
     }
 
     nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        Task { @MainActor in self.flush() }
+        let pairing = Self.pairing(session)
+        Task { @MainActor in
+            self.setPairing(pairing)
+            self.flush()
+        }
     }
 
     nonisolated func sessionDidBecomeInactive(_ session: WCSession) {}
@@ -64,7 +102,9 @@ final class WatchBridge: NSObject, WCSessionDelegate {
 
     /// The watch app was installed (or the watch changed): send the latest again.
     nonisolated func sessionWatchStateDidChange(_ session: WCSession) {
+        let pairing = Self.pairing(session)
         Task { @MainActor in
+            self.setPairing(pairing)
             self.lastSent = nil
             self.flush()
         }

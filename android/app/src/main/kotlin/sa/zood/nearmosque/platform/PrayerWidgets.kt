@@ -170,6 +170,8 @@ object PrayerWidgets {
     /** Redraws every widget now (off the main thread). */
     fun refresh(context: Context, done: () -> Unit = {}) {
         val app = context.applicationContext
+        // Only the app itself draws widgets (Robolectric tests run with a plain Application and no container).
+        if (app !is sa.zood.nearmosque.NearMosqueApp) { done(); return }
         CoroutineScope(Dispatchers.Default).launch {
             try {
                 val s = app.container.settings.settings.first()

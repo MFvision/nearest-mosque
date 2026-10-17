@@ -63,6 +63,12 @@ public final class CityIndex: @unchecked Sendable {
     public func nearest(_ p: LatLng) -> (City, Double)? {
         cities.map { ($0, Geo.distanceMeters(p, $0.location)) }.min { $0.1 < $1.1 }
     }
+
+    /// The most populous city in time zone `zone` (an IANA id), or nil. Only for the onboarding sky before a place is
+    /// chosen: never saved and never shown.
+    public func largest(inZone zone: String) -> City? {
+        cities.filter { $0.zoneId == zone }.max { $0.population < $1.population }
+    }
 }
 
 public struct ZoneSuggestion: Sendable {

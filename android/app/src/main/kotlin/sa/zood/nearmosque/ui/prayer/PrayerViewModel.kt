@@ -203,6 +203,24 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
         ReminderScheduler(context).reschedule(c.settings.settings.first())
     }
 
+    /** Saves the Adhan and Friday choices and reschedules, without asking for notifications (the onboarding asks once, at the end). */
+    fun setAlerts(context: android.content.Context, a: sa.zood.nearmosque.core.AlertSettings) = viewModelScope.launch {
+        c.settings.setAlerts(a)
+        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(c.settings.settings.first()) }
+    }
+
+    /** Silent during prayer; Do Not Disturb access is asked for by the caller. */
+    fun setSilence(context: android.content.Context, s: sa.zood.nearmosque.core.SilenceSettings) = viewModelScope.launch {
+        c.settings.setSilence(s)
+        withContext(Dispatchers.Default) { sa.zood.nearmosque.platform.PrayerSilence(context).sync(c.settings.settings.first()) }
+    }
+
+    /** "Notify me at prayer times": the five prayers' bells, only for someone who has none yet (nothing is turned off). */
+    fun enablePrayerBells(context: android.content.Context) = viewModelScope.launch {
+        if (c.settings.settings.first().reminders.isEmpty()) c.settings.setReminders(PrayerEvent.prayers.toSet())
+        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(c.settings.settings.first()) }
+    }
+
     companion object {
         /**
          * What the sky shows: only with the switch on, for the prayer city (with "Use my location", the city near

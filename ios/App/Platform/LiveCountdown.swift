@@ -14,17 +14,36 @@ enum LiveCountdown {
     static func refresh(_ model: AppModel, now: Date = Date()) async {
         #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         let running = Activity<PrayerActivityAttributes>.activities
-        guard model.settings.liveCountdown, ActivityAuthorizationInfo().areActivitiesEnabled, let loc = model.settings.location else {
+        guard model.settings.liveCountdown, ActivityAuthorizationInfo().areActivitiesEnabled, let shown = Self.content(model, now: now) else {
             for a in running { await a.end(nil, dismissalPolicy: .immediate) }
             return
         }
+        let (attributes, state) = shown
+        // Stale at the Adhan when there is an iqama to count down to, else a quarter of an hour after the prayer
+        // time: the views then say "Time for …". Lower relevance than the Qibla compass, which takes the Dynamic
+        // Island for its two minutes.
+        let activity = ActivityContent(state: state, staleDate: state.iqama == nil ? state.at.addingTimeInterval(15 * 60) : state.at, relevanceScore: 10)
+        // While the Qibla compass runs (the app may be woken in the background for it), leave the countdown alone.
+        if !Activity<QiblaActivityAttributes>.activities.isEmpty, !running.isEmpty { return }
+        if let a = running.first, a.attributes == attributes {
+            for extra in running.dropFirst() { await extra.end(nil, dismissalPolicy: .immediate) }
+            if a.content.state != state { await a.update(activity) }
+        } else {
+            for a in running { await a.end(nil, dismissalPolicy: .immediate) }
+            _ = try? Activity.request(attributes: attributes, content: activity, pushType: nil)
+        }
+        #endif
+    }
+
+    #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
+    /// What the Lock Screen and the Dynamic Island show now (the onboarding draws the same on its preview); nil without
+    /// a place or a next prayer.
+    static func content(_ model: AppModel, now: Date) -> (PrayerActivityAttributes, PrayerActivityAttributes.ContentState)? {
+        guard let loc = model.settings.location else { return nil }
         let l10n = model.l10n
         let days = model.days(now: now)
         let iqama = model.settings.iqama
-        guard days.count == 3, let moment = model.calculator.moment(days, now: now, iqama: iqama) else {
-            for a in running { await a.end(nil, dismissalPolicy: .immediate) }
-            return
-        }
+        guard days.count == 3, let moment = model.calculator.moment(days, now: now, iqama: iqama) else { return nil }
         // While a prayer waits for its iqama, that prayer (its Adhan has come: stale at once, so the iqama
         // countdown shows); otherwise the next Adhan.
         let next: Upcoming = moment.stage == .toIqama
@@ -46,21 +65,9 @@ enum LiveCountdown {
             iqamaText: iqamaAt.map { l10n.t("iqama_at", Format.time($0, zone: loc.zone, locale: l10n.locale)) })
         let attributes = PrayerActivityAttributes(rtl: l10n.isRTL, style: model.settings.widgetLook, nextLabel: l10n.t("next_prayer"), qiblaLabel: l10n.t("qibla"),
                                                   mosqueLabel: l10n.t("tab_mosques"))
-        // Stale at the Adhan when there is an iqama to count down to, else a quarter of an hour after the prayer
-        // time: the views then say "Time for …". Lower relevance than the Qibla compass, which takes the Dynamic
-        // Island for its two minutes.
-        let content = ActivityContent(state: state, staleDate: iqamaAt == nil ? next.at.addingTimeInterval(15 * 60) : next.at, relevanceScore: 10)
-        // While the Qibla compass runs (the app may be woken in the background for it), leave the countdown alone.
-        if !Activity<QiblaActivityAttributes>.activities.isEmpty, !running.isEmpty { return }
-        if let a = running.first, a.attributes == attributes {
-            for extra in running.dropFirst() { await extra.end(nil, dismissalPolicy: .immediate) }
-            if a.content.state != state { await a.update(content) }
-        } else {
-            for a in running { await a.end(nil, dismissalPolicy: .immediate) }
-            _ = try? Activity.request(attributes: attributes, content: content, pushType: nil)
-        }
-        #endif
+        return (attributes, state)
     }
+    #endif
 }
 
 #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)

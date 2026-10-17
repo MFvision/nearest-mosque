@@ -34,7 +34,7 @@ struct PrayerHero: View {
                 VStack(spacing: 3) {
                     LocationPill(name: snap.location?.name ?? l10n.t("choose_city_title"), action: onLocation)
                     // Sky follows the weather: the temperature and the wind, only when there is recent data.
-                    if let weather { WeatherLine(w: weather, city: snap.location?.name) }
+                    if let weather { WeatherLine(w: weather, city: snap.location?.name, night: snap.sky.hasStars) }
                 }
                 .animation(.easeInOut(duration: 0.6), value: weather == nil)
                 Spacer()
@@ -132,30 +132,38 @@ struct LocationPill: View {
     }
 }
 
-/// Sky follows the weather: one small line under the city, the temperature and the wind only ("24°C · Wind 14 km/h"),
-/// in the units of the device's region and settings and the digits of the app's language. VoiceOver reads the city
-/// and the condition too. Not shown at all without recent data (no placeholder, no error).
+/// Sky follows the weather: one small line under the city, the condition's symbol, the temperature and the wind
+/// ("24°C · Wind 14 km/h" after the sun; in clear weather the sky itself barely changes, so the symbol says it), in the
+/// units of the device's region and settings and the digits of the app's language. VoiceOver reads the city and the
+/// condition too. Not shown at all without recent data (no placeholder, no error).
 struct WeatherLine: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     let w: WeatherNow
     let city: String?
+    /// The sky has stars: the night symbol (a moon instead of the sun).
+    var night = false
 
     var body: some View {
         let units = model.weather.units
         // Each value in an isolate, so a minus sign and the unit keep their order in right-to-left text.
         let temp = Weather.isolate(l10n.t(units.temperature.stringKey, number(units.temperature(w.temperatureC))))
         let wind = Weather.isolate(l10n.t(units.wind.stringKey, number(units.wind(w.windMs))))
-        Text(l10n.t(Weather.lineKey, temp, wind))
-            .font(.caption.weight(.medium))
-            .monospacedDigit()
-            // At least 7:1 where it sits, over every period and condition (the dark deck is a grey, not white).
-            .foregroundStyle(Theme.ink.opacity(0.85))
-            .lineLimit(1)
-            .minimumScaleFactor(0.8)
-            .accessibilityElement()
-            .accessibilityLabel(l10n.t(Weather.a11yKey, city ?? "", l10n.t(w.symbol.condition.stringKey), temp, wind))
-            .transition(.opacity)
+        HStack(spacing: 4) {
+            Image(systemName: w.symbol.condition.symbolName(night: night))
+                .symbolRenderingMode(.hierarchical)
+                .accessibilityHidden(true)
+            Text(l10n.t(Weather.lineKey, temp, wind))
+                .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .font(.caption.weight(.medium))
+        // At least 7:1 where it sits, over every period and condition (the dark deck is a grey, not white).
+        .foregroundStyle(Theme.ink.opacity(0.85))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(l10n.t(Weather.a11yKey, city ?? "", l10n.t(w.symbol.condition.stringKey), temp, wind))
+        .transition(.opacity)
     }
 
     private func number(_ v: Int) -> String { Format.number(Double(v), digits: 0, locale: l10n.locale) }

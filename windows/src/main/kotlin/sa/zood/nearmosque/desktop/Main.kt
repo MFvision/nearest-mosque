@@ -3,6 +3,7 @@ package sa.zood.nearmosque.desktop
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,6 +26,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
@@ -53,6 +55,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -229,7 +232,23 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
             val weatherNow = if (skyOn) weather.now(skyCity.location, now) else null
             MaterialTheme(colorScheme = darkColorScheme(primary = Gold, background = Navy, surface = Card, onSurface = Ink)) {
                 CompositionLocalProvider(LocalLayoutDirection provides if (Strings.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-                    AppScreen(
+                    // First run (or "Show welcome tour"): the onboarding fills the window; the reminders keep ticking,
+                    // and the Fajr alarm's Stop and the in-app notices show above it as on every other screen.
+                    if (!settings.onboarded) Box(Modifier.fillMaxSize()) {
+                        OnboardingDesktop(
+                            settings = settings,
+                            city = city,
+                            now = now,
+                            onSettings = ::update,
+                            onCity = { c -> city = c; update(settings.copy(cityId = c.id)) },
+                            weather = weatherNow,
+                            animate = Platform.animations,
+                        )
+                        Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 16.dp)) {
+                            if (alarmSince != null && alarmShows()) AlarmCard(::stopAlarm)
+                            banner?.let { NoticeBanner(it, onDismiss = { banner = null }) }
+                        }
+                    } else AppScreen(
                         settings = settings,
                         city = city,
                         clock = clock,
@@ -291,14 +310,7 @@ internal fun AppScreen(
         Column(Modifier.fillMaxSize().padding(24.dp)) {
             // The Fajr alarm, on every screen, with Stop (also in the tray menu).
             if (alarm) AlarmCard(onStopAlarm)
-            if (banner != null) {
-                Surface(color = Card, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
-                    Row(Modifier.padding(start = 16.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Text(banner, color = Gold, modifier = Modifier.weight(1f))
-                        TextButton(onClick = onDismissBanner) { Text("×", color = Muted, fontSize = 18.sp) }
-                    }
-                }
-            }
+            if (banner != null) NoticeBanner(banner, onDismissBanner)
             Box(Modifier.fillMaxSize()) { when {
                 picking || clock == null -> CityPicker(onPick = { onCity(it); picking = false })
                 screen == Screen.PRAYER -> PrayerScreen(
@@ -331,6 +343,17 @@ private fun AlarmCard(onStop: () -> Unit) {
     }
 }
 
+/** An in-app notice (a reminder where the system shows none), until dismissed. */
+@Composable
+private fun NoticeBanner(text: String, onDismiss: () -> Unit) {
+    Surface(color = Card, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+        Row(Modifier.padding(start = 16.dp), verticalAlignment = Alignment.CenterVertically) {
+            Text(text, color = Gold, modifier = Modifier.weight(1f))
+            TextButton(onClick = onDismiss) { Text("×", color = Muted, fontSize = 18.sp) }
+        }
+    }
+}
+
 private fun railIcon(s: Screen) = when (s) {
     Screen.PRAYER -> "🕌"
     Screen.QIBLA -> "🧭"
@@ -358,7 +381,15 @@ private fun PrayerScreen(
                 // Sky follows the weather: the temperature and the wind, nothing else (no line without fresh data).
                 if (weather != null) {
                     val description = weatherDescription(weather, clock.city)
-                    Text(weatherLine(weather), color = Muted, fontSize = 14.sp, modifier = Modifier.semantics { contentDescription = description })
+                    // The condition's icon first, so a clear sky (nearly invisible on the strip) still says what it is.
+                    Row(Modifier.clearAndSetSemantics { contentDescription = description }, verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painterResource(weatherIconPath(weather.symbol.condition, SkyPeriod.of(clock, now).hasStars)), contentDescription = null,
+                            tint = Muted, modifier = Modifier.size(16.dp),
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(weatherLine(weather), color = Muted, fontSize = 14.sp)
+                    }
                 }
                 // Polar day or night with the nearest-latitude rule: the times are those at 48.5°, and the Adhan follows them.
                 if (today.status is ScheduleStatus.Estimated) Text(t("estimated_badge"), color = Gold, fontSize = 13.sp)
@@ -454,7 +485,7 @@ private fun MomentCard(m: PrayerMoment, clock: Clock, now: Instant, sky: Boolean
     }
 }
 
-private fun countdown(d: Duration): String {
+internal fun countdown(d: Duration): String {
     val h = d.toHours()
     val m = d.toMinutesPart()
     val s = d.toSecondsPart()
@@ -489,19 +520,24 @@ private fun QiblaScreen(city: City) {
     }
 }
 
+/** The city table, searched as you type; the largest cities first. The onboarding shows it without its title, with the [selected] city ticked. */
 @Composable
-private fun CityPicker(onPick: (City) -> Unit) {
+internal fun CityPicker(onPick: (City) -> Unit, modifier: Modifier = Modifier.fillMaxSize(), showTitle: Boolean = true, selected: Long? = null) {
     var query by remember { mutableStateOf("") }
     val results = remember(query) { if (query.isBlank()) Cities.index.cities.sortedByDescending { it.population }.take(40) else Cities.index.search(query, 40) }
-    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(t("choose_city_title"), color = Ink, fontSize = 26.sp, fontWeight = FontWeight.SemiBold)
+    Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        if (showTitle) Text(t("choose_city_title"), color = Ink, fontSize = 26.sp, fontWeight = FontWeight.SemiBold)
         OutlinedTextField(query, { query = it }, placeholder = { Text(t("search_city")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
         LazyColumn(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             items(results, key = { it.id }) { c ->
-                Surface(color = Card, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().clickable { onPick(c) }) {
+                val on = c.id == selected
+                Surface(
+                    color = Card, shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.fillMaxWidth().then(if (on) Modifier.border(2.dp, Gold, RoundedCornerShape(12.dp)) else Modifier).clickable { onPick(c) },
+                ) {
                     Row(Modifier.padding(14.dp)) {
                         Text(c.displayName(Strings.language), color = Ink, modifier = Modifier.weight(1f))
-                        Text(c.countryCode, color = Muted)
+                        Text(if (on) "✓  " + c.countryCode else c.countryCode, color = if (on) Gold else Muted)
                     }
                 }
             }
@@ -629,6 +665,8 @@ internal fun SettingsScreen(
         Toggle(t("sky_weather"), s.skyWeather, note = t("sky_weather_note")) { onChange(s.copy(skyWeather = it, weatherOffered = true)) }
         // CC BY 4.0 / NLOD: the source, credited and linked, under the switch.
         LinkRow(t("sky_weather_attribution"), "met.no", Weather.ATTRIBUTION_URL)
+        // The first-run tour again: the window shows it as soon as this is off (nothing else changes).
+        TextButton(onClick = { onChange(s.copy(onboarded = false)) }) { Text(t("onb_replay"), color = Gold) }
         // Who makes the app and how to reach them, as on the store pages and nearmosque.net.
         Text(t("about"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         val ar = Strings.language == "ar"

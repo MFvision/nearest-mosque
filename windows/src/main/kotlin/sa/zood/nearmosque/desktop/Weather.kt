@@ -11,6 +11,7 @@ import sa.zood.nearmosque.core.City
 import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.Weather
 import sa.zood.nearmosque.core.WeatherCache
+import sa.zood.nearmosque.core.WeatherCondition
 import sa.zood.nearmosque.core.WeatherNow
 import sa.zood.nearmosque.core.WeatherPolicy
 import sa.zood.nearmosque.core.WeatherUnits
@@ -214,6 +215,20 @@ internal fun weatherWind(w: WeatherNow, u: WeatherUnits): String = t(u.wind.stri
 
 /** "35°C · Wind 21 km/h": the only weather text on screen. */
 internal fun weatherLine(w: WeatherNow, u: WeatherUnits = weatherUnits()): String = t(Weather.LINE_KEY, weatherTemperature(w, u), weatherWind(w, u))
+
+/**
+ * The condition's icon at the start of the weather line (Material Symbols, the Android app's drawables copied in by
+ * the build), the night variant for a clear or partly cloudy sky with stars.
+ */
+internal fun weatherIconPath(c: WeatherCondition, night: Boolean): String = "icons/ic_wx_" + when (c) {
+    WeatherCondition.CLEAR -> if (night) "clear_night" else "clear_day"
+    WeatherCondition.PARTLY_CLOUDY -> if (night) "partly_cloudy_night" else "partly_cloudy_day"
+    WeatherCondition.CLOUDY -> "cloudy"
+    WeatherCondition.RAIN -> "rain"
+    WeatherCondition.THUNDERSTORM -> "thunderstorm"
+    WeatherCondition.FOG -> "fog"
+    WeatherCondition.SNOW -> "snow"
+} + ".xml"
 
 /** "Weather in Riyadh: Partly cloudy, 35°C, wind 21 km/h", for screen readers. */
 internal fun weatherDescription(w: WeatherNow, city: City, u: WeatherUnits = weatherUnits()): String =

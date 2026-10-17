@@ -18,6 +18,9 @@ data class DayArc(
 ) {
     data class Mark(val event: PrayerEvent, val at: Instant, val fraction: Double)
 
+    /** Which half to draw: the onboarding's Day | Night control can show the one not in progress. */
+    enum class Half { DAY, NIGHT }
+
     /** The event at the left end of the arc (sunrise by day, Maghrib by night) and at the right end. */
     val startEvent: PrayerEvent get() = if (isDay) PrayerEvent.SUNRISE else PrayerEvent.MAGHRIB
     val endEvent: PrayerEvent get() = if (isDay) PrayerEvent.MAGHRIB else PrayerEvent.SUNRISE
@@ -26,17 +29,36 @@ data class DayArc(
         /** [days] is yesterday, today and tomorrow. Null when a sunrise or Maghrib is missing (polar days). */
         fun at(now: Instant, days: List<DaySchedule>): DayArc? {
             if (days.size != 3) return null
+            val sunrise = days[1][PrayerEvent.SUNRISE] ?: return null
+            val maghrib = days[1][PrayerEvent.MAGHRIB] ?: return null
+            return at(now, days, if (!now.isBefore(sunrise) && now.isBefore(maghrib)) Half.DAY else Half.NIGHT)
+        }
+
+        /**
+         * The [half] containing [now], or the coming one: by day today's sunrise to Maghrib (tomorrow's after Maghrib),
+         * by night the night in progress (from Maghrib, or before sunrise), else tonight. [fraction] is clamped to 0…1,
+         * so a coming half starts at 0.
+         */
+        fun at(now: Instant, days: List<DaySchedule>, half: Half): DayArc? {
+            if (days.size != 3) return null
             val (yesterday, today, tomorrow) = days
             val sunrise = today[PrayerEvent.SUNRISE] ?: return null
             val maghrib = today[PrayerEvent.MAGHRIB] ?: return null
-            val isDay: Boolean
             val start: Instant
             val end: Instant
-            when {
-                now.isBefore(sunrise) -> { isDay = false; start = yesterday[PrayerEvent.MAGHRIB] ?: return null; end = sunrise }
-                now.isBefore(maghrib) -> { isDay = true; start = sunrise; end = maghrib }
-                else -> { isDay = false; start = maghrib; end = tomorrow[PrayerEvent.SUNRISE] ?: return null }
+            when (half) {
+                Half.DAY -> if (now.isBefore(maghrib)) {
+                    start = sunrise; end = maghrib
+                } else {
+                    start = tomorrow[PrayerEvent.SUNRISE] ?: return null; end = tomorrow[PrayerEvent.MAGHRIB] ?: return null
+                }
+                Half.NIGHT -> if (now.isBefore(sunrise)) {
+                    start = yesterday[PrayerEvent.MAGHRIB] ?: return null; end = sunrise
+                } else {
+                    start = maghrib; end = tomorrow[PrayerEvent.SUNRISE] ?: return null
+                }
             }
+            val isDay = half == Half.DAY
             val total = Duration.between(start, end).toMillis().toDouble()
             if (total <= 0) return null
             fun frac(t: Instant) = (Duration.between(start, t).toMillis() / total).coerceIn(0.0, 1.0)

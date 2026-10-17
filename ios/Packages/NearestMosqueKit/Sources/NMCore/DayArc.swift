@@ -17,25 +17,45 @@ public struct DayArc: Equatable, Sendable {
     public let fraction: Double
     public let marks: [Mark]
 
+    /// Which half to draw: the onboarding's Day | Night control can show the one not in progress.
+    public enum Half: String, Sendable { case day, night }
+
     /// The event at the left end of the arc (sunrise by day, Maghrib by night) and at the right end.
     public var startEvent: PrayerEvent { isDay ? .sunrise : .maghrib }
     public var endEvent: PrayerEvent { isDay ? .maghrib : .sunrise }
 
     /// `days` is yesterday, today and tomorrow. Nil when a sunrise or Maghrib is missing (polar days).
     public static func at(_ now: Date, days: [DaySchedule]) -> DayArc? {
+        guard days.count == 3, let sunrise = days[1][.sunrise], let maghrib = days[1][.maghrib] else { return nil }
+        return at(now, days: days, half: now >= sunrise && now < maghrib ? .day : .night)
+    }
+
+    /// The `half` containing `now`, or the coming one: by day today's sunrise to Maghrib (tomorrow's after Maghrib), by
+    /// night the night in progress (from Maghrib, or before sunrise), else tonight. `fraction` is clamped to 0…1, so a
+    /// coming half starts at 0.
+    public static func at(_ now: Date, days: [DaySchedule], half: Half) -> DayArc? {
         guard days.count == 3 else { return nil }
         let (yesterday, today, tomorrow) = (days[0], days[1], days[2])
         guard let sunrise = today[.sunrise], let maghrib = today[.maghrib] else { return nil }
-        let isDay: Bool, start: Date, end: Date
-        if now < sunrise {
-            guard let m = yesterday[.maghrib] else { return nil }
-            (isDay, start, end) = (false, m, sunrise)
-        } else if now < maghrib {
-            (isDay, start, end) = (true, sunrise, maghrib)
-        } else {
-            guard let s = tomorrow[.sunrise] else { return nil }
-            (isDay, start, end) = (false, maghrib, s)
+        let start: Date, end: Date
+        switch half {
+        case .day:
+            if now < maghrib {
+                (start, end) = (sunrise, maghrib)
+            } else {
+                guard let s = tomorrow[.sunrise], let m = tomorrow[.maghrib] else { return nil }
+                (start, end) = (s, m)
+            }
+        case .night:
+            if now < sunrise {
+                guard let m = yesterday[.maghrib] else { return nil }
+                (start, end) = (m, sunrise)
+            } else {
+                guard let s = tomorrow[.sunrise] else { return nil }
+                (start, end) = (maghrib, s)
+            }
         }
+        let isDay = half == .day
         let total = end.timeIntervalSince(start)
         guard total > 0 else { return nil }
         let frac: (Date) -> Double = { min(1, max(0, $0.timeIntervalSince(start) / total)) }

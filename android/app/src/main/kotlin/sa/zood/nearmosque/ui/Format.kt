@@ -50,6 +50,22 @@ object Format {
         Method.MOON_SIGHTING_COMMITTEE -> R.string.method_MOON_SIGHTING_COMMITTEE
     }
 
+    /** The short name for chips and the building line ("Umm al-Qura", "ISNA"). */
+    @StringRes
+    fun methodShortName(m: Method): Int = when (m) {
+        Method.MUSLIM_WORLD_LEAGUE -> R.string.method_short_MUSLIM_WORLD_LEAGUE
+        Method.UMM_AL_QURA -> R.string.method_short_UMM_AL_QURA
+        Method.EGYPTIAN -> R.string.method_short_EGYPTIAN
+        Method.KARACHI -> R.string.method_short_KARACHI
+        Method.NORTH_AMERICA -> R.string.method_short_NORTH_AMERICA
+        Method.DUBAI -> R.string.method_short_DUBAI
+        Method.KUWAIT -> R.string.method_short_KUWAIT
+        Method.QATAR -> R.string.method_short_QATAR
+        Method.SINGAPORE -> R.string.method_short_SINGAPORE
+        Method.TURKEY -> R.string.method_short_TURKEY
+        Method.MOON_SIGHTING_COMMITTEE -> R.string.method_short_MOON_SIGHTING_COMMITTEE
+    }
+
     private fun timeFormatter(context: Context): DateTimeFormatter {
         val loc = locale(context)
         val skeleton = if (DateFormat.is24HourFormat(context)) "Hm" else "hm"

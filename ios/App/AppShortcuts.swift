@@ -2,6 +2,7 @@ import AppIntents
 
 /// Siri phrases and Shortcuts, also for the Action button (Settings > Action Button > Shortcut).
 /// Phrases are in English and Arabic (Resources/AppShortcuts.xcstrings); titles follow the app's language.
+/// The onboarding shows three of these phrases (OnboardingShowcase.swift, SiriPhrases): keep them the same.
 struct NearMosqueShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(intent: NextPrayerIntent(), phrases: [

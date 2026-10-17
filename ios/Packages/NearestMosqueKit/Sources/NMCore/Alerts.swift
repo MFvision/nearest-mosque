@@ -8,6 +8,12 @@ public enum AdhanSource: String, Codable, CaseIterable, Sendable {
     public var hasFajr: Bool { true }
 }
 
+/// How the onboarding asks to be called to prayer (AlertSettings.adhanChoice); the raw value is the shared name.
+public enum AdhanChoice: String, CaseIterable, Sendable {
+    case makkah, madinah, short
+    case bannerOnly = "banner_only"
+}
+
 /// The language of the spoken reminders ("Ten minutes remain until the call to Maghrib prayer").
 public enum VoiceLanguage: String, Codable, CaseIterable, Sendable {
     case arabic, english
@@ -151,6 +157,32 @@ public struct AlertSettings: Codable, Hashable, Sendable {
         guard e.isPrayer, sounds(e).adhan else { return false }
         return e == .fajr ? fajrAdhan && fajrAdhanSource.hasFajr : adhan
     }
+
+    /// The onboarding's four Adhan choices, read from the switches (one prayer's own switches do not change it).
+    public var adhanChoice: AdhanChoice {
+        if !adhan && !fajrAdhan { return .bannerOnly }
+        if shortAdhan { return .short }
+        return adhanSource == .madinah ? .madinah : .makkah
+    }
+
+    /// These settings with `choice`: a mosque turns both Adhans on with its recording (the whole Adhan), the short
+    /// Adhan keeps the recordings, banner only turns both Adhans off and keeps the rest. `perPrayer` is never touched.
+    public func with(_ choice: AdhanChoice) -> AlertSettings {
+        var a = self
+        switch choice {
+        case .makkah, .madinah:
+            let source: AdhanSource = choice == .makkah ? .makkah : .madinah
+            a.adhan = true; a.fajrAdhan = true; a.adhanSource = source; a.fajrAdhanSource = source; a.shortAdhan = false
+        case .short:
+            a.adhan = true; a.fajrAdhan = true; a.shortAdhan = true
+        case .bannerOnly:
+            a.adhan = false; a.fajrAdhan = false
+        }
+        return a
+    }
+
+    /// What the onboarding shows selected: Makkah for someone who has not set anything yet, else `adhanChoice`.
+    public var onboardingChoice: AdhanChoice { self == AlertSettings() ? .makkah : adhanChoice }
 
     /// Settings saved before a field existed decode with that field's default; an old single early reminder
     /// becomes the matching new one (10, 5, or "approaching" at 15, 20 or 30 minutes).

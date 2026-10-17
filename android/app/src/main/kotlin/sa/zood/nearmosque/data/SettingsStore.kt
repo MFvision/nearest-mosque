@@ -321,6 +321,8 @@ class SettingsStore(private val store: DataStore<Preferences>) {
     suspend fun setOnboarded(on: Boolean) = store.edit { it[K.onboarded] = on }
     suspend fun setOnlineSearch(on: Boolean) = store.edit { it[K.onlineSearch] = on }
     suspend fun setSkyWeather(on: Boolean) = store.edit { it[K.skyWeather] = on }
+    /** The prayer bells all at once (the onboarding turns on the five prayers). */
+    suspend fun setReminders(events: Set<PrayerEvent>) = store.edit { it[K.reminders] = events.map { e -> e.name }.toSet() }
     suspend fun setReminder(e: PrayerEvent, on: Boolean) = store.edit { p ->
         val cur = p[K.reminders].orEmpty().toMutableSet()
         if (on) cur += e.name else cur -= e.name

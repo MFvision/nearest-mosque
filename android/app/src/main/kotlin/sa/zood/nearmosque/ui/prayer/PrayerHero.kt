@@ -147,7 +147,7 @@ fun PrayerHero(
         ) {
             val shown = remember { arrayOfNulls<sa.zood.nearmosque.core.WeatherNow>(1) }
             ui.weather?.let { shown[0] = it }
-            shown[0]?.let { WeatherLine(it, ui.location?.name.orEmpty()) }
+            shown[0]?.let { WeatherLine(it, ui.location?.name.orEmpty(), night = ui.sky.hasStars) }
         }
         val n = ui.nearestMosque
         QiblaArc(
@@ -164,10 +164,11 @@ fun PrayerHero(
 
 /**
  * "18°C · Wind 12 km/h" in the locale's digits and units, read out as one phrase with the city and the
- * condition. Each value is isolated, so a minus sign and the degree sign keep their order in RTL text.
+ * condition. Each value is isolated, so a minus sign and the degree sign keep their order in RTL text. A small
+ * condition icon leads the line (the night one when the sky has stars), since a clear sky barely changes the sky.
  */
 @Composable
-fun WeatherLine(w: sa.zood.nearmosque.core.WeatherNow, city: String, modifier: Modifier = Modifier) {
+fun WeatherLine(w: sa.zood.nearmosque.core.WeatherNow, city: String, night: Boolean = false, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val config = androidx.compose.ui.platform.LocalConfiguration.current
     val units = remember(config) { sa.zood.nearmosque.data.WeatherDisplay.units() }
@@ -181,11 +182,25 @@ fun WeatherLine(w: sa.zood.nearmosque.core.WeatherNow, city: String, modifier: M
     )
     val a11y = stringResource(R.string.weather_a11y, city, stringResource(weatherConditionName(w.symbol.condition)), temp, wind)
     val line = stringResource(R.string.weather_line, sa.zood.nearmosque.core.Weather.isolate(temp), sa.zood.nearmosque.core.Weather.isolate(wind))
-    Text(
-        line, color = Ink.copy(alpha = 0.85f), maxLines = 1, textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.labelMedium.copy(fontFeatureSettings = "tnum"),
-        modifier = modifier.padding(top = 4.dp).clearAndSetSemantics { contentDescription = a11y },
-    )
+    Row(modifier.padding(top = 4.dp).clearAndSetSemantics { contentDescription = a11y }, verticalAlignment = Alignment.CenterVertically) {
+        Icon(painterResource(weatherIcon(w.symbol.condition, night)), contentDescription = null, tint = Ink.copy(alpha = 0.85f), modifier = Modifier.size(16.dp))
+        Spacer(Modifier.width(4.dp))
+        Text(
+            line, color = Ink.copy(alpha = 0.85f), maxLines = 1, textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.labelMedium.copy(fontFeatureSettings = "tnum"),
+        )
+    }
+}
+
+/** The condition's icon (Material Symbols, res/drawable/ic_wx_*), with the moon for a clear or partly cloudy night. */
+fun weatherIcon(c: sa.zood.nearmosque.core.WeatherCondition, night: Boolean): Int = when (c) {
+    sa.zood.nearmosque.core.WeatherCondition.CLEAR -> if (night) R.drawable.ic_wx_clear_night else R.drawable.ic_wx_clear_day
+    sa.zood.nearmosque.core.WeatherCondition.PARTLY_CLOUDY -> if (night) R.drawable.ic_wx_partly_cloudy_night else R.drawable.ic_wx_partly_cloudy_day
+    sa.zood.nearmosque.core.WeatherCondition.CLOUDY -> R.drawable.ic_wx_cloudy
+    sa.zood.nearmosque.core.WeatherCondition.RAIN -> R.drawable.ic_wx_rain
+    sa.zood.nearmosque.core.WeatherCondition.THUNDERSTORM -> R.drawable.ic_wx_thunderstorm
+    sa.zood.nearmosque.core.WeatherCondition.FOG -> R.drawable.ic_wx_fog
+    sa.zood.nearmosque.core.WeatherCondition.SNOW -> R.drawable.ic_wx_snow
 }
 
 /** weather_clear, weather_partly_cloudy, ... */

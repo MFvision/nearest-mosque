@@ -78,6 +78,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import sa.zood.nearmosque.ui.mosques.MosquesScreen
 import sa.zood.nearmosque.ui.mosques.MosquesViewModel
 import sa.zood.nearmosque.ui.onboarding.OnboardingScreen
+import sa.zood.nearmosque.core.OnboardingStep
+import sa.zood.nearmosque.core.WeatherCondition
 import sa.zood.nearmosque.ui.prayer.CalculationSheet
 import sa.zood.nearmosque.ui.prayer.CityPickerSheet
 import sa.zood.nearmosque.ui.prayer.PrayerScreen
@@ -98,20 +100,24 @@ enum class Tab(val label: Int, val icon: Int, val horizon: Float) {
  * Two tabs (Prayer & Qibla, Nearest Mosque) on a floating glass bar with Ask AI as a separate gold pill
  * beside it that opens the chat full screen, all over one animated sky that follows the prayer period
  * (the horizon glides between screens). Settings, downloads and sources sit behind the gear on each
- * tab. First launch shows the animated tour.
+ * tab. First launch shows the welcome tour (First Light); Settings can replay it.
  */
 @Composable
 fun AppRoot(
-    container: AppContainer, initialTab: Tab = Tab.PRAYER, showOnboarding: Boolean? = null, onboardingPage: Int = 0,
+    container: AppContainer, initialTab: Tab = Tab.PRAYER, showOnboarding: Boolean? = null,
+    onboardingStep: OnboardingStep = OnboardingStep.PROMISE, onboardingStill: Boolean = false, onboardingPreview: WeatherCondition? = null,
     route: kotlinx.coroutines.flow.MutableStateFlow<String?>? = null,
 ) {
     androidx.compose.runtime.CompositionLocalProvider(sa.zood.nearmosque.LocalAppContainer provides container) {
-        AppRootContent(container, initialTab, showOnboarding, onboardingPage, route)
+        AppRootContent(container, initialTab, showOnboarding, OnboardingStart(onboardingStep, onboardingStill, onboardingPreview), route)
     }
 }
 
+/** Where the welcome tour starts (tests and screenshots start later, with no timers, and fix the weather preview). */
+private data class OnboardingStart(val step: OnboardingStep, val still: Boolean, val preview: WeatherCondition?)
+
 @Composable
-private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboarding: Boolean?, onboardingPage: Int, route: kotlinx.coroutines.flow.MutableStateFlow<String?>?) {
+private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboarding: Boolean?, onboarding: OnboardingStart, route: kotlinx.coroutines.flow.MutableStateFlow<String?>?) {
     val factory = remember(container) {
         viewModelFactory {
             initializer { PrayerViewModel(container) }
@@ -230,7 +236,10 @@ private fun AppRootContent(container: AppContainer, initialTab: Tab, showOnboard
             }
         }
         AnimatedVisibility(onboard, enter = fadeIn(tween(300)), exit = fadeOut(tween(400))) {
-            OnboardingScreen(container, prayerVm, prayer, onPickCity = { showCity = true }, onFinish = { prayerVm.setOnboarded(true) }, startPage = onboardingPage)
+            OnboardingScreen(
+                container, prayerVm, prayer, onPickCity = { showCity = true }, onFinish = { prayerVm.setOnboarded(true) },
+                startStep = onboarding.step, still = onboarding.still, preview = onboarding.preview,
+            )
         }
         if (showCity) CityPickerSheet(container, prayerVm, onDismiss = { showCity = false })
         if (showCalc) prayer.settings?.prayer?.let { CalculationSheet(it, prayerVm, onDismiss = { showCalc = false }) }

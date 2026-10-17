@@ -157,6 +157,18 @@ public struct PrayerCalculator: Sendable {
         return Upcoming(event: event, at: at, periodStart: idx > 0 ? prayers[idx - 1].1 : nil, isTomorrow: date > today)
     }
 
+    /// Asr on `date` for each school: the same schedule with only the madhab changed (the onboarding shows both). A
+    /// school is missing when that day cannot be calculated.
+    public func asrTimes(_ location: LatLng, date: CivilDate, zone: TimeZone, settings: PrayerSettings) -> [AsrMadhab: Date] {
+        var out: [AsrMadhab: Date] = [:]
+        for m in [AsrMadhab.SHAFI, .HANAFI] {
+            var s = settings
+            s.madhab = m
+            out[m] = schedule(location, date: date, zone: zone, settings: s)[.asr]
+        }
+        return out
+    }
+
     public func fajrEndsAt(_ s: DaySchedule, now: Date) -> Date? {
         guard let fajr = s[.fajr], let sunrise = s[.sunrise] else { return nil }
         return now >= fajr && now < sunrise ? sunrise : nil

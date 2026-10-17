@@ -81,6 +81,8 @@ would need it.
 | AndroidX DataStore, AppCompat, Activity, Lifecycle, Core | see `android/gradle/libs.versions.toml` | Apache-2.0 | Android |
 | kotlinx-serialization / coroutines | 1.9.0 / 1.10.2 | Apache-2.0 | Android |
 | Robolectric, Roborazzi (tests only) | 4.16.1 / 1.52.0 | MIT / Apache-2.0 | Android tests |
+| Material Symbols Rounded (weather condition and onboarding icons, `android/app/src/main/res/drawable/ic_wx_*`, `ic_onb_*`, `ic_palette`, `ic_alarm`; path data copied, each file names its symbol) | google/material-design-icons, 2026-10-17 | Apache-2.0 | Android (and the desktop, which copies them) |
+| Material Icons (seven glyphs drawn from their path data in `windows/src/main/kotlin/sa/zood/nearmosque/desktop/Onboarding.kt` `OnbIcons`: back, chevron, check, play, stop, date range, computer) | google/material-design-icons | Apache-2.0 | Windows/Linux (onboarding) |
 | pyosmium (tools only) | 4.3.1 | BSD-2-Clause | pack building |
 | MapLibre Native Android | 13.0.2 | BSD-2-Clause | Android (live map) |
 | MapKit | system | Apple SDK | iOS (live map, search, routes) |

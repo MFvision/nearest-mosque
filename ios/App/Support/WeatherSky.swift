@@ -36,6 +36,22 @@ enum WeatherTokens {
     static func deck(dark: Bool) -> Color { dark ? fogDark : flake }
 }
 
+extension WeatherCondition {
+    /// The SF Symbol for the condition, with the night variant when the sky has stars (the weather line on the prayer
+    /// screen, the onboarding's preview).
+    func symbolName(night: Bool) -> String {
+        switch self {
+        case .clear: return night ? "moon.stars.fill" : "sun.max.fill"
+        case .partlyCloudy: return night ? "cloud.moon.fill" : "cloud.sun.fill"
+        case .cloudy: return "cloud.fill"
+        case .rain: return "cloud.rain.fill"
+        case .thunderstorm: return "cloud.bolt.rain.fill"
+        case .fog: return "cloud.fog.fill"
+        case .snow: return "cloud.snow.fill"
+        }
+    }
+}
+
 extension Sky {
     /// This sky under the weather: every stop mixed toward the condition's veil (nil: today's sky).
     func under(_ w: WeatherNow?) -> Sky {

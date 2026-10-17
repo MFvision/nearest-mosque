@@ -56,6 +56,14 @@ val sharedResources by tasks.registering(Copy::class) {
     from("../shared/i18n/strings.json")
     from("../shared/i18n/languages.json")
     from("src/main/sounds") { into("sounds") }
+    // The Android app's vector icons (the weather line, the onboarding), drawn from the same files.
+    from("../android/app/src/main/res/drawable") {
+        include(
+            "ic_wx_*.xml", "ic_onb_*.xml", "ic_p_*.xml", "ic_alarm.xml", "ic_timer.xml", "ic_bell.xml", "ic_kaaba.xml",
+            "ic_tab_mosque.xml", "ic_book.xml", "ic_pin.xml", "ic_globe.xml",
+        )
+        into("icons")
+    }
     // Ask: the Qur'an, the HadeethEnc hadith in Arabic and English, and the common questions (searched on the PC).
     from("../packs/sources/quran-tanzil-pickthall/chunks.jsonl") { into("books"); rename { "quran.jsonl" } }
     from("../packs/sources/quran-tanzil-pickthall/common-questions.json") { into("books") }

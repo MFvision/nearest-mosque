@@ -59,12 +59,31 @@ without a message (`ios/App/Support/WeatherSky.swift`, `android/.../ui/glass/Wea
 
 ## Onboarding
 
-Six pages on the sky with glass controls (Skip, Back, page dots, Next / Get started): welcome (logo
-disc with expanding rings), prayer times (sun travelling the arc, the active prayer highlighting),
-Qibla (dot travelling to the disc, then the glow), nearest mosque (pins dropping, a dashed route to the
-nearest), Ask (question bubble, typing dots, a source card rising), and setup (language chips, use my
-location / search a city, online-search disclosure). With Reduce Motion / animations off each
-illustration shows its final still frame and no animation runs.
+"First Light", one flow on the living sky with the sun (the moon at night) as one continuous object: it rises
+behind the ridge on the promise, sits in the "Your day" header through the questions, rides the arc on the day
+and lands where it really is when done. Each answer flies up into the header as a chip (bouncy spring); steps
+enter with the spring and leave with a short fade; presses scale to 0.96. Right to left in Arabic and the other
+RTL languages (the landscape and the Asr shadows are never mirrored). Under Reduce Motion / animations off every
+transition is a 200 ms crossfade and nothing slides.
+
+Steps: promise → where → asr → adhan → friday → weather → look → building → day → extras → more → privacy → done.
+Order, Back and Skip targets live in the shared cores (`OnboardingFlow`). Skip on asr to look goes to building
+and changes nothing (on the Adhan step it keeps the choice shown); Skip on extras and more goes to privacy.
+
+| Step / card | iPhone | iPad | Mac | Vision Pro | Android | Windows/Linux |
+|---|---|---|---|---|---|---|
+| look (style and appearance) | yes | yes | yes | yes | yes | no (one dark look) |
+| friday (Friday and Al-Kahf) | yes | yes | yes | yes | yes | yes |
+| extras: widgets | yes, with the Lock Screen Live Activity | yes | yes | no | yes, except ChromeOS and XR | no |
+| extras: Siri phrases (in Siri's language, English or Arabic) | yes | yes | yes | English only | no | no |
+| extras: app shortcuts | no | no | no | no | yes | no |
+| extras: notification area | no | no | no | no | no | when there is a tray |
+| extras: Apple Watch | when paired | no | no | no | no | no |
+| extras: Ask preview | yes | yes | yes | yes | yes | yes |
+| Silent during prayer on the Adhan step | yes (a Shortcut) | yes (a Shortcut) | no | no | yes (Do Not Disturb) | no |
+
+One column on phones (also a phone held sideways); two panes (the sky, the header and the day on the leading
+58%, the step in a glass panel) on tablets, Mac, Vision Pro and wide desktop windows.
 
 ## Accessibility
 

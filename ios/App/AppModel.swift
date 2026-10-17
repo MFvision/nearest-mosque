@@ -181,14 +181,19 @@ final class AppModel {
         return t
     }()
 
-    func shareWithWidgets() {
-        let s = settings.location.map {
+    /// What the widgets, Siri and the watch get (the onboarding's widget previews draw it too); nil before a place is chosen.
+    func widgetState() -> SharedState? {
+        settings.location.map {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
                         reminders: settings.reminders.map(\.rawValue).sorted(),
                         mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion,
                         linkToken: Self.linkToken, iqama: settings.iqama, onlineSearch: settings.onlineSearch)
         }
+    }
+
+    func shareWithWidgets() {
+        let s = widgetState()
         syncWatch(s)
         guard s != lastShared else { return }
         lastShared = s
@@ -279,7 +284,8 @@ final class AppModel {
 
     #if DEBUG
     /// Simulator screenshots in CI: `-demoCity "Cape Town"` picks a city and skips onboarding;
-    /// `-demoOnboarding YES` shows the tour. Debug builds only.
+    /// `-demoOnboarding YES` shows the welcome flow (OnboardingView reads its own step options), and
+    /// `-demoOnboardingWatch installed|available|none` stands in for the paired Apple Watch. Debug builds only.
     private func applyDemoLaunchArguments() {
         let d = UserDefaults.standard
         if let name = d.string(forKey: "demoCity"), let city = cities?.search(name).first {
@@ -287,6 +293,14 @@ final class AppModel {
             settings.onboarded = true
         }
         if d.bool(forKey: "demoOnboarding") { settings.onboarded = false }
+        #if canImport(WatchConnectivity) && !targetEnvironment(macCatalyst) && !os(visionOS)
+        switch d.string(forKey: "demoOnboardingWatch") {
+        case "installed": WatchPairing.shared.state = .paired(appInstalled: true)
+        case "available": WatchPairing.shared.state = .paired(appInstalled: false)
+        case "none": WatchPairing.shared.state = .unpaired
+        default: break
+        }
+        #endif
     }
 
     /// Simulator screenshots: `-demoWeather rain` (clear, partly_cloudy, cloudy, rain, thunderstorm, fog, snow, or a
@@ -335,6 +349,12 @@ final class AppModel {
         Task { await rescheduleReminders() }
     }
 
+    /// When Asr begins: the shadow equal to the object (Shafi'i, Maliki, Hanbali) or twice it (Hanafi).
+    func setMadhab(_ m: AsrMadhab) {
+        settings.prayer.madhab = m
+        Task { await rescheduleReminders() }
+    }
+
     func setReminder(_ e: PrayerEvent, _ on: Bool) async {
         if on, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
         if on { settings.reminders.insert(e) } else { settings.reminders.remove(e) }
@@ -342,12 +362,21 @@ final class AppModel {
         await rescheduleReminders()
     }
 
-    func setAlerts(_ a: AlertSettings) {
+    /// `askPermission`: false in the onboarding, which asks for notifications once, on its privacy step.
+    func setAlerts(_ a: AlertSettings, askPermission: Bool = true) {
         settings.alerts = a
         Task {
-            if !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
+            if askPermission, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
             await rescheduleReminders()
         }
+    }
+
+    /// The onboarding's "Notify me at prayer times": a bell at each of the five prayers, unless some are chosen already
+    /// (nothing is ever turned off here).
+    func enablePrayerBells() async {
+        if settings.reminders.isEmpty { settings.reminders = Set(PrayerEvent.prayers) }
+        shareWithWidgets()
+        await rescheduleReminders()
     }
 
     func setIqama(_ q: IqamaSettings) {
@@ -359,7 +388,8 @@ final class AppModel {
         }
     }
 
-    func setSilence(_ s: SilenceSettings) {
+    /// `askPermission` as in setAlerts.
+    func setSilence(_ s: SilenceSettings, askPermission: Bool = true) {
         // On: the Shortcut's name in use is kept from now on (one save for both).
         var copy = settings
         copy.silence = s
@@ -367,7 +397,7 @@ final class AppModel {
         settings = copy
         Task {
             // The button that runs the Shortcut is on the notifications.
-            if s.enabled, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
+            if askPermission, s.enabled, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
             await rescheduleReminders()
         }
     }
@@ -412,6 +442,19 @@ final class AppModel {
         return PrayerSnapshot(model: self, now: now).sky
     }
 
+    /// The sky before a place is chosen (the onboarding's first steps): the period now at the largest bundled city in
+    /// the device's time zone, for the colours only (never saved or shown); night when there is none.
+    func previewPeriod(now: Date) -> SkyPeriod {
+        let zoneId = TimeZone.current.identifier
+        if previewCity?.zone != zoneId, let cities { previewCity = (zoneId, cities.largest(inZone: zoneId)) }
+        guard let city = previewCity?.city, let zone = TimeZone(identifier: city.zoneId) else { return .night }
+        let prayer = PrayerSettings(method: PrayerCalculator.suggestedMethod(city.countryCode))
+        let today = CivilDate.of(now, in: zone)
+        let days = (-1...1).map { calculator.schedule(city.location, date: today.adding(days: $0), zone: zone, settings: prayer) }
+        let current = PrayerEvent.allCases.last { (days[1][$0] ?? .distantFuture) <= now } ?? (days[0][.isha] != nil ? .isha : nil)
+        return SkyPeriod.at(now, today: days[1], current: current)
+    }
+
     /// The prayer city's weather to draw on the sky now; nil (the normal sky) when the switch is off, no city is
     /// chosen (or, with "Use my location", none is within 30 km), or there is no recent data (offline, older than
     /// about 3 hours, another city).
@@ -426,6 +469,7 @@ final class AppModel {
     // MARK: Prayer schedule (cached per location/settings/date; countdown recomputed from instants)
 
     // Not observed: a cache filled during view evaluation must not trigger re-renders.
+    @ObservationIgnored private var previewCity: (zone: String, city: City?)?
     @ObservationIgnored private var cacheKey: String?
     @ObservationIgnored private var cached: [DaySchedule] = []
 

@@ -58,6 +58,12 @@ class CityIndex(val cities: List<City>) {
     fun nearest(p: LatLng): Pair<City, Double>? =
         cities.minByOrNull { Geo.distanceMeters(p, it.location) }?.let { it to Geo.distanceMeters(p, it.location) }
 
+    /**
+     * The most populous city in time zone [inZone] (an IANA id), or null. Only for the onboarding sky before a place is
+     * chosen: never saved and never shown.
+     */
+    fun largest(inZone: String): City? = cities.filter { it.zoneId == inZone }.maxByOrNull { it.population }
+
     companion object {
         /** Parse packs/cities/cities.tsv (see tools/build_cities.py for columns). */
         fun parse(tsv: String): CityIndex = CityIndex(

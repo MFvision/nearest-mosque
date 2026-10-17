@@ -12,8 +12,9 @@ A native rebuild of the Nearest Mosque website with exactly three tabs:
   supported iPhones (iOS 26), cited search everywhere else. No cloud calls.
 
 Design: Quiet Glass — a drawn sky for the current prayer period with Apple Liquid Glass on iOS 26
-(material fallback on iOS 18–25) and matching drawn glass on Android; an animated six-page welcome
-tour on first launch.
+(material fallback on iOS 18–25) and matching drawn glass on Android; a first-run tour, "First Light",
+that asks where you pray, your Asr school, how to call you, Friday reminders, the weather sky and the app's
+style, saves each answer as it is given, and builds your day from them.
 
 No account, no backend, no analytics. Works without a network from first launch; the live map and
 live mosque results are the only network features and send only an approximate (≈1 km) location.

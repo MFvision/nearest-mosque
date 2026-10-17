@@ -5,6 +5,8 @@ import NMCore
 enum Format {
     static func prayerKey(_ e: PrayerEvent) -> String { "prayer_\(e.rawValue)" }
     static func methodKey(_ m: PrayerMethod) -> String { "method_\(m.rawValue)" }
+    /// The method's short name ("Umm al-Qura", "ISNA") for the onboarding's chips and lines.
+    static func methodShortKey(_ m: PrayerMethod) -> String { "method_short_\(m.rawValue)" }
 
     static func time(_ d: Date, zone: TimeZone, locale: Locale) -> String {
         var style = Date.FormatStyle(date: .omitted, time: .shortened, locale: locale, calendar: Calendar(identifier: .gregorian), timeZone: zone)

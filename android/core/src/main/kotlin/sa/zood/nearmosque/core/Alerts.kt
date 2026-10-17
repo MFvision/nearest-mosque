@@ -12,6 +12,11 @@ enum class AdhanSource {
     val hasFajr: Boolean get() = true
 }
 
+/** How the onboarding asks to be called to prayer ([AlertSettings.adhanChoice]); [key] is the shared name. */
+enum class AdhanChoice(val key: String) {
+    MAKKAH("makkah"), MADINAH("madinah"), SHORT("short"), BANNER_ONLY("banner_only"),
+}
+
 /** The language of the spoken reminders ("Ten minutes remain until the call to Maghrib prayer"). */
 enum class VoiceLanguage {
     ARABIC, ENGLISH;
@@ -135,6 +140,29 @@ data class AlertSettings(
         if (!e.isPrayer || !sounds(e).adhan) return false
         return if (e == PrayerEvent.FAJR) fajrAdhan && fajrAdhanSource.hasFajr else adhan
     }
+
+    /** The onboarding's four Adhan choices, read from the switches (one prayer's own switches do not change it). */
+    val adhanChoice: AdhanChoice
+        get() = when {
+            !adhan && !fajrAdhan -> AdhanChoice.BANNER_ONLY
+            shortAdhan -> AdhanChoice.SHORT
+            adhanSource == AdhanSource.MADINAH -> AdhanChoice.MADINAH
+            else -> AdhanChoice.MAKKAH
+        }
+
+    /**
+     * These settings with [choice]: a mosque turns both Adhans on with its recording (the whole Adhan), the short
+     * Adhan keeps the recordings, banner only turns both Adhans off and keeps the rest. [perPrayer] is never touched.
+     */
+    fun with(choice: AdhanChoice): AlertSettings = when (choice) {
+        AdhanChoice.MAKKAH -> copy(adhan = true, fajrAdhan = true, adhanSource = AdhanSource.MAKKAH, fajrAdhanSource = AdhanSource.MAKKAH, shortAdhan = false)
+        AdhanChoice.MADINAH -> copy(adhan = true, fajrAdhan = true, adhanSource = AdhanSource.MADINAH, fajrAdhanSource = AdhanSource.MADINAH, shortAdhan = false)
+        AdhanChoice.SHORT -> copy(adhan = true, fajrAdhan = true, shortAdhan = true)
+        AdhanChoice.BANNER_ONLY -> copy(adhan = false, fajrAdhan = false)
+    }
+
+    /** What the onboarding shows selected: Makkah for someone who has not set anything yet, else [adhanChoice]. */
+    val onboardingChoice: AdhanChoice get() = if (this == AlertSettings()) AdhanChoice.MAKKAH else adhanChoice
 
     /** An old single early reminder as the matching new one (10, 5, or "approaching" at 15, 20 or 30). */
     fun migrated(): AlertSettings = when (minutesBefore) {

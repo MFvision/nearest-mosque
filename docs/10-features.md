@@ -27,7 +27,7 @@ ships inside the iPhone app, in the same listing.
 | Classical books in the download catalogue | 99 books in 450 volumes (Arabic, from OpenITI) |
 | Built-in cities | 13,090 (GeoNames) |
 | Built-in mosque areas | Cairo (519), London (255), Cape Town (69) (OpenStreetMap) |
-| Onboarding pages | 6 |
+| Onboarding steps | 13 (12 on Windows and Linux, which have no style step) |
 | Android widgets | 8 kinds in 16 sizes, 3 styles |
 
 ## iPhone and iPad
@@ -159,10 +159,17 @@ screen's edge on Nearest Mosque to come back (from the edge only, so dragging th
 
 ### Onboarding (`ios/App/Onboarding/`)
 
-Six pages, each with a language menu and Skip: 1 Assalamu alaikum · 2 Prayer times that follow the sky ·
-3 Face the Qibla · 4 The nearest mosque · 5 Ask anything about Islam · 6 Let's set up (language,
-location, the online-search notice, the Sky follows the weather choice, off until turned on, with the MET
-Norway credit). With Reduce Motion each page shows a still picture.
+"First Light", thirteen steps on the living sky under a "Your day" header whose chips fill as each answer is
+given: the promise (with the language menu) · where you pray (your location, asked for at that moment, or a
+city) · when Asr begins (both schools with today's real times, and the calculation method) · how to be called
+(Makkah, Madinah, the short Adhan or a banner only, with previews; Silent during prayer on iPhone and iPad) ·
+Friday and Al-Kahf reminders · Sky follows the weather (a preview with sample values and no network; off until
+turned on, with the MET Norway credit) · the app's style and appearance · building the day · the day itself (an
+arc to drag the sun or moon along, the countdown, the six times, the Qibla, the Hijri date) · widgets, Siri,
+Apple Watch and Ask · the rest of the app · exactly what leaves the device, with the notification ask · done.
+Every answer is saved through its setting at once; Settings → "Show welcome tour" replays it, and someone who
+finished it is not sent through it again. Two panes on iPad, Mac and Apple Vision Pro. Under Reduce Motion every
+transition is a short crossfade.
 
 ## Widgets (iPhone, iPad, Mac) (`ios/Widgets/`)
 
@@ -345,7 +352,7 @@ only), widgets' styles other than the accent colour.
 
 * **Android**: the same tabs and Ask; 8 widget kinds (Next prayer, Countdown, Ring, Today, Mosque, Ask,
   Qibla, Actions) in 16 size variants, 3 styles (cream, green, night); app shortcuts Qibla, Mosques, Ask.
-  **Sky follows the weather** as on the iPhone (off by default; offered on the setup page of the welcome tour,
+  **Sky follows the weather** as on the iPhone (off by default; offered on its own step of the first-run tour,
   a switch in Settings → Appearance with its note and the MET Norway link): the header's sky shows the prayer
   city's weather and a line gives the temperature and the wind. Refreshed only while the app is in the
   foreground, never by a background job (`android/app/src/main/kotlin/sa/zood/nearmosque/data/Weather.kt`,
@@ -368,8 +375,16 @@ only), widgets' styles other than the accent colour.
   and the alarm come only while the PC is awake and the app runs (no wake timers); one missed during a sleep is not
   given late (more than two minutes after its time).
   Not on the PC: Silent during prayer, widgets.
-  * Sky follows the weather (off by default; offered once in a card on the prayer screen, a switch in Settings →
-    Appearance with the MET Norway link): a line under the city name and a sky strip behind the next-prayer card,
+  * First-run tour ("First Light", `windows/src/main/kotlin/sa/zood/nearmosque/desktop/Onboarding.kt`): the
+    phones' twelve steps without the style step (the desktop has one look), two panes in a wide window: the city
+    (the time zone's largest offered, or a search), the Asr school with both real times, the Adhan, Friday and
+    Al-Kahf, the weather sky, the day built from the answers, the notification area and Ask, the rest of the app,
+    and what leaves the PC. Every answer is saved through its setting at once. Settings → "Show welcome tour"
+    shows it again; someone who used the app before it is not sent through it.
+  * Sky follows the weather (off by default; asked in the first-run tour, or, for someone who used the app before
+    the tour, offered once in a card on the prayer screen; a switch in Settings →
+    Appearance with the MET Norway link): a line under the city name (the condition's icon, the temperature and the
+    wind) and a sky strip behind the next-prayer card,
     refreshed only while the window is open (not while it is minimized or closed to the notification area)
     (`windows/src/main/kotlin/sa/zood/nearmosque/desktop/Weather.kt`, `SkyStrip.kt`).
   * Nearest Mosque: around the chosen city (a PC has no GPS), from the mosque data that comes with the app

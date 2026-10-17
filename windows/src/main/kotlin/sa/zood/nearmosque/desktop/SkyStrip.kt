@@ -147,11 +147,13 @@ internal object StripLook {
  * The sky behind the next-prayer card: [period]'s sky with [weather] (null: the plain time-of-day sky). [textWidth]
  * (px from the card's start edge) is kept fully under the scrim; unknown, the whole card is. [now] moves the clouds
  * when [animate]; otherwise everything is one still picture. Decorative: screen readers skip it (the weather line
- * under the city name says the same in words).
+ * under the city name says the same in words). Not [framed] (the onboarding's whole-window sky), it has square corners
+ * and no scrim: the text there sits on glass or carries its own shadow.
  */
 @Composable
 internal fun SkyStrip(
     period: SkyPeriod, weather: WeatherNow?, now: Instant, animate: Boolean, modifier: Modifier = Modifier, textWidth: Float = Float.MAX_VALUE,
+    framed: Boolean = true,
 ) {
     val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     // The last weather is kept while its layers fade out (switch turned off, data too old).
@@ -178,9 +180,9 @@ internal fun SkyStrip(
         snow = if (fade > 0f) look.snowFlakes else 0,
         particles = fade,
     )
-    Canvas(modifier.clip(RoundedCornerShape(20.dp)).clearAndSetSemantics { }) {
+    Canvas((if (framed) modifier.clip(RoundedCornerShape(20.dp)) else modifier).clearAndSetSemantics { }) {
         drawStrip(top, mid, glow, veil, layers, drift, rtl)
-        drawFarSide(glow, layers.glow, textWidth, rtl)
+        if (framed) drawFarSide(glow, layers.glow, textWidth, rtl)
     }
 }
 

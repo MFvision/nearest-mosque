@@ -19,11 +19,13 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.skia.EncodedImageFormat
 import sa.zood.nearmosque.core.City
 import sa.zood.nearmosque.core.HighLatRule
+import sa.zood.nearmosque.core.OnboardingStep
 import sa.zood.nearmosque.core.PolarRule
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.Weather
 import sa.zood.nearmosque.core.WeatherCache
+import sa.zood.nearmosque.core.WeatherCondition
 import sa.zood.nearmosque.core.WeatherNow
 import sa.zood.nearmosque.core.WeatherSample
 import java.io.File
@@ -59,8 +61,8 @@ class ScreenshotTest {
     }
 
     @OptIn(ExperimentalComposeUiApi::class)
-    private fun render(name: String, height: Int = 680, content: @Composable () -> Unit) {
-        val scene = ImageComposeScene(980, height, Density(1f)) {
+    private fun render(name: String, height: Int = 680, width: Int = 980, settle: Boolean = false, content: @Composable () -> Unit) {
+        val scene = ImageComposeScene(width, height, Density(1f)) {
             MaterialTheme(colorScheme = darkColorScheme(primary = Color(0xFFE2C275), background = Navy)) {
                 CompositionLocalProvider(LocalLayoutDirection provides if (Strings.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                     content()
@@ -68,6 +70,8 @@ class ScreenshotTest {
             }
         }
         scene.render()
+        // A frame more where a layout result moves something (the onboarding's sun into the header's slot).
+        if (settle) scene.render(500_000_000L)
         val img = scene.render(1_000_000_000L)
         val out = File("build/shots").apply { mkdirs() }
         File(out, "$name.png").writeBytes(img.encodeToData(EncodedImageFormat.PNG)!!.bytes)
@@ -205,6 +209,71 @@ class ScreenshotTest {
     @Test fun weatherOfferEnglish() = offerShot("weather-offer-en", "en")
 
     @Test fun weatherOfferArabic() = offerShot("weather-offer-ar", "ar")
+
+    // First Light, the first-run tour (Onboarding.kt): still frames of each step (no timers, every animation at its
+    // end), in Riyadh at 13:00 (Arabic: the day and the end at 21:30, under the moon). The steps before the place have
+    // no city chosen; the time zone's city offered is Riyadh.
+    private fun onboardingShot(
+        name: String, language: String, step: OnboardingStep, width: Int = 980, height: Int = 680, chosen: Boolean = true,
+        change: (DesktopSettings) -> DesktopSettings = { it }, at: Instant = noon, preview: WeatherCondition? = null,
+        tray: Boolean = true, weather: WeatherNow? = null,
+    ) {
+        Strings.language = language
+        val city = riyadh
+        val settings = change(DesktopSettings(cityId = if (chosen) city.id else null, language = language))
+        val saved = mutableListOf<DesktopSettings>()
+        AskPreviews.load(language)
+        render("onboarding-$name", height, width, settle = true) {
+            OnboardingDesktop(
+                settings, city, at, onSettings = { saved += it }, onCity = {}, weather = weather, animate = false,
+                startStep = step, still = true, preview = preview, tray = tray, startup = true,
+            )
+        }
+        // Showing a step changes nothing: only an answer is saved.
+        assertTrue(saved.isEmpty(), "$name saved ${saved.size} settings")
+    }
+
+    private val riyadhNight = Instant.parse("2026-10-12T18:30:00Z")
+
+    private fun onboardingSteps(language: String) {
+        val ar = language == "ar"
+        val night = if (ar) riyadhNight else noon
+        onboardingShot("promise-$language", language, OnboardingStep.PROMISE, chosen = false)
+        onboardingShot("where-$language", language, OnboardingStep.PLACE, chosen = false)
+        onboardingShot("asr-$language", language, OnboardingStep.ASR)
+        onboardingShot("adhan-$language", language, OnboardingStep.ADHAN)
+        onboardingShot("friday-$language", language, OnboardingStep.FRIDAY, change = { it.copy(friday = true) })
+        onboardingShot("weather-$language", language, OnboardingStep.WEATHER, preview = if (ar) WeatherCondition.SNOW else WeatherCondition.RAIN)
+        onboardingShot("building-$language", language, OnboardingStep.BUILDING)
+        onboardingShot("day-$language", language, OnboardingStep.DAY, at = night)
+        onboardingShot("extras-$language", language, OnboardingStep.EXTRAS)
+        onboardingShot("more-$language", language, OnboardingStep.MORE)
+        onboardingShot("privacy-$language", language, OnboardingStep.PRIVACY, change = { it.copy(skyWeather = ar) }, at = night)
+        onboardingShot("done-$language", language, OnboardingStep.DONE, at = night)
+    }
+
+    @Test fun onboardingEnglish() = onboardingSteps("en")
+
+    @Test fun onboardingArabic() = onboardingSteps("ar")
+
+    @Test fun onboardingWide() {
+        onboardingShot("wide-promise-en", "en", OnboardingStep.PROMISE, width = 1280, height = 800, chosen = false)
+        onboardingShot("wide-friday-en", "en", OnboardingStep.FRIDAY, width = 1280, height = 800, change = { it.copy(friday = true, kahf = true) })
+        onboardingShot("wide-day-en", "en", OnboardingStep.DAY, width = 1280, height = 800)
+    }
+
+    // A narrow window: one column on the sky.
+    @Test fun onboardingNarrow() {
+        onboardingShot("narrow-day-en", "en", OnboardingStep.DAY, width = 720, height = 680)
+        onboardingShot("narrow-promise-en", "en", OnboardingStep.PROMISE, width = 720, height = 680, chosen = false)
+        onboardingShot("narrow-friday-ar", "ar", OnboardingStep.FRIDAY, width = 720, height = 680, change = { it.copy(friday = true) })
+    }
+
+    // The trust step at the window's first size in a long draft language: the whole timeline above the button.
+    @Test fun onboardingPrivacySwahili() { onboardingShot("privacy-sw", "sw", OnboardingStep.PRIVACY) }
+
+    // No notification area (GNOME, for one): no card for it.
+    @Test fun onboardingExtrasWithoutTray() { onboardingShot("extras-notray-en", "en", OnboardingStep.EXTRAS, tray = false) }
 
     @Test fun stagesFollowTheIqama() {
         Strings.language = "en"
