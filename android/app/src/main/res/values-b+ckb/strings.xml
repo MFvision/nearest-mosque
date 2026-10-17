@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">مزگەوتەکان: %1$s</string>
     <string name="per_prayer_note">هەڵبژێرە بۆ هەر نوێژێک چی دەبیستیت. دەنگ تەنها کاتێک لێدەدرێت کە لە سەرەوەش چالاک بێت.</string>
     <string name="per_prayer_section">هەر نوێژێک</string>
-    <string name="permission_location_ios">شوێنەکەت لەسەر ئەم مۆبایلە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە.</string>
-    <string name="permission_location_tv">شوێنەکەت لەسەر ئەم Apple TV یە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە.</string>
+    <string name="permission_location_ios">شوێنەکەت لەسەر ئەم مۆبایلە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. بۆ گەڕانی مزگەوت تەنها شوێنێکی نزیکەیی دەنێردرێت.</string>
+    <string name="permission_location_tv">شوێنەکەت لەسەر ئەم Apple TV یە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. بۆ گەڕانی مزگەوت تەنها شوێنێکی نزیکەیی دەنێردرێت.</string>
     <string name="play_adhan">لێدانی بانگ</string>
     <string name="polar_nearest">نزیکترین پانی (٤٨٫٥°)</string>
     <string name="polar_none">وەک بەردەست نەبوو پیشان بدە</string>

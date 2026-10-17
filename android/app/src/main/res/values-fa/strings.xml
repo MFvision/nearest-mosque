@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">مسجدها: %1$s</string>
     <string name="per_prayer_note">برای هر نماز انتخاب کنید چه چیزی بشنوید. صدا فقط وقتی پخش می‌شود که در بالا هم روشن باشد.</string>
     <string name="per_prayer_section">هر نماز</string>
-    <string name="permission_location_ios">موقعیت شما روی همین گوشی برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد.</string>
-    <string name="permission_location_tv">موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد.</string>
+    <string name="permission_location_ios">موقعیت شما روی همین گوشی برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. جستجوی مسجد فقط موقعیت تقریبی را می‌فرستد.</string>
+    <string name="permission_location_tv">موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. جستجوی مسجد فقط موقعیت تقریبی را می‌فرستد.</string>
     <string name="play_adhan">پخش اذان</string>
     <string name="polar_nearest">نزدیک‌ترین عرض (۴۸٫۵°)</string>
     <string name="polar_none">نمایش به‌صورت نامعلوم</string>

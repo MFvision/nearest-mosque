@@ -19,6 +19,22 @@ extension SilenceSettings {
         forShortcut.windows(days, iqama: iqama, after: now).first?.end
     }
 
+    /// What the notification button "Silence until after the prayer" on the notification for `event` on `date`
+    /// silences until: the end of the silence under way at `now`, else of that prayer's own silence if it begins
+    /// within `maxLead` (the button on an Adhan before a silence from the iqama). nil otherwise: a button tapped
+    /// after its prayer's silence (the notification left in Notification Center) would silence until after the
+    /// next prayer (Isha's until after Fajr), or from the tap through it. A silence ending within `endMargin`
+    /// counts as over: the Shortcut reads the clock again once the app is on the screen and Shortcuts has opened,
+    /// and by then it would get the next one. When not nil, it is what the Shortcut gets from `shortcutEnd`
+    /// within `endMargin`.
+    public func shortcutEndForButton(_ days: [DaySchedule], iqama: IqamaSettings, now: Date, event: PrayerEvent?, date: CivilDate?,
+                                     maxLead: TimeInterval = 60 * 60, endMargin: TimeInterval = 90) -> Date? {
+        guard let w = forShortcut.windows(days, iqama: iqama, after: now.addingTimeInterval(endMargin)).first else { return nil }
+        if w.start <= now { return w.end }
+        guard w.event == event, w.date == date, w.start.timeIntervalSince(now) <= maxLead else { return nil }
+        return w.end
+    }
+
     /// Whether this notification carries the "Silence until after the prayer" button: the one at which the
     /// silence begins. That is the Adhan (or the bell at prayer time) when the silence starts at the Adhan and
     /// for the Friday prayer, and the iqama notification when it starts at the iqama; with no iqama
@@ -31,16 +47,19 @@ extension SilenceSettings {
         return kind == .iqama || (atAdhan && !iqamaAlert)
     }
 
-    /// The Shortcut's name: the one the user typed, else the default in their language.
+    /// The Shortcut's name: the one saved, else the default in the app's language. The app saves the name in use
+    /// once the shortcut is (silence turned on, tried, or run from a notification), so a later change of language
+    /// does not run a translated name the user's Shortcut does not have; a saved name always wins over the default.
     public static func shortcutName(_ stored: String?, default fallback: String) -> String {
         let s = stored?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         return s.isEmpty ? fallback : s
     }
 
-    /// The name to save: nil when it is empty or the default, so the default keeps following the language.
-    public static func storedShortcutName(_ typed: String, default fallback: String) -> String? {
+    /// The name to save from the Settings field: what was typed (the default too, as it is), or with the field
+    /// empty the name already saved (nil when none yet). An empty field never erases a name.
+    public static func storedShortcutName(_ typed: String, current: String?) -> String? {
         let s = typed.trimmingCharacters(in: .whitespacesAndNewlines)
-        return s.isEmpty || s == fallback ? nil : s
+        return s.isEmpty ? current : s
     }
 
     /// `shortcuts://run-shortcut?name=…`, the name percent-encoded byte by byte (spaces, Arabic, & and + included).

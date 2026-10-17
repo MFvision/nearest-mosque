@@ -129,19 +129,22 @@ struct PrayerSilenceEndIntent: AppIntent {
 
     func perform() async throws -> some IntentResult & ReturnsValue<Date> {
         let now = Date()
-        guard let s = StoredSettings.saved(), let loc = s.location else { throw PrayerSilenceEndError() }
+        guard let s = StoredSettings.saved(), let loc = s.location else { throw PrayerSilenceEndError.noCity }
         let calc = PrayerCalculator()
         let today = CivilDate.of(now, in: loc.zone)
         let days = (-1...1).map { calc.schedule(loc.location, date: today.adding(days: $0), zone: loc.zone, settings: s.prayer) }
-        guard let end = s.silence.shortcutEnd(days, iqama: s.iqama, now: now) else { throw PrayerSilenceEndError() }
+        guard let end = s.silence.shortcutEnd(days, iqama: s.iqama, now: now) else { throw PrayerSilenceEndError.noTimes }
         return .result(value: end)
     }
 }
 
-/// No city chosen yet: the Shortcut stops with this message (in the app's language).
-struct PrayerSilenceEndError: Error, CustomLocalizedStringResourceConvertible {
+/// The Shortcut stops with this message (in the app's language): no city chosen yet, or a city whose prayer
+/// times cannot be worked out for these days (near the poles, with no high-latitude rule).
+enum PrayerSilenceEndError: Error, CustomLocalizedStringResourceConvertible {
+    case noCity, noTimes
+
     var localizedStringResource: LocalizedStringResource {
-        LocalizedStringResource(stringLiteral: Localization().t("widget_choose_city"))
+        LocalizedStringResource(stringLiteral: Localization().t(self == .noCity ? "widget_choose_city" : "polar_unavailable_title"))
     }
 }
 

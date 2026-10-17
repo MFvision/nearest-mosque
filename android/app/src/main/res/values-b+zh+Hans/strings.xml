@@ -368,8 +368,8 @@
     <string name="pack_kind_mosques">清真寺：%1$s</string>
     <string name="per_prayer_note">为每次礼拜选择要听到的内容。只有上方也已开启时才会播放声音。</string>
     <string name="per_prayer_section">各次礼拜</string>
-    <string name="permission_location_ios">你的位置在此手机上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。</string>
-    <string name="permission_location_tv">你的位置在这台 Apple TV 上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。</string>
+    <string name="permission_location_ios">你的位置在此手机上用于礼拜时间、朝向和附近的清真寺。清真寺搜索只会发送大致位置。</string>
+    <string name="permission_location_tv">你的位置在这台 Apple TV 上用于礼拜时间、朝向和附近的清真寺。清真寺搜索只会发送大致位置。</string>
     <string name="play_adhan">播放宣礼</string>
     <string name="polar_nearest">最近纬度（48.5°）</string>
     <string name="polar_none">显示为不可用</string>

@@ -368,8 +368,8 @@
     <string name="pack_kind_mosques">Thánh đường: %1$s</string>
     <string name="per_prayer_note">Chọn âm thanh bạn nghe cho từng lễ cầu nguyện. Âm thanh chỉ phát khi mục ở trên cũng được bật.</string>
     <string name="per_prayer_section">Từng lễ cầu nguyện</string>
-    <string name="permission_location_ios">Vị trí của bạn được dùng trên điện thoại này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến.</string>
-    <string name="permission_location_tv">Vị trí của bạn được dùng trên Apple TV này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến.</string>
+    <string name="permission_location_ios">Vị trí của bạn được dùng trên điện thoại này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Tìm kiếm thánh đường chỉ gửi đi vị trí gần đúng.</string>
+    <string name="permission_location_tv">Vị trí của bạn được dùng trên Apple TV này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Tìm kiếm thánh đường chỉ gửi đi vị trí gần đúng.</string>
     <string name="play_adhan">Phát Adhan</string>
     <string name="polar_nearest">Vĩ độ gần nhất (48,5°)</string>
     <string name="polar_none">Hiển thị là không khả dụng</string>

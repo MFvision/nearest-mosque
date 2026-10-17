@@ -32,7 +32,8 @@ struct StoredSettings: Codable, Equatable {
     var iqama = IqamaSettings()
     /// Silent during prayer (iPhone: through the user's Shortcut, run from the Adhan or iqama notification).
     var silence = SilenceSettings()
-    /// The name of that Shortcut as the user made it; nil = the default name in the app's language.
+    /// The name of that Shortcut as the user made it; nil = the default name in the app's language, until the
+    /// shortcut is first used (silence turned on, tried, or run): the name in use is then saved as it is.
     var silenceShortcut: String?
     var onboarded = false
     /// Live mosque results (Apple Maps search) added to downloaded data; disclosed in onboarding and Settings.
@@ -188,6 +189,9 @@ final class AppModel {
     /// Opens the database and installs built-in packs off the main thread on first launch.
     func start() async {
         guard !ready else { return }
+        // Silence turned on in builds 141-142 kept no name for the default one: keep it now, before a change of
+        // language could make the notification button run a translated name the user's Shortcut does not have.
+        if settings.silence.enabled, settings.silenceShortcut == nil { settings.silenceShortcut = silenceShortcutName }
         let root = packsRoot
         let stopData = Bundle.main.url(forResource: "stopwords", withExtension: "json").flatMap { try? Data(contentsOf: $0) } ?? Data()
         let lexiconData = Bundle.main.url(forResource: "lexicon", withExtension: "json").flatMap { try? Data(contentsOf: $0) } ?? Data()
@@ -332,7 +336,11 @@ final class AppModel {
     }
 
     func setSilence(_ s: SilenceSettings) {
-        settings.silence = s
+        // On: the Shortcut's name in use is kept from now on (one save for both).
+        var copy = settings
+        copy.silence = s
+        if s.enabled { copy.silenceShortcut = silenceShortcutName }
+        settings = copy
         Task {
             // The button that runs the Shortcut is on the notifications.
             if s.enabled, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
@@ -340,15 +348,24 @@ final class AppModel {
         }
     }
 
-    /// Saves the Shortcut's name as typed (the default, or nothing, is kept as nil so it follows the language).
+    /// Saves the Shortcut's name as typed. An empty field changes nothing (the saved name stays, or the default
+    /// until one is saved), so a field not filled in yet can never erase a name.
     func setSilenceShortcut(_ typed: String) {
-        let name = SilenceSettings.storedShortcutName(typed, default: l10n.t("silence_shortcut_name"))
+        let name = SilenceSettings.storedShortcutName(typed, current: settings.silenceShortcut)
         if name != settings.silenceShortcut { settings.silenceShortcut = name }
     }
 
     /// The Shortcut the notifications run.
     var silenceShortcutName: String {
         SilenceSettings.shortcutName(settings.silenceShortcut, default: l10n.t("silence_shortcut_name"))
+    }
+
+    /// The Shortcut's name about to be run ("Try the shortcut", the notification button), saved as it is: a
+    /// default name then stays when the app's language changes, and a name the user typed is never replaced.
+    func keepSilenceShortcutName() -> String {
+        let name = silenceShortcutName
+        if settings.silenceShortcut != name { settings.silenceShortcut = name }
+        return name
     }
 
     func rescheduleReminders() async {

@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">ਮਸਜਿਦਾਂ: %1$s</string>
     <string name="per_prayer_note">ਹਰ ਨਮਾਜ਼ ਲਈ ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸੁਣੋਗੇ। ਆਵਾਜ਼ ਤਾਂ ਹੀ ਚੱਲੇਗੀ ਜੇ ਉੱਪਰ ਵੀ ਚਾਲੂ ਹੋਵੇ।</string>
     <string name="per_prayer_section">ਹਰ ਨਮਾਜ਼</string>
-    <string name="permission_location_ios">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।</string>
-    <string name="permission_location_tv">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ Apple TV ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।</string>
+    <string name="permission_location_ios">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ ਫ਼ੋਨ ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਮਸਜਿਦ ਖੋਜ ਲਈ ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ।</string>
+    <string name="permission_location_tv">ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ Apple TV ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਮਸਜਿਦ ਖੋਜ ਲਈ ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ।</string>
     <string name="play_adhan">ਅਜ਼ਾਨ ਚਲਾਓ</string>
     <string name="polar_nearest">ਨੇੜਲਾ ਅਕਸ਼ਾਂਸ਼ (48.5°)</string>
     <string name="polar_none">ਉਪਲਬਧ ਨਹੀਂ ਦਿਖਾਓ</string>

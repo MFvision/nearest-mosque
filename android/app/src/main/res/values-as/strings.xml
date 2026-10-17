@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">মছজিদ: %1$s</string>
     <string name="per_prayer_note">প্ৰতিটো নামাজৰ বাবে আপুনি কি শুনিব বাছনি কৰক। ওপৰতো অন থাকিলেহে শব্দ বাজিব।</string>
     <string name="per_prayer_section">প্ৰতিটো নামাজ</string>
-    <string name="permission_location_ios">আপোনাৰ অৱস্থান এই ফোনতে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।</string>
-    <string name="permission_location_tv">আপোনাৰ অৱস্থান এই Apple TV-তে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।</string>
+    <string name="permission_location_ios">আপোনাৰ অৱস্থান এই ফোনতে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। মছজিদ সন্ধানত কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়।</string>
+    <string name="permission_location_tv">আপোনাৰ অৱস্থান এই Apple TV-তে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। মছজিদ সন্ধানত কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়।</string>
     <string name="play_adhan">আজান বজাওক</string>
     <string name="polar_nearest">ওচৰৰ অক্ষাংশ (48.5°)</string>
     <string name="polar_none">উপলব্ধ নহয় বুলি দেখুৱাওক</string>

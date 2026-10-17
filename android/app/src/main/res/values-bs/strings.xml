@@ -370,8 +370,8 @@
     <string name="pack_kind_mosques">Džamije: %1$s</string>
     <string name="per_prayer_note">Odaberite šta čujete za svaki namaz. Zvuk se pušta samo ako je uključen i iznad.</string>
     <string name="per_prayer_section">Svaki namaz</string>
-    <string name="permission_location_ios">Vaša lokacija se koristi na ovom telefonu za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija.</string>
-    <string name="permission_location_tv">Vaša lokacija se koristi na ovom Apple TV-u za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija.</string>
+    <string name="permission_location_ios">Vaša lokacija se koristi na ovom telefonu za namaska vremena, kiblu i džamije u blizini. Pretraga džamija šalje samo približnu lokaciju.</string>
+    <string name="permission_location_tv">Vaša lokacija se koristi na ovom Apple TV-u za namaska vremena, kiblu i džamije u blizini. Pretraga džamija šalje samo približnu lokaciju.</string>
     <string name="play_adhan">Pusti ezan</string>
     <string name="polar_nearest">Najbliža širina (48,5°)</string>
     <string name="polar_none">Prikaži kao nedostupno</string>

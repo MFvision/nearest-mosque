@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">মসজিদ: %1$s</string>
     <string name="per_prayer_note">প্রতিটি নামাজের জন্য কী শুনবেন তা বেছে নিন। উপরেও চালু থাকলে তবেই শব্দ বাজবে।</string>
     <string name="per_prayer_section">প্রতিটি নামাজ</string>
-    <string name="permission_location_ios">আপনার লোকেশন এই ফোনেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। শুধু আনুমানিক লোকেশন পাঠানো হয়, এবং তা কেবল অনলাইন মসজিদ সার্চ চালু থাকলেই।</string>
-    <string name="permission_location_tv">আপনার লোকেশন এই Apple TV-তেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। শুধু আনুমানিক লোকেশন পাঠানো হয়, এবং তা কেবল অনলাইন মসজিদ সার্চ চালু থাকলেই।</string>
+    <string name="permission_location_ios">আপনার লোকেশন এই ফোনেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। মসজিদ সার্চে শুধু আনুমানিক লোকেশন পাঠানো হয়।</string>
+    <string name="permission_location_tv">আপনার লোকেশন এই Apple TV-তেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। মসজিদ সার্চে শুধু আনুমানিক লোকেশন পাঠানো হয়।</string>
     <string name="play_adhan">আজান বাজান</string>
     <string name="polar_nearest">নিকটতম অক্ষাংশ (48.5°)</string>
     <string name="polar_none">অনুপলব্ধ হিসেবে দেখান</string>

@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">Masallatai: %1$s</string>
     <string name="per_prayer_note">Zaɓi abin da za ka ji don kowace sallah. Sauti yana kunnawa ne kawai idan shi ma yana kunne a sama.</string>
     <string name="per_prayer_section">Kowace sallah</string>
-    <string name="permission_location_ios">Ana amfani da wurinku a wannan wayar don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet.</string>
-    <string name="permission_location_tv">Ana amfani da wurinku a wannan Apple TV don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet.</string>
+    <string name="permission_location_ios">Ana amfani da wurinku a wannan wayar don lokutan sallah, Alƙibla da masallatan da ke kusa. Binciken masallatai yana aika wuri na ƙiyasi kawai.</string>
+    <string name="permission_location_tv">Ana amfani da wurinku a wannan Apple TV don lokutan sallah, Alƙibla da masallatan da ke kusa. Binciken masallatai yana aika wuri na ƙiyasi kawai.</string>
     <string name="play_adhan">Kunna kiran sallah</string>
     <string name="polar_nearest">Latitude mafi kusa (48.5°)</string>
     <string name="polar_none">Nuna a matsayin babu</string>

@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">मस्जिदें: %1$s</string>
     <string name="per_prayer_note">हर नमाज़ के लिए चुनें कि आप क्या सुनेंगे। आवाज़ तभी चलेगी जब ऊपर भी चालू हो।</string>
     <string name="per_prayer_section">हर नमाज़</string>
-    <string name="permission_location_ios">आपकी लोकेशन इसी फ़ोन पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।</string>
-    <string name="permission_location_tv">आपकी लोकेशन इसी Apple TV पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।</string>
+    <string name="permission_location_ios">आपकी लोकेशन इसी फ़ोन पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। मस्जिद खोज सिर्फ़ अनुमानित लोकेशन भेजती है।</string>
+    <string name="permission_location_tv">आपकी लोकेशन इसी Apple TV पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। मस्जिद खोज सिर्फ़ अनुमानित लोकेशन भेजती है।</string>
     <string name="play_adhan">अज़ान चलाएँ</string>
     <string name="polar_nearest">नज़दीकी अक्षांश (48.5°)</string>
     <string name="polar_none">अनुपलब्ध दिखाएँ</string>

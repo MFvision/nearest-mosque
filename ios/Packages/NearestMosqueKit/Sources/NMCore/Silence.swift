@@ -50,7 +50,7 @@ public struct SilenceSettings: Codable, Hashable, Sendable {
             if i + 1 < all.count { to = min(to, all[i + 1].1) }
             from = min(from, to)
             guard to > from, to > now else { continue }
-            out.append(SilenceWindow(event: e, start: from, end: to, friday: friday))
+            out.append(SilenceWindow(event: e, date: date, start: from, end: to, friday: friday))
         }
         return out
     }
@@ -63,6 +63,8 @@ public struct SilenceSettings: Codable, Hashable, Sendable {
 
 public struct SilenceWindow: Equatable, Sendable {
     public let event: PrayerEvent
+    /// The day of that prayer's times (as in the notifications for it).
+    public let date: CivilDate
     public let start: Date
     public let end: Date
     /// The Friday prayer (Dhuhr on Friday, from its Adhan).

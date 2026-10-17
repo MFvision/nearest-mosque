@@ -368,8 +368,8 @@
     <string name="pack_kind_mosques">Masjid: %1$s</string>
     <string name="per_prayer_note">Pilih apa yang Anda dengar untuk setiap salat. Suara hanya diputar jika di atas juga aktif.</string>
     <string name="per_prayer_section">Setiap salat</string>
-    <string name="permission_location_ios">Lokasi Anda digunakan di ponsel ini untuk waktu salat, kiblat, dan masjid terdekat. Hanya lokasi perkiraan yang dikirim, dan hanya saat pencarian masjid online aktif.</string>
-    <string name="permission_location_tv">Lokasi Anda digunakan di Apple TV ini untuk waktu salat, kiblat, dan masjid terdekat. Hanya lokasi perkiraan yang dikirim, dan hanya saat pencarian masjid online aktif.</string>
+    <string name="permission_location_ios">Lokasi Anda digunakan di ponsel ini untuk waktu salat, kiblat, dan masjid terdekat. Pencarian masjid hanya mengirim lokasi perkiraan.</string>
+    <string name="permission_location_tv">Lokasi Anda digunakan di Apple TV ini untuk waktu salat, kiblat, dan masjid terdekat. Pencarian masjid hanya mengirim lokasi perkiraan.</string>
     <string name="play_adhan">Putar azan</string>
     <string name="polar_nearest">Lintang terdekat (48,5°)</string>
     <string name="polar_none">Tampilkan tidak tersedia</string>

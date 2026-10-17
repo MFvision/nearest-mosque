@@ -373,8 +373,8 @@
     <string name="pack_kind_mosques">المساجد: %1$s</string>
     <string name="per_prayer_note">اختر ما تسمعه لكل صلاة. لا يعمل الصوت إلا إذا كان مفعّلًا في الأعلى أيضًا.</string>
     <string name="per_prayer_section">كل صلاة</string>
-    <string name="permission_location_ios">يُستخدم موقعك على هذا الهاتف للمواقيت والقبلة والمساجد القريبة. لا يُرسل إلا موقع تقريبي، وفقط عند تفعيل البحث عن المساجد عبر الإنترنت.</string>
-    <string name="permission_location_tv">يُستخدم موقعك على جهاز Apple TV هذا للمواقيت والقبلة والمساجد القريبة. لا يُرسل إلا موقع تقريبي، وفقط عند تفعيل البحث عن المساجد عبر الإنترنت.</string>
+    <string name="permission_location_ios">يُستخدم موقعك على هذا الجوال للمواقيت والقبلة والمساجد القريبة. لا يرسل البحث عن المساجد إلا موقعًا تقريبيًا.</string>
+    <string name="permission_location_tv">يُستخدم موقعك على جهاز Apple TV هذا للمواقيت والقبلة والمساجد القريبة. لا يرسل البحث عن المساجد إلا موقعًا تقريبيًا.</string>
     <string name="play_adhan">تشغيل الأذان</string>
     <string name="polar_nearest">أقرب عرض (48.5°)</string>
     <string name="polar_none">اعرضها غير متاحة</string>

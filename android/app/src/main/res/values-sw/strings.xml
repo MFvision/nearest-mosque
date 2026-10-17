@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">Misikiti: %1$s</string>
     <string name="per_prayer_note">Chagua unachosikia kwa kila swala. Sauti hucheza tu ikiwa pia imewashwa hapo juu.</string>
     <string name="per_prayer_section">Kila swala</string>
-    <string name="permission_location_ios">Mahali ulipo panatumika kwenye simu hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa.</string>
-    <string name="permission_location_tv">Mahali ulipo panatumika kwenye Apple TV hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa.</string>
+    <string name="permission_location_ios">Mahali ulipo panatumika kwenye simu hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Utafutaji wa misikiti hutuma mahali pa makadirio tu.</string>
+    <string name="permission_location_tv">Mahali ulipo panatumika kwenye Apple TV hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Utafutaji wa misikiti hutuma mahali pa makadirio tu.</string>
     <string name="play_adhan">Cheza adhana</string>
     <string name="polar_nearest">Latitudo iliyo karibu (48.5°)</string>
     <string name="polar_none">Onyesha kuwa haipatikani</string>

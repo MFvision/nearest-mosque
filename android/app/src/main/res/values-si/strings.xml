@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">පල්ලි: %1$s</string>
     <string name="per_prayer_note">සෑම නමාසයක් සඳහාම ඔබට ඇසෙන දේ තෝරන්න. ඉහතින්ද සක්‍රිය කර ඇත්නම් පමණක් ශබ්දය වාදනය වේ.</string>
     <string name="per_prayer_section">සෑම නමාසයක්ම</string>
-    <string name="permission_location_ios">සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම දුරකථනයේ භාවිත වේ. යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි, එයද මාර්ගගත පල්ලි සෙවුම සක්‍රිය විට පමණි.</string>
-    <string name="permission_location_tv">සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම Apple TV එකේ භාවිත වේ. යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි, එයද මාර්ගගත පල්ලි සෙවුම සක්‍රිය විට පමණි.</string>
+    <string name="permission_location_ios">සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම දුරකථනයේ භාවිත වේ. පල්ලි සෙවුම සඳහා යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි.</string>
+    <string name="permission_location_tv">සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම Apple TV එකේ භාවිත වේ. පල්ලි සෙවුම සඳහා යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි.</string>
     <string name="play_adhan">අදාන් වාදනය කරන්න</string>
     <string name="polar_nearest">ළඟම අක්ෂාංශය (48.5°)</string>
     <string name="polar_none">ලබා ගත නොහැකි ලෙස පෙන්වන්න</string>

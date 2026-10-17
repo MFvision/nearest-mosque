@@ -9,7 +9,8 @@ struct PrayerAudioSettingsView: View {
     @Environment(\.l10n) private var l10n
     @Environment(\.openURL) private var openURL
     @State private var expanded: Set<PrayerEvent> = []
-    /// The Shortcut's name while it is typed (saved on Return, on leaving the field and on Try).
+    /// The Shortcut's name while it is typed (saved on Return, on leaving the field and on Try), read from the
+    /// settings when the screen appears so Try never saves a field that was not filled in yet.
     @State private var shortcutDraft = ""
 
     private var a: AlertSettings { app.settings.alerts }
@@ -34,6 +35,7 @@ struct PrayerAudioSettingsView: View {
         }
         .navigationTitle(l10n.t("audio_title"))
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear { shortcutDraft = app.settings.silenceShortcut ?? "" }
         .onDisappear { if !AdhanPlayer.shared.isAdhan { AdhanPlayer.shared.stop() } }
         #if DEBUG
         .task {
@@ -105,7 +107,16 @@ struct PrayerAudioSettingsView: View {
     }
 
     private var defaultShortcutName: String { l10n.t("silence_shortcut_name") }
-    private var shortcutName: String { SilenceSettings.shortcutName(shortcutDraft, default: defaultShortcutName) }
+    /// The name Try would run: the one typed, else the one saved, else the default.
+    private var shortcutName: String {
+        SilenceSettings.shortcutName(SilenceSettings.storedShortcutName(shortcutDraft, current: app.settings.silenceShortcut), default: defaultShortcutName)
+    }
+
+    /// Saves the typed name (an empty field keeps the saved one) and shows what is saved.
+    private func saveShortcutName() {
+        app.setSilenceShortcut(shortcutDraft)
+        shortcutDraft = app.settings.silenceShortcut ?? ""
+    }
 
     /// Silent during prayer: iPhone lets no app turn on Focus, so a Shortcut the user makes once does it, run from
     /// the Adhan or iqama notification (and from Siri or the Action button).
@@ -143,9 +154,8 @@ struct PrayerAudioSettingsView: View {
                 TextField(defaultShortcutName, text: $shortcutDraft)
                     .autocorrectionDisabled()
                     .submitLabel(.done)
-                    .onAppear { shortcutDraft = app.settings.silenceShortcut ?? "" }
-                    .onSubmit { app.setSilenceShortcut(shortcutDraft) }
-                    .onDisappear { app.setSilenceShortcut(shortcutDraft) }
+                    .onSubmit { saveShortcutName() }
+                    .onDisappear { saveShortcutName() }
                 Text(l10n.t("silence_ios_steps", shortcutName))
                     .font(.footnote)
                     .foregroundStyle(.secondary)
@@ -155,7 +165,9 @@ struct PrayerAudioSettingsView: View {
                 }
                 Button {
                     app.setSilenceShortcut(shortcutDraft)
-                    SilenceShortcutRunner.run(shortcutName)
+                    // The name run is kept as it is (the default too, so a change of language does not rename it).
+                    SilenceShortcutRunner.run(app.keepSilenceShortcutName())
+                    shortcutDraft = app.settings.silenceShortcut ?? ""
                 } label: {
                     Label(l10n.t("silence_test"), systemImage: "moon.fill")
                 }

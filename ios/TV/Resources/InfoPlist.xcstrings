@@ -229,217 +229,217 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on."
+            "value": "Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Mosque search sends only an approximate location."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يُستخدم موقعك على جهاز Apple TV هذا للمواقيت والقبلة والمساجد القريبة. لا يُرسل إلا موقع تقريبي، وفقط عند تفعيل البحث عن المساجد عبر الإنترنت."
+            "value": "يُستخدم موقعك على جهاز Apple TV هذا للمواقيت والقبلة والمساجد القريبة. لا يرسل البحث عن المساجد إلا موقعًا تقريبيًا."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ کا مقام اسی Apple TV پر نماز کے اوقات، قبلہ اور قریبی مساجد کے لیے استعمال ہوتا ہے۔ صرف تقریبی مقام بھیجا جاتا ہے، اور صرف جب آن لائن مسجد تلاش آن ہو۔"
+            "value": "آپ کا مقام اسی Apple TV پر نماز کے اوقات، قبلہ اور قریبی مساجد کے لیے استعمال ہوتا ہے۔ مسجد تلاش میں صرف تقریبی مقام بھیجا جاتا ہے۔"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konumunuz bu Apple TV'de namaz vakitleri, kıble ve yakındaki camiler için kullanılır. Yalnızca çevrimiçi cami araması açıkken yaklaşık konum gönderilir."
+            "value": "Konumunuz bu Apple TV'de namaz vakitleri, kıble ve yakındaki camiler için kullanılır. Cami aramasında yalnızca yaklaşık konum gönderilir."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lokasi Anda digunakan di Apple TV ini untuk waktu salat, kiblat, dan masjid terdekat. Hanya lokasi perkiraan yang dikirim, dan hanya saat pencarian masjid online aktif."
+            "value": "Lokasi Anda digunakan di Apple TV ini untuk waktu salat, kiblat, dan masjid terdekat. Pencarian masjid hanya mengirim lokasi perkiraan."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Votre position sert, sur cette Apple TV, aux horaires, à la qibla et aux mosquées proches. Seule une position approximative est envoyée, et seulement si la recherche en ligne est activée."
+            "value": "Votre position sert, sur cette Apple TV, aux horaires, à la qibla et aux mosquées proches. La recherche de mosquées n’envoie qu’une position approximative."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu ubicación se usa en este Apple TV para los horarios, la alquibla y las mezquitas cercanas. Solo se envía una ubicación aproximada, y solo con la búsqueda en línea activada."
+            "value": "Tu ubicación se usa en este Apple TV para los horarios, la alquibla y las mezquitas cercanas. La búsqueda de mezquitas solo envía una ubicación aproximada."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваше местоположение используется на этом Apple TV для времени намазов, киблы и мечетей поблизости. Отправляется только приблизительное местоположение и только при включённом онлайн-поиске мечетей."
+            "value": "Ваше местоположение используется на этом Apple TV для времени намазов, киблы и мечетей поблизости. Поиск мечетей отправляет только приблизительное местоположение."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "আপনার লোকেশন এই Apple TV-তেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। শুধু আনুমানিক লোকেশন পাঠানো হয়, এবং তা কেবল অনলাইন মসজিদ সার্চ চালু থাকলেই।"
+            "value": "আপনার লোকেশন এই Apple TV-তেই নামাজের সময়, কিবলা ও কাছের মসজিদের জন্য ব্যবহার হয়। মসজিদ সার্চে শুধু আনুমানিক লোকেশন পাঠানো হয়।"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد."
+            "value": "موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مسجدهای نزدیک استفاده می‌شود. جستجوی مسجد فقط موقعیت تقریبی را می‌فرستد."
           }
         },
         "fa-AF": {
           "stringUnit": {
             "state": "translated",
-            "value": "موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مساجد نزدیک استفاده می‌شود. فقط موقعیت تقریبی فرستاده می‌شود، آن هم تنها وقتی جستجوی آنلاین مسجد روشن باشد."
+            "value": "موقعیت شما روی همین Apple TV برای اوقات نماز، قبله و مساجد نزدیک استفاده می‌شود. جستجوی مسجد فقط موقعیت تقریبی را می‌فرستد."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的位置在这台 Apple TV 上用于礼拜时间、朝向和附近的清真寺。仅在开启在线清真寺搜索时，才会发送大致位置。"
+            "value": "你的位置在这台 Apple TV 上用于礼拜时间、朝向和附近的清真寺。清真寺搜索只会发送大致位置。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपकी लोकेशन इसी Apple TV पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। सिर्फ़ अनुमानित लोकेशन भेजी जाती है, और वह भी तभी जब ऑनलाइन मस्जिद खोज चालू हो।"
+            "value": "आपकी लोकेशन इसी Apple TV पर नमाज़ के समय, क़िबला और आसपास की मस्जिदों के लिए इस्तेमाल होती है। मस्जिद खोज सिर्फ़ अनुमानित लोकेशन भेजती है।"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sua localização é usada nesta Apple TV para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada."
+            "value": "Sua localização é usada nesta Apple TV para os horários de oração, a Qibla e as mesquitas próximas. A busca de mesquitas envia só uma localização aproximada."
           }
         },
         "ha": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ana amfani da wurinku a wannan Apple TV don lokutan sallah, Alƙibla da masallatan da ke kusa. Wuri na ƙiyasi kawai ake aikawa, kuma sai idan an kunna binciken masallatai ta intanet."
+            "value": "Ana amfani da wurinku a wannan Apple TV don lokutan sallah, Alƙibla da masallatan da ke kusa. Binciken masallatai yana aika wuri na ƙiyasi kawai."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mahali ulipo panatumika kwenye Apple TV hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Ni mahali pa makadirio tu panapotumwa, na tu utafutaji wa misikiti mtandaoni ukiwa umewashwa."
+            "value": "Mahali ulipo panatumika kwenye Apple TV hii kwa nyakati za sala, Kibla na misikiti iliyo karibu. Utafutaji wa misikiti hutuma mahali pa makadirio tu."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ginagamit ang iyong lokasyon sa Apple TV na ito para sa mga oras ng dasal, ang Qibla at mga kalapit na masjid. Tinatayang lokasyon lang ang ipinapadala, at kapag naka-on lang ang online na paghahanap ng masjid."
+            "value": "Ginagamit ang iyong lokasyon sa Apple TV na ito para sa mga oras ng dasal, ang Qibla at mga kalapit na masjid. Tinatayang lokasyon lang ang ipinapadala ng paghahanap ng masjid."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vị trí của bạn được dùng trên Apple TV này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Chỉ vị trí gần đúng được gửi đi, và chỉ khi bật tìm kiếm thánh đường trực tuyến."
+            "value": "Vị trí của bạn được dùng trên Apple TV này cho giờ cầu nguyện, hướng Qibla và các thánh đường gần đó. Tìm kiếm thánh đường chỉ gửi đi vị trí gần đúng."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ตำแหน่งของคุณใช้บน Apple TV เครื่องนี้สำหรับเวลาละหมาด กิบลัต และมัสยิดใกล้เคียง ระบบจะส่งเพียงตำแหน่งโดยประมาณ และเฉพาะเมื่อเปิดการค้นหามัสยิดออนไลน์เท่านั้น"
+            "value": "ตำแหน่งของคุณใช้บน Apple TV เครื่องนี้สำหรับเวลาละหมาด กิบลัต และมัสยิดใกล้เคียง การค้นหามัสยิดจะส่งเพียงตำแหน่งโดยประมาณ"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "ទីតាំងរបស់អ្នកត្រូវបានប្រើនៅលើ Apple TV នេះ សម្រាប់ម៉ោងសឡាត គិបឡាត់ និងម៉ាស្ជិតក្បែរៗ។ មានតែទីតាំងប្រហាក់ប្រហែលប៉ុណ្ណោះដែលត្រូវបានផ្ញើ ហើយតែនៅពេលបើកការស្វែងរកម៉ាស្ជិតតាមអ៊ីនធឺណិតប៉ុណ្ណោះ។"
+            "value": "ទីតាំងរបស់អ្នកត្រូវបានប្រើនៅលើ Apple TV នេះ សម្រាប់ម៉ោងសឡាត គិបឡាត់ និងម៉ាស្ជិតក្បែរៗ។ ការស្វែងរកម៉ាស្ជិតផ្ញើតែទីតាំងប្រហាក់ប្រហែលប៉ុណ្ណោះ។"
           }
         },
         "ug": {
           "stringUnit": {
             "state": "translated",
-            "value": "ئورنىڭىز مۇشۇ Apple TV دا ناماز ۋاقىتلىرى، قىبلە ۋە يېقىن ئەتراپتىكى مەسچىتلەر ئۈچۈن ئىشلىتىلىدۇ. پەقەت تەخمىنىي ئورۇنلا يوللىنىدۇ، ئۇ ھەم پەقەت توردا مەسچىت ئىزدەش ئوچۇق بولغاندىلا."
+            "value": "ئورنىڭىز مۇشۇ Apple TV دا ناماز ۋاقىتلىرى، قىبلە ۋە يېقىن ئەتراپتىكى مەسچىتلەر ئۈچۈن ئىشلىتىلىدۇ. مەسچىت ئىزدەشتە پەقەت تەخمىنىي ئورۇنلا يوللىنىدۇ."
           }
         },
         "ckb": {
           "stringUnit": {
             "state": "translated",
-            "value": "شوێنەکەت لەسەر ئەم Apple TV یە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. تەنها شوێنێکی نزیکەیی دەنێردرێت، ئەویش تەنها کاتێک گەڕانی ئۆنلاینی مزگەوت چالاکە."
+            "value": "شوێنەکەت لەسەر ئەم Apple TV یە بۆ کاتەکانی نوێژ، قیبلە و مزگەوتە نزیکەکان بەکاردێت. بۆ گەڕانی مزگەوت تەنها شوێنێکی نزیکەیی دەنێردرێت."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vaša lokacija se koristi na ovom Apple TV-u za namaska vremena, kiblu i džamije u blizini. Šalje se samo približna lokacija, i to samo kad je uključena online pretraga džamija."
+            "value": "Vaša lokacija se koristi na ovom Apple TV-u za namaska vremena, kiblu i džamije u blizini. Pretraga džamija šalje samo približnu lokaciju."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваша локација се користи на овом Apple TV-у за намаска времена, киблу и џамије у близини. Шаље се само приближна локација, и то само кад је укључена претрага џамија на мрежи."
+            "value": "Ваша локација се користи на овом Apple TV-у за намаска времена, киблу и џамије у близини. Претрага џамија шаље само приближну локацију."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вашата локација се користи на овој Apple TV за времињата за намаз, киблата и џамиите во близина. Се испраќа само приближна локација и само кога е вклучено пребарувањето џамии на интернет."
+            "value": "Вашата локација се користи на овој Apple TV за времињата за намаз, киблата и џамиите во близина. Пребарувањето џамии испраќа само приближна локација."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A helyzetedet ez az Apple TV használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva."
+            "value": "A helyzetedet ez az Apple TV használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. A mecsetkeresés csak hozzávetőleges helyet küld el."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je locatie wordt op deze Apple TV gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat."
+            "value": "Je locatie wordt op deze Apple TV gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Bij het zoeken naar moskeeën wordt alleen een geschatte locatie verstuurd."
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "თქვენი მდებარეობა ამ Apple TV-ზე გამოიყენება ლოცვის დროებისთვის, ყიბლისთვის და ახლომდებარე მეჩეთებისთვის. იგზავნება მხოლოდ მიახლოებითი მდებარეობა და მხოლოდ მაშინ, როცა მეჩეთების ონლაინ ძიება ჩართულია."
+            "value": "თქვენი მდებარეობა ამ Apple TV-ზე გამოიყენება ლოცვის დროებისთვის, ყიბლისთვის და ახლომდებარე მეჩეთებისთვის. მეჩეთების ძიებისას იგზავნება მხოლოდ მიახლოებითი მდებარეობა."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම Apple TV එකේ භාවිත වේ. යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි, එයද මාර්ගගත පල්ලි සෙවුම සක්‍රිය විට පමණි."
+            "value": "සලාත වේලාවන්, කිබ්ලා සහ අසල පල්ලි සඳහා ඔබේ ස්ථානය මෙම Apple TV එකේ භාවිත වේ. පල්ලි සෙවුම සඳහා යවනු ලබන්නේ ආසන්න ස්ථානයක් පමණි."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నమాజ్ సమయాలు, ఖిబ్లా, దగ్గరి మసీదుల కోసం మీ లొకేషన్ ఈ Apple TV లోనే ఉపయోగించబడుతుంది. సుమారు లొకేషన్ మాత్రమే పంపబడుతుంది, అదీ ఆన్‌లైన్ మసీదు శోధన ఆన్‌లో ఉన్నప్పుడు మాత్రమే."
+            "value": "నమాజ్ సమయాలు, ఖిబ్లా, దగ్గరి మసీదుల కోసం మీ లొకేషన్ ఈ Apple TV లోనే ఉపయోగించబడుతుంది. మసీదు శోధన కోసం సుమారు లొకేషన్ మాత్రమే పంపబడుతుంది."
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನಮಾಜ್ ಸಮಯಗಳು, ಕಿಬ್ಲಾ ಮತ್ತು ಹತ್ತಿರದ ಮಸೀದಿಗಳಿಗಾಗಿ ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಈ Apple TV ಯಲ್ಲೇ ಬಳಸಲಾಗುತ್ತದೆ. ಅಂದಾಜು ಸ್ಥಳವನ್ನು ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ, ಅದೂ ಆನ್‌ಲೈನ್ ಮಸೀದಿ ಹುಡುಕಾಟ ಆನ್ ಆಗಿದ್ದಾಗ ಮಾತ್ರ."
+            "value": "ನಮಾಜ್ ಸಮಯಗಳು, ಕಿಬ್ಲಾ ಮತ್ತು ಹತ್ತಿರದ ಮಸೀದಿಗಳಿಗಾಗಿ ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಈ Apple TV ಯಲ್ಲೇ ಬಳಸಲಾಗುತ್ತದೆ. ಮಸೀದಿ ಹುಡುಕಾಟಕ್ಕಾಗಿ ಅಂದಾಜು ಸ್ಥಳವನ್ನು ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നമസ്കാര സമയങ്ങൾ, ഖിബ്‌ല, അടുത്തുള്ള പള്ളികൾ എന്നിവയ്ക്കായി നിങ്ങളുടെ ലൊക്കേഷൻ ഈ Apple TV യിൽ ഉപയോഗിക്കുന്നു. ഏകദേശ ലൊക്കേഷൻ മാത്രമേ അയയ്ക്കൂ, അതും ഓൺലൈൻ പള്ളി തിരയൽ ഓണായിരിക്കുമ്പോൾ മാത്രം."
+            "value": "നമസ്കാര സമയങ്ങൾ, ഖിബ്‌ല, അടുത്തുള്ള പള്ളികൾ എന്നിവയ്ക്കായി നിങ്ങളുടെ ലൊക്കേഷൻ ഈ Apple TV യിൽ ഉപയോഗിക്കുന്നു. പള്ളി തിരയലിന് ഏകദേശ ലൊക്കേഷൻ മാത്രമേ അയയ്ക്കൂ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुमचे लोकेशन याच Apple TV वर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. फक्त अंदाजे लोकेशन पाठवले जाते, आणि तेही ऑनलाइन मशीद शोध चालू असेल तेव्हाच."
+            "value": "तुमचे लोकेशन याच Apple TV वर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. मशीद शोधासाठी फक्त अंदाजे लोकेशन पाठवले जाते."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "તમારું લોકેશન આ જ Apple TV પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય."
+            "value": "તમારું લોકેશન આ જ Apple TV પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. મસ્જિદ શોધ માટે ફક્ત અંદાજિત લોકેશન મોકલાય છે."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ Apple TV ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਜਦੋਂ ਆਨਲਾਈਨ ਮਸਜਿਦ ਖੋਜ ਚਾਲੂ ਹੋਵੇ।"
+            "value": "ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਇਸੇ Apple TV ’ਤੇ ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ, ਕਿਬਲੇ ਅਤੇ ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਮਸਜਿਦ ਖੋਜ ਲਈ ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਟਿਕਾਣਾ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ।"
           }
         },
         "as": {
           "stringUnit": {
             "state": "translated",
-            "value": "আপোনাৰ অৱস্থান এই Apple TV-তে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়, আৰু সেয়াও কেৱল অনলাইন মছজিদ সন্ধান অন থাকিলেহে।"
+            "value": "আপোনাৰ অৱস্থান এই Apple TV-তে নামাজৰ সময়, কিবলা আৰু ওচৰৰ মছজিদৰ বাবে ব্যৱহাৰ কৰা হয়। মছজিদ সন্ধানত কেৱল আনুমানিক অৱস্থানহে পঠিওৱা হয়।"
           }
         }
       }

@@ -44,10 +44,23 @@ enum SilenceShortcutRunner {
     }
     #endif
 
-    /// The notification button "Silence until after the prayer": the Shortcut named in Settings.
-    static func runFromNotification() {
+    /// The notification button "Silence until after the prayer" on the notification for `event` on `date` (its
+    /// userInfo): runs the Shortcut named in Settings while a silence is under way, or before that prayer's own
+    /// silence when it begins within the hour. Tapped later (the notification left in Notification Center), the
+    /// Shortcut would silence until after the next prayer: then it does not run, and the caller opens the prayer
+    /// screen. Returns whether it ran.
+    static func runFromNotification(event: String, date: String, now: Date = Date()) -> Bool {
         #if os(iOS) && !targetEnvironment(macCatalyst)
-        run(AppModel.shared.silenceShortcutName)
+        let app = AppModel.shared
+        let days = app.days(now: now)
+        // The notification's day as written in its userInfo ("\(a.date)"); nil when it is older than yesterday.
+        let day = days.map(\.date).first { "\($0)" == date }
+        guard app.settings.silence.shortcutEndForButton(days, iqama: app.settings.iqama, now: now,
+                                                         event: PrayerEvent(rawValue: event), date: day) != nil else { return false }
+        run(app.keepSilenceShortcutName())
+        return true
+        #else
+        return false
         #endif
     }
 }

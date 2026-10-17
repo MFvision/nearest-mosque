@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">મસ્જિદો: %1$s</string>
     <string name="per_prayer_note">દરેક નમાઝ માટે તમે શું સાંભળશો તે પસંદ કરો. ઉપર પણ ચાલુ હોય ત્યારે જ અવાજ વાગશે.</string>
     <string name="per_prayer_section">દરેક નમાઝ</string>
-    <string name="permission_location_ios">તમારું લોકેશન આ જ ફોન પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય.</string>
-    <string name="permission_location_tv">તમારું લોકેશન આ જ Apple TV પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. ફક્ત અંદાજિત લોકેશન મોકલાય છે, અને તે પણ ત્યારે જ જ્યારે ઑનલાઇન મસ્જિદ શોધ ચાલુ હોય.</string>
+    <string name="permission_location_ios">તમારું લોકેશન આ જ ફોન પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. મસ્જિદ શોધ માટે ફક્ત અંદાજિત લોકેશન મોકલાય છે.</string>
+    <string name="permission_location_tv">તમારું લોકેશન આ જ Apple TV પર નમાઝના સમય, કિબ્લા અને નજીકની મસ્જિદો માટે વપરાય છે. મસ્જિદ શોધ માટે ફક્ત અંદાજિત લોકેશન મોકલાય છે.</string>
     <string name="play_adhan">અઝાન વગાડો</string>
     <string name="polar_nearest">નજીકનો અક્ષાંશ (48.5°)</string>
     <string name="polar_none">અનુપલબ્ધ તરીકે બતાવો</string>

@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">Mosquées : %1$s</string>
     <string name="per_prayer_note">Choisissez ce que vous entendez pour chaque prière. Un son n\'est joué que s\'il est aussi activé plus haut.</string>
     <string name="per_prayer_section">Chaque prière</string>
-    <string name="permission_location_ios">Votre position sert, sur ce téléphone, aux horaires, à la qibla et aux mosquées proches. Seule une position approximative est envoyée, et seulement si la recherche en ligne est activée.</string>
-    <string name="permission_location_tv">Votre position sert, sur cette Apple TV, aux horaires, à la qibla et aux mosquées proches. Seule une position approximative est envoyée, et seulement si la recherche en ligne est activée.</string>
+    <string name="permission_location_ios">Votre position sert, sur ce téléphone, aux horaires, à la qibla et aux mosquées proches. La recherche de mosquées n’envoie qu’une position approximative.</string>
+    <string name="permission_location_tv">Votre position sert, sur cette Apple TV, aux horaires, à la qibla et aux mosquées proches. La recherche de mosquées n’envoie qu’une position approximative.</string>
     <string name="play_adhan">Jouer l\'adhan</string>
     <string name="polar_nearest">Latitude la plus proche (48,5°)</string>
     <string name="polar_none">Afficher comme indisponible</string>

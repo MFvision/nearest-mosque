@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">Mecsetek: %1$s</string>
     <string name="per_prayer_note">Válassza ki, mit hall az egyes imáknál. A hang csak akkor szól, ha fent is be van kapcsolva.</string>
     <string name="per_prayer_section">Minden ima</string>
-    <string name="permission_location_ios">A helyzetedet ez a telefon használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva.</string>
-    <string name="permission_location_tv">A helyzetedet ez az Apple TV használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. Csak hozzávetőleges hely kerül elküldésre, és csak akkor, ha az online mecsetkeresés be van kapcsolva.</string>
+    <string name="permission_location_ios">A helyzetedet ez a telefon használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. A mecsetkeresés csak hozzávetőleges helyet küld el.</string>
+    <string name="permission_location_tv">A helyzetedet ez az Apple TV használja az imaidőkhöz, a kiblához és a közeli mecsetekhez. A mecsetkeresés csak hozzávetőleges helyet küld el.</string>
     <string name="play_adhan">Adhan lejátszása</string>
     <string name="polar_nearest">Legközelebbi szélesség (48,5°)</string>
     <string name="polar_none">Nem elérhetőként jelenjen meg</string>

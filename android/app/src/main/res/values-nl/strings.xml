@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">Moskeeën: %1$s</string>
     <string name="per_prayer_note">Kies wat je hoort bij elk gebed. Een geluid speelt alleen als het hierboven ook aan staat.</string>
     <string name="per_prayer_section">Elk gebed</string>
-    <string name="permission_location_ios">Je locatie wordt op deze telefoon gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat.</string>
-    <string name="permission_location_tv">Je locatie wordt op deze Apple TV gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Alleen een geschatte locatie wordt verstuurd, en alleen als online moskeeën zoeken aan staat.</string>
+    <string name="permission_location_ios">Je locatie wordt op deze telefoon gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Bij het zoeken naar moskeeën wordt alleen een geschatte locatie verstuurd.</string>
+    <string name="permission_location_tv">Je locatie wordt op deze Apple TV gebruikt voor gebedstijden, de qibla en moskeeën in de buurt. Bij het zoeken naar moskeeën wordt alleen een geschatte locatie verstuurd.</string>
     <string name="play_adhan">Adhan afspelen</string>
     <string name="polar_nearest">Dichtstbijzijnde breedtegraad (48,5°)</string>
     <string name="polar_none">Tonen als niet beschikbaar</string>

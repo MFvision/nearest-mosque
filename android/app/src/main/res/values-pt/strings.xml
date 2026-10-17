@@ -370,8 +370,8 @@
     <string name="pack_kind_mosques">Mesquitas: %1$s</string>
     <string name="per_prayer_note">Escolha o que você ouve em cada oração. Um som só toca se também estiver ativado acima.</string>
     <string name="per_prayer_section">Cada oração</string>
-    <string name="permission_location_ios">Sua localização é usada neste celular para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada.</string>
-    <string name="permission_location_tv">Sua localização é usada nesta Apple TV para os horários de oração, a Qibla e as mesquitas próximas. Só uma localização aproximada é enviada, e apenas quando a busca online de mesquitas está ativada.</string>
+    <string name="permission_location_ios">Sua localização é usada neste celular para os horários de oração, a Qibla e as mesquitas próximas. A busca de mesquitas envia só uma localização aproximada.</string>
+    <string name="permission_location_tv">Sua localização é usada nesta Apple TV para os horários de oração, a Qibla e as mesquitas próximas. A busca de mesquitas envia só uma localização aproximada.</string>
     <string name="play_adhan">Tocar o adhan</string>
     <string name="polar_nearest">Latitude mais próxima (48,5°)</string>
     <string name="polar_none">Mostrar como indisponível</string>

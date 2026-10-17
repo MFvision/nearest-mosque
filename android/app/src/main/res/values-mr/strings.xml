@@ -369,8 +369,8 @@
     <string name="pack_kind_mosques">मशिदी: %1$s</string>
     <string name="per_prayer_note">प्रत्येक नमाजासाठी तुम्ही काय ऐकाल ते निवडा. वरही चालू असेल तरच आवाज वाजेल.</string>
     <string name="per_prayer_section">प्रत्येक नमाज</string>
-    <string name="permission_location_ios">तुमचे लोकेशन याच फोनवर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. फक्त अंदाजे लोकेशन पाठवले जाते, आणि तेही ऑनलाइन मशीद शोध चालू असेल तेव्हाच.</string>
-    <string name="permission_location_tv">तुमचे लोकेशन याच Apple TV वर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. फक्त अंदाजे लोकेशन पाठवले जाते, आणि तेही ऑनलाइन मशीद शोध चालू असेल तेव्हाच.</string>
+    <string name="permission_location_ios">तुमचे लोकेशन याच फोनवर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. मशीद शोधासाठी फक्त अंदाजे लोकेशन पाठवले जाते.</string>
+    <string name="permission_location_tv">तुमचे लोकेशन याच Apple TV वर नमाजच्या वेळा, किब्ला आणि जवळच्या मशिदींसाठी वापरले जाते. मशीद शोधासाठी फक्त अंदाजे लोकेशन पाठवले जाते.</string>
     <string name="play_adhan">अजान वाजवा</string>
     <string name="polar_nearest">जवळचा अक्षांश (48.5°)</string>
     <string name="polar_none">उपलब्ध नाही असे दाखवा</string>

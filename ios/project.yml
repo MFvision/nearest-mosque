@@ -103,8 +103,8 @@ targets:
         # fetch: a background refresh tops up the prayer reminders (ReminderRefresh); nothing is downloaded.
         UIBackgroundModes: [location, fetch]
         BGTaskSchedulerPermittedIdentifiers: [sa.zood.nearmosque.reminders]
-        NSLocationWhenInUseUsageDescription: Your location is used on this phone for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
-        NSLocationUsageDescription: Your location is used on this device for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        NSLocationWhenInUseUsageDescription: Your location is used on this phone for prayer times, the Qibla and nearby mosques. Mosque search sends only an approximate location.
+        NSLocationUsageDescription: Your location is used on this device for prayer times, the Qibla and nearby mosques. Mosque search sends only an approximate location.
         UILaunchScreen:
           UIColorName: ""
         UIApplicationSceneManifest:
@@ -207,7 +207,7 @@ targets:
         ITSAppUsesNonExemptEncryption: false
         UIBackgroundModes: [fetch]
         BGTaskSchedulerPermittedIdentifiers: [sa.zood.nearmosque.reminders]
-        NSLocationWhenInUseUsageDescription: Your location is used on this device for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        NSLocationWhenInUseUsageDescription: Your location is used on this device for prayer times, the Qibla and nearby mosques. Mosque search sends only an approximate location.
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
           UIApplicationPreferredDefaultSceneSessionRole: UIWindowSceneSessionRoleApplication
@@ -267,7 +267,7 @@ targets:
         CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
         CFBundleAllowMixedLocalizations: false
         ITSAppUsesNonExemptEncryption: false
-        NSLocationWhenInUseUsageDescription: Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        NSLocationWhenInUseUsageDescription: Your location is used on this Apple TV for prayer times, the Qibla and nearby mosques. Mosque search sends only an approximate location.
         UIRequiredDeviceCapabilities: [arm64]
         UILaunchScreen:
           UIColorName: ""
@@ -376,7 +376,7 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: $(APP_BUNDLE_ID).watchkitapp
             CFBundleURLSchemes: [nearmosque]
-        NSLocationWhenInUseUsageDescription: Your location is used on this watch for prayer times, the Qibla and nearby mosques. Only an approximate location is sent, and only when online mosque search is on.
+        NSLocationWhenInUseUsageDescription: Your location is used on this watch for prayer times, the Qibla and nearby mosques. Mosque search sends only an approximate location.
         NSHealthUpdateUsageDescription: If you turn it on, each prayer you mark is added to Apple Health as mindful minutes.
         NSHealthShareUsageDescription: Near Mosque does not read your health data; it only adds the mindful minutes of the prayers you mark.
         ITSAppUsesNonExemptEncryption: false

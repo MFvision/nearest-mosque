@@ -249,7 +249,10 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
             case .snooze: await Reminders.snooze(content)
             case .qibla: PendingRoute.open(URL(string: "nearmosque://qibla")!)
             case .mosques: PendingRoute.open(URL(string: "nearmosque://mosques")!)
-            case .silence: SilenceShortcutRunner.runFromNotification()
+            case .silence:
+                // Too late for this prayer's silence: only the prayer screen, as a tap on the notification opens
+                // (without carrying the Adhan on).
+                if !SilenceShortcutRunner.runFromNotification(event: event, date: date) { PendingRoute.open(URL(string: "nearmosque://prayer")!) }
             case nil:
                 // Opening an Adhan notification carries the Adhan on in the app, from where it would be now.
                 if let file = content.userInfo["adhan"] as? String {
