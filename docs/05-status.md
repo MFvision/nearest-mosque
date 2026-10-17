@@ -143,11 +143,15 @@ the App Store Connect API key, and uploaded **version 0.2.0 build 102** of `sa.z
 One Compose for Desktop app on the shared Kotlin core (`android/core`), packaged for both systems by
 `.github/workflows/desktop-release.yml` (started by hand; it replaces `windows-release.yml`). The version is
 `0.5.<run number>` (`-PappVersion`, default 0.5.0). With **release** ticked the workflow makes a **draft** GitHub
-Release `desktop-v<version>` with the MSI, the .deb, the AppImage and `SHA256SUMS.txt`.
+Release `desktop-v<version>` with the MSI, the .deb, the AppImage and `SHA256SUMS.txt`; with **publish** ticked too
+it publishes it and puts the same files under fixed names in the release `desktop-latest`. The Windows and Linux
+apps are not in a store: the website's "Download for Windows" and "Download for Linux" buttons link straight to
+`desktop-latest` (the MSI and the AppImage, with the .deb and the release page as small links under them;
+`website/story.js`).
 
 | Package | Built on | Install |
 |---|---|---|
-| MSI (and the MSIX for the Store once the Partner Center variables are set) | windows-latest | Run the MSI |
+| MSI (and, optionally, an MSIX for the Microsoft Store if the Partner Center variables are ever set) | windows-latest | Run the MSI |
 | `near-mosque_<version>_amd64.deb` | ubuntu-22.04 (older glibc and dependency names, so it also installs on newer Ubuntu and Debian) | `sudo apt install ./near-mosque_*.deb`, then Near Mosque in the menu (Utility); the program is `/opt/near-mosque/bin/Near Mosque` |
 | `near-mosque-<version>-x86_64.AppImage` | ubuntu-22.04 (`windows/linux/build-appimage.sh`, appimagetool 1.9.1 and runtime 20251108, both checked by SHA-256) | `chmod +x near-mosque-*.AppImage` and run it; without FUSE, add `--appimage-extract-and-run` |
 

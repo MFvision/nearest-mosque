@@ -182,8 +182,16 @@ main { position: relative; z-index: 1; }
 .store small { font-size: 0.72rem; opacity: 0.8; line-height: 1.1; }
 .store b { font: 600 1.05rem var(--font-display); line-height: 1.1; }
 .store[aria-disabled="true"] { background: transparent; color: var(--ink); border: 1px solid var(--glass-edge); cursor: default; }
-.store[aria-disabled="true"] small::after { content: attr(data-soon); }
-.store[aria-disabled="true"] small span { display: none; }
+/* Under the buttons: the .deb and the page with every download and its checksum. */
+.copy .stores-more { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-top: 10px; font: 500 0.82rem var(--font-body); }
+.stores-more a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 1px; padding-block: 4px; }
+/* Phones: the four buttons as two even rows of two, a little smaller; on the narrowest screens a name wraps rather than overflows. */
+@media (max-width: 480px) {
+  .copy .stores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .stores .store { grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; padding: 8px 10px; min-width: 0; }
+  .stores .store svg { width: 20px; height: 20px; }
+  .stores .store b { font-size: 0.9rem; overflow-wrap: anywhere; }
+}
 
 /* Everything inside: the page ground covers the stage. */
 .inside { position: relative; z-index: 2; background: var(--ground); padding-block: clamp(64px, 10vw, 120px) 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -224,6 +232,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .scroll-cue { display: none; }
   .stores { margin-top: 16px; gap: 8px; }
   .store { min-height: 50px; padding: 8px 14px; }
+  .copy .stores-more { margin-top: 6px; font-size: 0.78rem; }
   .labels > span { font-size: 0.72rem; }
   .labels .makkah { font-size: 0.9rem; }
 }
@@ -243,6 +252,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .note { margin-top: 6px !important; font-size: 0.8rem !important; }
   .cta-link, .stores, .daynight { margin-top: 10px; }
   .store { min-height: 42px; padding: 6px 12px; }
+  .copy .stores-more { margin-top: 4px; font-size: 0.74rem; }
   .hud { left: auto; translate: none; inset-inline-end: max(12px, env(safe-area-inset-right, 0px)); width: auto; max-width: 44vw; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
   .hud-legend { display: none; }
 }

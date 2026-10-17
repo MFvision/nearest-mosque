@@ -67,6 +67,16 @@ h2 { margin: 0 0 12px; font: 600 clamp(1.7rem, 1.2rem + 2.2vw, 2.8rem)/1.12 var(
 .store small { font-size: 0.7rem; opacity: 0.75; line-height: 1.1; }
 .store b { font: 600 1rem var(--font-display); line-height: 1.15; }
 .store.soon { background: transparent; color: var(--ink); border: 1px solid var(--glass-edge); }
+.stores-more { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin: 0; font-size: 0.82rem; opacity: 0.85; }
+.stores-more a { text-underline-offset: 3px; text-decoration-thickness: 1px; padding-block: 4px; }
+/* Phones: the four buttons as two even rows of two, a little smaller; on the narrowest screens a name wraps rather than overflows. */
+@media (max-width: 480px) {
+  .stores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .store { grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; padding: 8px 10px; min-width: 0; }
+  .store svg { width: 20px; height: 20px; }
+  .store b { font-size: 0.9rem; overflow-wrap: anywhere; }
+  .stores-more { grid-column: 1 / -1; }
+}
 
 footer { position: relative; z-index: 1; background: rgba(8, 20, 34, 0.86); padding: 24px max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
 footer nav { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 600; font-size: 0.92rem; }

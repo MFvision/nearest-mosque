@@ -352,8 +352,9 @@ only), widgets' styles other than the accent colour.
   * Ask: the common questions and the Qur'an (Arabic with Pickthall's English) and HadeethEnc hadith (Arabic
     and English) that come with the app, searched on the PC, every passage with its source.
   * Start with Windows: the installed app (MSI) opens in the notification area at sign-in (on by default, a
-    switch in Settings); the Microsoft Store version has a startup task the person turns on in Windows
-    Settings → Apps → Startup.
+    switch in Settings). The MSI is what the website offers (downloaded from GitHub, not a store); the optional
+    MSIX package (`windows/msix/`, only if it is ever sent to the Microsoft Store) has a startup task the person
+    turns on in Windows Settings → Apps → Startup.
   * Linux: a .deb (`sudo apt install ./near-mosque_*.deb`) and an AppImage. Start at sign-in uses
     `~/.config/autostart`; notifications go through `notify-send`. On a desktop without a notification area
     (GNOME by default) closing the window quits the app and a start at sign-in opens it minimized. Details and

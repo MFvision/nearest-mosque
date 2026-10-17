@@ -6,8 +6,15 @@ world in waves; Makkah shines brightest. Then the view flies from the visitor's 
 to Makkah along the Qibla arcs, down to the Kaaba inside rings of light; then the page dives into the app's living sky (`sky.js`, the same sky as the
 promo and the watch) for each feature, with the store screenshots.
 
-* `story.js`: every word and picture, both languages, and each chapter's stage. Store links are at the top:
-  set them when the listings are live (until then the buttons read "Coming soon").
+* `story.js`: every word and picture, both languages, and each chapter's stage. The download links are at the top
+  (`links`), and every version's buttons come from them:
+  * App Store and Google Play: set each link when its listing is live (until then the button reads "Coming soon").
+  * Windows and Linux are not in a store: the buttons download the file straight from GitHub, from the release
+    `desktop-latest` that `.github/workflows/desktop-release.yml` keeps on the newest version under fixed names
+    (`near-mosque-windows.msi`, `near-mosque-linux-x86_64.AppImage`). A line of small links under the buttons
+    offers the .deb for Ubuntu and Debian (`near-mosque-linux-amd64.deb`) and the release page with every file
+    and `SHA256SUMS.txt`. Those links work only once the workflow has published `desktop-latest` (run it with
+    **release** and **publish** ticked).
 * `globe.js`, `app.js`, `style.css`, `index.html`: the page. Static files: host the folder as it is.
 * `assets/`: built by `tools/site/build_assets.py` (land and cities for the globe, WebP screenshots, short clips,
   the opening of the Makkah Adhan for the sound button).

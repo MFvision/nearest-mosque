@@ -130,17 +130,24 @@ export function clock(date, tz, lang) {
   return fmts[key].format(date);
 }
 
-// The three store buttons; until a listing is live, its button reads "Coming soon".
+// The download buttons: the two stores (until a listing is live, its button reads "Coming soon"), then Windows and
+// Linux straight from GitHub, with the .deb and the page of every download in a line of small links under them.
 const ICONS = {
   appStore: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm6.2 4.2-4.6 8h2.1l.8-1.4h4.9l-1-1.8H10.6l2.5-4.4-1.9-.4Zm2.6 3.2-1 1.7 2.2 3.9h2.1l-3.3-5.6Z"/></svg>',
   googlePlay: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8v18.4c0 .6.6.9 1.1.6l15.4-8.9c.5-.3.5-1 0-1.3L5.1 2.2C4.6 1.9 4 2.2 4 2.8Z"/></svg>',
-  microsoftStore: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg>',
+  // Windows and Linux: plain shapes (a window, a terminal), not the systems' logos.
+  windows: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg>',
+  linux: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.3 4.4L9.9 12l-3.6 3.6L7.7 17l5-5-5-5ZM13 15.2V17h5v-1.8Z"/></svg>',
 };
 export const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const FILES = new Set(['windows', 'linux', 'linuxDeb']); // files: they download in place; pages open in a new tab
+const target = (k) => (FILES.has(k) ? '' : ' target="_blank"');
 export function storesHTML(t, links) {
+  const more = Object.keys(t.storesMore).filter((k) => links[k])
+    .map((k) => `<a href="${esc(links[k])}" rel="noopener"${target(k)}>${esc(t.storesMore[k])}</a>`);
   return Object.keys(ICONS).map((k) => {
     const [small, big] = t.stores[k];
     const inner = `${ICONS[k]}<small>${esc(links[k] ? small : t.soon)}</small><b>${esc(big)}</b>`;
-    return links[k] ? `<a class="store" href="${esc(links[k])}" rel="noopener" target="_blank">${inner}</a>` : `<span class="store soon" aria-disabled="true">${inner}</span>`;
-  }).join('');
+    return links[k] ? `<a class="store" href="${esc(links[k])}" rel="noopener"${target(k)}>${inner}</a>` : `<span class="store soon" aria-disabled="true">${inner}</span>`;
+  }).join('') + (more.length ? `<p class="stores-more">${more.join('<span aria-hidden="true">·</span>')}</p>` : '');
 }

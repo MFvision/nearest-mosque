@@ -9,10 +9,16 @@
 // media: phones, watches, devices; paths are under assets/<lang>/.
 
 export const links = {
-  // Set a link when the listing is live; until then the button reads "Coming soon".
+  // Set a store link when the listing is live; until then the button reads "Coming soon".
   appStore: null,
   googlePlay: null,
-  microsoftStore: null,
+  // Windows and Linux are downloaded straight from GitHub: the release "desktop-latest", which
+  // .github/workflows/desktop-release.yml keeps on the newest version under these fixed names.
+  windows: 'https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi',
+  linux: 'https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage',
+  // The small links under the buttons: the .deb, and the release page with every file and SHA256SUMS.txt.
+  linuxDeb: 'https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-amd64.deb',
+  desktopAll: 'https://github.com/MFvision/nearest-mosque/releases/tag/desktop-latest',
 };
 
 const chapters = [
@@ -48,7 +54,8 @@ const en = {
   board: { world: 'Next prayer', lines: 'Five prayers', qibla: 'Qibla', kaaba: 'Makkah', sky: 'Your sky', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
   boardLabel: 'Story',
   soon: 'Coming soon',
-  stores: { appStore: ['Download on the', 'App Store'], googlePlay: ['Get it on', 'Google Play'], microsoftStore: ['Get it from', 'Microsoft Store'] },
+  stores: { appStore: ['Download on the', 'App Store'], googlePlay: ['Get it on', 'Google Play'], windows: ['Download for', 'Windows'], linux: ['Download for', 'Linux'] },
+  storesMore: { linuxDeb: '.deb for Ubuntu/Debian', desktopAll: 'All downloads and checksums' },
   chapters: {
     world: {
       eyebrow: 'Your next prayer',
@@ -116,7 +123,7 @@ const en = {
     devices: {
       eyebrow: 'Every screen',
       title: 'On [[iPhone, iPad, Mac, Apple TV and Vision Pro]].',
-      body: 'One listing for your Apple devices. Android and Windows versions keep the same prayer times and Qibla.',
+      body: 'One listing for your Apple devices. Android, Windows and Linux versions keep the same prayer times and Qibla.',
       points: ['36 interface languages, 6 of them right to left'],
       labels: ['iPhone', 'iPad', 'Mac', 'Apple TV', 'Vision Pro'],
     },
@@ -177,7 +184,8 @@ const ar = {
   board: { world: 'صلاتك القادمة', lines: 'الصلوات الخمس', qibla: 'القبلة', kaaba: 'مكة المكرمة', sky: 'سماؤك', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
   boardLabel: 'القصة',
   soon: 'قريبًا',
-  stores: { appStore: ['حمّله من', 'App Store'], googlePlay: ['احصل عليه من', 'Google Play'], microsoftStore: ['احصل عليه من', 'Microsoft Store'] },
+  stores: { appStore: ['حمّله من', 'App Store'], googlePlay: ['احصل عليه من', 'Google Play'], windows: ['حمّل لـ', 'Windows'], linux: ['حمّل لـ', 'Linux'] },
+  storesMore: { linuxDeb: '\u2066.deb\u2069 لأوبونتو وديبيان', desktopAll: 'كل التنزيلات وبصماتها' }, // \u2066…\u2069 keeps ".deb" left to right, its dot in front
   chapters: {
     world: {
       eyebrow: 'صلاتك القادمة',
@@ -244,7 +252,7 @@ const ar = {
     devices: {
       eyebrow: 'على كل شاشة',
       title: 'على [[آيفون وآيباد وماك وآبل تي في وفيجن برو]].',
-      body: 'تطبيقٌ واحد لأجهزة Apple كلها، ونسختان لأندرويد وويندوز بالمواقيت والقبلة نفسها.',
+      body: 'تطبيقٌ واحد لأجهزة Apple كلها، ونسخٌ لأندرويد وويندوز ولينكس بالمواقيت والقبلة نفسها.',
       points: ['36 لغة للواجهة، منها 6 من اليمين إلى اليسار'],
       labels: ['آيفون', 'آيباد', 'ماك', 'آبل تي في', 'فيجن برو'],
     },
