@@ -8,7 +8,7 @@ promo and the watch) for each feature, with the store screenshots.
 
 * `story.js`: every word and picture, both languages, and each chapter's stage. The download links are at the top
   (`links`), and every version's buttons come from them:
-  * App Store and Google Play: set each link when its listing is live (until then the button reads "Coming soon").
+  * App Store and Google Play: set each link when its listing is live (until then the button reads "Coming soon"). Google Play is live (com.AVA.nearmosque); the App Store link waits for Apple's review.
   * Windows and Linux are not in a store: the buttons download the file straight from GitHub, from the release
     `desktop-latest` that `.github/workflows/desktop-release.yml` keeps on the newest version under fixed names
     (`near-mosque-windows.msi`, `near-mosque-linux-x86_64.AppImage`). A line of small links under the buttons
