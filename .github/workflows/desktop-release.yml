@@ -6,8 +6,11 @@ name: Near Mosque for Windows and Linux
 #     submission). The MSI is installed on the runner and the installed app started as a check.
 #   * Linux (Ubuntu 22.04, so the .deb's dependencies and glibc suit older systems too): tests, the .deb and one
 #     .AppImage file. The .deb is installed with apt and both are started under a virtual display as a check.
-# With "release" ticked, a last job makes a DRAFT GitHub Release (tag desktop-v<version>) with the MSI, the .deb,
-# the AppImage and SHA256SUMS.txt; nothing is published until someone publishes the draft.
+# With "release" ticked, a last job makes a GitHub Release (tag desktop-v<version>) with the MSI, the .deb, the
+# AppImage and SHA256SUMS.txt: a draft, or, with "publish" ticked too, published, and then the same files under fixed
+# names in the release "desktop-latest", which the website's download buttons link to:
+#   releases/download/desktop-latest/near-mosque-windows.msi, near-mosque-linux-x86_64.AppImage,
+#   near-mosque-linux-amd64.deb, SHA256SUMS.txt
 #
 # The version is 0.5.<run number> (MSI rules: MAJOR.MINOR.BUILD, BUILD at most 65535).
 
@@ -15,7 +18,11 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: Make a draft GitHub Release with the MSI, .deb and AppImage
+        description: Make a GitHub Release with the MSI, .deb and AppImage (a draft unless "publish")
+        type: boolean
+        default: false
+      publish:
+        description: Publish it and update the website's download links (desktop-latest)
         type: boolean
         default: false
 
@@ -159,7 +166,7 @@ jobs:
           retention-days: 7
 
   release:
-    name: Draft GitHub Release
+    name: GitHub Release
     if: inputs.release
     needs: [windows, linux]
     runs-on: ubuntu-24.04
@@ -182,12 +189,13 @@ jobs:
           cp "$deb" "out/near-mosque_${APP_VERSION}_amd64.deb"
           cp "$appimage" "out/near-mosque-$APP_VERSION-x86_64.AppImage"
           (cd out && sha256sum near-mosque* > SHA256SUMS.txt && cat SHA256SUMS.txt)
-      - name: Draft release desktop-v${{ env.APP_VERSION }}
+      - name: Release desktop-v${{ env.APP_VERSION }}
         env:
           GH_TOKEN: ${{ github.token }}
+          PUBLISH: ${{ inputs.publish }}
         run: |
           cat > notes.md <<EOF
-          Near Mosque for Windows and Linux, version $APP_VERSION (draft: check, then publish).
+          Near Mosque for Windows and Linux, version $APP_VERSION.
 
           **Windows**: run \`near-mosque-$APP_VERSION.msi\`.
 
@@ -200,6 +208,36 @@ jobs:
           Check a download with \`sha256sum -c SHA256SUMS.txt --ignore-missing\`.
           Built from ${{ github.sha }}.
           EOF
-          gh release create "desktop-v$APP_VERSION" --repo "${{ github.repository }}" --draft \
+          draft=--draft
+          [ "$PUBLISH" = true ] && draft=
+          gh release create "desktop-v$APP_VERSION" --repo "${{ github.repository }}" $draft --latest=false \
             --target "${{ github.sha }}" --title "Near Mosque for Windows and Linux $APP_VERSION" \
             --notes-file notes.md out/*
+      - name: Fixed download links (desktop-latest)
+        if: inputs.publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p latest
+          cp "out/near-mosque-$APP_VERSION.msi" latest/near-mosque-windows.msi
+          cp "out/near-mosque_${APP_VERSION}_amd64.deb" latest/near-mosque-linux-amd64.deb
+          cp "out/near-mosque-$APP_VERSION-x86_64.AppImage" latest/near-mosque-linux-x86_64.AppImage
+          (cd latest && sha256sum near-mosque-* > SHA256SUMS.txt)
+          cat > latest-notes.md <<EOF
+          The newest Near Mosque for Windows and Linux: version $APP_VERSION (the same files as
+          [desktop-v$APP_VERSION](https://github.com/${{ github.repository }}/releases/tag/desktop-v$APP_VERSION), under
+          names that stay the same, for the download buttons on https://nearmosque.net/).
+
+          * Windows: near-mosque-windows.msi
+          * Linux, any distribution: near-mosque-linux-x86_64.AppImage (chmod +x, then run it)
+          * Ubuntu, Debian and similar: near-mosque-linux-amd64.deb (sudo apt install ./near-mosque-linux-amd64.deb)
+          EOF
+          repo="${{ github.repository }}"
+          if gh release view desktop-latest --repo "$repo" >/dev/null 2>&1; then
+            gh release edit desktop-latest --repo "$repo" --title "Near Mosque for Windows and Linux (newest: $APP_VERSION)" \
+              --notes-file latest-notes.md --latest=false
+            gh release upload desktop-latest --repo "$repo" --clobber latest/*
+          else
+            gh release create desktop-latest --repo "$repo" --target "${{ github.sha }}" --latest=false \
+              --title "Near Mosque for Windows and Linux (newest: $APP_VERSION)" --notes-file latest-notes.md latest/*
+          fi
