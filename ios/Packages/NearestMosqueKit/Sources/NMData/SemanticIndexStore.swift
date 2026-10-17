@@ -39,6 +39,11 @@ public final class SemanticIndexStore: @unchecked Sendable {
         buildLock.lock(); defer { buildLock.unlock() }
         guard let embedder else { return }
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        // Rebuilt from the installed packs at any time: kept out of iCloud/iTunes backups like the packs themselves.
+        var backup = URLResourceValues()
+        backup.isExcludedFromBackup = true
+        var folder = dir
+        try? folder.setResourceValues(backup)
         let packs = try db.writer.read { db in
             try Row.fetchAll(db, sql: "SELECT id, version, installedAt FROM installed_pack WHERE kind = 'sources'")
                 .map { (id: $0["id"] as String, name: "\($0["id"] as String)@\($0["version"] as Int)-\(Int64(($0["installedAt"] as Double) * 1000)).vec") }
