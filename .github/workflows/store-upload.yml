@@ -16,7 +16,7 @@ on:
         default: ""
       display_types:
         description: "Screenshot sets, space-separated (e.g. APP_WATCH_ULTRA); empty for text only"
-        default: "APP_WATCH_ULTRA"
+        default: ""
       screens:
         description: "Add these screens to sets that already have screenshots, then order the sets (e.g. prayer-weather); empty: only fill empty sets"
         default: ""
