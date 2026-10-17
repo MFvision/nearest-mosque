@@ -174,11 +174,14 @@ class PlatformTest {
         val clock = Clock(riyadh, settings)
         val dhuhr: Instant = clock.today(Instant.parse("2026-10-12T10:00:00Z"))[PrayerEvent.DHUHR]!!
         val sent = mutableListOf<Pair<String, String>>()
-        val r = Reminders { title, body -> sent += title to body }
+        // The voice now plays with the Adhan off too (as on the phone); nothing really plays in the test.
+        val voices = mutableListOf<String>()
+        val r = Reminders { title, body -> sent += title to body }.apply { sound = { name, _ -> voices += name; true } }
         r.tick(clock, settings, dhuhr.minusSeconds(600).plusSeconds(10))
         assertTrue(sent.isEmpty(), "ten-minute reminder off")
         r.tick(clock, settings, dhuhr.minusSeconds(300).plusSeconds(10))
         assertEquals(listOf("Dhuhr" to "5 minutes until Dhuhr"), sent)
+        assertEquals(listOf("voice_en_dhuhr_5"), voices)
         assertEquals("voice_ar_asr_5", Sound.reminderFile(PrayerEvent.ASR, "ar", 5))
         assertEquals("voice_en_asr_10", Sound.reminderFile(PrayerEvent.ASR, "en"))
         assertTrue(listOf(5, 10).all { m -> PrayerEvent.prayers.all { e -> Sound::class.java.classLoader.getResource("sounds/${Sound.reminderFile(e, "ar", m)}.mp3") != null } })

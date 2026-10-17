@@ -121,19 +121,22 @@ object Platform {
 
     val route: Route get() = route(os, hasTray, notifySend != null)
 
-    /** The notify-send command for one notification (the texts after "--", so none is read as an option). */
-    fun notifySendCommand(exe: String, title: String, body: String, icon: File?): List<String> =
-        listOfNotNull(exe, "--app-name=Near Mosque", icon?.let { "--icon=${it.absolutePath}" }, "--", title, body)
+    /**
+     * The notify-send command for one notification (the texts after "--", so none is read as an option). [urgent]
+     * (the Fajr alarm) asks for a critical notification, which most desktops keep on screen until it is dismissed.
+     */
+    fun notifySendCommand(exe: String, title: String, body: String, icon: File?, urgent: Boolean = false): List<String> =
+        listOfNotNull(exe, "--app-name=Near Mosque", icon?.let { "--icon=${it.absolutePath}" }, if (urgent) "--urgency=critical" else null, "--", title, body)
 
     /**
      * Shows a notification through notify-send; if it cannot run or reports a failure (no notification service),
      * [fallback] shows it another way. Never blocks the caller.
      */
-    fun notifySend(title: String, body: String, fallback: () -> Unit) {
+    fun notifySend(title: String, body: String, urgent: Boolean = false, fallback: () -> Unit) {
         val exe = notifySend ?: return fallback()
         Thread {
             val ok = runCatching {
-                val p = start(notifySendCommand(exe.path, title, body, iconFile))
+                val p = start(notifySendCommand(exe.path, title, body, iconFile, urgent))
                 p.waitFor(15, TimeUnit.SECONDS) && p.exitValue() == 0
             }.getOrDefault(false)
             if (!ok) fallback()

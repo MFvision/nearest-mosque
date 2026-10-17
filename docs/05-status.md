@@ -170,9 +170,17 @@ What differs on Linux, all decided at run time (`Platform.kt`):
   Arabic (DejaVu Sans, Noto). A bare system without such a font would show boxes.
 * One copy at a time on both systems: opening the app again brings the running window forward instead of
   starting a second Adhan.
+* Reminders: the shared planner (`AlertPlanner`) with the person's choices, checked every second for yesterday,
+  today and tomorrow; each alert is given within two minutes of its time, once (even if the PC's clock is set
+  back). One player: the Fajr alarm comes before the Adhan, the Adhan before a spoken reminder, a spoken reminder
+  before a recitation; a sound held back waits, within its two minutes, for the one ahead of it to end. The Fajr
+  alarm repeats the short Adhan until Stop (window card or tray menu), the Fajr Adhan (when set before Fajr) or 10
+  minutes; without a sound device it is silent and its card stays for the 10 minutes; on Linux its notification is
+  sent with `--urgency=critical`. Changes in Settings reach the reminders at once, without a restart. The spoken 10, 5 and pre-prayer reminders now play even
+  with the Adhan off for that prayer (as on the phone; before, the desktop tied them to the Adhan).
 
 Checked in this environment (Ubuntu 24.04 container, no real desktop, sound device, tray or notification
-service): 26 desktop tests; `createDistributable`, `packageDeb`, the AppImage; the .deb installed with apt and
+service): 26 desktop tests (39 since the calculation settings, 64 since the reminders and the Fajr alarm: `./gradlew --offline test`); `createDistributable`, `packageDeb`, the AppImage; the .deb installed with apt and
 removed again; the installed program, the app image and the AppImage each started under Xvfb and still running
 after 20 s, with Prayer and Settings drawn in English and Arabic (times in Arabic as "2:57 م"). Not yet checked:
 anything on Windows since these changes (the workflow's Windows job builds, installs and starts the MSI), the

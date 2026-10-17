@@ -1,6 +1,7 @@
 package sa.zood.nearmosque.desktop
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -39,6 +41,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,9 +49,13 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -62,15 +69,22 @@ import androidx.compose.ui.window.rememberWindowState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import sa.zood.nearmosque.core.AdhanSource
+import sa.zood.nearmosque.core.AlertKind
+import sa.zood.nearmosque.core.AlertSettings
 import sa.zood.nearmosque.core.AsrMadhab
 import sa.zood.nearmosque.core.City
+import sa.zood.nearmosque.core.HighLatRule
 import sa.zood.nearmosque.core.HijriCalendar
 import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.Method
+import sa.zood.nearmosque.core.PolarRule
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.Qibla
+import sa.zood.nearmosque.core.Reciter
+import sa.zood.nearmosque.core.ScheduleStatus
+import sa.zood.nearmosque.core.VoiceLanguage
 import java.time.Duration
 import java.time.Instant
 import kotlin.math.roundToInt
@@ -111,35 +125,49 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
     val tray = rememberTrayState()
     // The last notification, shown inside the window when the desktop has no way to show it.
     var banner by remember { mutableStateOf<String?>(null) }
-    val reminders = remember {
-        Reminders { title, body ->
-            val inApp = { banner = "$title · $body" }
-            when (Platform.route) {
-                Platform.Route.TRAY -> tray.sendNotification(Notification(title, body))
-                Platform.Route.NOTIFY_SEND -> Platform.notifySend(title, body) {
-                    if (hasTray) tray.sendNotification(Notification(title, body)) else inApp()
-                }
-                Platform.Route.IN_APP -> inApp()
+    // When the Fajr alarm started (System.nanoTime, so a change of the PC's clock does not move it): the window shows it
+    // with Stop while it rings, and for Sound.ALARM_MAX when there is no sound device to ring it.
+    var alarmSince by remember { mutableStateOf<Long?>(null) }
+    fun send(title: String, body: String, urgent: Boolean) {
+        val inApp = { banner = "$title · $body" }
+        val type = if (urgent) Notification.Type.Warning else Notification.Type.None
+        when (Platform.route) {
+            Platform.Route.TRAY -> tray.sendNotification(Notification(title, body, type))
+            Platform.Route.NOTIFY_SEND -> Platform.notifySend(title, body, urgent) {
+                if (hasTray) tray.sendNotification(Notification(title, body, type)) else inApp()
             }
+            Platform.Route.IN_APP -> inApp()
         }
+    }
+    val reminders = remember {
+        Reminders { title, body -> send(title, body, urgent = false) }.apply {
+            notifyAlarm = { title, body -> send(title, body, urgent = true) }
+            // The alarm brings the window up (from the notification area too) with its Stop button.
+            onAlarm = { alarmSince = System.nanoTime(); visible = true; raise++ }
+        }
+    }
+    fun stopAlarm() {
+        Sound.stop()
+        alarmSince = null
     }
     var now by remember { mutableStateOf(Instant.now()) }
 
     // Keep the start-at-sign-in entry in step with the setting (the installer may have moved the app).
     LaunchedEffect(Unit) { Startup.set(settings.startAtLogin) }
-    LaunchedEffect(Unit) {
-        while (true) {
-            now = Instant.now()
-            // A slip in one tick (a broken sound device, a notification that cannot show) never stops the next.
-            runCatching { reminders.tick(clock, settings, now) }
-            if (instance.takeShowRequest()) { visible = true; raise++ }
-            delay(1_000)
-        }
+    TickLoop(clock, settings) { c, s ->
+        now = Instant.now()
+        // A slip in one tick (a broken sound device, a notification that cannot show) never stops the next.
+        runCatching { reminders.tick(c, s, now) }
+        // The alarm's card goes with its sound (Stop anywhere, another sound, the Fajr Adhan), or after the longest ring.
+        alarmSince?.let { if (System.nanoTime() - it >= Sound.ALARM_MAX.toNanos() || !alarmShows()) alarmSince = null }
+        if (instance.takeShowRequest()) { visible = true; raise++ }
     }
 
     fun update(s: DesktopSettings) {
         Strings.language = s.language
         if (s.startAtLogin != settings.startAtLogin) Startup.set(s.startAtLogin)
+        // The Fajr alarm turned off while it rings: it stops.
+        if (s.fajrAlarmMinutesBefore == null && settings.fajrAlarmMinutesBefore != null && (alarmSince != null || Sound.alarm)) stopAlarm()
         settings = s
         Store.save(s)
     }
@@ -152,7 +180,7 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
             onAction = { visible = true; raise++ },
             menu = {
                 Item(t("tab_prayer"), onClick = { visible = true; raise++ })
-                Item(t("stop"), onClick = { Sound.stop() })
+                Item(t("stop"), onClick = { stopAlarm() })
                 Item(t("close"), onClick = ::exitApplication)
             },
         )
@@ -170,6 +198,8 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
             LaunchedEffect(raise) {
                 if (raise > 0) {
                     windowState.isMinimized = false
+                    // For the alarm, on top for a moment: Windows otherwise may only flash the taskbar button.
+                    if (alarmSince != null) runCatching { window.isAlwaysOnTop = true; window.toFront(); window.isAlwaysOnTop = false }
                     window.toFront()
                     window.requestFocus()
                 }
@@ -185,6 +215,8 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
                         onSettings = ::update,
                         banner = banner,
                         onDismissBanner = { banner = null },
+                        alarm = alarmSince != null && alarmShows(),
+                        onStopAlarm = ::stopAlarm,
                     )
                 }
             }
@@ -192,10 +224,31 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
     }
 }
 
+/** The Fajr alarm rings, or could not ring for want of a sound device (its card then stays for its full time). */
+private fun alarmShows() = Sound.alarm || Sound.alarmUnheard
+
+/**
+ * Calls [pass] every [periodMillis] while in the composition, always with the latest [clock] and [settings]: a change
+ * in Settings (a minute adjustment, the high-latitude or polar rule, Ramadan Isha, another city) reaches the Adhan
+ * and the reminders on the next pass, as it reaches the screen, not after a restart.
+ */
+@Composable
+internal fun TickLoop(clock: Clock?, settings: DesktopSettings, periodMillis: Long = 1_000, pass: (Clock?, DesktopSettings) -> Unit) {
+    val currentClock by rememberUpdatedState(clock)
+    val currentSettings by rememberUpdatedState(settings)
+    val currentPass by rememberUpdatedState(pass)
+    LaunchedEffect(Unit) {
+        while (true) {
+            currentPass(currentClock, currentSettings)
+            delay(periodMillis)
+        }
+    }
+}
+
 @Composable
 internal fun AppScreen(
     settings: DesktopSettings, city: City?, clock: Clock?, now: Instant, onCity: (City) -> Unit, onSettings: (DesktopSettings) -> Unit,
-    banner: String? = null, onDismissBanner: () -> Unit = {},
+    banner: String? = null, onDismissBanner: () -> Unit = {}, alarm: Boolean = false, onStopAlarm: () -> Unit = {},
 ) {
     var screen by remember { mutableStateOf(Screen.PRAYER) }
     var picking by remember { mutableStateOf(city == null) }
@@ -210,6 +263,8 @@ internal fun AppScreen(
             }
         }
         Column(Modifier.fillMaxSize().padding(24.dp)) {
+            // The Fajr alarm, on every screen, with Stop (also in the tray menu).
+            if (alarm) AlarmCard(onStopAlarm)
             if (banner != null) {
                 Surface(color = Card, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
                     Row(Modifier.padding(start = 16.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -220,13 +275,28 @@ internal fun AppScreen(
             }
             Box(Modifier.fillMaxSize()) { when {
                 picking || clock == null -> CityPicker(onPick = { onCity(it); picking = false })
-                screen == Screen.PRAYER -> PrayerScreen(clock, now, onChangeCity = { picking = true })
+                screen == Screen.PRAYER -> PrayerScreen(
+                    clock, now, onChangeCity = { picking = true },
+                    onUseNearest = { onSettings(settings.copy(polarRule = PolarRule.NEAREST_LATITUDE)) },
+                )
                 screen == Screen.QIBLA -> QiblaScreen(clock.city)
                 screen == Screen.MOSQUES -> MosquesScreen(clock.city, settings.onlineSearch)
                 screen == Screen.ASK -> AskScreen()
                 screen == Screen.BOOKS -> BooksScreen()
                 else -> SettingsScreen(settings, clock, onSettings, onChangeCity = { picking = true })
             } }
+        }
+    }
+}
+
+@Composable
+private fun AlarmCard(onStop: () -> Unit) {
+    Surface(color = Gold, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+        Row(Modifier.padding(horizontal = 20.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+            Text("⏰  " + t("alerts_fajr_alarm"), color = Navy, fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            Button(onClick = onStop, colors = ButtonDefaults.buttonColors(containerColor = Navy, contentColor = Gold)) {
+                Text(t("alarm_stop"), fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            }
         }
     }
 }
@@ -241,7 +311,7 @@ private fun railIcon(s: Screen) = when (s) {
 }
 
 @Composable
-private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit) {
+private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit, onUseNearest: () -> Unit) {
     val today = clock.today(now)
     val moment = clock.moment(now)
     val iqama = clock.iqama
@@ -251,9 +321,13 @@ private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit) {
             Column(Modifier.weight(1f)) {
                 Text(clock.city.displayName(Strings.language), color = Ink, fontSize = 26.sp, fontWeight = FontWeight.SemiBold)
                 if (hijri != null) Text("${hijri.day} / ${hijri.month} / ${hijri.year}", color = Muted)
+                // Polar day or night with the nearest-latitude rule: the times are those at 48.5°, and the Adhan follows them.
+                if (today.status is ScheduleStatus.Estimated) Text(t("estimated_badge"), color = Gold, fontSize = 13.sp)
             }
             TextButton(onClick = onChangeCity) { Text(t("choose_city_title"), color = Gold) }
         }
+        // No sunrise or sunset today: no times are invented unless the person picks the nearest-latitude rule.
+        if (today.status == ScheduleStatus.Unavailable) PolarCard(onUseNearest)
         if (moment != null) MomentCard(moment, clock, now)
         Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(vertical = 8.dp)) {
@@ -273,6 +347,18 @@ private fun PrayerScreen(clock: Clock, now: Instant, onChangeCity: () -> Unit) {
             }
         }
         if (Sound.playing != null) Button(onClick = { Sound.stop() }) { Text(t("stop")) }
+    }
+}
+
+/** Times cannot be calculated for this date (the sun does not rise or set), with the one-click way out. */
+@Composable
+private fun PolarCard(onUseNearest: () -> Unit) {
+    Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(t("polar_unavailable_title"), color = Ink, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            Text(t("polar_unavailable_body"), color = Muted)
+            Button(onClick = onUseNearest) { Text(t("polar_use_nearest")) }
+        }
     }
 }
 
@@ -359,7 +445,9 @@ private fun CityPicker(onPick: (City) -> Unit) {
 }
 
 @Composable
-private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopSettings) -> Unit, onChangeCity: () -> Unit) {
+internal fun SettingsScreen(
+    s: DesktopSettings, clock: Clock, onChange: (DesktopSettings) -> Unit, onChangeCity: () -> Unit, openPrayer: PrayerEvent? = null,
+) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(14.dp)) {
         Text(t("settings"), color = Ink, fontSize = 26.sp, fontWeight = FontWeight.SemiBold)
         Choice(t("language"), Strings.languages.firstOrNull { it.code == s.language }?.name ?: s.language, Strings.languages.map { it.name to { onChange(s.copy(language = it.code)) } })
@@ -367,14 +455,34 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
             Text(clock.city.displayName(Strings.language), color = Ink, modifier = Modifier.weight(1f))
             TextButton(onClick = onChangeCity) { Text(t("choose_city_title"), color = Gold) }
         }
+        Text(t("calculation"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Choice(t("calculation_method"), t("method_" + clock.settings.method.name), Method.entries.map { m -> t("method_" + m.name) to { onChange(s.copy(method = m)) } })
         if (s.method == null) Text(t("method_suggested"), color = Muted, fontSize = 13.sp)
         Choice(t("asr_method"), t(if (s.madhab == AsrMadhab.HANAFI) "asr_hanafi" else "asr_standard"), listOf(
             t("asr_standard") to { onChange(s.copy(madhab = AsrMadhab.SHAFI)) },
             t("asr_hanafi") to { onChange(s.copy(madhab = AsrMadhab.HANAFI)) },
         ))
+        // As in the phone app's calculation sheet.
+        val highLat = listOf(
+            HighLatRule.AUTO to "hl_auto", HighLatRule.MIDDLE_OF_THE_NIGHT to "hl_middle",
+            HighLatRule.SEVENTH_OF_THE_NIGHT to "hl_seventh", HighLatRule.TWILIGHT_ANGLE to "hl_twilight",
+        )
+        Choice(t("high_latitude_rule"), t(highLat.first { it.first == s.highLatitudeRule }.second), highLat.map { (r, key) -> t(key) to { onChange(s.copy(highLatitudeRule = r)) } })
+        val polar = listOf(PolarRule.UNAVAILABLE to "polar_none", PolarRule.NEAREST_LATITUDE to "polar_nearest")
+        Choice(t("polar_rule"), t(polar.first { it.first == s.polarRule }.second), polar.map { (r, key) -> t(key) to { onChange(s.copy(polarRule = r)) } })
+        // The method in use (the suggested one when none is chosen).
+        if (clock.settings.method == Method.UMM_AL_QURA) Toggle(t("ramadan_isha"), s.ramadanIsha) { onChange(s.copy(ramadanIsha = it)) }
         Choice(t("hijri_adjustment"), days(s.hijriAdjustment), (-2..2).map { d -> days(d) to { onChange(s.copy(hijriAdjustment = d)) } })
         Text(t("hijri_calendar_note"), color = Muted, fontSize = 13.sp)
+        Text(t("minute_adjustments"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        PrayerEvent.entries.forEach { e ->
+            val v = s.offsets[e] ?: 0
+            fun set(m: Int) = onChange(s.copy(offsets = (s.offsets + (e to m.coerceIn(-30, 30))).filterValues { it != 0 }))
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(t(prayerKey(e)), color = Ink, modifier = Modifier.weight(1f))
+                Stepper(offset(v), minusEnabled = v > -30, plusEnabled = v < 30, onMinus = { set(v - 1) }, onPlus = { set(v + 1) })
+            }
+        }
         Text(t("adhan_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Toggle(t("play_adhan"), s.adhan) { onChange(s.copy(adhan = it)) }
         Choice(t("adhan_full"), sourceName(s.adhanSource), AdhanSource.entries.map { a -> sourceName(a) to { onChange(s.copy(adhanSource = a)) } })
@@ -383,13 +491,30 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
             t("adhan_length_full") to { onChange(s.copy(shortAdhan = false)) },
             t("adhan_short") to { onChange(s.copy(shortAdhan = true)) },
         ))
-        Text(t("per_prayer_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-        PrayerEvent.prayers.forEach { e ->
-            Toggle(t(prayerKey(e)), e !in s.silent) { on -> onChange(s.copy(silent = if (on) s.silent - e else s.silent + e)) }
-        }
+        // As in the phone app's Prayer & Audio screen, in the same order.
+        Header(t("before_section"))
         Toggle(t("before10"), s.before10) { onChange(s.copy(before10 = it)) }
         Toggle(t("before5"), s.before5) { onChange(s.copy(before5 = it)) }
+        Toggle(t("near"), s.near, note = t("near_note")) { onChange(s.copy(near = it)) }
+        if (s.near) Indented {
+            Choice(t("near_when"), t("alerts_minutes", s.nearMinutes), AlertSettings.nearChoices.map { m -> t("alerts_minutes", m) to { onChange(s.copy(nearMinutes = m)) } })
+        }
+        val voice = s.voice ?: VoiceLanguage.forInterface(s.language)
+        fun voiceName(v: VoiceLanguage) = t(if (v == VoiceLanguage.ARABIC) "voice_arabic" else "voice_english")
+        Choice(
+            t("voice_language"), voiceName(voice), VoiceLanguage.entries.map { v -> voiceName(v) to { onChange(s.copy(voice = v)) } },
+            preview = Sound.file(AlertKind.BEFORE_10, PrayerEvent.MAGHRIB, s.copy(voice = voice))!! to t("voice_language"),
+        )
+        Note(t("before_note"))
+        Header(t("per_prayer_section"))
+        val alerts = s.alerts()
+        PrayerEvent.prayers.forEach { e ->
+            PrayerRows(e, s, alerts, startOpen = e == openPrayer, onAdhan = { on -> onChange(s.withAdhan(e, on)) }) { sound, on ->
+                onChange(s.withAlerts(alerts.withPrayer(e, sound, on)))
+            }
+        }
         Toggle(t("sunrise_notify"), s.sunrise) { onChange(s.copy(sunrise = it)) }
+        Note(t("per_prayer_note"))
         Text(t("iqama_section"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Toggle(t("iqama_show"), s.iqama.enabled) { onChange(s.copy(iqama = s.iqama.copy(enabled = it))) }
         if (s.iqama.enabled) {
@@ -400,6 +525,29 @@ private fun SettingsScreen(s: DesktopSettings, clock: Clock, onChange: (DesktopS
             Toggle(t("iqama_alert"), s.iqama.alert) { onChange(s.copy(iqama = s.iqama.copy(alert = it))) }
         }
         Text(t("iqama_note"), color = Muted, fontSize = 13.sp)
+        Header(t("dhikr_section"))
+        val evening = Sound.file(AlertKind.QURAN, PrayerEvent.ISHA, s)!!
+        Toggle(t("salawat"), s.salawat, note = t("salawat_note"), preview = Sound.file(AlertKind.SALAWAT, PrayerEvent.DHUHR, s)!! to t("salawat")) {
+            onChange(s.copy(salawat = it))
+        }
+        if (s.salawat) TimeChoice(t("reminder_time"), s.salawatMinutes) { onChange(s.copy(salawatMinutes = it)) }
+        Toggle(t("quran_reminder"), s.quran, note = t("quran_reminder_note"), preview = evening to t("quran_reminder")) { onChange(s.copy(quran = it)) }
+        if (s.quran) TimeChoice(t("reminder_time"), s.quranMinutes) { onChange(s.copy(quranMinutes = it)) }
+        Toggle(t("alerts_sleep"), s.bedtimeMinutes != null, note = t("alerts_sleep_note"), preview = evening to t("alerts_sleep")) {
+            onChange(s.copy(bedtimeMinutes = if (it) s.bedtimeMinutes ?: AlertSettings.DEFAULT_BEDTIME_MIN else null))
+        }
+        s.bedtimeMinutes?.let { m -> TimeChoice(t("alerts_sleep_time"), m) { onChange(s.copy(bedtimeMinutes = it)) } }
+        Toggle(t("alerts_kahf"), s.kahf, note = t("alerts_kahf_note")) { onChange(s.copy(kahf = it)) }
+        fun reciterName(r: Reciter) = t(if (r == Reciter.ALAFASY) "reciter_alafasy" else "reciter_classic")
+        Choice(t("reciter"), reciterName(s.reciter), Reciter.entries.map { r -> reciterName(r) to { onChange(s.copy(reciter = r)) } })
+        Header(t("more_reminders_section"))
+        Toggle(t("alerts_friday"), s.friday, note = t("alerts_friday_note")) { onChange(s.copy(friday = it)) }
+        Toggle(t("alerts_ramadan"), s.ramadan, note = t("alerts_ramadan_note")) { onChange(s.copy(ramadan = it)) }
+        fun alarmName(m: Int?) = when (m) { null -> t("alerts_off"); 0 -> t("alerts_at_fajr"); else -> t("alerts_minutes", m) }
+        Choice(t("alerts_fajr_alarm"), alarmName(s.fajrAlarmMinutesBefore), (listOf<Int?>(null) + AlertSettings.fajrAlarmChoices).map { m ->
+            alarmName(m) to { onChange(s.copy(fajrAlarmMinutesBefore = m)) }
+        })
+        Note(t("audio_credits"))
         Text(t("tab_mosques"), color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         Toggle(t("online_search"), s.onlineSearch) { onChange(s.copy(onlineSearch = it)) }
         Text(t("online_search_body"), color = Muted, fontSize = 13.sp)
@@ -454,28 +602,118 @@ internal val appVersion: String? by lazy {
 
 private fun minutes(m: Int) = t("minutes_value", m)
 
+/** A minute adjustment: "0 min", "+2 min", "−5 min", the signed number kept left to right in Arabic. */
+internal fun offset(m: Int): String {
+    val text = t("minutes_value", kotlin.math.abs(m))
+    if (m == 0) return text
+    // The same formatting as the text above, so the number is found whatever digits the locale writes.
+    val number = String.format("%d", kotlin.math.abs(m))
+    if (number !in text) return t("minutes_value", m)
+    return text.replaceFirst(number, "\u2066" + (if (m > 0) "+" else "−") + number + "\u2069")
+}
+
 /** A Hijri adjustment: "0", "+1", "−2" (kept left to right in Arabic). */
 private fun days(d: Int) = "\u2066" + (if (d > 0) "+$d" else if (d < 0) "−${-d}" else "0") + "\u2069"
 
 private fun sourceName(a: AdhanSource) = t(if (a == AdhanSource.MADINAH) "source_madinah" else "source_makkah")
 
+/** A switch, with a line under its label where the phone app has one, and ▶ where it has a preview. */
 @Composable
-private fun Toggle(label: String, on: Boolean, onChange: (Boolean) -> Unit) {
+private fun Toggle(label: String, on: Boolean, note: String? = null, preview: Pair<String, String>? = null, onChange: (Boolean) -> Unit) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text(label, color = Ink, modifier = Modifier.weight(1f))
+        Column(Modifier.weight(1f)) {
+            Text(label, color = Ink)
+            note?.let { Text(it, color = Muted, fontSize = 13.sp) }
+        }
+        preview?.let { (sound, name) -> PreviewButton(sound, name) }
         Switch(on, onChange)
     }
 }
 
 @Composable
-private fun Choice(label: String, value: String, options: List<Pair<String, () -> Unit>>) {
+private fun Header(title: String) = Text(title, color = Gold, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+
+@Composable
+private fun Note(text: String) = Text(text, color = Muted, fontSize = 13.sp)
+
+@Composable
+private fun Indented(content: @Composable () -> Unit) = Box(Modifier.padding(start = 16.dp)) { content() }
+
+/** ▶ plays a recording (■ while it plays stops it). */
+@Composable
+private fun PreviewButton(sound: String, label: String) {
+    val on = Sound.playing == sound
+    val description = if (on) t("alarm_stop") else t("preview_play", label)
+    TextButton(onClick = { if (on) Sound.stop() else Sound.play(sound) }, modifier = Modifier.semantics { contentDescription = description }) {
+        Text(if (on) "■" else "▶", color = Gold)
+    }
+}
+
+/** One prayer: its name, opened to its own switches (the Adhan, 10 and 5 minutes before, "approaching"). */
+@Composable
+private fun PrayerRows(
+    e: PrayerEvent, s: DesktopSettings, alerts: AlertSettings, startOpen: Boolean, onAdhan: (Boolean) -> Unit,
+    onChange: (AlertSettings.PrayerSound, Boolean) -> Unit,
+) {
+    var open by remember(e) { mutableStateOf(startOpen) }
+    val name = t(prayerKey(e))
+    Row(Modifier.fillMaxWidth().clickable { open = !open }.padding(vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text(name, color = Ink, modifier = Modifier.weight(1f))
+        Text(if (open) "▴" else "▾", color = Gold, modifier = Modifier.padding(horizontal = 12.dp))
+    }
+    if (open) Column(Modifier.padding(start = 16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        // What will play, as the phone shows it: off for every prayer while the Adhan is off.
+        Toggle(t("play_adhan"), alerts.isOn(e, AlertSettings.PrayerSound.ADHAN), onChange = onAdhan)
+        Toggle(t("notif_minutes_until", 10, name), alerts.isOn(e, AlertSettings.PrayerSound.BEFORE_10)) { onChange(AlertSettings.PrayerSound.BEFORE_10, it) }
+        Toggle(t("notif_minutes_until", 5, name), alerts.isOn(e, AlertSettings.PrayerSound.BEFORE_5)) { onChange(AlertSettings.PrayerSound.BEFORE_5, it) }
+        Toggle(t("near") + " · " + t("alerts_minutes", s.nearMinutes), alerts.isOn(e, AlertSettings.PrayerSound.NEAR)) { onChange(AlertSettings.PrayerSound.NEAR, it) }
+    }
+}
+
+/**
+ * A time of day (minutes after midnight, in the city's time zone) in 15-minute steps; a saved time between the steps
+ * stays in the list, which opens at it.
+ */
+@Composable
+private fun TimeChoice(label: String, minutes: Int, onChange: (Int) -> Unit) = Indented {
+    val choices = timeChoices(minutes)
+    Choice(label, timeOfDay(minutes), choices.map { m -> timeOfDay(m) to { onChange(m) } }, selected = choices.indexOf(minutes))
+}
+
+/** Every quarter hour of the day, with [current] added where it falls between them. */
+internal fun timeChoices(current: Int): List<Int> = ((0 until 24 * 60 step 15).toList() + current.coerceIn(0, 24 * 60 - 1)).distinct().sorted()
+
+/** "8:30 PM" (or "٨:٣٠ م") for minutes after midnight, in the interface's language. */
+internal fun timeOfDay(minutes: Int): String =
+    java.time.LocalTime.of(minutes / 60 % 24, minutes % 60)
+        .format(java.time.format.DateTimeFormatter.ofLocalizedTime(java.time.format.FormatStyle.SHORT).withLocale(java.util.Locale.forLanguageTag(Strings.language)))
+
+/** − value +, for a number changed one step at a time. */
+@Composable
+private fun Stepper(value: String, minusEnabled: Boolean, plusEnabled: Boolean, onMinus: () -> Unit, onPlus: () -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        TextButton(onClick = onMinus, enabled = minusEnabled) { Text("−", color = if (minusEnabled) Gold else Muted, fontSize = 18.sp) }
+        Text(value, color = Ink, textAlign = TextAlign.Center, modifier = Modifier.widthIn(min = 72.dp))
+        TextButton(onClick = onPlus, enabled = plusEnabled) { Text("+", color = if (plusEnabled) Gold else Muted, fontSize = 18.sp) }
+    }
+}
+
+/** A drop-down; with [selected] (an index in [options]) a long list opens at that option, shown in gold. */
+@Composable
+private fun Choice(label: String, value: String, options: List<Pair<String, () -> Unit>>, preview: Pair<String, String>? = null, selected: Int = -1) {
     var open by remember { mutableStateOf(false) }
+    // A fresh position each time it opens: two options above the selected one (a menu item is 48 dp high).
+    val itemPx = with(LocalDensity.current) { 48.dp.roundToPx() }
+    val scroll = remember(open) { ScrollState((selected - 2).coerceAtLeast(0) * itemPx) }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Text(label, color = Ink, modifier = Modifier.weight(1f))
+        preview?.let { (sound, name) -> PreviewButton(sound, name) }
         Box {
             TextButton(onClick = { open = true }) { Text("$value ▾", color = Gold) }
-            DropdownMenu(open, onDismissRequest = { open = false }) {
-                options.forEach { (name, pick) -> DropdownMenuItem(text = { Text(name) }, onClick = { pick(); open = false }) }
+            DropdownMenu(open, onDismissRequest = { open = false }, scrollState = scroll) {
+                options.forEachIndexed { i, (name, pick) ->
+                    DropdownMenuItem(text = { Text(name, color = if (i == selected) Gold else Color.Unspecified) }, onClick = { pick(); open = false })
+                }
             }
         }
     }

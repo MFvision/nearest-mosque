@@ -340,12 +340,21 @@ only), widgets' styles other than the accent colour.
 * **Windows and Linux** (one app, `windows/`): Prayer, Qibla (from north), Nearest Mosque, Ask, Classical books
   (opened in the PC's PDF reader) and Settings; stays in the notification area and plays the Adhan and reminders
   while running. After each Adhan the countdown is to the iqama, then "… prayer has begun", with a notification at
-  the iqama. Settings: language, city, method, Asr, Hijri adjustment (−2…+2), Adhan on/off, Makkah or Madinah for
-  the Adhan and the Fajr Adhan, Full or Short Adhan, each prayer's Adhan, 10 and 5 minutes before (spoken),
-  sunrise, the iqama waits, online mosque search, start at sign-in, and About (publisher, website, support,
-  phone, terms, privacy, version). Opening the app a second time brings the running window forward.
-  Not on the PC: Silent during prayer, the high-latitude and minutes adjustments, salawat, the Qur'an and
-  Friday reminders, the Fajr alarm, widgets.
+  the iqama. Settings: language, city, method, Asr, high-latitude rule, polar rule (show as unavailable, or the
+  nearest latitude, 48.5°, marked "Estimated" on the prayer screen; a polar day or night without times offers it
+  in one click), Ramadan Isha (Umm al-Qura), Hijri adjustment (−2…+2), minute adjustments for each of the six
+  times, sunrise included (−30…+30), Adhan on/off, Makkah or Madinah for the Adhan and the Fajr Adhan, Full or
+  Short Adhan; before the prayer: 10 and 5 minutes before and the pre-prayer reminder (15, 20 or 30 minutes), all
+  spoken, in Arabic or English; each prayer (its Adhan and its 10, 5 and pre-prayer reminders), sunrise; the iqama
+  waits; Qur'an and dhikr: salawat on Friday, the Qur'an reading reminder, a verse before sleep (each at a time of
+  day, recited by Alafasy or Al-Husary/Abdul Basit), Surat Al-Kahf on Friday; more reminders: Jumu'ah, Ramadan
+  suhoor and iftar (Hijri with the adjustment), and the Fajr alarm (at Fajr or 10–45 minutes before; the short
+  Adhan repeated until Stop in the window or the tray menu, at most 10 minutes, with the window brought up);
+  online mosque search, start at sign-in, and About (publisher, website, support,
+  phone, terms, privacy, version). Opening the app a second time brings the running window forward. The reminders
+  and the alarm come only while the PC is awake and the app runs (no wake timers); one missed during a sleep is not
+  given late (more than two minutes after its time).
+  Not on the PC: Silent during prayer, widgets.
   * Nearest Mosque: around the chosen city (a PC has no GPS), from the mosque data that comes with the app
     and, with "Search online for mosques" on, OpenStreetMap (the city centre is sent, rounded to about 1 km);
     walking directions open in the browser.

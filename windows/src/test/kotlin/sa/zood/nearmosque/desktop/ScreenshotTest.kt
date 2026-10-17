@@ -1,15 +1,25 @@
 package sa.zood.nearmosque.desktop
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.ImageComposeScene
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 import org.jetbrains.skia.EncodedImageFormat
+import sa.zood.nearmosque.core.City
+import sa.zood.nearmosque.core.HighLatRule
+import sa.zood.nearmosque.core.PolarRule
 import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerMoment
 import java.io.File
@@ -27,17 +37,27 @@ class ScreenshotTest {
     /** Riyadh's Dhuhr Adhan on the screenshot day. */
     private fun dhuhr(clock: Clock): Instant = clock.today(noon)[PrayerEvent.DHUHR]!!
 
-    @OptIn(ExperimentalComposeUiApi::class)
-    private fun shot(name: String, language: String, at: ((Clock) -> Instant)? = null) {
+    private val tromso get() = Cities.byId(3133895)!!
+    /** Polar night in Tromsø: the sun does not rise. */
+    private val polarNoon = Instant.parse("2026-12-21T11:00:00Z")
+
+    private fun shot(
+        name: String, language: String, city: City = riyadh, change: (DesktopSettings) -> DesktopSettings = { it },
+        at: ((Clock) -> Instant)? = null,
+    ) {
         Strings.language = language
-        val city = riyadh
-        val settings = DesktopSettings(cityId = city.id, language = language)
+        val settings = change(DesktopSettings(cityId = city.id, language = language))
         val clock = Clock(city, settings)
         val now = at?.invoke(clock) ?: noon
-        val scene = ImageComposeScene(980, 680, Density(1f)) {
+        render(name) { AppScreen(settings, city, clock, now, onCity = {}, onSettings = {}) }
+    }
+
+    @OptIn(ExperimentalComposeUiApi::class)
+    private fun render(name: String, height: Int = 680, content: @Composable () -> Unit) {
+        val scene = ImageComposeScene(980, height, Density(1f)) {
             MaterialTheme(colorScheme = darkColorScheme(primary = Color(0xFFE2C275), background = Navy)) {
                 CompositionLocalProvider(LocalLayoutDirection provides if (Strings.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-                    AppScreen(settings, city, clock, now, onCity = {}, onSettings = {})
+                    content()
                 }
             }
         }
@@ -58,6 +78,64 @@ class ScreenshotTest {
     @Test fun iqamaScreenEnglish() = shot("iqama-en", "en") { dhuhr(it).plusSeconds(300) }
 
     @Test fun iqamaScreenArabic() = shot("iqama-ar", "ar") { dhuhr(it).plusSeconds(300) }
+
+    // No times on a polar night: the card that offers the nearest-latitude rule.
+    @Test fun polarUnavailableEnglish() = shot("polar-unavailable-en", "en", tromso) { polarNoon }
+
+    @Test fun polarUnavailableArabic() = shot("polar-unavailable-ar", "ar", tromso) { polarNoon }
+
+    @Test fun polarEstimatedEnglish() = shot("polar-estimated-en", "en", tromso, { it.copy(polarRule = PolarRule.NEAREST_LATITUDE) }) { polarNoon }
+
+    /** Settings with the calculation choices (high-latitude and polar rules, minute adjustments). */
+    private fun settingsShot(name: String, language: String) {
+        Strings.language = language
+        val city = riyadh
+        val settings = DesktopSettings(
+            cityId = city.id, language = language, highLatitudeRule = HighLatRule.TWILIGHT_ANGLE,
+            offsets = mapOf(PrayerEvent.FAJR to 2, PrayerEvent.SUNRISE to -1, PrayerEvent.ISHA to 30),
+        )
+        render(name, height = 1300) {
+            Box(Modifier.fillMaxSize().background(Navy).padding(24.dp)) { SettingsScreen(settings, Clock(city, settings), onChange = {}, onChangeCity = {}) }
+        }
+    }
+
+    @Test fun calculationSettingsEnglish() = settingsShot("settings-calculation-en", "en")
+
+    /** The whole Settings page with the reminders on (before the prayer, each prayer, Qur'an and dhikr, more reminders). */
+    private fun alertsShot(name: String, language: String) {
+        Strings.language = language
+        val city = riyadh
+        val settings = DesktopSettings(
+            cityId = city.id, language = language, near = true, nearMinutes = 20, before10 = true,
+            perPrayer = mapOf(PrayerEvent.ASR to sa.zood.nearmosque.core.PrayerSounds(before10 = false)),
+            salawat = true, quran = true, quranMinutes = 21 * 60 + 7, bedtimeMinutes = 22 * 60 + 30, kahf = true,
+            friday = true, ramadan = true, fajrAlarmMinutesBefore = 10,
+        )
+        render(name, height = 4400) {
+            Box(Modifier.fillMaxSize().background(Navy).padding(24.dp)) {
+                SettingsScreen(settings, Clock(city, settings), onChange = {}, onChangeCity = {}, openPrayer = PrayerEvent.ASR)
+            }
+        }
+    }
+
+    @Test fun alertSettingsEnglish() = alertsShot("settings-alerts-en", "en")
+
+    @Test fun alertSettingsArabic() = alertsShot("settings-alerts-ar", "ar")
+
+    /** The Fajr alarm ringing: its card with Stop above the prayer screen. */
+    private fun alarmShot(name: String, language: String) {
+        Strings.language = language
+        val settings = DesktopSettings(cityId = riyadh.id, language = language, fajrAlarmMinutesBefore = 10)
+        val clock = Clock(riyadh, settings)
+        val now = clock.today(noon)[PrayerEvent.FAJR]!!.minusSeconds(590)
+        render(name) { AppScreen(settings, riyadh, clock, now, onCity = {}, onSettings = {}, alarm = true) }
+    }
+
+    @Test fun alarmEnglish() = alarmShot("alarm-en", "en")
+
+    @Test fun alarmArabic() = alarmShot("alarm-ar", "ar")
+
+    @Test fun calculationSettingsArabic() = settingsShot("settings-calculation-ar", "ar")
 
     @Test fun stagesFollowTheIqama() {
         Strings.language = "en"
