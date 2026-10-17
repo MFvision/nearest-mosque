@@ -397,10 +397,14 @@ struct OnbArcGeometry: Equatable {
     let chord: CGFloat
     let rtl: Bool
 
-    var radius: CGFloat { chord / (2 * sin(Self.halfAngle * .pi / 180)) }
-    var rise: CGFloat { radius * (1 - cos(Self.halfAngle * .pi / 180)) }
+    // Plain Double trigonometry converted once: mixing CGFloat and Double in sin/cos is ambiguous for some compilers.
+    private static let sinHalf = CGFloat(sin(halfAngle * .pi / 180))
+    private static let cosHalf = CGFloat(cos(halfAngle * .pi / 180))
+
+    var radius: CGFloat { chord / (2 * Self.sinHalf) }
+    var rise: CGFloat { radius * (1 - Self.cosHalf) }
     var base: CGFloat { size.height - 34 }
-    var center: CGPoint { CGPoint(x: size.width / 2, y: base + radius * cos(Self.halfAngle * .pi / 180)) }
+    var center: CGPoint { CGPoint(x: size.width / 2, y: base + radius * Self.cosHalf) }
 
     /// The box height that leaves room for the disc above the arc.
     static func height(chord: CGFloat) -> CGFloat {
@@ -412,7 +416,7 @@ struct OnbArcGeometry: Equatable {
     func point(_ fraction: Double, radius r: CGFloat? = nil) -> CGPoint {
         let a = angle(fraction) * .pi / 180
         let rr = r ?? radius
-        return CGPoint(x: center.x + rr * sin(a), y: center.y - rr * cos(a))
+        return CGPoint(x: center.x + rr * CGFloat(sin(a)), y: center.y - rr * CGFloat(cos(a)))
     }
 
     /// The fraction under a finger at `x` (past the ends it keeps growing, so a drag can go over the edge).
