@@ -5,6 +5,16 @@
 
 const GOLD = [212, 168, 67];
 
+// Sky follows the weather (ios/App/Support/WeatherSky.swift), rain only, for the landing page: opts.rain (0..1)
+// veils the sky toward the rain's grey, dims the glow, hides the stars and adds an overcast deck; drawRain() draws
+// the falling streaks over that frame. The veil, mix, glow, deck, streak colour and count are the rain's numbers in
+// "weather" in shared/design/tokens.json (the dark skies); the stronger cloud band (clouds) is this page's own.
+const RAIN = { veil: [0x25, 0x30, 0x3B], mix: 0.55, glow: 0.35, clouds: 1.2, deck: [0x3A, 0x43, 0x4D], deckOpacity: 0.9,
+  streak: [0xC9, 0xD6, 0xE3], streakAlpha: 0.16, streaks: 60 };
+// The deck's seven faint puffs: [x, y (of the horizon), radius (of the width), squash, alpha], as OvercastDeck.
+const PUFFS = [[0.06, 0.16, 0.30, 0.42, 0.22], [0.30, 0.08, 0.34, 0.38, 0.18], [0.52, 0.30, 0.28, 0.45, 0.26],
+  [0.74, 0.12, 0.32, 0.40, 0.20], [0.96, 0.26, 0.30, 0.44, 0.24], [0.20, 0.42, 0.26, 0.46, 0.30], [0.84, 0.46, 0.27, 0.42, 0.28]];
+
 // The periods of the day and where they fall in the loop.
 const KEYS = [
   [0.00, 'fajr', 0x141E3C, 0x3A3566, 0xC98A8A, 0x1E2242],
@@ -157,8 +167,12 @@ function cloudSprite(sc, seed) {
 function drawSky(ctx, w, h, t, opts = {}) {
   t = ((t % 1) + 1) % 1;
   const horizon = h * (opts.horizon ?? 0.72);
+  const rain = clamp(opts.rain || 0);
   const pal = palette(t);
+  if (rain > 0) for (const k of ['top', 'mid', 'glow', 'low']) pal[k] = mix(pal[k], RAIN.veil, RAIN.mix * rain);
   const night = nightness(t);
+  // Under rain the glow, the sun and the moon dim and the stars go.
+  const glowK = 1 - (1 - RAIN.glow) * rain, starK = 1 - rain;
   const unit = Math.min(w, h * 2.2);
 
   // Sky gradient, the horizon glow.
@@ -175,18 +189,18 @@ function drawSky(ctx, w, h, t, opts = {}) {
   const [sx, sy] = arcPoint(w, h, sunS, horizon);
   const glowX = sunUp ? sx : w * 0.5;
   const hg = ctx.createRadialGradient(glowX, horizon, 0, glowX, horizon, w * 0.6);
-  hg.addColorStop(0, css(pal.glow, 0.55));
-  hg.addColorStop(0.4, css(pal.glow, 0.18));
+  hg.addColorStop(0, css(pal.glow, 0.55 * glowK));
+  hg.addColorStop(0.4, css(pal.glow, 0.18 * glowK));
   hg.addColorStop(1, css(pal.glow, 0));
   ctx.fillStyle = hg;
   ctx.fillRect(0, 0, w, horizon + 2);
 
   // Stars, twinkling (whole numbers of twinkles per loop).
-  if (night > 0.01) {
+  if (night * starK > 0.01) {
     const r = rand(7);
     for (let i = 0; i < 260; i++) {
       const x = r() * w, y = Math.pow(r(), 1.4) * horizon * 0.9, s = 0.4 + r() * 1.3, k = 1 + Math.floor(r() * 4), ph = r() * TAU;
-      const a = night * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(TAU * k * t + ph)));
+      const a = night * starK * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(TAU * k * t + ph)));
       ctx.fillStyle = `rgba(255,255,255,${a * 0.85})`;
       ctx.beginPath(); ctx.arc(x, y, s * unit / 1400, 0, TAU); ctx.fill();
     }
@@ -199,9 +213,26 @@ function drawSky(ctx, w, h, t, opts = {}) {
       const y = horizon * (0.15 + r() * 0.45), sc = unit * (0.05 + r() * 0.06), sp = 1 + Math.floor(r() * 2), x0 = r();
       const x = (((x0 + sp * t) % 1) * 1.4 - 0.2) * w;
       const sprite = cloudSprite(Math.round(sc), i);
-      ctx.globalAlpha = 0.10 + 0.08 * (1 - night);
+      ctx.globalAlpha = (0.10 + 0.08 * (1 - night)) * (1 + RAIN.clouds * rain);
       ctx.drawImage(sprite, x - sprite.width / 2, y - sprite.height / 2);
       ctx.globalAlpha = 1;
+    }
+  }
+
+  // Under rain: the overcast deck, large faint puffs a little lighter than the veiled sky.
+  if (rain > 0) {
+    const span = w * 1.7, dx = -w * 0.3;
+    for (const [px, py, pr, squash, a] of PUFFS) {
+      const r = pr * w;
+      ctx.save();
+      ctx.translate(dx + px * span, py * horizon);
+      ctx.scale(1, squash);
+      const pg = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+      pg.addColorStop(0, css(RAIN.deck, a * RAIN.deckOpacity * rain));
+      pg.addColorStop(1, css(RAIN.deck, 0));
+      ctx.fillStyle = pg;
+      ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.fill();
+      ctx.restore();
     }
   }
 
@@ -233,7 +264,7 @@ function drawSky(ctx, w, h, t, opts = {}) {
 
   // The sun.
   if (sunUp) {
-    const rise = clamp(Math.min(t - 0.11, 0.65 - t) / 0.03);
+    const rise = clamp(Math.min(t - 0.11, 0.65 - t) / 0.03) * glowK;
     const R = unit / 55;
     // Low on the horizon the sun is deeper orange; high, a pale gold.
     const high = Math.sin(Math.PI * sunS);
@@ -258,7 +289,7 @@ function drawSky(ctx, w, h, t, opts = {}) {
   if (mt < 0.46) {
     const s = mt / 0.46;
     const [mx, my] = arcPoint(w, h, 1 - s, horizon);
-    const vis = clamp(Math.min(mt, 0.46 - mt) / 0.05) * clamp(night * 1.3);
+    const vis = clamp(Math.min(mt, 0.46 - mt) / 0.05) * clamp(night * 1.3) * glowK;
     if (vis > 0) { crescent(ctx, mx, my, unit / 48, vis); moon = [mx, my, vis]; }
   }
 
@@ -283,7 +314,7 @@ function drawSky(ctx, w, h, t, opts = {}) {
   lake.addColorStop(1, css(mix(pal.low, [0, 0, 0], 0.3)));
   ctx.fillStyle = lake;
   ctx.fillRect(0, horizon + 2, w, h - horizon);
-  const light = sunUp ? [sx, 1, [255, 226, 170]] : moon ? [moon[0], moon[2] * 0.7, [210, 222, 255]] : null;
+  const light = sunUp ? [sx, glowK, [255, 226, 170]] : moon ? [moon[0], moon[2] * 0.7, [210, 222, 255]] : null;
   if (light) {
     const [lx, la, lc] = light;
     for (let i = 0; i < 40; i++) {
@@ -331,4 +362,36 @@ function drawSky(ctx, w, h, t, opts = {}) {
   return { night, period: KEYS.reduce((p, k) => (t >= k[0] ? k[1] : p), 'fajr') };
 }
 
-if (typeof module !== 'undefined') module.exports = { drawSky, MARKS };
+// The rain's streaks over a frame drawn with opts.rain (ios RainLayer): thin, slanted 12°, falling about a quarter of
+// the height a second, above the horizon only and faint near the top (35% there, full from 0.6 of the way down).
+// sec: seconds (any clock); opts.horizon as drawSky's; opts.scale: canvas pixels per CSS pixel.
+function drawRain(ctx, w, h, amount, sec, opts = {}) {
+  const top = h * (opts.horizon ?? 0.72), k = opts.scale || 1;
+  const a = RAIN.streakAlpha * clamp(amount) * (opts.strength ?? 1);
+  if (a <= 0 || top <= 0) return;
+  // As many streaks for each phone-wide strip of the screen as the app has on a phone.
+  const n = Math.round(RAIN.streaks * clamp(w / k / 430, 1, 3.5));
+  const slant = Math.tan(12 * Math.PI / 180), pad = 20 * k;
+  const wrap = (v, m) => ((v % m) + m) % m;
+  const r = rand(11);
+  const g = ctx.createLinearGradient(0, 0, 0, top);
+  g.addColorStop(0, css(RAIN.streak, a * 0.35));
+  g.addColorStop(0.6, css(RAIN.streak, a));
+  g.addColorStop(1, css(RAIN.streak, a));
+  ctx.save();
+  ctx.strokeStyle = g;
+  ctx.lineWidth = k;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  for (let i = 0; i < n; i++) {
+    const x0 = r(), ph = r(), len = (12 + 8 * r()) * k, speed = 0.25 * h * (0.85 + 0.3 * r());
+    const y = wrap(ph * (top + len) + sec * speed, top + len) - len;
+    const x = wrap(x0 * (w + 2 * pad) + y * slant, w + 2 * pad) - pad;
+    ctx.moveTo(x, Math.min(y, top));
+    ctx.lineTo(x - len * slant, Math.min(y - len, top));
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+if (typeof module !== 'undefined') module.exports = { drawSky, drawRain, MARKS };

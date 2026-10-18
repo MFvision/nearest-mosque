@@ -4,7 +4,8 @@ in English and Arabic as WebP, and short clips of the app preview recordings.
 
     build_assets.py <screenshots root> <recordings root>
 
-<screenshots root>/<en|ar>/<iphone|ipad|mac|tv|vision|watch>/NN-name.png (the App Store screenshots);
+<screenshots root>/<en|ar>/<iphone|ipad|mac|tv|vision|watch>/NN-name.png (the App Store screenshots) and
+<en|ar>/android/NN-name.png (Android phone screenshots, from android/app/build/screenshots);
 <recordings root>/<en|ar>/01-header.mp4, 03-search.mp4 (store-previews.yml).
 
 Earth: NASA Blue Marble Next Generation (December 2004) and Black Marble 2016 (city lights), both public domain,
@@ -94,7 +95,7 @@ def main():
     (OUT / "cities.json").write_text(json.dumps([v for c in cs for v in c], separators=(",", ":")))
     (OUT / "zones.json").write_text(json.dumps(zones, ensure_ascii=False, separators=(",", ":")))
     print(f"land {len(dots)} dots, cities {len(cs)}")
-    widths = {"iphone": 640, "ipad": 1100, "mac": 1200, "tv": 1200, "vision": 1200, "watch": 360}
+    widths = {"iphone": 640, "android": 640, "ipad": 1100, "mac": 1200, "tv": 1200, "vision": 1200, "watch": 360}
     for lang in ("en", "ar"):
         for dev, wd in widths.items():
             src = shots / lang / dev

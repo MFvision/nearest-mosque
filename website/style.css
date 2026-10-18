@@ -55,7 +55,7 @@ a { color: inherit; }
 .bar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: calc(12px + env(safe-area-inset-top, 0px)) var(--edge-end) 12px var(--edge); pointer-events: none; }
 .bar > * { pointer-events: auto; }
-.on-sky .bar { --ink: #F1F4F6; --bar-ink: #F1F4F6; --glass: rgba(8, 27, 41, 0.45); --glass-edge: rgba(255, 255, 255, 0.18); }
+.on-sky .bar { --ink: #F1F4F6; --bar-ink: #F1F4F6; --gold: #E2BC5E; --gold-bright: #E2B649; --glass: rgba(8, 27, 41, 0.45); --glass-edge: rgba(255, 255, 255, 0.18); }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--bar-ink, var(--ink)); }
 .brand img { width: 34px; height: 34px; border-radius: 9px; box-shadow: 0 4px 14px var(--shadow); }
 .tools { display: flex; gap: 8px; }
@@ -138,6 +138,10 @@ main { position: relative; z-index: 1; }
 .copy li { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 12px; align-items: baseline; }
 .copy li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold-bright); transform: translateY(-2px); }
 .note { margin-top: 18px !important; font-size: 0.92rem !important; color: var(--gold) !important; font-weight: 600; }
+/* A data credit under the points (the weather's MET Norway line): small and quiet, a plain link. */
+.copy .credit { margin-top: 16px; font-size: 0.82rem; }
+.credit a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.credit a:hover { color: var(--ink); }
 .cta-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; font: 600 1rem var(--font-display); text-decoration: none; color: var(--ground); background: var(--ink); padding: 13px 22px; border-radius: 999px; }
 .cta-link:hover { background: var(--navy); }
 .scroll-cue { margin-top: 30px; font: 600 0.8rem var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
@@ -146,8 +150,8 @@ main { position: relative; z-index: 1; }
 
 /* Screens. */
 .media { min-width: 0; display: flex; align-items: center; justify-content: center; gap: clamp(12px, 2vw, 28px); min-height: 60svh; }
-.phone { width: clamp(150px, 19vw, 260px); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; flex: none; }
-.media .phone:nth-child(2) { transform: translateY(8%); }
+.phone, .droid { width: clamp(150px, 19vw, 260px); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; flex: none; }
+.media .phone:nth-child(2), .media .droid:nth-child(2) { transform: translateY(8%); }
 .watch { width: clamp(100px, 11vw, 156px); flex: none; }
 .media .watch:nth-child(2) { transform: translateY(-12%) scale(1.1); }
 .family { position: relative; width: min(100%, 640px); aspect-ratio: 1.45; }
@@ -216,8 +220,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
     padding-block: calc(64px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)); }
   .js .hud-ch .beat { padding-bottom: calc(var(--hud-h, 104px) + 24px + env(safe-area-inset-bottom, 0px)); }
   .media { order: -1; min-height: 0; height: 100%; container-type: size; }
-  .phone { width: min(44vw, 250px, 45cqh, 90cqw); }
-  .media .phone + .phone { width: min(42vw, 240px, 45cqh, 46cqw); }
+  .phone, .droid { width: min(44vw, 250px, 45cqh, 90cqw); }
+  .media .phone + .phone, .media .droid + .droid { width: min(42vw, 240px, 45cqh, 46cqw); }
   .watch { width: min(27vw, 140px, 62cqh, 29cqw); }
   .family { width: min(100%, 560px, 128cqh); }
   .copy { width: 100%; max-width: 40rem; justify-self: center; padding: 16px 18px; border-radius: 22px; }
@@ -226,6 +230,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .copy p { font-size: 0.97rem; line-height: 1.6; }
   .copy ul { margin-top: 10px; gap: 6px; font-size: 0.9rem; }
   .note { margin-top: 10px !important; }
+  .copy .credit { margin-top: 8px; font-size: 0.78rem; }
   .eyebrow { margin-bottom: 8px; }
   .daynight { margin-top: 12px; }
   .cta-link { margin-top: 16px; }
@@ -250,6 +255,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .copy ul { margin-top: 6px; gap: 3px; font-size: 0.8rem; }
   .eyebrow { margin-bottom: 4px; font-size: 0.72rem; }
   .note { margin-top: 6px !important; font-size: 0.8rem !important; }
+  .copy .credit { margin-top: 4px; font-size: 0.74rem; }
   .cta-link, .stores, .daynight { margin-top: 10px; }
   .store { min-height: 42px; padding: 6px 12px; }
   .copy .stores-more { margin-top: 4px; font-size: 0.74rem; }
@@ -257,7 +263,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .hud-legend { display: none; }
 }
 /* Too little room above the words for a screen to read: leave it out rather than show it tiny. */
-@container (max-height: 150px) { .phone, .watch, .family { display: none; } }
+@container (max-height: 150px) { .phone, .droid, .watch, .family { display: none; } }
 /* Short screens with room beside the words: a smaller scale, so the longest chapter fits the height. */
 @media (min-width: 861px) and (max-height: 860px) {
   :root { --step-3: clamp(1.7rem, 0.9rem + 3.6vh, 2.7rem); --step-4: clamp(2rem, 1rem + 4.4vh, 3.2rem); --step-1: clamp(1rem, 0.78rem + 0.9vh, 1.2rem); }
@@ -267,10 +273,10 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
   .copy ul { margin-top: 14px; gap: 7px; }
   .eyebrow { margin-bottom: 10px; }
   .media { min-height: 0; }
-  .phone { width: clamp(150px, min(19vw, 27vh), 260px); }
+  .phone, .droid { width: clamp(150px, min(19vw, 27vh), 260px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .copy, .phone, .media > * { transition: none !important; }
+  .copy, .phone, .droid, .media > * { transition: none !important; }
   .scroll-cue::after { animation: none; }
 }
 
@@ -290,8 +296,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
 
 /* Screens move with the scroll inside their chapter: they rise in, drift, and the second one passes the first. */
 .js .media > * { --lift: calc((0.5 - var(--p, 0.5)) * 90px); }
-.js .chapter.on .media > .phone:first-child, .js .chapter.on .media > .watch:first-child { transform: translateY(var(--lift)) rotate(calc((0.5 - var(--p, 0.5)) * -3deg)); }
-.js .chapter.on .media > .phone:nth-child(2) { transform: translateY(calc(8% + var(--lift) * -0.7)) rotate(calc((0.5 - var(--p, 0.5)) * 3deg)); }
+.js .chapter.on .media > .phone:first-child, .js .chapter.on .media > .droid:first-child, .js .chapter.on .media > .watch:first-child { transform: translateY(var(--lift)) rotate(calc((0.5 - var(--p, 0.5)) * -3deg)); }
+.js .chapter.on .media > .phone:nth-child(2), .js .chapter.on .media > .droid:nth-child(2) { transform: translateY(calc(8% + var(--lift) * -0.7)) rotate(calc((0.5 - var(--p, 0.5)) * 3deg)); }
 .js .chapter.on .media > .watch:nth-child(2) { transform: translateY(calc(-12% + var(--lift) * -0.6)) scale(1.1); }
 .js .chapter.on .media > .watch:nth-child(3) { transform: translateY(calc(var(--lift) * 0.5)); }
 .js .chapter.on .family { transform: translateY(calc(var(--lift) * 0.6)) scale(calc(0.96 + var(--p, 0.5) * 0.08)); }
@@ -311,7 +317,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color:
 .board a[aria-current]::after { width: 22px; opacity: 1; background: var(--gold-bright); }
 .board a[aria-current] span, .board a:hover span, .board a:focus-visible span { opacity: 1; transform: none; }
 .board.off { opacity: 0; pointer-events: none; }
-.on-sky .board { --ink: #F1F4F6; --bar-ink: #F1F4F6; }
+/* Over the sky (dark in both themes) the storyboard takes the dark theme's light ink and gold. */
+.on-sky .board { --ink: #F1F4F6; --bar-ink: #F1F4F6; --gold: #E2BC5E; --gold-bright: #E2B649; }
 #sound[aria-pressed="true"] { border-color: var(--gold-bright); color: var(--gold); }
 @media (max-width: 860px) {
   .board { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: none; inset-inline-end: auto; left: 50%; grid-auto-flow: column; gap: 0; translate: -50% 0; }

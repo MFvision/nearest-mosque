@@ -6,7 +6,7 @@ import { places } from './places.js';
 import { resolveCity, schedule, nextPrayer, clock } from './prayer.js';
 
 const BASE = new URL('.', import.meta.url).href;
-const WEIGHTS = { world: 1.6, lines: 1.9, qibla: 1.5, kaaba: 2.1, sky: 1.9, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
+const WEIGHTS = { world: 1.6, lines: 1.9, qibla: 1.5, kaaba: 2.1, sky: 1.9, weather: 1.4, welcome: 1.5, mosque: 1.4, ask: 1.4, library: 1.2, adhan: 1.2, glance: 1.4, watch: 1.3, devices: 1.5, privacy: 1.3, get: 1.7 };
 const GLOBE_CH = new Set(['world', 'lines', 'get']);
 // The chapters that show the legend at the bottom of the screen (on phones their words stay above it).
 const HUD_CH = new Set(['world', 'lines', 'qibla', 'get']);
@@ -27,11 +27,13 @@ function buildStates() {
   states.length = 0;
   let hoursAcc = 0;
   story.chapters.forEach((c, i) => {
-    const prev = i ? states[i - 1] : { lon: 28, lat: 14, zoom: 1, lines: 0, arcs: 0, haram: 0, mix: 0, t: 0, follow: 0, spin: 0, fly: 0, real: 0 };
+    const prev = i ? states[i - 1] : { lon: 28, lat: 14, zoom: 1, lines: 0, arcs: 0, haram: 0, mix: 0, t: 0, follow: 0, spin: 0, fly: 0, real: 0, rain: 0 };
     const s = { ...prev, ...c.stage };
     if (s.lon === 'you') s.lon = you.lon;
     if (s.lat === 'you') s.lat = you.lat;
     s.fly = c.stage.fly || 0;
+    // The weather belongs to its own chapter only: the sky clears again after it.
+    s.rain = c.stage.weather === 'rain' ? 1 : 0;
     s.hoursAt = hoursAcc;
     s.hours = c.stage.hours || 0;
     hoursAcc += s.hours;
@@ -77,6 +79,8 @@ function mediaHTML(c, t) {
       const video = m.clip ? `<video muted playsinline loop preload="none" poster="${still}"><source src="${clip}.mp4" type="video/mp4"><source src="${clip}.webm" type="video/webm"></video>` : '';
       return `<div class="phone">${img(m.phone, plain(t.title))}${video}</div>`;
     }
+    // Android screenshots get a plain phone frame of their own, never the iPhone's.
+    if (m.android) return `<div class="droid">${img(m.android, plain(t.title))}</div>`;
     if (m.watch) return `<div class="watch">${img(m.watch, plain(t.title))}</div>`;
     if (m.devices) {
       const [iphone, ipad, mac, tv, vision] = m.devices;
@@ -134,6 +138,7 @@ function render() {
           <p>${esc(x.body)}</p>
           ${x.points ? `<ul>${x.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
           ${x.note ? `<p class="note">${esc(x.note)}</p>` : ''}
+          ${x.credit ? `<p class="credit"><a href="${esc(x.credit[1])}" rel="noopener" target="_blank">${esc(x.credit[0])}</a></p>` : ''}
           ${c.id === 'world' ? `<a class="cta-link" href="#get">${esc(x.cta)}</a><div class="scroll-cue">${esc(t.scroll)}</div>` : ''}
           ${c.id === 'get' ? storesHTML(t) : ''}
           ${c.id === 'kaaba' ? `<div class="daynight" role="group">${t.daynight.map((n, k) => `<button type="button" data-night="${k}" aria-pressed="${(k === 1) === makkahNight()}">${esc(n)}</button>`).join('')}</div>` : ''}
@@ -142,7 +147,7 @@ function render() {
       </div>
     </section>`;
   }).join('');
-  const shots = ['01-prayer', '02-qibla', '03-mosques-map', '04-ask', '05-classics', '06-widgets', '07-island', '08-audio', '09-mosques-radar', '10-prayer-dark'];
+  const shots = ['01-prayer', '02-prayer-weather', '02-qibla', '03-mosques-map', '04-ask', '05-classics', '06-widgets', '07-island', '08-audio', '09-mosques-radar', '10-prayer-dark'];
   $('#inside').innerHTML = `<div>
       <h2 id="inside-title">${esc(t.index.title)}</h2>
       <p>${esc(t.index.intro)}</p>
@@ -158,6 +163,9 @@ function render() {
   renderHud();
   measure();
   heroTitle();
+  // The chapters and the storyboard are new: the next frame marks the one in view again (its title, its copy, its
+  // video), even when it is the same chapter as before (the language button keeps the visitor where they were).
+  current = -1;
 }
 
 // The first title is the visitor's next prayer and the time left, for the centre of their city (from the browser's
@@ -238,7 +246,7 @@ function stageAt(y) {
     zoom: Math.exp(lerp(Math.log(a.zoom), Math.log(b.zoom), ze) - (b.fly ? 1.2 * Math.sin(Math.PI * Math.min(1, e * 1.1)) : 0)),
     haram: lerp(a.haram, b.haram, a.haram < b.haram ? smooth((e - 0.7) / 0.3) : smooth(e / 0.3)),
     follow: 70, followMix: lerp(a.follow, b.follow, e),
-    lines: lerp(a.lines, b.lines, e), arcs: lerp(a.arcs, b.arcs, e), mix: lerp(a.mix, b.mix, mixP), t: lerp(a.t, b.t, e),
+    lines: lerp(a.lines, b.lines, e), arcs: lerp(a.arcs, b.arcs, e), mix: lerp(a.mix, b.mix, mixP), t: lerp(a.t, b.t, e), rain: lerp(a.rain, b.rain, e),
     hours: a.hoursAt + a.hours * smooth(p),
     // 1 where the globe shows the real time (the Qibla, Makkah); 0 where the day runs fast round the world.
     real: lerp(a.real || 0, b.real || 0, e),
@@ -248,6 +256,9 @@ function stageAt(y) {
 const globeCanvas = $('#globe-canvas'), skyCanvas = $('#sky-canvas'), labelBox = $('.labels');
 const skyCtx = skyCanvas.getContext('2d');
 let lastSky = null, current = -1, arcsShown = 0, lastFrame = performance.now();
+// Under rain the sky is drawn once into skyBase and the streaks fall over a copy of it each frame.
+const skyBase = document.createElement('canvas'), skyBaseCtx = skyBase.getContext('2d');
+let lastBase = null, skyScale = 1;
 // Today, in hours since midnight UTC, and its day of the year.
 const today = new Date();
 const dayStart = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
@@ -261,9 +272,10 @@ let ambient = 0, simHours = utcNow();
 const dayLon = () => sunAt(dayOfYear(), simHours).lon + DAY_EAST;
 function sizeSky() {
   const k = Math.min(1.5, devicePixelRatio || 1);
-  skyCanvas.width = Math.round(innerWidth * k);
-  skyCanvas.height = Math.round(innerHeight * k);
-  lastSky = null;
+  skyScale = k;
+  skyCanvas.width = skyBase.width = Math.round(innerWidth * k);
+  skyCanvas.height = skyBase.height = Math.round(innerHeight * k);
+  lastSky = lastBase = null;
 }
 
 function frame(now) {
@@ -354,9 +366,17 @@ function step(now) {
     document.documentElement.classList.toggle('on-sky', s.mix > 0.5);
     if (s.mix > 0.001) {
       skyCanvas.style.opacity = String(s.mix);
-      const key = s.t.toFixed(4) + ':' + skyCanvas.width;
-      if (key !== lastSky && typeof drawSky === 'function') {
-        drawSky(skyCtx, skyCanvas.width, skyCanvas.height, s.t, { arc: false, mosque: innerWidth > 860 ? 0.17 : 0.12, horizon: 0.8 });
+      const rain = s.rain > 0.001 ? s.rain : 0;
+      const key = s.t.toFixed(4) + ':' + rain.toFixed(3) + ':' + skyCanvas.width;
+      const opts = { arc: false, mosque: innerWidth > 860 ? 0.17 : 0.12, horizon: 0.8, rain };
+      // The weather chapter's rain falls every frame; with Reduce Motion the sky stays one still, veiled frame.
+      if (rain && !reduce.matches && typeof drawRain === 'function') {
+        if (key !== lastBase) { drawSky(skyBaseCtx, skyBase.width, skyBase.height, s.t, opts); lastBase = key; }
+        skyCtx.drawImage(skyBase, 0, 0);
+        drawRain(skyCtx, skyCanvas.width, skyCanvas.height, rain, now / 1000, { horizon: opts.horizon, scale: skyScale });
+        lastSky = null;
+      } else if (key !== lastSky && typeof drawSky === 'function') {
+        drawSky(skyCtx, skyCanvas.width, skyCanvas.height, s.t, opts);
         lastSky = key;
       }
     } else skyCanvas.style.opacity = '0';

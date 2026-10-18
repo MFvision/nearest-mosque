@@ -425,9 +425,11 @@ class ScreenshotTest {
     }
 
     // First Light, the welcome tour: every step in English and Arabic (right to left), still frames. The promise and the
-    // place start with no place chosen; the rest in Cape Town.
+    // place start with no place chosen; the rest in Cape Town. The Arabic frames name it as the app does when the city is
+    // picked in Arabic (City.displayName("ar") of the bundled row: كيب تاون).
+    private val capeTownArabic = capeTown.copy(name = "كيب تاون")
     private fun onb(name: String, step: OnboardingStep, at: java.time.Instant = fixed, dark: Boolean = true, preview: WeatherCondition? = null, after: () -> Unit = {}) =
-        shoot(name, Tab.PRAYER, location = if (step.ordinal <= OnboardingStep.PLACE.ordinal) null else capeTown, onboarding = step, dark = dark, at = at, preview = preview, after = after)
+        shoot(name, Tab.PRAYER, location = if (step.ordinal <= OnboardingStep.PLACE.ordinal) null else if ("_ar" in name) capeTownArabic else capeTown, onboarding = step, dark = dark, at = at, preview = preview, after = after)
 
     @Test fun onboardingPromise() = onb("onboarding_promise_en", OnboardingStep.PROMISE)
     @Test fun onboardingWhere() = onb("onboarding_where_en", OnboardingStep.PLACE)
