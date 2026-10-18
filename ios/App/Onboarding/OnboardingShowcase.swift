@@ -1,7 +1,6 @@
 import NMCore
 import SwiftUI
 import UIKit
-import Intents
 #if !os(visionOS)
 import WidgetKit
 #endif
@@ -156,8 +155,8 @@ struct WidgetsCard: View {
 // MARK: Siri
 
 /// Three of NearMosqueShortcuts' phrases (ios/App/AppShortcuts.swift), read from the AppShortcuts string table in the
-/// language Siri listens in, which can differ from the app's own language (an in-app choice changes neither Siri nor
-/// the app's name on the Home Screen); English and Arabic have them (English only on Apple Vision Pro).
+/// system language the app runs in (an in-app choice changes neither Siri nor the app's name on the Home Screen);
+/// English and Arabic have them (English only on Apple Vision Pro).
 enum SiriPhrases {
     static let nextPrayer = "When is the next prayer in ${applicationName}"
     static let qibla = "Where is the Qibla in ${applicationName}"
@@ -171,11 +170,10 @@ enum SiriPhrases {
         #endif
     }
 
-    /// Siri's language (its own setting), else the system language the app runs in; nil when the app has neither.
+    /// The system language the app runs in; nil when the app doesn't have it. Not Siri's own language setting:
+    /// INPreferences.siriLanguageCode() ends the app unless it has the SiriKit entitlement, which App Intents don't use.
     static var language: String? {
-        let siri = INPreferences.siriLanguageCode()
-        let id: String? = siri.isEmpty ? Bundle.main.preferredLocalizations.first : siri
-        return id.flatMap(Languages.code(identifier:))
+        Bundle.main.preferredLocalizations.first.flatMap(Languages.code(identifier:))
     }
 
     /// The phrase as Siri hears it in `lang`, with the app's name as the system shows it in that language.
