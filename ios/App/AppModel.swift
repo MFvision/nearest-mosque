@@ -324,7 +324,10 @@ final class AppModel {
     /// Uses a fresh fix (recent fix as fallback); never substitutes a default city.
     @discardableResult
     func useDeviceLocation(silent: Bool = false) async -> LocateOutcome {
+        let before = settings.location
         guard let fix = await location.currentPosition() else { return location.isDenied ? .denied : .noFix }
+        // A city picked while the fix was coming is kept (and followDevice stays off).
+        guard settings.location == before else { return .ok }
         let resolver = cities.map(TimeZoneResolver.init)
         let z = resolver?.resolve(fix.location, deviceZone: .current)
         let near = (z?.distanceMeters ?? .infinity) < 30_000 ? z?.nearestCity : nil

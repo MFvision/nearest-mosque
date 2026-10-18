@@ -69,6 +69,8 @@ final class OnboardingModel {
 
     @ObservationIgnored private var timers: [Task<Void, Never>] = []
     @ObservationIgnored private var clock: Task<Void, Never>?
+    /// The fade-out, then enter(): not one of the timers, so cancelTimers() can never leave the step hidden.
+    @ObservationIgnored private var entering: Task<Void, Never>?
 
     /// Old -demoOnboardingPage values (the tour's six pages) as the nearest new steps.
     private static let pages: [OnboardingStep] = [.promise, .day, .day, .more, .extras, .place]
@@ -123,6 +125,8 @@ final class OnboardingModel {
     func stop() {
         clock?.cancel()
         clock = nil
+        entering?.cancel()
+        entering = nil
         cancelTimers()
         if !AdhanPlayer.shared.isAdhan { AdhanPlayer.shared.stop() }
     }
@@ -155,7 +159,11 @@ final class OnboardingModel {
             return
         }
         withAnimation(OnbMotion.motion(OnbMotion.leave, reduce: reduceMotion)) { leaving = true }
-        later(OnboardingTiming.leave) { [weak self] in self?.enter(to) }
+        entering = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(OnboardingTiming.leave))
+            guard !Task.isCancelled else { return }
+            self?.enter(to)
+        }
     }
 
     func next() { if let n = flow.next(step) { go(n) } }
@@ -249,7 +257,8 @@ final class OnboardingModel {
             withAnimation(bouncy) { placeShown = true }
             flew(loc.name)
         }
-        guard step == .place else { return }
+        // Not while the step fades out: the move already queued goes on.
+        guard step == .place, !leaving else { return }
         withAnimation(bouncy) {
             placeSource = loc.source
             placePulse += 1
