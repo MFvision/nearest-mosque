@@ -216,8 +216,10 @@ def not_editable(platform: str, versions: list) -> None:
     if not versions:
         print(f"::warning::{platform}: no version in App Store Connect: nothing changed.", flush=True)
         return
+    states = ", ".join(f"{v['attributes'].get('versionString')} {v['attributes'].get('appVersionState') or v['attributes'].get('appStoreState')}"
+                       for v in versions[:3])
     print(f"::warning::{platform}: no editable version (Prepare for Submission or rejected); "
-          f"the version is in review or live: nothing changed.", flush=True)
+          f"the version is in review or live: nothing changed. Versions: {states}.", flush=True)
 
 
 def screen_of_entry(e: dict) -> str:
