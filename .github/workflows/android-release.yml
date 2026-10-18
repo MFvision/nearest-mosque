@@ -2,8 +2,9 @@ name: Android release (Google Play)
 
 # Builds the minified, shrunk release (App Bundle for Google Play, APK for side-loading checks) and keeps both
 # with the R8 mapping as artifacts. Signs with the upload key when its secrets exist, and puts the bundle on a
-# Google Play track as a draft release when asked and a service account exists. Without the secrets those steps
-# are skipped with a notice. Setup: docs/12-google-play.md.
+# Google Play track as a draft release when asked and a service account exists, or with review on rolls it out to
+# 100% with the release notes (shared/store/play/listing.json whatsNew) and sends it for review. Without the
+# secrets those steps are skipped with a notice. Setup: docs/12-google-play.md.
 
 on:
   workflow_dispatch:
@@ -15,6 +16,10 @@ on:
         default: internal
       upload:
         description: "Upload the bundle to Google Play as a draft release (needs PLAY_SERVICE_ACCOUNT_JSON)"
+        type: boolean
+        default: false
+      review:
+        description: "With upload: roll out to 100% with the release notes and send for review, instead of a draft"
         type: boolean
         default: false
 
@@ -164,7 +169,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Upload to Google Play as a draft release (${{ inputs.track }})
+      - name: Upload to Google Play (${{ inputs.track }}, ${{ inputs.review && 'send for review' || 'draft' }})
         if: inputs.upload && steps.secrets.outputs.play == 'true' && steps.secrets.outputs.sign == 'true'
         env:
           PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
@@ -172,6 +177,7 @@ jobs:
           TRACK: ${{ inputs.track }}
           RELEASE_NAME: ${{ steps.out.outputs.release_name }}
           AAB: ${{ steps.out.outputs.aab }}
+          REVIEW: ${{ inputs.review }}
         run: |
           python3 -m venv /tmp/play && /tmp/play/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0
           /tmp/play/bin/python tools/store/play_upload.py "$AAB"

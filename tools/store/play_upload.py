@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
-"""Uploads an Android App Bundle to Google Play as a draft release (CI, Google Play Developer API v3).
+"""Uploads an Android App Bundle to Google Play as a draft release, or sends it for review (CI, Google Play
+Developer API v3).
 
     play_upload.py <app.aab>
 
 Environment: PLAY_SERVICE_ACCOUNT_JSON (the service account's JSON key, the whole file), PACKAGE_NAME
 (e.g. com.AVA.nearmosque), TRACK (internal | closed | production; "closed" is Play's default closed track,
 "alpha"), RELEASE_NAME (optional, shown in Play Console), DRY_RUN ("true": sign in and open an edit, then
-discard it without uploading).
+discard it without uploading), REVIEW ("true": roll out to everyone on the track, with release notes, instead of
+a draft), RELEASE_NOTES (with REVIEW: the listing file whose whatsNew texts become the release notes, default
+shared/store/play/listing.json).
 
 It uses the edits flow: open an edit, upload the bundle, put its version code on the track as a release with
 status "draft", commit. The R8 mapping travels inside the bundle (BUNDLE-METADATA), so Play deobfuscates crash
 stacks without a separate upload. A draft release
-is never sent to testers or users; someone presses "Review release" / "Start rollout" in Play Console. The
+is never sent to testers or users; someone presses "Review release" / "Start rollout" in Play Console. With
+REVIEW the release is "completed" (100%) and the commit sends it for review (managed publishing is off); it
+takes the place of a release of the same track that is still in review. The
 first release of a new app must be uploaded by hand in Play Console (docs/12-google-play.md); the API cannot
 create it. Logs show the track, the version code and HTTP status only, never the service account's email or
 key. Needs PyJWT and cryptography.
@@ -139,14 +144,24 @@ def main() -> int:
     version = int(bundle["versionCode"])
     print(f"Bundle uploaded: version code {version}.", flush=True)
 
-    release = {"versionCodes": [str(version)], "status": "draft"}
+    review = os.environ.get("REVIEW", "").lower() == "true"
+    release = {"versionCodes": [str(version)], "status": "completed" if review else "draft"}
     name = os.environ.get("RELEASE_NAME", "").strip()
     if name:
         release["name"] = name[:50]
+    if review:
+        notes = pathlib.Path(os.environ.get("RELEASE_NOTES") or pathlib.Path(__file__).resolve().parents[2] / "shared/store/play/listing.json")
+        locales = json.loads(notes.read_text())["locales"]
+        release["releaseNotes"] = [{"language": loc, "text": v["whatsNew"]} for loc, v in locales.items() if v.get("whatsNew")]
+        print(f"Release notes in {len(release['releaseNotes'])} languages.", flush=True)
     play.call("PUT", play.app(f"/edits/{edit}/tracks/{track}"), body={"track": track, "releases": [release]})
     play.call("POST", play.app(f"/edits/{edit}:commit"))
-    print(f"Committed: version code {version} is a draft release on the {track_input} track. "
-          "Review and roll it out in Play Console.")
+    if review:
+        print(f"Committed: version code {version} is rolling out to everyone on the {track_input} track once Google "
+              "approves it; it was sent for review.")
+    else:
+        print(f"Committed: version code {version} is a draft release on the {track_input} track. "
+              "Review and roll it out in Play Console.")
     return 0
 
 
