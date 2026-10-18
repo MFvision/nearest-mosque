@@ -1,0 +1,47 @@
+name: App Store review submissions
+
+# Shows the App Store versions and open review submissions, or cancels the ones waiting for review so a version's
+# build, screenshots and text can change again (tools/store/asc_review.py). Changes no build, metadata or release
+# setting. Started by hand.
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "status (read only) or cancel (take versions out of review)"
+        type: choice
+        options: [status, cancel]
+        default: status
+      confirm:
+        description: "Really cancel (off: report what would be cancelled)"
+        type: boolean
+        default: false
+      platforms:
+        description: "App Store platforms, space-separated"
+        default: "IOS MAC_OS TV_OS VISION_OS"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-upload
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Install the script's dependencies (pinned)
+        run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
+      - name: Review submissions
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          BUNDLE_ID: sa.zood.nearmosque
+          PLATFORMS: ${{ inputs.platforms }}
+          CONFIRM: ${{ inputs.confirm }}
+          ACTION: ${{ inputs.action }}
+        run: /tmp/asc/bin/python tools/store/asc_review.py "$ACTION"
