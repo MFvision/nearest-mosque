@@ -5,13 +5,19 @@
 
 Output:
     <out>/<display type>/<ASC locale>/<NN>-<screen>.png   one folder per device slot and store language
-    <out>/manifest.json                                    every file: slot, locale, position, size, sha256, what it shows
+    <out>/manifest.json                                    every file: slot, locale, position, size, sha256, what it shows;
+                                                           "missing" (no capture), "skipped" (still loading) and
+                                                           "failed" (why, for every screen with no usable capture)
     <out>/contact-sheets/<platform>.jpg                    one row per language, for a quick look
     <out>/icons/                                           the app icons as built into the apps (for reference)
 
 Each screen's capture is found by its name, whatever its number (the number is the position in the order of the
 run that made it; collect.py gathers captures of several runs into the raw folder), and is written with its
-position in the current order of screens.json.
+position in the current order of screens.json. A screen with no capture is listed under "missing"; when the raw
+folder has shoot.py's failure marker for it instead (`<NN>-<screen>.failed`, kept there by collect.py), it is also
+listed under "failed" with the reason, so a later merge from this finished set still does not use an older capture.
+A capture that is not a readable picture is listed under both too. An Apple Vision Pro capture left out as still
+loading is listed under "skipped" and under "failed" (not "missing"), for the same reason.
 
 A capture already at a size App Store Connect accepts is kept as it is (as RGB, no alpha). Anything else
 (the Mac window, the Apple Vision Pro view) is placed, never stretched, on a canvas of an accepted size over
@@ -26,7 +32,7 @@ import sys
 
 from PIL import Image, ImageEnhance, ImageFilter, ImageStat
 
-from collect import find_capture
+from collect import find_capture, find_failure, reason_of
 
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent
@@ -133,7 +139,7 @@ def icons(out):
 def main():
     raw, out, commit = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]), sys.argv[3]
     out.mkdir(parents=True, exist_ok=True)
-    entries, missing, skipped, sheets = [], [], [], {}
+    entries, missing, failed, skipped, sheets = [], [], [], [], {}
     for platform, conf in SPEC["platforms"].items():
         rows = []
         for lang in SPEC["languages"]:
@@ -144,10 +150,25 @@ def main():
                 src = find_capture(raw / platform / lang["app"], n, screen)
                 if src is None:
                     missing.append(f"{platform}/{lang['app']}/{name}")
+                    marker = find_failure(raw / platform / lang["app"], screen)
+                    if marker is not None:
+                        failed.append({"platform": platform, "appLanguage": lang["app"], "screen": screen,
+                                       "position": n, "reason": reason_of(marker)})
                     continue
-                im = Image.open(src)
+                try:
+                    im = Image.open(src)
+                    im.load()
+                except OSError:   # not a picture (a capture cut off part way): reported, never a crash
+                    missing.append(f"{platform}/{lang['app']}/{name}")
+                    failed.append({"platform": platform, "appLanguage": lang["app"], "screen": screen,
+                                   "position": n, "reason": f"unreadable capture {src.name}"})
+                    continue
                 if platform == "vision" and loading_screen(im):
                     skipped.append(f"{platform}/{lang['app']}/{name}: still loading when captured")
+                    # Also under "failed": no usable capture of this screen, so a later merge from this finished
+                    # set drops an older capture of it instead of bringing that back in silence.
+                    failed.append({"platform": platform, "appLanguage": lang["app"], "screen": screen,
+                                   "position": n, "reason": "still loading when captured"})
                     continue
                 if not accepted(im, conf["sizes"]):
                     im = fit_on_canvas(im, target_size(im, conf["sizes"]))
@@ -187,15 +208,18 @@ def main():
         "contactSheets": sheets,
         "icons": icons(out),
         "missing": missing,
+        "failed": failed,
         "skipped": skipped,
         "screenshots": entries,
     }
     (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n")
-    print(f"{len(entries)} screenshot entries, {len(missing)} missing, {len(skipped)} left out")
+    print(f"{len(entries)} screenshot entries, {len(missing)} missing, {len(skipped)} left out (still loading), "
+          f"{len(failed)} failed (no usable capture: a later merge from this set does not use an older one)")
+    why = {f"{f['platform']}/{f['appLanguage']}/{f['position']:02d}-{f['screen']}.png": f["reason"] for f in failed}
     for k in skipped:
         print(f"::notice::left out {k}")
     for m in missing:
-        print(f"::warning::missing {m}")
+        print(f"::warning::missing {m}" + (f" (the capture failed: {why[m]})" if m in why else ""))
 
 
 if __name__ == "__main__":

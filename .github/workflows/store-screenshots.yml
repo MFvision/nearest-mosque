@@ -74,6 +74,18 @@ jobs:
         working-directory: ios
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      # Before anything that can fail: every screen this shard is to capture is marked as not captured yet
+      # (raw/<platform>/<language>/<NN>-<screen>.failed); each capture replaces its marker. The raw folder is uploaded
+      # even when a later step (Xcode, runtime download, build, capture) fails, so the merge never fills those
+      # screens in from an older run.
+      - name: Mark the screens to capture
+        env:
+          PLATFORM: ${{ matrix.platform }}
+          LANGS: ${{ matrix.langs }}
+          ONLY: ${{ inputs.only }}
+          MARK_REASON: "not captured: the shard stopped before capturing it (a setup or build step failed, or the job was stopped)"
+        # shellcheck disable=SC2086 # the language list is meant to split into arguments
+        run: python3 ../tools/store/shoot.py --mark "$PLATFORM" raw $LANGS
       - name: Select newest Xcode
         env:
           PLATFORM: ${{ matrix.platform }}
@@ -116,8 +128,10 @@ jobs:
           APP=$(find dd/Build/Products -maxdepth 2 -name "$SCHEME.app" -type d | head -1)
           echo "APP=$PWD/$APP" >> "$GITHUB_ENV"
       - name: Capture
-        # A shard that runs long stops here and still uploads what it captured (a cancelled job uploads nothing).
-        timeout-minutes: 45
+        # A shard that runs long stops here and still uploads what it captured, with markers for the screens it did
+        # not reach (a cancelled job may upload nothing: the finish job marks its screens). An Apple Vision Pro shard
+        # takes about half an hour without retries, and a hung screenshot costs up to 3 tries of 60 seconds.
+        timeout-minutes: 75
         env:
           PLATFORM: ${{ matrix.platform }}
           LANGS: ${{ matrix.langs }}
@@ -130,6 +144,8 @@ jobs:
           mkdir -p crashes
           find ~/Library/Logs/DiagnosticReports -name 'NearMosque*' -newer build.log -exec cp {} crashes/ \; 2>/dev/null || true
           ls crashes
+      # The whole raw folder: the captures and shoot.py's <NN>-<screen>.failed markers (a screen this run meant to
+      # capture and has none of), which collect.py needs so it never uses an older capture of that screen instead.
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
@@ -142,7 +158,7 @@ jobs:
 
   finish:
     name: Sort into App Store Connect slots
-    needs: shoot
+    needs: [plan, shoot]
     if: always()
     runs-on: ubuntu-24.04
     permissions:
@@ -153,24 +169,47 @@ jobs:
       # An earlier run's raw captures are kept 3 days, its finished set (app-store-screenshots) 30 days: both are
       # read, the finished set first. tools/store/collect.py matches captures by screen name, so a later capture of a
       # screen replaces an earlier one whatever its number, and runs made in an older order sort into the new one.
+      # A failed capture (a .failed marker, or "failed" in a finished set's manifest) drops the earlier capture of that
+      # screen, so finish.py reports it as missing instead of mixing in an old picture. A planned shard of this run
+      # that uploaded no raw folder at all (cancelled, or its runner lost) gets markers for its screens here.
       - name: Collect the captures (earlier runs first, this run last)
         env:
           GH_TOKEN: ${{ github.token }}
           FROM_RUN: ${{ inputs.from_run }}
+          CAPTURE: ${{ inputs.capture }}
+          SHARDS: ${{ needs.plan.outputs.shards }}
+          ONLY: ${{ inputs.only }}
+        # shellcheck disable=SC2086 # the language list is meant to split into arguments
         run: |
           mkdir -p raw
+          if [ "$CAPTURE" = "true" ] && [ -z "$SHARDS" ]; then
+            echo "::error::No shard plan for this run's captures (the plan job failed); nothing to sort."
+            exit 1
+          fi
           for id in $FROM_RUN "$GITHUB_RUN_ID"; do
             if [ "$id" != "$GITHUB_RUN_ID" ]; then
               gh run download "$id" --repo "$GITHUB_REPOSITORY" --name app-store-screenshots --dir "downloaded/$id/finished" || true
               if [ -f "downloaded/$id/finished/manifest.json" ]; then python3 tools/store/collect.py raw "downloaded/$id/finished"; fi
             fi
             gh run download "$id" --repo "$GITHUB_REPOSITORY" --pattern 'raw-*' --dir "downloaded/$id" || true
+            if [ "$id" = "$GITHUB_RUN_ID" ] && [ "$CAPTURE" = "true" ]; then
+              echo "$SHARDS" | python3 -c 'import json, sys; [print(s["platform"], s["shard"], s["langs"]) for s in json.load(sys.stdin)]' |
+                while read -r platform shard langs; do
+                  if [ ! -d "downloaded/$id/raw-$platform-$shard/raw" ]; then
+                    echo "::error::Screenshots ($platform $shard) uploaded no raw captures: its screens are reported as missing, not filled in from an earlier run."
+                    MARK_REASON="not captured: shard $platform $shard uploaded no captures" \
+                      python3 tools/store/shoot.py --mark "$platform" "downloaded/$id/raw-$platform-$shard/raw" $langs
+                  fi
+                done
+            fi
             for d in "downloaded/$id"/raw-*; do
               if [ -d "$d/raw" ]; then python3 tools/store/collect.py raw "$d/raw"; fi
             done
             rm -rf "downloaded/$id"
           done
           find raw -name '*.png' | wc -l
+          echo "Failed captures (reported as missing):"
+          find raw -name '*.failed' | sort
       - name: Sort, check sizes, write the manifest
         run: |
           python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet pillow

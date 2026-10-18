@@ -27,6 +27,22 @@ A run that sorted only (capture off) holds whatever it sorted, which may be a fe
 `missing` before using it as a source. `python3 tools/store/collect.py --check` (CI) checks `screens.json` and
 this merge.
 
+A capture that fails is never filled in from an older run in silence. `tools/store/shoot.py` tries each simulator
+screenshot up to 3 times (60 seconds each, a short pause before a retry, the app launched afresh and waited for
+before the last one; the iPad and Apple Vision Pro simulators sometimes hang on animated screens such as the
+onboarding promise and the weather sky). Each shard first marks every screen it is to capture as
+`<NN>-<screen>.failed` in its raw captures (before Xcode, the runtime download and the build), and each capture,
+Mac ones included, replaces its marker; a capture is written under a partial name and renamed only once complete.
+So a screen with no capture (every attempt failed, the launch or the build failed, or the shard stopped part way)
+keeps its marker, with the reason. A planned shard that uploaded nothing at all (a cancelled job) is marked by the
+sorting job, with an error in the log. The merge then drops any earlier capture of that screen for that device and
+language, so the screen is listed under `missing` (and under `failed`, with the reason) instead of mixing an old
+design into the new set; a later capture of it replaces the marker. The finished set keeps `failed`, so a later run
+that reads it after the raw captures have expired still does not use the older capture. An Apple Vision Pro capture
+left out as still loading is listed under `failed` as well as `skipped`, for the same reason. To redo such screens, run with **only**
+and **from_run**. To use an older capture after all, give the run that has it after the failed one in **from_run**
+(with **capture** off, as this run's own captures always come last).
+
 The layout of the files:
 
 ```
@@ -51,8 +67,11 @@ entry in `screenshots` says:
 | `title`, `shows` | What the screen is, for captions or review notes |
 
 `skipped` lists Apple Vision Pro captures left out because the window was still loading; that locale's
-set is one shorter and the positions close up. `missing` lists any capture that failed. Do not upload a set for a locale that has missing files
-without telling the owner.
+set is one shorter and the positions close up. `missing` lists every screen with no capture (`platform/language/NN-screen.png`);
+`failed` lists every screen with no usable capture and why (`platform`, `appLanguage`, `screen`, `position`, `reason`):
+a capture that failed or was never reached, in this run or an earlier one it merged, an unreadable file, or an Apple
+Vision Pro capture still loading. Do not upload a set for a locale that has missing or skipped files without telling
+the owner.
 
 ## The slots
 
@@ -270,7 +289,8 @@ default) to see what it would do, then again with it off. What it does depends o
 |---|---|
 | `display_types` only (the default) | Fills empty sets. A set that already holds screenshots is reported and left as it is, so it never replaces or deletes anything. |
 | `screens` (e.g. `prayer-weather`) | Adds the files of those screens to sets that already hold screenshots, where that screen is not there yet, then orders the set as the manifest does. Screenshots the manifest does not know (a screen that left the order, or a file name it does not recognise) keep their order after the others. A second run adds nothing. A set that would go over 10 is skipped and reported; a missing or empty set is left to the default mode. Only a screenshot App Store Connect finished processing counts as there: a new one that fails processing or cannot be uploaded is deleted again at once (it is the run's own upload), and one of those screens already in a set in any other state stops that set with an error saying to remove it with `remove_screens` and `confirm_delete` first. An upload error stops the run cleanly. |
-| `remove_screens` (e.g. `prayer-dark`) and `confirm_delete` | Deletes the screenshots of those screens in the sets being processed. With `confirm_delete` off (the default) it only lists what it would delete and deletes nothing. Turn it on only after the owner has confirmed that list. Together with `screens`, it deletes in a set only when the manifest has every one of those screens for that `displayType` and locale and the insert is not skipped (a set that would go over 10, or that holds one of those screens unfinished, is left whole). A set the manifest lacks one of them for (for example a locale whose weather capture is missing) is reported and left exactly as it is: nothing deleted, added or reordered. The manifest check does not guarantee the new screenshot reaches App Store Connect, so the order matters: a set with room takes the new screenshots first and deletes only once every one of them is ready; if one fails, nothing is deleted there. A full set (10) has to delete first to make room, so if the new screenshot then fails processing or cannot be uploaded, the deleted one is not brought back: the run reports it (an upload error also stops the run), and the set holds one fewer until a later run uploads the new screen. The dry run and the report with `confirm_delete` off say which sets delete first. |
+| `remove_screens` (e.g. `prayer-dark`) and `confirm_delete` | Deletes the screenshots of those screens in the sets being processed. With `confirm_delete` off (the default) it only lists what it would delete and deletes nothing. Turn it on only after the owner has confirmed that list. On its own it checks no manifest: it deletes in every set processed, in every locale. Together with `screens` or `replace_screens`, it deletes in a set only when the manifest has every one of those screens for that `displayType` and locale and the insert is not skipped (a set that would go over 10, or that holds one of those screens unfinished, is left whole). A set the manifest lacks one of them for (for example a locale whose weather capture is missing) is reported and left exactly as it is: nothing deleted, added, replaced or reordered. The manifest check does not guarantee the new screenshot reaches App Store Connect, so the order matters: a set with room takes the new screenshots first and deletes only once every one of them is ready; if one fails, nothing is deleted there. A full set (10) has to delete first to make room, so if the new screenshot then fails processing or cannot be uploaded, the deleted one is not brought back: the run reports it (an upload error also stops the run), and the set holds one fewer until a later run uploads the new screen. The dry run and the report with `confirm_delete` off say which sets delete first, also when the new screen is a `replace_screens` addition. |
+| `replace_screens` (e.g. `onboarding`) and `confirm_delete` | For a screen whose picture changed. With `confirm_delete` off (the default) it changes nothing and lists what it would replace or add. In each set, for each named screen the manifest has a file for (that `displayType` and locale; a set it has none for is left as it is for that screen, with a warning when the manifest lists that screen under `failed`, `missing` or `skipped` for that device and language, and a plain note when it is not a screen of that display type, such as `onboarding` on the iPhone): where the set's screenshot of that screen has a `sourceFileChecksum` other than the manifest's `md5`, the new file is uploaded and the old screenshot is deleted only once the new one is ready (`COMPLETE`); if the new one fails processing, cannot be uploaded or is not ready yet, the old one is kept (a failed new one, the run's own upload, is deleted again), the set is not reordered and nothing else changes in it. That needs room for one more screenshot, so a set that already holds 10 is reported and left with nothing deleted, unless `delete_first_in_full_sets` is on: then, in such a set only, the old screenshot is deleted first and the new file uploaded, and if the new one fails processing or cannot be uploaded the old one is not brought back (the run reports it as failed and a later run adds the new one). Where the checksum is the same and the screenshot is ready, nothing happens (an older file of that screen next to it, left by a replace whose new file was still processing, is deleted). Where the checksum is the same but App Store Connect failed it (a replace whose new file was still processing when its run ended), that unusable screenshot is deleted first and does not count toward the room; the replace then goes on. Where the set has no screenshot of that screen, it is added as `screens` adds it. Replacements go first, one screen at a time, then `screens` and `remove_screens`, then the set is ordered as the manifest does. It can be combined with `screens` and `remove_screens`, but each screen goes in only one of the three. |
 | `text` and `platforms` | Updates `description`, `keywords` and `promotionalText` of every locale of each named version (`IOS`, `MAC_OS`, `VISION_OS`, `TV_OS`) from `shared/store/listing.json`, and `whatsNew` unless the version is the app's first on that platform (if App Store Connect refuses it, it is skipped and reported). It never changes the name or the subtitle (the subtitle is on `appInfoLocalizations`: change it by hand), never blanks a field the file does not have, sends only the fields that differ, and skips and reports locales App Store Connect does not have (it does not create them). With `TV_OS` in `platforms` it also updates the **Privacy Policy Text** of the app information (App Information → Privacy Policy Text, shown on Apple TV; API `appInfoLocalizations`, `privacyPolicyText`) from each locale's `APP_INFO`, only where it differs and only on an editable app information (`GET /v1/apps/{id}/appInfos`, state Prepare for Submission or rejected, the same states as the versions). If none is editable it reports "app information is in review or live: privacy text not changed" and goes on. It never touches the name, the subtitle or the privacy policy URL, and a dry run shows the locales and lengths, not the text. For text only, leave `display_types` empty; `run_id` is then not needed. |
 
 A screenshot already in App Store Connect is recognised by its file name, `<anything>-<screen>.png` (the
@@ -302,6 +322,27 @@ tools/store/tests/test_asc_upload.py` tests the modes offline against a fake App
    the Apple TV version's text from `listing.json`; the Apple TV description keeps its privacy paragraph without
    the weather, because the TV app has none. The app information must be editable (a new version in Prepare for
    Submission on any platform); otherwise the run reports it and changes nothing there.
+
+**Replacing the onboarding screen (`onboarding`).** The iPad and Apple Vision Pro sets hold the old welcome tour
+(`09-onboarding.png` on iPad, `06-onboarding.png` on Apple Vision Pro). After a screenshots run with the new
+onboarding in every language (check that its manifest's `missing` and `failed` have no `onboarding`; a locale that
+lacks it is left as it is):
+
+1. Dry run with `display_types` `APP_IPAD_PRO_3GEN_129 APP_APPLE_VISION_PRO`, `replace_screens` `onboarding` and
+   `confirm_delete` off. It lists each set and which onboarding screenshot it would replace, add or leave.
+2. With the owner's yes, run with `confirm_delete` on (dry run first, then `dry_run` off). In each set the new
+   file is uploaded, the old one deleted once the new one is ready, and the set ordered. A second run changes
+   nothing.
+3. A set that holds 10 (the iPad sets, once the weather screen is in) has no room to take the new file before the
+   old one goes, so it is reported and left. Replacing it there needs the owner's yes for a gap: the same run with
+   `delete_first_in_full_sets` on as well (dry run first; with `confirm_delete` off the report says which sets
+   delete first). In each full set where the manifest has the new onboarding, the old one is deleted, then the
+   new file uploaded; if that upload fails, the old screenshot is not brought back and the set holds 9 until a run
+   adds it (the same inputs again). A full set whose locale lacks the new onboarding is reported and left with its
+   old one. Do not use `remove_screens` `onboarding` on its own for this: it deletes in every locale of the sets
+   processed, whatever the manifest holds, so a locale whose new capture failed would end with no onboarding. On an
+   iPad set of 9 that still lacks the weather screen, one run with `screens` `prayer-weather` and
+   `replace_screens` `onboarding` does both, the replace first.
 
 The iPhone Duo slot has no screenshot type in the API yet (see above), so its files are still added by hand.
 
