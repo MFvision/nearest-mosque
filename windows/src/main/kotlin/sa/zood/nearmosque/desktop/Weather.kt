@@ -4,9 +4,11 @@ import androidx.compose.runtime.mutableStateOf
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.future.await
+import kotlinx.coroutines.runInterruptible
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import sa.zood.nearmosque.core.City
 import sa.zood.nearmosque.core.LatLng
 import sa.zood.nearmosque.core.Weather
@@ -131,22 +133,27 @@ internal class WeatherClient(
      * oversized body). The body is read only for 200/203, inflated when MET sent it gzipped or deflated.
      */
     private suspend fun get(url: String, headers: Map<String, String>): Reply? = try {
-        val request = HttpRequest.newBuilder(URI(url)).timeout(Duration.ofSeconds(15)).GET()
-        headers.forEach { (name, value) -> request.header(name, value) }
-        request.header("Accept-Encoding", "gzip, deflate")
-        val res = http().sendAsync(request.build(), HttpResponse.BodyHandlers.ofInputStream()).await()
-        val status = res.statusCode()
-        val body = res.body().use { raw ->
-            if (status != 200 && status != 203) return@use null
-            val encoding = res.headers().firstValue("Content-Encoding").orElse("").trim().lowercase(Locale.ROOT)
-            val input = when (encoding) {
-                "gzip", "x-gzip" -> GZIPInputStream(raw)
-                "deflate" -> InflaterInputStream(raw)
-                else -> raw
+        withTimeoutOrNull(45_000) {
+            val request = HttpRequest.newBuilder(URI(url)).timeout(Duration.ofSeconds(15)).GET()
+            headers.forEach { (name, value) -> request.header(name, value) }
+            request.header("Accept-Encoding", "gzip, deflate")
+            val res = http().sendAsync(request.build(), HttpResponse.BodyHandlers.ofInputStream()).await()
+            val status = res.statusCode()
+            // HttpRequest.timeout stops at the headers (JDK 21); a cancel or the timeout above interrupts this blocking read.
+            val body = runInterruptible {
+                res.body().use { raw ->
+                    if (status != 200 && status != 203) return@use null
+                    val encoding = res.headers().firstValue("Content-Encoding").orElse("").trim().lowercase(Locale.ROOT)
+                    val input = when (encoding) {
+                        "gzip", "x-gzip" -> GZIPInputStream(raw)
+                        "deflate" -> InflaterInputStream(raw)
+                        else -> raw
+                    }
+                    input.use(::readCapped)
+                }
             }
-            input.use(::readCapped)
+            Reply(status, res.headers().map().mapValues { it.value.firstOrNull().orEmpty() }, body)
         }
-        Reply(status, res.headers().map().mapValues { it.value.firstOrNull().orEmpty() }, body)
     } catch (e: CancellationException) {
         throw e
     } catch (e: Exception) {

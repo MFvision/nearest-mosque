@@ -312,7 +312,6 @@ internal class OnbState(start: OnboardingStep, preview: WeatherCondition, flow: 
     var adhanBump by mutableIntStateOf(0)
     var fridayBump by mutableIntStateOf(0)
     var sheet by mutableStateOf(false)
-    var allow by mutableStateOf(AllowPhase.IDLE)
 }
 
 /** Everything a step needs: the real settings and actions, the layout, and how to move on. */
@@ -2193,18 +2192,17 @@ private fun hijriText(now: Instant, clock: Clock): String? = runCatching {
  */
 @Composable
 private fun PrivacyStep(o: Onb) {
-    val s = o.state
     val scope = rememberCoroutineScope()
+    // The step's own: Back or Escape during the spinner leaves it, and the next visit starts at the label again.
+    var allow by remember { mutableStateOf(AllowPhase.IDLE) }
     fun press() {
-        if (s.allow != AllowPhase.IDLE) return
-        s.allow = AllowPhase.WORKING
+        if (allow != AllowPhase.IDLE) return
+        allow = AllowPhase.WORKING
         scope.launch {
             delay(OnboardingTiming.ALLOW_SPINNER.toLong())
-            s.allow = AllowPhase.DONE
+            allow = AllowPhase.DONE
             delay(OnboardingTiming.ALLOW_HOLD.toLong())
             o.go(OnboardingStep.DONE)
-            delay(OnboardingTiming.LEAVE.toLong() + 50)
-            s.allow = AllowPhase.IDLE
         }
     }
     // The whole timeline, its last sentence and the weather's on/off should show above the button without a scroll:
@@ -2214,7 +2212,7 @@ private fun PrivacyStep(o: Onb) {
     val type = PrivacyType.levels[tight]
     StepFrame(o, onOverflow = { if (tight < PrivacyType.levels.lastIndex) tight++ }, button = {
         Column {
-            AllowButton(t("onb2_finish"), s.allow, onClick = ::press)
+            AllowButton(t("onb2_finish"), allow, onClick = ::press)
             Spacer(Modifier.height(if (tight > 0) 6.dp else 10.dp))
             OnbFoot(t("onb2_change_later"), Modifier.fillMaxWidth(), align = TextAlign.Center)
         }

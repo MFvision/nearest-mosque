@@ -48,6 +48,9 @@ class WeatherTest {
         val requests = CopyOnWriteArrayList<Seen>()
         @Volatile var reply: (Seen) -> Answer = { Answer(500) }
         @Volatile var hold: CountDownLatch? = null
+        /** Set: the headers and half the body go out, then nothing until it opens (a connection gone quiet mid-reply). */
+        @Volatile var stall: CountDownLatch? = null
+        @Volatile var stalled = false
         private val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0).apply {
             createContext("/") { ex ->
                 val h = ex.requestHeaders
@@ -61,7 +64,16 @@ class WeatherTest {
                     if (!a.gzip) b else ByteArrayOutputStream().also { out -> GZIPOutputStream(out).use { it.write(b) } }.toByteArray()
                 }
                 ex.sendResponseHeaders(a.status, if (bytes == null) -1 else bytes.size.toLong())
-                bytes?.let { ex.responseBody.write(it) }
+                val s = stall
+                if (bytes != null && s != null) {
+                    ex.responseBody.write(bytes, 0, bytes.size / 2)
+                    ex.responseBody.flush()
+                    stalled = true
+                    s.await(10, TimeUnit.SECONDS)
+                    ex.responseBody.write(bytes, bytes.size / 2, bytes.size - bytes.size / 2)
+                } else {
+                    bytes?.let { ex.responseBody.write(it) }
+                }
                 ex.close()
             }
             start()
@@ -247,6 +259,26 @@ class WeatherTest {
         time = sent.plus(WeatherPolicy.MIN_GAP)
         assertTrue(c.refreshIfDue(makkah))
         assertEquals(3, met.requests.size)
+    }
+
+    @Test fun aReplyThatStallsMidBodyLetsGoWhenCancelled() = runBlocking {
+        val met = met()
+        val c = client(cacheFile(), met::url)
+        met.reply = { ok }
+        // The headers and half the forecast arrive, then the connection goes quiet (the PC sleeps, the Wi-Fi changes).
+        val gate = CountDownLatch(1)
+        met.stall = gate
+        val job = launch { c.refreshIfDue(makkah) }
+        withTimeout(10_000) { while (!met.stalled) delay(10) }
+        delay(200)
+        // The window is minimized: the blocked read is interrupted, so the request ends and the lock is let go.
+        withTimeout(5_000) { job.cancelAndJoin() }
+        gate.countDown()
+        met.stall = null
+        time = fixtureNow.plus(WeatherPolicy.MIN_GAP)
+        assertTrue(withTimeout(5_000) { c.refreshIfDue(makkah) }, "the next request still goes out")
+        assertNotNull(c.now(makkah, time))
+        assertEquals(2, met.requests.size)
     }
 
     @Test fun aDamagedFileReadsAsNoForecast() {
