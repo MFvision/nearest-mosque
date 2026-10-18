@@ -32,7 +32,8 @@ DRY_RUN ("true": report what would change and change nothing, in every mode), an
                   room: if the new screenshot then fails processing or cannot be uploaded, the deleted one is not
                   brought back (the run reports it, and an upload error stops the run). Reports and dry runs say
                   which of the two each set does.
-                  A deleted screenshot cannot be brought back. Screenshots it does not recognise are never deleted.
+                  A deleted screenshot cannot be brought back. Screenshots it does not recognise are never deleted
+                  (only REPLACE_SETS, below, deletes whole sets).
   REPLACE_SCREENS Screen names, space-separated (e.g. "onboarding"): the screens whose picture changed. Only with
                   CONFIRM_DELETE exactly "true"; otherwise it changes nothing and reports what it would replace or
                   add. In each set being processed, for each of those screens the manifest has a file for (that
@@ -57,6 +58,37 @@ DRY_RUN ("true": report what would change and change nothing, in every mode), an
                   CONFIRM_DELETE and the dry run say which sets delete first.
   DELETE_FIRST_IN_FULL_SETS  "true" (exactly): with REPLACE_SCREENS and CONFIRM_DELETE, a set that holds 10 deletes
                   the old screenshot of a changed screen before uploading the new one, as described above.
+  REPLACE_SETS    "true" (exactly; "false" or empty is off, anything else an input error): replaces whole sets, for
+                  sets uploaded by hand under file names no screen name matches (ipad_01.jpg). Only with
+                  CONFIRM_DELETE exactly "true"; otherwise it reports what it would delete and upload and changes
+                  nothing. For each set in DISPLAY_TYPES in each locale of the platform's editable version that the
+                  manifest has at least one file for (a sameFileAs locale has its own entries, with the files of its
+                  source locale, as the default mode uses them):
+                  * it already holds exactly the manifest's files in position order (as many, each sourceFileChecksum
+                    equal to the md5 in any case, all COMPLETE): "already up to date", nothing changes. The same
+                    files in another order: only ordered. The same files with one still processing: reported, left.
+                  * the manifest lacks a screen of the display type's order for that locale (as "missing", "failed" or
+                    "skipped" say), or has fewer files for it than the set holds now: the set would end shorter, so it
+                    is left as it is (nothing deleted or uploaded) and reported as an error naming the missing screens,
+                    and the run exits non-zero; unless ALLOW_SHORT_SETS is exactly "true": then a warning, and the
+                    set is replaced as below.
+                  * otherwise every screenshot in it is deleted, recognised or not, then the manifest's files are
+                    uploaded in position order, each committed with its md5, and once all are COMPLETE the set is
+                    ordered. A deleted screenshot cannot be brought back.
+                  A set whose delete or upload stops with an error, whose file fails processing (deleted again: the
+                  run's own upload) or whose file is still processing when the wait ends is reported: it may now be
+                  short, and a re-run replaces it again, as it no longer holds what the manifest says (files only
+                  still processing count as up to date once they are ready). The other sets go on and the run exits
+                  non-zero, but two such sets with no fully replaced set between them stop the run, and a set that
+                  ends with none of the manifest's files in it (every upload failed) stops it at once, so a broken
+                  upload, or files App Store Connect does not process for that display type, never empties every set
+                  it reaches. A manifest set of more than 10 files is reported and left. A locale or a set missing in
+                  App Store Connect is skipped and reported (the default mode creates a missing set). It cannot be
+                  combined with SCREENS, REMOVE_SCREENS or REPLACE_SCREENS. Reports give per set how many are
+                  deleted and uploaded.
+  ALLOW_SHORT_SETS "true" (exactly; "false" or empty is off, anything else an input error): with REPLACE_SETS only.
+                  Replaces a set even where the manifest lacks screens for it or has fewer files than it holds, so
+                  it ends shorter (a warning names the screens). Only once the owner has agreed to the shorter sets.
   TEXT            "true": updates description, keywords and promotionalText of each locale of the editable version
                   of each platform in PLATFORMS ("IOS MAC_OS VISION_OS TV_OS") from shared/store/listing.json, and
                   whatsNew unless it is the app's first version on that platform (if App Store Connect refuses it,
@@ -69,8 +101,9 @@ DRY_RUN ("true": report what would change and change nothing, in every mode), an
                   on. Never the name, the subtitle or the privacy policy URL. A dry run shows locales and lengths.
 
 A screenshot is recognised by its fileName: "<anything>-<screen>.png", the longest known screen name winning, so
-"09-widgets-qibla.png" is widgets-qibla and never qibla. Screenshot modes use the editable version of each
-platform (Prepare for Submission or rejected). In the SCREENS, REMOVE_SCREENS, REPLACE_SCREENS and TEXT modes a
+"09-widgets-qibla.png" is widgets-qibla and never qibla. Only REPLACE_SETS deletes a screenshot it does not recognise
+(it replaces the whole set). Screenshot modes use the editable version of each platform (Prepare for Submission or
+rejected). In the SCREENS, REMOVE_SCREENS, REPLACE_SCREENS, REPLACE_SETS and TEXT modes a
 platform without one is reported ("in review or live: nothing changed") and the others go on. Logs show locales, counts and the
 screenshots' file names only. Needs PyJWT and cryptography. Offline test: tools/store/tests/test_asc_upload.py.
 """
@@ -197,6 +230,12 @@ def wait_states(ids: list[str], minutes: int = 15) -> dict:
 def wait_complete(ids: list[str], minutes: int = 15) -> tuple[int, int]:
     states = list(wait_states(ids, minutes).values())
     return states.count("COMPLETE"), states.count("FAILED")
+
+
+def order_set(set_id: str, ids: list[str]) -> None:
+    """Sets a screenshot set's order; `ids` must name every screenshot it holds."""
+    api("PATCH", f"/appScreenshotSets/{set_id}/relationships/appScreenshots",
+        body={"data": [{"type": "appScreenshots", "id": i} for i in ids]})
 
 
 # ---- Helpers shared by the modes ----
@@ -381,8 +420,7 @@ def fill_empty(store: pathlib.Path, entries: list, app: dict, dry: bool) -> int:
             done, failed = wait_complete(ids)
             failed_total += failed
             if done == len(ids):
-                api("PATCH", f"/appScreenshotSets/{set_id}/relationships/appScreenshots",
-                    body={"data": [{"type": "appScreenshots", "id": i} for i in ids]})
+                order_set(set_id, ids)
             uploaded += done
             print(f"{dt} {locale}: uploaded {done} of {len(ids)}" + (f", {failed} failed processing" if failed else ""), flush=True)
     print(f"Done: {uploaded} uploaded, {skipped} set(s) left as they were, {failed_total} failed." + (" (dry run)" if dry else ""))
@@ -708,6 +746,246 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
     return 1 if n["failed"] else 0
 
 
+# ---- REPLACE_SETS: replace whole sets with the manifest's files ----
+
+def error_name(err: Exception) -> str:
+    return type(err).__name__ + (f" HTTP {err.code}" if isinstance(err, urllib.error.HTTPError) else "")
+
+
+def holds_manifest(shots: list, files: list) -> str:
+    """How a set compares with the manifest's files for it, by sourceFileChecksum against md5 (in any case):
+    "same" (exactly those files, in position order, all COMPLETE), "order" (the same files in another order, all
+    COMPLETE), "processing" (the same files, one not COMPLETE yet and none FAILED) or "differs"."""
+    want = [e["md5"].lower() for e in files]
+    have = [checksum_of(s) for s in shots]
+    states = [state_of(s) for s in shots]
+    if "FAILED" in states or sorted(have) != sorted(want):
+        return "differs"
+    if any(s != "COMPLETE" for s in states):
+        return "processing"
+    return "same" if have == want else "order"
+
+
+def manifest_order(shots: list, files: list) -> list[str]:
+    """The ids of a set that holds the manifest's files (holds_manifest "order"), in position order."""
+    pool, ids = list(shots), []
+    for e in files:
+        s = next(s for s in pool if checksum_of(s) == e["md5"].lower())
+        pool.remove(s)
+        ids.append(s["id"])
+    return ids
+
+
+def lacking(manifest: dict, dt: str, files: list) -> tuple[list, int]:
+    """The screens of the display type's order the manifest has no file of for this set (with why, as the manifest
+    says), and how many screens that order has (0 when the manifest does not say)."""
+    order = ((manifest.get("displayTypes") or {}).get(dt) or {}).get("screens") or []
+    have = {screen_of_entry(e) for e in files}
+    out = []
+    for screen in order:
+        if screen not in have:
+            why = why_absent(manifest, dt, files, screen)[1]
+            out.append(f"{screen} ({why})" if why else screen)
+    return out, len(order)
+
+
+def replace_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, confirm: bool, dry: bool,
+                 allow_short: bool = False) -> int:
+    """REPLACE_SETS: each set in DISPLAY_TYPES in each locale of the editable version, where the manifest has files
+    for it, ends holding exactly those files in position order. Deletes everything in a set that does not, then
+    uploads; never touches a set that already does. A set that would end shorter (the manifest lacks screens for
+    it, or has fewer files than it holds) is left as it is unless `allow_short`. Only with CONFIRM_DELETE;
+    otherwise, and in a dry run, it reports."""
+    n = {"replaced": 0, "deleted": 0, "uploaded": 0, "reordered": 0, "current": 0, "skipped": 0, "no_files": 0,
+         "short": 0, "failed": 0}
+    report = dry or not confirm
+    if not confirm:
+        print('REPLACE_SETS: CONFIRM_DELETE is not "true", so nothing is deleted, uploaded or ordered; this only '
+              'reports what would be.', flush=True)
+    # Sets this run deleted from that did not end fully replaced and ready: a delete or an upload stopped with an
+    # error, a file failed processing, or one is still processing. Only a fully replaced set resets the count. Two
+    # stop the run, and a set that ends with none of the manifest's files in it stops it at once: a broken upload,
+    # or files App Store Connect does not process for this display type (each set is emptied before its uploads),
+    # would otherwise empty every set it reaches. A dry run cannot catch that. `stopped` says why it stopped.
+    streak, stopped = 0, ""
+    two_in_a_row = ("two sets ended short or not ready with no fully replaced set between them (a delete or an upload "
+                    "stopped with an error, or a file failed or is still processing)")
+    for platform in sorted({e["ascPlatform"] for e in entries}):
+        if stopped:
+            break
+        version, versions = versions_of(app, platform)
+        if not version:
+            not_editable(platform, versions)
+            continue
+        print(f"{platform}: version {version['attributes']['versionString']}", flush=True)
+        locs = {l["attributes"]["locale"]: l["id"] for l in all_pages(f"/appStoreVersions/{version['id']}/appStoreVersionLocalizations", {"limit": "50"})}
+        mine = [e for e in entries if e["ascPlatform"] == platform]
+        types = sorted({e["displayType"] for e in mine})
+        absent = sorted({e["locale"] for e in mine} - set(locs))
+        if absent:
+            print(f"::warning::{platform}: the version has no {' '.join(absent)} localization; those sets are skipped "
+                  f"(add the locale in App Store Connect first).", flush=True)
+            n["skipped"] += len({(e["displayType"], e["locale"]) for e in mine if e["locale"] in absent})
+        for locale in sorted(locs):
+            if stopped:
+                break
+            sets = None
+            for dt in types:
+                label = f"{dt} {locale}"
+                files = sorted((e for e in mine if e["displayType"] == dt and e["locale"] == locale), key=lambda e: e["position"])
+                if not files:
+                    print(f"{label}: the manifest has no files for this set; left as it is.")
+                    n["no_files"] += 1
+                    continue
+                if len(files) > MAX_PER_SET:
+                    print(f"::error::{label}: the manifest has {len(files)} files for this set (at most {MAX_PER_SET}); "
+                          f"left as it is.", flush=True)
+                    n["failed"] += 1
+                    continue
+                if sets is None:
+                    sets = {s["attributes"]["screenshotDisplayType"]: s for s in
+                            all_pages(f"/appStoreVersionLocalizations/{locs[locale]}/appScreenshotSets", {"limit": "50"})}
+                existing = sets.get(dt)
+                if not existing:
+                    print(f"::warning::{label}: no such set in App Store Connect; skipped (run without replace_sets to "
+                          f"create and fill it).", flush=True)
+                    n["skipped"] += 1
+                    continue
+                set_id = existing["id"]
+                shots = all_pages(f"/appScreenshotSets/{set_id}/appScreenshots", {"limit": "50"})
+                coming = [pathlib.Path(e["file"]).name for e in files]
+                unconfirmed = "" if confirm else '; CONFIRM_DELETE is not "true": nothing changed'
+                if dry:
+                    print(f"{label}: holds {len(shots)}" + (f": {' '.join(file_name(s) for s in shots)}" if shots else ""))
+                match = holds_manifest(shots, files)
+                if match == "same":
+                    print(f"{label}: already up to date ({len(shots)}, the manifest's files in order).")
+                    n["current"] += 1
+                    continue
+                if match == "processing":
+                    busy = [s for s in shots if state_of(s) != "COMPLETE"]
+                    print(f"::error::{label}: holds the manifest's files, but {' '.join(file_name(s) for s in busy)} is not "
+                          f"ready in App Store Connect ({state_of(busy[0]) or 'no state'}); left as it is. If it is still "
+                          f"processing, wait and run again.", flush=True)
+                    n["failed"] += 1
+                    continue
+                if match == "order":
+                    target = manifest_order(shots, files)
+                    n["reordered"] += 1
+                    if report:
+                        print(f"{label}: holds the manifest's files in another order; would order them{unconfirmed}.")
+                        continue
+                    order_set(set_id, target)
+                    print(f"{label}: held the manifest's files in another order; ordered (deleted 0, uploaded 0).", flush=True)
+                    continue
+                # The owner agreed to complete sets (the same screens and more): a set that would end shorter than
+                # the display type's order, or than it is now, is left as it is unless ALLOW_SHORT_SETS says otherwise.
+                lack, total = lacking(manifest, dt, files)
+                fewer = len(files) < len(shots)
+                if lack or fewer:
+                    why = "; ".join(
+                        ([f"the manifest has no {', '.join(lack)} for this locale ({len(files)} of the {total} screens)"]
+                         if lack else [])
+                        + ([f"it holds {len(shots)} now and the manifest has only {len(files)} for it"] if fewer else []))
+                    if not allow_short:
+                        fix = ("Redo the missing captures first" if lack else
+                               "Check which screens the set holds that the manifest has not")
+                        print(f"::error::{label}: {why}, so replacing it would leave it shorter; "
+                              f"{'it would be left' if report else 'left'} as it is (nothing deleted or uploaded). {fix}, "
+                              f"or, once the owner agrees to a shorter set, run with allow_short_sets.", flush=True)
+                        n["short"] += 1
+                        continue
+                    print(f"::warning::{label}: {why}; allow_short_sets is on, so the set "
+                          f"{'would get' if report else 'gets'} {len(files)} screenshot(s).", flush=True)
+                gone = " ".join(file_name(s) for s in shots)
+                if report:
+                    print(f"{label}: would delete {len(shots)}" + (f" ({gone})" if shots else "")
+                          + f" and upload {len(files)} ({' '.join(coming)}), then order the set{unconfirmed}.")
+                    n["replaced"] += 1
+                    n["deleted"] += len(shots)
+                    n["uploaded"] += len(files)
+                    continue
+                # Everything in the set goes first: a set of 9 cannot take 10 new ones next to them (at most 10).
+                deleted = 0
+                try:
+                    for s in shots:
+                        api("DELETE", f"/appScreenshots/{s['id']}")
+                        deleted += 1
+                except (urllib.error.URLError, OSError) as err:  # HTTPError is a URLError
+                    n["deleted"] += deleted
+                    n["failed"] += 1
+                    print(f"::error::{label}: deleting stopped after {deleted} of {len(shots)} ({error_name(err)}); nothing "
+                          f"uploaded, so the set may now be short. A re-run with replace_sets replaces it again.", flush=True)
+                    streak += 1
+                    if streak >= 2:
+                        stopped = two_in_a_row
+                        break
+                    continue
+                n["deleted"] += deleted
+                ids, err = [], None
+                try:
+                    for e in files:
+                        ids.append(upload_file(set_id, store / e["file"], e["md5"], label))
+                except (urllib.error.URLError, OSError) as x:  # HTTPError is a URLError
+                    err = x   # upload_file deleted its half-made screenshot; the files after it are not uploaded
+                states = wait_states(ids) if ids else {}
+                file_of = dict(zip(ids, coming))
+                done = [i for i in ids if states[i] == "COMPLETE"]
+                bad = [i for i in ids if states[i] == "FAILED"]
+                waiting = [i for i in ids if i not in done and i not in bad]
+                for i in bad:
+                    discard(i, file_of[i], label)   # this run's own upload of moments ago, unusable
+                n["uploaded"] += len(done)
+                if err is not None or bad or waiting:
+                    n["failed"] += 1
+                    print(f"{label}: deleted {deleted}, uploaded {len(done)} of {len(files)}.", flush=True)
+                    problems = []
+                    if err is not None:
+                        after = len(files) - len(ids) - 1
+                        problems.append(f"uploading {coming[len(ids)]} stopped ({error_name(err)})"
+                                        + (f", so the {after} file(s) after it were not uploaded" if after else ""))
+                    if bad:
+                        problems.append(f"{' '.join(file_of[i] for i in bad)} failed processing in App Store Connect "
+                                        f"(deleted again)")
+                    if waiting:
+                        problems.append(f"{' '.join(file_of[i] for i in waiting)} still processing")
+                    if err is None and not bad:
+                        tail = ("not ordered yet. Run again later: once they are ready the set counts as up to date "
+                                "(their order is already the manifest's).")
+                    else:
+                        tail = (f"the set now holds {len(done) + len(waiting)} of the manifest's {len(files)} and is not "
+                                f"ordered. A re-run with replace_sets replaces it again (it no longer holds what the "
+                                f"manifest says).")
+                    print(f"::error::{label}: {'; '.join(problems)}; {tail}", flush=True)
+                    # Not fully replaced and ready, whatever the cause: a file that failed processing leaves the set as
+                    # short as an upload error does, and a file still processing may fail yet.
+                    streak += 1
+                    if not done and not waiting:
+                        stopped = (f"{label} ended with none of the manifest's files in it ({deleted} deleted, every "
+                                   f"upload failed)")
+                    elif streak >= 2:
+                        stopped = two_in_a_row
+                    if stopped:
+                        break
+                    continue
+                streak = 0
+                # Read the set again, so the order names every screenshot it holds now and drops none.
+                now = [s["id"] for s in all_pages(f"/appScreenshotSets/{set_id}/appScreenshots", {"limit": "50"})]
+                order_set(set_id, [i for i in ids if i in now] + [i for i in now if i not in ids])
+                n["replaced"] += 1
+                print(f"{label}: replaced: deleted {deleted}, uploaded {len(done)} of {len(files)}, ordered.", flush=True)
+    if stopped:
+        print(f"::error::Stopped: {stopped}, so no more sets are deleted; sets not reached yet are left as they are. "
+              f"Run again with replace_sets once it is fixed.", flush=True)
+    verb = "would be " if report else ""
+    print(f"Done (replace sets): {n['replaced']} set(s) {verb}replaced ({n['deleted']} {verb}deleted, {n['uploaded']} "
+          f"{verb}uploaded), {n['reordered']} set(s) {verb}only reordered, {n['current']} already up to date, "
+          f"{n['skipped']} skipped (not in App Store Connect), {n['no_files']} without manifest files, "
+          f"{n['short']} left as they are (would end shorter), "
+          f"{n['failed']} failed." + (" (dry run)" if dry else "") + ("" if confirm else ' (CONFIRM_DELETE is not "true")'))
+    return 1 if n["failed"] or n["short"] or stopped else 0
+
+
 # ---- TEXT: the listing text of the editable versions ----
 
 def update_text(app: dict, platforms: list, listing: dict, dry: bool) -> int:
@@ -856,6 +1134,10 @@ def main() -> int:
     replace = set(os.environ.get("REPLACE_SCREENS", "").split())
     confirm = os.environ.get("CONFIRM_DELETE", "") == "true"  # exactly "true", nothing else
     delete_first = os.environ.get("DELETE_FIRST_IN_FULL_SETS", "") == "true"  # exactly "true", nothing else
+    whole_raw = os.environ.get("REPLACE_SETS", "")
+    whole = whole_raw == "true"  # exactly "true"
+    short_raw = os.environ.get("ALLOW_SHORT_SETS", "")
+    allow_short = short_raw == "true"  # exactly "true"
     text = os.environ.get("TEXT", "").lower() == "true"
     platforms = os.environ.get("PLATFORMS", "").split()
     dry = os.environ.get("DRY_RUN", "").lower() == "true"
@@ -867,6 +1149,22 @@ def main() -> int:
         return 1
     if delete_first and not replace:
         print("::error::DELETE_FIRST_IN_FULL_SETS is only for REPLACE_SCREENS (name the screens to replace).")
+        return 1
+    if whole_raw not in ("", "true", "false"):
+        print('::error::REPLACE_SETS is "true" or "false" (or empty).')
+        return 1
+    if short_raw not in ("", "true", "false"):
+        print('::error::ALLOW_SHORT_SETS is "true" or "false" (or empty).')
+        return 1
+    if allow_short and not whole:
+        print("::error::ALLOW_SHORT_SETS is only for REPLACE_SETS (it lets a replaced set end shorter).")
+        return 1
+    if whole and not wanted:
+        print("::error::REPLACE_SETS needs DISPLAY_TYPES (the sets to replace).")
+        return 1
+    if whole and (add or remove or replace):
+        print("::error::REPLACE_SETS replaces whole sets and cannot be combined with SCREENS, REMOVE_SCREENS or "
+              "REPLACE_SCREENS; run them separately.")
         return 1
     for a, b, a_name, b_name in ((add, remove, "SCREENS", "REMOVE_SCREENS"), (add, replace, "SCREENS", "REPLACE_SCREENS"),
                                  (remove, replace, "REMOVE_SCREENS", "REPLACE_SCREENS")):
@@ -905,7 +1203,11 @@ def main() -> int:
                 print(f"::error::{e['file']} is missing or differs from the manifest")
                 return 1
         app = find_app()
-        if changing:
+        if whole:
+            for dt in sorted(wanted - {e["displayType"] for e in entries}):
+                print(f"::warning::The manifest has no screenshots for {dt}; those sets are left as they are.")
+            status |= replace_sets(store, manifest, entries, app, confirm, dry, allow_short)
+        elif changing:
             status |= update_sets(store, manifest, entries, app, add, remove, confirm, dry, replace, delete_first)
         else:
             status |= fill_empty(store, entries, app, dry)

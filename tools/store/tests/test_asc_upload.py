@@ -33,7 +33,7 @@ VISION_OLD = ["prayer", "mosques-map", "ask", "classics", "audio", "onboarding"]
 VISION_NEW = ["prayer", "prayer-weather", "mosques-map", "ask", "classics", "audio", "onboarding"]
 OLD_SUM = "0123456789abcdef0123456789abcdef"   # sourceFileChecksum of a screenshot uploaded from an older file
 ENV_KEYS = ("DISPLAY_TYPES", "SCREENS", "REMOVE_SCREENS", "REPLACE_SCREENS", "CONFIRM_DELETE", "DELETE_FIRST_IN_FULL_SETS", "TEXT",
-            "PLATFORMS", "DRY_RUN")
+            "PLATFORMS", "DRY_RUN", "REPLACE_SETS", "ALLOW_SHORT_SETS")
 SECRET = "-----BEGIN PRIVATE KEY-----not-a-real-key"
 
 
@@ -57,6 +57,7 @@ class FakeASC:
         self.fail_names = set()  # uploads of these file names end FAILED in processing
         self.fail_commit = set()  # the commit (PATCH uploaded) of these file names is refused
         self.slow_names = set()   # uploads of these file names stay processing (UPLOAD_COMPLETE)
+        self.fail_commit_in = {}  # set id -> file names whose commit is refused in that set only
 
     def nid(self, kind: str) -> str:
         self.n += 1
@@ -144,8 +145,8 @@ class FakeASC:
             self.shots[sid].append(shot)
             return {"data": {"id": shot["id"], "attributes": {"uploadOperations": []}}}
         if method == "PATCH" and p[0] == "appScreenshots":
-            shot = next(s for ss in self.shots.values() for s in ss if s["id"] == p[1])
-            if shot["attributes"]["fileName"] in self.fail_commit:
+            sid, shot = next((sid, s) for sid, ss in self.shots.items() for s in ss if s["id"] == p[1])
+            if shot["attributes"]["fileName"] in self.fail_commit | self.fail_commit_in.get(sid, set()):
                 raise urllib.error.HTTPError(path, 409, "Conflict", {}, io.BytesIO(b'{"errors":[]}'))
             attrs = body["data"]["attributes"]
             if attrs.get("sourceFileChecksum"):
@@ -1048,6 +1049,465 @@ class Replace(Base):
         self.fake.fail_names = set()
         code, out = self.run_tool(CONFIRM_DELETE="true", **self.FULL)
         self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
+
+
+def generic(prefix: str, count: int) -> list:
+    """File names of a set uploaded by hand (ipad_01.jpg ...): no screen name matches them."""
+    return [f"{prefix}_{i:02d}.jpg" for i in range(1, count + 1)]
+
+
+class ReplaceSets(Base):
+    """REPLACE_SETS: hand-uploaded sets (generic file names) replaced whole by the manifest's files."""
+    DT = "APP_IPAD_PRO_3GEN_129"
+    HELD = generic("ipad", 9)
+    CONFIRMED = {"DISPLAY_TYPES": DT, "REPLACE_SETS": "true", "CONFIRM_DELETE": "true"}
+
+    def setUp(self):
+        super().setUp()
+        self.ios = self.fake.add_version("IOS", state="DEVELOPER_REJECTED", version="0.5.0")
+        self.ar = self.fake.add_locale(self.ios, "ar-SA")
+        self.en = self.fake.add_locale(self.ios, "en-US")
+
+    def by_hand(self, lid: str, files: list = HELD, dt: str = DT) -> str:
+        # App Store Connect keeps a checksum for a file uploaded in the browser too; it is not the manifest's.
+        return self.fake.add_set(lid, dt, files, checksums={f: OLD_SUM for f in files})
+
+    def md5s(self, locale: str, dt: str = DT) -> list:
+        return [e["md5"] for e in sorted((e for e in self.entries if (e["displayType"], e["locale"]) == (dt, locale)),
+                                         key=lambda e: e["position"])]
+
+    def sums(self, sid: str) -> list:
+        return [s["attributes"].get("sourceFileChecksum") for s in self.fake.shots[sid]]
+
+    def kinds(self) -> list:
+        return [(c[0], c[1].split("/")[1]) for c in self.fake.writes() if c[1].startswith("/appScreenshot")]
+
+    def watch_size(self, sids: list) -> list:
+        """The most screenshots any of these sets held after any call, so a test can check it never went over 10."""
+        most, real_api = [0], self.fake.api
+
+        def counting(method, path, params=None, body=None):
+            result = real_api(method, path, params, body)
+            most[0] = max(most[0], *(len(self.fake.shots[s]) for s in sids))
+            return result
+
+        self.fake.api = counting
+        return most
+
+    def test_replaces_a_generic_set_of_nine_with_the_manifest_of_ten(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        ar, en = self.by_hand(self.ar), self.by_hand(self.en)
+        old_ids = [s["id"] for s in self.fake.shots[ar]]
+        most = self.watch_size([ar, en])
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertLessEqual(most[0], 10, out)
+        for sid, locale in ((ar, "ar-SA"), (en, "en-US")):
+            self.assertEqual(self.fake.file_names(sid), names(IPAD_NEW))
+            self.assertEqual(self.sums(sid), self.md5s(locale))
+            states = [s["attributes"]["assetDeliveryState"]["state"] for s in self.fake.shots[sid]]
+            self.assertEqual(states, ["COMPLETE"] * 10)
+        # Per set: every old screenshot deleted, then each file created and committed in position order, then one order.
+        per_set = [("DELETE", "appScreenshots")] * 9 + [("POST", "appScreenshots"), ("PATCH", "appScreenshots")] * 10 \
+            + [("PATCH", "appScreenshotSets")]
+        self.assertEqual(self.kinds(), per_set * 2)
+        self.assertEqual([c[1] for c in self.fake.writes() if c[0] == "DELETE"][:9], [f"/appScreenshots/{i}" for i in old_ids])
+        posts = [c[3]["data"]["attributes"]["fileName"] for c in self.fake.writes() if c[0] == "POST"]
+        self.assertEqual(posts, names(IPAD_NEW) * 2)
+        commits = [c[3]["data"]["attributes"]["sourceFileChecksum"] for c in self.fake.writes()
+                   if c[0] == "PATCH" and c[1].startswith("/appScreenshots/")]
+        self.assertEqual(commits, self.md5s("ar-SA") + self.md5s("en-US"))
+        self.assertIn("APP_IPAD_PRO_3GEN_129 ar-SA: replaced: deleted 9, uploaded 10 of 10, ordered.", out)
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-US: replaced: deleted 9, uploaded 10 of 10, ordered.", out)
+        self.assertIn("Done (replace sets): 2 set(s) replaced (18 deleted, 20 uploaded)", out)
+        self.assertIn("0 failed.", out)
+
+    def test_without_confirm_makes_no_writes(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        ar, en = self.by_hand(self.ar), self.by_hand(self.en)
+        for confirm in (None, "false", "TRUE", "True", "yes", "1", " true"):
+            self.fake.calls.clear()
+            env = {"DISPLAY_TYPES": self.DT, "REPLACE_SETS": "true"}
+            if confirm is not None:
+                env["CONFIRM_DELETE"] = confirm
+            code, out = self.run_tool(**env)
+            self.assertEqual(code, 0, out)
+            self.assertEqual(self.fake.writes(), [], f"CONFIRM_DELETE={confirm!r}")
+            self.assertIn('REPLACE_SETS: CONFIRM_DELETE is not "true", so nothing is deleted, uploaded or ordered', out)
+            self.assertIn(f"APP_IPAD_PRO_3GEN_129 en-US: would delete 9 ({' '.join(self.HELD)}) and upload 10 "
+                          f"({' '.join(names(IPAD_NEW))}), then order the set; CONFIRM_DELETE is not \"true\": nothing "
+                          f"changed.", out)
+            self.assertIn("Done (replace sets): 2 set(s) would be replaced (18 would be deleted, 20 would be uploaded)", out)
+        self.assertEqual(self.fake.file_names(ar), self.HELD)
+        self.assertEqual(self.fake.file_names(en), self.HELD)
+
+    def test_dry_run_makes_no_writes(self):
+        # Confirmed, but a dry run: it only reports. ar-SA's onboarding capture is missing: the dry run says the
+        # confirmed run would leave that set as it is, and fails, so the owner sees it before anything is deleted.
+        self.manifest(self.DT, "IOS", IPAD_NEW, locales=("en-US",))
+        self.manifest(self.DT, "IOS", IPAD_NEW[:-1], locales=("ar-SA",))
+        self.describe({self.DT: ("ipad", IPAD_NEW)}, missing=["ipad/ar/10-onboarding.png"])
+        ar, en = self.by_hand(self.ar), self.by_hand(self.en)
+        code, out = self.run_tool(DRY_RUN="true", **self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn(f"APP_IPAD_PRO_3GEN_129 en-US: holds 9: {' '.join(self.HELD)}", out)
+        self.assertIn(f"APP_IPAD_PRO_3GEN_129 en-US: would delete 9 ({' '.join(self.HELD)}) and upload 10 "
+                      f"({' '.join(names(IPAD_NEW))}), then order the set.", out)
+        self.assertIn("::error::APP_IPAD_PRO_3GEN_129 ar-SA: the manifest has no onboarding (missing in the screenshots "
+                      "run) for this locale (9 of the 10 screens), so replacing it would leave it shorter; it would be "
+                      "left as it is (nothing deleted or uploaded).", out)
+        self.assertNotIn("APP_IPAD_PRO_3GEN_129 ar-SA: would delete", out)
+        self.assertIn("1 set(s) would be replaced (9 would be deleted, 10 would be uploaded)", out)
+        self.assertIn("1 left as they are (would end shorter)", out)
+        self.assertIn("(dry run)", out)
+        self.assertEqual(self.fake.file_names(ar), self.HELD)
+        self.assertEqual(self.fake.file_names(en), self.HELD)
+        # With allow_short_sets the dry run says it would replace ar-SA too, with 9.
+        code, out = self.run_tool(DRY_RUN="true", ALLOW_SHORT_SETS="true", **self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("::warning::APP_IPAD_PRO_3GEN_129 ar-SA: the manifest has no onboarding (missing in the screenshots "
+                      "run) for this locale (9 of the 10 screens); allow_short_sets is on, so the set would get 9 "
+                      "screenshot(s).", out)
+        self.assertIn("APP_IPAD_PRO_3GEN_129 ar-SA: would delete 9", out)
+
+    def test_set_the_manifest_lacks_a_screen_for_is_left_unless_allowed(self):
+        # Confirmed: Apple Vision Pro hu-HU's audio capture was left out as still loading. Its hand-uploaded set of 6
+        # stays (it would go to 6 new ones without audio, not the complete 7); en-US is replaced.
+        vision = self.fake.add_version("VISION_OS", state="DEVELOPER_REJECTED", version="0.5.0")
+        dt = "APP_APPLE_VISION_PRO"
+        self.manifest(dt, "VISION_OS", VISION_NEW, locales=("en-US",))
+        self.manifest(dt, "VISION_OS", [s for s in VISION_NEW if s != "audio"], locales=("hu-HU",))
+        self.describe({dt: ("vision", VISION_NEW)}, skipped=["vision/hu/06-audio.png: still loading"])
+        en = self.by_hand(self.fake.add_locale(vision, "en-US"), generic("vision", 6), dt)
+        hu = self.by_hand(self.fake.add_locale(vision, "hu-HU"), generic("vision", 6), dt)
+        env = {"DISPLAY_TYPES": dt, "REPLACE_SETS": "true", "CONFIRM_DELETE": "true"}
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(hu), generic("vision", 6))
+        self.assertFalse([c for c in self.fake.writes() if c[0] == "DELETE" and
+                          c[1].rsplit("/", 1)[1] in {s["id"] for s in self.fake.shots[hu]}])
+        self.assertEqual(self.fake.file_names(en), names(VISION_NEW))
+        self.assertIn("::error::APP_APPLE_VISION_PRO hu-HU: the manifest has no audio (left out in the screenshots run: "
+                      "still loading when captured) for this locale (6 of the 7 screens), so replacing it would leave it "
+                      "shorter; left as it is (nothing deleted or uploaded). Redo the missing captures first, or, once "
+                      "the owner agrees to a shorter set, run with allow_short_sets.", out)
+        self.assertIn("1 set(s) replaced (6 deleted, 7 uploaded)", out)
+        self.assertIn("1 left as they are (would end shorter), 0 failed.", out)
+        # The owner agrees: allow_short_sets replaces it with the 6 the manifest has; en-US is already up to date.
+        self.fake.calls.clear()
+        code, out = self.run_tool(ALLOW_SHORT_SETS="true", **env)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.file_names(hu), names([s for s in VISION_NEW if s != "audio"]))
+        self.assertIn("allow_short_sets is on, so the set gets 6 screenshot(s).", out)
+        self.assertIn("APP_APPLE_VISION_PRO en-US: already up to date", out)
+
+    def test_set_holding_more_than_the_manifest_has_is_left_unless_allowed(self):
+        # No displayTypes in the manifest (nothing says a screen is missing), but the Mac set holds 9 by hand and the
+        # manifest has 8 for it: replacing would lose one, so it is left unless allow_short_sets.
+        mac = self.fake.add_version("MAC_OS", state="DEVELOPER_REJECTED", version="0.5.0")
+        self.manifest("APP_DESKTOP", "MAC_OS", MAC_NEW, locales=("en-US",))
+        sid = self.by_hand(self.fake.add_locale(mac, "en-US"), generic("mac", 9), "APP_DESKTOP")
+        env = {"DISPLAY_TYPES": "APP_DESKTOP", "REPLACE_SETS": "true", "CONFIRM_DELETE": "true"}
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertEqual(self.fake.file_names(sid), generic("mac", 9))
+        self.assertIn("::error::APP_DESKTOP en-US: it holds 9 now and the manifest has only 8 for it, so replacing it "
+                      "would leave it shorter; left as it is", out)
+        code, out = self.run_tool(ALLOW_SHORT_SETS="true", **env)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.file_names(sid), names(MAC_NEW))
+        self.assertIn("::warning::APP_DESKTOP en-US: it holds 9 now and the manifest has only 8 for it; allow_short_sets "
+                      "is on, so the set gets 8 screenshot(s).", out)
+
+    def test_second_run_is_idempotent(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        ar, en = self.by_hand(self.ar), self.by_hand(self.en)
+        env = dict(self.CONFIRMED)
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 0, out)
+        ids = {sid: [s["id"] for s in self.fake.shots[sid]] for sid in (ar, en)}
+        self.fake.calls.clear()
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("APP_IPAD_PRO_3GEN_129 ar-SA: already up to date (10, the manifest's files in order).", out)
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-US: already up to date (10, the manifest's files in order).", out)
+        self.assertIn("Done (replace sets): 0 set(s) replaced (0 deleted, 0 uploaded), 0 set(s) only reordered, "
+                      "2 already up to date", out)
+        # App Store Connect may give the checksum in capitals: still the same files.
+        for s in self.fake.shots[en]:
+            s["attributes"]["sourceFileChecksum"] = s["attributes"]["sourceFileChecksum"].upper()
+        self.fake.calls.clear()
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertEqual({sid: [s["id"] for s in self.fake.shots[sid]] for sid in (ar, en)}, ids)
+        # The same files in another order are only ordered: nothing deleted or uploaded.
+        self.fake.shots[en][0], self.fake.shots[en][1] = self.fake.shots[en][1], self.fake.shots[en][0]
+        self.fake.calls.clear()
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.kinds(), [("PATCH", "appScreenshotSets")])
+        self.assertEqual([s["id"] for s in self.fake.shots[en]], ids[en])
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-US: held the manifest's files in another order; ordered (deleted 0, "
+                      "uploaded 0).", out)
+
+    def test_upload_failure_is_reported_and_other_sets_go_on(self):
+        # ar-SA comes first: its fourth commit is refused. en-US is still replaced; the run exits 1.
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        ar, en = self.by_hand(self.ar), self.by_hand(self.en)
+        self.fake.fail_commit_in = {ar: {"04-mosques-map.png"}}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(ar), names(IPAD_NEW)[:3])   # short; no half-made screenshot left
+        self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
+        self.assertIn("APP_IPAD_PRO_3GEN_129 ar-SA: deleted 9, uploaded 3 of 10.", out)
+        self.assertIn("::error::APP_IPAD_PRO_3GEN_129 ar-SA: uploading 04-mosques-map.png stopped (HTTPError HTTP 409), "
+                      "so the 6 file(s) after it were not uploaded; the set now holds 3 of the manifest's 10 and is not "
+                      "ordered. A re-run with replace_sets replaces it again (it no longer holds what the manifest says).", out)
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-US: replaced: deleted 9, uploaded 10 of 10, ordered.", out)
+        self.assertNotIn("Stopped:", out)
+        self.assertIn("1 failed.", out)
+        self.assertFalse([c for c in self.fake.writes() if c[1] == f"/appScreenshotSets/{ar}/relationships/appScreenshots"])
+        # Fixed: a re-run replaces the short set again and leaves the other alone.
+        self.fake.fail_commit_in = {}
+        self.fake.calls.clear()
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.file_names(ar), names(IPAD_NEW))
+        self.assertEqual(self.sums(ar), self.md5s("ar-SA"))
+        self.assertIn("APP_IPAD_PRO_3GEN_129 ar-SA: replaced: deleted 3, uploaded 10 of 10, ordered.", out)
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-US: already up to date", out)
+
+    def test_file_failing_processing_is_deleted_again_and_reported(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        ar, en = self.by_hand(self.ar), self.by_hand(self.en)
+        self.fake.fail_names = {"05-ask.png"}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        want = [f for f in names(IPAD_NEW) if f != "05-ask.png"]
+        self.assertEqual(self.fake.file_names(ar), want)    # both reached; two such sets in a row then stop the run
+        self.assertEqual(self.fake.file_names(en), want)
+        self.assertIn("::error::APP_IPAD_PRO_3GEN_129 en-US: 05-ask.png failed processing in App Store Connect (deleted "
+                      "again); the set now holds 9 of the manifest's 10 and is not ordered.", out)
+        self.fake.fail_names = set()
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.file_names(ar), names(IPAD_NEW))
+        self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
+
+    def test_still_processing_counts_as_up_to_date_once_ready(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW, locales=("en-US",))
+        en = self.by_hand(self.en)
+        self.fake.slow_names = {"10-onboarding.png"}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
+        self.assertIn("::error::APP_IPAD_PRO_3GEN_129 en-US: 10-onboarding.png still processing; not ordered yet.", out)
+        self.fake.calls.clear()
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("holds the manifest's files, but 10-onboarding.png is not ready in App Store Connect "
+                      "(UPLOAD_COMPLETE); left as it is.", out)
+        self.fake.shot(en, "10-onboarding.png")["attributes"]["assetDeliveryState"]["state"] = "COMPLETE"
+        self.fake.calls.clear()
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-US: already up to date", out)
+
+    def three_locales(self) -> dict:
+        de = self.fake.add_locale(self.ios, "de-DE")
+        self.manifest(self.DT, "IOS", IPAD_NEW, locales=("ar-SA", "de-DE", "en-US"))
+        return {"ar-SA": self.by_hand(self.ar), "de-DE": self.by_hand(de), "en-US": self.by_hand(self.en)}
+
+    def test_two_sets_in_a_row_ending_short_stop_the_run(self):
+        # Every fourth commit refused: ar-SA and de-DE end short (3 of 10) and fail; en-US is never deleted.
+        sets = self.three_locales()
+        self.fake.fail_commit = {"04-mosques-map.png"}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(sets["ar-SA"]), names(IPAD_NEW)[:3])
+        self.assertEqual(self.fake.file_names(sets["de-DE"]), names(IPAD_NEW)[:3])
+        self.assertEqual(self.fake.file_names(sets["en-US"]), self.HELD)
+        self.assertIn("::error::Stopped: two sets ended short or not ready with no fully replaced set between them (a "
+                      "delete or an upload stopped with an error, or a file failed or is still processing), so no more "
+                      "sets are deleted; sets not reached yet are left as they are.", out)
+        self.assertNotIn("APP_IPAD_PRO_3GEN_129 en-US", out)
+
+    def test_two_sets_in_a_row_with_a_file_failing_processing_stop_the_run(self):
+        # The same file fails processing in every locale: each set ends with 9 of 10, so two of them stop the run.
+        sets = self.three_locales()
+        self.fake.fail_names = {"05-ask.png"}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        want = [f for f in names(IPAD_NEW) if f != "05-ask.png"]
+        self.assertEqual(self.fake.file_names(sets["ar-SA"]), want)
+        self.assertEqual(self.fake.file_names(sets["de-DE"]), want)
+        self.assertEqual(self.fake.file_names(sets["en-US"]), self.HELD)
+        self.assertIn("::error::Stopped: two sets ended short or not ready", out)
+
+    def test_two_sets_still_processing_in_a_row_stop_the_run(self):
+        # A file still processing may fail yet: such sets count too (the files are in, so nothing is lost so far).
+        sets = self.three_locales()
+        self.fake.slow_names = {"10-onboarding.png"}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(sets["ar-SA"]), names(IPAD_NEW))
+        self.assertEqual(self.fake.file_names(sets["de-DE"]), names(IPAD_NEW))
+        self.assertEqual(self.fake.file_names(sets["en-US"]), self.HELD)
+        self.assertIn("::error::Stopped: two sets ended short or not ready", out)
+
+    def test_a_fully_replaced_set_between_two_short_ones_lets_the_run_go_on(self):
+        sets = self.three_locales()
+        self.fake.fail_commit_in = {sets["ar-SA"]: {"04-mosques-map.png"}, sets["en-US"]: {"04-mosques-map.png"}}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(sets["ar-SA"]), names(IPAD_NEW)[:3])
+        self.assertEqual(self.fake.file_names(sets["de-DE"]), names(IPAD_NEW))
+        self.assertEqual(self.fake.file_names(sets["en-US"]), names(IPAD_NEW)[:3])
+        self.assertNotIn("Stopped:", out)
+        self.assertIn("2 failed.", out)
+
+    def test_set_left_with_none_of_its_files_stops_the_run_at_once(self):
+        # Every first commit refused: ar-SA is emptied and gets nothing back, so the run stops before de-DE.
+        sets = self.three_locales()
+        self.fake.fail_commit = {"01-prayer.png"}
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(sets["ar-SA"]), [])
+        self.assertEqual(self.fake.file_names(sets["de-DE"]), self.HELD)
+        self.assertEqual(self.fake.file_names(sets["en-US"]), self.HELD)
+        self.assertIn("::error::Stopped: APP_IPAD_PRO_3GEN_129 ar-SA ended with none of the manifest's files in it (9 "
+                      "deleted, every upload failed), so no more sets are deleted", out)
+        self.assertNotIn("APP_IPAD_PRO_3GEN_129 de-DE", out)
+        self.assertNotIn("APP_IPAD_PRO_3GEN_129 en-US", out)
+
+    def test_every_file_failing_processing_stops_the_run_at_once(self):
+        # E.g. a size App Store Connect does not take for this display type: each upload and commit is accepted,
+        # then processing fails. ar-SA is emptied (9 deleted) and gets nothing back; no other set is deleted.
+        sets = self.three_locales()
+        self.fake.fail_names = set(names(IPAD_NEW))
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.fake.file_names(sets["ar-SA"]), [])
+        self.assertEqual(self.fake.file_names(sets["de-DE"]), self.HELD)
+        self.assertEqual(self.fake.file_names(sets["en-US"]), self.HELD)
+        self.assertIn("::error::Stopped: APP_IPAD_PRO_3GEN_129 ar-SA ended with none of the manifest's files in it", out)
+        self.assertIn("Done (replace sets): 0 set(s) replaced (9 deleted, 0 uploaded)", out)
+        self.assertIn("1 failed.", out)
+        # Fixed: a re-run replaces all three.
+        self.fake.fail_names = set()
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        for sid in sets.values():
+            self.assertEqual(self.fake.file_names(sid), names(IPAD_NEW))
+
+    def test_combined_modes_and_bad_values_are_input_errors(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        self.by_hand(self.en)
+        combined = [{"SCREENS": "prayer-weather"}, {"REMOVE_SCREENS": "prayer-dark"}, {"REPLACE_SCREENS": "onboarding"}]
+        for extra in combined:
+            code, out = self.run_tool(**self.CONFIRMED, **extra)
+            self.assertEqual(code, 1, extra)
+            self.assertIn("::error::REPLACE_SETS replaces whole sets and cannot be combined with SCREENS, REMOVE_SCREENS "
+                          "or REPLACE_SCREENS", out)
+        for env in ({"REPLACE_SETS": "true", "CONFIRM_DELETE": "true"},                  # no DISPLAY_TYPES
+                    {"DISPLAY_TYPES": self.DT, "REPLACE_SETS": "yes", "CONFIRM_DELETE": "true"},
+                    {"DISPLAY_TYPES": self.DT, "REPLACE_SETS": "TRUE", "CONFIRM_DELETE": "true"},
+                    {**self.CONFIRMED, "DELETE_FIRST_IN_FULL_SETS": "true"},
+                    {**self.CONFIRMED, "ALLOW_SHORT_SETS": "yes"},
+                    {"DISPLAY_TYPES": self.DT, "ALLOW_SHORT_SETS": "true"},                # not with REPLACE_SETS
+                    {"DISPLAY_TYPES": self.DT, "REPLACE_SETS": "false", "ALLOW_SHORT_SETS": "true"}):
+            code, out = self.run_tool(**env)
+            self.assertEqual(code, 1, env)
+            self.assertIn("::error::", out)
+        self.assertEqual(self.fake.calls, [])   # stopped before App Store Connect was asked anything
+
+    def test_same_file_as_locale_gets_the_files_of_its_source_locale(self):
+        # As finish.py writes it: en-GB has its own entries, with the en-US file and md5 and sameFileAs "en-US".
+        gb = self.fake.add_locale(self.ios, "en-GB")
+        self.manifest(self.DT, "IOS", IPAD_NEW, locales=("en-US",))
+        for e in list(self.entries):
+            e["sameFileAs"] = None
+            self.entries.append({**e, "locale": "en-GB", "sameFileAs": "en-US"})
+        (self.store / "manifest.json").write_text(json.dumps({"screenshots": self.entries}))
+        ar, en, en_gb = self.by_hand(self.ar), self.by_hand(self.en), self.by_hand(gb)
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertFalse((self.store / self.DT / "en-GB").exists())
+        self.assertEqual(self.fake.file_names(en_gb), names(IPAD_NEW))
+        self.assertEqual(self.sums(en_gb), self.md5s("en-US"))
+        self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-GB: replaced: deleted 9, uploaded 10 of 10, ordered.", out)
+        # ar-SA has no files in this manifest: its hand-made set stays.
+        self.assertEqual(self.fake.file_names(ar), self.HELD)
+        self.assertIn("APP_IPAD_PRO_3GEN_129 ar-SA: the manifest has no files for this set; left as it is.", out)
+        self.fake.calls.clear()
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("APP_IPAD_PRO_3GEN_129 en-GB: already up to date", out)
+
+    def test_missing_locale_and_set_are_skipped_and_reported(self):
+        self.manifest(self.DT, "IOS", IPAD_NEW, locales=("ar-SA", "en-US", "fr-FR"))
+        self.fake.add_set(self.ar, "APP_IPHONE_67", names(IPHONE_NEW))   # ar-SA has no iPad set at all
+        en = self.by_hand(self.en)
+        code, out = self.run_tool(**self.CONFIRMED)
+        self.assertEqual(code, 0, out)
+        self.assertIn("::warning::IOS: the version has no fr-FR localization; those sets are skipped", out)
+        self.assertIn("::warning::APP_IPAD_PRO_3GEN_129 ar-SA: no such set in App Store Connect; skipped", out)
+        self.assertIn("2 skipped (not in App Store Connect)", out)
+        self.assertFalse([c for c in self.fake.writes() if c[1] == "/appScreenshotSets"])   # never creates a set
+        self.assertEqual(len(self.fake.sets[self.ar]), 1)   # only its iPhone set
+        self.assertEqual(self.fake.file_names(self.fake.sets[self.ar][0]["id"]), names(IPHONE_NEW))
+        self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
+
+    def test_ipad_mac_and_vision_in_every_locale(self):
+        # The owner's case: iPad, Mac and Apple Vision Pro sets uploaded by hand, the versions rejected (editable).
+        mac = self.fake.add_version("MAC_OS", state="DEVELOPER_REJECTED", version="0.5.0")
+        vision = self.fake.add_version("VISION_OS", state="DEVELOPER_REJECTED", version="0.5.0")
+        self.manifest(self.DT, "IOS", IPAD_NEW)
+        self.manifest("APP_DESKTOP", "MAC_OS", MAC_NEW)
+        self.manifest("APP_APPLE_VISION_PRO", "VISION_OS", VISION_NEW)
+        held = {}
+        for lid_ios, locale in ((self.ar, "ar-SA"), (self.en, "en-US")):
+            held[(self.DT, locale)] = self.by_hand(lid_ios)
+            held[("APP_DESKTOP", locale)] = self.by_hand(self.fake.add_locale(mac, locale), generic("mac", 7), "APP_DESKTOP")
+            held[("APP_APPLE_VISION_PRO", locale)] = self.by_hand(self.fake.add_locale(vision, locale), generic("vision", 6),
+                                                                  "APP_APPLE_VISION_PRO")
+        iphone = self.fake.add_set(self.en, "APP_IPHONE_67", generic("iphone", 10))   # not in DISPLAY_TYPES: untouched
+        env = {"DISPLAY_TYPES": f"{self.DT} APP_DESKTOP APP_APPLE_VISION_PRO", "REPLACE_SETS": "true", "CONFIRM_DELETE": "true"}
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 0, out)
+        orders = {self.DT: IPAD_NEW, "APP_DESKTOP": MAC_NEW, "APP_APPLE_VISION_PRO": VISION_NEW}
+        for (dt, locale), sid in held.items():
+            self.assertEqual(self.fake.file_names(sid), names(orders[dt]), (dt, locale))
+            self.assertEqual(self.sums(sid), self.md5s(locale, dt), (dt, locale))
+        self.assertEqual(self.fake.file_names(iphone), generic("iphone", 10))
+        self.assertIn("APP_DESKTOP en-US: replaced: deleted 7, uploaded 8 of 8, ordered.", out)
+        self.assertIn("APP_APPLE_VISION_PRO ar-SA: replaced: deleted 6, uploaded 7 of 7, ordered.", out)
+        self.assertIn("Done (replace sets): 6 set(s) replaced (44 deleted, 50 uploaded)", out)
+        self.fake.calls.clear()
+        code, out = self.run_tool(**env)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.fake.writes(), [])
+        self.assertIn("6 already up to date", out)
+
+    def test_platform_in_review_is_reported_and_others_go_on(self):
+        self.fake.add_version("MAC_OS", state="WAITING_FOR_REVIEW", version="0.5.0")
+        self.manifest(self.DT, "IOS", IPAD_NEW, locales=("en-US",))
+        self.manifest("APP_DESKTOP", "MAC_OS", MAC_NEW, locales=("en-US",))
+        en = self.by_hand(self.en)
+        code, out = self.run_tool(DISPLAY_TYPES=f"{self.DT} APP_DESKTOP", REPLACE_SETS="true", CONFIRM_DELETE="true")
+        self.assertEqual(code, 0, out)
+        self.assertIn("MAC_OS: no editable version (Prepare for Submission or rejected); the version is in review or "
+                      "live: nothing changed.", out)
         self.assertEqual(self.fake.file_names(en), names(IPAD_NEW))
 
 

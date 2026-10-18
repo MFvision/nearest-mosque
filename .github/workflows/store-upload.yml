@@ -11,7 +11,13 @@ name: App Store screenshots upload
 # new file of a screen whose picture changed: where the set's screenshot of it has another checksum, the new one is
 # uploaded and the old one deleted only once the new one is ready (a set of 10 has no room for that and is left,
 # unless delete_first_in_full_sets is on: then the old one goes first and is not brought back if the new one
-# fails); where it has none, it is added as screens adds it. text updates description, keywords, promotional text and
+# fails); where it has none, it is added as screens adds it. replace_sets (only with confirm_delete; otherwise it
+# reports; on its own, not with screens, remove_screens or replace_screens) replaces whole sets: in each display_types
+# set the manifest has files for, everything is deleted and the manifest's files uploaded in order, unless the set
+# already holds exactly those (then it is left, or only ordered); a set that would end shorter (the manifest lacks a
+# screen for that locale, or has fewer files than it holds) is left and reported unless allow_short_sets is on; a
+# failed upload leaves that set short and a re-run replaces it again; two sets ending short in a row, or one left
+# with none of its files, stop the run. text updates description, keywords, promotional text and
 # what's new from shared/store/listing.json, and with TV_OS in platforms also the Privacy Policy Text of the app
 # information (shown on Apple TV), only where it differs and only while the app information is editable. Start
 # every change with dry_run on.
@@ -36,11 +42,19 @@ on:
         description: "Replace these screens' screenshots whose file differs from the manifest's (e.g. onboarding): new one uploaded, old one deleted once it is ready; only with confirm_delete (off: report only); a set of 10 is left; a screen goes in only one of screens, remove_screens, replace_screens"
         default: ""
       confirm_delete:
-        description: "Really delete the remove_screens screenshots and replace the replace_screens ones (cannot be undone); off: only report them"
+        description: "Really delete: the remove_screens screenshots, the old replace_screens ones, and with replace_sets every screenshot in each display_types set the manifest has files for (cannot be undone); off: only report them"
         type: boolean
         default: false
       delete_first_in_full_sets:
         description: "With replace_screens and confirm_delete: in a set of 10, delete the old screenshot first to make room (only where the manifest has the new file); if the new one then fails, the old one is not brought back"
+        type: boolean
+        default: false
+      replace_sets:
+        description: "Replace whole sets (e.g. uploaded by hand as ipad_01.jpg): only with confirm_delete (off: report only); deletes everything in each display_types set the manifest has files for, then uploads the manifest's files in order; a set already holding them is left, and so is one that would end shorter; not with screens, remove_screens or replace_screens"
+        type: boolean
+        default: false
+      allow_short_sets:
+        description: "With replace_sets: also replace a set the manifest lacks screens for (missing, failed or skipped captures) or has fewer files for than it holds, so it ends shorter; only once the owner agrees"
         type: boolean
         default: false
       text:
@@ -94,6 +108,8 @@ jobs:
           REPLACE_SCREENS: ${{ inputs.replace_screens }}
           CONFIRM_DELETE: ${{ inputs.confirm_delete }}
           DELETE_FIRST_IN_FULL_SETS: ${{ inputs.delete_first_in_full_sets }}
+          REPLACE_SETS: ${{ inputs.replace_sets }}
+          ALLOW_SHORT_SETS: ${{ inputs.allow_short_sets }}
           TEXT: ${{ inputs.text }}
           PLATFORMS: ${{ inputs.platforms }}
           DRY_RUN: ${{ inputs.dry_run }}
