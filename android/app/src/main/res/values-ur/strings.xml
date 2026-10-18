@@ -274,6 +274,7 @@
     <string name="location_current">موجودہ مقام</string>
     <string name="location_denied">مقام تک رسائی بند ہے۔ ترتیبات میں اجازت دیں یا شہر منتخب کریں۔</string>
     <string name="location_fix_failed">مقام معلوم نہیں ہو سکا۔ کھلی جگہ جائیں یا شہر منتخب کریں۔</string>
+    <string name="location_off">مقام کی سروس بند ہے۔ اسے آن کریں یا شہر منتخب کریں۔</string>
     <string name="location_section">اوقاتِ نماز کا مقام</string>
     <string name="map_a11y">قریبی مساجد کا نقشہ۔ کوئی مسجد کھولنے کے لیے ایکشنز یا فہرست استعمال کریں۔</string>
     <string name="map_attribution_ofm">نقشہ © OpenFreeMap، OpenMapTiles، OpenStreetMap معاونین</string>

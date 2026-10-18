@@ -42,6 +42,7 @@ data class MosquesUi(
     val favoritesOnly: Boolean = false,
     val favoriteMosques: List<Mosque> = emptyList(),
     val permissionDenied: Boolean = false,
+    val locationOff: Boolean = false,
     val locating: Boolean = false,
     /** 0 = compass, 1 = map. */
     val mode: Int = 0,
@@ -79,8 +80,14 @@ class MosquesViewModel(private val c: AppContainer) : ViewModel() {
         if (c.location.permission() == LocationPermission.DENIED) {
             _ui.value = _ui.value.copy(permissionDenied = true); return@launch
         }
-        _ui.value = _ui.value.copy(locating = true, permissionDenied = false)
-        val fix = c.location.currentPosition() ?: c.location.lastKnown(30 * 60_000L)
+        if (!c.location.isLocationEnabled()) {
+            _ui.value = _ui.value.copy(locationOff = true, permissionDenied = false)
+            c.location.openLocationSettings()
+            return@launch
+        }
+        _ui.value = _ui.value.copy(locating = true, permissionDenied = false, locationOff = false)
+        // Distances and the turn guidance need a street-level fix, not the first city-level one.
+        val fix = c.location.currentPosition(goodEnoughMeters = 100f) ?: c.location.lastKnown(30 * 60_000L)
         _ui.value = _ui.value.copy(locating = false)
         if (fix != null) {
             c.devicePosition.value = fix

@@ -274,6 +274,7 @@
     <string name="location_current">වත්මන් ස්ථානය</string>
     <string name="location_denied">ස්ථාන ප්‍රවේශය අක්‍රියයි. ඔබට සැකසීම්වල එයට ඉඩ දිය හැක හෝ නගරයක් තෝරා ගත හැක.</string>
     <string name="location_fix_failed">ස්ථානය ලබා ගත නොහැකි විය. එළිමහනට යන්න හෝ නගරයක් තෝරන්න.</string>
+    <string name="location_off">ස්ථානය අක්‍රියයි. එය සක්‍රිය කරන්න හෝ නගරයක් තෝරන්න.</string>
     <string name="location_section">සලාත වේලාවන් සඳහා ස්ථානය</string>
     <string name="map_a11y">අසල පල්ලිවල සිතියම. එකක් විවෘත කිරීමට ක්‍රියා භාවිත කරන්න, නැතහොත් ලැයිස්තුව භාවිත කරන්න.</string>
     <string name="map_attribution_ofm">සිතියම © OpenFreeMap, OpenMapTiles, OpenStreetMap දායකයින්</string>

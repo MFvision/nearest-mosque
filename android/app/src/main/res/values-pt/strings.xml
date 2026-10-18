@@ -274,6 +274,7 @@
     <string name="location_current">Localização atual</string>
     <string name="location_denied">O acesso à localização está desativado. Você pode permiti-lo em Configurações ou escolher uma cidade.</string>
     <string name="location_fix_failed">Não foi possível obter a localização. Vá para um lugar aberto ou escolha uma cidade.</string>
+    <string name="location_off">A localização está desativada. Ative-a ou escolha uma cidade.</string>
     <string name="location_section">Localização para os horários de oração</string>
     <string name="map_a11y">Mapa das mesquitas próximas. Use as ações para abrir uma ou use a lista.</string>
     <string name="map_attribution_ofm">Mapa © OpenFreeMap, OpenMapTiles, colaboradores do OpenStreetMap</string>

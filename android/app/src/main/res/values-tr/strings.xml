@@ -274,6 +274,7 @@
     <string name="location_current">Mevcut konum</string>
     <string name="location_denied">Konum erişimi kapalı. Ayarlar’dan izin verebilir veya şehir seçebilirsiniz.</string>
     <string name="location_fix_failed">Konum alınamadı. Açık alana çıkın veya şehir seçin.</string>
+    <string name="location_off">Konum kapalı. Açın veya şehir seçin.</string>
     <string name="location_section">Namaz vakitleri konumu</string>
     <string name="map_a11y">Yakındaki camilerin haritası. Birini açmak için eylemleri veya listeyi kullanın.</string>
     <string name="map_attribution_ofm">Harita © OpenFreeMap, OpenMapTiles, OpenStreetMap katkıcıları</string>

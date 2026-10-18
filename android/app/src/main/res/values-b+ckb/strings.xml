@@ -274,6 +274,7 @@
     <string name="location_current">شوێنی ئێستا</string>
     <string name="location_denied">دەستگەیشتن بە شوێن کوژاوەتەوە. دەتوانیت لە ڕێکخستنەکان ڕێگەی پێ بدەیت یان شارێک هەڵبژێریت.</string>
     <string name="location_fix_failed">نەتوانرا شوێنەکەت دیاری بکرێت. بڕۆ دەرەوە یان شارێک هەڵبژێرە.</string>
+    <string name="location_off">شوێن کوژاوەتەوە. هەڵیبکە یان شارێک هەڵبژێرە.</string>
     <string name="location_section">شوێن بۆ کاتەکانی نوێژ</string>
     <string name="map_a11y">نەخشەی مزگەوتە نزیکەکان. کردارەکان بەکاربهێنە بۆ کردنەوەی یەکێکیان، یان لیستەکە بەکاربهێنە.</string>
     <string name="map_attribution_ofm">نەخشە © OpenFreeMap، OpenMapTiles، بەشداربووانی OpenStreetMap</string>

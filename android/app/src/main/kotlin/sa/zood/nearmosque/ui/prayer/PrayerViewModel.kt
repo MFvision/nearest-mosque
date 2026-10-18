@@ -28,6 +28,7 @@ import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.core.Qibla
 import sa.zood.nearmosque.core.Upcoming
+import sa.zood.nearmosque.core.Zones
 import sa.zood.nearmosque.core.moment
 import sa.zood.nearmosque.data.AppSettings
 import sa.zood.nearmosque.data.PrayerLocation
@@ -67,6 +68,7 @@ sealed interface LocateState {
     data object Locating : LocateState
     data object Denied : LocateState
     data object NoFix : LocateState
+    data object LocationOff : LocateState
 }
 
 class PrayerViewModel(private val c: AppContainer) : ViewModel() {
@@ -112,7 +114,7 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
         viewModelScope.launch {
             val s = c.settings.settings.first()
             if (s.followDevice && c.location.permission() != LocationPermission.DENIED) {
-                useDeviceLocation(s.prayerLocation?.name ?: "")
+                useDeviceLocation(s.prayerLocation?.name ?: "", asked = false)
             }
         }
     }
@@ -142,19 +144,35 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
 
     fun chooseCity(city: City, displayName: String) = viewModelScope.launch {
         val s = c.settings.settings.first()
+        // A zone this phone's tz data doesn't know: the phone's own, and the time zone card asks.
+        val zone = Zones.of(city.zoneId)
         c.settings.setPrayerLocation(
-            PrayerLocation(displayName, city.location, ZoneId.of(city.zoneId), city.countryCode, PrayerLocation.Source.CITY), follow = false,
+            PrayerLocation(
+                displayName, city.location, zone ?: ZoneId.systemDefault(), city.countryCode, PrayerLocation.Source.CITY,
+                zoneConfirmed = zone != null,
+            ),
+            follow = false,
         )
         if (!s.methodChosenByUser) c.settings.setMethod(PrayerCalculator.suggestedMethod(city.countryCode), byUser = false)
     }
 
-    /** Called after the permission dialog; uses a fresh fix, falls back to a recent one, never to a default city. */
-    fun useDeviceLocation(nameForCurrent: String) = viewModelScope.launch {
+    /**
+     * Called after the permission dialog (and on launch for "follow my location", with [asked] false); uses a fresh fix,
+     * falls back to a recent one, never to a default city.
+     */
+    fun useDeviceLocation(nameForCurrent: String, asked: Boolean = true) = viewModelScope.launch {
         if (c.location.permission() == LocationPermission.DENIED) { _locate.value = LocateState.Denied; return@launch }
+        if (!c.location.isLocationEnabled()) {
+            _locate.value = LocateState.LocationOff
+            if (asked) c.location.openLocationSettings()
+            return@launch
+        }
         _locate.value = LocateState.Locating
         val fix = c.location.currentPosition() ?: c.location.lastKnown(30 * 60_000L)
         if (fix == null) { _locate.value = LocateState.NoFix; return@launch }
-        c.devicePosition.value = fix
+        // The first fix is often city-level (network): fine for prayer times, but the mosque distances and the widgets'
+        // nearest mosques start from "you are here" only with a street-level one (the Mosques tab finds its own).
+        if ((fix.accuracyMeters ?: Float.MAX_VALUE) <= 100f) c.devicePosition.value = fix
         val resolver = c.cities.timeZones()
         val zone = withContext(Dispatchers.Default) { resolver.resolve(fix.location, ZoneId.systemDefault()) }
         val s = c.settings.settings.first()

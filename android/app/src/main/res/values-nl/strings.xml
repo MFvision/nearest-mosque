@@ -274,6 +274,7 @@
     <string name="location_current">Huidige locatie</string>
     <string name="location_denied">Locatietoegang staat uit. Je kunt het toestaan in Instellingen of een stad kiezen.</string>
     <string name="location_fix_failed">Kon je locatie niet bepalen. Ga naar buiten of kies een stad.</string>
+    <string name="location_off">Locatie staat uit. Zet deze aan of kies een stad.</string>
     <string name="location_section">Locatie voor gebedstijden</string>
     <string name="map_a11y">Kaart van moskeeën in de buurt. Gebruik de acties om er een te openen, of gebruik de lijst.</string>
     <string name="map_attribution_ofm">Kaart © OpenFreeMap, OpenMapTiles, OpenStreetMap-bijdragers</string>

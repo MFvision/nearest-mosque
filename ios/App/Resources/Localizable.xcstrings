@@ -60335,6 +60335,227 @@
         }
       }
     },
+    "location_off": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location is turned off. Turn it on, or choose a city."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خدمة الموقع متوقفة. شغّلها أو اختر مدينة."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مقام کی سروس بند ہے۔ اسے آن کریں یا شہر منتخب کریں۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konum kapalı. Açın veya şehir seçin."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokasi mati. Nyalakan atau pilih kota."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La localisation est désactivée. Activez-la ou choisissez une ville."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La ubicación del teléfono está desactivada. Actívala o elige una ciudad."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Геолокация выключена. Включите её или выберите город."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লোকেশন বন্ধ আছে। এটি চালু করুন বা একটি শহর বেছে নিন।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت مکانی خاموش است. آن را روشن کنید یا یک شهر انتخاب کنید."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موقعیت مکانی خاموش است. آن را روشن کنید یا یک شهر انتخاب کنید."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "定位服务已关闭。请开启，或选择一个城市。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लोकेशन बंद है। इसे चालू करें या कोई शहर चुनें।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A localização está desativada. Ative-a ou escolha uma cidade."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An kashe wuri. Kunna shi ko zaɓi gari."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huduma ya mahali imezimwa. Iwashe au chagua mji."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naka-off ang lokasyon. I-on ito o pumili ng lungsod."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vị trí đang tắt. Hãy bật lên hoặc chọn một thành phố."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตำแหน่งปิดอยู่ เปิดตำแหน่งหรือเลือกเมือง"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទីតាំងត្រូវបានបិទ។ សូមបើកវា ឬជ្រើសរើសទីក្រុង។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئورۇن مۇلازىمىتى تاقاق. ئۇنى ئېچىڭ ياكى بىر شەھەر تاللاڭ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شوێن کوژاوەتەوە. هەڵیبکە یان شارێک هەڵبژێرە."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokacija je isključena. Uključite je ili odaberite grad."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Локација је искључена. Укључите је или изаберите град."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Локацијата е исклучена. Вклучете ја или изберете град."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A helymeghatározás ki van kapcsolva. Kapcsold be, vagy válassz várost."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locatie staat uit. Zet deze aan of kies een stad."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მდებარეობა გამორთულია. ჩართეთ ან აირჩიეთ ქალაქი."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ස්ථානය අක්‍රියයි. එය සක්‍රිය කරන්න හෝ නගරයක් තෝරන්න."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లొకేషన్ ఆఫ్‌లో ఉంది. దాన్ని ఆన్ చేయండి లేదా నగరాన్ని ఎంచుకోండి."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸ್ಥಳ ಆಫ್ ಆಗಿದೆ. ಅದನ್ನು ಆನ್ ಮಾಡಿ ಅಥವಾ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ലൊക്കേഷൻ ഓഫാണ്. അത് ഓണാക്കുക അല്ലെങ്കിൽ ഒരു നഗരം തിരഞ്ഞെടുക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लोकेशन बंद आहे. ते चालू करा किंवा एखादे शहर निवडा."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "લોકેશન બંધ છે. તેને ચાલુ કરો અથવા કોઈ શહેર પસંદ કરો."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਟਿਕਾਣਾ ਬੰਦ ਹੈ। ਇਸਨੂੰ ਚਾਲੂ ਕਰੋ ਜਾਂ ਕੋਈ ਸ਼ਹਿਰ ਚੁਣੋ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অৱস্থান অফ আছে। ইয়াক অন কৰক বা এখন চহৰ বাছক।"
+          }
+        }
+      }
+    },
     "location_section": {
       "extractionState": "manual",
       "localizations": {

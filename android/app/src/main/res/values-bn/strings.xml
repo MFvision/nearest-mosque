@@ -274,6 +274,7 @@
     <string name="location_current">বর্তমান লোকেশন</string>
     <string name="location_denied">লোকেশন অ্যাক্সেস বন্ধ আছে। আপনি সেটিংসে এটি চালু করতে পারেন বা একটি শহর বেছে নিতে পারেন।</string>
     <string name="location_fix_failed">লোকেশন পাওয়া যায়নি। বাইরে যান বা একটি শহর বেছে নিন।</string>
+    <string name="location_off">লোকেশন বন্ধ আছে। এটি চালু করুন বা একটি শহর বেছে নিন।</string>
     <string name="location_section">নামাজের সময়ের জন্য লোকেশন</string>
     <string name="map_a11y">কাছের মসজিদের মানচিত্র। কোনোটি খুলতে অ্যাকশন ব্যবহার করুন, অথবা তালিকা ব্যবহার করুন।</string>
     <string name="map_attribution_ofm">মানচিত্র © OpenFreeMap, OpenMapTiles, OpenStreetMap অবদানকারীরা</string>

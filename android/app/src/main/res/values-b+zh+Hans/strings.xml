@@ -274,6 +274,7 @@
     <string name="location_current">当前位置</string>
     <string name="location_denied">位置权限已关闭。你可以在设置中允许，或选择一个城市。</string>
     <string name="location_fix_failed">无法定位。请到室外，或选择一个城市。</string>
+    <string name="location_off">定位服务已关闭。请开启，或选择一个城市。</string>
     <string name="location_section">礼拜时间所用位置</string>
     <string name="map_a11y">附近清真寺地图。使用操作打开其中一个，或使用列表。</string>
     <string name="map_attribution_ofm">地图 © OpenFreeMap、OpenMapTiles、OpenStreetMap 贡献者</string>

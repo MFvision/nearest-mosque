@@ -274,6 +274,7 @@
     <string name="location_current">موقعیت فعلی</string>
     <string name="location_denied">دسترسی به موقعیت خاموش است. می‌توانید آن را در تنظیمات مجاز کنید یا یک شهر انتخاب کنید.</string>
     <string name="location_fix_failed">موقعیت دقیق پیدا نشد. به فضای باز بروید یا یک شهر انتخاب کنید.</string>
+    <string name="location_off">موقعیت مکانی خاموش است. آن را روشن کنید یا یک شهر انتخاب کنید.</string>
     <string name="location_section">موقعیت برای اوقات نماز</string>
     <string name="map_a11y">نقشه مسجدهای نزدیک. برای باز کردن یک مسجد از کنش‌ها یا فهرست استفاده کنید.</string>
     <string name="map_attribution_ofm">نقشه © OpenFreeMap، OpenMapTiles، مشارکت‌کنندگان OpenStreetMap</string>

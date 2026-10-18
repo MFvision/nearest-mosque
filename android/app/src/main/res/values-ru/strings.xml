@@ -274,6 +274,7 @@
     <string name="location_current">Текущее местоположение</string>
     <string name="location_denied">Доступ к геолокации выключен. Разрешите его в настройках или выберите город.</string>
     <string name="location_fix_failed">Не удалось определить местоположение. Выйдите на улицу или выберите город.</string>
+    <string name="location_off">Геолокация выключена. Включите её или выберите город.</string>
     <string name="location_section">Местоположение для времени намазов</string>
     <string name="map_a11y">Карта мечетей поблизости. Используйте действия, чтобы открыть мечеть, или перейдите к списку.</string>
     <string name="map_attribution_ofm">Карта © OpenFreeMap, OpenMapTiles, участники OpenStreetMap</string>

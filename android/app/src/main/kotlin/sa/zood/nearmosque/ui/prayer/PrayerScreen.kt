@@ -134,6 +134,7 @@ fun PrayerScreen(
                         error = when (locate) {
                             LocateState.Denied -> stringResource(R.string.location_denied)
                             LocateState.NoFix -> stringResource(R.string.location_fix_failed)
+                            LocateState.LocationOff -> stringResource(R.string.location_off)
                             else -> null
                         },
                         onUseLocation = { locationPermission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) },

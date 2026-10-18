@@ -148,13 +148,14 @@ fun SettingsScreen(
                 ContentDownloadCard(sa.zood.nearmosque.ui.Format.languageCode(context), Modifier.padding(top = 12.dp))
 
                 Section(stringResource(R.string.appearance))
-                val appearance = sa.zood.nearmosque.Appearance.current(context)
+                // Held here: Appearance isn't Compose state, and picking one doesn't recreate the activity to re-read it.
+                var appearance by remember { mutableStateOf(sa.zood.nearmosque.Appearance.current(context)) }
                 listOf(
                     sa.zood.nearmosque.Appearance.SYSTEM to R.string.appearance_system,
                     sa.zood.nearmosque.Appearance.LIGHT to R.string.appearance_light,
                     sa.zood.nearmosque.Appearance.DARK to R.string.appearance_dark,
                 ).forEach { (mode, label) ->
-                    RadioRow(stringResource(label), appearance == mode) { sa.zood.nearmosque.Appearance.set(context, mode) }
+                    RadioRow(stringResource(label), appearance == mode) { appearance = mode; sa.zood.nearmosque.Appearance.set(context, mode) }
                 }
                 // Sky follows the weather (opt-in, off by default), with what it sends and the credit MET Norway's licence asks for.
                 val skyWeather = prayer.settings?.skyWeather == true

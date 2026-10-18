@@ -274,6 +274,7 @@
     <string name="location_current">ตำแหน่งปัจจุบัน</string>
     <string name="location_denied">การเข้าถึงตำแหน่งปิดอยู่ คุณอนุญาตได้ในการตั้งค่าหรือเลือกเมือง</string>
     <string name="location_fix_failed">ระบุตำแหน่งไม่ได้ ลองออกไปที่โล่งหรือเลือกเมือง</string>
+    <string name="location_off">ตำแหน่งปิดอยู่ เปิดตำแหน่งหรือเลือกเมือง</string>
     <string name="location_section">ตำแหน่งสำหรับเวลาละหมาด</string>
     <string name="map_a11y">แผนที่มัสยิดใกล้เคียง ใช้การดำเนินการเพื่อเปิดมัสยิด หรือใช้รายการ</string>
     <string name="map_attribution_ofm">แผนที่ © OpenFreeMap, OpenMapTiles, ผู้ร่วมพัฒนา OpenStreetMap</string>

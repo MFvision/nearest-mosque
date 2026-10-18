@@ -274,6 +274,7 @@
     <string name="location_current">હાલનું લોકેશન</string>
     <string name="location_denied">લોકેશનની ઍક્સેસ બંધ છે. તમે સેટિંગ્સમાં તેને ચાલુ કરી શકો છો અથવા કોઈ શહેર પસંદ કરી શકો છો.</string>
     <string name="location_fix_failed">લોકેશન મળી શક્યું નહીં. બહાર જાઓ અથવા કોઈ શહેર પસંદ કરો.</string>
+    <string name="location_off">લોકેશન બંધ છે. તેને ચાલુ કરો અથવા કોઈ શહેર પસંદ કરો.</string>
     <string name="location_section">નમાઝના સમય માટે લોકેશન</string>
     <string name="map_a11y">નજીકની મસ્જિદોનો નકશો. કોઈ મસ્જિદ ખોલવા માટે ઍક્શન વાપરો, અથવા યાદી વાપરો.</string>
     <string name="map_attribution_ofm">નકશો © OpenFreeMap, OpenMapTiles, OpenStreetMap યોગદાનકર્તાઓ</string>

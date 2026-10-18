@@ -274,6 +274,7 @@
     <string name="location_current">Position actuelle</string>
     <string name="location_denied">Localisation désactivée. Autorisez-la dans Réglages ou choisissez une ville.</string>
     <string name="location_fix_failed">Position introuvable. Sortez à l’extérieur ou choisissez une ville.</string>
+    <string name="location_off">La localisation est désactivée. Activez-la ou choisissez une ville.</string>
     <string name="location_section">Lieu des horaires</string>
     <string name="map_a11y">Carte des mosquées proches. Utilisez les actions pour en ouvrir une, ou la liste.</string>
     <string name="map_attribution_ofm">Carte © OpenFreeMap, OpenMapTiles, contributeurs OpenStreetMap</string>

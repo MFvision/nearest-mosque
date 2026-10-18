@@ -274,6 +274,7 @@
     <string name="location_current">ទីតាំងបច្ចុប្បន្ន</string>
     <string name="location_denied">ការចូលប្រើទីតាំងត្រូវបានបិទ។ អ្នកអាចអនុញ្ញាតវានៅក្នុងការកំណត់ ឬជ្រើសរើសទីក្រុង។</string>
     <string name="location_fix_failed">មិនអាចកំណត់ទីតាំងបានទេ។ សូមចេញទៅខាងក្រៅ ឬជ្រើសរើសទីក្រុង។</string>
+    <string name="location_off">ទីតាំងត្រូវបានបិទ។ សូមបើកវា ឬជ្រើសរើសទីក្រុង។</string>
     <string name="location_section">ទីតាំងសម្រាប់ម៉ោងសឡាត</string>
     <string name="map_a11y">ផែនទីម៉ាស្ជិតក្បែរៗ។ ប្រើសកម្មភាពដើម្បីបើកមួយ ឬប្រើបញ្ជី។</string>
     <string name="map_attribution_ofm">ផែនទី © OpenFreeMap, OpenMapTiles, អ្នករួមចំណែក OpenStreetMap</string>

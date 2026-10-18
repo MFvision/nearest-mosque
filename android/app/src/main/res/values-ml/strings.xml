@@ -274,6 +274,7 @@
     <string name="location_current">നിലവിലെ ലൊക്കേഷൻ</string>
     <string name="location_denied">ലൊക്കേഷൻ ആക്സസ് ഓഫാണ്. നിങ്ങൾക്ക് ക്രമീകരണങ്ങളിൽ അത് അനുവദിക്കാം അല്ലെങ്കിൽ ഒരു നഗരം തിരഞ്ഞെടുക്കാം.</string>
     <string name="location_fix_failed">ലൊക്കേഷൻ ലഭിച്ചില്ല. പുറത്തേക്ക് പോകുക അല്ലെങ്കിൽ ഒരു നഗരം തിരഞ്ഞെടുക്കുക.</string>
+    <string name="location_off">ലൊക്കേഷൻ ഓഫാണ്. അത് ഓണാക്കുക അല്ലെങ്കിൽ ഒരു നഗരം തിരഞ്ഞെടുക്കുക.</string>
     <string name="location_section">നമസ്കാര സമയങ്ങൾക്കുള്ള ലൊക്കേഷൻ</string>
     <string name="map_a11y">അടുത്തുള്ള പള്ളികളുടെ മാപ്പ്. ഒന്ന് തുറക്കാൻ പ്രവർത്തനങ്ങൾ ഉപയോഗിക്കുക, അല്ലെങ്കിൽ പട്ടിക ഉപയോഗിക്കുക.</string>
     <string name="map_attribution_ofm">മാപ്പ് © OpenFreeMap, OpenMapTiles, OpenStreetMap സംഭാവകർ</string>

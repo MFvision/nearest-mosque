@@ -274,6 +274,7 @@
     <string name="location_current">نۆۋەتتىكى ئورۇن</string>
     <string name="location_denied">ئورۇن ئىجازىتى تاقاق. تەڭشەكتە ئىجازەت بەرسىڭىز ياكى بىر شەھەر تاللىسىڭىز بولىدۇ.</string>
     <string name="location_fix_failed">ئورۇننى ئېنىقلىغىلى بولمىدى. ئوچۇق جايغا چىقىڭ ياكى بىر شەھەر تاللاڭ.</string>
+    <string name="location_off">ئورۇن مۇلازىمىتى تاقاق. ئۇنى ئېچىڭ ياكى بىر شەھەر تاللاڭ.</string>
     <string name="location_section">ناماز ۋاقتى ئۈچۈن ئورۇن</string>
     <string name="map_a11y">يېقىن ئەتراپتىكى مەسچىتلەر خەرىتىسى. بىرىنى ئېچىش ئۈچۈن مەشغۇلاتلارنى ياكى تىزىملىكنى ئىشلىتىڭ.</string>
     <string name="map_attribution_ofm">خەرىتە © OpenFreeMap، OpenMapTiles، OpenStreetMap تۆھپىكارلىرى</string>

@@ -274,6 +274,7 @@
     <string name="location_current">Тековна локација</string>
     <string name="location_denied">Пристапот до локацијата е исклучен. Можете да го дозволите во поставките или да изберете град.</string>
     <string name="location_fix_failed">Не може да се одреди локацијата. Излезете надвор или изберете град.</string>
+    <string name="location_off">Локацијата е исклучена. Вклучете ја или изберете град.</string>
     <string name="location_section">Локација за времињата за намаз</string>
     <string name="map_a11y">Мапа на џамии во близина. Користете ги дејствата за да отворите една или користете го списокот.</string>
     <string name="map_attribution_ofm">Мапа © OpenFreeMap, OpenMapTiles, соработници на OpenStreetMap</string>

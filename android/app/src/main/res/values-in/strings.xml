@@ -274,6 +274,7 @@
     <string name="location_current">Lokasi saat ini</string>
     <string name="location_denied">Akses lokasi mati. Izinkan di Pengaturan atau pilih kota.</string>
     <string name="location_fix_failed">Lokasi tidak didapat. Pergi ke tempat terbuka atau pilih kota.</string>
+    <string name="location_off">Lokasi mati. Nyalakan atau pilih kota.</string>
     <string name="location_section">Lokasi jadwal salat</string>
     <string name="map_a11y">Peta masjid terdekat. Gunakan tindakan untuk membuka salah satunya, atau gunakan daftar.</string>
     <string name="map_attribution_ofm">Peta © OpenFreeMap, OpenMapTiles, kontributor OpenStreetMap</string>

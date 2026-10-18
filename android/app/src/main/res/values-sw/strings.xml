@@ -274,6 +274,7 @@
     <string name="location_current">Mahali ulipo sasa</string>
     <string name="location_denied">Ufikiaji wa mahali umezimwa. Unaweza kuuruhusu kwenye Mipangilio au kuchagua mji.</string>
     <string name="location_fix_failed">Imeshindwa kupata mahali ulipo. Toka nje au chagua mji.</string>
+    <string name="location_off">Huduma ya mahali imezimwa. Iwashe au chagua mji.</string>
     <string name="location_section">Mahali kwa nyakati za sala</string>
     <string name="map_a11y">Ramani ya misikiti iliyo karibu. Tumia vitendo kufungua mmoja, au tumia orodha.</string>
     <string name="map_attribution_ofm">Ramani © OpenFreeMap, OpenMapTiles, wachangiaji wa OpenStreetMap</string>

@@ -274,6 +274,7 @@
     <string name="location_current">Ubicación actual</string>
     <string name="location_denied">La ubicación está desactivada. Permítela en Ajustes o elige una ciudad.</string>
     <string name="location_fix_failed">No se obtuvo ubicación. Sal al exterior o elige una ciudad.</string>
+    <string name="location_off">La ubicación del teléfono está desactivada. Actívala o elige una ciudad.</string>
     <string name="location_section">Ubicación de los horarios</string>
     <string name="map_a11y">Mapa de mezquitas cercanas. Use las acciones para abrir una, o la lista.</string>
     <string name="map_attribution_ofm">Mapa © OpenFreeMap, OpenMapTiles, colaboradores de OpenStreetMap</string>

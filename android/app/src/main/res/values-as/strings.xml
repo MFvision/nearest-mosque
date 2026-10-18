@@ -274,6 +274,7 @@
     <string name="location_current">বৰ্তমানৰ অৱস্থান</string>
     <string name="location_denied">অৱস্থানৰ অনুমতি অফ আছে। আপুনি ছেটিংছত ইয়াক অন কৰিব পাৰে বা এখন চহৰ বাছিব পাৰে।</string>
     <string name="location_fix_failed">অৱস্থান পোৱা নগ\'ল। বাহিৰলৈ যাওক বা এখন চহৰ বাছক।</string>
+    <string name="location_off">অৱস্থান অফ আছে। ইয়াক অন কৰক বা এখন চহৰ বাছক।</string>
     <string name="location_section">নামাজৰ সময়ৰ বাবে অৱস্থান</string>
     <string name="map_a11y">ওচৰৰ মছজিদৰ মানচিত্ৰ। এখন খুলিবলৈ একচন ব্যৱহাৰ কৰক, বা তালিকাখন ব্যৱহাৰ কৰক।</string>
     <string name="map_attribution_ofm">মানচিত্ৰ © OpenFreeMap, OpenMapTiles, OpenStreetMap অৰিহণাকাৰীসকল</string>

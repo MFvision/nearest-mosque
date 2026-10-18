@@ -274,6 +274,7 @@
     <string name="location_current">Тренутна локација</string>
     <string name="location_denied">Приступ локацији је искључен. Можете га дозволити у подешавањима или изабрати град.</string>
     <string name="location_fix_failed">Није могуће одредити локацију. Изађите напоље или изаберите град.</string>
+    <string name="location_off">Локација је искључена. Укључите је или изаберите град.</string>
     <string name="location_section">Локација за намаска времена</string>
     <string name="map_a11y">Мапа џамија у близини. Користите радње да отворите неку или користите листу.</string>
     <string name="map_attribution_ofm">Мапа © OpenFreeMap, OpenMapTiles, сарадници OpenStreetMap-а</string>

@@ -274,6 +274,7 @@
     <string name="location_current">ಪ್ರಸ್ತುತ ಸ್ಥಳ</string>
     <string name="location_denied">ಸ್ಥಳ ಪ್ರವೇಶ ಆಫ್ ಆಗಿದೆ. ನೀವು ಅದನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅನುಮತಿಸಬಹುದು ಅಥವಾ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಬಹುದು.</string>
     <string name="location_fix_failed">ಸ್ಥಳ ಪತ್ತೆಯಾಗಲಿಲ್ಲ. ಹೊರಗೆ ಹೋಗಿ ಅಥವಾ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
+    <string name="location_off">ಸ್ಥಳ ಆಫ್ ಆಗಿದೆ. ಅದನ್ನು ಆನ್ ಮಾಡಿ ಅಥವಾ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
     <string name="location_section">ನಮಾಜ್ ಸಮಯಗಳಿಗಾಗಿ ಸ್ಥಳ</string>
     <string name="map_a11y">ಹತ್ತಿರದ ಮಸೀದಿಗಳ ನಕ್ಷೆ. ಒಂದನ್ನು ತೆರೆಯಲು ಕ್ರಿಯೆಗಳನ್ನು ಬಳಸಿ, ಅಥವಾ ಪಟ್ಟಿಯನ್ನು ಬಳಸಿ.</string>
     <string name="map_attribution_ofm">ನಕ್ಷೆ © OpenFreeMap, OpenMapTiles, OpenStreetMap ಕೊಡುಗೆದಾರರು</string>

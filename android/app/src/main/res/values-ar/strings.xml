@@ -274,6 +274,7 @@
     <string name="location_current">الموقع الحالي</string>
     <string name="location_denied">الوصول إلى الموقع متوقف. يمكنك السماح به من الإعدادات أو اختيار مدينة.</string>
     <string name="location_fix_failed">تعذّر تحديد الموقع. اخرج إلى مكان مفتوح أو اختر مدينة.</string>
+    <string name="location_off">خدمة الموقع متوقفة. شغّلها أو اختر مدينة.</string>
     <string name="location_section">موقع حساب المواقيت</string>
     <string name="map_a11y">خريطة المساجد القريبة. استخدم الإجراءات لفتح مسجد، أو استخدم القائمة.</string>
     <string name="map_attribution_ofm">الخريطة © OpenFreeMap وOpenMapTiles ومساهمو OpenStreetMap</string>

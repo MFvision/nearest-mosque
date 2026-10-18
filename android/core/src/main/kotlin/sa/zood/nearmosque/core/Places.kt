@@ -77,6 +77,23 @@ class CityIndex(val cities: List<City>) {
     }
 }
 
+/**
+ * Time zones named in the city table. ZoneId.of throws on an id the phone's tz data doesn't know (older phones lack
+ * newer names such as Europe/Kyiv), so those fall back to the old name, or a zone on the same clock; null if neither.
+ */
+object Zones {
+    private val legacy = mapOf(
+        "Europe/Kyiv" to "Europe/Kiev",
+        "America/Nuuk" to "America/Godthab",
+        "America/Ciudad_Juarez" to "America/Denver",
+        "Asia/Qostanay" to "Asia/Aqtobe",
+    )
+
+    fun of(id: String): ZoneId? = known(id) ?: legacy[id]?.let(::known)
+
+    private fun known(id: String): ZoneId? = runCatching { ZoneId.of(id) }.getOrNull()
+}
+
 data class ZoneSuggestion(val zoneId: ZoneId, val nearestCity: City?, val distanceMeters: Double?, val needsConfirmation: Boolean)
 
 /**
@@ -93,7 +110,9 @@ class TimeZoneResolver(private val cities: CityIndex, private val borderBandMete
             return ZoneSuggestion(deviceZone ?: ZoneId.of("UTC"), null, null, needsConfirmation = deviceZone == null)
         }
         val (city, d) = nearest
-        val cityZone = ZoneId.of(city.zoneId)
+        // A city zone this phone can't look up: the phone's own zone (or UTC), and the user is asked.
+        val cityZone = Zones.of(city.zoneId)
+            ?: return ZoneSuggestion(deviceZone ?: ZoneId.of("UTC"), city, d, needsConfirmation = true)
         if (deviceZone == null) return ZoneSuggestion(cityZone, city, d, needsConfirmation = d > borderBandMeters)
         return when {
             sameRules(cityZone, deviceZone) -> ZoneSuggestion(deviceZone, city, d, needsConfirmation = false)

@@ -274,6 +274,7 @@
     <string name="location_current">Wurin da kuke yanzu</string>
     <string name="location_denied">An kashe damar shiga wuri. Kuna iya ba da izini a Saituna ko zaɓi gari.</string>
     <string name="location_fix_failed">Ba a iya gano wurinku ba. Fita waje ko zaɓi gari.</string>
+    <string name="location_off">An kashe wuri. Kunna shi ko zaɓi gari.</string>
     <string name="location_section">Wuri don lokutan sallah</string>
     <string name="map_a11y">Taswirar masallatan da ke kusa. Yi amfani da ayyukan don buɗe ɗaya, ko yi amfani da jerin.</string>
     <string name="map_attribution_ofm">Taswira © OpenFreeMap, OpenMapTiles, masu ba da gudummawa na OpenStreetMap</string>

@@ -274,6 +274,7 @@
     <string name="location_current">მიმდინარე მდებარეობა</string>
     <string name="location_denied">მდებარეობაზე წვდომა გამორთულია. შეგიძლიათ დაუშვათ პარამეტრებში ან აირჩიოთ ქალაქი.</string>
     <string name="location_fix_failed">მდებარეობის დადგენა ვერ მოხერხდა. გადით გარეთ ან აირჩიეთ ქალაქი.</string>
+    <string name="location_off">მდებარეობა გამორთულია. ჩართეთ ან აირჩიეთ ქალაქი.</string>
     <string name="location_section">მდებარეობა ლოცვის დროებისთვის</string>
     <string name="map_a11y">ახლომდებარე მეჩეთების რუკა. გამოიყენეთ მოქმედებები ერთ-ერთის გასახსნელად, ან გამოიყენეთ სია.</string>
     <string name="map_attribution_ofm">რუკა © OpenFreeMap, OpenMapTiles, OpenStreetMap-ის მონაწილეები</string>

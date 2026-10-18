@@ -274,6 +274,7 @@
     <string name="location_current">Vị trí hiện tại</string>
     <string name="location_denied">Quyền truy cập vị trí đang tắt. Bạn có thể cho phép trong Cài đặt hoặc chọn một thành phố.</string>
     <string name="location_fix_failed">Không xác định được vị trí. Hãy ra ngoài trời hoặc chọn một thành phố.</string>
+    <string name="location_off">Vị trí đang tắt. Hãy bật lên hoặc chọn một thành phố.</string>
     <string name="location_section">Vị trí cho giờ cầu nguyện</string>
     <string name="map_a11y">Bản đồ các thánh đường gần đó. Dùng các thao tác để mở một thánh đường, hoặc dùng danh sách.</string>
     <string name="map_attribution_ofm">Bản đồ © OpenFreeMap, OpenMapTiles, những người đóng góp OpenStreetMap</string>

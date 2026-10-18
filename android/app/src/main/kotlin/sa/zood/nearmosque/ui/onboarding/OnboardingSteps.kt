@@ -209,6 +209,7 @@ internal fun PlaceStep(ctx: OnbContext) {
         val error = when (locate) {
             LocateState.Denied -> R.string.location_denied
             LocateState.NoFix -> R.string.location_fix_failed
+            LocateState.LocationOff -> R.string.location_off
             else -> null
         }
         if (error != null) {

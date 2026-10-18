@@ -274,6 +274,7 @@
     <string name="location_current">ਮੌਜੂਦਾ ਟਿਕਾਣਾ</string>
     <string name="location_denied">ਟਿਕਾਣੇ ਦੀ ਪਹੁੰਚ ਬੰਦ ਹੈ। ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਜਾਜ਼ਤ ਦੇ ਸਕਦੇ ਹੋ ਜਾਂ ਕੋਈ ਸ਼ਹਿਰ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
     <string name="location_fix_failed">ਟਿਕਾਣਾ ਪਤਾ ਨਹੀਂ ਲੱਗ ਸਕਿਆ। ਬਾਹਰ ਜਾਓ ਜਾਂ ਕੋਈ ਸ਼ਹਿਰ ਚੁਣੋ।</string>
+    <string name="location_off">ਟਿਕਾਣਾ ਬੰਦ ਹੈ। ਇਸਨੂੰ ਚਾਲੂ ਕਰੋ ਜਾਂ ਕੋਈ ਸ਼ਹਿਰ ਚੁਣੋ।</string>
     <string name="location_section">ਨਮਾਜ਼ ਦੇ ਵਕਤਾਂ ਲਈ ਟਿਕਾਣਾ</string>
     <string name="map_a11y">ਨੇੜਲੀਆਂ ਮਸਜਿਦਾਂ ਦਾ ਨਕਸ਼ਾ। ਕੋਈ ਮਸਜਿਦ ਖੋਲ੍ਹਣ ਲਈ ਕਾਰਵਾਈਆਂ ਵਰਤੋ, ਜਾਂ ਸੂਚੀ ਵਰਤੋ।</string>
     <string name="map_attribution_ofm">ਨਕਸ਼ਾ © OpenFreeMap, OpenMapTiles, OpenStreetMap ਯੋਗਦਾਨੀ</string>

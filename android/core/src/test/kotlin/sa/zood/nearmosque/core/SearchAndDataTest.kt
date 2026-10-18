@@ -188,4 +188,22 @@ class SearchAndDataTest {
         assertEquals("Asia/Riyadh", makkah.zoneId)
         assertNull(LatLng.orNull(Double.NaN, 1.0))
     }
+
+    @Test
+    fun zoneLookupNeverThrows() {
+        assertEquals(ZoneId.of("Asia/Riyadh"), Zones.of("Asia/Riyadh"))
+        assertEquals(ZoneId.of("Europe/Kyiv"), Zones.of("Europe/Kyiv"))
+        assertTrue(cities.cities.map { it.zoneId }.distinct().all { Zones.of(it) != null })
+        assertNull(Zones.of("Mars/Olympus"))
+        assertNull(Zones.of(""))
+        // A city whose zone this phone doesn't know: the phone's zone (or UTC), and the user is asked.
+        val unknown = CityIndex(listOf(City(1, "Olympus", "Olympus", emptyList(), "ZZ", LatLng(10.0, 10.0), "Mars/Olympus", 1)))
+        val tz = TimeZoneResolver(unknown)
+        val withPhone = tz.resolve(LatLng(10.01, 10.01), ZoneId.of("Africa/Lagos"))
+        assertEquals(ZoneId.of("Africa/Lagos"), withPhone.zoneId)
+        assertTrue(withPhone.needsConfirmation)
+        val noPhone = tz.resolve(LatLng(10.01, 10.01), null)
+        assertEquals(ZoneId.of("UTC"), noPhone.zoneId)
+        assertTrue(noPhone.needsConfirmation)
+    }
 }

@@ -189,7 +189,7 @@ fun MosquesScreen(vm: MosquesViewModel, compass: CompassState, onOpenSettings: (
                     MosqueCard(RankedMosque(m, d ?: 0.0), nearest = false, favorite = true, showDistance = d != null) { selected = RankedMosque(m, d ?: 0.0) }
                 }
                 center == null -> item("need") {
-                    NeedLocation(ui.permissionDenied, ui.locating, onAllow = requestLocation, onUseCity = { vm.usePrayerCity(lang) })
+                    NeedLocation(ui.permissionDenied, ui.locationOff, ui.locating, onAllow = requestLocation, onUseCity = { vm.usePrayerCity(lang) })
                 }
                 ui.loading && ui.items.isEmpty() -> item("loading") {
                     Box(Modifier.fillMaxWidth().padding(top = 40.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = Ink) }
@@ -311,11 +311,16 @@ private fun StatusRow(ui: MosquesUi, onUseDevice: () -> Unit) {
 }
 
 @Composable
-private fun NeedLocation(denied: Boolean, locating: Boolean, onAllow: () -> Unit, onUseCity: () -> Unit) {
+private fun NeedLocation(denied: Boolean, locationOff: Boolean, locating: Boolean, onAllow: () -> Unit, onUseCity: () -> Unit) {
     GlassCard(padding = 20.dp) {
         Text(stringResource(R.string.mosques_need_location_title), style = MaterialTheme.typography.titleLarge, color = Ink, modifier = Modifier.semantics { heading() })
         Spacer(Modifier.height(4.dp))
-        Text(stringResource(if (denied) R.string.location_denied else R.string.mosques_need_location_body), style = MaterialTheme.typography.bodyLarge, color = Ink.copy(alpha = 0.85f))
+        val body = when {
+            denied -> R.string.location_denied
+            locationOff -> R.string.location_off
+            else -> R.string.mosques_need_location_body
+        }
+        Text(stringResource(body), style = MaterialTheme.typography.bodyLarge, color = Ink.copy(alpha = 0.85f))
         Spacer(Modifier.height(14.dp))
         GlassButton(onClick = onAllow, prominent = true, enabled = !locating, modifier = Modifier.fillMaxWidth()) {
             GlassButtonText(stringResource(if (locating) R.string.locating else R.string.allow_location), painterResource(R.drawable.ic_pin))

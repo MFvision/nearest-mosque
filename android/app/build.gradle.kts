@@ -68,6 +68,11 @@ android {
         localeFilters += listOf("en", "ar", "ur", "tr", "in", "fr", "es", "ru", "bn", "fa", "fa-rAF", "b+zh+Hans", "hi", "pt", "ha", "sw", "b+fil", "vi", "th", "km", "ug", "b+ckb", "bs", "sr", "mk", "hu", "nl", "ka", "si", "te", "kn", "ml", "mr", "gu", "pa", "as")
     }
 
+    bundle {
+        // The in-app language picker offers every language; with language splits Play would install only the phone's.
+        language { enableSplit = false }
+    }
+
     sourceSets {
         // Data packs are shared with iOS and live outside the Gradle project.
         getByName("main").assets.srcDirs("../../packs", "../../shared/content", "../../shared/semantic")

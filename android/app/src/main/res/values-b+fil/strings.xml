@@ -274,6 +274,7 @@
     <string name="location_current">Kasalukuyang lokasyon</string>
     <string name="location_denied">Naka-off ang access sa lokasyon. Maaari mo itong payagan sa Mga Setting o pumili ng lungsod.</string>
     <string name="location_fix_failed">Hindi makuha ang iyong lokasyon. Lumabas o pumili ng lungsod.</string>
+    <string name="location_off">Naka-off ang lokasyon. I-on ito o pumili ng lungsod.</string>
     <string name="location_section">Lokasyon para sa mga oras ng dasal</string>
     <string name="map_a11y">Mapa ng mga kalapit na masjid. Gamitin ang mga aksyon para buksan ang isa, o gamitin ang listahan.</string>
     <string name="map_attribution_ofm">Mapa © OpenFreeMap, OpenMapTiles, mga contributor ng OpenStreetMap</string>

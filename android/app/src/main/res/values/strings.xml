@@ -274,6 +274,7 @@
     <string name="location_current">Current location</string>
     <string name="location_denied">Location access is off. You can allow it in Settings or choose a city.</string>
     <string name="location_fix_failed">Couldn’t get a location fix. Go outside or choose a city.</string>
+    <string name="location_off">Location is turned off. Turn it on, or choose a city.</string>
     <string name="location_section">Location for prayer times</string>
     <string name="map_a11y">Map of nearby mosques. Use the actions to open one, or use the list.</string>
     <string name="map_attribution_ofm">Map © OpenFreeMap, OpenMapTiles, OpenStreetMap contributors</string>

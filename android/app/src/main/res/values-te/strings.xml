@@ -274,6 +274,7 @@
     <string name="location_current">ప్రస్తుత లొకేషన్</string>
     <string name="location_denied">లొకేషన్ యాక్సెస్ ఆఫ్‌లో ఉంది. మీరు సెట్టింగ్‌లలో అనుమతించవచ్చు లేదా నగరాన్ని ఎంచుకోవచ్చు.</string>
     <string name="location_fix_failed">లొకేషన్ దొరకలేదు. బయటకు వెళ్లండి లేదా నగరాన్ని ఎంచుకోండి.</string>
+    <string name="location_off">లొకేషన్ ఆఫ్‌లో ఉంది. దాన్ని ఆన్ చేయండి లేదా నగరాన్ని ఎంచుకోండి.</string>
     <string name="location_section">నమాజ్ సమయాల కోసం లొకేషన్</string>
     <string name="map_a11y">దగ్గరి మసీదుల మ్యాప్. ఒకదాన్ని తెరవడానికి చర్యలను ఉపయోగించండి, లేదా జాబితాను ఉపయోగించండి.</string>
     <string name="map_attribution_ofm">మ్యాప్ © OpenFreeMap, OpenMapTiles, OpenStreetMap కంట్రిబ్యూటర్‌లు</string>

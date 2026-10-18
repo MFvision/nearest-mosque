@@ -274,6 +274,7 @@
     <string name="location_current">मौजूदा लोकेशन</string>
     <string name="location_denied">लोकेशन की अनुमति बंद है। आप सेटिंग्स में इसे चालू कर सकते हैं या कोई शहर चुन सकते हैं।</string>
     <string name="location_fix_failed">लोकेशन पता नहीं चल सकी। बाहर जाएँ या कोई शहर चुनें।</string>
+    <string name="location_off">लोकेशन बंद है। इसे चालू करें या कोई शहर चुनें।</string>
     <string name="location_section">नमाज़ के समय के लिए लोकेशन</string>
     <string name="map_a11y">आसपास की मस्जिदों का नक्शा। किसी मस्जिद को खोलने के लिए ऐक्शन इस्तेमाल करें, या सूची इस्तेमाल करें।</string>
     <string name="map_attribution_ofm">नक्शा © OpenFreeMap, OpenMapTiles, OpenStreetMap योगदानकर्ता</string>

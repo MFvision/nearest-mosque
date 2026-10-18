@@ -15,11 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) route.value = routeOf(intent)
-        // Status and navigation bar icons follow light and dark mode (dark icons on the light skies).
-        enableEdgeToEdge(
-            statusBarStyle = androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
-            navigationBarStyle = androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
-        )
+        edgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             NearMosqueTheme {
@@ -27,6 +23,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    /**
+     * Light or Dark picked in the app: the activity handles uiMode itself (so the phone's own switch doesn't restart it
+     * and close open readers), and AppCompat only updates the resources; pass them on so Compose redraws in the new mode.
+     */
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        window.decorView.dispatchConfigurationChanged(resources.configuration)
+        // The bar icons and the window behind Compose were set for the old mode.
+        edgeToEdge()
+        window.setBackgroundDrawableResource(R.color.window_background)
+    }
+
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // The phone's own light/dark switch (handled here, not by a restart) needs the bar icons redone as well.
+        edgeToEdge()
+    }
+
+    /** Status and navigation bar icons follow light and dark mode (dark icons on the light skies). */
+    private fun edgeToEdge() = enableEdgeToEdge(
+        statusBarStyle = androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
+        navigationBarStyle = androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
+    )
 
     override fun onNewIntent(intent: android.content.Intent) {
         super.onNewIntent(intent)

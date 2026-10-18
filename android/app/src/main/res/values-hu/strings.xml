@@ -274,6 +274,7 @@
     <string name="location_current">Jelenlegi hely</string>
     <string name="location_denied">A helyhozzáférés ki van kapcsolva. Engedélyezheted a Beállításokban, vagy választhatsz várost.</string>
     <string name="location_fix_failed">Nem sikerült meghatározni a helyzetedet. Menj a szabadba, vagy válassz várost.</string>
+    <string name="location_off">A helymeghatározás ki van kapcsolva. Kapcsold be, vagy válassz várost.</string>
     <string name="location_section">Hely az imaidőkhöz</string>
     <string name="map_a11y">A közeli mecsetek térképe. A műveletekkel megnyithatsz egyet, vagy használd a listát.</string>
     <string name="map_attribution_ofm">Térkép © OpenFreeMap, OpenMapTiles, OpenStreetMap közreműködők</string>
