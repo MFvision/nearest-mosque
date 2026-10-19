@@ -5,9 +5,10 @@
 // one short line; the download buttons stay where they are on the page. It fills each [data-wall] on the page, in the
 // page's language, and follows the page when its language changes.
 //
-// The motion: CSS scroll-driven animations where the browser has them (wall.css, run off the main thread); elsewhere
-// this file sets the same progress values on each frame while the band is on screen. Transforms only. With Reduce
-// Motion the wall stands still, the phone over the middle column showing its first screen.
+// The motion: this file sets the progress values on each frame while the band is on screen, and wall.css turns them
+// into transforms (only transforms). Not CSS scroll-driven animations: Safari 26 and Chrome on Windows both left the
+// phone on its first screen with them. With Reduce Motion the columns and the phone stand still, and the phone
+// changes from one screen to the next at the same points of the scroll, without sliding.
 //
 // The hand: off unless the band says which pictures to use, as data-hand="1" for assets/wall/hand-back-1.webp and
 // assets/wall/hand-front-1.webp (README.md). Without it nothing is requested.
@@ -18,8 +19,8 @@ const T = {
 };
 // Picture sizes by folder (assets/<lang>/<folder>/), for the width and height of each card.
 const SIZE = { iphone: [640, 1391], android: [640, 1387], wall: [590, 1279] };
-// The screens the phone shows, in turn. Five: wall.css stops on each at every quarter of the pinned stretch
-// (@keyframes wall-steps), and .wall's --run gives that stretch four steps' height and a little more.
+// The screens the phone shows, in turn. Five: the phone stops on each at every quarter of the pinned stretch
+// (stepAt below), and .wall's --run in wall.css gives that stretch four steps' height and a little more.
 const STEPS = ['iphone/01-prayer', 'iphone/02-qibla', 'iphone/03-mosques-map', 'iphone/04-ask', 'iphone/05-classics'];
 // The middle column outside the phone runs on as if the reel went round: the last two screens above the first, the
 // first two below the last.
@@ -64,11 +65,6 @@ const layout = () => (WIDE.matches ? 'wide' : MIDDLE.matches ? 'mid' : 'narrow')
 const spots = [...document.querySelectorAll('[data-wall]')];
 const pageLang = () => (document.documentElement.lang === 'ar' ? 'ar' : 'en');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-// Scroll-driven animations only where they were seen to work: Chromium-based browsers. Safari 26 reports them too, but
-// there the phone stayed on its first screen through the whole band (the "contain" stretch of a band taller than the
-// screen never ran); Safari, every iPhone browser and Firefox take the frame-by-frame path below instead.
-const chromium = !!navigator.userAgentData?.brands?.some((b) => b.brand === 'Chromium');
-const scrollDriven = chromium && typeof CSS !== 'undefined' && CSS.supports && CSS.supports('animation-timeline: view()');
 const state = new Map(); // each spot: { key, near, live, geo }
 
 const card = (lang, shot) => {
@@ -152,35 +148,33 @@ function measure() {
   frame();
 }
 
-// Without scroll-driven animations: the same progress values as wall.css, set on each frame while a band is on screen.
+// The progress values wall.css reads, set on each frame while a band is on screen.
 const clamp = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 const stepAt = (q) => {
   const n = STEPS.length - 1, u = q * n, i = Math.min(n - 1, Math.floor(u));
-  return i + clamp((u - i - 0.1) / 0.8); // still for a tenth of each step either side of a screen, as @keyframes wall-steps
+  return i + clamp((u - i - 0.1) / 0.8); // still for a tenth of each step either side of a screen
 };
 let queued = 0;
 function frame() {
   queued = 0;
-  if (scrollDriven || reduce.matches) return;
-  const y = scrollY, vh = innerHeight;
+  const y = scrollY, vh = innerHeight, still = reduce.matches;
   spots.forEach((el) => {
     const s = state.get(el), g = s && s.geo;
     if (!g || !s.live) return;
     const enter = g.top - vh, pinned = g.top, unpinned = g.top + g.h - g.stage, gone = g.top + g.h;
     const st = s.stage.style;
-    st.setProperty('--p', clamp((y - enter) / (gone - enter)).toFixed(4));
-    st.setProperty('--s', stepAt(clamp((y - pinned) / Math.max(1, unpinned - pinned))).toFixed(4));
-    st.setProperty('--tin', ((1 - clamp((y - enter) / Math.max(1, pinned - enter))) ** 2).toFixed(4)); // 1 - ease-out
-    st.setProperty('--tout', (clamp((y - unpinned) / Math.max(1, gone - unpinned)) ** 2).toFixed(4));
+    const step = stepAt(clamp((y - pinned) / Math.max(1, unpinned - pinned)));
+    // Reduce Motion: the columns stay centred and the phone upright; its screen changes halfway between two stops.
+    st.setProperty('--p', still ? '0.5' : clamp((y - enter) / (gone - enter)).toFixed(4));
+    st.setProperty('--s', still ? String(Math.round(step)) : step.toFixed(4));
+    st.setProperty('--tin', still ? '0' : ((1 - clamp((y - enter) / Math.max(1, pinned - enter))) ** 2).toFixed(4)); // 1 - ease-out
+    st.setProperty('--tout', still ? '0' : (clamp((y - unpinned) / Math.max(1, gone - unpinned)) ** 2).toFixed(4));
   });
 }
 const queue = () => { if (!queued) queued = requestAnimationFrame(frame); };
 
 function mode() {
-  spots.forEach((el) => {
-    el.classList.toggle('wall-sda', scrollDriven && !reduce.matches);
-    el.classList.toggle('wall-js', !scrollDriven && !reduce.matches);
-  });
+  spots.forEach((el) => el.classList.add('wall-js'));
   measure();
 }
 

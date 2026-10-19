@@ -118,42 +118,17 @@
 .wall-end > .wall-title { transition-delay: 0.12s; }
 .wall.in .wall-end > * { opacity: 1; transform: none; }
 
-/* The motion, where the browser drives animations from the scroll: the band's track is the timeline. The other
-   columns glide over the whole time the band is on screen (cover); the middle column and the phone's screen step
-   while the stage is pinned (contain), at a steady speed with a short stop on each screen; the phone straightens as
-   the stage comes in (entry) and leans a little as it leaves (exit). */
-@supports (animation-timeline: view()) {
-  .wall-sda .wall-track { view-timeline: --wall block; }
-  .wall-sda .wall-side .wall-strip { animation: wall-glide linear both; animation-timeline: --wall; animation-range: cover 0% cover 100%; }
-  .wall-sda .wall-mid .wall-strip, .wall-sda .wall-reel { animation: wall-steps linear both; animation-timeline: --wall; animation-range: contain 0% contain 100%; }
-  .wall-sda .wall-hold { animation: wall-tilt-in ease-out both; animation-timeline: --wall; animation-range: entry 0% entry 100%; }
-  .wall-sda .wall-lean { animation: wall-tilt-out ease-in both; animation-timeline: --wall; animation-range: exit 0% exit 100%; }
-}
-@keyframes wall-glide {
-  from { transform: translate3d(0, calc(var(--t) * var(--dir) * 0.5), 0); }
-  to { transform: translate3d(0, calc(var(--t) * var(--dir) * -0.5), 0); }
-}
-/* Five screens: a stop on each at every quarter, a tenth of each step either side of it (as stepAt in wall.js). */
-@keyframes wall-steps {
-  0%, 2.5% { transform: translate3d(0, 0, 0); }
-  22.5%, 27.5% { transform: translate3d(0, calc(var(--pm) * -1), 0); }
-  47.5%, 52.5% { transform: translate3d(0, calc(var(--pm) * -2), 0); }
-  72.5%, 77.5% { transform: translate3d(0, calc(var(--pm) * -3), 0); }
-  97.5%, 100% { transform: translate3d(0, calc(var(--pm) * -4), 0); }
-}
-@keyframes wall-tilt-in { from { transform: rotate(-6deg) scale(0.94); } to { transform: none; } }
-@keyframes wall-tilt-out { from { transform: none; } to { transform: rotate(2.5deg); } }
-/* Elsewhere wall.js sets the same progress on the stage: --p over the whole band, --s the middle column's step,
-   --tin and --tout the phone's lean coming in and going out. */
+/* The motion: wall.js sets the progress on the stage on each frame: --p over the whole band (the other columns glide
+   over the whole time the band is on screen), --s the middle column's step (it and the phone's screen step while the
+   stage is pinned, with a short stop on each screen), --tin and --tout the phone's lean coming in and going out. */
 .wall-js .wall-side .wall-strip { transform: translate3d(0, calc(var(--t) * var(--dir) * (0.5 - var(--p, 0))), 0); }
 .wall-js .wall-mid .wall-strip, .wall-js .wall-reel { transform: translate3d(0, calc(var(--pm) * var(--s, 0) * -1), 0); }
 .wall-js .wall-hold { transform: rotate(calc(var(--tin, 1) * -6deg)) scale(calc(1 - var(--tin, 1) * 0.06)); }
 .wall-js .wall-lean { transform: rotate(calc(var(--tout, 0) * 2.5deg)); }
 
-/* Reduce Motion: a still wall, no longer than the screen, the phone over the middle column showing its first screen. */
+/* Reduce Motion: the stage still stays while the page scrolls through the band, the columns and the phone stand still,
+   and the phone's screen changes from one to the next without sliding (wall.js sets whole steps). */
 @media (prefers-reduced-motion: reduce) {
-  .wall-track { height: auto; }
-  .wall-stage { position: relative; }
   .wall-strip, .wall-reel, .wall-hold, .wall-lean { will-change: auto; }
   .wall-end > * { opacity: 1; transform: none; transition: none; }
 }
