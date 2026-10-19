@@ -64,7 +64,11 @@ const layout = () => (WIDE.matches ? 'wide' : MIDDLE.matches ? 'mid' : 'narrow')
 const spots = [...document.querySelectorAll('[data-wall]')];
 const pageLang = () => (document.documentElement.lang === 'ar' ? 'ar' : 'en');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-const scrollDriven = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('animation-timeline: view()');
+// Scroll-driven animations only where they were seen to work: Chromium-based browsers. Safari 26 reports them too, but
+// there the phone stayed on its first screen through the whole band (the "contain" stretch of a band taller than the
+// screen never ran); Safari, every iPhone browser and Firefox take the frame-by-frame path below instead.
+const chromium = !!navigator.userAgentData?.brands?.some((b) => b.brand === 'Chromium');
+const scrollDriven = chromium && typeof CSS !== 'undefined' && CSS.supports && CSS.supports('animation-timeline: view()');
 const state = new Map(); // each spot: { key, near, live, geo }
 
 const card = (lang, shot) => {

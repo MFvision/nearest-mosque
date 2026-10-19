@@ -48,8 +48,8 @@ the features by group.
   and each screen's status bar slides into place only at the top of the phone. Then one line, "Every screen, made
   for prayer." The other columns never show the phone's five screens, and no screen is on view twice at once
   (`DEAL` in `wall.js` deals eighteen screens between the columns of each layout). The motion is CSS scroll-driven
-  animations where the browser has them and the same motion from `wall.js` elsewhere; with Reduce Motion the wall
-  stands still. Screens: `assets/<lang>/iphone/`, `assets/<lang>/android/` and `assets/<lang>/wall/` (the welcome
+  animations in Chromium-based browsers and the same motion from `wall.js` everywhere else (Safari 26 reports
+  scroll-driven animations but left the phone on its first screen); with Reduce Motion the wall stands still. Screens: `assets/<lang>/iphone/`, `assets/<lang>/android/` and `assets/<lang>/wall/` (the welcome
   tour as plain cards: 590 px WebP made from `android/app/build/screenshots/onboarding_<step>_<lang>.png`).
   The hand is optional and off: the phone shows alone and no picture is requested. To show the phone held in a hand
   (only a picture we have the rights to), cut it into two transparent WebPs of the same size from one picture, with
