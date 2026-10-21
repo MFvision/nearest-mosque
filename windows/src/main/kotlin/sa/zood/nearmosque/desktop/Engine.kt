@@ -31,12 +31,44 @@ object Cities {
 
     fun byId(id: Long?): City? = id?.let { i -> index.cities.firstOrNull { it.id == i } }
 
-    /** First run: the largest city in the PC's time zone, so times show at once (the person can change it). */
-    fun guess(): City? {
-        val zone = ZoneId.systemDefault().id
-        return index.cities.filter { it.zoneId == zone }.maxByOrNull { it.population }
+    /** First run: the PC's time zone's city, so times show at once (the person can change it). */
+    fun guess(): City? = inZone(ZoneId.systemDefault())
+
+    /** The city a time zone is named after (Asia/Riyadh: Riyadh), else the zone's largest. */
+    fun inZone(zone: ZoneId): City? {
+        val all = index.cities.filter { it.zoneId == zone.id }
+        val named = zone.id.substringAfterLast('/').replace('_', ' ')
+        return all.filter { it.asciiName.equals(named, true) || it.name.equals(named, true) }.maxByOrNull { it.population }
+            ?: all.maxByOrNull { it.population }
     }
 }
+
+/** The PC's time zone as Windows or Linux has it now: Java keeps the one it started with unless asked again. */
+object PcZone {
+    /** Set on the command line (-Duser.timezone): kept as it is. Taken in main(), before Java fills the property in. */
+    @Volatile var fixed = false
+
+    fun read(): ZoneId {
+        if (!fixed) {
+            System.clearProperty("user.timezone")
+            java.util.TimeZone.setDefault(null)
+        }
+        return ZoneId.systemDefault()
+    }
+}
+
+/**
+ * The PC's time zone when it no longer keeps the chosen city's time (a laptop taken abroad) and the person has not
+ * kept the city for it, else null. The offsets now are compared, not the names, so Asia/Kuwait and Asia/Riyadh agree.
+ */
+fun zoneChange(pc: ZoneId?, city: City?, s: DesktopSettings, now: Instant): ZoneId? {
+    if (pc == null || city == null || s.cityId != city.id || !s.onboarded || pc.id == s.zoneKept) return null
+    val cityZone = runCatching { ZoneId.of(city.zoneId) }.getOrNull() ?: return null
+    return pc.takeIf { it.rules.getOffset(now) != cityZone.rules.getOffset(now) }
+}
+
+/** A time zone as the person knows it: its city's name, or its name when the table has none. */
+fun zoneName(zone: ZoneId): String = Cities.inZone(zone)?.displayName(Strings.language) ?: zone.id
 
 /** Prayer times for the chosen city, in the city's own time zone, with the person's calculation choices. */
 class Clock(val city: City, private val s: DesktopSettings) {
@@ -271,7 +303,8 @@ object Sound {
  * prayer, the Adhan; the 10, 5 and "approaching" reminders (spoken); sunrise; the iqama (a notification only);
  * Friday, Al-Kahf and salawat; the Qur'an and bedtime verses; suhoor and iftar in Ramadan; and the Fajr alarm.
  * Checked every second against freshly computed times, so a clock change is caught up; an alert is never more than
- * two minutes late, so after a sleep or a restart the ones missed do not all come at once.
+ * two minutes late, so after a restart the ones missed do not all come at once. After a sleep (a gap between two
+ * ticks) what came due in the last [LATE_MAX] still comes, and what is older is named in one notice.
  */
 class Reminders(private val notify: (String, String) -> Unit) {
     /**
@@ -297,17 +330,53 @@ class Reminders(private val notify: (String, String) -> Unit) {
 
     internal val firedKeys: Set<String> get() = fired.keys
 
+    /** The previous tick; null before the first, so a start-up catches nothing up. */
+    private var lastTick: Instant? = null
+
     fun tick(clock: Clock?, s: DesktopSettings, now: Instant = Instant.now()) {
+        val last = lastTick
+        lastTick = now
         clock ?: return
         // What waited plays once what held it back ends (Stop), if that is within its two minutes.
         waiting?.let { w -> if (now.isAfter(w.until) || sound(w.file, w.priority)) waiting = null }
-        val (days, plan) = plan(clock, s, now)
-        plan.forEach { a -> fire("${a.date}-${a.kind}-${a.event}", a.date, a.at, now) { deliver(a, days, clock, s) } }
+        // More than two minutes since the last tick: the PC slept (or the clock jumped), so plan from that tick.
+        val lateFrom = now.minusSeconds(120)
+        val asleep = last != null && last.isBefore(lateFrom)
+        val (days, plan) = plan(clock, s, now, from = if (asleep) maxOf(last, now.minus(MISSED_MAX)) else lateFrom)
+        val missed = mutableListOf<PlannedAlert>()
+        plan.forEach { a ->
+            val key = "${a.date}-${a.kind}-${a.event}"
+            if (!a.at.isBefore(lateFrom)) fire(key, a.date, a.at, now) { deliver(a, days, clock, s) }
+            else if (key !in fired) {
+                fired[key] = a.date
+                when {
+                    // "10 minutes until Dhuhr" is no longer true: dropped, the Adhan still comes on time.
+                    a.kind in countdowns -> {}
+                    !a.at.isBefore(now.minus(LATE_MAX)) -> deliver(a, days, clock, s, heldUntil = now.plusSeconds(120))
+                    a.kind in prayerTimes -> missed += a
+                }
+            }
+        }
+        // One notice for the older ones, without sound, after what was given now.
+        if (missed.isNotEmpty()) notify(t("missed_title"), missed.joinToString(" · ") { missedLine(it, clock) })
         val yesterday = now.atZone(clock.zone).toLocalDate().minusDays(1)
         fired.values.removeAll { it.isBefore(yesterday) }
     }
 
-    private fun deliver(a: PlannedAlert, days: List<DaySchedule>, clock: Clock, s: DesktopSettings) {
+    /**
+     * Settings → Test notification: the next prayer's Adhan notification through the same path as the real one, and
+     * the short Adhan, so the sound device is checked too. Nothing is marked as given.
+     */
+    fun test(clock: Clock, s: DesktopSettings, now: Instant = Instant.now()) {
+        val e = clock.next(now)?.event ?: PrayerEvent.DHUHR
+        notify(t(prayerKey(e)), t("test_notification_body"))
+        sound(Sound.adhanFile(e, s.copy(shortAdhan = true)), Sound.Priority.ADHAN)
+    }
+
+    private fun missedLine(a: PlannedAlert, clock: Clock): String =
+        (if (a.kind == AlertKind.FAJR_ALARM) t("alerts_fajr_alarm") else t(prayerKey(a.event))) + " " + clockText(a.at, clock.zone)
+
+    private fun deliver(a: PlannedAlert, days: List<DaySchedule>, clock: Clock, s: DesktopSettings, heldUntil: Instant = a.at.plusSeconds(120)) {
         val (title, body) = text(a, days, clock)
         val file = Sound.file(a.kind, a.event, s)
         if (a.kind == AlertKind.FAJR_ALARM) {
@@ -321,7 +390,7 @@ class Reminders(private val notify: (String, String) -> Unit) {
         if (a.kind == AlertKind.ADHAN && a.event == PrayerEvent.FAJR && (s.fajrAlarmMinutesBefore ?: 0) > 0) endAlarm()
         file?.let {
             val p = Sound.priorityOf(a.kind)
-            if (!sound(it, p) && waiting.let { w -> w == null || p >= w.priority }) waiting = Waiting(it, p, a.at.plusSeconds(120))
+            if (!sound(it, p) && waiting.let { w -> w == null || p >= w.priority }) waiting = Waiting(it, p, heldUntil)
         }
     }
 
@@ -333,16 +402,25 @@ class Reminders(private val notify: (String, String) -> Unit) {
     }
 
     companion object {
+        /** After a sleep, what came due this recently is still given (the Adhan, the Fajr alarm, the iqama…). */
+        val LATE_MAX: Duration = Duration.ofMinutes(10)
+        /** How far back a sleep is looked at for the notice of what was missed. */
+        val MISSED_MAX: Duration = Duration.ofHours(24)
+        /** Reminders that count down to a prayer, which mean nothing late. */
+        private val countdowns = setOf(AlertKind.BEFORE, AlertKind.BEFORE_10, AlertKind.BEFORE_5, AlertKind.NEAR)
+        /** What the notice of missed alerts names: the prayer times (sunrise when chosen) and the Fajr alarm. */
+        private val prayerTimes = setOf(AlertKind.ADHAN, AlertKind.AT_PRAYER, AlertKind.FAJR_ALARM)
+
         /**
-         * The days around [now] and the alerts on them from two minutes ago on. Yesterday for an Isha iqama after
-         * midnight; tomorrow for what comes before an early Fajr on the evening before (suhoor, the Fajr alarm, the
-         * reminders). Every prayer notifies at its time; sunrise when chosen.
+         * The days around [now] and the alerts on them after [from] (two minutes ago). Yesterday for an Isha iqama
+         * after midnight; tomorrow for what comes before an early Fajr on the evening before (suhoor, the Fajr alarm,
+         * the reminders). Every prayer notifies at its time; sunrise when chosen.
          */
-        fun plan(clock: Clock, s: DesktopSettings, now: Instant): Pair<List<DaySchedule>, List<PlannedAlert>> {
+        fun plan(clock: Clock, s: DesktopSettings, now: Instant, from: Instant = now.minusSeconds(120)): Pair<List<DaySchedule>, List<PlannedAlert>> {
             val date = now.atZone(clock.zone).toLocalDate()
             val days = listOf(clock.day(date.minusDays(1)), clock.day(date), clock.day(date.plusDays(1)))
             val atPrayer = PrayerEvent.prayers.toSet() + if (s.sunrise) setOf(PrayerEvent.SUNRISE) else emptySet()
-            val plan = AlertPlanner.plan(days, now.minusSeconds(120), atPrayer, s.alerts(), s.iqama) { d -> HijriCalendar.isRamadan(d, s.hijriAdjustment) }
+            val plan = AlertPlanner.plan(days, from, atPrayer, s.alerts(), s.iqama) { d -> HijriCalendar.isRamadan(d, s.hijriAdjustment) }
             return days to plan
         }
 

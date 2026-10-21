@@ -1,12 +1,23 @@
 package sa.zood.nearmosque.desktop
 
+import androidx.compose.ui.window.Notification
+import androidx.compose.ui.window.TrayState
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.yield
 import sa.zood.nearmosque.core.PrayerEvent
 import java.io.File
 import java.nio.file.Files
 import java.time.Instant
+import java.time.ZoneId
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -70,6 +81,23 @@ class PlatformTest {
         assertEquals(listOf("notify-send", "--app-name=Near Mosque", "--", "Fajr", "4:32"), Platform.notifySendCommand("notify-send", "Fajr", "4:32", null))
     }
 
+    @Test fun trayGetsEveryNotificationOfOneTick() = runBlocking {
+        // Compose's TrayState drops what the tray is not waiting for: a late item and the missed notice after the PC
+        // wakes, sent in one tick, both reach it.
+        val tray = TrayState()
+        val shown = mutableListOf<String>()
+        val collector = launch { tray.notificationFlow.collect { shown += it.title } }
+        val queue = Channel<Notification>(Channel.UNLIMITED)
+        val drain = launch { drainToTray(queue, gapMillis = 20) { tray.sendNotification(it) } }
+        yield()
+        val titles = listOf("Fajr", "Missed while the PC was asleep", "Iqama")
+        titles.forEach { queue.trySend(Notification(it, "")) }
+        withTimeout(5_000) { while (shown.size < titles.size) delay(5) }
+        assertEquals(titles, shown)
+        drain.cancelAndJoin()
+        collector.cancelAndJoin()
+    }
+
     @Test fun autostartEntry() {
         assertEquals(
             """
@@ -96,6 +124,83 @@ class PlatformTest {
         // Inside quotes $ and " take a backslash; the whole value then has its backslashes doubled.
         assertEquals("\"/home/a/\\\\\$x/\\\\\"q\\\\\"\"", Startup.execArg("/home/a/\$x/\"q\""))
         assertEquals("/home/a/100%%", Startup.execArg("/home/a/100%"))
+    }
+
+    /** One argument as Java's default (legacy) quoting on Windows writes it on the command line (ProcessImpl). */
+    private fun javaLegacyQuote(arg: String): String {
+        val quoted = arg.length >= 2 && arg.startsWith('"') && arg.endsWith('"') && !arg.endsWith("\\\"")
+        if (quoted || arg.none { it == ' ' || it == '\t' }) return arg
+        return "\"" + arg + "\\".repeat(arg.length - arg.trimEnd('\\').length) + "\""
+    }
+
+    /** A command line split as the C runtime splits it for a program's arguments (reg.exe reads them so). */
+    private fun crtArgs(line: String): List<String> {
+        val out = mutableListOf<String>()
+        val cur = StringBuilder()
+        var inQuotes = false
+        var any = false
+        var i = 0
+        while (i < line.length) {
+            val c = line[i]
+            if (c == '\\') {
+                var n = 0
+                while (i < line.length && line[i] == '\\') { n++; i++ }
+                if (i < line.length && line[i] == '"') {
+                    repeat(n / 2) { cur.append('\\') }
+                    if (n % 2 == 1) { cur.append('"'); i++ }
+                } else repeat(n) { cur.append('\\') }
+                any = true
+                continue
+            }
+            when {
+                c == '"' -> { inQuotes = !inQuotes; any = true }
+                (c == ' ' || c == '\t') && !inQuotes -> if (any) { out += cur.toString(); cur.clear(); any = false }
+                else -> { cur.append(c); any = true }
+            }
+            i++
+        }
+        if (any) out += cur.toString()
+        return out
+    }
+
+    @Test fun runKeyValueSurvivesWindowsQuoting() {
+        val exe = "C:\\Program Files\\Near Mosque\\Near Mosque.exe"
+        val want = "\"C:\\Program Files\\Near Mosque\\Near Mosque.exe\" --minimized"
+        assertEquals(want, Startup.runValue(exe))
+        assertEquals("\\\"C:\\Program Files\\Near Mosque\\Near Mosque.exe\\\" --minimized", Startup.regArg(want))
+        // What reg.exe stores for /d: the argument after Java's quoting and the C runtime's splitting.
+        fun stored(arg: String) = crtArgs("reg add HKCU\\Run /v \"Near Mosque\" /t REG_SZ /d ${javaLegacyQuote(arg)} /f")[8]
+        assertEquals(want, stored(Startup.regArg(want)))
+        assertNotEquals(want, stored(want), "unescaped, reg.exe gets the value broken at its spaces")
+        // A backslash just before a quote stays a backslash.
+        assertEquals("a\\\"b", stored(Startup.regArg("a\\\"b")))
+        assertEquals("\"C:\\My Apps\\\" x", stored(Startup.regArg("\"C:\\My Apps\\\" x")))
+        // Read back from `reg query`.
+        val key = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+        assertEquals(want, Startup.runKeyValue("\r\n$key\r\n    Near Mosque    REG_SZ    $want\r\n\r\n"))
+        assertNull(Startup.runKeyValue("\r\n$key\r\n    Near Mosque Helper    REG_SZ    x\r\n"), "another entry")
+        assertNull(Startup.runKeyValue(null), "no entry: reg query fails")
+    }
+
+    @Test fun timeZoneMoves() {
+        val riyadh = Cities.inZone(ZoneId.of("Asia/Riyadh"))!!
+        assertEquals("Riyadh", riyadh.asciiName, "the city the zone is named after, not the zone's largest")
+        assertEquals("Dubai", Cities.inZone(ZoneId.of("Asia/Dubai"))?.asciiName)
+        assertEquals("New York City", Cities.inZone(ZoneId.of("America/New_York"))?.asciiName)
+        val s = DesktopSettings(cityId = riyadh.id, onboarded = true)
+        val now = Instant.parse("2026-10-12T10:00:00Z")
+        val dubai = ZoneId.of("Asia/Dubai")
+        assertNull(zoneChange(ZoneId.of("Asia/Riyadh"), riyadh, s, now))
+        assertNull(zoneChange(ZoneId.of("Asia/Kuwait"), riyadh, s, now), "another name for the same time")
+        assertEquals(dubai, zoneChange(dubai, riyadh, s, now))
+        assertNull(zoneChange(dubai, riyadh, s.copy(zoneKept = "Asia/Dubai"), now), "kept for this zone")
+        assertEquals(ZoneId.of("Europe/London"), zoneChange(ZoneId.of("Europe/London"), riyadh, s.copy(zoneKept = "Asia/Dubai"), now))
+        assertNull(zoneChange(dubai, riyadh, s.copy(onboarded = false), now), "not during the tour")
+        assertNull(zoneChange(dubai, riyadh, s.copy(cityId = null), now), "a guessed city is not offered a change")
+        assertNull(zoneChange(null, riyadh, s, now))
+        Strings.language = "en"
+        assertEquals("Dubai", zoneName(dubai))
+        assertEquals("Etc/GMT-4", zoneName(ZoneId.of("Etc/GMT-4")), "no city: the zone's own name")
     }
 
     @Test fun linuxLauncherPrefersTheAppImageFile() {

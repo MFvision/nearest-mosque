@@ -1,6 +1,7 @@
 package sa.zood.nearmosque.desktop
 
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * Start at sign-in: the app opens in the notification area (minimized where there is none) when the person signs
@@ -40,18 +41,57 @@ object Startup {
         else -> false
     }
 
-    fun set(on: Boolean) {
-        if (!available) return
+    /**
+     * Adds or removes the entry; false when it could not be done (the Run key read back is not what was asked). Runs
+     * reg.exe, so it is called off the window's thread.
+     */
+    fun set(on: Boolean): Boolean {
+        if (!available) return true
         if (isWindows) {
-            val path = exe ?: return
-            val cmd = if (on) listOf("reg", "add", KEY, "/v", NAME, "/t", "REG_SZ", "/d", "\"$path\" --minimized", "/f")
-            else listOf("reg", "delete", KEY, "/v", NAME, "/f")
-            runCatching { ProcessBuilder(cmd).redirectErrorStream(true).start().waitFor() }
+            val path = exe ?: return true
+            val want = runValue(path)
+            fun current() = runKeyValue(Platform.output(listOf("reg", "query", KEY, "/v", NAME)))
+            // Read back after each change, so the switch never says on while Windows has nothing (or a broken value).
+            if (!on) return current() == null || (reg("delete", KEY, "/v", NAME, "/f") && current() == null)
+            return current() == want || (reg("add", KEY, "/v", NAME, "/t", "REG_SZ", "/d", regArg(want), "/f") && current() == want)
         } else if (Platform.isLinux) {
-            val launcher = linux ?: return
-            runCatching { write(Platform.autostartDir, on, launcher, Platform.iconFile) }
+            val launcher = linux ?: return true
+            return runCatching { write(Platform.autostartDir, on, launcher, Platform.iconFile) }.isSuccess
+        }
+        return true
+    }
+
+    /** The Run key's value: the launcher, quoted (its folder has spaces), started in the notification area. */
+    fun runValue(path: String): String = "\"$path\" --minimized"
+
+    /**
+     * [value] as one argument for reg.exe. Java (its default, legacy quoting on Windows) puts an argument with spaces
+     * in quotes but leaves the quotes inside it alone, and reg.exe reads its arguments by the C runtime's rules, so
+     * each inner quote takes a backslash here (with the backslashes just before it doubled).
+     */
+    fun regArg(value: String): String = buildString {
+        var backslashes = 0
+        for (c in value) {
+            when (c) {
+                '\\' -> backslashes++
+                '"' -> { repeat(backslashes) { append('\\') }; append('\\'); backslashes = 0 }
+                else -> backslashes = 0
+            }
+            append(c)
         }
     }
+
+    /** The value of the app's entry in `reg query … /v "Near Mosque"` output, or null if it is not there. */
+    fun runKeyValue(regOutput: String?): String? =
+        regOutput?.lineSequence()?.firstNotNullOfOrNull { runLine.find(it)?.groupValues?.get(1)?.trimEnd() }
+
+    private val runLine = Regex("^\\s*${Regex.escape(NAME)}\\s+REG_SZ\\s+(.*)$")
+
+    /** Runs reg.exe; true when it says it succeeded within 10 seconds. */
+    private fun reg(vararg args: String): Boolean = runCatching {
+        val p = ProcessBuilder(listOf("reg") + args).redirectErrorStream(true).redirectOutput(ProcessBuilder.Redirect.DISCARD).start()
+        p.waitFor(10, TimeUnit.SECONDS) && p.exitValue() == 0
+    }.getOrDefault(false)
 
     /** Writes (or, when [on] is false, removes) the autostart entry in [dir]. */
     fun write(dir: File, on: Boolean, launcher: String, icon: File?) {

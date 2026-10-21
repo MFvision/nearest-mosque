@@ -335,9 +335,69 @@ class AlertsTest {
         // Asleep from an hour before Fajr until a minute after it.
         rig.reminders.tick(clock, s, fajr.minusSeconds(3600))
         rig.reminders.tick(clock, s, fajr.plusSeconds(60))
-        assertEquals(listOf("Fajr" to clockText(fajr, clock.zone)), rig.sent, "only what is under two minutes old")
+        val alarmAt = clockText(fajr.minusSeconds(1800), clock.zone)
+        assertEquals(
+            listOf("Fajr" to clockText(fajr, clock.zone), t("missed_title") to t("alerts_fajr_alarm") + " " + alarmAt), rig.sent,
+            "the Adhan; the countdowns dropped; the alarm, half an hour old, named in one notice",
+        )
         assertEquals(0, rig.alarms, "no late alarm")
         assertEquals(listOf("fajr_makkah"), rig.played)
+        rig.reminders.tick(clock, s, fajr.plusSeconds(61))
+        assertEquals(2, rig.sent.size, "the notice comes once")
+    }
+
+    @Test fun afterASleepTheLastTenMinutesStillCome() {
+        Strings.language = "en"
+        val s = DesktopSettings(cityId = riyadh.id, before10 = true, before5 = true)
+        val clock = Clock(riyadh, s)
+        val dhuhr = clock.day(monday)[PrayerEvent.DHUHR]!!
+        val dhuhrAt = clockText(dhuhr, clock.zone)
+        // Asleep from half an hour before Dhuhr to six minutes after it: the Adhan still comes, with its sound.
+        val rig = Rig()
+        rig.reminders.tick(clock, s, dhuhr.minusSeconds(1800))
+        rig.reminders.tick(clock, s, dhuhr.plusSeconds(360))
+        assertEquals(listOf("Dhuhr" to dhuhrAt), rig.sent, "no late \"5 minutes until Dhuhr\": ${rig.sent}")
+        assertEquals(listOf("adhan_makkah"), rig.played)
+        rig.reminders.tick(clock, s, dhuhr.plusSeconds(361))
+        assertEquals(1, rig.sent.size, "once")
+        // Waking 25 minutes after it: the iqama (5 minutes old) comes, the Adhan is named in the notice, nothing plays.
+        val later = Rig()
+        later.reminders.tick(clock, s, dhuhr.minusSeconds(1800))
+        later.reminders.tick(clock, s, dhuhr.plusSeconds(25 * 60))
+        assertEquals(listOf("Iqama for Dhuhr" to "Time to stand for the prayer.", t("missed_title") to "Dhuhr $dhuhrAt"), later.sent)
+        assertTrue(later.played.isEmpty(), "${later.played}")
+        // A night asleep: the prayers that passed in one notice.
+        val night = Rig()
+        val isha = clock.day(monday)[PrayerEvent.ISHA]!!
+        val fajr = clock.day(monday.plusDays(1))[PrayerEvent.FAJR]!!
+        night.reminders.tick(clock, s, isha.minusSeconds(3600))
+        night.reminders.tick(clock, s, fajr.plusSeconds(3600))
+        assertEquals(listOf(t("missed_title") to "Isha ${clockText(isha, clock.zone)} · Fajr ${clockText(fajr, clock.zone)}"), night.sent)
+        // The Fajr alarm five minutes late still rings.
+        val alarm = s.copy(fajrAlarmMinutesBefore = 30)
+        val ring = Rig()
+        ring.reminders.tick(Clock(riyadh, alarm), alarm, fajr.minusSeconds(3 * 3600))
+        ring.reminders.tick(Clock(riyadh, alarm), alarm, fajr.minusSeconds(1800 - 300))
+        assertEquals(1, ring.alarms)
+        assertEquals(listOf("adhan_makkah_short"), ring.looped)
+        // A start-up is not a wake: nothing older than two minutes.
+        val start = Rig()
+        start.reminders.tick(clock, s, dhuhr.plusSeconds(360))
+        assertTrue(start.sent.isEmpty())
+    }
+
+    @Test fun testNotificationTakesTheRealPath() {
+        Strings.language = "en"
+        val s = DesktopSettings(cityId = riyadh.id)
+        val clock = Clock(riyadh, s)
+        val dhuhr = clock.day(monday)[PrayerEvent.DHUHR]!!
+        val rig = Rig()
+        rig.reminders.test(clock, s, dhuhr.minusSeconds(3600))
+        assertEquals(listOf("Dhuhr" to t("test_notification_body")), rig.sent)
+        assertEquals(listOf("adhan_makkah_short"), rig.played, "the short Adhan, whatever the length chosen")
+        assertTrue(rig.reminders.firedKeys.isEmpty(), "the real Dhuhr still comes")
+        rig.reminders.tick(clock, s, dhuhr.plusSeconds(5))
+        assertEquals("Dhuhr" to clockText(dhuhr, clock.zone), rig.sent.last())
     }
 
     @Test fun alertsBeforeAnEarlyFajrOnThePreviousEvening() {
@@ -426,6 +486,7 @@ class AlertsTest {
             perPrayer = mapOf(PrayerEvent.ASR to PrayerSounds(before10 = false), PrayerEvent.FAJR to PrayerSounds(before5 = false, near = false)),
             friday = true, ramadan = true, kahf = true, fajrAlarmMinutesBefore = 45, bedtimeMinutes = 23 * 60,
             salawat = true, salawatMinutes = 10 * 60 + 15, quran = true, quranMinutes = 21 * 60 + 7, reciter = Reciter.CLASSIC,
+            zoneKept = "Asia/Dubai",
         )
         Store.save(s, FilePreferences(file))
         val p = FilePreferences(file)
@@ -438,7 +499,7 @@ class AlertsTest {
         assertEquals("CLASSIC", p.get("reciter", null))
         assertEquals(s, Store.load(p))
         // Off again: the voice follows the interface, the alarm and bedtime read as off.
-        val off = s.copy(voice = null, fajrAlarmMinutesBefore = null, bedtimeMinutes = null, perPrayer = emptyMap())
+        val off = s.copy(voice = null, fajrAlarmMinutesBefore = null, bedtimeMinutes = null, perPrayer = emptyMap(), zoneKept = null)
         Store.save(off, FilePreferences(file))
         val again = FilePreferences(file)
         assertNull(again.get("voice", null))

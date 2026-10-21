@@ -163,7 +163,7 @@ object Platform {
     }
 
     /** A short command's output, or null if it cannot run, fails or takes more than 3 seconds. */
-    private fun output(cmd: List<String>): String? = runCatching {
+    internal fun output(cmd: List<String>): String? = runCatching {
         val p = ProcessBuilder(cmd).redirectError(ProcessBuilder.Redirect.DISCARD).start()
         val text = p.inputStream.bufferedReader().use { it.readText() }
         if (p.waitFor(3, TimeUnit.SECONDS) && p.exitValue() == 0) text else null

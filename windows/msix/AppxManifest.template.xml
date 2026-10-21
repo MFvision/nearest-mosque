@@ -29,9 +29,10 @@
                           Square44x44Logo="Assets\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\Square310x310Logo.png" />
       </uap:VisualElements>
-      <!-- Start at sign-in, off until the person turns it on (Settings → Apps → Startup), as Store apps must. -->
+      <!-- Start at sign-in, off until the person turns it on (Settings → Apps → Startup), as Store apps must. Its own
+           launcher (build-msix.ps1) passes minimized, so it opens in the notification area, not the window. -->
       <Extensions>
-        <desktop:Extension Category="windows.startupTask" Executable="Near Mosque\Near Mosque.exe" EntryPoint="Windows.FullTrustApplication">
+        <desktop:Extension Category="windows.startupTask" Executable="Near Mosque\Near Mosque Startup.exe" EntryPoint="Windows.FullTrustApplication">
           <desktop:StartupTask TaskId="NearMosqueStartup" Enabled="false" DisplayName="Near Mosque" />
         </desktop:Extension>
       </Extensions>

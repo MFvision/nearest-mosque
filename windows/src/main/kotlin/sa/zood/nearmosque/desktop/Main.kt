@@ -70,8 +70,14 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberTrayState
 import androidx.compose.ui.window.rememberWindowState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import sa.zood.nearmosque.core.AdhanSource
 import sa.zood.nearmosque.core.AlertKind
 import sa.zood.nearmosque.core.AlertSettings
@@ -93,6 +99,7 @@ import sa.zood.nearmosque.core.Weather
 import sa.zood.nearmosque.core.WeatherNow
 import java.time.Duration
 import java.time.Instant
+import java.time.ZoneId
 import kotlin.math.roundToInt
 
 internal val Navy = Color(0xFF0B1220)
@@ -109,6 +116,7 @@ private enum class Screen { PRAYER, QIBLA, MOSQUES, ASK, BOOKS, SETTINGS }
  * the window is the app: closing it quits, and at sign-in it starts minimized instead of hidden.
  */
 fun main(args: Array<String>) {
+    PcZone.fixed = !System.getProperty("user.timezone").isNullOrEmpty()
     val minimized = "--minimized" in args
     val instance = SingleInstance(Store.dataDir)
     if (!instance.acquire()) {
@@ -134,13 +142,15 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
     // When the Fajr alarm started (System.nanoTime, so a change of the PC's clock does not move it): the window shows it
     // with Stop while it rings, and for Sound.ALARM_MAX when there is no sound device to ring it.
     var alarmSince by remember { mutableStateOf<Long?>(null) }
+    // The notifications for the tray, handed to it one at a time (see drainToTray).
+    val toTray = remember { Channel<Notification>(Channel.UNLIMITED) }
     fun send(title: String, body: String, urgent: Boolean) {
         val inApp = { banner = "$title · $body" }
         val type = if (urgent) Notification.Type.Warning else Notification.Type.None
         when (Platform.route) {
-            Platform.Route.TRAY -> tray.sendNotification(Notification(title, body, type))
+            Platform.Route.TRAY -> toTray.trySend(Notification(title, body, type))
             Platform.Route.NOTIFY_SEND -> Platform.notifySend(title, body, urgent) {
-                if (hasTray) tray.sendNotification(Notification(title, body, type)) else inApp()
+                if (hasTray) toTray.trySend(Notification(title, body, type)) else inApp()
             }
             Platform.Route.IN_APP -> inApp()
         }
@@ -158,12 +168,39 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
     }
     var now by remember { mutableStateOf(Instant.now()) }
     val weather = WeatherClient.shared
+    val scope = rememberCoroutineScope()
+    // Start at sign-in could not be set (Windows' Run key read back is not what was asked): Settings says so.
+    var startupFailed by remember { mutableStateOf(false) }
+    val startupLock = remember { Mutex() }
+    fun setStartup(on: Boolean) {
+        scope.launch {
+            startupLock.withLock {
+                val ok = withContext(Dispatchers.IO) { Startup.set(on) }
+                startupFailed = on && !ok
+            }
+        }
+    }
 
     // Keep the start-at-sign-in entry in step with the setting (the installer may have moved the app).
     LaunchedEffect(Unit) {
-        Startup.set(settings.startAtLogin)
+        setStartup(settings.startAtLogin)
         // Sky follows the weather is off: no forecast is kept on the PC.
         if (!settings.skyWeather) weather.clear()
+    }
+    // The PC's time zone, read again every ten minutes: a laptop taken to another zone is offered a city there.
+    var pcZone by remember { mutableStateOf<ZoneId?>(null) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            pcZone = withContext(Dispatchers.IO) { runCatching { PcZone.read() }.getOrNull() }
+            delay(10 * 60_000L)
+        }
+    }
+    val zoneMoved = zoneChange(pcZone, city, settings, now)
+    // Also told once in a notification, as the window is often closed to the notification area.
+    LaunchedEffect(zoneMoved?.id) {
+        val z = zoneMoved ?: return@LaunchedEffect
+        val c = city ?: return@LaunchedEffect
+        send(t("zone_changed_title"), t("zone_changed_body", zoneName(z), c.displayName(Strings.language)), urgent = false)
     }
     TickLoop(clock, settings) { c, s ->
         now = Instant.now()
@@ -176,7 +213,7 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
 
     fun update(s: DesktopSettings) {
         Strings.language = s.language
-        if (s.startAtLogin != settings.startAtLogin) Startup.set(s.startAtLogin)
+        if (s.startAtLogin != settings.startAtLogin) setStartup(s.startAtLogin)
         // The Fajr alarm turned off while it rings: it stops.
         if (s.fajrAlarmMinutesBefore == null && settings.fajrAlarmMinutesBefore != null && (alarmSince != null || Sound.alarm)) stopAlarm()
         // Sky follows the weather turned off: the forecast and its file go.
@@ -194,9 +231,12 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
             menu = {
                 Item(t("tab_prayer"), onClick = { visible = true; raise++ })
                 Item(t("stop"), onClick = { stopAlarm() })
-                Item(t("close"), onClick = ::exitApplication)
+                // Close window keeps the app here (the Adhan still comes); Quit ends it.
+                Item(t("tray_close_window"), enabled = visible, onClick = { visible = false })
+                Item(t("tray_quit"), onClick = ::exitApplication)
             },
         )
+        LaunchedEffect(Unit) { drainToTray(toTray) { tray.sendNotification(it) } }
     }
 
     if (visible) {
@@ -261,6 +301,11 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
                         onStopAlarm = ::stopAlarm,
                         weather = weatherNow,
                         animate = Platform.animations,
+                        noTray = !hasTray,
+                        startupFailed = startupFailed,
+                        onTestNotification = { clock?.let { reminders.test(it, settings) } },
+                        zoneChange = zoneMoved,
+                        onKeepCity = { z -> update(settings.copy(zoneKept = z.id)) },
                     )
                 }
             }
@@ -270,6 +315,18 @@ private fun app(minimized: Boolean, instance: SingleInstance) = application {
 
 /** The Fajr alarm rings, or could not ring for want of a sound device (its card then stays for its full time). */
 private fun alarmShows() = Sound.alarm || Sound.alarmUnheard
+
+/**
+ * Hands the notifications in [queue] to the tray one at a time, [gapMillis] apart. Compose's TrayState passes one on
+ * only while the tray is waiting for it, so a second sent in the same tick (a late Adhan and its iqama after the PC
+ * wakes, Iftar and the Maghrib Adhan) would otherwise be dropped.
+ */
+internal suspend fun drainToTray(queue: ReceiveChannel<Notification>, gapMillis: Long = 1_500, show: (Notification) -> Unit) {
+    for (n in queue) {
+        show(n)
+        delay(gapMillis)
+    }
+}
 
 /**
  * Calls [pass] every [periodMillis] while in the composition, always with the latest [clock] and [settings]: a change
@@ -293,7 +350,8 @@ internal fun TickLoop(clock: Clock?, settings: DesktopSettings, periodMillis: Lo
 internal fun AppScreen(
     settings: DesktopSettings, city: City?, clock: Clock?, now: Instant, onCity: (City) -> Unit, onSettings: (DesktopSettings) -> Unit,
     banner: String? = null, onDismissBanner: () -> Unit = {}, alarm: Boolean = false, onStopAlarm: () -> Unit = {},
-    weather: WeatherNow? = null, animate: Boolean = false,
+    weather: WeatherNow? = null, animate: Boolean = false, noTray: Boolean = false, startupFailed: Boolean = false,
+    onTestNotification: (() -> Unit)? = null, zoneChange: ZoneId? = null, onKeepCity: (ZoneId) -> Unit = {},
 ) {
     var screen by remember { mutableStateOf(Screen.PRAYER) }
     var picking by remember { mutableStateOf(city == null) }
@@ -320,12 +378,16 @@ internal fun AppScreen(
                     // Offered once (the desktop has no tour); either answer puts it away for good.
                     offerWeather = !settings.weatherOffered && !settings.skyWeather,
                     onOfferAnswer = { on -> onSettings(settings.copy(skyWeather = on || settings.skyWeather, weatherOffered = true)) },
+                    noTray = noTray, zoneChange = zoneChange, onUseCity = onCity, onKeepCity = onKeepCity,
                 )
                 screen == Screen.QIBLA -> QiblaScreen(clock.city)
                 screen == Screen.MOSQUES -> MosquesScreen(clock.city, settings.onlineSearch)
                 screen == Screen.ASK -> AskScreen()
                 screen == Screen.BOOKS -> BooksScreen()
-                else -> SettingsScreen(settings, clock, onSettings, onChangeCity = { picking = true })
+                else -> SettingsScreen(
+                    settings, clock, onSettings, onChangeCity = { picking = true },
+                    startupFailed = startupFailed, onTestNotification = onTestNotification,
+                )
             } }
         }
     }
@@ -367,12 +429,14 @@ private fun railIcon(s: Screen) = when (s) {
 private fun PrayerScreen(
     clock: Clock, now: Instant, onChangeCity: () -> Unit, onUseNearest: () -> Unit,
     sky: Boolean = false, weather: WeatherNow? = null, animate: Boolean = false, offerWeather: Boolean = false, onOfferAnswer: (Boolean) -> Unit = {},
+    noTray: Boolean = false, zoneChange: ZoneId? = null, onUseCity: (City) -> Unit = {}, onKeepCity: (ZoneId) -> Unit = {},
 ) {
     val today = clock.today(now)
     val moment = clock.moment(now)
     val iqama = clock.iqama
     val hijri = HijriCalendar.of(now.atZone(clock.zone).toLocalDate(), clock.settings.hijriAdjustmentDays)
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        zoneChange?.let { ZoneCard(it, clock.city, onUseCity, onChangeCity, onKeepCity) }
         if (offerWeather) WeatherOfferCard(onOfferAnswer)
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
@@ -393,6 +457,8 @@ private fun PrayerScreen(
                 }
                 // Polar day or night with the nearest-latitude rule: the times are those at 48.5°, and the Adhan follows them.
                 if (today.status is ScheduleStatus.Estimated) Text(t("estimated_badge"), color = Gold, fontSize = 13.sp)
+                // No notification area: the window is the app, so closing it ends the Adhan too.
+                if (noTray) Text(t("no_tray_window_note"), color = Muted, fontSize = 13.sp)
             }
             TextButton(onClick = onChangeCity) { Text(t("choose_city_title"), color = Gold) }
         }
@@ -428,6 +494,27 @@ private fun PolarCard(onUseNearest: () -> Unit) {
             Text(t("polar_unavailable_title"), color = Ink, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
             Text(t("polar_unavailable_body"), color = Muted)
             Button(onClick = onUseNearest) { Text(t("polar_use_nearest")) }
+        }
+    }
+}
+
+/**
+ * The PC is now on another time zone than the city's (a laptop taken abroad): that zone's city in one click, the city
+ * search, or keep the city (not offered again for this zone).
+ */
+@Composable
+private fun ZoneCard(zone: ZoneId, city: City, onUse: (City) -> Unit, onChoose: () -> Unit, onKeep: (ZoneId) -> Unit) {
+    val here = remember(zone) { Cities.inZone(zone) }
+    val name = city.displayName(Strings.language)
+    Surface(color = Card, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(t("zone_changed_title"), color = Ink, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            Text(t("zone_changed_body", zoneName(zone), name), color = Muted)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (here != null) Button(onClick = { onUse(here) }) { Text(t("zone_use_city", here.displayName(Strings.language))) }
+                TextButton(onClick = onChoose) { Text(t("choose_city_title"), color = Gold) }
+                TextButton(onClick = { onKeep(zone) }) { Text(t("zone_keep_city", name), color = Gold) }
+            }
         }
     }
 }
@@ -548,6 +635,7 @@ internal fun CityPicker(onPick: (City) -> Unit, modifier: Modifier = Modifier.fi
 @Composable
 internal fun SettingsScreen(
     s: DesktopSettings, clock: Clock, onChange: (DesktopSettings) -> Unit, onChangeCity: () -> Unit, openPrayer: PrayerEvent? = null,
+    startupFailed: Boolean = false, onTestNotification: (() -> Unit)? = null,
 ) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(14.dp)) {
         Text(t("settings"), color = Ink, fontSize = 26.sp, fontWeight = FontWeight.SemiBold)
@@ -592,6 +680,16 @@ internal fun SettingsScreen(
             t("adhan_length_full") to { onChange(s.copy(shortAdhan = false)) },
             t("adhan_short") to { onChange(s.copy(shortAdhan = true)) },
         ))
+        // The Adhan's notification and sound now, through the real path, with what hides the banner.
+        onTestNotification?.let { test ->
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = test) { Text(t("test_notification")) }
+                if (Sound.playing != null) TextButton(onClick = { Sound.stop() }) { Text(t("stop"), color = Gold) }
+                Spacer(Modifier.weight(1f))
+                if (Platform.isWindows) TextButton(onClick = { Platform.open("ms-settings:notifications") }) { Text(t("notification_settings"), color = Gold) }
+            }
+            Note(t(if (Platform.isWindows) "test_notification_note" else "test_notification_note_linux"))
+        }
         // As in the phone app's Prayer & Audio screen, in the same order.
         Header(t("before_section"))
         Toggle(t("before10"), s.before10) { onChange(s.copy(before10 = it)) }
@@ -656,6 +754,7 @@ internal fun SettingsScreen(
             val linux = Platform.isLinux
             Toggle(t(if (linux) "start_at_login_linux" else "start_at_login"), s.startAtLogin) { onChange(s.copy(startAtLogin = it)) }
             Text(t(if (linux && !Platform.hasTray) "start_at_login_linux_note" else "start_at_login_note"), color = Muted, fontSize = 13.sp)
+            if (startupFailed && s.startAtLogin) Text(t("start_at_login_failed"), color = Color(0xFFE8A0A0), fontSize = 13.sp)
         } else if (Startup.isStorePackage) {
             Text(t("start_at_login_store_note"), color = Muted, fontSize = 13.sp)
         }

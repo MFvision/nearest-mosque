@@ -86,6 +86,8 @@ data class DesktopSettings(
     val reciter: Reciter = Reciter.ALAFASY,
     /** The first-run tour (Onboarding.kt) was finished; Settings → "Show welcome tour" turns it off to show it again. */
     val onboarded: Boolean = false,
+    /** The PC's time zone for which the person chose to keep [cityId] (no more offers to change it for that zone). */
+    val zoneKept: String? = null,
 )
 
 /**
@@ -193,6 +195,7 @@ object Store {
         reciter = runCatching { Reciter.valueOf(prefs.get("reciter", "ALAFASY")) }.getOrDefault(Reciter.ALAFASY),
         // Settings saved before the tour existed (any key at all) belong to someone who already uses the app: no tour.
         onboarded = prefs.get("onboarded", null)?.toBooleanStrictOrNull() ?: runCatching { prefs.keys().isNotEmpty() }.getOrDefault(false),
+        zoneKept = prefs.get("zoneKept", null)?.takeIf { it.isNotBlank() },
     )
 
     /** Minutes after midnight, for the times of day the person picks. */
@@ -241,6 +244,7 @@ object Store {
         prefs.putInt("quranMinutes", s.quranMinutes)
         prefs.put("reciter", s.reciter.name)
         prefs.putBoolean("onboarded", s.onboarded)
+        if (s.zoneKept != null) prefs.put("zoneKept", s.zoneKept) else prefs.remove("zoneKept")
         // A settings store that cannot be written (a full disk, a locked file) keeps the choice for this run only.
         runCatching { prefs.flush() }
     }

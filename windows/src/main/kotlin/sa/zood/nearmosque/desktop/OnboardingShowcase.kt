@@ -56,7 +56,8 @@ import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Near Mosque, everywhere: the notification area (the app stays there with the window closed, its icon telling the
- * next prayer), shown only where the desktop has one, and Ask with a common answer and the source it quotes.
+ * next prayer) where the desktop has one, else that closing the window ends the Adhan, and Ask with a common answer
+ * and the source it quotes.
  */
 @Composable
 internal fun ExtrasStep(o: Onb) {
@@ -66,7 +67,7 @@ internal fun ExtrasStep(o: Onb) {
         OnbBody(t("onb2_extras_body"), Modifier.enter(1))
         Spacer(Modifier.height(18.dp))
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            if (o.tray) TrayCard(o, Modifier.enter(2))
+            if (o.tray) TrayCard(o, Modifier.enter(2)) else NoTrayCard(Modifier.enter(2))
             AskCard(Modifier.enter(3))
         }
     }
@@ -89,7 +90,7 @@ private fun TrayCard(o: Onb, modifier: Modifier) {
     GlassCard(modifier) {
         CardTitle(t("onb2_tray_title"))
         Spacer(Modifier.height(4.dp))
-        Text(t("onb2_tray_body"), color = Muted, fontSize = 13.sp, lineHeight = 18.sp)
+        Text(t("onb2_tray_body") + " " + t("tray_quit_note"), color = Muted, fontSize = 13.sp, lineHeight = 18.sp)
         Spacer(Modifier.height(12.dp))
         Row(Modifier.fillMaxWidth().clearAndSetSemantics { contentDescription = preview }, verticalAlignment = Alignment.Bottom) {
             Column(Modifier.weight(1f)) {
@@ -113,11 +114,19 @@ private fun TrayCard(o: Onb, modifier: Modifier) {
                 Modifier.widthIn(min = 110.dp, max = 150.dp).background(Navy, RoundedCornerShape(8.dp)).border(1.dp, OnbLook.line, RoundedCornerShape(8.dp))
                     .padding(vertical = 4.dp),
             ) {
-                listOf("tab_prayer", "stop", "close").forEach { key ->
+                listOf("tab_prayer", "stop", "tray_close_window", "tray_quit").forEach { key ->
                     Text(t(key), color = Ink, fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp))
                 }
             }
         }
+    }
+}
+
+/** No notification area: the window is the app, so closing it stops the Adhan (said before the first close). */
+@Composable
+private fun NoTrayCard(modifier: Modifier) {
+    GlassCard(modifier.semantics(mergeDescendants = true) { }) {
+        Text(t("no_tray_window_note"), color = Ink, fontSize = 14.sp, lineHeight = 19.sp)
     }
 }
 
