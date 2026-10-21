@@ -102,8 +102,11 @@ import androidx.compose.ui.unit.sp
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.DayArc
 import sa.zood.nearmosque.core.DaySchedule
@@ -111,6 +114,8 @@ import sa.zood.nearmosque.core.OnboardingStep
 import sa.zood.nearmosque.core.OnboardingTiming
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerEvent
+import sa.zood.nearmosque.platform.AlertAccess
+import sa.zood.nearmosque.platform.PrayerSilence
 import sa.zood.nearmosque.platform.ReminderScheduler
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.glass.glass
@@ -554,6 +559,8 @@ private fun Needle(bearing: Double) {
 /**
  * Exactly what leaves your phone: a three-step timeline (on the phone always; at each prayer nothing is sent; only for
  * mosques and the weather sky, a rounded location), then "Notify me at prayer times" and the one button that asks.
+ * Notifications are asked for when the bells are wanted or anything chosen already alerts (the Adhan); right after,
+ * on Android 12+, "Alarms & reminders" when something rings at a set minute, with a line saying why first.
  */
 @Composable
 internal fun PrivacyStep(ctx: OnbContext) {
@@ -565,6 +572,10 @@ internal fun PrivacyStep(ctx: OnbContext) {
     var phase by remember { mutableStateOf(AllowPhase.IDLE) }
     var pending by remember { mutableStateOf<CompletableDeferred<Boolean>?>(null) }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted -> pending?.complete(granted) }
+    // "Alarms & reminders" is a system page: the flow waits for the user to come back from it.
+    var exactStep by rememberSaveable { mutableStateOf(false) }
+    var exactPending by remember { mutableStateOf<CompletableDeferred<Unit>?>(null) }
+    val exactPage = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { exactPending?.complete(Unit) }
     fun needsAsk() = Build.VERSION.SDK_INT >= 33 &&
         ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
     fun blocked() = !NotificationManagerCompat.from(context).areNotificationsEnabled()
@@ -581,11 +592,19 @@ internal fun PrivacyStep(ctx: OnbContext) {
     val planned = s?.let { if (notify && it.reminders.isEmpty()) it.copy(reminders = PrayerEvent.prayers.toSet()) else it }
     val needsExact = Build.VERSION.SDK_INT >= 31 && !exactAllowed && planned != null &&
         remember(planned) { ReminderScheduler.wantsTimedAlerts(planned) } && ReminderScheduler.exactAlarmSettingsIntent(context) != null
+    // With the switch off, an Adhan chosen a step earlier still needs notifications.
+    val asks = notify || (s != null && remember(s) { ReminderScheduler.wantsAlerts(s) })
+    suspend fun finish() {
+        phase = AllowPhase.DONE
+        haptics.performHapticFeedback(HapticFeedbackType.Confirm)
+        delay(OnboardingTiming.ALLOW_HOLD.toLong())
+        ctx.go(OnboardingStep.DONE)
+    }
     fun press() {
-        if (notify && denied) {
+        if (asks && denied) {
             // Nothing to ask; the bells are on for when notifications are allowed.
             scope.launch {
-                ctx.vm.enablePrayerBells(context)
+                if (notify) ctx.vm.enablePrayerBells(context)
                 ctx.go(OnboardingStep.DONE)
             }
             return
@@ -593,34 +612,74 @@ internal fun PrivacyStep(ctx: OnbContext) {
         phase = AllowPhase.WORKING
         scope.launch {
             val started = System.currentTimeMillis()
-            if (notify) {
+            if (asks) {
                 if (needsAsk()) {
                     val d = CompletableDeferred<Boolean>()
                     pending = d
+                    AlertAccess.asking(context)
                     permission.launch(Manifest.permission.POST_NOTIFICATIONS)
                     d.await()
                 }
-                // Allowed or not, the bells are on for when notifications are allowed.
-                ctx.vm.enablePrayerBells(context)
+                // Allowed or not, the bells are on for when notifications are allowed; the alarms follow the answer.
+                if (notify) ctx.vm.enablePrayerBells(context).join() else ctx.vm.rescheduleReminders(context).join()
             }
             val left = OnboardingTiming.ALLOW_SPINNER - (System.currentTimeMillis() - started)
             if (left > 0) delay(left)
-            if (notify && blocked()) {
+            if (asks && blocked()) {
                 denied = true
                 phase = AllowPhase.IDLE
                 return@launch
             }
-            phase = AllowPhase.DONE
-            haptics.performHapticFeedback(HapticFeedbackType.Confirm)
-            delay(OnboardingTiming.ALLOW_HOLD.toLong())
-            ctx.go(OnboardingStep.DONE)
+            // Something rings at a set minute: "Alarms & reminders" next, explained before the system page opens.
+            val saved = ctx.container.settings.settings.first()
+            if (Build.VERSION.SDK_INT >= 31 && !ReminderScheduler.exactAlarmsAllowed(context) && ReminderScheduler.exactAlarmSettingsIntent(context) != null &&
+                ReminderScheduler.wantsTimedAlerts(saved)
+            ) {
+                exactStep = true
+                phase = AllowPhase.IDLE
+                return@launch
+            }
+            finish()
+        }
+    }
+    fun pressExact() {
+        phase = AllowPhase.WORKING
+        scope.launch {
+            val d = CompletableDeferred<Unit>()
+            exactPending = d
+            val page = android.content.Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, android.net.Uri.parse("package:" + context.packageName))
+            try {
+                exactPage.launch(page)
+            } catch (e: android.content.ActivityNotFoundException) {
+                // Some builds lack the per-app page; the app's own settings page has "Alarms & reminders".
+                runCatching { exactPage.launch(android.content.Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, page.data)) }
+                    .onFailure { d.complete(Unit) }
+            }
+            d.await()
+            exactAllowed = ReminderScheduler.exactAlarmsAllowed(context)
+            // Rebuilt at once, not only when Android's broadcast for the change comes.
+            val saved = ctx.container.settings.settings.first()
+            withContext(Dispatchers.Default) {
+                runCatching { ReminderScheduler(context).reschedule(saved) }
+                PrayerSilence(context).sync(saved)
+            }
+            exactStep = false
+            finish()
         }
     }
     StepScaffold(
         ctx,
         bottom = {
-            AllowButton(stringResource(if (notify && !denied) R.string.onb2_allow else R.string.onb2_finish), phase, onClick = ::press)
-            if (notify && denied) {
+            if (exactStep) {
+                AllowButton(stringResource(R.string.exact_allow_android), phase, onClick = ::pressExact)
+                OnbFoot(stringResource(R.string.onb2_exact_note_android), Modifier.padding(top = 8.dp), align = TextAlign.Center)
+                Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    TextAction(stringResource(R.string.not_now), onClick = { if (phase == AllowPhase.IDLE) ctx.go(OnboardingStep.DONE) })
+                }
+            } else {
+                AllowButton(stringResource(if (asks && !denied) R.string.onb2_allow else R.string.onb2_finish), phase, onClick = ::press)
+            }
+            if (!exactStep && asks && denied) {
                 OnbFoot(stringResource(R.string.notifications_denied), Modifier.padding(top = 8.dp), align = TextAlign.Center)
                 Box(
                     Modifier.fillMaxWidth().heightIn(min = 48.dp).clip(CardShape)
@@ -633,7 +692,7 @@ internal fun PrivacyStep(ctx: OnbContext) {
                 ) {
                     Text(stringResource(R.string.open_settings), color = Accent, style = skyText(MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)))
                 }
-            } else if (notify && needsAsk()) {
+            } else if (!exactStep && asks && needsAsk()) {
                 OnbFoot(stringResource(if (ctx.device) R.string.onb2_ask_confirm_device else R.string.onb2_ask_confirm), Modifier.padding(top = 8.dp), align = TextAlign.Center)
             }
             OnbFoot(stringResource(R.string.onb2_change_later), Modifier.padding(top = 2.dp), align = TextAlign.Center)
@@ -669,7 +728,7 @@ internal fun PrivacyStep(ctx: OnbContext) {
         }
         Spacer(Modifier.height(8.dp))
         SwitchRow(null, stringResource(R.string.onb2_notify), null, notify, { notify = it }, Modifier.enter(2))
-        if (needsExact && notify) {
+        if (needsExact && notify && !exactStep) {
             Box(
                 Modifier.fillMaxWidth().padding(top = 8.dp).heightIn(min = 48.dp).clip(CardShape)
                     .clickable(role = Role.Button) { ReminderScheduler.exactAlarmSettingsIntent(context)?.let { runCatching { context.startActivity(it) } } }
@@ -727,16 +786,27 @@ internal fun DoneStep(ctx: OnbContext) {
     val s = ctx.ui.settings
     val next = ctx.ui.next
     val allowed = remember(ctx.ui.now.epochSecond / 5) { NotificationManagerCompat.from(context).areNotificationsEnabled() }
+    val exact = remember(ctx.ui.now.epochSecond / 5) { ReminderScheduler.exactAlarmsAllowed(context) }
     val rings = s != null && (s.reminders.isNotEmpty() || s.alerts.adhan || s.alerts.fajrAdhan)
+    // "We'll call you" only when it will be on time; otherwise the way to allow "Alarms & reminders".
     val sub = if (next != null && loc != null) {
         stringResource(R.string.onb2_done_sub, stringResource(Format.prayerName(next.event)), Format.time(context, next.at, loc.zoneId), loc.name) +
-            (if (allowed && rings) " " + stringResource(R.string.onb2_done_notify) else "")
+            (if (allowed && rings && exact) " " + stringResource(R.string.onb2_done_notify) else "")
     } else null
     val content: @Composable () -> Unit = {
         OnbTitle(stringResource(R.string.onb2_done_title), Modifier.enter(0), large = true, align = TextAlign.Center)
         if (sub != null) {
             Spacer(Modifier.height(10.dp))
             OnbBody(sub, Modifier.enter(1), align = TextAlign.Center)
+        }
+        if (allowed && rings && !exact && ReminderScheduler.exactAlarmSettingsIntent(context) != null) {
+            Box(
+                Modifier.fillMaxWidth().padding(top = 8.dp).heightIn(min = 48.dp).clip(CardShape)
+                    .clickable(role = Role.Button) { ReminderScheduler.openExactAlarmSettings(context) }.enter(1),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(stringResource(R.string.exact_alarm_needed), color = Accent, textAlign = TextAlign.Center, style = skyText(MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)))
+            }
         }
         ContentDownloadCard(Format.languageCode(context), Modifier.padding(top = 16.dp).enter(2), onSky = true)
         Spacer(Modifier.height(26.dp))

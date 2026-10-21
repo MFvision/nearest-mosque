@@ -94,6 +94,26 @@ class AlertPlannerTest {
         assertEquals(11, p.first { it.kind == AlertKind.SALAWAT }.at.atZone(zone).hour)
     }
 
+    // Reminders at a time of day stay at that time on the days the clocks change (summer time starts or ends).
+    @Test
+    fun timeOfDayRemindersKeepTheirTimeWhenTheClocksChange() {
+        val london = ZoneId.of("Europe/London")
+        val a = AlertSettings(quran = true, quranMinutes = 20 * 60 + 30, bedtimeMinutes = 22 * 60 + 30)
+        listOf(LocalDate.of(2026, 10, 25), LocalDate.of(2027, 3, 28)).forEach { date ->
+            val d = calc.schedule(LatLng(51.5074, -0.1278), date, london, PrayerSettings(method = Method.MUSLIM_WORLD_LEAGUE))
+            val p = AlertPlanner.plan(listOf(d), date.atStartOfDay(london).toInstant(), emptySet(), a) { false }
+            assertEquals(java.time.LocalTime.of(20, 30), p.single { it.kind == AlertKind.QURAN }.at.atZone(london).toLocalTime())
+            assertEquals(java.time.LocalTime.of(22, 30), p.single { it.kind == AlertKind.SLEEP }.at.atZone(london).toLocalTime())
+        }
+        // Egypt moves its clocks on a Friday, at midnight.
+        val cairo = ZoneId.of("Africa/Cairo")
+        val friday = LocalDate.of(2027, 4, 30)
+        val d = calc.schedule(LatLng(30.0444, 31.2357), friday, cairo, PrayerSettings(method = Method.EGYPTIAN))
+        val p = AlertPlanner.plan(listOf(d), friday.atStartOfDay(cairo).toInstant(), emptySet(), AlertSettings(kahf = true, salawat = true, salawatMinutes = 11 * 60)) { false }
+        assertEquals(java.time.LocalTime.of(9, 0), p.single { it.kind == AlertKind.KAHF }.at.atZone(cairo).toLocalTime())
+        assertEquals(java.time.LocalTime.of(11, 0), p.single { it.kind == AlertKind.SALAWAT }.at.atZone(cairo).toLocalTime())
+    }
+
     @Test
     fun oldEarlyReminderMovesToTheNewOnes() {
         assertEquals(AlertSettings(before10 = true), AlertSettings(minutesBefore = 10).migrated())

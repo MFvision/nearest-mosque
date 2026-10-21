@@ -101,6 +101,7 @@ fun PrayerScreen(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    var access by remember { mutableStateOf(sa.zood.nearmosque.platform.AlertAccess.read(context)) }
     val listState = rememberLazyListState()
     val density = androidx.compose.ui.platform.LocalDensity.current
     val fadePx = with(density) { 240.dp.toPx() }
@@ -114,10 +115,26 @@ fun PrayerScreen(
     val locationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         vm.useDeviceLocation(context.getString(R.string.location_current))
     }
-    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { vm.rescheduleReminders(context) }
+    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
+        vm.rescheduleReminders(context)
+        access = sa.zood.nearmosque.platform.AlertAccess.read(context)
+    }
     val locate by vm.locate.collectAsStateWithLifecycle()
-
-    LaunchedEffect(ui.settings?.reminders) { if (ui.settings?.reminders?.isNotEmpty() == true) vm.rescheduleReminders(context) }
+    // Notifications and "Alarms & reminders" are allowed in system settings: checked again whenever the app comes back
+    // (MainActivity rebuilds the alarms then).
+    androidx.lifecycle.compose.LifecycleResumeEffect(Unit) {
+        access = sa.zood.nearmosque.platform.AlertAccess.read(context)
+        onPauseOrDispose { }
+    }
+    val settings = ui.settings
+    val alertProblem = remember(settings, access) {
+        when {
+            settings == null -> null
+            !access.notifications && sa.zood.nearmosque.platform.ReminderScheduler.wantsAlerts(settings) -> AlertProblem.NOTIFICATIONS
+            !access.exactAlarms && sa.zood.nearmosque.platform.ReminderScheduler.wantsTimedAlerts(settings) -> AlertProblem.EXACT_ALARMS
+            else -> null
+        }
+    }
 
     androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize()) {
         val bottom = bottomBarPadding(16.dp).calculateBottomPadding()
@@ -151,6 +168,20 @@ fun PrayerScreen(
                     }
                 }
                 if (!loc.zoneConfirmed) item("zone") { ZoneConfirmCard(loc, onConfirm = vm::confirmZone, onChange = onPickCity) }
+                alertProblem?.let { problem ->
+                    item("alerts") {
+                        AlertsCard(problem) {
+                            when {
+                                problem == AlertProblem.EXACT_ALARMS -> sa.zood.nearmosque.platform.ReminderScheduler.openExactAlarmSettings(context)
+                                sa.zood.nearmosque.platform.AlertAccess.canAskNotifications(context) -> {
+                                    sa.zood.nearmosque.platform.AlertAccess.asking(context)
+                                    notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                }
+                                else -> sa.zood.nearmosque.platform.ReminderScheduler.openNotificationSettings(context)
+                            }
+                        }
+                    }
+                }
                 val today = ui.today
                 if (today != null && today.status == ScheduleStatus.Unavailable) {
                     item("polar") { PolarCard(onUseNearest = { vm.setPolar(sa.zood.nearmosque.core.PolarRule.NEAREST_LATITUDE) }) }
@@ -162,8 +193,11 @@ fun PrayerScreen(
                             ui = ui,
                             reminders = ui.settings?.reminders.orEmpty(),
                             onToggleReminder = { e, on ->
-                                if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
-                                vm.setReminder(context, e, on)
+                                if (on && Build.VERSION.SDK_INT >= 33 && sa.zood.nearmosque.platform.AlertAccess.canAskNotifications(context)) {
+                                    sa.zood.nearmosque.platform.AlertAccess.asking(context)
+                                    notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                }
+                                vm.setReminder(e, on)
                             },
                         )
                     }
@@ -251,6 +285,28 @@ private fun ZoneConfirmCard(loc: PrayerLocation, onConfirm: () -> Unit, onChange
             GlassButton(onClick = onConfirm, prominent = true) { GlassButtonText(stringResource(R.string.use_this_time_zone)) }
             GlassButton(onClick = onChange) { GlassButtonText(stringResource(R.string.change)) }
         }
+    }
+}
+
+/** What keeps the alerts that are on from coming. */
+private enum class AlertProblem { NOTIFICATIONS, EXACT_ALARMS }
+
+/** Notifications not allowed (one button asks, or opens Settings once Android no longer asks), or "Alarms & reminders" off. */
+@Composable
+private fun AlertsCard(problem: AlertProblem, onAction: () -> Unit) {
+    val context = LocalContext.current
+    val ask = problem == AlertProblem.NOTIFICATIONS && sa.zood.nearmosque.platform.AlertAccess.canAskNotifications(context)
+    val (title, body, action) = when {
+        problem == AlertProblem.EXACT_ALARMS -> Triple(R.string.exact_off_title_android, R.string.exact_off_body_android, R.string.exact_allow_android)
+        ask -> Triple(R.string.alerts_ask_title, R.string.alerts_ask_body, R.string.onb2_allow)
+        else -> Triple(R.string.alerts_off_title, R.string.alerts_off_body, R.string.open_settings)
+    }
+    GlassCard {
+        Text(stringResource(title), style = MaterialTheme.typography.titleMedium, color = Ink)
+        Spacer(Modifier.height(4.dp))
+        Text(stringResource(body), style = MaterialTheme.typography.bodyMedium, color = Ink)
+        Spacer(Modifier.height(10.dp))
+        GlassButton(onClick = onAction, prominent = true) { GlassButtonText(stringResource(action)) }
     }
 }
 

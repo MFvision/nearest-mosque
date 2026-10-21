@@ -32,6 +32,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
@@ -63,6 +64,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -77,6 +79,7 @@ import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.Reciter
 import sa.zood.nearmosque.core.SilenceSettings
 import sa.zood.nearmosque.core.VoiceLanguage
+import sa.zood.nearmosque.platform.AlertAccess
 import sa.zood.nearmosque.platform.AudioCatalog
 import sa.zood.nearmosque.platform.AudioPreview
 import sa.zood.nearmosque.platform.PrayerSilence
@@ -89,7 +92,9 @@ import sa.zood.nearmosque.ui.theme.LocalExtraColors
  * Prayer & Audio: every Adhan, reminder and recitation has its own switch, and none changes another. Grouped
  * as the Adhan, reminders before the prayer, each prayer (expandable), the iqama, silent during prayer, Qur'an and
  * dhikr, and more reminders.
- * Each change is saved at once and the reminders are rebuilt. Mirrors the iOS PrayerAudioSettingsView.
+ * Each change is saved at once and the reminders are rebuilt (by the app, for any saved change). At the top, what
+ * keeps alerts from coming (notifications, "Alarms & reminders", battery saving) and Check my alerts. Mirrors the iOS
+ * PrayerAudioSettingsView.
  */
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
@@ -104,47 +109,85 @@ fun PrayerAudioScreen(
     BackHandler(onBack = onClose)
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
+    var pending by remember { mutableStateOf<CompletableDeferred<Boolean>?>(null) }
+    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted -> pending?.complete(granted) }
     var tick by remember { mutableIntStateOf(0) }
-    DisposableEffect(Unit) { onDispose { AudioPreview.stop() } }
+    DisposableEffect(Unit) {
+        val restore = AudioPreview.volumeKeysForAdhan(context)
+        onDispose { AudioPreview.stop(); restore() }
+    }
     val voice = alerts.voice ?: VoiceLanguage.forInterface(Format.languageCode(context))
-
-    fun set(a: AlertSettings) {
-        if (android.os.Build.VERSION.SDK_INT >= 33) permission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-        scope.launch {
-            container.settings.setAlerts(a)
-            withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
-        }
-    }
-    fun setIqama(q: IqamaSettings) = scope.launch {
-        container.settings.setIqama(q)
-        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
-    }
-    // Do Not Disturb access and exact alarms ("Alarms & reminders", Android 12+) are granted in system settings: both
-    // are checked again whenever the screen comes back, and the reminders and silences rebuilt at once if one changed.
+    // Do Not Disturb access, notifications, exact alarms ("Alarms & reminders", Android 12+) and battery use are set in
+    // system settings: all are checked again whenever the screen comes back, and the reminders and silences rebuilt at
+    // once if one changed.
     var silenceAllowed by remember { mutableStateOf(PrayerSilence(context).granted()) }
-    var exactAllowed by remember { mutableStateOf(ReminderScheduler.exactAlarmsAllowed(context)) }
+    var access by remember { mutableStateOf(AlertAccess.read(context)) }
+    var alarmVolumeOff by remember { mutableStateOf(AudioPreview.alarmVolumeOff(context)) }
+    val exactAllowed = access.exactAlarms
     androidx.lifecycle.compose.LifecycleResumeEffect(Unit) {
         val now = PrayerSilence(context).granted()
-        val exactNow = ReminderScheduler.exactAlarmsAllowed(context)
-        val exactChanged = exactNow != exactAllowed
-        if (now != silenceAllowed || exactChanged) {
+        val accessNow = AlertAccess.read(context)
+        val alertsChanged = accessNow.notifications != access.notifications || accessNow.exactAlarms != access.exactAlarms
+        alarmVolumeOff = AudioPreview.alarmVolumeOff(context)
+        if (now != silenceAllowed || accessNow != access) {
             silenceAllowed = now
-            exactAllowed = exactNow
+            access = accessNow
             scope.launch(Dispatchers.Default) {
                 val s = container.settings.settings.first()
-                if (exactChanged) runCatching { ReminderScheduler(context).reschedule(s) }
+                if (alertsChanged) runCatching { ReminderScheduler(context).reschedule(s) }
                 PrayerSilence(context).sync(s)
             }
         }
         onPauseOrDispose { }
     }
-    // The row asking for exact alarms shows only when something here rings or acts at a set minute (the place comes
-    // from the saved settings; the switches from this screen's own values, which are the ones just changed).
+    // The rows asking for notifications and exact alarms show only when something here alerts or acts at a set minute
+    // (the place comes from the saved settings; the switches from this screen's own values, the ones just changed).
     val saved by container.settings.settings.collectAsStateWithLifecycle(initialValue = null)
-    val needsExact = remember(saved, alerts, reminders, iqama, silence, exactAllowed) {
-        !exactAllowed && ReminderScheduler.exactAlarmSettingsIntent(context) != null &&
-            saved?.let { s -> ReminderScheduler.wantsTimedAlerts(s.copy(alerts = alerts, reminders = reminders, iqama = iqama, silence = silence)) } == true
+    val shown = saved?.copy(alerts = alerts, reminders = reminders, iqama = iqama, silence = silence)
+    val needsExact = remember(shown, exactAllowed) {
+        !exactAllowed && ReminderScheduler.exactAlarmSettingsIntent(context) != null && shown != null && ReminderScheduler.wantsTimedAlerts(shown)
+    }
+    val needsNotifications = remember(shown, access) { !access.notifications && shown != null && ReminderScheduler.wantsAlerts(shown) }
+    val batteryLimited = remember(shown, access) { access.batteryLimited && shown != null && ReminderScheduler.wantsTimedAlerts(shown) }
+    // "Alarms & reminders", asked for when the Adhan is turned on without it.
+    var askExact by rememberSaveable { mutableStateOf(false) }
+    var checking by rememberSaveable { mutableStateOf(false) }
+
+    /** Android's dialog for notifications; the alarms are rebuilt once it is answered yes (no setting changed). */
+    suspend fun askNotifications() {
+        val d = CompletableDeferred<Boolean>()
+        pending = d
+        AlertAccess.asking(context)
+        permission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+        if (d.await()) withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
+        access = AlertAccess.read(context)
+    }
+
+    /**
+     * After a change is saved (the app rebuilds the alarms from it): if it added alerts while notifications are off,
+     * Android's dialog asks (where it still can; otherwise the row at the top says so); if it turned an Adhan on
+     * without exact alarms, "Alarms & reminders" is asked for.
+     */
+    suspend fun afterChange(before: sa.zood.nearmosque.data.AppSettings?, after: sa.zood.nearmosque.data.AppSettings?) {
+        if (before == null || after == null) return
+        fun count(s: sa.zood.nearmosque.data.AppSettings) = ReminderScheduler.plan(s, java.time.Instant.now())?.second?.size ?: 0
+        if (count(after) > count(before) && !ReminderScheduler.notificationsAllowed(context) && AlertAccess.canAskNotifications(context)) {
+            askNotifications()
+        }
+        val adhanOn = PrayerEvent.prayers.any { after.alerts.adhanPlays(it) && !before.alerts.adhanPlays(it) }
+        if (adhanOn && !ReminderScheduler.exactAlarmsAllowed(context) && ReminderScheduler.exactAlarmSettingsIntent(context) != null) askExact = true
+    }
+    fun set(a: AlertSettings) {
+        val before = shown
+        scope.launch {
+            container.settings.setAlerts(a)
+            afterChange(before, before?.copy(alerts = a))
+        }
+    }
+    fun setIqama(q: IqamaSettings) = scope.launch {
+        val before = shown
+        container.settings.setIqama(q)
+        afterChange(before, before?.copy(iqama = q))
     }
     // Saved settings are applied by the app's observer (NearMosqueApp); applied here too for the screen's own container.
     fun setSilence(s: SilenceSettings) = scope.launch {
@@ -152,8 +195,9 @@ fun PrayerAudioScreen(
         withContext(Dispatchers.Default) { PrayerSilence(context).sync(container.settings.settings.first()) }
     }
     fun setBell(e: PrayerEvent, on: Boolean) = scope.launch {
+        val before = shown
         container.settings.setReminder(e, on)
-        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(container.settings.settings.first()) }
+        afterChange(before, before?.copy(reminders = if (on) reminders + e else reminders - e))
     }
 
     @Composable
@@ -215,6 +259,22 @@ fun PrayerAudioScreen(
         }
     }
 
+    if (checking) {
+        AlertCheckScreen(container, onClose = { checking = false })
+        return
+    }
+    if (askExact) {
+        AlertDialog(
+            onDismissRequest = { askExact = false },
+            title = { Text(stringResource(R.string.exact_ask_title_android)) },
+            text = { Text(stringResource(R.string.exact_ask_body_android)) },
+            confirmButton = {
+                TextButton(onClick = { askExact = false; ReminderScheduler.openExactAlarmSettings(context) }) { Text(stringResource(R.string.exact_allow_android)) }
+            },
+            dismissButton = { TextButton(onClick = { askExact = false }) { Text(stringResource(R.string.not_now)) } },
+        )
+    }
+
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(Modifier.fillMaxSize().wrapContentWidth(androidx.compose.ui.Alignment.CenterHorizontally).widthIn(max = sa.zood.nearmosque.ui.Adaptive.contentWidth).safeDrawingPadding()) {
             Row(Modifier.fillMaxWidth().padding(start = 4.dp, end = 16.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -222,23 +282,28 @@ fun PrayerAudioScreen(
                 Text(stringResource(R.string.audio_title), Modifier.weight(1f).semantics { heading() }, style = MaterialTheme.typography.headlineSmall)
             }
             Column(Modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
-                AnimatedVisibility(needsExact) {
-                    SettingsLinkRow(stringResource(R.string.exact_alarm_needed), stringResource(R.string.open_settings)) {
-                        ReminderScheduler.exactAlarmSettingsIntent(context)?.let { intent ->
-                            try {
-                                context.startActivity(intent)
-                            } catch (e: android.content.ActivityNotFoundException) {
-                                // Some builds lack the per-app page; the app's own settings page has "Alarms & reminders".
-                                runCatching {
-                                    context.startActivity(
-                                        android.content.Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, intent.data)
-                                            .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
-                                    )
-                                }
-                            }
-                        }
+                AnimatedVisibility(needsNotifications) {
+                    val ask = AlertAccess.canAskNotifications(context)
+                    SettingsLinkRow(
+                        stringResource(if (ask) R.string.alerts_ask_title else R.string.alerts_off_title),
+                        stringResource(if (ask) R.string.onb2_allow else R.string.open_settings),
+                        note = stringResource(if (ask) R.string.alerts_ask_body else R.string.alerts_off_body),
+                    ) {
+                        if (ask) scope.launch { askNotifications() } else ReminderScheduler.openNotificationSettings(context)
                     }
                 }
+                AnimatedVisibility(needsExact) {
+                    SettingsLinkRow(stringResource(R.string.exact_alarm_needed), stringResource(R.string.open_settings)) {
+                        ReminderScheduler.openExactAlarmSettings(context)
+                    }
+                }
+                AnimatedVisibility(batteryLimited) {
+                    SettingsLinkRow(
+                        stringResource(R.string.battery_title_android), stringResource(R.string.battery_open_android),
+                        note = stringResource(R.string.battery_body_android) + if (AlertAccess.samsung) " " + stringResource(R.string.battery_samsung_android) else "",
+                    ) { AlertAccess.openBatterySettings(context, access.restricted) }
+                }
+                SettingsLinkRow(stringResource(R.string.check_alerts), stringResource(R.string.check_alerts_note_android), plain = true) { checking = true }
                 Header(stringResource(R.string.adhan_section))
                 Toggle(stringResource(R.string.adhan_full), null, alerts.adhan) { set(alerts.copy(adhan = it)) }
                 SourceRow(AdhanSource.MAKKAH, fajr = false)
@@ -260,7 +325,14 @@ fun PrayerAudioScreen(
                         Preview(AudioCatalog.shortAdhan(alerts.adhanSource), stringResource(R.string.adhan_short))
                     }
                 }
-                Note(stringResource(R.string.adhan_note_android))
+                Note(stringResource(R.string.adhan_alarm_note_android))
+                if (alarmVolumeOff && (alerts.adhan || alerts.fajrAdhan)) {
+                    SettingsLinkRow(stringResource(R.string.adhan_volume_off_android), stringResource(R.string.check_alarm_volume_android)) {
+                        context.getSystemService(android.media.AudioManager::class.java)
+                            .adjustStreamVolume(android.media.AudioManager.STREAM_ALARM, android.media.AudioManager.ADJUST_RAISE, android.media.AudioManager.FLAG_SHOW_UI)
+                        alarmVolumeOff = AudioPreview.alarmVolumeOff(context)
+                    }
+                }
 
                 Header(stringResource(R.string.before_section))
                 Toggle(stringResource(R.string.before10), null, alerts.before10) { set(alerts.copy(before10 = it)) }
@@ -300,10 +372,7 @@ fun PrayerAudioScreen(
                         MinutesRow(stringResource(R.string.iqama_prayer_minutes), null, iqama.prayerMinutes, IqamaSettings.prayerChoices) {
                             setIqama(iqama.copy(prayerMinutes = it))
                         }
-                        Toggle(stringResource(R.string.iqama_alert), null, iqama.alert) {
-                            if (it && android.os.Build.VERSION.SDK_INT >= 33) permission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-                            setIqama(iqama.copy(alert = it))
-                        }
+                        Toggle(stringResource(R.string.iqama_alert), null, iqama.alert) { setIqama(iqama.copy(alert = it)) }
                     }
                 }
                 Note(stringResource(R.string.iqama_note))
@@ -390,7 +459,7 @@ fun PrayerAudioScreen(
                 }
 
                 Spacer(Modifier.height(20.dp))
-                Note(stringResource(R.string.audio_permission_note))
+                Note(stringResource(R.string.audio_permission_note_android))
                 Note(stringResource(R.string.audio_credits))
                 Spacer(Modifier.height(32.dp))
             }
@@ -470,15 +539,19 @@ private fun SubSwitch(title: String, on: Boolean, onChange: (Boolean) -> Unit) {
     }
 }
 
-/** A row that opens a system settings page: what is needed, and the action under it. */
+/**
+ * A row that opens a system settings page (or another page, [plain] in the usual text colour): what is needed, why
+ * ([note]), and the action under it.
+ */
 @Composable
-private fun SettingsLinkRow(title: String, action: String, onClick: () -> Unit) {
+internal fun SettingsLinkRow(title: String, action: String, note: String? = null, plain: Boolean = false, onClick: () -> Unit) {
     Row(
         Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(top = 8.dp).clickable(role = Role.Button, onClickLabel = action, onClick = onClick),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.bodyLarge, color = LocalExtraColors.current.accentText)
+            Text(title, style = MaterialTheme.typography.bodyLarge, color = if (plain) MaterialTheme.colorScheme.onSurface else LocalExtraColors.current.accentText)
+            note?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface) }
             Text(action, style = MaterialTheme.typography.bodySmall, color = LocalExtraColors.current.textSecondary)
         }
         Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = LocalExtraColors.current.accentText)

@@ -6,12 +6,18 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.map
 
 import android.app.Application
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.UserManager
+import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.withLock
 import sa.zood.nearmosque.core.PrayerCalculator
@@ -27,14 +33,38 @@ import sa.zood.nearmosque.platform.LocationService
 import java.time.Instant
 
 class NearMosqueApp : Application() {
-    lateinit var container: AppContainer
-        private set
+    @Volatile private var started: AppContainer? = null
+
+    /** Made at start, or at the first unlock after a restart (it reads storage that stays locked until then). */
+    val container: AppContainer get() = started ?: start()
 
     override fun onCreate() {
         super.onCreate()
+        // Before the first unlock after a restart only the alarms run (LockedBootReceiver, ReminderReceiver and the
+        // Adhan player); everything else waits for the unlock.
+        if (unlocked(this)) {
+            start()
+        } else {
+            ContextCompat.registerReceiver(
+                this,
+                object : BroadcastReceiver() {
+                    override fun onReceive(context: Context, intent: Intent) {
+                        unregisterReceiver(this)
+                        start()
+                    }
+                },
+                IntentFilter(Intent.ACTION_USER_UNLOCKED), ContextCompat.RECEIVER_NOT_EXPORTED,
+            )
+        }
+    }
+
+    @Synchronized
+    private fun start(): AppContainer {
+        started?.let { return it }
         Appearance.apply(this)
         AppStyle.load(this)
-        container = AppContainer(this)
+        val container = AppContainer(this)
+        started = container
         container.start()
         container.cities.preload()
         // Widgets follow the city, the calculation settings, the reminders (bells) and the waits for the iqama.
@@ -50,6 +80,19 @@ class NearMosqueApp : Application() {
                 sa.zood.nearmosque.platform.PrayerSilence(this@NearMosqueApp).sync(it)
             }
         }
+        // The Adhan and the reminders: rebuilt at start (after a force stop or an update nothing else would) and
+        // whenever the city, the times, the bells, the alerts or the iqama change, wherever they were changed.
+        container.scope.launch {
+            container.settings.settings.distinctUntilChangedBy { listOf(it.prayerLocation, it.prayer, it.reminders, it.alerts, it.iqama) }.collect {
+                runCatching { sa.zood.nearmosque.platform.ReminderScheduler(this@NearMosqueApp).reschedule(it) }
+            }
+        }
+        return container
+    }
+
+    companion object {
+        /** False only before the first unlock after a restart. */
+        fun unlocked(context: Context): Boolean = context.getSystemService(UserManager::class.java)?.isUserUnlocked != false
     }
 }
 
@@ -129,6 +172,51 @@ class AppContainer(
     fun builtinsFor(lang: String): (sa.zood.nearmosque.core.PackManifest) -> Boolean {
         val wanted = sa.zood.nearmosque.data.ChunkScope.libraryLanguages(lang)
         return { m -> !sa.zood.nearmosque.data.ChunkScope.isLibrary(m.id) || sa.zood.nearmosque.data.ChunkScope.libraryLanguage(m.id) in wanted }
+    }
+
+    /** When "Use my location" last looked for the place (elapsed time since boot), 0 for not yet. */
+    @Volatile private var followedAt = 0L
+
+    /**
+     * Saves [fix] as the prayer place for "Use my location": its time zone from the fix (the phone's as a hint), named
+     * after a bundled city within 30 km, or else [nameForCurrent]. With [always] false nothing is saved when the place
+     * has not moved (under 1 km, the same zone), so nothing is rebuilt for nothing.
+     */
+    suspend fun followFix(fix: DevicePosition, nameForCurrent: String, always: Boolean = true) {
+        // The first fix is often city-level (network): fine for prayer times, but the mosque distances and the widgets'
+        // nearest mosques start from "you are here" only with a street-level one (the Mosques tab finds its own).
+        if ((fix.accuracyMeters ?: Float.MAX_VALUE) <= 100f) devicePosition.value = fix
+        val resolver = cities.timeZones()
+        val zone = kotlinx.coroutines.withContext(Dispatchers.Default) { resolver.resolve(fix.location, java.time.ZoneId.systemDefault()) }
+        val s = settings.settings.first()
+        val old = s.prayerLocation
+        if (!always && s.followDevice && old != null && old.zoneId == zone.zoneId &&
+            sa.zood.nearmosque.core.Geo.distanceMeters(old.location, fix.location) < 1000
+        ) return
+        val near = zone.nearestCity?.takeIf { (zone.distanceMeters ?: Double.MAX_VALUE) < 30_000 }
+        settings.setPrayerLocation(
+            sa.zood.nearmosque.data.PrayerLocation(
+                near?.name ?: nameForCurrent, fix.location, zone.zoneId, zone.nearestCity?.countryCode, sa.zood.nearmosque.data.PrayerLocation.Source.DEVICE,
+                zoneConfirmed = !zone.needsConfirmation, nearCity = near?.location,
+            ),
+            follow = true,
+        )
+        if (!s.methodChosenByUser) settings.setMethod(PrayerCalculator.suggestedMethod(zone.nearestCity?.countryCode), byUser = false)
+    }
+
+    /**
+     * "Use my location" each time the app comes to the screen: a fresh fix at most every 30 minutes, after 2 when the
+     * phone's time zone no longer matches the place's (a flight). Silent: it never asks and shows nothing without a fix.
+     */
+    suspend fun refreshFollowedPlace(nameForCurrent: String) {
+        val s = settings.settings.first()
+        if (!s.followDevice || location.permission() == sa.zood.nearmosque.platform.LocationPermission.DENIED || !location.isLocationEnabled()) return
+        val now = android.os.SystemClock.elapsedRealtime()
+        val zoneChanged = s.prayerLocation?.zoneId?.rules != java.time.ZoneId.systemDefault().rules
+        if (followedAt != 0L && now - followedAt < (if (zoneChanged) 2 else 30) * 60_000L) return
+        followedAt = now
+        val fix = location.currentPosition() ?: location.lastKnown(30 * 60_000L) ?: return
+        followFix(fix, nameForCurrent, always = false)
     }
 
     /** Installs the bundled library packs for [lang] (see ChunkScope.libraryLanguages) if missing. */

@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import sa.zood.nearmosque.ui.AppRoot
 import sa.zood.nearmosque.ui.theme.NearMosqueTheme
 
@@ -66,9 +67,17 @@ class MainActivity : AppCompatActivity() {
         return "nearmosque://ask?" + (if (trusted) "q=" else "draft=") + android.net.Uri.encode(q)
     }
 
+    override fun onStart() {
+        super.onStart()
+        // "Use my location": back on the screen after a trip, the place follows (at most every 30 minutes).
+        val here = getString(R.string.location_current)
+        container.scope.launch { runCatching { container.refreshFollowedPlace(here) } }
+    }
+
     override fun onResume() {
         super.onResume()
-        // Language or time-zone changes while away: redraw the widgets.
-        sa.zood.nearmosque.platform.PrayerWidgets.refresh(this)
+        // Back from the system settings (notifications, exact alarms allowed), a force stop, a language or time-zone
+        // change while away: the alarms, the silences and the widgets are rebuilt.
+        sa.zood.nearmosque.platform.RescheduleReceiver.rescheduleAsync(this, null)
     }
 }

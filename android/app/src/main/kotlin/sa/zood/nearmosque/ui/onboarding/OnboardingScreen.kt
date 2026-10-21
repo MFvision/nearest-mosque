@@ -226,7 +226,7 @@ fun OnboardingScreen(
         val to = flow.skip(from) ?: return
         val alerts = ui.settings?.alerts
         if (from == OnboardingStep.ADHAN && OnboardingStep.ADHAN.key !in answeredKeys.split(',') && alerts == AlertSettings()) {
-            vm.setAlerts(context, alerts.with(alerts.onboardingChoice))
+            vm.setAlerts(alerts.with(alerts.onboardingChoice))
         }
         go(to)
     }

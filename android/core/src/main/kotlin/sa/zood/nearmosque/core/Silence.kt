@@ -26,9 +26,14 @@ data class SilenceSettings(
 
     /**
      * Every silence that has not ended by [now] (the one under way first), in order. Each ends by the next prayer's
-     * Adhan at the latest. With the setting off, none.
+     * Adhan at the latest. With the setting off, none. [adhanSeconds] is how long the app's own Adhan plays at a
+     * prayer (0 when it plays none): the silence starts only after it, so it never cuts that Adhan. [alertSeconds]
+     * holds every start back a little, so an alert at that very minute (a bell, the iqama) sounds first.
      */
-    fun windows(days: List<DaySchedule>, iqama: IqamaSettings, now: Instant): List<SilenceWindow> {
+    fun windows(
+        days: List<DaySchedule>, iqama: IqamaSettings, now: Instant,
+        adhanSeconds: (PrayerEvent) -> Long = { 0L }, alertSeconds: Long = 0L,
+    ): List<SilenceWindow> {
         if (!enabled) return emptyList()
         val all = days.flatMap { d -> PrayerEvent.prayers.mapNotNull { e -> d[e]?.let { Triple(e, it, d.date) } } }.sortedBy { it.second }
         val out = mutableListOf<SilenceWindow>()
@@ -39,6 +44,7 @@ data class SilenceSettings(
             var to = if (friday) adhan.plusSeconds(fridayMinutes * 60L) else iq.plusSeconds(iqama.prayerMinutes * 60L)
             if (i + 1 < all.size && all[i + 1].second.isBefore(to)) to = all[i + 1].second
             var from = if (friday || start == Start.ADHAN) adhan else iq
+            from = maxOf(from.plusSeconds(alertSeconds), adhan.plusSeconds(adhanSeconds(e)))
             if (from.isAfter(to)) from = to
             if (!to.isAfter(from) || !to.isAfter(now)) return@forEachIndexed
             out += SilenceWindow(e, from, to, friday)
@@ -47,8 +53,10 @@ data class SilenceSettings(
     }
 
     /** The silence under way at [now], if any. */
-    fun current(days: List<DaySchedule>, iqama: IqamaSettings, now: Instant): SilenceWindow? =
-        windows(days, iqama, now).firstOrNull { !it.start.isAfter(now) }
+    fun current(
+        days: List<DaySchedule>, iqama: IqamaSettings, now: Instant,
+        adhanSeconds: (PrayerEvent) -> Long = { 0L }, alertSeconds: Long = 0L,
+    ): SilenceWindow? = windows(days, iqama, now, adhanSeconds, alertSeconds).firstOrNull { !it.start.isAfter(now) }
 
     companion object {
         val fridayChoices = listOf(45, 60, 75, 90)

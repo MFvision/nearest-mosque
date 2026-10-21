@@ -245,7 +245,6 @@ internal fun AsrStep(ctx: OnbContext) {
         chosen = m
         pulse++
         ctx.vm.setMadhab(m)
-        ctx.vm.rescheduleReminders(context)
         ctx.answer(OnboardingStep.ASR)
         if (again) ctx.shared.asrBump++
         ctx.advance(OnboardingStep.ASR, OnboardingStep.ADHAN)
@@ -285,7 +284,6 @@ internal fun AsrStep(ctx: OnbContext) {
                         Modifier.fillMaxWidth().heightIn(min = 52.dp).clip(RoundedCornerShape(14.dp))
                             .selectable(on, role = Role.RadioButton) {
                                 ctx.vm.setMethod(m)
-                                ctx.vm.rescheduleReminders(context)
                                 sheet = false
                             }
                             .padding(horizontal = 12.dp),
@@ -372,13 +370,16 @@ internal fun AdhanStep(ctx: OnbContext) {
     var pulse by remember { mutableIntStateOf(0) }
     val selected = chosen?.let { AdhanChoice.valueOf(it) } ?: alerts.onboardingChoice
     var tick by remember { mutableIntStateOf(0) }
-    DisposableEffect(Unit) { onDispose { AudioPreview.stop() } }
+    DisposableEffect(Unit) {
+        val restore = AudioPreview.volumeKeysForAdhan(context)
+        onDispose { AudioPreview.stop(); restore() }
+    }
     val haptics = LocalHapticFeedback.current
     fun pick(c: AdhanChoice) {
         val again = ctx.isAnswered(OnboardingStep.ADHAN)
         chosen = c.name
         pulse++
-        ctx.vm.setAlerts(context, alerts.with(c))
+        ctx.vm.setAlerts(alerts.with(c))
         ctx.answer(OnboardingStep.ADHAN)
         if (again) ctx.shared.adhanBump++ else haptics.performHapticFeedback(HapticFeedbackType.SegmentTick)
     }
@@ -405,7 +406,7 @@ internal fun AdhanStep(ctx: OnbContext) {
         bottom = {
             PrimaryButton(stringResource(R.string.onb2_continue), onClick = {
                 // Someone who has set nothing sees Makkah selected: Continue saves what they saw.
-                if (chosen == null && alerts == AlertSettings()) ctx.vm.setAlerts(context, alerts.with(selected))
+                if (chosen == null && alerts == AlertSettings()) ctx.vm.setAlerts(alerts.with(selected))
                 ctx.answer(OnboardingStep.ADHAN)
                 ctx.go(ctx.next())
             })
@@ -434,11 +435,11 @@ internal fun AdhanStep(ctx: OnbContext) {
                 )
             }
         }
-        OnbFoot(stringResource(R.string.adhan_note_android), Modifier.padding(top = 10.dp).enter(3))
+        OnbFoot(stringResource(R.string.adhan_alarm_note_android), Modifier.padding(top = 10.dp).enter(3))
         Spacer(Modifier.height(10.dp))
         Column(Modifier.enter(3), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             SwitchRow(
-                painterResource(R.drawable.ic_bell_off), stringResource(R.string.silence_section), stringResource(R.string.onb2_quiet_sub_android),
+                painterResource(R.drawable.ic_bell_off), stringResource(R.string.silence_section), stringResource(R.string.onb2_quiet_sub_friday_android),
                 checked = s.silence.enabled,
                 onChange = { on ->
                     ctx.vm.setSilence(context, s.silence.copy(enabled = on))
@@ -551,7 +552,7 @@ internal fun FridayStep(ctx: OnbContext) {
         val wasOn = friday || kahf
         val bothNow = f && k && !(friday && kahf)
         friday = f; kahf = k
-        ctx.vm.setAlerts(context, alerts.copy(friday = f, kahf = k))
+        ctx.vm.setAlerts(alerts.copy(friday = f, kahf = k))
         ctx.answer(OnboardingStep.FRIDAY)
         if (!wasOn && (f || k)) haptics.performHapticFeedback(HapticFeedbackType.SegmentTick)
         if (bothNow) ctx.shared.fridayBump++

@@ -28,6 +28,7 @@ import sa.zood.nearmosque.R
 import sa.zood.nearmosque.core.DaySchedule
 import sa.zood.nearmosque.core.IqamaSettings
 import sa.zood.nearmosque.core.PrayerCalculator
+import sa.zood.nearmosque.core.PrayerEvent
 import sa.zood.nearmosque.core.SilenceSettings
 import sa.zood.nearmosque.core.SilenceWindow
 import sa.zood.nearmosque.data.AppSettings
@@ -135,7 +136,8 @@ class SystemDnd(private val context: Context, private val sdk: Int = Build.VERSI
 
 /**
  * Silent during prayer: Do Not Disturb from the Adhan or the iqama until the end of each chosen prayer, from the
- * Friday Adhan for the khutbah. Two exact alarms (the next silence's start, and the end of the one under way or
+ * Friday Adhan for the khutbah; when the app plays the Adhan, from its end (it never silences its own Adhan), and a
+ * few seconds after an alert at that minute. Two exact alarms (the next silence's start, and the end of the one under way or
  * the next) wake [SilenceReceiver], which applies the state and sets the next ones. Rebuilt when the app starts,
  * when the settings change, and on boot and time or zone changes ([RescheduleReceiver]). The app turns silence on
  * only when a silence begins, so sound the user turns on during a prayer stays on. Without the user's permission
@@ -167,6 +169,7 @@ class PrayerSilence(
             val loc = settings.prayerLocation
             if (!settings.silence.enabled || loc == null || !dnd.granted()) {
                 cancelAlarms()
+                prefs.edit().remove(K_NEXT).apply()
                 if (activeStart() != 0L) end(byUser = false)
                 if (!settings.silence.enabled) {
                     prefs.edit().remove(K_SKIP).apply()
@@ -176,7 +179,7 @@ class PrayerSilence(
             }
             val skip = prefs.getLong(K_SKIP, 0L).takeIf { it > now.toEpochMilli() }?.let(Instant::ofEpochMilli)
             if (skip == null) prefs.edit().remove(K_SKIP).apply()
-            val p = plan(settings.silence, days(settings, now), settings.iqama, now, skip)
+            val p = plan(settings.silence, days(settings, now), settings.iqama, now, skip, adhanSeconds(settings), ALERT_SECONDS)
             val cur = p.current
             when {
                 cur == null -> if (activeStart() != 0L) end(byUser = false)
@@ -203,7 +206,9 @@ class PrayerSilence(
     fun unmute(settings: AppSettings, now: Instant = Instant.now()) = synchronized(LOCK) {
         try {
             val end = prefs.getLong(K_END, 0L).takeIf { it > now.toEpochMilli() }
-                ?: settings.prayerLocation?.let { plan(settings.silence, days(settings, now), settings.iqama, now, null).current?.end?.toEpochMilli() }
+                ?: settings.prayerLocation?.let {
+                    plan(settings.silence, days(settings, now), settings.iqama, now, null, adhanSeconds(settings), ALERT_SECONDS).current?.end?.toEpochMilli()
+                }
             if (end != null) prefs.edit().putLong(K_SKIP, end).apply()
             end(byUser = true)
         } catch (e: Exception) {
@@ -286,6 +291,8 @@ class PrayerSilence(
         cancelAlarms()
         p.startAt?.let { set(it, alarmIntent(ACTION_START, CODE_START, PendingIntent.FLAG_UPDATE_CURRENT)) }
         p.endAt?.let { set(it, alarmIntent(ACTION_END, CODE_END, PendingIntent.FLAG_UPDATE_CURRENT)) }
+        // For the Adhan, which never rings into a silence ([silentBefore]).
+        prefs.edit().putLong(K_NEXT, p.startAt?.toEpochMilli() ?: 0L).apply()
     }
 
     /** Exact when the user allows exact alarms (as the reminders), otherwise as close as Android lets it. */
@@ -316,14 +323,42 @@ class PrayerSilence(
         private const val K_END = "active_end"
         /** The user ended the silence that ends at this moment (epoch ms). */
         private const val K_SKIP = "skip_until"
+        /** When the next silence starts (epoch ms), as the last sync set its alarm. */
+        private const val K_NEXT = "next_start"
         private val LOCK = Any()
+        /** An alert at the minute a silence starts (a bell, the iqama) sounds first. */
+        const val ALERT_SECONDS = 10L
+
+        /** How long the app's own Adhan plays at each prayer, and a little more: the silence starts after it. */
+        fun adhanSeconds(settings: AppSettings): (PrayerEvent) -> Long = { e ->
+            if (settings.alerts.adhanPlays(e)) (AudioCatalog.durationSeconds(AudioCatalog.adhan(e, settings.alerts)) ?: 250L) + 5L else 0L
+        }
 
         /** What should be on at [now], and the next alarms. A silence the user ended (it began before [skipUntil]) stays off. */
-        fun plan(silence: SilenceSettings, days: List<DaySchedule>, iqama: IqamaSettings, now: Instant, skipUntil: Instant?): Plan {
-            val windows = silence.windows(days, iqama, now)
+        fun plan(
+            silence: SilenceSettings, days: List<DaySchedule>, iqama: IqamaSettings, now: Instant, skipUntil: Instant?,
+            adhanSeconds: (PrayerEvent) -> Long = { 0L }, alertSeconds: Long = 0L,
+        ): Plan {
+            val windows = silence.windows(days, iqama, now, adhanSeconds, alertSeconds)
             val current = windows.firstOrNull { !it.start.isAfter(now) }?.takeUnless { skipUntil != null && it.start.isBefore(skipUntil) }
             val next = windows.firstOrNull { it.start.isAfter(now) }
             return Plan(current, next?.start, (current ?: next)?.end)
+        }
+
+        /**
+         * The app's own silence is on at [now] or starts before [until]: an Adhan still playing then is not started.
+         * Read after the first unlock only (the app silences nothing before it).
+         */
+        fun silentBefore(context: Context, until: Instant, now: Instant = Instant.now()): Boolean {
+            if (!NearMosqueApp.unlocked(context)) return false
+            return try {
+                val p = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+                val on = p.getLong(K_START, 0L) != 0L && p.getLong(K_END, 0L) > now.toEpochMilli()
+                val next = p.getLong(K_NEXT, 0L)
+                on || (next != 0L && next < until.toEpochMilli())
+            } catch (e: Exception) {
+                false
+            }
         }
 
         /** Opens the system screen where the user lets the app change Do Not Disturb. */

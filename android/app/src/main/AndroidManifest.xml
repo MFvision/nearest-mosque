@@ -191,12 +191,24 @@
                 android:value="true" />
         </service>
 
-        <receiver android:name=".platform.ReminderReceiver" android:exported="false" />
+        <!-- The alerts and the Adhan player also run before the first unlock after a restart (direct boot), so the Fajr
+             Adhan and alarm still come after a night-time restart; LockedBootReceiver sets them again then. -->
+        <receiver android:name=".platform.ReminderReceiver" android:exported="false" android:directBootAware="true" />
         <receiver android:name=".platform.SilenceReceiver" android:exported="false" />
-        <service android:name=".platform.PrayerAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
+        <service android:name=".platform.PrayerAudioService" android:exported="false" android:directBootAware="true" android:foregroundServiceType="mediaPlayback" />
+        <receiver android:name=".platform.LockedBootReceiver" android:exported="false" android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- Rebuilt after a restart (some makers send only their quick-boot action), an app update, and time, zone and
+             exact-alarm permission changes. -->
         <receiver android:name=".platform.RescheduleReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
                 <action android:name="android.intent.action.TIME_SET" />
                 <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />

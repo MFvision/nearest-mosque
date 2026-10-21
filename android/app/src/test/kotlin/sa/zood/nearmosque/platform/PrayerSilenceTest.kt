@@ -46,6 +46,8 @@ class PrayerSilenceTest {
     private fun adhan(e: PrayerEvent, date: LocalDate = thursday) = calc.schedule(makkah.location, date, makkah.zoneId, prayer)[e]!!
     private fun days(date: LocalDate = thursday) = (-1L..2L).map { calc.schedule(makkah.location, date.plusDays(it), makkah.zoneId, prayer) }
     private fun Instant.min(m: Long) = plusSeconds(m * 60)
+    // A silence starts a few seconds after its minute, so an alert at that minute sounds first.
+    private fun Instant.start() = plusSeconds(PrayerSilence.ALERT_SECONDS)
 
     private class FakeDnd(var allowed: Boolean = true) : DndControl {
         val calls = mutableListOf<String>()
@@ -105,7 +107,7 @@ class PrayerSilenceTest {
         val dhuhr = adhan(PrayerEvent.DHUHR)
         assertEquals(PrayerEvent.DHUHR, s.sync(settings(), dhuhr.min(25))?.current?.event)
         assertEquals(listOf("on"), dnd.calls)
-        assertEquals(listOf(dhuhr.min(35), adhan(PrayerEvent.ASR).min(20)), alarms())
+        assertEquals(listOf(dhuhr.min(35), adhan(PrayerEvent.ASR).min(20).start()), alarms())
         val n = shown()
         assertNotNull(n)
         n!!
@@ -130,9 +132,9 @@ class PrayerSilenceTest {
         s.sync(settings(), dhuhr.min(35))
         assertEquals(listOf("on", "off"), dnd.calls)
         assertNull(shown())
-        assertEquals(listOf(asr.min(20), asr.min(35)), alarms())
+        assertEquals(listOf(asr.min(20).start(), asr.min(35)), alarms())
         // Asr's start alarm.
-        s.sync(settings(), asr.min(20))
+        s.sync(settings(), asr.min(20).start())
         assertEquals(listOf("on", "off", "on"), dnd.calls)
     }
 
@@ -143,7 +145,7 @@ class PrayerSilenceTest {
         PrayerSilence(app, dnd).sync(settings(), dhuhr.min(5))
         assertTrue(dnd.calls.isEmpty())
         assertNull(shown())
-        assertEquals(listOf(dhuhr.min(20), dhuhr.min(35)), alarms())
+        assertEquals(listOf(dhuhr.min(20).start(), dhuhr.min(35)), alarms())
     }
 
     @Test
@@ -156,7 +158,7 @@ class PrayerSilenceTest {
         s.unmute(settings(), dhuhr.min(26))
         assertEquals(listOf("on", "off-user"), dnd.calls)
         assertNull(shown())
-        assertEquals(listOf(asr.min(20), asr.min(35)), alarms())
+        assertEquals(listOf(asr.min(20).start(), asr.min(35)), alarms())
         // The app reopened during the same prayer: still off.
         s.sync(settings(), dhuhr.min(30))
         assertEquals(listOf("on", "off-user"), dnd.calls)
@@ -192,7 +194,7 @@ class PrayerSilenceTest {
         val dhuhr = adhan(PrayerEvent.DHUHR)
         PrayerSilence(app, dnd).sync(settings(on.with(PrayerEvent.DHUHR, false)), dhuhr.min(25))
         assertTrue(dnd.calls.isEmpty())
-        assertEquals(listOf(adhan(PrayerEvent.ASR).min(20), adhan(PrayerEvent.ASR).min(35)), alarms())
+        assertEquals(listOf(adhan(PrayerEvent.ASR).min(20).start(), adhan(PrayerEvent.ASR).min(35)), alarms())
     }
 
     @Test
@@ -206,12 +208,56 @@ class PrayerSilenceTest {
         assertEquals(dhuhr.min(45), p?.endAt)
     }
 
+    /** With the app's Adhan on, the silence starts when it has played (Friday, and "From the Adhan"), not with it. */
+    @Test
+    fun neverSilencesItsOwnAdhan() {
+        val dnd = FakeDnd()
+        val friday = thursday.plusDays(1)
+        val dhuhr = adhan(PrayerEvent.DHUHR, friday)
+        val withAdhan = settings(on).copy(alerts = sa.zood.nearmosque.core.AlertSettings(adhan = true))
+        // The whole Makkah Adhan plays 205 s; the silence waits 5 s more.
+        val p = PrayerSilence(app, dnd).sync(withAdhan, dhuhr.min(1))
+        assertNull(p?.current)
+        assertTrue(dnd.calls.isEmpty())
+        assertEquals(dhuhr.plusSeconds(210), p?.startAt)
+        val asr = adhan(PrayerEvent.ASR)
+        val fromAdhan = withAdhan.copy(silence = on.copy(start = SilenceSettings.Start.ADHAN))
+        assertEquals(asr.plusSeconds(210), PrayerSilence(app, FakeDnd()).sync(fromAdhan, asr.min(-5))?.startAt)
+        // The short Adhan is over in seconds.
+        val short = fromAdhan.copy(alerts = fromAdhan.alerts.copy(shortAdhan = true))
+        assertEquals(asr.plusSeconds(17), PrayerSilence(app, FakeDnd()).sync(short, asr.min(-5))?.startAt)
+    }
+
+    /** A late Adhan (Android held it back) never rings into the silence: not during it, nor into its start. */
+    @Test
+    fun aLateAdhanNeverRingsIntoTheSilence() {
+        val asr = adhan(PrayerEvent.ASR)
+        val key = "${asr.epochSecond}|ADHAN|ASR"
+        fun late(now: Instant) = ReminderScheduler.adhanLate(app, key, "adhan_makkah", now)
+        val withAdhan = settings(on).copy(alerts = sa.zood.nearmosque.core.AlertSettings(adhan = true))
+        // From the iqama: on time, or two minutes late, it plays; six minutes late it does not.
+        PrayerSilence(app, FakeDnd()).sync(withAdhan, asr.min(-5))
+        assertTrue(!late(asr.plusSeconds(1)) && !late(asr.min(2)))
+        assertTrue(late(asr.min(6)))
+        // From the Adhan (the silence starts as the Adhan ends): on time it plays, half a minute late it does not.
+        PrayerSilence(app, FakeDnd()).sync(withAdhan.copy(silence = on.copy(start = SilenceSettings.Start.ADHAN)), asr.min(-5))
+        assertTrue(!late(asr.plusSeconds(1)))
+        assertTrue(late(asr.plusSeconds(30)))
+        // During a silence (the previous prayer's, still on).
+        val dhuhr = adhan(PrayerEvent.DHUHR)
+        PrayerSilence(app, FakeDnd()).sync(withAdhan, dhuhr.min(25))
+        assertTrue(PrayerSilence.silentBefore(app, dhuhr.min(25), dhuhr.min(25)))
+        // Silence off: only the lateness counts.
+        PrayerSilence(app, FakeDnd()).sync(settings(SilenceSettings()), asr.min(-5))
+        assertTrue(!late(asr.plusSeconds(30)) && !late(asr.min(4)))
+    }
+
     @Test
     fun withoutExactAlarmsStillScheduled() {
         ShadowAlarmManager.setCanScheduleExactAlarms(false)
         val dhuhr = adhan(PrayerEvent.DHUHR)
         PrayerSilence(app, FakeDnd()).sync(settings(), dhuhr.min(5))
-        assertEquals(listOf(dhuhr.min(20), dhuhr.min(35)), alarms())
+        assertEquals(listOf(dhuhr.min(20).start(), dhuhr.min(35)), alarms())
     }
 
     /** Android 8 and 9: priority only if Do Not Disturb was off, and back only if it is still the app's. */

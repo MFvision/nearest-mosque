@@ -109,16 +109,6 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
     private val _locate = MutableStateFlow<LocateState>(LocateState.Idle)
     val locate: StateFlow<LocateState> = _locate.asStateFlow()
 
-    init {
-        // "Follow my location": refresh on launch only if permission was already granted; never prompts.
-        viewModelScope.launch {
-            val s = c.settings.settings.first()
-            if (s.followDevice && c.location.permission() != LocationPermission.DENIED) {
-                useDeviceLocation(s.prayerLocation?.name ?: "", asked = false)
-            }
-        }
-    }
-
     private fun build(s: AppSettings, now: Instant): PrayerUi {
         val loc = s.prayerLocation ?: return PrayerUi(settings = s, now = now)
         val zone = loc.zoneId
@@ -157,8 +147,9 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
     }
 
     /**
-     * Called after the permission dialog (and on launch for "follow my location", with [asked] false); uses a fresh fix,
-     * falls back to a recent one, never to a default city.
+     * Called after the permission dialog (with [asked] false, nothing opens the location settings); uses a fresh fix,
+     * falls back to a recent one, never to a default city. "Follow my location" refreshes by itself each time the
+     * app comes to the screen (MainActivity, AppContainer.refreshFollowedPlace).
      */
     fun useDeviceLocation(nameForCurrent: String, asked: Boolean = true) = viewModelScope.launch {
         if (c.location.permission() == LocationPermission.DENIED) { _locate.value = LocateState.Denied; return@launch }
@@ -170,21 +161,7 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
         _locate.value = LocateState.Locating
         val fix = c.location.currentPosition() ?: c.location.lastKnown(30 * 60_000L)
         if (fix == null) { _locate.value = LocateState.NoFix; return@launch }
-        // The first fix is often city-level (network): fine for prayer times, but the mosque distances and the widgets'
-        // nearest mosques start from "you are here" only with a street-level one (the Mosques tab finds its own).
-        if ((fix.accuracyMeters ?: Float.MAX_VALUE) <= 100f) c.devicePosition.value = fix
-        val resolver = c.cities.timeZones()
-        val zone = withContext(Dispatchers.Default) { resolver.resolve(fix.location, ZoneId.systemDefault()) }
-        val s = c.settings.settings.first()
-        val near = zone.nearestCity?.takeIf { (zone.distanceMeters ?: Double.MAX_VALUE) < 30_000 }
-        c.settings.setPrayerLocation(
-            PrayerLocation(
-                near?.name ?: nameForCurrent, fix.location, zone.zoneId, zone.nearestCity?.countryCode, PrayerLocation.Source.DEVICE,
-                zoneConfirmed = !zone.needsConfirmation, nearCity = near?.location,
-            ),
-            follow = true,
-        )
-        if (!s.methodChosenByUser) c.settings.setMethod(PrayerCalculator.suggestedMethod(zone.nearestCity?.countryCode), byUser = false)
+        c.followFix(fix, nameForCurrent)
         _locate.value = LocateState.Idle
     }
 
@@ -212,19 +189,19 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
     fun setHijriAdjustment(d: Int) = viewModelScope.launch { c.settings.setHijriAdjustment(d) }
     fun setOffset(e: PrayerEvent, m: Int) = viewModelScope.launch { c.settings.setOffset(e, m) }
 
-    fun setReminder(context: android.content.Context, e: PrayerEvent, on: Boolean) = viewModelScope.launch {
+    // The alarms follow every saved change by themselves (NearMosqueApp); a rebuild is asked for here only when a
+    // permission changed, which no setting shows.
+    fun setReminder(e: PrayerEvent, on: Boolean) = viewModelScope.launch {
         c.settings.setReminder(e, on)
-        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(c.settings.settings.first()) }
     }
 
     fun rescheduleReminders(context: android.content.Context) = viewModelScope.launch(Dispatchers.Default) {
         ReminderScheduler(context).reschedule(c.settings.settings.first())
     }
 
-    /** Saves the Adhan and Friday choices and reschedules, without asking for notifications (the onboarding asks once, at the end). */
-    fun setAlerts(context: android.content.Context, a: sa.zood.nearmosque.core.AlertSettings) = viewModelScope.launch {
+    /** Saves the Adhan and Friday choices, without asking for notifications (the onboarding asks once, at the end). */
+    fun setAlerts(a: sa.zood.nearmosque.core.AlertSettings) = viewModelScope.launch {
         c.settings.setAlerts(a)
-        withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(c.settings.settings.first()) }
     }
 
     /** Silent during prayer; Do Not Disturb access is asked for by the caller. */
@@ -233,7 +210,10 @@ class PrayerViewModel(private val c: AppContainer) : ViewModel() {
         withContext(Dispatchers.Default) { sa.zood.nearmosque.platform.PrayerSilence(context).sync(c.settings.settings.first()) }
     }
 
-    /** "Notify me at prayer times": the five prayers' bells, only for someone who has none yet (nothing is turned off). */
+    /**
+     * "Notify me at prayer times": the five prayers' bells, only for someone who has none yet (nothing is turned off),
+     * then a rebuild in any case, since it follows the answer to the notification permission.
+     */
     fun enablePrayerBells(context: android.content.Context) = viewModelScope.launch {
         if (c.settings.settings.first().reminders.isEmpty()) c.settings.setReminders(PrayerEvent.prayers.toSet())
         withContext(Dispatchers.Default) { ReminderScheduler(context).reschedule(c.settings.settings.first()) }

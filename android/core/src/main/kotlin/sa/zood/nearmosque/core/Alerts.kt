@@ -199,7 +199,8 @@ object AlertPlanner {
         val out = mutableListOf<PlannedAlert>()
         for (d in days) {
             fun add(k: AlertKind, e: PrayerEvent, at: Instant) { out += PlannedAlert(k, e, at, d.date) }
-            fun atMinutes(minutes: Int) = d.date.atStartOfDay(d.zone).plusMinutes(minutes.toLong()).toInstant()
+            // On that day's clock, then in its zone: a clock change (summer time) does not move a reminder set for 20:30.
+            fun atMinutes(minutes: Int) = d.date.atStartOfDay().plusMinutes(minutes.toLong()).atZone(d.zone).toInstant()
             for (e in PrayerEvent.prayers) {
                 val at = d[e] ?: continue
                 val s = alerts.sounds(e)

@@ -182,6 +182,12 @@ object PrayerWidgets {
         }
     }
 
+    /** Redraws every widget and waits for it (from a receiver's work, already off the main thread). */
+    suspend fun redraw(context: Context) {
+        val app = context.applicationContext as? sa.zood.nearmosque.NearMosqueApp ?: return
+        draw(app, app.container.settings.settings.first())
+    }
+
     private suspend fun draw(context: Context, s: AppSettings) {
         val m = AppWidgetManager.getInstance(context)
         val extras = WidgetExtras.load(context.container, s, Format.languageCode(context))
@@ -200,15 +206,32 @@ object PrayerWidgets {
         }
         val now = context.container.clock()
         val zone = s.prayerLocation?.zoneId
+        val exact = exactAllowed(context)
         val candidates = listOfNotNull(
             change?.plusSeconds(1),
             zone?.let { now.atZone(it).toLocalDate().plusDays(1).atStartOfDay(it).toInstant() },
             if (bar) now.plus(Duration.ofMinutes(30)) else null,
             // The ring is a picture drawn here, so it moves on every 10 minutes.
             if (ring) now.plus(Duration.ofMinutes(10)) else null,
-        )
-        candidates.minOrNull()?.let { scheduleNext(context, it.toEpochMilli()) }
+        ) + hops(change, now, exact)
+        candidates.minOrNull()?.let { scheduleNext(context, it.toEpochMilli(), now.toEpochMilli(), exact) }
     }
+
+    private fun exactAllowed(context: Context): Boolean =
+        Build.VERSION.SDK_INT < 31 || context.getSystemService(AlarmManager::class.java)?.canScheduleExactAlarms() == true
+
+    /**
+     * Without exact alarms a redraw may come up to 3/4 of its wait late (at most an hour), and a countdown past its
+     * end shows negative time: redraws 10 and 3 minutes before the change keep the last wait short, so the widget
+     * changes at most about 2 minutes late.
+     */
+    internal fun hops(change: Instant?, now: Instant, exact: Boolean): List<Instant> =
+        if (exact || change == null) emptyList() else listOf(10L, 3L).map { change.minus(Duration.ofMinutes(it)) }.filter { it.isAfter(now) }
+
+    /** The window for an inexact redraw [leadMillis] ahead: 10 minutes (the shortest Android allows) when Android's own would be longer, else null. */
+    internal fun window(leadMillis: Long): Long? = if (leadMillis * 3 / 4 > WINDOW_MS) WINDOW_MS else null
+
+    private const val WINDOW_MS = 10 * 60_000L
 
     /** Text colour at 45% for times already passed. */
     private fun faded(color: Int) = (color and 0x00FFFFFF) or (0x73 shl 24)
@@ -692,16 +715,22 @@ object PrayerWidgets {
 
     /**
      * The next redraw, on time when the app may set exact alarms (as the reminders do), so the widget changes at the
-     * Adhan, at the iqama and at the end of the prayer; otherwise an inexact one. Neither wakes the phone: a widget
-     * is only seen with the screen on, and an alarm that came due while asleep goes off when the phone wakes.
+     * Adhan, at the iqama and at the end of the prayer; otherwise an inexact one, in a 10-minute window when that is
+     * shorter than Android's own. Neither wakes the phone: a widget is only seen with the screen on, and an alarm that
+     * came due while asleep goes off when the phone wakes.
      */
-    private fun scheduleNext(context: Context, atMillis: Long) {
+    private fun scheduleNext(context: Context, atMillis: Long, nowMillis: Long, exact: Boolean) {
         val am = context.getSystemService(AlarmManager::class.java) ?: return
         val pi = PendingIntent.getBroadcast(
             context, 7701, Intent(context, PrayerWidgetSmall::class.java).setAction(ACTION_REFRESH),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        if (Build.VERSION.SDK_INT < 31 || am.canScheduleExactAlarms()) am.setExact(AlarmManager.RTC, atMillis, pi) else am.set(AlarmManager.RTC, atMillis, pi)
+        val window = window(atMillis - nowMillis)
+        when {
+            exact -> am.setExact(AlarmManager.RTC, atMillis, pi)
+            window != null -> am.setWindow(AlarmManager.RTC, atMillis, window, pi)
+            else -> am.set(AlarmManager.RTC, atMillis, pi)
+        }
     }
 }
 

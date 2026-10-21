@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.github.takahirom.roborazzi.captureRoboImage
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -422,6 +423,38 @@ class ScreenshotTest {
         compose.waitForIdle()
         compose.onNodeWithText("To ring on time", substring = true).assertExists()
         compose.onRoot().captureRoboImage("build/screenshots/exact_alarm_en.png")
+    }
+
+    /** Check my alerts, from Prayer & Audio: what the phone allows, and the next five alerts set (the Adhan as an alarm). */
+    @Test fun alertCheck() {
+        org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(false)
+        org.robolectric.Shadows.shadowOf(compose.activity.application).grantPermissions(android.Manifest.permission.POST_NOTIFICATIONS)
+        val c = container()
+        runBlocking {
+            c.settings.setAlerts(sa.zood.nearmosque.core.AlertSettings(adhan = true, fajrAdhan = true, before10 = true))
+            sa.zood.nearmosque.platform.ReminderScheduler(compose.activity).reschedule(c.settings.settings.first())
+        }
+        compose.setContent {
+            NearMosqueTheme(dark = true) { sa.zood.nearmosque.ui.settings.AlertCheckScreen(c) {} }
+        }
+        compose.waitForIdle()
+        compose.onNodeWithText("Check my alerts").assertExists()
+        compose.onNodeWithText("Alarms & reminders").assertExists()
+        compose.onAllNodesWithText("Alarm · Adhan · Masjid al-Haram, Makkah")[0].assertExists()
+        compose.onRoot().captureRoboImage("build/screenshots/alert_check_en.png")
+    }
+
+    /** First Light on Android 14+: right after notifications, "Alarms & reminders" is asked for, with a line saying why. */
+    @Test fun onboardingAsksForExactAlarms() {
+        org.robolectric.shadows.ShadowAlarmManager.setCanScheduleExactAlarms(false)
+        org.robolectric.Shadows.shadowOf(compose.activity.application).grantPermissions(android.Manifest.permission.POST_NOTIFICATIONS)
+        onb("onboarding_exact_en", OnboardingStep.PRIVACY) {
+            compose.onNodeWithText("Allow notifications").performClick()
+            // The step's own "Not now" (the Prayer screen under the tour shows its own "Allow Alarms & reminders").
+            compose.waitUntil(15_000) { compose.onAllNodesWithText("Not now").fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithText("One more step", substring = true).assertExists()
+            assertEquals(2, compose.onAllNodesWithText("Allow Alarms & reminders").fetchSemanticsNodes().size)
+        }
     }
 
     // First Light, the welcome tour: every step in English and Arabic (right to left), still frames. The promise and the

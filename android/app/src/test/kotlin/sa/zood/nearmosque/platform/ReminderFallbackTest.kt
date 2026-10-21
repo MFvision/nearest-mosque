@@ -62,15 +62,32 @@ class ReminderFallbackTest {
         ReminderReceiver.startAudio = PrayerAudioService::start
     }
 
-    @Test fun refusedAdhanStillSoundsThroughItsOwnChannel() {
+    @Test fun refusedAdhanStillRingsAsAnAlarmThroughItsOwnChannel() {
         ReminderReceiver.startAudio = { _, _ -> false }
         ReminderReceiver().onReceive(app, fired("adhan_makkah", adhan = true))
         val n = shadowOf(nm).getNotification(1001)
         assertNotNull("the reminder is still shown", n)
-        assertEquals("adhan_sound_adhan_makkah", n.channelId)
+        assertEquals("adhan_alarm_adhan_makkah", n.channelId)
         val channel = nm.getNotificationChannel(n.channelId)
         assertEquals("android.resource://${app.packageName}/raw/adhan_makkah", channel.sound.toString())
         assertEquals(NotificationManager.IMPORTANCE_HIGH, channel.importance)
+        // An alarm: on silent and vibrate too, with Stop.
+        assertEquals(android.media.AudioAttributes.USAGE_ALARM, channel.audioAttributes.usage)
+        assertEquals(android.app.Notification.CATEGORY_ALARM, n.category)
+        assertEquals(app.getString(sa.zood.nearmosque.R.string.alarm_stop), n.actions.single().title.toString())
+        assertNotNull(n.deleteIntent)
+    }
+
+    @Test fun theOldNotificationChannelsForTheAdhanAreRemoved() {
+        nm.createNotificationChannel(android.app.NotificationChannel("adhan_sound_adhan_makkah", "old", NotificationManager.IMPORTANCE_HIGH))
+        ReminderReceiver.startAudio = { _, _ -> false }
+        ReminderReceiver().onReceive(app, fired("adhan_makkah", adhan = true))
+        assertNull(nm.getNotificationChannel("adhan_sound_adhan_makkah"))
+    }
+
+    @Test fun theAdhanPlaysAsAnAlarmAndSpokenRemindersAsNotifications() {
+        assertEquals(android.media.AudioAttributes.USAGE_ALARM, PrayerAudioService.attributes(adhan = true).usage)
+        assertEquals(android.media.AudioAttributes.USAGE_NOTIFICATION_EVENT, PrayerAudioService.attributes(adhan = false).usage)
     }
 
     @Test fun refusedShortAndFajrAdhansGetTheirRecordings() {
@@ -78,6 +95,7 @@ class ReminderFallbackTest {
         ReminderReceiver().onReceive(app, fired("adhan_madinah_short", adhan = true, id = 1002))
         ReminderReceiver().onReceive(app, fired("fajr_makkah", adhan = true, id = 1003))
         assertEquals("android.resource://${app.packageName}/raw/adhan_madinah_short", nm.getNotificationChannel(shadowOf(nm).getNotification(1002).channelId).sound.toString())
+        assertEquals(android.media.AudioAttributes.USAGE_ALARM, nm.getNotificationChannel(shadowOf(nm).getNotification(1003).channelId).audioAttributes.usage)
         assertEquals("android.resource://${app.packageName}/raw/fajr_makkah", nm.getNotificationChannel(shadowOf(nm).getNotification(1003).channelId).sound.toString())
     }
 
@@ -91,7 +109,7 @@ class ReminderFallbackTest {
         ReminderReceiver.startAudio = { _, _ -> false }
         ReminderReceiver().onReceive(app, fired("adhan_nowhere", adhan = true))
         assertEquals(ReminderScheduler.CHANNEL, shadowOf(nm).getNotification(1001).channelId)
-        assertNull(nm.getNotificationChannel("adhan_sound_adhan_nowhere"))
+        assertNull(nm.getNotificationChannel("adhan_alarm_adhan_nowhere"))
     }
 
     @Test fun startedPlayerLeavesTheNotificationToTheService() {
@@ -131,6 +149,10 @@ class ReminderFallbackTest {
         ShadowAlarmManager.setCanScheduleExactAlarms(false)
         val count = ReminderScheduler(app).reschedule(settings(alerts = AlertSettings(fajrAlarmMinutesBefore = 0)), now)
         assertTrue(count > 0)
+        // Each with a twin in a 10-minute window, for when Android holds the first back.
+        assertEquals(2 * count, shadowOf(app.getSystemService(AlarmManager::class.java)).scheduledAlarms.size)
+        ShadowAlarmManager.setCanScheduleExactAlarms(true)
+        assertEquals(count, ReminderScheduler(app).reschedule(settings(alerts = AlertSettings(fajrAlarmMinutesBefore = 0)), now))
         assertEquals(count, shadowOf(app.getSystemService(AlarmManager::class.java)).scheduledAlarms.size)
     }
 }
