@@ -26,6 +26,9 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
     /// The compass outranks the next-prayer countdown for the Dynamic Island while it runs (two minutes).
     static let relevance = 100.0
 
+    /// This app is running the compass now (one left over from an app closed during its two minutes is not).
+    var isRunning: Bool { activity != nil }
+
     func start() async {
         let model = AppModel.shared
         guard ActivityAuthorizationInfo().areActivitiesEnabled, CLLocationManager.headingAvailable(),
@@ -52,7 +55,10 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
         manager.startUpdatingHeading()
         stopTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(Self.seconds))
+            guard !Task.isCancelled else { return }
             await self?.stop()
+            // The countdown was left alone while the compass ran.
+            await LiveCountdown.refresh(AppModel.shared)
         }
     }
 

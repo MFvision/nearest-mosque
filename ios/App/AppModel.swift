@@ -2,6 +2,7 @@ import Foundation
 import NMCore
 import NMData
 import SwiftUI
+import UserNotifications
 import WidgetKit
 
 /// The location prayer times are calculated for: separate from the device position and map centre.
@@ -131,6 +132,8 @@ final class AppModel {
     /// Set by a widget tap, Siri or a control: the prayer screen opens the Qibla view.
     var requestQibla = false
     private var lastShared: SharedState?
+    /// What keeps the alerts that are on from arriving (nil: nothing): the prayer screen and Prayer & Audio say so.
+    private(set) var alertBlock: AlertBlock?
 
     var settings: StoredSettings {
         didSet { save() }
@@ -183,10 +186,13 @@ final class AppModel {
 
     /// What the widgets, Siri and the watch get (the onboarding's widget previews draw it too); nil before a place is chosen.
     func widgetState() -> SharedState? {
-        settings.location.map {
+        // A bell on every prayer something comes at: its bell, or its Adhan.
+        let alerts = settings.alerts
+        let bells = Set(settings.reminders.map(\.rawValue) + PrayerEvent.prayers.filter { alerts.adhanPlays($0) }.map(\.rawValue)).sorted()
+        return settings.location.map {
             SharedState(name: $0.name, latitude: $0.latitude, longitude: $0.longitude, zoneId: $0.zoneId,
                         prayer: settings.prayer, language: l10n.language, hijriAdjustmentDays: settings.prayer.hijriAdjustmentDays,
-                        reminders: settings.reminders.map(\.rawValue).sorted(),
+                        reminders: bells,
                         mosques: sharedMosques(), questions: sharedQuestions(), widgetLook: settings.widgetLook, companion: settings.companion,
                         linkToken: Self.linkToken, iqama: settings.iqama, onlineSearch: settings.onlineSearch)
         }
@@ -245,7 +251,10 @@ final class AppModel {
         #if DEBUG
         applyDemoLaunchArguments()
         #endif
-        if settings.followDevice, location.isAuthorized { await useDeviceLocation(silent: true) }
+        if settings.followDevice, location.isAuthorized {
+            lastFollowFix = Date()
+            await useDeviceLocation(silent: true)
+        }
         await rescheduleReminders()
         // Today's questions are ready now; the watch gets them with the rest.
         shareWithWidgets()
@@ -330,6 +339,10 @@ final class AppModel {
         guard settings.location == before else { return .ok }
         let resolver = cities.map(TimeZoneResolver.init)
         let z = resolver?.resolve(fix.location, deviceZone: .current)
+        // On its own (at launch, back on the screen): a move of under about 2 km in the same time zone changes no
+        // prayer time, so nothing is saved or rebuilt for it.
+        if silent, settings.followDevice, let b = before, b.source == .device, b.zoneId == (z?.zone ?? .current).identifier,
+           Geo.distanceMeters(b.location, fix.location) < 2_000 { return .ok }
         let near = (z?.distanceMeters ?? .infinity) < 30_000 ? z?.nearestCity : nil
         settings.location = PrayerLocation(
             name: near?.displayName(l10n.language) ?? l10n.t("location_current"),
@@ -358,6 +371,12 @@ final class AppModel {
         Task { await rescheduleReminders() }
     }
 
+    /// Near the poles (the polar card's button): times from the nearest latitude that has them, with their alerts.
+    func setPolarRule(_ r: PolarRule) {
+        settings.prayer.polarRule = r
+        Task { await rescheduleReminders() }
+    }
+
     func setReminder(_ e: PrayerEvent, _ on: Bool) async {
         if on, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
         if on { settings.reminders.insert(e) } else { settings.reminders.remove(e) }
@@ -365,13 +384,99 @@ final class AppModel {
         await rescheduleReminders()
     }
 
-    /// `askPermission`: false in the onboarding, which asks for notifications once, on its privacy step.
+    /// The bell on a prayer's row. On: the prayer's bell and its own Adhan switch (the Adhan plays where it is on for
+    /// all prayers); off: neither, so nothing comes at that prayer's time. One save, one rebuild.
+    func setPrayerCall(_ e: PrayerEvent, _ on: Bool) async {
+        if on, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
+        let old = settings.alerts
+        var s = settings
+        if on { s.reminders.insert(e) } else { s.reminders.remove(e) }
+        if e.isPrayer {
+            var sounds = s.alerts.sounds(e)
+            sounds.adhan = on
+            s.alerts.setSounds(e, sounds)
+        }
+        settings = s
+        shareWithWidgets()
+        await askForAlarms(s.alerts, after: old)
+        await rescheduleReminders()
+    }
+
+    /// `askPermission`: false in the onboarding, which asks for notifications (and alarms) once, on its privacy step.
     func setAlerts(_ a: AlertSettings, askPermission: Bool = true) {
+        let old = settings.alerts
         settings.alerts = a
         Task {
             if askPermission, !(await Reminders.authorized()) { _ = await Reminders.requestAuthorization() }
+            if askPermission { await askForAlarms(a, after: old) }
             await rescheduleReminders()
         }
+    }
+
+    /// An Adhan (or the Fajr alarm) just turned on: alarms are asked for where the device has them, so it rings even
+    /// on silent. The system asks only once; without them it stays a notification.
+    private func askForAlarms(_ a: AlertSettings, after old: AlertSettings) async {
+        let turnedOn = PrayerEvent.prayers.contains { a.adhanPlays($0) && !old.adhanPlays($0) }
+            || (old.fajrAlarmMinutesBefore == nil && a.fajrAlarmMinutesBefore != nil)
+        guard turnedOn, PrayerAlarms.permission == .notDetermined else { return }
+        await PrayerAlarms.requestAuthorization()
+    }
+
+    /// Something is on that comes as a notification: a bell, an Adhan or a reminder (the iqama alert and the silence
+    /// button come only with these).
+    var wantsNotifications: Bool {
+        let a = settings.alerts
+        return !settings.reminders.isEmpty || PrayerEvent.prayers.contains { a.adhanPlays($0) } || a.before10 || a.before5 || a.near
+            || a.friday || a.ramadan || a.kahf || a.salawat || a.quran || a.bedtimeMinutes != nil || a.fajrAlarmMinutesBefore != nil
+    }
+
+    /// An Adhan or the Fajr alarm is on: they ring as alarms where the device has them.
+    var wantsAlarms: Bool {
+        let a = settings.alerts
+        return PrayerEvent.prayers.contains { a.adhanPlays($0) } || a.fajrAlarmMinutesBefore != nil
+    }
+
+    /// Notifications and alarms allowed, as the last rebuild found them: a change since then rebuilds the reminders.
+    @ObservationIgnored private var rebuiltAccess: [Bool]?
+
+    /// Reads again whether notifications (and, for the Adhan, alarms) are allowed for what is on. When that changed
+    /// since the last rebuild (turned on or off in Settings meanwhile), the reminders are rebuilt with it and this
+    /// returns true once they are, so whoever looks next (Check my alerts) sees them.
+    @discardableResult
+    func refreshAlertAccess() async -> Bool {
+        let access = await readAlertAccess()
+        // Before the first rebuild, start() does it.
+        guard ready, let rebuilt = rebuiltAccess, rebuilt != access else { return false }
+        await rescheduleReminders()
+        return true
+    }
+
+    /// The banner for what is on, read again; returns whether notifications and alarms are allowed.
+    private func readAlertAccess() async -> [Bool] {
+        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        let alarms = PrayerAlarms.permission
+        var block: AlertBlock?
+        if wantsNotifications, status == .notDetermined {
+            block = .notificationsUndecided
+        } else if wantsNotifications, status == .denied {
+            block = .notificationsDenied
+        } else if wantsAlarms, alarms == .notDetermined {
+            block = .alarmsUndecided
+        } else if wantsAlarms, alarms == .denied {
+            block = .alarmsDenied
+        }
+        if block != alertBlock { alertBlock = block }
+        return [status == .authorized || status == .provisional, alarms == .authorized]
+    }
+
+    /// The banner's Allow: the system asks (this once), then the reminders are rebuilt with the answer.
+    func askAlertAccess() async {
+        switch alertBlock {
+        case .notificationsUndecided?: _ = await Reminders.requestAuthorization()
+        case .alarmsUndecided?: await PrayerAlarms.requestAuthorization()
+        default: return
+        }
+        await rescheduleReminders()
     }
 
     /// The onboarding's "Notify me at prayer times": a bell at each of the five prayers, unless some are chosen already
@@ -425,8 +530,82 @@ final class AppModel {
         return name
     }
 
+    // MARK: Rebuilding the reminders
+
+    /// One rebuild at a time: each waits for the one before it, and calls made meanwhile share one rebuild after it,
+    /// with the settings as they are then (two rebuilds interleaved used to keep alerts from old settings).
+    @ObservationIgnored private var rescheduleRun: (ticket: Int, task: Task<Void, Never>)?
+    @ObservationIgnored private var rescheduleTickets = 0
+    @ObservationIgnored private var rescheduledTicket = 0
+    /// When the reminders were last rebuilt: coming back to the screen tops them up when that is over an hour ago.
+    @ObservationIgnored private var lastReschedule: Date?
+    /// With "Use my location": when the app last asked for a fix on its own.
+    @ObservationIgnored private var lastFollowFix: Date?
+
     func rescheduleReminders() async {
+        rescheduleTickets += 1
+        let ticket = rescheduleTickets
+        let previous = rescheduleRun?.task
+        let task = Task { @MainActor [self] in
+            await previous?.value
+            // A newer call is waiting: it reads newer settings, so this one leaves the rebuild to it.
+            guard ticket == rescheduleTickets, !Task.isCancelled else { return }
+            await performReschedule()
+            rescheduledTicket = ticket
+        }
+        rescheduleRun = (ticket: ticket, task: task)
+        // Passed over for a newer call: done once that one has run (the background refresh completes after a rebuild).
+        var waiting = (ticket: ticket, task: task)
+        while true {
+            await waiting.task.value
+            guard rescheduledTicket < ticket, let latest = rescheduleRun, latest.ticket > waiting.ticket else { break }
+            waiting = latest
+        }
+    }
+
+    /// The background refresh ran out of time: a rebuild not yet committed leaves the reminders as they were.
+    func cancelRescheduling() {
+        rescheduleRun?.task.cancel()
+    }
+
+    /// Coming back to the screen: the Lock Screen countdown moves on; with "Use my location" a new fix (the place and
+    /// the reminders change only when the phone has moved far enough to matter); the reminders are topped up when the
+    /// last rebuild is over an hour old, or notifications or alarms were allowed (or turned off) meanwhile.
+    func foregroundRefresh() async {
+        await LiveCountdown.refresh(self)
+        // Before then, start() does the rest.
+        guard ready else { return }
+        await refreshFollowedLocation()
+        // A change of what is allowed has rebuilt them already.
+        if !(await refreshAlertAccess()), Date().timeIntervalSince(lastReschedule ?? .distantPast) > 3600 { await rescheduleReminders() }
+    }
+
+    /// Midnight, or the clock or the time zone changed (delivered when the app resumes, and to a Mac app left open for
+    /// days): the place again with "Use my location", and the reminders rebuilt.
+    func timeChanged() async {
+        guard ready else { return }
+        let asked = Date()
+        await refreshFollowedLocation()
+        // Unless the new place has just rebuilt them.
+        if (lastReschedule ?? .distantPast) < asked { await rescheduleReminders() }
+        await LiveCountdown.refresh(self)
+    }
+
+    /// With "Use my location": a new fix at most every half hour, or at once when the phone's time zone is no longer
+    /// the place's (after a flight).
+    func refreshFollowedLocation() async {
+        guard ready, settings.followDevice, location.isAuthorized else { return }
+        NSTimeZone.resetSystemTimeZone()
+        let zoneMoved = settings.location.map { !TimeZoneResolver.sameRules($0.zone, .current) } ?? true
+        if !zoneMoved, Date().timeIntervalSince(lastFollowFix ?? .distantPast) < 30 * 60 { return }
+        lastFollowFix = Date()
+        await useDeviceLocation(silent: true)
+    }
+
+    private func performReschedule() async {
         ReminderRefresh.submit()
+        // Read first: a change while the rebuild runs is caught at the next look.
+        let access = await readAlertAccess()
         let lang = l10n.language
         let ask = ask
         let mosqueLine = nearestMosque.map { l10n.t("nearest_mosque_chip", Format.distance($0.distanceMeters, l10n: l10n)) }
@@ -436,6 +615,10 @@ final class AppModel {
             guard let c = (try? ask?.resolve([id]))?.first?.chunk else { return nil }
             let en = lang == "en" ? c.allTranslations.first { $0.lang == "en" }?.text : nil
             return [c.original.text, en].compactMap { $0 }.joined(separator: "\n")
+        }
+        if !Task.isCancelled {
+            lastReschedule = Date()
+            rebuiltAccess = access
         }
     }
 

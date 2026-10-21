@@ -257,6 +257,10 @@ struct PrayerView: View {
 
     @ViewBuilder private func content(_ snap: PrayerSnapshot) -> some View {
         let loc = snap.location!
+        // Alerts are on but cannot arrive (notifications, or alarms for the Adhan, not allowed).
+        if let block = model.alertBlock {
+            AlertAccessNotice(block: block).frame(maxWidth: .infinity, alignment: .leading).foregroundStyle(Theme.ink).glassCard()
+        }
         if snap.today?.status.isEstimated == true {
             Label(l10n.t("estimated_badge"), systemImage: "exclamationmark.circle")
                 .font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
@@ -340,7 +344,7 @@ private struct PolarCard: View {
         VStack(alignment: .leading, spacing: 8) {
             Label(l10n.t("polar_unavailable_title"), systemImage: "exclamationmark.triangle").font(.headline)
             Text(l10n.t("polar_unavailable_body")).font(.subheadline)
-            Button(l10n.t("polar_use_nearest")) { model.settings.prayer.polarRule = .NEAREST_LATITUDE }.prominentButton()
+            Button(l10n.t("polar_use_nearest")) { model.setPolarRule(.NEAREST_LATITUDE) }.prominentButton()
         }
         .foregroundStyle(Theme.ink)
         .glassCard()
@@ -390,15 +394,17 @@ struct ScheduleCard: View {
             Text(Format.time(at, zone: today.zone, locale: l10n.locale) + (nextDay ? " (\(l10n.t("next_day")))" : ""))
                 .font(.title3.weight(isNext ? .semibold : .regular)).monospacedDigit()
                 .foregroundStyle(isNext ? Theme.accent : Theme.ink)
-            // Every row has a bell, Sunrise too (a notification that Fajr time has ended).
-            let on = model.settings.reminders.contains(e)
-            Button { Task { await model.setReminder(e, !on) } } label: {
-                Image(systemName: on ? "bell.fill" : "bell.slash").font(.subheadline)
+            // Every row has a bell, Sunrise too (a notification that Fajr time has ended). It shows what comes at the
+            // prayer's time, the Adhan too, and turns both on or off.
+            let adhan = model.settings.alerts.adhanPlays(e)
+            let on = adhan || model.settings.reminders.contains(e)
+            Button { Task { await model.setPrayerCall(e, !on) } } label: {
+                Image(systemName: adhan ? "speaker.wave.2.fill" : on ? "bell.fill" : "bell.slash").font(.subheadline)
                     .foregroundStyle(on ? Theme.accent : Theme.ink.opacity(0.55))
                     .frame(width: 44, height: 44).contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(l10n.t(on ? "reminder_on_a11y" : "reminder_off_a11y", name))
+            .accessibilityLabel(l10n.t(adhan ? "adhan_on_a11y" : on ? "reminder_on_a11y" : "reminder_off_a11y", name))
         }
         .padding(.leading, 10)
         .frame(minHeight: 52)

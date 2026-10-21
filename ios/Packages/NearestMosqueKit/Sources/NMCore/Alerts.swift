@@ -286,6 +286,19 @@ public enum AlertPlanner {
         }
         return out.filter { $0.at > now }.sorted { ($0.at, $0.kind.rawValue) < ($1.at, $1.kind.rawValue) }
     }
+
+    /// The call to prayer itself: the Adhan, the plain alert at prayer time, and the Fajr alarm.
+    public static let firstKinds: Set<AlertKind> = [.adhan, .atPrayer, .fajrAlarm]
+
+    /// At most `limit` alerts of `plan` (in time order), for a platform that keeps only so many: every alert of the
+    /// next `soon` seconds, then the `firstKinds` as far ahead as they go, then the rest; the soonest first in each.
+    public static func budget(_ plan: [PlannedAlert], limit: Int, now: Date, soon: TimeInterval = 24 * 3600) -> [PlannedAlert] {
+        guard plan.count > limit else { return plan }
+        let edge = now.addingTimeInterval(soon)
+        func rank(_ a: PlannedAlert) -> Int { a.at <= edge ? 0 : firstKinds.contains(a.kind) ? 1 : 2 }
+        let kept = plan.enumerated().sorted { (rank($0.element), $0.offset) < (rank($1.element), $1.offset) }.prefix(max(0, limit))
+        return kept.sorted { $0.offset < $1.offset }.map(\.element)
+    }
 }
 
 extension CivilDate {

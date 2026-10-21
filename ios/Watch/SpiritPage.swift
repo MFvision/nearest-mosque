@@ -9,7 +9,7 @@ struct SpiritPage: View {
 
     var body: some View {
         let l10n = model.l10n
-        TimelineView(.periodic(from: .now, by: 60)) { tl in
+        TimelineView(.everyMinute) { tl in
             let now = tl.date
             if let s = model.state {
                 let days = model.days(now: now)

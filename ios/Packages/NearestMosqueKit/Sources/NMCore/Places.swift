@@ -101,7 +101,7 @@ public struct TimeZoneResolver: Sendable {
     }
 
     /// Same identifier, or the same offsets now and at both solstices of this year (covers aliases).
-    static func sameRules(_ a: TimeZone, _ b: TimeZone, now: Date = Date()) -> Bool {
+    public static func sameRules(_ a: TimeZone, _ b: TimeZone, now: Date = Date()) -> Bool {
         if a.identifier == b.identifier { return true }
         let year = Calendar(identifier: .gregorian).component(.year, from: now)
         let probes = [now] + [1, 7].compactMap { DateComponents(calendar: Calendar(identifier: .gregorian), timeZone: TimeZone(identifier: "UTC"), year: year, month: $0, day: 15).date }

@@ -19,6 +19,14 @@ struct PrayerAudioSettingsView: View {
     var body: some View {
         ScrollViewReader { proxy in
         Form {
+            if let block = app.alertBlock {
+                Section { AlertAccessNotice(block: block) }
+            }
+            Section {
+                NavigationLink { AlertCheckView() } label: {
+                    SettingsRow(icon: "checklist", tint: .green, title: l10n.t("check_alerts"), subtitle: l10n.t("check_alerts_note"))
+                }
+            }
             adhanSection
             iqamaSection
             #if os(iOS) && !targetEnvironment(macCatalyst)
@@ -37,6 +45,7 @@ struct PrayerAudioSettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { shortcutDraft = app.settings.silenceShortcut ?? "" }
         .onDisappear { if !AdhanPlayer.shared.isAdhan { AdhanPlayer.shared.stop() } }
+        .task { await app.refreshAlertAccess() }
         #if DEBUG
         .task {
             // CI screenshots: `-demoAudioExpand maghrib` opens that prayer's settings and scrolls to it.
@@ -70,7 +79,10 @@ struct PrayerAudioSettingsView: View {
                     PreviewButton(name: "adhan_\(a.adhanSource.rawValue)_short", label: l10n.t("adhan_short"))
                 }
             }
-        } header: { Text(l10n.t("adhan_section")) } footer: { Text(l10n.t("adhan_note")) }
+        } header: { Text(l10n.t("adhan_section")) } footer: {
+            // With alarms allowed (iPhone and iPad, iOS 26) the Adhan is an alarm, not a 30-second notification sound.
+            Text(l10n.t(PrayerAlarms.permission == .authorized ? "adhan_alarm_note" : "adhan_note"))
+        }
     }
 
     private var q: IqamaSettings { app.settings.iqama }

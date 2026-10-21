@@ -135,7 +135,7 @@ struct WidgetsCard: View {
         #if canImport(ActivityKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if UIDevice.current.userInterfaceIdiom == .phone, let content = LiveCountdown.content(app, now: now) {
             VStack(alignment: .leading, spacing: 6) {
-                PrayerLockScreenView(attributes: content.0, state: content.1, stale: false)
+                PrayerLockScreenView(attributes: content.0, state: content.1, stale: content.1.at <= now)
                     .frame(width: 338)
                     .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                     .allowsHitTesting(false)

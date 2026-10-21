@@ -7,7 +7,8 @@ struct PrayerPage: View {
     @Environment(WatchModel.self) private var model
 
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 30)) { tl in
+        // At the start of each minute: prayer times are whole minutes, so the page moves on the moment the countdown ends.
+        TimelineView(.everyMinute) { tl in
             let now = tl.date
             let days = model.days(now: now)
             let today = days.count == 3 ? days[1] : nil
@@ -41,15 +42,17 @@ struct PrayerPage: View {
     }
 
     private func row(_ s: SharedState, _ e: PrayerEvent, _ at: Date, now: Bool, past: Bool) -> some View {
-        HStack(spacing: 6) {
+        // No bell while notifications are off for the app, whatever the switches say.
+        let bell = s.reminderOn(e) && !model.remindersBlocked
+        return HStack(spacing: 6) {
             Image(systemName: e.watchSymbol).frame(width: 18).foregroundStyle(now ? Color.black : model.accent)
             Text(s.t("prayer_\(e.rawValue)")).lineLimit(1).minimumScaleFactor(0.6)
             Spacer(minLength: 2)
             Text(s.time(at)).monospacedDigit().lineLimit(1).minimumScaleFactor(0.7).layoutPriority(1)
             if e.isPrayer {
-                Image(systemName: s.reminderOn(e) ? "bell.fill" : "bell.slash").font(.caption2)
-                    .foregroundStyle(now ? Color.black.opacity(0.7) : (s.reminderOn(e) ? model.accent : .secondary))
-                    .accessibilityLabel(s.t(s.reminderOn(e) ? "reminder_on_a11y" : "reminder_off_a11y", s.t("prayer_\(e.rawValue)")))
+                Image(systemName: bell ? "bell.fill" : "bell.slash").font(.caption2)
+                    .foregroundStyle(now ? Color.black.opacity(0.7) : (bell ? model.accent : .secondary))
+                    .accessibilityLabel(s.t(bell ? "reminder_on_a11y" : "reminder_off_a11y", s.t("prayer_\(e.rawValue)")))
             } else {
                 Image(systemName: "bell").font(.caption2).hidden()
             }

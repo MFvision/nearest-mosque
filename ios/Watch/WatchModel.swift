@@ -77,6 +77,8 @@ final class WatchModel {
     private(set) var marksVersion = 0
     /// A question to ask when the Ask page opens (debug screenshots).
     var pendingAsk: String?
+    /// Reminders on this watch are turned on but notifications are off for the app, so none can show.
+    private(set) var remindersBlocked = false
 
     var settings: WatchSettings {
         didSet {
@@ -107,7 +109,8 @@ final class WatchModel {
             return SharedState(name: p.name, latitude: p.latitude, longitude: p.longitude, zoneId: p.zoneId, prayer: settings.prayer,
                                language: l10n.language, hijriAdjustmentDays: phone?.hijriAdjustmentDays ?? 0,
                                reminders: settings.ownReminders ? settings.reminders : phone?.reminders,
-                               mosques: nil, questions: phone?.questions, widgetLook: phone?.widgetLook, companion: phone?.companion)
+                               mosques: nil, questions: phone?.questions, widgetLook: phone?.widgetLook, companion: phone?.companion,
+                               iqama: phone?.iqama)
         }
     }
 
@@ -207,8 +210,8 @@ final class WatchModel {
     enum LocateOutcome { case ok, denied, noFix }
 
     /// The watch's own location, named after the nearest known city; kept to about 100 m.
-    func useWatchLocation() async -> LocateOutcome {
-        guard let fix = await WatchLocator.shared.fix() else { return WatchLocator.shared.denied ? .denied : .noFix }
+    func useWatchLocation(timeout: Double = 20) async -> LocateOutcome {
+        guard let fix = await WatchLocator.shared.fix(timeout: timeout) else { return WatchLocator.shared.denied ? .denied : .noFix }
         let z = cities.map(TimeZoneResolver.init)?.resolve(fix, deviceZone: .current)
         let near = (z?.distanceMeters ?? .infinity) < 30_000 ? z?.nearestCity : nil
         settings.place = WatchPlace(name: near?.displayName(l10n.language) ?? l10n.t("location_current"),
@@ -271,9 +274,11 @@ final class WatchModel {
 
     @ObservationIgnored private var lastPublished: SharedState?
     @ObservationIgnored private var lastExtras: WatchExtras?
+    @ObservationIgnored private var reminderTask: Task<Void, Never>?
 
-    /// Gives the complications the current values and sets the watch's own reminders.
-    func publish() {
+    /// Gives the complications the current values and sets the watch's own reminders; the task ends when they are set.
+    @discardableResult
+    func publish() -> Task<Void, Never> {
         let s = state
         if s != lastPublished || extras != lastExtras {
             lastPublished = s
@@ -284,8 +289,33 @@ final class WatchModel {
         }
         let events = settings.reminders.compactMap(PrayerEvent.init(rawValue:))
         let own = settings.ownReminders
-        Task { await WatchReminders.reschedule(state: s, events: events, enabled: own) }
+        // One run at a time: the one before stops at its next step, and this one starts when it has.
+        let previous = reminderTask
+        previous?.cancel()
+        let task = Task {
+            await previous?.value
+            guard !Task.isCancelled else { return }
+            let outcome = await WatchReminders.reschedule(state: s, events: events, enabled: own)
+            // Turned on, then refused at the prompt: the switch goes back off.
+            if outcome == .refused { self.settings.ownReminders = false; return }
+            guard !Task.isCancelled else { return }
+            self.remindersBlocked = own && outcome == .denied
+        }
+        reminderTask = task
         scheduleRefresh()
+        return task
+    }
+
+    /// publish() as the app leaves the screen: watchOS holds off suspending it until the reminders are set.
+    func publishLeaving() {
+        let task = publish()
+        let done = DispatchSemaphore(value: 0)
+        // The block runs on a background queue and the activity lasts until it returns.
+        ProcessInfo.processInfo.performExpiringActivity(withReason: "reminders") { @Sendable expired in
+            if expired { done.signal(); return }
+            Task { await task.value; done.signal() }
+            done.wait()
+        }
     }
 
     /// Wakes the app now and then (about every six hours) to keep the reminders and complications going.
@@ -293,10 +323,15 @@ final class WatchModel {
         WKApplication.shared().scheduleBackgroundRefresh(withPreferredDate: Date().addingTimeInterval(6 * 3600), userInfo: "refresh" as NSString) { _ in }
     }
 
+    /// Ends only once the reminders are set, so watchOS does not suspend the app halfway.
     func backgroundRefresh() async {
-        if settings.source == .watch { _ = await useWatchLocation() }
+        // Booked first, so the next one comes even if this one is cut short.
+        scheduleRefresh()
+        // A fix rarely comes in the background: a short wait, and the last place is kept without one. Not before start()
+        // has read the city table, or the place would lose its city name, time zone and method.
+        if settings.source == .watch, cities != nil { _ = await useWatchLocation(timeout: 3) }
         lastPublished = nil
-        publish()
+        await publish().value
     }
 
     #if DEBUG
@@ -393,11 +428,13 @@ final class WatchLocator: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     private var authCont: CheckedContinuation<Void, Never>?
     private var fixCont: CheckedContinuation<CLLocation?, Never>?
+    /// Counts the requests, so a time limit ends only its own.
+    private var attempt = 0
     private(set) var denied = false
     /// The last fix this session, for measuring distances to mosques (never saved).
     private(set) var last: LatLng?
 
-    func fix() async -> LatLng? {
+    func fix(timeout: Double = 20) async -> LatLng? {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         if manager.authorizationStatus == .notDetermined {
@@ -409,12 +446,16 @@ final class WatchLocator: NSObject, CLLocationManagerDelegate {
         let status = manager.authorizationStatus
         guard status == .authorizedWhenInUse || status == .authorizedAlways else { denied = status == .denied || status == .restricted; return nil }
         denied = false
+        // A request still waiting (another page, the background refresh) ends here rather than never.
+        finish(nil)
+        attempt += 1
+        let mine = attempt
         let l: CLLocation? = await withCheckedContinuation { c in
             fixCont = c
             manager.requestLocation()
             Task { @MainActor in
-                try? await Task.sleep(for: .seconds(20))
-                self.finish(nil)
+                try? await Task.sleep(for: .seconds(timeout))
+                if self.attempt == mine { self.finish(nil) }
             }
         }
         last = (l ?? manager.location).flatMap { LatLng($0.coordinate.latitude, $0.coordinate.longitude) }

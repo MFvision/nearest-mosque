@@ -118,6 +118,25 @@ final class AlertPlannerTests: XCTestCase {
         XCTAssertEqual(p[0].kind, .atPrayer)
     }
 
+    // iOS keeps 60: the next day in full, then the Adhan as far ahead as it goes (no such limit on Android).
+    func testBudgetKeepsTheAdhanFirst() {
+        let fortnight = (0..<14).map { calc.schedule(makkah, date: start.adding(days: $0), zone: zone, settings: PrayerSettings(method: .UMM_AL_QURA)) }
+        var a = AlertSettings()
+        a.adhan = true
+        a.fajrAdhan = true
+        a.before10 = true
+        let p = AlertPlanner.plan(fortnight, now: now, atPrayer: [], alerts: a, iqama: IqamaSettings()) { _ in false }
+        XCTAssertEqual(p.count, 14 * 15)
+        let b = AlertPlanner.budget(p, limit: 60, now: now)
+        XCTAssertEqual(b.count, 60)
+        let edge = now.addingTimeInterval(24 * 3600)
+        XCTAssertEqual(b.filter { $0.at <= edge }, p.filter { $0.at <= edge })
+        XCTAssertTrue(b.filter { $0.at > edge }.allSatisfy { $0.kind == .adhan })
+        XCTAssertEqual(b.last?.date, start.adding(days: 9))
+        XCTAssertEqual(b, b.sorted { $0.at < $1.at })
+        XCTAssertEqual(AlertPlanner.budget(Array(p.prefix(10)), limit: 60, now: now), Array(p.prefix(10)))
+    }
+
     func testOneSwitchForOnePrayer() {
         var a = AlertSettings()
         a.setPrayer(.maghrib, .before10, true)

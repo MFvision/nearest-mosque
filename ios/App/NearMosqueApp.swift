@@ -16,7 +16,7 @@ struct NearMosqueApp: App {
         // The Qibla widget's button starts the compass in the Dynamic Island through the app (in the background).
         QiblaIslandRunner.start = { await QiblaIsland.shared.start() }
         #endif
-        // Reminders reach only a few days ahead (iOS keeps 64); this tops them up while the app is closed.
+        // Reminders reach only days ahead (iOS keeps 64); this tops them up while the app is closed.
         ReminderRefresh.register()
         #if DEBUG
         _ = DemoPreview.launched
@@ -39,10 +39,18 @@ struct NearMosqueApp: App {
                 // Follows the phone unless Settings → Appearance picks light or dark.
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .task { await model.start() }
-                // The Lock Screen countdown moves on to the next prayer each time the app comes to the screen.
+                // Each time the app comes to the screen: the Lock Screen countdown moves on, the reminders are topped
+                // up and, with "Use my location", the place is checked again (AppModel.foregroundRefresh).
                 .onChange(of: phase, initial: true) { _, p in
-                    if p == .active { Task { await LiveCountdown.refresh(model) } }
+                    if p == .active { Task { await model.foregroundRefresh() } }
                     updateWeather(p)
+                }
+                // Midnight, or a change of clock or time zone: the reminders follow, also on a Mac left open for days.
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.significantTimeChangeNotification)) { _ in
+                    Task { await model.timeChanged() }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
+                    Task { await model.timeChanged() }
                 }
                 // "Sky follows the weather": turning it on or choosing another city asks at once (at most once a
                 // minute); turning it off stops and deletes the saved weather.

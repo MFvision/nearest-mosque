@@ -413,12 +413,17 @@ final class OnboardingModel {
 
     // MARK: Privacy
 
-    /// Allow: the button turns into a spinner (at least 500 ms) while iOS asks, the five prayer bells go on (only when
-    /// none were chosen), a check pops and holds, then done. Declined: no check, the note says where to turn them on
-    /// and the button reads Finish. With the switch off, or notifications already off for the app: Finish.
+    /// Notifications are needed: the switch is on, or an Adhan or reminder chosen already comes as one (the Adhan step
+    /// turns the Adhan on), so Allow asks even with the switch off.
+    var wantsNotifications: Bool { notify || app.wantsNotifications }
+
+    /// Allow: the button turns into a spinner (at least 500 ms) while iOS asks (for alarms too when an Adhan is on, so
+    /// it rings even on silent), the five prayer bells go on (only when none were chosen and the switch is on), a check
+    /// pops and holds, then done. Declined: no check, the note says where to turn them on and the button reads Finish.
+    /// With nothing that needs notifications, or notifications already off for the app: Finish.
     func allowTapped() {
         guard allow == .idle, !leaving else { return }
-        guard notify, !notificationsDenied else {
+        guard wantsNotifications, !notificationsDenied else {
             // The bells are on for when notifications are allowed in Settings.
             if notify { Task { await app.enablePrayerBells() } }
             go(.done)
@@ -428,7 +433,8 @@ final class OnboardingModel {
         Task {
             let started = Date()
             let granted = await Reminders.requestAuthorization()
-            await app.enablePrayerBells()
+            if app.wantsAlarms { await PrayerAlarms.requestAuthorization() }
+            if notify { await app.enablePrayerBells() } else { await app.rescheduleReminders() }
             let left = Double(OnboardingTiming.allowSpinner) / 1000 - Date().timeIntervalSince(started)
             if left > 0, !still { try? await Task.sleep(for: .seconds(left)) }
             guard step == .privacy else { return }

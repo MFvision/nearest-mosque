@@ -195,10 +195,28 @@ struct PrayerWidgetView: View {
                 case .ring: ringView(s, next, p)
                 case .today, .mosque, .ask, .qibla, .actions, .tasbih, .companion: todayView(s, next, p)
                 }
+            } else if let s = entry.state {
+                // A city is set, but no prayer time can be worked out around now (polar day or night without the
+                // nearest-latitude rule); the tap opens the prayer screen with its card.
+                switch family {
+                #if !targetEnvironment(macCatalyst) && !os(visionOS)
+                case .accessoryInline:
+                    Label(s.t("polar_unavailable_title"), systemImage: "exclamationmark.triangle")
+                case .accessoryCircular:
+                    Image(systemName: "exclamationmark.triangle").font(.title3).accessibilityLabel(s.t("polar_unavailable_title"))
+                #endif
+                default:
+                    VStack(spacing: 4) {
+                        Image(systemName: "exclamationmark.triangle").foregroundStyle(p.accent)
+                        Text(s.name).font(.caption.weight(.bold)).foregroundStyle(p.ink).lineLimit(1)
+                        Text(s.t("polar_unavailable_title")).font(.caption2).foregroundStyle(p.secondary)
+                            .multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.7)
+                    }
+                }
             } else {
                 VStack(spacing: 6) {
                     Image(decorative: "MosqueTab").renderingMode(.template).resizable().scaledToFit().frame(width: 26, height: 26).foregroundStyle(p.accent)
-                    Text(entry.state?.t("choose_city_title") ?? "Open Near Mosque to choose your city")
+                    Text(LocalizedStringResource("widget_choose_city"))
                         .font(.caption.weight(.semibold)).multilineTextAlignment(.center).foregroundStyle(p.ink)
                 }
             }

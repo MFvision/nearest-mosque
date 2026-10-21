@@ -14,7 +14,9 @@ struct NearMosqueWatchApp: App {
                 .environment(\.layoutDirection, model.l10n.layoutDirection)
                 .task { await model.start() }
                 .onChange(of: phase) { _, p in
-                    if p == .background { model.publish() }
+                    // Back on screen: notifications may have been allowed or turned off meanwhile.
+                    if p == .active, model.settings.ownReminders { model.publish() }
+                    if p == .background { model.publishLeaving() }
                 }
         }
         .backgroundTask(.appRefresh("refresh")) {

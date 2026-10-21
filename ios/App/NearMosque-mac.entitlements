@@ -23,5 +23,8 @@
 	<array>
 		<string>$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared</string>
 	</array>
+	<!-- The Adhan, the iqama and the reminders before the prayer come through a Focus and the Scheduled Summary. -->
+	<key>com.apple.developer.usernotifications.time-sensitive</key>
+	<true/>
 </dict>
 </plist>

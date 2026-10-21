@@ -32,9 +32,15 @@ enum AudioCatalog {
 
     static func url(_ name: String, _ ext: String) -> URL? { Bundle.main.url(forResource: name, withExtension: ext) }
 
+    /// `name` when its notification sound (.caf) is in the app, else nil (the default sound plays instead).
+    static func available(_ name: String?) -> String? {
+        guard let name, url(name, "caf") != nil else { return nil }
+        return name
+    }
+
     /// The notification sound for `name`, or the default sound when the file is missing.
     static func sound(_ name: String?) -> UNNotificationSound {
-        guard let name, url(name, "caf") != nil else { return .default }
+        guard let name = available(name) else { return .default }
         return UNNotificationSound(named: UNNotificationSoundName(name + ".caf"))
     }
 }

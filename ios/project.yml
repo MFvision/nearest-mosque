@@ -59,6 +59,8 @@ targets:
       properties:
         # Shared with the widgets (city, method, language) without an App Group.
         keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+        # The Adhan, the iqama and the reminders before the prayer come through a Focus and the Scheduled Summary.
+        com.apple.developer.usernotifications.time-sensitive: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -93,7 +95,7 @@ targets:
         CFBundleAllowMixedLocalizations: false
         LSRequiresIPhoneOS: true
         ITSAppUsesNonExemptEncryption: false
-        NSAlarmKitUsageDescription: Rings the Fajr alarm you set in Settings.
+        NSAlarmKitUsageDescription: Rings the Adhan and the Fajr alarm like an alarm, even on silent, with a Stop button.
         # The next-prayer countdown on the Lock Screen and in the Dynamic Island.
         NSSupportsLiveActivities: true
         # The Qibla compass in the Dynamic Island updates about once a second for two minutes.
@@ -181,6 +183,7 @@ targets:
       path: Vision/NearMosqueVision.entitlements
       properties:
         keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
+        com.apple.developer.usernotifications.time-sensitive: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -350,6 +353,8 @@ targets:
         # Settings → Apple Health (off by default): marked prayers as mindful minutes; nothing is read.
         com.apple.developer.healthkit: true
         com.apple.developer.healthkit.access: []
+        # Reminders on this watch come through a Focus (Sleep at Fajr, for one) that allows Time Sensitive notifications.
+        com.apple.developer.usernotifications.time-sensitive: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).watchkitapp

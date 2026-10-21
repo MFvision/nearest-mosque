@@ -141,33 +141,35 @@ struct QiblaLockCard: View {
 }
 
 /// The Lock Screen card: the sky of the hour, the next prayer with a live countdown and progress bar, and
-/// today's prayers along the bottom with the next one lit.
+/// today's prayers along the bottom with the next one lit. Once the time counted down to has passed (stale), the
+/// next Adhan, already counting down, lit in its own day's row.
 struct PrayerLockScreenView: View {
     let attributes: PrayerActivityAttributes
     let state: PrayerActivityAttributes.ContentState
     let stale: Bool
 
     var body: some View {
-        let p = WidgetPalette.of(.sky, period: PrayerEvent(rawValue: state.period))
-        // Before the Adhan: the countdown to it. Once its time has come: to the iqama, when there is one.
-        let range: ClosedRange<Date>? = stale ? state.iqamaRange : state.start...max(state.start, state.at)
+        let v = state.shown(stale: stale)
+        let p = WidgetPalette.of(.sky, period: PrayerEvent(rawValue: v.period))
+        // The countdown to the Adhan, or after it to the iqama when there is one; once that has passed, to the next Adhan.
+        let range = v.range
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Label(state.city, systemImage: "mappin.and.ellipse").font(.caption.weight(.semibold)).foregroundStyle(p.secondary).lineLimit(1)
                 Spacer()
-                Text(stale ? state.iqamaText ?? state.timeText : state.timeText).font(.caption.weight(.semibold).monospacedDigit()).foregroundStyle(p.secondary)
+                Text(v.time).font(.caption.weight(.semibold).monospacedDigit()).foregroundStyle(p.secondary).lineLimit(1)
             }
             HStack(alignment: .firstTextBaseline) {
                 Label {
-                    Text(stale ? state.nowTitle : state.prayer).font(.title2.weight(.bold)).lineLimit(1).minimumScaleFactor(0.7)
+                    Text(v.title).font(.title2.weight(.bold)).lineLimit(1).minimumScaleFactor(0.7)
                 } icon: {
-                    Image(systemName: state.symbol).foregroundStyle(p.accent)
+                    Image(systemName: v.symbol).foregroundStyle(p.accent)
                 }
                 .foregroundStyle(p.ink)
                 Spacer(minLength: 8)
                 if let range {
                     VStack(alignment: .trailing, spacing: 0) {
-                        if stale, let label = state.iqamaLabel {
+                        if let label = v.label {
                             Text(label).font(.caption.weight(.semibold)).foregroundStyle(p.secondary).lineLimit(1)
                         }
                         Text(timerInterval: range, countsDown: true)
@@ -188,8 +190,8 @@ struct PrayerLockScreenView: View {
                 .tint(p.accent)
             }
             HStack(spacing: 4) {
-                ForEach(Array(state.slots.enumerated()), id: \.offset) { i, slot in
-                    let on = i == state.nextIndex
+                ForEach(Array(v.slots.enumerated()), id: \.offset) { i, slot in
+                    let on = i == v.index
                     VStack(spacing: 2) {
                         Text(slot.name).font(.caption2.weight(on ? .bold : .regular)).lineLimit(1).minimumScaleFactor(0.7)
                         Text(slot.time).font(.caption2.monospacedDigit().weight(on ? .bold : .regular)).lineLimit(1).minimumScaleFactor(0.7)

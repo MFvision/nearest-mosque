@@ -464,7 +464,7 @@ struct OnbDayCards: View {
 // MARK: - Privacy
 
 /// Exactly what leaves the device, as a timeline, then the notification ask: Allow (the system asks only then) or,
-/// with the switch off, Finish.
+/// with nothing that needs notifications, Finish.
 struct PrivacyStep: View {
     let model: OnboardingModel
     @Environment(\.appModel) private var app
@@ -493,12 +493,12 @@ struct PrivacyStep: View {
             }
         } footer: {
             VStack(spacing: 8) {
-                OnbMorphButton(title: l10n.t(model.notify && !model.notificationsDenied ? "onb2_allow" : "onb2_finish"), phase: model.allow) {
+                OnbMorphButton(title: l10n.t(model.wantsNotifications && !model.notificationsDenied ? "onb2_allow" : "onb2_finish"), phase: model.allow) {
                     model.allowTapped()
                 }
                 .onbEnter(4)
                 VStack(spacing: 2) {
-                    if model.notify && model.notificationsDenied {
+                    if model.wantsNotifications && model.notificationsDenied {
                         // Off for the app (no prompt will come): where to turn them on.
                         OnbFootnote(text: l10n.t("notifications_denied"))
                         Button {
@@ -514,7 +514,7 @@ struct PrivacyStep: View {
                         .buttonStyle(.onbPress)
                         .hoverEffect(.highlight)
                         .modifier(OnSky())
-                    } else if model.notify && model.promptPending {
+                    } else if model.wantsNotifications && model.promptPending {
                         OnbFootnote(text: l10n.t(onb.device("onb2_ask_confirm")))
                     }
                     OnbFootnote(text: l10n.t("onb2_change_later"))

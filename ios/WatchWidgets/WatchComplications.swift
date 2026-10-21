@@ -11,21 +11,34 @@ struct WatchEntry: TimelineEntry {
     let state: SharedState?
     let extras: WatchExtras
     let today: DaySchedule?
+    /// What the countdown runs to: the next Adhan, or after an Adhan its iqama (`isIqama`).
     let next: Upcoming?
+    /// The next Adhan, also while the countdown runs to an iqama.
+    let nextAdhan: Upcoming?
+    let stage: PrayerMoment.Stage
     let relevance: TimelineEntryRelevance?
 
     static func make(_ date: Date, state: SharedState?, extras: WatchExtras) -> WatchEntry {
-        guard let state else { return WatchEntry(date: date, state: nil, extras: extras, today: nil, next: nil, relevance: nil) }
+        guard let state else {
+            return WatchEntry(date: date, state: nil, extras: extras, today: nil, next: nil, nextAdhan: nil, stage: .upcoming, relevance: nil)
+        }
         let days = state.days(date)
+        let m = PrayerCalculator().moment(days, now: date, iqama: state.iqamaSettings)
         // After an Adhan, the countdown to its iqama; otherwise to the next Adhan.
-        let next = PrayerCalculator().moment(days, now: date, iqama: state.iqamaSettings).map { m in
+        let next = m.map { m in
             m.stage == .toIqama ? Upcoming(event: m.event, at: m.until, periodStart: m.adhan, isTomorrow: false) : m.next
         }
         // Higher in the Smart Stack in the half hour before a prayer.
-        let soon = next.map { $0.at.timeIntervalSince(date) <= 1800 } ?? false
-        return WatchEntry(date: date, state: state, extras: extras, today: days.count == 3 ? days[1] : nil, next: next,
-                          relevance: TimelineEntryRelevance(score: soon ? 80 : 10, duration: soon ? 1800 : 0))
+        let soon = m.map { $0.next.at.timeIntervalSince(date) <= 1800 } ?? false
+        return WatchEntry(date: date, state: state, extras: extras, today: days.count == 3 ? days[1] : nil, next: next, nextAdhan: m?.next,
+                          stage: m?.stage ?? .upcoming, relevance: TimelineEntryRelevance(score: soon ? 80 : 10, duration: soon ? 1800 : 0))
     }
+
+    /// The countdown runs to the iqama of the prayer just called.
+    var isIqama: Bool { stage == .toIqama }
+
+    /// The time beside the prayer's name: its Adhan, also while the countdown runs to its iqama.
+    func prayerTime(_ n: Upcoming) -> Date { isIqama ? (n.periodStart ?? n.at) : n.at }
 
     /// Elapsed fraction of the current prayer period.
     var progress: Double {
@@ -105,13 +118,15 @@ struct NextPrayerView: View {
     var body: some View {
         if let s = entry.state, let next = entry.next {
             let name = entry.name(next.event)
+            // Waiting for the iqama, its time is named as such ("Iqama 12:10"), never put beside the prayer's name.
+            let short = entry.isIqama ? s.t("iqama_at", s.time(next.at)) : "\(name) \(s.time(next.at))"
             switch family {
             case .accessoryInline:
-                Label("\(name) \(s.time(next.at))", systemImage: next.event.watchSymbol)
+                Label(entry.isIqama ? "\(name) · \(short)" : short, systemImage: next.event.watchSymbol)
             case .accessoryCorner:
                 Image(systemName: next.event.watchSymbol).font(.title3).widgetAccentable()
                     .widgetLabel {
-                        Text("\(name) \(s.time(next.at))")
+                        Text(short)
                     }
             case .accessoryRectangular:
                 VStack(alignment: .leading, spacing: 1) {
@@ -119,10 +134,13 @@ struct NextPrayerView: View {
                         Image(systemName: next.event.watchSymbol).widgetAccentable().foregroundStyle(entry.accent)
                         Text(name).font(.headline).lineLimit(1)
                         Spacer(minLength: 2)
-                        Text(s.time(next.at)).font(.headline.monospacedDigit()).lineLimit(1)
+                        Text(s.time(entry.prayerTime(next))).font(.headline.monospacedDigit()).lineLimit(1)
                     }
-                    Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true)
-                        .font(.body.monospacedDigit()).foregroundStyle(entry.accent).widgetAccentable()
+                    HStack(spacing: 4) {
+                        if entry.isIqama { Text(s.t("iqama_in")).font(.caption).foregroundStyle(.secondary).lineLimit(1) }
+                        Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true)
+                            .font(.body.monospacedDigit()).foregroundStyle(entry.accent).widgetAccentable()
+                    }
                     Text(s.name).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -131,7 +149,11 @@ struct NextPrayerView: View {
                     Image(systemName: next.event.watchSymbol)
                 } currentValueLabel: {
                     VStack(spacing: 0) {
-                        Image(systemName: next.event.watchSymbol).font(.system(size: 10, weight: .semibold)).widgetAccentable()
+                        if entry.isIqama {
+                            Text(s.t("iqama_section")).font(.system(size: 8, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.5).widgetAccentable()
+                        } else {
+                            Image(systemName: next.event.watchSymbol).font(.system(size: 10, weight: .semibold)).widgetAccentable()
+                        }
                         Text(s.timeParts(next.at).time).font(.system(size: 13, weight: .bold)).lineLimit(1).minimumScaleFactor(0.5)
                     }
                 }
@@ -159,7 +181,7 @@ struct CountdownView: View {
                     HStack {
                         Label(entry.name(next.event), systemImage: next.event.watchSymbol).font(.headline).lineLimit(1)
                         Spacer(minLength: 2)
-                        Text(s.time(next.at)).font(.headline.monospacedDigit())
+                        Text(s.time(entry.prayerTime(next))).font(.headline.monospacedDigit())
                     }
                     ProgressView(timerInterval: start...max(start.addingTimeInterval(1), next.at), countsDown: false) {
                         EmptyView()
@@ -167,17 +189,24 @@ struct CountdownView: View {
                         EmptyView()
                     }
                     .tint(entry.accent).widgetAccentable()
-                    Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true).font(.caption.monospacedDigit())
+                    HStack(spacing: 4) {
+                        if entry.isIqama { Text(s.t("iqama_in")).font(.caption).foregroundStyle(.secondary).lineLimit(1) }
+                        Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true).font(.caption.monospacedDigit())
+                    }
                 }
             case .accessoryCorner:
                 Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true).font(.caption.monospacedDigit())
                     .widgetCurvesContent()
-                    .widgetLabel { Text(entry.name(next.event)) }
+                    .widgetLabel { Text(entry.isIqama ? s.t("iqama_in") : entry.name(next.event)) }
             default:
                 ZStack {
                     AccessoryWidgetBackground()
                     VStack(spacing: 0) {
-                        Image(systemName: next.event.watchSymbol).font(.system(size: 11, weight: .semibold)).widgetAccentable()
+                        if entry.isIqama {
+                            Text(s.t("iqama_section")).font(.system(size: 8, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.5).widgetAccentable()
+                        } else {
+                            Image(systemName: next.event.watchSymbol).font(.system(size: 11, weight: .semibold)).widgetAccentable()
+                        }
                         Text(timerInterval: entry.date...max(entry.date, next.at), countsDown: true)
                             .font(.system(size: 12, weight: .semibold).monospacedDigit()).multilineTextAlignment(.center)
                             .minimumScaleFactor(0.6).lineLimit(1).padding(.horizontal, 4)
@@ -203,7 +232,7 @@ struct TodayView: View {
                     HStack(spacing: 6) {
                         ForEach(line, id: \.self) { e in
                             if let at = today[e] {
-                                let isNext = entry.next?.event == e && entry.next?.isTomorrow == false
+                                let isNext = entry.nextAdhan?.event == e && entry.nextAdhan?.isTomorrow == false
                                 VStack(alignment: .leading, spacing: 0) {
                                     Text(entry.name(e)).font(.system(size: 11, weight: isNext ? .bold : .regular)).lineLimit(1).minimumScaleFactor(0.6)
                                     Text(s.timeParts(at).time).font(.system(size: 14, weight: .semibold).monospacedDigit()).lineLimit(1).minimumScaleFactor(0.6)

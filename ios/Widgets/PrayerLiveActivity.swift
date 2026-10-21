@@ -14,18 +14,20 @@ struct PrayerLiveActivity: Widget {
                 .widgetURL(URL(string: "nearmosque://prayer"))
         } dynamicIsland: { context in
             let s = context.state, a = context.attributes
+            // Before its time the Adhan or iqama counted down to; once it has passed, the next Adhan.
+            let v = s.shown(stale: context.isStale)
             let gold = IslandTint.of(a.style)
             return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
                     Label {
-                        Text(s.prayer).font(.headline).lineLimit(1)
+                        Text(v.prayer).font(.headline).lineLimit(1)
                     } icon: {
-                        Image(systemName: s.symbol).foregroundStyle(gold)
+                        Image(systemName: v.symbol).foregroundStyle(gold)
                     }
                     .padding(.leading, 4)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text(context.isStale ? s.iqamaText ?? s.timeText : s.timeText).font(.headline.monospacedDigit())
+                    Text(v.time).font(.headline.monospacedDigit())
                         .foregroundStyle(.white.opacity(0.8)).lineLimit(1).minimumScaleFactor(0.7).padding(.trailing, 4)
                 }
                 DynamicIslandExpandedRegion(.center) {
@@ -33,11 +35,11 @@ struct PrayerLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack(spacing: 8) {
-                        if context.isStale, let r = s.iqamaRange {
+                        if let label = v.label, let r = v.range {
                             // The Adhan time has come: "Time for Asr", then the countdown to the iqama.
-                            Text(s.nowTitle).font(.headline).foregroundStyle(.white)
+                            Text(v.title).font(.headline).foregroundStyle(.white)
                             HStack(alignment: .firstTextBaseline, spacing: 8) {
-                                Text(s.iqamaLabel ?? "").font(.subheadline.weight(.semibold)).foregroundStyle(.white.opacity(0.75))
+                                Text(label).font(.subheadline.weight(.semibold)).foregroundStyle(.white.opacity(0.75))
                                 Text(timerInterval: r, countsDown: true)
                                     .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
                                     .foregroundStyle(gold)
@@ -49,20 +51,20 @@ struct PrayerLiveActivity: Widget {
                                 EmptyView()
                             }
                             .tint(gold)
-                        } else if context.isStale {
-                            Text(s.nowTitle).font(.title2.weight(.semibold)).foregroundStyle(gold)
-                        } else {
-                            Text(timerInterval: s.start...max(s.start, s.at), countsDown: true)
+                        } else if let r = v.range {
+                            Text(timerInterval: r, countsDown: true)
                                 .font(.system(size: 34, weight: .semibold, design: .rounded).monospacedDigit())
                                 .foregroundStyle(gold)
                                 .multilineTextAlignment(.center)
                                 .environment(\.layoutDirection, .leftToRight)
-                            ProgressView(timerInterval: s.start...max(s.start.addingTimeInterval(1), s.at), countsDown: false) {
+                            ProgressView(timerInterval: r.lowerBound...max(r.lowerBound.addingTimeInterval(1), r.upperBound), countsDown: false) {
                                 EmptyView()
                             } currentValueLabel: {
                                 EmptyView()
                             }
                             .tint(gold)
+                        } else {
+                            Text(v.title).font(.title2.weight(.semibold)).foregroundStyle(gold)
                         }
                         HStack(spacing: 8) {
                             Link(destination: URL(string: "nearmosque://qibla")!) {
@@ -83,23 +85,33 @@ struct PrayerLiveActivity: Widget {
                 }
             } compactLeading: {
                 HStack(spacing: 4) {
-                    Image(systemName: s.symbol).foregroundStyle(gold)
-                    Text(s.prayer).font(.caption.weight(.semibold)).lineLimit(1).frame(maxWidth: 60)
+                    Image(systemName: v.symbol).foregroundStyle(gold)
+                    Text(v.prayer).font(.caption.weight(.semibold)).lineLimit(1).frame(maxWidth: 60)
                 }
             } compactTrailing: {
-                Text(timerInterval: (context.isStale ? s.iqamaRange : nil) ?? s.start...max(s.start, s.at), countsDown: true)
-                    .font(.caption.monospacedDigit().weight(.semibold))
-                    .foregroundStyle(gold)
-                    .frame(maxWidth: 56)
-                    .multilineTextAlignment(.trailing)
-            } minimal: {
-                ProgressView(timerInterval: s.start...max(s.start.addingTimeInterval(1), s.at), countsDown: true) {
-                    EmptyView()
-                } currentValueLabel: {
-                    Image(systemName: s.symbol).font(.system(size: 10, weight: .bold))
+                Group {
+                    if let r = v.range {
+                        Text(timerInterval: r, countsDown: true)
+                    } else {
+                        Text(v.time).lineLimit(1).minimumScaleFactor(0.7)
+                    }
                 }
-                .progressViewStyle(.circular)
-                .tint(gold)
+                .font(.caption.monospacedDigit().weight(.semibold))
+                .foregroundStyle(gold)
+                .frame(maxWidth: 56)
+                .multilineTextAlignment(.trailing)
+            } minimal: {
+                if let r = v.range {
+                    ProgressView(timerInterval: r.lowerBound...max(r.lowerBound.addingTimeInterval(1), r.upperBound), countsDown: true) {
+                        EmptyView()
+                    } currentValueLabel: {
+                        Image(systemName: v.symbol).font(.system(size: 10, weight: .bold))
+                    }
+                    .progressViewStyle(.circular)
+                    .tint(gold)
+                } else {
+                    Image(systemName: v.symbol).font(.system(size: 10, weight: .bold)).foregroundStyle(gold)
+                }
             }
             .widgetURL(URL(string: "nearmosque://prayer"))
             .keylineTint(gold)
@@ -119,15 +131,16 @@ struct PrayerActivityContent: View {
     var body: some View {
         if family == .small {
             let gold = IslandTint.of(attributes.style)
+            let v = state.shown(stale: stale)
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: 4) {
-                    Image(systemName: state.symbol).foregroundStyle(gold)
-                    Text(stale ? state.nowTitle : state.prayer).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
+                    Image(systemName: v.symbol).foregroundStyle(gold)
+                    Text(v.title).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
                     Spacer(minLength: 2)
-                    Text(state.timeText).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                    Text(v.time).font(.caption.monospacedDigit()).foregroundStyle(.secondary).lineLimit(1).minimumScaleFactor(0.7)
                 }
-                if let range = stale ? state.iqamaRange : Optional(state.start...max(state.start, state.at)) {
-                    if stale, let label = state.iqamaLabel {
+                if let range = v.range {
+                    if let label = v.label {
                         Text(label).font(.caption2.weight(.semibold)).foregroundStyle(.secondary).lineLimit(1)
                     }
                     Text(timerInterval: range, countsDown: true)

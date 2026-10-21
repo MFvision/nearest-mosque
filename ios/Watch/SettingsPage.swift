@@ -42,6 +42,9 @@ struct SettingsPage: View {
             }
             Section {
                 Toggle(l10n.t("watch_reminders"), isOn: $model.settings.ownReminders)
+                if model.remindersBlocked {
+                    Text(l10n.t("watch_reminders_denied")).font(.footnote).foregroundStyle(.orange)
+                }
                 if model.settings.ownReminders {
                     ForEach(PrayerEvent.prayers, id: \.self) { e in
                         Toggle(l10n.t(Format.prayerKey(e)), isOn: Binding(get: { model.settings.reminders.contains(e.rawValue) }, set: { on in
@@ -52,7 +55,7 @@ struct SettingsPage: View {
                     }
                 }
             } footer: {
-                Text(l10n.t("watch_reminders_note"))
+                Text(l10n.t("watch_reminders_note") + " " + l10n.t("watch_reminders_sound"))
             }
             if WatchHealth.available {
                 Section {
