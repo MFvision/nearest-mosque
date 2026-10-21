@@ -104,7 +104,7 @@ def build_ios_infoplist(data, tv=False):
     """InfoPlist.xcstrings: localized display name and permission purpose strings (the Apple TV app's own)."""
     # NSLocationUsageDescription: the same purpose string for the Mac app (macOS reads this key).
     keys = {"CFBundleDisplayName": "app_name", "NSLocationWhenInUseUsageDescription": "permission_location_ios",
-            "NSLocationUsageDescription": "permission_location_ios"}
+            "NSLocationUsageDescription": "permission_location_ios", "NSAlarmKitUsageDescription": "permission_alarms_ios"}
     if tv:
         keys = {"CFBundleDisplayName": "app_name", "NSLocationWhenInUseUsageDescription": "permission_location_tv"}
     out = {"sourceLanguage": "en", "version": "1.0", "strings": {}}

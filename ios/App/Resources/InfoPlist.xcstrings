@@ -664,6 +664,227 @@
           }
         }
       }
+    },
+    "NSAlarmKitUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rings the Adhan and the Fajr alarm like an alarm, even on silent, with a Stop button."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يُسمع الأذان ومنبّه الفجر كالمنبّه حتى في الوضع الصامت، مع زر للإيقاف."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اذان اور فجر کا الارم الارم کی طرح بجاتا ہے، خاموش موڈ میں بھی، \"بند کریں\" بٹن کے ساتھ۔"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ezanı ve sabah alarmını sessizde bile Durdur düğmesiyle alarm gibi çaldırır."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Membunyikan azan dan Alarm Subuh seperti alarm, bahkan saat senyap, dengan tombol Hentikan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fait sonner l’adhan et l’alarme du Fajr comme une alarme, même en mode silencieux, avec un bouton Arrêter."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hace sonar el adhan y la alarma del Fajr como una alarma, incluso en silencio, con un botón Detener."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включает азан и будильник на фаджр как будильник, даже в беззвучном режиме, с кнопкой «Стоп»."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজান ও ফজরের অ্যালার্ম অ্যালার্মের মতো বাজায়, সাইলেন্টেও, \"বন্ধ করুন\" বোতামসহ।"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اذان و زنگ هشدار صبح را مثل زنگ هشدار به صدا درمی‌آورد، حتی در حالت بی‌صدا، با دکمهٔ توقف."
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اذان و الارم صبح را مثل الارم به صدا درمی‌آورد، حتی در حالت بی‌صدا، با دکمهٔ توقف."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "让宣礼和晨礼闹钟像闹钟一样响起，即使在静音模式下也会响，并带有“停止”按钮。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अज़ान और फ़ज्र अलार्म को अलार्म की तरह बजाता है, साइलेंट पर भी, \"बंद करें\" बटन के साथ।"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca o adhan e o alarme do Fajr como um alarme, mesmo no silencioso, com um botão Parar."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana kunna kiran sallah da ƙararrawar Asuba kamar ƙararrawa, ko da a yanayin shiru, tare da maɓallin Tsaya."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hulia Adhana na kengele ya Alfajiri kama kengele, hata simu ikiwa kimya, ikiwa na kitufe cha Simamisha."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pinatutunog ang Adhan at ang alarm sa Fajr na parang alarm, kahit naka-silent, may button na Ihinto."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đổ chuông Adhan và báo thức Fajr như báo thức, kể cả khi im lặng, kèm nút Dừng."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ให้อะซานและนาฬิกาปลุกซุบฮิดังแบบนาฬิกาปลุก แม้อยู่ในโหมดเงียบ พร้อมปุ่มหยุด"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រោទ៍អាហ្សាន និងម៉ោងរោទ៍ស៊ូពុហ៍ដូចម៉ោងរោទ៍ សូម្បីតែពេលបិទសំឡេង ជាមួយប៊ូតុងបញ្ឈប់។"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئەزان ۋە بامدات ئويغاتقۇچىنى ئۈنسىز ھالەتتىمۇ توختىتىش كۇنۇپكىسى بىلەن ئويغاتقۇچتەك جىرىڭلىتىدۇ."
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بانگ و ئەلارمی بەیانی وەک ئەلارم لێدەدات، تەنانەت لە دۆخی بێدەنگیشدا، لەگەڵ دوگمەی ڕاگرتن."
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pušta ezan i alarm za sabah kao alarm, čak i u nečujnom režimu, s dugmetom Zaustavi."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пушта езан и аларм за сабах као аларм, чак и у нечујном режиму, са дугметом Заустави."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ги пушта езанот и алармот за сабах како аларм, дури и на тивок режим, со копче Запри."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az adhant és a Fadzsr-ébresztőt ébresztőként szólaltatja meg, néma módban is, Leállítás gombbal."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laat de adhan en de Fajr-wekker als wekker klinken, ook op stil, met een stopknop."
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "აზანსა და ფაჯრის მაღვიძარას მაღვიძარასავით რეკავს, ჩუმ რეჟიმშიც, შეჩერების ღილაკით."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අදාන් සහ ෆජ්ර් එලාමය එලාමයක් මෙන් නාද කරයි, නිහඬ ප්‍රකාරයේදී පවා, නැවැත්වීමේ බොත්තමක් සමඟ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అజాన్‌ను, ఫజ్ర్ అలారంను అలారంలా మోగిస్తుంది, సైలెంట్‌లో ఉన్నా కూడా, ఆపు బటన్‌తో."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅಜಾನ್ ಮತ್ತು ಫಜ್ರ್ ಅಲಾರಂ ಅನ್ನು ಅಲಾರಂನಂತೆ ರಿಂಗ್ ಮಾಡುತ್ತದೆ, ಸೈಲೆಂಟ್‌ನಲ್ಲಿದ್ದರೂ ಸಹ, ನಿಲ್ಲಿಸುವ ಬಟನ್‌ನೊಂದಿಗೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ബാങ്കും സുബ്ഹ് അലാറവും അലാറം പോലെ മുഴക്കുന്നു, സൈലന്റിലും, നിർത്താനുള്ള ബട്ടണോടെ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अजान आणि फजर अलार्म अलार्मसारखे वाजवते, सायलेंटवरही, \"बंद करा\" बटणासह."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "અઝાન અને ફજર એલાર્મને એલાર્મની જેમ વગાડે છે, સાયલન્ટ પર પણ, \"બંધ કરો\" બટન સાથે."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਜ਼ਾਨ ਅਤੇ ਫ਼ਜਰ ਦੇ ਅਲਾਰਮ ਨੂੰ ਅਲਾਰਮ ਵਾਂਗ ਵਜਾਉਂਦਾ ਹੈ, ਸਾਈਲੈਂਟ ’ਤੇ ਵੀ, \"ਬੰਦ ਕਰੋ\" ਬਟਨ ਨਾਲ।"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজান আৰু ফজৰৰ এলাৰ্ম এলাৰ্মৰ দৰে বজায়, ছাইলেণ্টতো, \"বন্ধ কৰক\" বুটামৰ সৈতে।"
+          }
+        }
+      }
     }
   }
 }
