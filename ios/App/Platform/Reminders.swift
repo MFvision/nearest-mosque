@@ -15,8 +15,9 @@ import AppIntents
 /// when the app comes to the screen (at most hourly), at midnight, when settings change, or when iOS gives the app a
 /// background refresh. The Adhan and the spoken reminders are notification sounds (iOS plays at most 30 seconds);
 /// opening an Adhan notification plays the whole Adhan in the app. On iPhone and iPad with iOS 26 and alarms allowed,
-/// the Adhan and the Fajr alarm are alarms instead (PrayerAlarms: they ring until stopped, even on silent; the
-/// prayer's iqama notification then carries Prayed); earlier iOS, the Mac and Vision Pro get notifications.
+/// the Adhan and the Fajr alarm are alarms instead (PrayerAlarms: they ring until stopped, even on silent), each with a
+/// silent notification at the same moment that carries the buttons; earlier iOS, the Mac and Vision Pro get
+/// notifications.
 enum Reminders {
     /// Prayer alerts; the four repeating reminders (Al-Kahf, Salli Ala Rasulillah, Qur'an, bedtime) take the rest.
     static let maxPending = 60
@@ -101,13 +102,19 @@ enum Reminders {
         // Alarms need no notification permission; an alert that got one is not also a notification.
         let alarmed = await PrayerAlarms.reschedule(plan, alerts: alerts, silence: silence, iqama: iqama, l10n: l10n, now: now)
         let alarmedAdhans = plan.filter { $0.kind == .adhan && alarmed.contains($0.identifier) }
+        // An alarm has no Prayed or Remind me of its own: a silent notification at the same moment carries the Adhan
+        // notification's buttons, and opened it carries the whole Adhan on in the app. One per alarm (a Fajr alarm
+        // that rings as the Fajr Adhan is one alarm).
+        let companions = Set(plan.filter { a in
+            alarmed.contains(a.identifier) && (a.kind == .adhan || (a.kind == .fajrAlarm && !alarmedAdhans.contains { $0.event == a.event && $0.at == a.at }))
+        }.map(\.identifier))
         guard await authorized() else {
             center.removePendingNotificationRequests(withIdentifiers: old)
             return 0
         }
         let voice = alerts.voice ?? VoiceLanguage.forInterface(l10n.language)
         var built: [(PlannedAlert, UNMutableNotificationContent)] = []
-        for a in AlertPlanner.budget(plan.filter { !alarmed.contains($0.identifier) }, limit: room, now: now) {
+        for a in AlertPlanner.budget(plan.filter { !alarmed.contains($0.identifier) || companions.contains($0.identifier) }, limit: room, now: now) {
             let content = UNMutableNotificationContent()
             let name = l10n.t(Format.prayerKey(a.event))
             let prayerAt = days.first { $0.date == a.date }?[a.event] ?? a.at
@@ -174,6 +181,12 @@ enum Reminders {
             case .salawat, .quran, .sleep, .kahf:
                 continue
             }
+            if companions.contains(a.identifier) {
+                // The alarm makes the sound.
+                content.sound = nil
+                content.interruptionLevel = .active
+                content.userInfo["alarm"] = true
+            }
             built.append((a, content))
         }
         let verses = verseRequests(alerts: alerts, zone: loc.zone, l10n: l10n, verse: verse)
@@ -235,6 +248,12 @@ enum Reminders {
     static func snooze(_ content: UNNotificationContent) async {
         guard let copy = content.mutableCopy() as? UNMutableNotificationContent else { return }
         copy.userInfo["at"] = Date().addingTimeInterval(5 * 60).timeIntervalSince1970
+        if copy.userInfo["alarm"] as? Bool == true {
+            // Its alarm made the sound; the reminder five minutes later makes its own.
+            copy.userInfo["alarm"] = nil
+            copy.sound = AudioCatalog.sound(copy.userInfo["adhan"] as? String)
+            copy.interruptionLevel = .timeSensitive
+        }
         try? await UNUserNotificationCenter.current().add(UNNotificationRequest(
             identifier: "snooze-\(UUID().uuidString)", content: copy, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 5 * 60, repeats: false)))
     }
@@ -271,7 +290,10 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let info = notification.request.content.userInfo
         Task { @MainActor in
-            if let file = info["adhan"] as? String {
+            if info["alarm"] as? Bool == true {
+                // An alarm's silent notification: the alarm is ringing.
+                completionHandler([.banner, .list])
+            } else if let file = info["adhan"] as? String {
                 AdhanPlayer.shared.play(file, title: Self.adhanTitle(info["source"] as? String), adhan: true)
                 completionHandler([.banner, .list])
             } else {
@@ -295,6 +317,8 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         let delivered = response.notification.date
         let action = Reminders.Action(rawValue: response.actionIdentifier)
         Task { @MainActor in
+            // A button on an alarm's silent notification also stops the alarm, if it is still ringing.
+            if content.userInfo["alarm"] as? Bool == true { PrayerAlarms.stopRinging() }
             switch action {
             case .prayed: Reminders.markPrayed(event: event, date: date, delivered: delivered)
             case .snooze: await Reminders.snooze(content)
@@ -401,7 +425,8 @@ enum PrayerAlarms {
                 let name = l10n.t(Format.prayerKey(a.event))
                 let id = UUID()
                 // What the Adhan notification's buttons did: Silence where the silence begins here, else the whole
-                // Adhan in the app (not with the short Adhan, which the alarm plays whole). Prayed is on the iqama.
+                // Adhan in the app (not with the short Adhan, which the alarm plays whole). Prayed and Remind me are on
+                // its silent notification.
                 let silences = adhan && silence.offersAction(.adhan, event: a.event, date: a.date, iqama: iqama)
                 let full = adhan && !silences && !alerts.shortAdhan
                 let second: AlarmButton? = silences
@@ -439,6 +464,17 @@ enum PrayerAlarms {
         }
         #endif
         return []
+    }
+
+    /// Stops the app's alarm that is ringing now, if any.
+    static func stopRinging() {
+        #if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
+        if #available(iOS 26.0, *) {
+            for alarm in (try? AlarmManager.shared.alarms) ?? [] {
+                if case .alerting = alarm.state { try? AlarmManager.shared.stop(id: alarm.id) }
+            }
+        }
+        #endif
     }
 
     /// The alarms set that are still to ring, soonest first (for "Check my alerts").

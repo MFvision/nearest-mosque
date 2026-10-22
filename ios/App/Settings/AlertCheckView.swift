@@ -217,7 +217,8 @@ struct AlertReport {
             // The time the rebuild set (a time-interval trigger reports one counted from now instead).
             let at = (r.content.userInfo["at"] as? Double).map(Date.init(timeIntervalSince1970:))
                 ?? (r.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate()
-            guard let at, at > now else { return nil }
+            // An alarm's silent notification: the alarm itself is listed below.
+            guard let at, at > now, r.content.userInfo["alarm"] as? Bool != true else { return nil }
             return Next(id: r.identifier, at: at, title: r.content.title, alarm: false, sound: r.content.userInfo["sound"] as? String)
         }
         next += PrayerAlarms.upcoming(after: now).compactMap { a -> Next? in
