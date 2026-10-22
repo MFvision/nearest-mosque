@@ -31,17 +31,18 @@ struct PrayerLiveActivity: Widget {
                         .foregroundStyle(.white.opacity(0.8)).lineLimit(1).minimumScaleFactor(0.7).padding(.trailing, 4)
                 }
                 DynamicIslandExpandedRegion(.center) {
-                    Text(a.nextLabel + " · " + s.city).font(.caption).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
+                    // Once the Adhan time has come, "Time for Asr" takes this line, so the bottom keeps room for the buttons.
+                    Text((v.label != nil ? v.title : a.nextLabel) + " · " + s.city)
+                        .font(.caption).foregroundStyle(.white.opacity(0.7)).lineLimit(1).minimumScaleFactor(0.8)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    VStack(spacing: 8) {
+                    VStack(spacing: 6) {
                         if let label = v.label, let r = v.range {
-                            // The Adhan time has come: "Time for Asr", then the countdown to the iqama.
-                            Text(v.title).font(.headline).foregroundStyle(.white)
+                            // The Adhan time has come ("Time for Asr" is on the center line): the countdown to the iqama.
                             HStack(alignment: .firstTextBaseline, spacing: 8) {
                                 Text(label).font(.subheadline.weight(.semibold)).foregroundStyle(.white.opacity(0.75))
                                 Text(timerInterval: r, countsDown: true)
-                                    .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+                                    .font(.system(size: 28, weight: .semibold, design: .rounded).monospacedDigit())
                                     .foregroundStyle(gold)
                                     .environment(\.layoutDirection, .leftToRight)
                             }
@@ -53,7 +54,7 @@ struct PrayerLiveActivity: Widget {
                             .tint(gold)
                         } else if let r = v.range {
                             Text(timerInterval: r, countsDown: true)
-                                .font(.system(size: 34, weight: .semibold, design: .rounded).monospacedDigit())
+                                .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
                                 .foregroundStyle(gold)
                                 .multilineTextAlignment(.center)
                                 .environment(\.layoutDirection, .leftToRight)
@@ -69,13 +70,15 @@ struct PrayerLiveActivity: Widget {
                         HStack(spacing: 8) {
                             Link(destination: URL(string: "nearmosque://qibla")!) {
                                 Label(a.qiblaLabel, systemImage: "location.north.line.fill").font(.subheadline.weight(.semibold))
-                                    .frame(maxWidth: .infinity, minHeight: 36)
+                                    .lineLimit(1).minimumScaleFactor(0.8)
+                                    .frame(maxWidth: .infinity, minHeight: 32)
                                     .foregroundStyle(Color(red: 0.03, green: 0.11, blue: 0.16))
                                     .background(gold, in: Capsule())
                             }
                             Link(destination: URL(string: "nearmosque://mosques")!) {
                                 Label(a.mosqueLabel, systemImage: "building.columns").font(.subheadline.weight(.semibold))
-                                    .frame(maxWidth: .infinity, minHeight: 36)
+                                    .lineLimit(1).minimumScaleFactor(0.8)
+                                    .frame(maxWidth: .infinity, minHeight: 32)
                                     .foregroundStyle(.white)
                                     .background(Color.white.opacity(0.15), in: Capsule())
                             }
