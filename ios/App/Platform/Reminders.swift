@@ -23,9 +23,8 @@ enum Reminders {
     static let maxPending = 60
 
     /// Notification categories: the buttons under each kind of alert.
-    /// The `Silence` ones add "Silence until after the prayer" (iPhone, with silence during prayer on); the
-    /// `iqamaPrayed` ones add Prayed, for a prayer whose Adhan was an alarm (it has no such button).
-    enum Category: String { case prayer, before, verse, prayerSilence, iqamaSilence, iqamaPrayed, iqamaPrayedSilence }
+    /// The `Silence` ones add "Silence until after the prayer" (iPhone, with silence during prayer on).
+    enum Category: String { case prayer, before, verse, prayerSilence, iqamaSilence }
     enum Action: String { case prayed, snooze, qibla, mosques, silence }
 
     /// Registers the buttons in the current language (again whenever the language changes).
@@ -42,7 +41,6 @@ enum Reminders {
             UNNotificationCategory(identifier: Category.prayer.rawValue, actions: [prayed, snooze, qibla, mosques], intentIdentifiers: []),
             UNNotificationCategory(identifier: Category.before.rawValue, actions: [qibla, mosques], intentIdentifiers: []),
             UNNotificationCategory(identifier: Category.verse.rawValue, actions: [], intentIdentifiers: []),
-            UNNotificationCategory(identifier: Category.iqamaPrayed.rawValue, actions: [prayed, qibla, mosques], intentIdentifiers: []),
         ]
         if SilenceShortcutRunner.supported {
             // Opens the app, which runs the user's Shortcut (the silence button first, so it is never cut off).
@@ -50,7 +48,6 @@ enum Reminders {
                                                icon: UNNotificationActionIcon(systemImageName: "moon.fill"))
             categories.insert(UNNotificationCategory(identifier: Category.prayerSilence.rawValue, actions: [silence, prayed, snooze, qibla, mosques], intentIdentifiers: []))
             categories.insert(UNNotificationCategory(identifier: Category.iqamaSilence.rawValue, actions: [silence, qibla, mosques], intentIdentifiers: []))
-            categories.insert(UNNotificationCategory(identifier: Category.iqamaPrayedSilence.rawValue, actions: [silence, prayed, qibla, mosques], intentIdentifiers: []))
         }
         UNUserNotificationCenter.current().setNotificationCategories(categories)
     }
@@ -99,7 +96,7 @@ enum Reminders {
         }
         // Cut short (the background refresh ran out of time): the alerts and alarms stay as they are.
         if Task.isCancelled { return 0 }
-        // Alarms need no notification permission; an alert that got one is not also a notification.
+        // Alarms need no notification permission; an alert that got one is at most its silent notification (below).
         let alarmed = await PrayerAlarms.reschedule(plan, alerts: alerts, silence: silence, iqama: iqama, l10n: l10n, now: now)
         let alarmedAdhans = plan.filter { $0.kind == .adhan && alarmed.contains($0.identifier) }
         // An alarm has no Prayed or Remind me of its own: a silent notification at the same moment carries the Adhan
@@ -114,7 +111,13 @@ enum Reminders {
         }
         let voice = alerts.voice ?? VoiceLanguage.forInterface(l10n.language)
         var built: [(PlannedAlert, UNMutableNotificationContent)] = []
-        for a in AlertPlanner.budget(plan.filter { !alarmed.contains($0.identifier) || companions.contains($0.identifier) }, limit: room, now: now) {
+        // The next day's silent notifications count with the sounding alerts; later ones only take the room those leave,
+        // so a button never pushes out an alert that makes a sound.
+        let edge = now.addingTimeInterval(24 * 3600)
+        let first = AlertPlanner.budget(plan.filter { !alarmed.contains($0.identifier) || (companions.contains($0.identifier) && $0.at <= edge) },
+                                        limit: room, now: now)
+        let later = plan.filter { companions.contains($0.identifier) && $0.at > edge }.sorted { $0.at < $1.at }.prefix(max(0, room - first.count))
+        for a in first + Array(later) {
             let content = UNMutableNotificationContent()
             let name = l10n.t(Format.prayerKey(a.event))
             let prayerAt = days.first { $0.date == a.date }?[a.event] ?? a.at
@@ -168,12 +171,11 @@ enum Reminders {
                 content.title = l10n.t("notif_iqama_title", name)
                 content.body = l10n.t("notif_iqama_body")
                 content.subtitle = l10n.t("iqama_at", Format.time(a.at, zone: loc.zone, locale: l10n.locale))
-                // After an Adhan alarm: Prayed here, and Silence again where it began at the Adhan (the alarm may have been stopped).
+                // After an Adhan alarm: Silence again where it began at the Adhan (the alarm may have been stopped).
                 let rang = alarmedAdhans.contains { $0.event == a.event && $0.date == a.date }
                 let silences = silence.offersAction(a.kind, event: a.event, date: a.date, iqama: iqama)
                     || (rang && silence.offersAction(.adhan, event: a.event, date: a.date, iqama: iqama))
-                let category: Category = rang ? (silences ? .iqamaPrayedSilence : .iqamaPrayed) : (silences ? .iqamaSilence : .before)
-                content.categoryIdentifier = category.rawValue
+                content.categoryIdentifier = (silences ? Category.iqamaSilence : .before).rawValue
                 content.relevanceScore = 0.8
                 // Not through the user's own silence when it has begun by then (from the Adhan, and on Friday).
                 let silenced = silence.enabled && silence.includes(a.event) && (silence.start == .adhan || (a.event == .dhuhr && a.date.isFriday))
@@ -182,9 +184,8 @@ enum Reminders {
                 continue
             }
             if companions.contains(a.identifier) {
-                // The alarm makes the sound.
+                // The alarm makes the sound; still Time Sensitive, so its buttons are there through a Focus.
                 content.sound = nil
-                content.interruptionLevel = .active
                 content.userInfo["alarm"] = true
             }
             built.append((a, content))
@@ -317,8 +318,10 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         let delivered = response.notification.date
         let action = Reminders.Action(rawValue: response.actionIdentifier)
         Task { @MainActor in
-            // A button on an alarm's silent notification also stops the alarm, if it is still ringing.
-            if content.userInfo["alarm"] as? Bool == true { PrayerAlarms.stopRinging() }
+            // A button on an alarm's silent notification also stops that alarm, if it is still ringing.
+            if content.userInfo["alarm"] as? Bool == true, let at = content.userInfo["at"] as? Double {
+                PrayerAlarms.stopRinging(at: Date(timeIntervalSince1970: at))
+            }
             switch action {
             case .prayed: Reminders.markPrayed(event: event, date: date, delivered: delivered)
             case .snooze: await Reminders.snooze(content)
@@ -398,7 +401,8 @@ enum PrayerAlarms {
 
     /// Replaces the app's alarms with one for each Adhan and Fajr alarm of `plan` in their days (a Fajr alarm at the
     /// Fajr time itself, with the Fajr Adhan on, is one alarm playing the Adhan). Returns the identifiers of the planned
-    /// alerts that got an alarm, so only the others become notifications. Never asks (see requestAuthorization).
+    /// alerts that got an alarm: those become silent notifications with the buttons, the others sounding ones. Never
+    /// asks (see requestAuthorization).
     static func reschedule(_ plan: [PlannedAlert], alerts: AlertSettings, silence: SilenceSettings, iqama: IqamaSettings,
                            l10n: Localization, now: Date) async -> Set<String> {
         #if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
@@ -415,7 +419,8 @@ enum PrayerAlarms {
                 return []
             }
             var covered: Set<String> = []
-            var records: [Record] = []
+            // A ringing alarm stays, and so does its record (its silent notification's buttons stop it).
+            var records = scheduled.filter { UUID(uuidString: $0.id).map(ringing.contains) ?? false }
             for a in plan where a.kind == .adhan || a.kind == .fajrAlarm {
                 let days = a.kind == .adhan ? adhanDays : fajrAlarmDays
                 guard !covered.contains(a.identifier), a.at <= now.addingTimeInterval(Double(days) * 86400) else { continue }
@@ -466,11 +471,12 @@ enum PrayerAlarms {
         return []
     }
 
-    /// Stops the app's alarm that is ringing now, if any.
-    static func stopRinging() {
+    /// Stops the app's alarm set for `at` if it is ringing now (never another prayer's).
+    static func stopRinging(at: Date) {
         #if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if #available(iOS 26.0, *) {
-            for alarm in (try? AlarmManager.shared.alarms) ?? [] {
+            let ids = Set(scheduled.filter { abs($0.at.timeIntervalSince(at)) < 1 }.compactMap { UUID(uuidString: $0.id) })
+            for alarm in (try? AlarmManager.shared.alarms) ?? [] where ids.contains(alarm.id) {
                 if case .alerting = alarm.state { try? AlarmManager.shared.stop(id: alarm.id) }
             }
         }
