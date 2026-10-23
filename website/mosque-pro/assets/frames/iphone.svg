@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 0 796 1634" preserveAspectRatio="none">
+  <!-- An iPhone in the shape of the current Pro models, drawn for the website: the screen area (x 24, y 26.15,
+       728 x 1581.7, corner radius 94) is left open for the app's screenshot under it. -->
+  <defs>
+    <linearGradient id="rim" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#4E535B"/><stop offset="0.006" stop-color="#D9DCE1"/><stop offset="0.014" stop-color="#8D9299"/>
+      <stop offset="0.5" stop-color="#A3A8AF"/>
+      <stop offset="0.986" stop-color="#8D9299"/><stop offset="0.994" stop-color="#D9DCE1"/><stop offset="1" stop-color="#4E535B"/>
+    </linearGradient>
+    <linearGradient id="rimv" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="0.03" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.97" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="btn" x1="0" x2="1">
+      <stop offset="0" stop-color="#5C6168"/><stop offset="0.45" stop-color="#C4C8CE"/><stop offset="1" stop-color="#7C8188"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="0.55">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.10"/><stop offset="0.38" stop-color="#fff" stop-opacity="0.03"/><stop offset="0.39" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Action button and volume buttons on the left; side button on the right. -->
+  <rect x="-7" y="330" width="14" height="72" rx="5" fill="url(#btn)"/>
+  <rect x="-7" y="470" width="14" height="124" rx="5" fill="url(#btn)"/>
+  <rect x="-7" y="628" width="14" height="124" rx="5" fill="url(#btn)"/>
+  <rect x="769" y="500" width="14" height="214" rx="5" fill="url(#btn)"/>
+  <!-- The aluminium edge, then the black border of the glass, both open over the screen. -->
+  <path fill-rule="evenodd" fill="url(#rim)" d="M116 0H660A116 116 0 0 1 776 116V1518A116 116 0 0 1 660 1634H116A116 116 0 0 1 0 1518V116A116 116 0 0 1 116 0Z M117 9A107 107 0 0 0 10 116V1518A107 107 0 0 0 117 1625H659A107 107 0 0 0 766 1518V116A107 107 0 0 0 659 9Z"/>
+  <path fill-rule="evenodd" fill="url(#rimv)" d="M116 0H660A116 116 0 0 1 776 116V1518A116 116 0 0 1 660 1634H116A116 116 0 0 1 0 1518V116A116 116 0 0 1 116 0Z M117 9A107 107 0 0 0 10 116V1518A107 107 0 0 0 117 1625H659A107 107 0 0 0 766 1518V116A107 107 0 0 0 659 9Z"/>
+  <!-- Antenna lines and the Camera Control on the edge. -->
+  <g fill="#3E434A"><rect x="0" y="196" width="10" height="5"/><rect x="0" y="1436" width="10" height="5"/><rect x="766" y="196" width="10" height="5"/><rect x="766" y="1436" width="10" height="5"/></g>
+  <rect x="768.5" y="1010" width="6" height="150" rx="3" fill="#262A31" stroke="#C9CDD3" stroke-width="1.2"/>
+  <path fill-rule="evenodd" fill="#050608" d="M117 9A107 107 0 0 0 10 116V1518A107 107 0 0 0 117 1625H659A107 107 0 0 0 766 1518V116A107 107 0 0 0 659 9Z M118 26.15A94 94 0 0 0 24 120.15V1513.85A94 94 0 0 0 118 1607.85H658A94 94 0 0 0 752 1513.85V120.15A94 94 0 0 0 658 26.15Z"/>
+  <path fill="none" stroke="#fff" stroke-opacity="0.13" stroke-width="1.5" d="M117 10.5A105.5 105.5 0 0 0 11.5 116V1518A105.5 105.5 0 0 0 117 1623.5H659A105.5 105.5 0 0 0 764.5 1518V116A105.5 105.5 0 0 0 659 10.5Z"/>
+  <!-- A faint reflection on the glass. -->
+  <path fill="url(#gloss)" d="M118 26.15A94 94 0 0 0 24 120.15V1513.85A94 94 0 0 0 118 1607.85H658A94 94 0 0 0 752 1513.85V120.15A94 94 0 0 0 658 26.15Z"/>
+</svg>

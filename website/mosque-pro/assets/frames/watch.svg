@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -96 418 652" preserveAspectRatio="none">
+  <!-- An Apple Watch (aluminium case, Sport Band) drawn for the website: the display area (x 26, y 24.4,
+       338 x 411.2, corner radius 82) is left open for the watch screenshot under it. -->
+  <defs>
+    <linearGradient id="band" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#1A2230" stop-opacity="0"/><stop offset="0.55" stop-color="#1A2230" stop-opacity="0.95"/><stop offset="1" stop-color="#232C3B"/>
+    </linearGradient>
+    <linearGradient id="band2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#232C3B"/><stop offset="0.45" stop-color="#1A2230" stop-opacity="0.95"/><stop offset="1" stop-color="#1A2230" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bandSide" x1="0" x2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0.35"/><stop offset="0.12" stop-color="#000" stop-opacity="0"/><stop offset="0.88" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="case" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#E4E6EA"/><stop offset="0.3" stop-color="#A4A8AF"/><stop offset="0.7" stop-color="#8E939A"/><stop offset="1" stop-color="#C9CCD1"/>
+    </linearGradient>
+    <linearGradient id="crown" x1="0" x2="1">
+      <stop offset="0" stop-color="#6E737A"/><stop offset="0.5" stop-color="#D4D7DC"/><stop offset="1" stop-color="#7D8289"/>
+    </linearGradient>
+    <pattern id="ridges" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="2" fill="#000" fill-opacity="0.22"/></pattern>
+    <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="0.7">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.12"/><stop offset="0.42" stop-color="#fff" stop-opacity="0.03"/><stop offset="0.43" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- The band, above and below the case. -->
+  <rect x="68" y="-96" width="254" height="140" fill="url(#band)"/>
+  <rect x="68" y="-96" width="254" height="140" fill="url(#bandSide)"/>
+  <rect x="68" y="416" width="254" height="140" fill="url(#band2)"/>
+  <rect x="68" y="416" width="254" height="140" fill="url(#bandSide)"/>
+  <!-- Digital Crown and side button. -->
+  <rect x="383" y="110" width="10" height="56" fill="#7C8188"/>
+  <rect x="389" y="104" width="22" height="68" rx="7" fill="url(#crown)"/>
+  <rect x="389" y="104" width="22" height="68" rx="7" fill="url(#ridges)"/>
+  <rect x="385" y="226" width="9" height="104" rx="4.5" fill="url(#crown)"/>
+  <!-- The case, then the black border of the glass, both open over the display. -->
+  <path fill-rule="evenodd" fill="url(#case)" d="M108 0H282A108 108 0 0 1 390 108V352A108 108 0 0 1 282 460H108A108 108 0 0 1 0 352V108A108 108 0 0 1 108 0Z M108 9A99 99 0 0 0 9 108V352A99 99 0 0 0 108 451H282A99 99 0 0 0 381 352V108A99 99 0 0 0 282 9Z"/>
+  <path fill-rule="evenodd" fill="#050608" d="M108 9A99 99 0 0 0 9 108V352A99 99 0 0 0 108 451H282A99 99 0 0 0 381 352V108A99 99 0 0 0 282 9Z M108 24.4A82 82 0 0 0 26 106.4V353.6A82 82 0 0 0 108 435.6H282A82 82 0 0 0 364 353.6V106.4A82 82 0 0 0 282 24.4Z"/>
+  <path fill="none" stroke="#fff" stroke-opacity="0.14" stroke-width="1.5" d="M108 10.5A97.5 97.5 0 0 0 10.5 108V352A97.5 97.5 0 0 0 108 449.5H282A97.5 97.5 0 0 0 379.5 352V108A97.5 97.5 0 0 0 282 10.5Z"/>
+  <path fill="url(#gloss)" d="M108 24.4A82 82 0 0 0 26 106.4V353.6A82 82 0 0 0 108 435.6H282A82 82 0 0 0 364 353.6V106.4A82 82 0 0 0 282 24.4Z"/>
+</svg>

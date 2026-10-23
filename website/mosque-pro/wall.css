@@ -1,0 +1,134 @@
+/* The wall of screens (wall.js): a dark band, whatever the page's theme, like the night behind the app. The band is
+   tall; its stage stays pinned while the page scrolls through it, and the columns glide inside the stage.
+   Sizes all come from --mw, the width of the phone's screen: the middle column's cards are exactly that screen
+   (728 x 1581.7 in the frame's drawing, assets/frames/iphone.svg), the phone is the frame drawn round it. They sit
+   on the band itself, so that the band's height can follow them. */
+.wall { --wall-bg: #040C13; --wall-ink: #F1F4F6; --wall-ink-2: #A9B6C0; --wall-gold: #E2BC5E;
+  position: relative; z-index: 2; display: block; background: var(--wall-bg); color: var(--wall-ink);
+  --vh: 1vh;
+  --mw: min(44vw, calc(36 * var(--vh))); --g: 12px;
+  --sw: calc(var(--mw) * 0.9);       /* the other columns */
+  --mh: calc(var(--mw) * 2.17267);   /* the screen's height: 1581.7 / 728 */
+  --sh: calc(var(--sw) * 2.17267);
+  --pm: calc(var(--mh) + var(--g));  /* one step of the middle column */
+  --ps: calc(var(--sh) + var(--g));  /* one card of the other columns */
+  --pw: calc(var(--mw) * 1.06593);   /* the phone: 776 / 728 */
+  --ph: calc(var(--mw) * 2.24451);   /* 1634 / 728 */
+  --bez: calc(var(--mw) * 0.035921); /* the screen's top inside the phone: 26.15 / 728 */
+  /* How far the page scrolls while the stage is pinned: four steps of the middle column (five screens, STEPS in
+     wall.js), with a short stop on each, so the screens pass the phone at about the speed of the scroll. */
+  --run: calc(var(--pm) * 4.6); }
+@supports (height: 1svh) { .wall { --vh: 1svh; } }
+@media (min-width: 700px) { .wall { --mw: min(23vw, calc(30 * var(--vh)), 360px); --g: clamp(14px, 1.5vw, 24px); } }
+/* Wide screens: seven columns, the outer two running off the edges, and the other columns widen to fill the width
+   (the middle one stays the phone's screen). The same query is WIDE in wall.js. */
+@media (min-width: 700px) and (min-aspect-ratio: 3/2), (min-width: 1280px) {
+  .wall { --sw: max(calc(var(--mw) * 0.9), calc((100vw - var(--mw) - 6 * var(--g)) / 5)); }
+}
+/* In the dark theme the band's top fades in over the night globe above and its foot into the page below; on the
+   light page it starts and ends cleanly, as the page's other sections do. */
+.wall::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 96px; pointer-events: none; display: none;
+  background: linear-gradient(to bottom, rgba(4, 12, 19, 0), rgba(4, 12, 19, 0.55) 60%, var(--wall-bg)); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wall::before { display: block; }
+  :root:not([data-theme="light"]) .wall { background: linear-gradient(to bottom, var(--wall-bg) calc(100% - 120px), var(--ground, #081B29)); }
+}
+:root[data-theme="dark"] .wall::before { display: block; }
+:root[data-theme="dark"] .wall { background: linear-gradient(to bottom, var(--wall-bg) calc(100% - 120px), var(--ground, #081B29)); }
+
+.wall-track { position: relative; height: calc(100 * var(--vh) + var(--run)); }
+.wall-stage { position: sticky; top: 0; height: calc(100 * var(--vh)); overflow: hidden;
+  background: radial-gradient(70% 45% at 50% 0%, rgba(143, 180, 211, 0.10), transparent 70%), radial-gradient(55% 40% at 50% 100%, rgba(226, 182, 73, 0.10), transparent 70%); }
+
+/* The columns, from the reading side (so they mirror in Arabic). data-ring counts out from the middle column. */
+.wall-cols { position: absolute; inset: 0; display: flex; justify-content: center; gap: var(--g); }
+.wall-col { position: relative; flex: none; width: var(--sw); height: 100%; }
+.wall-col[data-ring="2"], .wall-col[data-ring="3"] { display: none; }
+@media (min-width: 700px) { .wall-col[data-ring="2"] { display: block; } }
+@media (min-width: 700px) and (min-aspect-ratio: 3/2), (min-width: 1280px) { .wall-col[data-ring="3"] { display: block; } }
+.wall-strip { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; gap: var(--g); will-change: transform; }
+/* The other columns: --n cards, centred on the stage and set off by --off cards. Over the whole time the band is on
+   screen each travels --t: --r times the distance the page scrolls (a little over half), but never so far that its
+   end shows. --dir: 1 up, -1 down. */
+.wall-side .wall-strip { top: calc(50% - (var(--n) * var(--ps) - var(--g)) / 2 + var(--off) * var(--ps));
+  --t: min(calc(var(--r) * (200 * var(--vh) + var(--run))), calc((var(--n) - 1) * var(--ps) - var(--g) - 100 * var(--vh))); }
+.wall-card { display: block; width: 100%; max-width: none; height: var(--sh); object-fit: cover; object-position: top;
+  border-radius: 12.9% / 5.94%; background: #0C1A25; outline: 1px solid rgba(255, 255, 255, 0.06); outline-offset: -1px; }
+/* The middle column: its third card (the first the phone shows) sits exactly on the phone's screen, and the phone
+   covers it along its own outline. The column is cut out only where the screen is (the screen's rounded shape), so
+   nothing of it shows past the phone while the phone leans. */
+.wall-mid { width: var(--mw);
+  -webkit-mask-image: linear-gradient(#000, #000), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 728 1581.7' preserveAspectRatio='none'%3E%3Crect width='728' height='1581.7' rx='94'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%, 100% var(--mh); -webkit-mask-position: 0 0, center; -webkit-mask-repeat: no-repeat; -webkit-mask-composite: xor;
+  mask-image: linear-gradient(#000, #000), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 728 1581.7' preserveAspectRatio='none'%3E%3Crect width='728' height='1581.7' rx='94'/%3E%3C/svg%3E");
+  mask-size: 100% 100%, 100% var(--mh); mask-position: 0 0, center; mask-repeat: no-repeat; mask-composite: exclude; }
+.wall-mid .wall-strip { top: calc(50% - var(--ph) / 2 + var(--bez) - 2 * var(--pm)); }
+.wall-mid .wall-card, .wall-reel .wall-card { height: var(--mh); }
+/* The edges of the stage fade into the band. */
+.wall-shade { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to bottom, var(--wall-bg), rgba(4, 12, 19, 0) 16%, rgba(4, 12, 19, 0) 84%, var(--wall-bg)),
+    linear-gradient(to right, var(--wall-bg), rgba(4, 12, 19, 0) 9%, rgba(4, 12, 19, 0) 91%, var(--wall-bg)); }
+
+/* The phone, in the middle of the stage, over the middle column: the same frame as the story's iPhones (devices.css),
+   on the same dark body, with its own screen that holds the middle column's cards. .wall-hold straightens as the
+   band comes in, .wall-lean leans as it goes; the hand, when there is one, leans with the phone. */
+.wall-hold { position: absolute; z-index: 3; left: 50%; top: 50%; width: var(--pw); height: var(--ph);
+  margin: calc(var(--ph) / -2) 0 0 calc(var(--pw) / -2); will-change: transform; }
+.wall-hold::before { content: ''; position: absolute; inset: -18% -70%; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(226, 182, 73, 0.16), rgba(143, 180, 211, 0.05) 55%, transparent); }
+.wall-lean { position: relative; width: 100%; height: 100%; will-change: transform; }
+.wall-phone { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 15% / 7.1%; background: #050608;
+  box-shadow: 0 50px 90px -30px rgba(0, 0, 0, 0.75), 0 18px 34px -18px rgba(0, 0, 0, 0.6); }
+.wall-phone::after { content: ''; position: absolute; top: 0; bottom: 0; left: -1.289%; right: -1.289%; z-index: 2; pointer-events: none;
+  background: url('assets/frames/iphone.svg') 0 0 / 100% 100% no-repeat; }
+.wall-screen { position: absolute; left: 3.093%; top: 1.6%; width: 93.814%; height: 96.8%; overflow: hidden; border-radius: 12.9% / 5.94%; background: #000; isolation: isolate; }
+.wall-reel { position: absolute; left: 0; top: 0; width: 100%; display: flex; flex-direction: column; gap: var(--g); will-change: transform; }
+.wall-reel .wall-card { border-radius: 0; outline: 0; }
+/* The status bar: each screenshot carries its own, with the Dynamic Island. On the moving screens it is cut away, so
+   no bar or island ever slides down through the phone; .wall-bar, the strip at the top of the screen where the bar
+   belongs, shows the same screens whole, so each screen's bar slides into place as the screen arrives. Over it all,
+   the island stays still, as on a real phone, exactly over the screenshots' own (x 228.6 to 410.5 and y 20.4 to
+   72.8 of 640 x 1391). */
+.wall-screen > .wall-reel .wall-card { -webkit-mask-image: linear-gradient(to bottom, transparent 5.4%, #000 6.2%); mask-image: linear-gradient(to bottom, transparent 5.4%, #000 6.2%); }
+.wall-bar { position: absolute; z-index: 1; left: 0; top: 0; width: 100%; height: 6.2%; overflow: hidden; }
+.wall-island { position: absolute; z-index: 2; left: 35.66%; top: 1.43%; width: 28.6%; height: 3.83%; border-radius: 999px; background: #000; }
+/* The hand (optional, off unless the band has data-hand; see README.md): two pictures cut from one, the same size
+   and laid in the same place. The palm and fingers go behind the phone, the thumb in front of it. Move them with
+   these three if a new picture needs it: where their left edge and top sit, as a share of the phone, and their width. */
+.wall-hand { position: absolute; z-index: 0; left: var(--hand-x, -42%); top: var(--hand-y, 46%); width: var(--hand-w, 160%);
+  max-width: none; height: auto; pointer-events: none; }
+.wall-hand-front { z-index: 2; }
+/* The hand runs off the bottom of the stage: it fades there into the band. */
+.has-hand .wall-stage::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 14%; z-index: 4; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(4, 12, 19, 0), var(--wall-bg)); }
+
+/* The page's top bar over the band: light words on dark glass, as over the sky. */
+.wall-under .bar { --ink: #F1F4F6; --bar-ink: #F1F4F6; --glass: rgba(8, 27, 41, 0.45); --glass-edge: rgba(255, 255, 255, 0.18); }
+
+/* The closing line. */
+.wall-end { position: relative; z-index: 4; text-align: center;
+  padding: clamp(4px, 1vw, 16px) max(16px, env(safe-area-inset-right, 0px)) clamp(72px, 11vw, 140px) max(16px, env(safe-area-inset-left, 0px)); }
+.wall-eyebrow { margin: 0 0 14px; font: 600 0.8rem var(--font-display, 'Readex Pro', system-ui, sans-serif); letter-spacing: 0.12em; text-transform: uppercase; color: var(--wall-gold); }
+.wall-title { margin: 0 auto; max-width: 16ch; font: 600 clamp(2rem, 1.3rem + 3vw, 4rem)/1.08 var(--font-display, 'Readex Pro', system-ui, sans-serif);
+  letter-spacing: -0.02em; text-wrap: balance; }
+.wall-title span { color: var(--wall-gold); }
+:lang(ar) .wall-eyebrow { letter-spacing: 0; font-size: 0.95rem; }
+:lang(ar) .wall-title { letter-spacing: 0; line-height: 1.35; }
+.wall-end > * { opacity: 0; transform: translateY(22px); transition: opacity 0.8s, transform 1s cubic-bezier(.2,.7,.2,1); }
+.wall-end > .wall-title { transition-delay: 0.12s; }
+.wall.in .wall-end > * { opacity: 1; transform: none; }
+
+/* The motion: wall.js sets the progress on the stage on each frame: --p over the whole band (the other columns glide
+   over the whole time the band is on screen), --s the middle column's step (it and the phone's screen step while the
+   stage is pinned, with a short stop on each screen), --tin and --tout the phone's lean coming in and going out. */
+.wall-js .wall-side .wall-strip { transform: translate3d(0, calc(var(--t) * var(--dir) * (0.5 - var(--p, 0))), 0); }
+.wall-js .wall-mid .wall-strip, .wall-js .wall-reel { transform: translate3d(0, calc(var(--pm) * var(--s, 0) * -1), 0); }
+.wall-js .wall-hold { transform: rotate(calc(var(--tin, 1) * -6deg)) scale(calc(1 - var(--tin, 1) * 0.06)); }
+.wall-js .wall-lean { transform: rotate(calc(var(--tout, 0) * 2.5deg)); }
+
+/* Reduce Motion: the stage still stays while the page scrolls through the band, the columns and the phone stand still,
+   and the phone's screen changes from one to the next without sliding (wall.js sets whole steps). */
+@media (prefers-reduced-motion: reduce) {
+  .wall-strip, .wall-reel, .wall-hold, .wall-lean { will-change: auto; }
+  .wall-end > * { opacity: 1; transform: none; transition: none; }
+}

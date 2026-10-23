@@ -52,8 +52,8 @@ const T = {
     mins: (n) => n + ' د', minsSigned: (n) => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n) + ' د', noWait: 'بلا انتظار',
     methods: { mwl: 'رابطة العالم الإسلامي', uaq: 'أم القرى (مكة المكرمة)', egypt: 'الهيئة المصرية العامة للمساحة', karachi: 'جامعة العلوم الإسلامية بكراتشي',
       isna: 'الجمعية الإسلامية لأمريكا الشمالية', dubai: 'دبي', kuwait: 'الكويت', qatar: 'قطر', sea: 'سنغافورة وجنوب شرق آسيا', turkey: 'الشؤون الدينية التركية' },
-    help: 'المساعدة', helpValue: 'تواصل معنا', helpWa: 'واتساب', helpMail: 'البريد',
-    helpReply: 'نقرأ كل رسالة ونردّ بالبريد أو عبر واتساب حيث راسلتنا.',
+    help: 'المساعدة', helpValue: 'تواصل معنا', helpMail: 'البريد',
+    helpReply: 'نقرأ كل رسالة ونردّ بالبريد.',
     helpQA: [
       ['المواقيت لا تطابق مسجدي', 'تُحسب بالطريقة المعتمدة في بلد المدينة (أم القرى في السعودية). تأكّد أن المدينة في الإعدادات صحيحة، ثم اضبط الطريقة والعصر والدقائق من الإعدادات ← طريقة الحساب، والإقامة من الإعدادات ← الإقامة.'],
       ['لا أسمع الأذان', 'صوت الأذان متوقف في البداية. شغّله من الإعدادات ← صوت الأذان، ثم اضغط أي زر مرة ليسمح التلفاز بالصوت.'],
@@ -92,8 +92,8 @@ const T = {
     mins: (n) => n + ' min', minsSigned: (n) => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n) + ' min', noWait: 'No wait',
     methods: { mwl: 'Muslim World League', uaq: 'Umm al-Qura (Makkah)', egypt: 'Egyptian General Authority', karachi: 'University of Islamic Sciences, Karachi',
       isna: 'ISNA (North America)', dubai: 'Dubai', kuwait: 'Kuwait', qatar: 'Qatar', sea: 'Singapore and Southeast Asia', turkey: 'Diyanet (Turkey)' },
-    help: 'Help', helpValue: 'Contact', helpWa: 'WhatsApp', helpMail: 'Email',
-    helpReply: 'We read every message and reply by email or WhatsApp, wherever you wrote from.',
+    help: 'Help', helpValue: 'Contact', helpMail: 'Email',
+    helpReply: 'We read every message and reply by email.',
     helpQA: [
       ["The times don't match my mosque", "They use the method of the city's country (Umm al-Qura in Saudi Arabia). Check the city in Settings, then set the method, Asr and minutes in Settings, Calculation, and the iqama in Settings, Iqama."],
       ["I don't hear the Adhan", 'The Adhan sound starts off. Turn it on in Settings, Adhan sound, then press any key once so the TV allows sound.'],
@@ -102,7 +102,7 @@ const T = {
   },
 };
 // Where help requests go (the same as shared/help/help.json).
-const CONTACT = { email: 'app@vision.bz', whatsapp: '+966 57 937 2403' };
+const CONTACT = { email: 'app@vision.bz' };
 const MIN = 60e3;
 const WAKE = 3 * MIN; // a key press on the Adhan or night screen shows the home screen this long
 const LOCK_AFTER = 5 * MIN; // the lock screen comes up after this long without a key
@@ -714,7 +714,7 @@ function openPicker() {
 // Help: how to reach us (and that we reply), then the answers to what TV viewers ask most. OK or Back closes it.
 function openHelp() {
   const tx = t(), ltr = (s) => '\u2066' + s + '\u2069';
-  const rows = [{ label: tx.helpWa + ' · ' + ltr(CONTACT.whatsapp) }, { label: tx.helpMail + ' · ' + ltr(CONTACT.email) }, { group: tx.helpReply }]
+  const rows = [{ label: tx.helpMail + ' · ' + ltr(CONTACT.email) }, { group: tx.helpReply }]
     .concat(tx.helpQA.map((qa) => ({ qa })));
   openList(tx.help, rows, 0, () => {});
 }

@@ -1,0 +1,21 @@
+/* The iPhone Duo panel (duo.js), shared by every version of the landing page: black like the device photographs,
+   whatever the page's theme. */
+.duo { position: relative; z-index: 2; display: block; padding: clamp(40px, 7vw, 96px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+.duo-card { position: relative; isolation: isolate; max-width: 1180px; margin: 0 auto; overflow: hidden; border-radius: clamp(24px, 3vw, 36px); background: #000; color: #F4F6F8; text-align: center;
+  padding: clamp(36px, 6vw, 76px) clamp(18px, 4vw, 56px) clamp(30px, 4vw, 52px); box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.7); }
+.duo-card::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 50% at 50% 62%, rgba(226, 182, 73, 0.13), transparent 70%), radial-gradient(80% 40% at 50% 0%, rgba(143, 180, 211, 0.12), transparent 70%); }
+.duo-eyebrow { position: relative; margin: 0 0 10px; font: 600 0.85rem 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif; letter-spacing: 0.08em; color: #A9B6C0; }
+.duo-title { position: relative; margin: 0 auto 10px; max-width: 22ch; font: 600 clamp(1.6rem, 1.1rem + 2.2vw, 2.8rem)/1.15 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif; letter-spacing: -0.02em; text-wrap: balance; }
+[dir="rtl"] .duo-title, .duo[dir="rtl"] .duo-title { letter-spacing: 0; line-height: 1.35; }
+.duo-sub { position: relative; margin: 0; font: 500 clamp(1rem, 0.92rem + 0.45vw, 1.3rem) 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #E2BC5E; }
+.duo-poses { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: clamp(8px, 2vw, 28px); margin-top: clamp(28px, 5vw, 60px); }
+.duo-poses figure { flex: var(--w) 1 0; margin: 0; min-width: 0; opacity: 0; transform: translateY(26px); transition: opacity 0.8s calc(var(--i) * 0.14s), transform 1s cubic-bezier(.2,.7,.2,1) calc(var(--i) * 0.14s); }
+.duo.in .duo-poses figure { opacity: 1; transform: none; }
+.duo-poses img { display: block; width: 100%; height: auto; mix-blend-mode: lighten; }
+.duo-poses figcaption { margin-top: clamp(10px, 1.6vw, 20px); font: 500 clamp(0.9rem, 0.8rem + 0.4vw, 1.15rem) 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #A9B6C0; }
+@media (max-width: 640px) {
+  .duo-poses { flex-direction: column; align-items: center; gap: 30px; }
+  .duo-poses figure { flex: none; width: min(100%, 420px); }
+}
+@media (prefers-reduced-motion: reduce) { .duo-poses figure { transition: none; opacity: 1; transform: none; } }

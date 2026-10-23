@@ -1,0 +1,25 @@
+/* The iPhone and Apple Watch frames shared by every version of the landing page. Each page sets the width; the
+   frame keeps the device's shape. The screenshot (or film) sits in the screen area and the frame, drawn in
+   assets/frames/*.svg with its buttons, Digital Crown and band, lies over it. */
+.phone { position: relative; aspect-ratio: 776 / 1634; border-radius: 15% / 7.1%; background: #050608; padding: 0;
+  box-shadow: 0 44px 80px -34px rgba(0, 0, 0, 0.55), 0 12px 24px -16px rgba(0, 0, 0, 0.4); }
+.phone > img, .phone > video { position: absolute; left: 3.093%; top: 1.6%; width: 93.814%; height: 96.8%; object-fit: cover; object-position: top;
+  border-radius: 12.9% / 5.94%; background: #000; margin: 0; padding: 0; max-width: none; }
+.phone::after { content: ''; position: absolute; top: 0; bottom: 0; left: -1.289%; right: -1.289%; z-index: 2; pointer-events: none;
+  background: url('assets/frames/iphone.svg') 0 0 / 100% 100% no-repeat; }
+.watch { position: relative; aspect-ratio: 390 / 460; border-radius: 27.7% / 23.5%; background: #050608; padding: 0;
+  box-shadow: 0 36px 60px -28px rgba(0, 0, 0, 0.55); }
+.watch > img { position: absolute; left: 6.667%; top: 5.304%; width: 86.667%; height: 89.391%; object-fit: cover;
+  border-radius: 24.26% / 19.94%; background: #000; margin: 0; padding: 0; max-width: none; }
+.watch::after { content: ''; position: absolute; top: -20.87%; bottom: -20.87%; left: 0; right: -7.18%; z-index: 2; pointer-events: none;
+  background: url('assets/frames/watch.svg') 0 0 / 100% 100% no-repeat; }
+/* A plain phone for the Android screenshots (never the iPhone frame): a dark body with an even bezel and the side
+   buttons, drawn in CSS. The screenshots (1179 × 2556, no status bar) fill the screen. */
+.droid { position: relative; aspect-ratio: 1000 / 2107; border-radius: 12% / 5.7%; background: #0B0E12;
+  box-shadow: 0 44px 80px -34px rgba(0, 0, 0, 0.55), 0 12px 24px -16px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.35); }
+/* An even bezel of 2.6% of the width all round: the screen is 94.8% wide and 97.53% tall, 1.234% from the top. */
+.droid > img { position: absolute; left: 2.6%; top: 1.234%; width: 94.8%; height: 97.532%; object-fit: cover; object-position: top;
+  border-radius: 10% / 4.6%; background: #000; margin: 0; padding: 0; max-width: none; }
+.droid::before, .droid::after { content: ''; position: absolute; right: -1.1%; width: 1.1%; border-radius: 0 3px 3px 0; background: #1C2128; }
+.droid::before { top: 19%; height: 11%; }
+.droid::after { top: 33%; height: 6%; }
