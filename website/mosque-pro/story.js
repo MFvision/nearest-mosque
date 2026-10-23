@@ -164,9 +164,9 @@ const en = {
     help: {
       eyebrow: 'Help Center · New',
       title: 'Answers in the app, and [[a person]] when you need one.',
-      body: 'Settings → Help Center answers the common questions in your language. Report a problem or suggest an idea from there, and we reply by email or WhatsApp.',
-      points: ['See what you sent us, in the app', 'Email app@vision.bz or message us on WhatsApp'],
-      actions: [['Email us', 'mailto:app@vision.bz'], ['WhatsApp', 'https://wa.me/966579372403']],
+      body: 'Settings → Help Center answers the common questions in your language. Report a problem or suggest an idea from there, and we reply by email.',
+      points: ['See what you sent us, in the app', 'Or email us at app@vision.bz'],
+      actions: [['Email us', 'mailto:app@vision.bz']],
       panel: { title: 'Help Center', rows: [['Answers', '›'], ['Report a problem', '›'], ['Suggest an idea', '›'], ['What you sent', '›']] },
     },
     privacy: {
@@ -198,7 +198,7 @@ const en = {
       ['Widgets and Live Activities', ['10 widget kinds for the Home Screen, Lock Screen and Mac desktop', 'Next-prayer countdown on the Lock Screen and in the Dynamic Island', 'Qibla compass in the Dynamic Island', '5 styles that colour the app and every widget']],
       ['Siri and Shortcuts', ['“When is the next prayer in Mosque Pro?”', '“Where is the nearest mosque in Mosque Pro?”', 'Directions, Ask, prayer times and the Qibla by voice or the Action button']],
       ['Apple Watch', ['Next prayer on the living sky', 'Qibla compass with a tap on your wrist', 'Spiritual health: mark your prayers and see your week', 'Tasbih on the Digital Crown', '7 complications in 15 sizes']],
-      ['Help Center', ['Answers to common questions in the app', 'Report a problem or suggest an idea', 'See what you sent', 'Email or WhatsApp, and we reply there']],
+      ['Help Center', ['Answers to common questions in the app', 'Report a problem or suggest an idea', 'See what you sent', 'We reply by email']],
       ['Privacy', ['No ads, no accounts, no tracking, no cloud AI', 'Prayer times, Qibla and answers worked out on the device', 'Online only for mosque search, maps, the Quran, the downloads you choose, and the weather sky and Clean network if you turn them on']],
     ],
   },
@@ -331,9 +331,9 @@ const ar = {
     help: {
       eyebrow: 'مركز المساعدة · جديد',
       title: 'إجابات في التطبيق، و[[شخصٌ يرد عليك]] حين تحتاج.',
-      body: 'الإعدادات ← مركز المساعدة يجيب عن الأسئلة الشائعة بلغتك. ومن هناك أبلغ عن مشكلة أو اقترح فكرة، ونرد عليك بالبريد أو واتساب.',
-      points: ['اطّلع على ما أرسلته إلينا، داخل التطبيق', 'راسلنا على app@vision.bz أو عبر واتساب'],
-      actions: [['راسلنا بالبريد', 'mailto:app@vision.bz'], ['واتساب', 'https://wa.me/966579372403']],
+      body: 'الإعدادات ← مركز المساعدة يجيب عن الأسئلة الشائعة بلغتك. ومن هناك أبلغ عن مشكلة أو اقترح فكرة، ونرد عليك بالبريد.',
+      points: ['اطّلع على ما أرسلته إلينا، داخل التطبيق', 'أو راسلنا على app@vision.bz'],
+      actions: [['راسلنا بالبريد', 'mailto:app@vision.bz']],
       panel: { title: 'مركز المساعدة', rows: [['الإجابات', '‹'], ['الإبلاغ عن مشكلة', '‹'], ['اقتراح فكرة', '‹'], ['ما أرسلته', '‹']] },
     },
     privacy: {
@@ -365,7 +365,7 @@ const ar = {
       ['الأدوات والأنشطة المباشرة', ['10 أنواع من الأدوات للشاشة الرئيسية وشاشة القفل وسطح مكتب الماك', 'عدّ تنازلي للصلاة القادمة على شاشة القفل وفي الجزيرة الديناميكية', 'بوصلة القبلة في الجزيرة الديناميكية', '5 أنماط تلوّن التطبيق وكل أدواته']],
       ['Siri والاختصارات', ['«متى الصلاة القادمة في مسجد وأكثر؟»', '«أين أقرب مسجد في مسجد وأكثر؟»', 'الاتجاهات والسؤال والمواقيت والقبلة بالصوت أو بزر الإجراءات']],
       ['Apple Watch', ['الصلاة القادمة على السماء الحيّة', 'بوصلة القبلة مع نقرةٍ على المعصم', 'الصحة الروحية: سجّل صلواتك واطّلع على أسبوعك', 'التسبيح بالتاج الرقمي', '7 مضاعفات بـ15 حجمًا']],
-      ['مركز المساعدة', ['إجابات الأسئلة الشائعة داخل التطبيق', 'الإبلاغ عن مشكلة أو اقتراح فكرة', 'اطّلع على ما أرسلته', 'البريد أو واتساب، ونرد عليك هناك']],
+      ['مركز المساعدة', ['إجابات الأسئلة الشائعة داخل التطبيق', 'الإبلاغ عن مشكلة أو اقتراح فكرة', 'اطّلع على ما أرسلته', 'نرد عليك بالبريد']],
       ['الخصوصية', ['بلا إعلانات ولا حسابات ولا تتبُّع ولا ذكاء اصطناعي سحابي', 'المواقيت والقبلة والإجابات تُحسب على الجهاز', 'الاتصال فقط للبحث عن المساجد والخرائط والقرآن وما تختار تنزيله، ولسماء الطقس و«شبكة نظيفة» إن فعّلتهما']],
     ],
   },
