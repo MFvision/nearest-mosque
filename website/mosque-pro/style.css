@@ -1,0 +1,360 @@
+/* Near Mosque landing page.
+   Layout: a fixed stage (the globe, then the app's sky) behind a column of chapters; each chapter holds its copy on
+   the reading side and its screens on the other, pinned while the chapter scrolls past. After the story, a plain
+   index of everything in the app on the page ground. */
+:root {
+  --ground: #F4EEDF;        /* sand: the page in daylight */
+  --ground-2: #E9E0CB;
+  --ink: #10202B;
+  --ink-2: #4A5A66;
+  --gold: #8A6A1C;          /* gold as text on sand */
+  --gold-bright: #D4A843;   /* gold as light (lines, marks) */
+  --navy: #1A4D6E;
+  --glass: rgba(255, 252, 244, 0.78);
+  --glass-edge: rgba(26, 77, 110, 0.12);
+  --shadow: rgba(16, 32, 43, 0.18);
+  --device: #10151B;
+  --device-edge: #59616B;
+  --stage-a: #F7F2E6;
+  --stage-b: #E4DAC3;
+  --font-display: 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-ar: 'IBM Plex Sans Arabic', 'Readex Pro', system-ui, sans-serif;
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+  --step-1: clamp(1.15rem, 1.05rem + 0.45vw, 1.35rem);
+  --step-3: clamp(1.9rem, 1.4rem + 2.2vw, 3.1rem);
+  --step-4: clamp(2.2rem, 1.5rem + 2.6vw, 3.7rem);
+  --radius: 28px;
+  --edge: max(16px, env(safe-area-inset-left, 0px));
+  --edge-end: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #081B29; --ground-2: #0E2638; --ink: #F1F4F6; --ink-2: #A9B6C0; --gold: #E2BC5E; --gold-bright: #E2B649;
+    --navy: #8FB4D3; --glass: rgba(8, 27, 41, 0.62); --glass-edge: rgba(201, 216, 255, 0.14); --shadow: rgba(0, 0, 0, 0.45);
+    --device: #05080B; --device-edge: #3B434D; --stage-a: #0B2335; --stage-b: #040E17; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #081B29; --ground-2: #0E2638; --ink: #F1F4F6; --ink-2: #A9B6C0; --gold: #E2BC5E; --gold-bright: #E2B649;
+  --navy: #8FB4D3; --glass: rgba(8, 27, 41, 0.62); --glass-edge: rgba(201, 216, 255, 0.14); --shadow: rgba(0, 0, 0, 0.45);
+  --device: #05080B; --device-edge: #3B434D; --stage-a: #0B2335; --stage-b: #040E17; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+:lang(ar) body, body:lang(ar) { font-family: var(--font-ar); line-height: 1.75; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; inset-inline-start: var(--edge); top: -60px; z-index: 30; background: var(--ink); color: var(--ground); padding: 10px 16px; border-radius: 12px; text-decoration: none; }
+.skip:focus { top: calc(10px + env(safe-area-inset-top, 0px)); }
+
+/* The bar: name, language and theme. Quiet, over the stage. */
+.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) var(--edge-end) 12px var(--edge); pointer-events: none; }
+.bar > * { pointer-events: auto; }
+.on-sky .bar { --ink: #F1F4F6; --bar-ink: #F1F4F6; --gold: #E2BC5E; --gold-bright: #E2B649; --glass: rgba(8, 27, 41, 0.45); --glass-edge: rgba(255, 255, 255, 0.18); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--bar-ink, var(--ink)); }
+.brand img { width: 34px; height: 34px; border-radius: 9px; box-shadow: 0 4px 14px var(--shadow); }
+.tools { display: flex; gap: 8px; }
+.tools button { font: 600 0.9rem var(--font-display); color: var(--ink); background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); min-height: 40px; }
+.tools button:hover { border-color: var(--gold-bright); }
+#sound { display: inline-flex; align-items: center; gap: 7px; }
+@media (max-width: 560px) { #sound span, .brand span { display: none; } #sound { padding-inline: 11px; } }
+
+/* The stage behind the story. */
+.stage { position: fixed; inset: 0; z-index: 0; background: radial-gradient(120% 90% at 60% 30%, var(--stage-a), var(--stage-b)); overflow: hidden; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#sky-canvas { opacity: 0; }
+/* The real photographs of Makkah over the globe. */
+.descent { position: absolute; inset: 0; opacity: 0; pointer-events: none; overflow: hidden; }
+.descent .sat { position: absolute; opacity: 0; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
+.descent .sat img { width: 100%; height: 100%; display: block; }
+.descent .night, .descent .film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform-origin: 52.9% 75.5%; }
+.descent .night { object-position: 52.9% 75.5%; }
+.descent .film { transform-origin: 50% 48%; object-position: 50% 48%; }
+.descent .veil { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(4, 10, 16, 0.55) 100%); }
+.daynight { display: inline-flex; margin-top: 20px; border: 1px solid var(--glass-edge); border-radius: 999px; padding: 3px; }
+.daynight button { font: 600 0.85rem var(--font-display); border: 0; background: transparent; color: var(--ink-2); padding: 7px 16px; border-radius: 999px; cursor: pointer; min-height: 34px; }
+.daynight button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
+.labels { position: absolute; inset: 0; pointer-events: none; font: 600 0.82rem var(--font-display); }
+.labels > span { position: absolute; transform: translate(-50%, -140%); color: var(--gold); white-space: nowrap; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.4s;
+  text-shadow: 0 1px 8px var(--ground); }
+.labels .makkah { transform: translate(-50%, 55%); color: #FFE3A1; font-size: 1rem; text-shadow: 0 0 14px rgba(255, 210, 120, 0.8), 0 1px 6px rgba(0, 0, 0, 0.6); }
+.labels .madinah { transform: translate(-50%, -170%); color: #FFE3A1; font-size: 0.8rem; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+.labels .you { transform: translate(-50%, -190%); color: var(--ink); background: var(--glass); border: 1px solid var(--glass-edge); padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.labels > span:not(.makkah):not(.madinah):not(.you) { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75); font-size: 0.86rem; }
+/* The legend, Makkah's time and the globe's look: quiet, at the bottom on the reading side. */
+.hud { position: fixed; z-index: 12; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); inset-inline-end: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 8px; padding: 12px 14px; border-radius: 18px;
+  background: var(--glass); border: 1px solid var(--glass-edge); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); font: 500 0.78rem var(--font-body); color: var(--ink-2); transition: opacity 0.5s; max-width: min(92vw, 420px); }
+.hud.off { opacity: 0; pointer-events: none; }
+.hud-legend { margin: 0; color: var(--ink); font-weight: 600; }
+.hud ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.hud li { display: flex; align-items: center; gap: 6px; }
+.hud i { width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+.hud-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hud-clock { font-variant-numeric: tabular-nums; color: var(--gold); font-weight: 600; }
+.hud-style { display: inline-flex; border: 1px solid var(--glass-edge); border-radius: 999px; padding: 2px; }
+.hud-style button { font: 600 0.75rem var(--font-display); border: 0; background: transparent; color: var(--ink-2); padding: 5px 11px; border-radius: 999px; cursor: pointer; min-height: 28px; }
+.hud-style button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
+/* Phones: the HUD is compact, centred at the bottom, and the chapters it shows in keep their words clear of it. */
+@media (max-width: 860px) {
+  .hud { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); inset-inline-end: auto; left: 50%; translate: -50% 0; width: min(calc(100vw - 32px), 40rem); max-width: none; padding: 10px 12px; gap: 6px; font-size: 0.74rem; }
+  .hud ul { gap: 4px 12px; }
+  .labels .tag { padding: 5px 9px 6px; } .labels .tag b { font-size: 0.76rem; } .labels .tag span { font-size: 0.68rem; }
+}
+/* A named city's Adhan: a small glass card above the city's ring. */
+.labels .tag { position: absolute; opacity: 0; display: grid; gap: 1px; padding: 7px 12px 8px; border-radius: 14px; background: var(--glass); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 10px 24px -12px var(--shadow); white-space: nowrap; text-align: center; will-change: transform, opacity; }
+.labels .tag b { font: 600 0.86rem var(--font-display); color: var(--ink); }
+.labels .tag span { font: 500 0.76rem var(--font-body); color: var(--gold); font-variant-numeric: tabular-nums; }
+.labels .tag::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 1px; height: 7px; background: var(--gold-bright); }
+.stage-poster { position: absolute; inset: 0; display: none; }
+.no-webgl .stage-poster { display: block; background: radial-gradient(60vmin 60vmin at 62% 52%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); opacity: 0.5; }
+[dir="rtl"] .no-webgl .stage-poster { background: radial-gradient(60vmin 60vmin at 38% 52%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); }
+@media (max-width: 860px) { .no-webgl .stage-poster, [dir="rtl"] .no-webgl .stage-poster { background: radial-gradient(42vmin 42vmin at 50% 26%, var(--navy) 0%, var(--ground-2) 60%, transparent 61%); } }
+
+/* Chapters. */
+main { position: relative; z-index: 1; }
+.chapter { position: relative; min-height: calc(var(--weight, 1.4) * 100svh); }
+.beat { position: sticky; top: 0; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(16px, 4vw, 64px);
+  padding-block: calc(84px + env(safe-area-inset-top, 0px)) 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  max-width: 1280px; margin-inline: auto; }
+.copy { min-width: 0; max-width: 34rem; padding: clamp(22px, 3vw, 36px); border-radius: var(--radius); background: var(--glass); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25); backdrop-filter: blur(18px) saturate(1.25); box-shadow: 0 24px 60px -24px var(--shadow);
+  transition: opacity 0.5s, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+@media (min-width: 861px) { .globe-ch .copy { background: transparent; border-color: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-inline: 0; } }
+.eyebrow { font: 600 0.8rem var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
+:lang(ar) .eyebrow { letter-spacing: 0; font-size: 0.95rem; }
+.copy h1, .copy h2 { font-family: var(--font-display); font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; }
+:lang(ar) .copy h1, :lang(ar) .copy h2 { letter-spacing: 0; line-height: 1.3; }
+.copy h1 { font-size: var(--step-4); }
+.copy h2 { font-size: var(--step-3); }
+.copy p { margin: 0; color: var(--ink-2); font-size: var(--step-1); max-width: 30em; }
+.copy ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.copy li { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.copy li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold-bright); transform: translateY(-2px); }
+.note { margin-top: 18px !important; font-size: 0.92rem !important; color: var(--gold) !important; font-weight: 600; }
+/* A data credit under the points (the weather's MET Norway line): small and quiet, a plain link. */
+.copy .credit { margin-top: 16px; font-size: 0.82rem; }
+.credit a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.credit a:hover { color: var(--ink); }
+.cta-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; font: 600 1rem var(--font-display); text-decoration: none; color: var(--ground); background: var(--ink); padding: 13px 22px; border-radius: 999px; }
+.cta-link:hover { background: var(--navy); }
+.scroll-cue { margin-top: 30px; font: 600 0.8rem var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+.scroll-cue::after { content: ""; width: 1px; height: 38px; background: linear-gradient(var(--ink-2), transparent); animation: cue 2.2s ease-in-out infinite; }
+@keyframes cue { 50% { transform: translateY(8px); opacity: 0.4; } }
+
+/* Screens. */
+.media { min-width: 0; display: flex; align-items: center; justify-content: center; gap: clamp(12px, 2vw, 28px); min-height: 60svh; }
+.phone, .droid { width: clamp(150px, 19vw, 260px); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; flex: none; }
+.media .phone:nth-child(2), .media .droid:nth-child(2) { transform: translateY(8%); }
+.watch { width: clamp(100px, 11vw, 156px); flex: none; }
+.media .watch:nth-child(2) { transform: translateY(-12%) scale(1.1); }
+.family { position: relative; width: min(100%, 640px); aspect-ratio: 1.45; }
+.family figure { position: absolute; margin: 0; }
+.family .screen { background: var(--device); border-radius: 10px; padding: 1.6%; box-shadow: 0 30px 60px -26px var(--shadow), inset 0 0 0 1px var(--device-edge); }
+.family .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 6px; }
+.family figcaption { font: 600 0.8rem var(--font-display); color: var(--ink-2); text-align: center; margin-top: 10px; }
+.family .tv { left: 0; top: 4%; width: 52%; z-index: 1; }
+.family .tv .screen { aspect-ratio: 16 / 9; }
+.family .tv .stand { width: 18%; height: 18px; margin: 0 auto; background: linear-gradient(90deg, #8E9198, #C5C7CC, #8E9198); clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%); }
+.family .mac { right: 2%; top: 0; width: 56%; z-index: 2; }
+.family .mac .screen { aspect-ratio: 1.6; border-radius: 12px 12px 4px 4px; }
+.family .mac .base { height: 12px; margin: 0 -7%; border-radius: 2px 2px 12px 12px; background: linear-gradient(#E3E4E8, #B2B4BA); }
+.family .vision { right: 0; bottom: 6%; width: 36%; z-index: 3; }
+.family .vision .screen { aspect-ratio: 16 / 9; background: transparent; padding: 0; border-radius: 16px; box-shadow: 0 24px 50px -20px var(--shadow), 0 0 0 1px rgba(255,255,255,0.55); }
+.family .vision .screen img { border-radius: 16px; }
+.family .ipad { left: 10%; bottom: 0; width: 38%; z-index: 4; }
+.family .ipad .screen { aspect-ratio: 4 / 3; border-radius: 14px; }
+.family .iphone { left: 47%; bottom: 2%; width: 15%; z-index: 5; }
+.family .iphone .phone { width: 100%; }
+[dir="rtl"] .family { transform: scaleX(-1); }
+[dir="rtl"] .family figure > * { transform: scaleX(-1); }
+
+/* Mosque Pro's own media: the TV screen (one TV, or two with the smaller in front), and a settings card. */
+.tvset { position: relative; width: clamp(300px, 44vw, 680px); flex: none; transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; }
+.tvset.two { padding-bottom: 14%; }
+.tvset figure { margin: 0; }
+.tvset .screen { aspect-ratio: 16 / 9; background: var(--device); border-radius: 12px; padding: 1.4%; box-shadow: 0 30px 60px -26px var(--shadow), inset 0 0 0 1px var(--device-edge); }
+.tvset .screen img { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; display: block; }
+.tvset .stand { width: 18%; height: 20px; margin: 0 auto; background: linear-gradient(90deg, #8E9198, #C5C7CC, #8E9198); clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%); }
+.tvset .inset { position: absolute; width: 46%; bottom: 0; inset-inline-end: -4%; }
+.tvset .inset .screen { box-shadow: 0 30px 60px -20px var(--shadow), inset 0 0 0 1px var(--device-edge); }
+.panel { width: clamp(260px, 30vw, 380px); flex: none; background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 26px; padding: 22px; box-shadow: 0 30px 60px -26px var(--shadow);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 600 1.15rem var(--font-display); }
+.switch { width: 52px; height: 32px; border-radius: 999px; background: #34C759; position: relative; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; inset-inline-end: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+.panel-on { margin: 10px 0 0; font-size: 0.9rem; color: var(--ink-2); }
+.panel ul { list-style: none; margin: 16px 0 0; padding: 0; }
+.panel li { display: flex; justify-content: space-between; gap: 12px; padding: 13px 0; border-top: 1px solid var(--glass-edge); font-size: 0.97rem; }
+.panel em { font-style: normal; color: var(--gold); font-weight: 600; }
+.copy .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.actions a { font: 600 0.92rem var(--font-display); color: var(--ink); text-decoration: none; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass); }
+.actions a:hover { border-color: var(--gold); }
+
+/* Reveal: a chapter's copy and screens settle in when it becomes the current one; at rest everything is shown. */
+.js .chapter:not(.on) .copy { opacity: 0.25; transform: translateY(18px); }
+.js .chapter:not(.on) .media > * { opacity: 0.2; transform: translateY(40px) scale(0.96); }
+
+/* The download buttons. */
+.stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.store { display: inline-grid; grid-template-columns: auto auto; align-items: center; gap: 2px 12px; padding: 10px 18px; border-radius: 16px; background: var(--ink); color: var(--ground); text-decoration: none; min-height: 56px; }
+.store svg { grid-row: span 2; width: 26px; height: 26px; fill: currentColor; }
+.store small { font-size: 0.72rem; opacity: 0.8; line-height: 1.1; }
+.store b { font: 600 1.05rem var(--font-display); line-height: 1.1; }
+.store[aria-disabled="true"] { background: transparent; color: var(--ink); border: 1px solid var(--glass-edge); cursor: default; }
+/* Under the buttons: the .deb and the page with every download and its checksum. */
+.copy .stores-more { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-top: 10px; font: 500 0.82rem var(--font-body); }
+.stores-more a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 1px; padding-block: 4px; }
+/* Phones: the four buttons as two even rows of two, a little smaller; on the narrowest screens a name wraps rather than overflows. */
+@media (max-width: 480px) {
+  .copy .stores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .stores .store { grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; padding: 8px 10px; min-width: 0; }
+  .stores .store svg { width: 20px; height: 20px; }
+  .stores .store b { font-size: 0.9rem; overflow-wrap: anywhere; }
+}
+
+/* Everything inside: the page ground covers the stage. */
+.inside { position: relative; z-index: 2; background: var(--ground); padding-block: clamp(64px, 10vw, 120px) 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inside > div { max-width: 1180px; margin-inline: auto; }
+.inside h2 { font: 600 var(--step-3) var(--font-display); letter-spacing: -0.02em; margin: 0 0 8px; }
+.inside > div > p { color: var(--ink-2); margin: 0 0 40px; font-size: var(--step-1); }
+.groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 0 40px; }
+.group { padding-block: 22px; border-top: 1px solid var(--glass-edge); min-width: 0; }
+.group h3 { font: 600 1.1rem var(--font-display); margin: 0 0 10px; color: var(--gold); }
+.group ul { margin: 0; padding-inline-start: 1.1em; color: var(--ink-2); display: grid; gap: 6px; }
+.strip { display: flex; gap: 18px; overflow-x: auto; padding: 8px 2px 24px; margin-bottom: 40px; scroll-snap-type: x mandatory; }
+.strip img { height: clamp(260px, 38vw, 420px); width: auto; max-width: none; border-radius: 22px; box-shadow: 0 20px 40px -24px var(--shadow); scroll-snap-align: start; background: var(--device); }
+footer { position: relative; z-index: 2; background: var(--ground-2); padding-block: 32px calc(32px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); color: var(--ink-2); font-size: 0.88rem; }
+footer > div { max-width: 1180px; margin-inline: auto; display: grid; gap: 10px; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color: var(--ink); }
+
+/* Phones and narrow windows: each chapter is exactly one screen tall; the screens fill the space above the words
+   (sized against that space, so nothing runs off the bottom), and the words sit low. */
+@media (max-width: 860px) {
+  .board { display: none !important; }
+  .beat { height: 100svh; min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; align-content: stretch; gap: 14px;
+    padding-block: calc(64px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .js .hud-ch .beat { padding-bottom: calc(var(--hud-h, 104px) + 24px + env(safe-area-inset-bottom, 0px)); }
+  .media { order: -1; min-height: 0; height: 100%; container-type: size; }
+  .phone, .droid { width: min(44vw, 250px, 45cqh, 90cqw); }
+  .media .phone + .phone, .media .droid + .droid { width: min(42vw, 240px, 45cqh, 46cqw); }
+  .watch { width: min(27vw, 140px, 62cqh, 29cqw); }
+  .tvset { width: min(92vw, 560px, 150cqh); }
+  .panel { width: min(88vw, 360px); padding: 16px; }
+  .panel li { padding: 9px 0; }
+  .family { width: min(100%, 560px, 128cqh); }
+  .copy { width: 100%; max-width: 40rem; justify-self: center; padding: 16px 18px; border-radius: 22px; }
+  .copy h1 { font-size: clamp(1.75rem, 7.4vw, 2.4rem); margin-bottom: 10px; }
+  .copy h2 { font-size: clamp(1.45rem, 6.2vw, 1.9rem); margin-bottom: 10px; }
+  .copy p { font-size: 0.97rem; line-height: 1.6; }
+  .copy ul { margin-top: 10px; gap: 6px; font-size: 0.9rem; }
+  .note { margin-top: 10px !important; }
+  .copy .credit { margin-top: 8px; font-size: 0.78rem; }
+  .eyebrow { margin-bottom: 8px; }
+  .daynight { margin-top: 12px; }
+  .cta-link { margin-top: 16px; }
+  .scroll-cue { display: none; }
+  .stores { margin-top: 16px; gap: 8px; }
+  .store { min-height: 50px; padding: 8px 14px; }
+  .copy .stores-more { margin-top: 6px; font-size: 0.78rem; }
+  .labels > span { font-size: 0.72rem; }
+  .labels .makkah { font-size: 0.9rem; }
+}
+/* Phones on their side: the words and the screens side by side again, small enough to fit the short height. */
+@media (max-width: 960px) and (max-height: 520px) and (orientation: landscape) {
+  .beat { height: 100svh; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-rows: minmax(0, 1fr); align-content: stretch; align-items: center; gap: 20px;
+    padding-block: calc(58px + env(safe-area-inset-top, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .js .hud-ch .beat { padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .media { order: 0; }
+  .copy { justify-self: stretch; max-width: 30rem; padding: 12px 16px; border-radius: 18px; }
+  .globe-ch .copy { background: transparent; border-color: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-inline: 0; }
+  .copy h1 { font-size: 1.55rem; margin-bottom: 6px; }
+  .copy h2 { font-size: 1.3rem; margin-bottom: 6px; }
+  .copy p { font-size: 0.86rem; line-height: 1.5; }
+  .copy ul { margin-top: 6px; gap: 3px; font-size: 0.8rem; }
+  .eyebrow { margin-bottom: 4px; font-size: 0.72rem; }
+  .note { margin-top: 6px !important; font-size: 0.8rem !important; }
+  .copy .credit { margin-top: 4px; font-size: 0.74rem; }
+  .cta-link, .stores, .daynight { margin-top: 10px; }
+  .store { min-height: 42px; padding: 6px 12px; }
+  .copy .stores-more { margin-top: 4px; font-size: 0.74rem; }
+  .hud { left: auto; translate: none; inset-inline-end: max(12px, env(safe-area-inset-right, 0px)); width: auto; max-width: 44vw; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .hud-legend { display: none; }
+}
+/* Too little room above the words for a screen to read: leave it out rather than show it tiny. */
+@container (max-height: 150px) { .phone, .droid, .watch, .family, .tvset, .panel { display: none; } }
+/* Short screens with room beside the words: a smaller scale, so the longest chapter fits the height. */
+@media (min-width: 861px) and (max-height: 860px) {
+  :root { --step-3: clamp(1.7rem, 0.9rem + 3.6vh, 2.7rem); --step-4: clamp(2rem, 1rem + 4.4vh, 3.2rem); --step-1: clamp(1rem, 0.78rem + 0.9vh, 1.2rem); }
+  .beat { padding-block: calc(72px + env(safe-area-inset-top, 0px)) 28px; }
+  .copy { padding: clamp(20px, 2.4vh, 30px) clamp(22px, 2.4vw, 32px); }
+  .copy h1, .copy h2 { margin-bottom: 12px; }
+  .copy ul { margin-top: 14px; gap: 7px; }
+  .eyebrow { margin-bottom: 10px; }
+  .media { min-height: 0; }
+  .phone, .droid { width: clamp(150px, min(19vw, 27vh), 260px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .copy, .phone, .droid, .media > * { transition: none !important; }
+  .scroll-cue::after { animation: none; }
+}
+
+/* Titles: the words rise in one by one when the chapter becomes the current one; the gold marks sweep under the
+   highlighted words after them. At rest (no script, reduced motion) everything is shown. */
+.copy h1 .hl, .copy h2 .hl { background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--gold-bright) 45%, transparent) 60%, color-mix(in srgb, var(--gold-bright) 45%, transparent) 90%, transparent 90%);
+  background-repeat: no-repeat; background-size: 100% 100%; background-position: left; color: var(--gold); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+[dir="rtl"] .copy .hl { background-position: right; }
+.copy .w { display: inline-block; }
+.copy .nw { white-space: nowrap; }
+.copy .count { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.hero-at { margin: -4px 0 12px !important; font-weight: 600; color: var(--gold) !important; font-size: var(--step-1); }
+.js .copy .w { opacity: 0; transform: translateY(0.45em); filter: blur(6px); transition: opacity 0.6s, transform 0.7s cubic-bezier(.2,.7,.2,1), filter 0.6s; transition-delay: calc(var(--d) * 65ms); }
+.js .copy .hl { background-size: 0% 100%; transition: background-size 0.8s cubic-bezier(.3,.7,.2,1); transition-delay: calc(var(--d) * 65ms + 250ms); }
+.js .chapter.on .copy .w { opacity: 1; transform: none; filter: none; }
+.js .chapter.on .copy .hl { background-size: 100% 100%; }
+
+/* Screens move with the scroll inside their chapter: they rise in, drift, and the second one passes the first. */
+.js .media > * { --lift: calc((0.5 - var(--p, 0.5)) * 90px); }
+.js .chapter.on .media > .phone:first-child, .js .chapter.on .media > .droid:first-child, .js .chapter.on .media > .watch:first-child { transform: translateY(var(--lift)) rotate(calc((0.5 - var(--p, 0.5)) * -3deg)); }
+.js .chapter.on .media > .phone:nth-child(2), .js .chapter.on .media > .droid:nth-child(2) { transform: translateY(calc(8% + var(--lift) * -0.7)) rotate(calc((0.5 - var(--p, 0.5)) * 3deg)); }
+.js .chapter.on .media > .watch:nth-child(2) { transform: translateY(calc(-12% + var(--lift) * -0.6)) scale(1.1); }
+.js .chapter.on .media > .watch:nth-child(3) { transform: translateY(calc(var(--lift) * 0.5)); }
+.js .chapter.on .family { transform: translateY(calc(var(--lift) * 0.6)) scale(calc(0.96 + var(--p, 0.5) * 0.08)); }
+[dir="rtl"] .js .chapter.on .family, .js[dir="rtl"] .chapter.on .family { transform: scaleX(-1) translateY(calc(var(--lift) * 0.6)) scale(calc(0.96 + var(--p, 0.5) * 0.08)); }
+.js .chapter.on .copy { transform: translateY(calc((0.5 - var(--p, 0.5)) * 30px)); }
+
+/* On the globe the words step aside as the chapter ends, so the globe is never covered while it moves. */
+.js .chapter.globe-ch.on .copy { opacity: clamp(0, calc((0.92 - var(--p, 0.5)) * 6), 1); }
+
+/* The storyboard: one mark per chapter on the far side; the current one is named. */
+.board { position: fixed; z-index: 15; inset-inline-end: max(14px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: grid; gap: 4px; }
+.board a { display: flex; align-items: center; justify-content: flex-end; gap: 10px; text-decoration: none; padding: 5px 2px; font: 600 0.75rem var(--font-display); color: var(--bar-ink, var(--ink)); }
+.board a::after { content: ""; width: 6px; height: 6px; border-radius: 3px; background: currentColor; opacity: 0.35; transition: width 0.3s, opacity 0.3s, background 0.3s; }
+.board a span { opacity: 0; transform: translateX(6px); transition: opacity 0.3s, transform 0.3s; white-space: nowrap; text-shadow: 0 1px 10px var(--ground); }
+.on-sky .board a span { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6); }
+.board a[aria-current] { color: var(--gold); }
+.board a[aria-current]::after { width: 22px; opacity: 1; background: var(--gold-bright); }
+.board a[aria-current] span, .board a:hover span, .board a:focus-visible span { opacity: 1; transform: none; }
+.board.off { opacity: 0; pointer-events: none; }
+/* Over the sky (dark in both themes) the storyboard takes the dark theme's light ink and gold. */
+.on-sky .board { --ink: #F1F4F6; --bar-ink: #F1F4F6; --gold: #E2BC5E; --gold-bright: #E2B649; }
+#sound[aria-pressed="true"] { border-color: var(--gold-bright); color: var(--gold); }
+@media (max-width: 860px) {
+  .board { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: none; inset-inline-end: auto; left: 50%; grid-auto-flow: column; gap: 0; translate: -50% 0; }
+  .board a { padding: 8px 3px; }
+  .board a span { display: none; }
+  .board a[aria-current]::after { width: 16px; }
+  .tools button { padding: 8px 11px; font-size: 0.82rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .copy .w { opacity: 1; transform: none; filter: none; transition: none; }
+  .js .copy .hl { background-size: 100% 100%; transition: none; }
+  .js .chapter.on .media > *, .js .chapter.on .copy, .js .chapter.on .family { transform: none; }
+}
+.duo { background: var(--ground); }
