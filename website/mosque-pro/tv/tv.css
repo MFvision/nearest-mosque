@@ -1,0 +1,244 @@
+/* The TV page, design 2: night navy, a mihrab arch for the next prayer, the day as a line from Fajr to Isha.
+   Sized in vh/vw from a 1280×720 drawing, so the same board fills a 1080p or a 4K screen, read from across a room. */
+:root { --gold: #D9B26A; --ivory: #F4EEDF; --soft: rgba(244, 238, 223, 0.72); --dim: rgba(244, 238, 223, 0.55);
+  --glass: rgba(244, 238, 223, 0.06); --mint: #7FD1BF; --navy: #0A1B2C; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #060F1A; color: var(--ivory);
+  font-family: "IBM Plex Sans Arabic", "Segoe UI", "Noto Sans Arabic", "Noto Sans", Tahoma, sans-serif; }
+p, h2 { margin: 0; }
+.gold { color: var(--gold); }
+.mint { color: var(--mint); }
+.label { font-size: 2.5vh; letter-spacing: 0.05vh; color: var(--soft); }
+.kufi { font-family: "Reem Kufi", "IBM Plex Sans Arabic", sans-serif; }
+
+.screen { position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden;
+  background: radial-gradient(120% 90% at 75% 35%, #12304A 0%, var(--navy) 55%, #060F1A 100%); }
+[dir="ltr"] .screen { background: radial-gradient(120% 90% at 25% 35%, #12304A 0%, var(--navy) 55%, #060F1A 100%); }
+.screen[hidden] { display: none; }
+/* The girih pattern, very faint. */
+.board::before, .adhan::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.05; background-size: 11.1vh 11.1vh;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 8 L48 32 L72 40 L48 48 L40 72 L32 48 L8 40 L32 32 Z M40 20 L60 40 L40 60 L20 40 Z' fill='none' stroke='%23D9B26A' stroke-width='1.2'/%3E%3C/svg%3E"); }
+
+/* The wallpaper: the Haram at night, faint behind the home screen. */
+.wall { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: url("wall.jpg") center / cover no-repeat; opacity: 0.2;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.6) 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.6) 55%, transparent 100%); }
+.greet { font-size: 2.4vh; color: var(--gold); margin-bottom: 0.4vh; letter-spacing: 0.05vh; }
+
+/* Board: the home screen. The hero (the prayer board) on top, then rows the remote moves through: the apps, today
+   (weather, the times, the Qibla), the settings. The page slides up to the focused row. */
+.board { transition: transform 2s ease; }
+.page { position: absolute; top: 0; left: 0; right: 0; transition: transform 0.45s ease; }
+.hero { position: relative; height: 75vh; }
+.top { position: absolute; top: 4.5vh; left: 4.4vw; right: 4.4vw; display: flex; justify-content: space-between; align-items: flex-start; }
+.city { font-family: "Reem Kufi", sans-serif; font-size: 4.7vh; font-weight: 700; }
+.date { font-size: 2.5vh; color: var(--soft); margin-top: 0.6vh; }
+.clock { font-size: 9vh; font-weight: 200; line-height: 1; font-variant-numeric: tabular-nums; direction: ltr; }
+
+.arch { position: absolute; top: 20.5vh; right: 4.4vw; width: 34vw; height: 39.5vh; padding: 0 2.5vw 3.5vh;
+  border: 0.21vh solid rgba(217, 178, 106, 0.55); border-radius: 17vw 17vw 3.9vh 3.9vh;
+  background: linear-gradient(180deg, rgba(217, 178, 106, 0.10) 0%, rgba(217, 178, 106, 0.02) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; }
+[dir="ltr"] .arch { right: auto; left: 4.4vw; }
+.next-name { font-family: "Reem Kufi", sans-serif; font-size: 12.5vh; font-weight: 700; line-height: 1.05; }
+[lang="en"] .next-name { font-size: 10vh; }
+.next-at { font-size: 3.3vh; font-weight: 600; color: var(--gold); }
+.remain { margin-top: 1.2vh; display: flex; align-items: baseline; gap: 1vw; }
+.countdown { font-size: 7.5vh; font-weight: 200; line-height: 1; direction: ltr; font-variant-numeric: tabular-nums; }
+
+.daily { position: absolute; top: 16vh; left: 4.4vw; width: 52vw; height: 43vh; display: flex; flex-direction: column; gap: 1.4vh; }
+[dir="ltr"] .daily { left: auto; right: 4.4vw; }
+.daily[hidden] { display: none; }
+.daily-head { display: flex; align-items: center; gap: 1vw; font-size: 2.3vh; letter-spacing: 0.1vh; color: var(--gold); }
+.daily-head i { width: 2.2vw; height: 0.21vh; background: var(--gold); }
+.daily-ar { font-family: "Amiri", "Traditional Arabic", "Noto Naskh Arabic", serif; font-size: 4.6vh; line-height: 1.6;
+  max-height: 22vh; overflow: hidden; }
+.daily-ar.long { font-size: 3.7vh; }
+.daily-ar.longer { font-size: 3vh; }
+.daily-tr { font-size: 2.2vh; color: var(--soft); max-height: 6.6vh; overflow: hidden; }
+.daily-tr:empty { display: none; }
+.daily-ref { font-size: 2vh; color: rgba(244, 238, 223, 0.6); }
+.chips { margin-top: auto; display: flex; gap: 1vw; }
+.chip { padding: 1.3vh 1.3vw; border-radius: 1.7vh; background: var(--glass); display: flex; flex-direction: column; gap: 0.2vh; }
+.chip[hidden], .chip.cap { display: none; }
+.chip-gold b { color: var(--gold); }
+.chip-play b { color: var(--mint); max-width: 20vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip span { font-size: 1.8vh; color: rgba(244, 238, 223, 0.6); }
+.chip b { font-size: 2.7vh; font-weight: 400; }
+
+.line { position: absolute; left: 6.25vw; right: 6.25vw; top: 61.5vh; height: 12vh; }
+.rail, .rail-done { position: absolute; top: 5.6vh; height: 0.28vh; }
+.rail { left: 0; right: 0; background: rgba(244, 238, 223, 0.16); }
+.rail-done { right: 0; background: linear-gradient(270deg, rgba(217, 178, 106, 0.2), var(--gold)); }
+[dir="ltr"] .rail-done { right: auto; left: 0; background: linear-gradient(90deg, rgba(217, 178, 106, 0.2), var(--gold)); }
+.mark { position: absolute; top: 0; width: 9.4vw; margin: 0 -4.7vw; display: flex; flex-direction: column; align-items: center; gap: 0.9vh; }
+.mark span { height: 3.8vh; display: flex; align-items: flex-end; font-size: 2.3vh; }
+.mark i { width: 1.4vh; height: 1.4vh; border-radius: 50%; border: 0.21vh solid rgba(244, 238, 223, 0.5); background: var(--navy); }
+.mark b { font-size: 2.3vh; font-weight: 400; direction: ltr; color: rgba(244, 238, 223, 0.85); }
+.mark.past span, .mark.past b { color: var(--dim); }
+.mark.past i { background: var(--gold); border-color: var(--gold); }
+.mark.sunrise { opacity: 0.8; }
+.mark.next span { font-size: 2.8vh; font-weight: 700; color: var(--gold); }
+.mark.next i { width: 1.9vh; height: 1.9vh; border-color: var(--gold); }
+.mark.next b { color: var(--ivory); }
+.sun { position: absolute; top: 4.3vh; width: 2.8vh; height: 2.8vh; margin: 0 -1.4vh; border-radius: 50%; background: #FFE3A3;
+  box-shadow: 0 0 2.5vh 0.8vh rgba(255, 214, 130, 0.45); }
+.sun[hidden] { display: none; }
+
+/* Rows */
+.row { padding: 0 4.4vw 5vh; }
+.row-h { margin: 0 0 1.6vh; font-size: 2.5vh; font-weight: 400; color: var(--soft); letter-spacing: 0.05vh; }
+.shelf-clip { overflow: hidden; margin: -1.5vh -4.4vw; padding: 1.5vh 4.4vw; }
+.shelf { position: relative; display: flex; gap: 1.3vw; transition: transform 0.3s ease; }
+.app { flex: 0 0 12.6vw; height: 14.5vh; border-radius: 2.4vh; background: rgba(244, 238, 223, 0.07); border: 0.35vh solid transparent;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2vh; transition: transform 0.24s cubic-bezier(0, 0, 0.2, 1), background 0.24s; }
+.app .ic { width: 7.6vh; height: 7.6vh; border-radius: 1.8vh; display: flex; align-items: center; justify-content: center;
+  font-family: "Reem Kufi", sans-serif; font-size: 3.6vh; font-weight: 700; color: #fff; overflow: hidden; }
+.app .ic img { width: 100%; height: 100%; object-fit: contain; }
+.app .ic svg { width: 4.4vh; height: 4.4vh; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.app span { color: rgba(244, 238, 223, 0.7); transition: color 0.22s; font-size: 2vh; max-width: 11vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cards { display: flex; gap: 1.3vw; }
+.card { flex: 1 1 0; min-width: 0; min-height: 24vh; border-radius: 2.8vh; background: rgba(244, 238, 223, 0.07); border: 0.35vh solid transparent;
+  padding: 2.6vh 1.6vw; display: flex; flex-direction: column; gap: 0.9vh; transition: transform 0.2s ease, background 0.2s; }
+.card small { font-size: 2vh; color: var(--soft); }
+.card b { font-size: 3.6vh; font-weight: 600; }
+.card .big { font-size: 7vh; font-weight: 200; line-height: 1; direction: ltr; }
+.card .sub { font-size: 2.1vh; color: var(--soft); line-height: 1.5; }
+.card .ic svg, .wx svg { width: 5vh; height: 5vh; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.card .times-list { display: grid; grid-template-columns: auto auto; gap: 0.5vh 1.4vw; font-size: 2.2vh; }
+.card .times-list b { font-size: 2.2vh; font-weight: 400; direction: ltr; text-align: end; }
+.card .times-list .is-next { color: var(--gold); }
+.days { display: flex; gap: 1.2vw; margin-top: auto; }
+.days div { display: flex; flex-direction: column; align-items: center; gap: 0.4vh; font-size: 1.9vh; color: var(--soft); }
+.days svg { width: 3.4vh; height: 3.4vh; }
+.days b { font-size: 2.2vh; font-weight: 400; color: var(--ivory); direction: ltr; }
+.card.pref { gap: 1.4vh; min-height: 19vh; }
+.card.pref .ic { width: 6.4vh; height: 6.4vh; flex-shrink: 0; border-radius: 2.2vh; background: rgba(217, 178, 106, 0.14); display: flex; align-items: center; justify-content: center; }
+.card.pref span { display: flex; flex-direction: column; gap: 0.4vh; min-width: 0; }
+.card.pref b { font-size: 3.2vh; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app.focus span { color: var(--ivory); }
+.app.focus { transform: scale(1.12) !important; }
+.focus { background: rgba(217, 178, 106, 0.20) !important; border-color: var(--gold) !important; transform: scale(1.06);
+  box-shadow: 0 0 4vh rgba(217, 178, 106, 0.25); }
+.hint-bar { position: fixed; bottom: 0.8vh; left: 0; right: 0; text-align: center; font-size: 1.9vh; color: var(--dim); transition: opacity 0.6s; }
+.hint-bar.gone { opacity: 0; }
+
+/* The Quran: a wide "play for me" card, the radio, the reciter, then surahs by name. */
+.qcard { flex: 0 0 15vw; min-height: 23vh; }
+.qcard.lucky { flex-basis: 27vw; background: linear-gradient(135deg, rgba(217, 178, 106, 0.22), rgba(217, 178, 106, 0.06)); }
+.qcard.lucky b { font-family: "Amiri", "Reem Kufi", serif; font-size: 4.6vh; font-weight: 400; line-height: 1.3; }
+[lang="en"] .qcard.lucky b { font-family: "Reem Kufi", sans-serif; font-size: 3.8vh; font-weight: 500; }
+.qcard .go { margin-top: auto; display: flex; align-items: center; gap: 0.9vw; font-size: 2.3vh; color: var(--gold); }
+.qcard .go .ic { width: 4.6vh; height: 4.6vh; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; }
+.qcard .go .ic svg { width: 2.4vh; height: 2.4vh; fill: var(--navy); stroke: none; }
+.qcard b { font-size: 3vh; }
+.qcard.surah { align-items: center; justify-content: center; text-align: center; gap: 0.6vh; }
+.qcard .num { position: relative; width: 4.8vh; height: 4.8vh; display: flex; align-items: center; justify-content: center; font-size: 1.9vh;
+  line-height: 1; color: var(--gold); }
+.qcard .num::before { content: ""; position: absolute; top: 0.6vh; right: 0.6vh; bottom: 0.6vh; left: 0.6vh; border: 0.18vh solid rgba(217, 178, 106, 0.7);
+  border-radius: 0.6vh; transform: rotate(45deg); }
+.qcard.surah .ar { font-family: "Amiri", "Traditional Arabic", serif; font-size: 5.4vh; font-weight: 400; line-height: 1.35; }
+.qcard.playing { border-color: rgba(127, 209, 191, 0.7); }
+.qcard.playing small, .qcard.playing .sub { color: var(--mint); }
+/* Three bars that move while a recitation plays. */
+.eq { display: inline-flex; align-items: flex-end; gap: 0.25vw; height: 2vh; margin-inline-end: 0.7vw; vertical-align: -0.2vh; }
+.eq i { width: 0.35vw; min-width: 3px; height: 100%; background: var(--mint); border-radius: 1px; animation: eq 0.9s ease-in-out infinite alternate; }
+.eq i:nth-child(2) { animation-delay: -0.3s; }
+.eq i:nth-child(3) { animation-delay: -0.6s; }
+@keyframes eq { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+.eq i { transform-origin: bottom; }
+.card.ramadan { background: linear-gradient(160deg, rgba(217, 178, 106, 0.20), rgba(217, 178, 106, 0.04)); }
+.card.ramadan b { font-size: 3vh; }
+
+/* The city list: Up and Down, OK to pick, Back to leave. */
+.picker { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(4, 10, 18, 0.92); display: flex; align-items: center; justify-content: center; z-index: 5; }
+.picker[hidden] { display: none; }
+.picker-box { width: 46vw; display: flex; flex-direction: column; gap: 2.4vh; }
+.picker h2 { font-family: "Reem Kufi", sans-serif; font-size: 5vh; font-weight: 700; text-align: center; }
+.picker-list { list-style: none; margin: 0; padding: 0; height: 63vh; overflow: hidden; position: relative; }
+.picker-list li { height: 9vh; display: flex; align-items: center; justify-content: space-between; padding: 0 2vw; border-radius: 2.2vh;
+  font-size: 3.4vh; border: 0.35vh solid transparent; }
+.picker-list li small { font-size: 2.1vh; color: var(--soft); }
+.picker-list li.group { height: 6vh; font-size: 2.2vh; color: var(--gold); padding-top: 1.5vh; }
+.picker-list li.on { background: rgba(217, 178, 106, 0.20); border-color: var(--gold); }
+.picker-list li.qa { height: auto; min-height: 9vh; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0.8vh; padding: 1.6vh 2vw; }
+.picker-list li.qa small { font-size: 2.3vh; line-height: 1.45; }
+.picker-keys { text-align: center; font-size: 2.2vh; color: var(--soft); }
+
+/* Adhan */
+.adhan { background: radial-gradient(80% 80% at 50% 45%, #163A52 0%, var(--navy) 60%, #050C15 100%); }
+.arch-big { position: absolute; top: 9.7vh; left: 50%; width: 43.75vw; height: 83.3vh; margin-left: -21.9vw;
+  border: 0.28vh solid rgba(217, 178, 106, 0.7); border-radius: 21.9vw 21.9vw 4.4vh 4.4vh;
+  background: linear-gradient(180deg, rgba(217, 178, 106, 0.14) 0%, rgba(217, 178, 106, 0.03) 100%); box-shadow: 0 0 11vh rgba(217, 178, 106, 0.12); }
+.adhan-text { position: absolute; top: 16.7vh; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 0.8vh; text-align: center; }
+.moon { width: 7.5vh; height: 7.5vh; fill: none; stroke: var(--gold); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 2.5vh; }
+.adhan .label { font-size: 3vh; }
+.adhan-name { font-family: "Reem Kufi", sans-serif; font-size: 20.8vh; font-weight: 700; line-height: 1.05; }
+[lang="en"] .adhan-name { font-size: 15vh; }
+.takbir { font-family: "Amiri", "Traditional Arabic", serif; font-size: 5.6vh; color: var(--gold); }
+.ring { position: absolute; top: 65.3vh; left: 50%; width: 22.2vh; height: 22.2vh; margin-left: -11.1vh; }
+.ring[hidden] { display: none; }
+.ring svg { width: 100%; height: 100%; }
+.ring-bg { fill: none; stroke: rgba(244, 238, 223, 0.14); stroke-width: 6; }
+.ring-fg { fill: none; stroke: var(--gold); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 440; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear; }
+.ring-text { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ring-text span { font-size: 1.9vh; color: var(--soft); }
+.ring-text b { font-size: 5.8vh; font-weight: 200; line-height: 1.1; direction: ltr; font-variant-numeric: tabular-nums; }
+.foot { position: absolute; bottom: 3.9vh; font-size: 2.2vh; color: var(--dim); }
+.foot-start { right: 4.4vw; }
+.foot-end { left: 4.4vw; }
+[dir="ltr"] .foot-start { right: auto; left: 4.4vw; }
+[dir="ltr"] .foot-end { left: auto; right: 4.4vw; }
+
+/* Lock screen: the Kaaba and the tawaf, live, with the time large over it. */
+.lock { background: #000; }
+.lock-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 60% 50%;
+  animation: drift 60s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1.04) translate(0, 0); } to { transform: scale(1.14) translate(-1.5%, 1%); } }
+.lock-shade { position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(270deg, rgba(3, 9, 16, 0.86) 0%, rgba(3, 9, 16, 0.45) 45%, rgba(3, 9, 16, 0.15) 75%),
+    linear-gradient(0deg, rgba(3, 9, 16, 0.9) 0%, rgba(3, 9, 16, 0) 45%); }
+[dir="ltr"] .lock-shade { background: linear-gradient(90deg, rgba(3, 9, 16, 0.86) 0%, rgba(3, 9, 16, 0.45) 45%, rgba(3, 9, 16, 0.15) 75%),
+    linear-gradient(0deg, rgba(3, 9, 16, 0.9) 0%, rgba(3, 9, 16, 0) 45%); }
+.lock-top { position: absolute; top: 6vh; right: 5vw; }
+[dir="ltr"] .lock-top { right: auto; left: 5vw; }
+.lock-greet { font-family: "Reem Kufi", sans-serif; font-size: 4.2vh; font-weight: 500; color: var(--gold); }
+.lock-city { font-size: 2.6vh; color: var(--soft); margin-top: 0.6vh; }
+.lock-main { position: absolute; bottom: 13vh; right: 5vw; display: flex; flex-direction: column; gap: 1.2vh; }
+[dir="ltr"] .lock-main { right: auto; left: 5vw; }
+.lock-time { display: flex; align-items: baseline; gap: 1.5vh; direction: ltr; justify-content: flex-end; }
+[dir="ltr"] .lock-time { justify-content: flex-start; }
+#lock-clock { font-size: 26vh; font-weight: 200; line-height: 0.9; letter-spacing: -0.3vh; font-variant-numeric: tabular-nums;
+  text-shadow: 0 0.6vh 4vh rgba(0, 0, 0, 0.5); }
+.lock-ampm { font-size: 4.4vh; font-weight: 300; color: var(--soft); }
+.lock-date { font-size: 3vh; color: var(--soft); }
+.lock-date b { color: var(--gold); font-weight: 400; }
+.lock-next { margin-top: 1.6vh; align-self: flex-start; display: flex; align-items: baseline; gap: 1vw; padding: 1.6vh 2vw; border-radius: 4vh;
+  background: rgba(244, 238, 223, 0.10); border: 0.15vh solid rgba(217, 178, 106, 0.45); font-size: 2.6vh; color: var(--soft);
+  -webkit-backdrop-filter: blur(1.4vh); backdrop-filter: blur(1.4vh); }
+[dir="rtl"] .lock-next { align-self: flex-end; }
+.lock-next b { font-family: "Reem Kufi", sans-serif; font-size: 3.6vh; font-weight: 700; color: var(--ivory); }
+.lock-in { font-size: 3.2vh; font-weight: 300; color: var(--gold); direction: ltr; font-variant-numeric: tabular-nums; }
+.lock-play { align-self: flex-start; font-size: 2.4vh; color: var(--mint); text-shadow: 0 0.3vh 1.5vh rgba(0, 0, 0, 0.6); }
+[dir="rtl"] .lock-play { align-self: flex-end; }
+.lock-play[hidden] { display: none; }
+.lock-ayah { position: absolute; bottom: 13vh; left: 5vw; width: 36vw; text-align: left; }
+[dir="ltr"] .lock-ayah { left: auto; right: 5vw; text-align: right; }
+.lock-ayah-ar { font-family: "Amiri", serif; font-size: 3.6vh; line-height: 1.7; color: rgba(244, 238, 223, 0.92); max-height: 25vh; overflow: hidden;
+  text-shadow: 0 0.3vh 2vh rgba(0, 0, 0, 0.6); }
+.lock-ayah-ref { font-size: 2vh; color: var(--gold); margin-top: 1vh; }
+.lock-hint { position: absolute; bottom: 3.5vh; left: 0; right: 0; text-align: center; font-size: 2vh; color: var(--dim); transition: opacity 1s; }
+.lock-hint.gone { opacity: 0; }
+
+/* Night: dim and warm, moving a little every minute. */
+.night { background: #000; color: #BDB7A8; }
+.night-box { position: absolute; display: flex; flex-direction: column; align-items: flex-start; gap: 1.4vh; transition: top 2s ease, left 2s ease; }
+.night-moon { width: 4.7vh; height: 4.7vh; fill: none; stroke: #8C7444; stroke-width: 1.4; stroke-linecap: round; }
+.night-time { display: flex; align-items: baseline; gap: 1.4vh; direction: ltr; }
+.night-ampm { font-size: 3.3vh; color: #7A7568; }
+.night-clock { font-size: 18.3vh; font-weight: 200; line-height: 1; color: #CFC9BA; direction: ltr; font-variant-numeric: tabular-nums; }
+.night-next { font-size: 3.3vh; color: #8F897B; }
+.night-bar { margin-top: 3.6vh; width: 32.8vw; height: 0.28vh; background: #1C1C1C; position: relative; }
+.night-bar div { position: absolute; top: 0; right: 0; height: 100%; background: #6E5C36; }
+[dir="ltr"] .night-bar div { right: auto; left: 0; }
+.night-ayah { font-family: "Amiri", serif; font-size: 3.6vh; color: #8C7444; margin-top: 1.9vh; }
+

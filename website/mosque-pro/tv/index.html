@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mosque Pro · TV</title>
+<link rel="icon" href="../assets/icon-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;600&family=Amiri&display=swap">
+<link rel="stylesheet" href="tv.css">
+</head>
+<body>
+
+<main id="board" class="screen board">
+ <div class="wall" aria-hidden="true"></div>
+ <div id="page" class="page">
+  <section class="hero">
+    <header class="top">
+      <div>
+        <p id="greet" class="greet"></p>
+        <p id="city" class="city"></p>
+        <p class="date"><span id="date"></span><span class="sep"> · </span><span id="hijri" class="gold"></span></p>
+      </div>
+      <p class="clock"><span id="clock"></span></p>
+    </header>
+
+    <section class="arch" aria-live="off">
+      <p id="next-label" class="label"></p>
+      <p id="next-name" class="next-name"></p>
+      <p id="next-at" class="next-at"></p>
+      <p class="remain"><span id="countdown" class="countdown"></span><span id="remain-l" class="label"></span></p>
+    </section>
+
+    <section id="daily" class="daily">
+      <p class="daily-head"><i></i><span id="daily-label"></span></p>
+      <p id="daily-ar" class="daily-ar" lang="ar" dir="rtl"></p>
+      <p id="daily-tr" class="daily-tr"></p>
+      <p id="daily-ref" class="daily-ref"></p>
+      <div class="chips">
+        <p class="chip chip-play" id="chip-play" hidden><span id="play-l"></span><b id="play-now"></b></p>
+        <p class="chip chip-gold" id="chip-fast" hidden><span id="fast-l"></span><b id="fast-at"></b></p>
+        <p class="chip chip-gold" id="chip-kahf" hidden><span id="kahf-l"></span><b id="kahf"></b></p>
+        <p class="chip" id="chip-iqama"><span id="iqama-l"></span><b id="iqama-at"></b></p>
+        <p class="chip" id="chip-wx" hidden><span id="wx-chip-l"></span><b id="wx-chip"></b></p>
+        <p class="chip" id="chip-net" hidden><span id="net-l"></span><b id="net" class="mint"></b></p>
+      </div>
+    </section>
+
+    <section class="line" aria-hidden="true">
+      <div class="rail"></div><div id="rail-done" class="rail-done"></div>
+      <div id="marks"></div>
+      <div id="sun" class="sun"></div>
+    </section>
+  </section>
+
+  <section class="row" data-row="apps">
+    <h3 id="apps-h" class="row-h"></h3>
+    <div class="shelf-clip"><div id="shelf" class="shelf"></div></div>
+  </section>
+
+  <section class="row" data-row="quran">
+    <h3 id="quran-h" class="row-h"></h3>
+    <div class="shelf-clip"><div id="quran" class="shelf qshelf"></div></div>
+  </section>
+
+  <section class="row" data-row="today">
+    <h3 id="today-h" class="row-h"></h3>
+    <div id="today" class="cards"></div>
+  </section>
+
+  <section class="row" data-row="settings">
+    <h3 id="settings-h" class="row-h"></h3>
+    <div id="prefs" class="cards"></div>
+  </section>
+ </div>
+ <p id="hint" class="hint-bar"></p>
+</main>
+
+<div id="picker" class="picker" hidden>
+  <div class="picker-box">
+    <h2 id="picker-h"></h2>
+    <ol id="picker-list" class="picker-list"></ol>
+    <p id="picker-keys" class="picker-keys"></p>
+  </div>
+</div>
+
+<main id="adhan" class="screen adhan" hidden>
+  <div class="arch-big"></div>
+  <div class="adhan-text">
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5a8.5 8.5 0 1 0 5 13.6A7 7 0 0 1 15.5 3.5z"/><path d="M18 6.5l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z"/></svg>
+    <p id="adhan-label" class="label"></p>
+    <p id="adhan-name" class="adhan-name"></p>
+    <p class="takbir" lang="ar" dir="rtl">ٱللَّهُ أَكْبَرُ ٱللَّهُ أَكْبَرُ</p>
+  </div>
+  <div id="ring" class="ring">
+    <svg viewBox="0 0 160 160" aria-hidden="true">
+      <circle cx="80" cy="80" r="70" class="ring-bg"/>
+      <circle id="ring-fg" cx="80" cy="80" r="70" class="ring-fg" transform="rotate(-90 80 80)"/>
+    </svg>
+    <div class="ring-text"><span id="iqama-label"></span><b id="iqama-in"></b></div>
+  </div>
+  <p id="adhan-foot" class="foot foot-start"></p>
+  <p id="adhan-hint" class="foot foot-end"></p>
+</main>
+
+<main id="lock" class="screen lock" hidden>
+  <video id="lock-video" class="lock-video" muted loop playsinline preload="none" poster="wall.jpg"></video>
+  <div class="lock-shade"></div>
+  <div class="lock-top"><p id="lock-greet" class="lock-greet"></p><p id="lock-city" class="lock-city"></p></div>
+  <div class="lock-main">
+    <p class="lock-time"><span id="lock-clock"></span><span id="lock-ampm" class="lock-ampm"></span></p>
+    <p id="lock-date" class="lock-date"></p>
+    <p class="lock-next"><span id="lock-next-l"></span><b id="lock-next"></b><span id="lock-in" class="lock-in"></span></p>
+    <p id="lock-play" class="lock-play" hidden></p>
+  </div>
+  <div class="lock-ayah"><p id="lock-ayah-ar" class="lock-ayah-ar" lang="ar" dir="rtl"></p><p id="lock-ayah-ref" class="lock-ayah-ref"></p></div>
+  <p id="lock-hint" class="lock-hint"></p>
+</main>
+
+<main id="night" class="screen night" hidden>
+  <div id="night-box" class="night-box">
+    <svg class="night-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5a8.5 8.5 0 1 0 5 13.6A7 7 0 0 1 15.5 3.5z"/></svg>
+    <p class="night-time"><span id="night-clock" class="night-clock"></span><span id="night-ampm" class="night-ampm"></span></p>
+    <p id="night-next" class="night-next"></p>
+    <div class="night-bar"><div id="night-fill"></div></div>
+    <p class="night-ayah" lang="ar" dir="rtl">أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ</p>
+  </div>
+</main>
+
+
+<audio id="adhan-audio" src="../assets/adhan.mp3" preload="none"></audio>
+<audio id="quran-audio" preload="none"></audio>
+
+<script src="launcher.js"></script>
+<script type="module" src="tv.js"></script>
+</body>
+</html>
