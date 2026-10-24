@@ -450,7 +450,8 @@ enum PrayerAlarms {
                       reusable[key] == nil else { continue }
                 reusable[key] = r
             }
-            for a in plan where a.kind == .adhan || a.kind == .fajrAlarm {
+            // With "Ring as an alarm" off, the Adhan stays a notification (a Fajr alarm at the Fajr time still plays it).
+            for a in plan where (a.kind == .adhan && alerts.adhanAlarm) || a.kind == .fajrAlarm {
                 let days = a.kind == .adhan ? adhanDays : fajrAlarmDays
                 guard !covered.contains(a.identifier), a.at <= now.addingTimeInterval(Double(days) * 86400) else { continue }
                 let twin = plan.first { $0.at == a.at && $0.event == a.event && $0.kind != a.kind && ($0.kind == .adhan || $0.kind == .fajrAlarm) }

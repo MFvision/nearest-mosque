@@ -9,6 +9,7 @@
     <string name="about_terms">Termos de uso</string>
     <string name="adhan_alarm_note">O adhan toca como alarme, mesmo no silencioso. Toque em Parar para encerrá-lo.</string>
     <string name="adhan_alarm_note_android">O adhan toca como um alarme na hora da oração, mesmo no silencioso ou vibrar, no volume do alarme. Toque em Parar para encerrá-lo.</string>
+    <string name="adhan_as_alarm">Tocar como alarme</string>
     <string name="adhan_fajr">Adhan do Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Duração do adhan</string>

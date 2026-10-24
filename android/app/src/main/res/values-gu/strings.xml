@@ -9,6 +9,7 @@
     <string name="about_terms">ઉપયોગની શરતો</string>
     <string name="adhan_alarm_note">અઝાન એલાર્મની જેમ વાગે છે, સાયલન્ટ પર પણ. રોકવા \"બંધ કરો\" પર ટૅપ કરો.</string>
     <string name="adhan_alarm_note_android">નમાઝના સમયે અઝાન એલાર્મની જેમ વાગે છે, સાયલન્ટ કે વાઇબ્રેટ પર પણ, તમારા એલાર્મ વૉલ્યુમ પર. રોકવા \"બંધ કરો\" પર ટૅપ કરો.</string>
+    <string name="adhan_as_alarm">એલાર્મની જેમ વાગે</string>
     <string name="adhan_fajr">ફજરની અઝાન</string>
     <string name="adhan_full">અઝાન (ઝુહર, અસ્ર, મગરિબ, ઇશા)</string>
     <string name="adhan_length">અઝાનની લંબાઈ</string>

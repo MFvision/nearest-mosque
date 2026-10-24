@@ -9,6 +9,7 @@
     <string name="about_terms">ব্যবহারের শর্তাবলি</string>
     <string name="adhan_alarm_note">আজান অ্যালার্মের মতো বাজে, সাইলেন্টেও। থামাতে \"বন্ধ করুন\" চাপুন।</string>
     <string name="adhan_alarm_note_android">নামাজের সময় আজান অ্যালার্মের মতো বাজে, সাইলেন্ট বা ভাইব্রেটেও, আপনার অ্যালার্মের ভলিউমে। থামাতে \"বন্ধ করুন\" চাপুন।</string>
+    <string name="adhan_as_alarm">অ্যালার্মের মতো বাজুক</string>
     <string name="adhan_fajr">ফজরের আজান</string>
     <string name="adhan_full">আজান (জোহর, আসর, মাগরিব, এশা)</string>
     <string name="adhan_length">আজানের দৈর্ঘ্য</string>

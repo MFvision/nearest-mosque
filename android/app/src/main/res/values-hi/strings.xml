@@ -9,6 +9,7 @@
     <string name="about_terms">उपयोग की शर्तें</string>
     <string name="adhan_alarm_note">अज़ान अलार्म की तरह बजती है, साइलेंट पर भी। इसे रोकने के लिए \"बंद करें\" पर टैप करें।</string>
     <string name="adhan_alarm_note_android">नमाज़ के समय अज़ान अलार्म की तरह चलती है, साइलेंट या वाइब्रेट पर भी, आपके अलार्म वॉल्यूम पर। इसे रोकने के लिए \"बंद करें\" पर टैप करें।</string>
+    <string name="adhan_as_alarm">अलार्म की तरह बजे</string>
     <string name="adhan_fajr">फ़ज्र की अज़ान</string>
     <string name="adhan_full">अज़ान (ज़ुहर, अस्र, मग़रिब, इशा)</string>
     <string name="adhan_length">अज़ान की लंबाई</string>

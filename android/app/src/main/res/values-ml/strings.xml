@@ -9,6 +9,7 @@
     <string name="about_terms">ഉപയോഗ നിബന്ധനകൾ</string>
     <string name="adhan_alarm_note">ബാങ്ക് അലാറം പോലെ മുഴങ്ങും, സൈലന്റിലും. നിർത്താൻ \"നിർത്തുക\" ടാപ്പ് ചെയ്യുക.</string>
     <string name="adhan_alarm_note_android">നമസ്കാര സമയത്ത് ബാങ്ക് അലാറം പോലെ പ്ലേ ചെയ്യും, സൈലന്റിലോ വൈബ്രേറ്റിലോ ആണെങ്കിലും, നിങ്ങളുടെ അലാറം വോളിയത്തിൽ. നിർത്താൻ \"നിർത്തുക\" ടാപ്പ് ചെയ്യുക.</string>
+    <string name="adhan_as_alarm">അലാറം പോലെ മുഴങ്ങുക</string>
     <string name="adhan_fajr">സുബ്ഹ് ബാങ്ക്</string>
     <string name="adhan_full">ബാങ്ക് (ളുഹ്ർ, അസ്ർ, മഗ്‌രിബ്, ഇശാ)</string>
     <string name="adhan_length">ബാങ്കിന്റെ ദൈർഘ്യം</string>

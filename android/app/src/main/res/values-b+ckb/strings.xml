@@ -9,6 +9,7 @@
     <string name="about_terms">مەرجەکانی بەکارهێنان</string>
     <string name="adhan_alarm_note">بانگ وەک ئەلارم لێدەدات، تەنانەت لە دۆخی بێدەنگیشدا. بۆ وەستاندنی «ڕاگرتن» دابگرە.</string>
     <string name="adhan_alarm_note_android">لە کاتی نوێژدا بانگ وەک ئەلارم لێدەدرێت، تەنانەت لە دۆخی بێدەنگ یان لەرزینیشدا، بە دەنگی ئەلارمەکەت. بۆ وەستاندنی «ڕاگرتن» دابگرە.</string>
+    <string name="adhan_as_alarm">وەک ئەلارم لێبدات</string>
     <string name="adhan_fajr">بانگی بەیانی</string>
     <string name="adhan_full">بانگ (نیوەڕۆ، عەسر، ئێوارە، خەوتنان)</string>
     <string name="adhan_length">درێژی بانگ</string>

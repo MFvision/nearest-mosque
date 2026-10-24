@@ -9,6 +9,7 @@
     <string name="about_terms">භාවිත නියම</string>
     <string name="adhan_alarm_note">අදාන් එලාමයක් ලෙස නාද වේ, නිහඬ ප්‍රකාරයේදී පවා. එය නැවැත්වීමට \"නවත්වන්න\" තට්ටු කරන්න.</string>
     <string name="adhan_alarm_note_android">නමාස් වේලාවේදී අදාන් එලාමයක් ලෙස වාදනය වේ, නිහඬ හෝ කම්පන ප්‍රකාරයේදී පවා, ඔබේ එලාම් හඬ මට්ටමින්. එය නැවැත්වීමට \"නවත්වන්න\" තට්ටු කරන්න.</string>
+    <string name="adhan_as_alarm">එලාමයක් ලෙස නාද වේ</string>
     <string name="adhan_fajr">ෆජ්ර් අදාන්</string>
     <string name="adhan_full">අදාන් (ලුහර්, අසර්, මග්රිබ්, ඉෂා)</string>
     <string name="adhan_length">අදානයේ දිග</string>

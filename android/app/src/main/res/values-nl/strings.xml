@@ -9,6 +9,7 @@
     <string name="about_terms">Gebruiksvoorwaarden</string>
     <string name="adhan_alarm_note">De adhan klinkt als wekker, ook op stil. Tik op Stoppen om hem te beëindigen.</string>
     <string name="adhan_alarm_note_android">De adhan klinkt als wekker op de gebedstijd, ook op stil of trillen, op het wekkervolume. Tik op Stoppen om hem te beëindigen.</string>
+    <string name="adhan_as_alarm">Afgaan als wekker</string>
     <string name="adhan_fajr">Adhan voor Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Lengte van de adhan</string>

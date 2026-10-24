@@ -9,6 +9,7 @@
     <string name="about_terms">Услови коришћења</string>
     <string name="adhan_alarm_note">Езан звони као аларм, чак и у нечујном режиму. Додирните Заустави да бисте га прекинули.</string>
     <string name="adhan_alarm_note_android">Езан се пушта као аларм у време намаза, чак и у нечујном режиму или на вибрацији, јачином аларма. Додирните Заустави да бисте га прекинули.</string>
+    <string name="adhan_as_alarm">Звони као аларм</string>
     <string name="adhan_fajr">Сабахски езан</string>
     <string name="adhan_full">Езан (подне, икиндија, акшам, јација)</string>
     <string name="adhan_length">Дужина езана</string>

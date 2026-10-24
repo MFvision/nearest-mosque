@@ -9,6 +9,7 @@
     <string name="about_terms">Conditions d’utilisation</string>
     <string name="adhan_alarm_note">L’adhan sonne comme une alarme, même en mode silencieux. Touchez Arrêter pour l’interrompre.</string>
     <string name="adhan_alarm_note_android">L’adhan sonne comme une alarme à l’heure de la prière, même en mode silencieux ou vibreur, au volume de l’alarme. Touchez Arrêter pour l’interrompre.</string>
+    <string name="adhan_as_alarm">Sonner comme une alarme</string>
     <string name="adhan_fajr">Adhan du Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Durée de l’adhan</string>

@@ -1770,6 +1770,227 @@
         }
       }
     },
+    "adhan_as_alarm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ring as an alarm"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يرنّ كمنبّه"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الارم کی طرح بجے"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm olarak çalsın"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bunyikan sebagai alarm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonner comme une alarme"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonar como alarma"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Звучать как будильник"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যালার্মের মতো বাজুক"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مثل زنگ هشدار به صدا درآید"
+          }
+        },
+        "fa-AF": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مثل الارم زنگ بزند"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以闹钟方式响起"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म की तरह बजे"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocar como alarme"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yi ƙara kamar ƙararrawa"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lia kama kengele"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumunog bilang alarm"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đổ chuông như báo thức"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ดังแบบนาฬิกาปลุก"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រោទ៍ជាម៉ោងរោទ៍"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ئويغاتقۇچتەك جىرىڭلىسۇن"
+          }
+        },
+        "ckb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وەک ئەلارم لێبدات"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvoni kao alarm"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Звони као аларм"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ѕвони како аларм"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ébresztőként szóljon"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afgaan als wekker"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მაღვიძარასავით დარეკვა"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "එලාමයක් ලෙස නාද වේ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అలారంలా మోగాలి"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅಲಾರಂನಂತೆ ರಿಂಗ್ ಆಗಲಿ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അലാറം പോലെ മുഴങ്ങുക"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्मसारखी वाजावी"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "એલાર્મની જેમ વાગે"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਲਾਰਮ ਵਾਂਗ ਵੱਜੇ"
+          }
+        },
+        "as": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এলাৰ্মৰ দৰে বাজক"
+          }
+        }
+      }
+    },
     "adhan_fajr": {
       "extractionState": "manual",
       "localizations": {

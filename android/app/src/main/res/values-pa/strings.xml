@@ -9,6 +9,7 @@
     <string name="about_terms">ਵਰਤੋਂ ਦੀਆਂ ਸ਼ਰਤਾਂ</string>
     <string name="adhan_alarm_note">ਅਜ਼ਾਨ ਅਲਾਰਮ ਵਾਂਗ ਵੱਜਦੀ ਹੈ, ਸਾਈਲੈਂਟ ’ਤੇ ਵੀ। ਇਸਨੂੰ ਰੋਕਣ ਲਈ \"ਬੰਦ ਕਰੋ\" ’ਤੇ ਟੈਪ ਕਰੋ।</string>
     <string name="adhan_alarm_note_android">ਨਮਾਜ਼ ਦੇ ਵੇਲੇ ਅਜ਼ਾਨ ਅਲਾਰਮ ਵਾਂਗ ਚੱਲਦੀ ਹੈ, ਸਾਈਲੈਂਟ ਜਾਂ ਵਾਈਬ੍ਰੇਟ ’ਤੇ ਵੀ, ਤੁਹਾਡੀ ਅਲਾਰਮ ਆਵਾਜ਼ ’ਤੇ। ਇਸਨੂੰ ਰੋਕਣ ਲਈ \"ਬੰਦ ਕਰੋ\" ’ਤੇ ਟੈਪ ਕਰੋ।</string>
+    <string name="adhan_as_alarm">ਅਲਾਰਮ ਵਾਂਗ ਵੱਜੇ</string>
     <string name="adhan_fajr">ਫ਼ਜਰ ਦੀ ਅਜ਼ਾਨ</string>
     <string name="adhan_full">ਅਜ਼ਾਨ (ਜ਼ੁਹਰ, ਅਸਰ, ਮਗ਼ਰਿਬ, ਇਸ਼ਾ)</string>
     <string name="adhan_length">ਅਜ਼ਾਨ ਦੀ ਲੰਬਾਈ</string>

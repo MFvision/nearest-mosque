@@ -9,6 +9,7 @@
     <string name="about_terms">使用条款</string>
     <string name="adhan_alarm_note">宣礼以闹钟方式响起，即使在静音模式下也会响。点按“停止”即可结束。</string>
     <string name="adhan_alarm_note_android">礼拜时间到时，宣礼会以闹钟方式、按闹钟音量响起，即使在静音或振动模式下也会响。点按“停止”即可结束。</string>
+    <string name="adhan_as_alarm">以闹钟方式响起</string>
     <string name="adhan_fajr">晨礼宣礼</string>
     <string name="adhan_full">宣礼（晌礼、晡礼、昏礼、宵礼）</string>
     <string name="adhan_length">宣礼长度</string>

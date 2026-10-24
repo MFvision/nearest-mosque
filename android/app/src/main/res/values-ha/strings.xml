@@ -9,6 +9,7 @@
     <string name="about_terms">Sharuɗɗan amfani</string>
     <string name="adhan_alarm_note">Kiran sallah yana ƙara kamar ƙararrawa, ko da a yanayin shiru. Taɓa Tsaya don dakatar da shi.</string>
     <string name="adhan_alarm_note_android">Kiran sallah yana kunnawa kamar ƙararrawa a lokacin sallah, ko da a yanayin shiru ko girgiza, da ƙarar ƙararrawarku. Taɓa Tsaya don dakatar da shi.</string>
+    <string name="adhan_as_alarm">Yi ƙara kamar ƙararrawa</string>
     <string name="adhan_fajr">Kiran sallar Asuba</string>
     <string name="adhan_full">Kiran sallah (Azahar, La\'asar, Magariba, Isha)</string>
     <string name="adhan_length">Tsawon kiran sallah</string>

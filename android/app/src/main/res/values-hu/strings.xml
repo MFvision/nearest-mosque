@@ -9,6 +9,7 @@
     <string name="about_terms">Felhasználási feltételek</string>
     <string name="adhan_alarm_note">Az adhan ébresztőként szól, néma módban is. A leállításhoz koppints a Leállítás gombra.</string>
     <string name="adhan_alarm_note_android">Az adhan ébresztőként szól az ima idején, néma vagy rezgő módban is, az ébresztő hangerején. A leállításhoz koppints a Leállítás gombra.</string>
+    <string name="adhan_as_alarm">Ébresztőként szóljon</string>
     <string name="adhan_fajr">Fajr adhan</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Az adhán hossza</string>

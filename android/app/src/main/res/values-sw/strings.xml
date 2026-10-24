@@ -9,6 +9,7 @@
     <string name="about_terms">Masharti ya matumizi</string>
     <string name="adhan_alarm_note">Adhana hulia kama kengele, hata simu ikiwa kimya. Gusa Simamisha ili kuisimamisha.</string>
     <string name="adhan_alarm_note_android">Adhana hucheza kama kengele wakati wa swala, hata simu ikiwa kimya au mtetemo, kwa sauti ya kengele yako. Gusa Simamisha ili kuisimamisha.</string>
+    <string name="adhan_as_alarm">Lia kama kengele</string>
     <string name="adhan_fajr">Adhana ya Alfajiri</string>
     <string name="adhan_full">Adhana (Adhuhuri, Alasiri, Magharibi, Isha)</string>
     <string name="adhan_length">Urefu wa adhana</string>

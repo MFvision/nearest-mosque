@@ -9,6 +9,7 @@
     <string name="about_terms">వినియోగ నిబంధనలు</string>
     <string name="adhan_alarm_note">అజాన్ అలారంలా మోగుతుంది, సైలెంట్‌లో ఉన్నా కూడా. ఆపడానికి \"ఆపు\" నొక్కండి.</string>
     <string name="adhan_alarm_note_android">నమాజ్ సమయంలో అజాన్ అలారంలా ప్లే అవుతుంది, సైలెంట్ లేదా వైబ్రేట్‌లో ఉన్నా, మీ అలారం వాల్యూమ్‌లో. ఆపడానికి \"ఆపు\" నొక్కండి.</string>
+    <string name="adhan_as_alarm">అలారంలా మోగాలి</string>
     <string name="adhan_fajr">ఫజ్ర్ అజాన్</string>
     <string name="adhan_full">అజాన్ (జుహర్, అస్ర్, మగ్రిబ్, ఇషా)</string>
     <string name="adhan_length">అజాన్ నిడివి</string>

@@ -72,6 +72,9 @@ struct PrayerAudioSettingsView: View {
                 Text(l10n.t("adhan_length_full")).tag(false)
                 Text(l10n.t("adhan_short")).tag(true)
             }
+            if PrayerAlarms.permission != .unavailable {
+                Toggle(l10n.t("adhan_as_alarm"), isOn: bind(\.adhanAlarm))
+            }
             if a.shortAdhan {
                 HStack {
                     Text(l10n.t("adhan_short"))
@@ -81,7 +84,7 @@ struct PrayerAudioSettingsView: View {
             }
         } header: { Text(l10n.t("adhan_section")) } footer: {
             // With alarms allowed (iPhone and iPad, iOS 26) the Adhan is an alarm, not a 30-second notification sound.
-            Text(l10n.t(PrayerAlarms.permission == .authorized ? "adhan_alarm_note" : "adhan_note"))
+            Text(l10n.t(PrayerAlarms.permission == .authorized && a.adhanAlarm ? "adhan_alarm_note" : "adhan_note"))
         }
     }
 

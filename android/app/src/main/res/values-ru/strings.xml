@@ -9,6 +9,7 @@
     <string name="about_terms">Условия использования</string>
     <string name="adhan_alarm_note">Азан звучит как будильник, даже в беззвучном режиме. Нажмите «Стоп», чтобы остановить.</string>
     <string name="adhan_alarm_note_android">Азан звучит как будильник во время намаза, даже в беззвучном режиме или с вибрацией, с громкостью будильника. Нажмите «Стоп», чтобы остановить.</string>
+    <string name="adhan_as_alarm">Звучать как будильник</string>
     <string name="adhan_fajr">Азан на Фаджр</string>
     <string name="adhan_full">Азан (Зухр, Аср, Магриб, Иша)</string>
     <string name="adhan_length">Длина азана</string>

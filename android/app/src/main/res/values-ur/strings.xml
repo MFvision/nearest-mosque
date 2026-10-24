@@ -9,6 +9,7 @@
     <string name="about_terms">شرائطِ استعمال</string>
     <string name="adhan_alarm_note">اذان الارم کی طرح بجتی ہے، خاموش موڈ میں بھی۔ اسے روکنے کے لیے \"بند کریں\" پر ٹیپ کریں۔</string>
     <string name="adhan_alarm_note_android">نماز کے وقت اذان الارم کی طرح چلتی ہے، خاموش یا وائبریٹ موڈ میں بھی، آپ کے الارم والیوم پر۔ اسے روکنے کے لیے \"بند کریں\" پر ٹیپ کریں۔</string>
+    <string name="adhan_as_alarm">الارم کی طرح بجے</string>
     <string name="adhan_fajr">فجر کی اذان</string>
     <string name="adhan_full">اذان (ظہر، عصر، مغرب، عشاء)</string>
     <string name="adhan_length">اذان کی طوالت</string>

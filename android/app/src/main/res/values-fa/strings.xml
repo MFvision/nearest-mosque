@@ -9,6 +9,7 @@
     <string name="about_terms">شرایط استفاده</string>
     <string name="adhan_alarm_note">اذان مثل زنگ هشدار به صدا درمی‌آید، حتی در حالت بی‌صدا. برای قطع آن روی «توقف» بزنید.</string>
     <string name="adhan_alarm_note_android">اذان در وقت نماز مثل زنگ هشدار پخش می‌شود، حتی در حالت بی‌صدا یا لرزش، با صدای زنگ هشدار. برای قطع آن روی «توقف» بزنید.</string>
+    <string name="adhan_as_alarm">مثل زنگ هشدار به صدا درآید</string>
     <string name="adhan_fajr">اذان صبح</string>
     <string name="adhan_full">اذان (ظهر، عصر، مغرب، عشا)</string>
     <string name="adhan_length">طول اذان</string>

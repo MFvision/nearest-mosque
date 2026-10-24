@@ -9,6 +9,7 @@
     <string name="about_terms">ব্যৱহাৰৰ চৰ্তাৱলী</string>
     <string name="adhan_alarm_note">আজান এলাৰ্মৰ দৰে বাজে, ছাইলেণ্টতো। ৰখাবলৈ \"বন্ধ কৰক\" টিপক।</string>
     <string name="adhan_alarm_note_android">নামাজৰ সময়ত আজান এলাৰ্মৰ দৰে বাজে, ছাইলেণ্ট বা ভাইব্ৰেটতো, আপোনাৰ এলাৰ্মৰ ভলিউমত। ৰখাবলৈ \"বন্ধ কৰক\" টিপক।</string>
+    <string name="adhan_as_alarm">এলাৰ্মৰ দৰে বাজক</string>
     <string name="adhan_fajr">ফজৰৰ আজান</string>
     <string name="adhan_full">আজান (জোহৰ, আছৰ, মাগৰিব, এশা)</string>
     <string name="adhan_length">আজানৰ দৈৰ্ঘ্য</string>

@@ -9,6 +9,7 @@
     <string name="about_terms">شروط الاستخدام</string>
     <string name="adhan_alarm_note">يرتفع الأذان كالمنبّه حتى في الوضع الصامت، واضغط «إيقاف» لإنهائه.</string>
     <string name="adhan_alarm_note_android">يُرفع الأذان كالمنبّه عند وقت الصلاة حتى في الوضع الصامت أو الاهتزاز، بمستوى صوت المنبّه. اضغط «إيقاف» لإنهائه.</string>
+    <string name="adhan_as_alarm">يرنّ كمنبّه</string>
     <string name="adhan_fajr">أذان الفجر</string>
     <string name="adhan_full">الأذان (الظهر والعصر والمغرب والعشاء)</string>
     <string name="adhan_length">طول الأذان</string>

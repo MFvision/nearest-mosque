@@ -9,6 +9,7 @@
     <string name="about_terms">Ketentuan penggunaan</string>
     <string name="adhan_alarm_note">Azan berbunyi sebagai alarm, bahkan saat senyap. Ketuk Hentikan untuk menghentikannya.</string>
     <string name="adhan_alarm_note_android">Azan diputar sebagai alarm saat waktu salat, bahkan saat senyap atau getar, dengan volume alarm Anda. Ketuk Hentikan untuk menghentikannya.</string>
+    <string name="adhan_as_alarm">Bunyikan sebagai alarm</string>
     <string name="adhan_fajr">Azan Subuh</string>
     <string name="adhan_full">Azan (Zuhur, Asar, Magrib, Isya)</string>
     <string name="adhan_length">Panjang azan</string>

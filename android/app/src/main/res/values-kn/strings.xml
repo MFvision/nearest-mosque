@@ -9,6 +9,7 @@
     <string name="about_terms">ಬಳಕೆಯ ನಿಯಮಗಳು</string>
     <string name="adhan_alarm_note">ಅಜಾನ್ ಅಲಾರಂನಂತೆ ರಿಂಗ್ ಆಗುತ್ತದೆ, ಸೈಲೆಂಟ್‌ನಲ್ಲಿದ್ದರೂ ಸಹ. ನಿಲ್ಲಿಸಲು \"ನಿಲ್ಲಿಸಿ\" ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="adhan_alarm_note_android">ನಮಾಜ್ ಸಮಯದಲ್ಲಿ ಅಜಾನ್ ಅಲಾರಂನಂತೆ ಪ್ಲೇ ಆಗುತ್ತದೆ, ಸೈಲೆಂಟ್ ಅಥವಾ ವೈಬ್ರೇಟ್‌ನಲ್ಲಿದ್ದರೂ, ನಿಮ್ಮ ಅಲಾರಂ ವಾಲ್ಯೂಮ್‌ನಲ್ಲಿ. ನಿಲ್ಲಿಸಲು \"ನಿಲ್ಲಿಸಿ\" ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="adhan_as_alarm">ಅಲಾರಂನಂತೆ ರಿಂಗ್ ಆಗಲಿ</string>
     <string name="adhan_fajr">ಫಜ್ರ್ ಅಜಾನ್</string>
     <string name="adhan_full">ಅಜಾನ್ (ಜುಹರ್, ಅಸ್ರ್, ಮಗ್ರಿಬ್, ಇಶಾ)</string>
     <string name="adhan_length">ಅಜಾನ್ ಉದ್ದ</string>

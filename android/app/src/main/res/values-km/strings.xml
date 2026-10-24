@@ -9,6 +9,7 @@
     <string name="about_terms">លក្ខខណ្ឌប្រើប្រាស់</string>
     <string name="adhan_alarm_note">អាហ្សានរោទ៍ជាម៉ោងរោទ៍ សូម្បីតែពេលបិទសំឡេង។ ចុច \"បញ្ឈប់\" ដើម្បីបញ្ចប់។</string>
     <string name="adhan_alarm_note_android">អាហ្សានចាក់ជាម៉ោងរោទ៍នៅពេលសឡាត សូម្បីតែពេលបិទសំឡេង ឬញ័រ តាមកម្រិតសំឡេងម៉ោងរោទ៍របស់អ្នក។ ចុច \"បញ្ឈប់\" ដើម្បីបញ្ចប់។</string>
+    <string name="adhan_as_alarm">រោទ៍ជាម៉ោងរោទ៍</string>
     <string name="adhan_fajr">អាហ្សានហ្វាជរ</string>
     <string name="adhan_full">អាហ្សាន (ហ្សូហួរ អាសួរ ម៉ាហ្គ្រិប អ៊ីសា)</string>
     <string name="adhan_length">ប្រវែងអាហ្សាន</string>

@@ -9,6 +9,7 @@
     <string name="about_terms">Mga tuntunin ng paggamit</string>
     <string name="adhan_alarm_note">Tumutunog ang Adhan bilang alarm, kahit naka-silent. I-tap ang Ihinto para itigil ito.</string>
     <string name="adhan_alarm_note_android">Tumutugtog ang Adhan bilang alarm sa oras ng dasal, kahit naka-silent o vibrate, sa lakas ng tunog ng alarm mo. I-tap ang Ihinto para itigil ito.</string>
+    <string name="adhan_as_alarm">Tumunog bilang alarm</string>
     <string name="adhan_fajr">Adhan ng Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Haba ng adhan</string>

@@ -9,6 +9,7 @@
     <string name="about_terms">ข้อกำหนดการใช้งาน</string>
     <string name="adhan_alarm_note">อะซานดังแบบนาฬิกาปลุก แม้อยู่ในโหมดเงียบ แตะ \"หยุด\" เพื่อปิด</string>
     <string name="adhan_alarm_note_android">อะซานจะดังแบบนาฬิกาปลุกเมื่อถึงเวลาละหมาด แม้อยู่ในโหมดเงียบหรือสั่น ด้วยระดับเสียงนาฬิกาปลุกของคุณ แตะ \"หยุด\" เพื่อปิด</string>
+    <string name="adhan_as_alarm">ดังแบบนาฬิกาปลุก</string>
     <string name="adhan_fajr">อะซานซุบฮิ</string>
     <string name="adhan_full">อะซาน (ซุฮ์รี อัสรี มัฆริบ อิชาอ์)</string>
     <string name="adhan_length">ความยาวอะซาน</string>

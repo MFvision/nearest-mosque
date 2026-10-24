@@ -9,6 +9,7 @@
     <string name="about_terms">Terms of use</string>
     <string name="adhan_alarm_note">The Adhan rings as an alarm, even on silent. Tap Stop to end it.</string>
     <string name="adhan_alarm_note_android">The Adhan plays as an alarm at prayer time, even on silent or vibrate, at your alarm volume. Tap Stop to end it.</string>
+    <string name="adhan_as_alarm">Ring as an alarm</string>
     <string name="adhan_fajr">Fajr Adhan</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Adhan length</string>

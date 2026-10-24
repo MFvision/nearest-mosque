@@ -436,7 +436,7 @@ final class AppModel {
     /// An Adhan or the Fajr alarm is on: they ring as alarms where the device has them.
     var wantsAlarms: Bool {
         let a = settings.alerts
-        return PrayerEvent.prayers.contains { a.adhanPlays($0) } || a.fajrAlarmMinutesBefore != nil
+        return (a.adhanAlarm && PrayerEvent.prayers.contains { a.adhanPlays($0) }) || a.fajrAlarmMinutesBefore != nil
     }
 
     /// Notifications and alarms allowed, as the last rebuild found them: a change since then rebuilds the reminders.

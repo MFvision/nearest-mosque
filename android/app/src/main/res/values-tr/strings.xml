@@ -9,6 +9,7 @@
     <string name="about_terms">Kullanım koşulları</string>
     <string name="adhan_alarm_note">Ezan, sessizde bile alarm olarak çalar. Durdurmak için Durdur’a dokunun.</string>
     <string name="adhan_alarm_note_android">Ezan, namaz vaktinde sessiz veya titreşimdeyken bile alarm ses düzeyinizde alarm olarak okunur. Durdurmak için Durdur’a dokunun.</string>
+    <string name="adhan_as_alarm">Alarm olarak çalsın</string>
     <string name="adhan_fajr">Sabah Ezanı</string>
     <string name="adhan_full">Ezan (Öğle, İkindi, Akşam, Yatsı)</string>
     <string name="adhan_length">Ezan uzunluğu</string>

@@ -9,6 +9,7 @@
     <string name="about_terms">ئىشلىتىش شەرتلىرى</string>
     <string name="adhan_alarm_note">ئەزان ئۈنسىز ھالەتتىمۇ ئويغاتقۇچتەك جىرىڭلايدۇ. توختىتىش ئۈچۈن «توختىتىش» نى چېكىڭ.</string>
     <string name="adhan_alarm_note_android">ناماز ۋاقتىدا ئەزان ئويغاتقۇچتەك قويۇلىدۇ، ئۈنسىز ياكى تىترەش ھالىتىدىمۇ، ئويغاتقۇچ ئاۋاز مىقدارىدا. توختىتىش ئۈچۈن «توختىتىش» نى چېكىڭ.</string>
+    <string name="adhan_as_alarm">ئويغاتقۇچتەك جىرىڭلىسۇن</string>
     <string name="adhan_fajr">بامدات ئەزىنى</string>
     <string name="adhan_full">ئەزان (پېشىن، ئەسىر، شام، خۇپتەن)</string>
     <string name="adhan_length">ئەزاننىڭ ئۇزۇنلۇقى</string>
