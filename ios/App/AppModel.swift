@@ -2,6 +2,9 @@ import Foundation
 import NMCore
 import NMData
 import SwiftUI
+#if os(iOS) || os(visionOS) || os(tvOS)
+import UIKit
+#endif
 import UserNotifications
 import WidgetKit
 
@@ -604,6 +607,11 @@ final class AppModel {
 
     private func performReschedule() async {
         ReminderRefresh.submit()
+        #if os(iOS) || os(visionOS) || os(tvOS)
+        // Leaving the app mid-rebuild: iOS gives it the time to finish instead of stopping it halfway.
+        let background = UIApplication.shared.beginBackgroundTask(withName: "reminders")
+        defer { if background != .invalid { UIApplication.shared.endBackgroundTask(background) } }
+        #endif
         // Read first: a change while the rebuild runs is caught at the next look.
         let access = await readAlertAccess()
         let lang = l10n.language
