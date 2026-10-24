@@ -292,7 +292,19 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         let info = notification.request.content.userInfo
         Task { @MainActor in
             if info["alarm"] as? Bool == true {
-                // An alarm's silent notification: the alarm is ringing.
+                // An alarm's silent notification, with the app open: as before the alarms, the whole Adhan plays in the
+                // app instead of the alarm's first 30 seconds (the Fajr alarm tone keeps ringing).
+                if let file = info["adhan"] as? String {
+                    if let at = info["at"] as? Double {
+                        // Again a moment later, in case the alarm starts ringing just after its notification.
+                        PrayerAlarms.stopRinging(at: Date(timeIntervalSince1970: at))
+                        Task { @MainActor in
+                            try? await Task.sleep(for: .seconds(2))
+                            PrayerAlarms.stopRinging(at: Date(timeIntervalSince1970: at))
+                        }
+                    }
+                    AdhanPlayer.shared.play(file, title: Self.adhanTitle(info["source"] as? String), adhan: true)
+                }
                 completionHandler([.banner, .list])
             } else if let file = info["adhan"] as? String {
                 AdhanPlayer.shared.play(file, title: Self.adhanTitle(info["source"] as? String), adhan: true)
