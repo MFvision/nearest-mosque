@@ -73,7 +73,11 @@ struct PrayerAudioSettingsView: View {
                 Text(l10n.t("adhan_short")).tag(true)
             }
             if PrayerAlarms.permission != .unavailable {
-                Toggle(l10n.t("adhan_as_alarm"), isOn: bind(\.adhanAlarm))
+                Toggle(l10n.t("adhan_as_alarm"), isOn: Binding(get: { a.adhanAlarm }, set: { on in
+                    update { $0.adhanAlarm = on }
+                    // Turned on: iOS asks for alarms here (once), not later from a banner.
+                    if on { Task { if await PrayerAlarms.requestAuthorization() { await app.rescheduleReminders() } } }
+                }))
             }
             if a.shortAdhan {
                 HStack {
