@@ -1,0 +1,65 @@
+{
+  "_note": "Near Mosque theme tokens. Adds 4 themes next to the existing Quiet Glass styles (gold #D4A843 on navy stays the default). Contrast checked against WCAG AA.",
+  "themes": {
+    "nightGarden": {
+      "mode": "dark",
+      "background": "#06110C",
+      "surface": "#0E1D16",
+      "surfaceRaised": "#14271E",
+      "border": "#1F3A2C",
+      "textPrimary": "#E8F3EC",
+      "textSecondary": "#8FA89B",
+      "accent": "#9FD8BE",
+      "signal": "#E5483A",
+      "buttonFill": "#A31C1B",
+      "onButton": "#FFFFFF",
+      "_rules": "Mint marks the current prayer. Signal red only for the countdown and Adhan-now moment. #A31C1B is a fill only, never text on green (2.5:1)."
+    },
+    "charcoalCrimson": {
+      "mode": "dark",
+      "background": "#171717",
+      "surface": "#222222",
+      "surfaceRaised": "#06110C",
+      "border": "#333333",
+      "textPrimary": "#F2F2F2",
+      "textSecondary": "#8C8C8C",
+      "accent": "#9FD8BE",
+      "signal": "#E5483A",
+      "buttonFill": "#A31C1B",
+      "onButton": "#FFFFFF",
+      "_rules": "Best for OLED and the TV night mode. Same red rule as nightGarden."
+    },
+    "desertLantern": {
+      "mode": "dark",
+      "background": "#3A2D20",
+      "surface": "#4A3928",
+      "surfaceRaised": "#5B4632",
+      "border": "#6B5440",
+      "textPrimary": "#F7EBD3",
+      "textSecondary": "#C9B596",
+      "accent": "#F4D9A0",
+      "signal": "#F4D9A0",
+      "buttonFill": "#C8792C",
+      "onButton": "#1E140B",
+      "_rules": "Champagne gold for headings and countdown. Burnt amber is a fill with dark text only; as text on mocha it fails (2.6:1)."
+    },
+    "desertLanternDay": {
+      "mode": "light",
+      "background": "#FBF5E9",
+      "surface": "#F3E7CF",
+      "surfaceRaised": "#F4D9A0",
+      "border": "#E6D6B8",
+      "textPrimary": "#3A2D20",
+      "textSecondary": "#7A6650",
+      "accent": "#9A5A1C",
+      "signal": "#9A5A1C",
+      "buttonFill": "#5B4632",
+      "onButton": "#F7EBD3",
+      "_rules": "Light pair of desertLantern; follows the system light/dark switch. Amber darkened to #9A5A1C so it reads as text on cream (5:1)."
+    }
+  },
+  "sourcePalettes": {
+    "innerPeace": { "mochaBrown": "#5B4632", "champagneGold": "#F4D9A0", "burntAmber": "#C8792C" },
+    "builtDifferently": { "charcoalBlack": "#171717", "forestGreen": "#06110C", "crimsonRed": "#A31C1B", "mintFromCar": "#9FD8BE" }
+  }
+}

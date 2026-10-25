@@ -33,6 +33,22 @@ enum Theme {
         let style = ThemeStore.shared.style
         return dynamic(dark: StyleAccent.dark(style), light: StyleAccent.light(style))
     }
+    /// The solid theme chosen in Settings (Night garden, Desert lantern, Charcoal crimson), nil for the sky styles.
+    static var solid: SolidTheme? { SolidTheme.of(ThemeStore.shared.style) }
+    /// The countdown: the theme's signal colour (red on the dark green and charcoal), else the ink.
+    static var signal: Color {
+        guard let t = solid else { return ink }
+        return dynamic(dark: t.tokens(dark: true).signal, light: t.tokens(dark: false).signal)
+    }
+    /// Prominent buttons: the theme's fill and label (crimson with white, amber with dark text), else gold with navy.
+    static var buttonFill: Color {
+        guard let t = solid else { return gold }
+        return dynamic(dark: t.tokens(dark: true).buttonFill, light: t.tokens(dark: false).buttonFill)
+    }
+    static var onButton: Color {
+        guard let t = solid else { return navyNight }
+        return dynamic(dark: t.tokens(dark: true).onButton, light: t.tokens(dark: false).onButton)
+    }
     /// Opaque card when Reduce Transparency is on.
     static let solidCard = dynamic(dark: solidSurface, light: cardLight)
 
@@ -164,9 +180,9 @@ struct FallbackGlassButtonStyle: ButtonStyle {
             .font(.body.weight(.semibold))
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
-            .foregroundStyle(prominent ? Theme.navyNight : Theme.ink)
+            .foregroundStyle(prominent ? Theme.onButton : Theme.ink)
             .background {
-                if prominent { Capsule().fill(Theme.gold) } else { Capsule().fill(.ultraThinMaterial) }
+                if prominent { Capsule().fill(Theme.buttonFill) } else { Capsule().fill(.ultraThinMaterial) }
             }
             .overlay(Capsule().stroke(.white.opacity(prominent ? 0.35 : 0.25), lineWidth: 1))
             .opacity(enabled ? 1 : 0.5)
@@ -210,7 +226,7 @@ extension View {
     @ViewBuilder func prominentButton() -> some View {
         #if compiler(>=6.2) && !os(visionOS)
         if #available(iOS 26.0, tvOS 26.0, *) {
-            buttonStyle(.glassProminent).tint(Theme.gold).foregroundStyle(Theme.navyNight)
+            buttonStyle(.glassProminent).tint(Theme.buttonFill).foregroundStyle(Theme.onButton)
         } else {
             buttonStyle(FallbackGlassButtonStyle(prominent: true))
         }

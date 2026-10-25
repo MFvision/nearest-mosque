@@ -75,6 +75,10 @@ struct PrayerHero: View {
         return b
     }
 
+    /// Only the extra themes, and only the wait for the iqama: the theme's signal colour. Every other countdown, and
+    /// every countdown in the standard styles, keeps the ink.
+    private var iqamaSignal: Bool { Theme.solid != nil && snap.stage == .toIqama }
+
     @ViewBuilder private var arcContent: some View {
         let zone = snap.location?.zone ?? .current
         VStack(spacing: 4) {
@@ -87,7 +91,8 @@ struct PrayerHero: View {
                     Text(time).font(.system(size: timeSize, weight: .light)).monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
                         .contentTransition(.numericText())
                     Text(snap.remainingText(l10n))
-                        .font(.callout).monospacedDigit().foregroundStyle(Theme.ink.opacity(0.85))
+                        .font(.callout.weight(iqamaSignal ? .semibold : .regular)).monospacedDigit()
+                        .foregroundStyle(iqamaSignal ? Theme.signal : Theme.ink.opacity(0.85))
                         .contentTransition(reduceMotion ? .identity : .numericText(countsDown: true))
                 }
                 .accessibilityElement(children: .ignore)

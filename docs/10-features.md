@@ -38,6 +38,8 @@ ships inside the iPhone app, in the same listing.
 * **Ask AI** is a button ("Ask anything about Islam") that opens Ask full screen. On iOS 26 it sits in the
   tab bar's accessory slot and the tab bar shrinks on scroll; on earlier iOS it floats as a glass capsule.
 * Settings opens as a sheet from the gear on each tab.
+* **Classic menu** (Settings → Menu and start → Menu style): instead of the tab bar, one page (Prayer & Qibla)
+  with a glass row at the bottom: Qibla, Nearest Mosque (opens over it, ✕ closes) and Ask.
 * iPhone shows one column; iPad and Mac show two (list beside map, cards beside the header).
 * Links into the app: `nearmosque://prayer`, `qibla`, `mosques`, `mosque?id=`, `settings`, `ask?q=`. A
   question in a link is only placed in the box, not asked, unless it comes from inside the app or from
@@ -108,6 +110,11 @@ ships inside the iPhone app, in the same listing.
 
 **General**: Language (device language or one of 36); Appearance (Same as phone, Light, Dark).
 
+**Menu and start** (`StartSettingsSection.swift`, rules in `NMCore/StartScreen.swift`): Menu style (Tabs or
+Classic); Open with (Where I left off, Prayer & Qibla, Qibla, Nearest Mosque, Ask), applied once at launch after
+the tour, a widget or Siri link wins; App icon (Gold, Night, Green, Teal, Sky, Black; iPhone and iPad only, drawn
+by `shared/brand/icons/make_icons.py`). Kept on the phone only.
+
 **Prayer times**
 * Location: city search or "Use my location".
 * Calculation: method (Muslim World League; Umm al-Qura, Makkah; Egyptian General Authority of Survey;
@@ -142,8 +149,13 @@ ships inside the iPhone app, in the same listing.
     **Fajr alarm** (off, at Fajr, or 10/20/30/45 minutes before).
 * Countdown on the Lock Screen (iPhone and iPad).
 
-**Personalize**: Companion (Lantern, Heart, None); **App and widget style**: one choice of five that
-colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island; **Sky follows
+**Personalize**: Companion (Lantern, Heart, None); **App and widget style**: one choice of eight that
+colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island. Five keep the sky;
+three are solid themes with their own background (`shared/design/themes.json`, `SolidTheme` in
+`Shared/StyleAccent.swift`, contrast checked by `tools/check_tokens.py`): **Night garden** (forest black, mint for
+the current prayer, red only for the iqama countdown and buttons; always dark), **Desert lantern** (mocha and champagne,
+amber buttons; a cream day version follows the phone's light mode) and **Charcoal crimson** (true black for OLED;
+always dark); **Sky follows
 the weather** (off by default), with its note (what is sent, to whom, how often) and the "Weather: based on
 data from MET Norway" link.
 
@@ -174,7 +186,7 @@ transition is a short crossfade.
 ## Widgets (iPhone, iPad, Mac) (`ios/Widgets/`)
 
 Each widget has one setting, **Widget style**: Same as app (default), Gold and cream, Green, Night sky,
-Teal, Time of day (colours follow the prayer period).
+Teal, Time of day (colours follow the prayer period), Night garden, Desert lantern, Charcoal crimson.
 
 | # | Widget | What it shows | Home Screen sizes | Lock Screen sizes | Tap opens |
 |---|---|---|---|---|---|
