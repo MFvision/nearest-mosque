@@ -130,7 +130,7 @@ export function clock(date, tz, lang) {
   return fmts[key].format(date);
 }
 
-// The download buttons: the two stores (until a listing is live, its button reads "Coming soon"), then Windows and
+// The download buttons: the two stores (a store whose listing is not live has no button), then Windows and
 // Linux straight from GitHub, with the .deb and the page of every download in a line of small links under them.
 const ICONS = {
   appStore: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm6.2 4.2-4.6 8h2.1l.8-1.4h4.9l-1-1.8H10.6l2.5-4.4-1.9-.4Zm2.6 3.2-1 1.7 2.2 3.9h2.1l-3.3-5.6Z"/></svg>',
@@ -147,7 +147,7 @@ export function storesHTML(t, links) {
     .map((k) => `<a href="${esc(links[k])}" rel="noopener"${target(k)}>${esc(t.storesMore[k])}</a>`);
   return Object.keys(ICONS).map((k) => {
     const [small, big] = t.stores[k];
-    const inner = `${ICONS[k]}<small>${esc(links[k] ? small : t.soon)}</small><b>${esc(big)}</b>`;
-    return links[k] ? `<a class="store" href="${esc(links[k])}" rel="noopener"${target(k)}>${inner}</a>` : `<span class="store soon" aria-disabled="true">${inner}</span>`;
+    // A store that is not live yet has no button.
+    return links[k] ? `<a class="store" href="${esc(links[k])}" rel="noopener"${target(k)}>${ICONS[k]}<small>${esc(small)}</small><b>${esc(big)}</b></a>` : '';
   }).join('') + (more.length ? `<p class="stores-more">${more.join('<span aria-hidden="true">·</span>')}</p>` : '');
 }

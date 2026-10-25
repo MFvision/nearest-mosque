@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
+<!-- Written by tools/site/prerender.mjs from tools/site/home.html and story.js. Edit those, not this file. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Near Mosque</title>
+<title>Near Mosque · Prayer times, the Qibla and the nearest mosque</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app.">
+<meta name="description" content="Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app. No account, no ads, no tracking.">
 <meta name="theme-color" content="#F4EEDF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#081B29" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://nearmosque.net/">
-<meta property="og:title" content="Near Mosque">
-<meta property="og:description" content="Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app.">
+<link rel="alternate" hreflang="en" href="https://nearmosque.net/">
+<link rel="alternate" hreflang="ar" href="https://nearmosque.net/ar/">
+<link rel="alternate" hreflang="x-default" href="https://nearmosque.net/">
+<meta property="og:title" content="Near Mosque · Prayer times, the Qibla and the nearest mosque">
+<meta property="og:description" content="Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app. No account, no ads, no tracking.">
 <meta property="og:url" content="https://nearmosque.net/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Near Mosque">
@@ -21,8 +25,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Near Mosque: your next prayer, wherever you are. The app's prayer screen on an iPhone.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Near Mosque">
-<meta name="twitter:description" content="Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app.">
+<meta name="twitter:title" content="Near Mosque · Prayer times, the Qibla and the nearest mosque">
+<meta name="twitter:description" content="Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app. No account, no ads, no tracking.">
 <meta name="twitter:image" content="https://nearmosque.net/assets/share-card.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Near Mosque","alternateName":"أقرب مسجد","url":"https://nearmosque.net/","image":"https://nearmosque.net/assets/share-card.jpg","applicationCategory":"LifestyleApplication","operatingSystem":"iOS, iPadOS, macOS, tvOS, visionOS, watchOS, Android, Windows, Linux","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","ar"],"description":"Prayer times, the Qibla and the nearest mosque for wherever you are. No account, no ads, no tracking.","downloadUrl":"https://play.google.com/store/apps/details?id=com.AVA.nearmosque"}</script>
 <link rel="icon" href="assets/icon-180.png">
@@ -39,7 +43,7 @@
 <a class="skip" href="#inside">Skip to everything inside</a>
 <header class="bar">
   <a class="brand" href="#world"><img src="assets/icon.webp" alt="" width="34" height="34"><span>Near Mosque</span></a>
-  <div class="tools"><button id="sound" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-8.8v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6Z" fill="currentColor"/></svg><span>Hear the Adhan</span></button><button id="lang" type="button">العربية</button><button id="theme" type="button" aria-label="Theme">Auto</button></div>
+  <div class="tools"><button id="sound" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-8.8v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6Z" fill="currentColor"/></svg><span>Hear the Adhan</span></button><button id="lang" type="button" lang="ar">العربية</button><button id="theme" type="button" aria-label="Theme">Auto</button></div>
 </header>
 <div class="stage" aria-hidden="true">
   <div class="stage-poster"></div>
@@ -53,13 +57,176 @@
   <canvas id="sky-canvas"></canvas>
   <div class="labels"></div>
 </div>
-<nav class="board" aria-label="Story"></nav>
-<main id="story"><noscript><p style="padding:120px 24px;max-width:40rem;margin:auto">Near Mosque: prayer times, the Qibla and the nearest mosque for wherever you are. This page tells its story with JavaScript.</p></noscript></main>
+<nav class="board" aria-label="Story"><a href="#world" data-id="world"><span>Next prayer</span></a><a href="#kaaba" data-id="kaaba"><span>Qibla</span></a><a href="#sky" data-id="sky"><span>Your sky</span></a><a href="#mosque" data-id="mosque"><span>Nearest mosque</span></a><a href="#ask" data-id="ask"><span>Ask and library</span></a><a href="#adhan" data-id="adhan"><span>Adhan and widgets</span></a><a href="#devices" data-id="devices"><span>Every screen</span></a><a href="#privacy" data-id="privacy"><span>Privacy</span></a><a href="#get" data-id="get"><span>Download</span></a></nav>
+<main id="story"><section class="chapter globe-ch hud-ch" id="world" data-i="0" style="--weight:1.6" aria-labelledby="h-world">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Your next prayer</p>
+          <h1 id="h-world" aria-label="Your next prayer, wherever you are."><span aria-hidden="true"><span class="w" style="--d:0">Your</span> <span class="w" style="--d:1">next</span> <span class="w" style="--d:2">prayer,</span> <span class="w" style="--d:3">wherever</span> <span class="w" style="--d:4">you</span> <span class="w" style="--d:5">are.</span></span></h1>
+          <p class="hero-at"></p>
+          <p>Somewhere on Earth, the Adhan is being called right now. Prayer times, the Qibla and the nearest mosque for wherever you are, in one calm app.</p>
+          
+          
+          
+          <a class="cta-link" href="#get">Get the app</a><div class="scroll-cue">Scroll</div>
+          
+          
+        </div>
+        <div class="media"></div>
+      </div>
+    </section><section class="chapter" id="kaaba" data-i="1" style="--weight:2.1" aria-labelledby="h-kaaba">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Qibla</p>
+          <h2 id="h-kaaba" aria-label="From anywhere, one direction."><span aria-hidden="true"><span class="w" style="--d:0">From</span> <span class="w" style="--d:1">anywhere,</span> <span class="hl" style="--d:2"><span class="w" style="--d:2">one</span> </span><span class="nw"><span class="hl" style="--d:2"><span class="w" style="--d:3">direction</span></span>.</span></span></h2>
+          
+          <p>Turn your phone and the arrow leads you to the Kaaba. When you face it, the Qibla lights up and you feel a gentle vibration.</p>
+          <ul><li>Bearing and distance to the Kaaba</li><li>Without a compass, it is drawn from north and says so</li></ul>
+          
+          
+          
+          
+          <div class="daynight" role="group"><button type="button" data-night="0" aria-pressed="true">Day</button><button type="button" data-night="1" aria-pressed="false">Night</button></div>
+        </div>
+        <div class="media"></div>
+      </div>
+    </section><section class="chapter" id="sky" data-i="2" style="--weight:1.9" aria-labelledby="h-sky">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Prayer times</p>
+          <h2 id="h-sky" aria-label="Your next prayer, on the sky of the hour."><span aria-hidden="true"><span class="w" style="--d:0">Your</span> <span class="hl" style="--d:1"><span class="w" style="--d:1">next</span> </span><span class="nw"><span class="hl" style="--d:1"><span class="w" style="--d:2">prayer</span></span>,</span> <span class="w" style="--d:3">on</span> <span class="w" style="--d:4">the</span> <span class="w" style="--d:5">sky</span> <span class="w" style="--d:6">of</span> <span class="w" style="--d:7">the</span> <span class="w" style="--d:8">hour.</span></span></h2>
+          
+          <p>The header shows the next prayer and the time left. Its sky turns pink at Fajr, gold at Asr and violet at Maghrib, and if you like, it shows your city’s weather too.</p>
+          <ul><li>13,090 cities built in, and 11 calculation methods suggested for your country</li><li>Today’s six times, each with its own bell, and the Hijri date</li><li>Sky follows the weather: off until you turn it on; then the city’s location, rounded to about 1 km, goes to MET Norway</li></ul>
+          
+          <p class="credit"><a href="https://www.met.no/en/free-meteorological-data/Licensing-and-crediting" rel="noopener" target="_blank">Weather: based on data from MET Norway</a></p>
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="assets/en/iphone/01-prayer.webp" alt="Your next prayer, on the sky of the hour." loading="lazy" decoding="async"><video muted playsinline loop preload="none" poster="assets/en/iphone/01-prayer.webp"><source src="assets/en/clips/01-header.mp4" type="video/mp4"><source src="assets/en/clips/01-header.webm" type="video/webm"></video></div><div class="phone"><img src="assets/en/iphone/02-prayer-weather.webp" alt="Your next prayer, on the sky of the hour." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="mosque" data-i="3" style="--weight:1.4" aria-labelledby="h-mosque">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Nearest mosque</p>
+          <h2 id="h-mosque" aria-label="See which way the mosque is, and how far."><span aria-hidden="true"><span class="w" style="--d:0">See</span> <span class="w" style="--d:1">which</span> <span class="w" style="--d:2">way</span> <span class="w" style="--d:3">the</span> <span class="hl" style="--d:4"><span class="w" style="--d:4">mosque</span></span> <span class="w" style="--d:5">is,</span> <span class="w" style="--d:6">and</span> <span class="w" style="--d:7">how</span> <span class="w" style="--d:8">far.</span></span></h2>
+          
+          <p>The compass shows each mosque at its real direction. Switch to the map for walking time and directions.</p>
+          <ul><li>Directions in Apple Maps or Google Maps</li><li>Built-in mosque data, plus Apple Maps when online search is on</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="assets/en/iphone/09-mosques-radar.webp" alt="See which way the mosque is, and how far." loading="lazy" decoding="async"></div><div class="phone"><img src="assets/en/iphone/03-mosques-map.webp" alt="See which way the mosque is, and how far." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="ask" data-i="4" style="--weight:1.5" aria-labelledby="h-ask">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Ask and the library</p>
+          <h2 id="h-ask" aria-label="Ask about Islam and see the source of every answer."><span aria-hidden="true"><span class="w" style="--d:0">Ask</span> <span class="w" style="--d:1">about</span> <span class="w" style="--d:2">Islam</span> <span class="w" style="--d:3">and</span> <span class="w" style="--d:4">see</span> <span class="w" style="--d:5">the</span> <span class="hl" style="--d:6"><span class="w" style="--d:6">source</span></span> <span class="w" style="--d:7">of</span> <span class="w" style="--d:8">every</span> <span class="w" style="--d:9">answer.</span></span></h2>
+          
+          <p>Answers quote the books on your phone and list each source. A scholar’s fatwa comes first when one matches. Behind them are 99 classical books you can read offline.</p>
+          <ul><li>Written on your phone by Apple’s on-device model. Questions never go to a cloud AI.</li><li>25 common questions in 22 languages, labelled as awaiting scholar review</li><li>Creed, Hadith, Fiqh, Tafsir and Sirah, each volume checked before it opens</li></ul>
+          <p class="note">Answers quote books. They are not a fatwa.</p>
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="assets/en/iphone/04-ask.webp" alt="Ask about Islam and see the source of every answer." loading="lazy" decoding="async"><video muted playsinline loop preload="none" poster="assets/en/iphone/04-ask.webp"><source src="assets/en/clips/03-search.mp4" type="video/mp4"><source src="assets/en/clips/03-search.webm" type="video/webm"></video></div><div class="phone"><img src="assets/en/iphone/05-classics.webp" alt="Ask about Islam and see the source of every answer." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="adhan" data-i="5" style="--weight:1.4" aria-labelledby="h-adhan">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Adhan, reminders and widgets</p>
+          <h2 id="h-adhan" aria-label="The Adhan from Makkah or Madinah, and the time left at a glance."><span aria-hidden="true"><span class="w" style="--d:0">The</span> <span class="w" style="--d:1">Adhan</span> <span class="w" style="--d:2">from</span> <span class="hl" style="--d:3"><span class="w" style="--d:3">Makkah</span> <span class="w" style="--d:4">or</span> </span><span class="nw"><span class="hl" style="--d:3"><span class="w" style="--d:5">Madinah</span></span>,</span> <span class="w" style="--d:6">and</span> <span class="w" style="--d:7">the</span> <span class="w" style="--d:8">time</span> <span class="w" style="--d:9">left</span> <span class="w" style="--d:10">at</span> <span class="w" style="--d:11">a</span> <span class="w" style="--d:12">glance.</span></span></h2>
+          
+          <p>Choose the Adhan of Masjid al-Haram or al-Masjid an-Nabawi for each prayer, with a reminder 10 or 5 minutes before. The countdown waits on your Lock Screen and in the Dynamic Island.</p>
+          <ul><li>A Fajr alarm, and Friday reminders for Al-Kahf and Jumu’ah</li><li>Silent during prayer: Do Not Disturb on Android; on iPhone, a Shortcut you run with one tap from the Adhan notification</li><li>Ten kinds of widgets, and Siri tells you the next prayer</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="assets/en/iphone/08-audio.webp" alt="The Adhan from Makkah or Madinah, and the time left at a glance." loading="lazy" decoding="async"></div><div class="phone"><img src="assets/en/iphone/07-island.webp" alt="The Adhan from Makkah or Madinah, and the time left at a glance." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="devices" data-i="6" style="--weight:1.5" aria-labelledby="h-devices">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Every screen</p>
+          <h2 id="h-devices" aria-label="On every screen you pray with."><span aria-hidden="true"><span class="w" style="--d:0">On</span> <span class="hl" style="--d:1"><span class="w" style="--d:1">every</span> <span class="w" style="--d:2">screen</span></span> <span class="w" style="--d:3">you</span> <span class="w" style="--d:4">pray</span> <span class="w" style="--d:5">with.</span></span></h2>
+          
+          <p>One listing for iPhone, iPad, Mac, Apple TV, Vision Pro and Apple Watch, and the same prayer times and Qibla on Android, Windows and Linux.</p>
+          <ul><li>Apple Watch: the next prayer, the Qibla with a tap on your wrist, and tasbih on the Digital Crown</li><li>36 interface languages, 6 of them right to left</li><li>Android on Google Play; Windows and Linux downloaded from this page</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="family" role="img" aria-label="iPhone, iPad, Mac, Apple TV, Vision Pro">
+        <figure class="tv"><div class="screen"><img src="assets/en/tv/01-tv-board.webp" alt="" loading="lazy" decoding="async"></div><div class="stand"></div><figcaption>Apple TV</figcaption></figure>
+        <figure class="mac"><div class="screen"><img src="assets/en/mac/01-prayer.webp" alt="" loading="lazy" decoding="async"></div><div class="base"></div><figcaption>Mac</figcaption></figure>
+        <figure class="vision"><div class="screen"><img src="assets/en/vision/01-prayer.webp" alt="" loading="lazy" decoding="async"></div><figcaption>Vision Pro</figcaption></figure>
+        <figure class="ipad"><div class="screen"><img src="assets/en/ipad/01-prayer.webp" alt="" loading="lazy" decoding="async"></div><figcaption>iPad</figcaption></figure>
+        <figure class="iphone"><div class="phone"><img src="assets/en/iphone/10-prayer-dark.webp" alt="" loading="lazy" decoding="async"></div><figcaption>iPhone</figcaption></figure>
+      </div></div>
+      </div>
+    </section><section class="chapter" id="privacy" data-i="7" style="--weight:1.3" aria-labelledby="h-privacy">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Privacy</p>
+          <h2 id="h-privacy" aria-label="No account, no ads, no tracking."><span aria-hidden="true"><span class="w" style="--d:0">No</span> <span class="w" style="--d:1">account,</span> <span class="w" style="--d:2">no</span> <span class="w" style="--d:3">ads,</span> <span class="hl" style="--d:4"><span class="w" style="--d:4">no</span> </span><span class="nw"><span class="hl" style="--d:4"><span class="w" style="--d:5">tracking</span></span>.</span></span></h2>
+          
+          <p>Prayer times, the Qibla and your answers are worked out on your device. There is no account to make and nothing about you is sent to us.</p>
+          <ul><li>Prayer times and Qibla work offline</li><li>Online only for mosque search (with your location rounded to about 1 km), maps, the downloads you choose and the weather sky if you turn it on</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"></div>
+      </div>
+    </section><section class="chapter globe-ch hud-ch" id="get" data-i="8" style="--weight:1.7" aria-labelledby="h-get">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">Near Mosque</p>
+          <h2 id="h-get" aria-label="Every prayer on time, wherever you are."><span aria-hidden="true"><span class="w" style="--d:0">Every</span> <span class="w" style="--d:1">prayer</span> <span class="hl" style="--d:2"><span class="w" style="--d:2">on</span> </span><span class="nw"><span class="hl" style="--d:2"><span class="w" style="--d:3">time</span></span>,</span> <span class="w" style="--d:4">wherever</span> <span class="w" style="--d:5">you</span> <span class="w" style="--d:6">are.</span></span></h2>
+          
+          <p>No account to create and no ads to sit through.</p>
+          
+          
+          
+          
+          <div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.AVA.nearmosque" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8v18.4c0 .6.6.9 1.1.6l15.4-8.9c.5-.3.5-1 0-1.3L5.1 2.2C4.6 1.9 4 2.2 4 2.8Z"/></svg><small>Get it on</small><b>Google Play</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg><small>Download for</small><b>Windows</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.3 4.4L9.9 12l-3.6 3.6L7.7 17l5-5-5-5ZM13 15.2V17h5v-1.8Z"/></svg><small>Download for</small><b>Linux</b></a></div><p class="stores-more"><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-amd64.deb" rel="noopener">.deb for Ubuntu/Debian</a><span aria-hidden="true">·</span><a href="https://github.com/MFvision/nearest-mosque/releases/tag/desktop-latest" rel="noopener" target="_blank">All downloads and checksums</a></p>
+          
+        </div>
+        <div class="media"></div>
+      </div>
+    </section></main>
 <section data-wall></section>
 <section data-duo></section>
-<section class="inside" id="inside" aria-labelledby="inside-title"></section>
+<section class="inside" id="inside" aria-labelledby="inside-title"><div>
+      <h2 id="inside-title">Everything inside</h2>
+      <p>What the app does today, device by device.</p>
+      <div class="strip" tabindex="0" aria-label="Everything inside"><img src="assets/en/iphone/01-prayer.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/02-prayer-weather.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/02-qibla.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/03-mosques-map.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/04-ask.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/05-classics.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/06-widgets.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/07-island.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/08-audio.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/09-mosques-radar.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/iphone/10-prayer-dark.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/watch/01-watch-prayer.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/watch/02-watch-qibla.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/watch/05-watch-mosques.webp" alt="" loading="lazy" decoding="async"><img src="assets/en/watch/06-watch-ask.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="groups"><div class="group"><h3>Prayer times</h3><ul><li>Next prayer, countdown and the sky of the hour</li><li>Today’s six times with a bell for each</li><li>11 calculation methods, Hanafi or standard Asr, high-latitude rules</li><li>Minute adjustments for each time and a Hijri adjustment</li><li>Estimated times where the sun does not set or rise</li></ul></div><div class="group"><h3>Sky follows the weather</h3><ul><li>Clouds, rain, thunderstorms, fog and snow on the sky of the hour</li><li>The temperature and the wind, with an icon for the weather</li><li>Off until you turn it on; then the city’s location, rounded to about 1 km, goes to MET Norway</li><li>iPhone, iPad, Mac, Vision Pro, Android, Windows and Linux</li></ul></div><div class="group"><h3>Qibla</h3><ul><li>Live compass that lights up and taps when you face the Kaaba</li><li>Bearing and distance to the Kaaba</li><li>Drawn from north on devices without a compass</li></ul></div><div class="group"><h3>Nearest mosque</h3><ul><li>Compass radar with each mosque at its real direction</li><li>Map with walking time, calls and websites</li><li>Directions in Apple Maps or Google Maps</li><li>Built-in mosque data, plus Apple Maps when online search is on</li></ul></div><div class="group"><h3>Ask and the library</h3><ul><li>Answers quoting books on your phone, each with its source</li><li>A scholar’s fatwa first when one matches</li><li>25 common questions in 22 languages, awaiting scholar review</li><li>99 classical books in 450 volumes, read offline</li><li>IslamHouse, HadeethEnc, Qur’an translations and tafsir, Ibn Baz fatwas</li><li>Read answers aloud with your device’s voices</li></ul></div><div class="group"><h3>Adhan and reminders</h3><ul><li>Adhan of Masjid al-Haram or al-Masjid an-Nabawi</li><li>Reminders 10 and 5 minutes before, spoken in Arabic or English</li><li>Fajr alarm, Surat Al-Kahf and Jumu’ah on Friday, Ramadan suhoor and iftar</li></ul></div><div class="group"><h3>Silent during prayer</h3><ul><li>From the iqama or the Adhan until the prayer ends, for the prayers you choose</li><li>On Friday, from the Adhan for 45 to 90 minutes</li><li>Android turns Do Not Disturb on and off, with your permission</li><li>iPhone and iPad: one tap on the Adhan or iqama notification runs a Shortcut you make once, which turns on Focus until the prayer ends</li></ul></div><div class="group"><h3>Widgets and Live Activities</h3><ul><li>10 widget kinds for the Home Screen, Lock Screen and Mac desktop</li><li>Next-prayer countdown on the Lock Screen and in the Dynamic Island</li><li>Qibla compass in the Dynamic Island</li><li>5 styles that colour the app and every widget</li></ul></div><div class="group"><h3>Siri and Shortcuts</h3><ul><li>“When is the next prayer in Near Mosque?”</li><li>“Where is the nearest mosque in Near Mosque?”</li><li>Directions, Ask, prayer times and the Qibla by voice or the Action button</li></ul></div><div class="group"><h3>Apple Watch</h3><ul><li>Next prayer on the living sky</li><li>Qibla compass with a tap on your wrist</li><li>Spiritual health: mark your prayers and see your week</li><li>Tasbih on the Digital Crown</li><li>7 complications in 15 sizes</li></ul></div><div class="group"><h3>Welcome tour</h3><ul><li>13 short steps, 12 on Windows and Linux</li><li>Where you pray, Asr, the Adhan with previews, Friday and the weather sky</li><li>Your day built from your answers, with a sun you can drag</li><li>5 colour styles (Gold and cream, Green, Teal, Night sky, Time of day), light or dark</li><li>Exactly what leaves your device, then the notification request</li><li>Show it again from Settings</li></ul></div><div class="group"><h3>Every device</h3><ul><li>iPhone, iPad, Mac, Apple TV and Apple Vision Pro</li><li>Apple TV prayer board, full-screen alert and Top Shelf</li><li>Android phones, foldables and tablets on Google Play, with 8 widget kinds</li><li>Windows and Linux, downloaded from this page</li><li>On Windows, the Adhan comes from the notification area</li></ul></div><div class="group"><h3>Privacy</h3><ul><li>No accounts, no ads, no tracking, no cloud AI</li><li>Prayer times, Qibla and answers worked out on the device</li><li>Online only for mosque search, maps, the downloads you choose and the weather sky if you turn it on</li></ul></div></div>
+    </div></section>
 <a class="get-pill" href="#get"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Get the app</span></a>
-<footer></footer>
+<footer><div>
+      <div class="foot-brand"><img src="assets/icon.webp" alt="" width="40" height="40" loading="lazy"><div><b>Near Mosque</b><p>Prayer times, the Qibla and the nearest mosque, wherever you are.</p></div></div>
+      <div class="foot-cols">
+        <div><h3>Get the app</h3><a href="https://play.google.com/store/apps/details?id=com.AVA.nearmosque" rel="noopener" target="_blank">Google Play</a><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi" rel="noopener">Windows</a><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage" rel="noopener">Linux</a></div>
+        <div><h3>Help</h3><a href="support.html">Support</a><a href="prayer-times/">Prayer times by city</a><a href="mailto:app@vision.bz?subject=Near%20Mosque">app@vision.bz</a></div>
+        <div><h3>About</h3><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a><a href="security.html">Security</a><a href="credits.html">Sources and licences</a></div>
+      </div>
+      <p class="foot-note">No account, no ads, no tracking. This website sets no cookies and loads nothing from other companies.</p>
+    </div></footer>
 <script src="sky.js"></script>
 <script type="module" src="app.js"></script>
 <script type="module" src="film.js"></script>
