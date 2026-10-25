@@ -193,7 +193,7 @@ def ensure_app_clip_invocation(build_id: str) -> None:
     """Gives the build's App Clip a TestFlight invocation, so testers see it under App Clips in the TestFlight app with an
     Open button (Apple's App Clip link itself only opens the clip once a version carrying it is on the App Store)."""
     try:
-        bundles = api("GET", f"/builds/{build_id}/buildBundles", {"fields[buildBundles]": "bundleId,bundleType"})["data"]
+        bundles = api("GET", f"/builds/{build_id}", {"include": "buildBundles", "fields[buildBundles]": "bundleId,bundleType"}).get("included", [])
         clip = next((b for b in bundles if b["attributes"].get("bundleType") == "APP_CLIP"), None)
         if not clip:
             print("No App Clip in this build.")
