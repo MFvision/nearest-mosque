@@ -101,6 +101,15 @@ jobs:
           }
           archive
           if grep -q "ARCHIVE SUCCEEDED" archive.log; then exit 0; fi
+          # The iPhone app carries the App Clip. If it cannot be built or signed (its bundle id is new), the iPhone
+          # build still goes out, without it.
+          echo "::warning::The archive with the App Clip failed; archiving the iPhone app without it."
+          rm -rf build/NearMosque.xcarchive
+          sed -i '' '/# clip-embed/d' project.yml
+          xcodegen generate
+          mv archive.log archive-with-clip.log
+          archive
+          if grep -q "ARCHIVE SUCCEEDED" archive.log; then exit 0; fi
           # The iPhone app carries the Apple Watch app. If the watch app (or its complications) cannot be built or
           # signed, the iPhone and iPad build still goes out, without it.
           echo "::warning::The archive with the Apple Watch app failed; archiving the iPhone app without it."

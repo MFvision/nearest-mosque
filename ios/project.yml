@@ -54,6 +54,10 @@ targets:
       # archives again if the watch app cannot be signed, so the iPhone build still goes out.
       - target: NearMosqueWatch # watch-embed
         platformFilter: iOS # watch-embed
+      # The App Clip (nearest mosques with nothing to install) ships inside the iPhone app. TestFlight removes the
+      # clip-embed lines and archives again if the clip cannot be signed, so the iPhone build still goes out.
+      - target: NearMosqueClip # clip-embed
+        platformFilter: iOS # clip-embed
     entitlements:
       path: App/NearMosque.entitlements
       properties:
@@ -61,6 +65,7 @@ targets:
         keychain-access-groups: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared]
         # The Adhan, the iqama and the reminders before the prayer come through a Focus and the Scheduled Summary.
         com.apple.developer.usernotifications.time-sensitive: true
+        com.apple.developer.associated-appclip-app-identifiers: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID).Clip] # clip-embed
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -150,6 +155,60 @@ targets:
         SharedKeychainGroup: $(AppIdentifierPrefix)$(APP_BUNDLE_ID).shared
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
+  # The App Clip: the nearest mosques from where you stand, with nothing to install (Apple's App Clip link, a QR code,
+  # an NFC tag, the Safari banner). Apple Maps results only, so no database and no packs: it stays far below 15 MB.
+  NearMosqueClip:
+    type: application.on-demand-install-capable
+    platform: iOS
+    sources:
+      - path: Clip
+        excludes: [Info.plist, "*.entitlements"]
+      - path: Shared/StyleAccent.swift
+      - path: App/Support/Localization.swift
+      - path: App/Support/Format.swift
+      - path: App/Support/Sky.swift
+      - path: App/Support/Theme.swift
+      - path: App/Support/Art.swift
+      - path: App/Mosques/AppleMosqueSearch.swift
+      - path: App/Resources/Localizable.xcstrings
+    dependencies:
+      - package: NearestMosqueKit
+        product: NMCore
+    entitlements:
+      path: Clip/NearMosqueClip.entitlements
+      properties:
+        com.apple.developer.parent-application-identifiers: [$(AppIdentifierPrefix)$(APP_BUNDLE_ID)]
+        com.apple.developer.on-demand-install-capable: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).Clip
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SUPPORTS_MACCATALYST: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Clip/Info.plist
+        ENABLE_PREVIEWS: YES
+    info:
+      path: Clip/Info.plist
+      properties:
+        CFBundleDisplayName: Near Mosque
+        CFBundleName: Near Mosque
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleLocalizations: [en, ar, ur, tr, id, fr, es, ru, bn, fa, fa-AF, zh-Hans, hi, pt, ha, sw, fil, vi, th, km, ug, ckb, bs, sr, mk, hu, nl, ka, si, te, kn, ml, mr, gu, pa, as]
+        CFBundleAllowMixedLocalizations: false
+        LSRequiresIPhoneOS: true
+        ITSAppUsesNonExemptEncryption: false
+        NSAppClip:
+          NSAppClipRequestEphemeralUserNotification: false
+          NSAppClipRequestLocationConfirmation: false
+        NSLocationWhenInUseUsageDescription: Your location is used on this phone to find the mosques nearest to you. Mosque search sends only an approximate location.
+        UILaunchScreen:
+          UIColorName: ""
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
   # Apple Vision Pro: the iPhone app's own code built natively for visionOS (same bundle id, so one App Store listing).
   # What the headset lacks (Live Activities, the alarm clock, the compass, Lock Screen widgets) is left out by the
   # same `os(visionOS)` checks as on the Mac; the Qibla is shown from north.
@@ -428,6 +487,12 @@ schemes:
     build:
       targets:
         NearMosque: all
+    run:
+      config: Debug
+  NearMosqueClip:
+    build:
+      targets:
+        NearMosqueClip: all
     run:
       config: Debug
   NearMosqueVision:
