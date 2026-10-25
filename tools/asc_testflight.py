@@ -181,9 +181,39 @@ def handle(app_id: str, platform: str, want: str | None, wait: int) -> int:
         except urllib.error.HTTPError:
             print(f"::warning::Could not add the build to '{name}'; add it in App Store Connect → TestFlight.")
 
+    if platform == "IOS":
+        ensure_app_clip_invocation(build_id)
+
     detail = api("GET", f"/builds/{build_id}/buildBetaDetail")["data"]["attributes"]
     print(f"TestFlight state: internal={detail.get('internalBuildState')}, external={detail.get('externalBuildState')}")
     return 0
+
+
+def ensure_app_clip_invocation(build_id: str) -> None:
+    """Gives the build's App Clip a TestFlight invocation, so testers see it under App Clips in the TestFlight app with an
+    Open button (Apple's App Clip link itself only opens the clip once a version carrying it is on the App Store)."""
+    try:
+        bundles = api("GET", f"/builds/{build_id}/buildBundles", {"fields[buildBundles]": "bundleId,bundleType"})["data"]
+        clip = next((b for b in bundles if b["attributes"].get("bundleType") == "APP_CLIP"), None)
+        if not clip:
+            print("No App Clip in this build.")
+            return
+        existing = api("GET", f"/buildBundles/{clip['id']}/betaAppClipInvocations")["data"]
+        if existing:
+            print(f"The App Clip already has {len(existing)} TestFlight invocation(s).")
+            return
+        url = "https://appclip.apple.com/id?p=" + clip["attributes"]["bundleId"]
+        api("POST", "/betaAppClipInvocations", body={
+            "data": {"type": "betaAppClipInvocations", "attributes": {"url": url}, "relationships": {
+                "buildBundle": {"data": {"type": "buildBundles", "id": clip["id"]}},
+                "betaAppClipInvocationLocalizations": {"data": [{"type": "betaAppClipInvocationLocalizations", "id": "${loc}"}]},
+            }},
+            "included": [{"type": "betaAppClipInvocationLocalizations", "id": "${loc}",
+                          "attributes": {"locale": "en-US", "title": "Nearest mosque"}}],
+        })
+        print(f"Added the App Clip's TestFlight invocation ({url}).")
+    except urllib.error.HTTPError:
+        print("::warning::Could not add the App Clip's TestFlight invocation; add it in App Store Connect → TestFlight → the build → App Clip.")
 
 
 if __name__ == "__main__":
