@@ -81,3 +81,15 @@ API key without the Admin role.
 | Library languages | Switch the language in Settings, then ask again | That language's library installs in the background (the first Arabic install takes a little while); Ask keeps working meanwhile |
 | Languages | Settings → Language: Arabic, Urdu, Turkish, Indonesian, French, Spanish | Text and layout switch immediately; Arabic and Urdu right-to-left |
 | Accessibility | VoiceOver, larger text, Reduce Motion, Reduce Transparency | Everything readable and operable; animations stop; glass turns solid |
+
+## The App Clip (nearest mosques, no install)
+
+The iPhone build carries an App Clip, `sa.zood.nearmosque.Clip` (target `NearMosqueClip`, code in `ios/Clip`): one
+screen with the nearest mosques from Apple Maps, the next prayer and walking directions, then the App Store banner for
+the full app. If the clip cannot be signed, the TestFlight workflow archives the iPhone app without it (warning in the
+run) and the build still goes out.
+
+To try it from TestFlight: App Store Connect → the app → TestFlight → the build → App Clip → add an invocation (any
+`https://appclip.apple.com/id?p=sa.zood.nearmosque.Clip` link). It then shows under the build in the TestFlight app on
+the phone, with an Open button. Apple's free App Clip link (no website needed) works once the app version that carries
+the clip is live; the Safari banner, QR codes and NFC tags all use that same link.
