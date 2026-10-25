@@ -141,10 +141,30 @@ jobs:
         if: ${{ !inputs.mac_only && !inputs.tv_only }}
         run: |
           set -o pipefail
-          xcodebuild -exportArchive -archivePath build/NearMosque.xcarchive -exportOptionsPlist ExportOptions.plist \
-            -exportPath build/export -allowProvisioningUpdates \
-            -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            2>&1 | tee export.log | grep -E "error|Upload|EXPORT (SUCCEEDED|FAILED)" || true
+          export_upload() {
+            xcodebuild -exportArchive -archivePath build/NearMosque.xcarchive -exportOptionsPlist ExportOptions.plist \
+              -exportPath build/export -allowProvisioningUpdates \
+              -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+              2>&1 | tee -a export.log | grep -E "error|Upload|EXPORT (SUCCEEDED|FAILED)" || true
+          }
+          export_upload
+          if ! grep -q "EXPORT SUCCEEDED" export.log && grep -q "# clip-embed" project.yml; then
+            # App Store validation refused the archive with the App Clip: archive and upload the iPhone app without it.
+            echo "::warning::The upload with the App Clip failed; archiving and uploading the iPhone app without it."
+            mv export.log export-with-clip.log
+            rm -rf build/NearMosque.xcarchive build/export
+            sed -i '' '/# clip-embed/d' project.yml
+            xcodegen generate
+            xcodebuild -project NearMosque.xcodeproj -scheme NearMosque -configuration Release \
+              -destination 'generic/platform=iOS' -archivePath build/NearMosque.xcarchive \
+              DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic \
+              APP_BUNDLE_ID="$BUNDLE_ID" CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+              -allowProvisioningUpdates \
+              -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+              archive 2>&1 | tee archive-without-clip.log | grep -E "error:|ARCHIVE (SUCCEEDED|FAILED)" || true
+            grep -q "ARCHIVE SUCCEEDED" archive-without-clip.log
+            export_upload
+          fi
           grep -q "EXPORT SUCCEEDED" export.log
           echo "Uploaded build $BUILD_NUMBER of $BUNDLE_ID. It appears in TestFlight after Apple finishes processing (usually 5-30 minutes)."
 
