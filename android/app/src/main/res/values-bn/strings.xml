@@ -72,6 +72,7 @@
     <string name="answer_search_more">এই সাইটগুলোতেও খুঁজুন</string>
     <string name="answer_search_more_note">আপনার প্রশ্নসহ সাইটটি আপনার ব্রাউজারে খোলে।</string>
     <string name="answer_searching">আপনার বইগুলোতে খোঁজা হচ্ছে…</string>
+    <string name="app_icon">অ্যাপ আইকন</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">অ্যাপের বোতাম ও হাইলাইট, প্রতিটি উইজেট, লক স্ক্রিন ও ডাইনামিক আইল্যান্ডের জন্য একটিই স্টাইল। একটি উইজেটকে আলাদা স্টাইল দিতে সেটি চেপে ধরে উইজেট সম্পাদনা বেছে নিন।</string>
     <string name="app_style_note_android">অ্যাপের বোতাম ও হাইলাইট এবং প্রতিটি উইজেটের জন্য একটি স্টাইল। কোনো উইজেটকে আলাদা স্টাইল দিতে সেটি স্পর্শ করে ধরে রাখুন, তারপর এর সেটিংস খুলুন।</string>
@@ -256,6 +257,13 @@
     <string name="hours_listed">তালিকাভুক্ত সময়: %1$s</string>
     <string name="hours_unknown">খোলার সময় জানা নেই</string>
     <string name="hours_unverified_note">তালিকাভুক্ত সময় মানচিত্রের ডেটা থেকে নেওয়া এবং পুরোনো হতে পারে। জামাতের সময় এতে নেই।</string>
+    <string name="icon_black">কালো</string>
+    <string name="icon_error">আইকন বদলানো যায়নি। আবার চেষ্টা করুন।</string>
+    <string name="icon_gold">সোনালি</string>
+    <string name="icon_green">সবুজ</string>
+    <string name="icon_night">রাত</string>
+    <string name="icon_sky">আকাশি</string>
+    <string name="icon_teal">নীলচে সবুজ</string>
     <string name="import_done">%1$s যোগ করা হয়েছে</string>
     <string name="import_failed">এই ফাইলটি যোগ করা যায়নি: %1$s</string>
     <string name="import_pack">ফাইল থেকে ইমপোর্ট করুন</string>
@@ -355,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">ক্লাসিক</string>
+    <string name="menu_start">মেনু ও শুরু</string>
+    <string name="menu_start_note">ট্যাবে নামাজ ও কিবলা এবং নিকটতম মসজিদ নিচে থাকে। ক্লাসিক একটি মাত্র পাতা, নিচে কিবলা, নিকটতম মসজিদ ও জিজ্ঞাসা এক ট্যাপে। «যেখানে খুলবে» হলো অ্যাপ যে স্ক্রিনে শুরু হয়।</string>
+    <string name="menu_style">মেনুর ধরন</string>
+    <string name="menu_tabs">ট্যাব</string>
     <string name="method_DUBAI">দুবাই</string>
     <string name="method_EGYPTIAN">মিশরীয় জেনারেল সার্ভে কর্তৃপক্ষ</string>
     <string name="method_KARACHI">ইউনিভার্সিটি অব ইসলামিক সায়েন্সেস, করাচি</string>
@@ -578,6 +591,7 @@
     <string name="online_search_body">আপনার ডাউনলোড করা ডেটায় লাইভ ফলাফল ও হাঁটার সময় যোগ করে। সার্চ করতে আপনার আনুমানিক অবস্থান (প্রায় 1 কিমি) মানচিত্র সেবায় পাঠানো হয়; হাঁটার সময়ের জন্য প্রায় 100 মিটারে রাউন্ড করা একটি অবস্থান পাঠানো হয়। আপনি যে এলাকা দেখেন, মানচিত্র সবসময় সেই এলাকার ছবি লোড করে।</string>
     <string name="online_searching">অনলাইনে আরও মসজিদ খোঁজা হচ্ছে…</string>
     <string name="open_settings">সেটিংস খুলুন</string>
+    <string name="open_with">যেখানে খুলবে</string>
     <string name="pack_builtin">অন্তর্ভুক্ত</string>
     <string name="pack_details">%1$sটি রেকর্ড, %2$s, ভার্সন %3$s</string>
     <string name="pack_kind_books">বই: %1$s</string>
@@ -737,6 +751,7 @@
     <string name="start_at_login_linux_note">সাইন ইন করলেই মিনিমাইজ অবস্থায় চালু হয়, তাই অ্যাপ না খুলেই আজান ও রিমাইন্ডার আসে।</string>
     <string name="start_at_login_note">সাইন ইন করলেই নোটিফিকেশন এরিয়ায় চালু হয়, তাই অ্যাপ না খুলেই আজান ও রিমাইন্ডার আসে।</string>
     <string name="start_at_login_store_note">সাইন ইন করলে Near Mosque চালু করতে Windows সেটিংস → অ্যাপস → স্টার্টআপে এটি চালু করুন।</string>
+    <string name="start_last_place">যেখানে ছেড়েছিলাম</string>
     <string name="stop">থামান</string>
     <string name="straight_line">সরলরেখায় %1$s</string>
     <string name="style_auto">অ্যাপের মতো</string>

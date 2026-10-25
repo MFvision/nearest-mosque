@@ -72,6 +72,7 @@
     <string name="answer_search_more">Buscar también en estos sitios</string>
     <string name="answer_search_more_note">Abre el sitio en tu navegador con tu pregunta.</string>
     <string name="answer_searching">Buscando en tus libros…</string>
+    <string name="app_icon">Icono de la app</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Un solo estilo para los botones y resaltes de la app, cada widget, la pantalla bloqueada y la Dynamic Island. Para dar a un widget su propio estilo, mantenlo pulsado y elige Editar widget.</string>
     <string name="app_style_note_android">Un solo estilo para los botones y los acentos de la app y para cada widget. Para dar a un widget su propio estilo, mantenlo pulsado y abre sus ajustes.</string>
@@ -256,6 +257,13 @@
     <string name="hours_listed">Horario indicado: %1$s</string>
     <string name="hours_unknown">Horario desconocido</string>
     <string name="hours_unverified_note">El horario procede de datos del mapa y puede estar desactualizado. No incluye los horarios de oración en congregación.</string>
+    <string name="icon_black">Negro</string>
+    <string name="icon_error">No se pudo cambiar el icono. Inténtalo de nuevo.</string>
+    <string name="icon_gold">Dorado</string>
+    <string name="icon_green">Verde</string>
+    <string name="icon_night">Noche</string>
+    <string name="icon_sky">Cielo</string>
+    <string name="icon_teal">Verde azulado</string>
     <string name="import_done">%1$s añadido</string>
     <string name="import_failed">No se pudo añadir el archivo: %1$s</string>
     <string name="import_pack">Importar desde archivo</string>
@@ -355,6 +363,11 @@
     <string name="maps_apple">Mapas de Apple</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Clásico</string>
+    <string name="menu_start">Menú e inicio</string>
+    <string name="menu_start_note">Pestañas pone Oración y Qibla y Mezquita más cercana abajo. Clásico deja una sola página, con la Qibla, la mezquita más cercana y Preguntar a un toque abajo. Abrir en es la pantalla con la que empieza la app.</string>
+    <string name="menu_style">Estilo del menú</string>
+    <string name="menu_tabs">Pestañas</string>
     <string name="method_DUBAI">Dubái</string>
     <string name="method_EGYPTIAN">Autoridad General de Topografía de Egipto</string>
     <string name="method_KARACHI">Universidad de Ciencias Islámicas, Karachi</string>
@@ -578,6 +591,7 @@
     <string name="online_search_body">Añade resultados en directo y tiempos a pie a tus datos descargados. Para buscar, se envía tu ubicación aproximada (alrededor de 1 km) al servicio de mapas; para los tiempos a pie, una ubicación redondeada a unos 100 m. El mapa siempre carga imágenes de la zona que estás viendo.</string>
     <string name="online_searching">Buscando más mezquitas en línea…</string>
     <string name="open_settings">Abrir Ajustes</string>
+    <string name="open_with">Abrir en</string>
     <string name="pack_builtin">Integrado</string>
     <string name="pack_details">%1$s registros, %2$s, versión %3$s</string>
     <string name="pack_kind_books">Libros: %1$s</string>
@@ -737,6 +751,7 @@
     <string name="start_at_login_linux_note">Se abre minimizada al iniciar sesión, así el adhan y los recordatorios llegan sin abrir la app.</string>
     <string name="start_at_login_note">Se abre en el área de notificaciones al iniciar sesión, así el adhan y los recordatorios llegan sin abrir la app.</string>
     <string name="start_at_login_store_note">Para que Near Mosque se inicie al iniciar sesión, actívalo en Configuración de Windows → Aplicaciones → Inicio.</string>
+    <string name="start_last_place">Donde lo dejé</string>
     <string name="stop">Detener</string>
     <string name="straight_line">%1$s en línea recta</string>
     <string name="style_auto">Igual que la app</string>

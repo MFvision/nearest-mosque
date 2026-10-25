@@ -72,6 +72,7 @@
     <string name="answer_search_more">මෙම අඩවිවලද සොයන්න</string>
     <string name="answer_search_more_note">ඔබේ ප්‍රශ්නය සමඟ අඩවිය ඔබේ බ්‍රවුසරයේ විවෘත කරයි.</string>
     <string name="answer_searching">ඔබේ පොත්වල සොයමින්…</string>
+    <string name="app_icon">යෙදුම් නිරූපකය</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">යෙදුමේ බොත්තම් සහ ඉස්මතු කිරීම්, සෑම විජට් එකක්ම, අගුළු තිරය සහ Dynamic Island සඳහා එකම විලාසයක්. එක් විජට් එකකට වෙනම විලාසයක් දීමට එය දිගු එබීමෙන් විජට් සංස්කරණය තෝරන්න.</string>
     <string name="app_style_note_android">යෙදුමේ බොත්තම්, උද්දීපන සහ සෑම විජට් එකක් සඳහාම එක් විලාසයක්. එක් විජට් එකකට වෙනම විලාසයක් දීමට, එය ස්පර්ශ කර අල්ලාගෙන, ඉන්පසු එහි සැකසීම් විවෘත කරන්න.</string>
@@ -256,6 +257,13 @@
     <string name="hours_listed">සඳහන් වේලාවන්: %1$s</string>
     <string name="hours_unknown">විවෘත වේලාවන් නොදනී</string>
     <string name="hours_unverified_note">සඳහන් වේලාවන් සිතියම් දත්තවලින් ලැබුණු ඒවා වන අතර යල් පැනගිය ඒවා විය හැක. ජමාඅත් වේලාවන් ඇතුළත් නැත.</string>
+    <string name="icon_black">කළු</string>
+    <string name="icon_error">නිරූපකය වෙනස් කළ නොහැකි විය. නැවත උත්සාහ කරන්න.</string>
+    <string name="icon_gold">රන්</string>
+    <string name="icon_green">කොළ</string>
+    <string name="icon_night">රාත්‍රිය</string>
+    <string name="icon_sky">අහස</string>
+    <string name="icon_teal">නිල්-කොළ</string>
     <string name="import_done">%1$s එක් කළා</string>
     <string name="import_failed">මෙම ගොනුව එක් කළ නොහැකි විය: %1$s</string>
     <string name="import_pack">ගොනුවකින් ආයාත කරන්න</string>
@@ -355,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">සම්භාව්‍ය</string>
+    <string name="menu_start">මෙනුව සහ ආරම්භය</string>
+    <string name="menu_start_note">ටැබ් මගින් නමාසය සහ කිබ්ලාව සහ ළඟම පල්ලිය පහළින් තබයි. සම්භාව්‍ය එක පිටුවකි, පහළින් එක් තට්ටුවකින් කිබ්ලාව, ළඟම පල්ලිය සහ අසන්න. «විවෘත වන්නේ» යනු යෙදුම ආරම්භ වන තිරයයි.</string>
+    <string name="menu_style">මෙනු විලාසය</string>
+    <string name="menu_tabs">ටැබ්</string>
     <string name="method_DUBAI">ඩුබායි</string>
     <string name="method_EGYPTIAN">ඊජිප්තු සමීක්ෂණ මහා අධිකාරිය</string>
     <string name="method_KARACHI">ඉස්ලාමීය විද්‍යා විශ්වවිද්‍යාලය, කරච්චි</string>
@@ -578,6 +591,7 @@
     <string name="online_search_body">ඔබ බාගත කළ දත්තවලට සජීවී ප්‍රතිඵල සහ ඇවිදීමේ කාලය එක් කරයි. සෙවීමට, ඔබේ ආසන්න ස්ථානය (දළ වශයෙන් කි.මී. 1) සිතියම් සේවාවට යවනු ලැබේ; ඇවිදීමේ කාලය සඳහා, දළ වශයෙන් මීටර් 100කට වටයා ගත් ස්ථානයක් යවනු ලැබේ. සිතියම සැමවිටම ඔබ බලන ප්‍රදේශයේ රූප පූරණය කරයි.</string>
     <string name="online_searching">තවත් පල්ලි මාර්ගගතව සොයමින්…</string>
     <string name="open_settings">සැකසීම් විවෘත කරන්න</string>
+    <string name="open_with">විවෘත වන්නේ</string>
     <string name="pack_builtin">ඇතුළත් කර ඇත</string>
     <string name="pack_details">වාර්තා %1$s, %2$s, අනුවාදය %3$s</string>
     <string name="pack_kind_books">පොත්: %1$s</string>
@@ -737,6 +751,7 @@
     <string name="start_at_login_linux_note">ඔබ පුරනය වන විට කුඩා කළ තත්ත්වයෙන් විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ.</string>
     <string name="start_at_login_note">ඔබ පුරනය වන විට දැනුම්දීම් ප්‍රදේශයේ විවෘත වේ, එවිට යෙදුම විවෘත නොකර අදාන් සහ සිහිකැඳවීම් ලැබේ.</string>
     <string name="start_at_login_store_note">ඔබ පුරනය වන විට Near Mosque ආරම්භ වීමට, Windows සැකසීම් → යෙදුම් → ආරම්භය තුළ එය සක්‍රිය කරන්න.</string>
+    <string name="start_last_place">නැවැත්වූ තැන</string>
     <string name="stop">නවත්වන්න</string>
     <string name="straight_line">සරල රේඛාවෙන් %1$s</string>
     <string name="style_auto">යෙදුම මෙන්</string>

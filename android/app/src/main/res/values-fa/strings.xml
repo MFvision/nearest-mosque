@@ -72,6 +72,7 @@
     <string name="answer_search_more">جستجو در این سایت‌ها هم</string>
     <string name="answer_search_more_note">سایت را با سؤال شما در مرورگر باز می‌کند.</string>
     <string name="answer_searching">در حال جستجو در کتاب‌های شما…</string>
+    <string name="app_icon">نماد برنامه</string>
     <string name="app_name">نزدیک‌ترین مسجد</string>
     <string name="app_style_note">یک سبک برای دکمه‌ها و رنگ‌های تأکیدی برنامه، همهٔ ابزارک‌ها، صفحهٔ قفل و Dynamic Island. برای سبک جداگانهٔ یک ابزارک، آن را نگه دارید و «ویرایش ابزارک» را بزنید.</string>
     <string name="app_style_note_android">یک سبک برای دکمه‌ها و رنگ‌های برجستهٔ برنامه و همهٔ ابزارک‌ها. برای سبک جداگانهٔ یک ابزارک، آن را لمس کنید و نگه دارید، سپس تنظیماتش را باز کنید.</string>
@@ -256,6 +257,13 @@
     <string name="hours_listed">ساعات ثبت‌شده: %1$s</string>
     <string name="hours_unknown">ساعات کار نامعلوم</string>
     <string name="hours_unverified_note">ساعات ثبت‌شده از داده‌های نقشه است و ممکن است قدیمی باشد. اوقات نماز جماعت در آن نیست.</string>
+    <string name="icon_black">مشکی</string>
+    <string name="icon_error">نماد عوض نشد. دوباره امتحان کنید.</string>
+    <string name="icon_gold">طلایی</string>
+    <string name="icon_green">سبز</string>
+    <string name="icon_night">شب</string>
+    <string name="icon_sky">آسمانی</string>
+    <string name="icon_teal">سبزآبی</string>
     <string name="import_done">%1$s اضافه شد</string>
     <string name="import_failed">این فایل اضافه نشد: %1$s</string>
     <string name="import_pack">وارد کردن از فایل</string>
@@ -355,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">کلاسیک</string>
+    <string name="menu_start">منو و شروع</string>
+    <string name="menu_start_note">زبانه‌ها «نماز و قبله» و «نزدیک‌ترین مسجد» را پایین صفحه می‌گذارد. کلاسیک یک صفحه است و قبله، نزدیک‌ترین مسجد و بپرس با یک لمس در پایین آن است. «باز شدن روی» صفحه‌ای است که برنامه با آن شروع می‌شود.</string>
+    <string name="menu_style">سبک منو</string>
+    <string name="menu_tabs">زبانه‌ها</string>
     <string name="method_DUBAI">دبی</string>
     <string name="method_EGYPTIAN">سازمان عمومی نقشه‌برداری مصر</string>
     <string name="method_KARACHI">دانشگاه علوم اسلامی، کراچی</string>
@@ -578,6 +591,7 @@
     <string name="online_search_body">نتایج زنده و زمان پیاده‌روی را به داده‌های بارگیری‌شده‌تان اضافه می‌کند. برای جست‌وجو، موقعیت تقریبی شما (حدود 1 کیلومتر) به سرویس نقشه فرستاده می‌شود؛ برای زمان پیاده‌روی، موقعیتی که تا حدود 100 متر گرد شده است. نقشه همیشه تصاویر منطقه‌ای را که می‌بینید بارگیری می‌کند.</string>
     <string name="online_searching">در حال جستجوی آنلاین مسجدهای بیشتر…</string>
     <string name="open_settings">باز کردن تنظیمات</string>
+    <string name="open_with">باز شدن روی</string>
     <string name="pack_builtin">داخلی</string>
     <string name="pack_details">%1$s رکورد، %2$s، نسخه %3$s</string>
     <string name="pack_kind_books">کتاب‌ها: %1$s</string>
@@ -737,6 +751,7 @@
     <string name="start_at_login_linux_note">هنگام ورود به‌صورت کوچک‌شده باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند.</string>
     <string name="start_at_login_note">هنگام ورود در ناحیهٔ اعلان باز می‌شود تا اذان و یادآوری‌ها بدون باز کردن برنامه برسند.</string>
     <string name="start_at_login_store_note">برای اجرای Near Mosque هنگام ورود، آن را در تنظیمات ویندوز ← برنامه‌ها ← راه‌اندازی روشن کنید.</string>
+    <string name="start_last_place">جایی که ماندم</string>
     <string name="stop">توقف</string>
     <string name="straight_line">%1$s در خط مستقیم</string>
     <string name="style_auto">مانند برنامه</string>

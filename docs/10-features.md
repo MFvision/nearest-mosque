@@ -38,6 +38,8 @@ ships inside the iPhone app, in the same listing.
 * **Ask AI** is a button ("Ask anything about Islam") that opens Ask full screen. On iOS 26 it sits in the
   tab bar's accessory slot and the tab bar shrinks on scroll; on earlier iOS it floats as a glass capsule.
 * Settings opens as a sheet from the gear on each tab.
+* **Classic menu** (Settings → Menu and start → Menu style): instead of the tab bar, one page (Prayer & Qibla)
+  with a glass row at the bottom: Qibla, Nearest Mosque (opens over it, ✕ closes) and Ask.
 * iPhone shows one column; iPad and Mac show two (list beside map, cards beside the header).
 * Links into the app: `nearmosque://prayer`, `qibla`, `mosques`, `mosque?id=`, `settings`, `ask?q=`. A
   question in a link is only placed in the box, not asked, unless it comes from inside the app or from
@@ -107,6 +109,11 @@ ships inside the iPhone app, in the same listing.
 ### Settings (`ios/App/Settings/`)
 
 **General**: Language (device language or one of 36); Appearance (Same as phone, Light, Dark).
+
+**Menu and start** (`StartSettingsSection.swift`, rules in `NMCore/StartScreen.swift`): Menu style (Tabs or
+Classic); Open with (Where I left off, Prayer & Qibla, Qibla, Nearest Mosque, Ask), applied once at launch after
+the tour, a widget or Siri link wins; App icon (Gold, Night, Green, Teal, Sky, Black; iPhone and iPad only, drawn
+by `shared/brand/icons/make_icons.py`). Kept on the phone only.
 
 **Prayer times**
 * Location: city search or "Use my location".

@@ -121,12 +121,21 @@ extension NearMosqueApp {
 enum AppTab: Hashable { case prayer, mosques, ask }
 
 /// Two tabs on a Liquid Glass tab bar (Prayer & Qibla, Nearest Mosque) and Ask AI as a floating pill
-/// above it that opens the chat full screen. Settings, downloads and sources sit behind the gear on
-/// each tab. First launch shows the animated tour.
+/// above it that opens the chat full screen; or, with Settings › Menu style › Classic, one page (Prayer & Qibla)
+/// with the Qibla, Nearest Mosque and Ask in a row at the bottom. Settings, downloads and sources sit behind
+/// the gear on each page. First launch shows the animated tour.
 struct RootView: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     @State private var tab: AppTab = Self.initialTab == .mosques ? .mosques : .prayer
+    @AppStorage(StartKey.menuStyle) private var menuStyle = MenuStyle.tabs.rawValue
+    @AppStorage(StartKey.lastPlace) private var lastPlace = StartPlace.prayer.rawValue
+    /// Classic: Nearest Mosque, open over Prayer & Qibla.
+    @State private var showMosques = false
+    /// Classic: Settings opened from Nearest Mosque (a second sheet cannot come from under it).
+    @State private var mosquesSettings = false
+    /// Settings › Open with is applied once, when the app starts.
+    @State private var started = false
     #if DEBUG
     /// CI screenshots: `-demoAudioSettings YES` opens Settings (and then Prayer & Audio).
     @State private var showSettings = UserDefaults.standard.bool(forKey: "demoAudioSettings")
@@ -150,24 +159,15 @@ struct RootView: View {
         #endif
     }
 
+    private var classic: Bool { menuStyle == MenuStyle.classic.rawValue }
+
+    /// The page on the screen, in either menu.
+    private var page: AppTab { classic ? (showMosques ? .mosques : .prayer) : tab }
+
     var body: some View {
-        TabView(selection: $tab) {
-            Tab(l10n.t("tab_prayer"), systemImage: "location.north.circle", value: AppTab.prayer) {
-                NavigationStack {
-                    PrayerView(showSettings: $showSettings, onMosques: { tab = .mosques })
-                        .modifier(PageSwipe(edgeOnly: false, forward: { tab = .mosques }))
-                }
-            }
-            Tab(l10n.t("tab_mosques"), image: "MosqueTab", value: AppTab.mosques) {
-                NavigationStack {
-                    // From the screen's edge only, so dragging the map never changes the page.
-                    MosquesView(showSettings: $showSettings)
-                        .modifier(PageSwipe(edgeOnly: true, back: { tab = .prayer }))
-                }
-            }
+        Group {
+            if classic { classicMenu } else { tabs }
         }
-        .tint(Theme.gold)
-        .modifier(TabBarMinimize())
         // Widgets: nearmosque://prayer, nearmosque://qibla, nearmosque://mosques, nearmosque://mosque?id=…,
         // nearmosque://ask (optionally ?q=… to ask a question). Shortcuts: PendingRoute; controls: openQibla.
         .onOpenURL { open($0, trusted: false) }
@@ -177,9 +177,20 @@ struct RootView: View {
             if ready, let q = pendingQuestion { pendingQuestion = nil; ask.reset(); ask.ask(model, q) }
         }
         .onReceive(NotificationCenter.default.publisher(for: .openQibla)) { _ in openQiblaIfAsked() }
-        .onAppear { openQiblaIfAsked(); PendingRoute.take().map { open($0, trusted: true) }; model.shareWithWidgets() }
+        .onAppear {
+            startOnce()
+            openQiblaIfAsked(); PendingRoute.take().map { open($0, trusted: true) }; model.shareWithWidgets()
+        }
         .onChange(of: l10n.language) { _, _ in model.shareWithWidgets() }
-        .modifier(AskAccessory { showAsk = true })
+        // For Open with › Where I left off.
+        .onChange(of: page) { _, p in lastPlace = p == .mosques ? StartPlace.mosques.rawValue : StartPlace.prayer.rawValue }
+        // Switching the menu (in Settings, so nothing opens over the sheet): to tabs, Nearest Mosque stays the page if
+        // it was open; to classic, Prayer & Qibla.
+        .onChange(of: menuStyle) { _, _ in
+            if !classic, showMosques { tab = .mosques }
+            showMosques = false
+            mosquesSettings = false
+        }
         .fullScreenCover(isPresented: $showAsk) {
             NavigationStack { AskView(vm: ask) { showAsk = false } }
                 .environment(\.locale, l10n.locale)
@@ -197,6 +208,51 @@ struct RootView: View {
                 .environment(\.layoutDirection, l10n.layoutDirection)
         }
     }
+
+    private var tabs: some View {
+        TabView(selection: $tab) {
+            Tab(l10n.t("tab_prayer"), systemImage: "location.north.circle", value: AppTab.prayer) {
+                NavigationStack {
+                    PrayerView(showSettings: $showSettings, onMosques: { tab = .mosques })
+                        .modifier(PageSwipe(edgeOnly: false, forward: { tab = .mosques }))
+                }
+            }
+            Tab(l10n.t("tab_mosques"), image: "MosqueTab", value: AppTab.mosques) {
+                NavigationStack {
+                    // From the screen's edge only, so dragging the map never changes the page.
+                    MosquesView(showSettings: $showSettings)
+                        .modifier(PageSwipe(edgeOnly: true, back: { tab = .prayer }))
+                }
+            }
+        }
+        .tint(Theme.gold)
+        .modifier(TabBarMinimize())
+        .modifier(AskAccessory { showAsk = true })
+    }
+
+    /// Classic: Prayer & Qibla is the only page; the row at the bottom opens the Qibla, Nearest Mosque and Ask.
+    private var classicMenu: some View {
+        NavigationStack {
+            PrayerView(showSettings: $showSettings, onMosques: { showMosques = true })
+                .safeAreaInset(edge: .bottom) {
+                    ClassicDock(qibla: { model.requestQibla = true },
+                                mosques: { showMosques = true },
+                                ask: { showAsk = true })
+                }
+        }
+        .tint(Theme.gold)
+        .fullScreenCover(isPresented: $showMosques) {
+            NavigationStack { MosquesView(showSettings: $mosquesSettings, onClose: { showMosques = false }) }
+                .tint(Theme.gold)
+                .sheet(isPresented: $mosquesSettings) {
+                    SettingsView()
+                        .environment(\.locale, l10n.locale)
+                        .environment(\.layoutDirection, l10n.layoutDirection)
+                }
+                .environment(\.locale, l10n.locale)
+                .environment(\.layoutDirection, l10n.layoutDirection)
+        }
+    }
 }
 
 extension RootView {
@@ -207,13 +263,13 @@ extension RootView {
     fileprivate func open(_ url: URL, trusted: Bool) {
         let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
         // A sheet on top would keep the requested screen from showing.
-        if url.host != "settings" { showSettings = false }
+        if url.host != "settings" { showSettings = false; mosquesSettings = false }
         switch url.host {
-        case "qibla": tab = .prayer; showAsk = false; model.requestQibla = true
-        case "mosques": tab = .mosques; showAsk = false
+        case "qibla": go(.prayer); showAsk = false; model.requestQibla = true
+        case "mosques": go(.mosques); showAsk = false
         case "settings": showAsk = false; showSettings = true
         case "mosque":
-            tab = .mosques; showAsk = false
+            go(.mosques); showAsk = false
             model.requestMosqueId = query.first { $0.name == "id" }?.value
         case "ask":
             if let raw = query.first(where: { $0.name == "q" })?.value, !raw.isEmpty {
@@ -226,14 +282,73 @@ extension RootView {
                 }
             }
             showAsk = true
-        default: tab = .prayer; showAsk = false
+        default: go(.prayer); showAsk = false
+        }
+    }
+
+    /// Shows a page in either menu (classic: Nearest Mosque opens over Prayer & Qibla, or closes).
+    fileprivate func go(_ page: AppTab) {
+        if classic { showMosques = page == .mosques } else { tab = page == .ask ? .prayer : page }
+    }
+
+    /// Settings › Open with, once when the app starts (not before the tour, nor for CI screenshots).
+    /// A widget, Siri or a notification that opened the app comes after it and wins.
+    fileprivate func startOnce() {
+        guard !started else { return }
+        started = true
+        guard model.settings.onboarded else { return }
+        #if DEBUG
+        guard UserDefaults.standard.string(forKey: "demoTab") == nil else { return }
+        #endif
+        let screen = StartScreen(rawValue: UserDefaults.standard.string(forKey: StartKey.startScreen) ?? "") ?? .lastPlace
+        switch screen.place(last: lastPlace) {
+        case .prayer: go(.prayer)
+        case .mosques: go(.mosques)
+        case .qibla: go(.prayer); model.requestQibla = true
+        case .ask: showAsk = true
         }
     }
 
     fileprivate func openQiblaIfAsked() {
         guard UserDefaults.standard.bool(forKey: "openQiblaOnLaunch") else { return }
         UserDefaults.standard.set(false, forKey: "openQiblaOnLaunch")
-        tab = .prayer; showAsk = false; model.requestQibla = true
+        go(.prayer); showAsk = false; model.requestQibla = true
+    }
+}
+
+/// The classic menu's row at the bottom of Prayer & Qibla: the Qibla, Nearest Mosque and Ask, each one tap away.
+private struct ClassicDock: View {
+    @Environment(\.l10n) private var l10n
+    var qibla: () -> Void
+    var mosques: () -> Void
+    var ask: () -> Void
+
+    var body: some View {
+        HStack(spacing: 0) {
+            item(Image(systemName: "safari"), l10n.t("widget_kind_qibla"), qibla)
+            item(Image("MosqueTab"), l10n.t("tab_mosques"), mosques)
+            item(Image(systemName: "sparkles"), l10n.t("tab_ask"), ask)
+        }
+        .padding(.horizontal, 8)
+        .glass(Capsule(), tint: Theme.gold.opacity(0.18))
+        .padding(.horizontal, 16)
+        .padding(.bottom, 6)
+    }
+
+    private func item(_ image: Image, _ title: String, _ action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 3) {
+                image.font(.title3.weight(.semibold)).foregroundStyle(Theme.accent).frame(height: 24)
+                Text(title).font(.caption.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.7)
+            }
+            .foregroundStyle(Theme.ink)
+            .frame(maxWidth: .infinity, minHeight: 58)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
     }
 }
 

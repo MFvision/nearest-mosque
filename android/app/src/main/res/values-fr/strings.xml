@@ -72,6 +72,7 @@
     <string name="answer_search_more">Chercher aussi sur ces sites</string>
     <string name="answer_search_more_note">Ouvre le site dans votre navigateur avec votre question.</string>
     <string name="answer_searching">Recherche dans vos livres…</string>
+    <string name="app_icon">Icône de l\'app</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Un seul style pour les boutons et les accents de l’app, chaque widget, l’écran verrouillé et la Dynamic Island. Pour donner un style propre à un widget, touchez-le longuement et choisissez Modifier le widget.</string>
     <string name="app_style_note_android">Un seul style pour les boutons et les accents de l’app et pour chaque widget. Pour donner un style propre à un widget, appuyez longuement dessus, puis ouvrez ses réglages.</string>
@@ -256,6 +257,13 @@
     <string name="hours_listed">Horaires indiqués : %1$s</string>
     <string name="hours_unknown">Horaires d’ouverture inconnus</string>
     <string name="hours_unverified_note">Horaires issus des données cartographiques, peut-être anciens. Les horaires de la prière en commun ne sont pas inclus.</string>
+    <string name="icon_black">Noir</string>
+    <string name="icon_error">Impossible de changer l\'icône. Réessayez.</string>
+    <string name="icon_gold">Or</string>
+    <string name="icon_green">Vert</string>
+    <string name="icon_night">Nuit</string>
+    <string name="icon_sky">Ciel</string>
+    <string name="icon_teal">Bleu canard</string>
     <string name="import_done">%1$s ajouté</string>
     <string name="import_failed">Impossible d’ajouter ce fichier : %1$s</string>
     <string name="import_pack">Importer un fichier</string>
@@ -355,6 +363,11 @@
     <string name="maps_apple">Plans</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Classique</string>
+    <string name="menu_start">Menu et démarrage</string>
+    <string name="menu_start_note">Onglets place Prière et Qibla et Mosquée la plus proche en bas. Classique garde une seule page, avec la Qibla, la mosquée la plus proche et Demander à portée de doigt en bas. Ouvrir sur est l\'écran affiché au démarrage.</string>
+    <string name="menu_style">Style du menu</string>
+    <string name="menu_tabs">Onglets</string>
     <string name="method_DUBAI">Dubaï</string>
     <string name="method_EGYPTIAN">Autorité égyptienne de géodésie</string>
     <string name="method_KARACHI">Université des sciences islamiques, Karachi</string>
@@ -578,6 +591,7 @@
     <string name="online_search_body">Ajoute des résultats en direct et des temps de marche à vos données téléchargées. Pour la recherche, votre position approximative (à environ 1 km près) est envoyée au service de cartographie, et pour les temps de marche, une position arrondie à environ 100 m. La carte charge toujours les images de la zone que vous consultez.</string>
     <string name="online_searching">Recherche d’autres mosquées en ligne…</string>
     <string name="open_settings">Ouvrir les réglages</string>
+    <string name="open_with">Ouvrir sur</string>
     <string name="pack_builtin">Intégré</string>
     <string name="pack_details">%1$s fiches, %2$s, version %3$s</string>
     <string name="pack_kind_books">Livres : %1$s</string>
@@ -737,6 +751,7 @@
     <string name="start_at_login_linux_note">S’ouvre en réduit à la connexion : l’adhan et les rappels arrivent sans ouvrir l’app.</string>
     <string name="start_at_login_note">S’ouvre dans la zone de notification à la connexion : l’adhan et les rappels arrivent sans ouvrir l’app.</string>
     <string name="start_at_login_store_note">Pour lancer Near Mosque à la connexion, activez-le dans Paramètres Windows → Applications → Démarrage.</string>
+    <string name="start_last_place">Là où j\'en étais</string>
     <string name="stop">Arrêter</string>
     <string name="straight_line">%1$s à vol d’oiseau</string>
     <string name="style_auto">Comme l’app</string>

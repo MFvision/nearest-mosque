@@ -72,6 +72,7 @@
     <string name="answer_search_more">Искать также на этих сайтах</string>
     <string name="answer_search_more_note">Открывает сайт в браузере с вашим вопросом.</string>
     <string name="answer_searching">Ищем в ваших книгах…</string>
+    <string name="app_icon">Значок приложения</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Единый стиль для кнопок и акцентов приложения, всех виджетов, экрана блокировки и Dynamic Island. Чтобы задать стиль одному виджету, нажмите на него и удерживайте, затем выберите «Изменить виджет».</string>
     <string name="app_style_note_android">Один стиль для кнопок и акцентов приложения и всех виджетов. Чтобы задать виджету свой стиль, нажмите на него и удерживайте, затем откройте его настройки.</string>
@@ -256,6 +257,13 @@
     <string name="hours_listed">Указанные часы: %1$s</string>
     <string name="hours_unknown">Часы работы неизвестны</string>
     <string name="hours_unverified_note">Часы работы взяты из картографических данных и могут быть устаревшими. Время коллективных намазов не указано.</string>
+    <string name="icon_black">Чёрный</string>
+    <string name="icon_error">Не удалось сменить значок. Попробуйте ещё раз.</string>
+    <string name="icon_gold">Золото</string>
+    <string name="icon_green">Зелёный</string>
+    <string name="icon_night">Ночь</string>
+    <string name="icon_sky">Небо</string>
+    <string name="icon_teal">Бирюзовый</string>
     <string name="import_done">Добавлено: %1$s</string>
     <string name="import_failed">Не удалось добавить файл: %1$s</string>
     <string name="import_pack">Импорт из файла</string>
@@ -355,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Классика</string>
+    <string name="menu_start">Меню и запуск</string>
+    <string name="menu_start_note">Вкладки ставят «Намаз и кибла» и «Ближайшая мечеть» внизу. Классика — одна страница, а кибла, ближайшая мечеть и вопросы в одно касание внизу. «Открывать» — экран, с которого начинается приложение.</string>
+    <string name="menu_style">Вид меню</string>
+    <string name="menu_tabs">Вкладки</string>
     <string name="method_DUBAI">Дубай</string>
     <string name="method_EGYPTIAN">Египетское генеральное управление геодезии</string>
     <string name="method_KARACHI">Университет исламских наук, Карачи</string>
@@ -580,6 +593,7 @@
     <string name="online_search_body">Добавляет к загруженным данным актуальные результаты и время в пути пешком. Для поиска ваше приблизительное местоположение (с точностью около 1 км) отправляется картографическому сервису; для расчёта времени пешком отправляется местоположение, округлённое примерно до 100 м. Карта всегда загружает изображения области, которую вы просматриваете.</string>
     <string name="online_searching">Ищем другие мечети онлайн…</string>
     <string name="open_settings">Открыть настройки</string>
+    <string name="open_with">Открывать</string>
     <string name="pack_builtin">Встроено</string>
     <string name="pack_details">Записей: %1$s, %2$s, версия %3$s</string>
     <string name="pack_kind_books">Книги: %1$s</string>
@@ -739,6 +753,7 @@
     <string name="start_at_login_linux_note">Запускается свёрнутым при входе в систему, чтобы азан и напоминания приходили без открытия приложения.</string>
     <string name="start_at_login_note">Открывается в области уведомлений при входе в систему, чтобы азан и напоминания приходили без запуска приложения.</string>
     <string name="start_at_login_store_note">Чтобы Near Mosque запускался при входе, включите его в «Параметры Windows» → «Приложения» → «Автозагрузка».</string>
+    <string name="start_last_place">Где я остановился</string>
     <string name="stop">Стоп</string>
     <string name="straight_line">%1$s по прямой</string>
     <string name="style_auto">Как в приложении</string>

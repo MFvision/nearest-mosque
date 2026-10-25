@@ -39,6 +39,8 @@ struct SettingsView: View {
                     .pickerStyle(.menu)
                 } header: { Text(l10n.t("settings_general")) }
 
+                StartSettingsSection()
+
                 if ContentDownloadCard.offered(l10n.language, app) {
                     Section { ContentDownloadCard(lang: l10n.language) }
                 }
