@@ -89,7 +89,7 @@ screen with the nearest mosques from Apple Maps, the next prayer and walking dir
 the full app. If the clip cannot be signed, the TestFlight workflow archives the iPhone app without it (warning in the
 run) and the build still goes out.
 
-To try it from TestFlight: App Store Connect → the app → TestFlight → the build → App Clip → add an invocation (any
-`https://appclip.apple.com/id?p=sa.zood.nearmosque.Clip` link). It then shows under the build in the TestFlight app on
+To try it from TestFlight: `tools/asc_testflight.py` gives each build's clip a TestFlight invocation (Apple's App Clip
+link, title "Nearest mosque"), so it can also be done by running the TestFlight status workflow for a build. It then shows under the build in the TestFlight app on
 the phone, with an Open button. Apple's free App Clip link (no website needed) works once the app version that carries
 the clip is live; the Safari banner, QR codes and NFC tags all use that same link.
