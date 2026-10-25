@@ -160,7 +160,7 @@ struct WidgetPalette {
             let t = SolidTheme.of(look.rawValue)!.dark
             return WidgetPalette(background: LinearGradient(colors: [t.background, t.surface], startPoint: .top, endPoint: .bottom),
                                  ink: t.textPrimary, secondary: t.textSecondary, accent: t.accent, card: t.surfaceRaised.opacity(0.9),
-                                 pill: t.buttonFill, onPill: t.onButton)
+                                 pill: t.accent, onPill: t.background)
         case .sky:
             // The app's dark skies (shared/design/tokens.json "sky"): top, middle and low colour of each period.
             let k: [UInt32]

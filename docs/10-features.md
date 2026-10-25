@@ -153,7 +153,7 @@ by `shared/brand/icons/make_icons.py`). Kept on the phone only.
 colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island. Five keep the sky;
 three are solid themes with their own background (`shared/design/themes.json`, `SolidTheme` in
 `Shared/StyleAccent.swift`, contrast checked by `tools/check_tokens.py`): **Night garden** (forest black, mint for
-the current prayer, red only for the countdown and buttons; always dark), **Desert lantern** (mocha and champagne,
+the current prayer, red only for the iqama countdown and buttons; always dark), **Desert lantern** (mocha and champagne,
 amber buttons; a cream day version follows the phone's light mode) and **Charcoal crimson** (true black for OLED;
 always dark); **Sky follows
 the weather** (off by default), with its note (what is sent, to whom, how often) and the "Weather: based on

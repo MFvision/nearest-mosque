@@ -46,7 +46,7 @@ struct SolidTheme {
         let textSecondary: Color
         /// Marks the current prayer, links and highlights.
         let accent: Color
-        /// Only the countdown and the Adhan-now moment.
+        /// Only the countdown to the iqama (the other countdowns keep the text colour).
         let signal: Color
         /// Prominent buttons: a fill only, never text (crimson and burnt amber fail as text).
         let buttonFill: Color
