@@ -3,7 +3,7 @@ import Foundation
 /// How the iPhone moves between the app's places (Settings › Menu and start): the tab bar along the bottom
 /// (Prayer & Qibla, Nearest Mosque), or the classic single page, Prayer & Qibla, with the other places one tap
 /// away in a row of buttons at the bottom. The owner asked for both, as in his other app.
-public enum MenuStyle: String, CaseIterable, Sendable {
+public enum AppMenuStyle: String, CaseIterable, Sendable {
     case tabs
     case classic
 

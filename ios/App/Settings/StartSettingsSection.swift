@@ -13,7 +13,7 @@ enum StartKey {
 /// Settings › Menu and start: the menu style (Tabs or Classic), the screen the app opens with, and the app icon.
 struct StartSettingsSection: View {
     @Environment(\.l10n) private var l10n
-    @AppStorage(StartKey.menuStyle) private var menuStyle = MenuStyle.tabs.rawValue
+    @AppStorage(StartKey.menuStyle) private var menuStyle = AppMenuStyle.tabs.rawValue
     @AppStorage(StartKey.startScreen) private var startScreen = StartScreen.lastPlace.rawValue
     @State private var icon = AppIconChoice(iconName: Self.currentIconName)
     @State private var iconError = false
@@ -21,7 +21,7 @@ struct StartSettingsSection: View {
     var body: some View {
         Section {
             Picker(l10n.t("menu_style"), selection: $menuStyle) {
-                ForEach(MenuStyle.allCases, id: \.self) { Text(l10n.t($0.titleKey)).tag($0.rawValue) }
+                ForEach(AppMenuStyle.allCases, id: \.self) { Text(l10n.t($0.titleKey)).tag($0.rawValue) }
             }
             .pickerStyle(.segmented)
             .accessibilityIdentifier("settings.menuStyle")

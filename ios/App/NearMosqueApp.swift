@@ -1,3 +1,4 @@
+import NMCore
 import SwiftUI
 import UIKit
 import UserNotifications
@@ -128,7 +129,7 @@ struct RootView: View {
     @Environment(\.appModel) private var model
     @Environment(\.l10n) private var l10n
     @State private var tab: AppTab = Self.initialTab == .mosques ? .mosques : .prayer
-    @AppStorage(StartKey.menuStyle) private var menuStyle = MenuStyle.tabs.rawValue
+    @AppStorage(StartKey.menuStyle) private var menuStyle = AppMenuStyle.tabs.rawValue
     @AppStorage(StartKey.lastPlace) private var lastPlace = StartPlace.prayer.rawValue
     /// Classic: Nearest Mosque, open over Prayer & Qibla.
     @State private var showMosques = false
@@ -159,7 +160,7 @@ struct RootView: View {
         #endif
     }
 
-    private var classic: Bool { menuStyle == MenuStyle.classic.rawValue }
+    private var classic: Bool { menuStyle == AppMenuStyle.classic.rawValue }
 
     /// The page on the screen, in either menu.
     private var page: AppTab { classic ? (showMosques ? .mosques : .prayer) : tab }
