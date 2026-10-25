@@ -754,9 +754,12 @@
     <string name="stop">Dừng</string>
     <string name="straight_line">%1$s theo đường thẳng</string>
     <string name="style_auto">Giống ứng dụng</string>
+    <string name="style_charcoalCrimson">Than và đỏ thẫm</string>
     <string name="style_cream">Vàng và kem</string>
+    <string name="style_desertLantern">Đèn lồng sa mạc</string>
     <string name="style_green">Xanh lá</string>
     <string name="style_night">Bầu trời đêm</string>
+    <string name="style_nightGarden">Vườn đêm</string>
     <string name="style_sky">Theo thời điểm</string>
     <string name="style_teal">Xanh mòng két</string>
     <string name="suggested_questions">Bạn cũng có thể hỏi</string>

@@ -755,9 +755,12 @@
     <string name="stop">ਰੋਕੋ</string>
     <string name="straight_line">ਸਿੱਧੀ ਲਕੀਰ ਵਿੱਚ %1$s</string>
     <string name="style_auto">ਐਪ ਵਾਂਗ</string>
+    <string name="style_charcoalCrimson">ਕੋਲਾ ਅਤੇ ਲਾਲ</string>
     <string name="style_cream">ਸੁਨਹਿਰੀ ਅਤੇ ਕਰੀਮ</string>
+    <string name="style_desertLantern">ਮਾਰੂਥਲ ਦੀ ਲਾਲਟੈਨ</string>
     <string name="style_green">ਹਰਾ</string>
     <string name="style_night">ਰਾਤ ਦਾ ਅਸਮਾਨ</string>
+    <string name="style_nightGarden">ਰਾਤ ਦਾ ਬਾਗ਼</string>
     <string name="style_sky">ਸਮੇਂ ਮੁਤਾਬਕ</string>
     <string name="style_teal">ਹਰਾ-ਨੀਲਾ</string>
     <string name="suggested_questions">ਤੁਸੀਂ ਇਹ ਵੀ ਪੁੱਛ ਸਕਦੇ ਹੋ</string>

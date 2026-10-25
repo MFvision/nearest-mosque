@@ -756,9 +756,12 @@
     <string name="stop">Заустави</string>
     <string name="straight_line">%1$s ваздушном линијом</string>
     <string name="style_auto">Исто као апликација</string>
+    <string name="style_charcoalCrimson">Угаљ и гримиз</string>
     <string name="style_cream">Злато и крем</string>
+    <string name="style_desertLantern">Пустињски фењер</string>
     <string name="style_green">Зелена</string>
     <string name="style_night">Ноћно небо</string>
+    <string name="style_nightGarden">Ноћни врт</string>
     <string name="style_sky">Према добу дана</string>
     <string name="style_teal">Тиркизна</string>
     <string name="suggested_questions">Можете питати и</string>

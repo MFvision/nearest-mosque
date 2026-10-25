@@ -759,9 +759,12 @@
     <string name="stop">إيقاف</string>
     <string name="straight_line">%1$s بخط مستقيم</string>
     <string name="style_auto">مثل التطبيق</string>
+    <string name="style_charcoalCrimson">فحمي وقرمزي</string>
     <string name="style_cream">ذهبي وكريمي</string>
+    <string name="style_desertLantern">فانوس الصحراء</string>
     <string name="style_green">أخضر</string>
     <string name="style_night">سماء الليل</string>
+    <string name="style_nightGarden">حديقة الليل</string>
     <string name="style_sky">حسب الوقت</string>
     <string name="style_teal">أخضر مزرق</string>
     <string name="suggested_questions">يمكنك أن تسأل أيضًا</string>

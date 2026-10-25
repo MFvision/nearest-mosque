@@ -755,9 +755,12 @@
     <string name="stop">روکیں</string>
     <string name="straight_line">%1$s سیدھی لکیر میں</string>
     <string name="style_auto">ایپ جیسا</string>
+    <string name="style_charcoalCrimson">کوئلہ اور قرمزی</string>
     <string name="style_cream">سنہرا اور کریم</string>
+    <string name="style_desertLantern">صحرائی لالٹین</string>
     <string name="style_green">سبز</string>
     <string name="style_night">رات کا آسمان</string>
+    <string name="style_nightGarden">رات کا باغ</string>
     <string name="style_sky">وقت کے مطابق</string>
     <string name="style_teal">فیروزی</string>
     <string name="suggested_questions">آپ یہ بھی پوچھ سکتے ہیں</string>

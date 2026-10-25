@@ -755,9 +755,12 @@
     <string name="stop">Leállítás</string>
     <string name="straight_line">%1$s légvonalban</string>
     <string name="style_auto">Mint az alkalmazás</string>
+    <string name="style_charcoalCrimson">Szén és bíbor</string>
     <string name="style_cream">Arany és krém</string>
+    <string name="style_desertLantern">Sivatagi lámpás</string>
     <string name="style_green">Zöld</string>
     <string name="style_night">Éjszakai ég</string>
+    <string name="style_nightGarden">Éjszakai kert</string>
     <string name="style_sky">Napszak szerint</string>
     <string name="style_teal">Kékeszöld</string>
     <string name="suggested_questions">Ezt is kérdezheted</string>

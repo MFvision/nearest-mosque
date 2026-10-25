@@ -755,9 +755,12 @@
     <string name="stop">रोकें</string>
     <string name="straight_line">%1$s सीधी दूरी</string>
     <string name="style_auto">ऐप जैसा</string>
+    <string name="style_charcoalCrimson">कोयला और लाल</string>
     <string name="style_cream">सुनहरा और क्रीम</string>
+    <string name="style_desertLantern">रेगिस्तान की लालटेन</string>
     <string name="style_green">हरा</string>
     <string name="style_night">रात का आसमान</string>
+    <string name="style_nightGarden">रात का बाग़</string>
     <string name="style_sky">समय के अनुसार</string>
     <string name="style_teal">हरा-नीला</string>
     <string name="suggested_questions">आप यह भी पूछ सकते हैं</string>

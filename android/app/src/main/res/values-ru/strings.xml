@@ -757,9 +757,12 @@
     <string name="stop">Стоп</string>
     <string name="straight_line">%1$s по прямой</string>
     <string name="style_auto">Как в приложении</string>
+    <string name="style_charcoalCrimson">Уголь и багрянец</string>
     <string name="style_cream">Золото и крем</string>
+    <string name="style_desertLantern">Фонарь пустыни</string>
     <string name="style_green">Зелёный</string>
     <string name="style_night">Ночное небо</string>
+    <string name="style_nightGarden">Ночной сад</string>
     <string name="style_sky">По времени суток</string>
     <string name="style_teal">Бирюзовый</string>
     <string name="suggested_questions">Можно также спросить</string>

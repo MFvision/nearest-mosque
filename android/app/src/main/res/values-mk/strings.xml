@@ -755,9 +755,12 @@
     <string name="stop">Запри</string>
     <string name="straight_line">%1$s воздушна линија</string>
     <string name="style_auto">Исто како апликацијата</string>
+    <string name="style_charcoalCrimson">Јаглен и пурпур</string>
     <string name="style_cream">Злато и крем</string>
+    <string name="style_desertLantern">Пустински фенер</string>
     <string name="style_green">Зелена</string>
     <string name="style_night">Ноќно небо</string>
+    <string name="style_nightGarden">Ноќна градина</string>
     <string name="style_sky">Според времето</string>
     <string name="style_teal">Тиркизна</string>
     <string name="suggested_questions">Може да прашате и</string>

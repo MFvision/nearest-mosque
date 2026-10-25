@@ -755,9 +755,12 @@
     <string name="stop">Detener</string>
     <string name="straight_line">%1$s en línea recta</string>
     <string name="style_auto">Igual que la app</string>
+    <string name="style_charcoalCrimson">Carbón y carmesí</string>
     <string name="style_cream">Dorado y crema</string>
+    <string name="style_desertLantern">Farol del desierto</string>
     <string name="style_green">Verde</string>
     <string name="style_night">Cielo nocturno</string>
+    <string name="style_nightGarden">Jardín nocturno</string>
     <string name="style_sky">Según la hora</string>
     <string name="style_teal">Verde azulado</string>
     <string name="suggested_questions">También puede preguntar</string>

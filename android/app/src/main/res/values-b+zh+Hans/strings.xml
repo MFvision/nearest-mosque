@@ -754,9 +754,12 @@
     <string name="stop">停止</string>
     <string name="straight_line">直线距离 %1$s</string>
     <string name="style_auto">与应用相同</string>
+    <string name="style_charcoalCrimson">炭黑与深红</string>
     <string name="style_cream">金色与米色</string>
+    <string name="style_desertLantern">沙漠灯笼</string>
     <string name="style_green">绿色</string>
     <string name="style_night">夜空</string>
+    <string name="style_nightGarden">夜之花园</string>
     <string name="style_sky">随时段变化</string>
     <string name="style_teal">青绿</string>
     <string name="suggested_questions">你还可以问</string>

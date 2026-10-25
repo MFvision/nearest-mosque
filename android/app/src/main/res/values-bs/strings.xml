@@ -756,9 +756,12 @@
     <string name="stop">Zaustavi</string>
     <string name="straight_line">%1$s zračnom linijom</string>
     <string name="style_auto">Isto kao aplikacija</string>
+    <string name="style_charcoalCrimson">Ugalj i grimiz</string>
     <string name="style_cream">Zlato i krem</string>
+    <string name="style_desertLantern">Pustinjski fenjer</string>
     <string name="style_green">Zelena</string>
     <string name="style_night">Noćno nebo</string>
+    <string name="style_nightGarden">Noćna bašta</string>
     <string name="style_sky">Prema dobu dana</string>
     <string name="style_teal">Tirkizna</string>
     <string name="suggested_questions">Možete pitati i</string>

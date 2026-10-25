@@ -755,9 +755,12 @@
     <string name="stop">Stop</string>
     <string name="straight_line">%1$s straight-line</string>
     <string name="style_auto">Same as app</string>
+    <string name="style_charcoalCrimson">Charcoal crimson</string>
     <string name="style_cream">Gold and cream</string>
+    <string name="style_desertLantern">Desert lantern</string>
     <string name="style_green">Green</string>
     <string name="style_night">Night sky</string>
+    <string name="style_nightGarden">Night garden</string>
     <string name="style_sky">Time of day</string>
     <string name="style_teal">Teal</string>
     <string name="suggested_questions">You could also ask</string>

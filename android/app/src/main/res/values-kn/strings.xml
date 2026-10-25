@@ -755,9 +755,12 @@
     <string name="stop">ನಿಲ್ಲಿಸಿ</string>
     <string name="straight_line">ನೇರ ರೇಖೆಯಲ್ಲಿ %1$s</string>
     <string name="style_auto">ಆ್ಯಪ್‌ನಂತೆಯೇ</string>
+    <string name="style_charcoalCrimson">ಇದ್ದಿಲು ಮತ್ತು ಕೆಂಪು</string>
     <string name="style_cream">ಚಿನ್ನ ಮತ್ತು ಕ್ರೀಮ್</string>
+    <string name="style_desertLantern">ಮರುಭೂಮಿ ಲಾಟೀನು</string>
     <string name="style_green">ಹಸಿರು</string>
     <string name="style_night">ರಾತ್ರಿ ಆಕಾಶ</string>
+    <string name="style_nightGarden">ರಾತ್ರಿಯ ತೋಟ</string>
     <string name="style_sky">ಸಮಯಕ್ಕೆ ತಕ್ಕಂತೆ</string>
     <string name="style_teal">ನೀಲಿ ಹಸಿರು</string>
     <string name="suggested_questions">ನೀವು ಇದನ್ನೂ ಕೇಳಬಹುದು</string>

@@ -755,9 +755,12 @@
     <string name="stop">ৰখাওক</string>
     <string name="straight_line">পোনপটীয়া দূৰত্ব %1$s</string>
     <string name="style_auto">এপৰ দৰে</string>
+    <string name="style_charcoalCrimson">কয়লা আৰু ৰঙা</string>
     <string name="style_cream">সোণালী আৰু ক্ৰীম</string>
+    <string name="style_desertLantern">মৰুভূমিৰ লেম্প</string>
     <string name="style_green">সেউজীয়া</string>
     <string name="style_night">ৰাতিৰ আকাশ</string>
+    <string name="style_nightGarden">ৰাতিৰ বাগিচা</string>
     <string name="style_sky">সময় অনুসৰি</string>
     <string name="style_teal">সেউজীয়া নীলা</string>
     <string name="suggested_questions">আপুনি এইটোও সুধিব পাৰে</string>

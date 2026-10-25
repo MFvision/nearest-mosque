@@ -754,9 +754,12 @@
     <string name="stop">หยุด</string>
     <string name="straight_line">%1$s แบบเส้นตรง</string>
     <string name="style_auto">เหมือนแอป</string>
+    <string name="style_charcoalCrimson">ถ่านและแดงเข้ม</string>
     <string name="style_cream">ทองและครีม</string>
+    <string name="style_desertLantern">โคมไฟทะเลทราย</string>
     <string name="style_green">เขียว</string>
     <string name="style_night">ท้องฟ้ายามค่ำ</string>
+    <string name="style_nightGarden">สวนยามค่ำ</string>
     <string name="style_sky">ตามช่วงเวลา</string>
     <string name="style_teal">เขียวอมฟ้า</string>
     <string name="suggested_questions">คุณอาจถามเพิ่มได้ว่า</string>

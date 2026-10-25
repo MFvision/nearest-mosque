@@ -755,9 +755,12 @@
     <string name="stop">Tsaya</string>
     <string name="straight_line">%1$s a miƙe</string>
     <string name="style_auto">Kamar manhajar</string>
+    <string name="style_charcoalCrimson">Gawayi da ja</string>
     <string name="style_cream">Zinariya da kirim</string>
+    <string name="style_desertLantern">Fitilar hamada</string>
     <string name="style_green">Kore</string>
     <string name="style_night">Sararin dare</string>
+    <string name="style_nightGarden">Lambun dare</string>
     <string name="style_sky">Bisa lokaci</string>
     <string name="style_teal">Shuɗi-kore</string>
     <string name="suggested_questions">Kuna iya tambaya kuma</string>

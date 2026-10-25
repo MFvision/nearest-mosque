@@ -755,9 +755,12 @@
     <string name="stop">থামান</string>
     <string name="straight_line">সরলরেখায় %1$s</string>
     <string name="style_auto">অ্যাপের মতো</string>
+    <string name="style_charcoalCrimson">কয়লা ও লাল</string>
     <string name="style_cream">সোনালি ও ক্রিম</string>
+    <string name="style_desertLantern">মরুভূমির লণ্ঠন</string>
     <string name="style_green">সবুজ</string>
     <string name="style_night">রাতের আকাশ</string>
+    <string name="style_nightGarden">রাতের বাগান</string>
     <string name="style_sky">সময় অনুযায়ী</string>
     <string name="style_teal">সবুজাভ নীল</string>
     <string name="suggested_questions">আপনি এটাও জিজ্ঞেস করতে পারেন</string>

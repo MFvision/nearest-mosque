@@ -755,9 +755,12 @@
     <string name="stop">නවත්වන්න</string>
     <string name="straight_line">සරල රේඛාවෙන් %1$s</string>
     <string name="style_auto">යෙදුම මෙන්</string>
+    <string name="style_charcoalCrimson">අඟුරු සහ රතු</string>
     <string name="style_cream">රන් සහ ක්‍රීම්</string>
+    <string name="style_desertLantern">කාන්තාර පහන</string>
     <string name="style_green">කොළ</string>
     <string name="style_night">රාත්‍රී අහස</string>
+    <string name="style_nightGarden">රාත්‍රී උයන</string>
     <string name="style_sky">වේලාව අනුව</string>
     <string name="style_teal">නිල් කොළ</string>
     <string name="suggested_questions">ඔබට මෙයද ඇසිය හැක</string>

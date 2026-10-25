@@ -755,9 +755,12 @@
     <string name="stop">Arrêter</string>
     <string name="straight_line">%1$s à vol d’oiseau</string>
     <string name="style_auto">Comme l’app</string>
+    <string name="style_charcoalCrimson">Charbon et cramoisi</string>
     <string name="style_cream">Or et crème</string>
+    <string name="style_desertLantern">Lanterne du désert</string>
     <string name="style_green">Vert</string>
     <string name="style_night">Ciel de nuit</string>
+    <string name="style_nightGarden">Jardin de nuit</string>
     <string name="style_sky">Selon l’heure</string>
     <string name="style_teal">Bleu canard</string>
     <string name="suggested_questions">Vous pourriez aussi demander</string>

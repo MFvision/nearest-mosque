@@ -755,9 +755,12 @@
     <string name="stop">توختىتىش</string>
     <string name="straight_line">تۈز سىزىقتا %1$s</string>
     <string name="style_auto">ئەپ بىلەن ئوخشاش</string>
+    <string name="style_charcoalCrimson">كۆمۈر ۋە قىزىل</string>
     <string name="style_cream">ئالتۇن ۋە قايماق رەڭ</string>
+    <string name="style_desertLantern">قۇملۇق پانۇسى</string>
     <string name="style_green">يېشىل</string>
     <string name="style_night">كېچە ئاسمىنى</string>
+    <string name="style_nightGarden">كېچە باغچىسى</string>
     <string name="style_sky">ۋاقىتقا قاراپ</string>
     <string name="style_teal">يېشىل كۆك</string>
     <string name="suggested_questions">بۇلارنىمۇ سورىسىڭىز بولىدۇ</string>

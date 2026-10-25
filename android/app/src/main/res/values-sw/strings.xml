@@ -755,9 +755,12 @@
     <string name="stop">Simamisha</string>
     <string name="straight_line">%1$s kwa mstari ulionyooka</string>
     <string name="style_auto">Sawa na programu</string>
+    <string name="style_charcoalCrimson">Mkaa na nyekundu</string>
     <string name="style_cream">Dhahabu na krimu</string>
+    <string name="style_desertLantern">Taa ya jangwani</string>
     <string name="style_green">Kijani</string>
     <string name="style_night">Anga la usiku</string>
+    <string name="style_nightGarden">Bustani ya usiku</string>
     <string name="style_sky">Kulingana na wakati</string>
     <string name="style_teal">Kijani-bluu</string>
     <string name="suggested_questions">Unaweza pia kuuliza</string>

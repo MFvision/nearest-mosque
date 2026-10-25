@@ -755,9 +755,12 @@
     <string name="stop">നിർത്തുക</string>
     <string name="straight_line">നേർരേഖയിൽ %1$s</string>
     <string name="style_auto">ആപ്പ് പോലെ</string>
+    <string name="style_charcoalCrimson">കരിയും ചുവപ്പും</string>
     <string name="style_cream">സ്വർണ്ണവും ക്രീമും</string>
+    <string name="style_desertLantern">മരുഭൂമിയിലെ റാന്തൽ</string>
     <string name="style_green">പച്ച</string>
     <string name="style_night">രാത്രി ആകാശം</string>
+    <string name="style_nightGarden">രാത്രിത്തോട്ടം</string>
     <string name="style_sky">സമയമനുസരിച്ച്</string>
     <string name="style_teal">നീലപ്പച്ച</string>
     <string name="suggested_questions">നിങ്ങൾക്ക് ഇതും ചോദിക്കാം</string>

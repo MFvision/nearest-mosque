@@ -755,9 +755,12 @@
     <string name="stop">Ihinto</string>
     <string name="straight_line">%1$s nang tuwiran</string>
     <string name="style_auto">Kapareho ng app</string>
+    <string name="style_charcoalCrimson">Uling at pula</string>
     <string name="style_cream">Ginto at krema</string>
+    <string name="style_desertLantern">Parol ng disyerto</string>
     <string name="style_green">Berde</string>
     <string name="style_night">Langit sa gabi</string>
+    <string name="style_nightGarden">Hardin sa gabi</string>
     <string name="style_sky">Ayon sa oras</string>
     <string name="style_teal">Teal</string>
     <string name="suggested_questions">Maaari mo ring itanong</string>

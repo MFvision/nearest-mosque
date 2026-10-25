@@ -755,9 +755,12 @@
     <string name="stop">Stoppen</string>
     <string name="straight_line">%1$s hemelsbreed</string>
     <string name="style_auto">Zoals de app</string>
+    <string name="style_charcoalCrimson">Antraciet en karmijn</string>
     <string name="style_cream">Goud en crème</string>
+    <string name="style_desertLantern">Woestijnlantaarn</string>
     <string name="style_green">Groen</string>
     <string name="style_night">Nachthemel</string>
+    <string name="style_nightGarden">Nachttuin</string>
     <string name="style_sky">Naar tijdstip</string>
     <string name="style_teal">Petrol</string>
     <string name="suggested_questions">Je kunt ook vragen</string>

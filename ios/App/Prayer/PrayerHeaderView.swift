@@ -87,7 +87,8 @@ struct PrayerHero: View {
                     Text(time).font(.system(size: timeSize, weight: .light)).monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
                         .contentTransition(.numericText())
                     Text(snap.remainingText(l10n))
-                        .font(.callout).monospacedDigit().foregroundStyle(Theme.ink.opacity(0.85))
+                        .font(.callout.weight(Theme.solid == nil ? .regular : .semibold)).monospacedDigit()
+                        .foregroundStyle(Theme.solid == nil ? Theme.ink.opacity(0.85) : Theme.signal)
                         .contentTransition(reduceMotion ? .identity : .numericText(countsDown: true))
                 }
                 .accessibilityElement(children: .ignore)

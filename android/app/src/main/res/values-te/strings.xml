@@ -755,9 +755,12 @@
     <string name="stop">ఆపు</string>
     <string name="straight_line">సరళ రేఖలో %1$s</string>
     <string name="style_auto">యాప్ లాగే</string>
+    <string name="style_charcoalCrimson">బొగ్గు మరియు ఎరుపు</string>
     <string name="style_cream">బంగారు మరియు క్రీమ్</string>
+    <string name="style_desertLantern">ఎడారి లాంతరు</string>
     <string name="style_green">ఆకుపచ్చ</string>
     <string name="style_night">రాత్రి ఆకాశం</string>
+    <string name="style_nightGarden">రాత్రి తోట</string>
     <string name="style_sky">సమయాన్ని బట్టి</string>
     <string name="style_teal">నీలి ఆకుపచ్చ</string>
     <string name="suggested_questions">మీరు ఇది కూడా అడగవచ్చు</string>

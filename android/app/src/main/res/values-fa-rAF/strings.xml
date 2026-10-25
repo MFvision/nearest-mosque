@@ -755,9 +755,12 @@
     <string name="stop">توقف</string>
     <string name="straight_line">%1$s در خط مستقیم</string>
     <string name="style_auto">مانند برنامه</string>
+    <string name="style_charcoalCrimson">زغالی و سرخ</string>
     <string name="style_cream">طلایی و کرم</string>
+    <string name="style_desertLantern">فانوس صحرا</string>
     <string name="style_green">سبز</string>
     <string name="style_night">آسمان شب</string>
+    <string name="style_nightGarden">باغ شب</string>
     <string name="style_sky">نظر به وقت</string>
     <string name="style_teal">سبزآبی</string>
     <string name="suggested_questions">این را هم می‌توانید بپرسید</string>

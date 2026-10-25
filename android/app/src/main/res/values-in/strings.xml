@@ -754,9 +754,12 @@
     <string name="stop">Berhenti</string>
     <string name="straight_line">%1$s garis lurus</string>
     <string name="style_auto">Sama seperti aplikasi</string>
+    <string name="style_charcoalCrimson">Arang merah tua</string>
     <string name="style_cream">Emas dan krem</string>
+    <string name="style_desertLantern">Lentera gurun</string>
     <string name="style_green">Hijau</string>
     <string name="style_night">Langit malam</string>
+    <string name="style_nightGarden">Taman malam</string>
     <string name="style_sky">Sesuai waktu</string>
     <string name="style_teal">Hijau toska</string>
     <string name="suggested_questions">Anda juga bisa bertanya</string>

@@ -755,9 +755,12 @@
     <string name="stop">રોકો</string>
     <string name="straight_line">%1$s સીધું અંતર</string>
     <string name="style_auto">ઍપ જેવું</string>
+    <string name="style_charcoalCrimson">કોલસો અને લાલ</string>
     <string name="style_cream">સોનેરી અને ક્રીમ</string>
+    <string name="style_desertLantern">રણનું ફાનસ</string>
     <string name="style_green">લીલો</string>
     <string name="style_night">રાતનું આકાશ</string>
+    <string name="style_nightGarden">રાતનો બગીચો</string>
     <string name="style_sky">સમય મુજબ</string>
     <string name="style_teal">લીલો-વાદળી</string>
     <string name="suggested_questions">તમે આ પણ પૂછી શકો</string>

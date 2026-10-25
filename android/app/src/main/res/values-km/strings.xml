@@ -754,9 +754,12 @@
     <string name="stop">បញ្ឈប់</string>
     <string name="straight_line">%1$s តាមបន្ទាត់ត្រង់</string>
     <string name="style_auto">ដូចកម្មវិធី</string>
+    <string name="style_charcoalCrimson">ធ្យូង និងក្រហមចាស់</string>
     <string name="style_cream">មាស និងក្រែម</string>
+    <string name="style_desertLantern">គោមវាលខ្សាច់</string>
     <string name="style_green">បៃតង</string>
     <string name="style_night">មេឃពេលយប់</string>
+    <string name="style_nightGarden">សួនពេលយប់</string>
     <string name="style_sky">តាមពេលវេលា</string>
     <string name="style_teal">ខៀវបៃតង</string>
     <string name="suggested_questions">អ្នកក៏អាចសួរផងដែរ</string>

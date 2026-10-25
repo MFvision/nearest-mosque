@@ -755,9 +755,12 @@
     <string name="stop">Durdur</string>
     <string name="straight_line">Kuş uçuşu %1$s</string>
     <string name="style_auto">Uygulamayla aynı</string>
+    <string name="style_charcoalCrimson">Kömür ve kızıl</string>
     <string name="style_cream">Altın ve krem</string>
+    <string name="style_desertLantern">Çöl feneri</string>
     <string name="style_green">Yeşil</string>
     <string name="style_night">Gece göğü</string>
+    <string name="style_nightGarden">Gece bahçesi</string>
     <string name="style_sky">Günün saatine göre</string>
     <string name="style_teal">Camgöbeği</string>
     <string name="suggested_questions">Şunu da sorabilirsiniz</string>

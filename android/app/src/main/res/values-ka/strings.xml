@@ -755,9 +755,12 @@
     <string name="stop">შეჩერება</string>
     <string name="straight_line">%1$s პირდაპირი ხაზით</string>
     <string name="style_auto">როგორც აპში</string>
+    <string name="style_charcoalCrimson">ნახშირი და ჟოლოსფერი</string>
     <string name="style_cream">ოქროსფერი და კრემისფერი</string>
+    <string name="style_desertLantern">უდაბნოს ფარანი</string>
     <string name="style_green">მწვანე</string>
     <string name="style_night">ღამის ცა</string>
+    <string name="style_nightGarden">ღამის ბაღი</string>
     <string name="style_sky">დღის დროის მიხედვით</string>
     <string name="style_teal">ზღვისფერი</string>
     <string name="suggested_questions">ასევე შეგიძლიათ იკითხოთ</string>

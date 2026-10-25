@@ -103,6 +103,21 @@ def main():
         stray = used - allowed - weather_hex
         if stray:
             errors.append(f"{rel} uses colours not in tokens.json: {sorted(stray)}")
+    # The solid themes (shared/design/themes.json): text, accent and countdown on their background and surface,
+    # labels on their button fill; and the iOS themes (SolidTheme in Shared/StyleAccent.swift) use exactly them.
+    themes = json.load(open(os.path.join(ROOT, "shared/design/themes.json")))["themes"]
+    accent_sw = open(os.path.join(ROOT, "ios/Shared/StyleAccent.swift")).read()
+    for name, th in themes.items():
+        h = {k: v.lstrip("#").upper() for k, v in th.items() if isinstance(v, str) and v.startswith("#")}
+        for fg, bg in (("textPrimary", "background"), ("textPrimary", "surface"), ("textSecondary", "background"),
+                       ("accent", "background"), ("signal", "background"), ("onButton", "buttonFill")):
+            checks.append((f"{name} {fg} on {bg}", h[fg], h[bg], 4.5))
+            r = ratio(h[fg], h[bg])
+            if r < 4.5:
+                errors.append(f"{name} {fg} on {bg}: {r:.2f} < 4.5")
+        missing = {v for k, v in h.items() if v not in ("FFFFFF",) and f"0x{v}" not in accent_sw.upper().replace("0X", "0x")}
+        if missing:
+            errors.append(f"StyleAccent.swift is missing {name} colours: {sorted(missing)}")
     if errors:
         print("\n".join(errors))
         sys.exit(1)

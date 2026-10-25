@@ -149,8 +149,13 @@ by `shared/brand/icons/make_icons.py`). Kept on the phone only.
     **Fajr alarm** (off, at Fajr, or 10/20/30/45 minutes before).
 * Countdown on the Lock Screen (iPhone and iPad).
 
-**Personalize**: Companion (Lantern, Heart, None); **App and widget style**: one choice of five that
-colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island; **Sky follows
+**Personalize**: Companion (Lantern, Heart, None); **App and widget style**: one choice of eight that
+colours the app's buttons and accents, every widget, the Lock Screen and the Dynamic Island. Five keep the sky;
+three are solid themes with their own background (`shared/design/themes.json`, `SolidTheme` in
+`Shared/StyleAccent.swift`, contrast checked by `tools/check_tokens.py`): **Night garden** (forest black, mint for
+the current prayer, red only for the countdown and buttons; always dark), **Desert lantern** (mocha and champagne,
+amber buttons; a cream day version follows the phone's light mode) and **Charcoal crimson** (true black for OLED;
+always dark); **Sky follows
 the weather** (off by default), with its note (what is sent, to whom, how often) and the "Weather: based on
 data from MET Norway" link.
 
@@ -181,7 +186,7 @@ transition is a short crossfade.
 ## Widgets (iPhone, iPad, Mac) (`ios/Widgets/`)
 
 Each widget has one setting, **Widget style**: Same as app (default), Gold and cream, Green, Night sky,
-Teal, Time of day (colours follow the prayer period).
+Teal, Time of day (colours follow the prayer period), Night garden, Desert lantern, Charcoal crimson.
 
 | # | Widget | What it shows | Home Screen sizes | Lock Screen sizes | Tap opens |
 |---|---|---|---|---|---|

@@ -38,7 +38,9 @@ struct NearMosqueApp: App {
                 .environment(\.locale, model.l10n.locale)
                 .environment(\.layoutDirection, model.l10n.layoutDirection)
                 // Follows the phone unless Settings → Appearance picks light or dark.
-                .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
+                // Night garden and Charcoal crimson are dark themes and keep the app dark.
+                .preferredColorScheme(Theme.solid?.alwaysDark == true ? .dark
+                                      : appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .task { await model.start() }
                 // Each time the app comes to the screen: the Lock Screen countdown moves on, the reminders are topped
                 // up and, with "Use my location", the place is checked again (AppModel.foregroundRefresh).

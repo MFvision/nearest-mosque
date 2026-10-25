@@ -755,9 +755,12 @@
     <string name="stop">ڕاگرتن</string>
     <string name="straight_line">%1$s بە هێڵی ڕاست</string>
     <string name="style_auto">وەک ئەپەکە</string>
+    <string name="style_charcoalCrimson">ڕەژووی و سوور</string>
     <string name="style_cream">زێڕین و کرێمی</string>
+    <string name="style_desertLantern">فانۆسی بیابان</string>
     <string name="style_green">سەوز</string>
     <string name="style_night">ئاسمانی شەو</string>
+    <string name="style_nightGarden">باخچەی شەو</string>
     <string name="style_sky">بەپێی کات</string>
     <string name="style_teal">سەوزی شین</string>
     <string name="suggested_questions">دەشتوانیت ئەمانە بپرسیت</string>
