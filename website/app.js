@@ -100,15 +100,21 @@ function mediaHTML(c, t) {
 // The Windows and Linux buttons and the .deb are files on GitHub, so they download in place; pages open in a new tab.
 const FILES = new Set(['windows', 'linux', 'linuxDeb']);
 const target = (k) => (FILES.has(k) ? '' : ' target="_blank"');
+// The visitor's own store, from the browser: a phone goes straight to its store page once that store is live;
+// everyone else (and Windows and Linux, whose buttons download a file) goes to the download chapter.
+const ua = navigator.userAgent || '';
+const ownStore = /Android/i.test(ua) ? 'googlePlay' : /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? 'appStore' : null;
+const getHref = () => (ownStore && links[ownStore]) || '#get';
+const getTarget = () => (getHref() === '#get' ? '' : ' target="_blank" rel="noopener"');
+
 function storesHTML(t) {
   const more = Object.keys(t.storesMore).filter((k) => links[k])
     .map((k) => `<a href="${esc(links[k])}" rel="noopener"${target(k)}>${esc(t.storesMore[k])}</a>`);
   return `<div class="stores">${Object.keys(ICONS).map((k) => {
     const href = links[k];
     const [small, big] = t.stores[k];
-    return href
-      ? `<a class="store" href="${esc(href)}" rel="noopener"${target(k)}>${ICONS[k]}<small>${esc(small)}</small><b>${esc(big)}</b></a>`
-      : `<span class="store" aria-disabled="true">${ICONS[k]}<small>${esc(t.soon)}</small><b>${esc(big)}</b></span>`;
+    // A store that is not live yet gets no button at all: the button appears the day its link is set.
+    return href ? `<a class="store" href="${esc(href)}" rel="noopener"${target(k)}>${ICONS[k]}<small>${esc(small)}</small><b>${esc(big)}</b></a>` : '';
   }).join('')}</div>${more.length ? `<p class="stores-more">${more.join('<span aria-hidden="true">·</span>')}</p>` : ''}`;
 }
 
@@ -139,7 +145,7 @@ function render() {
           ${x.points ? `<ul>${x.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
           ${x.note ? `<p class="note">${esc(x.note)}</p>` : ''}
           ${x.credit ? `<p class="credit"><a href="${esc(x.credit[1])}" rel="noopener" target="_blank">${esc(x.credit[0])}</a></p>` : ''}
-          ${c.id === 'world' ? `<a class="cta-link" href="#get">${esc(x.cta)}</a><div class="scroll-cue">${esc(t.scroll)}</div>` : ''}
+          ${c.id === 'world' ? `<a class="cta-link" href="${esc(getHref())}"${getTarget()}>${esc(x.cta)}</a><div class="scroll-cue">${esc(t.scroll)}</div>` : ''}
           ${c.id === 'get' ? storesHTML(t) : ''}
           ${c.id === 'kaaba' ? `<div class="daynight" role="group">${t.daynight.map((n, k) => `<button type="button" data-night="${k}" aria-pressed="${(k === 1) === makkahNight()}">${esc(n)}</button>`).join('')}</div>` : ''}
         </div>
@@ -154,7 +160,20 @@ function render() {
       <div class="strip" tabindex="0" aria-label="${esc(t.index.title)}">${shots.map((s) => img(`iphone/${s}`, '')).join('')}${['01-watch-prayer', '02-watch-qibla', '05-watch-mosques', '06-watch-ask'].map((s) => img(`watch/${s}`, '')).join('')}</div>
       <div class="groups">${t.index.groups.map(([g, items]) => `<div class="group"><h3>${esc(g)}</h3><ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div>
     </div>`;
-  $('footer').innerHTML = `<div><nav>${[['privacy', t.footer.privacy], ['terms', t.footer.terms], ['support', t.footer.support], ['security', t.footer.security], ['credits', t.footer.credits]].map(([f, label]) => `<a href="${BASE}${f}.html${lang === 'ar' ? '#ar' : ''}">${esc(label)}</a>`).join('')}</nav></div>`;
+  const f = t.footer, page = (p) => `${BASE}${p}.html${lang === 'ar' ? '#ar' : ''}`;
+  const getLinks = Object.keys(ICONS).filter((k) => links[k]).map((k) => `<a href="${esc(links[k])}" rel="noopener"${target(k)}>${esc(t.stores[k][1])}</a>`).join('');
+  $('footer').innerHTML = `<div>
+      <div class="foot-brand"><img src="${BASE}assets/icon.webp" alt="" width="40" height="40" loading="lazy"><div><b>${esc(t.title)}</b><p>${esc(f.line)}</p></div></div>
+      <div class="foot-cols">
+        <div><h3>${esc(f.get)}</h3>${getLinks}</div>
+        <div><h3>${esc(f.help)}</h3><a href="${page('support')}">${esc(f.support)}</a><a href="mailto:app@vision.bz?subject=Near%20Mosque">app@vision.bz</a></div>
+        <div><h3>${esc(f.about)}</h3><a href="${page('privacy')}">${esc(f.privacy)}</a><a href="${page('terms')}">${esc(f.terms)}</a><a href="${page('security')}">${esc(f.security)}</a><a href="${page('credits')}">${esc(f.credits)}</a></div>
+      </div>
+      <p class="foot-note">${esc(f.note)}</p>
+    </div>`;
+  $('.get-pill').href = getHref();
+  if (getHref() === '#get') { $('.get-pill').removeAttribute('target'); } else { $('.get-pill').target = '_blank'; $('.get-pill').rel = 'noopener'; }
+  $('.get-pill span').textContent = t.chapters.world.cta;
   chapters = [...document.querySelectorAll('.chapter')];
   document.querySelectorAll('.daynight button').forEach((b) => b.addEventListener('click', () => {
     nightPick = b.dataset.night === '1';
@@ -295,6 +314,10 @@ function step(now) {
   // The storyboard and the legend leave as the page after the story comes up over the stage.
   const storyShown = y + innerHeight * 0.8 < storyEnd;
   $('.board').classList.toggle('off', !storyShown);
+  // The download pill waits at the bottom once the visitor has read past the first screen, and leaves for the
+  // download chapter itself and for everything after the story.
+  $('.get-pill').classList.toggle('shown', y > innerHeight * 0.6 && storyShown && story.chapters[s.i] && story.chapters[s.i].id !== 'get'
+    && !(innerWidth <= 860 && HUD_CH.has(story.chapters[s.i].id)));
   if (s.i !== current) {
     current = s.i;
     chapters.forEach((c, k) => c.classList.toggle('on', k === s.i));

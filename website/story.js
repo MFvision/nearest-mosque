@@ -11,7 +11,7 @@
 // watches, devices; paths are under assets/<lang>/.
 
 export const links = {
-  // Set a store link when the listing is live; until then the button reads "Coming soon".
+  // Set a store link when the listing is live; until then that store has no button anywhere on the page.
   appStore: null,
   googlePlay: 'https://play.google.com/store/apps/details?id=com.AVA.nearmosque',
   // Windows and Linux are downloaded straight from GitHub: the release "desktop-latest", which
@@ -58,7 +58,6 @@ const en = {
   hud: { legend: 'Each light is a city at its prayer time', clock: 'Now in Makkah', styles: ['Earth', 'Dots'], you: 'You', madinah: 'Madinah' },
   board: { world: 'Next prayer', lines: 'Five prayers', qibla: 'Qibla', kaaba: 'Makkah', sky: 'Your sky', weather: 'Weather', welcome: 'Setup', mosque: 'Nearest mosque', ask: 'Ask', library: 'Library', adhan: 'Adhan', glance: 'Widgets and Siri', watch: 'Apple Watch', devices: 'Every screen', privacy: 'Privacy', get: 'Download' },
   boardLabel: 'Story',
-  soon: 'Coming soon',
   stores: { appStore: ['Download on the', 'App Store'], googlePlay: ['Get it on', 'Google Play'], windows: ['Download for', 'Windows'], linux: ['Download for', 'Linux'] },
   storesMore: { linuxDeb: '.deb for Ubuntu/Debian', desktopAll: 'All downloads and checksums' },
   chapters: {
@@ -188,6 +187,11 @@ const en = {
     terms: 'Terms of use',
     support: 'Support',
     credits: 'Sources and licences',
+    line: 'Prayer times, the Qibla and the nearest mosque, wherever you are.',
+    get: 'Get the app',
+    help: 'Help',
+    about: 'About',
+    note: 'No account, no ads, no tracking. This website sets no cookies and loads nothing from other companies.',
   },
 };
 
@@ -205,7 +209,6 @@ const ar = {
   hud: { legend: 'كل ضوءٍ مدينةٌ حان وقت صلاتها', clock: 'الآن في مكة', styles: ['الأرض', 'النقاط'], you: 'أنت هنا', madinah: 'المدينة المنورة' },
   board: { world: 'صلاتك القادمة', lines: 'الصلوات الخمس', qibla: 'القبلة', kaaba: 'مكة المكرمة', sky: 'سماؤك', weather: 'الطقس', welcome: 'الإعداد', mosque: 'أقرب مسجد', ask: 'اسأل', library: 'المكتبة', adhan: 'الأذان والتذكير', glance: 'الأدوات وSiri', watch: 'Apple Watch', devices: 'كل الشاشات', privacy: 'الخصوصية', get: 'التحميل' },
   boardLabel: 'القصة',
-  soon: 'قريبًا',
   stores: { appStore: ['حمّله من', 'App Store'], googlePlay: ['احصل عليه من', 'Google Play'], windows: ['حمّل لـ', 'Windows'], linux: ['حمّل لـ', 'Linux'] },
   storesMore: { linuxDeb: '\u2066.deb\u2069 لأوبونتو وديبيان', desktopAll: 'كل التنزيلات وبصماتها' }, // \u2066…\u2069 keeps ".deb" left to right, its dot in front
   chapters: {
@@ -333,6 +336,11 @@ const ar = {
     terms: 'شروط الاستخدام',
     support: 'الدعم',
     credits: 'المصادر والتراخيص',
+    line: 'مواقيت الصلاة والقبلة وأقرب مسجد، أينما كنت.',
+    get: 'حمّل التطبيق',
+    help: 'المساعدة',
+    about: 'عن التطبيق',
+    note: 'بلا حساب، بلا إعلانات، بلا تتبُّع. وهذا الموقع لا يضع ملفات تعريف ارتباط، ولا يحمّل شيئًا من شركات أخرى.',
   },
 };
 
