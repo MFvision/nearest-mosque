@@ -9,6 +9,7 @@
     <string name="about_terms">Masharti ya matumizi</string>
     <string name="adhan_alarm_note">Adhana hulia kama kengele, hata simu ikiwa kimya. Gusa Simamisha ili kuisimamisha.</string>
     <string name="adhan_alarm_note_android">Adhana hucheza kama kengele wakati wa swala, hata simu ikiwa kimya au mtetemo, kwa sauti ya kengele yako. Gusa Simamisha ili kuisimamisha.</string>
+    <string name="adhan_as_alarm">Lia kama kengele</string>
     <string name="adhan_fajr">Adhana ya Alfajiri</string>
     <string name="adhan_full">Adhana (Adhuhuri, Alasiri, Magharibi, Isha)</string>
     <string name="adhan_length">Urefu wa adhana</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">Tafuta pia kwenye tovuti hizi</string>
     <string name="answer_search_more_note">Inafungua tovuti kwenye kivinjari chako pamoja na swali lako.</string>
     <string name="answer_searching">Inatafuta kwenye vitabu vyako…</string>
+    <string name="app_icon">Aikoni ya programu</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Mtindo mmoja kwa vitufe na rangi za kuangazia za programu, kila wijeti, Skrini Iliyofungwa na Dynamic Island. Ili kuipa wijeti moja mtindo wake, ibonyeze kwa muda kisha uchague Hariri Wijeti.</string>
     <string name="app_style_note_android">Mtindo mmoja kwa vitufe na rangi kuu za programu na kila wijeti. Ili wijeti moja iwe na mtindo wake, iguse na ushikilie, kisha fungua mipangilio yake.</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">Saa zilizoorodheshwa: %1$s</string>
     <string name="hours_unknown">Saa za kufunguliwa hazijulikani</string>
     <string name="hours_unverified_note">Saa zilizoorodheshwa zinatoka kwenye data ya ramani na huenda zimepitwa na wakati. Nyakati za sala ya jamaa hazijajumuishwa.</string>
+    <string name="icon_black">Nyeusi</string>
+    <string name="icon_error">Imeshindwa kubadilisha aikoni. Jaribu tena.</string>
+    <string name="icon_gold">Dhahabu</string>
+    <string name="icon_green">Kijani</string>
+    <string name="icon_night">Usiku</string>
+    <string name="icon_sky">Anga</string>
+    <string name="icon_teal">Samawati-kijani</string>
     <string name="import_done">%1$s imeongezwa</string>
     <string name="import_failed">Imeshindwa kuongeza faili hii: %1$s</string>
     <string name="import_pack">Leta kutoka kwenye faili</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Ya kawaida</string>
+    <string name="menu_start">Menyu na mwanzo</string>
+    <string name="menu_start_note">Vichupo huweka Swala na Qibla na Msikiti wa karibu chini. Ya kawaida ni ukurasa mmoja, na Qibla, msikiti wa karibu na Uliza kwa mguso mmoja chini. Fungua kwenye ni skrini ambayo programu huanza nayo.</string>
+    <string name="menu_style">Mtindo wa menyu</string>
+    <string name="menu_tabs">Vichupo</string>
     <string name="method_DUBAI">Dubai</string>
     <string name="method_EGYPTIAN">Mamlaka Kuu ya Upimaji ya Misri</string>
     <string name="method_KARACHI">Chuo Kikuu cha Sayansi za Kiislamu, Karachi</string>
@@ -577,6 +591,7 @@
     <string name="online_search_body">Huongeza matokeo ya moja kwa moja na muda wa kutembea kwenye data uliyopakua. Ili kutafuta, eneo lako la takriban (karibu km 1) hutumwa kwa huduma ya ramani; kwa muda wa kutembea, eneo lililokadiriwa hadi takriban mita 100. Ramani hupakia picha za eneo unalotazama kila wakati.</string>
     <string name="online_searching">Inatafuta misikiti zaidi mtandaoni…</string>
     <string name="open_settings">Fungua Mipangilio</string>
+    <string name="open_with">Fungua kwenye</string>
     <string name="pack_builtin">Iliyojengwa ndani</string>
     <string name="pack_details">Rekodi %1$s, %2$s, toleo %3$s</string>
     <string name="pack_kind_books">Vitabu: %1$s</string>
@@ -736,12 +751,16 @@
     <string name="start_at_login_linux_note">Hufunguka ikiwa imepunguzwa unapoingia, ili adhana na vikumbusho vije bila kufungua programu.</string>
     <string name="start_at_login_note">Hufunguka kwenye eneo la arifa unapoingia, ili adhana na vikumbusho vije bila kufungua programu.</string>
     <string name="start_at_login_store_note">Ili Near Mosque ianze unapoingia, iwashe katika Mipangilio ya Windows → Programu → Uanzishaji.</string>
+    <string name="start_last_place">Nilipoishia</string>
     <string name="stop">Simamisha</string>
     <string name="straight_line">%1$s kwa mstari ulionyooka</string>
     <string name="style_auto">Sawa na programu</string>
+    <string name="style_charcoalCrimson">Mkaa na nyekundu</string>
     <string name="style_cream">Dhahabu na krimu</string>
+    <string name="style_desertLantern">Taa ya jangwani</string>
     <string name="style_green">Kijani</string>
     <string name="style_night">Anga la usiku</string>
+    <string name="style_nightGarden">Bustani ya usiku</string>
     <string name="style_sky">Kulingana na wakati</string>
     <string name="style_teal">Kijani-bluu</string>
     <string name="suggested_questions">Unaweza pia kuuliza</string>

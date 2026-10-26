@@ -9,6 +9,7 @@
     <string name="about_terms">ئىشلىتىش شەرتلىرى</string>
     <string name="adhan_alarm_note">ئەزان ئۈنسىز ھالەتتىمۇ ئويغاتقۇچتەك جىرىڭلايدۇ. توختىتىش ئۈچۈن «توختىتىش» نى چېكىڭ.</string>
     <string name="adhan_alarm_note_android">ناماز ۋاقتىدا ئەزان ئويغاتقۇچتەك قويۇلىدۇ، ئۈنسىز ياكى تىترەش ھالىتىدىمۇ، ئويغاتقۇچ ئاۋاز مىقدارىدا. توختىتىش ئۈچۈن «توختىتىش» نى چېكىڭ.</string>
+    <string name="adhan_as_alarm">ئويغاتقۇچتەك جىرىڭلىسۇن</string>
     <string name="adhan_fajr">بامدات ئەزىنى</string>
     <string name="adhan_full">ئەزان (پېشىن، ئەسىر، شام، خۇپتەن)</string>
     <string name="adhan_length">ئەزاننىڭ ئۇزۇنلۇقى</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">بۇ تور بېكەتلەردىنمۇ ئىزدەش</string>
     <string name="answer_search_more_note">تور بېكەتنى سوئالىڭىز بىلەن توركۆرگۈدە ئاچىدۇ.</string>
     <string name="answer_searching">كىتابلىرىڭىزدىن ئىزدەۋاتىدۇ…</string>
+    <string name="app_icon">ئەپ سىنبەلگىسى</string>
     <string name="app_name">ئەڭ يېقىن مەسچىت</string>
     <string name="app_style_note">ئەپنىڭ كۇنۇپكىلىرى ۋە گەۋدىلەندۈرۈش رەڭلىرى، بارلىق ۋىجېتلار، قۇلۇپ ئېكرانى ۋە Dynamic Island ئۈچۈن بىرلا ئۇسلۇب. بىر ۋىجېتقا ئايرىم ئۇسلۇب بېرىش ئۈچۈن ئۇنى ئۇزۇن بېسىپ «ۋىجېتنى تەھرىرلەش» نى تاللاڭ.</string>
     <string name="app_style_note_android">ئەپنىڭ كۇنۇپكىلىرى، گەۋدىلىك رەڭلىرى ۋە بارلىق كىچىك قوراللار ئۈچۈن بىر خىل ئۇسلۇب. بىر كىچىك قورالغا ئايرىم ئۇسلۇب بېرىش ئۈچۈن، ئۇنى بېسىپ تۇرۇڭ، ئاندىن تەڭشىكىنى ئېچىڭ.</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">خاتىرىلەنگەن ۋاقىت: %1$s</string>
     <string name="hours_unknown">ئېچىلىش ۋاقتى نامەلۇم</string>
     <string name="hours_unverified_note">خاتىرىلەنگەن ۋاقىتلار خەرىتە سانلىق مەلۇماتىدىن ئېلىنغان، كونىراپ قالغان بولۇشى مۇمكىن. جامائەت ناماز ۋاقىتلىرى ئۇنىڭ ئىچىدە ئەمەس.</string>
+    <string name="icon_black">قارا</string>
+    <string name="icon_error">سىنبەلگە ئۆزگەرتىلمىدى. قايتا سىناڭ.</string>
+    <string name="icon_gold">ئالتۇن</string>
+    <string name="icon_green">يېشىل</string>
+    <string name="icon_night">كېچە</string>
+    <string name="icon_sky">ئاسمان</string>
+    <string name="icon_teal">كۆكۈش يېشىل</string>
     <string name="import_done">%1$s قوشۇلدى</string>
     <string name="import_failed">بۇ ھۆججەتنى قوشقىلى بولمىدى: %1$s</string>
     <string name="import_pack">ھۆججەتتىن ئەكىرىش</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">كلاسسىك</string>
+    <string name="menu_start">تىزىملىك ۋە باشلاش</string>
+    <string name="menu_start_note">بەتكۈچلەر «ناماز ۋە قىبلە» بىلەن «ئەڭ يېقىن مەسچىت»نى ئاستىغا قويىدۇ. كلاسسىك بىر بەت، ئاستىدا قىبلە، ئەڭ يېقىن مەسچىت ۋە سوراشقا بىر چېكىش يېتەرلىك. «ئېچىلىش بېتى» ئەپ باشلىنىدىغان ئېكران.</string>
+    <string name="menu_style">تىزىملىك ئۇسلۇبى</string>
+    <string name="menu_tabs">بەتكۈچلەر</string>
     <string name="method_DUBAI">دۇبەي</string>
     <string name="method_EGYPTIAN">مىسىر ئومۇمىي ئۆلچەش ئىدارىسى</string>
     <string name="method_KARACHI">ئىسلام ئىلىملىرى ئۇنىۋېرسىتېتى، كاراچى</string>
@@ -577,6 +591,7 @@
     <string name="online_search_body">چۈشۈرگەن سانلىق مەلۇماتلىرىڭىزغا جانلىق نەتىجىلەر ۋە پىيادە مېڭىش ۋاقتىنى قوشىدۇ. ئىزدەش ئۈچۈن تەخمىنىي ئورنىڭىز (تەخمىنەن 1 كىلومېتىر) خەرىتە مۇلازىمىتىگە يوللىنىدۇ؛ پىيادە مېڭىش ۋاقتى ئۈچۈن تەخمىنەن 100 مېتىرغىچە يېقىنلاشتۇرۇلغان ئورۇن يوللىنىدۇ. خەرىتە ھەمىشە سىز كۆرۈۋاتقان رايوننىڭ رەسىملىرىنى يۈكلەيدۇ.</string>
     <string name="online_searching">توردىن تېخىمۇ كۆپ مەسچىت ئىزدەۋاتىدۇ…</string>
     <string name="open_settings">تەڭشەكنى ئېچىش</string>
+    <string name="open_with">ئېچىلىش بېتى</string>
     <string name="pack_builtin">ئىچكى</string>
     <string name="pack_details">%1$s خاتىرە، %2$s، نەشرى %3$s</string>
     <string name="pack_kind_books">كىتابلار: %1$s</string>
@@ -736,12 +751,16 @@
     <string name="start_at_login_linux_note">كىرگەندە كىچىكلىتىلگەن ھالەتتە ئېچىلىدۇ، ئەپنى ئاچمايلا ئەزان ۋە ئەسكەرتىشلەر كېلىدۇ.</string>
     <string name="start_at_login_note">كىرگەندە ئۇقتۇرۇش رايونىدا ئېچىلىدۇ، ئەپنى ئاچمايلا ئەزان ۋە ئەسكەرتىشلەر كېلىدۇ.</string>
     <string name="start_at_login_store_note">كىرگەندە Near Mosque قوزغىلىشى ئۈچۈن، Windows تەڭشىكى ← ئەپلەر ← قوزغىلىشتا ئېچىڭ.</string>
+    <string name="start_last_place">توختىغان يېرىم</string>
     <string name="stop">توختىتىش</string>
     <string name="straight_line">تۈز سىزىقتا %1$s</string>
     <string name="style_auto">ئەپ بىلەن ئوخشاش</string>
+    <string name="style_charcoalCrimson">كۆمۈر ۋە قىزىل</string>
     <string name="style_cream">ئالتۇن ۋە قايماق رەڭ</string>
+    <string name="style_desertLantern">قۇملۇق پانۇسى</string>
     <string name="style_green">يېشىل</string>
     <string name="style_night">كېچە ئاسمىنى</string>
+    <string name="style_nightGarden">كېچە باغچىسى</string>
     <string name="style_sky">ۋاقىتقا قاراپ</string>
     <string name="style_teal">يېشىل كۆك</string>
     <string name="suggested_questions">بۇلارنىمۇ سورىسىڭىز بولىدۇ</string>

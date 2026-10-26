@@ -90,6 +90,8 @@ struct MosquesView: View {
     @Environment(\.appModel) private var app
     @Environment(\.l10n) private var l10n
     @Binding var showSettings: Bool
+    /// The classic menu opens this page over Prayer & Qibla; ✕ closes it.
+    var onClose: (() -> Void)? = nil
     @State private var vm = MosquesModel()
     #if DEBUG
     @State private var mode = UserDefaults.standard.integer(forKey: "demoMosqueMode")
@@ -184,15 +186,24 @@ struct MosquesView: View {
         .scrollIndicators(.hidden)
     }
 
+    private var favoritesButton: some View {
+        GlassIconButton(systemImage: favoritesOnly ? "star.fill" : "star", label: l10n.t("favorites")) {
+            withAnimation(Theme.spring) { favoritesOnly.toggle() }
+        }
+    }
+
     private var header: some View {
         VStack(spacing: 12) {
             HStack {
-                GlassIconButton(systemImage: favoritesOnly ? "star.fill" : "star", label: l10n.t("favorites")) {
-                    withAnimation(Theme.spring) { favoritesOnly.toggle() }
+                if let onClose {
+                    GlassIconButton(systemImage: "xmark", label: l10n.t("close"), action: onClose)
+                } else {
+                    favoritesButton
                 }
                 Spacer()
                 Text(l10n.t("tab_mosques")).font(.headline)
                 Spacer()
+                if onClose != nil { favoritesButton }
                 SettingsButton(show: $showSettings)
             }
             if vm.center != nil, !favoritesOnly {

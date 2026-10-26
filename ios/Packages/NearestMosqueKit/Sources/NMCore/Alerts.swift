@@ -76,6 +76,10 @@ public struct AlertSettings: Codable, Hashable, Sendable {
     public var fajrAdhanSource = AdhanSource.makkah
     /// Only the first "Allahu akbar, Allahu akbar" instead of the whole Adhan (for every prayer).
     public var shortAdhan = false
+    /// Where the device has alarms (iPhone and iPad, iOS 26), chosen by the user: the Adhan rings as an alarm (even on
+    /// silent, until stopped, its first 30 seconds). Off (the default), it is a notification, whose whole Adhan plays in
+    /// the app. The Fajr alarm is an alarm either way.
+    public var adhanAlarm = false
     /// Spoken reminders 10 and 5 minutes before the prayer.
     public var before10 = false
     public var before5 = false
@@ -200,6 +204,7 @@ public struct AlertSettings: Codable, Hashable, Sendable {
         fajrAdhan = get(.fajrAdhan, false)
         fajrAdhanSource = get(.fajrAdhanSource, AdhanSource.makkah)
         shortAdhan = get(.shortAdhan, false)
+        adhanAlarm = get(.adhanAlarm, false)
         before10 = get(.before10, false)
         before5 = get(.before5, false)
         near = get(.near, false)

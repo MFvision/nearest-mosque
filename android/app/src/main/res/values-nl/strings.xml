@@ -9,6 +9,7 @@
     <string name="about_terms">Gebruiksvoorwaarden</string>
     <string name="adhan_alarm_note">De adhan klinkt als wekker, ook op stil. Tik op Stoppen om hem te beëindigen.</string>
     <string name="adhan_alarm_note_android">De adhan klinkt als wekker op de gebedstijd, ook op stil of trillen, op het wekkervolume. Tik op Stoppen om hem te beëindigen.</string>
+    <string name="adhan_as_alarm">Afgaan als wekker</string>
     <string name="adhan_fajr">Adhan voor Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Lengte van de adhan</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">Zoek ook op deze sites</string>
     <string name="answer_search_more_note">Opent de site in je browser met je vraag.</string>
     <string name="answer_searching">Je boeken worden doorzocht…</string>
+    <string name="app_icon">App-icoon</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Eén stijl voor de knoppen en accenten van de app, elke widget, het toegangsscherm en het Dynamic Island. Wil je één widget een eigen stijl geven, houd hem ingedrukt en kies Wijzig widget.</string>
     <string name="app_style_note_android">Eén stijl voor de knoppen en accenten van de app en voor elke widget. Wil je één widget een eigen stijl geven, houd hem dan ingedrukt en open zijn instellingen.</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">Vermelde tijden: %1$s</string>
     <string name="hours_unknown">Openingstijden onbekend</string>
     <string name="hours_unverified_note">Vermelde tijden komen uit kaartgegevens en kunnen verouderd zijn. Tijden van het gezamenlijk gebed staan er niet bij.</string>
+    <string name="icon_black">Zwart</string>
+    <string name="icon_error">Het icoon kon niet worden gewijzigd. Probeer het opnieuw.</string>
+    <string name="icon_gold">Goud</string>
+    <string name="icon_green">Groen</string>
+    <string name="icon_night">Nacht</string>
+    <string name="icon_sky">Hemel</string>
+    <string name="icon_teal">Petrol</string>
     <string name="import_done">%1$s toegevoegd</string>
     <string name="import_failed">Kon dit bestand niet toevoegen: %1$s</string>
     <string name="import_pack">Importeren uit bestand</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Klassiek</string>
+    <string name="menu_start">Menu en start</string>
+    <string name="menu_start_note">Tabbladen zet Gebed &amp; Qibla en Dichtstbijzijnde moskee onderaan. Klassiek houdt één pagina, met de qibla, de dichtstbijzijnde moskee en Vraag één tik weg onderaan. Openen op is het scherm waarmee de app start.</string>
+    <string name="menu_style">Menustijl</string>
+    <string name="menu_tabs">Tabbladen</string>
     <string name="method_DUBAI">Dubai</string>
     <string name="method_EGYPTIAN">Egyptische Algemene Landmeetkundige Dienst</string>
     <string name="method_KARACHI">Universiteit voor Islamitische Wetenschappen, Karachi</string>
@@ -577,6 +591,7 @@
     <string name="online_search_body">Voegt live resultaten en looptijden toe aan je gedownloade gegevens. Om te zoeken wordt je geschatte locatie (ongeveer 1 km) naar de kaartdienst verstuurd; voor looptijden een locatie afgerond op ongeveer 100 m. De kaart laadt altijd afbeeldingen van het gebied dat je bekijkt.</string>
     <string name="online_searching">Online naar meer moskeeën zoeken…</string>
     <string name="open_settings">Instellingen openen</string>
+    <string name="open_with">Openen op</string>
     <string name="pack_builtin">Ingebouwd</string>
     <string name="pack_details">%1$s records, %2$s, versie %3$s</string>
     <string name="pack_kind_books">Boeken: %1$s</string>
@@ -736,12 +751,16 @@
     <string name="start_at_login_linux_note">Opent geminimaliseerd wanneer je je aanmeldt, zodat de adhan en herinneringen komen zonder de app te openen.</string>
     <string name="start_at_login_note">Opent in het systeemvak wanneer je je aanmeldt, zodat de adhan en herinneringen komen zonder de app te openen.</string>
     <string name="start_at_login_store_note">Wil je Near Mosque laten starten wanneer je je aanmeldt, zet het dan aan in Windows-instellingen → Apps → Opstarten.</string>
+    <string name="start_last_place">Waar ik was</string>
     <string name="stop">Stoppen</string>
     <string name="straight_line">%1$s hemelsbreed</string>
     <string name="style_auto">Zoals de app</string>
+    <string name="style_charcoalCrimson">Antraciet en karmijn</string>
     <string name="style_cream">Goud en crème</string>
+    <string name="style_desertLantern">Woestijnlantaarn</string>
     <string name="style_green">Groen</string>
     <string name="style_night">Nachthemel</string>
+    <string name="style_nightGarden">Nachttuin</string>
     <string name="style_sky">Naar tijdstip</string>
     <string name="style_teal">Petrol</string>
     <string name="suggested_questions">Je kunt ook vragen</string>

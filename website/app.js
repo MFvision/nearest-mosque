@@ -106,9 +106,8 @@ function storesHTML(t) {
   return `<div class="stores">${Object.keys(ICONS).map((k) => {
     const href = links[k];
     const [small, big] = t.stores[k];
-    return href
-      ? `<a class="store" href="${esc(href)}" rel="noopener"${target(k)}>${ICONS[k]}<small>${esc(small)}</small><b>${esc(big)}</b></a>`
-      : `<span class="store" aria-disabled="true">${ICONS[k]}<small>${esc(t.soon)}</small><b>${esc(big)}</b></span>`;
+    // A store that is not live yet gets no button at all: the button appears the day its link is set.
+    return href ? `<a class="store" href="${esc(href)}" rel="noopener"${target(k)}>${ICONS[k]}<small>${esc(small)}</small><b>${esc(big)}</b></a>` : '';
   }).join('')}</div>${more.length ? `<p class="stores-more">${more.join('<span aria-hidden="true">·</span>')}</p>` : ''}`;
 }
 

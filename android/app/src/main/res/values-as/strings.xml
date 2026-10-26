@@ -9,6 +9,7 @@
     <string name="about_terms">ব্যৱহাৰৰ চৰ্তাৱলী</string>
     <string name="adhan_alarm_note">আজান এলাৰ্মৰ দৰে বাজে, ছাইলেণ্টতো। ৰখাবলৈ \"বন্ধ কৰক\" টিপক।</string>
     <string name="adhan_alarm_note_android">নামাজৰ সময়ত আজান এলাৰ্মৰ দৰে বাজে, ছাইলেণ্ট বা ভাইব্ৰেটতো, আপোনাৰ এলাৰ্মৰ ভলিউমত। ৰখাবলৈ \"বন্ধ কৰক\" টিপক।</string>
+    <string name="adhan_as_alarm">এলাৰ্মৰ দৰে বাজক</string>
     <string name="adhan_fajr">ফজৰৰ আজান</string>
     <string name="adhan_full">আজান (জোহৰ, আছৰ, মাগৰিব, এশা)</string>
     <string name="adhan_length">আজানৰ দৈৰ্ঘ্য</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">এই ছাইটবোৰতো বিচাৰক</string>
     <string name="answer_search_more_note">আপোনাৰ প্ৰশ্নসহ ছাইটটো আপোনাৰ ব্ৰাউজাৰত খোলে।</string>
     <string name="answer_searching">আপোনাৰ কিতাপবোৰত বিচৰা হৈছে…</string>
+    <string name="app_icon">এপ আইকন</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">এপৰ বুটাম আৰু হাইলাইট, প্ৰতিটো ৱিজেট, লক স্ক্ৰীণ আৰু ডায়নামিক আইলেণ্ডৰ বাবে একেটা শৈলী। এটা ৱিজেটক বেলেগ শৈলী দিবলৈ সেইটো হেঁচি ধৰি ৱিজেট সম্পাদনা বাছক।</string>
     <string name="app_style_note_android">এপৰ বুটাম, হাইলাইট আৰু প্ৰতিটো ৱিজেটৰ বাবে এটাই শৈলী। কোনো এটা ৱিজেটক নিজা শৈলী দিবলৈ ইয়াক স্পৰ্শ কৰি ধৰি ৰাখক, তাৰ পিছত ইয়াৰ ছেটিংছ খোলক।</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">তালিকাভুক্ত সময়: %1$s</string>
     <string name="hours_unknown">খোলাৰ সময় জনা নাই</string>
     <string name="hours_unverified_note">তালিকাভুক্ত সময় মানচিত্ৰৰ তথ্যৰ পৰা লোৱা আৰু পুৰণি হ\'ব পাৰে। জামাতৰ সময় অন্তৰ্ভুক্ত নহয়।</string>
+    <string name="icon_black">ক\'লা</string>
+    <string name="icon_error">আইকন সলনি কৰিব পৰা নগ\'ল। আকৌ চেষ্টা কৰক।</string>
+    <string name="icon_gold">সোণালী</string>
+    <string name="icon_green">সেউজীয়া</string>
+    <string name="icon_night">ৰাতি</string>
+    <string name="icon_sky">আকাশী</string>
+    <string name="icon_teal">নীলা-সেউজীয়া</string>
     <string name="import_done">%1$s যোগ কৰা হ\'ল</string>
     <string name="import_failed">এই ফাইলটো যোগ কৰিব পৰা নগ\'ল: %1$s</string>
     <string name="import_pack">ফাইলৰ পৰা আমদানি কৰক</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">ক্লাছিক</string>
+    <string name="menu_start">মেনু আৰু আৰম্ভণি</string>
+    <string name="menu_start_note">টেবত নামাজ আৰু কিবলা আৰু ওচৰৰ মছজিদ তলত থাকে। ক্লাছিক এটা মাত্ৰ পৃষ্ঠা, তলত কিবলা, ওচৰৰ মছজিদ আৰু সোধক এটা টেপত। «ক\'ত খোলে» হৈছে এপ আৰম্ভ হোৱা স্ক্ৰীণ।</string>
+    <string name="menu_style">মেনুৰ ধৰণ</string>
+    <string name="menu_tabs">টেব</string>
     <string name="method_DUBAI">দুবাই</string>
     <string name="method_EGYPTIAN">ইজিপ্তৰ জেনেৰেল ছাৰ্ভে কৰ্তৃপক্ষ</string>
     <string name="method_KARACHI">ইউনিভাৰ্ছিটি অৱ ইছলামিক ছায়েন্সেছ, কৰাচী</string>
@@ -577,6 +591,7 @@
     <string name="online_search_body">আপুনি ডাউনল\'ড কৰা ডেটাত লাইভ ফলাফল আৰু খোজকাঢ়ি যোৱাৰ সময় যোগ কৰে। সন্ধানৰ বাবে আপোনাৰ আনুমানিক অৱস্থান (প্ৰায় 1 কিমি) মানচিত্ৰ সেৱালৈ পঠিওৱা হয়; খোজকাঢ়ি যোৱাৰ সময়ৰ বাবে প্ৰায় 100 মিটাৰলৈ ৰাউণ্ড কৰা এটা অৱস্থান পঠিওৱা হয়। আপুনি চোৱা অঞ্চলৰ ছবি মানচিত্ৰই সদায় লোড কৰে।</string>
     <string name="online_searching">অনলাইনত আৰু মছজিদ বিচৰা হৈছে…</string>
     <string name="open_settings">ছেটিংছ খোলক</string>
+    <string name="open_with">ক\'ত খোলে</string>
     <string name="pack_builtin">আগৰে পৰা অন্তৰ্ভুক্ত</string>
     <string name="pack_details">%1$sটা ৰেকৰ্ড, %2$s, সংস্কৰণ %3$s</string>
     <string name="pack_kind_books">কিতাপ: %1$s</string>
@@ -736,12 +751,16 @@
     <string name="start_at_login_linux_note">ছাইন ইন কৰাৰ লগে লগে মিনিমাইজ হৈ খোল খায়, যাতে এপ নোখোলাকৈ আজান আৰু সোঁৱৰণি আহে।</string>
     <string name="start_at_login_note">ছাইন ইন কৰাৰ লগে লগে জাননী অঞ্চলত খোল খায়, যাতে এপ নোখোলাকৈ আজান আৰু সোঁৱৰণি আহে।</string>
     <string name="start_at_login_store_note">ছাইন ইন কৰোঁতে Near Mosque আৰম্ভ কৰিবলৈ, Windows ছেটিংছ → এপ → ষ্টাৰ্টআপত ইয়াক অন কৰক।</string>
+    <string name="start_last_place">য\'ত এৰিছিলোঁ</string>
     <string name="stop">ৰখাওক</string>
     <string name="straight_line">পোনপটীয়া দূৰত্ব %1$s</string>
     <string name="style_auto">এপৰ দৰে</string>
+    <string name="style_charcoalCrimson">কয়লা আৰু ৰঙা</string>
     <string name="style_cream">সোণালী আৰু ক্ৰীম</string>
+    <string name="style_desertLantern">মৰুভূমিৰ লেম্প</string>
     <string name="style_green">সেউজীয়া</string>
     <string name="style_night">ৰাতিৰ আকাশ</string>
+    <string name="style_nightGarden">ৰাতিৰ বাগিচা</string>
     <string name="style_sky">সময় অনুসৰি</string>
     <string name="style_teal">সেউজীয়া নীলা</string>
     <string name="suggested_questions">আপুনি এইটোও সুধিব পাৰে</string>

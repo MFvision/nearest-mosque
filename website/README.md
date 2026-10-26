@@ -12,7 +12,7 @@ the features by group.
 
 * `story.js`: every word and picture, both languages, and each chapter's stage. The download links are at the top
   (`links`), and every version's buttons come from them:
-  * App Store and Google Play: set each link when its listing is live (until then the button reads "Coming soon"). Google Play is live (com.AVA.nearmosque); the App Store link waits for Apple's review.
+  * App Store and Google Play: set each link when its listing is live (until then that store has no button anywhere on the page). Google Play is live (com.AVA.nearmosque); the App Store link waits for Apple's review.
   * Windows and Linux are not in a store: the buttons download the file straight from GitHub, from the release
     `desktop-latest` that `.github/workflows/desktop-release.yml` keeps on the newest version under fixed names
     (`near-mosque-windows.msi`, `near-mosque-linux-x86_64.AppImage`). A line of small links under the buttons
@@ -60,6 +60,20 @@ the features by group.
   `--hand-x` and `--hand-y` in `wall.css` move them. For a new picture, use the next number in both file names and
   in `data-hand`: pictures are cached for a week (`Caddyfile`), so a file replaced under the same name can stay
   unseen by returning visitors.
+* `5/`: version 5, the story page in nine chapters instead of sixteen (the Qibla and Makkah in one flight, the weather
+  in the sky chapter, the library with Ask, the widgets with the Adhan, Apple Watch with every screen), a "Get the
+  app" pill that stays at the bottom of the screen (straight to Google Play on Android), a footer in columns, and
+  its words written into the HTML: English at `5/`, Arabic at `5/ar/`, and the address follows the language button.
+  `5/story.js` and `5/markup.js` hold its words and markup (the browser and the build share `markup.js`);
+  `tools/site/home.html` is the page's template and `node tools/site/prerender.mjs` writes `5/index.html` and
+  `5/ar/index.html`. While it is compared with version 1 on `versions/`, its pages say noindex; if it wins, move it to
+  the root and drop the noindex.
+* `prayer-times/` and `ar/prayer-times/`: a page for each city with today's times (worked out in the browser by
+  `prayer-times/city.js` with `prayer.js`, so nothing is sent), the next prayer with a countdown, the Qibla, the
+  method and nearby cities, plus a list of all cities. Written by `tools/site/cities.mjs` (run by `prerender.mjs`)
+  from the globe's cities in `places.js` and `tools/site/cities-more.tsv` (Arabic names checked by hand; places and
+  time zones from `packs/cities/cities.tsv`). The same script writes `sitemap.xml`. To add a city, add a line to
+  `cities-more.tsv` and run the build.
 * `privacy.html`, `security.html`, `credits.html` (sources and licences; with `legal.css`, `legal.js`): the privacy policy and the security page in both
   languages, for the store listings. They describe what the apps do; when an app starts sending or keeping
   something new, update them and their date before the release.
@@ -68,6 +82,11 @@ the features by group.
 * `Dockerfile`, `Caddyfile`, `railway.json`: the site as a small Caddy server, for Railway. In Railway: deploy
   this repository, set the service's root directory to `/website`, then add the custom domain nearmosque.net
   under Networking and put the DNS record Railway shows at the domain's registrar.
+* `fonts/`, `fonts.css`: the fonts, served from this site (Readex Pro, IBM Plex Sans, IBM Plex Sans Arabic; SIL OFL 1.1,
+  from Fontsource 5.3.0). The `Caddyfile` sends a Content-Security-Policy that lets the Near Mosque pages load only from
+  this site, so a font, script or tracker from anyone else is blocked; keep it that way.
+* `assets/share-card.jpg`: the 1200×630 picture shown when the site is shared in a chat or a post.
+* `robots.txt`, `sitemap.xml`: for search engines; the comparison versions (`2/`, `3/`, `4/`, `versions/`) stay out of search.
 * `vendor/three.module.min.js`: Three.js r160 (MIT, `vendor/three.LICENSE`).
 
 Photographs of Makkah: the city from the International Space Station (ISS Expedition 44, NASA, public domain),

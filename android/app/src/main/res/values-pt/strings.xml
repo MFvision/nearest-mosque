@@ -9,6 +9,7 @@
     <string name="about_terms">Termos de uso</string>
     <string name="adhan_alarm_note">O adhan toca como alarme, mesmo no silencioso. Toque em Parar para encerrá-lo.</string>
     <string name="adhan_alarm_note_android">O adhan toca como um alarme na hora da oração, mesmo no silencioso ou vibrar, no volume do alarme. Toque em Parar para encerrá-lo.</string>
+    <string name="adhan_as_alarm">Tocar como alarme</string>
     <string name="adhan_fajr">Adhan do Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Duração do adhan</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">Buscar também nestes sites</string>
     <string name="answer_search_more_note">Abre o site no seu navegador com a sua pergunta.</string>
     <string name="answer_searching">Procurando nos seus livros…</string>
+    <string name="app_icon">Ícone do app</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Um só estilo para os botões e destaques do app, cada widget, a Tela Bloqueada e a Dynamic Island. Para dar um estilo próprio a um widget, toque e segure nele e escolha Editar Widget.</string>
     <string name="app_style_note_android">Um só estilo para os botões e destaques do app e para todos os widgets. Para dar a um widget o seu próprio estilo, toque nele sem soltar e abra as configurações dele.</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">Horário informado: %1$s</string>
     <string name="hours_unknown">Horário de funcionamento desconhecido</string>
     <string name="hours_unverified_note">O horário informado vem dos dados do mapa e pode estar desatualizado. Os horários das orações em congregação não estão incluídos.</string>
+    <string name="icon_black">Preto</string>
+    <string name="icon_error">Não foi possível mudar o ícone. Tente de novo.</string>
+    <string name="icon_gold">Dourado</string>
+    <string name="icon_green">Verde</string>
+    <string name="icon_night">Noite</string>
+    <string name="icon_sky">Céu</string>
+    <string name="icon_teal">Verde-azulado</string>
     <string name="import_done">%1$s adicionado</string>
     <string name="import_failed">Não foi possível adicionar este arquivo: %1$s</string>
     <string name="import_pack">Importar de arquivo</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Clássico</string>
+    <string name="menu_start">Menu e início</string>
+    <string name="menu_start_note">Abas coloca Oração e Qibla e Mesquita mais próxima na parte de baixo. Clássico mantém uma só página, com a Qibla, a mesquita mais próxima e Perguntar a um toque em baixo. Abrir em é a tela com que o app começa.</string>
+    <string name="menu_style">Estilo do menu</string>
+    <string name="menu_tabs">Abas</string>
     <string name="method_DUBAI">Dubai</string>
     <string name="method_EGYPTIAN">Autoridade Geral de Topografia do Egito</string>
     <string name="method_KARACHI">Universidade de Ciências Islâmicas, Karachi</string>
@@ -578,6 +592,7 @@
     <string name="online_search_body">Adiciona resultados em tempo real e tempos de caminhada aos seus dados baixados. Para pesquisar, sua localização aproximada (cerca de 1 km) é enviada ao serviço de mapas; para os tempos de caminhada, uma localização arredondada para cerca de 100 m. O mapa sempre carrega imagens da área que você visualiza.</string>
     <string name="online_searching">Procurando mais mesquitas online…</string>
     <string name="open_settings">Abrir Configurações</string>
+    <string name="open_with">Abrir em</string>
     <string name="pack_builtin">Integrado</string>
     <string name="pack_details">%1$s registros, %2$s, versão %3$s</string>
     <string name="pack_kind_books">Livros: %1$s</string>
@@ -737,12 +752,16 @@
     <string name="start_at_login_linux_note">Abre minimizado quando você entra, para o adhan e os lembretes chegarem sem abrir o app.</string>
     <string name="start_at_login_note">Abre na área de notificação quando você entra, para o adhan e os lembretes chegarem sem abrir o app.</string>
     <string name="start_at_login_store_note">Para o Near Mosque iniciar quando você entrar, ative-o em Configurações do Windows → Aplicativos → Inicialização.</string>
+    <string name="start_last_place">Onde parei</string>
     <string name="stop">Parar</string>
     <string name="straight_line">%1$s em linha reta</string>
     <string name="style_auto">Igual ao app</string>
+    <string name="style_charcoalCrimson">Carvão e carmesim</string>
     <string name="style_cream">Dourado e creme</string>
+    <string name="style_desertLantern">Lanterna do deserto</string>
     <string name="style_green">Verde</string>
     <string name="style_night">Céu noturno</string>
+    <string name="style_nightGarden">Jardim noturno</string>
     <string name="style_sky">Conforme a hora</string>
     <string name="style_teal">Verde-azulado</string>
     <string name="suggested_questions">Você também pode perguntar</string>

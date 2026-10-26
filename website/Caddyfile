@@ -17,8 +17,12 @@
 		Strict-Transport-Security "max-age=31536000"
 		-Server
 	}
+	# Near Mosque's pages load only from this site: no fonts, scripts or trackers from anyone else. (The style
+	# attributes the page writes for its motion need 'unsafe-inline' for styles; scripts stay 'self' only.)
+	@nm not path /mosque-pro/*
+	header @nm Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
 	# Pictures, films and data change rarely; the pages, scripts and styles are checked on every visit.
-	@media path /assets/* /vendor/*
+	@media path /assets/* /vendor/* /fonts/*
 	header @media Cache-Control "public, max-age=604800"
 	@code path / *.html *.js *.css
 	header @code Cache-Control "no-cache"

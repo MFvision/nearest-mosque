@@ -9,6 +9,7 @@
     <string name="about_terms">使用条款</string>
     <string name="adhan_alarm_note">宣礼以闹钟方式响起，即使在静音模式下也会响。点按“停止”即可结束。</string>
     <string name="adhan_alarm_note_android">礼拜时间到时，宣礼会以闹钟方式、按闹钟音量响起，即使在静音或振动模式下也会响。点按“停止”即可结束。</string>
+    <string name="adhan_as_alarm">以闹钟方式响起</string>
     <string name="adhan_fajr">晨礼宣礼</string>
     <string name="adhan_full">宣礼（晌礼、晡礼、昏礼、宵礼）</string>
     <string name="adhan_length">宣礼长度</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">也搜索这些网站</string>
     <string name="answer_search_more_note">在浏览器中打开该网站并带上你的问题。</string>
     <string name="answer_searching">正在搜索你的书籍…</string>
+    <string name="app_icon">应用图标</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">应用的按钮和强调色、所有小组件、锁定屏幕和灵动岛使用同一种样式。要为某个小组件单独设置样式，请长按它并选择“编辑小组件”。</string>
     <string name="app_style_note_android">应用的按钮、强调色和所有小组件使用同一种风格。要为某个小组件单独设置风格，请长按它，然后打开其设置。</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">所列时间：%1$s</string>
     <string name="hours_unknown">开放时间未知</string>
     <string name="hours_unverified_note">所列时间来自地图数据，可能已过时。不包含集体礼拜时间。</string>
+    <string name="icon_black">黑色</string>
+    <string name="icon_error">无法更换图标，请重试。</string>
+    <string name="icon_gold">金色</string>
+    <string name="icon_green">绿色</string>
+    <string name="icon_night">夜色</string>
+    <string name="icon_sky">天空</string>
+    <string name="icon_teal">青绿色</string>
     <string name="import_done">已添加 %1$s</string>
     <string name="import_failed">无法添加此文件：%1$s</string>
     <string name="import_pack">从文件导入</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">经典</string>
+    <string name="menu_start">菜单与启动</string>
+    <string name="menu_start_note">标签栏把“礼拜与朝向”和“最近的清真寺”放在底部。经典只有一个页面，底部一点即可打开朝向、最近的清真寺和提问。“打开时显示”是应用启动时的页面。</string>
+    <string name="menu_style">菜单样式</string>
+    <string name="menu_tabs">标签栏</string>
     <string name="method_DUBAI">迪拜</string>
     <string name="method_EGYPTIAN">埃及测绘总局</string>
     <string name="method_KARACHI">卡拉奇伊斯兰科学大学</string>
@@ -576,6 +590,7 @@
     <string name="online_search_body">为您已下载的数据添加实时结果和步行时间。搜索时，您的大致位置（约 1 公里）会发送给地图服务；计算步行时间时，会发送取整到约 100 米的位置。地图始终会加载您所查看区域的图像。</string>
     <string name="online_searching">正在在线查找更多清真寺…</string>
     <string name="open_settings">打开设置</string>
+    <string name="open_with">打开时显示</string>
     <string name="pack_builtin">内置</string>
     <string name="pack_details">%1$s 条记录，%2$s，版本 %3$s</string>
     <string name="pack_kind_books">书籍：%1$s</string>
@@ -735,12 +750,16 @@
     <string name="start_at_login_linux_note">登录时以最小化方式打开，无需打开应用也能收到宣礼和提醒。</string>
     <string name="start_at_login_note">登录时在通知区域打开，无需打开应用也能收到宣礼和提醒。</string>
     <string name="start_at_login_store_note">如需登录时启动 Near Mosque，请在 Windows“设置”→“应用”→“启动”中打开它。</string>
+    <string name="start_last_place">上次离开的位置</string>
     <string name="stop">停止</string>
     <string name="straight_line">直线距离 %1$s</string>
     <string name="style_auto">与应用相同</string>
+    <string name="style_charcoalCrimson">炭黑与深红</string>
     <string name="style_cream">金色与米色</string>
+    <string name="style_desertLantern">沙漠灯笼</string>
     <string name="style_green">绿色</string>
     <string name="style_night">夜空</string>
+    <string name="style_nightGarden">夜之花园</string>
     <string name="style_sky">随时段变化</string>
     <string name="style_teal">青绿</string>
     <string name="suggested_questions">你还可以问</string>

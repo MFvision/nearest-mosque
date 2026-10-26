@@ -14,12 +14,20 @@ struct SkyBackground: ViewModifier {
         TimelineView(.everyMinute) { ctx in
             let period = model.skyPeriod(now: ctx.date)
             let w = model.skyWeather(now: ctx.date)
-            let sky = SkyScene.sky(period, weather: w, dark: scheme == .dark)
+            let solid = Theme.solid?.tokens(dark: scheme == .dark)
+            // A solid theme: its own background, and the glass tinted from it.
+            let sky = solid.map { Sky(period: period, top: $0.background, mid: $0.surface, glow: $0.surfaceRaised, low: $0.surface, dark: scheme == .dark) }
+                ?? SkyScene.sky(period, weather: w, dark: scheme == .dark)
             content
                 .environment(\.sky, sky)
                 .background {
-                    SkyScene(period: period, weather: w, horizon: horizon, skyline: skyline)
-                        .ignoresSafeArea()
+                    if let solid {
+                        LinearGradient(colors: [solid.background, solid.surface.mix(with: solid.background, by: 0.5)], startPoint: .top, endPoint: .bottom)
+                            .ignoresSafeArea()
+                    } else {
+                        SkyScene(period: period, weather: w, horizon: horizon, skyline: skyline)
+                            .ignoresSafeArea()
+                    }
                 }
                 .animation(.easeInOut(duration: 1.2), value: sky)
         }

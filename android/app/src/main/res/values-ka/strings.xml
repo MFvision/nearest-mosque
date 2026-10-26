@@ -9,6 +9,7 @@
     <string name="about_terms">გამოყენების პირობები</string>
     <string name="adhan_alarm_note">აზანი მაღვიძარასავით რეკავს, ჩუმ რეჟიმშიც. შესაჩერებლად შეეხეთ „შეჩერებას“.</string>
     <string name="adhan_alarm_note_android">ლოცვის დროს აზანი მაღვიძარასავით იკვრება, ჩუმ ან ვიბრაციის რეჟიმშიც, მაღვიძარას ხმის სიმაღლით. შესაჩერებლად შეეხეთ „შეჩერებას“.</string>
+    <string name="adhan_as_alarm">მაღვიძარასავით დარეკვა</string>
     <string name="adhan_fajr">ფაჯრის აზანი</string>
     <string name="adhan_full">აზანი (ზუჰრი, ასრი, მაღრიბი, იშა)</string>
     <string name="adhan_length">აზანის ხანგრძლივობა</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">ამ საიტებზეც მოძებნეთ</string>
     <string name="answer_search_more_note">საიტს თქვენს ბრაუზერში გახსნის თქვენი კითხვით.</string>
     <string name="answer_searching">ვეძებთ თქვენს წიგნებში…</string>
+    <string name="app_icon">აპის ხატულა</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">ერთი სტილი აპის ღილაკებისა და აქცენტებისთვის, ყველა ვიჯეტისთვის, ჩაკეტილი ეკრანისა და Dynamic Island-ისთვის. ერთი ვიჯეტისთვის ცალკე სტილისთვის ხანგრძლივად დააჭირეთ და აირჩიეთ ვიჯეტის რედაქტირება.</string>
     <string name="app_style_note_android">ერთი სტილი აპის ღილაკებისთვის, აქცენტებისა და ყველა ვიჯეტისთვის. ერთი ვიჯეტისთვის საკუთარი სტილის მისაცემად შეეხეთ და დააყოვნეთ, შემდეგ გახსენით მისი პარამეტრები.</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">მითითებული საათები: %1$s</string>
     <string name="hours_unknown">სამუშაო საათები უცნობია</string>
     <string name="hours_unverified_note">მითითებული საათები რუკის მონაცემებიდანაა და შეიძლება მოძველებული იყოს. ჯამაათით ლოცვის დროები არ შედის.</string>
+    <string name="icon_black">შავი</string>
+    <string name="icon_error">ხატულა ვერ შეიცვალა. სცადეთ ხელახლა.</string>
+    <string name="icon_gold">ოქროსფერი</string>
+    <string name="icon_green">მწვანე</string>
+    <string name="icon_night">ღამე</string>
+    <string name="icon_sky">ცა</string>
+    <string name="icon_teal">ზურმუხტისფერი</string>
     <string name="import_done">დაემატა: %1$s</string>
     <string name="import_failed">ამ ფაილის დამატება ვერ მოხერხდა: %1$s</string>
     <string name="import_pack">ფაილიდან იმპორტი</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">კლასიკური</string>
+    <string name="menu_start">მენიუ და გაშვება</string>
+    <string name="menu_start_note">ჩანართები ქვემოთ აჩვენებს ლოცვასა და ყიბლას და უახლოეს მეჩეთს. კლასიკური ერთი გვერდია, ქვემოთ ერთი შეხებით ყიბლა, უახლოესი მეჩეთი და კითხვა. „გახსნა“ ის ეკრანია, რომლითაც აპი იწყება.</string>
+    <string name="menu_style">მენიუს სტილი</string>
+    <string name="menu_tabs">ჩანართები</string>
     <string name="method_DUBAI">დუბაი</string>
     <string name="method_EGYPTIAN">ეგვიპტის გეოდეზიის გენერალური სამმართველო</string>
     <string name="method_KARACHI">ისლამური მეცნიერებების უნივერსიტეტი, ყარაჩი</string>
@@ -577,6 +591,7 @@
     <string name="online_search_body">თქვენს ჩამოტვირთულ მონაცემებს ამატებს პირდაპირ შედეგებს და ფეხით სიარულის დროს. ძიებისთვის თქვენი მიახლოებითი მდებარეობა (დაახლოებით 1 კმ) ეგზავნება რუკის სერვისს; ფეხით სიარულის დროისთვის კი დაახლოებით 100 მ-მდე დამრგვალებული მდებარეობა. რუკა ყოველთვის ტვირთავს იმ ტერიტორიის სურათებს, რომელსაც ათვალიერებთ.</string>
     <string name="online_searching">ვეძებთ მეტ მეჩეთს ონლაინ…</string>
     <string name="open_settings">პარამეტრების გახსნა</string>
+    <string name="open_with">გახსნა</string>
     <string name="pack_builtin">ჩაშენებული</string>
     <string name="pack_details">%1$s ჩანაწერი, %2$s, ვერსია %3$s</string>
     <string name="pack_kind_books">წიგნები: %1$s</string>
@@ -736,12 +751,16 @@
     <string name="start_at_login_linux_note">შესვლისას ჩაკეცილი იხსნება, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს.</string>
     <string name="start_at_login_note">შესვლისას იხსნება შეტყობინებების არეში, რომ აზანი და შეხსენებები აპის გახსნის გარეშე მოვიდეს.</string>
     <string name="start_at_login_store_note">რომ Near Mosque შესვლისას გაიშვას, ჩართეთ Windows-ის პარამეტრებში → აპები → გაშვება.</string>
+    <string name="start_last_place">სადაც გავჩერდი</string>
     <string name="stop">შეჩერება</string>
     <string name="straight_line">%1$s პირდაპირი ხაზით</string>
     <string name="style_auto">როგორც აპში</string>
+    <string name="style_charcoalCrimson">ნახშირი და ჟოლოსფერი</string>
     <string name="style_cream">ოქროსფერი და კრემისფერი</string>
+    <string name="style_desertLantern">უდაბნოს ფარანი</string>
     <string name="style_green">მწვანე</string>
     <string name="style_night">ღამის ცა</string>
+    <string name="style_nightGarden">ღამის ბაღი</string>
     <string name="style_sky">დღის დროის მიხედვით</string>
     <string name="style_teal">ზღვისფერი</string>
     <string name="suggested_questions">ასევე შეგიძლიათ იკითხოთ</string>

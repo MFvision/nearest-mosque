@@ -292,7 +292,19 @@ final class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         let info = notification.request.content.userInfo
         Task { @MainActor in
             if info["alarm"] as? Bool == true {
-                // An alarm's silent notification: the alarm is ringing.
+                // An alarm's silent notification, with the app open: as before the alarms, the whole Adhan plays in the
+                // app instead of the alarm's first 30 seconds (the Fajr alarm tone keeps ringing).
+                if let file = info["adhan"] as? String {
+                    if let at = info["at"] as? Double {
+                        // Again a moment later, in case the alarm starts ringing just after its notification.
+                        PrayerAlarms.stopRinging(at: Date(timeIntervalSince1970: at))
+                        Task { @MainActor in
+                            try? await Task.sleep(for: .seconds(2))
+                            PrayerAlarms.stopRinging(at: Date(timeIntervalSince1970: at))
+                        }
+                    }
+                    AdhanPlayer.shared.play(file, title: Self.adhanTitle(info["source"] as? String), adhan: true)
+                }
                 completionHandler([.banner, .list])
             } else if let file = info["adhan"] as? String {
                 AdhanPlayer.shared.play(file, title: Self.adhanTitle(info["source"] as? String), adhan: true)
@@ -370,6 +382,9 @@ enum PrayerAlarms {
         let kind: Int
         /// The sound file, or "alarm" for the alarm tone.
         let sound: String
+        /// Everything the alarm was set with (time, sound, texts, buttons): a rebuild keeps an alarm with the same
+        /// one instead of setting it again. Nil from builds 150 and earlier.
+        var key: String? = nil
     }
 
     static var permission: Permission {
@@ -408,20 +423,35 @@ enum PrayerAlarms {
         #if canImport(AlarmKit) && !targetEnvironment(macCatalyst) && !os(visionOS)
         if #available(iOS 26.0, *) {
             let manager = AlarmManager.shared
-            // Every alarm the app owns goes, also any left by an older build or a rebuild cut short; one ringing now stays.
+            // Alarms are never all taken away and set again: an alarm set the same way is kept, the new ones are set, and
+            // only then do the ones no longer wanted go. A rebuild cut short (the app left at that moment, or the
+            // background refresh out of time) used to leave the prayers after it with no alarm, and their notification
+            // silent (builds 148 to 150).
             let all = (try? manager.alarms) ?? []
             let ringing = Set(all.filter { if case .alerting = $0.state { return true } else { return false } }.map(\.id))
-            let noted = ((UserDefaults.standard.stringArray(forKey: oldKey) ?? []) + scheduled.map(\.id)).compactMap(UUID.init(uuidString:))
-            for id in Set(all.map(\.id) + noted).subtracting(ringing) { try? manager.cancel(id: id) }
+            let live = Set(all.map(\.id))
+            for id in (UserDefaults.standard.stringArray(forKey: oldKey) ?? []).compactMap(UUID.init(uuidString:)) where !ringing.contains(id) {
+                try? manager.cancel(id: id)
+            }
             UserDefaults.standard.removeObject(forKey: oldKey)
             guard manager.authorizationState == .authorized else {
+                for id in live.subtracting(ringing) { try? manager.cancel(id: id) }
                 save([])
                 return []
             }
             var covered: Set<String> = []
             // A ringing alarm stays, and so does its record (its silent notification's buttons stop it).
             var records = scheduled.filter { UUID(uuidString: $0.id).map(ringing.contains) ?? false }
-            for a in plan where a.kind == .adhan || a.kind == .fajrAlarm {
+            var keep = ringing
+            // Alarms still to ring, by what they were set with (one of each).
+            var reusable: [String: Record] = [:]
+            for r in scheduled {
+                guard let key = r.key, let id = UUID(uuidString: r.id), live.contains(id), !ringing.contains(id), r.at > now,
+                      reusable[key] == nil else { continue }
+                reusable[key] = r
+            }
+            // With "Ring as an alarm" off, the Adhan stays a notification (a Fajr alarm at the Fajr time still plays it).
+            for a in plan where (a.kind == .adhan && alerts.adhanAlarm) || a.kind == .fajrAlarm {
                 let days = a.kind == .adhan ? adhanDays : fajrAlarmDays
                 guard !covered.contains(a.identifier), a.at <= now.addingTimeInterval(Double(days) * 86400) else { continue }
                 let twin = plan.first { $0.at == a.at && $0.event == a.event && $0.kind != a.kind && ($0.kind == .adhan || $0.kind == .fajrAlarm) }
@@ -445,6 +475,16 @@ enum PrayerAlarms {
                     title: LocalizedStringResource(stringLiteral: adhan ? l10n.t("reminder_title", name) : name),
                     stopButton: AlarmButton(text: LocalizedStringResource(stringLiteral: l10n.t("alarm_stop")), textColor: .white, systemImageName: "stop.circle"),
                     secondaryButton: second, secondaryButtonBehavior: second == nil ? nil : .custom)
+                let key = [a.identifier, "\(a.at.timeIntervalSince1970)", file ?? "alarm", adhan ? l10n.t("reminder_title", name) : name, l10n.t("alarm_stop"),
+                           silences ? l10n.t("alarm_silence") : full ? l10n.t("alarm_full_adhan") : "",
+                           (a.event == .fajr ? alerts.fajrAdhanSource : alerts.adhanSource).rawValue].joined(separator: "|")
+                if let kept = reusable.removeValue(forKey: key), let keptID = UUID(uuidString: kept.id) {
+                    keep.insert(keptID)
+                    covered.insert(a.identifier)
+                    if let twin { covered.insert(twin.identifier) }
+                    records.append(kept)
+                    continue
+                }
                 let attributes = AlarmAttributes<PrayerAlarmMetadata>(presentation: AlarmPresentation(alert: alert), tintColor: Color(hex: 0xD4A843))
                 let stop = PrayerAlarmStopIntent(alarmID: id.uuidString)
                 do {
@@ -459,11 +499,20 @@ enum PrayerAlarms {
                     // Not set: this one stays a notification.
                     continue
                 }
+                keep.insert(id)
                 covered.insert(a.identifier)
                 if let twin { covered.insert(twin.identifier) }
                 records.append(Record(id: id.uuidString, at: a.at, event: a.event.rawValue,
-                                      kind: (adhan ? AlertKind.adhan : AlertKind.fajrAlarm).rawValue, sound: file ?? "alarm"))
+                                      kind: (adhan ? AlertKind.adhan : AlertKind.fajrAlarm).rawValue, sound: file ?? "alarm", key: key))
             }
+            if Task.isCancelled {
+                // Cut short: the alarms from before stay too, until the next rebuild sorts them out.
+                let kept = Set(records.map(\.id))
+                save(records + scheduled.filter { r in !kept.contains(r.id) && (UUID(uuidString: r.id).map(live.contains) ?? false) })
+                return covered
+            }
+            // The rest go now: changed, past, or no longer wanted (also any left by an older build).
+            for id in live.subtracting(keep) { try? manager.cancel(id: id) }
             save(records)
             return covered
         }

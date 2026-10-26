@@ -9,14 +9,17 @@ import WidgetKit
 /// picked in the app's Settings; "Time of day" follows the prayer period like the app's sky.
 enum WidgetLook: String, AppEnum {
     case auto, cream, green, night, teal, sky
+    /// Solid themes (SolidTheme): their own colours instead of the sky.
+    case nightGarden, desertLantern, charcoalCrimson
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "widget_style_title"
     static var caseDisplayRepresentations: [WidgetLook: DisplayRepresentation] = [
         .auto: "style_auto", .cream: "style_cream", .green: "style_green", .night: "style_night", .teal: "style_teal", .sky: "style_sky",
+        .nightGarden: "style_nightGarden", .desertLantern: "style_desertLantern", .charcoalCrimson: "style_charcoalCrimson",
     ]
 
     /// The styles offered in the app's Settings (everything but "Same as app").
-    static let choices: [WidgetLook] = [.cream, .green, .night, .teal, .sky]
+    static let choices: [WidgetLook] = [.cream, .green, .night, .teal, .sky, .nightGarden, .desertLantern, .charcoalCrimson]
 
     /// "Same as app" resolved to the style chosen in the app (Gold and cream until one is chosen).
     func resolved(_ state: SharedState?) -> WidgetLook {
@@ -152,6 +155,12 @@ struct WidgetPalette {
             return WidgetPalette(background: LinearGradient(colors: [c(0x5E9C95), c(0x3E7D78)], startPoint: .topLeading, endPoint: .bottomTrailing),
                                  ink: .white, secondary: Color.white.opacity(0.82), accent: c(0xF2D27A), card: Color.white.opacity(0.16),
                                  pill: c(0xF2D27A), onPill: c(0x123F3B))
+        case .nightGarden, .desertLantern, .charcoalCrimson:
+            // Widgets keep the dark version: they sit on the wallpaper, often under a tint.
+            let t = SolidTheme.of(look.rawValue)!.dark
+            return WidgetPalette(background: LinearGradient(colors: [t.background, t.surface], startPoint: .top, endPoint: .bottom),
+                                 ink: t.textPrimary, secondary: t.textSecondary, accent: t.accent, card: t.surfaceRaised.opacity(0.9),
+                                 pill: t.accent, onPill: t.background)
         case .sky:
             // The app's dark skies (shared/design/tokens.json "sky"): top, middle and low colour of each period.
             let k: [UInt32]

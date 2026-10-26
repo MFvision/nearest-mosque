@@ -9,6 +9,7 @@
     <string name="about_terms">Mga tuntunin ng paggamit</string>
     <string name="adhan_alarm_note">Tumutunog ang Adhan bilang alarm, kahit naka-silent. I-tap ang Ihinto para itigil ito.</string>
     <string name="adhan_alarm_note_android">Tumutugtog ang Adhan bilang alarm sa oras ng dasal, kahit naka-silent o vibrate, sa lakas ng tunog ng alarm mo. I-tap ang Ihinto para itigil ito.</string>
+    <string name="adhan_as_alarm">Tumunog bilang alarm</string>
     <string name="adhan_fajr">Adhan ng Fajr</string>
     <string name="adhan_full">Adhan (Dhuhr, Asr, Maghrib, Isha)</string>
     <string name="adhan_length">Haba ng adhan</string>
@@ -71,6 +72,7 @@
     <string name="answer_search_more">Maghanap din sa mga site na ito</string>
     <string name="answer_search_more_note">Binubuksan ang site sa iyong browser kasama ang iyong tanong.</string>
     <string name="answer_searching">Hinahanap sa iyong mga aklat…</string>
+    <string name="app_icon">Icon ng app</string>
     <string name="app_name">Near Mosque</string>
     <string name="app_style_note">Iisang istilo para sa mga button at highlight ng app, bawat widget, ang Lock Screen, at ang Dynamic Island. Para bigyan ng sariling istilo ang isang widget, pindutin ito nang matagal at piliin ang Edit Widget.</string>
     <string name="app_style_note_android">Iisang istilo para sa mga button at highlight ng app at sa bawat widget. Para bigyan ng sariling istilo ang isang widget, pindutin ito nang matagal, saka buksan ang settings nito.</string>
@@ -255,6 +257,13 @@
     <string name="hours_listed">Nakalistang oras: %1$s</string>
     <string name="hours_unknown">Hindi alam ang oras ng pagbubukas</string>
     <string name="hours_unverified_note">Galing sa datos ng mapa ang nakalistang oras at maaaring luma na. Hindi kasama ang oras ng sama-samang pagdarasal.</string>
+    <string name="icon_black">Itim</string>
+    <string name="icon_error">Hindi napalitan ang icon. Subukang muli.</string>
+    <string name="icon_gold">Ginto</string>
+    <string name="icon_green">Berde</string>
+    <string name="icon_night">Gabi</string>
+    <string name="icon_sky">Langit</string>
+    <string name="icon_teal">Teal</string>
     <string name="import_done">Naidagdag ang %1$s</string>
     <string name="import_failed">Hindi maidagdag ang file na ito: %1$s</string>
     <string name="import_pack">Mag-import mula sa file</string>
@@ -354,6 +363,11 @@
     <string name="maps_apple">Apple Maps</string>
     <string name="maps_google">Google Maps</string>
     <string name="maps_waze">Waze</string>
+    <string name="menu_classic">Klasiko</string>
+    <string name="menu_start">Menu at simula</string>
+    <string name="menu_start_note">Inilalagay ng Mga tab ang Dasal at Qibla at Pinakamalapit na Moske sa ibaba. Ang Klasiko ay iisang pahina, may Qibla, pinakamalapit na moske at Magtanong na isang tap lang sa ibaba. Ang Buksan sa ay ang screen kung saan nagsisimula ang app.</string>
+    <string name="menu_style">Istilo ng menu</string>
+    <string name="menu_tabs">Mga tab</string>
     <string name="method_DUBAI">Dubai</string>
     <string name="method_EGYPTIAN">Egyptian General Authority of Survey</string>
     <string name="method_KARACHI">University of Islamic Sciences, Karachi</string>
@@ -577,6 +591,7 @@
     <string name="online_search_body">Nagdaragdag ng mga live na resulta at oras ng paglalakad sa iyong na-download na data. Para maghanap, ipinapadala sa map service ang iyong tinatayang lokasyon (mga 1 km); para sa oras ng paglalakad, ang lokasyong ni-round sa mga 100 m. Palaging naglo-load ang mapa ng mga larawan ng lugar na tinitingnan mo.</string>
     <string name="online_searching">Naghahanap ng iba pang masjid online…</string>
     <string name="open_settings">Buksan ang Mga Setting</string>
+    <string name="open_with">Buksan sa</string>
     <string name="pack_builtin">Kasama na</string>
     <string name="pack_details">%1$s record, %2$s, bersyon %3$s</string>
     <string name="pack_kind_books">Mga aklat: %1$s</string>
@@ -736,12 +751,16 @@
     <string name="start_at_login_linux_note">Bumubukas nang naka-minimize pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app.</string>
     <string name="start_at_login_note">Bumubukas sa notification area pag-sign in mo, para dumating ang adhan at paalala nang hindi binubuksan ang app.</string>
     <string name="start_at_login_store_note">Para magsimula ang Near Mosque pag-sign in mo, i-on ito sa Windows Settings → Apps → Startup.</string>
+    <string name="start_last_place">Kung saan ako huminto</string>
     <string name="stop">Ihinto</string>
     <string name="straight_line">%1$s nang tuwiran</string>
     <string name="style_auto">Kapareho ng app</string>
+    <string name="style_charcoalCrimson">Uling at pula</string>
     <string name="style_cream">Ginto at krema</string>
+    <string name="style_desertLantern">Parol ng disyerto</string>
     <string name="style_green">Berde</string>
     <string name="style_night">Langit sa gabi</string>
+    <string name="style_nightGarden">Hardin sa gabi</string>
     <string name="style_sky">Ayon sa oras</string>
     <string name="style_teal">Teal</string>
     <string name="suggested_questions">Maaari mo ring itanong</string>
