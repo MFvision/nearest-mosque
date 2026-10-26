@@ -1,9 +1,9 @@
-// Writes a prayer-time page for each city in website/places.js (the cities named on the globe, each with a checked
-// Arabic name): website/prayer-times/<city>/ in English and website/ar/prayer-times/<city>/ in Arabic, plus a page
+// Writes a prayer-time page for each city in website/places.js (the cities named on the globe) and in
+// tools/site/cities-more.tsv, each with an Arabic name checked by hand: website/prayer-times/<city>/ in English and website/ar/prayer-times/<city>/ in Arabic, plus a page
 // listing them in each language, and the sitemap. The city, its Qibla and the calculation method are written into
 // the HTML; today's times are worked out in the visitor's browser (prayer-times/city.js), so nothing is sent.
 // Run by tools/site/prerender.mjs, or alone: node tools/site/cities.mjs
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -15,6 +15,18 @@ const { qibla, methodFor, storesHTML, esc } = await import(join(site, 'prayer.js
 
 const slug = (en) => en.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const cities = places.map(([en, ar, lat, lon, tz]) => ({ en, ar, lat, lon, tz, slug: slug(en) }));
+// The more cities: their place and time zone from the app's own city list (the most populous of that name in that
+// country). A name already taken gets its country code after it.
+const world = readFileSync(join(here, '../../packs/cities/cities.tsv'), 'utf8').trim().split('\n').map((l) => l.split('\t'));
+for (const line of readFileSync(join(here, 'cities-more.tsv'), 'utf8').split('\n')) {
+  if (!line.trim() || line.startsWith('#')) continue;
+  const [en, ar, cc, as] = line.split('\t'), name = as || en;
+  const hit = world.filter((r) => r[4] === cc && (r[1] === name || r[2] === name)).sort((a, b) => b[8] - a[8])[0];
+  if (!hit) throw new Error(`cities-more.tsv: ${name} (${cc}) is not in packs/cities/cities.tsv`);
+  let s = slug(en);
+  if (cities.some((c) => c.slug === s)) s += '-' + cc.toLowerCase();
+  cities.push({ en, ar, lat: +hit[5], lon: +hit[6], tz: hit[7], slug: s });
+}
 const SITE = 'https://nearmosque.net/';
 const num = (n, lang) => n.toLocaleString(lang === 'ar' ? 'ar-u-nu-latn' : 'en-US');
 
@@ -93,8 +105,8 @@ function head(lang, root, title, description, path, alt) {
 function bar(lang, root, alt) {
   const s = story[lang];
   return `<header class="bar">
-  <a class="brand" href="${root}${lang === 'ar' ? 'ar/' : ''}"><img src="${root}assets/icon.webp" alt="" width="34" height="34"><span>${esc(s.title)}</span></a>
-  <nav class="tools"><a class="pill" href="${root}${lang === 'ar' ? 'ar/' : ''}">${esc(W[lang].home)}</a><a class="pill" href="${root}${alt}" lang="${lang === 'ar' ? 'en' : 'ar'}" hreflang="${lang === 'ar' ? 'en' : 'ar'}">${esc(s.switchTo)}</a></nav>
+  <a class="brand" href="${root}${lang === 'ar' ? '#ar' : ''}"><img src="${root}assets/icon.webp" alt="" width="34" height="34"><span>${esc(s.title)}</span></a>
+  <nav class="tools"><a class="pill" href="${root}${lang === 'ar' ? '#ar' : ''}">${esc(W[lang].home)}</a><a class="pill" href="${root}${alt}" lang="${lang === 'ar' ? 'en' : 'ar'}" hreflang="${lang === 'ar' ? 'en' : 'ar'}">${esc(s.switchTo)}</a></nav>
 </header>`;
 }
 function foot(lang, root) {
@@ -189,6 +201,6 @@ for (const lang of ['en', 'ar']) {
   for (const c of cities) write(pathOf(lang, c) + 'index.html', cityPage(lang, c));
   write(pathOf(lang) + 'index.html', indexPage(lang));
 }
-const urls = ['', 'ar/', 'prayer-times/', 'ar/prayer-times/', ...cities.flatMap((c) => [pathOf('en', c), pathOf('ar', c)]), 'support.html', 'privacy.html', 'terms.html', 'security.html', 'credits.html'];
+const urls = ['', 'prayer-times/', 'ar/prayer-times/', ...cities.flatMap((c) => [pathOf('en', c), pathOf('ar', c)]), 'support.html', 'privacy.html', 'terms.html', 'security.html', 'credits.html'];
 writeFileSync(join(site, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 console.log(`wrote ${cities.length} cities in English and Arabic, two city lists and sitemap.xml`);

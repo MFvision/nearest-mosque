@@ -1,0 +1,27 @@
+/* Version 5: what it adds to the landing page's style.css. The footer in columns, and the download pill that
+   stays one tap away once the first screen is read. */
+footer > div { gap: 28px; }
+.foot-brand { display: flex; align-items: center; gap: 14px; }
+.foot-brand img { width: 40px; height: 40px; border-radius: 10px; }
+.foot-brand b { font: 600 1.1rem var(--font-display); color: var(--ink); }
+.foot-brand p { margin: 2px 0 0; }
+.foot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 24px 40px; }
+.foot-cols > div { display: grid; align-content: start; gap: 4px; }
+.foot-cols h3 { font: 600 0.78rem var(--font-display); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); margin: 0 0 6px; }
+:lang(ar) .foot-cols h3 { text-transform: none; letter-spacing: 0; font-size: 0.9rem; }
+.foot-cols a { color: var(--ink); font-weight: 600; text-decoration: none; padding-block: 6px; width: fit-content; }
+.foot-cols a:hover { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.foot-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--glass-edge); }
+
+.get-pill { position: fixed; z-index: 19; inset-block-end: calc(18px + env(safe-area-inset-bottom, 0px)); inset-inline-end: var(--edge-end, 16px);
+  display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 20px; border-radius: 999px; text-decoration: none;
+  font: 600 0.95rem var(--font-display); color: #1B1407; background: var(--gold-bright); box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55);
+  opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 0.3s, transform 0.3s; }
+.get-pill.shown { opacity: 1; transform: none; pointer-events: auto; }
+.get-pill:hover { filter: brightness(1.06); }
+@media (prefers-reduced-motion: reduce) { .get-pill { transition: none; transform: none; } }
+@media (max-width: 860px) {
+  /* Room under the words for the pill; on the chapters with the legend the pill stands aside. */
+  .js .chapter:not(.hud-ch) .beat { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+  .get-pill { inset-inline: 16px; justify-content: center; }
+}

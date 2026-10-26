@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<!-- Written by tools/site/prerender.mjs from tools/site/home.html and 5/story.js. Edit those, not this file. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أقرب مسجد · مواقيت الصلاة والقبلة وأقرب مسجد</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="مواقيت الصلاة والقبلة وأقرب مسجد أينما كنت، في تطبيقٍ واحدٍ هادئ. بلا حساب، بلا إعلانات، بلا تتبُّع.">
+<meta name="theme-color" content="#F4EEDF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#081B29" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://nearmosque.net/5/ar/">
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="en" href="https://nearmosque.net/5/">
+<link rel="alternate" hreflang="ar" href="https://nearmosque.net/5/ar/">
+<meta property="og:title" content="أقرب مسجد · مواقيت الصلاة والقبلة وأقرب مسجد">
+<meta property="og:description" content="مواقيت الصلاة والقبلة وأقرب مسجد أينما كنت، في تطبيقٍ واحدٍ هادئ. بلا حساب، بلا إعلانات، بلا تتبُّع.">
+<meta property="og:url" content="https://nearmosque.net/5/ar/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Near Mosque">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://nearmosque.net/assets/share-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Near Mosque: your next prayer, wherever you are. The app's prayer screen on an iPhone.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="أقرب مسجد · مواقيت الصلاة والقبلة وأقرب مسجد">
+<meta name="twitter:description" content="مواقيت الصلاة والقبلة وأقرب مسجد أينما كنت، في تطبيقٍ واحدٍ هادئ. بلا حساب، بلا إعلانات، بلا تتبُّع.">
+<meta name="twitter:image" content="https://nearmosque.net/assets/share-card.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Near Mosque","alternateName":"أقرب مسجد","url":"https://nearmosque.net/","image":"https://nearmosque.net/assets/share-card.jpg","applicationCategory":"LifestyleApplication","operatingSystem":"iOS, iPadOS, macOS, tvOS, visionOS, watchOS, Android, Windows, Linux","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","ar"],"description":"Prayer times, the Qibla and the nearest mosque for wherever you are. No account, no ads, no tracking.","downloadUrl":"https://play.google.com/store/apps/details?id=com.AVA.nearmosque"}</script>
+<link rel="icon" href="../../assets/icon-180.png">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="preload" href="../../fonts/readex-pro-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../devices.css">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../film.css">
+<link rel="stylesheet" href="../../duo.css">
+<link rel="stylesheet" href="../../wall.css">
+<link rel="stylesheet" href="../../5/v5.css">
+</head>
+<body>
+<a class="skip" href="#inside">انتقل إلى كل ما في التطبيق</a>
+<header class="bar">
+  <a class="brand" href="#world"><img src="../../assets/icon.webp" alt="" width="34" height="34"><span>أقرب مسجد</span></a>
+  <div class="tools"><button id="sound" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-8.8v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6Z" fill="currentColor"/></svg><span>استمع إلى الأذان</span></button><button id="lang" type="button" lang="en">English</button><button id="theme" type="button" aria-label="Theme">تلقائي</button></div>
+</header>
+<div class="stage" aria-hidden="true">
+  <div class="stage-poster"></div>
+  <canvas id="globe-canvas"></canvas>
+  <div class="descent" aria-hidden="true">
+    <div class="sat"><img src="../../assets/makkah-iss.jpg" alt="" decoding="async"></div>
+    <img class="night" src="../../assets/haram-night.jpg" alt="" decoding="async">
+    <video class="film" muted playsinline loop preload="metadata"></video>
+    <div class="veil"></div>
+  </div>
+  <canvas id="sky-canvas"></canvas>
+  <div class="labels"></div>
+</div>
+<nav class="board" aria-label="القصة"><a href="#world" data-id="world"><span>صلاتك القادمة</span></a><a href="#kaaba" data-id="kaaba"><span>القبلة</span></a><a href="#sky" data-id="sky"><span>سماؤك</span></a><a href="#mosque" data-id="mosque"><span>أقرب مسجد</span></a><a href="#ask" data-id="ask"><span>اسأل والمكتبة</span></a><a href="#adhan" data-id="adhan"><span>الأذان والأدوات</span></a><a href="#devices" data-id="devices"><span>كل الشاشات</span></a><a href="#privacy" data-id="privacy"><span>الخصوصية</span></a><a href="#get" data-id="get"><span>التحميل</span></a></nav>
+<main id="story"><section class="chapter globe-ch hud-ch" id="world" data-i="0" style="--weight:1.6" aria-labelledby="h-world">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">صلاتك القادمة</p>
+          <h1 id="h-world" aria-label="صلاتك القادمة، أينما كنت."><span aria-hidden="true"><span class="w" style="--d:0">صلاتك</span> <span class="w" style="--d:1">القادمة،</span> <span class="w" style="--d:2">أينما</span> <span class="w" style="--d:3">كنت.</span></span></h1>
+          <p class="hero-at"></p>
+          <p>في مكانٍ ما على الأرض يُرفع الأذان الآن. مواقيت الصلاة والقبلة وأقرب مسجد أينما كنت، في تطبيقٍ واحدٍ هادئ.</p>
+          
+          
+          
+          <a class="cta-link" href="#get">حمّل التطبيق</a><div class="scroll-cue">مرّر</div>
+          
+          
+        </div>
+        <div class="media"></div>
+      </div>
+    </section><section class="chapter" id="kaaba" data-i="1" style="--weight:2.1" aria-labelledby="h-kaaba">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">القبلة</p>
+          <h2 id="h-kaaba" aria-label="من أي مكان، اتجاهٌ واحد."><span aria-hidden="true"><span class="w" style="--d:0">من</span> <span class="w" style="--d:1">أي</span> <span class="w" style="--d:2">مكان،</span> <span class="hl" style="--d:3"><span class="w" style="--d:3">اتجاهٌ</span> </span><span class="nw"><span class="hl" style="--d:3"><span class="w" style="--d:4">واحد</span></span>.</span></span></h2>
+          
+          <p>أدِر هاتفك يُرشدك السهم إلى الكعبة، فإذا استقبلتها أضاءت القبلة وشعرت باهتزازةٍ خفيفة.</p>
+          <ul><li>الاتجاه والمسافة إلى الكعبة</li><li>وفي الأجهزة التي لا بوصلة فيها تُحدَّد القبلة انطلاقًا من الشمال، مع التنبيه إلى ذلك</li></ul>
+          
+          
+          
+          
+          <div class="daynight" role="group"><button type="button" data-night="0" aria-pressed="true">نهار</button><button type="button" data-night="1" aria-pressed="false">ليل</button></div>
+        </div>
+        <div class="media"></div>
+      </div>
+    </section><section class="chapter" id="sky" data-i="2" style="--weight:1.9" aria-labelledby="h-sky">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">مواقيت الصلاة</p>
+          <h2 id="h-sky" aria-label="صلاتك القادمة تحت سماء ساعتك."><span aria-hidden="true"><span class="hl" style="--d:0"><span class="w" style="--d:0">صلاتك</span> <span class="w" style="--d:1">القادمة</span></span> <span class="w" style="--d:2">تحت</span> <span class="w" style="--d:3">سماء</span> <span class="w" style="--d:4">ساعتك.</span></span></h2>
+          
+          <p>يعرض لك أعلى الشاشة الصلاة القادمة والوقت المتبقي لها، تحت سماءٍ يتبدّل لونها مع يومك: وردية عند الفجر، وذهبية عند العصر، وبنفسجية عند المغرب، وتُظهر طقس مدينتك إن شئت.</p>
+          <ul><li>13,090 مدينة مدمجة في التطبيق، و11 طريقة حساب يُقترح منها ما يناسب بلدك</li><li>مواقيت اليوم الستة، لكلٍّ منها تنبيه، مع التاريخ الهجري</li><li>سماء حسب الطقس: لا تعمل حتى تفعّلها، وعندها يُرسل موقع المدينة مقرّبًا إلى نحو كيلومتر إلى MET Norway</li></ul>
+          
+          <p class="credit"><a href="https://www.met.no/en/free-meteorological-data/Licensing-and-crediting" rel="noopener" target="_blank">الطقس: استنادًا إلى بيانات MET Norway</a></p>
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="../../assets/ar/iphone/01-prayer.webp" alt="صلاتك القادمة تحت سماء ساعتك." loading="lazy" decoding="async"><video muted playsinline loop preload="none" poster="../../assets/ar/iphone/01-prayer.webp"><source src="../../assets/ar/clips/01-header.mp4" type="video/mp4"><source src="../../assets/ar/clips/01-header.webm" type="video/webm"></video></div><div class="phone"><img src="../../assets/ar/iphone/02-prayer-weather.webp" alt="صلاتك القادمة تحت سماء ساعتك." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="mosque" data-i="3" style="--weight:1.4" aria-labelledby="h-mosque">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">أقرب مسجد</p>
+          <h2 id="h-mosque" aria-label="اعرف اتجاه أقرب مسجد وكم يبعد عنك."><span aria-hidden="true"><span class="w" style="--d:0">اعرف</span> <span class="w" style="--d:1">اتجاه</span> <span class="hl" style="--d:2"><span class="w" style="--d:2">أقرب</span> <span class="w" style="--d:3">مسجد</span></span> <span class="w" style="--d:4">وكم</span> <span class="w" style="--d:5">يبعد</span> <span class="w" style="--d:6">عنك.</span></span></h2>
+          
+          <p>تعرض البوصلة كل مسجدٍ في اتجاهه الحقيقي، وتعرض الخريطة وقت المشي إليه وطريق الوصول.</p>
+          <ul><li>الاتجاهات في خرائط Apple أو Google Maps</li><li>بيانات مساجد مدمجة، ومعها خرائط Apple عند تفعيل البحث على الإنترنت</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="../../assets/ar/iphone/09-mosques-radar.webp" alt="اعرف اتجاه أقرب مسجد وكم يبعد عنك." loading="lazy" decoding="async"></div><div class="phone"><img src="../../assets/ar/iphone/03-mosques-map.webp" alt="اعرف اتجاه أقرب مسجد وكم يبعد عنك." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="ask" data-i="4" style="--weight:1.5" aria-labelledby="h-ask">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">اسأل والمكتبة</p>
+          <h2 id="h-ask" aria-label="اسأل عن دينك، واعرف مصدر كل إجابة."><span aria-hidden="true"><span class="w" style="--d:0">اسأل</span> <span class="w" style="--d:1">عن</span> <span class="w" style="--d:2">دينك،</span> <span class="w" style="--d:3">واعرف</span> <span class="hl" style="--d:4"><span class="w" style="--d:4">مصدر</span></span> <span class="w" style="--d:5">كل</span> <span class="w" style="--d:6">إجابة.</span></span></h2>
+          
+          <p>تُستمدّ الإجابات من الكتب المحفوظة في هاتفك، مع ذكر مصدر كل نص، وتتقدّمها فتوى أهل العلم إن وُجدت فتوى مطابقة. ووراءها 99 كتابًا من أمهات الكتب تقرؤها دون إنترنت.</p>
+          <ul><li>تُكتب على هاتفك بنموذج Apple المدمج في الجهاز، ولا تُرسل أسئلتك إلى ذكاءٍ اصطناعي سحابي</li><li>25 سؤالًا شائعًا بـ22 لغة، عليها علامة «بانتظار مراجعة العلماء»</li><li>العقيدة والحديث والفقه والتفسير والسيرة، ويُتحقق من كل مجلد قبل فتحه</li></ul>
+          <p class="note">الإجابات تقتبس من الكتب، وليست فتوى.</p>
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="../../assets/ar/iphone/04-ask.webp" alt="اسأل عن دينك، واعرف مصدر كل إجابة." loading="lazy" decoding="async"><video muted playsinline loop preload="none" poster="../../assets/ar/iphone/04-ask.webp"><source src="../../assets/ar/clips/03-search.mp4" type="video/mp4"><source src="../../assets/ar/clips/03-search.webm" type="video/webm"></video></div><div class="phone"><img src="../../assets/ar/iphone/05-classics.webp" alt="اسأل عن دينك، واعرف مصدر كل إجابة." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="adhan" data-i="5" style="--weight:1.4" aria-labelledby="h-adhan">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">الأذان والتذكير والأدوات</p>
+          <h2 id="h-adhan" aria-label="الأذان من مكة أو المدينة، والوقت المتبقي في لمحة."><span aria-hidden="true"><span class="w" style="--d:0">الأذان</span> <span class="w" style="--d:1">من</span> <span class="hl" style="--d:2"><span class="w" style="--d:2">مكة</span> <span class="w" style="--d:3">أو</span> </span><span class="nw"><span class="hl" style="--d:2"><span class="w" style="--d:4">المدينة</span></span>،</span> <span class="w" style="--d:5">والوقت</span> <span class="w" style="--d:6">المتبقي</span> <span class="w" style="--d:7">في</span> <span class="w" style="--d:8">لمحة.</span></span></h2>
+          
+          <p>اختر أذان المسجد الحرام أو المسجد النبوي لكل صلاة، مع تذكيرٍ قبلها بعشر دقائق أو خمس. والعدّ التنازلي ينتظرك على شاشة القفل وفي الجزيرة الديناميكية.</p>
+          <ul><li>منبّه للفجر، وتذكير يوم الجمعة بسورة الكهف وصلاة الجمعة</li><li>«الصمت أثناء الصلاة»: «عدم الإزعاج» في أندرويد، وفي آيفون اختصارٌ تشغّله بلمسة من تنبيه الأذان</li><li>عشرة أنواع من الأدوات، وSiri يخبرك بالصلاة القادمة</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="phone"><img src="../../assets/ar/iphone/08-audio.webp" alt="الأذان من مكة أو المدينة، والوقت المتبقي في لمحة." loading="lazy" decoding="async"></div><div class="phone"><img src="../../assets/ar/iphone/07-island.webp" alt="الأذان من مكة أو المدينة، والوقت المتبقي في لمحة." loading="lazy" decoding="async"></div></div>
+      </div>
+    </section><section class="chapter" id="devices" data-i="6" style="--weight:1.5" aria-labelledby="h-devices">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">على كل شاشة</p>
+          <h2 id="h-devices" aria-label="على كل شاشة تصلّي معها."><span aria-hidden="true"><span class="w" style="--d:0">على</span> <span class="hl" style="--d:1"><span class="w" style="--d:1">كل</span> <span class="w" style="--d:2">شاشة</span></span> <span class="w" style="--d:3">تصلّي</span> <span class="w" style="--d:4">معها.</span></span></h2>
+          
+          <p>تطبيقٌ واحد لآيفون وآيباد وماك وآبل تي في وفيجن برو وApple Watch، والمواقيت والقبلة نفسها على أندرويد وويندوز ولينكس.</p>
+          <ul><li>Apple Watch: الصلاة القادمة، والقبلة بنقرةٍ على معصمك، والتسبيح بالتاج الرقمي</li><li>36 لغة للواجهة، منها 6 من اليمين إلى اليسار</li><li>أندرويد من Google Play، وويندوز ولينكس بالتنزيل من هذه الصفحة</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"><div class="family" role="img" aria-label="آيفون, آيباد, ماك, آبل تي في, فيجن برو">
+        <figure class="tv"><div class="screen"><img src="../../assets/ar/tv/01-tv-board.webp" alt="" loading="lazy" decoding="async"></div><div class="stand"></div><figcaption>آبل تي في</figcaption></figure>
+        <figure class="mac"><div class="screen"><img src="../../assets/ar/mac/01-prayer.webp" alt="" loading="lazy" decoding="async"></div><div class="base"></div><figcaption>ماك</figcaption></figure>
+        <figure class="vision"><div class="screen"><img src="../../assets/ar/vision/01-prayer.webp" alt="" loading="lazy" decoding="async"></div><figcaption>فيجن برو</figcaption></figure>
+        <figure class="ipad"><div class="screen"><img src="../../assets/ar/ipad/01-prayer.webp" alt="" loading="lazy" decoding="async"></div><figcaption>آيباد</figcaption></figure>
+        <figure class="iphone"><div class="phone"><img src="../../assets/ar/iphone/10-prayer-dark.webp" alt="" loading="lazy" decoding="async"></div><figcaption>آيفون</figcaption></figure>
+      </div></div>
+      </div>
+    </section><section class="chapter" id="privacy" data-i="7" style="--weight:1.3" aria-labelledby="h-privacy">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">الخصوصية</p>
+          <h2 id="h-privacy" aria-label="بلا حساب، بلا إعلانات، بلا تتبُّع."><span aria-hidden="true"><span class="w" style="--d:0">بلا</span> <span class="w" style="--d:1">حساب،</span> <span class="w" style="--d:2">بلا</span> <span class="w" style="--d:3">إعلانات،</span> <span class="hl" style="--d:4"><span class="w" style="--d:4">بلا</span> </span><span class="nw"><span class="hl" style="--d:4"><span class="w" style="--d:5">تتبُّع</span></span>.</span></span></h2>
+          
+          <p>تُحسب المواقيت والقبلة وإجاباتك على جهازك. لا حساب تنشئه، ولا يُرسل إلينا شيءٌ عنك.</p>
+          <ul><li>المواقيت والقبلة تعمل دون إنترنت</li><li>الاتصال فقط للبحث عن المساجد (مع تقريب موقعك إلى نحو كيلومتر) والخرائط وما تختار تنزيله، ولسماء الطقس إن فعّلتها</li></ul>
+          
+          
+          
+          
+          
+        </div>
+        <div class="media"></div>
+      </div>
+    </section><section class="chapter globe-ch hud-ch" id="get" data-i="8" style="--weight:1.7" aria-labelledby="h-get">
+      <div class="beat">
+        <div class="copy">
+          <p class="eyebrow">أقرب مسجد</p>
+          <h2 id="h-get" aria-label="كل صلاةٍ في وقتها، أينما كنت."><span aria-hidden="true"><span class="w" style="--d:0">كل</span> <span class="w" style="--d:1">صلاةٍ</span> <span class="hl" style="--d:2"><span class="w" style="--d:2">في</span> </span><span class="nw"><span class="hl" style="--d:2"><span class="w" style="--d:3">وقتها</span></span>،</span> <span class="w" style="--d:4">أينما</span> <span class="w" style="--d:5">كنت.</span></span></h2>
+          
+          <p>لا حساب تنشئه، ولا إعلانات تنتظرها.</p>
+          
+          
+          
+          
+          <div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.AVA.nearmosque" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8v18.4c0 .6.6.9 1.1.6l15.4-8.9c.5-.3.5-1 0-1.3L5.1 2.2C4.6 1.9 4 2.2 4 2.8Z"/></svg><small>احصل عليه من</small><b>Google Play</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg><small>حمّل لـ</small><b>Windows</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.3 4.4L9.9 12l-3.6 3.6L7.7 17l5-5-5-5ZM13 15.2V17h5v-1.8Z"/></svg><small>حمّل لـ</small><b>Linux</b></a></div><p class="stores-more"><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-amd64.deb" rel="noopener">⁦.deb⁩ لأوبونتو وديبيان</a><span aria-hidden="true">·</span><a href="https://github.com/MFvision/nearest-mosque/releases/tag/desktop-latest" rel="noopener" target="_blank">كل التنزيلات وبصماتها</a></p>
+          
+        </div>
+        <div class="media"></div>
+      </div>
+    </section></main>
+<section data-wall></section>
+<section data-duo></section>
+<section class="inside" id="inside" aria-labelledby="inside-title"><div>
+      <h2 id="inside-title">كل ما في التطبيق</h2>
+      <p>ما يفعله التطبيق اليوم، جهازًا جهازًا.</p>
+      <div class="strip" tabindex="0" aria-label="كل ما في التطبيق"><img src="../../assets/ar/iphone/01-prayer.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/02-prayer-weather.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/02-qibla.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/03-mosques-map.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/04-ask.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/05-classics.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/06-widgets.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/07-island.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/08-audio.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/09-mosques-radar.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/iphone/10-prayer-dark.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/watch/01-watch-prayer.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/watch/02-watch-qibla.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/watch/05-watch-mosques.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/ar/watch/06-watch-ask.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="groups"><div class="group"><h3>مواقيت الصلاة</h3><ul><li>الصلاة القادمة والعدّ التنازلي وسماء الساعة</li><li>مواقيت اليوم الستة ولكلٍّ منها تنبيه</li><li>11 طريقة حساب، والعصر على المذهب الحنفي أو الجمهور، وقواعد خطوط العرض العليا</li><li>تعديل كل وقت بالدقائق، وتعديل التاريخ الهجري</li><li>أوقات تقديرية حيث لا تغرب الشمس أو لا تشرق</li></ul></div><div class="group"><h3>سماء حسب الطقس</h3><ul><li>الغيوم والمطر والعواصف الرعدية والضباب والثلج على سماء الساعة</li><li>درجة الحرارة والرياح، مع رمزٍ لحالة الطقس</li><li>متوقفة حتى تفعّلها، وعندها يُرسل موقع المدينة مقرّبًا إلى نحو كيلومتر إلى MET Norway</li><li>على آيفون وآيباد وماك وفيجن برو وأندرويد وويندوز ولينكس</li></ul></div><div class="group"><h3>القبلة</h3><ul><li>بوصلة حيّة تضيء وتنقر حين تستقبل الكعبة</li><li>الاتجاه والمسافة إلى الكعبة</li><li>تُرسم من الشمال على الأجهزة التي لا بوصلة فيها</li></ul></div><div class="group"><h3>أقرب مسجد</h3><ul><li>رادار يُظهر كل مسجد في اتجاهه الحقيقي</li><li>خريطة بوقت المشي والاتصال والمواقع</li><li>الاتجاهات في خرائط Apple أو Google Maps</li><li>بيانات مساجد مدمجة، ومعها خرائط Apple عند تفعيل البحث على الإنترنت</li></ul></div><div class="group"><h3>اسأل والمكتبة</h3><ul><li>إجابات تقتبس من الكتب على هاتفك، مع مصدر كل منها</li><li>فتوى العالم أولًا إن وُجدت فتوى مطابقة</li><li>25 سؤالًا شائعًا بـ22 لغة، بانتظار مراجعة العلماء</li><li>99 كتابًا في 450 مجلدًا، تُقرأ دون اتصال</li><li>دار الإسلام وموسوعة الأحاديث وترجمات معاني القرآن والتفاسير وفتاوى ابن باز</li><li>قراءة الإجابات بصوتٍ مسموع بأصوات جهازك</li></ul></div><div class="group"><h3>الأذان والتذكير</h3><ul><li>أذان المسجد الحرام أو المسجد النبوي</li><li>تذكير قبل الصلاة بعشر دقائق وخمس، بصوتٍ عربي أو إنجليزي</li><li>منبّه الفجر، وسورة الكهف والجمعة يوم الجمعة، والسحور والإفطار في رمضان</li></ul></div><div class="group"><h3>الصمت أثناء الصلاة</h3><ul><li>من الإقامة أو الأذان حتى نهاية الصلاة، للصلوات التي تختارها</li><li>يوم الجمعة من الأذان لمدة 45 إلى 90 دقيقة</li><li>في أندرويد يشغّل التطبيق «عدم الإزعاج» ويطفئه، بإذنك</li><li>في آيفون وآيباد: لمسةٌ على تنبيه الأذان أو الإقامة تشغّل اختصارًا تصنعه مرة واحدة، فيبقى «التركيز» مفعّلًا حتى نهاية الصلاة</li></ul></div><div class="group"><h3>الأدوات والأنشطة المباشرة</h3><ul><li>10 أنواع من الأدوات للشاشة الرئيسية وشاشة القفل وسطح مكتب الماك</li><li>عدّ تنازلي للصلاة القادمة على شاشة القفل وفي الجزيرة الديناميكية</li><li>بوصلة القبلة في الجزيرة الديناميكية</li><li>5 أنماط تلوّن التطبيق وكل أدواته</li></ul></div><div class="group"><h3>Siri والاختصارات</h3><ul><li>«متى الصلاة القادمة في أقرب مسجد؟»</li><li>«أين أقرب مسجد في أقرب مسجد؟»</li><li>الاتجاهات والسؤال والمواقيت والقبلة بالصوت أو بزر الإجراءات</li></ul></div><div class="group"><h3>Apple Watch</h3><ul><li>الصلاة القادمة على السماء الحيّة</li><li>بوصلة القبلة مع نقرةٍ على المعصم</li><li>الصحة الروحية: سجّل صلواتك واطّلع على أسبوعك</li><li>التسبيح بالتاج الرقمي</li><li>7 مضاعفات بـ15 حجمًا</li></ul></div><div class="group"><h3>الجولة الترحيبية</h3><ul><li>13 خطوة قصيرة، و12 على ويندوز ولينكس</li><li>مكان صلاتك، والعصر، والأذان مع معاينته، والجمعة، وسماء الطقس</li><li>يومك مبنيٌّ على إجاباتك، مع شمسٍ تسحبها</li><li>5 أنماط لونية (ذهبي وكريمي، وأخضر، وأخضر مزرق، وسماء الليل، وحسب الوقت)، بمظهر فاتح أو داكن</li><li>ما الذي يغادر جهازك بالضبط، ثم طلب إذن الإشعارات</li><li>عرضها مجددًا من الإعدادات</li></ul></div><div class="group"><h3>على كل جهاز</h3><ul><li>آيفون وآيباد وماك وآبل تي في وApple Vision Pro</li><li>لوحة المواقيت على آبل تي في، والتنبيه بملء الشاشة، والرف العلوي</li><li>هواتف أندرويد وأجهزته القابلة للطي واللوحية من Google Play، بثمانية أنواع من الأدوات</li><li>ويندوز ولينكس، بالتنزيل من هذه الصفحة</li><li>في ويندوز يصلك الأذان من منطقة الإشعارات</li></ul></div><div class="group"><h3>الخصوصية</h3><ul><li>بلا حسابات ولا إعلانات ولا تتبُّع ولا ذكاء اصطناعي سحابي</li><li>المواقيت والقبلة والإجابات تُحسب على الجهاز</li><li>الاتصال فقط للبحث عن المساجد والخرائط وما تختار تنزيله، ولسماء الطقس إن فعّلتها</li></ul></div></div>
+    </div></section>
+<a class="get-pill" href="#get"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>حمّل التطبيق</span></a>
+<footer><div>
+      <div class="foot-brand"><img src="../../assets/icon.webp" alt="" width="40" height="40" loading="lazy"><div><b>أقرب مسجد</b><p>مواقيت الصلاة والقبلة وأقرب مسجد، أينما كنت.</p></div></div>
+      <div class="foot-cols">
+        <div><h3>حمّل التطبيق</h3><a href="https://play.google.com/store/apps/details?id=com.AVA.nearmosque" rel="noopener" target="_blank">Google Play</a><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi" rel="noopener">Windows</a><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage" rel="noopener">Linux</a></div>
+        <div><h3>المساعدة</h3><a href="../../support.html#ar">الدعم</a><a href="../../ar/prayer-times/">مواقيت الصلاة في المدن</a><a href="mailto:app@vision.bz?subject=Near%20Mosque">app@vision.bz</a></div>
+        <div><h3>عن التطبيق</h3><a href="../../privacy.html#ar">سياسة الخصوصية</a><a href="../../terms.html#ar">شروط الاستخدام</a><a href="../../security.html#ar">الأمان</a><a href="../../credits.html#ar">المصادر والتراخيص</a></div>
+      </div>
+      <p class="foot-note">بلا حساب، بلا إعلانات، بلا تتبُّع. وهذا الموقع لا يضع ملفات تعريف ارتباط، ولا يحمّل شيئًا من شركات أخرى.</p>
+    </div></footer>
+<script src="../../sky.js"></script>
+<script type="module" src="../../5/app.js"></script>
+<script type="module" src="../../film.js"></script>
+<script type="module" src="../../duo.js"></script>
+<script type="module" src="../../wall.js"></script>
+</body>
+</html>

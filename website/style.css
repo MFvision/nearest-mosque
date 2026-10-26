@@ -209,27 +209,8 @@ main { position: relative; z-index: 1; }
 .strip { display: flex; gap: 18px; overflow-x: auto; padding: 8px 2px 24px; margin-bottom: 40px; scroll-snap-type: x mandatory; }
 .strip img { height: clamp(260px, 38vw, 420px); width: auto; max-width: none; border-radius: 22px; box-shadow: 0 20px 40px -24px var(--shadow); scroll-snap-align: start; background: var(--device); }
 footer { position: relative; z-index: 2; background: var(--ground-2); padding-block: 32px calc(32px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); color: var(--ink-2); font-size: 0.88rem; }
-footer > div { max-width: 1180px; margin-inline: auto; display: grid; gap: 28px; }
-.foot-brand { display: flex; align-items: center; gap: 14px; }
-.foot-brand img { width: 40px; height: 40px; border-radius: 10px; }
-.foot-brand b { font: 600 1.1rem var(--font-display); color: var(--ink); }
-.foot-brand p { margin: 2px 0 0; }
-.foot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 24px 40px; }
-.foot-cols > div { display: grid; align-content: start; gap: 4px; }
-.foot-cols h3 { font: 600 0.78rem var(--font-display); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); margin: 0 0 6px; }
-:lang(ar) .foot-cols h3 { text-transform: none; letter-spacing: 0; font-size: 0.9rem; }
-.foot-cols a { color: var(--ink); font-weight: 600; text-decoration: none; padding-block: 6px; width: fit-content; }
-.foot-cols a:hover { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
-.foot-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--glass-edge); }
-
-/* The download pill: always one tap from the app once the first screen is read. */
-.get-pill { position: fixed; z-index: 19; inset-block-end: calc(18px + env(safe-area-inset-bottom, 0px)); inset-inline-end: var(--edge-end, 16px);
-  display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 20px; border-radius: 999px; text-decoration: none;
-  font: 600 0.95rem var(--font-display); color: #1B1407; background: var(--gold-bright); box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55);
-  opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 0.3s, transform 0.3s; }
-.get-pill.shown { opacity: 1; transform: none; pointer-events: auto; }
-.get-pill:hover { filter: brightness(1.06); }
-@media (prefers-reduced-motion: reduce) { .get-pill { transition: none; transform: none; } }
+footer > div { max-width: 1180px; margin-inline: auto; display: grid; gap: 10px; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; color: var(--ink); }
 
 /* Phones and narrow windows: each chapter is exactly one screen tall; the screens fill the space above the words
    (sized against that space, so nothing runs off the bottom), and the words sit low. */
@@ -239,9 +220,6 @@ footer > div { max-width: 1180px; margin-inline: auto; display: grid; gap: 28px;
     padding-block: calc(64px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)); }
   .js .hud-ch .beat { padding-bottom: calc(var(--hud-h, 104px) + 24px + env(safe-area-inset-bottom, 0px)); }
   .media { order: -1; min-height: 0; height: 100%; container-type: size; }
-  /* Room under the words for the download pill; on the chapters with the legend the pill stands aside. */
-  .js .chapter:not(.hud-ch) .beat { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
-  .get-pill { inset-inline: 16px; justify-content: center; }
   .phone, .droid { width: min(44vw, 250px, 45cqh, 90cqw); }
   .media .phone + .phone, .media .droid + .droid { width: min(42vw, 240px, 45cqh, 46cqw); }
   .watch { width: min(27vw, 140px, 62cqh, 29cqw); }
