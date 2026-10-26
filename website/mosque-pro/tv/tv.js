@@ -27,7 +27,7 @@ const T = {
     netHow: 'لحجبها: إعدادات التلفاز ← الشبكة ← DNS ‏94.140.14.14', netOk: 'تُحجب الإعلانات والمتتبعات على هذه الشبكة',
     nightNext: (name, time, left) => `${name} ${time} · بعد ${left}`, hours: (h, m) => (h ? h + ' س و ' : '') + m + ' د',
     adhanHint: 'الأذان يعمل · اضغط OK لإيقافه',
-    apps: 'تطبيقاتك', today: 'اليوم', settings: 'الإعدادات', tvSettings: 'إعدادات التلفاز', open: 'فتح',
+    apps: 'تطبيقاتك', appsHere: 'افتح التطبيقات من زر الرئيسية في التلفاز', today: 'اليوم', settings: 'الإعدادات', tvSettings: 'إعدادات التلفاز', open: 'فتح',
     weather: 'الطقس', hiLo: (h, l) => `العظمى ${h}° · الصغرى ${l}°`, times: 'مواقيت اليوم',
     qibla: 'القبلة', fromNorth: 'من الشمال', toMakkah: (km) => km.toLocaleString('ar-SA-u-nu-latn') + ' كم إلى مكة المكرمة',
     city: 'المدينة', lang: 'اللغة', langName: 'العربية', sound: 'صوت الأذان', night: 'شاشة الليل',
@@ -52,8 +52,8 @@ const T = {
     mins: (n) => n + ' د', minsSigned: (n) => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n) + ' د', noWait: 'بلا انتظار',
     methods: { mwl: 'رابطة العالم الإسلامي', uaq: 'أم القرى (مكة المكرمة)', egypt: 'الهيئة المصرية العامة للمساحة', karachi: 'جامعة العلوم الإسلامية بكراتشي',
       isna: 'الجمعية الإسلامية لأمريكا الشمالية', dubai: 'دبي', kuwait: 'الكويت', qatar: 'قطر', sea: 'سنغافورة وجنوب شرق آسيا', turkey: 'الشؤون الدينية التركية' },
-    help: 'المساعدة', helpValue: 'تواصل معنا', helpWa: 'واتساب', helpMail: 'البريد',
-    helpReply: 'نقرأ كل رسالة ونردّ بالبريد أو عبر واتساب حيث راسلتنا.',
+    help: 'المساعدة', helpValue: 'تواصل معنا', helpMail: 'البريد',
+    helpReply: 'نقرأ كل رسالة ونردّ بالبريد.',
     helpQA: [
       ['المواقيت لا تطابق مسجدي', 'تُحسب بالطريقة المعتمدة في بلد المدينة (أم القرى في السعودية). تأكّد أن المدينة في الإعدادات صحيحة، ثم اضبط الطريقة والعصر والدقائق من الإعدادات ← طريقة الحساب، والإقامة من الإعدادات ← الإقامة.'],
       ['لا أسمع الأذان', 'صوت الأذان متوقف في البداية. شغّله من الإعدادات ← صوت الأذان، ثم اضغط أي زر مرة ليسمح التلفاز بالصوت.'],
@@ -67,7 +67,7 @@ const T = {
     netHow: 'To block them: TV settings → Network → DNS 94.140.14.14', netOk: 'Ads and trackers are blocked on this network',
     nightNext: (name, time, left) => `${name} ${time} · in ${left}`, hours: (h, m) => (h ? h + 'h ' : '') + m + 'm',
     adhanHint: 'Adhan playing · press OK to stop',
-    apps: 'Your apps', today: 'Today', settings: 'Settings', tvSettings: 'TV settings', open: 'Open',
+    apps: 'Your apps', appsHere: "Open apps from the TV's Home button", today: 'Today', settings: 'Settings', tvSettings: 'TV settings', open: 'Open',
     weather: 'Weather', hiLo: (h, l) => `High ${h}° · Low ${l}°`, times: "Today's times",
     qibla: 'Qibla', fromNorth: 'from north', toMakkah: (km) => km.toLocaleString('en-US') + ' km to Makkah',
     city: 'City', lang: 'Language', langName: 'English', sound: 'Adhan sound', night: 'Night screen',
@@ -92,8 +92,8 @@ const T = {
     mins: (n) => n + ' min', minsSigned: (n) => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n) + ' min', noWait: 'No wait',
     methods: { mwl: 'Muslim World League', uaq: 'Umm al-Qura (Makkah)', egypt: 'Egyptian General Authority', karachi: 'University of Islamic Sciences, Karachi',
       isna: 'ISNA (North America)', dubai: 'Dubai', kuwait: 'Kuwait', qatar: 'Qatar', sea: 'Singapore and Southeast Asia', turkey: 'Diyanet (Turkey)' },
-    help: 'Help', helpValue: 'Contact', helpWa: 'WhatsApp', helpMail: 'Email',
-    helpReply: 'We read every message and reply by email or WhatsApp, wherever you wrote from.',
+    help: 'Help', helpValue: 'Contact', helpMail: 'Email',
+    helpReply: 'We read every message and reply by email.',
     helpQA: [
       ["The times don't match my mosque", "They use the method of the city's country (Umm al-Qura in Saudi Arabia). Check the city in Settings, then set the method, Asr and minutes in Settings, Calculation, and the iqama in Settings, Iqama."],
       ["I don't hear the Adhan", 'The Adhan sound starts off. Turn it on in Settings, Adhan sound, then press any key once so the TV allows sound.'],
@@ -102,7 +102,7 @@ const T = {
   },
 };
 // Where help requests go (the same as shared/help/help.json).
-const CONTACT = { email: 'app@vision.bz', whatsapp: '+966 57 937 2403' };
+const CONTACT = { email: 'app@vision.bz' };
 const MIN = 60e3;
 const WAKE = 3 * MIN; // a key press on the Adhan or night screen shows the home screen this long
 const LOCK_AFTER = 5 * MIN; // the lock screen comes up after this long without a key
@@ -671,6 +671,8 @@ function hint() {
 function activate(el) {
   if (!el) return;
   const id = el.getAttribute('data-app'), act = el.getAttribute('data-act'), n = +el.getAttribute('data-surah');
+  // In a TV's web browser the page can't open apps, and only the LG app opens the TV's settings: say where they are.
+  if ((id && !apps.opens) || (act === 'tv-settings' && !apps.webos)) { toast(t().appsHere); return; }
   if (id) { stopQuran(); apps.launch(id); return; }
   // OK plays; OK on what is playing stops it.
   if (n) { const was = !!playing && playing.n === n; stopQuran(); if (!was) playQuran({ kind: 'surah', n, r: reciter }); return; }
@@ -714,7 +716,7 @@ function openPicker() {
 // Help: how to reach us (and that we reply), then the answers to what TV viewers ask most. OK or Back closes it.
 function openHelp() {
   const tx = t(), ltr = (s) => '\u2066' + s + '\u2069';
-  const rows = [{ label: tx.helpWa + ' · ' + ltr(CONTACT.whatsapp) }, { label: tx.helpMail + ' · ' + ltr(CONTACT.email) }, { group: tx.helpReply }]
+  const rows = [{ label: tx.helpMail + ' · ' + ltr(CONTACT.email) }, { group: tx.helpReply }]
     .concat(tx.helpQA.map((qa) => ({ qa })));
   openList(tx.help, rows, 0, () => {});
 }
@@ -851,6 +853,13 @@ function unlockAudio() {
   if (p && p.then) p.then(done, () => { a.muted = false; }); else done();
 }
 
+// In a TV's web browser the first press also hides the browser bar (the webOS app is full screen already).
+function fullScreen() {
+  const d = document.documentElement, f = d.requestFullscreen || d.webkitRequestFullscreen;
+  if (!f || document.fullscreenElement || document.webkitFullscreenElement) return;
+  try { const p = f.call(d); if (p && p.catch) p.catch(() => {}); } catch (err) { /* not allowed here */ }
+}
+
 const BACK = { Escape: 1, Backspace: 1, GoBack: 1, BrowserBack: 1 };
 const KEYS = { 37: 'left', 38: 'up', 39: 'right', 40: 'down', 13: 'ok' };
 addEventListener('keydown', (e) => {
@@ -861,6 +870,7 @@ addEventListener('keydown', (e) => {
   if (!k) return;
   e.preventDefault();
   unlockAudio();
+  fullScreen();
   lastKey = Date.now();
   // On the Adhan or night screen a key first wakes the home screen (OK first stops a playing Adhan).
   if (mode !== 'board') {

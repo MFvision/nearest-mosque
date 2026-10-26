@@ -230,7 +230,8 @@ p, h2 { margin: 0; }
 .lock-hint.gone { opacity: 0; }
 
 /* Night: dim and warm, moving a little every minute. */
-.night { background: #000; color: #BDB7A8; }
+/* Black, also in English: [dir="ltr"] .screen above would otherwise paint the navy over it. */
+.night, [dir] .screen.night { background: #000; color: #BDB7A8; }
 .night-box { position: absolute; display: flex; flex-direction: column; align-items: flex-start; gap: 1.4vh; transition: top 2s ease, left 2s ease; }
 .night-moon { width: 4.7vh; height: 4.7vh; fill: none; stroke: #8C7444; stroke-width: 1.4; stroke-linecap: round; }
 .night-time { display: flex; align-items: baseline; gap: 1.4vh; direction: ltr; }
