@@ -194,6 +194,8 @@ targets:
     info:
       path: Clip/Info.plist
       properties:
+        # XcodeGen leaves the package type out for App Clip targets; App Store validation requires APPL.
+        CFBundlePackageType: APPL
         CFBundleDisplayName: Near Mosque
         CFBundleName: Near Mosque
         CFBundleShortVersionString: $(MARKETING_VERSION)
