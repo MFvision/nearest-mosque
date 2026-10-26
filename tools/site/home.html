@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{pageTitle}}</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="{{description}}">
+<meta name="theme-color" content="#F4EEDF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#081B29" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="{{canonical}}">
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="en" href="https://nearmosque.net/5/">
+<link rel="alternate" hreflang="ar" href="https://nearmosque.net/5/ar/">
+<meta property="og:title" content="{{pageTitle}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Near Mosque">
+<meta property="og:locale" content="{{ogLocale}}">
+<meta property="og:locale:alternate" content="{{ogLocaleAlt}}">
+<meta property="og:image" content="https://nearmosque.net/assets/share-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Near Mosque: your next prayer, wherever you are. The app's prayer screen on an iPhone.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{pageTitle}}">
+<meta name="twitter:description" content="{{description}}">
+<meta name="twitter:image" content="https://nearmosque.net/assets/share-card.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Near Mosque","alternateName":"أقرب مسجد","url":"https://nearmosque.net/","image":"https://nearmosque.net/assets/share-card.jpg","applicationCategory":"LifestyleApplication","operatingSystem":"iOS, iPadOS, macOS, tvOS, visionOS, watchOS, Android, Windows, Linux","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","ar"],"description":"Prayer times, the Qibla and the nearest mosque for wherever you are. No account, no ads, no tracking.","downloadUrl":"https://play.google.com/store/apps/details?id=com.AVA.nearmosque"}</script>
+<link rel="icon" href="{{root}}assets/icon-180.png">
+<link rel="apple-touch-icon" href="{{root}}assets/icon-180.png">
+<link rel="preload" href="{{root}}fonts/readex-pro-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{root}}fonts.css">
+<link rel="stylesheet" href="{{root}}devices.css">
+<link rel="stylesheet" href="{{root}}style.css">
+<link rel="stylesheet" href="{{root}}film.css">
+<link rel="stylesheet" href="{{root}}duo.css">
+<link rel="stylesheet" href="{{root}}wall.css">
+<link rel="stylesheet" href="{{root}}5/v5.css">
+</head>
+<body>
+<a class="skip" href="#inside">{{skip}}</a>
+<header class="bar">
+  <a class="brand" href="#world"><img src="{{root}}assets/icon.webp" alt="" width="34" height="34"><span>{{brand}}</span></a>
+  <div class="tools"><button id="sound" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-8.8v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6Z" fill="currentColor"/></svg><span>{{sound}}</span></button><button id="lang" type="button" lang="{{switchLang}}">{{switchTo}}</button><button id="theme" type="button" aria-label="Theme">{{themeAuto}}</button></div>
+</header>
+<div class="stage" aria-hidden="true">
+  <div class="stage-poster"></div>
+  <canvas id="globe-canvas"></canvas>
+  <div class="descent" aria-hidden="true">
+    <div class="sat"><img src="{{root}}assets/makkah-iss.jpg" alt="" decoding="async"></div>
+    <img class="night" src="{{root}}assets/haram-night.jpg" alt="" decoding="async">
+    <video class="film" muted playsinline loop preload="metadata"></video>
+    <div class="veil"></div>
+  </div>
+  <canvas id="sky-canvas"></canvas>
+  <div class="labels"></div>
+</div>
+<nav class="board" aria-label="{{boardLabel}}">{{board}}</nav>
+<main id="story">{{chapters}}</main>
+<section data-wall></section>
+<section data-duo></section>
+<section class="inside" id="inside" aria-labelledby="inside-title">{{inside}}</section>
+<a class="get-pill" href="#get"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{cta}}</span></a>
+<footer>{{footer}}</footer>
+<script src="{{root}}sky.js"></script>
+<script type="module" src="{{root}}5/app.js"></script>
+<script type="module" src="{{root}}film.js"></script>
+<script type="module" src="{{root}}duo.js"></script>
+<script type="module" src="{{root}}wall.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+# More cities for the prayer-time pages (tools/site/cities.mjs), after the globe's cities in website/places.js.
+# English name shown on the site, Arabic name (checked by hand), country code, and the name in packs/cities/cities.tsv
+# when it differs. Coordinates and time zones come from that file (GeoNames, CC BY 4.0).
+Dammam	الدمام	SA
+Taif	الطائف	SA	Ta’if
+Tabuk	تبوك	SA
+Buraydah	بريدة	SA
+Abha	أبها	SA
+Khamis Mushait	خميس مشيط	SA
+Hail	حائل	SA	Ha'il
+Al Hofuf	الهفوف	SA	Al Hufuf
+Jazan	جازان	SA	Jizan
+Najran	نجران	SA
+Yanbu	ينبع	SA
+Al Jubayl	الجبيل	SA
+Al Khobar	الخبر	SA	Khobar
+Abu Dhabi	أبوظبي	AE
+Sharjah	الشارقة	AE
+Al Ain	العين	AE	Al Ain City
+Ajman	عجمان	AE	Ajman
+Salalah	صلالة	OM
+Sohar	صحار	OM
+Aden	عدن	YE
+Taiz	تعز	YE
+Al Hudaydah	الحديدة	YE
+Mukalla	المكلا	YE
+Basrah	البصرة	IQ
+Mosul	الموصل	IQ
+Erbil	أربيل	IQ
+Najaf	النجف	IQ
+Karbala	كربلاء	IQ
+Kirkuk	كركوك	IQ
+Aleppo	حلب	SY
+Homs	حمص	SY
+Latakia	اللاذقية	SY
+Hama	حماة	SY	Ḩamāh
+Zarqa	الزرقاء	JO
+Irbid	إربد	JO
+Gaza	غزة	PS
+Hebron	الخليل	PS
+Nablus	نابلس	PS
+Jerusalem	القدس	IL
+Sidon	صيدا	LB
+Giza	الجيزة	EG
+Port Said	بورسعيد	EG
+Suez	السويس	EG
+Luxor	الأقصر	EG
+Asyut	أسيوط	EG	Assiut
+Mansoura	المنصورة	EG	Al Mansurah
+Tanta	طنطا	EG
+Aswan	أسوان	EG
+Omdurman	أم درمان	SD
+Port Sudan	بورتسودان	SD
+Benghazi	بنغازي	LY
+Misratah	مصراتة	LY
+Sfax	صفاقس	TN
+Sousse	سوسة	TN
+Oran	وهران	DZ
+Constantine	قسنطينة	DZ
+Annaba	عنابة	DZ
+Rabat	الرباط	MA
+Fes	فاس	MA
+Marrakesh	مراكش	MA
+Tangier	طنجة	MA
+Agadir	أكادير	MA
+Meknes	مكناس	MA
+Oujda	وجدة	MA	Oujda
+Djibouti	جيبوتي	DJ
+Hargeisa	هرجيسا	SO	Hargeysa
+Addis Ababa	أديس أبابا	ET
+Kampala	كمبالا	UG
+Mombasa	مومباسا	KE
+Zanzibar	زنجبار	TZ
+Abuja	أبوجا	NG
+Ibadan	إبادان	NG
+Kaduna	كادونا	NG
+Accra	أكرا	GH
+Abidjan	أبيدجان	CI
+Bamako	باماكو	ML
+Niamey	نيامي	NE
+Conakry	كوناكري	GN
+N'Djamena	انجامينا	TD
+Durban	ديربان	ZA
+Izmir	إزمير	TR
+Bursa	بورصة	TR
+Konya	قونية	TR
+Antalya	أنطاليا	TR
+Gaziantep	غازي عنتاب	TR
+Mashhad	مشهد	IR
+Isfahan	أصفهان	IR
+Shiraz	شيراز	IR
+Tabriz	تبريز	IR
+Qom	قم	IR
+Herat	هرات	AF
+Kandahar	قندهار	AF
+Faisalabad	فيصل آباد	PK
+Rawalpindi	راولبندي	PK
+Peshawar	بيشاور	PK
+Multan	ملتان	PK
+Quetta	كويتا	PK
+Hyderabad (Sindh)	حيدر آباد (السند)	PK	Hyderabad
+Chittagong	شيتاغونغ	BD	Chattogram
+Bengaluru	بنغالور	IN
+Chennai	تشيناي	IN
+Kolkata	كولكاتا	IN
+Lucknow	لكناو	IN
+Srinagar	سريناغار	IN
+Kozhikode	كاليكوت	IN	Kozhikode
+Colombo	كولومبو	LK
+Malé	ماليه	MV	Male
+Kathmandu	كاتماندو	NP
+Bandung	باندونغ	ID
+Medan	ميدان	ID
+Makassar	ماكاسار	ID
+Banda Aceh	باندا آتشيه	ID
+Yogyakarta	يوغياكارتا	ID
+Palembang	باليمبانغ	ID
+George Town	جورج تاون	MY
+Johor Bahru	جوهور بارو	MY
+Kota Bharu	كوتا بارو	MY
+Bandar Seri Begawan	بندر سري بكاوان	BN
+Samarkand	سمرقند	UZ
+Bukhara	بخارى	UZ
+Bishkek	بيشكك	KG
+Dushanbe	دوشنبه	TJ
+Ashgabat	عشق آباد	TM
+Astana	أستانا	KZ
+Grozny	غروزني	RU
+Makhachkala	محج قلعة	RU
+Ufa	أوفا	RU
+Saint Petersburg	سانت بطرسبرغ	RU
+Tbilisi	تبليسي	GE
+Pristina	بريشتينا	XK
+Tirana	تيرانا	AL
+Skopje	سكوبيه	MK
+Birmingham	برمنغهام	GB
+Manchester	مانشستر	GB
+Bradford	برادفورد	GB
+Leicester	ليستر	GB
+Glasgow	غلاسكو	GB
+Dublin	دبلن	IE
+Marseille	مرسيليا	FR
+Lyon	ليون	FR
+Brussels	بروكسل	BE
+Rotterdam	روتردام	NL
+Hamburg	هامبورغ	DE
+Munich	ميونخ	DE
+Frankfurt	فرانكفورت	DE	Frankfurt am Main
+Cologne	كولونيا	DE	Köln
+Vienna	فيينا	AT
+Zurich	زيورخ	CH	Zürich
+Geneva	جنيف	CH
+Stockholm	ستوكهولم	SE
+Malmö	مالمو	SE
+Oslo	أوسلو	NO
+Copenhagen	كوبنهاغن	DK
+Milan	ميلانو	IT
+Barcelona	برشلونة	ES
+Lisbon	لشبونة	PT
+Athens	أثينا	GR
+Montreal	مونتريال	CA
+Ottawa	أوتاوا	CA
+Calgary	كالغاري	CA
+Vancouver	فانكوفر	CA
+Mississauga	ميسيساغا	CA
+Washington	واشنطن	US
+Dearborn	ديربورن	US
+Detroit	ديترويت	US
+Philadelphia	فيلادلفيا	US
+Dallas	دالاس	US
+Atlanta	أتلانتا	US
+San Francisco	سان فرانسيسكو	US
+Minneapolis	مينيابوليس	US
+Rio de Janeiro	ريو دي جانيرو	BR
+Perth	بيرث	AU
+Brisbane	بريزبن	AU
+Auckland	أوكلاند	NZ
+Seoul	سيول	KR
+Hong Kong	هونغ كونغ	HK
+Ho Chi Minh City	مدينة هو تشي منه	VN

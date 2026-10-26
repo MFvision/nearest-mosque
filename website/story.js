@@ -11,7 +11,7 @@
 // watches, devices; paths are under assets/<lang>/.
 
 export const links = {
-  // Set a store link when the listing is live; until then the button reads "Coming soon".
+  // Set a store link when the listing is live; until then that store has no button anywhere on the site.
   appStore: null,
   googlePlay: 'https://play.google.com/store/apps/details?id=com.AVA.nearmosque',
   // Windows and Linux are downloaded straight from GitHub: the release "desktop-latest", which

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<!-- Written by tools/site/cities.mjs. Edit that script, not this file. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prayer times in Skopje today · Near Mosque</title>
+<meta name="description" content="Today's Fajr, Dhuhr, Asr, Maghrib and Isha times in Skopje, the next prayer with a countdown, and the Qibla at 137° from north.">
+<link rel="canonical" href="https://nearmosque.net/prayer-times/skopje/">
+<link rel="alternate" hreflang="en" href="https://nearmosque.net/prayer-times/skopje/">
+<link rel="alternate" hreflang="ar" href="https://nearmosque.net/ar/prayer-times/skopje/">
+<meta name="theme-color" content="#081B29">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Prayer times in Skopje today · Near Mosque">
+<meta property="og:description" content="Today's Fajr, Dhuhr, Asr, Maghrib and Isha times in Skopje, the next prayer with a countdown, and the Qibla at 137° from north.">
+<meta property="og:url" content="https://nearmosque.net/prayer-times/skopje/">
+<meta property="og:image" content="https://nearmosque.net/assets/share-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/icon-180.png">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="preload" href="../../fonts/readex-pro-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../devices.css">
+<link rel="stylesheet" href="../../prayer-times/city.css">
+</head>
+<body data-en="Skopje" data-ar="سكوبيه" data-lat="41.99646" data-lon="21.43141" data-tz="Europe/Skopje">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Prayer times in Skopje today · Near Mosque","inLanguage":"en","about":{"@type":"City","name":"Skopje","geo":{"@type":"GeoCoordinates","latitude":41.99646,"longitude":21.43141}}}</script>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../assets/icon.webp" alt="" width="34" height="34"><span>Near Mosque</span></a>
+  <nav class="tools"><a class="pill" href="../../">Home</a><a class="pill" href="../../ar/prayer-times/skopje/" lang="ar" hreflang="ar">العربية</a></nav>
+</header>
+<section class="hero" aria-labelledby="title">
+  <canvas class="sky" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <div class="now">
+      <p class="eyebrow" id="date">Today</p>
+      <h1 id="title">Prayer times in Skopje</h1>
+      <p class="next" aria-live="off"><span id="next-name"></span> <span id="next-in" class="soft"></span> <span id="count" class="count"></span></p>
+      <p class="at" id="at"></p>
+      <ol class="times" id="times" aria-label="Today"></ol>
+      <noscript><p class="at">Today’s times are worked out in your browser. Turn on JavaScript to see them, or get the app.</p></noscript>
+      <div class="qibla">
+        <svg class="dial" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" class="ring"/>
+          <g class="ticks"><line x1="50.00" y1="11.00" x2="50.00" y2="6.00"/><line x1="57.29" y1="8.64" x2="57.64" y2="6.67"/><line x1="64.36" y1="10.53" x2="65.05" y2="8.65"/><line x1="71.00" y1="13.63" x2="72.00" y2="11.89"/><line x1="77.00" y1="17.83" x2="78.28" y2="16.29"/><line x1="82.17" y1="23.00" x2="83.71" y2="21.72"/><line x1="86.37" y1="29.00" x2="88.11" y2="28.00"/><line x1="89.47" y1="35.64" x2="91.35" y2="34.95"/><line x1="91.36" y1="42.71" x2="93.33" y2="42.36"/><line x1="89.00" y1="50.00" x2="94.00" y2="50.00"/><line x1="91.36" y1="57.29" x2="93.33" y2="57.64"/><line x1="89.47" y1="64.36" x2="91.35" y2="65.05"/><line x1="86.37" y1="71.00" x2="88.11" y2="72.00"/><line x1="82.17" y1="77.00" x2="83.71" y2="78.28"/><line x1="77.00" y1="82.17" x2="78.28" y2="83.71"/><line x1="71.00" y1="86.37" x2="72.00" y2="88.11"/><line x1="64.36" y1="89.47" x2="65.05" y2="91.35"/><line x1="57.29" y1="91.36" x2="57.64" y2="93.33"/><line x1="50.00" y1="89.00" x2="50.00" y2="94.00"/><line x1="42.71" y1="91.36" x2="42.36" y2="93.33"/><line x1="35.64" y1="89.47" x2="34.95" y2="91.35"/><line x1="29.00" y1="86.37" x2="28.00" y2="88.11"/><line x1="23.00" y1="82.17" x2="21.72" y2="83.71"/><line x1="17.83" y1="77.00" x2="16.29" y2="78.28"/><line x1="13.63" y1="71.00" x2="11.89" y2="72.00"/><line x1="10.53" y1="64.36" x2="8.65" y2="65.05"/><line x1="8.64" y1="57.29" x2="6.67" y2="57.64"/><line x1="11.00" y1="50.00" x2="6.00" y2="50.00"/><line x1="8.64" y1="42.71" x2="6.67" y2="42.36"/><line x1="10.53" y1="35.64" x2="8.65" y2="34.95"/><line x1="13.63" y1="29.00" x2="11.89" y2="28.00"/><line x1="17.83" y1="23.00" x2="16.29" y2="21.72"/><line x1="23.00" y1="17.83" x2="21.72" y2="16.29"/><line x1="29.00" y1="13.63" x2="28.00" y2="11.89"/><line x1="35.64" y1="10.53" x2="34.95" y2="8.65"/><line x1="42.71" y1="8.64" x2="42.36" y2="6.67"/></g>
+          <text x="50" y="16" class="n">N</text>
+          <g id="needle" style="transform: rotate(137deg)"><path d="M50 14 L55 50 L50 56 L45 50 Z" class="arrow"/><rect x="45.5" y="8" width="9" height="9" rx="1.6" class="kaaba"/></g>
+          <circle cx="50" cy="50" r="3" class="hub"/>
+        </svg>
+        <div><p class="q-title">Qibla from Skopje</p><p class="q-sub">137° from north · 2,861 km to the Kaaba</p></div>
+      </div>
+      <div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.AVA.nearmosque" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8v18.4c0 .6.6.9 1.1.6l15.4-8.9c.5-.3.5-1 0-1.3L5.1 2.2C4.6 1.9 4 2.2 4 2.8Z"/></svg><small>Get it on</small><b>Google Play</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg><small>Download for</small><b>Windows</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.3 4.4L9.9 12l-3.6 3.6L7.7 17l5-5-5-5ZM13 15.2V17h5v-1.8Z"/></svg><small>Download for</small><b>Linux</b></a><p class="stores-more"><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-amd64.deb" rel="noopener">.deb for Ubuntu/Debian</a><span aria-hidden="true">·</span><a href="https://github.com/MFvision/nearest-mosque/releases/tag/desktop-latest" rel="noopener" target="_blank">All downloads and checksums</a></p></div>
+      <p class="note">Times for the centre of Skopje, Muslim World League method. The app works them out for exactly where you are, and you can choose the method your mosque follows.</p>
+    </div>
+    <figure class="hero-phone"><div class="phone"><img src="../../assets/en/iphone/01-prayer.webp" alt="" width="440" height="956" fetchpriority="high"></div></figure>
+  </div>
+</section>
+<main>
+  <section class="cities" aria-labelledby="others">
+    <h2 id="others">Prayer times in other cities</h2>
+    <ul><li><a href="../../prayer-times/pristina/">Pristina<small>بريشتينا</small></a></li><li><a href="../../prayer-times/tirana/">Tirana<small>تيرانا</small></a></li><li><a href="../../prayer-times/sarajevo/">Sarajevo<small>سراييفو</small></a></li><li><a href="../../prayer-times/athens/">Athens<small>أثينا</small></a></li><li><a href="../../prayer-times/izmir/">Izmir<small>إزمير</small></a></li><li><a href="../../prayer-times/istanbul/">Istanbul<small>إسطنبول</small></a></li><li><a href="../../prayer-times/bursa/">Bursa<small>بورصة</small></a></li><li><a href="../../prayer-times/rome/">Rome<small>روما</small></a></li><li><a href="../../prayer-times/vienna/">Vienna<small>فيينا</small></a></li><li><a href="../../prayer-times/antalya/">Antalya<small>أنطاليا</small></a></li><li><a href="../../prayer-times/ankara/">Ankara<small>أنقرة</small></a></li></ul>
+    <a class="all" href="../../prayer-times/">All cities</a>
+  </section>
+  <section class="more" aria-labelledby="more-title">
+    <h2 id="more-title">More from the app</h2>
+    <div class="cards"><article class="card"><div class="shot"><div class="phone"><img src="../../assets/en/iphone/09-mosques-radar.webp" alt="" loading="lazy" decoding="async"></div></div><h3>See which way the mosque is, and how far.</h3><p>A compass with each mosque at its real direction, and a map for the walk there.</p></article><article class="card"><div class="shot"><div class="phone"><img src="../../assets/en/iphone/08-audio.webp" alt="" loading="lazy" decoding="async"></div></div><h3>The Adhan from Makkah or Madinah.</h3><p>With a reminder before each prayer, a Fajr alarm and Friday reminders.</p></article><article class="card"><div class="shot"><div class="phone"><img src="../../assets/en/iphone/04-ask.webp" alt="" loading="lazy" decoding="async"></div></div><h3>Ask about Islam and see the source.</h3><p>Answers quote the books on your phone, each with its source. They are not a fatwa.</p></article></div>
+  </section>
+  <section class="end" aria-labelledby="end-title">
+    <p class="eyebrow">Near Mosque</p>
+    <h2 id="end-title">Every prayer on time, wherever you are.</h2>
+    <p class="lead">No account, no ads, no tracking. Prayer times and the Qibla work without the internet.</p>
+    <div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.AVA.nearmosque" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8v18.4c0 .6.6.9 1.1.6l15.4-8.9c.5-.3.5-1 0-1.3L5.1 2.2C4.6 1.9 4 2.2 4 2.8Z"/></svg><small>Get it on</small><b>Google Play</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-windows.msi" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg><small>Download for</small><b>Windows</b></a><a class="store" href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-x86_64.AppImage" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.3 4.4L9.9 12l-3.6 3.6L7.7 17l5-5-5-5ZM13 15.2V17h5v-1.8Z"/></svg><small>Download for</small><b>Linux</b></a><p class="stores-more"><a href="https://github.com/MFvision/nearest-mosque/releases/download/desktop-latest/near-mosque-linux-amd64.deb" rel="noopener">.deb for Ubuntu/Debian</a><span aria-hidden="true">·</span><a href="https://github.com/MFvision/nearest-mosque/releases/tag/desktop-latest" rel="noopener" target="_blank">All downloads and checksums</a></p></div>
+  </section>
+</main>
+<footer><nav><a href="../../prayer-times/">All cities</a><a href="../../privacy.html">Privacy policy</a><a href="../../terms.html">Terms of use</a><a href="../../support.html">Support</a><a href="../../credits.html">Sources and licences</a></nav></footer>
+<script src="../../sky.js"></script>
+<script type="module" src="../../prayer-times/city.js"></script>
+</body>
+</html>
