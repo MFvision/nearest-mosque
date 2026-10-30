@@ -4,7 +4,7 @@ import CoreLocation
 import NMCore
 
 /// Experimental: the Qibla compass in the Dynamic Island (QiblaActivityAttributes), started from the Qibla
-/// widget. Reads the true heading in the background for two minutes (iOS shows the location indicator), sends
+/// widget. Reads the true heading for up to two minutes while the app is in use (no background location), sends
 /// the arrow to the activity about four times a second when it has moved (the views glide between updates),
 /// then stops reading and ends the activity.
 @MainActor
@@ -45,12 +45,9 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
                                          content: ActivityContent(state: initial, staleDate: Date().addingTimeInterval(Self.seconds + 30),
                                                                   relevanceScore: Self.relevance), pushType: nil)
         guard activity != nil else { return }
-        background = CLBackgroundActivitySession()
         manager.delegate = self
         manager.headingFilter = 1
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
-        manager.allowsBackgroundLocationUpdates = true
-        manager.showsBackgroundLocationIndicator = true
         manager.startUpdatingLocation()
         manager.startUpdatingHeading()
         stopTask = Task { [weak self] in
@@ -67,7 +64,6 @@ final class QiblaIsland: NSObject, CLLocationManagerDelegate {
         stopTask = nil
         manager.stopUpdatingHeading()
         manager.stopUpdatingLocation()
-        manager.allowsBackgroundLocationUpdates = false
         background?.invalidate()
         background = nil
         for a in Activity<QiblaActivityAttributes>.activities { await a.end(nil, dismissalPolicy: .immediate) }
