@@ -157,6 +157,11 @@ def api(method: str, path: str, params: dict | None = None, body: dict | None = 
             try:
                 errors = json.loads(e.read() or b"{}").get("errors", [])
                 summary = "; ".join(f"{x.get('code', '')}: {x.get('title', '')}" for x in errors)
+                # What is missing before a version can be submitted (Apple's own list: codes and their sentences).
+                for x in errors:
+                    for items in ((x.get("meta") or {}).get("associatedErrors") or {}).values():
+                        for a in items:
+                            summary += f"\n  missing: {a.get('code', '')}: {a.get('detail') or a.get('title', '')}"
             except ValueError:
                 summary = ""
             print(f"App Store Connect API {method} {path.split('?')[0]}: HTTP {e.code} {summary}", flush=True)
