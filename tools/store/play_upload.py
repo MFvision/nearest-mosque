@@ -60,7 +60,7 @@ def access_token(key: dict) -> str:
         except ValueError:
             code = ""
         print(f"Google sign-in with the service account failed: HTTP {e.code} {code}", flush=True)
-        raise SystemExit(1)
+        raise SystemExit(1) from None
 
 
 class Play:
@@ -104,7 +104,7 @@ class Play:
                 except ValueError:
                     summary = ""
                 print(f"Google Play API {method} {label}: HTTP {e.code} {summary}", flush=True)
-                raise SystemExit(1)
+                raise SystemExit(1) from None
         raise RuntimeError("unreachable")
 
     def app(self, path: str = "") -> str:

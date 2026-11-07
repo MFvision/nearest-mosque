@@ -47,6 +47,8 @@ jobs:
       BUNDLE_ID: sa.zood.nearmosque
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
 
       - name: Check signing secrets
         env:
@@ -368,6 +370,8 @@ jobs:
       BUILD_NUMBER: ${{ needs.testflight.outputs.build }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       - run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
       - name: Wait, answer export compliance, add the build to internal groups
         env:
@@ -387,6 +391,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       - run: "python3 -m venv /tmp/asc && /tmp/asc/bin/pip install --quiet --only-binary :all: pyjwt==2.10.1 cryptography==44.0.0"
       - name: Revoke development certificates created in the last hours by CI
         env:

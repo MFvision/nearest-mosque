@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         if (uri.scheme != "nearmosque") return null
         if (uri.host != "ask" || uri.getQueryParameter("q") == null) return uri.toString()
         val q = uri.getQueryParameter("q").orEmpty().take(500)
-        val trusted = intent.getStringExtra(sa.zood.nearmosque.platform.LinkToken.EXTRA) == sa.zood.nearmosque.platform.LinkToken.get(this)
+        val trusted = sa.zood.nearmosque.platform.LinkToken.matches(this, intent.getStringExtra(sa.zood.nearmosque.platform.LinkToken.EXTRA))
         return "nearmosque://ask?" + (if (trusted) "q=" else "draft=") + android.net.Uri.encode(q)
     }
 

@@ -1,5 +1,4 @@
 """Second round: the arrow inside the customer's emblem (same gold square). python3 draw2.py"""
-import math
 from draw import BG, INK
 
 NAVY, GOLD, CREAM = "#1F4E79", "#F2C35B", "#FFF8EC"

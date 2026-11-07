@@ -33,14 +33,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -68,17 +63,14 @@ import sa.zood.nearmosque.core.CommonQuestion
 import sa.zood.nearmosque.data.ResolvedCitation
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.glass.GlassButton
-import sa.zood.nearmosque.ui.glass.GlassButtonText
 import sa.zood.nearmosque.ui.glass.GlassCard
 import sa.zood.nearmosque.ui.glass.GlassIconButton
-import sa.zood.nearmosque.ui.glass.bottomBarPadding
 import sa.zood.nearmosque.ui.glass.glass
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import sa.zood.nearmosque.ui.theme.LocalExtraColors
 import sa.zood.nearmosque.ui.theme.Tokens
 
 @OptIn(ExperimentalLayoutApi::class)

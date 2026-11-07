@@ -226,7 +226,7 @@ def shoot_simulator(platform, app, out, langs):
             time.sleep(wait(platform, screen))
             target = folder / f"{n:02d}-{screen}.png"
 
-            def log(note, target=target, started=started):
+            def log(note, target=target, started=started, lang=lang):
                 print(f"{time.strftime('%H:%M:%S')} {platform}/{lang['app']}/{target.name} {time.time() - started:.0f}s{note}", flush=True)
 
             def relaunch(screen=screen, lang=lang):

@@ -24,7 +24,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from play_upload import API, UPLOAD, Play, access_token  # noqa: E402
+from play_upload import UPLOAD, Play, access_token  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 LISTING = ROOT / "shared/store/play/listing.json"

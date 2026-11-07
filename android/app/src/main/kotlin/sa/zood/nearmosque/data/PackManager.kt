@@ -16,7 +16,6 @@ import sa.zood.nearmosque.core.PackManifest
 import sa.zood.nearmosque.core.PackVerifier
 import sa.zood.nearmosque.core.SourceChunk
 import sa.zood.nearmosque.core.SourceDocument
-import sa.zood.nearmosque.core.TextNormalizer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
@@ -97,9 +96,8 @@ class PackManager(
         }
     }
 
-    /** Import a `.nmpack` (zip with manifest.json at its root) chosen by the user. */
     /**
-     * Installs a pack the user chose. Hash-checked against its own manifest, so it proves the files are intact, not
+     * Imports a `.nmpack` (a zip with manifest.json at its root) the user chose. Hash-checked against its own manifest, so it proves the files are intact, not
      * who made them: a pack may not take the id of one of the app's own packs (built in, or in the download
      * catalog: [reserved]), so it can never replace the Qur'an, hadith, fatwas or mosques the app ships.
      */

@@ -36,7 +36,6 @@ import sa.zood.nearmosque.appContainer
 import sa.zood.nearmosque.core.LibraryParts
 import sa.zood.nearmosque.core.SourceChunk
 import sa.zood.nearmosque.data.LibraryFiles
-import sa.zood.nearmosque.ui.theme.Tokens
 
 private fun rtl(lang: String) = sa.zood.nearmosque.core.Languages.isRtl(lang)
 

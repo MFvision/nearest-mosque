@@ -12,7 +12,6 @@ from the takes' silences. The wide cut (16:9, 1920 x 1080) keeps all 15 lines wi
 cut (9:16, 1080 x 1920) skips the lines marked "wide only" and tightens the pauses.
 """
 import json
-import os
 import pathlib
 import subprocess
 import sys

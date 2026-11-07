@@ -84,7 +84,7 @@ def sha256(p):
 
 def md5(p):
     # App Store Connect's upload commit asks for the file's MD5 (sourceFileChecksum).
-    return hashlib.md5(p.read_bytes()).hexdigest()
+    return hashlib.md5(p.read_bytes(), usedforsecurity=False).hexdigest()
 
 
 def contact_sheet(rows, path, thumb=180):
