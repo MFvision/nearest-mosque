@@ -41,6 +41,8 @@ jobs:
       shards: ${{ steps.p.outputs.shards }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       # Each device's languages are split over 4 machines that capture side by side (one simulator
       # captures about 25 seconds a screenshot, so a device's 22 languages took over an hour on one).
       - id: p
@@ -74,6 +76,8 @@ jobs:
         working-directory: ios
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       # Before anything that can fail: every screen this shard is to capture is marked as not captured yet
       # (raw/<platform>/<language>/<NN>-<screen>.failed); each capture replaces its marker. The raw folder is uploaded
       # even when a later step (Xcode, runtime download, build, capture) fails, so the merge never fills those
@@ -166,6 +170,8 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       # An earlier run's raw captures are kept 3 days, its finished set (app-store-screenshots) 30 days: both are
       # read, the finished set first. tools/store/collect.py matches captures by screen name, so a later capture of a
       # screen replaces an earlier one whatever its number, and runs made in an older order sort into the new one.

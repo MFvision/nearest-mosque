@@ -8,7 +8,7 @@ parameters, which the apps also use through Adhan. The apps must agree with thes
 within the tolerance recorded in the fixture file.
 """
 import math
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 KAABA = (21.4225241, 39.8261818)

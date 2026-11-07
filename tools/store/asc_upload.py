@@ -657,7 +657,7 @@ def update_sets(store: pathlib.Path, manifest: dict, entries: list, app: dict, a
                     else:
                         print(f"::warning::{label}: {coming} is not ready yet ({state or 'no state'}); "
                               + (lost if first else f"{gone} not deleted and ")
-                              + f"the set not reordered. Run again later"
+                              + "the set not reordered. Run again later"
                               + ("." if first else f": once {coming} is ready, {gone} is deleted."), flush=True)
                     break
                 if not first:
@@ -1199,7 +1199,7 @@ def main() -> int:
         check = [e for e in entries if screen_of_entry(e) in add | replace] if changing else entries
         for e in check:
             f = store / e["file"]
-            if not f.exists() or hashlib.md5(f.read_bytes()).hexdigest() != e["md5"]:
+            if not f.exists() or hashlib.md5(f.read_bytes(), usedforsecurity=False).hexdigest() != e["md5"]:
                 print(f"::error::{e['file']} is missing or differs from the manifest")
                 return 1
         app = find_app()

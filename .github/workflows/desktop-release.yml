@@ -48,19 +48,26 @@ jobs:
         working-directory: windows
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
         with:
           distribution: temurin
           java-version: "21"
       - uses: gradle/actions/wrapper-validation@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
       - name: Tests, app image and MSI
-        run: ./gradlew.bat --no-daemon "-PappVersion=${{ env.APP_VERSION }}" test createDistributable packageMsi
+        run: ./gradlew.bat --no-daemon "-PappVersion=$env:APP_VERSION" test createDistributable packageMsi
       - name: MSIX for the Microsoft Store
         if: vars.MSIX_IDENTITY_NAME != ''
         shell: pwsh
+        # Values reach the script as environment variables, never pasted into the command line.
+        env:
+          MSIX_IDENTITY_NAME: ${{ vars.MSIX_IDENTITY_NAME }}
+          MSIX_PUBLISHER: ${{ vars.MSIX_PUBLISHER }}
+          MSIX_PUBLISHER_NAME: ${{ vars.MSIX_PUBLISHER_NAME }}
         run: >
-          ./msix/build-msix.ps1 -IdentityName "${{ vars.MSIX_IDENTITY_NAME }}" -Publisher "${{ vars.MSIX_PUBLISHER }}"
-          -PublisherName "${{ vars.MSIX_PUBLISHER_NAME }}" -Version "${{ env.APP_VERSION }}.0"
+          ./msix/build-msix.ps1 -IdentityName "$env:MSIX_IDENTITY_NAME" -Publisher "$env:MSIX_PUBLISHER"
+          -PublisherName "$env:MSIX_PUBLISHER_NAME" -Version "$($env:APP_VERSION).0"
       - name: Install the MSI and start the installed app for 20 seconds
         shell: pwsh
         run: |
@@ -109,6 +116,8 @@ jobs:
         working-directory: windows
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
       - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
         with:
           distribution: temurin

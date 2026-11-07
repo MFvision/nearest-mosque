@@ -1,5 +1,5 @@
 # Candidate mosque tab icons (option C installed as iOS MosqueTab and Android ic_tab_mosque).
-import subprocess, sys
+import subprocess
 CHROME = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell"
 # Candidate mosque glyphs on a 24 grid (filled, even-odd cutouts).
 A = ("M12 1.4a0.75 0.75 0 0 1 0.75 0.75v1.1h-1.5v-1.1A0.75 0.75 0 0 1 12 1.4z"          # finial

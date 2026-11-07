@@ -251,7 +251,7 @@ def creative(folder: pathlib.Path) -> int:
                 continue
             # Reference names are unique in the library: a short fingerprint of the file keeps a new cut apart.
             import hashlib
-            tag = hashlib.md5(f.read_bytes()).hexdigest()[:8]
+            tag = hashlib.md5(f.read_bytes(), usedforsecurity=False).hexdigest()[:8]
             vid = upload(library, f, "appAssetLibraryVideos", category, f"Near Mosque {sub} {f.stem} {tag}")
             state = wait_ready("appAssetLibraryVideos", [vid])[vid]
             if state != "PREPARE_FOR_SUBMISSION":

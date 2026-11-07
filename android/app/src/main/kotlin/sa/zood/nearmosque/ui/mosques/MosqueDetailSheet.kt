@@ -46,7 +46,6 @@ import sa.zood.nearmosque.platform.ExternalActions
 import sa.zood.nearmosque.ui.Format
 import sa.zood.nearmosque.ui.theme.DataDirection
 import sa.zood.nearmosque.ui.theme.LocalExtraColors
-import sa.zood.nearmosque.ui.theme.Tokens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

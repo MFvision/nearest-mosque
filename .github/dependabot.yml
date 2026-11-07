@@ -1,0 +1,12 @@
+# Security and version updates for the pinned GitHub Actions (one grouped pull request a month, so the
+# macOS minutes CI spends on it stay small). App dependencies are updated by hand with each release.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 1

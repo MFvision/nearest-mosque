@@ -25,7 +25,7 @@ def main():
     for f in [out / n for n in NAMES] + sorted(out.rglob("*.html")):
         s = f.read_text()
         for a, b in ren.items():
-            s = re.sub(rf"(['\"(/]|\./|^){re.escape(a)}(['\")])", lambda m: m.group(1) + b + m.group(2), s, flags=re.M)
+            s = re.sub(rf"(['\"(/]|\./|^){re.escape(a)}(['\")])", lambda m, b=b: m.group(1) + b + m.group(2), s, flags=re.M)
             s = s.replace(f'src="{a}"', f'src="{b}"').replace(f'href="{a}"', f'href="{b}"')
         if f == out / "index.html":
             for t in ["<!doctype html>\n", '<html lang="en" dir="ltr">\n', "<head>\n", "</head>\n", "<body>\n", "</body>\n", "</html>\n",

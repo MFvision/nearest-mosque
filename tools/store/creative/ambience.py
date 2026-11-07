@@ -56,7 +56,6 @@ def main():
         mix[ch] += noise / np.abs(noise).max() * gust * 0.32
 
     # Birds by day: short chirps (rising and falling whistles) at random moments, panned left or right.
-    dayw = window(n, u, day[0], day[1], 0.05)
     for _ in range(int(seconds * 1.6)):
         at = rng.uniform(0, seconds)
         if window(1, np.array([at / seconds]), day[0], day[1], 0.05)[0] < 0.3:

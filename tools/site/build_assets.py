@@ -80,7 +80,7 @@ def cities():
         rows.append((int(f[8] or 0), float(f[5]), float(f[6]), f[7], f[2]))
     rows.sort(reverse=True)
     zones = {}
-    for pop, la, lo, tz, en in rows:
+    for _pop, la, lo, tz, en in rows:
         zones.setdefault(tz, [round(la, 3), round(lo, 3), en])
     return [(round(la * 100), round(lo * 100), min(255, int(math.log10(max(pop, 1e4)) * 30))) for pop, la, lo, *_ in rows], zones
 

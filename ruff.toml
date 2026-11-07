@@ -1,0 +1,18 @@
+# Lint for the Python tools (CI job "shared"). Pyflakes, real syntax errors, likely bugs and the security rules
+# that matter for build scripts. Style is left to the authors.
+target-version = "py311"
+line-length = 160
+
+[lint]
+select = ["F", "E9", "B", "S"]
+ignore = [
+  "S101",  # assert: used in tests and build-time sanity checks
+  "S105",  # hardcoded password: only fake test values
+  "S113",  # requests without timeout: urllib is used instead
+  "S310",  # urlopen schemes: every URL is a fixed https:// API
+  "S311",  # random: only for test data and visuals, never for secrets
+  "S314",  # xml.etree: parses the repository's own files and Apple's tool output, never user input
+  "S603",  # subprocess without shell: arguments are lists, never a shell string
+  "S607",  # partial executable path: tools come from the runner's PATH (xcrun, ffmpeg, git)
+  "B905",  # zip() without strict=
+]

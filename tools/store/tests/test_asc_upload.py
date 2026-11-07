@@ -212,7 +212,7 @@ class Base(unittest.TestCase):
                 f.write_bytes(f"png {rel}".encode())
                 self.entries.append({"displayType": display_type, "ascPlatform": platform, "locale": locale,
                                      "position": pos, "screen": screen, "file": rel,
-                                     "md5": hashlib.md5(f.read_bytes()).hexdigest()})
+                                     "md5": hashlib.md5(f.read_bytes(), usedforsecurity=False).hexdigest()})
         (self.store / "manifest.json").write_text(json.dumps({"screenshots": self.entries}))
 
     def describe(self, types: dict, **lists):

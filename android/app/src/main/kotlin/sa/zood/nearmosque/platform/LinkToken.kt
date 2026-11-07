@@ -1,6 +1,7 @@
 package sa.zood.nearmosque.platform
 
 import android.content.Context
+import java.security.MessageDigest
 import java.security.SecureRandom
 
 /** A random value made once per install, carried by the app's own widget links (so other apps cannot pose as them). */
@@ -16,4 +17,8 @@ object LinkToken {
         prefs.edit().putString(KEY, token).apply()
         return token
     }
+
+    /** Whether [candidate] is this install's token, compared in constant time (no timing hint to a guessing app). */
+    fun matches(context: Context, candidate: String?): Boolean =
+        candidate != null && MessageDigest.isEqual(candidate.toByteArray(), get(context).toByteArray())
 }

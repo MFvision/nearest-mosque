@@ -26,24 +26,19 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Settings
@@ -56,7 +51,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -79,7 +73,6 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -90,8 +83,6 @@ import sa.zood.nearmosque.core.CompassState
 import sa.zood.nearmosque.core.PrayerCalculator
 import sa.zood.nearmosque.core.PrayerMoment
 import sa.zood.nearmosque.ui.Format
-import sa.zood.nearmosque.ui.glass.GlassButton
-import sa.zood.nearmosque.ui.glass.GlassButtonText
 import sa.zood.nearmosque.ui.glass.GlassIconButton
 import sa.zood.nearmosque.ui.glass.LocationPill
 import sa.zood.nearmosque.ui.glass.LogoDisc
@@ -99,7 +90,6 @@ import sa.zood.nearmosque.ui.glass.glass
 import sa.zood.nearmosque.ui.glass.reducedMotion
 import sa.zood.nearmosque.ui.theme.Tokens
 import kotlin.math.cos
-import kotlin.math.roundToInt
 import kotlin.math.sin
 
 enum class ArcMode { LIVE, NORTH_UP, NONE }

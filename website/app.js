@@ -201,11 +201,10 @@ function applyTheme() {
   globe?.setTheme(dark
     ? { oceanDay: '#173F5A', oceanNight: '#05121C', landDay: '#F4EEDF', landNight: '#2B4A6C', dusk: '#FFC85A', arc: '#FFC94D', ring: '#FFD36B', holy: '#FFE7A8', ground: '#0B1620', rim: '#6FA3E0', stars: true }
     : { oceanDay: '#D5DFE2', oceanNight: '#0E2F45', landDay: '#1A4D6E', landNight: '#3A6488', dusk: '#E8A93A', arc: '#FFC94D', ring: '#F5B93F', holy: '#FFE7A8', ground: '#0B1620', rim: '#BFD7F2', stars: false });
-  dirty = true;
 }
 
 // The scroll conductor.
-let chapters = [], tops = [], heights = [], storyEnd = 0, dirty = true, globe = null, dark = false;
+let chapters = [], tops = [], heights = [], storyEnd = 0, globe = null, dark = false;
 // Where the reading column ends (its inner edge on the screen) and the gap after it, for placing the globe.
 let colEdge = 0, colGap = 0;
 function measure() {
@@ -218,7 +217,6 @@ function measure() {
   tops = chapters.map((c) => c.offsetTop);
   heights = chapters.map((c) => c.offsetHeight);
   storyEnd = tops.length ? tops[tops.length - 1] + heights[heights.length - 1] : 0;
-  dirty = true;
 }
 const smooth = (x) => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
 const lerp = (a, b, p) => a + (b - a) * p;
