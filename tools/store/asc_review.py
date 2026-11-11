@@ -81,8 +81,9 @@ def submit(app_id: str, platform: str, build_number: str, confirm: bool) -> bool
         api("PATCH", f"/appStoreVersions/{v['id']}",
             body={"data": {"type": "appStoreVersions", "id": v["id"], "attributes": {"releaseType": "AFTER_APPROVAL"}}})
         print(f"{name}: release set to automatic after approval.", flush=True)
-    # A draft submission for this platform (left from an earlier try) is used again; Apple allows one at a time.
-    drafts = [s for s in submissions(app_id, [platform]) if s["attributes"].get("state") == "READY_FOR_REVIEW"]
+    # A draft submission (left from an earlier try) or a rejected one (UNRESOLVED_ISSUES, App Store Connect's
+    # "Resubmit to App Review") is used again; Apple allows one open submission per platform.
+    drafts = [s for s in submissions(app_id, [platform]) if s["attributes"].get("state") in ("READY_FOR_REVIEW", "UNRESOLVED_ISSUES")]
     if drafts:
         sub = drafts[0]
     else:
